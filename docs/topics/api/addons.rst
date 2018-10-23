@@ -43,7 +43,7 @@ This endpoint allows you to search through public add-ons.
     :query string q: The search query. The maximum length allowed is 100 characters.
     :query string app: Filter by :ref:`add-on application <addon-detail-application>` availability.
     :query string appversion: Filter by application version compatibility. Pass the full version as a string, e.g. ``46.0``. Only valid when the ``app`` parameter is also present.
-    :query string author: Filter by exact (listed) author username. Multiple author names can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
+    :query string author: Filter by exact (listed) author username or user id. Multiple author usernames or ids can be specified, separated by comma(s), in which case add-ons with at least one matching author are returned.
     :query string category: Filter by :ref:`category slug <category-list>`. ``app`` and ``type`` parameters need to be set, otherwise this parameter is ignored.
     :query string exclude_addons: Exclude add-ons by ``slug`` or ``id``. Multiple add-ons can be specified, separated by comma(s).
     :query boolean featured: Filter to only featured add-ons.  Only ``featured=true`` is supported.
@@ -60,7 +60,7 @@ This endpoint allows you to search through public add-ons.
     :>json int count: The number of results for this query.
     :>json string next: The URL of the next page of results.
     :>json string previous: The URL of the previous page of results.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` as well as ``picture_url`` from ``authors``.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. As described below, the following fields are omitted for performance reasons: ``release_notes`` and ``license`` fields on ``current_version`` as well as ``picture_url`` from ``authors``. The special ``_score`` property is added to each add-on object, it contains a float value representing the relevancy of each add-on for the given query.
 
 .. _addon-search-sort:
 
@@ -159,6 +159,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
+    :>json string created: The date the add-on was created.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
@@ -236,8 +237,6 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     ==============  ==========================================================
            android  Firefox for Android
            firefox  Firefox
-         seamonkey  SeaMonkey
-       thunderbird  Thunderbird
     ==============  ==========================================================
 
     .. note::
@@ -475,7 +474,6 @@ on AMO.
     :>json string results[].default_locale: The add-on default locale for translations.
     :>json string|object|null results[].name: The add-on name (See :ref:`translated fields <api-overview-translations>`).
     :>json string results[].guid: The add-on `extension identifier <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#id>`_.
-    :>json string results[].locale_disambiguation: Free text field allowing clients to distinguish between multiple dictionaries in the same locale but different spellings. Only present when using the Language Tools endpoint.
     :>json string results[].slug: The add-on slug.
     :>json string results[].target_locale: For dictionaries and language packs, the locale the add-on is meant for. Only present when using the Language Tools endpoint.
     :>json string results[].type: The :ref:`add-on type <addon-detail-type>`.

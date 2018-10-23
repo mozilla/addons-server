@@ -29,7 +29,6 @@ from olympia.browse import feeds
 from olympia.browse.views import (
     MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY, AddonFilter, ThemeFilter,
     locale_display_name)
-from olympia.constants.applications import THUNDERBIRD
 from olympia.translations.models import Translation
 from olympia.versions.models import Version
 
@@ -764,19 +763,17 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         assert urlparse(links[1].attrib['href']).path == search_ext_url.path
 
     def test_additional_resources(self):
-        for prefix, app in (
-                ('/en-US/firefox', amo.FIREFOX.pretty),
-                ('/en-US/seamonkey', amo.SEAMONKEY.pretty)):
-            app = unicode(app)  # get the proxied unicode obj
-            response = self.client.get('%s/search-tools/' % prefix)
-            assert response.status_code == 200
-            doc = pq(response.content)
-            txt = doc('#additional-resources ul li:eq(0)').text()
-            assert txt.endswith(app), "Expected %r got: %r" % (app, txt)
+        prefix, app = ('/en-US/firefox', amo.FIREFOX.pretty)
+        app = unicode(app)  # get the proxied unicode obj
+        response = self.client.get('%s/search-tools/' % prefix)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        txt = doc('#additional-resources ul li:eq(0)').text()
+        assert txt.endswith(app), "Expected %r got: %r" % (app, txt)
 
     def test_search_tools_arent_friends_with_everyone(self):
         # Search tools only show up for Firefox
-        response = self.client.get('/en-US/thunderbird/search-tools/')
+        response = self.client.get('/en-US/android/search-tools/')
         doc = pq(response.content)
         assert not doc('#search-tools-sidebar')
 
@@ -972,13 +969,6 @@ class TestLegacyRedirects(TestCase):
                        '/themes/feeds-news-blogging/?sort=rating')
 
     def test_creatured(self):
-        self.redirects('/extensions/feeds-news-blogging/featured',
-                       '/extensions/feeds-news-blogging/?sort=featured')
-
-    def test_creatured_with_more_than_one_category_slug(self):
-        Category.objects.create(application=THUNDERBIRD.id,
-                                type=amo.ADDON_EXTENSION,
-                                slug='feeds-news-blogging')
         self.redirects('/extensions/feeds-news-blogging/featured',
                        '/extensions/feeds-news-blogging/?sort=featured')
 

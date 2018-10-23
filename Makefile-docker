@@ -1,5 +1,5 @@
 # Determine the python version (2 or 3) so we can load the correct requirements
-python_version_major := $(shell python -c 'import sys; print sys.version_info.major')
+python_version_major := $(shell python -c 'import sys; print(sys.version_info.major)')
 
 # FXA username and password for ui-tests
 export FXA_EMAIL=uitest-$(shell uuid)@restmail.net
@@ -138,6 +138,7 @@ update_db:
 	schematic src/olympia/migrations
 
 update_assets:
+	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	python manage.py compress_assets
 	python manage.py collectstatic --noinput
 

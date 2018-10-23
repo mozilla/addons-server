@@ -183,7 +183,7 @@ class TestFeaturedCollectionSignals(TestCase):
             collection=self.collection,
             application=self.collection.application)
         assert index_addons.delay.call_count == 1
-        index_addons.delay.call_args[0] == ([self.addon.pk],)
+        assert index_addons.delay.call_args[0] == ([self.addon.pk],)
         index_addons.delay.reset_mock()
 
         # Adding an add-on re-indexes all add-ons in the collection
@@ -191,7 +191,8 @@ class TestFeaturedCollectionSignals(TestCase):
         # the one we just added and not the rest).
         self.collection.add_addon(extra_addon)
         assert index_addons.delay.call_count == 1
-        index_addons.delay.call_args[0] == ([self.addon.pk, extra_addon.pk],)
+        assert index_addons.delay.call_args[0] == (
+            [self.addon.pk, extra_addon.pk],)
         index_addons.delay.reset_mock()
 
         # Removing an add-on needs 2 calls: one to reindex the add-ons that
@@ -200,8 +201,8 @@ class TestFeaturedCollectionSignals(TestCase):
         # removed.
         self.collection.remove_addon(extra_addon)
         assert index_addons.delay.call_count == 2
-        index_addons.delay.call_args[0] == ([self.addon.pk],)
-        index_addons.delay.call_args[1] == ([extra_addon.pk],)
+        assert index_addons.delay.call_args_list[0][0] == ([extra_addon.pk],)
+        assert index_addons.delay.call_args_list[1][0] == ([self.addon.pk],)
 
     def test_addon_added_to_featured_collection(self):
         FeaturedCollection.objects.create(

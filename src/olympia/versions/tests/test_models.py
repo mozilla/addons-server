@@ -4,13 +4,12 @@ import os.path
 
 from datetime import datetime, timedelta
 
-from waffle.testutils import override_switch
-
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 import mock
 import pytest
+from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -18,7 +17,8 @@ from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
     CompatOverrideRange)
 from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import (
+    TestCase, addon_factory, version_factory, user_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -31,6 +31,7 @@ from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
     ApplicationsVersions, source_upload_path, Version, VersionPreview)
+from olympia.lib.git import AddonGitRepository
 
 
 pytestmark = pytest.mark.django_db
@@ -96,13 +97,6 @@ class TestVersionManager(TestCase):
             type=amo.ADDON_LPAPP, target_locale='it',
             file_kw={'strict_compatibility': True},
             version_kw={'min_app_version': '59.0', 'max_app_version': '59.*'})
-        addon_factory(
-            name='Thunderbird Polish Language Pack',
-            type=amo.ADDON_LPAPP, target_locale='pl',
-            file_kw={'strict_compatibility': True},
-            version_kw={
-                'application': amo.THUNDERBIRD.id,
-                'min_app_version': '58.0', 'max_app_version': '58.*'})
         # Even add a pack with a compatible version... not public. And another
         # one with a compatible version... not listed.
         incompatible_pack2 = addon_factory(
@@ -422,7 +416,7 @@ class TestVersion(TestCase):
         version = version_factory(addon=addon, max_app_version='3.5')
         assert not version.is_compatible_app(amo.FIREFOX)
         # An app that isn't supported should also be False.
-        assert not version.is_compatible_app(amo.THUNDERBIRD)
+        assert not version.is_compatible_app(amo.ANDROID)
         # An app that can't do d2c should also be False.
         assert not version.is_compatible_app(amo.UNKNOWN_APP)
 
@@ -682,13 +676,13 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Add an extra ApplicationsVersions. It should *not* appear in
         # version.compatible_apps, because that's a cached_property.
         new_app_vr_min = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='1.0')
+            application=amo.ANDROID.id, version='1.0')
         new_app_vr_max = AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='2.0')
+            application=amo.ANDROID.id, version='2.0')
         ApplicationsVersions.objects.create(
-            version=version, application=amo.THUNDERBIRD.id,
+            version=version, application=amo.ANDROID.id,
             min=new_app_vr_min, max=new_app_vr_max)
-        assert amo.THUNDERBIRD not in version.compatible_apps
+        assert amo.ANDROID not in version.compatible_apps
         assert amo.FIREFOX in version.compatible_apps
         app = version.compatible_apps[amo.FIREFOX]
         assert app.min.version == '3.0'
@@ -878,6 +872,36 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED, parsed_data=self.dummy_parsed_data)
         assert upload_version.nomination == pending_version.nomination
 
+    @override_switch('enable-uploads-commit-to-git-storage', active=False)
+    def test_doesnt_commit_to_git_by_default(self):
+        addon = addon_factory()
+        upload = self.get_upload('webextension_no_id.xpi')
+        user = user_factory(username='fancyuser')
+        parsed_data = parse_addon(upload, addon, user=user)
+        version = Version.from_upload(
+            upload, addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data)
+        assert version.pk
+
+        repo = AddonGitRepository(addon.pk)
+        assert not os.path.exists(repo.git_repository_path)
+
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_commits_to_git_waffle_enabled(self):
+        addon = addon_factory()
+        upload = self.get_upload('webextension_no_id.xpi')
+        user = user_factory(username='fancyuser')
+        parsed_data = parse_addon(upload, addon, user=user)
+        version = Version.from_upload(
+            upload, addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data)
+        assert version.pk
+
+        repo = AddonGitRepository(addon.pk)
+        assert os.path.exists(repo.git_repository_path)
+
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
     filename = 'search.xml'
@@ -934,7 +958,6 @@ class TestStatusFromUpload(TestVersionFromUpload):
             amo.STATUS_DISABLED)
 
 
-@override_switch('allow-static-theme-uploads', active=True)
 class TestStaticThemeFromUpload(UploadTest):
 
     def setUp(self):

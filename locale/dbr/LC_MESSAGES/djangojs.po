@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -760,11 +760,17 @@ msgstr ".punoɟ sʇʅnsǝɹ oN"
 msgid "Loading..."
 msgstr "...ƃuıpɐo⅂"
 
+#. L10n: {0} is the number of characters entered.
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "ɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
+msgstr[1] "sɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
-msgstr[0] ".ʇɟǝʅ ɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
-msgstr[1] ".ʇɟǝʅ sɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
+msgstr[0] "ʇɟǝʅ ɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
+msgstr[1] "ʇɟǝʅ sɹǝʇɔɐɹɐɥɔ <b>{0}</b>"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr ".ɹǝʇɐʅ ǝʅʇʇıʅ ɐ ʞɔɐq ʞɔǝɥɔ ǝsɐǝʅԀ .ǝɔuɐuǝʇuıɐɯ ǝʇısqǝʍ ɯɹoɟɹǝd ǝʍ ǝʅıɥʍ pǝʅqɐsıp ʎʅıɹɐɹodɯǝʇ sı ǝɹnʇɐǝɟ sıɥ⊥"
@@ -858,9 +864,6 @@ msgstr "{2} uɯnʅoɔ {1} ǝuıʅ {0}"
 
 msgid "{0} line {1}"
 msgstr "{1} ǝuıʅ {0}"
-
-msgid "Compatibility Tests"
-msgstr "sʇsǝ⊥ ʎʇıʅıqıʇɐdɯoↃ"
 
 msgid "Add-on failed validation."
 msgstr ".uoıʇɐpıʅɐʌ pǝʅıɐɟ uo-pp∀"

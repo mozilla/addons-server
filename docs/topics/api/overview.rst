@@ -95,21 +95,22 @@ Maintainance Mode
 
 When returning ``HTTP 503 Service Unavailable`` responses the API may be in
 read-only mode. This means that for a short period of time we do not allow any
-write requests, this includes ``POST``, ``PATCH`` and ``DELETE`` requests.
+write requests, this includes ``POST``, ``PATCH``, ``PUT`` and ``DELETE`` requests.
 
 In case we are in read-only mode, the following behavior can be observed:
 
   * ``GET`` requests behave normally
-  * ``POST``, ``PUT`` and ``DELETE`` requests return 503 with a json response that contains a localized error message
-  * A custom ``X-AMO-Read-Only`` header is set to ``true``
-  * A ``Retry-After`` header may be set, it's not a requirement though and can be omitted
+  * ``POST``, ``PUT``, ``PATCH``, and ``DELETE`` requests return 503 with a json response that contains a localized error message
 
-In case we are not in read-only mode, the following (standard) behavior can be observed:
+The response when returning ``HTTP 503 Service Unavailable`` in case of read-only mode looks like this:
 
-  * ``GET``, ``POST``, ``PUT``, ``DELETE`` requests behave normally again
-  * ``X-AMO-Read-Only`` header is set to ``false``
+.. code-block:: json
 
-So, in case of a ``503`` HTTP response you can always check the ``X-AMO-Read-Only`` header to behave appropriately.
+    {
+        "error": "Some features are temporarily disabled while we perform websi…"
+    }
+
+In case we are not in read-only mode everything should be back working as normal.
 
 ~~~~~~~~~~
 Pagination
@@ -257,7 +258,7 @@ guarantee 100% stability).  The `v3` API will be maintained for as long as Firef
 ESR60 is supported by Mozilla, i.e. at least June 30th 2019.
 The downside of using the `v3` API is, of course, no new cool features!
 
-The documentation for `v3` can be accessed at: http://addons-server.readthedocs.io/en/2018.05.17/topics/api/
+The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 
 
 ----------------
@@ -279,3 +280,10 @@ v4 API changelog
   On addons-dev and addons stage enviroments the previous behavior is available as `api/v4dev`. The `v4dev` api is not available on AMO production server.
   https://github.com/mozilla/addons-server/issues/9467
 * 2018-10-04: added ``is_strict_compatibility_enabled`` to discovery API ``addons.current_version`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9520
+* 2018-10-04: added ``is_deleted`` to the ratings API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9371
+* 2018-10-04: added ``exclude_ratings`` parameter to ratings API. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9424
+* 2018-10-11: removed ``locale_disambiguation`` from the Language Tools API.
+* 2018-10-11: added ``created`` to the addons API.
+* 2018-10-18: added ``_score`` to the addons search API.
+* 2018-10-25: changed ``author`` parameter on addons search API to accept user ids as well as usernames. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/8901
+* 2018-10-25: added ``fxa_edit_email_url`` parameter on accounts API to return the full URL for editing the user's email on FxA. https://github.com/mozilla/addons-server/issues/8674

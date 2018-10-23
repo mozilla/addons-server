@@ -11,12 +11,13 @@ import mock
 import pytest
 
 from PIL import Image
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
 from olympia.addons.models import Addon, Category, Persona
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -25,7 +26,7 @@ from olympia.files.models import FileUpload
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License
+from olympia.versions.models import License
 
 
 class TestNewUploadForm(TestCase):
@@ -111,9 +112,9 @@ class TestCompatForm(TestCase):
     def setUp(self):
         super(TestCompatForm, self).setUp()
         AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='50.0')
+            application=amo.ANDROID.id, version='50.0')
         AppVersion.objects.create(
-            application=amo.THUNDERBIRD.id, version='58.0')
+            application=amo.ANDROID.id, version='56.0')
         AppVersion.objects.create(
             application=amo.FIREFOX.id, version='56.0')
         AppVersion.objects.create(
@@ -129,48 +130,6 @@ class TestCompatForm(TestCase):
                                       form_kwargs={'version': version})
         apps = [form.app for form in formset.forms]
         assert set(apps) == set(amo.APP_USAGE)
-
-    def test_forms_disallow_thunderbird_and_seamonkey(self):
-        self.create_switch('disallow-thunderbird-and-seamonkey')
-        version = Addon.objects.get(id=3615).current_version
-        version.files.all().update(is_webextension=False)
-        del version.all_files
-        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
-                                      form_kwargs={'version': version})
-        apps = [form.app for form in formset.forms]
-        assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
-
-    def test_forms_disallow_thunderbird_and_seamonkey_even_if_present(self):
-        self.create_switch('disallow-thunderbird-and-seamonkey')
-        version = Addon.objects.get(id=3615).current_version
-        current_min = version.apps.filter(application=amo.FIREFOX.id).get().min
-        current_max = version.apps.filter(application=amo.FIREFOX.id).get().max
-        version.files.all().update(is_webextension=False)
-        ApplicationsVersions.objects.create(
-            version=version, application=amo.THUNDERBIRD.id,
-            min=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='50.0'),
-            max=AppVersion.objects.get(
-                application=amo.THUNDERBIRD.id, version='58.0'))
-        del version.all_files
-        formset = forms.CompatFormSet(None, queryset=version.apps.all(),
-                                      form_kwargs={'version': version})
-        apps = [form.app for form in formset.forms]
-        assert set(apps) == set(amo.APP_USAGE_FIREFOXES_ONLY)
-
-        form = formset.forms[0]
-        assert form.app == amo.FIREFOX
-        assert form.initial['application'] == amo.FIREFOX.id
-        assert form.initial['min'] == current_min.pk
-        assert form.initial['max'] == current_max.pk
-
-        # Android compatibility was not set: it's present as an extra with no
-        # initial value set other than "application".
-        form = formset.forms[1]
-        assert form.app == amo.ANDROID
-        assert form.initial['application'] == amo.ANDROID.id
-        assert 'min' not in form.initial
-        assert 'max' not in form.initial
 
     def test_form_initial(self):
         version = Addon.objects.get(id=3615).current_version
@@ -251,13 +210,13 @@ class TestCompatForm(TestCase):
         assert list(form.fields['min'].choices) == expected_min_choices
         assert list(form.fields['max'].choices) == expected_max_choices
 
-        expected_tb_choices = [(u'', u'---------')] + list(
-            AppVersion.objects.filter(application=amo.THUNDERBIRD.id)
+        expected_an_choices = [(u'', u'---------')] + list(
+            AppVersion.objects.filter(application=amo.ANDROID.id)
             .values_list('pk', 'version').order_by('version_int'))
         form = formset.forms[1]
-        assert form.app == amo.THUNDERBIRD
-        assert list(form.fields['min'].choices) == expected_tb_choices
-        assert list(form.fields['max'].choices) == expected_tb_choices
+        assert form.app == amo.ANDROID
+        assert list(form.fields['min'].choices) == expected_an_choices
+        assert list(form.fields['max'].choices) == expected_an_choices
 
     def test_form_choices_mozilla_signed_legacy(self):
         version = Addon.objects.get(id=3615).current_version
@@ -803,3 +762,161 @@ class TestDistributionChoiceForm(TestCase):
             expected = 'Auf dieser Website.'
             label = unicode(label)
             assert label.startswith(expected)
+
+
+class TestDescribeForm(TestCase):
+    fixtures = ('base/addon_3615', 'base/addon_3615_categories',
+                'addons/denied')
+
+    def setUp(self):
+        super(TestDescribeForm, self).setUp()
+        self.existing_name = 'Delicious Bookmarks'
+        self.non_existing_name = 'Does Not Exist'
+        self.error_msg = 'This name is already in use. Please choose another.'
+        self.request = req_factory_factory('/')
+
+    def test_slug_deny(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'slug': 'submit'}, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['slug'] == (
+            [u'The slug cannot be "submit". Please choose another.'])
+
+    def test_name_trademark_mozilla(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious Mozilla', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert not form.is_valid()
+        assert form.errors['name'].data[0].message.startswith(
+            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
+
+    def test_name_trademark_firefox(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious Firefox', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['name'].data[0].message.startswith(
+            u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
+
+    def test_name_trademark_allowed_for_prefix(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious for Mozilla', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert form.is_valid()
+
+    def test_name_no_trademark(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar'},
+            request=self.request,
+            instance=delicious)
+
+        assert form.is_valid()
+
+    def test_slug_isdigit(self):
+        delicious = Addon.objects.get()
+        form = forms.DescribeForm(
+            {'slug': '123'}, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['slug'] == (
+            [u'The slug cannot be "123". Please choose another.'])
+
+    def test_bogus_support_url(self):
+        form = forms.DescribeForm(
+            {'support_url': 'javascript://something.com'},
+            request=self.request, instance=Addon.objects.get())
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
+
+    def test_ftp_support_url(self):
+        form = forms.DescribeForm(
+            {'support_url': 'ftp://foo.com'}, request=self.request,
+            instance=Addon.objects.get())
+        assert not form.is_valid()
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
+
+    def test_http_support_url(self):
+        form = forms.DescribeForm(
+            {'name': 'Delicious Dumdidum', 'summary': 'foo', 'slug': 'bar',
+             'support_url': 'http://foo.com'},
+            request=self.request, instance=Addon.objects.get())
+        assert form.is_valid(), form.errors
+
+    def test_summary_optional(self):
+        delicious = Addon.objects.get()
+        assert delicious.type == amo.ADDON_EXTENSION
+
+        with override_switch('content-optimization', active=False):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+        with override_switch('content-optimization', active=True):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert not form.is_valid()
+
+            # But only extensions are required to have a description
+            delicious.update(type=amo.ADDON_STATICTHEME)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+            #  Do it again, but this time with a description
+            delicious.update(type=amo.ADDON_EXTENSION)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': 'its a description'},
+                request=self.request,
+                instance=delicious)
+            assert form.is_valid(), form.errors
+
+    def test_summary_min_length(self):
+        delicious = Addon.objects.get()
+        assert delicious.type == amo.ADDON_EXTENSION
+
+        with override_switch('content-optimization', active=False):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert form.is_valid(), form.errors
+
+        with override_switch('content-optimization', active=True):
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert not form.is_valid()
+
+            # But only extensions have a minimum length
+            delicious.update(type=amo.ADDON_STATICTHEME)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '123456789'},
+                request=self.request, instance=delicious)
+            assert form.is_valid()
+
+            #  Do it again, but this time with a description
+            delicious.update(type=amo.ADDON_EXTENSION)
+            form = forms.DescribeForm(
+                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                 'slug': 'bar', 'description': '1234567890'},
+                request=self.request,
+                instance=delicious)
+            assert form.is_valid(), form.errors

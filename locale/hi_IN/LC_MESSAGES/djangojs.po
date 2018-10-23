@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-17 10:58+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-20 14:13+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -230,11 +230,10 @@ msgid_plural "{0} add-ons"
 msgstr[0] "{0} ऐड-ऑन"
 msgstr[1] "{0} ऐड-ऑन"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} संग्रहित"
-msgstr[1] "{0} संग्रहित"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
@@ -246,17 +245,15 @@ msgid_plural "{0} sales"
 msgstr[0] "{0} बिक्री"
 msgstr[1] "{0} बिक्री"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} धनवापसी"
-msgstr[1] "{0} धनवापसी"
+msgstr[0] ""
+msgstr[1] ""
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} इंस्टॉल किये गए"
-msgstr[1] "{0} इंस्टॉल किये गए"
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Downloads"
 msgstr "डाउनलोड"
@@ -598,7 +595,7 @@ msgstr "पिछले {0} दिनों में, बनाये गए �
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr ""
+msgstr "{0} से {1} तक बनाए गए संग्रह"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -658,8 +655,8 @@ msgstr "पहले एक अनुप्रयोग का चयन कर�
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ऐड-ऑन को {1} के अधिकतम संस्करण पर सेट करें और निर्माता को ईमेल करें।"
+msgstr[1] "{0} ऐड-ऑन को {1} के अधिकतम संस्करण पर सेट करें और निर्माताओं को ईमेल करें।"
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
@@ -769,9 +766,15 @@ msgstr "कोई परिणाम नही मिला।"
 msgid "Loading..."
 msgstr "लोड हो रहा है..."
 
+#. L10n: {0} is the number of characters entered.
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] ""
+msgstr[1] ""
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -867,9 +870,6 @@ msgstr "{0} पंक्ति {1} कॉलम {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} पंक्ति {1}"
-
-msgid "Compatibility Tests"
-msgstr "अनुकूलता परीक्षण"
 
 msgid "Add-on failed validation."
 msgstr "ऐड-ऑन असफल सत्यापन।"

@@ -1,0 +1,248 @@
+{% from "devhub/includes/macros.html" import tip, empty_unless, flags, select_cats, some_html_tip, trans_readonly %}
+
+<form method="post" action="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}"
+      id="addon-edit-describe"
+      data-baseurl="{{ url('devhub.addons.edit', valid_slug) }}">
+  <h3>
+    {{ _('Describe Add-on') }}
+    {% if not editable %}
+      <a href="#" data-editurl="{{ url('devhub.addons.section', valid_slug, 'describe', 'edit') }}" class="button">
+        {{ _('Edit') }}</a>
+    {% endif %}
+  </h3>
+  <div class="item">
+    <div class="item_wrapper">
+      {% if editable %}{{ form.non_field_errors() }}{% endif %}
+      <table>
+        {# L10n: {0} is the addon name #}
+        <caption>{{ _('Describe {0}')|format_html(addon.name) }}</caption>
+        <tbody>
+          <tr>
+            <th><label data-for="name">{{ _("Name") }}</label></th>
+            <td>
+              {% if editable %}
+                {{ form.name }}
+                {{ form.name.errors }}
+              {% else %}
+                {{ addon|all_locales('name') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Add-on URL"),
+                 _("Choose a short, unique URL slug for your add-on.")) }}
+            </th>
+            <td id="slug_edit">
+              {% if editable %}
+                <div class="edit_with_prefix">
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug }}
+                </div>
+                {{ form.slug.errors }}
+              {% else %}
+                {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
+                {% if addon.has_listed_versions() %}<a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>{% endif %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="summary">
+                {{ _("Summary") }}
+                {{ tip(None,
+                       _("This summary should clearly explain what your add-on "
+                         "does. It will be shown in listings and searches, and "
+                         "it will be used by reviewers to test your add-on.")) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.summary }}
+                {{ form.summary.errors }}
+                <div class="char-count"
+                     data-for-startswith="{{ form.summary.auto_id }}_"
+                     data-maxlength="{{ form.summary.field.max_length }}"></div>
+              {% else %}
+                {{ addon|all_locales('summary') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="description">
+                {{ _("Description") }}
+                {{ tip(None,
+                       _("A longer explanation of features, functionality, and other relevant information. "
+                         "This field is only displayed on the add-on's listing. " +
+                         ('Minimum length: 10 characters; ' if editable and form.description.field.min_length else '') +
+                         "Recommended length: 250 characters. "
+                         "If you need a longer description, make sure the first 250 characters contain the most important description points.")) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.description }}
+                {{ form.description.errors }}
+                <div class="char-count"
+                     data-for-startswith="{{ form.description.auto_id }}_"
+                     data-minlength="{{ form.description.field.min_length }}"></div>
+                {{ some_html_tip() }}
+              {% else %}
+                {% call empty_unless(addon.description) %}
+                  <div id="addon-description" class="prose">
+                    {{ addon|all_locales('description', nl2br=True) }}
+                  </div>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% if show_listed_fields and addon.type != amo.ADDON_STATICTHEME %}
+          <tr>
+            <th>
+              {{ tip(_("Experimental?"),
+                     _("If your add-on on is experimental or otherwise not "
+                       "ready for general use.  The add-on will be listed "
+                       "but will have reduced visibility. ")) }}
+            </th>
+            <td id="experimental-edit">
+              {{ flags(_("This add-on is experimental."),
+                       addon.is_experimental if not editable else form.is_experimental, editable,
+                       _("This add-on is ready for general use.")) }}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_('Requires Payment?'),
+                     _("Check this box if this add-on's core features require "
+                       "some form of payment upfront or after a trial period "
+                       "in order to work.")) }}
+            </th>
+            <td id="requires-payment-edit">
+              {{ flags(_('This add-on requires payment, non-free services or '
+                         'software, or additional hardware.'),
+                       addon.requires_payment if not editable else form.requires_payment, editable,
+                       _("This add-on doesn't require any additional payments, "
+                         "paid services or software, or additional hardware.")) }}
+            </td>
+          </tr>
+          {% endif %}
+          {% if show_listed_fields %}
+          <tr>
+            <th>
+              {{ tip(_("Categories"),
+                     _("Categories are the primary way users browse through add-ons. "
+                       "Choose any that fit your add-on's functionality for the most "
+                       "exposure.")) }}
+            </th>
+            <td id="addon-categories-edit"
+                data-max-categories="{{ amo.MAX_CATEGORIES }}">
+              {% if editable and addon.type != amo.ADDON_STATICTHEME %}
+                {{ cat_form.non_form_errors() }}
+                {{ cat_form.management_form }}
+                {% for form in cat_form.initial_forms %}
+                  {% if form.disabled %}
+                    <p class="addon-app-cats addon-app-cats-inline">
+                      <b>{{ form.app.pretty }}:</b>
+                      {% set cats = addon.app_categories.get(form.app, []) %}
+                      {{ cats|join(' &middot; ')|safe }}
+                    </p>
+                    <p>
+                      {% trans email='amo-admins@mozilla.org' %}
+                        Categories cannot be changed while your add-on is
+                        featured for this application. Please email
+                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                        a reason you need to modify your categories.
+                      {% endtrans %}
+                    </p>
+                  {% else %}
+                    {{ select_cats(amo.MAX_CATEGORIES, form) }}
+                  {% endif %}
+                {% endfor %}
+              {% elif editable and addon.type == amo.ADDON_STATICTHEME %}
+                {{ cat_form.category.errors }}
+                {{ cat_form.category }}
+                {% if cat_form.disabled %}
+                    <p>
+                      {% trans email='amo-admins@mozilla.org' %}
+                        Categories cannot be changed while your add-on is
+                        featured. Please email
+                        <a href="mailto:{{ email }}">{{ email }}</a> if there is
+                        a reason you need to modify your categories.
+                      {% endtrans %}
+                    </p>
+                {% endif %}
+              {% else %}
+                {% set categories = addon.app_categories %}
+                {% call empty_unless(categories) %}
+                  <ul class="addon-app-cats-inline">
+                    {% for app, cats in categories.items() %}
+                      <li>
+                        <b>{{ app.pretty }}:</b>
+                        {{ cats|join(' &middot; ')|safe }}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="support_email">
+                {{ _("Email") }}
+                {{ tip(None,
+                       _("If you wish to display an e-mail address for support "
+                         "inquiries, enter it here. If you have different "
+                         "addresses for each language multiple translations of "
+                         "this field can be added. It is only relevant for "
+                         "listed add-ons.")) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.support_email }}
+                {{ form.support_email.errors }}
+              {% else %}
+                {% call empty_unless(addon.support_email) %}
+                  {{ addon|all_locales('support_email') }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label data-for="support_url">
+                {{ _("Website") }}
+                {{ tip(None,
+                       _("If your add-on has a support website or forum, enter "
+                         "its address here. If your website is localized into "
+                         "other languages, multiple translations of this field can "
+                         "be added. It is only relevant for listed add-ons.")) }}
+              </label>
+            </th>
+            <td>
+              {% if editable %}
+                {{ form.support_url }}
+                {{ form.support_url.errors }}
+              {% else %}
+                {% call empty_unless(addon.support_url) %}
+                  {{ addon|all_locales('support_url') }}
+                {% endcall %}
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+        </tbody>
+      </table>
+    </div>
+    {% if editable %}
+    {{ form.non_field_errors() }}
+    <div class="listing-footer">
+      <button type="submit">{{ _('Save Changes') }}</button> {{ _('or') }}
+      <a href="{{ url('devhub.addons.section', addon.slug, 'describe') }}"
+        class="addon-edit-cancel">
+        {{ _('Cancel') }}</a>
+    </div>
+    {% endif %}
+  </div>
+</form>

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2017-10-19 19:03+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -767,9 +767,15 @@ msgstr "কোন ফলাফল পাওয়া যায়নি।"
 msgid "Loading..."
 msgstr "লোড হচ্ছে..."
 
+#. L10n: {0} is the number of characters entered.
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] ""
+msgstr[1] ""
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -865,9 +871,6 @@ msgstr "{0} লাইন {1} কলম {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} লাইন {1}"
-
-msgid "Compatibility Tests"
-msgstr ""
 
 msgid "Add-on failed validation."
 msgstr "অ্যাড-অন যাচাইকরণে ব্যর্থ।"

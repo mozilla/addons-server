@@ -134,9 +134,10 @@ class AkismetSpamCheckFormMixin(object):
             addon=self.instance,
             data=data,
             existing_data=existing_data)
-        if any((report.is_spam for report in reports)):
-            raise forms.ValidationError(ugettext(
-                'The text entered has been flagged as spam.'))
+        error_msg = ugettext('The text entered has been flagged as spam.')
+        for prop, report in reports:
+            if report.is_spam:
+                self.add_error(prop, forms.ValidationError(error_msg))
         return super(AkismetSpamCheckFormMixin, self).clean()
 
 
@@ -172,73 +173,6 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         else:
             return list(addon.tags.filter(restricted=False)
                         .values_list('tag_text', flat=True))
-
-
-class AddonFormBasic(AkismetSpamCheckFormMixin, AddonFormBase):
-    name = TransField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
-                         max_length=250)
-    tags = forms.CharField(required=False)
-    contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
-    is_experimental = forms.BooleanField(required=False)
-    requires_payment = forms.BooleanField(required=False)
-
-    fields_to_akismet_comment_check = ['name', 'summary']
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'summary', 'tags', 'is_experimental',
-                  'requires_payment', 'contributions')
-
-    def __init__(self, *args, **kw):
-        super(AddonFormBasic, self).__init__(*args, **kw)
-
-        if self.fields.get('tags'):
-            self.fields['tags'].initial = ', '.join(
-                self.get_tags(self.instance))
-
-    def clean_contributions(self):
-        if self.cleaned_data['contributions']:
-            hostname = urlsplit(self.cleaned_data['contributions']).hostname
-            if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
-                raise forms.ValidationError(ugettext(
-                    'URL domain must be one of [%s], or a subdomain.'
-                ) % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
-        return self.cleaned_data['contributions']
-
-    def save(self, addon, commit=False):
-        if self.fields.get('tags'):
-            tags_new = self.cleaned_data['tags']
-            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
-
-            # Add new tags.
-            for t in set(tags_new) - set(tags_old):
-                Tag(tag_text=t).save_tag(addon)
-
-            # Remove old tags.
-            for t in set(tags_old) - set(tags_new):
-                Tag(tag_text=t).remove_tag(addon)
-
-        # We ignore `commit`, since we need it to be `False` so we can save
-        # the ManyToMany fields on our own.
-        addonform = super(AddonFormBasic, self).save(commit=False)
-        addonform.save()
-
-        return addonform
-
-
-class AddonFormBasicUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
-    name = TransField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
-                         max_length=250)
-
-    fields_to_akismet_comment_check = ['name', 'summary']
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'summary')
 
 
 class CategoryForm(forms.Form):
@@ -386,20 +320,35 @@ class AddonFormMedia(AddonFormBase):
         return super(AddonFormMedia, self).save(commit)
 
 
-class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
+class AdditionalDetailsForm(AkismetSpamCheckFormMixin, AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
     homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
-
-    fields_to_akismet_comment_check = ['description']
+    tags = forms.CharField(required=False)
+    contributions = HttpHttpsOnlyURLField(required=False, max_length=255)
 
     class Meta:
         model = Addon
-        fields = ('description', 'default_locale', 'homepage')
+        fields = ('default_locale', 'homepage', 'tags', 'contributions')
+
+    def __init__(self, *args, **kw):
+        super(AdditionalDetailsForm, self).__init__(*args, **kw)
+
+        if self.fields.get('tags'):
+            self.fields['tags'].initial = ', '.join(
+                self.get_tags(self.instance))
+
+    def clean_contributions(self):
+        if self.cleaned_data['contributions']:
+            hostname = urlsplit(self.cleaned_data['contributions']).hostname
+            if not hostname.endswith(amo.VALID_CONTRIBUTION_DOMAINS):
+                raise forms.ValidationError(ugettext(
+                    'URL domain must be one of [%s], or a subdomain.'
+                ) % ', '.join(amo.VALID_CONTRIBUTION_DOMAINS))
+        return self.cleaned_data['contributions']
 
     def clean(self):
         # Make sure we have the required translations in the new locale.
         required = 'name', 'summary', 'description'
-        data = self.cleaned_data
         if not self.errors and 'default_locale' in self.changed_data:
             fields = dict((k, getattr(self.instance, k + '_id'))
                           for k in required)
@@ -409,36 +358,38 @@ class AddonFormDetails(AkismetSpamCheckFormMixin, AddonFormBase):
                                              localized_string__isnull=False)
                   .values_list('id', flat=True))
             missing = [k for k, v in fields.items() if v not in qs]
-            # They might be setting description right now.
-            if 'description' in missing and locale in data['description']:
-                missing.remove('description')
             if missing:
                 raise forms.ValidationError(ugettext(
                     'Before changing your default locale you must have a '
                     'name, summary, and description in that locale. '
                     'You are missing %s.') % ', '.join(map(repr, missing)))
-        return super(AddonFormDetails, self).clean()
+        return super(AdditionalDetailsForm, self).clean()
+
+    def save(self, addon, commit=False):
+        if self.fields.get('tags'):
+            tags_new = self.cleaned_data['tags']
+            tags_old = [slugify(t, spaces=True) for t in self.get_tags(addon)]
+
+            # Add new tags.
+            for t in set(tags_new) - set(tags_old):
+                Tag(tag_text=t).save_tag(addon)
+
+            # Remove old tags.
+            for t in set(tags_old) - set(tags_new):
+                Tag(tag_text=t).remove_tag(addon)
+
+        # We ignore `commit`, since we need it to be `False` so we can save
+        # the ManyToMany fields on our own.
+        addonform = super(AdditionalDetailsForm, self).save(commit=False)
+        addonform.save()
+
+        return addonform
 
 
-class AddonFormDetailsUnlisted(AddonFormDetails):
+class AdditionalDetailsFormUnlisted(AdditionalDetailsForm):
     # We want the same fields as the listed version. In particular,
     # default_locale is referenced in the template and needs to exist.
     pass
-
-
-class AddonFormSupport(AddonFormBase):
-    support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
-    support_email = TransField.adapt(forms.EmailField)(required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('support_email', 'support_url')
-
-    def __init__(self, *args, **kw):
-        super(AddonFormSupport, self).__init__(*args, **kw)
-
-    def save(self, addon, commit=True):
-        return super(AddonFormSupport, self).save(commit)
 
 
 class AddonFormTechnical(AddonFormBase):

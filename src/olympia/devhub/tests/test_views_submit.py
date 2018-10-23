@@ -457,7 +457,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             mock.call(f)
             for f in latest_version.all_files])
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
         response = self.client.get(reverse(
             'devhub.submit.upload', args=['listed']), follow=True)
@@ -475,21 +474,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert doc('#wizardlink').attr('href') == (
             reverse('devhub.submit.wizard', args=['unlisted']))
 
-    @override_switch('allow-static-theme-uploads', active=False)
-    def test_static_theme_wizard_button_not_shown(self):
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['listed']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-        response = self.client.get(reverse(
-            'devhub.submit.upload', args=['unlisted']), follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_listed(self):
         assert Addon.objects.count() == 0
         path = os.path.join(
@@ -503,11 +487,11 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 2
+        assert len(previews) == 3
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_submit_unlisted(self):
         assert Addon.unfiltered.count() == 0
         path = os.path.join(
@@ -525,7 +509,6 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_listed(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['listed'])
@@ -551,11 +534,11 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
-        assert len(previews) == 2
+        assert len(previews) == 3
         assert storage.exists(previews[0].image_path)
         assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_unlisted(self):
         # Check we get the correct template.
         url = reverse('devhub.submit.wizard', args=['unlisted'])
@@ -837,7 +820,7 @@ class DetailsPageMixin(object):
 
         assert response.status_code == 200
         self.assertFormError(
-            response, 'form', '__all__',
+            response, 'form', 'name',
             'The text entered has been flagged as spam.')
 
         # the summary won't be comment_check'd because it didn't change.
@@ -901,7 +884,8 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
                          'summary': 'Hello!', 'is_experimental': True,
                          'requires_payment': True}
         if not minimal:
-            describe_form.update({'support_url': 'http://stackoverflow.com',
+            describe_form.update({'description': 'its a description',
+                                  'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
         cat_initial = kw.pop('cat_initial', self.cat_initial)
         cat_form = formset(cat_initial, initial_count=1)
@@ -917,6 +901,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         result.update(**kw)
         return result
 
+    @override_switch('content-optimization', active=False)
     def test_submit_success_required(self):
         # Set/change the required fields only
         response = self.client.get(self.url)
@@ -947,7 +932,57 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
             "Setting properties on submit needn't be logged.")
 
+    @override_switch('content-optimization', active=False)
     def test_submit_success_optional_fields(self):
+        # Set/change the optional fields too
+        # Post and be redirected
+        data = self.get_dict(minimal=False)
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # These are the fields that are expected to be edited here.
+        assert addon.description == 'its a description'
+        assert addon.support_url == 'http://stackoverflow.com'
+        assert addon.support_email == 'black@hole.org'
+        assert addon.privacy_policy == 'Ur data belongs to us now.'
+        assert addon.current_version.approvalnotes == 'approove plz'
+
+    @override_switch('content-optimization', active=True)
+    def test_submit_success_required_with_content_optimization(self):
+        # Set/change the required fields only
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+
+        # Post and be redirected - trying to sneak
+        # in fields that shouldn't be modified via this form.
+        data = self.get_dict(
+            description='its a description', homepage='foo.com',
+            tags='whatevs, whatever')
+        self.is_success(data)
+
+        addon = self.get_addon()
+
+        # This fields should not have been modified.
+        assert addon.homepage != 'foo.com'
+        assert len(addon.tags.values_list()) == 0
+
+        # These are the fields that are expected to be edited here.
+        assert addon.name == 'Test name'
+        assert addon.slug == 'testname'
+        assert addon.summary == 'Hello!'
+        assert addon.description == 'its a description'
+        assert addon.is_experimental
+        assert addon.requires_payment
+        assert addon.all_categories[0].id == 22
+
+        # Test add-on log activity.
+        log_items = ActivityLog.objects.for_addons(addon)
+        assert not log_items.filter(action=amo.LOG.EDIT_PROPERTIES.id), (
+            "Setting properties on submit needn't be logged.")
+
+    @override_switch('content-optimization', active=True)
+    def test_submit_success_optional_fields_with_content_optimization(self):
         # Set/change the optional fields too
         # Post and be redirected
         data = self.get_dict(minimal=False)
@@ -1584,15 +1619,6 @@ class VersionSubmitUploadMixin(object):
         response = self.client.get(self.url)
         assert response.status_code == 200
 
-    @override_switch('allow-static-theme-uploads', active=False)
-    def test_static_theme_wizard_button_not_shown(self):
-        self.addon.update(type=amo.ADDON_STATICTHEME)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert not doc('#wizardlink')
-
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_not_shown_for_extensions(self):
         assert self.addon.type != amo.ADDON_STATICTHEME
         response = self.client.get(self.url)
@@ -1600,7 +1626,6 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert not doc('#wizardlink')
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
@@ -1613,15 +1638,25 @@ class VersionSubmitUploadMixin(object):
             reverse('devhub.submit.version.wizard',
                     args=[self.addon.slug, channel]))
 
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard(self):
         channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
                    'unlisted')
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        # Check we get the correct template.
+        # Get the correct template.
         self.url = reverse('devhub.submit.version.wizard',
                            args=[self.addon.slug, channel])
-        response = self.client.get(self.url)
+        mock_point = 'olympia.devhub.views.extract_theme_properties'
+        with mock.patch(mock_point) as extract_theme_properties_mock:
+            extract_theme_properties_mock.return_value = {
+                'colors': {
+                    'accentcolor': '#123456',
+                    'textcolor': 'rgba(1,2,3,0.4)',
+                },
+                'images': {
+                    'headerURL': 'header.png',
+                }
+            }
+            response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#theme-wizard')
@@ -1629,6 +1664,14 @@ class VersionSubmitUploadMixin(object):
         assert doc('input#theme-name').attr('type') == 'hidden'
         assert doc('input#theme-name').attr('value') == (
             unicode(self.addon.name))
+        # Existing colors should be the default values for the fields
+        assert doc('#accentcolor').attr('value') == '#123456'
+        assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        # And the theme header url is there for the JS to load
+        assert doc('#theme-header').attr('data-existing-header') == (
+            'header.png')
+        # No warning about extra properties
+        assert 'are unsupported in this wizard' not in response.content
 
         # And then check the upload works.
         path = os.path.join(
@@ -1647,8 +1690,72 @@ class VersionSubmitUploadMixin(object):
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
         if self.channel == amo.RELEASE_CHANNEL_LISTED:
             previews = list(version.previews.all())
-            assert len(previews) == 2
+            assert len(previews) == 3
             assert storage.exists(previews[0].image_path)
+            assert storage.exists(previews[1].image_path)
+            assert storage.exists(previews[1].image_path)
+        else:
+            assert version.previews.all().count() == 0
+
+    def test_static_theme_wizard_unsupported_properties(self):
+        channel = ('listed' if self.channel == amo.RELEASE_CHANNEL_LISTED else
+                   'unlisted')
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        # Get the correct template.
+        self.url = reverse('devhub.submit.version.wizard',
+                           args=[self.addon.slug, channel])
+        mock_point = 'olympia.devhub.views.extract_theme_properties'
+        with mock.patch(mock_point) as extract_theme_properties_mock:
+            extract_theme_properties_mock.return_value = {
+                'colors': {
+                    'accentcolor': '#123456',
+                    'textcolor': 'rgba(1,2,3,0.4)',
+                    'tab_line': '#123',
+                },
+                'images': {
+                    'additional_backgrounds': [],
+                },
+                'something_extra': {},
+            }
+            response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '3.0'
+        assert doc('input#theme-name').attr('type') == 'hidden'
+        assert doc('input#theme-name').attr('value') == (
+            unicode(self.addon.name))
+        # Existing colors should be the default values for the fields
+        assert doc('#accentcolor').attr('value') == '#123456'
+        assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        # Warning about extra properties this time:
+        assert 'are unsupported in this wizard' in response.content
+        unsupported_list = doc('.notification-box.error ul.note li')
+        assert unsupported_list.length == 3
+        assert 'tab_line' in unsupported_list.text()
+        assert 'additional_backgrounds' in unsupported_list.text()
+        assert 'something_extra' in unsupported_list.text()
+
+        # And then check the upload works.
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post()
+
+        version = self.addon.find_latest_version(channel=self.channel)
+        assert version.channel == self.channel
+        assert version.all_files[0].status == (
+            amo.STATUS_AWAITING_REVIEW
+            if self.channel == amo.RELEASE_CHANNEL_LISTED else
+            amo.STATUS_PUBLIC)
+        self.assert3xx(response, self.get_next_url(version))
+        log_items = ActivityLog.objects.for_addons(self.addon)
+        assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
+        if self.channel == amo.RELEASE_CHANNEL_LISTED:
+            previews = list(version.previews.all())
+            assert len(previews) == 3
+            assert storage.exists(previews[0].image_path)
+            assert storage.exists(previews[1].image_path)
             assert storage.exists(previews[1].image_path)
         else:
             assert version.previews.all().count() == 0
@@ -1760,6 +1867,25 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             }))
         self.addon.update(
             guid='@experiment-inside-webextension-guid',
+            status=amo.STATUS_PUBLIC)
+
+        response = self.post(expected_status=200)
+        assert pq(response.content)('ul.errorlist').text() == (
+            'You cannot submit this type of add-on')
+
+        assert mock_sign_file.call_count == 0
+
+    @mock.patch('olympia.devhub.views.sign_file')
+    def test_theme_experiment_inside_webext_upload_without_permission(
+            self, mock_sign_file):
+        self.upload = self.get_upload(
+            'theme_experiment_inside_webextension.xpi',
+            validation=json.dumps({
+                "notices": 2, "errors": 0, "messages": [],
+                "metadata": {}, "warnings": 1,
+            }))
+        self.addon.update(
+            guid='@theme–experiment-inside-webextension-guid',
             status=amo.STATUS_PUBLIC)
 
         response = self.post(expected_status=200)
@@ -2017,7 +2143,10 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
 
         assert response.status_code == 200
         self.assertFormError(
-            response, 'form', '__all__',
+            response, 'form', 'name',
+            'The text entered has been flagged as spam.')
+        self.assertFormError(
+            response, 'form', 'summary',
             'The text entered has been flagged as spam.')
 
         # The summary WILL be comment_check'd, even though it didn't change,
@@ -2033,8 +2162,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
 
-        # After the first check was spam the second wasn't carried out.
-        comment_check_mock.assert_called_once()
+        assert comment_check_mock.call_count == 2
 
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')

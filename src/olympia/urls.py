@@ -85,8 +85,6 @@ urlpatterns = [
     # API v3+.
     url('^api/', include('olympia.api.urls')),
 
-    url('^compatibility/', include('olympia.compat.urls')),
-
     # Site events data.
     url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8})\.json$',
         stats_views.site_events, name='amo.site_events'),

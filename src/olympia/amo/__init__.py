@@ -19,9 +19,6 @@ from olympia.constants.search import *  # noqa
 
 logger_log = olympia.core.logger.getLogger('z.amo')
 
-# For unproven performance gains put firefox and thunderbird parsing
-# here instead of constants
+# For unproven performance gains put firefox parsing here instead of constants
 FIREFOX.latest_version = product_details.firefox_versions[
     'LATEST_FIREFOX_VERSION']
-THUNDERBIRD.latest_version = product_details.thunderbird_versions[
-    'LATEST_THUNDERBIRD_VERSION']

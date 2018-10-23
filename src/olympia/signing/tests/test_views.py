@@ -160,7 +160,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.request(
             'PUT', self.url(self.guid, '2.1.072'), version='2.1.072')
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 2.1.072.')
 
     @mock.patch('olympia.devhub.views.Version.from_upload')
     def test_no_version_yet(self, from_upload):
@@ -201,7 +202,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 3.0.')
 
     def test_version_failed_review(self):
         self.create_version('3.0')
@@ -212,7 +214,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         response = self.request('PUT', self.url(self.guid, '3.0'))
         assert response.status_code == 409
-        assert response.data['error'] == 'Version already exists.'
+        assert response.data['error'] == ('Version already exists. '
+                                          'Latest version is: 3.0.')
 
         # Verify that you can check the status after upload (#953).
         response = self.get(self.url(self.guid, '3.0'))
@@ -511,11 +514,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
 
-        validate_patcher = mock.patch('validator.validate.validate')
-        run_validator = validate_patcher.start()
-        run_validator.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
-        self.addCleanup(validate_patcher.stop)
-
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',
@@ -736,7 +734,8 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
     def test_addon_does_not_exist(self):
         response = self.get(self.url('foo', '12.5'))
         assert response.status_code == 404
-        assert response.data['error'] == 'Could not find add-on with id "foo".'
+        assert response.data['error'] == (
+            'Could not find add-on with guid "foo".')
 
     def test_user_does_not_own_addon(self):
         self.create_version('3.0')

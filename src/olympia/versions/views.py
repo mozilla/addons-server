@@ -137,7 +137,7 @@ def download_file(request, file_id, type=None, file_=None, addon=None):
                     file_id=file_id, user_id=request.user.pk))
             raise http.Http404()  # Not owner or admin.
 
-    attachment = (type == 'attachment' or not request.APP.browser)
+    attachment = bool(type == 'attachment')
 
     loc = urlparams(file_.get_file_cdn_url(attachment=attachment),
                     filehash=file_.hash)

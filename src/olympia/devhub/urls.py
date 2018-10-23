@@ -90,13 +90,6 @@ detail_patterns = [
         views.json_file_validation,
         name='devhub.json_file_validation'),
 
-    url('^validation-result/(?P<result_id>\d+)$',
-        views.bulk_compat_result,
-        name='devhub.bulk_compat_result'),
-    url('^validation-result/(?P<result_id>\d+)\.json$',
-        views.json_bulk_compat_result,
-        name='devhub.json_bulk_compat_result'),
-
     url('^submit/$',
         lambda r, addon_id: redirect('devhub.submit.finish', addon_id)),
     url('^submit/source$',
@@ -160,13 +153,6 @@ urlpatterns = decorate(use_primary_db, [
     # Standalone validator:
     url('^addon/validate/?$', views.validate_addon,
         name='devhub.validate_addon'),
-
-    # Standalone compatibility checker:
-    url('^addon/check-compatibility$', views.check_addon_compatibility,
-        name='devhub.check_addon_compatibility'),
-    url(r'^addon/check-compatibility/application_versions\.json$',
-        views.compat_application_versions,
-        name='devhub.compat_application_versions'),
 
     # Redirect to /addons/ at the base.
     url('^addon$', lambda r: redirect('devhub.addons', permanent=True)),

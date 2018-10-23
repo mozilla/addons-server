@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
-import random
 
 from datetime import datetime, timedelta
 
 from django import test
 from django.conf import settings
-from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
 import mock
@@ -20,9 +18,9 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.access import acl
 from olympia.access.models import Group, GroupUser
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon, AddonUser, get_random_slug
 from olympia.amo.tests import (
-    TestCase, WithDynamicEndpoints, check_links, reverse_ns)
+    TestCase, WithDynamicEndpointsAndTransactions, check_links, reverse_ns)
 from olympia.amo.urlresolvers import reverse
 from olympia.users.models import UserProfile
 
@@ -47,7 +45,7 @@ class Test403(TestCase):
         self.assertTemplateUsed(response, 'amo/403.html')
 
     def test_403_app(self):
-        response = self.client.get('/en-US/thunderbird/admin/', follow=True)
+        response = self.client.get('/en-US/android/admin/', follow=True)
         assert response.status_code == 403
         self.assertTemplateUsed(response, 'amo/403.html')
 
@@ -63,10 +61,10 @@ class Test404(TestCase):
         self.assertTemplateUsed(response, 'amo/404.html')
 
     def test_404_app_links(self):
-        res = self.client.get('/en-US/thunderbird/xxxxxxx')
+        res = self.client.get('/en-US/android/xxxxxxx')
         assert res.status_code == 404
         self.assertTemplateUsed(res, 'amo/404.html')
-        links = pq(res.content)('[role=main] ul a[href^="/en-US/thunderbird"]')
+        links = pq(res.content)('[role=main] ul a[href^="/en-US/android"]')
         assert links.length == 4
 
     def test_404_api_v3(self):
@@ -262,15 +260,15 @@ class TestOtherStuff(TestCase):
         assert doc('#site-welcome').length == 1
 
     @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_thunderbird_balloons_no_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
+    def test_android_balloons_no_readonly(self):
+        response = self.client.get('/en-US/android/')
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#site-notice').length == 0
 
     @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_thunderbird_balloons_readonly(self):
-        response = self.client.get('/en-US/thunderbird/')
+    def test_android_balloons_readonly(self):
+        response = self.client.get('/en-US/android/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
         assert doc('#site-nonfx').length == 0, (
@@ -285,7 +283,6 @@ class TestOtherStuff(TestCase):
             assert text == doc('.site-title').text()
 
         title_eq('/firefox/', 'Firefox', 'Add-ons')
-        title_eq('/thunderbird/', 'Thunderbird', 'Add-ons')
         title_eq('/android/', 'Firefox for Android', 'Android Add-ons')
 
     @patch('olympia.accounts.utils.default_fxa_login_url',
@@ -364,9 +361,8 @@ class TestOtherStuff(TestCase):
         assert doc('#site-nav #more .more-mobile a').length == 1
 
     def test_mobile_link_nonfirefox(self):
-        for app in ('thunderbird', 'android'):
-            doc = pq(test.Client().get('/' + app, follow=True).content)
-            assert doc('#site-nav #more .more-mobile').length == 0
+        doc = pq(test.Client().get('/android', follow=True).content)
+        assert doc('#site-nav #more .more-mobile').length == 0
 
     def test_opensearch(self):
         client = test.Client()
@@ -435,26 +431,47 @@ class TestRobots(TestCase):
         assert 'Disallow: %s' % url in response.content
 
 
-class TestAtomicRequests(WithDynamicEndpoints, TransactionTestCase):
+class TestAtomicRequests(WithDynamicEndpointsAndTransactions):
 
     def setUp(self):
         super(TestAtomicRequests, self).setUp()
-        self.slug = 'slug-{}'.format(random.randint(1, 1000))
-        self.endpoint(self.view)
+        self.slug = get_random_slug()
 
-    def view(self, request):
-        Addon.objects.create(slug=self.slug)
-        raise RuntimeError(
-            'pretend this is an error that would roll back the transaction')
+    def _generate_view(self, method_that_will_be_tested):
+        # A view should *not* be an instancemethod of a class, it prevents
+        # attributes from being added, which in turns breaks
+        # non_atomic_requests() silently.
+        # So we generate one by returning a regular function instead.
+        def actual_view(request):
+            Addon.objects.create(slug=self.slug)
+            raise RuntimeError(
+                'pretend this is an unhandled exception happening in a view.')
+        return actual_view
 
-    def test_exception_rolls_back_transaction(self):
+    def test_post_requests_are_wrapped_in_a_transaction(self):
+        self.endpoint(self._generate_view('POST'))
         qs = Addon.objects.filter(slug=self.slug)
+        assert not qs.exists()
+        url = reverse('test-dynamic-endpoint')
         try:
             with self.assertRaises(RuntimeError):
-                self.client.get('/dynamic-endpoint', follow=True)
+                self.client.post(url)
+        finally:
             # Make sure the transaction was rolled back.
             assert qs.count() == 0
+            qs.all().delete()
+
+    def test_get_requests_are_not_wrapped_in_a_transaction(self):
+        self.endpoint(self._generate_view('GET'))
+        qs = Addon.objects.filter(slug=self.slug)
+        assert not qs.exists()
+        url = reverse('test-dynamic-endpoint')
+        try:
+            with self.assertRaises(RuntimeError):
+                self.client.get(url)
         finally:
+            # Make sure the transaction wasn't rolled back.
+            assert qs.count() == 1
             qs.all().delete()
 
 

@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-07-11 15:09+0000\n"
-"Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-21 19:07+0000\n"
+"Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -211,41 +211,35 @@ msgstr "seqdec aneẓli"
 msgid "Week of {0}"
 msgstr "Ḍduṛt n {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " isidar"
-msgstr[1] " isidar"
+msgstr[0] "{0} asider"
+msgstr[1] "{0} isidar"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} iseqdacen"
+msgstr[0] "{0} aseqdac"
 msgstr[1] "{0} iseqdacen"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} izegrar"
+msgstr[0] "{0} azegrir"
 msgstr[1] "{0} izegrar"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} tigrummiwin"
+msgstr[0] "{0} tagruma"
 msgstr[1] "{0} tigrummiwin"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} aɛiwed n tɣuṛi"
-msgstr[1] "{0} aɛiwed n tɣuṛi"
+msgstr[1] "{0} aɛiwed n tɣuṛiwin"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} n uznuzu"
-msgstr[1] "{0} n uznuzu"
+msgstr[1] ""
 
 #, fuzzy
 msgid "{0} refund"
@@ -253,11 +247,10 @@ msgid_plural "{0} refunds"
 msgstr[0] "{0} n uɣram"
 msgstr[1] "{0} n uɣram"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} n usebded"
-msgstr[1] "{0} n usebded"
+msgstr[1] "{0} n isebdad"
 
 msgid "Downloads"
 msgstr "Isidar"
@@ -770,9 +763,17 @@ msgstr "Ulac igmad yettwafen."
 msgid "Loading..."
 msgstr "Asali..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> n usekkil yettwattu."
+msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> n usekkil yettwattu."
 msgstr[1] "<b>{0}</b> n isekkilen ttwattun."
 
@@ -868,9 +869,6 @@ msgstr "{0} izirig {1} tigejdit {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} izirig{1}"
-
-msgid "Compatibility Tests"
-msgstr "Ikayaden n umṣada"
 
 msgid "Add-on failed validation."
 msgstr "Asentem n uzegrir ur yeddi ara."

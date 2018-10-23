@@ -3,6 +3,7 @@ import os
 
 from django import forms
 from django.conf import settings
+from django.core.validators import MinLengthValidator
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
@@ -414,8 +415,6 @@ class BaseCompatFormSet(BaseModelFormSet):
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
         if static_theme:
             available_apps = amo.APP_USAGE_STATICTHEME
-        elif waffle.switch_is_active('disallow-thunderbird-and-seamonkey'):
-            available_apps = amo.APP_USAGE_FIREFOXES_ONLY
         else:
             available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
@@ -493,7 +492,7 @@ class NewUploadForm(forms.Form):
     admin_override_validation = forms.BooleanField(
         required=False, label=_(u'Override failed validation'))
     compatible_apps = forms.TypedMultipleChoiceField(
-        choices=amo.APPS_FIREFOXES_ONLY_CHOICES,
+        choices=amo.APPS_CHOICES,
         # Pre-select only Desktop Firefox, most of the times developers
         # don't develop their WebExtensions for Android.
         # See this GitHub comment: https://bit.ly/2QaMicU
@@ -582,6 +581,8 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     slug = forms.CharField(max_length=30)
     summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
                          max_length=250)
+    description = TransField(widget=TransTextarea(attrs={'rows': 6}),
+                             min_length=10)
     is_experimental = forms.BooleanField(required=False)
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
@@ -593,17 +594,26 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
         widget=TransTextarea(), required=False,
         label=_(u'Please specify your add-on\'s Privacy Policy:'))
 
-    fields_to_akismet_comment_check = ['name', 'summary']
+    fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon
-        fields = ('name', 'slug', 'summary', 'is_experimental', 'support_url',
-                  'support_email', 'privacy_policy', 'requires_payment')
+        fields = ('name', 'slug', 'summary', 'description', 'is_experimental',
+                  'support_url', 'support_email', 'privacy_policy',
+                  'requires_payment')
 
     def __init__(self, *args, **kw):
         kw['initial'] = {
             'has_priv': self._has_field('privacy_policy', kw['instance'])}
         super(DescribeForm, self).__init__(*args, **kw)
+        content_waffle = waffle.switch_is_active('content-optimization')
+        if not content_waffle or self.instance.type != amo.ADDON_EXTENSION:
+            description = self.fields['description']
+            description.min_length = None
+            description.validators = [
+                validator for validator in description.validators
+                if not isinstance(validator, MinLengthValidator)]
+            description.required = False
 
     def _has_field(self, name, instance=None):
         # If there's a policy in any language, this addon has a policy.
@@ -616,6 +626,21 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
             delete_translation(self.instance, 'privacy_policy')
 
         return obj
+
+
+class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
+    name = TransField(max_length=50)
+    slug = forms.CharField(max_length=30)
+    summary = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                         max_length=250)
+    description = TransField(widget=TransTextarea(attrs={'rows': 4}),
+                             required=False)
+
+    fields_to_akismet_comment_check = ['name', 'summary', 'description']
+
+    class Meta:
+        model = Addon
+        fields = ('name', 'slug', 'summary', 'description')
 
 
 class PreviewForm(forms.ModelForm):
@@ -657,37 +682,6 @@ class BasePreviewFormSet(BaseModelFormSet):
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       form=PreviewForm, can_delete=True,
                                       extra=1)
-
-
-class CheckCompatibilityForm(forms.Form):
-    application = forms.ChoiceField(
-        label=_(u'Application'),
-        choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
-    app_version = forms.ChoiceField(
-        label=_(u'Version'),
-        choices=[('', _(u'Select an application first'))])
-
-    def __init__(self, *args, **kw):
-        super(CheckCompatibilityForm, self).__init__(*args, **kw)
-        w = self.fields['application'].widget
-        # Get the URL after the urlconf has loaded.
-        w.attrs['data-url'] = reverse('devhub.compat_application_versions')
-
-    def version_choices_for_app_id(self, app_id):
-        versions = AppVersion.objects.filter(application=app_id)
-        return [(v.id, v.version) for v in versions]
-
-    def clean_application(self):
-        app_id = int(self.cleaned_data['application'])
-        app = amo.APPS_IDS.get(app_id)
-        self.cleaned_data['application'] = app
-        choices = self.version_choices_for_app_id(app_id)
-        self.fields['app_version'].choices = choices
-        return self.cleaned_data['application']
-
-    def clean_app_version(self):
-        v = self.cleaned_data['app_version']
-        return AppVersion.objects.get(pk=int(v))
 
 
 def DependencyFormSet(*args, **kw):

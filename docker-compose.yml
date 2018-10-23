@@ -35,7 +35,8 @@ services:
     volumes:
       - ./static:/srv/static
       - ./site-static:/srv/site-static
-      - ./user-media/:/srv/user-media
+      - ./storage/shared_storage/uploads:/srv/user-media
+      - ./storage/files:/srv/user-media/addons
 
   memcached:
     image: memcached:1.4

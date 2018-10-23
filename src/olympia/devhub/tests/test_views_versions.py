@@ -582,7 +582,7 @@ class TestVersionEditMixin(object):
 
 
 class TestVersionEditBase(TestVersionEditMixin, TestCase):
-    fixtures = ['base/users', 'base/addon_3615', 'base/thunderbird']
+    fixtures = ['base/users', 'base/addon_3615']
 
     def setUp(self):
         super(TestVersionEditBase, self).setUp()
@@ -784,7 +784,7 @@ class TestVersionEditDetails(TestVersionEditBase):
 
 class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
     # https://bugzilla.mozilla.org/show_bug.cgi?id=605941
-    fixtures = ['base/users', 'base/thunderbird', 'base/addon_4594_a9.json']
+    fixtures = ['base/users', 'base/addon_4594_a9.json']
 
     def setUp(self):
         super(TestVersionEditSearchEngine, self).setUp()
@@ -815,6 +815,13 @@ class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
 
 class TestVersionEditCompat(TestVersionEditBase):
 
+    def setUp(self):
+        super(TestVersionEditCompat, self).setUp()
+        self.android_32pre, _created = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='3.2a1pre')
+        self.android_30, _created = AppVersion.objects.get_or_create(
+            application=amo.ANDROID.id, version='3.0')
+
     def get_form(self, url=None):
         if not url:
             url = self.url
@@ -833,12 +840,14 @@ class TestVersionEditCompat(TestVersionEditBase):
         form = self.client.get(
             self.url).context['compat_form'].initial_forms[0]
         data = self.formset(
-            initial(form), {'application': 18, 'min': 288, 'max': 298},
+            initial(form),
+            {'application': amo.ANDROID.id, 'min': self.android_30.id,
+             'max': self.android_32pre.id},
             initial_count=1)
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         apps = self.get_version().compatible_apps.keys()
-        assert sorted(apps) == sorted([amo.FIREFOX, amo.THUNDERBIRD])
+        assert sorted(apps) == sorted([amo.FIREFOX, amo.ANDROID])
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
@@ -877,7 +886,7 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert response.status_code == 404
 
     def test_delete_appversion(self):
-        # Add thunderbird compat so we can delete firefox.
+        # Add android compat so we can delete firefox.
         self.test_add_appversion()
         form = self.client.get(self.url).context['compat_form']
         data = map(initial, form.initial_forms)
@@ -886,7 +895,7 @@ class TestVersionEditCompat(TestVersionEditBase):
             self.url, self.formset(*data, initial_count=2))
         assert response.status_code == 302
         apps = self.get_version().compatible_apps.keys()
-        assert apps == [amo.THUNDERBIRD]
+        assert apps == [amo.ANDROID]
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 

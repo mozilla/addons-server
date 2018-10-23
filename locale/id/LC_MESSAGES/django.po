@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-16 17:15+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-15 10:26+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -135,10 +135,6 @@ msgstr[0] "Semua tag panjangnya paling sedikit harus {0} karakter."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Domain URL harus merupakan salah satu dari [%s], atau sebuah subdomain."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
 
@@ -149,6 +145,10 @@ msgstr[0] "Anda hanya diperbolehkan memiliki {0} kategori."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Kategori lain-lain tidak dapat digabungkan dengan kategori lainnya."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Domain URL harus merupakan salah satu dari [%s], atau sebuah subdomain."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -202,7 +202,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Pengaya ini telah ditandai sebagai percobaan oleh pengembangannya."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Perjanjian Lisensi Pengguna Akhir untuk {0}"
 
@@ -690,6 +689,10 @@ msgid "Admin Tools"
 msgstr "Адміністративні інструменти"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1321,12 +1324,6 @@ msgstr "Pasang Kamus"
 msgid "Install Language Pack"
 msgstr "Pasang Paket Bahasa"
 
-msgid "Download Dictionary"
-msgstr "Unduh Kamus"
-
-msgid "Download Language Pack"
-msgstr "Unduh Paket Bahasa"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1493,76 +1490,6 @@ msgstr "Tampilkan yang Akan Datang"
 
 msgid "No themes found"
 msgstr "Tak ada tema yang ditemukan"
-
-msgid "All"
-msgstr "Всі"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Laporan Kompatibilitas Pengaya"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> Laporan yang dikirimkan pada kami melalui <a href=\"%(url_)s\">Pelapor Kompatibilitas Pengaya</a> are dikumpulkan di sini oleh para pengembang untuk dilihat. Laporan-laporan ini membantu kami "
-"menentukan pengaya mana yang akan memerlukan bantuan dalam mendukung versi Firefox yang akan datang. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Laporan untuk Pengaya anda"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Masukkan GUID dari pengaya di bawah ini untuk menampilkan laporan manapun yang kami terima."
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} Laporan Kompatibilitas"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} laporan keberhasilan"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} laporan persoalan"
-
-msgid "View all"
-msgstr "Tampilkan semua"
-
-msgid "Filter by Application"
-msgstr "Sortir berdasarkan Aplikasi"
-
-msgid "Report Type"
-msgstr "Tipe Laporan"
-
-msgid "Version"
-msgstr "Versi"
-
-msgid "Application Version"
-msgstr "Versi Aplikasi"
-
-msgid "Application Build"
-msgstr "Membangun Aplikasi"
-
-msgid "Platform"
-msgstr "Платформа"
-
-msgid "e10s Enabled"
-msgstr "e10s Dimungkinkan"
-
-msgid "e10s Compatible"
-msgstr "e10s Kompatibel"
-
-msgid "Submitted"
-msgstr "Diajukan"
-
-msgid "Success"
-msgstr "Berhasil"
-
-msgid "Problem"
-msgstr "Masalah"
-
-msgid "No reports found."
-msgstr "Tak ada laporan ditemukan."
 
 msgid "{addon} was created."
 msgstr "{addon} dibuat."
@@ -2145,54 +2072,6 @@ msgstr "Olahraga dan Gim"
 msgid "User Interface"
 msgstr "Antarmuka"
 
-msgid "Appearance and Customization"
-msgstr "Tampilan dan Ubahsuaian"
-
-msgid "Calendar and Date/Time"
-msgstr "Kalendar dan Waktu"
-
-msgid "Chat and IM"
-msgstr "Ngobrol & IM"
-
-msgid "Message Composition"
-msgstr "Membuat Pesan"
-
-msgid "Contacts"
-msgstr "Buku Alamat & Kontak"
-
-msgid "Folders and Filters"
-msgstr "Folder & Filter"
-
-msgid "Import/Export"
-msgstr "Impor-Ekspor"
-
-msgid "Message and News Reading"
-msgstr "Baca Email dan Pesan"
-
-msgid "Privacy and Security"
-msgstr "Keamanan dan Privasi"
-
-msgid "Downloading and File Management"
-msgstr "Unduhan dan Pengelola Berkas"
-
-msgid "Interface Customizations"
-msgstr "Kesukaan Antarmuka"
-
-msgid "Language Support and Translation"
-msgstr "Dukungan Bahasa dan Alih Bahasa"
-
-msgid "Photos and Media"
-msgstr "Foto dan Media"
-
-msgid "RSS, News and Blogging"
-msgstr "Blog, Berita, dan RSS"
-
-msgid "Site-specific"
-msgstr "Khusus Situs Tertentu"
-
-msgid "Web and Developer Tools"
-msgstr "Perangkat Web dan Pengembang"
-
 msgid "All Rights Reserved"
 msgstr "Всі права захищені"
 
@@ -2464,9 +2343,8 @@ msgstr "Ada masalah dengan unggahan anda. Silakan coba lagi."
 msgid "Override failed validation"
 msgstr "Validasi gagal dikesampingkan"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Membutuhkan setidaknya satu aplikasi yang kompatibel."
+msgstr "Perlu memilih setidaknya satu aplikasi."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Versi {version} sudah diunggah sebelumnya dan dihapus."
@@ -2482,12 +2360,6 @@ msgstr "Anda tidak mengunggah berkas sumber."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File sumber telah diunggah tetapi Anda menyatakan tidak ada sumber yang diperlukan."
-
-msgid "Application"
-msgstr "Програма"
-
-msgid "Select an application first"
-msgstr "Pilih aplikasi terlebih dahulu"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Tidak bisa ada lebih dari 3 pengaya yang diminta."
@@ -2607,9 +2479,6 @@ msgstr "Seorang penulis telah dihapus dari pengaya anda"
 msgid "Validate Add-on"
 msgstr "Pengaya Divalidasi"
 
-msgid "Check Add-on Compatibility"
-msgstr "Memeriksa Kompatibilitas Pengaya"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Gambar tidak bisa lebih besar daripada %dKB."
@@ -2635,6 +2504,42 @@ msgstr "Versi %s dihidupkan lagi."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Unggahan ini telah gagal divalidasi, dan boleh jadi tidak memiliki hasil validasi yang lengkap. Silakan berhati-hati saat mengulasnya."
+
+msgid "Header area background"
+msgstr "Latar area header"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Warna latar bidang header, ditampilkan dalam bagian header yang tidak tertutup atau terlihat dalam gambar header. Bidang tampil:  accentcolor."
+
+msgid "Header area text and icons"
+msgstr "Teks dan ikon area header"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Warna teks dan ikon dalam area header, kecuali tab aktif. Bidang tampil:  textcolor."
+
+msgid "Toolbar area background"
+msgstr "Latar area bilah alat"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang tampil:  toolbar."
+
+msgid "Toolbar area text and icons"
+msgstr "Teks dan ikon area bilah alat"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Warna teks dan ikon dalam bilah alat dan tab aktif. Bidang tampil:  toolbar_text."
+
+msgid "Toolbar field area background"
+msgstr "Latar area bidang bilah alat"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Warna latar untuk bidang pada bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field."
+
+msgid "Toolbar field area text"
+msgstr "Teks area bidang bilah alat"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Warna teks pada bidang dalam bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Ulasan diminta."
@@ -2702,14 +2607,11 @@ msgstr "Pengembangan Ekstensi"
 msgid "Lightweight Themes"
 msgstr "Tema Ringan"
 
-msgid "Add-on Policies"
-msgstr "Правила додатків"
+msgid "Developer Policies"
+msgstr "Kebijakan Pengembang"
 
 msgid "Add-on Validator"
 msgstr "Validator Pengaya"
-
-msgid "Add-on Compatibility Checker"
-msgstr "Pengecek Kompatibilitas Pengaya"
 
 msgid "Development Add-ons"
 msgstr "Розробницькі додатки"
@@ -2735,13 +2637,6 @@ msgstr "Cari"
 msgid "Use the field below to upload your add-on package."
 msgstr "Gunakan bidang di bawah ini untuk mengunggah paket pengaya anda."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Perhatikan bahwa alat ini hanya bekerja dengan pengaya peninggalan. WebExtension APIs sepenuhnya <a href=\"%(webext_doc_url)s\">didokumentasikan di sini</a>."
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Setelah mengunggah, serangkaian pengujian validasi otomatis akan berjalan untuk memeriksa kompatibilitas dengan versi aplikasi di bawah ini:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Setelah mengunggah, serangkaian pengujian validasi otomatis akan dijalankan pada fiel anda."
 
@@ -2757,9 +2652,6 @@ msgstr "Hasil Validasi"
 
 msgid "Validated at:"
 msgstr "Divalidasi di:"
-
-msgid "Tested for compatibility against:"
-msgstr "Diuji kompatibilitasnya terhadap:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Aktivitas Terbaru untuk Pengaya Saya"
@@ -2811,6 +2703,9 @@ msgstr "Memperbarui Kompatibilitas"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "Menyesuaikan informasi aplikasi di sini akan memungkinkan pengguna untuk memasang pengaya anda bahkan jika manifest pemasangan di paket mengindikasikan bahwa pengaya ini tidak kompatibel."
+
+msgid "Application"
+msgstr "Програма"
 
 msgid "Supported Versions"
 msgstr "Versi yang Didukung"
@@ -2867,12 +2762,65 @@ msgstr ""
 "<p>Pengaya bisa memiliki sejumlah penulis dengan 2 kemungkinan peran:</p> <ul> <li><b>Pemilik:</b> Dapat mengelola seluruh aspek pendaftaran pengaya, termasuk menambahkan dan menghapus penulis "
 "lainnya</li> <li><b>Pengembang:</b> Dapat mengelola seluruh aspek pendaftaran pengaya, kecuali menambahkan dan menghapus penulis lainnya</li> </ul>"
 
-msgid "Basic Information"
-msgstr "Informasi Dasar"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Rincian Pengaya"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Rincian Pengaya untuk {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+"Tag membantu pengguna menemukan pengaya Anda dan harus berisi \n"
+"                        gambaran pendek berisi tab, bilah alat, atau twitter.  Anda\n"
+"                        bisa memiliki maksimum {0} tag."
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Dipisahkan koma, minimal {0} karakter."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Contoh: gelap, sinema, noir. Batas 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Tag dicadangkan:"
+
+msgid "Contributions URL"
+msgstr "URL Kontribusi"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "Jika Anda ingin meminta kontribusi uang dari pengguna, aturlah hal ini dalam laman di mana mereka bisa melakukannya."
+
+msgid "Default Locale"
+msgstr "Pelokalan Baku"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+"Informasi mengenai pengaya anda ditampilkan dalam logat ini\n"
+"                        terkecuali jika anda membatalkannya dengan penerjemahan spesifik untuk logat tertentu.\n"
+"                        Hanya relevan untuk pengaya yang terdaftar."
+
+msgid "Homepage"
+msgstr "Situs Web"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+"Jika pengaya anda memiliki beranda yang lain, masukkan\n"
+"                          alamatnya di sini. Jika situs anda dilokalkan ke dalam bahasa\n"
+"                          lainnya, berbagai penerjemahan dari bidang ini dapat \n"
+"                          ditambahkan. Hanya berlaku untuk pengaya yang terdaftar."
+
+msgid "Describe Add-on"
+msgstr "Menjelaskan Pengaya"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Informasi Dasar untuk {0}"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Menjelaskan Pengaya"
 
 msgid "Add-on URL"
 msgstr "URL Pengaya"
@@ -2926,73 +2874,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan. Harap mengirim surel <a href=\"mailto:%(email)s\">%(email)s</a> jika terdapat alasan mengapa Anda perlu mengubah kategori."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-"Tag membantu pengguna menemukan pengaya Anda dan harus berisi \n"
-"                        gambaran pendek berisi tab, bilah alat, atau twitter.  Anda\n"
-"                        bisa memiliki maksimum {0} tag."
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Dipisahkan koma, minimal {0} karakter."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Contoh: gelap, sinema, noir. Batas 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Tag dicadangkan:"
-
-msgid "Contributions URL"
-msgstr "URL Kontribusi"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "Jika Anda ingin meminta kontribusi uang dari pengguna, aturlah hal ini dalam laman di mana mereka bisa melakukannya."
-
-msgid "Add-on Details"
-msgstr "Rincian Pengaya"
-
-msgid "Add-on Details for {0}"
-msgstr "Rincian Pengaya untuk {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Penjelasan lebih panjang dari fitur,\n"
-"                          fungsi, dan informasi relevan lainnya. Bidang\n"
-"                          ini hanya ditampilkan pada rincian laman\n"
-"                          pengaya. Hanya relevan untuk pengaya yang terdaftar."
-
-msgid "Default Locale"
-msgstr "Pelokalan Baku"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-"Informasi mengenai pengaya anda ditampilkan dalam logat ini\n"
-"                        terkecuali jika anda membatalkannya dengan penerjemahan spesifik untuk logat tertentu.\n"
-"                        Hanya relevan untuk pengaya yang terdaftar."
-
-msgid "Homepage"
-msgstr "Situs Web"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-"Jika pengaya anda memiliki beranda yang lain, masukkan\n"
-"                          alamatnya di sini. Jika situs anda dilokalkan ke dalam bahasa\n"
-"                          lainnya, berbagai penerjemahan dari bidang ini dapat \n"
-"                          ditambahkan. Hanya berlaku untuk pengaya yang terdaftar."
-
-msgid "Images"
-msgstr "Gambar"
-
-msgid "Support Information"
-msgstr "Informasi Pendukung"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Informasi Pendukung untuk {0}"
-
 msgid "Email"
 msgstr "Surel"
 
@@ -3017,6 +2898,9 @@ msgstr ""
 "                          alamatnya di sini. Jika situs anda dilokalkan ke dalam\n"
 "                          bahasa lainnya, berbagai penerjemahan atas bidang ini bisa\n"
 "                          ditambahkan. Hanya relevan untuk pengaya yang terdaftar."
+
+msgid "Images"
+msgstr "Gambar"
 
 msgid "Technical Details"
 msgstr "Rincian Teknis"
@@ -3210,9 +3094,6 @@ msgstr "Pilih lisensi yang berbeda."
 msgid "More information on Creative Commons licenses"
 msgstr "Informasi lebih lanjut mengenai lisensi Creative Commons"
 
-msgid "Tests"
-msgstr "Pengujian"
-
 msgid "General Tests"
 msgstr "Pengujian Umum"
 
@@ -3346,9 +3227,6 @@ msgstr[0] "<strong>{0}</strong> pengguna aktif"
 msgid "Submit a New Version"
 msgstr "Mengajukan Versi Baru"
 
-msgid "Describe Add-on"
-msgstr "Menjelaskan Pengaya"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Nama pada daftar di situs ini. Mungkin berbeda dengan nama di dalam pengaya, yang ditampilkan di dalam Firefox"
 
@@ -3363,6 +3241,10 @@ msgstr "Rangkuman:"
 
 msgid "required"
 msgstr "wajib diisi"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Deskripsi"
 
 msgid "This add-on is experimental"
 msgstr "Pengaya ini merupakan percobaan"
@@ -3516,7 +3398,7 @@ msgstr "Pengajuan Anda Memerlukan Kode Sumber."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "Kode sumber harus memenuhi <a %(a_attrs)s>persyaratan kebijakan</a>, yang mencakup:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Langkah-langkah perakitan untuk menciptakan salinan kode pengaya yang sama persis."
@@ -3562,9 +3444,8 @@ msgstr "Unggah Versi"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Gunakan bidang di bawah ini untuk mengungggah paket pengaya Anda. Setelah menggunggah, serangkaian pengujian validasi otomatis akan dijalankan pada berkas Anda."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Platform manakah yang kompatibel dengan berkas ini?"
+msgstr "Aplikasi manakah yang kompatibel dengan versi ini?"
 
 msgid "Administrative overrides"
 msgstr "Mengesampingkan secara administratif"
@@ -3583,6 +3464,9 @@ msgstr "Tema dihasilkan"
 
 msgid "Theme generator"
 msgstr "Penghasil tema"
+
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
 
 msgid "Theme name"
 msgstr "Nama tema"
@@ -3607,42 +3491,6 @@ msgstr "Pilih gambar judul yang berbeda"
 
 msgid "Select colors for your theme"
 msgstr "Pilih warna untuk tema Anda"
-
-msgid "Header area background"
-msgstr "Latar area header"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Warna latar bidang header, ditampilkan dalam bagian header yang tidak tertutup atau terlihat dalam gambar header. Bidang tampil:  accentcolor."
-
-msgid "Header area text and icons"
-msgstr "Teks dan ikon area header"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "Warna teks dan ikon dalam area header, kecuali tab aktif. Bidang tampil:  textcolor."
-
-msgid "Toolbar area background"
-msgstr "Latar area bilah alat"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang tampil:  toolbar."
-
-msgid "Toolbar area text and icons"
-msgstr "Teks dan ikon area bilah alat"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Warna teks dan ikon dalam bilah alat dan tab aktif. Bidang tampil:  toolbar_text."
-
-msgid "Toolbar field area background"
-msgstr "Latar area bidang bilah alat"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Warna latar untuk bidang pada bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field."
-
-msgid "Toolbar field area text"
-msgstr "Teks area bidang bilah alat"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Warna teks pada bidang dalam bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field_text."
 
 msgid "optional"
 msgstr "opsional"
@@ -3780,15 +3628,6 @@ msgstr "Laman Tinjauan Tak Terdaftar"
 msgid "View Statistics Dashboard"
 msgstr "Tampilkan Papan Statistik"
 
-msgid "Compatibility Reports"
-msgstr "Laporan Kompatibilitas"
-
-msgid "{0} failure reports"
-msgstr "{0} laporan kegagalan"
-
-msgid "{0} success reports"
-msgstr "{0} laporan keberhasilan"
-
 msgid "Developer News"
 msgstr "Berita Pengembang"
 
@@ -3875,9 +3714,6 @@ msgstr "Hubungi Kami"
 msgid "Support"
 msgstr "Dukungan"
 
-msgid "Policies"
-msgstr "Kebijakan"
-
 msgid "Report Bug"
 msgstr "Laporkan Bug"
 
@@ -3886,9 +3722,6 @@ msgstr "Status Situs "
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: membangun & menguji ekstensi"
-
-msgid "Compatibility Checker"
-msgstr "Pemeriksa Kompatibilitas"
 
 msgid "Promote"
 msgstr "Promosi"
@@ -4051,9 +3884,8 @@ msgstr "Uji Keselarasan"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Periksa apakah ekstensi Anda selaras dengan Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Tampilkan pada Daftar"
+msgstr "Pengujian Langsung"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -4335,6 +4167,9 @@ msgstr "Semua versi"
 
 msgid "Upload a New Version"
 msgstr "Unggah Versi Baru"
+
+msgid "Version"
+msgstr "Versi"
 
 msgid "Delete Version {version}"
 msgstr "Hapus Versi {version}"
@@ -4724,7 +4559,7 @@ msgstr "Memuat ulang tab {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Mulai ulang tab secara otomatis berdasarkan interval waktu yang Anda atur."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4804,7 +4639,7 @@ msgstr "Penerjemahan kilat {start_sub_heading}dengan {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Terjemahkan teks yang disorot atau seluruh bagian laman"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4812,7 +4647,7 @@ msgstr "Tingkatkan Reddit {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Ubah cara Anda berselancar di Reddit dengan menggunakan tag dan yang lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4840,11 +4675,11 @@ msgstr "Selancar secara anonim {start_sub_heading}dengan {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Jelajahi web dengan identitas tersembunyi—bahkan tampak seakan-akan Anda menjelajah dari negara lain."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Akses situs favorit Anda, tab yang baru saja ditutup, dan lainnya—semuanya dari tata letak serupa ubin yang cantik."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4876,7 +4711,7 @@ msgstr "Tangkap konten web {start_sub_heading}dengan {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Simpan informasi dari internet ke OneNote sehingga Anda bisa mengedit, membubuhi keterangan, dan yang lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5084,7 +4919,7 @@ msgstr "Unduh gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "Pilih gambar dari situs mana saja dan unduhlah."
 
 #. editorial content for the discovery pane.
 msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5092,7 +4927,7 @@ msgstr "Tutup lokasi Anda {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Sembunyikan lokasi Anda untuk menanggalkan pelacak dan melindungi privasi Anda."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5116,7 +4951,7 @@ msgstr "Kalahkan spam {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
-msgstr ""
+msgstr "Gunakan alamat surel sementara yang cerdik untuk tetap anonim dan menghindari spam."
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5188,7 +5023,7 @@ msgstr "Bekerja lebih cerdas {start_sub_heading}dengan {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Kelola produktivitas Anda dengan bekerja pada interval waktu yang terukur."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5228,7 +5063,7 @@ msgstr "Pilih lokasi markah secara mudah {start_sub_heading}dengan {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Satu cara yang lebih baik untuk menyimpan markah ketika Anda menggunakan berbagai folder markah."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5240,7 +5075,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Konversikan seluruh laman ke dalam bahasa pilihan Anda—dengan klik satu tombol."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5335,9 +5170,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Nikmati musik dari seluruh dunia {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr "Akses 20,000+ stasiun radio dari berbagai penjuru dunia."
+msgstr "Akses 30,000+ stasiun radio dari seluruh penjuru dunia."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5377,7 +5211,7 @@ msgstr "Hilangkan iklan pencarian {start_sub_heading}dengan {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Stop ads from appearing within your search results."
-msgstr ""
+msgstr "Hentikan kemunculan iklan pada hasil pencarian Anda."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5409,7 +5243,7 @@ msgstr "Menjelajah secara privat {start_sub_heading}dengan {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Loncat ke mode penjelajahan pribadi dengan sekali klik."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5505,7 +5339,7 @@ msgstr "Lakukan pencarian di Firefox {start_sub_heading}dengan {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Akses tab terbuka, markah, dan riwayat Anda dengan mudah."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -5525,7 +5359,7 @@ msgstr "Hindari pengarahan ulang dan pelacakan {start_sub_heading}dengan {addon_
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
-msgstr ""
+msgstr "Hindari pengalihan sehingga Anda dapat mengakses situs yang Anda inginkan—dengan lebih cepat."
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5605,7 +5439,7 @@ msgstr "Kelola kuki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Dapatkan kendali penuh atas kuki yang telah Anda kumpulkan selama menjelajah."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5800,9 +5634,6 @@ msgstr "Nomor versi harus kurang dari 32 karakter."
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Nomor versi hanya bisa terdiri dari huruf, angka, dan karakter tanda baca ini: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Pengunggahan tema WebExtension saat ini belum didukung."
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Ukuran maksimum untuk tema WebExtension adalah {0}."
 
@@ -5993,62 +5824,6 @@ msgstr "Media yang Harus-Dimiliki"
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "Dapatkan tangkapan layar yang lebih baik, tingkatkan pengalaman video daring, dan pada akhirnya pelajari cara membuat GIF, dan perangkat media menakjubkan lainnya."
 
-msgid "Discover Add-ons"
-msgstr "Temukan Pengaya"
-
-msgid "What are Add-ons?"
-msgstr "Apa itu Pengaya?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Pengaya adalah aplikasi yang dapat Anda gunakan untuk mengubahsuai %(app)s dengan tambahan fungsi atau mempercantik gayanya. Coba bilah samping yang dapat mempercepat cara kerja Anda, pengirim "
-"notifikasi cuaca, atau gaya cantik untuk %(app)s Anda."
-
-msgid "Learn More About Add-ons"
-msgstr "Pelajari Lebih Lanjut Tentang Pengaya"
-
-msgid "See all"
-msgstr "Lihat semuanya"
-
-msgid "More ways to customize"
-msgstr "Більше можливостей до налаштування"
-
-msgid "Browse all add-ons"
-msgstr "Переглянути всі додатки"
-
-msgid "See all complete themes"
-msgstr "Lihat semua tema lengkap"
-
-msgid "Close Video"
-msgstr "Tutup Video"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Saat video dimainkan, pengaya yang disebutkan akan muncul di sini."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Hai, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Terima kasih karena menggunakan %(app)s dan mendukung <a href=\"%(url)s\">misi Mozilla</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Pengaya yang diunduh:"
-
-msgid "View Privacy Policy"
-msgstr "Tampilkan Kebijakan Privasi"
-
-msgid "Active Users"
-msgstr "Pengguna Aktif"
-
-msgid "Last Updated"
-msgstr "Diperbarui Pada"
-
-msgid "Cancel Installation"
-msgstr "Batalkan Pemasangan"
-
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Pilihan Mozilla Bulan Ini!"
 
@@ -6068,9 +5843,8 @@ msgid "Reported Spam"
 msgstr "Spam yang Dilaporkan"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Laporkan masalah"
+msgstr "Ham yang Dilaporkan"
 
 msgid "Not Reported"
 msgstr "Tidak Dilaporkan"
@@ -6078,18 +5852,15 @@ msgstr "Tidak Dilaporkan"
 msgid "Content Submitted"
 msgstr "Konten Diajukan"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Tampilkan situs yang baru"
+msgstr "Tampilkan peringkat pada situs"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Mengajukan berkas baru"
+msgstr "Ajukan Ham ke Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Mengajukan berkas baru"
+msgstr "Ajukan Spam ke Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -6626,6 +6397,9 @@ msgstr "Pencarian berdasarkan nama pengaya / surel penulis / guid"
 msgid "Max. Version"
 msgstr "Versi Max."
 
+msgid "Select an application first"
+msgstr "Pilih aplikasi terlebih dahulu"
+
 msgid "Comments:"
 msgstr "Komentar:"
 
@@ -6923,6 +6697,9 @@ msgstr "Rata-rata Pengguna Harian"
 
 msgid "Abuse Reports"
 msgstr "Laporan Penyalahgunaan"
+
+msgid "View Privacy Policy"
+msgstr "Tampilkan Kebijakan Privasi"
 
 msgid "Requires Payment"
 msgstr "Memerlukan Pembayaran"
@@ -7355,6 +7132,9 @@ msgstr "Ulasan Tema untuk {0}"
 msgid "(Probable Duplicate Submission)"
 msgstr "(Pendaftaran Mungkin Berganda)"
 
+msgid "Submitted"
+msgstr "Diajukan"
+
 msgid "Past Review Notes"
 msgstr "Catatan Ulasan Terdahulu"
 
@@ -7524,7 +7304,8 @@ msgstr "Anda tidak dapat menambahkan versi pada pengaya yang berstatus: %s ."
 msgid "Version does not match the manifest file."
 msgstr "Versi ini tidak cocok dengan berkas manifest."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Versi yang sudah ada."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -7876,12 +7657,6 @@ msgstr "Kembali ke Beranda Pengaya {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Pengaya"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Pengaya"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Pengaya"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Pengaya"
 
@@ -8222,6 +7997,9 @@ msgstr "Keterangan lainnya..."
 msgid "Add-ons I've created"
 msgstr "Pengaya buatan saya"
 
+msgid "View all"
+msgstr "Tampilkan semua"
+
 msgid "My Most Popular Themes"
 msgstr "Tema Paling Populer Saya"
 
@@ -8350,9 +8128,3 @@ msgstr "Versi berikut ditampilkan sebagai referensi dan keperluan pengujian. And
 
 msgid "Deleted versions can`t be changed."
 msgstr "Versi terhapus tidak bisa diubah."
-
-msgid "Binary"
-msgstr "Biner"
-
-msgid "Non-binary"
-msgstr "Non-biner"

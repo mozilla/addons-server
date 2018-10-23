@@ -430,7 +430,14 @@ class ReviewerScore(ModelBase):
                     'No such version/auto approval summary when determining '
                     'event type to award points: %r', exception)
                 weight = 0
-            if weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
+
+            if addon.type == amo.ADDON_DICT:
+                reviewed_score_name = 'REVIEWED_DICT_FULL'
+            elif addon.type in [amo.ADDON_LPAPP, amo.ADDON_LPADDON]:
+                reviewed_score_name = 'REVIEWED_LP_FULL'
+            elif addon.type == amo.ADDON_SEARCH:
+                reviewed_score_name = 'REVIEWED_SEARCH_FULL'
+            elif weight > amo.POST_REVIEW_WEIGHT_HIGHEST_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGHEST_RISK'
             elif weight > amo.POST_REVIEW_WEIGHT_HIGH_RISK:
                 reviewed_score_name = 'REVIEWED_EXTENSION_HIGH_RISK'
@@ -481,10 +488,31 @@ class ReviewerScore(ModelBase):
                          auto-approved add-on.
 
         """
+
+        # If a webextension file gets approved manually (e.g. because
+        # auto-approval is disabled), 'post-review' is set to False, treating
+        # the file as a legacy file which is not what we want. The file is
+        # still a webextension and should treated as such, regardless of
+        # auto-approval being disabled or not.
+        # As a hack, we set 'post_review' to True.
+        if (version and
+                version.is_webextension and
+                addon.type in amo.GROUP_TYPE_ADDON):
+            post_review = True
+
+        user_log.info(
+            (u'Determining award points for user %s for version %s of addon %s'
+             % (user, version, addon.id)).encode('utf-8'))
+
         event = cls.get_event(
             addon, status, version=version, post_review=post_review,
             content_review=content_review)
         score = amo.REVIEWED_SCORES.get(event)
+
+        user_log.info(
+            (u'Determined %s award points (event: %s) for user %s for version '
+             u'%s of addon %s' % (score, event, user, version, addon.id))
+            .encode('utf-8'))
 
         # Add bonus to reviews greater than our limit to encourage fixing
         # old reviews. Does not apply to content-review/post-review at the
@@ -499,7 +527,7 @@ class ReviewerScore(ModelBase):
                 bonus = days_over * amo.REVIEWED_OVERDUE_BONUS
                 score = score + bonus
 
-        if score:
+        if score is not None:
             cls.objects.create(user=user, addon=addon, score=score,
                                note_key=event, note=extra_note,
                                version=version)

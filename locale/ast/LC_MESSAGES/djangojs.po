@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-18 00:42+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -760,11 +760,18 @@ msgstr "Nun s'alcontraron resultaos."
 msgid "Loading..."
 msgstr "Cargando..."
 
-#. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#. L10n: {0} is the number of characters entered.
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
 msgstr[1] ""
+
+#. L10n: {0} is the number of characters left.
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
+msgstr[0] "<b>{0}</b> de media nos últimos {1} díes"
+msgstr[1] "<b>{0}</b> de media nos últimos {1} díes"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Esta carauterística ta desactivada temporalmente mentanto facemos el caltenimientu del sitiu web. Volvi nun momentín, por favor."
@@ -858,9 +865,6 @@ msgstr ""
 
 msgid "{0} line {1}"
 msgstr ""
-
-msgid "Compatibility Tests"
-msgstr "Pruebes de compatibilidá"
 
 msgid "Add-on failed validation."
 msgstr "El complementu falló la validación."

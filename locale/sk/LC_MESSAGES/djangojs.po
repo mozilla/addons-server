@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2017-08-10 16:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-06 21:06+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -217,60 +217,52 @@ msgstr "Použiť originál"
 msgid "Week of {0}"
 msgstr "Týždeň {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " prevzatí"
-msgstr[1] " prevzatí"
-msgstr[2] " prevzatí"
+msgstr[0] "{0} prevzatie"
+msgstr[1] "{0} prevzatia"
+msgstr[2] "{0} prevzatí"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} používateľov"
-msgstr[1] "{0} používateľov"
+msgstr[0] "{0} používateľ"
+msgstr[1] "{0} používatelia"
 msgstr[2] "{0} používateľov"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} doplnkov"
-msgstr[1] "{0} doplnkov"
+msgstr[0] "{0} doplnok"
+msgstr[1] "{0} doplnky"
 msgstr[2] "{0} doplnkov"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} kolekcií"
-msgstr[1] "{0} kolekcií"
+msgstr[0] "{0} kolekcia"
+msgstr[1] "{0} kolekcie"
 msgstr[2] "{0} kolekcií"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} recenzií"
-msgstr[1] "{0} recenzií"
+msgstr[0] "{0} recenzia"
+msgstr[1] "{0} recenzie"
 msgstr[2] "{0} recenzií"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} predaných"
-msgstr[1] "{0} predaných"
+msgstr[0] "{0} predaný"
+msgstr[1] "{0} predané"
 msgstr[2] "{0} predaných"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} vrátených platieb"
-msgstr[1] "{0} vrátených platieb"
+msgstr[0] "{0} vrátená platba"
+msgstr[1] "{0} vrátené platby"
 msgstr[2] "{0} vrátených platieb"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} inštalácií"
-msgstr[1] "{0} inštalácií"
+msgstr[0] "{0} inštalácia"
+msgstr[1] "{0} inštalácie"
 msgstr[2] "{0} inštalácií"
 
 msgid "Downloads"
@@ -788,9 +780,18 @@ msgstr "Neboli nájdené žiadne výsledky."
 msgid "Loading..."
 msgstr "Načítava sa..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "Zostáva <b>{0}</b> znak."
+msgstr[1] "Zostávajú <b>{0}</b> znaky."
+msgstr[2] "Zostáva <b>{0}</b> znakov."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Zostáva <b>{0}</b> znak."
 msgstr[1] "Zostávajú <b>{0}</b> znaky."
 msgstr[2] "Zostáva <b>{0}</b> znakov."
@@ -838,7 +839,7 @@ msgid "Number of Reviews"
 msgstr "Počet hodnotení"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Maximálna povolená veľkosť je {0} - vyberte menší obrázok pozadia."
 
 msgid "Requested Info"
 msgstr "Požadované informácie"
@@ -887,9 +888,6 @@ msgstr "{0} riadok {1} stĺpec {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} riadok {1}"
-
-msgid "Compatibility Tests"
-msgstr "Testy kompatibility"
 
 msgid "Add-on failed validation."
 msgstr "Doplnok neprešiel overením."

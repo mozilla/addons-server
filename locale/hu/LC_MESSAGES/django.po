@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-25 08:28+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-21 19:15+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -143,10 +143,6 @@ msgstr[1] "A címkéknek legalább {0} karakterből kell állnia."
 msgid "The text entered has been flagged as spam."
 msgstr "A megadott szöveg spamként lett megjelölve."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Az URL domain a következők egyike kell legyen: [%s], vagy egy aldomain."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "A kategóriákat nem lehet megváltoztatni, amíg ez a kiegészítő az alkalmazás esetén ki van emelve."
 
@@ -158,6 +154,10 @@ msgstr[1] "Csak {0} kategóriája van."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Az egyéb kategória nem vonható össze más kategóriákkal."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Az URL domain a következők egyike kell legyen: [%s], vagy egy aldomain."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -211,7 +211,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "A kiegészítőt a készítői kísérletiként jelölték meg."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0} felhasználói licencszerződés"
 
@@ -709,6 +708,10 @@ msgstr "Admin eszközök"
 
 msgid "Positive integer"
 msgstr "Pozitív egész"
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "Ez a mező csak külső webhelyekhez kapcsolódáshoz használható. A(z) %(domain)s URL-ek nem engedélyezettek."
 
 msgid "Incorrect, please try again."
 msgstr "Helytelen, kérjük próbálja meg újra."
@@ -1335,12 +1338,6 @@ msgstr "Szótár telepítése"
 msgid "Install Language Pack"
 msgstr "Nyelvi csomag telepítése"
 
-msgid "Download Dictionary"
-msgstr "Szótár letöltése"
-
-msgid "Download Language Pack"
-msgstr "Nyelvi csomag letöltése"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
@@ -1508,78 +1505,6 @@ msgstr "Összes ígéretes megtekintése"
 
 msgid "No themes found"
 msgstr "Nincs téma"
-
-msgid "All"
-msgstr "Összes"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Kiegészítők kompatibilitási jelentései"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p>A <a href=\"%(url_)s\">kiegészítők kompatibilitási jelentésén</a> keresztül beküldött jelentések itt kerülnek összegyűjtésre a fejlesztők számára. Ezek a jelentések segítenek nekünk meghatározni,"
-" hogy mely kiegészítők igényelnek majd segítséget egy soron következő Firefox verzió támogatásához.</p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Kiegészítőinek jelentései"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Adja meg a kiegészítő GUID-ját, hogy megtekinthessen bármilyen beérkezett jelentést."
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} kompatibilitási jelentései"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} sikeres jelentés"
-msgstr[1] "{0} sikeres jelentés"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} hibajelentés"
-msgstr[1] "{0} hibajelentés"
-
-msgid "View all"
-msgstr "Összes megjelenítése"
-
-msgid "Filter by Application"
-msgstr "Szűrés alkalmazás szerint"
-
-msgid "Report Type"
-msgstr "Jelentés típusa"
-
-msgid "Version"
-msgstr "Verzió"
-
-msgid "Application Version"
-msgstr "Alkalmazásverzió"
-
-msgid "Application Build"
-msgstr "Alkalmazás build"
-
-msgid "Platform"
-msgstr "Platform"
-
-msgid "e10s Enabled"
-msgstr "e10s engedélyezve"
-
-msgid "e10s Compatible"
-msgstr "e10s kompatibilis"
-
-msgid "Submitted"
-msgstr "Elküldve"
-
-msgid "Success"
-msgstr "Sikeres"
-
-msgid "Problem"
-msgstr "Probléma"
-
-msgid "No reports found."
-msgstr "Nem található jelentés."
 
 msgid "{addon} was created."
 msgstr "{addon} létrehozva."
@@ -2162,54 +2087,6 @@ msgstr "Sport és játékok"
 msgid "User Interface"
 msgstr "Felhasználói felület"
 
-msgid "Appearance and Customization"
-msgstr "Megjelenítés és testreszabás"
-
-msgid "Calendar and Date/Time"
-msgstr "Naptár és dátum/idő"
-
-msgid "Chat and IM"
-msgstr "Csevegés és IM"
-
-msgid "Message Composition"
-msgstr "Üzenetek fogalmazása"
-
-msgid "Contacts"
-msgstr "Névjegyek"
-
-msgid "Folders and Filters"
-msgstr "Mappák és szűrők"
-
-msgid "Import/Export"
-msgstr "Importálás/Exportálás"
-
-msgid "Message and News Reading"
-msgstr "Üzenet- és hírolvasás"
-
-msgid "Privacy and Security"
-msgstr "Adatvédelem és biztonság"
-
-msgid "Downloading and File Management"
-msgstr "Letöltés- és fájlkezelők"
-
-msgid "Interface Customizations"
-msgstr "Felület testreszabása"
-
-msgid "Language Support and Translation"
-msgstr "Nyelvi támogatás és fordítás"
-
-msgid "Photos and Media"
-msgstr "Fotók és média"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, hírek és blogolás"
-
-msgid "Site-specific"
-msgstr "Webhelyspecifikus"
-
-msgid "Web and Developer Tools"
-msgstr "Webes és fejlesztői szerszámos láda"
-
 msgid "All Rights Reserved"
 msgstr "Minden jog fenntartva"
 
@@ -2499,12 +2376,6 @@ msgstr "Nem töltött fel forrásfájlt."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "A forrásfájl feltöltésre került, de azt jelezte, hogy nincs szükség forrásra."
 
-msgid "Application"
-msgstr "Alkalmazás"
-
-msgid "Select an application first"
-msgstr "Először válassza ki az alkalmazást"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nem lehet 3-nál több szükséges kiegészítő."
 
@@ -2622,9 +2493,6 @@ msgstr "A kiegészítő egy szerzője eltávolításra került"
 msgid "Validate Add-on"
 msgstr "Kiegészítő ellenőrzése"
 
-msgid "Check Add-on Compatibility"
-msgstr "Kiegészítő kompatibilitásának ellenőrzése"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "A kép nem lehet nagyobb, mint %d KB."
@@ -2650,6 +2518,42 @@ msgstr "%s verzió újra engedélyezve."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Ezen feltöltés ellenőrzése sikertelen lett, és hiányozhatnak az értékelés teljes eredményei. A vizsgálat során legyen különösen figyelmes."
+
+msgid "Header area background"
+msgstr "A fejlécterület háttere"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "A fejlécterület háttere, amely a fejléc azon részét érinti, amelyet nem fed le a fejléckép, vagy átlátszó. Leírófájl: accentcolor."
+
+msgid "Header area text and icons"
+msgstr "Fejlécterület szövege és ikonjai"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "A fejlécterületen megjelenített szöveg színe és ikonja, kivéve az aktív lapot. Leírófájl: textcolor."
+
+msgid "Toolbar area background"
+msgstr "Az eszköztárterület háttere"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "A navigációs sáv, a könyvjelző eszköztár és a kiválasztott lap háttérszíne. Leírófájl: toolbar."
+
+msgid "Toolbar area text and icons"
+msgstr "Az eszköztárterület szövege és ikonok"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Az eszköztáron és aktív lapon található szöveg színe és ikonjai. Leírófájl mező: toolbar_text."
+
+msgid "Toolbar field area background"
+msgstr "Az eszköztár mezőterületének háttere"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Az eszköztáron található mezők, mint a keresősáv, háttere. Leírófájl mező: toolbar_field."
+
+msgid "Toolbar field area text"
+msgstr "Az eszköztár mezőterületének szövege"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne. Leírófájl mező: toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Értékelés kérve."
@@ -2717,14 +2621,11 @@ msgstr "Kiegészítőfejlesztés"
 msgid "Lightweight Themes"
 msgstr "Könnyű témák"
 
-msgid "Add-on Policies"
-msgstr "Kiegészítő-irányelvek"
+msgid "Developer Policies"
+msgstr "Fejlesztői irányelvek"
 
 msgid "Add-on Validator"
 msgstr "Kiegészítő-ellenőrző"
-
-msgid "Add-on Compatibility Checker"
-msgstr "Kiegészítő kompatibilitásvizsgálata"
 
 msgid "Development Add-ons"
 msgstr "Fejlesztői kiegészítők"
@@ -2750,13 +2651,6 @@ msgstr "Keresés"
 msgid "Use the field below to upload your add-on package."
 msgstr "Használja az alábbi mezőt a kiegészítőcsomag feltöltéséhez."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Ez az eszköz csak hagyományos kiegészítőkkel működik. A WebExtension API-k részletesen <a href=\"%(webext_doc_url)s\">dokumentáltak itt</a>."
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "A feltöltést követően számos automatikus ellenőrzés fut le a kompatibilitás vizsgálatához az alábbi alkalmazásverzióhoz:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "A feltöltés után egy sor automatikus ellenőrzési mechanizmus indul el és vizsgálja meg a fájlt."
 
@@ -2772,9 +2666,6 @@ msgstr "Ellenőrzés eredményei"
 
 msgid "Validated at:"
 msgstr "Ellenőrzés dátuma:"
-
-msgid "Tested for compatibility against:"
-msgstr "Kompatibilitás vizsgálata:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Friss tevékenységek a saját kiegészítőimen"
@@ -2826,6 +2717,9 @@ msgid "Adjusting application information here will allow users to install your a
 msgstr ""
 "Az alkalmazás információjának beállításával a felhasználóknak lehetőségük van a kiegészítők telepítésére, abban az esetben is, ha a telepítéskor a kiegészítő azt jelzi, hogy nem kompatibilis az "
 "adott rendszerrel."
+
+msgid "Application"
+msgstr "Alkalmazás"
 
 msgid "Supported Versions"
 msgstr "Támogatott verziók"
@@ -2883,12 +2777,59 @@ msgstr ""
 "<p>A kiegészítőknek tetszőleges számú készítője lehet, akik 2 különböző csoportba sorolhatók:</p> <ul> <li><b>Tulajdonos:</b> kezelheti a kiegészítő megjelenésének tulajdonságait, beleértve a "
 "szerzők hozzáadását és eltávolítását.</li> <li><b>Fejlesztő:</b> kezelheti a kiegészítő minden tulajdonságát, kivéve a szerzők hozzáadását és eltávolítását.</li> </ul>"
 
-msgid "Basic Information"
-msgstr "Alapinformációk"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Kiegészítő részletei"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0} kiegészítő részletei"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "A címkék segítenek a felhasználóknak hogy megtalálják a kiegészítőjét és rövid leírásként is működnek mint pl. „lapok”, az „eszköztár” vagy a „twitter”. Legfeljebb {0} címkét használhat."
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Vesszővel elválasztott, minimum {0} karakterből álló."
+msgstr[1] "Vesszővel elválasztott, minimum {0} karakterből álló."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Példa: dark, cinema, noir. Korlát: 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Foglalt címke:"
+msgstr[1] "Foglalt címkék:"
+
+msgid "Contributions URL"
+msgstr "Támogatási URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "Ha pénzbeli támogatást szeretne kérni a felhasználóktól, akkor állítsa be úgy ezt az oldalt, hogy megtehessék."
+
+msgid "Default Locale"
+msgstr "Alapértelmezett nyelv"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr "A kiegészítőről szóló információk csak ezen a nyelvterületen jelennek meg addig, amíg el nem látja egy másik területhez illő fordítással. Mindez csak a listázott kiegészítőkre vonatkozik."
+
+msgid "Homepage"
+msgstr "Honlap"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+"Ha a kiegészítőhöz másik honlap is tartozik, annak a címét itt adja meg. Ha a weboldala más nyelvekre történt fordításokat is tartalmaz, az egyes nyelvi verziókat itt adhatja hozzá. Mindez csak a "
+"listázott kiegészítőkre vonatkozik."
+
+msgid "Describe Add-on"
+msgstr "Kiegészítő leírása"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0} fájl alapvető információi"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Kiegészítő leírása"
 
 msgid "Add-on URL"
 msgstr "Kiegészítő URL-je"
@@ -2943,64 +2884,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "A kategóriák nem módosíthatók amíg kiemelt a kiegészítője. Küldjön levelet ide: <a href=\"mailto:%(email)s\">%(email)s</a>, amennyiben valamilyen okból módosítani szeretné a kategóriát."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "A címkék segítenek a felhasználóknak hogy megtalálják a kiegészítőjét és rövid leírásként is működnek mint pl. „lapok”, az „eszköztár” vagy a „twitter”. Legfeljebb {0} címkét használhat."
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Vesszővel elválasztott, minimum {0} karakterből álló."
-msgstr[1] "Vesszővel elválasztott, minimum {0} karakterből álló."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Példa: dark, cinema, noir. Korlát: 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Foglalt címke:"
-msgstr[1] "Foglalt címkék:"
-
-msgid "Contributions URL"
-msgstr "Támogatási URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "Ha pénzbeli támogatást szeretne kérni a felhasználóktól, akkor állítsa be úgy ezt az oldalt, hogy megtehessék."
-
-msgid "Add-on Details"
-msgstr "Kiegészítő részletei"
-
-msgid "Add-on Details for {0}"
-msgstr "{0} kiegészítő részletei"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-"Egy részletesebb leírás a funkciókról, felhasználhatóságról és más fontos jellemzőkről. Ez a mező csak a kiegészítőt részletező oldalon jelenik meg. Mindez csak a listázott kiegészítőkre vonatkozik."
-
-msgid "Default Locale"
-msgstr "Alapértelmezett nyelv"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "A kiegészítőről szóló információk csak ezen a nyelvterületen jelennek meg addig, amíg el nem látja egy másik területhez illő fordítással. Mindez csak a listázott kiegészítőkre vonatkozik."
-
-msgid "Homepage"
-msgstr "Honlap"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-"Ha a kiegészítőhöz másik honlap is tartozik, annak a címét itt adja meg. Ha a weboldala más nyelvekre történt fordításokat is tartalmaz, az egyes nyelvi verziókat itt adhatja hozzá. Mindez csak a "
-"listázott kiegészítőkre vonatkozik."
-
-msgid "Images"
-msgstr "Képek"
-
-msgid "Support Information"
-msgstr "Támogatás információi"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0} kiegészítő támogatási információi"
-
 msgid "Email"
 msgstr "E-mail"
 
@@ -3020,6 +2903,9 @@ msgid ""
 msgstr ""
 "Ha kiegészítőjének támogatói oldala vagy fóruma van, itt adja meg a címét. Ha honlapja több nyelven is elérhető, ezen mező többszöri fordítása is hozzáadható. Ez csak listázott kiegészítőkre "
 "érvényes."
+
+msgid "Images"
+msgstr "Képek"
 
 msgid "Technical Details"
 msgstr "Technikai részletek"
@@ -3196,9 +3082,6 @@ msgstr "Másik licenc kiválasztása."
 msgid "More information on Creative Commons licenses"
 msgstr "További információk a Creative Commons licencekről"
 
-msgid "Tests"
-msgstr "Tesztek"
-
 msgid "General Tests"
 msgstr "Általános tesztek"
 
@@ -3333,9 +3216,6 @@ msgstr[1] "<strong>{0}</strong> aktív felhasználó"
 msgid "Submit a New Version"
 msgstr "Új verzió beküldése"
 
-msgid "Describe Add-on"
-msgstr "Kiegészítő leírása"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Név az ezen oldalon felsoroláshoz. Különbözhet a kiegészítőben található névtől, amely a Firefoxon belül jelenik meg"
 
@@ -3350,6 +3230,10 @@ msgstr "Összegzés:"
 
 msgid "required"
 msgstr "szükséges"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Leírás"
 
 msgid "This add-on is experimental"
 msgstr "Ez a kiegészítő kísérleti"
@@ -3578,6 +3462,9 @@ msgstr "Téma generálás"
 msgid "Theme generator"
 msgstr "Téma generátor"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "Téma neve"
 
@@ -3601,42 +3488,6 @@ msgstr "Válasszon egy másik felső képet"
 
 msgid "Select colors for your theme"
 msgstr "Válasszon színeket a témájához"
-
-msgid "Header area background"
-msgstr "A fejlécterület háttere"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "A fejlécterület háttere, amely a fejléc azon részét érinti, amelyet nem fed le a fejléckép, vagy átlátszó. Leírófájl: accentcolor."
-
-msgid "Header area text and icons"
-msgstr "Fejlécterület szövege és ikonjai"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "A fejlécterületen megjelenített szöveg színe és ikonja, kivéve az aktív lapot. Leírófájl: textcolor."
-
-msgid "Toolbar area background"
-msgstr "Az eszköztárterület háttere"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "A navigációs sáv, a könyvjelző eszköztár és a kiválasztott lap háttérszíne. Leírófájl: toolbar."
-
-msgid "Toolbar area text and icons"
-msgstr "Az eszköztárterület szövege és ikonok"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Az eszköztáron és aktív lapon található szöveg színe és ikonjai. Leírófájl mező: toolbar_text."
-
-msgid "Toolbar field area background"
-msgstr "Az eszköztár mezőterületének háttere"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Az eszköztáron található mezők, mint a keresősáv, háttere. Leírófájl mező: toolbar_field."
-
-msgid "Toolbar field area text"
-msgstr "Az eszköztár mezőterületének szövege"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne. Leírófájl mező: toolbar_field_text."
 
 msgid "optional"
 msgstr "nem kötelező"
@@ -3767,15 +3618,6 @@ msgstr "Nem listázott értékelés oldal"
 msgid "View Statistics Dashboard"
 msgstr "Statisztika áttekintése"
 
-msgid "Compatibility Reports"
-msgstr "Kompatibilitási jelentések"
-
-msgid "{0} failure reports"
-msgstr "{0} jelentés hibáról"
-
-msgid "{0} success reports"
-msgstr "{0} jelentés sikerről"
-
 msgid "Developer News"
 msgstr "Fejlesztői hírek"
 
@@ -3864,9 +3706,6 @@ msgstr "Kapcsolat"
 msgid "Support"
 msgstr "Támogatás"
 
-msgid "Policies"
-msgstr "Irányelvek"
-
 msgid "Report Bug"
 msgstr "Hibabejelentés"
 
@@ -3875,9 +3714,6 @@ msgstr "Oldal állapota"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: kiegészítők összeállítása és tesztelése"
-
-msgid "Compatibility Checker"
-msgstr "Kompatibilitás-ellenőrző"
 
 msgid "Promote"
 msgstr "Népszerűsítés"
@@ -4316,6 +4152,9 @@ msgstr "Minden verzió"
 
 msgid "Upload a New Version"
 msgstr "Új verzió feltöltése"
+
+msgid "Version"
+msgstr "Verzió"
 
 msgid "Delete Version {version}"
 msgstr "{version} verzió törlése"
@@ -5782,9 +5621,6 @@ msgstr "A verziószámnak 32 karakternél rövidebbnek kell lennie."
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "A verziószámok kizárólag betűket, számokat és a következő karaktereket tartalmazhatja: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "A WebExtension téma feltöltések jelenleg nem támogatottak."
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "A WebExtension témák maximális mérete {0}."
 
@@ -5976,62 +5812,6 @@ msgstr "Kötelező média"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "Készítsen jobb képernyőképeket, javítsa az online videoélményét, tanuljon meg végre GIF-eket készíteni, és ismerjen meg más nagyszerű médiaeszközöket."
-
-msgid "Discover Add-ons"
-msgstr "Kiegészítők felfedezése"
-
-msgid "What are Add-ons?"
-msgstr "Mik azok a kiegészítők?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"A kiegészítők olyan alkalmazások, amelynek segítségével személyre szabható, extra szolgáltatások vagy funkciók adhatók a %(app)s alkalmazáshoz. Próbálja ki az időjárás értesítőt, a hírkeresőt vagy a"
-" %(app)s alkalmazáshoz készített témák valamelyikét."
-
-msgid "Learn More About Add-ons"
-msgstr "Tudjon meg többet a kiegészítőkről"
-
-msgid "See all"
-msgstr "Összes"
-
-msgid "More ways to customize"
-msgstr "További testreszabási lehetőségek"
-
-msgid "Browse all add-ons"
-msgstr "Összes kiegészítő tallózása"
-
-msgid "See all complete themes"
-msgstr "Összes teljes téma"
-
-msgid "Close Video"
-msgstr "Videó bezárása"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Amíg a videó megy, az említett kiegészítők itt fognak megjelenni."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Üdvözöljük, {0}!"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Köszönjük, hogy a %(app)s alkalmazást használja és támogatja <a href=\"%(url)s\">Mozilla küldetését</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Letöltött kiegészítők:"
-
-msgid "View Privacy Policy"
-msgstr "Adatvédelmi irányelvek megtekintése"
-
-msgid "Active Users"
-msgstr "Aktív felhasználók"
-
-msgid "Last Updated"
-msgstr "Utolsó frissítés"
-
-msgid "Cancel Installation"
-msgstr "Telepítés megszakítása"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "A Mozilla havi ajánlata!"
@@ -6605,6 +6385,9 @@ msgstr "Keresés kiegészítő neve / szerző e-mail címe / guid szerint"
 msgid "Max. Version"
 msgstr "Max. verzió"
 
+msgid "Select an application first"
+msgstr "Először válassza ki az alkalmazást"
+
 msgid "Comments:"
 msgstr "Hozzászólások:"
 
@@ -6907,6 +6690,9 @@ msgstr "Átlagos felhasználók naponta"
 
 msgid "Abuse Reports"
 msgstr "Visszaélés-jelentések"
+
+msgid "View Privacy Policy"
+msgstr "Adatvédelmi irányelvek megtekintése"
 
 msgid "Requires Payment"
 msgstr "Fizetést igényel"
@@ -7343,6 +7129,9 @@ msgstr "Téma értékelés ehhez: {0}"
 msgid "(Probable Duplicate Submission)"
 msgstr "(Lehetséges ismételt benyújtások)"
 
+msgid "Submitted"
+msgstr "Elküldve"
+
 msgid "Past Review Notes"
 msgstr "Múltbeli értékelési megjegyzések"
 
@@ -7517,8 +7306,9 @@ msgstr "Nem adhat hozzá verziókat olyan kiegészítőkhöz, melyek állapota: 
 msgid "Version does not match the manifest file."
 msgstr "A verzió nem egyezik meg a jegyzékfájllal."
 
-msgid "Version already exists."
-msgstr "A verzió már létezik."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
+msgstr "A verzió már létezik. A legfrissebb verzió: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Csak a WebExtension-ök számára megengedett a GUID kihagyása"
@@ -7869,12 +7659,6 @@ msgstr "Visszatérés a {0}-kiegészítők honlapjára"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Kiegészítők"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Kiegészítők"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Kiegészítők"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Kiegészítők"
 
@@ -8215,6 +7999,9 @@ msgstr "Kicsit részletesebben…"
 msgid "Add-ons I've created"
 msgstr "Saját kiegészítéseim"
 
+msgid "View all"
+msgstr "Összes megjelenítése"
+
 msgid "My Most Popular Themes"
 msgstr "Legnépszerűbb témái"
 
@@ -8345,9 +8132,3 @@ msgstr "Ezek a verziók csak tanulmányozás és tesztelés céljából jelennek
 
 msgid "Deleted versions can`t be changed."
 msgstr "A törölt verziók nem változtathatóak meg."
-
-msgid "Binary"
-msgstr "Bináris"
-
-msgid "Non-binary"
-msgstr "Nem bináris"

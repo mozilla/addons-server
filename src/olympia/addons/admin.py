@@ -54,8 +54,8 @@ class AddonAdmin(admin.ModelAdmin):
                        'public_stats', 'is_experimental',
                        'external_software', 'reputation'),
         }),
-        ('Dictionaries', {
-            'fields': ('target_locale', 'locale_disambiguation'),
+        ('Dictionaries and Language Packs', {
+            'fields': ('target_locale',),
         }))
 
     def queryset(self, request):

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-11 21:12+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-10 15:41+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -213,52 +213,44 @@ msgstr "Tokisäx qitzij"
 msgid "Week of {0}"
 msgstr "Ruwuqq'ij {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " taq qasanïk"
-msgstr[1] " taq qasanïk"
+msgstr[0] "{0} qasanïk"
+msgstr[1] "{0} taq qasanïk"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} okisanela'"
+msgstr[0] "{0} okisanel"
 msgstr[1] "{0} okisanela'"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} taq tz'aqat"
+msgstr[0] "{0} tz'aqat"
 msgstr[1] "{0} taq tz'aqat"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} taq mol"
+msgstr[0] "{0} mol"
 msgstr[1] "{0} taq mol"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} taq tzijoxïk"
+msgstr[0] "{0} tzijoxïk"
 msgstr[1] "{0} taq tzijoxïk"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} taq k'ayij"
+msgstr[0] "{0} k'ayij"
 msgstr[1] "{0} taq k'ayij"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} tzolin taq pwäq"
-msgstr[1] "{0} tzolin taq pwäq"
+msgstr[0] "{0} tzolin pwäq"
+msgstr[1] "{0} taq tzolin pwäq"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} taq yakoj"
+msgstr[0] "{0} yakoj"
 msgstr[1] "{0} taq yakoj"
 
 msgid "Downloads"
@@ -772,9 +764,17 @@ msgstr "Majun achike xilitäj."
 msgid "Loading..."
 msgstr "Nisamajib'ëx..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> jun chik tz'ib'."
+msgstr[1] "<b>{0}</b> juley chik taq tz'ib'."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> jun chik tz'ib'."
 msgstr[1] "<b>{0}</b> juley chik taq tz'ib'."
 
@@ -870,9 +870,6 @@ msgstr "{0} cholaj {1} tem {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} cholaj {1}"
-
-msgid "Compatibility Tests"
-msgstr "K'amonel taq Tojtob'enïk"
 
 msgid "Add-on failed validation."
 msgstr "Xsach rik'in ri jikib'anïk ri tz'aqat."

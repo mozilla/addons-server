@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -134,10 +134,6 @@ msgstr[0] "태그는 최소한 {0} 글자 이상이어야 합니다."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "이 애플리케이션의 추천 부가 기능으로 선정되어 있는 동안은 분류를 변경할 수 없습니다."
 
@@ -148,6 +144,10 @@ msgstr[0] "{0}개의 분류만 사용할 수 있습니다."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "기타 카테고리는 다른 카테고리와 결합할 수 없습니다."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -201,7 +201,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "이 부가 기능은 제작자에 의해 실험적인 부가 기능으로 표시되었습니다."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0}의 최종 사용자 라이선스 동의서"
 
@@ -686,6 +685,10 @@ msgid "Admin Tools"
 msgstr "관리자 도구"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1305,12 +1308,6 @@ msgstr "맞춤법 사전 설치"
 msgid "Install Language Pack"
 msgstr "언어팩 설치"
 
-msgid "Download Dictionary"
-msgstr "맞춤법 사전 다운로드"
-
-msgid "Download Language Pack"
-msgstr "언어팩 다운로드"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1474,76 +1471,6 @@ msgstr "인기 급상승 순으로 모두 보기"
 
 msgid "No themes found"
 msgstr "발견된 테마 없음"
-
-msgid "All"
-msgstr "전체"
-
-msgid "Add-on Compatibility Reports"
-msgstr "부가 기능 호환성 제보"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> <a href=\"%(url_)s\">부가 기능 호환성 제보자</a>를 통해 들어온 제보들은 개발자들을 위해 이곳에 정리되어 있습니다. 이러한 제보들은 앞으로 올라올 Firefox 버전과의 호환성 작업 지원이 필요한 부가 기"
-"능을 판별하는데 많은 도움이 되고 있습니다. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "내 부가 기능의 호환성 제보"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "제보된 내역을 보려면 아래에 부가 기능의 GUID를 입력하세요."
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon}에 대한 호환성 제보"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "성공 제보 {0}개"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "문제 제보 {0}개"
-
-msgid "View all"
-msgstr "모두 보기"
-
-msgid "Filter by Application"
-msgstr "애플리케이션 별로 보기"
-
-msgid "Report Type"
-msgstr "제보 종류"
-
-msgid "Version"
-msgstr "버전"
-
-msgid "Application Version"
-msgstr "애플리케이션 버전"
-
-msgid "Application Build"
-msgstr "애플리케이션 빌드"
-
-msgid "Platform"
-msgstr "플랫폼"
-
-msgid "e10s Enabled"
-msgstr "e10s 사용"
-
-msgid "e10s Compatible"
-msgstr "e10s 호환"
-
-msgid "Submitted"
-msgstr "등록 완료"
-
-msgid "Success"
-msgstr "성공"
-
-msgid "Problem"
-msgstr "문제"
-
-msgid "No reports found."
-msgstr "제보가 없습니다."
 
 msgid "{addon} was created."
 msgstr "{addon}이(가) 제작되었습니다."
@@ -2126,54 +2053,6 @@ msgstr "스포츠 및 게임"
 msgid "User Interface"
 msgstr "시용자 인터페이스"
 
-msgid "Appearance and Customization"
-msgstr "모양 및 사용자 지정"
-
-msgid "Calendar and Date/Time"
-msgstr "달력과 날짜/시간"
-
-msgid "Chat and IM"
-msgstr "채팅과 메신저"
-
-msgid "Message Composition"
-msgstr "메시지 작성"
-
-msgid "Contacts"
-msgstr "연락처"
-
-msgid "Folders and Filters"
-msgstr "폴더 및 필터"
-
-msgid "Import/Export"
-msgstr "가져오기/내보내기"
-
-msgid "Message and News Reading"
-msgstr "메일 읽기"
-
-msgid "Privacy and Security"
-msgstr "개인 정보 및 보안"
-
-msgid "Downloading and File Management"
-msgstr "다운로드 및 파일 관리"
-
-msgid "Interface Customizations"
-msgstr "맞춤형 디자인"
-
-msgid "Language Support and Translation"
-msgstr "언어 지원 및 번역"
-
-msgid "Photos and Media"
-msgstr "사진 및 동영상"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS 뉴스 및 블로깅"
-
-msgid "Site-specific"
-msgstr "웹 사이트별"
-
-msgid "Web and Developer Tools"
-msgstr "웹 개발 도구"
-
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
 
@@ -2466,12 +2345,6 @@ msgstr "소스 파일을 업로드 하지 않았습니다."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "애플리케이션"
-
-msgid "Select an application first"
-msgstr "먼저 지원할 애플리케이션 선택"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "설치가 필요한 부가 기능은 3개 이상 지정할 수 없습니다."
 
@@ -2584,9 +2457,6 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "부가 기능 검사"
 
-msgid "Check Add-on Compatibility"
-msgstr "부가 기능 호환성 검사"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "이미지는 %dKB보다 작아야 합니다."
@@ -2612,6 +2482,43 @@ msgstr "%s 버전이 다시 활성화되었습니다."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "업로드한 파일의 검사 작업에 실패했으므로 완전한 검사 결과가 누락되었을 수 있습니다. 검토시 이점에 유의해 주세요."
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "탭 부분의 글자색입니다."
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
 
 msgid "Review requested."
 msgstr "검토가 요청되었습니다."
@@ -2679,14 +2586,12 @@ msgstr "확장 기능 개발"
 msgid "Lightweight Themes"
 msgstr "가벼운 테마"
 
-msgid "Add-on Policies"
-msgstr "부가 기능 정책"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "개발자 뉴스"
 
 msgid "Add-on Validator"
 msgstr "부가 기능 검사기"
-
-msgid "Add-on Compatibility Checker"
-msgstr "부가 기능 호환성 검사기"
 
 msgid "Development Add-ons"
 msgstr "부가 기능 개발 도구"
@@ -2712,13 +2617,6 @@ msgstr "검색"
 msgid "Use the field below to upload your add-on package."
 msgstr "부가 기능 패키지를 업로드 하려면 아래 항목을 입력해 주세요."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "업로드 후엔 여러 자동 검사기가 다음 애플리케이션 버전들과의 호환성을 점검하게 됩니다:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "업로드 후엔 여러 자동 검사기가 파일을 실행해 볼 것입니다."
 
@@ -2734,9 +2632,6 @@ msgstr "검사 결과"
 
 msgid "Validated at:"
 msgstr "검사일:"
-
-msgid "Tested for compatibility against:"
-msgstr "호환성 검사 완료:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "내 부가 기능의 최근 활동 내역"
@@ -2786,6 +2681,9 @@ msgstr "업데이트 호환성"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "이곳의 애플리케이션 정보를 수정하면 패키지 내의 앱 정보 설정 파일이 비호환으로 인식하고 있던 부가 기능도 사용자가 설치할 수 있게 됩니다."
+
+msgid "Application"
+msgstr "애플리케이션"
 
 msgid "Supported Versions"
 msgstr "지원 버전"
@@ -2844,12 +2742,55 @@ msgstr ""
 "<p>부가 기능 제작자엔 3가지 종류가 있습니다:</p> <ul> <li><b>소유자:</b> 다른 제작자의 추가와 삭제 및 부가 기능 전시에 사용되는 모든 항목의 관리 권한 보유</li> <li><b>개발자:</b> 다른 제작자의 추가 "
 "기능 및 결제 관련 권한을 제외한 권한 보유</li> <li><b>참관인:</b> 부가 기능의 설정 및 통계를 조회할 수 있지만 변경 불가</li> </ul>"
 
-msgid "Basic Information"
-msgstr "기본 정보"
+#, fuzzy
+msgid "Additional Details"
+msgstr "부가 기능 세부 설명"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0} 부가 기능 세부 설명"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "콤마로 구분하며 최소 {0} 글자 이상 입력해야 합니다."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "예: dark, cinema, noir. 단어는 20자 이내로 제한됩니다."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "금지 태그:"
+
+msgid "Contributions URL"
+msgstr "공헌 URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr "기본 언어"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "홈페이지"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "부가 기능 설명"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0}의 기본 정보"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "부가 기능 설명"
 
 msgid "Add-on URL"
 msgstr "부가 기능 URL"
@@ -2903,59 +2844,6 @@ msgstr "이 애플리케이션의 추천 부가 기능이 된 동안은 분류�
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "이 애플리케이션의 추천 부가 기능이 된 동안은 분류를 변경할 수 없습니다. 굳이 분류를 조정해야 할 이유가 있으시다면 <a href=\"mailto:%(email)s\">%(email)s</a> 주소로 메일을 보내주세요."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "콤마로 구분하며 최소 {0} 글자 이상 입력해야 합니다."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "예: dark, cinema, noir. 단어는 20자 이내로 제한됩니다."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "금지 태그:"
-
-msgid "Contributions URL"
-msgstr "공헌 URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "부가 기능 세부 설명"
-
-msgid "Add-on Details for {0}"
-msgstr "{0} 부가 기능 세부 설명"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr "기본 언어"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "홈페이지"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "이미지"
-
-msgid "Support Information"
-msgstr "기술 지원 정보"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0}의 기술 지원 정보"
-
 msgid "Email"
 msgstr "이메일"
 
@@ -2971,6 +2859,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+
+msgid "Images"
+msgstr "이미지"
 
 msgid "Technical Details"
 msgstr "세부 기술 정보"
@@ -3148,9 +3039,6 @@ msgstr "다른 라이선스를 선택하세요."
 msgid "More information on Creative Commons licenses"
 msgstr "추가 정보 필요"
 
-msgid "Tests"
-msgstr "테스트"
-
 msgid "General Tests"
 msgstr "일반 테스트"
 
@@ -3284,9 +3172,6 @@ msgstr[0] "현재 사용자 <strong>{0}</strong>명"
 msgid "Submit a New Version"
 msgstr "새 버전 올리기"
 
-msgid "Describe Add-on"
-msgstr "부가 기능 설명"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3301,6 +3186,10 @@ msgstr "요약:"
 
 msgid "required"
 msgstr "필수 입력"
+
+#, fuzzy
+msgid "Description:"
+msgstr "설명"
 
 msgid "This add-on is experimental"
 msgstr "이 부가 기능은 테스트용입니다"
@@ -3525,6 +3414,9 @@ msgstr "테마 생성"
 msgid "Theme generator"
 msgstr "테마 생성기"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "테마 이름"
 
@@ -3551,43 +3443,6 @@ msgstr "다른 상단 이미지 선택"
 #, fuzzy
 msgid "Select colors for your theme"
 msgstr "테마에 사용할 색을 설정하세요."
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-#, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "탭 부분의 글자색입니다."
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 msgid "optional"
 msgstr "선택 사항"
@@ -3720,15 +3575,6 @@ msgstr "목록에 없는 검토 페이지"
 msgid "View Statistics Dashboard"
 msgstr "통계 대시보드 보기"
 
-msgid "Compatibility Reports"
-msgstr "호환성 문제 신고"
-
-msgid "{0} failure reports"
-msgstr "실패 신고 {0}건"
-
-msgid "{0} success reports"
-msgstr "성공 신고 {0}건"
-
 msgid "Developer News"
 msgstr "개발자 뉴스"
 
@@ -3814,9 +3660,6 @@ msgstr "연락처"
 msgid "Support"
 msgstr "도움말"
 
-msgid "Policies"
-msgstr "정책"
-
 msgid "Report Bug"
 msgstr "오류 보고"
 
@@ -3825,9 +3668,6 @@ msgstr "사이트 상태"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-msgid "Compatibility Checker"
-msgstr "호환성 검사기"
 
 msgid "Promote"
 msgstr "승격"
@@ -4282,6 +4122,9 @@ msgstr "모든 버전"
 
 msgid "Upload a New Version"
 msgstr "새 버전 업로드"
+
+msgid "Version"
+msgstr "버전"
 
 msgid "Delete Version {version}"
 msgstr "버전 {version} 삭제"
@@ -5746,9 +5589,6 @@ msgstr "버전 번호는 32 글자 미만이어야 합니다."
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "버전 번호엔 문자, 숫자, 다음의 특수 기호만 들어있어야 합니다: +*.-_"
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
@@ -5943,62 +5783,6 @@ msgstr ""
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
-
-msgid "Discover Add-ons"
-msgstr "부가 기능에 대해 알아보기"
-
-msgid "What are Add-ons?"
-msgstr "부가 기능이란?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"부가 기능이란 %(app)s에 추가적인 기능이나 외형을 추가해서 개인화를 도와주는 애플리케이션을 말합니다. 시간을 절약시켜주는 사이드바, 날씨 알리미를 깔아 보시거나 테마를 통해 자신만의 %(app)s 룩을 만들"
-"어 보세요."
-
-msgid "Learn More About Add-ons"
-msgstr "부가 기능에 대해 더 알아보기"
-
-msgid "See all"
-msgstr "전부 보기"
-
-msgid "More ways to customize"
-msgstr "그 외 개인화 방법"
-
-msgid "Browse all add-ons"
-msgstr "모든 부가 기능 둘러보기"
-
-msgid "See all complete themes"
-msgstr "완전 테마 전부 보기"
-
-msgid "Close Video"
-msgstr "동영상 닫기"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "동영상이 재생되는 동안은 이곳에 부가 기능에 대한 글이 표시됩니다."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "{0}님, 안녕하세요"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "%(app)s를 사용하시고 <a href=\"%(url)s\">Mozilla의 사명</a> 구현도 지원해 주신데에 감사드립니다!"
-
-msgid "Add-ons downloaded:"
-msgstr "다운로드된 부가 기능:"
-
-msgid "View Privacy Policy"
-msgstr "개인 정보 보호 정책 보기"
-
-msgid "Active Users"
-msgstr "현재 사용자"
-
-msgid "Last Updated"
-msgstr "최신 업데이트"
-
-msgid "Cancel Installation"
-msgstr "설치 취소"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla 선정 이달의 부가 기능!"
@@ -6562,6 +6346,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr "최대 버전"
 
+msgid "Select an application first"
+msgstr "먼저 지원할 애플리케이션 선택"
+
 msgid "Comments:"
 msgstr "코멘트:"
 
@@ -6883,6 +6670,9 @@ msgstr "평균 일일 사용자 수"
 
 msgid "Abuse Reports"
 msgstr "정책 위반 신고"
+
+msgid "View Privacy Policy"
+msgstr "개인 정보 보호 정책 보기"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7333,6 +7123,9 @@ msgstr "{0}의 테마 검토"
 msgid "(Probable Duplicate Submission)"
 msgstr "(제출 양식 복제 가능)"
 
+msgid "Submitted"
+msgstr "등록 완료"
+
 msgid "Past Review Notes"
 msgstr "과거의 검토 메모"
 
@@ -7506,7 +7299,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -7871,12 +7665,6 @@ msgstr "{0} 부가 기능 대문으로 돌아가기"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> 부가 기능"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> 부가 기능"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> 부가 기능"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> 부가 기능"
 
@@ -8219,6 +8007,9 @@ msgstr "좀 더 자세하게 말해볼까요..."
 msgid "Add-ons I've created"
 msgstr "제작한 부가 기능"
 
+msgid "View all"
+msgstr "모두 보기"
+
 msgid "My Most Popular Themes"
 msgstr "나의 가장 인기있는 테마"
 
@@ -8346,9 +8137,3 @@ msgstr "아래 버전들은 테스트 목적 및 참고용입니다. 항상 <a h
 
 msgid "Deleted versions can`t be changed."
 msgstr "삭제된 버전은 변경할 수 없습니다."
-
-msgid "Binary"
-msgstr "이진"
-
-msgid "Non-binary"
-msgstr "비 이진"

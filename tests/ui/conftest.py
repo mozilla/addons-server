@@ -1,10 +1,7 @@
 import os
 
 import pytest
-from django.conf import settings
-from olympia import amo
 
-from olympia.landfill.serializers import GenerateAddonsSerializer
 from pages.desktop.devhub import DevHub
 
 # Window resolutions
@@ -89,10 +86,9 @@ def fxa_account(request):
 @pytest.fixture
 def devhub_login(selenium, base_url, fxa_account):
     """Log into the devhub."""
-    url = selenium.get('http://olympia.test/developers')
+    selenium.get('http://olympia.test/developers')
     devhub = DevHub(selenium, base_url)
-    devhub.login(fxa_account.email, fxa_account.password)
-    return devhub.wait_for_page_to_load()
+    return devhub.login(fxa_account.email, fxa_account.password)
 
 
 @pytest.fixture

@@ -72,3 +72,20 @@ def test_category_section_loads_correct_category(base_url, selenium):
     name = item.name
     category = item.click()
     assert name in category.header.name
+
+
+@pytest.mark.nondestructive
+def test_title_routes_to_home(base_url, selenium):
+    page = Extensions(selenium, base_url).open()
+    home = page.header.click_title()
+    assert home.hero_banner.is_displayed()
+
+
+@pytest.mark.parametrize(
+    'i, page_url',
+    enumerate(['language-tools', 'search-tools', 'android']))
+@pytest.mark.nondestructive
+def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
+    page = Home(selenium, base_url).open()
+    page.header.more_menu(item=i)
+    assert page_url in selenium.current_url

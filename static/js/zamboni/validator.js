@@ -309,73 +309,6 @@ function initValidator($doc) {
         return options;
     };
 
-    var CompatMsgVisitor = inherit(MsgVisitor, function(suite, data) {
-        var self = this;
-        this.appTrans = JSON.parse(this.$results.attr('data-app-trans'));
-        this.versionChangeLinks = JSON.parse(this.$results.attr('data-version-change-links'));
-        this.majorTargetVer = JSON.parse(this.$results.attr('data-target-version'));
-        $.each(this.majorTargetVer, function(guid, version) {
-            // 4.0b3 -> 4
-            self.majorTargetVer[guid] = version.split('.')[0];
-        });
-    });
-
-    CompatMsgVisitor.prototype.finish = function(msg) {
-        MsgVisitor.prototype.finish.apply(this, arguments);
-        // Since results are more dynamic on the compatibility page,
-        // hide tiers without messages.
-        $('.result', this.$suite).each(function() {
-            $(this).toggle($('.msg', this).length > 0);
-        });
-        if (this.allCounts.error == 0 && this.allCounts.warning == 0) {
-            $('#suite-results-tier-1').show();
-            $('#suite-results-tier-1 h4').text(gettext('Compatibility Tests'));
-        }
-    };
-
-    CompatMsgVisitor.prototype.getMsgType = function(msg) {
-        return msg.compatibility_type ? msg.compatibility_type: msg['type'];
-    };
-
-    CompatMsgVisitor.prototype.message = function(msg) {
-        if (msg.for_appversions) {
-            var guid = this.findMatchingApp(msg.for_appversions)
-            if (guid) {
-                var app = {guid: guid, version: this.majorTargetVer[guid]};
-                // This is basically just black magic to create a separate
-                // "tier" in the output for each app/version we have
-                // compatibility messages for. As far as I can tell, the actual
-                // contents of the ID are pretty arbitrary, and the
-                // sluggification regexp isn't really necessary.
-                app.id = (app.guid + '-' + app.version).replace(/[^a-z0-9_-]+/gi, '');
-
-                msg.tier = app.id;  // change the tier to match app/version
-                MsgVisitor.prototype.message.apply(this, [msg, {app: app}]);
-            }
-        } else if (this.getMsgType(msg) === 'error') {
-            // For non-appversion messages, only show errors
-            MsgVisitor.prototype.message.apply(this, arguments);
-        }
-    };
-
-    CompatMsgVisitor.prototype.findMatchingApp = function(appVersions) {
-        // Returns true if any of the given app version ranges match the
-        // versions we're checking.
-        //
-        // {'{ec8030f7-c20a-464f-9b0e-13a3a9e97384}': ['4.0b1']}
-        return _.find(_.keys(appVersions), function(guid) {
-            var targetMajorVersion = this.majorTargetVer[guid];
-            return _.some(appVersions[guid], function(version) {
-                return version.split('.')[0] == targetMajorVersion;
-            });
-        }, this);
-    };
-
-    CompatMsgVisitor.prototype.tierOptions = function(options) {
-        options = MsgVisitor.prototype.tierOptions.apply(this, arguments);
-        return options;
-    };
-
     function buildResults(suite, data) {
         var vis,
             validation = data.validation,
@@ -390,11 +323,7 @@ function initValidator($doc) {
         }
 
         function rebuildResults() {
-            if ($('.results', suite).hasClass('compatibility-results')) {
-                vis = new CompatMsgVisitor(suite, data);
-            } else {
-                vis = new MsgVisitor(suite, data);
-            }
+            vis = new MsgVisitor(suite, data);
             $.each(sortByType(validation.messages), function(i, msg) {
                 vis.message(msg);
             });

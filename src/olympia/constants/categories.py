@@ -1,8 +1,7 @@
 from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
-from olympia.constants.applications import (
-    ANDROID, FIREFOX, SEAMONKEY, THUNDERBIRD)
+from olympia.constants.applications import ANDROID, FIREFOX
 from olympia.constants.base import (
     ADDON_DICT, ADDON_EXTENSION, ADDON_LPAPP, ADDON_PERSONA, ADDON_SEARCH,
     ADDON_SLUGS, ADDON_STATICTHEME, ADDON_THEME)
@@ -168,73 +167,6 @@ CATEGORIES = {
             'user-interface': StaticCategory(
                 id=152, name=_(u'User Interface')),
             'other': StaticCategory(id=153, name=_(u'Other'), weight=333)
-        }
-    },
-    THUNDERBIRD.id: {
-        ADDON_EXTENSION: {
-            'appearance': StaticCategory(
-                id=208, name=_(u'Appearance and Customization')),
-            'calendar': StaticCategory(
-                id=204, name=_(u'Calendar and Date/Time')),
-            'chat': StaticCategory(id=210, name=_(u'Chat and IM')),
-            'composition': StaticCategory(
-                id=202, name=_(u'Message Composition')),
-            'contacts': StaticCategory(id=23, name=_(u'Contacts')),
-            'folders-and-filters': StaticCategory(
-                id=200, name=_(u'Folders and Filters')),
-            'importexport': StaticCategory(id=206, name=_(u'Import/Export')),
-            'language-support': StaticCategory(
-                id=69, name=_(u'Language Support')),
-            'message-and-news-reading': StaticCategory(
-                id=58, name=_(u'Message and News Reading')),
-            'miscellaneous': StaticCategory(id=50, name=_(u'Miscellaneous')),
-            'privacy-and-security': StaticCategory(
-                id=66, name=_(u'Privacy and Security')),
-            'tags': StaticCategory(id=212, name=_(u'Tags'))
-        },
-        ADDON_THEME: {
-            'compact': StaticCategory(id=64, name=_(u'Compact')),
-            'miscellaneous': StaticCategory(id=60, name=_(u'Miscellaneous')),
-            'modern': StaticCategory(id=63, name=_(u'Modern')),
-            'nature': StaticCategory(id=65, name=_(u'Nature'))
-        },
-        ADDON_DICT: {
-            'general': StaticCategory(id=97, name=_(u'General'))
-        },
-        ADDON_LPAPP: {
-            'general': StaticCategory(id=99, name=_(u'General'))
-        }
-    },
-    SEAMONKEY.id: {
-        ADDON_EXTENSION: {
-            'bookmarks': StaticCategory(id=51, name=_(u'Bookmarks')),
-            'downloading-and-file-management': StaticCategory(
-                id=42, name=_(u'Downloading and File Management')),
-            'interface-customizations': StaticCategory(
-                id=48, name=_(u'Interface Customizations')),
-            'language-support-and-translation': StaticCategory(
-                id=55, name=_(u'Language Support and Translation')),
-            'miscellaneous': StaticCategory(
-                id=49, name=_(u'Miscellaneous')),
-            'photos-and-media': StaticCategory(
-                id=56, name=_(u'Photos and Media')),
-            'privacy-and-security': StaticCategory(
-                id=46, name=_(u'Privacy and Security')),
-            'rss-news-and-blogging': StaticCategory(
-                id=39, name=_(u'RSS, News and Blogging')),
-            'search-tools': StaticCategory(id=47, name=_(u'Search Tools')),
-            'site-specific': StaticCategory(id=52, name=_(u'Site-specific')),
-            'web-and-developer-tools': StaticCategory(
-                id=41, name=_(u'Web and Developer Tools'))
-        },
-        ADDON_THEME: {
-            'miscellaneous': StaticCategory(id=59, name=_(u'Miscellaneous'))
-        },
-        ADDON_DICT: {
-            'general': StaticCategory(id=96, name=_(u'General'))
-        },
-        ADDON_LPAPP: {
-            'general': StaticCategory(id=130, name=_(u'General'))
         }
     },
 }

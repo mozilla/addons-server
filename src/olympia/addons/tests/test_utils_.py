@@ -133,7 +133,7 @@ class TestGetCreaturedIds(TestCase):
         collection = collection_factory()
         collection.add_addon(extra_addon)
         FeaturedCollection.objects.create(
-            application=amo.THUNDERBIRD.id, collection=collection)
+            application=amo.ANDROID.id, collection=collection)
 
         assert set(get_creatured_ids(self.category_id, None)) == (
             set(self.no_locale))
@@ -150,7 +150,7 @@ class TestGetCreaturedIds(TestCase):
         collection = collection_factory()
         collection.add_addon(extra_addon)
         FeaturedCollection.objects.create(
-            application=amo.THUNDERBIRD.id, collection=collection,
+            application=amo.ANDROID.id, collection=collection,
             locale='en-US')
 
         assert set(get_creatured_ids(self.category_id, 'en-US')) == (
@@ -318,7 +318,8 @@ class TestBuildWebextDictionaryFromLegacy(AMOPaths, TestCase):
             self.check_xpi_file_contents(destination, '1.0.1webext')
 
     def test_current_not_valid_raises(self):
-        with mock.patch('olympia.files.utils.SafeZip.is_valid') as is_valid:
+        mod = 'olympia.files.utils.SafeZip.initialize_and_validate'
+        with mock.patch(mod) as is_valid:
             is_valid.return_value = False
             with tempfile.NamedTemporaryFile(suffix='.xpi') as destination:
                 with self.assertRaises(ValidationError):

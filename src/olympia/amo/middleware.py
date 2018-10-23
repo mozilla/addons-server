@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
+from django.db import transaction
 from django.urls import is_valid_path
 from django.http import (
     HttpResponsePermanentRedirect, HttpResponseRedirect,
@@ -17,6 +18,8 @@ from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_bytes, iri_to_uri
 from django.utils.translation import activate, ugettext_lazy as _
+
+from rest_framework import permissions
 
 import MySQLdb as mysql
 from corsheaders.middleware import CorsMiddleware as _CorsMiddleware
@@ -192,6 +195,28 @@ class CommonMiddleware(common.CommonMiddleware):
             return super(CommonMiddleware, self).process_request(request)
 
 
+class NonAtomicRequestsForSafeHttpMethodsMiddleware(MiddlewareMixin):
+    """
+    Middleware to make the view non-atomic if the HTTP method used is safe,
+    in order to avoid opening and closing a useless transaction.
+    """
+    def process_view(self, request, view_func, view_args, view_kwargs):
+        # This uses undocumented django APIS:
+        # - transaction.get_connection() followed by in_atomic_block property,
+        #   which we need to make sure we're not messing with a transaction
+        #   that has already started (which happens in tests using the regular
+        #   TestCase class)
+        # - _non_atomic_requests(), which set the property to prevent the
+        #   transaction on the view itself. We can't use non_atomic_requests
+        #   (without the '_') as it returns a *new* view, and we can't do that
+        #   in a middleware, we need to modify it in place and return None so
+        #   that the rest of the middlewares are run.
+        is_method_safe = request.method in ('HEAD', 'GET', 'OPTIONS', 'TRACE')
+        if is_method_safe and not transaction.get_connection().in_atomic_block:
+            transaction._non_atomic_requests(view_func, using='default')
+        return None
+
+
 class ReadOnlyMiddleware(MiddlewareMixin):
     """Middleware that announces a downtime which for us usually means
     putting the site into read only mode.
@@ -203,35 +228,16 @@ class ReadOnlyMiddleware(MiddlewareMixin):
         u'perform website maintenance. We\'ll be back to '
         u'full capacity shortly.')
 
-    READ_ONLY_HEADER = 'X-AMO-Read-Only'
-
-    def _render_api_error(self):
-        response = JsonResponse({'error': self.ERROR_MSG}, status=503)
-        response[self.READ_ONLY_HEADER] = 'true'
-        if settings.READ_ONLY_RETRY_AFTER is not None:
-            response['Retry-After'] = settings.READ_ONLY_RETRY_AFTER.seconds
-        return response
-
     def process_request(self, request):
         if not settings.READ_ONLY:
             return
 
         if request.is_api:
-            writable_method = request.method in ('POST', 'PUT', 'DELETE')
+            writable_method = request.method not in permissions.SAFE_METHODS
             if writable_method:
-                return self._render_api_error()
+                return JsonResponse({'error': self.ERROR_MSG}, status=503)
         elif request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
-
-    def process_response(self, request, response):
-        # We haven't set the header yet so it's not an error response
-        # set by this middleware so we should default to setting it to
-        # `false`
-        header_name = self.READ_ONLY_HEADER
-
-        if header_name not in response:
-            response[self.READ_ONLY_HEADER] = 'false'
-        return response
 
     def process_exception(self, request, exception):
         if not settings.READ_ONLY:

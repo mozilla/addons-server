@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-27 00:54+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-19 17:11+0000\n"
 "Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -131,10 +131,6 @@ msgstr[0] "所有标签至少要包含 {0} 个字符。"
 msgid "The text entered has been flagged as spam."
 msgstr "输入的文本已被标记为垃圾留言。"
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "网址域名必须是 [%s] 之一，或其子域。"
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "您的附加组件目前为此应用程序的精选附加组件，无法更改分类。"
 
@@ -145,6 +141,10 @@ msgstr[0] "您只能选择 {0} 个分类。"
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "这个杂项分类不能与其他分类混用。"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "网址域名必须是 [%s] 之一，或其子域。"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -198,7 +198,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "此附加组件已被其开发者标为实验性。"
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "{0} 的最终用户许可协议"
 
@@ -680,6 +679,10 @@ msgstr "管理工具"
 
 msgid "Positive integer"
 msgstr "正整数"
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "此字段只能用于链接到外部网站。不允许为 %(domain)s 上的 URL。"
 
 msgid "Incorrect, please try again."
 msgstr "不正确，请重试。"
@@ -1289,12 +1292,6 @@ msgstr "安装字典"
 msgid "Install Language Pack"
 msgstr "安装语言包"
 
-msgid "Download Dictionary"
-msgstr "下载字典"
-
-msgid "Download Language Pack"
-msgstr "下载语言包"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
@@ -1458,74 +1455,6 @@ msgstr "查看所有潜力作品"
 
 msgid "No themes found"
 msgstr "未找到主题"
-
-msgid "All"
-msgstr "全部"
-
-msgid "Add-on Compatibility Reports"
-msgstr "附加组件兼容性报告"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
-msgstr "<p>通过 <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> 提交给我们的报告都被收集在这里以供开发者查看。这些报告可以帮助我们判断哪些附加组件需要帮助支持即将发布的 Firefox 版本。</p>"
-
-msgid "Reports for your Add-ons"
-msgstr "您的附加组件的报告"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "请在下方输入附加组件的 GUID 以查看我们收到的报告。"
-
-msgid "{addon} Compatibility Reports"
-msgstr "{addon} 的兼容性报告"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} 个成功报告"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} 个问题报告"
-
-msgid "View all"
-msgstr "查看所有"
-
-msgid "Filter by Application"
-msgstr "按应用程序排序"
-
-msgid "Report Type"
-msgstr "报告类型"
-
-msgid "Version"
-msgstr "版本"
-
-msgid "Application Version"
-msgstr "应用程序版本"
-
-msgid "Application Build"
-msgstr "应用程序编译版本"
-
-msgid "Platform"
-msgstr "平台"
-
-msgid "e10s Enabled"
-msgstr "e10s 已启用"
-
-msgid "e10s Compatible"
-msgstr "e10s 兼容"
-
-msgid "Submitted"
-msgstr "提交日期"
-
-msgid "Success"
-msgstr "成功"
-
-msgid "Problem"
-msgstr "问题"
-
-msgid "No reports found."
-msgstr "未找到报告。"
 
 msgid "{addon} was created."
 msgstr "{addon} 已创建。"
@@ -2106,54 +2035,6 @@ msgstr "体育和游戏"
 msgid "User Interface"
 msgstr "用户界面"
 
-msgid "Appearance and Customization"
-msgstr "外观和定制"
-
-msgid "Calendar and Date/Time"
-msgstr "日程和时间"
-
-msgid "Chat and IM"
-msgstr "即时聊天"
-
-msgid "Message Composition"
-msgstr "邮件撰写"
-
-msgid "Contacts"
-msgstr "联系"
-
-msgid "Folders and Filters"
-msgstr "文件夹和过滤器"
-
-msgid "Import/Export"
-msgstr "导入/导出"
-
-msgid "Message and News Reading"
-msgstr "消息和新闻阅读"
-
-msgid "Privacy and Security"
-msgstr "隐私和安全"
-
-msgid "Downloading and File Management"
-msgstr "下载和文件管理"
-
-msgid "Interface Customizations"
-msgstr "界面自定义"
-
-msgid "Language Support and Translation"
-msgstr "翻译和语言辅助"
-
-msgid "Photos and Media"
-msgstr "照片和媒体"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS、新闻和博客"
-
-msgid "Site-specific"
-msgstr "特定网站"
-
-msgid "Web and Developer Tools"
-msgstr "网页和开发者工具"
-
 msgid "All Rights Reserved"
 msgstr "保留所有权利"
 
@@ -2443,12 +2324,6 @@ msgstr "您尚未上传源文件。"
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "源文件已上传，但您标明无需源文件。"
 
-msgid "Application"
-msgstr "应用程序"
-
-msgid "Select an application first"
-msgstr "请先选择一个应用程序"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
 
@@ -2560,9 +2435,6 @@ msgstr "一个作者已被从您的附加组件中移除"
 msgid "Validate Add-on"
 msgstr "验证附加组件"
 
-msgid "Check Add-on Compatibility"
-msgstr "检查附加组件兼容性"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "图像大小不能超过 %dKB。"
@@ -2588,6 +2460,42 @@ msgstr "版本 %s 已重新启用。"
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查时特别注意这点。"
+
+msgid "Header area background"
+msgstr "标题区域背景色"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "标题区域背景的颜色，显示在标题区域或标题图像未覆盖的部分。清单字段：accentcolor。"
+
+msgid "Header area text and icons"
+msgstr "标题区域文本和图标"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "标题区域所显示文字和图标的颜色。清单字段：textcolor。"
+
+msgid "Toolbar area background"
+msgstr "工具栏区域背景色"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "导航栏、书签栏和已选标签页的背景颜色。清单字段：toolbar。"
+
+msgid "Toolbar area text and icons"
+msgstr "工具栏区域文本和图标"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：toolbar_text。"
+
+msgid "Toolbar field area background"
+msgstr "工具栏文本框区域背景颜色"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "工具栏中文本框的背景颜色，例如网址栏。清单字段：toolbar_field。"
+
+msgid "Toolbar field area text"
+msgstr "工具栏文本框区域文本"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "工具栏中的文本框里面文字的颜色，例如网址栏。清单字段：toolbar_field_text。"
 
 msgid "Review requested."
 msgstr "已请求审核。"
@@ -2653,14 +2561,11 @@ msgstr "扩展开发"
 msgid "Lightweight Themes"
 msgstr "轻量级主题"
 
-msgid "Add-on Policies"
-msgstr "附加组件政策"
+msgid "Developer Policies"
+msgstr "开发者政策"
 
 msgid "Add-on Validator"
 msgstr "附加组件验证器"
-
-msgid "Add-on Compatibility Checker"
-msgstr "附加组件兼容性检查器"
 
 msgid "Development Add-ons"
 msgstr "开发附加组件"
@@ -2686,13 +2591,6 @@ msgstr "搜索"
 msgid "Use the field below to upload your add-on package."
 msgstr "使用下面的按钮上传您的附加组件包。"
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "请注意，此工具仅适用于传统附加组件。WebExtension API <a href=\"%(webext_doc_url)s\">技术文档在这里</a>。"
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "在上传完成后，将会针对下列应用程序版本执行一系列的自动化验证测试："
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "在上传完成后，将会对您的文件执行一系列的自动化验证测试。"
 
@@ -2708,9 +2606,6 @@ msgstr "验证结果"
 
 msgid "Validated at:"
 msgstr "验证于："
-
-msgid "Tested for compatibility against:"
-msgstr "兼容性已测试，针对："
 
 msgid "Recent Activity for My Add-ons"
 msgstr "我的附加组件的近期动态"
@@ -2756,6 +2651,9 @@ msgstr "更新兼容性"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "在此调整应用程序信息将可允许用户安装您的附加组件，即使包内的安装清单声明此附加组件不兼容。"
+
+msgid "Application"
+msgstr "应用程序"
 
 msgid "Supported Versions"
 msgstr "支持的版本"
@@ -2810,12 +2708,52 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr "<p>附加组件可以有任意位作者，每位作者的身份有两种可选：</p> <ul> <li><b>所有者：</b>可以全面的管理附加组件的各项信息，包括添加和移除其他作者</li> <li><b>开发者：</b>可以全面的管理附加组件的各项信息，但不能添加和移除其他作者</li></ul>"
 
-msgid "Basic Information"
-msgstr "基本信息"
+msgid "Additional Details"
+msgstr "附加信息"
+
+msgid "Additional Details for {0}"
+msgstr "{0} 的附加信息"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "标签可以帮助用户找到您的附加组件，它应该是简短的描述词，例如：tabs、toolbar、twitter 等。您最多可以使用 {0} 个标签。"
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "以逗号分隔，至少 {0} 个字符。"
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "例如：黑暗、电影院、黑色。最多20个。"
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "保留的标签："
+
+msgid "Contributions URL"
+msgstr "捐款网址"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "如果您想请求用户捐款，在这里放下捐款页面。"
+
+msgid "Default Locale"
+msgstr "默认语言"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr "您的附加组件的相关信息将以此语系的内容显示，并且您可以对其他特定语系填入翻译盖过这些默认内容。此项仅与公开上架的附加组件相关。"
+
+msgid "Homepage"
+msgstr "主页"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr "如果您的附加组件有一个官方页面，请在这里输入地址。如果您的网站有多种不同语言的地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附加组件相关。"
+
+msgid "Describe Add-on"
+msgstr "描述附加组件"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "{0} 的基本信息"
+msgid "Describe {0}"
+msgstr "介绍 {0}"
 
 msgid "Add-on URL"
 msgstr "附加组件网址"
@@ -2867,59 +2805,6 @@ msgstr "您的附加组件目前为此应用程序的精选附加组件，无法
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr "您的附加组件目前列入精选，无法变更分类。如果您确要变更其分类，请发送电子邮件至 <a href=\"mailto:%(email)s\">%(email)s</a> 请求协助。"
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "标签可以帮助用户找到您的附加组件，它应该是简短的描述词，例如：tabs、toolbar、twitter 等。您最多可以使用 {0} 个标签。"
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "以逗号分隔，至少 {0} 个字符。"
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "例如：黑暗、电影院、黑色。最多20个。"
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "保留的标签："
-
-msgid "Contributions URL"
-msgstr "捐款网址"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "如果您想请求用户捐款，在这里放下捐款页面。"
-
-msgid "Add-on Details"
-msgstr "附加组件详细信息"
-
-msgid "Add-on Details for {0}"
-msgstr "附加组件“{0}”的详细信息"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "特点、功能和其他信息的完整描述。此项仅显示在附加组件的详细信息页面，且只与上架的附加组件相关。"
-
-msgid "Default Locale"
-msgstr "默认语言"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "您的附加组件的相关信息将以此语系的内容显示，并且您可以对其他特定语系填入翻译盖过这些默认内容。此项仅与公开上架的附加组件相关。"
-
-msgid "Homepage"
-msgstr "主页"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr "如果您的附加组件有一个官方页面，请在这里输入地址。如果您的网站有多种不同语言的地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附加组件相关。"
-
-msgid "Images"
-msgstr "图像"
-
-msgid "Support Information"
-msgstr "用户支持信息"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "{0} 的用户支持信息"
-
 msgid "Email"
 msgstr "电子邮件"
 
@@ -2935,6 +2820,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr "如果您的附加组件有一个支持网站或者论坛，请在这里输入。如果您的网站有多种不同语言的地址，您也可以在这里添加多个语言的字段。此项仅与公开上架的附加组件相关。"
+
+msgid "Images"
+msgstr "图像"
 
 msgid "Technical Details"
 msgstr "技术信息"
@@ -3103,9 +2991,6 @@ msgstr "选择别的许可协议。"
 msgid "More information on Creative Commons licenses"
 msgstr "更多有关“知识共享”许可证的信息"
 
-msgid "Tests"
-msgstr "测试"
-
 msgid "General Tests"
 msgstr "常规测试"
 
@@ -3237,9 +3122,6 @@ msgstr[0] "<strong>{0}</strong> 位活跃用户"
 msgid "Submit a New Version"
 msgstr "提交新版本"
 
-msgid "Describe Add-on"
-msgstr "描述附加组件"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "在此站点上列出的名称；可能与附加组件的名称（显示在 Firefox 之中）不同"
 
@@ -3254,6 +3136,9 @@ msgstr "概述："
 
 msgid "required"
 msgstr "必需"
+
+msgid "Description:"
+msgstr "描述："
 
 msgid "This add-on is experimental"
 msgstr "这个附加组件为实验性"
@@ -3472,6 +3357,9 @@ msgstr "主题生成"
 msgid "Theme generator"
 msgstr "主题生成器"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr "警告：此向导不支持您最后所上传版本中清单文件使用的下列属性，它将忽略这些属性："
+
 msgid "Theme name"
 msgstr "主题名称"
 
@@ -3495,42 +3383,6 @@ msgstr "选择一个不同的页眉图像"
 
 msgid "Select colors for your theme"
 msgstr "为您的主题选择颜色"
-
-msgid "Header area background"
-msgstr "标题区域背景色"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "标题区域背景的颜色，显示在标题区域或标题图像未覆盖的部分。清单字段：accentcolor。"
-
-msgid "Header area text and icons"
-msgstr "标题区域文本和图标"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "标题区域所显示文字和图标的颜色。清单字段：textcolor。"
-
-msgid "Toolbar area background"
-msgstr "工具栏区域背景色"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "导航栏、书签栏和已选标签页的背景颜色。清单字段：toolbar。"
-
-msgid "Toolbar area text and icons"
-msgstr "工具栏区域文本和图标"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：toolbar_text。"
-
-msgid "Toolbar field area background"
-msgstr "工具栏文本框区域背景颜色"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "工具栏中文本框的背景颜色，例如网址栏。清单字段：toolbar_field。"
-
-msgid "Toolbar field area text"
-msgstr "工具栏文本框区域文本"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "工具栏中的文本框里面文字的颜色，例如网址栏。清单字段：toolbar_field_text。"
 
 msgid "optional"
 msgstr "可选"
@@ -3659,15 +3511,6 @@ msgstr "未上架审核页面"
 msgid "View Statistics Dashboard"
 msgstr "查看统计数据面板"
 
-msgid "Compatibility Reports"
-msgstr "兼容性报告"
-
-msgid "{0} failure reports"
-msgstr "{0} 个失败报告"
-
-msgid "{0} success reports"
-msgstr "{0} 个成功报告"
-
 msgid "Developer News"
 msgstr "开发者新闻"
 
@@ -3748,9 +3591,6 @@ msgstr "联系我们"
 msgid "Support"
 msgstr "支持"
 
-msgid "Policies"
-msgstr "政策"
-
 msgid "Report Bug"
 msgstr "报告缺陷"
 
@@ -3759,9 +3599,6 @@ msgstr "网站状态"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext：构建和测试扩展"
-
-msgid "Compatibility Checker"
-msgstr "兼容性检查器"
 
 msgid "Promote"
 msgstr "推荐"
@@ -4189,6 +4026,9 @@ msgstr "所有版本"
 msgid "Upload a New Version"
 msgstr "上传新版本"
 
+msgid "Version"
+msgstr "版本"
+
 msgid "Delete Version {version}"
 msgstr "删除版本 {version}"
 
@@ -4543,7 +4383,7 @@ msgstr "保存文本备稍后使用 {start_sub_heading}就用 {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr "不再重复写相同的东西！如果您经常在工作或其他通信中使用相同的短语，将它们保存到一个高级剪切板，在需要时轻松粘贴。"
+msgstr "不再重复写相同的东西！如果您经常在工作或其他通信中使用相同的短语，将它们保存到一个高级剪贴板，在需要时轻松粘贴。"
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5650,9 +5490,6 @@ msgstr "版本号应少于 32 个字符。"
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "版本号只能包含英文字母、数字以及这些标点符号：+*.-_。"
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "目前暂不支持 WebExtension 主题的上传。"
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "WebExtension 主题的大小限制为 {0}。"
 
@@ -5842,60 +5679,6 @@ msgstr "必备媒体工具"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "更好地截图，改进您的在线视频体验，学会制作一个 GIF，以及其他实用的媒体工具。"
-
-msgid "Discover Add-ons"
-msgstr "发掘附加组件"
-
-msgid "What are Add-ons?"
-msgstr "什么是附加组件？"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr "附加组件是一种通过增添额外的功能或样式让您实现个性化 %(app)s 的应用程序。试试用可以节省时间的侧边栏、天气通知程序或主题外观来打造您的专属 %(app)s 吧。"
-
-msgid "Learn More About Add-ons"
-msgstr "详细了解附加组件"
-
-msgid "See all"
-msgstr "查看全部"
-
-msgid "More ways to customize"
-msgstr "更多定制方式"
-
-msgid "Browse all add-ons"
-msgstr "浏览所有附加组件"
-
-msgid "See all complete themes"
-msgstr "查看全部完整主题"
-
-msgid "Close Video"
-msgstr "关闭视频"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "视频播放时，提到的附加组件会显示于此。"
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "{0}，您好"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "感谢您使用 %(app)s 并支持 <a href=\"%(url)s\">Mozilla 的使命</a>！"
-
-msgid "Add-ons downloaded:"
-msgstr "附加组件总下载次数："
-
-msgid "View Privacy Policy"
-msgstr "查看隐私政策"
-
-msgid "Active Users"
-msgstr "活跃用户"
-
-msgid "Last Updated"
-msgstr "最后更新"
-
-msgid "Cancel Installation"
-msgstr "放弃安装"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla 本月推荐"
@@ -6249,7 +6032,7 @@ msgid "Other (please specify)"
 msgstr "其他 (请说明)"
 
 msgid "This field is required."
-msgstr "此字段必填。"
+msgstr "此项必填（reCAPTCHA 验证码）。"
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr "审核创建后，您不能更改要审核的附加组件。"
@@ -6439,6 +6222,9 @@ msgstr "按附加组件名称 / 作者邮件地址 / GUID 搜索"
 
 msgid "Max. Version"
 msgstr "最大版本"
+
+msgid "Select an application first"
+msgstr "请先选择一个应用程序"
 
 msgid "Comments:"
 msgstr "意见："
@@ -6735,6 +6521,9 @@ msgstr "平均每日用户量"
 
 msgid "Abuse Reports"
 msgstr "报告滥用行为"
+
+msgid "View Privacy Policy"
+msgstr "查看隐私政策"
 
 msgid "Requires Payment"
 msgstr "需要付费"
@@ -7167,6 +6956,9 @@ msgstr "{0}的主题校验"
 msgid "(Probable Duplicate Submission)"
 msgstr "（可能重复提交）"
 
+msgid "Submitted"
+msgstr "提交日期"
+
 msgid "Past Review Notes"
 msgstr "过往审核说明"
 
@@ -7336,8 +7128,9 @@ msgstr "您不能添加新版本，该附加组件处于状态：%s。"
 msgid "Version does not match the manifest file."
 msgstr "版本与清单文件不匹配。"
 
-msgid "Version already exists."
-msgstr "版本已经存在。"
+#, python-format
+msgid "Version already exists. Latest version is: %s."
+msgstr "版本已存在，最新版本为：%s。"
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "仅 WebExtension 允许省略 GUID"
@@ -7679,12 +7472,6 @@ msgstr "返回 {0} 附加组件主页"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> 附加组件"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> 附加组件"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> 附加组件"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> 附加组件"
 
@@ -8023,6 +7810,9 @@ msgstr "在一些更详细的情况中..."
 msgid "Add-ons I've created"
 msgstr "我创建的附加组件"
 
+msgid "View all"
+msgstr "查看所有"
+
 msgid "My Most Popular Themes"
 msgstr "我的最热门的主题"
 
@@ -8150,9 +7940,3 @@ msgstr "这些版本仅供参考和测试目的发布。您可以一直使用<a 
 
 msgid "Deleted versions can`t be changed."
 msgstr "已删除的版本不能更改。"
-
-msgid "Binary"
-msgstr "二进制"
-
-msgid "Non-binary"
-msgstr "非二进制"

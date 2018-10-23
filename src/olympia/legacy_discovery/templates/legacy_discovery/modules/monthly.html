@@ -1,6 +1,5 @@
 {%- if pick -%}
-{% set is_disco = module_context == 'discovery' %}
-{% set src = 'discovery-promo' if is_disco else 'hp-btn-promo' %}
+{% set src = 'hp-btn-promo' %}
 {% set addon = pick.addon %}
 <li class="panel" data-addonguid="{{ addon.guid }}">
   <div id="monthly" class="feature promo">
@@ -9,15 +8,11 @@
     </hgroup>
     <div class="wrap">
       <div>
-        {% if is_disco %}
-          {% set addon_url = services_url('discovery.addons.detail', addon.slug or addon.id, src=src) %}
-        {% else %}
-          {% set addon_url = addon.get_url_path()|urlparams(src=src) %}
-        {% endif %}
+        {% set addon_url = addon.get_url_path()|urlparams(src=src) %}
         <div class="blurb">
           <h3><a href="{{ addon_url }}" target="_self">{{ addon.name }}</a></h3>
           <p>{{ pick.blurb }}</p>
-          {{ install_button(addon, impala=not is_disco) }}
+          {{ install_button(addon, impala=True) }}
           <a href="{{ addon_url }}" target="_self" class="button details-link">
             {{ _('Learn More') }}</a>
         </div>

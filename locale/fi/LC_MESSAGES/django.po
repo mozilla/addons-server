@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-07-21 17:44+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -142,10 +142,6 @@ msgstr[1] "Kaikkien tagien tulee olla vähintään {0} merkkiä pitkiä."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
 
@@ -156,6 +152,10 @@ msgstr[0] "Sinulla voi olla vain {0} luokka."
 msgstr[1] "Sinulla voi olla vain {0} luokkaa."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr ""
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
 #, python-format
@@ -211,7 +211,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Tämän lisäosan kehittäjät ovat merkinneet sen kokeelliseksi."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Loppukäyttäjän lisenssisopimus lisäosalle {0}"
 
@@ -709,6 +708,10 @@ msgid "Admin Tools"
 msgstr "Ylläpitotyökalut"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1370,12 +1373,6 @@ msgstr "Asenna oikolukusanasto"
 msgid "Install Language Pack"
 msgstr "Asenna kielipaketti"
 
-msgid "Download Dictionary"
-msgstr "Lataa oikolukusanasto"
-
-msgid "Download Language Pack"
-msgstr "Lataa kielipaketti"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1543,82 +1540,6 @@ msgstr "Näytä kaikki lupaavat"
 
 msgid "No themes found"
 msgstr "Teemoja ei löytynyt"
-
-msgid "All"
-msgstr "Kaikki"
-
-# 75%
-msgid "Add-on Compatibility Reports"
-msgstr "Lisäosan yhteensopivuuden raportit"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-
-msgid "Reports for your Add-ons"
-msgstr ""
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
-
-msgid "{addon} Compatibility Reports"
-msgstr ""
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "View all"
-msgstr ""
-
-msgid "Filter by Application"
-msgstr ""
-
-msgid "Report Type"
-msgstr ""
-
-msgid "Version"
-msgstr "Versio"
-
-# 76%
-msgid "Application Version"
-msgstr "Ohjelmaversio"
-
-msgid "Application Build"
-msgstr ""
-
-# 88%
-# 100%
-msgid "Platform"
-msgstr "Alusta"
-
-msgid "e10s Enabled"
-msgstr ""
-
-msgid "e10s Compatible"
-msgstr ""
-
-msgid "Submitted"
-msgstr ""
-
-# 87%
-msgid "Success"
-msgstr "Onnistui"
-
-msgid "Problem"
-msgstr "Ongelma"
-
-# 82%
-msgid "No reports found."
-msgstr "Raportteja ei löytynyt."
 
 msgid "{addon} was created."
 msgstr "{addon} luotiin."
@@ -2227,57 +2148,6 @@ msgstr "Urheilu ja pelit"
 msgid "User Interface"
 msgstr "Käyttöliittymä"
 
-#, fuzzy
-msgid "Appearance and Customization"
-msgstr "Käyttöliittymän muokkaus"
-
-#, fuzzy
-msgid "Calendar and Date/Time"
-msgstr "Kalenterilisäosat"
-
-msgid "Chat and IM"
-msgstr ""
-
-#, fuzzy
-msgid "Message Composition"
-msgstr "Tee lahjoitus"
-
-msgid "Contacts"
-msgstr "Yhteystiedot"
-
-msgid "Folders and Filters"
-msgstr ""
-
-msgid "Import/Export"
-msgstr ""
-
-msgid "Message and News Reading"
-msgstr "Viestien luku"
-
-msgid "Privacy and Security"
-msgstr "Tietosuoja ja -turvallisuus"
-
-msgid "Downloading and File Management"
-msgstr "Latausten ja tiedostojen hallinta"
-
-msgid "Interface Customizations"
-msgstr "Käyttöliittymän muokkaus"
-
-msgid "Language Support and Translation"
-msgstr "Kieli- ja kääntämistyökalut"
-
-msgid "Photos and Media"
-msgstr "Kuvat ja mediatiedostot"
-
-msgid "RSS, News and Blogging"
-msgstr "Syötteet, uutiset ja blogit"
-
-msgid "Site-specific"
-msgstr "Sivustokohtaiset"
-
-msgid "Web and Developer Tools"
-msgstr "Web- ja kehittäjätyökalut"
-
 msgid "All Rights Reserved"
 msgstr "Kaikki oikeudet pidätetään"
 
@@ -2584,14 +2454,6 @@ msgstr ""
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-# 84%
-# 100%
-msgid "Application"
-msgstr "Sovellus"
-
-msgid "Select an application first"
-msgstr "Valitse sovellus ensin"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr ""
 
@@ -2707,9 +2569,6 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "Lisäosan kelpuutus"
 
-msgid "Check Add-on Compatibility"
-msgstr ""
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2734,6 +2593,42 @@ msgid "Version %s re-enabled."
 msgstr "Versio %s otettu käyttöön uudelleen."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr ""
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 # 85%
@@ -2803,16 +2698,12 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-# 80%
-# 100%
-msgid "Add-on Policies"
-msgstr "Lisäosakäytännöt"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Kehitysuutiset"
 
 msgid "Add-on Validator"
 msgstr "Lisäosan kelpuutus"
-
-msgid "Add-on Compatibility Checker"
-msgstr "Lisäosan yhteensopivuuden tarkistus"
 
 msgid "Development Add-ons"
 msgstr "Kehityslisäosat"
@@ -2838,13 +2729,6 @@ msgstr "Etsi"
 msgid "Use the field below to upload your add-on package."
 msgstr "Siirrä lisäosapakettisi alla olevan kentän avulla."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Siirtämisen jälkeen tiedostollesi tehdään automaattisesti joukko kelvollisuustestejä."
 
@@ -2859,9 +2743,6 @@ msgid "Validation Results"
 msgstr ""
 
 msgid "Validated at:"
-msgstr ""
-
-msgid "Tested for compatibility against:"
 msgstr ""
 
 msgid "Recent Activity for My Add-ons"
@@ -2910,6 +2791,11 @@ msgstr ""
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+# 84%
+# 100%
+msgid "Application"
+msgstr "Sovellus"
 
 msgid "Supported Versions"
 msgstr "Tuetut versiot"
@@ -2969,14 +2855,64 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
-msgstr "Perustiedot"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Lisäresursseja"
 
-# 76%
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "{0}in lisäosat"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr ""
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+# 81%
 # 100%
+# 76%
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Avustukset"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr ""
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "Verkkosivusto"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "Kuvaa lisäosa"
+
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Lisäosan {0} perustiedot"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Kuvaa lisäosa"
 
 msgid "Add-on URL"
 msgstr ""
@@ -3029,67 +2965,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-
-# 81%
-# 100%
-# 76%
-#, fuzzy
-msgid "Contributions URL"
-msgstr "Avustukset"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr ""
-
-msgid "Add-on Details for {0}"
-msgstr ""
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr ""
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "Verkkosivusto"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr ""
-
-msgid "Support Information"
-msgstr "Tukitiedot"
-
-# 77%
-# 100%
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Lisäosan {0} tukitiedot"
-
 msgid "Email"
 msgstr "Sähköposti"
 
@@ -3104,6 +2979,9 @@ msgstr "Verkkosivu"
 msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
+msgstr ""
+
+msgid "Images"
 msgstr ""
 
 msgid "Technical Details"
@@ -3277,9 +3155,6 @@ msgstr "Valitse eri lisenssi."
 msgid "More information on Creative Commons licenses"
 msgstr ""
 
-msgid "Tests"
-msgstr ""
-
 msgid "General Tests"
 msgstr ""
 
@@ -3416,9 +3291,6 @@ msgstr[1] "<strong>{0}</strong> aktiivista käyttäjää"
 msgid "Submit a New Version"
 msgstr "Lisää uusi versio"
 
-msgid "Describe Add-on"
-msgstr "Kuvaa lisäosa"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3435,6 +3307,10 @@ msgstr "Yhteenveto:"
 
 msgid "required"
 msgstr "vaaditaan"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Kuvaus"
 
 msgid "This add-on is experimental"
 msgstr "Tämä lisäosa on kokeellinen"
@@ -3676,6 +3552,9 @@ msgstr "Teema poistettu."
 msgid "Theme generator"
 msgstr "Teema poistettu."
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "Teeman nimi"
 
@@ -3700,42 +3579,6 @@ msgstr ""
 
 msgid "Select colors for your theme"
 msgstr "Valitse värit teemallesi"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr ""
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 msgid "optional"
 msgstr "valinnainen"
@@ -3872,15 +3715,6 @@ msgstr ""
 msgid "View Statistics Dashboard"
 msgstr ""
 
-msgid "Compatibility Reports"
-msgstr ""
-
-msgid "{0} failure reports"
-msgstr ""
-
-msgid "{0} success reports"
-msgstr ""
-
 msgid "Developer News"
 msgstr "Kehitysuutiset"
 
@@ -3967,12 +3801,6 @@ msgstr "Ota yhteyttä"
 msgid "Support"
 msgstr "Tuki"
 
-# 80%
-# 100%
-#, fuzzy
-msgid "Policies"
-msgstr "Lisäosakäytännöt"
-
 msgid "Report Bug"
 msgstr "Ilmoita virhe"
 
@@ -3981,9 +3809,6 @@ msgstr "Sivuston tila"
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-msgid "Compatibility Checker"
-msgstr "Yhteensopivuuden tarkistaja"
 
 msgid "Promote"
 msgstr ""
@@ -4440,6 +4265,9 @@ msgstr "Kaikki versiot"
 
 msgid "Upload a New Version"
 msgstr "Lähetä uusi versio"
+
+msgid "Version"
+msgstr "Versio"
 
 msgid "Delete Version {version}"
 msgstr "Poista versio {version}"
@@ -5904,9 +5732,6 @@ msgstr ""
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
@@ -6099,62 +5924,6 @@ msgstr ""
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
-
-msgid "Discover Add-ons"
-msgstr "Löydä lisäosia"
-
-msgid "What are Add-ons?"
-msgstr "Mitä ovat lisäosat?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Lisäosat ovat sovelluksia, joilla voit muokata %(app)sin toiminnallisuutta tai ulkoasua. Kokeile aikaa säästävää sivupalkkia, säätietoilmoituksia tai teemoja, joilla voit tehdä %(app)sista "
-"omanlaisesi."
-
-msgid "Learn More About Add-ons"
-msgstr ""
-
-msgid "See all"
-msgstr "Näytä kaikki"
-
-msgid "More ways to customize"
-msgstr "Lisää tapoja muokata"
-
-msgid "Browse all add-ons"
-msgstr "Selaa kaikkia lisäosia"
-
-msgid "See all complete themes"
-msgstr ""
-
-msgid "Close Video"
-msgstr ""
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Hei, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Kiitos, että käytät %(app)sia ja tuet <a href=\"%(url)s\">Mozillan tehtävää</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Lisäosia ladattu:"
-
-msgid "View Privacy Policy"
-msgstr "Näytä tietosuojakäytäntö"
-
-msgid "Active Users"
-msgstr "Aktiiviset käyttäjät"
-
-msgid "Last Updated"
-msgstr "Viimeksi päivitetty"
-
-msgid "Cancel Installation"
-msgstr "Peruuta asennus"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozillan kuukauden valinta!"
@@ -6719,6 +6488,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr ""
 
+msgid "Select an application first"
+msgstr "Valitse sovellus ensin"
+
 msgid "Comments:"
 msgstr "Kommentit:"
 
@@ -7059,6 +6831,9 @@ msgstr ""
 
 msgid "Abuse Reports"
 msgstr ""
+
+msgid "View Privacy Policy"
+msgstr "Näytä tietosuojakäytäntö"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7518,6 +7293,9 @@ msgstr ""
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
+msgid "Submitted"
+msgstr ""
+
 msgid "Past Review Notes"
 msgstr ""
 
@@ -7703,7 +7481,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Versio on jo olemassa."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -8058,12 +7837,6 @@ msgstr "Palaa {0}-lisäosien etusivulle"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Lisäosat"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Lisäosat"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Lisäosat"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Lisäosat"
 
@@ -8416,6 +8189,9 @@ msgstr "Hieman lisätietoja..."
 msgid "Add-ons I've created"
 msgstr "Luomani lisäosat"
 
+msgid "View all"
+msgstr ""
+
 msgid "My Most Popular Themes"
 msgstr ""
 
@@ -8548,10 +8324,4 @@ msgid "These versions are displayed for reference and testing purposes. You shou
 msgstr "Nämä versiot ovat esillä vertailu- ja testitarkoituksia varten. Sinun kannattaa käyttää lisäosista aina <a href=\"%(url)s\">uusinta versiota</a>."
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
-
-msgid "Binary"
-msgstr ""
-
-msgid "Non-binary"
 msgstr ""

@@ -38,25 +38,12 @@ SESSION_COOKIE_DOMAIN = None
 
 CELERY_TASK_ALWAYS_EAGER = False
 
-# Assuming you did `npm install` (and not `-g`) like you were supposed to, this
-# will be the path to the `lessc` executable.
-LESS_BIN = os.getenv('LESS_BIN', path('node_modules/less/bin/lessc'))
-CLEANCSS_BIN = os.getenv(
-    'CLEANCSS_BIN',
-    path('node_modules/clean-css-cli/bin/cleancss'))
-UGLIFY_BIN = os.getenv(
-    'UGLIFY_BIN',
-    path('node_modules/uglify-js/bin/uglifyjs'))
-ADDONS_LINTER_BIN = os.getenv(
-    'ADDONS_LINTER_BIN',
-    path('node_modules/addons-linter/bin/addons-linter'))
-
 # Locally we typically don't run more than 1 elasticsearch node. So we set
 # replicas to zero.
 ES_DEFAULT_NUM_REPLICAS = 0
 
 SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
-SERVICES_DOMAIN = urlparse(SITE_URL).netloc
+DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]

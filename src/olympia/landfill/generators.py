@@ -61,6 +61,7 @@ def create_addon(name, icon_type, application, **extra_kwargs):
     generate_version(addon=addon, app=application)
     addon.update_version()
     addon.status = STATUS_PUBLIC
+    addon.guid = '@%s' % addon.slug
     addon.save()
     return addon
 

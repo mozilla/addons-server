@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-06-06 21:14+0000\n"
 "Last-Translator: Patrick CHEW <pchew@change.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -764,9 +764,15 @@ msgstr ""
 msgid "Loading..."
 msgstr "Ачаалж байна…"
 
+#. L10n: {0} is the number of characters entered.
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] ""
+msgstr[1] ""
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -861,9 +867,6 @@ msgid "{0} line {1} column {2}"
 msgstr ""
 
 msgid "{0} line {1}"
-msgstr ""
-
-msgid "Compatibility Tests"
 msgstr ""
 
 msgid "Add-on failed validation."

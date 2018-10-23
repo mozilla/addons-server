@@ -322,12 +322,11 @@ class TestAddonManager(TestCase):
             before + 1)
 
     def test_new_featured(self):
-        f = Addon.objects.featured(amo.FIREFOX)
-        assert f.count() == 3
-        assert sorted(x.id for x in f) == (
+        addons = Addon.objects.featured(amo.FIREFOX)
+        assert addons.count() == 3
+        assert sorted(x.id for x in addons) == (
             [2464, 7661, 15679])
-        f = Addon.objects.featured(amo.THUNDERBIRD)
-        assert not f.exists()
+        assert not Addon.objects.featured(amo.ANDROID).exists()
 
     def test_filter_for_many_to_many(self):
         # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
@@ -385,7 +384,6 @@ class TestAddonModels(TestCase):
                 'base/addon_6704_grapple.json',
                 'base/addon_4594_a9',
                 'base/addon_4664_twitterbar',
-                'base/thunderbird',
                 'addons/featured',
                 'addons/invalid_latest_version',
                 'addons/denied',
@@ -1111,25 +1109,25 @@ class TestAddonModels(TestCase):
         assert set(addon.all_categories) == set(expected_firefox_cats)
         assert addon.app_categories == {amo.FIREFOX: expected_firefox_cats}
 
-        # Let's add a thunderbird category.
-        thunderbird_static_cat = (
-            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['tags'])
-        tb_category = Category.from_static_category(thunderbird_static_cat)
-        tb_category.save()
-        AddonCategory.objects.create(addon=addon, category=tb_category)
+        # Let's add a ANDROID category.
+        android_static_cat = (
+            CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games'])
+        and_category = Category.from_static_category(android_static_cat)
+        and_category.save()
+        AddonCategory.objects.create(addon=addon, category=and_category)
 
         # Reload the addon to get a fresh, uncached categories list.
         addon = get_addon()
 
-        # Test that the thunderbird category was added correctly.
+        # Test that the ANDROID category was added correctly.
         assert set(addon.all_categories) == set(
-            expected_firefox_cats + [thunderbird_static_cat])
+            expected_firefox_cats + [android_static_cat])
         assert set(addon.app_categories.keys()) == set(
-            [amo.FIREFOX, amo.THUNDERBIRD])
+            [amo.FIREFOX, amo.ANDROID])
         assert set(addon.app_categories[amo.FIREFOX]) == set(
             expected_firefox_cats)
-        assert set(addon.app_categories[amo.THUNDERBIRD]) == set(
-            [thunderbird_static_cat])
+        assert set(addon.app_categories[amo.ANDROID]) == set(
+            [android_static_cat])
 
     def test_app_categories_ignore_unknown_cats(self):
         def get_addon():
@@ -1154,25 +1152,25 @@ class TestAddonModels(TestCase):
             application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION,
             db_name='Sunny D')
         AddonCategory.objects.create(addon=addon, category=unknown_cat)
-        thunderbird_static_cat = (
-            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['appearance'])
-        tb_category = Category.from_static_category(thunderbird_static_cat)
-        tb_category.save()
-        AddonCategory.objects.create(addon=addon, category=tb_category)
+        android_static_cat = (
+            CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games'])
+        an_category = Category.from_static_category(android_static_cat)
+        an_category.save()
+        AddonCategory.objects.create(addon=addon, category=an_category)
 
         # Reload the addon to get a fresh, uncached categories list.
         addon = get_addon()
 
         # The sunbird category should not be present since it does not match
-        # an existing static category, thunderbird one should have been added.
+        # an existing static category, android one should have been added.
         assert set(addon.all_categories) == set(
-            expected_firefox_cats + [thunderbird_static_cat])
+            expected_firefox_cats + [android_static_cat])
         assert set(addon.app_categories.keys()) == set(
-            [amo.FIREFOX, amo.THUNDERBIRD])
+            [amo.FIREFOX, amo.ANDROID])
         assert set(addon.app_categories[amo.FIREFOX]) == set(
             expected_firefox_cats)
-        assert set(addon.app_categories[amo.THUNDERBIRD]) == set(
-            [thunderbird_static_cat])
+        assert set(addon.app_categories[amo.ANDROID]) == set(
+            [android_static_cat])
 
     def test_review_replies(self):
         """
@@ -1820,14 +1818,14 @@ class TestUpdateStatus(TestCase):
     def test_no_valid_file_ends_with_NULL(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION)
         version = Version.objects.create(addon=addon)
-        f = File.objects.create(status=amo.STATUS_AWAITING_REVIEW,
-                                version=version)
+        file_ = File.objects.create(
+            status=amo.STATUS_AWAITING_REVIEW, version=version)
         addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NOMINATED)
-        f.status = amo.STATUS_DISABLED
-        f.save()
+        file_.status = amo.STATUS_DISABLED
+        file_.save()
         assert Addon.objects.get(pk=addon.pk).status == (
             amo.STATUS_NULL)
 
@@ -1906,12 +1904,12 @@ class TestAddonModelsFeatured(TestCase):
             del Addon._featured
 
     def _test_featured_random(self):
-        f = Addon.featured_random(amo.FIREFOX, 'en-US')
-        assert sorted(f) == [1001, 1003, 2464, 3481, 7661, 15679]
-        f = Addon.featured_random(amo.FIREFOX, 'fr')
-        assert sorted(f) == [1001, 1003, 2464, 7661, 15679]
-        f = Addon.featured_random(amo.THUNDERBIRD, 'en-US')
-        assert f == []
+        featured = Addon.featured_random(amo.FIREFOX, 'en-US')
+        assert sorted(featured) == [1001, 1003, 2464, 3481, 7661, 15679]
+        featured = Addon.featured_random(amo.FIREFOX, 'fr')
+        assert sorted(featured) == [1001, 1003, 2464, 7661, 15679]
+        featured = Addon.featured_random(amo.ANDROID, 'en-US')
+        assert featured == []
 
     def test_featured_random(self):
         self._test_featured_random()

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,10 +139,6 @@ msgstr[1] "Alle labels moatte út op syn minst {0} tekens bestean."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL-domein moat ta [%s] hearre of in subdomein wêze."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategoryen kinne net wizige wurde as jo add-on foar dizze tapassing oanrekommandearre wurdt."
 
@@ -154,6 +150,10 @@ msgstr[1] "Jo kinne mar {0} kategoryen brûke."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "De kategory ferskaat kin net mei ekstra kategoryen kombinearre wurde."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL-domein moat ta [%s] hearre of in subdomein wêze."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -207,7 +207,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Dizze add-on is troch de ûntwikkelers derfan markearre as eksperiminteel."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Einbrûikerslisinsjeoerienkomst foar {0}"
 
@@ -704,6 +703,10 @@ msgid "Admin Tools"
 msgstr "Behearark"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1332,12 +1335,6 @@ msgstr "Wurdboek ynstallearje"
 msgid "Install Language Pack"
 msgstr "Taalpakket ynstallearje"
 
-msgid "Download Dictionary"
-msgstr "Wurdboek downloade"
-
-msgid "Download Language Pack"
-msgstr "Taalpakket downloade"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1507,78 +1504,6 @@ msgstr "Alle oankommende besjen"
 
 msgid "No themes found"
 msgstr "Gjin tema’s fûn"
-
-msgid "All"
-msgstr "Alles"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Add-on-kompatibiliteitsrapporten"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> Rapporten dy't by ús fia de <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> yntsjinne wurde, wurde hjir sammele, sadat ûntwikkelers se besjen kinne. Dizze rapporten helpe ús te bepalen "
-"hokker add-ons help nedich hawwe om in takomstige ferzje fan Firefox te stypjen.</p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Rapporten foar jo add-ons"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Fier hjirûnder de GUID fan in add-on yn om ûntfongen rapporten te besjen."
-
-msgid "{addon} Compatibility Reports"
-msgstr "Kompatibiliteitsrapporten fan {addon}"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} suksesrapport"
-msgstr[1] "{0} suksesrapporten"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} probleemrapport"
-msgstr[1] "{0} probleemrapporten"
-
-msgid "View all"
-msgstr "Alles besjen"
-
-msgid "Filter by Application"
-msgstr "Filterje op tapassing"
-
-msgid "Report Type"
-msgstr "Rapporttype"
-
-msgid "Version"
-msgstr "Ferzje"
-
-msgid "Application Version"
-msgstr "Tapassingsferzje"
-
-msgid "Application Build"
-msgstr "Tapassingsbuild"
-
-msgid "Platform"
-msgstr "Platfoarm"
-
-msgid "e10s Enabled"
-msgstr "e10s ynskeakele"
-
-msgid "e10s Compatible"
-msgstr "e10s-kompatibel"
-
-msgid "Submitted"
-msgstr "Yntsjinne"
-
-msgid "Success"
-msgstr "Slagge"
-
-msgid "Problem"
-msgstr "Probleem"
-
-msgid "No reports found."
-msgstr "Gjin rapporten fûn."
 
 msgid "{addon} was created."
 msgstr "{addon} is makke."
@@ -2162,54 +2087,6 @@ msgstr "Sport en spul"
 msgid "User Interface"
 msgstr "Brûkersinterface"
 
-msgid "Appearance and Customization"
-msgstr "Foarmjouwing en oanpassing"
-
-msgid "Calendar and Date/Time"
-msgstr "Aginda en datum/tiid"
-
-msgid "Chat and IM"
-msgstr "Chatte en IM"
-
-msgid "Message Composition"
-msgstr "Berjochten opstelle"
-
-msgid "Contacts"
-msgstr "Kontakten"
-
-msgid "Folders and Filters"
-msgstr "Mappen en filters"
-
-msgid "Import/Export"
-msgstr "Ymportearje/eksportearje"
-
-msgid "Message and News Reading"
-msgstr "Berjochten en nijs lêze"
-
-msgid "Privacy and Security"
-msgstr "Privacy en befeiliging"
-
-msgid "Downloading and File Management"
-msgstr "Downloade en bestânsbehear"
-
-msgid "Interface Customizations"
-msgstr "Interfaceoanpassingen"
-
-msgid "Language Support and Translation"
-msgstr "Taalstipe en oersetting"
-
-msgid "Photos and Media"
-msgstr "Foto’s en media"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, nijs en blogge"
-
-msgid "Site-specific"
-msgstr "Website-spesifyk"
-
-msgid "Web and Developer Tools"
-msgstr "Web- en ûntwikkelark"
-
 msgid "All Rights Reserved"
 msgstr "Alle rjochten foarbehâlden"
 
@@ -2501,12 +2378,6 @@ msgstr "Jo hawwe gjin boarnebestân opladen."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "Tapassing"
-
-msgid "Select an application first"
-msgstr "Selektearje earst in tapassing"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Der meie net mear as 3 fereaske add-ons wêze."
 
@@ -2626,9 +2497,6 @@ msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
 msgid "Validate Add-on"
 msgstr "Add-on falidearje"
 
-msgid "Check Add-on Compatibility"
-msgstr "Add-on-kompatibiliteit kontrolearje"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Ofbyldingen meie net grutter wêze as %dKB."
@@ -2654,6 +2522,42 @@ msgstr "Ferzje %s opnij ynskeakele."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "De falidaasje fan dizze oplaad is mislearre en der ûntbrekke mooglik folsleine falidaasjeresultaten. Let goed op by de beoardieling."
+
+msgid "Header area background"
+msgstr "Eftergrûn fan headergebied"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding. Manifestfjild: ·  ·  · accentcolor."
+
+msgid "Header area text and icons"
+msgstr "Tekst en piktogrammen fan headergebied"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "De kleur fan de tekst en de piktogrammen yn it headergebied, behalve it aktive ljepblêd. Manifestfjild:   textcolor."
+
+msgid "Toolbar area background"
+msgstr "Eftergrûn fan arkbalkegebied"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it selektearre ljepblêd. Manifestfjild: ·  ·  · toolbar."
+
+msgid "Toolbar area text and icons"
+msgstr "Tekst en piktogrammen fan it arkbalkegebied"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "De kleur fan tekst en piktogrammen yn de arkbalke en it aktive ljepblêd. Manifestfjild:  toolbar_text."
+
+msgid "Toolbar field area background"
+msgstr "Eftergrûn fan arkbalkefjildgebied"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "De eftergrûnkleur foar fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field."
+
+msgid "Toolbar field area text"
+msgstr "Tekst arkbalkefjildgebied"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Beoardieling oanfrege."
@@ -2721,14 +2625,12 @@ msgstr "Utwreidingsûntwikling"
 msgid "Lightweight Themes"
 msgstr "Ljochtgewicht-tema’s"
 
-msgid "Add-on Policies"
-msgstr "Add-onbelied"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Untwikkelersnijs"
 
 msgid "Add-on Validator"
 msgstr "Add-on-falidator"
-
-msgid "Add-on Compatibility Checker"
-msgstr "Add-on Compatibility Checker"
 
 msgid "Development Add-ons"
 msgstr "Untwikkelings-add-ons"
@@ -2754,13 +2656,6 @@ msgstr "Sykje"
 msgid "Use the field below to upload your add-on package."
 msgstr "Brûk ûndersteand fjild om jo add-on-pakket op te laden."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Hâld der rekkening mei dat dit helpmiddel allinnich mei ferâldere add-ons wurket. WebExtension-API’s wurde <a href=\"%(webext_doc_url)s\">hjir</a> wiidweidich dokumintearre."
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Nei de oplaad wurdt in oantal automatisearre falidaasjetests útfierd om te kontrolearjen op kompatibiliteit mei de folgjende tapassingsferzje:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Nei de oplaad wurdt in oantal automatisearre falidaasjetests op jo bestân útfierd."
 
@@ -2776,9 +2671,6 @@ msgstr "Falidaasjeresultaten"
 
 msgid "Validated at:"
 msgstr "Falidearre op:"
-
-msgid "Tested for compatibility against:"
-msgstr "Test op kompatibiliteit mei:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Resinte aktiviteit foar Myn add-ons"
@@ -2830,6 +2722,9 @@ msgstr "Kompatibiliteit bywurkje"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "Troch hjir tapassingsynformaasje oan te passen kinne brûkers jo add-on ynstallearje, sels as it ynstallaasjemanifest yn it pakket oanjout dat de add-on net kompatibel is."
+
+msgid "Application"
+msgstr "Tapassing"
 
 msgid "Supported Versions"
 msgstr "Stipe ferzjes"
@@ -2888,12 +2783,58 @@ msgstr ""
 "skriuwers</li> <li><b>Untwikkeler:</b> Kin alle aspekten fan de listwerjefte fan de add-on beheare, mei útsûndering fan tafoegjen en fuortsmiten fan oare skriuwers en behearen fan betellingen</li> "
 "</ul>"
 
-msgid "Basic Information"
-msgstr "Basisgegevens"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Add-ondetails"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Add-ondetails foar {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Labels helpe brûkers om jo add-on te finen en moatte koarte beskriuwingen wêze, lykas ljepblêden, arkbalke of twitter. Jo kinne maksimaal {0} labels brûke."
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Kommaskieden, minimaal {0} teken."
+msgstr[1] "Kommaskieden, minimaal {0} tekens."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Foarbyld: donker, sinema, swart. Limyt 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Reservearre label:"
+msgstr[1] "Reservearre labels:"
+
+msgid "Contributions URL"
+msgstr "Bydragen-URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "As jo om jildlike bydragen fan jo brûkers freegje wolle, stel dit dan yn op in side wêrop se dy leverje kinne."
+
+msgid "Default Locale"
+msgstr "Standertlocale"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr "Ynformaasje oer jo add-on wurdt yn dizze taal werjûn, útsein dêr't jo dit bystelle mei in locale-spesifike oersetting. Allinnich relevant foar fermelde add-ons."
+
+msgid "Homepage"
+msgstr "Startside"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+"As jo add-on in oare startside hat, fier dan hjir it adres yn. As jo website nei oare talen oerset is kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar fermelde add-ons."
+
+msgid "Describe Add-on"
+msgstr "Beskriuw jo add-on"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Basisgegevens foar {0}"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Beskriuw jo add-on"
 
 msgid "Add-on URL"
 msgstr "Add-on-URL"
@@ -2949,62 +2890,6 @@ msgid "Categories cannot be changed while your add-on is featured. Please email 
 msgstr ""
 "Kategoryen kinne net wizige wurde as jo add-on oanrekommandearre wurdt. Stjoer in e-mailberjocht nei <a href=\"mailto:%(email)s\">%(email)s</a> as jo in reden hawwe om jo kategoryen te wizigjen."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Labels helpe brûkers om jo add-on te finen en moatte koarte beskriuwingen wêze, lykas ljepblêden, arkbalke of twitter. Jo kinne maksimaal {0} labels brûke."
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Kommaskieden, minimaal {0} teken."
-msgstr[1] "Kommaskieden, minimaal {0} tekens."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Foarbyld: donker, sinema, swart. Limyt 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Reservearre label:"
-msgstr[1] "Reservearre labels:"
-
-msgid "Contributions URL"
-msgstr "Bydragen-URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "As jo om jildlike bydragen fan jo brûkers freegje wolle, stel dit dan yn op in side wêrop se dy leverje kinne."
-
-msgid "Add-on Details"
-msgstr "Add-ondetails"
-
-msgid "Add-on Details for {0}"
-msgstr "Add-ondetails foar {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "In langere útlis fan funksjes, funksjonaliteit en oare relevante ynformaasje. Dit fjild wurdt allinnich op de detailside fan de add-on werjaan. Allinnich relevant foar fermelde add-ons."
-
-msgid "Default Locale"
-msgstr "Standertlocale"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Ynformaasje oer jo add-on wurdt yn dizze taal werjûn, útsein dêr't jo dit bystelle mei in locale-spesifike oersetting. Allinnich relevant foar fermelde add-ons."
-
-msgid "Homepage"
-msgstr "Startside"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-"As jo add-on in oare startside hat, fier dan hjir it adres yn. As jo website nei oare talen oerset is kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar fermelde add-ons."
-
-msgid "Images"
-msgstr "Ofbyldingen"
-
-msgid "Support Information"
-msgstr "Stipeynformaasje"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Stipeynformaasje foar {0}"
-
 msgid "Email"
 msgstr "E-mailadres"
 
@@ -3024,6 +2909,9 @@ msgid ""
 msgstr ""
 "As jo add-on in stipewebsite of -foarum hat, fier dan hjir it adres yn. As jo website yn oare talen oerset is kinne mear oersettingen fan dit fjild tafoege wurde. Allinnich relevant foar fermelde "
 "add-ons."
+
+msgid "Images"
+msgstr "Ofbyldingen"
 
 msgid "Technical Details"
 msgstr "Technyske details"
@@ -3200,9 +3088,6 @@ msgstr "In oare lisinsje selektearje."
 msgid "More information on Creative Commons licenses"
 msgstr "Mear ynformaasje oer Creative Commons-lisinsjes"
 
-msgid "Tests"
-msgstr "Tests"
-
 msgid "General Tests"
 msgstr "Algemiene tests"
 
@@ -3337,9 +3222,6 @@ msgstr[1] "<strong>{0}</strong> aktive brûkers"
 msgid "Submit a New Version"
 msgstr "In nije ferzje yntsjinje"
 
-msgid "Describe Add-on"
-msgstr "Beskriuw jo add-on"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Namme yn fermelding op dizze website. Kin oars wêze as de namme binnen de add-on, dy’t binnen Firefox toand wurdt"
 
@@ -3354,6 +3236,10 @@ msgstr "Gearfetting:"
 
 msgid "required"
 msgstr "fereaske"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Beskriuwing"
 
 msgid "This add-on is experimental"
 msgstr "Dizze add-on is eksperiminteel"
@@ -3575,6 +3461,9 @@ msgstr "Tema oanmeitsje"
 msgid "Theme generator"
 msgstr "Tema-generator"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 msgid "Theme name"
 msgstr "Temanamme"
 
@@ -3598,42 +3487,6 @@ msgstr "Oare headerôfbylding selektearje"
 
 msgid "Select colors for your theme"
 msgstr "Selektearje kleuren foar jo tema"
-
-msgid "Header area background"
-msgstr "Eftergrûn fan headergebied"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding. Manifestfjild: ·  ·  · accentcolor."
-
-msgid "Header area text and icons"
-msgstr "Tekst en piktogrammen fan headergebied"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "De kleur fan de tekst en de piktogrammen yn it headergebied, behalve it aktive ljepblêd. Manifestfjild:   textcolor."
-
-msgid "Toolbar area background"
-msgstr "Eftergrûn fan arkbalkegebied"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it selektearre ljepblêd. Manifestfjild: ·  ·  · toolbar."
-
-msgid "Toolbar area text and icons"
-msgstr "Tekst en piktogrammen fan it arkbalkegebied"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "De kleur fan tekst en piktogrammen yn de arkbalke en it aktive ljepblêd. Manifestfjild:  toolbar_text."
-
-msgid "Toolbar field area background"
-msgstr "Eftergrûn fan arkbalkefjildgebied"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "De eftergrûnkleur foar fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field."
-
-msgid "Toolbar field area text"
-msgstr "Tekst arkbalkefjildgebied"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
 
 msgid "optional"
 msgstr "opsjoneel"
@@ -3766,15 +3619,6 @@ msgstr "Side foar net-fermelde beoardielingen"
 msgid "View Statistics Dashboard"
 msgstr "Statistikendashboerd besjen"
 
-msgid "Compatibility Reports"
-msgstr "Kompatibiliteitsrapporten"
-
-msgid "{0} failure reports"
-msgstr "{0} flaterrapporten"
-
-msgid "{0} success reports"
-msgstr "{0} suksesrapporten"
-
 msgid "Developer News"
 msgstr "Untwikkelersnijs"
 
@@ -3860,9 +3704,6 @@ msgstr "Kontakt opnimme"
 msgid "Support"
 msgstr "Stipe"
 
-msgid "Policies"
-msgstr "Beliedsrigels"
-
 msgid "Report Bug"
 msgstr "Bug melde"
 
@@ -3871,9 +3712,6 @@ msgstr "Websitesteat"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: útwreidingen bouwe en teste"
-
-msgid "Compatibility Checker"
-msgstr "Kompatibiliteitskontrôle"
 
 msgid "Promote"
 msgstr "Promoatsje"
@@ -4314,6 +4152,9 @@ msgstr "Alle ferzjes"
 
 msgid "Upload a New Version"
 msgstr "Nije ferzje oplade"
+
+msgid "Version"
+msgstr "Ferzje"
 
 msgid "Delete Version {version}"
 msgstr "Ferzje {version} fuortsmite"
@@ -5780,9 +5621,6 @@ msgstr "Ferzjenûmers meie út net mear as 32 tekens befetsje."
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Ferzjenûmers meie allinnich letters, sifers en dizze ynterpunksjetekens befetsje: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Oplaads fan WebExtension-tema’s wurde op dit stuit net stipe."
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
@@ -5972,62 +5810,6 @@ msgstr "Unmisbere media"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "Meitsje bettere skermôfbyldingen, ferbetterje jo online fideobelibbing, lear einlik hoe't jo in GIF meitsje kinne, en oar geweldich media-ark."
-
-msgid "Discover Add-ons"
-msgstr "Untdek add-ons"
-
-msgid "What are Add-ons?"
-msgstr "Wat binne add-ons?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Add-ons binne tapassingen wêrmei't jo %(app)s personalisearje kinne mei ekstra funksjonaliteit of styl. Probearje in tiidsbesparjende sidebalke, in waarberjocht of in tema om %(app)s oan jo winsk "
-"oan te passen."
-
-msgid "Learn More About Add-ons"
-msgstr "Lês mear oer add-ons"
-
-msgid "See all"
-msgstr "Alles besjen"
-
-msgid "More ways to customize"
-msgstr "Mear manieren om oan te passen"
-
-msgid "Browse all add-ons"
-msgstr "Troch alle add-ons blêdzje"
-
-msgid "See all complete themes"
-msgstr "Alle folsleine tema’s"
-
-msgid "Close Video"
-msgstr "Fideo slute"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Wylst de fideo ôfspile wurdt ferskine hjir de neamde add-ons."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Hallo {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Tank foar it brûken fan %(app)s en it stypjen fan <a href=\"%(url)s\">de missy fan Mozilla</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Downloade add-ons:"
-
-msgid "View Privacy Policy"
-msgstr "Privacybelied besjen"
-
-msgid "Active Users"
-msgstr "Aktive brûkers"
-
-msgid "Last Updated"
-msgstr "Lêst bywurke"
-
-msgid "Cancel Installation"
-msgstr "Ynstallaasje annulearje"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozilla’s Kar fan de moanne!"
@@ -6600,6 +6382,9 @@ msgstr "Sykje op add-onnamme / e-mailadres skriuwer / guid"
 msgid "Max. Version"
 msgstr "Maks. ferzje"
 
+msgid "Select an application first"
+msgstr "Selektearje earst in tapassing"
+
 msgid "Comments:"
 msgstr "Opmerkingen:"
 
@@ -6904,6 +6689,9 @@ msgstr "Gemiddeld oantal deistige brûkers"
 
 msgid "Abuse Reports"
 msgstr "Misbrûkmeldingen"
+
+msgid "View Privacy Policy"
+msgstr "Privacybelied besjen"
 
 msgid "Requires Payment"
 msgstr "Fereasket betelling"
@@ -7338,6 +7126,9 @@ msgstr "Tema-beoardieling foar {0}"
 msgid "(Probable Duplicate Submission)"
 msgstr "(Wierskynlik dûbeld yntsjinne)"
 
+msgid "Submitted"
+msgstr "Yntsjinne"
+
 msgid "Past Review Notes"
 msgstr "Eardere beoardielingsopmerkingen"
 
@@ -7512,7 +7303,8 @@ msgstr "Jo kinne gjin ferzjes oan in add-on mei de steat %s tafoegje."
 msgid "Version does not match the manifest file."
 msgstr "Ferzje komt net oerien mei it manifest-bestân."
 
-msgid "Version already exists."
+#, fuzzy, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr "Ferzje bestiet al."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -7866,12 +7658,6 @@ msgstr "Tebek nei de {0}-add-ons-startside"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\">-add-ons"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\">-add-ons"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\">-add-ons"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\">-add-ons"
 
@@ -8212,6 +7998,9 @@ msgstr "Yn wat mear detail…"
 msgid "Add-ons I've created"
 msgstr "Troch my makke add-ons"
 
+msgid "View all"
+msgstr "Alles besjen"
+
 msgid "My Most Popular Themes"
 msgstr "Myn meast populêre tema’s"
 
@@ -8342,9 +8131,3 @@ msgstr "Dizze ferzjes wurde ta referinsje en foar testdoeleinen werjûn. Jo moat
 
 msgid "Deleted versions can`t be changed."
 msgstr "Fuortsmiten ferzjes kinne net wizige wurde."
-
-msgid "Binary"
-msgstr "Binêr"
-
-msgid "Non-binary"
-msgstr "Net binêr"

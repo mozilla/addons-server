@@ -12,7 +12,7 @@ from django.utils import translation
 from elasticsearch_dsl import Search
 from PIL import Image
 
-import olympia.core.logger
+import olympia.core
 from olympia import amo, activity
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
@@ -31,8 +31,9 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
-from olympia.files.models import FileUpload
+from olympia.files.models import File, FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
+from olympia.files.tasks import extract_file_obj_to_git
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
@@ -41,7 +42,7 @@ from olympia.reviewers.models import RereviewQueueTheme
 from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import License, Version
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -541,6 +542,7 @@ def _get_lwt_default_author():
 @transaction.atomic
 def add_static_theme_from_lwt(lwt):
     from olympia.activity.models import AddonLog
+    olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
     # Try to handle LWT with no authors
     author = (lwt.listed_authors or [_get_lwt_default_author()])[0]
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
@@ -599,11 +601,13 @@ def add_static_theme_from_lwt(lwt):
     [alog.transfer(addon) for alog in addonlog_qs.iterator()]
 
     # Copy the ADU statistics - the raw(ish) daily UpdateCounts for stats
-    # dashboard and future update counts, and copy the summary numbers for now.
+    # dashboard and future update counts, and copy the average_daily_users.
+    # hotness will be recalculated by the deliver_hotness() cron in a more
+    # reliable way that we could do, so skip it entirely.
     migrate_theme_update_count(lwt, addon)
     addon_updates.update(
         average_daily_users=lwt.persona.popularity or 0,
-        hotness=lwt.persona.movers or 0)
+        hotness=0)
 
     # Logging
     activity.log_create(
@@ -664,34 +668,6 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
 @task
 @use_primary_db
-def delete_addon_not_compatible_with_firefoxes(ids, **kw):
-    """
-    Delete the specified add-ons.
-    Used by process_addons --task=delete_addons_not_compatible_with_firefoxes
-    """
-    log.info(
-        'Deleting addons not compatible with firefoxes %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
-    qs = Addon.objects.filter(id__in=ids)
-    for addon in qs:
-        with transaction.atomic():
-            addon.appsupport_set.filter(
-                app__in=(amo.THUNDERBIRD.id, amo.SEAMONKEY.id)).delete()
-            addon.delete()
-
-
-@task
-@use_primary_db
-def delete_obsolete_applicationsversions(**kw):
-    """Delete ApplicationsVersions objects not relevant for Firefoxes."""
-    qs = ApplicationsVersions.objects.exclude(
-        application__in=(amo.FIREFOX.id, amo.ANDROID.id))
-    for av in qs.iterator():
-        av.delete()
-
-
-@task
-@use_primary_db
 def migrate_legacy_dictionaries_to_webextension(ids, **kw):
     """Migrate a chunk of legacy dictionaries to webextension format.
     Used by process_addons command."""
@@ -747,3 +723,88 @@ def migrate_legacy_dictionary_to_webextension(addon):
     file_ = version.all_files[0]
     sign_file(file_)
     file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)
+
+
+# Rate limiting to 1 per minute to not overload our networking filesystem
+# and block our celery workers. Extraction to our git backend doesn't have
+# to be fast. Each instance processes 100 add-ons so we'll process
+# 6000 add-ons per hour which is fine.
+@task(rate_limit='1/m')
+def migrate_webextensions_to_git_storage(ids, **kw):
+    log.info(
+        'Migrating add-ons to git storage %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+
+    addons = Addon.unfiltered.filter(id__in=ids)
+
+    for addon in addons:
+        # Filter out versions that are already present in the git
+        # storage.
+        versions = addon.versions.filter(git_hash='').order_by('created')
+
+        for version in versions:
+            # Back in the days an add-on was able to have multiple files
+            # per version. That changed, we are very naive here and extracting
+            # simply the first file in the list. For WebExtensions there is
+            # only a very very small number that have different files for
+            # a single version.
+            unique_file_hashes = set([
+                x.original_hash for x in version.all_files
+            ])
+
+            if len(unique_file_hashes) > 1:
+                # Log actually different hashes so that we can clean them
+                # up manually and work together with developers later.
+                log.info(
+                    'Version {version} of {addon} has more than one uploaded '
+                    'file'.format(version=repr(version), addon=repr(addon)))
+
+            if not unique_file_hashes:
+                log.info('No files found for {version} from {addon}'.format(
+                    version=repr(version), addon=repr(addon)))
+                continue
+
+            # Don't call the task as a task but do the extraction in process
+            # this makes sure we don't overwhelm the storage and also makes
+            # sure we don't end up with tasks committing at random times but
+            # correctly in-order instead.
+            try:
+                file_id = version.all_files[0].pk
+                channel = version.channel
+
+                log.info('Extracting file {file_id} to git storage'.format(
+                    file_id=file_id))
+
+                extract_file_obj_to_git(file_id, channel)
+
+                log.info(
+                    'Extraction of file {file_id} into git storage succeeded'
+                    .format(file_id=file_id))
+            except Exception:
+                log.exception(
+                    'Extraction of file {file_id} from {version} '
+                    '({addon}) failed'.format(
+                        file_id=version.all_files[0],
+                        version=repr(version),
+                        addon=repr(addon)))
+                continue
+
+
+@task
+@use_primary_db
+def disable_legacy_files(ids, **kw):
+    """Delete legacy files from the specified add-on ids."""
+    log.info(
+        'Disabling legacy files from addons %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    qs = Addon.unfiltered.filter(id__in=ids)
+    for addon in qs:
+        with transaction.atomic():
+            # We're dealing with an addon that has the type we care about, and
+            # that we've identified as containing legacy File instances.
+            files = File.objects.filter(
+                is_webextension=False, is_mozilla_signed_extension=False,
+                version__addon=addon).exclude(status=amo.STATUS_DISABLED)
+            for file_ in files:
+                log.info('Disabling file %d from addon %s', file_.pk, addon.pk)
+                file_.update(status=amo.STATUS_DISABLED)

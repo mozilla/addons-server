@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-16 17:11+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2016-02-03 01:05+0000\n"
+"Last-Translator: Timothy Aditya Sutantyo <timisutantyo@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -205,44 +205,36 @@ msgid "Use original"
 msgstr "Gunakan yang asli"
 
 msgid "Week of {0}"
-msgstr "Minggu ke {0}"
+msgstr "Pekan ke {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " unduhan"
+msgstr[0] "{0} unduhan"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} pengguna"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} pengaya"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} koleksi"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} ulasan"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} penjualan"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} pembayaran kembali"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} pemasangan"
@@ -754,9 +746,16 @@ msgstr "Tidak ditemukan hasil."
 msgid "Loading..."
 msgstr "Memuat..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "Sisa <b>{0}</b> karakter."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Sisa <b>{0}</b> karakter."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
@@ -851,9 +850,6 @@ msgstr "{0} baris {1} kolom {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} baris {1}"
-
-msgid "Compatibility Tests"
-msgstr "Uji Keselarasan"
 
 msgid "Add-on failed validation."
 msgstr "Pengaya gagal validasi."

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -152,10 +152,6 @@ msgstr[4] "Ní mór {0} carachtar ar a laghad a bheith i gclib."
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr ""
 
@@ -170,6 +166,10 @@ msgstr[4] "Ní cheadaítear níos mó ná {0} catagóir."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Ní féidir an chatagóir Éagsúil a chur le chéile le catagóirí breise."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -223,7 +223,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Deir na forbróirí gur breiseán turgnamhach é seo."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Comhaontú Ceadúnais Úsáideoir Deiridh le haghaidh {0}"
 
@@ -763,6 +762,10 @@ msgid "Admin Tools"
 msgstr "Uirlisí Riaracháin"
 
 msgid "Positive integer"
+msgstr ""
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
 msgstr ""
 
 msgid "Incorrect, please try again."
@@ -1392,12 +1395,6 @@ msgstr "Suiteáil an Foclóir"
 msgid "Install Language Pack"
 msgstr "Suiteáil Pacáiste Teanga"
 
-msgid "Download Dictionary"
-msgstr "Íoslódáil Foclóir"
-
-msgid "Download Language Pack"
-msgstr "Íoslódáil Pacáiste Teanga"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
@@ -1570,82 +1567,6 @@ msgstr "Féach ar gach ceann atá ag teacht chun cinn"
 
 msgid "No themes found"
 msgstr ""
-
-msgid "All"
-msgstr "Uile"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Tuairiscí ar Chomhoiriúnacht an Bhreiseáin"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
-"help supporting an upcoming Firefox version. </p>"
-msgstr ""
-
-msgid "Reports for your Add-ons"
-msgstr "Tuairiscí ar do chuid Breiseán"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr ""
-
-msgid "{addon} Compatibility Reports"
-msgstr "Tuairiscí Comhoiriúnachta {addon}"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} tuairisc ar fhadhb"
-msgstr[1] "{0} thuairisc ar fhadhbanna"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-msgid "View all"
-msgstr "Taispeáin uile"
-
-msgid "Filter by Application"
-msgstr "Scag de réir feidhmchláir"
-
-msgid "Report Type"
-msgstr "Cineál Tuairisce"
-
-msgid "Version"
-msgstr "Leagan"
-
-msgid "Application Version"
-msgstr "Leagan an Fheidhmchláir"
-
-msgid "Application Build"
-msgstr ""
-
-msgid "Platform"
-msgstr "Ardán"
-
-msgid "e10s Enabled"
-msgstr "e10s Cumasaithe"
-
-msgid "e10s Compatible"
-msgstr "Comhoiriúnach le e10s"
-
-msgid "Submitted"
-msgstr "Seolta"
-
-msgid "Success"
-msgstr "D'éirigh leis"
-
-msgid "Problem"
-msgstr "Fadhb"
-
-msgid "No reports found."
-msgstr "Níor aimsíodh aon tuairiscí."
 
 msgid "{addon} was created."
 msgstr "Cruthaíodh {addon}."
@@ -2272,55 +2193,6 @@ msgstr "Spórt agus Cluichí"
 msgid "User Interface"
 msgstr "Comhéadan Úsáideora"
 
-msgid "Appearance and Customization"
-msgstr "Cuma agus Saincheapadh"
-
-msgid "Calendar and Date/Time"
-msgstr "Féilire agus Dáta/Am"
-
-msgid "Chat and IM"
-msgstr "Comhrá agus IM"
-
-msgid "Message Composition"
-msgstr "Cumadh Teachtaireachtaí"
-
-msgid "Contacts"
-msgstr "Teagmhálaithe"
-
-msgid "Folders and Filters"
-msgstr "Fillteáin agus Scagairí"
-
-msgid "Import/Export"
-msgstr "Iompórtáil/Easpórtáil"
-
-msgid "Message and News Reading"
-msgstr "Léamh Teachtaireachtaí agus Nuachta"
-
-msgid "Privacy and Security"
-msgstr "Príobháideachas agus Slándáil"
-
-msgid "Downloading and File Management"
-msgstr "Íoslódáil agus Bainistiú Comhad"
-
-msgid "Interface Customizations"
-msgstr "Saincheapadh an Chomhéadain"
-
-msgid "Language Support and Translation"
-msgstr "Tacaíocht Teanga agus Aistriúchán"
-
-msgid "Photos and Media"
-msgstr "Grianghraif agus Meáin"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS, Nuacht, agus Blagadóireacht"
-
-msgid "Site-specific"
-msgstr "Sainiúil do Shuíomh"
-
-#, fuzzy
-msgid "Web and Developer Tools"
-msgstr "Cuardaigh an Doiciméadú Forbartha"
-
 msgid "All Rights Reserved"
 msgstr "Gach Ceart Ar Cosaint"
 
@@ -2629,12 +2501,6 @@ msgstr "Níorbh fhéidir an comhad uaslódáilte a pharsáil."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Application"
-msgstr "Feidhmchlár"
-
-msgid "Select an application first"
-msgstr "Roghnaigh feidhmchlár i dtosach báire"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ní cheadaítear níos mó ná 3 bhreiseán riachtanach."
 
@@ -2747,9 +2613,6 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "Bailíochtaigh Breiseán"
 
-msgid "Check Add-on Compatibility"
-msgstr ""
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2774,6 +2637,43 @@ msgid "Version %s re-enabled."
 msgstr ""
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
+msgstr ""
+
+msgid "Header area background"
+msgstr ""
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr ""
+
+msgid "Header area text and icons"
+msgstr ""
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr ""
+
+msgid "Toolbar area background"
+msgstr ""
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr ""
+
+msgid "Toolbar area text and icons"
+msgstr ""
+
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Seo é dath na gcluaisíní."
+
+msgid "Toolbar field area background"
+msgstr ""
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr ""
+
+msgid "Toolbar field area text"
+msgstr ""
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
 #, fuzzy
@@ -2842,14 +2742,12 @@ msgstr "Forbairt Eisínteachtaí"
 msgid "Lightweight Themes"
 msgstr "Téamaí Éadroma"
 
-msgid "Add-on Policies"
-msgstr "Polasaithe Breiseán"
+#, fuzzy
+msgid "Developer Policies"
+msgstr "Nuacht Forbartha"
 
 msgid "Add-on Validator"
 msgstr "Bailíochtóir Breiseán"
-
-msgid "Add-on Compatibility Checker"
-msgstr ""
 
 msgid "Development Add-ons"
 msgstr "Breiseáin Fhorbartha"
@@ -2876,13 +2774,6 @@ msgstr "Cuardaigh"
 msgid "Use the field below to upload your add-on package."
 msgstr ""
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr ""
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr ""
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
@@ -2898,9 +2789,6 @@ msgstr "Torthaí an Bhailíochtaithe"
 
 msgid "Validated at:"
 msgstr "Bailíochtaithe ag:"
-
-msgid "Tested for compatibility against:"
-msgstr ""
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Gníomhaíocht Is Déanaí le haghaidh mo chuid Breiseán"
@@ -2950,6 +2838,9 @@ msgstr "Nuashonraigh Comhoiriúnacht"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr ""
+
+msgid "Application"
+msgstr "Feidhmchlár"
 
 msgid "Supported Versions"
 msgstr "Leaganacha a dTacaítear Leo"
@@ -3009,12 +2900,64 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-msgid "Basic Information"
-msgstr "Buneolas"
+#, fuzzy
+msgid "Additional Details"
+msgstr "Mionsonraí an Bhreiseáin"
+
+#, fuzzy
+msgid "Additional Details for {0}"
+msgstr "Mionsonraí Bhreiseán {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr ""
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Scartha ag camóga, {0} carachtar ar a laghad."
+msgstr[1] "Scartha ag camóga, {0} carachtar ar a laghad."
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Sampla: dorcha, scannán, noir. 20 ar a mhéad."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Clib in áirithe:"
+msgstr[1] "Clibeanna in áirithe:"
+msgstr[2] "Clibeanna in áirithe:"
+msgstr[3] "Clibeanna in áirithe:"
+msgstr[4] "Clibeanna in áirithe:"
+
+#, fuzzy
+msgid "Contributions URL"
+msgstr "Deontais"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr ""
+
+msgid "Default Locale"
+msgstr "Teanga Réamhshocraithe"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr ""
+
+msgid "Homepage"
+msgstr "Leathanach Baile"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+
+msgid "Describe Add-on"
+msgstr "Déan cur síos ar an mbreiseán"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Buneolas le haghaidh {0}"
+#, fuzzy
+msgid "Describe {0}"
+msgstr "Déan cur síos ar an mbreiseán"
 
 msgid "Add-on URL"
 msgstr "URL an Bhreiseáin"
@@ -3069,68 +3012,6 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Scartha ag camóga, {0} carachtar ar a laghad."
-msgstr[1] "Scartha ag camóga, {0} carachtar ar a laghad."
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Sampla: dorcha, scannán, noir. 20 ar a mhéad."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Clib in áirithe:"
-msgstr[1] "Clibeanna in áirithe:"
-msgstr[2] "Clibeanna in áirithe:"
-msgstr[3] "Clibeanna in áirithe:"
-msgstr[4] "Clibeanna in áirithe:"
-
-#, fuzzy
-msgid "Contributions URL"
-msgstr "Deontais"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
-
-msgid "Add-on Details"
-msgstr "Mionsonraí an Bhreiseáin"
-
-msgid "Add-on Details for {0}"
-msgstr "Mionsonraí Bhreiseán {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Default Locale"
-msgstr "Teanga Réamhshocraithe"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "Homepage"
-msgstr "Leathanach Baile"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-
-msgid "Images"
-msgstr "Íomhánna"
-
-msgid "Support Information"
-msgstr "Eolas Tacaíochta"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Eolas Tacaíochta le haghaidh {0}"
-
 msgid "Email"
 msgstr "Ríomhphost"
 
@@ -3146,6 +3027,9 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+
+msgid "Images"
+msgstr "Íomhánna"
 
 msgid "Technical Details"
 msgstr "Mionsonraí Teicniúla"
@@ -3314,9 +3198,6 @@ msgstr "Roghnaigh ceadúnas eile."
 msgid "More information on Creative Commons licenses"
 msgstr ""
 
-msgid "Tests"
-msgstr "Tástálacha"
-
 msgid "General Tests"
 msgstr "Tástáil Ghinearálta"
 
@@ -3453,9 +3334,6 @@ msgstr[4] "<strong>{0}</strong> úsáideoir gníomhach"
 msgid "Submit a New Version"
 msgstr "Seol Leagan Nua"
 
-msgid "Describe Add-on"
-msgstr "Déan cur síos ar an mbreiseán"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
@@ -3470,6 +3348,10 @@ msgstr "Achoimre:"
 
 msgid "required"
 msgstr "riachtanach"
+
+#, fuzzy
+msgid "Description:"
+msgstr "Cur Síos"
 
 msgid "This add-on is experimental"
 msgstr "Is breiseán turgnamhach é seo"
@@ -3706,6 +3588,9 @@ msgstr "Scriosadh an téama."
 msgid "Theme generator"
 msgstr "Ceadúnas an Téama"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr ""
+
 #, fuzzy
 msgid "Theme name"
 msgstr "ainm an téama"
@@ -3731,43 +3616,6 @@ msgstr ""
 #, fuzzy
 msgid "Select colors for your theme"
 msgstr "Roghnaigh deilbhín le haghaidh do bhreiseáin:"
-
-msgid "Header area background"
-msgstr ""
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr ""
-
-msgid "Header area text and icons"
-msgstr ""
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
-
-msgid "Toolbar area background"
-msgstr ""
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr ""
-
-msgid "Toolbar area text and icons"
-msgstr ""
-
-#, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Seo é dath na gcluaisíní."
-
-msgid "Toolbar field area background"
-msgstr ""
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr ""
-
-msgid "Toolbar field area text"
-msgstr ""
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr ""
 
 #, fuzzy
 msgid "optional"
@@ -3905,15 +3753,6 @@ msgstr "Léirmheasanna ó Úsáideoirí"
 msgid "View Statistics Dashboard"
 msgstr "Féach ar Chlár na Staitisticí"
 
-msgid "Compatibility Reports"
-msgstr "Tuairiscí Comhoiriúnachta"
-
-msgid "{0} failure reports"
-msgstr ""
-
-msgid "{0} success reports"
-msgstr ""
-
 msgid "Developer News"
 msgstr "Nuacht Forbartha"
 
@@ -4000,10 +3839,6 @@ msgid "Support"
 msgstr "Tacaíocht"
 
 #, fuzzy
-msgid "Policies"
-msgstr "Polasaithe Breiseán"
-
-#, fuzzy
 msgid "Report Bug"
 msgstr "Déan Tuairisc ar Dhrochúsáid"
 
@@ -4012,10 +3847,6 @@ msgstr ""
 
 msgid "Web-Ext: build & test extensions"
 msgstr ""
-
-#, fuzzy
-msgid "Compatibility Checker"
-msgstr "Comhoiriúnacht"
 
 msgid "Promote"
 msgstr ""
@@ -4466,6 +4297,9 @@ msgstr "Féach ar gach Leagan"
 
 msgid "Upload a New Version"
 msgstr "Uaslódáil Leagan Nua"
+
+msgid "Version"
+msgstr "Leagan"
 
 msgid "Delete Version {version}"
 msgstr "Scrios Leagan {version}"
@@ -5936,9 +5770,6 @@ msgstr ""
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr ""
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr ""
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
@@ -6128,62 +5959,6 @@ msgstr ""
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr ""
-
-msgid "Discover Add-ons"
-msgstr "Aimsigh Breiseáin"
-
-msgid "What are Add-ons?"
-msgstr "Cad is Breiseán ann?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Is éard atá i mbreiseán ná feidhmchlár a ligeann duit %(app)s a chur in oiriúint duit féin.  Bain triail as barra taoibh chun luas a chur le do chuid oibre, breiseán réamhaisnéis na haimsire, nó "
-"téama chun %(app)s a mhaisiú."
-
-msgid "Learn More About Add-ons"
-msgstr ""
-
-msgid "See all"
-msgstr "Féach uile"
-
-msgid "More ways to customize"
-msgstr "Saincheapadh le breiseáin"
-
-msgid "Browse all add-ons"
-msgstr "Brabhsáil gach breiseán"
-
-msgid "See all complete themes"
-msgstr ""
-
-msgid "Close Video"
-msgstr "Dún an Físeán"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr ""
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Dia dhuit, a {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Go raibh maith agat as %(app)s a úsáid agus as tacaíocht a thabhairt do <a href=\"%(url)s\">Mhisean Mozilla</a>!"
-
-msgid "Add-ons downloaded:"
-msgstr "Breiseáin íoslódáilte:"
-
-msgid "View Privacy Policy"
-msgstr "Polasaí Príobháideachta"
-
-msgid "Active Users"
-msgstr "Úsáideoirí Gníomhacha"
-
-msgid "Last Updated"
-msgstr "Nuashonraithe"
-
-msgid "Cancel Installation"
-msgstr "Cealaigh an tSuiteáil"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr ""
@@ -6757,6 +6532,9 @@ msgstr ""
 msgid "Max. Version"
 msgstr "Leagan Is Mó"
 
+msgid "Select an application first"
+msgstr "Roghnaigh feidhmchlár i dtosach báire"
+
 msgid "Comments:"
 msgstr "Nótaí:"
 
@@ -7112,6 +6890,9 @@ msgstr "Meánlíon na nÚsáideoirí Laethúla"
 
 msgid "Abuse Reports"
 msgstr "Tuairiscí ar Dhrochúsáid"
+
+msgid "View Privacy Policy"
+msgstr "Polasaí Príobháideachta"
 
 #, fuzzy
 msgid "Requires Payment"
@@ -7564,6 +7345,9 @@ msgstr ""
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
+msgid "Submitted"
+msgstr "Seolta"
+
 msgid "Past Review Notes"
 msgstr ""
 
@@ -7759,7 +7543,8 @@ msgstr ""
 msgid "Version does not match the manifest file."
 msgstr ""
 
-msgid "Version already exists."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
@@ -8106,12 +7891,6 @@ msgstr "Fill ar leathanach baile na mbreiseán {0}"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "Breiseáin <img alt=\"Firefox\" src=\"{0}\">"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "Breiseáin <img alt=\"Thunderbird\" src=\"{0}\">"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "Breiseáin <img alt=\"SeaMonkey\" src=\"{0}\">"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "Breiseáin <img alt=\"\" src=\"{0}\">"
 
@@ -8454,6 +8233,9 @@ msgstr "Míniú níos mine..."
 msgid "Add-ons I've created"
 msgstr "Breiseáin a chruthaigh mé"
 
+msgid "View all"
+msgstr "Taispeáin uile"
+
 msgid "My Most Popular Themes"
 msgstr ""
 
@@ -8593,9 +8375,3 @@ msgstr ""
 
 msgid "Deleted versions can`t be changed."
 msgstr "Ní féidir leaganacha scriosta a athrú."
-
-msgid "Binary"
-msgstr "Dénártha"
-
-msgid "Non-binary"
-msgstr "Neamhdhénártha"

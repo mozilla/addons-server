@@ -1,5 +1,4 @@
 import logging
-import os
 
 from olympia.lib.settings_base import *  # noqa
 
@@ -29,7 +28,7 @@ EMAIL_HOST_PASSWORD = EMAIL_URL['EMAIL_HOST_PASSWORD']
 ENV = env('ENV')
 RAISE_ON_SIGNAL_ERROR = True
 
-API_THROTTLE = False
+API_THROTTLING = False
 
 DOMAIN = env('DOMAIN', default='addons-dev.allizom.org')
 SERVER_EMAIL = 'zdev@addons.mozilla.org'
@@ -45,20 +44,9 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons-dev.allizom.org')
 
-NETAPP_STORAGE_ROOT = env('NETAPP_STORAGE_ROOT')
-NETAPP_STORAGE = NETAPP_STORAGE_ROOT + '/shared_storage'
-GUARDED_ADDONS_PATH = NETAPP_STORAGE_ROOT + '/guarded-addons'
-MEDIA_ROOT = NETAPP_STORAGE + '/uploads'
-TMP_PATH = os.path.join(NETAPP_STORAGE, 'tmp')
-PACKAGER_PATH = os.path.join(TMP_PATH, 'packager')
-
-ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
-
-REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
-
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL'),
-    'slave': get_db_config('DATABASES_SLAVE_URL'),
+    'slave': get_db_config('DATABASES_SLAVE_URL', atomic_requests=False),
 }
 
 SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')

@@ -60,6 +60,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
@@ -75,6 +76,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
 )
 def test_generate_static_theme_preview(
         write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
+        index_addons_mock,
         header_url, header_height, preserve_aspect_ratio, mimetype, valid_img):
     write_svg_to_png_mock.return_value = True
     theme_manifest = {
@@ -85,7 +87,8 @@ def test_generate_static_theme_preview(
             "textcolor": "#3deb60",
             "toolbar_text": "#b5ba5b",
             "toolbar_field": "#cc29cc",
-            "toolbar_field_text": "#17747d"
+            "toolbar_field_text": "#17747d",
+            "tab_line": "#00db12",
         }
     }
     if header_url is not None:
@@ -94,9 +97,9 @@ def test_generate_static_theme_preview(
     generate_static_theme_preview(
         theme_manifest, HEADER_ROOT, addon.current_version.pk)
 
-    assert resize_image_mock.call_count == 2
-    assert write_svg_to_png_mock.call_count == 2
-    assert pngcrush_image_mock.call_count == 2
+    assert resize_image_mock.call_count == 3
+    assert write_svg_to_png_mock.call_count == 3
+    assert pngcrush_image_mock.call_count == 3
 
     # First check the header Preview is good
     header_preview = VersionPreview.objects.get(
@@ -118,9 +121,20 @@ def test_generate_static_theme_preview(
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0])
 
+    # And finally the new single Preview
+    single_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['single']['position'])
+    check_preview(
+        single_preview, amo.THEME_PREVIEW_SIZES['single'],
+        write_svg_to_png_mock.call_args_list[2][0],
+        resize_image_mock.call_args_list[2][0],
+        pngcrush_image_mock.call_args_list[2][0])
+
     # Now check the svg renders
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
+    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
     colors = ['class="%s" fill="%s"' % (key, color)
               for (key, color) in theme_manifest['colors'].items()]
     check_render(header_svg, header_url, header_height,
@@ -129,14 +143,21 @@ def test_generate_static_theme_preview(
     check_render(list_svg, header_url, header_height,
                  preserve_aspect_ratio, mimetype, valid_img, colors,
                  760, 92, 760)
+    check_render(single_svg, header_url, header_height,
+                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 720, 92, 720)
+
+    index_addons_mock.assert_called_with([addon.id])
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_static_theme_preview_with_chrome_properties(
-        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock):
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
+        index_addons_mock):
     write_svg_to_png_mock.return_value = True
     theme_manifest = {
         "images": {
@@ -152,9 +173,9 @@ def test_generate_static_theme_preview_with_chrome_properties(
     generate_static_theme_preview(
         theme_manifest, HEADER_ROOT, addon.current_version.pk)
 
-    assert resize_image_mock.call_count == 2
-    assert write_svg_to_png_mock.call_count == 2
-    assert pngcrush_image_mock.call_count == 2
+    assert resize_image_mock.call_count == 3
+    assert write_svg_to_png_mock.call_count == 3
+    assert pngcrush_image_mock.call_count == 3
 
     # First check the header Preview is good
     header_preview = VersionPreview.objects.get(
@@ -176,6 +197,16 @@ def test_generate_static_theme_preview_with_chrome_properties(
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0])
 
+    # And finally the new single Preview
+    single_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['single']['position'])
+    check_preview(
+        single_preview, amo.THEME_PREVIEW_SIZES['single'],
+        write_svg_to_png_mock.call_args_list[2][0],
+        resize_image_mock.call_args_list[2][0],
+        pngcrush_image_mock.call_args_list[2][0])
+
     colors = []
     # check each of our colors above was converted to css codes
     chrome_colors = {
@@ -185,15 +216,18 @@ def test_generate_static_theme_preview_with_chrome_properties(
     }
     for (chrome_prop, firefox_prop) in chrome_colors.items():
         color_list = theme_manifest['colors'][chrome_prop]
-        color = 'rgb(%s, %s, %s)' % tuple(color_list)
+        color = 'rgb(%s,%s,%s)' % tuple(color_list)
         colors.append('class="%s" fill="%s"' % (firefox_prop, color))
 
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
+    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
     check_render(header_svg, 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 680, 92, 680)
     check_render(list_svg, 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 760, 92, 760)
+    check_render(single_svg, 'transparent.gif', 1,
+                 'xMaxYMin meet', 'image/gif', True, colors, 720, 92, 720)
 
 
 def check_render_additional(svg_content, inner_svg_width):
@@ -222,11 +256,13 @@ def check_render_additional(svg_content, inner_svg_width):
 
 
 @pytest.mark.django_db
+@mock.patch('olympia.versions.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
-        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock):
+        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
+        index_addons_mock):
     write_svg_to_png_mock.return_value = True
 
     theme_manifest = {
@@ -247,9 +283,9 @@ def test_generate_preview_with_additional_backgrounds(
     generate_static_theme_preview(
         theme_manifest, HEADER_ROOT, addon.current_version.pk)
 
-    assert resize_image_mock.call_count == 2
-    assert write_svg_to_png_mock.call_count == 2
-    assert pngcrush_image_mock.call_count == 2
+    assert resize_image_mock.call_count == 3
+    assert write_svg_to_png_mock.call_count == 3
+    assert pngcrush_image_mock.call_count == 3
 
     # First check the header Preview is good
     header_preview = VersionPreview.objects.get(
@@ -271,7 +307,21 @@ def test_generate_preview_with_additional_backgrounds(
         resize_image_mock.call_args_list[1][0],
         pngcrush_image_mock.call_args_list[1][0])
 
+    # And finally the new single Preview
+    single_preview = VersionPreview.objects.get(
+        version=addon.current_version,
+        position=amo.THEME_PREVIEW_SIZES['single']['position'])
+    check_preview(
+        single_preview, amo.THEME_PREVIEW_SIZES['single'],
+        write_svg_to_png_mock.call_args_list[2][0],
+        resize_image_mock.call_args_list[2][0],
+        pngcrush_image_mock.call_args_list[2][0])
+
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
+    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
     check_render_additional(header_svg, 680)
     check_render_additional(list_svg, 760)
+    check_render_additional(single_svg, 720)
+
+    index_addons_mock.assert_called_with([addon.id])

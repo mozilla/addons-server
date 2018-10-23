@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
 "PO-Revision-Date: 2018-09-17 10:58+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -112,8 +112,8 @@ msgstr "Adjon meg részletes verzióinformációt (ezt a következő lépésben 
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt a"
-" következő lépésben is megteheti)."
+"Ha a kiegészítőnek egy weboldalhoz tartozó felhasználói fiókra van szüksége a teljes teszteléshez, adjon meg egy teszt felhasználónevet és jelszót a Megjegyzés a vizsgálatot végzőknek résznél (ezt "
+"a következő lépésben is megteheti)."
 
 msgid "Add-on submission checklist"
 msgstr "Ellenőrzőlista kiegészítő beküldéséhez"
@@ -764,9 +764,17 @@ msgstr "Nincs találat."
 msgid "Loading..."
 msgstr "Betöltés…"
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> karakter maradt."
+msgstr[1] "<b>{0}</b> karakter maradt."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> karakter maradt."
 msgstr[1] "<b>{0}</b> karakter maradt."
 
@@ -862,9 +870,6 @@ msgstr "{0} {1}. sor {2}. oszlop"
 
 msgid "{0} line {1}"
 msgstr "{0} {1}. sor"
-
-msgid "Compatibility Tests"
-msgstr "Kompatibilitás tesztek"
 
 msgid "Add-on failed validation."
 msgstr "A kiegészítő nem ment át a vizsgálaton."

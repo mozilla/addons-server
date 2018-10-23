@@ -18,15 +18,13 @@ import olympia
 from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.activity.models import ActivityLog
-from olympia.addons.models import Addon, CompatOverride, CompatOverrideRange
+from olympia.addons.models import Addon
 from olympia.amo.tests import (
     TestCase, formset, initial, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
-from olympia.compat import FIREFOX_COMPAT
-from olympia.compat.tests import TestCompatibilityReportCronMixin
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
@@ -304,7 +302,7 @@ class TestFeatures(TestCase):
 
     def test_bad_collection_for_app(self):
         data = initial(self.f)
-        data['application'] = amo.THUNDERBIRD.id
+        data['application'] = amo.ANDROID.id
         response = self.client.post(self.url, formset(data, initial_count=1))
         assert response.context['form'].errors[0]['collection'] == (
             ['Invalid collection for this application.'])
@@ -536,165 +534,6 @@ class TestAddonManagement(TestCase):
 
         r = self.client.get(reverse('zadmin.recalc_hash', args=[file.id]))
         assert r.status_code == 405  # GET out of here
-
-
-class TestCompat(TestCompatibilityReportCronMixin, amo.tests.ESTestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestCompat, self).setUp()
-        self.url = reverse('zadmin.compat')
-        self.client.login(email='admin@mozilla.com')
-        self.app_version = FIREFOX_COMPAT[0]['main']
-
-    def get_pq(self, **kw):
-        response = self.client.get(self.url, kw)
-        assert response.status_code == 200
-        return pq(response.content)('#compat-results')
-
-    def test_defaults(self):
-        addon = self.populate()
-        self.generate_reports(addon, good=0, bad=0, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.run_compatibility_report()
-
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        table = pq(r.content)('#compat-results')
-        assert table.length == 1
-        assert table.find('.no-results').length == 1
-
-    def check_row(self, tr, addon, good, bad, percentage, app_version):
-        assert tr.length == 1
-        version = addon.current_version.version
-
-        name = tr.find('.name')
-        assert name.find('.version').text() == 'v' + version
-        assert name.remove('.version').text() == unicode(addon.name)
-        assert name.find('a').attr('href') == addon.get_url_path()
-
-        assert tr.find('.maxver').text() == (
-            addon.compatible_apps[amo.FIREFOX].max.version)
-
-        incompat = tr.find('.incompat')
-        assert incompat.find('.bad').text() == str(bad)
-        assert incompat.find('.total').text() == str(good + bad)
-        percentage += '%'
-        assert percentage in incompat.text(), (
-            'Expected incompatibility to be %r' % percentage)
-
-        assert tr.find('.version a').attr('href') == (
-            reverse('devhub.versions.edit',
-                    args=[addon.slug, addon.current_version.id]))
-        assert tr.find('.reports a').attr('href') == (
-            reverse('compat.reporter_detail', args=[addon.guid]))
-
-        form = tr.find('.overrides form')
-        assert form.attr('action') == reverse(
-            'admin:addons_compatoverride_add')
-        self.check_field(form, '_compat_ranges-TOTAL_FORMS', '1')
-        self.check_field(form, '_compat_ranges-INITIAL_FORMS', '0')
-        self.check_field(form, '_continue', '1')
-        self.check_field(form, '_confirm', '1')
-        self.check_field(form, 'addon', str(addon.id))
-        self.check_field(form, 'guid', addon.guid)
-
-        compat_field = '_compat_ranges-0-%s'
-        self.check_field(form, compat_field % 'min_version', '0')
-        self.check_field(form, compat_field % 'max_version', version)
-        self.check_field(form, compat_field % 'min_app_version',
-                         app_version + 'a1')
-        self.check_field(form, compat_field % 'max_app_version',
-                         app_version + '*')
-
-    def check_field(self, form, name, val):
-        assert form.find('input[name="%s"]' % name).val() == val
-
-    def test_firefox_hosted(self):
-        addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.run_compatibility_report()
-
-        tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
-        self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
-                       app_version=self.app_version)
-
-        # Add an override for this current app version.
-        compat = CompatOverride.objects.create(addon=addon, guid=addon.guid)
-        CompatOverrideRange.objects.create(
-            compat=compat,
-            app=amo.FIREFOX.id, min_app_version=self.app_version + 'a1',
-            max_app_version=self.app_version + '*')
-
-        # Check that there is an override for this current app version.
-        tr = self.get_pq().find('tr[data-guid="%s"]' % addon.guid)
-        assert tr.find('.overrides a').attr('href') == (
-            reverse('admin:addons_compatoverride_change', args=[compat.id]))
-
-    def test_non_default_version(self):
-        app_version = FIREFOX_COMPAT[2]['main']
-        addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
-                              app_version=app_version)
-        self.run_compatibility_report()
-
-        pq = self.get_pq()
-        assert pq.find('tr[data-guid="%s"]' % addon.guid).length == 0
-
-        appver = app_version
-        tr = self.get_pq(appver=appver)('tr[data-guid="%s"]' % addon.guid)
-        self.check_row(tr, addon, good=0, bad=11, percentage='100.0',
-                       app_version=app_version)
-
-    def test_minor_versions(self):
-        addon = self.populate()
-        self.generate_reports(addon, good=0, bad=1, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.generate_reports(addon, good=1, bad=2, app=amo.FIREFOX,
-                              app_version=self.app_version + 'a2')
-        self.run_compatibility_report()
-
-        tr = self.get_pq(ratio=0.0, minimum=0).find('tr[data-guid="%s"]' %
-                                                    addon.guid)
-        self.check_row(tr, addon, good=1, bad=3, percentage='75.0',
-                       app_version=self.app_version)
-
-    def test_ratio(self):
-        addon = self.populate()
-        self.generate_reports(addon, good=11, bad=11, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.run_compatibility_report()
-
-        # Should not show up for > 80%.
-        pq = self.get_pq()
-        assert pq.find('tr[data-guid="%s"]' % addon.guid).length == 0
-
-        # Should not show up for > 50%.
-        tr = self.get_pq(ratio=.5).find('tr[data-guid="%s"]' % addon.guid)
-        assert tr.length == 0
-
-        # Should show up for > 40%.
-        tr = self.get_pq(ratio=.4).find('tr[data-guid="%s"]' % addon.guid)
-        assert tr.length == 1
-
-    def test_min_incompatible(self):
-        addon = self.populate()
-        self.generate_reports(addon, good=0, bad=11, app=amo.FIREFOX,
-                              app_version=self.app_version)
-        self.run_compatibility_report()
-
-        # Should show up for >= 10.
-        pq = self.get_pq()
-        assert pq.find('tr[data-guid="%s"]' % addon.guid).length == 1
-
-        # Should show up for >= 0.
-        tr = self.get_pq(minimum=0).find('tr[data-guid="%s"]' % addon.guid)
-        assert tr.length == 1
-
-        # Should not show up for >= 20.
-        tr = self.get_pq(minimum=20).find('tr[data-guid="%s"]' % addon.guid)
-        assert tr.length == 0
 
 
 class TestMemcache(TestCase):

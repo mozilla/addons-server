@@ -16,21 +16,17 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.decorators import addon_view_factory
-from olympia.addons.models import Addon, AddonUser, CompatOverride
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
-from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
-from olympia.compat import FIREFOX_COMPAT
-from olympia.compat.models import AppCompat, CompatTotals
 from olympia.files.models import File, FileUpload
 from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
-from olympia.versions.compare import version_int as vint
 from olympia.versions.models import Version
 from olympia.zadmin.forms import SiteEventForm
 from olympia.zadmin.models import SiteEvent
@@ -38,7 +34,7 @@ from olympia.zadmin.models import SiteEvent
 from . import tasks
 from .decorators import admin_required
 from .forms import (
-    AddonStatusForm, CompatForm, DevMailerForm, FeaturedCollectionFormSet,
+    AddonStatusForm, DevMailerForm, FeaturedCollectionFormSet,
     FileFormSet, MonthlyPickFormSet, YesImSure)
 from .models import EmailPreviewTopic
 
@@ -75,16 +71,6 @@ def fix_disabled_file(request):
                   {'file': file_, 'file_id': request.POST.get('file', '')})
 
 
-@login_required
-@post_required
-@json_view
-def application_versions_json(request):
-    app_id = request.POST['application']
-
-    versions = AppVersion.objects.filter(application=app_id)
-    return {'choices': [(v.id, v.version) for v in versions]}
-
-
 @permission_required(amo.permissions.REVIEWS_ADMIN)
 def email_preview_csv(request, topic):
     resp = http.HttpResponse()
@@ -97,70 +83,6 @@ def email_preview_csv(request, topic):
     for row in rs:
         writer.writerow([r.encode('utf8') for r in row])
     return resp
-
-
-@admin_required
-def compat(request):
-    minimum = 10
-    ratio = .8
-    binary = None
-
-    # Expected usage:
-    #     For Firefox 8.0 reports:      ?appver=1-8.0
-    #     For over 70% incompatibility: ?appver=1-8.0&ratio=0.7
-    #     For binary-only add-ons:      ?appver=1-8.0&type=binary
-    data = {'appver': '%s' % FIREFOX_COMPAT[0]['main'],
-            'minimum': minimum, 'ratio': ratio, 'type': 'all'}
-    version = data['appver']
-    data.update(request.GET.items())
-
-    form = CompatForm(data)
-    if request.GET and form.is_valid():
-        version = form.cleaned_data['appver']
-        if form.cleaned_data['ratio'] is not None:
-            ratio = float(form.cleaned_data['ratio'])
-        if form.cleaned_data['minimum'] is not None:
-            minimum = int(form.cleaned_data['minimum'])
-        if form.cleaned_data['type'] == 'binary':
-            binary = True
-    usage_addons, usage_total = compat_stats(
-        request, version, minimum, ratio, binary)
-
-    return render(request, 'zadmin/compat.html', {
-        'form': form, 'usage_addons': usage_addons,
-        'usage_total': usage_total})
-
-
-def compat_stats(request, version, minimum, ratio, binary):
-    # Get the list of add-ons for usage stats.
-    # Show add-ons marked as incompatible with this current version having
-    # greater than 10 incompatible reports and whose average exceeds 80%.
-    version_int = str(vint(version))
-    prefix = 'works.%s' % version_int
-    fields_to_retrieve = (
-        'guid', 'slug', 'name', 'current_version', 'max_version', 'works',
-        'usage', 'has_override', 'overrides', 'id')
-
-    qs = (AppCompat.search()
-          .filter(**{'%s.failure__gt' % prefix: minimum,
-                     '%s.failure_ratio__gt' % prefix: ratio,
-                     'support.max__gte': 0})
-          .order_by('-%s.failure_ratio' % prefix,
-                    '-%s.total' % prefix)
-          .values_dict(*fields_to_retrieve))
-
-    if binary is not None:
-        qs = qs.filter(binary=binary)
-    addons = amo.utils.paginate(request, qs)
-
-    for obj in addons.object_list:
-        obj['works'] = obj['works'].get(version_int, {})
-        # Get all overrides for this add-on.
-        obj['overrides'] = CompatOverride.objects.filter(addon__id=obj['id'])
-        # Determine if there is an override for this current app version.
-        obj['has_override'] = obj['overrides'].filter(
-            _compat_ranges__min_app_version=version + 'a1').exists()
-    return addons, CompatTotals.objects.get().total
 
 
 @login_required

@@ -12,9 +12,8 @@ from olympia.addons.models import (
 from olympia.addons.serializers import (
     AddonDeveloperSerializer, AddonSerializer, AddonSerializerWithUnlistedData,
     CompatOverrideSerializer, ESAddonAutoCompleteSerializer, ESAddonSerializer,
-    ESAddonSerializerWithUnlistedData, LanguageToolsSerializer,
-    LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
-    VersionSerializer)
+    LanguageToolsSerializer, LicenseSerializer, ReplacementAddonSerializer,
+    SimpleVersionSerializer, VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     AddonAutoCompleteSearchView, AddonSearchView, AddonViewSet)
@@ -169,11 +168,11 @@ class AddonSerializerOutputTestMixin(object):
         first_preview = Preview.objects.create(addon=self.addon, position=1)
 
         av_min = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='2.0.99')[0]
+            application=amo.ANDROID.id, version='2.0.99')[0]
         av_max = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='3.0.99')[0]
+            application=amo.ANDROID.id, version='3.0.99')[0]
         ApplicationsVersions.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version=self.addon.current_version,
+            application=amo.ANDROID.id, version=self.addon.current_version,
             min=av_min, max=av_max)
         # Reset current_version.compatible_apps now that we've added an app.
         del self.addon.current_version._compatible_apps
@@ -183,7 +182,7 @@ class AddonSerializerOutputTestMixin(object):
         cat2.save()
         AddonCategory.objects.create(addon=self.addon, category=cat2)
         cat3 = Category.from_static_category(
-            CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['calendar'])
+            CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games'])
         cat3.save()
         AddonCategory.objects.create(addon=self.addon, category=cat3)
 
@@ -194,7 +193,7 @@ class AddonSerializerOutputTestMixin(object):
         assert result['average_daily_users'] == self.addon.average_daily_users
         assert result['categories'] == {
             'firefox': ['alerts-updates', 'bookmarks'],
-            'thunderbird': ['calendar']}
+            'android': ['sports-games']}
 
         # In this serializer latest_unlisted_version is omitted.
         assert 'latest_unlisted_version' not in result
@@ -354,23 +353,6 @@ class AddonSerializerOutputTestMixin(object):
         # In this serializer latest_unlisted_version is omitted even if there
         # is one, because it's limited to users with specific rights.
         assert 'latest_unlisted_version' not in result
-
-    def test_latest_unlisted_version_with_rights(self):
-        self.serializer_class = self.serializer_class_with_unlisted_data
-
-        self.addon = addon_factory()
-        version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
-            version='1.1')
-        assert self.addon.latest_unlisted_version
-
-        result = self.serialize()
-        # In this serializer latest_unlisted_version is present.
-        assert result['latest_unlisted_version']
-        self._test_version(
-            self.addon.latest_unlisted_version,
-            result['latest_unlisted_version'])
-        assert result['latest_unlisted_version']['url'] == absolutify('')
 
     def test_is_disabled(self):
         self.addon = addon_factory(disabled_by_user=True)
@@ -594,31 +576,23 @@ class AddonSerializerOutputTestMixin(object):
         }
         assert result_version['is_strict_compatibility_enabled'] is True
 
-        # Test an add-on with no compatibility info.
-        self.addon = addon_factory()
+        # Test with no compatibility info.
+        file_ = self.addon.current_version.all_files[0]
+        file_.update(strict_compatibility=False)
         ApplicationsVersions.objects.filter(
             version=self.addon.current_version).delete()
-        result_version = self.serialize()['current_version']
-        assert result_version['compatibility'] == {}
-        assert result_version['is_strict_compatibility_enabled'] is False
 
-        # Test an add-on with some compatibility info but that should be
-        # ignored because its type is in NO_COMPAT.
-        self.addon = addon_factory(type=amo.ADDON_SEARCH)
-        av_min = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='2.0.99')[0]
-        av_max = AppVersion.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version='3.0.99')[0]
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.THUNDERBIRD.id, version=self.addon.current_version,
-            min=av_min, max=av_max)
+        result_version = self.serialize()['current_version']
+        assert result_version['is_strict_compatibility_enabled'] is False
+        assert result_version['compatibility'] == {}
+
+        # Test with some compatibility info but that should be ignored because
+        # its type is in NO_COMPAT.
+        self.addon.update(type=amo.ADDON_SEARCH)
         result_version = self.serialize()['current_version']
         assert result_version['compatibility'] == {
             'android': {'max': '9999', 'min': '11.0'},
             'firefox': {'max': '9999', 'min': '4.0'},
-            'seamonkey': {'max': '9999', 'min': '2.1'},
-            # No thunderbird: it does not support that type, and when we return
-            # fake compatibility data for NO_COMPAT add-ons we do obey that.
         }
         assert result_version['is_strict_compatibility_enabled'] is False
 
@@ -663,10 +637,22 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version'] is None
         assert result['previews'] == []
 
+    def test_created(self):
+        self.addon = addon_factory()
+        result = self.serialize()
+
+        assert result['created'] == (
+            self.addon.created.replace(microsecond=0).isoformat() + 'Z')
+
+        # And to make sure it's not present in v3
+        gates = {None: ('del-addons-created-field',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert 'created' not in result
+
 
 class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
-    serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
 
     def setUp(self):
         super(TestAddonSerializerOutput, self).setUp()
@@ -828,10 +814,26 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         }
         assert result['current_version']['is_strict_compatibility_enabled']
 
+    def test_latest_unlisted_version_with_right_serializer(self):
+        self.serializer_class = AddonSerializerWithUnlistedData
+
+        self.addon = addon_factory()
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED,
+            version='1.1')
+        assert self.addon.latest_unlisted_version
+
+        result = self.serialize()
+        # In this serializer latest_unlisted_version is present.
+        assert result['latest_unlisted_version']
+        self._test_version(
+            self.addon.latest_unlisted_version,
+            result['latest_unlisted_version'])
+        assert result['latest_unlisted_version']['url'] == absolutify('')
+
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
     serializer_class = ESAddonSerializer
-    serializer_class_with_unlisted_data = ESAddonSerializerWithUnlistedData
 
     def tearDown(self):
         super(TestESAddonSerializerOutput, self).tearDown()
@@ -845,7 +847,10 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         view.request = self.request
         qs = view.get_queryset()
 
-        return qs.filter('term', id=self.addon.pk).execute()[0]
+        # We don't even filter - there should only be one addon in the index
+        # at this point, and that allows us to get a constant score that we
+        # can test for in test_score()
+        return qs.execute()[0]
 
     def serialize(self):
         self.serializer = self.serializer_class(context={
@@ -872,6 +877,18 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         """Override because the ES serializer doesn't include those fields."""
         assert 'license' not in data
         assert 'release_notes' not in data
+
+    def test_score(self):
+        self.request.version = 'v4'
+        self.addon = addon_factory()
+        result = self.serialize()
+        assert result['_score'] == 1.0  # No query, we get ConstantScoring(1.0)
+
+    def test_no_score_in_v3(self):
+        self.request.version = 'v3'
+        self.addon = addon_factory()
+        result = self.serialize()
+        assert '_score' not in result
 
 
 class TestVersionSerializerOutput(TestCase):
@@ -1121,20 +1138,26 @@ class TestLanguageToolsSerializerOutput(TestCase):
 
     def test_basic(self):
         self.addon = addon_factory(
-            type=amo.ADDON_LPAPP, target_locale='fr',
-            locale_disambiguation=u'lolé')
+            type=amo.ADDON_LPAPP, target_locale='fr')
         result = self.serialize()
         assert result['id'] == self.addon.pk
         assert result['default_locale'] == self.addon.default_locale
         assert result['guid'] == self.addon.guid
-        assert result['locale_disambiguation'] == (
-            self.addon.locale_disambiguation)
         assert result['name'] == {'en-US': self.addon.name}
         assert result['slug'] == self.addon.slug
         assert result['target_locale'] == self.addon.target_locale
         assert result['type'] == 'language'
         assert result['url'] == absolutify(self.addon.get_url_path())
         assert 'current_compatible_version' not in result
+        assert 'locale_disambiguation' not in result
+
+    @override_settings(
+        DRF_API_GATES={None: ('addons-locale_disambiguation-shim',)})
+    def test_locale_disambiguation_in_v3(self):
+        self.addon = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='fr')
+        result = self.serialize()
+        assert result['locale_disambiguation'] is None
 
     def test_basic_dict(self):
         self.addon = addon_factory(type=amo.ADDON_DICT)
@@ -1470,7 +1493,7 @@ class TestCompatOverrideSerializer(TestCase):
             compat=override, app=amo.FIREFOX.id, min_version='23.4',
             max_version='56.7.*')
         CompatOverrideRange.objects.create(
-            compat=override, app=amo.THUNDERBIRD.id, min_app_version='1.35',
+            compat=override, app=amo.ANDROID.id, min_app_version='1.35',
             max_app_version='90.*')
         result = self.serialize(override)
 
@@ -1492,18 +1515,18 @@ class TestCompatOverrideSerializer(TestCase):
             }]
         }
         assert version_range_firefox in result['version_ranges']
-        version_range_thunderbird = {
+        version_range_android = {
             'addon_min_version': '0',
             'addon_max_version': '*',
             'applications': [{
-                'name': amo.THUNDERBIRD.pretty,
-                'id': amo.THUNDERBIRD.id,
+                'name': amo.ANDROID.pretty,
+                'id': amo.ANDROID.id,
                 'min_version': '1.35',
                 'max_version': '90.*',
-                'guid': amo.THUNDERBIRD.guid
+                'guid': amo.ANDROID.guid
             }]
         }
-        assert version_range_thunderbird in result['version_ranges']
+        assert version_range_android in result['version_ranges']
 
     def test_collapsed_ranges(self):
         """Collapsed ranges are where there is a single version range of
@@ -1514,7 +1537,7 @@ class TestCompatOverrideSerializer(TestCase):
             compat=override, app=amo.FIREFOX.id,
             min_version='23.4', max_version='56.7.*')
         CompatOverrideRange.objects.create(
-            compat=override, app=amo.THUNDERBIRD.id,
+            compat=override, app=amo.ANDROID.id,
             min_version='23.4', max_version='56.7.*',
             min_app_version='1.35', max_app_version='90.*')
         result = self.serialize(override)
@@ -1537,11 +1560,11 @@ class TestCompatOverrideSerializer(TestCase):
             'guid': amo.FIREFOX.guid
         }
         assert application_firefox in applications
-        application_thunderbird = {
-            'name': amo.THUNDERBIRD.pretty,
-            'id': amo.THUNDERBIRD.id,
+        application_android = {
+            'name': amo.ANDROID.pretty,
+            'id': amo.ANDROID.id,
             'min_version': '1.35',
             'max_version': '90.*',
-            'guid': amo.THUNDERBIRD.guid
+            'guid': amo.ANDROID.guid
         }
-        assert application_thunderbird in applications
+        assert application_android in applications

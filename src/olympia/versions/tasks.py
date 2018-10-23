@@ -5,11 +5,12 @@ from itertools import izip_longest
 from django.template import loader
 
 from olympia import amo
+from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import pngcrush_image
 from olympia.devhub.tasks import resize_image
-from olympia.versions.models import VersionPreview
+from olympia.versions.models import Version, VersionPreview
 
 from .utils import (
     AdditionalBackground, process_color_value,
@@ -19,9 +20,9 @@ from .utils import (
 def _build_static_theme_preview_context(theme_manifest, header_root):
     # First build the context shared by both the main preview and the thumb
     context = {'amo': amo}
-    context.update(
-        {process_color_value(prop, color)
-         for prop, color in theme_manifest.get('colors', {}).items()})
+    context.update(dict(
+        process_color_value(prop, color)
+        for prop, color in theme_manifest.get('colors', {}).items()))
     images_dict = theme_manifest.get('images', {})
     header_url = images_dict.get(
         'headerURL', images_dict.get('theme_frame', ''))
@@ -53,7 +54,10 @@ def generate_static_theme_preview(theme_manifest, header_root, version_pk):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     context = _build_static_theme_preview_context(theme_manifest, header_root)
-    for size in sorted(amo.THEME_PREVIEW_SIZES.values()):
+    sizes = sorted(
+        amo.THEME_PREVIEW_SIZES.values(),
+        lambda x, y: x['position'] - y['position'])
+    for size in sizes:
         # Create a Preview for this size.
         preview = VersionPreview.objects.create(
             version_id=version_pk, position=size['position'])
@@ -68,6 +72,9 @@ def generate_static_theme_preview(theme_manifest, header_root, version_pk):
             preview_sizes['image'] = size['full']
             preview_sizes['thumbnail'] = size['thumbnail']
             preview.update(sizes=preview_sizes)
+    addon_id = Version.objects.values_list(
+        'addon_id', flat=True).get(id=version_pk)
+    index_addons.delay([addon_id])
 
 
 @task

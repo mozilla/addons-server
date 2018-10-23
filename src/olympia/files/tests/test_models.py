@@ -212,12 +212,12 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_generate_filename_many_apps(self):
         f = File.objects.get(id=67442)
-        f.version._compatible_apps = {amo.THUNDERBIRD: None, amo.FIREFOX: None}
+        f.version._compatible_apps = {amo.FIREFOX: None, amo.ANDROID: None}
         # After adding sorting for compatible_apps, above becomes
-        # (amo.FIREFOX, amo.THUNDERBIRD) so 'fx+tb' is appended to filename
-        # instead of 'tb+fx'
+        # (amo.ANDROID, amo.FIREFOX) so 'an+fx' is appended to filename
+        # instead of 'fx+an'
         # See: https://github.com/mozilla/addons-server/issues/3358
-        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx+tb.xpi'
+        assert f.generate_filename() == 'delicious_bookmarks-2.1.072-an+fx.xpi'
 
     def test_generate_filename_ja(self):
         f = File()
@@ -336,7 +336,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             u'iamstring', u'iamnutherstring', u'laststring!']
 
     def test_current_file_path(self):
-        public_fp = '/media/addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
+        public_fp = '/storage/files/3615/delicious_bookmarks-2.1.072-fx.xpi'
         guarded_fp = '/guarded-addons/3615/delicious_bookmarks-2.1.072-fx.xpi'
 
         # Add-on enabled, file approved
@@ -651,6 +651,15 @@ class TestParseXpi(TestCase):
         self.grant_permission(self.user, 'Experiments:submit')
         parsed = self.parse(filename='experiment_inside_webextension.xpi')
         assert parsed['type'] == amo.ADDON_EXTENSION
+        assert parsed['is_webextension']
+        assert not parsed['is_restart_required']
+        assert parsed['is_experiment']
+
+    def test_theme_experiment_inside_webextension(self):
+        self.grant_permission(self.user, 'Experiments:submit')
+        parsed = self.parse(
+            filename='theme_experiment_inside_webextension.xpi')
+        assert parsed['type'] == amo.ADDON_STATICTHEME
         assert parsed['is_webextension']
         assert not parsed['is_restart_required']
         assert parsed['is_experiment']

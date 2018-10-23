@@ -7,11 +7,11 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
-    delete_addon_not_compatible_with_firefoxes,
-    delete_obsolete_applicationsversions,
+    disable_legacy_files,
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
-    migrate_lwts_to_static_themes)
+    migrate_lwts_to_static_themes,
+    migrate_webextensions_to_git_storage)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -66,14 +66,6 @@ tasks = {
             ~Q(type=amo.ADDON_PERSONA)
         ]
     },
-    # Run this once we've disallowed new submissions not targeting Firefox and
-    # addons.thunderbird.net is live.
-    'delete_addons_not_compatible_with_firefoxes': {
-        'method': delete_addon_not_compatible_with_firefoxes,
-        'qs': [Q(status=amo.STATUS_PUBLIC),
-               ~Q(appsupport__app__in=(amo.FIREFOX.id, amo.ANDROID.id))],
-        'post': delete_obsolete_applicationsversions,
-    },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,
         'qs': [
@@ -89,6 +81,24 @@ tasks = {
               disabled_by_user=False,
               _current_version__files__is_webextension=False),
         ],
+    },
+    'extract_webextensions_to_git_storage': {
+        'method': migrate_webextensions_to_git_storage,
+        'qs': [
+            Q(_current_version__files__is_webextension=True,
+              type__in=(
+                  amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
+                  amo.ADDON_DICT, amo.ADDON_LPAPP)),
+        ]
+    },
+    'disable_legacy_files': {
+        'method': disable_legacy_files,
+        'qs': [
+            Q(type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_LPAPP),
+              versions__files__is_webextension=False,
+              versions__files__is_mozilla_signed_extension=False)
+        ],
+        'pre': lambda values_qs: values_qs.distinct(),
     },
 }
 
@@ -128,6 +138,13 @@ class Command(BaseCommand):
             dest='ids',
             help='Only apply task to specific addon ids (comma-separated).')
 
+        parser.add_argument(
+            '--limit',
+            action='store',
+            dest='limit',
+            type=int,
+            help='Only apply task to the first X addon ids.')
+
     def handle(self, *args, **options):
         task = tasks.get(options.get('task'))
         if not task:
@@ -143,6 +160,8 @@ class Command(BaseCommand):
         pks = (addon_manager.filter(*task['qs'])
                             .values_list('pk', flat=True)
                             .order_by('id'))
+        if options.get('limit'):
+            pks = pks[:options.get('limit')]
         if 'pre' in task:
             # This is run in process to ensure its run before the tasks.
             pks = task['pre'](pks)

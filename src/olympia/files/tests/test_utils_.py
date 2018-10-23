@@ -7,7 +7,6 @@ import time
 import zipfile
 
 from datetime import timedelta
-from operator import attrgetter
 
 from django import forms
 from django.conf import settings
@@ -19,10 +18,9 @@ import mock
 import pytest
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
-from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
@@ -84,7 +82,6 @@ class TestExtractor(TestCase):
         assert manifest_json_extractor.called
 
     @mock.patch('olympia.files.utils.os.path.getsize')
-    @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_max_size(self, getsize_mock):
         getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
         manifest = utils.ManifestJSONExtractor(
@@ -117,27 +114,13 @@ class TestRDFExtractor(TestCase):
                                       version='43.0'),
         ]
         self.thunderbird_versions = [
-            AppVersion.objects.create(application=amo.APPS['thunderbird'].id,
+            AppVersion.objects.create(application=amo.APPS['android'].id,
                                       version='42.0'),
-            AppVersion.objects.create(application=amo.APPS['thunderbird'].id,
+            AppVersion.objects.create(application=amo.APPS['android'].id,
                                       version='45.0'),
         ]
 
-    def test_apps(self):
-        zip_file = utils.SafeZip(get_addon_file(
-            'valid_firefox_and_thunderbird_addon.xpi'))
-        extracted = utils.RDFExtractor(zip_file).parse()
-        apps = sorted(extracted['apps'], key=attrgetter('id'))
-        assert len(apps) == 2
-        assert apps[0].appdata == amo.FIREFOX
-        assert apps[0].min.version == '38.0a1'
-        assert apps[0].max.version == '43.0'
-        assert apps[1].appdata == amo.THUNDERBIRD
-        assert apps[1].min.version == '42.0'
-        assert apps[1].max.version == '45.0'
-
-    @override_switch('disallow-thunderbird-and-seamonkey', active=True)
-    def test_apps_disallow_thunderbird_and_seamonkey_waffle(self):
+    def test_apps_disallow_thunderbird_and_seamonkey(self):
         zip_file = utils.SafeZip(get_addon_file(
             'valid_firefox_and_thunderbird_addon.xpi'))
         extracted = utils.RDFExtractor(zip_file).parse()
@@ -278,20 +261,7 @@ class TestManifestJSONExtractor(TestCase):
     def test_is_webextension(self):
         assert self.parse({})['is_webextension']
 
-    def test_disallow_static_theme(self):
-        manifest = utils.ManifestJSONExtractor(
-            '/fake_path', '{"theme": {}}').parse()
-
-        with pytest.raises(forms.ValidationError) as exc:
-            utils.check_xpi_info(manifest)
-
-        assert (
-            exc.value.message ==
-            'WebExtension theme uploads are currently not supported.')
-
     def test_allow_static_theme_waffle(self):
-        create_switch('allow-static-theme-uploads')
-
         manifest = utils.ManifestJSONExtractor(
             '/fake_path', '{"theme": {}}').parse()
 
@@ -338,7 +308,7 @@ class TestManifestJSONExtractor(TestCase):
         data = {
             'applications': {
                 'gecko': {
-                    'id': '@langp'
+                    'id': '@dict'
                 }
             },
             'dictionaries': {'en-US': '/path/to/en-US.dic'}
@@ -348,12 +318,20 @@ class TestManifestJSONExtractor(TestCase):
         assert parsed_data['type'] == amo.ADDON_DICT
         assert parsed_data['strict_compatibility'] is False
         assert parsed_data['is_webextension'] is True
+        assert parsed_data['target_locale'] == 'en-US'
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Dictionaries are not compatible with android.
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == '61.0'
         assert apps[0].max.version == '*'
+
+    def test_broken_dictionary(self):
+        data = {
+            'dictionaries': {}
+        }
+        with self.assertRaises(forms.ValidationError):
+            self.parse(data)
 
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
@@ -611,6 +589,9 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         pass  # Irrelevant for static themes.
 
     def test_dictionary(self):
+        pass  # Irrelevant for static themes.
+
+    def test_broken_dictionary(self):
         pass  # Irrelevant for static themes.
 
 
@@ -954,7 +935,6 @@ class TestXMLVulnerabilities(TestCase):
         zip_file = utils.SafeZip(os.path.join(
             os.path.dirname(__file__), '..', 'fixtures', 'files',
             'xxe-example-install.zip'))
-        zip_file.is_valid()
 
         # This asserts that the malicious install.rdf blows up with
         # a parse error. If it gets as far as this specific parse error

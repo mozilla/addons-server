@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-19 12:16+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-09-19 12:15+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -224,7 +224,6 @@ msgid_plural "{0} users"
 msgstr[0] "{0} χρήστης"
 msgstr[1] "{0} χρήστες"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} πρόσθετο"
@@ -766,9 +765,17 @@ msgstr "Δεν βρέθηκαν αποτελέσματα."
 msgid "Loading..."
 msgstr "Γίνεται φόρτωση..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "<b>{0}</b> χαρακτήρας διαθέσιμος."
+msgstr[1] "<b>{0}</b> χαρακτήρες διαθέσιμοι."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "<b>{0}</b> χαρακτήρας διαθέσιμος."
 msgstr[1] "<b>{0}</b> χαρακτήρες διαθέσιμοι."
 
@@ -864,9 +871,6 @@ msgstr "{0} γραμμή {1} στήλη {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} γραμμή {1}"
-
-msgid "Compatibility Tests"
-msgstr "Τεστ συμβατότητας"
 
 msgid "Add-on failed validation."
 msgstr "Το πρόσθετο απέτυχε να επικυρωθεί."

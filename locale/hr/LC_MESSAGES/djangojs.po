@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-22 23:03+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-09-22 22:59+0000\n"
 "Last-Translator: Karlo Prikratki <me@karloprikratki.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -230,7 +230,6 @@ msgstr[0] "{0} korisnik"
 msgstr[1] "{0} korisnika"
 msgstr[2] "{0} korisnika"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} dodatak"
@@ -782,9 +781,18 @@ msgstr "Nema rezultata."
 msgid "Loading..."
 msgstr "Pokretanje..."
 
+#. L10n: {0} is the number of characters entered.
+#, fuzzy
+msgid "<b>{0}</b> character"
+msgid_plural "<b>{0}</b> characters"
+msgstr[0] "preostalo <b>{0}</b> slovo."
+msgstr[1] "preostalo <b>{0}</b> slova."
+msgstr[2] "preostalo <b>{0}</b> slova."
+
 #. L10n: {0} is the number of characters left.
-msgid "<b>{0}</b> character left."
-msgid_plural "<b>{0}</b> characters left."
+#, fuzzy
+msgid "<b>{0}</b> character left"
+msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "preostalo <b>{0}</b> slovo."
 msgstr[1] "preostalo <b>{0}</b> slova."
 msgstr[2] "preostalo <b>{0}</b> slova."
@@ -881,9 +889,6 @@ msgstr "{0} linija {1} kolona {2}"
 
 msgid "{0} line {1}"
 msgstr "{0} linija {1}"
-
-msgid "Compatibility Tests"
-msgstr "Testovi kompatibilnosti"
 
 msgid "Add-on failed validation."
 msgstr "Dodatak nije prošao ovjeru."

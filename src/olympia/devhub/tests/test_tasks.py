@@ -185,9 +185,9 @@ class ValidatorTestCase(TestCase):
         self.create_appversion('android', '*')
         self.create_appversion('firefox', '57.0')
 
-        # Required for Thunderbird tests.
-        self.create_appversion('thunderbird', '42.0')
-        self.create_appversion('thunderbird', '45.0')
+        # Required for Android tests.
+        self.create_appversion('android', '42.0')
+        self.create_appversion('android', '45.0')
 
     def create_appversion(self, name, version):
         return AppVersion.objects.create(
@@ -209,7 +209,6 @@ class TestValidator(ValidatorTestCase):
              "id": ["testcases_content", "signed_xpi"],
              "file": "",
              "tier": 2,
-             "for_appversions": None,
              "message": "Package already signed",
              "uid": "87326f8f699f447e90b3d5a66a78513e",
              "line": None,
@@ -238,7 +237,7 @@ class TestValidator(ValidatorTestCase):
         tasks.validate(self.upload, listed=True)
         assert not self.get_upload().valid
 
-    @mock.patch('validator.submain.test_package')
+    @mock.patch('olympia.devhub.tasks.run_validator')
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
 
@@ -281,12 +280,12 @@ class TestValidator(ValidatorTestCase):
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
 
-    @mock.patch('validator.validate.validate')
-    @mock.patch('olympia.devhub.tasks.track_validation_stats')
-    def test_track_validation_stats(self, mock_track, mock_validate):
-        mock_validate.return_value = '{"errors": 0}'
+    @mock.patch('olympia.devhub.tasks.statsd.incr')
+    def test_track_validation_stats(self, mock_statsd_incr):
         tasks.validate(self.upload, listed=True)
-        mock_track.assert_called_with(mock_validate.return_value)
+        mock_statsd_incr.assert_has_calls((
+            mock.call('devhub.validator.results.all.success'),
+            mock.call('devhub.validator.results.listed.success')))
 
     def test_handle_file_validation_result_task_result_is_serializable(self):
         addon = addon_factory()
@@ -820,17 +819,6 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['messages'] == []
         assert upload.valid
 
-    def test_submit_thunderbird_extension(self):
-        file_ = get_addon_file('valid_firefox_and_thunderbird_addon.xpi')
-        upload = FileUpload.objects.create(path=file_)
-        tasks.validate(upload, listed=True)
-
-        upload.refresh_from_db()
-
-        assert upload.processed_validation['errors'] == 0
-        assert upload.processed_validation['messages'] == []
-        assert upload.valid
-
     def test_restrict_firefox_53_alpha(self):
         data = {
             'messages': [],
@@ -1005,8 +993,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             'validation', 'messages', 'legacy_addons_max_version']
 
     def test_allow_upgrade_submission_targeting_firefox_and_thunderbird(self):
-        # This should work regardless of whether the
-        # disallow-thunderbird-and-seamonkey waffle is enabled, because it also
+        # This should work regardless because it also
         # targets Firefox (it's a legacy one, but it targets Firefox < 57).
         data = {
             'messages': [],
@@ -1029,14 +1016,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
             data.copy(), is_new_upload=False)
         assert results['errors'] == 0
 
-        self.create_switch('disallow-thunderbird-and-seamonkey')
-        results = tasks.annotate_legacy_addon_restrictions(
-            data.copy(), is_new_upload=False)
-        assert results['errors'] == 0
-
-    def test_disallow_thunderbird_seamonkey_waffle(self):
-        # The disallow-thunderbird-and-seamonkey waffle is not enabled so it
-        # should still work, even though it's only targeting Thunderbird.
+    def test_disallow_thunderbird_seamonkey(self):
         data = {
             'messages': [],
             'errors': 0,
@@ -1053,20 +1033,13 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         }
         results = tasks.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=True)
-        assert results['errors'] == 0
-
-        # With the waffle enabled however, it should be blocked.
-        self.create_switch('disallow-thunderbird-and-seamonkey')
-        results = tasks.annotate_legacy_addon_restrictions(
-            data.copy(), is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'thunderbird_and_seamonkey_migration']
 
-    def test_dont_disallow_webextensions_with_thunderbird_waffle(self):
-        # Webextensions should not be disallowed when the
-        # disallow-thunderbird-and-seamonkey waffle is enabled.
+    def test_dont_disallow_webextensions(self):
+        # Webextensions should not be disallowed.
         data = {
             'messages': [],
             'errors': 0,
@@ -1076,7 +1049,6 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 'is_extension': True,
             }
         }
-        self.create_switch('disallow-thunderbird-and-seamonkey')
         results = tasks.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=True)
         assert results['errors'] == 0

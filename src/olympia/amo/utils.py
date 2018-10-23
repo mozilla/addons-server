@@ -44,10 +44,9 @@ import basket
 from babel import Locale
 from django_statsd.clients import statsd
 from easy_thumbnails import processors
-from html5lib.serializer.htmlserializer import HTMLSerializer
+from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
-from validator import unicodehelper
 
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
@@ -55,6 +54,7 @@ from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
 from olympia.translations.models import Translation
 from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
+from olympia.lib import unicodehelper
 
 from . import logger_log as log
 
@@ -537,7 +537,7 @@ def clean_nl(string):
     # Serialize the parsed tree back to html.
     walker = html5lib.treewalkers.getTreeWalker('etree')
     stream = walker(parse)
-    serializer = HTMLSerializer(quote_attr_values=True,
+    serializer = HTMLSerializer(quote_attr_values='always',
                                 omit_optional_tags=False)
     return serializer.render(stream)
 
@@ -771,25 +771,25 @@ def get_email_backend(real_email=False):
     return django.core.mail.get_connection(backend)
 
 
-def escape_all(v, linkify_only_full=False):
+def escape_all(value):
     """Escape html in JSON value, including nested items.
 
     Only linkify full urls, including a scheme, if "linkify_only_full" is True.
 
     """
-    if isinstance(v, basestring):
-        v = jinja2.escape(force_text(v))
-        v = linkify_with_outgoing(v, only_full=linkify_only_full)
-        return v
-    elif isinstance(v, list):
-        for i, lv in enumerate(v):
-            v[i] = escape_all(lv, linkify_only_full=linkify_only_full)
-    elif isinstance(v, dict):
-        for k, lv in v.iteritems():
-            v[k] = escape_all(lv, linkify_only_full=linkify_only_full)
-    elif isinstance(v, Translation):
-        v = jinja2.escape(force_text(v))
-    return v
+    if isinstance(value, basestring):
+        value = jinja2.escape(force_text(value))
+        value = linkify_with_outgoing(value)
+        return value
+    elif isinstance(value, list):
+        for i, lv in enumerate(value):
+            value[i] = escape_all(lv)
+    elif isinstance(value, dict):
+        for k, lv in value.iteritems():
+            value[k] = escape_all(lv)
+    elif isinstance(value, Translation):
+        value = jinja2.escape(force_text(value))
+    return value
 
 
 class LocalFileStorage(FileSystemStorage):

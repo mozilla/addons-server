@@ -30,6 +30,9 @@ class AkismetReport(ModelBase):
         DEFINITE_SPAM: 'definitespam',
         MAYBE_SPAM: 'maybespam',
     }
+    ADDON_TYPE_PREFIX = 'product-'
+    RATING_TYPE_PREFIX = 'user-'
+    COLLECTION_TYPE_PREFIX = 'collection-'
 
     # The following should normally be set before comment_check()
     comment_type = models.CharField(max_length=255)
@@ -168,7 +171,7 @@ class AkismetReport(ModelBase):
     def create_for_rating(cls, rating, user_agent, referrer):
         instance = cls.objects.create(
             rating_instance=rating,
-            comment_type='user-review',
+            comment_type=cls.RATING_TYPE_PREFIX + 'review',
             user_ip=rating.ip_address or '',
             user_agent=user_agent or '',
             referrer=referrer or '',
@@ -190,7 +193,7 @@ class AkismetReport(ModelBase):
         instance = cls.objects.create(
             upload_instance=upload,
             addon_instance=addon,
-            comment_type='product-' + property_name,
+            comment_type=cls.ADDON_TYPE_PREFIX + property_name,
             user_ip=user.last_login_ip or '',
             user_agent=user_agent or '',
             referrer=referrer or '',
@@ -208,7 +211,7 @@ class AkismetReport(ModelBase):
                               property_value, user_agent, referrer):
         instance = cls.objects.create(
             collection_instance=collection,
-            comment_type='collection-' + property_name,
+            comment_type=cls.COLLECTION_TYPE_PREFIX + property_name,
             user_ip=user.last_login_ip or '',
             user_agent=user_agent or '',
             referrer=referrer or '',

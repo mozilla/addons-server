@@ -68,19 +68,32 @@ SILENCED_SYSTEM_CHECKS = (
 # LESS CSS OPTIONS (Debug only).
 LESS_PREPROCESS = True  # Compile LESS with Node, rather than client-side JS?
 LESS_LIVE_REFRESH = False  # Refresh the CSS on save?
-LESS_BIN = 'lessc'
+LESS_BIN = env(
+    'LESS_BIN', default='node_modules/less/bin/lessc')
 
 # Path to cleancss (our CSS minifier).
-CLEANCSS_BIN = 'cleancss'
+CLEANCSS_BIN = env(
+    'CLEANCSS_BIN', default='node_modules/less/bin/lessc')
 
 # Path to uglifyjs (our JS minifier).
-UGLIFY_BIN = 'uglifyjs'  # Set as None to use YUI instead (at your risk).
+# Set as None to use YUI instead (at your risk).
+UGLIFY_BIN = env(
+    'UGLIFY_BIN', default='node_modules/uglify-js/bin/uglifyjs')
 
 # rsvg-convert is used to save our svg static theme previews to png
-RSVG_CONVERT_BIN = 'rsvg-convert'
+RSVG_CONVERT_BIN = env('RSVG_CONVERT_BIN', default='rsvg-convert')
 
 # Path to pngcrush (to optimize the PNGs uploaded by developers).
-PNGCRUSH_BIN = 'pngcrush'
+PNGCRUSH_BIN = env('PNGCRUSH_BIN', default='pngcrush')
+
+# Path to our addons-linter binary
+ADDONS_LINTER_BIN = env(
+    'ADDONS_LINTER_BIN',
+    default='node_modules/addons-linter/bin/addons-linter')
+
+# Path to the amo-validator binary
+ADDONS_VALIDATOR_BIN = env(
+    'ADDONS_VALIDATOR_BIN', default='/usr/local/bin/addon-validator')
 
 FLIGTAR = 'amo-admins+fligtar-rip@mozilla.org'
 THEMES_EMAIL = 'theme-reviews@mozilla.org'
@@ -111,14 +124,16 @@ def cors_endpoint_overrides(whitelist_endpoints):
 CORS_ENDPOINT_OVERRIDES = []
 
 
-def get_db_config(environ_var):
+def get_db_config(environ_var, atomic_requests=True):
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
 
     values.update({
         # Run all views in a transaction unless they are decorated not to.
-        'ATOMIC_REQUESTS': True,
+        # `atomic_requests` should be `False` for database replicas where no
+        # write operations will ever happen.
+        'ATOMIC_REQUESTS': atomic_requests,
         # Pool our database connections up for 300 seconds
         'CONN_MAX_AGE': 300,
         'ENGINE': 'olympia.core.db.mysql',
@@ -304,17 +319,10 @@ INBOUND_EMAIL_VALIDATION_KEY = env('INBOUND_EMAIL_VALIDATION_KEY', default='')
 # Domain emails should be sent to.
 INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN', default=DOMAIN)
 
-# Absolute path to the directory that holds media.
-# Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = path('user-media')
-
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
 MEDIA_URL = '/user-media/'
-
-# Absolute path to a temporary storage area
-TMP_PATH = path('tmp')
 
 # Tarballs in DUMPED_APPS_PATH deleted 30 days after they have been written.
 DUMPED_APPS_DAYS_DELETE = 3600 * 24 * 30
@@ -460,6 +468,8 @@ SECURE_HSTS_SECONDS = 31536000
 USE_X_FORWARDED_PORT = True
 
 MIDDLEWARE = (
+    # Our middleware to make safe requests non-atomic needs to be at the top.
+    'olympia.amo.middleware.NonAtomicRequestsForSafeHttpMethodsMiddleware',
     # Test if it's an API request first so later middlewares don't need to.
     'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
@@ -544,7 +554,6 @@ INSTALLED_APPS = (
     'olympia.applications',
     'olympia.bandwagon',
     'olympia.browse',
-    'olympia.compat',
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
@@ -1169,7 +1178,6 @@ CELERY_TASK_QUEUES = (
     Queue('default', routing_key='default'),
     Queue('devhub', routing_key='devhub'),
     Queue('images', routing_key='images'),
-    Queue('limited', routing_key='limited'),
     Queue('priority', routing_key='priority'),
     Queue('ratings', routing_key='ratings'),
     Queue('reviewers', routing_key='reviewers'),
@@ -1217,16 +1225,12 @@ CELERY_TASK_ROUTES = {
     # that uses chord() or group() must also be running in this queue or must
     # be on a worker that listens to the same queue.
     'celery.chord_unlock': {'queue': 'devhub'},
-    'olympia.devhub.tasks.compatibility_check': {'queue': 'devhub'},
 
     # Images.
     'olympia.bandwagon.tasks.resize_icon': {'queue': 'images'},
     'olympia.users.tasks.resize_photo': {'queue': 'images'},
     'olympia.devhub.tasks.resize_icon': {'queue': 'images'},
     'olympia.devhub.tasks.resize_preview': {'queue': 'images'},
-
-    # AMO validator.
-    'olympia.zadmin.tasks.bulk_validate_file': {'queue': 'limited'},
 
     # AMO
     'olympia.amo.tasks.delete_anonymous_collections': {'queue': 'amo'},
@@ -1309,9 +1313,6 @@ CELERY_TASK_ROUTES = {
     # Zadmin
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.notify_compatibility': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.notify_compatibility_chunk': {'queue': 'zadmin'},
-    'olympia.zadmin.tasks.update_maxversions': {'queue': 'zadmin'},
 
     # Github API
     'olympia.github.tasks.process_results': {'queue': 'devhub'},
@@ -1374,11 +1375,6 @@ LOGGING = {
             'handlers': ['mozlog'],
             'level': logging.DEBUG,
             'propagate': False
-        },
-        'amo.validator': {
-            'handlers': ['mozlog'],
-            'level': logging.WARNING,
-            'propagate': False,
         },
         'amqplib': {
             'handlers': ['null'],
@@ -1536,25 +1532,11 @@ ENGAGE_ROBOTS = True
 # Read-only mode setup.
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
-# Expected retry-time that can be respected by clients. This will
-# be set as `Retry-After` header.
-# Please set this to a `datetime.timedelta()` instance that is
-# reasonable for clients to try again.
-# We don't support hard dates as these are usually quite hard to
-# adhere anyway.
-# Will be ignored if `None`
-READ_ONLY_RETRY_AFTER = None
-
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-# Please also consider setting `retry_after` like this
-# import datetime
-# read_only_mode(globals(), retry_after=datetime.timedelta(minutes=10))
-# See `READ_ONLY_RETRY_AFTER` comment for more details
-def read_only_mode(env, retry_after=None):
+def read_only_mode(env):
     env['READ_ONLY'] = True
-    env['READ_ONLY_RETRY_AFTER'] = retry_after
 
     # Replace the default (master) db with a slave connection.
     if not env.get('SLAVE_DATABASES'):
@@ -1755,9 +1737,20 @@ STATICFILES_DIRS = (
     path('static'),
 )
 
-NETAPP_STORAGE = TMP_PATH
-GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
+# Path related settings. In dev/stage/prod `NETAPP_STORAGE_ROOT` environment
+# variable will be set and point to our NFS/EFS storage
+# Make sure to check overwrites in conftest.py if new settings are added
+# or changed.
+STORAGE_ROOT = env('NETAPP_STORAGE_ROOT', default=path('storage'))
 
+ADDONS_PATH = os.path.join(STORAGE_ROOT, 'files')
+GUARDED_ADDONS_PATH = os.path.join(STORAGE_ROOT, 'guarded-addons')
+GIT_FILE_STORAGE_PATH = os.path.join(STORAGE_ROOT, 'git-storage')
+
+SHARED_STORAGE = os.path.join(STORAGE_ROOT, 'shared_storage')
+
+MEDIA_ROOT = os.path.join(SHARED_STORAGE, 'uploads')
+TMP_PATH = os.path.join(SHARED_STORAGE, 'tmp')
 
 # These are key files that must be present on disk to encrypt/decrypt certain
 # database fields.
@@ -1790,13 +1783,24 @@ DRF_API_GATES = {
         'ratings-title-shim',
         'l10n_flat_input_output',
         'collections-downloads-shim',
+        'addons-locale_disambiguation-shim',
+        'del-addons-created-field',
+        'del-accounts-fxa-edit-email-url',
     ),
     'v4': (
         'l10n_flat_input_output',
+        'addons-search-_score-field',
+        'ratings-can_reply',
     ),
     'v4dev': (
-    )
+        'addons-search-_score-field',
+        'ratings-can_reply',
+    ),
 }
+
+# Change this to deactivate API throttling for views using a throttling class
+# depending on the one defined in olympia.api.throttling.
+API_THROTTLING = True
 
 REST_FRAMEWORK = {
     # Set this because the default is to also include:
@@ -1905,8 +1909,6 @@ CRON_JOBS = {
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
-    'compatibility_report': 'olympia.compat.cron',
 
     'update_blog_posts': 'olympia.devhub.cron',
 

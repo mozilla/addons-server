@@ -12,8 +12,7 @@ from olympia import amo
 from olympia.activity.models import AddonLog
 from olympia.addons.management.commands import (
     approve_addons, process_addons as pa)
-from olympia.addons.models import Addon, AppSupport
-from olympia.addons.tasks import update_appsupport
+from olympia.addons.models import Addon
 from olympia.amo.tests import (
     AMOPaths, TestCase, addon_factory, version_factory)
 from olympia.applications.models import AppVersion
@@ -235,6 +234,27 @@ def count_subtask_calls(original_function):
     original_function.subtask = original_function_subtask
 
 
+@pytest.mark.django_db
+def test_process_addons_limit_addons():
+    addon_ids = [addon_factory().id for _ in range(5)]
+    assert Addon.objects.count() == 5
+
+    with count_subtask_calls(pa.sign_addons) as calls:
+        call_command('process_addons', task='sign_addons')
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [addon_ids]
+
+    with count_subtask_calls(pa.sign_addons) as calls:
+        call_command('process_addons', task='sign_addons', limit=2)
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+    with count_subtask_calls(pa.sign_addons) as calls:
+        call_command('process_addons', task='sign_addons', limit='2')
+        assert len(calls) == 1
+        assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
+
+
 class AddFirefox57TagTestCase(TestCase):
     def test_affects_only_public_webextensions(self):
         addon_factory()
@@ -390,17 +410,6 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         # Should not be included:
         addon_factory(file_kw={'is_webextension': True})
         addon_factory(version_kw={'max_app_version': '56.*'})
-        addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        # Also should not be included, this super weird add-on targets both
-        # Firefox and Thunderbird - with a low version for Thunderbird, but a
-        # high enough (56.*) for Firefox to be ignored by the task.
-        weird_addon = addon_factory(
-            version_kw={'application': amo.THUNDERBIRD.id})
-        av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='48.*')
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.FIREFOX.id, version=weird_addon.current_version,
-            min=av_min, max=self.firefox_56_star)
 
         with count_subtask_calls(pa.bump_appver_for_legacy_addons) as calls:
             call_command(
@@ -524,93 +533,6 @@ class BumpAppVerForLegacyAddonsTestCase(AMOPaths, TestCase):
         assert apv.max != self.firefox_56_star
 
 
-class TestDeleteAddonsNotCompatibleWithFirefoxes(TestCase):
-    def make_the_call(self):
-        call_command('process_addons',
-                     task='delete_addons_not_compatible_with_firefoxes')
-
-    def test_basic(self):
-        av_min, _ = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='48.0')
-        av_max, _ = AppVersion.objects.get_or_create(
-            application=amo.ANDROID.id, version='48.*')
-        av_seamonkey_min, _ = AppVersion.objects.get_or_create(
-            application=amo.SEAMONKEY.id, version='2.49.3')
-        av_seamonkey_max, _ = AppVersion.objects.get_or_create(
-            application=amo.SEAMONKEY.id, version='2.49.*')
-        # Those add-ons should not be deleted, because they are compatible with
-        # at least Firefox or Firefox for Android.
-        addon_factory()  # A pure Firefox add-on
-        addon_factory(version_kw={'application': amo.ANDROID.id})
-        addon_with_both_firefoxes = addon_factory()
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.ANDROID.id,
-            version=addon_with_both_firefoxes.current_version,
-            min=av_min, max=av_max)
-        addon_with_thunderbird_and_android = addon_factory(
-            version_kw={'application': amo.THUNDERBIRD.id})
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.ANDROID.id,
-            version=addon_with_thunderbird_and_android.current_version,
-            min=av_min, max=av_max)
-        addon_with_firefox_and_seamonkey = addon_factory(
-            version_kw={'application': amo.FIREFOX.id})
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.SEAMONKEY.id,
-            version=addon_with_firefox_and_seamonkey.current_version,
-            min=av_seamonkey_min, max=av_seamonkey_max)
-        addon_factory(
-            status=amo.STATUS_NULL,  # Non-public, will cause it to be ignored.
-            version_kw={'application': amo.THUNDERBIRD.id})
-
-        # Those add-ons should be deleted as they are only compatible with
-        # Thunderbird or Seamonkey, or both.
-        addon = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        addon2 = addon_factory(version_kw={'application': amo.SEAMONKEY.id,
-                                           'min_app_version': '2.49.3',
-                                           'max_app_version': '2.49.*'})
-        addon3 = addon_factory(version_kw={'application': amo.THUNDERBIRD.id})
-        ApplicationsVersions.objects.get_or_create(
-            application=amo.SEAMONKEY.id,
-            version=addon3.current_version,
-            min=av_seamonkey_min, max=av_seamonkey_max)
-
-        # We've manually changed the ApplicationVersions, so let's run
-        # update_appsupport() on all public add-ons. In the real world that is
-        # done automatically when uploading a new version, either through the
-        # version_changed signal or via a cron that catches any versions that
-        # somehow fell through the cracks once a day.
-        update_appsupport(Addon.objects.public().values_list('pk', flat=True))
-
-        assert Addon.objects.count() == 9
-
-        with count_subtask_calls(
-                pa.delete_addon_not_compatible_with_firefoxes) as calls:
-            self.make_the_call()
-
-        assert len(calls) == 1
-        assert calls[0]['kwargs']['args'] == [[addon.pk, addon2.pk, addon3.pk]]
-        assert not Addon.objects.filter(pk=addon.pk).exists()
-        assert not Addon.objects.filter(pk=addon2.pk).exists()
-        assert not Addon.objects.filter(pk=addon3.pk).exists()
-
-        assert Addon.objects.count() == 6
-
-        # Make sure ApplicationsVersions targeting Thunderbird or Seamonkey are
-        # gone.
-        assert not ApplicationsVersions.objects.filter(
-            application=amo.SEAMONKEY.id).exists()
-        assert not ApplicationsVersions.objects.filter(
-            application=amo.THUNDERBIRD.id).exists()
-
-        # Make sure AppSupport targeting Thunderbird or Seamonkey are gone for
-        # add-ons we touched.
-        assert not AppSupport.objects.filter(
-            addon__in=(addon, addon2, addon3), app=amo.SEAMONKEY.id).exists()
-        assert not AppSupport.objects.filter(
-            addon__in=(addon, addon2, addon3), app=amo.THUNDERBIRD.id).exists()
-
-
 class TestMigrateLegacyDictionariesToWebextension(TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
     @mock.patch(
@@ -653,3 +575,87 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
         # self.addon2 will raise a ValidationError because of the side_effect
         # above, so we should only reindex 1 and 3.
         assert index_addons_mock.call_args[0][0] == [self.addon, self.addon3]
+
+
+class TestExtractWebextensionsToGitStorage(TestCase):
+    @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
+    @mock.patch(
+        'olympia.addons.tasks.extract_file_obj_to_git', autospec=True)
+    def test_basic(self, extract_file_obj_to_git_mock, index_addons_mock):
+        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(file_kw={'is_webextension': True})
+        addon_factory(
+            type=amo.ADDON_STATICTHEME, file_kw={'is_webextension': True})
+        addon_factory(
+            file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED)
+        addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': True})
+        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
+
+        # Not supported, we focus entirely on WebExtensions
+        addon_factory(type=amo.ADDON_THEME)
+        addon_factory()
+        addon_factory()
+        addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': False})
+        addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': False})
+
+        call_command('process_addons',
+                     task='extract_webextensions_to_git_storage')
+        assert extract_file_obj_to_git_mock.call_count == 6
+
+
+class TestDisableLegacyAddons(TestCase):
+    def test_basic(self):
+        # These add-ons should be disabled completely since they only have a
+        # single legacy file.
+        should_be_fully_disabled = [
+            addon_factory(),
+            addon_factory(type=amo.ADDON_LPAPP),
+            addon_factory(type=amo.ADDON_THEME),
+        ]
+
+        # This one has a legacy and a non-legacy version, so only the legacy
+        # File & Version should be disabled.
+        should_have_old_version_disabled = [
+            addon_factory(created=self.days_ago(42),
+                          version_kw={'created': self.days_ago(42)}),
+        ]
+        version_factory(
+            addon=should_have_old_version_disabled[0],
+            file_kw={'is_webextension': True})
+
+        # These should *not* have any File instance disabled, they should be
+        # kept intact.
+        should_be_kept_intact = [
+            addon_factory(file_kw={'is_webextension': True}),
+            addon_factory(file_kw={'is_mozilla_signed_extension': True}),
+            addon_factory(file_kw={'is_mozilla_signed_extension': True,
+                                   'is_webextension': True}),
+            addon_factory(type=amo.ADDON_DICT),
+            addon_factory(type=amo.ADDON_SEARCH),
+        ]
+
+        call_command('process_addons', task='disable_legacy_files')
+
+        for addon in should_be_fully_disabled:
+            addon.reload()
+            assert addon.status == amo.STATUS_NULL  # No public version left.
+            assert addon.current_version is None
+            file_ = addon.versions.all()[0].files.all()[0]
+            assert file_.status == amo.STATUS_DISABLED
+
+        for addon in should_have_old_version_disabled:
+            addon.reload()
+            assert addon.status == amo.STATUS_PUBLIC
+            assert addon.current_version
+            file_ = addon.current_version.files.all()[0]
+            assert file_.status == amo.STATUS_PUBLIC
+            file_ = addon.versions.exclude(
+                pk=addon.current_version.pk)[0].files.all()[0]
+            assert file_.status == amo.STATUS_DISABLED
+
+        for addon in should_be_kept_intact:
+            addon.reload()
+            assert addon.status == amo.STATUS_PUBLIC
+            assert addon.current_version
+            file_ = addon.versions.all()[0].all_files[0]
+            assert file_.status == amo.STATUS_PUBLIC

@@ -10,6 +10,7 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
 from olympia.api.serializers import BaseESSerializer
+from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection
 from olympia.constants.applications import APPS_ALL
@@ -307,6 +308,7 @@ class AddonSerializer(serializers.ModelSerializer):
             'average_daily_users',
             'categories',
             'contributions_url',
+            'created',
             'current_version',
             'default_locale',
             'description',
@@ -344,6 +346,8 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def to_representation(self, obj):
         data = super(AddonSerializer, self).to_representation(obj)
+        request = self.context.get('request', None)
+
         if 'theme_data' in data and data['theme_data'] is None:
             data.pop('theme_data')
         if ('request' in self.context and
@@ -361,6 +365,8 @@ class AddonSerializer(serializers.ModelSerializer):
                 # In addition, their average_daily_users number must come from
                 # the popularity field of the attached Persona.
                 data['average_daily_users'] = obj.persona.popularity
+        if request and is_gate_active(request, 'del-addons-created-field'):
+            data.pop('created', None)
         return data
 
     def outgoingify(self, data):
@@ -455,10 +461,9 @@ class AddonSerializer(serializers.ModelSerializer):
         something on the Persona instance, explicitly or not, to avoid 500
         errors and/or SQL queries in ESAddonSerializer."""
         try:
-            # Sadly, https://code.djangoproject.com/ticket/14368 prevents us
-            # from setting obj.persona = None in ESAddonSerializer.fake_object
-            # below. This is fixed in Django 1.9, but in the meantime we work
-            # around it by creating a Persona instance with a custom '_broken'
+            # Setting obj.persona = None in ESAddonSerializer.fake_object()
+            # below sadly isn't enough, so we work around it in that method by
+            # creating a Persona instance with a custom '_broken'
             # attribute indicating that it should not be used.
             if obj.type == amo.ADDON_PERSONA and (
                     obj.persona is None or hasattr(obj.persona, '_broken')):
@@ -492,10 +497,15 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     authors = BaseUserSerializer(many=True, source='listed_authors')
     current_version = SimpleESVersionSerializer()
     previews = ESPreviewSerializer(many=True, source='current_previews')
+    _score = serializers.SerializerMethodField()
 
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'developer_comments',
                          'homepage', 'summary', 'support_email', 'support_url')
+
+    class Meta:
+        model = Addon
+        fields = AddonSerializer.Meta.fields + ('_score', )
 
     def fake_preview_object(self, obj, data, model_class=Preview):
         # This is what ESPreviewSerializer.fake_object() would do, but we do
@@ -630,6 +640,10 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         obj._is_featured = data.get('is_featured', False)
 
+        # Elasticsearch score for this document. Useful for debugging relevancy
+        # issues.
+        obj._score = data.get('_score', None)
+
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')
             if persona_data:
@@ -646,25 +660,25 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     popularity=data.get('average_daily_users'),
                 )
             else:
-                # Sadly, https://code.djangoproject.com/ticket/14368 prevents
-                # us from setting obj.persona = None. This is fixed in
-                # Django 1.9, but in the meantime, work around it by creating
-                # a Persona instance with a custom attribute indicating that
-                # it should not be used.
+                # Sadly, although we can set obj.persona = None, this does not
+                # seem to prevent the query later on. So instead, work around
+                # it by creating a Persona instance with a custom attribute
+                # indicating that it should not be used.
                 obj.persona = Persona()
                 obj.persona._broken = True
 
         return obj
 
+    def get__score(self, obj):
+        return obj._es_meta['score']
 
-class ESAddonSerializerWithUnlistedData(
-        ESAddonSerializer, AddonSerializerWithUnlistedData):
-    # Because we're inheriting from ESAddonSerializer which does set its own
-    # Meta class already, we have to repeat this from
-    # AddonSerializerWithUnlistedData, but it beats having to redeclare the
-    # fields...
-    class Meta(AddonSerializerWithUnlistedData.Meta):
-        fields = AddonSerializerWithUnlistedData.Meta.fields
+    def to_representation(self, obj):
+        data = super(ESAddonSerializer, self).to_representation(obj)
+        request = self.context.get('request')
+        if request and '_score' in data and not is_gate_active(
+                request, 'addons-search-_score-field'):
+            data.pop('_score')
+        return data
 
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
@@ -700,14 +714,12 @@ class StaticCategorySerializer(serializers.Serializer):
 
 class LanguageToolsSerializer(AddonSerializer):
     target_locale = serializers.CharField()
-    locale_disambiguation = serializers.CharField()
     current_compatible_version = serializers.SerializerMethodField()
 
     class Meta:
         model = Addon
         fields = ('id', 'current_compatible_version', 'default_locale', 'guid',
-                  'locale_disambiguation', 'name', 'slug', 'target_locale',
-                  'type', 'url', )
+                  'name', 'slug', 'target_locale', 'type', 'url', )
 
     def get_current_compatible_version(self, obj):
         compatible_versions = getattr(obj, 'compatible_versions', None)
@@ -733,6 +745,9 @@ class LanguageToolsSerializer(AddonSerializer):
         if (AddonAppVersionQueryParam.query_param not in request.GET and
                 'current_compatible_version' in data):
             data.pop('current_compatible_version')
+        if request and is_gate_active(
+                request, 'addons-locale_disambiguation-shim'):
+            data['locale_disambiguation'] = None
         return data
 
 

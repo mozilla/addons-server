@@ -134,7 +134,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'listed_authors': {
                         'type': 'object',
                         'properties': {
-                            'id': {'type': 'long', 'index': False},
+                            'id': {'type': 'long'},
                             'name': {'type': 'text'},
                             'username': {'type': 'keyword'},
                             'is_public': {'type': 'boolean', 'index': False},
@@ -147,8 +147,18 @@ class AddonIndexer(BaseSearchIndexer):
                         # punctuation.
                         'analyzer': 'standardPlusWordDelimiter',
                         'fields': {
-                            # Turn off analysis on name so we can sort by it.
-                            'raw': {'type': 'keyword'}
+                            # Add a "raw" version of the name to do sorting and
+                            # exact matches against.
+                            # It needs to be a keyword to turn off all
+                            # analysis ; that means we don't get the lowercase
+                            # filter applied by the standard &
+                            # language-specific analyzers, so we need to do
+                            # that ourselves through a custom normalizer for
+                            # exact matches to work in a case-insensitive way.
+                            'raw': {
+                                'type': 'keyword',
+                                'normalizer': 'lowercase_keyword_normalizer',
+                            }
                         },
                     },
                     'persona': {

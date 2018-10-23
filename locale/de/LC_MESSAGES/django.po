@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-09-25 06:38+0000\n"
-"PO-Revision-Date: 2018-09-25 18:13+0000\n"
+"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-19 15:41+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -136,10 +136,6 @@ msgstr[1] "Alle Schlagwörter müssen aus mindestens {0} Zeichen bestehen."
 msgid "The text entered has been flagged as spam."
 msgstr "Der eingegebene Text wurde als Spam markiert."
 
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL-Domain muss zu [%s] gehören oder eine Subdomain sein."
-
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategorien können nicht geändert werden, während Ihr Add-on für diese Anwendung vorgestellt wird."
 
@@ -151,6 +147,10 @@ msgstr[1] "Sie können nur {0} Kategorien auswählen."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr "Die Kategorie „Verschiedenes“ kann nicht mit anderen Kategorien kombiniert werden."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL-Domain muss zu [%s] gehören oder eine Subdomain sein."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -204,7 +204,6 @@ msgid "This add-on has been marked as experimental by its developers."
 msgstr "Dieses Add-on wurde von seinen Entwicklern als experimentell gekennzeichnet."
 
 #. {0} is the name of the add-on.
-#. {0} is the name of the add-on
 msgid "End-User License Agreement for {0}"
 msgstr "Endbenutzer-Lizenzvereinbarung für {0}"
 
@@ -704,6 +703,10 @@ msgstr "Admin-Werkzeuge"
 
 msgid "Positive integer"
 msgstr "Positive ganze Zahl"
+
+#, python-format
+msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
+msgstr "Dieses Feld kann nur zum Verlinken externer Websites verwendet werden. URLs auf %(domain)s sind nicht erlaubt."
 
 msgid "Incorrect, please try again."
 msgstr "Fehler, bitte erneut versuchen."
@@ -1342,12 +1345,6 @@ msgstr "Wörterbuch installieren"
 msgid "Install Language Pack"
 msgstr "Sprachpaket installieren"
 
-msgid "Download Dictionary"
-msgstr "Wörterbuch herunterladen"
-
-msgid "Download Language Pack"
-msgstr "Sprachpaket herunterladen"
-
 #, python-format
 msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
@@ -1519,78 +1516,6 @@ msgstr "Alle aufstrebenden Personas anzeigen"
 
 msgid "No themes found"
 msgstr "Keine Themes gefunden"
-
-msgid "All"
-msgstr "Alle"
-
-msgid "Add-on Compatibility Reports"
-msgstr "Add-on-Kompatibilitätsberichte"
-
-#, python-format
-msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
-msgstr ""
-"<p> Berichte, die uns über den <a href=\"%(url_)s\">Add-on-Kompatibilitätsmelder</a> erreicht haben, werden hier zur Ansicht durch die Entwickler gesammelt. Diese Berichte helfen uns, zu ermitteln, "
-"welche Add-ons Hilfe benötigen, um eine neue Firefox-Version zu unterstützen. </p>"
-
-msgid "Reports for your Add-ons"
-msgstr "Berichte für Ihre Add-ons"
-
-msgid "Enter the GUID of an add-on below to view any reports we've received."
-msgstr "Geben Sie im Folgenden die GUID eines Add-ons ein, um die von uns erhaltenen Berichte zu sehen."
-
-msgid "{addon} Compatibility Reports"
-msgstr "Kompatibilitätsberichte zu {addon}"
-
-msgid "{0} success report"
-msgid_plural "{0} success reports"
-msgstr[0] "{0} Erfolgsmeldung"
-msgstr[1] "{0} Erfolgsmeldungen"
-
-msgid "{0} problem report"
-msgid_plural "{0} problem reports"
-msgstr[0] "{0} Problemmeldung"
-msgstr[1] "{0} Problemmeldungen"
-
-msgid "View all"
-msgstr "Alle ansehen"
-
-msgid "Filter by Application"
-msgstr "Nach Anwendung filtern"
-
-msgid "Report Type"
-msgstr "Typ melden"
-
-msgid "Version"
-msgstr "Version"
-
-msgid "Application Version"
-msgstr "Anwendungsversion"
-
-msgid "Application Build"
-msgstr "Build der Anwendung"
-
-msgid "Platform"
-msgstr "Betriebssystem"
-
-msgid "e10s Enabled"
-msgstr "e10s aktiviert"
-
-msgid "e10s Compatible"
-msgstr "e10s-kompatibel"
-
-msgid "Submitted"
-msgstr "Abgeschickt"
-
-msgid "Success"
-msgstr "Erfolg"
-
-msgid "Problem"
-msgstr "Problem"
-
-msgid "No reports found."
-msgstr "Keine Meldungen."
 
 msgid "{addon} was created."
 msgstr "{addon} wurde erstellt."
@@ -2173,54 +2098,6 @@ msgstr "Sport und Spiele"
 msgid "User Interface"
 msgstr "Benutzeroberfläche"
 
-msgid "Appearance and Customization"
-msgstr "Anzeige und Personalisierung"
-
-msgid "Calendar and Date/Time"
-msgstr "Kalender und Datum/Zeit"
-
-msgid "Chat and IM"
-msgstr "Chat und Nachrichten"
-
-msgid "Message Composition"
-msgstr "Nachrichten schreiben"
-
-msgid "Contacts"
-msgstr "Kontakte"
-
-msgid "Folders and Filters"
-msgstr "Verzeichnisse und Filter"
-
-msgid "Import/Export"
-msgstr "Import/Export"
-
-msgid "Message and News Reading"
-msgstr "E-Mails lesen"
-
-msgid "Privacy and Security"
-msgstr "Datenschutz und Sicherheit"
-
-msgid "Downloading and File Management"
-msgstr "Herunterladen und Dateiverwaltung"
-
-msgid "Interface Customizations"
-msgstr "Oberflächenanpassungen"
-
-msgid "Language Support and Translation"
-msgstr "Sprachunterstützung und Übersetzung"
-
-msgid "Photos and Media"
-msgstr "Fotos und Medien"
-
-msgid "RSS, News and Blogging"
-msgstr "RSS-Feeds, Nachrichten & Bloggen"
-
-msgid "Site-specific"
-msgstr "Seitenabhängige Erweiterungen"
-
-msgid "Web and Developer Tools"
-msgstr "Entwicklerwerkzeuge"
-
 msgid "All Rights Reserved"
 msgstr "Alle Rechte vorbehalten"
 
@@ -2510,12 +2387,6 @@ msgstr "Sie haben keine Quelltextdatei hochgeladen."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Quelltextdatei hochgeladen, aber Sie hatten angegeben, dass kein Quelltext benötigt würde."
 
-msgid "Application"
-msgstr "Anwendung"
-
-msgid "Select an application first"
-msgstr "Wählen Sie zuerst eine Anwendung"
-
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Es dürfen nicht mehr als 3 Add-ons erforderlich sein."
 
@@ -2634,9 +2505,6 @@ msgstr "Von Ihrem Add-on wurde ein Autor entfernt"
 msgid "Validate Add-on"
 msgstr "Add-on überprüfen"
 
-msgid "Check Add-on Compatibility"
-msgstr "Add-on-Kompatibilität prüfen"
-
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Grafiken können nicht größer als %d KB sein."
@@ -2662,6 +2530,42 @@ msgstr "Version %s wieder aktiviert."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Dieser Upload hat die Validierung nicht bestanden und hat möglicherweise keine vollständigen Validierungsergebnisse. Bitte achten Sie darauf, wenn Sie ihn überprüfen."
+
+msgid "Header area background"
+msgstr "Hintergrund des Kopfbereichs"
+
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgstr "Die Hintergrundfarbe des Kopfbereichs, die in dem Abschnitt des Kopfbereichs angezeigt wird, der nicht durch die Kopfbereichsgrafik verdeckt oder sichtbar ist. Feld im Manifest:  accentcolor."
+
+msgid "Header area text and icons"
+msgstr "Text und Symbole des Kopfbereichs"
+
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgstr "Die Farbe von Text und Symbolen im Kopfbereich, mit Ausnahme des aktiven Tabs. Feld im Manifest:  textcolor."
+
+msgid "Toolbar area background"
+msgstr "Hintergrund des Symbolleistenbereichs"
+
+msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
+msgstr "Die Hintergrundfarbe für die Navigations-Symbolleiste, die Lesezeichen-Symbolleiste und den ausgewählten Tab.  Feld im Manifest:  toolbar."
+
+msgid "Toolbar area text and icons"
+msgstr "Text und Symbole des Symbolleistenbereichs"
+
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "Die Farbe von Text und Symbolen in den Symbolleisten und dem aktiven Tab. Feld im Manifest:  toolbar_text."
+
+msgid "Toolbar field area background"
+msgstr "Hintergrund des Feldbereichs der Symbolleisten"
+
+msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
+msgstr "Die Hintergrundfarbe für Felder in den Symbolleisten, wie der Adressleiste. Feld im Manifest:  toolbar_field."
+
+msgid "Toolbar field area text"
+msgstr "Text des Feldbereichs der Symbolleisten"
+
+msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr "Die Textfarbe für Felder in den Symbolleisten, wie der Adressleiste. Feld im Manifest:  toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Überprüfung angefordert."
@@ -2729,14 +2633,11 @@ msgstr "Erweiterungsentwicklung"
 msgid "Lightweight Themes"
 msgstr "Leichtgewichtige Themes"
 
-msgid "Add-on Policies"
-msgstr "Add-on-Regeln"
+msgid "Developer Policies"
+msgstr "Regeln für Entwickler"
 
 msgid "Add-on Validator"
 msgstr "Add-on-Überprüfung"
-
-msgid "Add-on Compatibility Checker"
-msgstr "Add-on-Kompatibilitätstester"
 
 msgid "Development Add-ons"
 msgstr "Entwickler-Add-ons"
@@ -2762,13 +2663,6 @@ msgstr "Suchen"
 msgid "Use the field below to upload your add-on package."
 msgstr "Verwenden Sie das folgende Feld, um Ihr Add-on-Paket hochzuladen."
 
-#, python-format
-msgid "Note that this tool only works with legacy add-ons. WebExtension APIs are thoroughly <a href=\"%(webext_doc_url)s\">documented here</a>."
-msgstr "Beachten Sie, dass dieses Werkzeug nur mit Alt-Add-ons funktioniert. WebExtension-APIs sind <a href=\"%(webext_doc_url)s\">hier</a> ausführlich dokumentiert."
-
-msgid "After upload, a series of automated validation tests will run to check compatibility with the following application version:"
-msgstr "Nach dem Upload wird eine Reihe automatischer Validierungstests ausgeführt, um die Kompatibilität mit der folgenden Anwendungsversion zu prüfen:"
-
 msgid "After upload, a series of automated validation tests will be run on your file."
 msgstr "Nach dem Upload wird Ihre Datei einer Reihe automatischer Validierungstests unterzogen."
 
@@ -2784,9 +2678,6 @@ msgstr "Überprüfungsergebnisse"
 
 msgid "Validated at:"
 msgstr "Überprüft am:"
-
-msgid "Tested for compatibility against:"
-msgstr "Auf Kompatibilität geprüft gegen:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "Jüngste Aktivität für meine Add-ons"
@@ -2836,6 +2727,9 @@ msgstr "Kompatibilität aktualisieren"
 
 msgid "Adjusting application information here will allow users to install your add-on even if the install manifest in the package indicates that the add-on is incompatible."
 msgstr "Eine Anpassung der Anwendungsinformationen hier ermöglicht es Anwendern, Ihr Add-on zu installieren, auch wenn es laut Installationsmanifest im Paket inkompatibel ist."
+
+msgid "Application"
+msgstr "Anwendung"
 
 msgid "Supported Versions"
 msgstr "Unterstützte Versionen"
@@ -2893,12 +2787,56 @@ msgstr ""
 "<p>Add-ons können beliebig viele Autoren mit 2 möglichen Rollen haben:</p> <ul> <li><b>Besitzer:</b> Kann alle Aspekte des Add-on-Listeneintrags bearbeiten und auch andere Autoren hinzufügen und "
 "entfernen</li> <li><b>Entwickler:</b> Kann alle Aspekte des Add-on-Listeneintrags bearbeiten, aber keine anderen Autoren hinzufügen oder entfernen</li> </ul>"
 
-msgid "Basic Information"
-msgstr "Basisinformationen"
+msgid "Additional Details"
+msgstr "Weitere Details"
+
+msgid "Additional Details for {0}"
+msgstr "Weitere Details für {0}"
+
+msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
+msgstr "Schlagwörter helfen Nutzern, Ihre Add-ons zu finden. Sie sollten aus kurzen Beschreibungen wie „Tabs“, „Symbolleiste“ oder „Twitter“ bestehen. Sie können maximal {0} Schlagwörter angeben."
+
+msgid "Comma-separated, minimum of {0} character."
+msgid_plural "Comma-separated, minimum of {0} characters."
+msgstr[0] "Kommasepariert, mindestens {0} Zeichen."
+msgstr[1] "Kommasepariert, mindestens {0} Zeichen."
+
+msgid "Example: dark, cinema, noir. Limit 20."
+msgstr "Beispiel: dunkel, Kino, schwarz. Höchstens 20."
+
+msgid "Reserved tag:"
+msgid_plural "Reserved tags:"
+msgstr[0] "Reserviertes Schlagwort:"
+msgstr[1] "Reservierte Schlagwörter:"
+
+msgid "Contributions URL"
+msgstr "Spenden-URL"
+
+msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
+msgstr "Wenn Sie um Geldspenden von Nutzern bitten möchten, geben Sie hier die Seite an, wo gespendet werden kann."
+
+msgid "Default Locale"
+msgstr "Standard-Sprache"
+
+msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
+msgstr "Informationen über Ihr Add-on wird in dieser Sprache angezeigt, es sei denn, Sie geben eine Übersetzung für eine bestimmte Sprache an. Dies ist nur für gelistete Add-ons wichtig."
+
+msgid "Homepage"
+msgstr "Homepage"
+
+msgid ""
+"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
+"ons."
+msgstr ""
+"Wenn Ihr Add-on eine weitere Homepage besitzt, können Sie hier die Adresse eingeben. Wenn Ihre Website in mehrere Sprachen übersetzt wurde, können mehrere Übersetzungen dieses Feldes angegeben "
+"werden. Dies ist nur für gelistete Add-ons wichtig."
+
+msgid "Describe Add-on"
+msgstr "Add-on beschreiben"
 
 #. {0} is the addon name
-msgid "Basic Information for {0}"
-msgstr "Basisinformationen für {0}"
+msgid "Describe {0}"
+msgstr "Beschreiben Sie {0}"
 
 msgid "Add-on URL"
 msgstr "Add-on-URL"
@@ -2956,63 +2894,6 @@ msgstr ""
 "Kategorien können nicht geändert werden, solange Ihr Add-on vorgestellt wird. Bitte schicken Sie eine E-Mail an <a href=\"mailto:%(email)s\">%(email)s</a>, wenn es einen Grund gibt, Ihre Kategorien "
 "zu verändern."
 
-msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr "Schlagwörter helfen Nutzern, Ihre Add-ons zu finden. Sie sollten aus kurzen Beschreibungen wie „Tabs“, „Symbolleiste“ oder „Twitter“ bestehen. Sie können maximal {0} Schlagwörter angeben."
-
-msgid "Comma-separated, minimum of {0} character."
-msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] "Kommasepariert, mindestens {0} Zeichen."
-msgstr[1] "Kommasepariert, mindestens {0} Zeichen."
-
-msgid "Example: dark, cinema, noir. Limit 20."
-msgstr "Beispiel: dunkel, Kino, schwarz. Höchstens 20."
-
-msgid "Reserved tag:"
-msgid_plural "Reserved tags:"
-msgstr[0] "Reserviertes Schlagwort:"
-msgstr[1] "Reservierte Schlagwörter:"
-
-msgid "Contributions URL"
-msgstr "Spenden-URL"
-
-msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr "Wenn Sie um Geldspenden von Nutzern bitten möchten, geben Sie hier die Seite an, wo gespendet werden kann."
-
-msgid "Add-on Details"
-msgstr "Add-on-Details"
-
-msgid "Add-on Details for {0}"
-msgstr "Add-on-Details für {0}"
-
-msgid "A longer explanation of features, functionality, and other relevant information. This field is only displayed on the add-on's details page. It is only relevant for listed add-ons."
-msgstr "Eine längere Erklärung der Funktionen und anderer wichtiger Informationen. Dieses Feld wird nur auf der Detailseite des Add-ons angezeigt. Dies ist nur für gelistete Add-ons wichtig."
-
-msgid "Default Locale"
-msgstr "Standard-Sprache"
-
-msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr "Informationen über Ihr Add-on wird in dieser Sprache angezeigt, es sei denn, Sie geben eine Übersetzung für eine bestimmte Sprache an. Dies ist nur für gelistete Add-ons wichtig."
-
-msgid "Homepage"
-msgstr "Homepage"
-
-msgid ""
-"If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
-"ons."
-msgstr ""
-"Wenn Ihr Add-on eine weitere Homepage besitzt, können Sie hier die Adresse eingeben. Wenn Ihre Website in mehrere Sprachen übersetzt wurde, können mehrere Übersetzungen dieses Feldes angegeben "
-"werden. Dies ist nur für gelistete Add-ons wichtig."
-
-msgid "Images"
-msgstr "Grafiken"
-
-msgid "Support Information"
-msgstr "Support-Information"
-
-#. {0} is an addon name
-msgid "Support Information for {0}"
-msgstr "Support-Information für {0}"
-
 msgid "Email"
 msgstr "E-Mail"
 
@@ -3032,6 +2913,9 @@ msgid ""
 msgstr ""
 "Wenn Ihre App eine Hilfe-Website oder ein -Forum hat, geben Sie hier die Adresse ein. Wenn Ihre Website in andere Sprachen übersetzt wurde, können in diesem Feld mehrere Übersetzungen hinzugefügt "
 "werden. Dies ist nur für gelistete Add-ons wichtig."
+
+msgid "Images"
+msgstr "Grafiken"
 
 msgid "Technical Details"
 msgstr "Technische Details"
@@ -3208,9 +3092,6 @@ msgstr "Wählen Sie eine andere Lizenz."
 msgid "More information on Creative Commons licenses"
 msgstr "Weitere Informationen zu Creative-Commons-Lizenzen"
 
-msgid "Tests"
-msgstr "Tests"
-
 msgid "General Tests"
 msgstr "Allgemeine Tests"
 
@@ -3345,9 +3226,6 @@ msgstr[1] "<strong>{0}</strong> aktive Benutzer"
 msgid "Submit a New Version"
 msgstr "Eine neue Version übermitteln"
 
-msgid "Describe Add-on"
-msgstr "Add-on beschreiben"
-
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Name im Eintrag auf dieser Website. Darf sich vom Namen im Add-on unterscheiden, der in Firefox angezeigt wird"
 
@@ -3362,6 +3240,9 @@ msgstr "Zusammenfassung:"
 
 msgid "required"
 msgstr "notwendig"
+
+msgid "Description:"
+msgstr "Beschreibung:"
 
 msgid "This add-on is experimental"
 msgstr "Dieses Add-on ist experimentell"
@@ -3589,6 +3470,9 @@ msgstr "Theme erstellen"
 msgid "Theme generator"
 msgstr "Theme-Generator"
 
+msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
+msgstr "Warnung: Die folgenden Manifest-Eigenschaften, die Ihre neueste Version in ihrem Manifest nutzt, werden in diesem Assistenten nicht unterstützt und werden ignoriert:"
+
 msgid "Theme name"
 msgstr "Name des Themes"
 
@@ -3612,42 +3496,6 @@ msgstr "Wählen Sie eine andere Grafik für die Kopfzeile"
 
 msgid "Select colors for your theme"
 msgstr "Wählen Sie Farben für Ihr Theme aus"
-
-msgid "Header area background"
-msgstr "Hintergrund des Kopfbereichs"
-
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
-msgstr "Die Hintergrundfarbe des Kopfbereichs, die in dem Abschnitt des Kopfbereichs angezeigt wird, der nicht durch die Kopfbereichsgrafik verdeckt oder sichtbar ist. Feld im Manifest:  accentcolor."
-
-msgid "Header area text and icons"
-msgstr "Text und Symbole des Kopfbereichs"
-
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr "Die Farbe von Text und Symbolen im Kopfbereich, mit Ausnahme des aktiven Tabs. Feld im Manifest:  textcolor."
-
-msgid "Toolbar area background"
-msgstr "Hintergrund des Symbolleistenbereichs"
-
-msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Die Hintergrundfarbe für die Navigations-Symbolleiste, die Lesezeichen-Symbolleiste und den ausgewählten Tab.  Feld im Manifest:  toolbar."
-
-msgid "Toolbar area text and icons"
-msgstr "Text und Symbole des Symbolleistenbereichs"
-
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
-msgstr "Die Farbe von Text und Symbolen in den Symbolleisten und dem aktiven Tab. Feld im Manifest:  toolbar_text."
-
-msgid "Toolbar field area background"
-msgstr "Hintergrund des Feldbereichs der Symbolleisten"
-
-msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Die Hintergrundfarbe für Felder in den Symbolleisten, wie der Adressleiste. Feld im Manifest:  toolbar_field."
-
-msgid "Toolbar field area text"
-msgstr "Text des Feldbereichs der Symbolleisten"
-
-msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Die Textfarbe für Felder in den Symbolleisten, wie der Adressleiste. Feld im Manifest:  toolbar_field_text."
 
 msgid "optional"
 msgstr "optional"
@@ -3781,15 +3629,6 @@ msgstr "Überprüfungsseite für ungelistete Add-ons"
 msgid "View Statistics Dashboard"
 msgstr "Statistik-Übersicht anzeigen"
 
-msgid "Compatibility Reports"
-msgstr "Kompatibilitätsberichte"
-
-msgid "{0} failure reports"
-msgstr "{0} Berichte über Fehler"
-
-msgid "{0} success reports"
-msgstr "{0} Berichte über Erfolg"
-
 msgid "Developer News"
 msgstr "Entwicklernachrichten"
 
@@ -3875,9 +3714,6 @@ msgstr "Kontakt"
 msgid "Support"
 msgstr "Hilfe"
 
-msgid "Policies"
-msgstr "Richtlinien"
-
 msgid "Report Bug"
 msgstr "Fehler melden"
 
@@ -3886,9 +3722,6 @@ msgstr "Status der Website"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: Erweiterungen entwickeln & testen"
-
-msgid "Compatibility Checker"
-msgstr "Kompatibilitätstester"
 
 msgid "Promote"
 msgstr "Bewerben"
@@ -4330,6 +4163,9 @@ msgstr "Alle Versionen"
 
 msgid "Upload a New Version"
 msgstr "Neue Version hochladen"
+
+msgid "Version"
+msgstr "Version"
 
 msgid "Delete Version {version}"
 msgstr "Version {version} löschen"
@@ -5794,9 +5630,6 @@ msgstr "Versionsnummern sollten weniger als 32 Zeichen haben."
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
 msgstr "Versionsnummern sollten nur Buchstaben, Zahlen und diese Zeichen enthalten: +*.-_."
 
-msgid "WebExtension theme uploads are currently not supported."
-msgstr "Uploads von WebExtension-Themes werden derzeit nicht unterstützt."
-
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr "Maximale Größe für WebExtension-Themes ist {0}."
 
@@ -5986,62 +5819,6 @@ msgstr "Wichtige Add-ons aus dem Medienbereich"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
 msgstr "Machen Sie bessere Screenshots, verbessern Sie Ihr Online-Video-Erlebnis, lernen Sie endlich, wie man ein GIF erstellt und weitere tolle Medienwerkzeuge."
-
-msgid "Discover Add-ons"
-msgstr "Add-ons entdecken"
-
-msgid "What are Add-ons?"
-msgstr "Was sind Add-ons?"
-
-#, python-format
-msgid "Add-ons are applications that let you personalize %(app)s with extra functionality or style. Try a time-saving sidebar, a weather notifier, or a themed look to make %(app)s your own."
-msgstr ""
-"Add-ons sind Anwendungen, mit denen Sie nach Ihren Vorlieben %(app)s mit zusätzlichen Funktionen oder Stilen versehen können. Versuchen Sie eine zeitsparende Seitenleiste, ein Wetter-Info-Add-on, "
-"oder ein anderes Theme, um %(app)s ganz nach Ihrem Geschmack auszustatten."
-
-msgid "Learn More About Add-ons"
-msgstr "Erfahren Sie mehr über Add-ons"
-
-msgid "See all"
-msgstr "Alle anzeigen"
-
-msgid "More ways to customize"
-msgstr "Weitere Anpassungsmöglichkeiten"
-
-msgid "Browse all add-ons"
-msgstr "Alle Add-ons anzeigen"
-
-msgid "See all complete themes"
-msgstr "Alle vollständigen Themes anzeigen"
-
-msgid "Close Video"
-msgstr "Video schließen"
-
-msgid "While the video plays, the add-ons being mentioned will appear here."
-msgstr "Während das Video abgespielt wird, werden die erwähnten Add-ons hier erscheinen."
-
-#. {0} is the user's login name.
-msgid "Hi, {0}"
-msgstr "Hallo, {0}"
-
-#, python-format
-msgid "Thanks for using %(app)s and supporting <a href=\"%(url)s\">Mozilla's mission</a>!"
-msgstr "Danke, dass Sie %(app)s verwenden und die <a href=\"%(url)s\">Mission von Mozilla</a> unterstützen!"
-
-msgid "Add-ons downloaded:"
-msgstr "Heruntergeladene Add-ons"
-
-msgid "View Privacy Policy"
-msgstr "Datenschutzerklärung lesen"
-
-msgid "Active Users"
-msgstr "Aktive Nutzer"
-
-msgid "Last Updated"
-msgstr "Letzte Aktualisierung"
-
-msgid "Cancel Installation"
-msgstr "Installation abbrechen"
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Mozillas Wahl des Monats!"
@@ -6621,6 +6398,9 @@ msgstr "Nach Add-on-Name / E-Mail-Adresse des Autors / guid suchen"
 msgid "Max. Version"
 msgstr "Kompatibel bis zu"
 
+msgid "Select an application first"
+msgstr "Wählen Sie zuerst eine Anwendung"
+
 msgid "Comments:"
 msgstr "Kommentare:"
 
@@ -6923,6 +6703,9 @@ msgstr "Durchschnittliche Benutzerzahl pro Tag"
 
 msgid "Abuse Reports"
 msgstr "Missbrauchsmeldungen"
+
+msgid "View Privacy Policy"
+msgstr "Datenschutzerklärung lesen"
 
 msgid "Requires Payment"
 msgstr "Benötigt Zahlung"
@@ -7355,6 +7138,9 @@ msgstr "Theme-Überprüfung für {0}"
 msgid "(Probable Duplicate Submission)"
 msgstr "(Vermutlich doppelte Einreichung)"
 
+msgid "Submitted"
+msgstr "Abgeschickt"
+
 msgid "Past Review Notes"
 msgstr "Frühere Versionshinweise"
 
@@ -7529,8 +7315,9 @@ msgstr "Zu einem Add-on im Status %s können keine neuen Versionen hinzugefügt 
 msgid "Version does not match the manifest file."
 msgstr "Version passt nicht zur Manifest-Datei."
 
-msgid "Version already exists."
-msgstr "Version existiert bereits."
+#, python-format
+msgid "Version already exists. Latest version is: %s."
+msgstr "Version existiert bereits. Neueste Version ist: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Nur WebExtensions dürfen auf die GUID verzichten"
@@ -7882,12 +7669,6 @@ msgstr "Zurück zur {0}-Add-ons-Startseite"
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
 
-msgid "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"Thunderbird\" src=\"{0}\"> Add-ons"
-
-msgid "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-msgstr "<img alt=\"SeaMonkey\" src=\"{0}\"> Add-ons"
-
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
 msgstr "<img alt=\"\" src=\"{0}\"> Add-ons"
 
@@ -8228,6 +8009,9 @@ msgstr "Ein wenig mehr Details..."
 msgid "Add-ons I've created"
 msgstr "Add-ons, die ich angelegt habe"
 
+msgid "View all"
+msgstr "Alle ansehen"
+
 msgid "My Most Popular Themes"
 msgstr "Meine beliebtesten Themes"
 
@@ -8359,9 +8143,3 @@ msgstr "Diese Versionen werden zu Referenz- und Testzwecken angezeigt. Sie sollt
 
 msgid "Deleted versions can`t be changed."
 msgstr "Gelöschte Versionen können nicht geändert werden."
-
-msgid "Binary"
-msgstr "Binär"
-
-msgid "Non-binary"
-msgstr "Nicht-binär"

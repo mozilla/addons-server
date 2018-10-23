@@ -6,10 +6,6 @@
 {%- endmacro %}
 {% if request.APP == amo.FIREFOX %}
   {{ heading(_('<img alt="Firefox" src="{0}"> Add-ons'), 'firefox') }}
-{% elif request.APP == amo.THUNDERBIRD %}
-  {{ heading(_('<img alt="Thunderbird" src="{0}"> Add-ons'), 'thunderbird') }}
-{% elif request.APP == amo.SEAMONKEY %}
-  {{ heading(_('<img alt="SeaMonkey" src="{0}"> Add-ons'), 'seamonkey') }}
 {% else %}
   {{ heading(_('<img alt="" src="{0}"> Add-ons'), 'generic') }}
 {% endif %}

@@ -7,8 +7,6 @@ import olympia.core.logger
 from olympia.addons.cron import reindex_addons
 from olympia.addons.indexers import AddonIndexer
 from olympia.amo.indexers import BaseSearchIndexer
-from olympia.compat.cron import compatibility_report
-from olympia.compat.indexers import AppCompatIndexer
 from olympia.lib.es.utils import create_index
 
 
@@ -16,7 +14,7 @@ log = olympia.core.logger.getLogger('z.es')
 
 
 # Search-related indexers.
-indexers = (AddonIndexer, AppCompatIndexer,)
+indexers = (AddonIndexer,)
 
 # Search-related index settings.
 # TODO: Is this still needed? Do we care?
@@ -33,6 +31,12 @@ INDEX_SETTINGS = {
                     'standard', 'wordDelim', 'lowercase', 'stop', 'dict'
                 ]
             }
+        },
+        'normalizer': {
+            'lowercase_keyword_normalizer': {
+                'type': 'custom',
+                'filter': ['lowercase'],
+            },
         },
         'filter': {
             'wordDelim': {
@@ -110,7 +114,7 @@ def reindex(index_name):
     # FIXME: refactor these reindex functions, moving them to a reindex method
     # on the indexer class, and then simply go through indexers like
     # get_mapping() does.
-    reindexers = [reindex_addons, compatibility_report]
+    reindexers = [reindex_addons]
     for reindexer in reindexers:
         log.info('Reindexing %r' % reindexer.__name__)
         try:
