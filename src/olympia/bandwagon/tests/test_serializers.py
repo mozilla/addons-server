@@ -78,7 +78,7 @@ class TestCollectionAkismetSpamValidator(TestCase):
         assert summary_report.comment_type == 'collection-description'
         assert summary_report.comment == self.data['description']['fr']
 
-        # After the first comment_check was spam, additinal ones are skipped.
+        # After the first comment_check was spam, additional ones are skipped.
         assert comment_check_mock.call_count == 1
 
     @override_switch('akismet-spam-check', active=True)
@@ -101,7 +101,7 @@ class TestCollectionAkismetSpamValidator(TestCase):
         assert summary_report.comment_type == 'collection-description'
         assert summary_report.comment == self.data['description']['fr']
 
-        # After the first comment_check was spam, additinal ones are skipped.
+        # After the first comment_check was spam, additional ones are skipped.
         assert comment_check_mock.call_count == 1
 
 
