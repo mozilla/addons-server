@@ -633,6 +633,7 @@ class TestDescribeForm(TestCase):
         assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
+    @override_switch('content-optimization', active=False)
     def test_name_trademark_allowed_for_prefix(self):
         delicious = Addon.objects.get()
         form = forms.DescribeForm(
@@ -686,14 +687,14 @@ class TestDescribeForm(TestCase):
 
         with override_switch('content-optimization', active=False):
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar'},
                 request=self.request, instance=delicious)
             assert form.is_valid(), form.errors
 
         with override_switch('content-optimization', active=True):
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar'},
                 request=self.request, instance=delicious)
             assert not form.is_valid()
@@ -701,7 +702,7 @@ class TestDescribeForm(TestCase):
             # But only extensions are required to have a description
             delicious.update(type=amo.ADDON_STATICTHEME)
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar'},
                 request=self.request, instance=delicious)
             assert form.is_valid(), form.errors
@@ -709,7 +710,7 @@ class TestDescribeForm(TestCase):
             #  Do it again, but this time with a description
             delicious.update(type=amo.ADDON_EXTENSION)
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar', 'description': 'its a description'},
                 request=self.request,
                 instance=delicious)
@@ -721,14 +722,14 @@ class TestDescribeForm(TestCase):
 
         with override_switch('content-optimization', active=False):
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar', 'description': '123456789'},
                 request=self.request, instance=delicious)
             assert form.is_valid(), form.errors
 
         with override_switch('content-optimization', active=True):
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar', 'description': '123456789'},
                 request=self.request, instance=delicious)
             assert not form.is_valid()
@@ -736,7 +737,7 @@ class TestDescribeForm(TestCase):
             # But only extensions have a minimum length
             delicious.update(type=amo.ADDON_STATICTHEME)
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar', 'description': '123456789'},
                 request=self.request, instance=delicious)
             assert form.is_valid()
@@ -744,7 +745,7 @@ class TestDescribeForm(TestCase):
             #  Do it again, but this time with a description
             delicious.update(type=amo.ADDON_EXTENSION)
             form = forms.DescribeForm(
-                {'name': 'Delicious for Mozilla', 'summary': 'foo',
+                {'name': 'Delicious for everyone', 'summary': 'foo',
                  'slug': 'bar', 'description': '1234567890'},
                 request=self.request,
                 instance=delicious)
