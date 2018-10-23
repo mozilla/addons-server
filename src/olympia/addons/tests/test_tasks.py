@@ -5,6 +5,7 @@ import tempfile
 from datetime import datetime
 
 from django.conf import settings
+from django.core import mail
 from django.test.utils import override_settings
 
 from freezegun import freeze_time
@@ -139,6 +140,7 @@ def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
     assert MigratedLWT.objects.get(
         lightweight_theme=persona_c).static_theme == addon_c
     assert addon_c.slug == 'theme_c'
+    assert len(mail.outbox) == 0
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
