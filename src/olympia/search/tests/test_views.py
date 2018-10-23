@@ -21,7 +21,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.search import views
 from olympia.search.utils import floor_version
 from olympia.search.views import version_sidebar
-from olympia.tags.models import AddonTag, Tag
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.compare import (
     MAXVERSION, num as vnum, version_int as vint)
@@ -607,31 +607,6 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, {'q': 'boop'})
         assert self.get_results(r) == [a.id]
         r = self.client.get(self.url, {'q': 'pony'})
-        assert self.get_results(r) == [a.id]
-
-    def test_tag_search(self):
-        a = self.addons[0]
-
-        tag_name = 'tagretpractice'
-        r = self.client.get(self.url, {'q': tag_name})
-        assert self.get_results(r) == []
-
-        AddonTag.objects.create(
-            addon=a, tag=Tag.objects.create(tag_text=tag_name))
-
-        a.save()
-        self.refresh()
-
-        r = self.client.get(self.url, {'q': tag_name})
-        assert self.get_results(r) == [a.id]
-
-        # Multiple tags.
-        tag_name_2 = 'bagemtagem'
-        AddonTag.objects.create(
-            addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
-        a.save()
-        self.refresh()
-        r = self.client.get(self.url, {'q': '%s %s' % (tag_name, tag_name_2)})
         assert self.get_results(r) == [a.id]
 
     def test_search_doesnt_return_unlisted_addons(self):

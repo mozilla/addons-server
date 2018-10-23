@@ -45,21 +45,21 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match_phrase': {
                 'name': {
-                    'query': 'tea pot', 'boost': 4, 'slop': 1
+                    'query': 'tea pot', 'boost': 8.0, 'slop': 1
                 }
             }
         }
         assert expected in should
 
         expected = {
-            'prefix': {'name': {'boost': 1.5, 'value': 'tea pot'}}
+            'prefix': {'name': {'boost': 3.0, 'value': 'tea pot'}}
         }
         assert expected in should
 
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'query': 'tea pot', 'boost': 2.5,
+                    'query': 'tea pot', 'boost': 5.0,
                     'analyzer': 'english',
                     'operator': 'and'
                 }
@@ -71,7 +71,7 @@ class TestQueryFilter(FilterTestsBase):
             'match_phrase': {
                 'description_l10n_english': {
                     'query': 'tea pot',
-                    'boost': 0.6,
+                    'boost': 3.0,
                     'analyzer': 'english',
                 }
             }
@@ -97,7 +97,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
+                    'boost': 4.0, 'prefix_length': 4, 'query': 'blah',
                     'fuzziness': 'AUTO',
                 }
             }
@@ -110,7 +110,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
+                    'boost': 4.0, 'prefix_length': 4, 'query': 'search terms',
                     'fuzziness': 'AUTO',
                 }
             }
@@ -128,7 +128,7 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4,
+                    'boost': 4.0, 'prefix_length': 4,
                     'query': 'this search query is too long.',
                     'fuzziness': 'AUTO',
                 }
@@ -593,7 +593,7 @@ class TestCombinedFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'analyzer': 'english', 'boost': 2.5, 'query': u'test',
+                    'analyzer': 'english', 'boost': 5.0, 'query': u'test',
                     'operator': 'and'
                 }
             }

@@ -437,119 +437,119 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tab_center_redux(self):
         self._check_scenario('tab center redux', (
-            ['Tab Center Redux', 42.221684],
-            ['Tab Mix Plus', 0.028214136],
-            ['Redux DevTools', 0.020817358],
+            ['Tab Center Redux', 58.978714],
+            ['Tab Mix Plus', 0.05983838],
+            ['Redux DevTools', 0.04239828],
         ))
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario('Open Image in New Tab', (
-            ['Open Image in New Tab', 13.606365],
-            ['Open image in a new tab', 2.6027737],
+            ['Open Image in New Tab', 23.297497],
+            ['Open image in a new tab', 6.9623027],
         ))
 
     def test_scenario_coinhive(self):
         # TODO, should match "CoinBlock"
         self._check_scenario('CoinHive', (
-            ['Coinhive Blocker', 1.8078496],
-            ['NoMiners', 0.017527454],  # via description
+            ['Coinhive Blocker', 4.071178],
+            ['NoMiners', 0.055078223],  # via description
             # ['CoinBlock', 0],  # via prefix search
         ))
 
     def test_scenario_privacy(self):
         self._check_scenario('Privacy', (
-            ['Privacy Badger', 4.045193],
-            ['Privacy Settings', 2.1114779],
-            ['Google Privacy', 2.0161355],  # More users, summary
-            ['Privacy Pass', 1.2800134],
-            ['Ghostery', 0.0741566],  # Crazy amount of users, summary
+            ['Privacy Badger', 8.980763],
+            ['Privacy Settings', 4.6852746],
+            ['Google Privacy', 4.44084],  # More users, summary
+            ['Privacy Pass', 2.7303915],
+            ['Ghostery', 0.27124262],  # Crazy amount of users, summary
             # summary + a lot of users, but not as many as ghostery
-            ['Blur', 0.06171894],
+            ['Blur', 0.22378409],
         ))
 
     def test_scenario_firebu(self):
         self._check_scenario('firebu', (
-            ['Firebug', 1.643983],
+            ['Firebug', 3.502443],
             # unclear why preference to Firebug Autocompleter,
             # weekly downloads + users?
-            ['Firefinder for Firebug', 0.6100478],
-            ['Firebug Autocompleter', 0.42855242],
-            ['Fire Drag', 0.26174024],
+            ['Firefinder for Firebug', 1.29671],
+            ['Firebug Autocompleter', 0.90951896],
+            ['Fire Drag', 0.5536524],
         ))
 
     def test_scenario_fireb(self):
         self._check_scenario('fireb', (
-            ['Firebug', 1.643983],
-            ['Firefinder for Firebug', 0.6100478],
-            ['Firebug Autocompleter', 0.42855242],
-            ['Fire Drag', 0.26174024],
+            ['Firebug', 3.502443],
+            ['Firefinder for Firebug', 1.29671],
+            ['Firebug Autocompleter', 0.90951896],
+            ['Fire Drag', 0.5536524],
         ))
 
     def test_scenario_menu_wizzard(self):
         self._check_scenario('Menu Wizzard', (
-            ['Menu Wizard', 0.044465635],  # (fuzzy, typo)
+            ['Menu Wizard', 0.0949916],  # (fuzzy, typo)
             # partial match + users
-            ['Add-ons Manager Context Menu', 0.03403218],
+            ['Add-ons Manager Context Menu', 0.07146975],
         ))
 
     def test_scenario_frame_demolition(self):
         self._check_scenario('Frame Demolition', (
-            ['Frame Demolition', 13.404683],
+            ['Frame Demolition', 17.465092],
         ))
 
     def test_scenario_demolition(self):
         # Find "Frame Demolition" via a typo
         self._check_scenario('Demolation', (
-            ['Frame Demolition', 0.027297318],
+            ['Frame Demolition', 0.053433612],
         ))
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (
-            ['reStyle', 17.824808],
+            ['reStyle', 20.415598],
         ))
 
     def test_scenario_megaupload_downloadhelper(self):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario('MegaUpload DownloadHelper', (
-            ['MegaUpload DownloadHelper', 22.838007],
+            ['MegaUpload DownloadHelper', 35.550808],
         ))
 
     def test_scenario_downloadhelper(self):
         # No direct match, "Download Flash and Video" has
         # huge amount of users that puts it first here
         self._check_scenario('DownloadHelper', (
-            ['RapidShare DownloadHelper', 1.5038899],
-            ['MegaUpload DownloadHelper', 0.837598],
-            ['Download Flash and Video', 0.7398568],
-            ['1-Click YouTube Video Download', 0.55960035],
+            ['RapidShare DownloadHelper', 3.2069716],
+            ['MegaUpload DownloadHelper', 1.7840389],
+            ['Download Flash and Video', 1.5753028],
+            ['1-Click YouTube Video Download', 1.1903474],
         ))
 
     def test_scenario_megaupload(self):
         self._check_scenario('MegaUpload', (
-            ['MegaUpload DownloadHelper', 1.881489],
-            ['Popup Blocker', 0.57406807],
+            ['MegaUpload DownloadHelper', 4.14666],
+            ['Popup Blocker', 1.2203317],
         ))
 
     def test_scenario_no_flash(self):
         self._check_scenario('No Flash', (
-            ['No Flash', 42.063526],
-            ['Download Flash and Video', 4.081107],
-            ['YouTube Flash Player', 3.30791],
-            ['YouTube Flash Video Player', 2.875178],
+            ['No Flash', 52.622337],
+            ['Download Flash and Video', 9.604026],
+            ['YouTube Flash Player', 7.6949105],
+            ['YouTube Flash Video Player', 6.815566],
         ))
 
         # Case should not matter.
         self._check_scenario('no flash', (
-            ['No Flash', 42.063526],
-            ['Download Flash and Video', 4.081107],
-            ['YouTube Flash Player', 3.30791],
-            ['YouTube Flash Video Player', 2.875178],
+            ['No Flash', 52.622337],
+            ['Download Flash and Video', 9.604026],
+            ['YouTube Flash Player', 7.6949105],
+            ['YouTube Flash Video Player', 6.815566],
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
-            ['Disable Hello, Pocket & Reader+', 28.746347],  # yeay!
+            ['Disable Hello, Pocket & Reader+', 49.19185],  # yeay!
         ))
 
     def test_scenario_grapple(self):
@@ -558,7 +558,7 @@ class TestRankingScenarios(ESTestCase):
         see `legacy_api.SearchTest` for various examples.
         """
         self._check_scenario('grapple', (
-            ['GrApple Yummy', 0.45373428],
+            ['GrApple Yummy', 1.040137],
         ))
 
     def test_scenario_delicious(self):
@@ -567,34 +567,34 @@ class TestRankingScenarios(ESTestCase):
         see `legacy_api.SearchTest` for various examples.
         """
         self._check_scenario('delicious', (
-            ['Delicious Bookmarks', 0.5275579],
+            ['Delicious Bookmarks', 1.1976128],
         ))
 
     def test_score_boost_name_match(self):
         # Tests that we match directly "Merge Windows" and also find
         # "Merge All Windows" because of slop=1
         self._check_scenario('merge windows', (
-            ['Merge Windows', 9.161506],
-            ['Merge All Windows', 0.6894618],
+            ['Merge Windows', 12.701477],
+            ['Merge All Windows', 1.5323864],
         ), no_match=(
             'All Downloader Professional',
         ))
 
         self._check_scenario('merge all windows', (
-            ['Merge All Windows', 9.34597],
-            ['Merge Windows', 0.020408927],
-            ['All Downloader Professional', 0.0073838094],
+            ['Merge All Windows', 14.502252],
+            ['Merge Windows', 0.04097688],
+            ['All Downloader Professional', 0.010629081],
         ))
 
     def test_score_boost_exact_match(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('test addon test21', (
-            ['test addon test21', 10.347969],
+            ['test addon test21', 16.639639],
         ))
 
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 24.268158],
-            ['1-Click YouTube Video Download', 0.12715381],
+            ['Amazon 1-Click Lock', 40.785732],
+            ['1-Click YouTube Video Download', 0.2823339],
         ))
