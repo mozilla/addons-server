@@ -439,8 +439,48 @@ class Addon(OnChangeMixin, ModelBase):
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
 
+    def _prepare_deletion_email(self, msg, reason):
+        user = core.get_user()
+        # Don't localize email to admins, use 'en-US' always.
+        with translation.override(settings.LANGUAGE_CODE):
+            # The types are lazy translated in apps/constants/base.py.
+            atype = amo.ADDON_TYPE.get(self.type, 'unknown').upper()
+        context = {
+            'atype': atype,
+            'authors': [u.email for u in self.authors.all()],
+            'adu': self.average_daily_users,
+            'guid': self.guid,
+            'id': self.id,
+            'msg': msg,
+            'reason': reason,
+            'name': self.name,
+            'slug': self.slug,
+            'total_downloads': self.total_downloads,
+            'url': jinja_helpers.absolutify(self.get_url_path()),
+            'user_str': ("%s, %s (%s)" % (user.display_name or
+                                          user.username, user.email,
+                                          user.id) if user else "Unknown"),
+        }
+
+        email_msg = u"""
+        The following %(atype)s was deleted.
+        %(atype)s: %(name)s
+        URL: %(url)s
+        DELETED BY: %(user_str)s
+        ID: %(id)s
+        GUID: %(guid)s
+        AUTHORS: %(authors)s
+        TOTAL DOWNLOADS: %(total_downloads)s
+        AVERAGE DAILY USERS: %(adu)s
+        NOTES: %(msg)s
+        REASON GIVEN BY USER FOR DELETION: %(reason)s
+        """ % context
+        log.debug('Sending delete email for %(atype)s %(id)s' % context)
+        subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
+        return subject, email_msg
+
     @transaction.atomic
-    def delete(self, msg='', reason=''):
+    def delete(self, msg='', reason='', send_delete_email=True):
         # To avoid a circular import
         from . import tasks
         from olympia.versions import tasks as version_tasks
@@ -469,46 +509,9 @@ class Addon(OnChangeMixin, ModelBase):
 
             log.debug('Deleting add-on: %s' % self.id)
 
-            to = [settings.FLIGTAR]
-            user = core.get_user()
-
-            # Don't localize email to admins, use 'en-US' always.
-            with translation.override(settings.LANGUAGE_CODE):
-                # The types are lazy translated in apps/constants/base.py.
-                atype = amo.ADDON_TYPE.get(self.type, 'unknown').upper()
-            context = {
-                'atype': atype,
-                'authors': [u.email for u in self.authors.all()],
-                'adu': self.average_daily_users,
-                'guid': self.guid,
-                'id': self.id,
-                'msg': msg,
-                'reason': reason,
-                'name': self.name,
-                'slug': self.slug,
-                'total_downloads': self.total_downloads,
-                'url': jinja_helpers.absolutify(self.get_url_path()),
-                'user_str': ("%s, %s (%s)" % (user.display_name or
-                                              user.username, user.email,
-                                              user.id) if user else "Unknown"),
-            }
-
-            email_msg = u"""
-            The following %(atype)s was deleted.
-            %(atype)s: %(name)s
-            URL: %(url)s
-            DELETED BY: %(user_str)s
-            ID: %(id)s
-            GUID: %(guid)s
-            AUTHORS: %(authors)s
-            TOTAL DOWNLOADS: %(total_downloads)s
-            AVERAGE DAILY USERS: %(adu)s
-            NOTES: %(msg)s
-            REASON GIVEN BY USER FOR DELETION: %(reason)s
-            """ % context
-            log.debug('Sending delete email for %(atype)s %(id)s' % context)
-            subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
-
+            if send_delete_email:
+                email_to = [settings.FLIGTAR]
+                subject, email_msg = self._prepare_deletion_email(msg, reason)
             # If the add-on was disabled by Mozilla, add the guid to
             #  DeniedGuids to prevent resubmission after deletion.
             if self.status == amo.STATUS_DISABLED:
@@ -529,7 +532,8 @@ class Addon(OnChangeMixin, ModelBase):
                         _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
 
-            send_mail(subject, email_msg, recipient_list=to)
+            if send_delete_email:
+                send_mail(subject, email_msg, recipient_list=email_to)
         else:
             # Real deletion path.
             super(Addon, self).delete()
