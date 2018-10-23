@@ -9,6 +9,7 @@ CSP_BASE_URI += (
     'https://addons-dev.allizom.org',
 )
 CDN_HOST = 'https://addons-dev-cdn.allizom.org'
+CSP_CONNECT_SRC += (CDN_HOST,)
 CSP_FONT_SRC += (CDN_HOST,)
 CSP_IMG_SRC += (CDN_HOST,)
 CSP_SCRIPT_SRC += (
