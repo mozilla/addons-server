@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-21 19:15+0000\n"
+"PO-Revision-Date: 2018-10-23 14:38+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2777,13 +2777,11 @@ msgstr ""
 "<p>A kiegészítőknek tetszőleges számú készítője lehet, akik 2 különböző csoportba sorolhatók:</p> <ul> <li><b>Tulajdonos:</b> kezelheti a kiegészítő megjelenésének tulajdonságait, beleértve a "
 "szerzők hozzáadását és eltávolítását.</li> <li><b>Fejlesztő:</b> kezelheti a kiegészítő minden tulajdonságát, kivéve a szerzők hozzáadását és eltávolítását.</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Kiegészítő részletei"
+msgstr "További részletek"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "{0} kiegészítő részletei"
+msgstr "A(z) {0} további részletei"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "A címkék segítenek a felhasználóknak hogy megtalálják a kiegészítőjét és rövid leírásként is működnek mint pl. „lapok”, az „eszköztár” vagy a „twitter”. Legfeljebb {0} címkét használhat."
@@ -2827,9 +2825,8 @@ msgid "Describe Add-on"
 msgstr "Kiegészítő leírása"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Kiegészítő leírása"
+msgstr "A(z) {0} leírása"
 
 msgid "Add-on URL"
 msgstr "Kiegészítő URL-je"
@@ -3231,9 +3228,8 @@ msgstr "Összegzés:"
 msgid "required"
 msgstr "szükséges"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Leírás"
+msgstr "Leírás:"
 
 msgid "This add-on is experimental"
 msgstr "Ez a kiegészítő kísérleti"
