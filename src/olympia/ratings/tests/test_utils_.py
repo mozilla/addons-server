@@ -6,6 +6,7 @@ import pytest
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import addon_factory, user_factory
+from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.ratings.utils import maybe_check_with_akismet
 
@@ -45,11 +46,14 @@ def test_maybe_check_with_akismet(body, pre_save_body, user_id,
     rating = Rating.objects.create(**rating_kw)
     request = RequestFactory().get('/')
 
-    with mock.patch('olympia.ratings.utils.check_with_akismet.delay') as cmock:
+    to_patch = 'olympia.ratings.utils.check_akismet_reports.delay'
+    with mock.patch(to_patch) as check_akismet_reports_mock:
         with override_switch('akismet-spam-check', active=waffle_enabled):
             result = maybe_check_with_akismet(request, rating, pre_save_body)
             assert result == is_checked
             if is_checked:
-                cmock.assert_called()
+                assert AkismetReport.objects.count() == 1
+                check_akismet_reports_mock.assert_called()
             else:
-                cmock.assert_not_called()
+                assert AkismetReport.objects.count() == 0
+                check_akismet_reports_mock.assert_not_called()

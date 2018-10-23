@@ -9,6 +9,8 @@ from django.core.files.storage import default_storage as storage
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
+import waffle
+
 import olympia.core.logger
 
 from olympia import amo
@@ -135,8 +137,10 @@ class AkismetSpamCheckFormMixin(object):
             data=data,
             existing_data=existing_data)
         error_msg = ugettext('The text entered has been flagged as spam.')
+        error_if_spam = waffle.switch_is_active('akismet-addon-action')
         for prop, report in reports:
-            if report.is_spam:
+            is_spam = report.is_spam
+            if error_if_spam and is_spam:
                 self.add_error(prop, forms.ValidationError(error_msg))
         return super(AkismetSpamCheckFormMixin, self).clean()
 
@@ -320,7 +324,7 @@ class AddonFormMedia(AddonFormBase):
         return super(AddonFormMedia, self).save(commit)
 
 
-class AdditionalDetailsForm(AkismetSpamCheckFormMixin, AddonFormBase):
+class AdditionalDetailsForm(AddonFormBase):
     default_locale = forms.TypedChoiceField(choices=LOCALES)
     homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     tags = forms.CharField(required=False)

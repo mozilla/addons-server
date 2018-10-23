@@ -60,8 +60,31 @@ class TestCollectionAkismetSpamValidator(TestCase):
         assert comment_check_mock.call_count == 2
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-collection-action', active=False)
     @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_spam(self, comment_check_mock):
+    def test_spam_logging_only(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+
+        self.validator(self.data)
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 2
+        name_report = AkismetReport.objects.first()
+        # name will only be there once because it's duplicated.
+        assert name_report.comment_type == 'collection-name'
+        assert name_report.comment == self.data['name']['en-US']
+        summary_report = AkismetReport.objects.last()
+        # en-US description won't be there because it's an existing description
+        assert summary_report.comment_type == 'collection-description'
+        assert summary_report.comment == self.data['description']['fr']
+
+        # After the first comment_check was spam, additional ones are skipped.
+        assert comment_check_mock.call_count == 1
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-collection-action', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_spam_action_taken(self, comment_check_mock):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
 
         with self.assertRaises(serializers.ValidationError):
@@ -78,7 +101,7 @@ class TestCollectionAkismetSpamValidator(TestCase):
         assert summary_report.comment_type == 'collection-description'
         assert summary_report.comment == self.data['description']['fr']
 
-        # After the first comment_check was spam, additinal ones are skipped.
+        # After the first comment_check was spam, additional ones are skipped.
         assert comment_check_mock.call_count == 1
 
 
