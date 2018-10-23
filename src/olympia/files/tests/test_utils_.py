@@ -18,6 +18,7 @@ import mock
 import pytest
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -383,6 +384,7 @@ class TestManifestJSONExtractor(TestCase):
                 )
 
     @mock.patch('olympia.addons.models.resolve_i18n_message')
+    @override_switch('content-optimization', active=False)
     def test_mozilla_trademark_for_prefix_allowed(self, resolve_message):
         resolve_message.return_value = 'Notify for Mozilla'
 
