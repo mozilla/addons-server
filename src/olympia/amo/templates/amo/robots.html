@@ -6,16 +6,17 @@ Allow: /
 Disallow: /*{{ url('addons.contribute', 0, add_prefix=False)|replace('0', '*') }}
 
 {# The downloads live at locale-agnostic URLs now. #}
-{% for a in apps -%}
-Disallow: /{{ a.short }}/downloads/
+{% for app in apps -%}
+Disallow: /{{ app.short }}/downloads/
 {% endfor %}
 
 {# Spacing is a little weird because it makes the output prettier #}
-{% for l in settings.AMO_LANGUAGES %}
-{% for a in apps -%}
+{% for lang in settings.AMO_LANGUAGES -%}
 
-Disallow: /{{ l }}/{{ a.short }}{{ url('search.search', add_prefix=False) }}
-Disallow: /{{ l }}/{{ a.short }}{{ url('collections.list', add_prefix=False) }}
+Allow: /{{ lang }}/firefox{{ url('collections.list', add_prefix=False) }}{{ mozilla_user_id }}/
+{% for app in apps %}
+Disallow: /{{ lang }}/{{ app.short }}{{ url('search.search', add_prefix=False) }}
+Disallow: /{{ lang }}/{{ app.short }}{{ url('collections.list', add_prefix=False) }}
 {% endfor %}
 
 {% endfor %}
