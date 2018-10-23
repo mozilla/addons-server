@@ -812,8 +812,9 @@ class DetailsPageMixin(object):
         assert AkismetReport.objects.count() == 0
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_spam(self, comment_check_mock):
+    def test_akismet_spam_check_spam_action_taken(self, comment_check_mock):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
         data = self.get_dict(name=u'spám', summary=self.addon.summary)
         response = self.client.post(self.url, data)
@@ -830,6 +831,25 @@ class DetailsPageMixin(object):
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
         assert text_type(self.addon.name) != u'spám'
+
+        comment_check_mock.assert_called_once()
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=False)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_spam_logging_only(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+        response = self.is_success(data)
+
+        # the summary won't be comment_check'd because it didn't change.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) == u'spám'
+        assert 'spam' not in response.content
 
         comment_check_mock.assert_called_once()
 
@@ -2135,8 +2155,9 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
                                  args=['a3615', self.version.pk])
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
-    def test_akismet_spam_check_spam(self, comment_check_mock):
+    def test_akismet_spam_check_spam_action_taken(self, comment_check_mock):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
         data = self.get_dict(name=u'spám', summary=self.addon.summary)
         response = self.client.post(self.url, data)
@@ -2161,6 +2182,31 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         report = AkismetReport.objects.last()
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
+
+        assert comment_check_mock.call_count == 2
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=False)
+    @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
+    def test_akismet_spam_check_spam_logging_only(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict(name=u'spám', summary=self.addon.summary)
+
+        response = self.is_success(data)
+
+        # The summary WILL be comment_check'd, even though it didn't change,
+        # because we don't trust existing metadata when the previous versions
+        # were unlisted.
+        self.addon = self.addon.reload()
+        assert AkismetReport.objects.count() == 2
+        report = AkismetReport.objects.first()
+        assert report.comment_type == 'product-name'
+        assert report.comment == u'spám'
+        assert text_type(self.addon.name) == u'spám'  # It changed
+        report = AkismetReport.objects.last()
+        assert report.comment_type == 'product-summary'
+        assert report.comment == u'Delicious Bookmarks is the official'
+        assert 'spam' not in response.content
 
         assert comment_check_mock.call_count == 2
 

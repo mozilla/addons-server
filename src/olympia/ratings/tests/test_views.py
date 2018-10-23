@@ -21,6 +21,7 @@ from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, reverse_ns, user_factory,
     version_factory)
+from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.users.models import UserProfile
 
@@ -611,8 +612,8 @@ class TestCreate(ReviewTest):
         assert self.client.get(self.add_url).status_code == 404
 
     @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
-    def test_create_calls_akismet(self, check_with_akismet_mock):
+    @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
+    def test_create_calls_akismet(self, check_akismet_reports_mock):
         response = self.client.post(
             self.add_url, {'body': 'xx', 'rating': 3},
             HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
@@ -620,8 +621,12 @@ class TestCreate(ReviewTest):
         self.assertRedirects(response, self.list_url, status_code=302)
 
         rating = Rating.objects.latest('pk')
-        check_with_akismet_mock.assert_called_with(
-            rating.pk, '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.rating_instance == rating
+        assert report.user_agent == '. Gecko/20100101 Firefox/62.0'
+        assert report.referrer == 'https://mozilla.org/'
+        check_akismet_reports_mock.assert_called_with([report.id])
 
 
 class TestEdit(ReviewTest):
@@ -727,8 +732,8 @@ class TestEdit(ReviewTest):
         assert len(mail.outbox) == 0
 
     @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
-    def test_edit_calls_akismet(self, check_with_akismet_mock):
+    @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
+    def test_edit_calls_akismet(self, check_akismet_reports_mock):
         url = jinja_helpers.url('addons.ratings.edit', self.addon.slug, 218207)
         response = self.client.post(
             url, {'rating': 2, 'body': 'woo woo'},
@@ -737,8 +742,12 @@ class TestEdit(ReviewTest):
             HTTP_REFERER='https://mozilla.org/')
         assert response.status_code == 200
 
-        check_with_akismet_mock.assert_called_with(
-            218207, '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.rating_instance_id == 218207
+        assert report.user_agent == '. Gecko/20100101 Firefox/62.0'
+        assert report.referrer == 'https://mozilla.org/'
+        check_akismet_reports_mock.assert_called_with([report.id])
 
 
 class TestRatingViewSetGet(TestCase):
@@ -1781,8 +1790,8 @@ class TestRatingViewSetEdit(TestCase):
         assert unicode(self.rating.body) == u'yés!'
 
     @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
-    def test_edit_calls_akismet(self, check_with_akismet_mock):
+    @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
+    def test_edit_calls_akismet(self, check_akismet_reports_mock):
         self.client.login_api(self.user)
         response = self.client.patch(
             self.url, {'score': 2, 'body': u'løl!'},
@@ -1792,9 +1801,12 @@ class TestRatingViewSetEdit(TestCase):
         self.rating.reload()
         assert response.data['id'] == self.rating.pk
 
-        check_with_akismet_mock.assert_called_with(
-            self.rating.pk,
-            '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.rating_instance == self.rating
+        assert report.user_agent == '. Gecko/20100101 Firefox/62.0'
+        assert report.referrer == 'https://mozilla.org/'
+        check_akismet_reports_mock.assert_called_with([report.id])
 
 
 class TestRatingViewSetPost(TestCase):
@@ -2214,8 +2226,8 @@ class TestRatingViewSetPost(TestCase):
             assert response.status_code == 201, response.content
 
     @override_switch('akismet-spam-check', active=True)
-    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
-    def test_post_rating_calls_akismet(self, check_with_akismet_mock):
+    @mock.patch('olympia.ratings.utils.check_akismet_reports.delay')
+    def test_post_rating_calls_akismet(self, check_akismet_reports_mock):
         self.user = user_factory()
         self.client.login_api(self.user)
         assert not Rating.objects.exists()
@@ -2228,8 +2240,13 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         rating = Rating.objects.latest('pk')
         assert rating.pk == response.data['id']
-        check_with_akismet_mock.assert_called_with(
-            rating.pk, '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.rating_instance == rating
+        assert report.user_agent == '. Gecko/20100101 Firefox/62.0'
+        assert report.referrer == 'https://mozilla.org/'
+        check_akismet_reports_mock.assert_called_with([report.id])
 
 
 class TestRatingViewSetFlag(TestCase):

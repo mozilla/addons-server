@@ -1283,9 +1283,31 @@ class TestUploadDetail(BaseUploadTest):
         assert 'spam' not in response.content
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=False)
     @responses.activate
     @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome(self):
+    def test_akismet_reports_created_spam_outcome_logging_only(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        self.upload_file('valid_webextension.xpi')
+
+        upload = FileUpload.objects.get()
+        response = self.client.get(
+            reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
+        assert response.status_code == 200
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get(upload_instance=upload)
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Beastify'  # the addon's name
+        assert report.result == AkismetReport.MAYBE_SPAM
+        assert 'spam' not in response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome_action_taken(self):
         akismet_url = settings.AKISMET_API_URL.format(
             api_key='none', action='comment-check')
         responses.add(responses.POST, akismet_url, json=True)

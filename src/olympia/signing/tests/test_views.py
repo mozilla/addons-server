@@ -481,9 +481,34 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'spam' not in validation_response.content
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=False)
     @responses.activate
     @override_settings(AKISMET_API_KEY=None)
-    def test_akismet_reports_created_spam_outcome(self):
+    def test_akismet_reports_created_spam_outcome_logging_only(self):
+        akismet_url = settings.AKISMET_API_URL.format(
+            api_key='none', action='comment-check')
+        responses.add(responses.POST, akismet_url, json=True)
+        addon = Addon.objects.get(guid=self.guid)
+        response = self.request(
+            'PUT', self.url(self.guid, '3.0'), channel='listed')
+
+        assert addon.versions.latest().channel == amo.RELEASE_CHANNEL_LISTED
+        assert response.status_code == 202
+        assert AkismetReport.objects.count() == 1
+        report = AkismetReport.objects.get()
+        assert report.comment_type == 'product-name'
+        assert report.comment == 'Upload Version Test XPI'  # the addon's name
+        assert report.result == AkismetReport.MAYBE_SPAM
+
+        validation_response = self.get(self.url(self.guid, '3.0'))
+        assert validation_response.status_code == 200
+        assert 'spam' not in validation_response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=True)
+    @responses.activate
+    @override_settings(AKISMET_API_KEY=None)
+    def test_akismet_reports_created_spam_outcome_action_taken(self):
         akismet_url = settings.AKISMET_API_URL.format(
             api_key='none', action='comment-check')
         responses.add(responses.POST, akismet_url, json=True)
