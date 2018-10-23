@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-23 22:50+0000\n"
+"PO-Revision-Date: 2018-10-23 23:01+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5448,11 +5448,11 @@ msgstr "Tawetamaj ruwäch ri k'ojlib'äl {start_sub_heading}rik'in {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Tawila' akuchi' k'o wi ri ruk'u'x rusamaj xab'achike ajk'amaya'l ruxaq. Katok jun etamanel b'yajinel chi rij ajk'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'achojmirisaj ri taq k'ayewal chi rij k'oxom {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
