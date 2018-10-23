@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-23 23:20+0000\n"
+"PO-Revision-Date: 2018-10-23 23:33+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5464,7 +5464,7 @@ msgstr "Tanuk'u' rupam ajk'amaya'l chuwäch natz'ajb'a' {start_sub_heading}rik'i
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "Tab'ana' nima'q taq k'exoj rik'in ri tz'etoj—tayuju' itzel taq eltzijol o taq rupam—pa xab'achike ajk'amaya'l ruxaq nawajo' natz'ajb'a'."
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
