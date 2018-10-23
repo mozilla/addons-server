@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-23 22:03+0000\n"
+"PO-Revision-Date: 2018-10-23 22:21+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5436,11 +5436,11 @@ msgstr "Anin tab'ana' ri wachinäq {start_sub_heading}rik'in {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Xa xe k'o chi naqirirej tz'ib'anïk, taq wachib'äl o taq ximonel richin yawachib'en, yajaqon, yakanon chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Tawokisaj chi yatikïr naqasaj rupam silowäch chuqa'/o k'oxom pa jalajöj kib'anikil."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
