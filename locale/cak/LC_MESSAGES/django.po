@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-23 20:24+0000\n"
+"PO-Revision-Date: 2018-10-23 20:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5368,35 +5368,35 @@ msgstr "Tawojqaj ri ramaj yasamäj {start_sub_heading}rik'in {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "Tawila' jarupe' ramaj at k'o chuwäch ri kematz'ib', o pa taq ruchokoy samaj achi'el Trello, JIRA, Basecamp, GitHub, chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Tak'ama' ajk'amaya'l rupam achi'el cholna'oj, silowäch, taq wachib'äl chuqa' ch'aqa' chik richin nayäk chuqa' nawokisaj pa taq anuk'samaj o rusamaj molaj pa ri mej ri'."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ütz katok pa k'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Xa xe nuya' q'ij chi ri rupam ajk'amaya'l tisamäj pa ri ütz kuqül taq ajk'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ke'anuk'samajij ri taq kuki {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Ke'anuk'samajij ronojel taq kuki ye'amöl toq yatok pa k'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tamestaj ri ojer {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Ruyonil tayuju' ri runatab'al okem pa k'amaya'l kichin ri taq ajk'amaya'l ruxaq ye'acha'."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
