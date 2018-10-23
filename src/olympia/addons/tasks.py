@@ -651,18 +651,18 @@ def migrate_lwts_to_static_themes(ids, **kw):
                 static = add_static_theme_from_lwt(lwt)
             mlog.info(
                 '[Success] Static theme %r created from LWT %r', static, lwt)
+            if not static:
+                raise Exception('add_static_theme_from_lwt returned falsey')
+            MigratedLWT.objects.create(
+                lightweight_theme=lwt, getpersonas_id=lwt.persona.persona_id,
+                static_theme=static)
+            # Steal the lwt's slug after it's deleted.
+            slug = lwt.slug
+            lwt.delete()
+            static.update(slug=slug)
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
             mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)
-        if not static:
-            continue
-        MigratedLWT.objects.create(
-            lightweight_theme=lwt, getpersonas_id=lwt.persona.persona_id,
-            static_theme=static)
-        # Steal the lwt's slug after it's deleted.
-        slug = lwt.slug
-        lwt.delete()
-        static.update(slug=slug)
     resume_all_tasks()
 
 
