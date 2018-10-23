@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 20:46+0000\n"
+"PO-Revision-Date: 2018-10-23 13:53+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -4837,7 +4837,7 @@ msgstr "ਆਪਣੇ ਟੂਲਬਾਰ ਵਿੱਚ ਆਈਕੋਨ ਤੇ ਸ�
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਉਤਪਾਦਕਤਾ ਨੂੰ ਪ੍ਰੇਰਿਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
@@ -4885,7 +4885,7 @@ msgstr "ਸਾਰੇ ਸਹਾਇਕ ਉਪਕਰਨਾਂ ਨਾਲ ਕੀਤ�
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸ਼ੌਪ ਸਮਾਰਕ"
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
@@ -4973,7 +4973,7 @@ msgstr "ਅਗਿਆਤ ਰਹਿਣ ਅਤੇ ਸਪੈਮ ਤੋਂ ਬਚਣ 
 
 #. editorial content for the discovery pane.
 msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪਣੀ ਗੋਪਨੀਯਤਾ ਨੂੰ ਬਦਲੋ"
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
@@ -5029,7 +5029,7 @@ msgstr "ਅੰਗਰੇਜ਼ੀ, ਫਰਾਂਸੀਸੀ, ਸਪੈਨਿਸ�
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈਬਸਾਈਟ ਬਲਾਕ ਲਿਸਟ ਬਣਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
@@ -5501,7 +5501,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਾਲੀਆਂ ਚੀਜ਼ਾਂ ਨੂੰ ਕ੍ਰਮਬੱਧ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
