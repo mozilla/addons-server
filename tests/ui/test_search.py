@@ -46,3 +46,14 @@ def test_sorting_by(base_url, selenium, category, sort_attr):
     results = [getattr(i, sort_attr)
                for i in search_page.result_list.extensions]
     assert sorted(results, reverse=True) == results
+
+
+@pytest.mark.nondestructive
+def test_incompative_extensions_show_as_incompatible(base_url, selenium):
+    page = Home(selenium, base_url).open()
+    term = 'Ui-Addon-Android'
+    items = page.search_for(term)
+    for item in items.result_list.extensions:
+        if term == item.name:
+            detail_page = item.click()
+            assert detail_page.is_compatible is False

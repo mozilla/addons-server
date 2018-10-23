@@ -10,6 +10,7 @@ def test_addon_install(base_url, selenium, firefox, firefox_notifications):
     selenium.get('{}/addon/ui-test-install'.format(base_url))
     addon = Detail(selenium, base_url)
     assert 'Ui-Addon-Install' in addon.name
+    assert addon.is_compatible
     addon.install()
     firefox.browser.wait_for_notification(
         firefox_notifications.AddOnInstallBlocked

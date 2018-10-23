@@ -173,6 +173,53 @@ class GenerateAddonsSerializer(serializers.Serializer):
             'Created addon {0} for testing successfully'
             .format(addon.name))
 
+    def create_featured_android_addon(self):
+        """Creates a custom addon named 'Ui-Addon-Android'.
+
+        This addon will be a featured addon and will have a featured collecton
+        attatched to it. It will belong to the user uitest.
+
+        It has 1 preview, 2 reviews, and 1 authors.
+
+        It is an Android addon.
+
+        """
+        default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
+        addon = addon_factory(
+            status=STATUS_PUBLIC,
+            type=ADDON_EXTENSION,
+            average_daily_users=5656,
+            users=[self.user],
+            average_rating=5,
+            description=u'My Addon description about ANDROID',
+            file_kw={
+                'hash': 'fakehash',
+                'platform': amo.PLATFORM_ANDROID.id,
+                'size': 42,
+            },
+            guid=generate_addon_guid(),
+            icon_type=random.choice(default_icons),
+            name=u'Ui-Addon-Android',
+            public_stats=True,
+            slug='ui-test-addon-android',
+            summary=u'My Addon summary for Android',
+            tags=['some_tag', 'another_tag', 'ui-testing',
+                  'selenium', 'python', 'android'],
+            total_ratings=500,
+            weekly_downloads=9999999,
+            developer_comments='This is a testing addon for Android.',
+        )
+        Preview.objects.create(addon=addon, position=1)
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        Rating.objects.create(addon=addon, rating=5, user=user_factory())
+        AddonUser.objects.create(user=user_factory(username='ui-tester2'),
+                                 addon=addon, listed=True)
+        addon.save()
+        generate_collection(addon, app=FIREFOX)
+        print(
+            'Created addon {0} for testing successfully'
+            .format(addon.name))
+
     def create_featured_addon_with_version_for_install(self):
         """Creates a custom addon named 'Ui-Addon'.
 
@@ -188,8 +235,6 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon = Addon.objects.get(guid='@webextension-guid')
         except Addon.DoesNotExist:
             addon = addon_factory(
-                status=STATUS_PUBLIC,
-                type=ADDON_EXTENSION,
                 file_kw=False,
                 average_daily_users=5000,
                 users=[self.user],
