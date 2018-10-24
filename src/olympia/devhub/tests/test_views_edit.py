@@ -410,6 +410,12 @@ class BaseTestEditDescribe(BaseTestEdit):
         addon = self.get_addon()
         assert addon.description == ''
 
+    def test_description_min_length_not_in_html_attrs(self):
+        response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#trans-description textarea').attr('minlength')
+
 
 class L10nTestsMixin(object):
     def get_l10n_urls(self):
@@ -703,6 +709,21 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         data['description'] = '1234567890'
         self.client.post(self.describe_edit_url, data)
         assert self.get_addon().description == '1234567890'
+
+    def test_description_min_length_not_in_html_attrs(self):
+        """Override from BaseTestEditDescribe - need to check present too."""
+        # Check the min-length attribute isn't in tag when waffle is off.
+        with override_switch('content-optimization', active=False):
+            response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#trans-description textarea').attr('minlength')
+        # But min-length attribute is in tag when waffle is on.
+        with override_switch('content-optimization', active=True):
+            response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#trans-description textarea').attr('minlength') == '10'
 
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
