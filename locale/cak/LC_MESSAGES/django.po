@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 21:51+0000\n"
+"PO-Revision-Date: 2018-10-24 22:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5504,26 +5504,26 @@ msgstr "Q'atäl ri tz'etonel yakb'äl, rik'in jub'a' nelesäx %s. Tatojtob'ej ch
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "K'o jun k'ayewal richin nok pa ri yakb'äl %s."
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Man k'o ta chik re yakb'äl re'."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Ri runimilem yakb'äl niq'ax chi re ri {0}."
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "K'o k'ayewal toq nelesäx runa'oj {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Man tikirel ta nitz'et re yakb'äl re' pa k'amab'ey. Taqasaj richin natz'ët rupam ri yakb'äl."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Re yakb'äl re' jun cholb'äl."
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Man tikirel ta nijunamäx ruwäch rik'in rija'"
 
 msgid "Access your data for {name}"
 msgstr "Katok pa taq atzij richin {name}"
