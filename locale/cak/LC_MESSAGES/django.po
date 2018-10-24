@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 21:17+0000\n"
+"PO-Revision-Date: 2018-10-24 21:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5484,23 +5484,23 @@ msgstr "Tab'ana' runuk'ulem ri ruk'oxom okik'amaya'l richin ütz rak'axaxik nub'
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Tachajij ri awichinem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
-msgstr ""
+msgstr "Tato' awi' chi kiwäch ri na'owinäq taq ojqanela'."
 
 #. editorial content for the discovery pane.
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Takuchi' ri awetal {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "Yalan jikïl kakanon rik'in q'atoj ojqanela', na'owinäq ewan rusik'ixik, ichinan kanoxïk chuqa' ch'aqa' chik k'atzinel taq ch'akulal."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "Q'atäl ri tz'etonel yakb'äl, rik'in jub'a' nelesäx %s. Tatojtob'ej chik pa 5 ch'utiramaj."
 
 #, python-format
 msgid "There was an error accessing file %s."
