@@ -46,7 +46,7 @@ INDEX_SETTINGS = {
                 'type': 'dictionary_decompounder',
                 'word_list': [
                     'all', 'auto', 'ball', 'bar', 'block', 'blog', 'bookmark',
-                    'browser', 'bug', 'button', 'chat', 'click', 'clip',
+                    'browser', 'bug', 'button', 'cat', 'chat', 'click', 'clip',
                     'close', 'color', 'context', 'cookie', 'cool', 'css',
                     'delete', 'dictionary', 'down', 'down', 'download', 'easy',
                     'edit', 'fill', 'fire', 'firefox', 'fix', 'flag', 'flash',
