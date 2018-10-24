@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 22:22+0000\n"
+"PO-Revision-Date: 2018-10-24 23:27+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5545,10 +5545,10 @@ msgstr "Man nilitäj ta ri min/max ruwäch. Rik'in jub'a' ri  \"strict_min_versi
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
-msgstr ""
+msgstr "Man xnik'öx ta ri yakb'äl xjotob'äx, nrajo' na ruchakulal %s o majun rupam"
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "Man niq'ax ta ri runa'oj ri yakb'äl xjotob'äx."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
