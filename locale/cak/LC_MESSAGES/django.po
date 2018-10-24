@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 20:08+0000\n"
+"PO-Revision-Date: 2018-10-24 21:05+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5476,7 +5476,7 @@ msgstr "Tacha' etaman taq na'ojib'al rik'in nawojqaj kajil tikojil yesuj pa Amaz
 
 #. editorial content for the discovery pane.
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Nïm k'oxomanel {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
