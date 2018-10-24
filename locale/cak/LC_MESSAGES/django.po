@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 22:11+0000\n"
+"PO-Revision-Date: 2018-10-24 22:22+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5529,19 +5529,19 @@ msgid "Access your data for {name}"
 msgstr "Katok pa taq atzij richin {name}"
 
 msgid "Access your data on the following websites:"
-msgstr ""
+msgstr "Katok pa ri taq atzij pa re taq ajk'amaya'l ruxaq re':"
 
 msgid "Access your data for all websites"
 msgstr "Katok pa ri taq atzij pa ronojel ri taq ruxaq k'amaya'l"
 
 msgid "GUID is required for Firefox 47 and below."
-msgstr ""
+msgstr "GUID k'atzinel pa Firefox 47 chuqa' ch'aqa' chik nima'q ruwäch."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Ri \"strict_min_version\" ojer nik'ul ja ri 42.0."
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Man nilitäj ta ri min/max ruwäch. Rik'in jub'a' ri  \"strict_min_version\" o \"strict_max_version\" k'o jun man okel ta ruwäch."
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
