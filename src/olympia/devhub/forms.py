@@ -610,6 +610,7 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
         if not content_waffle or self.instance.type != amo.ADDON_EXTENSION:
             description = self.fields['description']
             description.min_length = None
+            description.widget.attrs.pop('minlength', None)
             description.validators = [
                 validator for validator in description.validators
                 if not isinstance(validator, MinLengthValidator)]
