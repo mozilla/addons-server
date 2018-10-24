@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 23:27+0000\n"
+"PO-Revision-Date: 2018-10-24 23:45+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5552,20 +5552,20 @@ msgstr "Man niq'ax ta ri runa'oj ri yakb'äl xjotob'äx."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "Man okel ta rub'i' yakb'äl. Tatz'eta' chi ronojel ri kib'i' yakb'äl nuk'un rik'in utf-8 or latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr ""
+msgstr "Man okel ta rub'i' yakb'äl pa yakb'äl: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Nik'o runimilem yakb'äl pa yakb'äl: {0}"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Man okel ta yakb'äl."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
 msgid "Could not find an add-on ID."
 msgstr ""
