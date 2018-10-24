@@ -17,11 +17,6 @@ log = olympia.core.logger.getLogger('z.es')
 indexers = (AddonIndexer,)
 
 # Search-related index settings.
-# TODO: Is this still needed? Do we care?
-# re https://github.com/mozilla/addons-server/issues/2661
-# funny enough, the elasticsearch mention that `dictionary_decompounder` is to
-# "decompose compound words found in many German languages"
-# and all the words in the list are English... (cgrebs 042017)
 INDEX_SETTINGS = {
     'analysis': {
         'analyzer': {
@@ -44,23 +39,27 @@ INDEX_SETTINGS = {
                 'preserve_original': True
             },
             'dict': {
+                # This filter is useful for add-on names that have multiple
+                # words sticked together like "AwesomeTabPassword" for
+                # instance, to help users looking for "tab password" find that
+                # add-on.
                 'type': 'dictionary_decompounder',
                 'word_list': [
-                    'cool', 'iris', 'fire', 'bug', 'flag', 'fox', 'grease',
-                    'monkey', 'flash', 'block', 'forecast', 'screen', 'grab',
-                    'cookie', 'auto', 'fill', 'text', 'all', 'so', 'think',
-                    'mega', 'upload', 'download', 'video', 'map', 'spring',
-                    'fix', 'input', 'clip', 'fly', 'lang', 'up', 'down',
-                    'persona', 'css', 'html', 'http', 'ball', 'firefox',
-                    'bookmark', 'chat', 'zilla', 'edit', 'menu', 'menus',
-                    'status', 'bar', 'with', 'easy', 'sync', 'search',
-                    'google', 'time', 'window', 'js', 'super', 'scroll',
-                    'title', 'close', 'undo', 'user', 'inspect', 'inspector',
-                    'browser', 'context', 'dictionary', 'mail', 'button',
-                    'url', 'password', 'secure', 'image', 'new', 'tab',
-                    'delete', 'click', 'name', 'smart', 'down', 'manager',
-                    'open', 'query', 'net', 'link', 'blog', 'this', 'color',
-                    'select', 'key', 'keys', 'foxy', 'translate', 'word',
+                    'all', 'auto', 'ball', 'bar', 'block', 'blog', 'bookmark',
+                    'browser', 'bug', 'button', 'chat', 'click', 'clip',
+                    'close', 'color', 'context', 'cookie', 'cool', 'css',
+                    'delete', 'dictionary', 'down', 'down', 'download', 'easy',
+                    'edit', 'fill', 'fire', 'firefox', 'fix', 'flag', 'flash',
+                    'fly', 'forecast', 'fox', 'foxy', 'google', 'grab',
+                    'grease', 'html', 'http', 'image', 'input', 'inspect',
+                    'inspector', 'iris', 'js', 'key', 'keys', 'lang', 'link',
+                    'mail', 'manager', 'map', 'mega', 'menu', 'menus',
+                    'monkey', 'name', 'net', 'new', 'open', 'password',
+                    'persona', 'query', 'screen', 'scroll', 'search', 'secure',
+                    'select', 'smart', 'so', 'spring', 'status', 'style',
+                    'super', 'sync', 'tab', 'text', 'think', 'this', 'time',
+                    'title', 'translate', 'tree', 'undo', 'up', 'upload',
+                    'url', 'user', 'video', 'window', 'with', 'word', 'zilla'
                 ]
             }
         }
