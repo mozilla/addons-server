@@ -206,21 +206,149 @@ CATEGORIES = {
             'sports': StaticCategory(id=26, name=_(u'Sports'))
         },
         ADDON_STATICTHEME: {
-            'abstract': StaticCategory(id=300, name=_(u'Abstract')),
-            'causes': StaticCategory(id=320, name=_(u'Causes')),
-            'fashion': StaticCategory(id=324, name=_(u'Fashion')),
-            'film-and-tv': StaticCategory(id=326, name=_(u'Film and TV')),
-            'firefox': StaticCategory(id=308, name=_(u'Firefox')),
-            'foxkeh': StaticCategory(id=310, name=_(u'Foxkeh')),
-            'holiday': StaticCategory(id=328, name=_(u'Holiday')),
-            'music': StaticCategory(id=322, name=_(u'Music')),
-            'nature': StaticCategory(id=302, name=_(u'Nature')),
-            'other': StaticCategory(id=314, name=_(u'Other'), weight=333),
-            'scenery': StaticCategory(id=306, name=_(u'Scenery')),
-            'seasonal': StaticCategory(id=312, name=_(u'Seasonal')),
-            'solid': StaticCategory(id=318, name=_(u'Solid')),
-            'sports': StaticCategory(id=304, name=_(u'Sports')),
-            'websites': StaticCategory(id=316, name=_(u'Websites'))
+            'abstract': StaticCategory(
+                id=300,
+                name=_(u'Abstract'),
+                description=_(
+                    u'Download Firefox themes that are artistic and '
+                    u'conceptual. This category includes themes with colorful '
+                    u'palettes and shapes, fantasy landscapes, playful cats, '
+                    u'and psychedelic flowers.'
+                )
+            ),
+            'causes': StaticCategory(
+                id=320,
+                name=_(u'Causes'),
+                description=_(
+                    u'Download Firefox themes for niche interests and topics. '
+                    u'This category includes sports themes, holidays, '
+                    u'philanthropic causes, nationalities, and much more.'
+                )
+            ),
+            'fashion': StaticCategory(
+                id=324,
+                name=_(u'Fashion'),
+                description=_(
+                    u'Download Firefox themes that celebrate style of all '
+                    u'forms—patterns, florals, textures, models, and more.'
+                )
+            ),
+            'film-and-tv': StaticCategory(
+                id=326,
+                name=_(u'Film and TV'),
+                description=_(
+                    u'Download Firefox themes that feature movies, television '
+                    u'shows, and anime. This category includes themes that '
+                    u'depict popular anime like Uchiha Madara, movies like '
+                    u'The Matrix, shows like Game of Thrones, and more.'
+                )
+            ),
+            'firefox': StaticCategory(
+                id=308,
+                name=_(u'Firefox'),
+                description=_(
+                    u'Download Firefox themes that feature the Firefox '
+                    u'browser theme. This category includes themes with '
+                    u'colorful, diverse depictions of the Firefox logo, '
+                    u'including more general fox themes.'
+                )
+            ),
+            'foxkeh': StaticCategory(
+                id=310,
+                name=_(u'Foxkeh'),
+                description=_(
+                    u'Download Firefox themes that feature the Japanese '
+                    u'Firefox. This category includes themes that depict the '
+                    u'cute Foxkeh mascot in various poses on diverse '
+                    u'landscapes.'
+                )
+            ),
+            'holiday': StaticCategory(
+                id=328,
+                name=_(u'Holiday'),
+                description=_(
+                    u'Download Firefox themes that feature holidays. This '
+                    u'category includes themes for Christmas, Halloween, '
+                    u'Thanksgiving, St. Patrick’s Day, Easter, Valentine’s '
+                    u'Day, Fourth of July, and more.'
+                )
+            ),
+            'music': StaticCategory(
+                id=322,
+                name=_(u'Music'),
+                description=_(
+                    u'Download Firefox themes that feature musical interests '
+                    u'and artists. This category includes popular bands like '
+                    u'Nirvana, BTS, Pink Floyd, instruments, music videos, '
+                    u'instruments, and much more.'
+                )
+            ),
+            'nature': StaticCategory(
+                id=302,
+                name=_(u'Nature'),
+                description=_(
+                    u'Download Firefox themes that feature animals and '
+                    u'natural landscapes. This category includes themes with '
+                    u'flowers, sunsets, foxes, seasonal scenes, night skies, '
+                    u'planets, kittens, birds, and more.'
+                )
+            ),
+            'other': StaticCategory(
+                id=314,
+                name=_(u'Other'),
+                weight=333,
+                description=_(
+                    u'Download Firefox themes that are interesting, creative, '
+                    u'and unique.'
+                )
+            ),
+            'scenery': StaticCategory(
+                id=306,
+                name=_(u'Scenery'),
+                description=_(
+                    u'Download Firefox themes that feature the environment '
+                    u'and the natural world. This category includes themes '
+                    u'with sunsets, beaches, illustrations, city skylines, '
+                    u'and more.'
+                )
+            ),
+            'seasonal': StaticCategory(
+                id=312,
+                name=_(u'Seasonal'),
+                description=_(
+                    u'Download Firefox themes that feature all four seasons '
+                    u'of the year—fall, winter, spring, and summer. Autumn '
+                    u'leaves, snowy mountain peaks, sunny summer days, and '
+                    u'spring flowers.'
+                )
+            ),
+            'solid': StaticCategory(
+                id=318,
+                name=_(u'Solid'),
+                description=_(
+                    u'Download Firefox themes that use solid and gradient '
+                    u'colors to personalize your browser. This category '
+                    u'includes bold reds, pastel washes, soft greys, and '
+                    u'much more.'
+                )
+            ),
+            'sports': StaticCategory(
+                id=304,
+                name=_(u'Sports'),
+                description=_(
+                    u'Download Firefox themes that feature a variety of '
+                    u'sports. This category includes country flags, sports '
+                    u'teams, soccer, hockey, and more.'
+                )
+            ),
+            'websites': StaticCategory(
+                id=316,
+                name=_(u'Websites'),
+                description=_(
+                    u'Download Firefox themes that capture the essence of the '
+                    u'web—captivating, unusual, and distinctive.'
+                )
+            )
         },
         ADDON_DICT: {
             'general': StaticCategory(id=95, name=_(u'General'))
@@ -248,21 +376,148 @@ CATEGORIES = {
             'general': StaticCategory(id=98, name=_(u'General'))
         },
         ADDON_PERSONA: {
-            'abstract': StaticCategory(id=100, name=_(u'Abstract')),
-            'causes': StaticCategory(id=120, name=_(u'Causes')),
-            'fashion': StaticCategory(id=124, name=_(u'Fashion')),
-            'film-and-tv': StaticCategory(id=126, name=_(u'Film and TV')),
-            'firefox': StaticCategory(id=108, name=_(u'Firefox')),
-            'foxkeh': StaticCategory(id=110, name=_(u'Foxkeh')),
-            'holiday': StaticCategory(id=128, name=_(u'Holiday')),
-            'music': StaticCategory(id=122, name=_(u'Music')),
-            'nature': StaticCategory(id=102, name=_(u'Nature')),
-            'other': StaticCategory(id=114, name=_(u'Other')),
-            'scenery': StaticCategory(id=106, name=_(u'Scenery')),
-            'seasonal': StaticCategory(id=112, name=_(u'Seasonal')),
-            'solid': StaticCategory(id=118, name=_(u'Solid')),
-            'sports': StaticCategory(id=104, name=_(u'Sports')),
-            'websites': StaticCategory(id=116, name=_(u'Websites'))
+            'abstract': StaticCategory(
+                id=100,
+                name=_(u'Abstract'),
+                description=_(
+                    u'Download Firefox themes that are artistic and '
+                    u'conceptual. This category includes themes with colorful '
+                    u'palettes and shapes, fantasy landscapes, playful cats, '
+                    u'and psychedelic flowers.'
+                )
+            ),
+            'causes': StaticCategory(
+                id=120,
+                name=_(u'Causes'),
+                description=_(
+                    u'Download Firefox themes for niche interests and topics. '
+                    u'This category includes sports themes, holidays, '
+                    u'philanthropic causes, nationalities, and much more.'
+                )
+            ),
+            'fashion': StaticCategory(
+                id=124,
+                name=_(u'Fashion'),
+                description=_(
+                    u'Download Firefox themes that celebrate style of all '
+                    u'forms—patterns, florals, textures, models, and more.'
+                )
+            ),
+            'film-and-tv': StaticCategory(
+                id=126,
+                name=_(u'Film and TV'),
+                description=_(
+                    u'Download Firefox themes that feature movies, television '
+                    u'shows, and anime. This category includes themes that '
+                    u'depict popular anime like Uchiha Madara, movies like '
+                    u'The Matrix, shows like Game of Thrones, and more.'
+                )
+            ),
+            'firefox': StaticCategory(
+                id=108,
+                name=_(u'Firefox'),
+                description=_(
+                    u'Download Firefox themes that feature the Firefox '
+                    u'browser theme. This category includes themes with '
+                    u'colorful, diverse depictions of the Firefox logo, '
+                    u'including more general fox themes.'
+                )
+            ),
+            'foxkeh': StaticCategory(
+                id=110,
+                name=_(u'Foxkeh'),
+                description=_(
+                    u'Download Firefox themes that feature the Japanese '
+                    u'Firefox. This category includes themes that depict the '
+                    u'cute Foxkeh mascot in various poses on diverse '
+                    u'landscapes.'
+                )
+            ),
+            'holiday': StaticCategory(
+                id=128,
+                name=_(u'Holiday'),
+                description=_(
+                    u'Download Firefox themes that feature holidays. This '
+                    u'category includes themes for Christmas, Halloween, '
+                    u'Thanksgiving, St. Patrick’s Day, Easter, Valentine’s '
+                    u'Day, Fourth of July, and more.'
+                )
+            ),
+            'music': StaticCategory(
+                id=122,
+                name=_(u'Music'),
+                description=_(
+                    u'Download Firefox themes that feature musical interests '
+                    u'and artists. This category includes popular bands like '
+                    u'Nirvana, BTS, Pink Floyd, instruments, music videos, '
+                    u'instruments, and much more.'
+                )
+            ),
+            'nature': StaticCategory(
+                id=102,
+                name=_(u'Nature'),
+                description=_(
+                    u'Download Firefox themes that feature animals and '
+                    u'natural landscapes. This category includes themes with '
+                    u'flowers, sunsets, foxes, seasonal scenes, night skies, '
+                    u'planets, kittens, birds, and more.'
+                )
+            ),
+            'other': StaticCategory(
+                id=114,
+                name=_(u'Other'),
+                description=_(
+                    u'Download Firefox themes that are interesting, creative, '
+                    u'and unique.'
+                )
+            ),
+            'scenery': StaticCategory(
+                id=106,
+                name=_(u'Scenery'),
+                description=_(
+                    u'Download Firefox themes that feature the environment '
+                    u'and the natural world. This category includes themes '
+                    u'with sunsets, beaches, illustrations, city skylines, '
+                    u'and more.'
+                )
+            ),
+            'seasonal': StaticCategory(
+                id=112,
+                name=_(u'Seasonal'),
+                description=_(
+                    u'Download Firefox themes that feature all four seasons '
+                    u'of the year—fall, winter, spring, and summer. Autumn '
+                    u'leaves, snowy mountain peaks, sunny summer days, and '
+                    u'spring flowers.'
+                )
+            ),
+            'solid': StaticCategory(
+                id=118,
+                name=_(u'Solid'),
+                description=_(
+                    u'Download Firefox themes that use solid and gradient '
+                    u'colors to personalize your browser. This category '
+                    u'includes bold reds, pastel washes, soft greys, and '
+                    u'much more.'
+                )
+            ),
+            'sports': StaticCategory(
+                id=104,
+                name=_(u'Sports'),
+                description=_(
+                    u'Download Firefox themes that feature a variety of '
+                    u'sports. This category includes country flags, sports '
+                    u'teams, soccer, hockey, and more.'
+                )
+            ),
+            'websites': StaticCategory(
+                id=116,
+                name=_(u'Websites'),
+                description=_(
+                    u'Download Firefox themes that capture the essence of the '
+                    u'web—captivating, unusual, and distinctive.'
+                )
+            )
         }
     },
     ANDROID.id: {
