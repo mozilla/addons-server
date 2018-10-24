@@ -505,7 +505,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (
-            ['reStyle', 20.415598],
+            ['reStyle', 21.730415],
         ))
 
     def test_scenario_megaupload_downloadhelper(self):
