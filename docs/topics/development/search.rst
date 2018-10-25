@@ -16,7 +16,7 @@ How does search on AMO work?
 General structure
 =================
 
-Our search contains Add-ons (``addons`` index) and Add-on compatibility report documents (``compat`` index).
+Our Elasticsearch cluster contains Add-ons (``addons`` index) and statistics data. The purpose of that document is to describe the add-ons part only though.
 
 In addition to that we store the following data:
 
@@ -39,6 +39,16 @@ Both use similar filtering and scoring code. For legacy reasons they're not iden
 The legacy search uses ElasticSearch to query the data and then requests the actual model objects from the database. The newer API-based search only hits ElasticSearch and uses data directly stored from ES which is much more efficient.
 
 
+Indexing
+========
+
+We index all text fields that have translations twice: once with a generic analyzer (snowball for description & summary, a custom one for name) and once with the corresponding language-specific analyzer if it exists. We also index a special variant of the name called ``name.raw`` which is a non-analyzed keyword, normalized in lowercase though a custom normalizer.
+
+Our custom name analyzer applies the following filters: ``standard``, ``word_delimiter`` (a custom version with ``preserve_original`` set to ``true``), ``lowercase``, ``stop``, and ``dictionary_decompounder`` (with a specific word list) and ``unique``.
+
+For each document, we store a ``boost`` field that depends on the average number of users for the add-on, as well as a multiplier for public, non-experimental add-ons.
+
+
 Flow of a search query through AMO
 ==================================
 
@@ -54,19 +64,18 @@ Primary rules
 -------------
 
 These are the ones using the strongest boosts, so they are only applied
-to a specific set of fields like the name, the slug and authors.
+to a specific set of fields: add-on name and author(s) name.
 
 **Applied rules** (merged via ``should``):
 
-1. Prefer ``term`` matches on ``name.raw`` (``boost=100``) - our attempt to implement exact matches
-2. Prefer phrase matches that allows swapped terms (``boost=4``, ``slop=1``)
-3. If a query is < 20 characters long, try to do a fuzzy match on the search query (``boost=2``, ``prefix_length=4``, ``fuzziness=AUTO``)
-4. Then text matches, using the standard text analyzer (``boost=3``, ``analyzer=standard``, ``operator=and``)
-5. Then text matches, using a language specific analyzer (``boost=2.5``)
-6. Then look for the query as a prefix (``boost=1.5``)
-7. If we have a matching analyzer, add a query to ``name_l10n_{LANG}`` (``boost=2.5``, ``operator=and``)
+1. Prefer ``term`` matches on ``name.raw`` (``boost=100.0``) - our attempt to implement exact matches
+2. Prefer phrase matches that allows swapped terms (``boost=8.0``, ``slop=1``)
+3. If a query is < 20 characters long, try to do a fuzzy match on the search query (``boost=4.0``, ``prefix_length=4``, ``fuzziness=AUTO``)
+4. Then text matches, using the standard text analyzer (``boost=6.0``, ``analyzer=standard``, ``operator=and``)
+5. Then look for the query as a prefix (``boost=3.0``)
+6. If we have a matching analyzer, add a query to ``name_l10n_{LANG}`` (``boost=5.0``, ``operator=and``)
 
-Rules 4, 5 and 6 are added for ``name`` and ``listed_authors.name``.
+All rules except 1 and 6 are applied to both ``name`` and ``listed_authors.name``.
 
 
 Secondary rules
@@ -77,14 +86,12 @@ containing more text like description, summary and tags.
 
 **Applied rules** (merged via ``should``):
 
-1. Look for phrase matches inside the summary (``boost=0.8``)
+1. Look for phrase matches inside the summary (``boost=2.0``)
 2. Look for phrase matches inside the summary using language specific
-   analyzer (``boost=0.6``)
-3. Look for phrase matches inside the description (``boost=0.3``)
+   analyzer (``boost=3.0``)
+3. Look for phrase matches inside the description (``boost=2.0``)
 4. Look for phrase matches inside the description using language
-   specific analyzer (``boost=0.6``)
-5. Look for matches inside tags (``boost=0.1``)
-6. Append a separate ``match`` query for every word to boost tag matches (``boost=0.1``)
+   specific analyzer (``boost=3.0``)
 
 
 General query flow:
@@ -93,5 +100,5 @@ General query flow:
  1. Fetch current translation
  2. Fetch locale specific analyzer (`List of analyzers <https://github.com/mozilla/addons-server/blob/master/src/olympia/constants/search.py#L15-L61>`_)
  3. Merge primary and secondary *should* rules
- 4. Create a ``function_score`` query that uses a ``field_value_factor`` function on ``boost``
- 5. Add a specific boost for webextension related add-ons
+ 4. Create a ``function_score`` query that uses a ``field_value_factor`` function on ``boost`` field that we set when indexing
+ 5. Add a specific query-time boost for webextension add-ons
