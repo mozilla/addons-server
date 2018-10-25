@@ -444,12 +444,12 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario('Open Image in New Tab', (
-            ['Open Image in New Tab', 23.297497],
-            ['Open image in a new tab', 6.9623027],
+            ['Open Image in New Tab', 20.125916],
+            ['Open image in a new tab', 4.705264],
         ))
 
     def test_scenario_coinhive(self):
-        # TODO, should match "CoinBlock"
+        # TODO, should match "CoinBlock". Check word delimiting analysis maybe?
         self._check_scenario('CoinHive', (
             ['Coinhive Blocker', 4.071178],
             ['NoMiners', 0.055078223],  # via description
@@ -458,10 +458,10 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_privacy(self):
         self._check_scenario('Privacy', (
-            ['Privacy Badger', 14.041715],
-            ['Privacy Settings', 7.3244605],
-            ['Google Privacy', 6.9862623],  # More users, summary
-            ['Privacy Pass', 4.413015],
+            ['Privacy Badger', 8.980763],
+            ['Privacy Settings', 4.6852746],
+            ['Google Privacy', 4.44084],  # More users, summary
+            ['Privacy Pass', 2.7303915],
             ['Ghostery', 0.27124262],  # Crazy amount of users, summary
             # summary + a lot of users, but not as many as ghostery
             ['Blur', 0.22378409],
@@ -470,9 +470,7 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_firebu(self):
         self._check_scenario('firebu', (
             ['Firebug', 3.502443],
-            # unclear why preference to Firebug Autocompleter,
-            # weekly downloads + users?
-            ['Firefinder for Firebug', 1.29671],
+            ['Firefinder for Firebug', 0.9283173],
             ['Firebug Autocompleter', 0.90951896],
             ['Fire Drag', 0.5536524],
         ))
@@ -480,7 +478,7 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_fireb(self):
         self._check_scenario('fireb', (
             ['Firebug', 3.502443],
-            ['Firefinder for Firebug', 1.29671],
+            ['Firefinder for Firebug', 0.9283173],
             ['Firebug Autocompleter', 0.90951896],
             ['Fire Drag', 0.5536524],
         ))
@@ -505,7 +503,7 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_restyle(self):
         self._check_scenario('reStyle', (
-            ['reStyle', 21.730415],
+            ['reStyle', 22.47032],
         ))
 
     def test_scenario_megaupload_downloadhelper(self):
@@ -519,32 +517,32 @@ class TestRankingScenarios(ESTestCase):
         # No direct match, "Download Flash and Video" has
         # huge amount of users that puts it first here
         self._check_scenario('DownloadHelper', (
-            ['RapidShare DownloadHelper', 3.2069716],
-            ['MegaUpload DownloadHelper', 1.7840389],
-            ['Download Flash and Video', 1.5753028],
-            ['1-Click YouTube Video Download', 1.1903474],
+            ['RapidShare DownloadHelper', 2.6394205],
+            ['MegaUpload DownloadHelper', 1.4686359],
+            ['Download Flash and Video', 1.2869896],
+            ['1-Click YouTube Video Download', 0.9726747],
         ))
 
     def test_scenario_megaupload(self):
         self._check_scenario('MegaUpload', (
-            ['MegaUpload DownloadHelper', 4.14666],
+            ['MegaUpload DownloadHelper', 3.3761904],
             ['Popup Blocker', 1.2203317],
         ))
 
     def test_scenario_no_flash(self):
         self._check_scenario('No Flash', (
-            ['No Flash', 52.622337],
-            ['Download Flash and Video', 9.604026],
-            ['YouTube Flash Player', 7.6949105],
-            ['YouTube Flash Video Player', 6.815566],
+            ['No Flash', 47.878277],
+            ['Download Flash and Video', 5.0139594],
+            ['YouTube Flash Player', 3.9164624],
+            ['YouTube Flash Video Player', 3.680906],
         ))
 
         # Case should not matter.
         self._check_scenario('no flash', (
-            ['No Flash', 52.622337],
-            ['Download Flash and Video', 9.604026],
-            ['YouTube Flash Player', 7.6949105],
-            ['YouTube Flash Video Player', 6.815566],
+            ['No Flash', 47.878277],
+            ['Download Flash and Video', 5.0139594],
+            ['YouTube Flash Player', 3.9164624],
+            ['YouTube Flash Video Player', 3.680906],
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
@@ -589,12 +587,12 @@ class TestRankingScenarios(ESTestCase):
     def test_score_boost_exact_match(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('test addon test21', (
-            ['test addon test21', 16.639639],
+            ['test addon test21', 14.701407],
         ))
 
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 40.785732],
-            ['1-Click YouTube Video Download', 0.2823339],
+            ['Amazon 1-Click Lock', 36.054436],
+            ['1-Click YouTube Video Download', 0.19371939],
         ))

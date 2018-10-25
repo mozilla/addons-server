@@ -143,8 +143,9 @@ class AddonIndexer(BaseSearchIndexer):
                     'modified': {'type': 'date', 'index': False},
                     'name': {
                         'type': 'text',
-                        # Adding word-delimiter to split on camelcase and
-                        # punctuation.
+                        # Adding word-delimiter to split on camelcase, known
+                        # words like 'tab', and punctuation, and eliminate
+                        # duplicates.
                         'analyzer': 'standardPlusWordDelimiter',
                         'fields': {
                             # Add a "raw" version of the name to do sorting and
