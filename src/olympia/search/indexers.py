@@ -35,31 +35,38 @@ INDEX_SETTINGS = {
         },
         'filter': {
             'wordDelim': {
+                # This filter is useful for add-on names that have multiple
+                # words sticked together in a way that is easy to recognize,
+                # like FooBar, which should be indexed as FooBar and Foo Bar.
+                # (preserve_original: True makes us index both the original
+                # and the split version.)
                 'type': 'word_delimiter',
                 'preserve_original': True
             },
             'dict': {
-                # This filter is useful for add-on names that have multiple
-                # words sticked together like "AwesomeTabPassword" for
-                # instance, to help users looking for "tab password" find that
-                # add-on.
+                # This filter is also useful for add-on names that have
+                # multiple words sticked together, but without a pattern that
+                # we can automatically recognize. To deal with those, we use
+                # a small dictionary of common words. It allows us to index
+                # "awesometabpassword"  as "awesome tab password", helping
+                # users looking for "tab password" find that add-on.
                 'type': 'dictionary_decompounder',
                 'word_list': [
                     'all', 'auto', 'ball', 'bar', 'block', 'blog', 'bookmark',
                     'browser', 'bug', 'button', 'cat', 'chat', 'click', 'clip',
                     'close', 'color', 'context', 'cookie', 'cool', 'css',
-                    'delete', 'dictionary', 'down', 'down', 'download', 'easy',
-                    'edit', 'fill', 'fire', 'firefox', 'fix', 'flag', 'flash',
-                    'fly', 'forecast', 'fox', 'foxy', 'google', 'grab',
-                    'grease', 'html', 'http', 'image', 'input', 'inspect',
-                    'inspector', 'iris', 'js', 'key', 'keys', 'lang', 'link',
-                    'mail', 'manager', 'map', 'mega', 'menu', 'menus',
-                    'monkey', 'name', 'net', 'new', 'open', 'password',
-                    'persona', 'query', 'screen', 'scroll', 'search', 'secure',
+                    'delete', 'dictionary', 'down', 'download', 'easy', 'edit',
+                    'fill', 'fire', 'firefox', 'fix', 'flag', 'flash', 'fly',
+                    'forecast', 'fox', 'foxy', 'google', 'grab', 'grease',
+                    'html', 'http', 'image', 'input', 'inspect', 'inspector',
+                    'iris', 'js', 'key', 'keys', 'lang', 'link', 'mail',
+                    'manager', 'map', 'mega', 'menu', 'menus', 'monkey',
+                    'name', 'net', 'new', 'open', 'password', 'persona',
+                    'privacy', 'query', 'screen', 'scroll', 'search', 'secure',
                     'select', 'smart', 'so', 'spring', 'status', 'style',
                     'super', 'sync', 'tab', 'text', 'think', 'this', 'time',
                     'title', 'translate', 'tree', 'undo', 'up', 'upload',
-                    'url', 'user', 'video', 'window', 'with', 'word', 'zilla'
+                    'url', 'user', 'video', 'window', 'with', 'word', 'zilla',
                 ]
             }
         }

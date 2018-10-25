@@ -458,10 +458,10 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_privacy(self):
         self._check_scenario('Privacy', (
-            ['Privacy Badger', 8.980763],
-            ['Privacy Settings', 4.6852746],
-            ['Google Privacy', 4.44084],  # More users, summary
-            ['Privacy Pass', 2.7303915],
+            ['Privacy Badger', 14.041715],
+            ['Privacy Settings', 7.3244605],
+            ['Google Privacy', 6.9862623],  # More users, summary
+            ['Privacy Pass', 4.413015],
             ['Ghostery', 0.27124262],  # Crazy amount of users, summary
             # summary + a lot of users, but not as many as ghostery
             ['Blur', 0.22378409],
