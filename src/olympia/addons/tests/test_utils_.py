@@ -289,8 +289,8 @@ class TestBuildStaticThemeXpiFromLwt(TestCase):
         lwt = addon_factory(
             type=amo.ADDON_PERSONA, persona_id=0)
         lwt.update(name='')
-        # Give it a background header file.
-        lwt.persona.header = 'weta.png'
+        # Give it a background header file with multiple dots.
+        lwt.persona.header = 'weta......png'
         lwt.persona.header_path = self.background_png  # It's a cached_property
 
         static_xpi = tempfile.NamedTemporaryFile(suffix='.xpi').name
