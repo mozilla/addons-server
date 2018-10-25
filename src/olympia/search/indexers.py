@@ -21,9 +21,16 @@ INDEX_SETTINGS = {
     'analysis': {
         'analyzer': {
             'standardPlusWordDelimiter': {
+                # This analyzer tries to split the text into words by using
+                # various methods. It also lowercases them and make sure each
+                # token is only returned once.
+                # Only use for short things with extremely meaningful content
+                # like add-on name - it makes too many modifications to be
+                # useful for things like descriptions, for instance.
                 'tokenizer': 'standard',
                 'filter': [
-                    'standard', 'wordDelim', 'lowercase', 'stop', 'dict'
+                    'standard', 'wordDelim', 'lowercase', 'stop', 'dict',
+                    'unique'
                 ]
             }
         },
