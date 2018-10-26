@@ -1902,7 +1902,6 @@ CRON_JOBS = {
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
     'deliver_hotness': 'olympia.addons.cron',
-    'reindex_addons': 'olympia.addons.cron',
     'cleanup_image_files': 'olympia.addons.cron',
 
     'add_latest_appversion': 'olympia.amo.cron',

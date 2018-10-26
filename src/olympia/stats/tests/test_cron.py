@@ -91,7 +91,7 @@ class TestGlobalStats(TestCase):
                 tasks._get_daily_jobs(x)
 
 
-@mock.patch('olympia.stats.management.commands.index_stats.create_subtasks')
+@mock.patch('olympia.stats.management.commands.index_stats.group')
 class TestIndexStats(TestCase):
     fixtures = ['stats/test_models']
 
@@ -104,67 +104,90 @@ class TestIndexStats(TestCase):
         self.theme_users = (ThemeUserCount.objects.order_by('-date')
                             .values_list('id', flat=True))
 
-    def test_by_date(self, tasks_mock):
+    def test_by_date(self, group_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
         qs = self.downloads.filter(date='2009-06-01')
-        download = tasks_mock.call_args_list[1][0]
-        assert download[0] == tasks.index_download_counts
-        assert download[1] == list(qs)
+        download_group = group_mock.call_args[0][0][1]
+        assert len(download_group) == 1
+        task = download_group.tasks[0]
+        assert task.task == 'olympia.stats.tasks.index_download_counts'
+        assert task.args == (list(qs), None)
 
-    def test_called_three(self, tasks_mock):
+    def test_called_three(self, group_mock):
         call_command('index_stats', addons=None, date='2009-06-01')
-        assert tasks_mock.call_count == 3
+        assert len(group_mock.call_args[0][0]) == 3
 
-    def test_called_two(self, tasks_mock):
+    def test_called_three_with_addons_param(self, group_mock):
         call_command('index_stats', addons='5', date='2009-06-01')
-        assert tasks_mock.call_count == 3
+        assert len(group_mock.call_args[0][0]) == 3
 
-    def test_by_date_range(self, tasks_mock):
+    def test_by_date_range(self, group_mock):
         call_command('index_stats', addons=None,
                      date='2009-06-01:2009-06-07')
         qs = self.downloads.filter(date__range=('2009-06-01', '2009-06-07'))
-        download = tasks_mock.call_args_list[1][0]
-        assert download[0] == tasks.index_download_counts
-        assert download[1] == list(qs)
+        download_group = group_mock.call_args[0][0][1]
+        assert len(download_group) == 1
+        task = download_group.tasks[0]
+        assert task.task == 'olympia.stats.tasks.index_download_counts'
+        assert task.args == (list(qs), None)
 
-    def test_by_addon(self, tasks_mock):
+    def test_by_addon(self, group_mock):
         call_command('index_stats', addons='5', date=None)
         qs = self.downloads.filter(addon=5)
-        download = tasks_mock.call_args_list[1][0]
-        assert download[0] == tasks.index_download_counts
-        assert download[1] == list(qs)
+        download_group = group_mock.call_args[0][0][1]
+        assert len(download_group) == 1
+        task = download_group.tasks[0]
+        assert task.task == 'olympia.stats.tasks.index_download_counts'
+        assert task.args == (list(qs), None)
 
-    def test_by_addon_and_date(self, tasks_mock):
+    def test_by_addon_and_date(self, group_mock):
         call_command('index_stats', addons='4', date='2009-06-01')
         qs = self.downloads.filter(addon=4, date='2009-06-01')
-        download = tasks_mock.call_args_list[1][0]
-        assert download[0] == tasks.index_download_counts
-        assert download[1] == list(qs)
+        download_group = group_mock.call_args[0][0][1]
+        assert len(download_group) == 1
+        task = download_group.tasks[0]
+        assert task.task == 'olympia.stats.tasks.index_download_counts'
+        assert task.args == (list(qs), None)
 
-    def test_multiple_addons_and_date(self, tasks_mock):
+    def test_multiple_addons_and_date(self, group_mock):
         call_command('index_stats', addons='4, 5', date='2009-10-03')
         qs = self.downloads.filter(addon__in=[4, 5], date='2009-10-03')
-        download = tasks_mock.call_args_list[1][0]
-        assert download[0] == tasks.index_download_counts
-        assert download[1] == list(qs)
+        download_group = group_mock.call_args[0][0][1]
+        assert len(download_group) == 1
+        task = download_group.tasks[0]
+        assert task.task == 'olympia.stats.tasks.index_download_counts'
+        assert task.args == (list(qs), None)
 
-    def test_no_addon_or_date(self, tasks_mock):
+    def test_no_addon_or_date(self, group_mock):
         call_command('index_stats', addons=None, date=None)
-        calls = tasks_mock.call_args_list
-        updates = list(self.updates.values_list('date', flat=True))
-        downloads = list(self.downloads.values_list('date', flat=True))
+        calls = group_mock.call_args[0][0]
 
-        # Check that we're calling the task in increments of 5 days.
-        # We add 1 because picking up 11 days means we have start/stop pairs at
-        # [0, 5], [5, 10], [10, 15]
-        len_ = len([c for c in calls if c[0][0] == tasks.index_update_counts])
-        assert len_ == (1 + (updates[0] - updates[-1]).days / 5)
-        len_ = len(
-            [c for c in calls if c[0][0] == tasks.index_theme_user_counts])
-        assert len_ == (1 + (updates[0] - updates[-1]).days / 5)
-        len_ = len(
-            [c for c in calls if c[0][0] == tasks.index_download_counts])
-        assert len_ == (1 + (downloads[0] - downloads[-1]).days / 5)
+        # There should be 3 updates, but 2 of them have a date close enough
+        # together that they'll be indexed in the same chunk, so we should have
+        # 2 calls.
+        update_counts_calls = [
+            c.tasks[0].args for c in calls
+            if c.tasks[0].task == 'olympia.stats.tasks.index_update_counts'
+        ]
+        assert len(update_counts_calls) == 2
+
+        # There should be 10 downloads, but 2 of them have a date close enough
+        # together that they'll be indexed in the same chunk, so we should have
+        # 9 calls.
+        download_counts_calls = [
+            c.tasks[0].args for c in calls
+            if c.tasks[0].task == 'olympia.stats.tasks.index_download_counts'
+        ]
+        assert len(download_counts_calls) == 9
+
+        # There should be 3 theme users, but 2 of them have a date close enough
+        # together that they'll be indexed in the same chunk, so we should have
+        # 2 calls.
+        theme_user_counts_calls = [
+            c.tasks[0].args for c in calls
+            if c.tasks[0].task == 'olympia.stats.tasks.index_theme_user_counts'
+        ]
+        assert len(theme_user_counts_calls) == 2
 
 
 class TestIndexLatest(amo.tests.ESTestCase):

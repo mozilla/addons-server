@@ -36,11 +36,11 @@ from waffle.models import Flag, Sample, Switch
 from olympia import amo
 from olympia.access.acl import check_ownership
 from olympia.api.authentication import WebTokenAuthentication
-from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 from olympia.amo import search as amo_search
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.utils import fxa_login_url
+from olympia.addons import indexers as addons_indexers
 from olympia.addons.models import (
     Addon, AddonCategory, Category, Persona,
     update_search_index as addon_update_search_index)
@@ -114,10 +114,10 @@ def setup_es_test_data(es):
     actual_indices = {key: get_es_index_name(key)
                       for key in settings.ES_INDEXES.keys()}
 
-    # Create new search and stats indexes with the timestamped name.
+    # Create new addons and stats indexes with the timestamped name.
     # This is crucial to set up the correct mappings before we start
     # indexing things in tests.
-    search_indexers.create_new_index(index_name=actual_indices['default'])
+    addons_indexers.create_new_index(index_name=actual_indices['default'])
     stats_search.create_new_index(index_name=actual_indices['stats'])
 
     # Alias it to the name the code is going to use (which is suffixed by
