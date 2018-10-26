@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 21:53+0000\n"
+"PO-Revision-Date: 2018-10-26 22:16+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5575,13 +5575,13 @@ msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match th
 msgstr "Ri atz'aqat ID pa manifest.json or install.rdf (%s) man nikik'äm ta ki' rik'in ri Id richin ri atz'aqat pa AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "Xilitäj jun kamulun tz'aqät ID"
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Ri kajilab'al ruwäch k'o chi k'a xaxe 32 taq kitz'ib'."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Ri kajilab'al taq ruwäch k'o chi xa xe kik'wan taq tz'ib', taq ajilab'äl chuqa' re taq tz'ib' re': +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
