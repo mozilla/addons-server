@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-08-12 10:20+0000\n"
+"PO-Revision-Date: 2018-10-19 14:03+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -210,11 +210,10 @@ msgstr "Käytä alkuperäistä"
 msgid "Week of {0}"
 msgstr ""
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " latausta"
-msgstr[1] " latausta"
+msgstr[0] ""
+msgstr[1] ""
 
 #, fuzzy
 msgid "{0} user"
@@ -239,11 +238,10 @@ msgid_plural "{0} reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} myyntiä"
-msgstr[1] "{0} myyntiä"
+msgstr[0] ""
+msgstr[1] ""
 
 #, fuzzy
 msgid "{0} refund"
@@ -769,17 +767,15 @@ msgid "Loading..."
 msgstr "Ladataan..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> merkki jäljellä."
-msgstr[1] "<b>{0}</b> merkkiä jäljellä."
+msgstr[1] ""
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> merkki jäljellä."
+msgstr[0] ""
 msgstr[1] "<b>{0}</b> merkkiä jäljellä."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
