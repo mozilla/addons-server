@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-08-30 14:39+0000\n"
+"PO-Revision-Date: 2018-08-25 19:09+0000\n"
 "Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
@@ -1060,10 +1060,10 @@ msgid "View this collection"
 msgstr "यह संग्रह देखें"
 
 msgid "Start a new collection..."
-msgstr ""
+msgstr "एक नया संग्रह प्रारंभ करें..."
 
 msgid "Start a New Collection"
-msgstr ""
+msgstr "एक नया संग्रह प्रारंभ करें"
 
 msgid "Name:"
 msgstr "नाम:"
@@ -1081,10 +1081,10 @@ msgid "private"
 msgstr "निजी"
 
 msgid "About this Collection"
-msgstr ""
+msgstr "इस संग्रह के बारे में"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "ऐड-ऑन को मेरे मोबाइल Firefox में सिंक किया गया"
 
 msgid "Make this Collection Private"
 msgstr "इस संग्रह को निजी बनाएँ"
@@ -1114,7 +1114,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 msgid "Go"
-msgstr ""
+msgstr "जाएँ"
 
 msgid "What are Collections?"
 msgstr ""
@@ -1126,7 +1126,7 @@ msgid "Explore Collections"
 msgstr ""
 
 msgid "Common Tags"
-msgstr ""
+msgstr "साधारण टैग"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1158,7 +1158,7 @@ msgid "Delete {0}"
 msgstr ""
 
 msgid "Are you sure?"
-msgstr ""
+msgstr "क्या आप निश्चित हैं?"
 
 msgid "Yes"
 msgstr "हाँ"
@@ -1204,7 +1204,7 @@ msgid "Collections make it easy to keep track of favorite add-ons and share your
 msgstr ""
 
 msgid "Collection Icon"
-msgstr ""
+msgstr "संग्रह चिह्न"
 
 msgid "Reset"
 msgstr "पुनः ठीक करें"
@@ -1318,10 +1318,10 @@ msgid "Here's a few of our favorite add-ons to help you get started customizing 
 msgstr ""
 
 msgid "Install Dictionary"
-msgstr ""
+msgstr "शब्दकोश स्थापित करें"
 
 msgid "Install Language Pack"
-msgstr ""
+msgstr "भाषा पैक स्थापित करें"
 
 #, python-format
 msgid ""
@@ -1330,7 +1330,7 @@ msgid ""
 msgstr ""
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "आपके लोकेल में उपलब्ध है"
 
 msgid "List of language packs and dictionaries available in your locale."
 msgstr ""
@@ -1342,7 +1342,7 @@ msgid "Dictionary"
 msgstr "शब्दकोश"
 
 msgid "Language Pack"
-msgstr ""
+msgstr "भाषा पैक"
 
 msgid "All locales"
 msgstr ""
@@ -1367,7 +1367,7 @@ msgid "Add search-related functionality to Firefox"
 msgstr ""
 
 msgid "Search Providers"
-msgstr ""
+msgstr "खोज प्रदाता"
 
 msgid "Find new providers for your search bar"
 msgstr ""
