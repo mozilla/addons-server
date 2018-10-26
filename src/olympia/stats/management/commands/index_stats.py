@@ -1,4 +1,4 @@
-from datetime import date, timedelta
+from datetime import timedelta
 
 from django.core.management.base import BaseCommand
 from django.db.models import Max, Min
