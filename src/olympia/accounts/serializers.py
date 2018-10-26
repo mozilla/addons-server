@@ -106,6 +106,14 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                 ugettext(u'This display name cannot be used.'))
         return value
 
+    def validate_homepage(self, value):
+        if settings.DOMAIN.lower() in value.lower():
+            raise serializers.ValidationError(
+                ugettext(u'The homepage field can only be used to link to '
+                         u'external websites.')
+            )
+        return value
+
     def validate_username(self, value):
         # All-digits usernames are disallowed since they can be confused for
         # user IDs in URLs.
