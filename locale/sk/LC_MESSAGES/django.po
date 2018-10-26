@@ -8073,9 +8073,8 @@ msgstr ""
 msgid "Ratings"
 msgstr "Hodnotenia"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Aktivita"
+msgstr ""
 
 msgid "Email must be {email}."
 msgstr "E-mail musí byť vo formáte {email}."
