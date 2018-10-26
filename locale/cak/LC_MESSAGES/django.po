@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 22:16+0000\n"
+"PO-Revision-Date: 2018-10-26 22:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5584,7 +5584,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Ri kajilab'al taq ruwäch k'o chi xa xe kik'wan taq tz'ib', taq ajilab'äl chuqa' re taq tz'ib' re': +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Ri nïm rupalem WebExtension wachinel ja ri {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Man tikirel ta natäq re ruwäch tz'aqat re'"
@@ -5601,7 +5601,7 @@ msgstr "Man oyob'en ta re sachoj."
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> pa ri ayakb'al install.rdf (%s) man nuk'äm ta ri' rik'in ri rucha'onem atz'aqat pa AMO (%s)"
 
 msgid "Back to review"
 msgstr ""
