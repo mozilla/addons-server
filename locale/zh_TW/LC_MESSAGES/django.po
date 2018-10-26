@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-21 03:16+0000\n"
+"PO-Revision-Date: 2018-10-26 02:42+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -4279,27 +4279,24 @@ msgid "Block annoying ads and annotations from appearing on YouTube."
 msgstr "封鎖 YouTube 當中討人厭的廣告與註解。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}隨處都可以閱讀{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
 msgstr "傳送新聞、文章、部落格貼文等內容到您的 Kindle。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}讓您的分頁有五顏六色{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
 msgstr "根據 URL 格式，用顏色對分頁標籤進行分組。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}防止您的電腦被用來挖礦{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
@@ -4339,9 +4336,8 @@ msgid "Enjoy free access to 10+ million research papers."
 msgstr "免費取用超過 1000 萬篇研究論文。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}自訂滑鼠手勢{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
@@ -4366,18 +4362,16 @@ msgid "Ecosia uses 80% of its search profits to fund tree-planting programs arou
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}尋找缺少的網頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
 msgstr "您在尋找的頁面無法使用嗎？尋找封存或快取版本。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}尋找缺少的網頁內容{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4492,27 +4486,24 @@ msgid "Play videos by default in the highest quality, turn off annotations, and 
 msgstr "預設以高畫質播放，關閉註解等等。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}找出追蹤者{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get a glimpse into who's tracking you with just a click."
 msgstr "只要點一下就可以知道誰在追蹤你。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}變更您的代理伺服器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
 msgstr "透過自訂 Proxy 設定上網。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}控制影片播放{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
@@ -4624,9 +4615,8 @@ msgid "Stop trackers when you click Google and Yandex search returns."
 msgstr "防止在點擊 Google 和 Yandex 搜尋結果時的追蹤。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}客製化分頁內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}動態導航{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
@@ -4641,9 +4631,8 @@ msgid "Enjoy thumbnail images alongside your search returns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}減低眼睛痠痛{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -4690,18 +4679,16 @@ msgid "Store passwords securely and access them across multiple devices."
 msgstr "安全地儲存密碼，並在不同裝置間同步使用。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}知道您上了哪些網站{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}加強您的閱讀體驗{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
@@ -4767,9 +4754,8 @@ msgid "Find and resolve broken bookmarks, duplicates, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}降低壓力{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
@@ -4802,9 +4788,8 @@ msgid "Get in-depth engagement and traffic information for any website."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}讓維基百科變得更有型{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
@@ -4845,27 +4830,24 @@ msgid "Disguise your location to throw off trackers and protect your privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}自我過濾{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
 msgstr "使用過濾器來限制存取不適當或不想要的內容。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}改善影片播放功能{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}改善新分頁{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}征服垃圾信{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -4881,9 +4863,8 @@ msgid "Easily customize the built-in privacy settings in Firefox."
 msgstr "輕鬆自訂 Firefox 內建的隱私保護設定。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強您的表情符號內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}加強您的 VK 使用體驗{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
@@ -5000,9 +4981,8 @@ msgid "Convert an entire webpage to your preferred language—with the click of 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}抽出超連結{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
@@ -5017,9 +4997,8 @@ msgid "Access PDFs using your preferred PDF application."
 msgstr "使用您偏好的 PDF 閱讀軟體開啟 PDF。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}跳過重導與追蹤器{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
@@ -5083,18 +5062,16 @@ msgid "Create and manage a to-do list in your browser."
 msgstr "在您的瀏覽器中建立並管理待辦清單。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}強調文字{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}享用來自世界各地的音樂{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
@@ -5126,9 +5103,8 @@ msgid "Navigate to the secure version of a website if it's available."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}刪除上網紀錄{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
@@ -5183,9 +5159,8 @@ msgid "Don't let clicked links take control of your current tab and load content
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}簡單使用維基百科{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
@@ -5209,9 +5184,8 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}加強表情符號內容{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}取得 Amazon 的優勢{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5226,9 +5200,8 @@ msgid "Easily broadcast web content to your Twitter following."
 msgstr "簡單地將網頁內容廣播給 Twitter 的關注者。"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}拍攝畫面擷圖{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}終極分頁控制工具{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -5281,18 +5254,16 @@ msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}看看下面有什麼{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Uncover the software that supports whatever website you're visiting."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}清除數位足跡{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}防止重導與追蹤{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -5343,9 +5314,8 @@ msgid "Make informed decisions by tracking the price of a product listed on Amaz
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}下載影片{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}購物更有信心{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
@@ -5420,9 +5390,8 @@ msgid "Find an interesting image on the web? Use TinEye to explore its origins."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name} {start_sub_heading}封鎖廣告{end_sub_heading}"
+msgstr "{addon_name} {start_sub_heading}把事物流線化{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
