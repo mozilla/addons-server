@@ -162,24 +162,24 @@ class TaskTimer(object):
         return 'task_start_time.{}'.format(task_id)
 
 
-def create_subtasks(task, qs, chunk_size, countdown=None, task_args=None):
+def create_chunked_tasks_signatures(
+        task, items, chunk_size, task_args=None, task_kwargs=None):
     """
-    Splits a task depending on a queryset into a bunch of subtasks of the
+    Splits a task depending on a list of items into a bunch of tasks of the
     specified chunk_size, passing a chunked queryset and optional additional
-    arguments to each."""
+    arguments to each.
+
+    Return the group of task signatures without executing it."""
     from olympia.amo.utils import chunked
     if task_args is None:
         task_args = ()
+    if task_kwargs is None:
+        task_kwargs = {}
 
-    job = group([
-        task.subtask(args=(chunk,) + task_args)
-        for chunk in chunked(qs, chunk_size)
+    return group([
+        task.si(chunk, *task_args, **task_kwargs)
+        for chunk in chunked(items, chunk_size)
     ])
-
-    if countdown is not None:
-        job.apply_async(countdown=countdown)
-    else:
-        job.apply_async()
 
 
 def pause_all_tasks():

@@ -135,9 +135,15 @@ def create_new_index(index_name=None):
     create_index(index_name, config)
 
 
-def reindex(index_name):
-    from olympia.stats.management.commands.index_stats import index_stats
-    index_stats(index_name)
+def reindex_tasks_group(index_name):
+    """
+    Return the group of tasks to execute for a full reindex of stats on the
+    index called `index_name` (which is not an alias but the real index name).
+    """
+    from olympia.stats.management.commands.index_stats import (
+        gather_index_stats_tasks
+    )
+    return gather_index_stats_tasks(index_name)
 
 
 def get_mappings():
