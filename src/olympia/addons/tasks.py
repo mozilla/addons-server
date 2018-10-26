@@ -822,14 +822,14 @@ def remove_amo_links_in_url_fields(ids, **kw):
     for addon in addons:
         with transaction.atomic():
             translation_ids = []
-            if addon.homepage:
-                translation_ids.append(addon.homepage.id)
-            if addon.support_url:
-                translation_ids.append(addon.support_url.id)
+            if addon.homepage_id:
+                translation_ids.append(addon.homepage_id)
+            if addon.support_url_id:
+                translation_ids.append(addon.support_url_id)
             if translation_ids:
                 Translation.objects.filter(
                     id__in=translation_ids,
                     localized_string__icontains=settings.DOMAIN
-                ).update(localized_string=u'')
+                ).update(localized_string=u'', localized_string_clean=u'')
             if settings.DOMAIN.lower() in addon.contributions.lower():
                 addon.update(contributions=u'')

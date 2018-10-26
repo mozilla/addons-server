@@ -676,7 +676,8 @@ class TestRemoveAMOLinksInURLFields(TestCase):
 
         for addon in addons:
             addon.reload()
-            assert addon.homepage == u''
+            assert addon.homepage.localized_string == u''
+            assert addon.homepage.localized_string_clean == u''
 
     def test_remove_links_in_support_urls(self):
         addons = [
@@ -688,7 +689,8 @@ class TestRemoveAMOLinksInURLFields(TestCase):
 
         for addon in addons:
             addon.reload()
-            assert addon.support_url == u''
+            assert addon.support_url.localized_string == u''
+            assert addon.support_url.localized_string_clean == u''
 
     def test_remove_links_in_contributions(self):
         addons = [
@@ -733,8 +735,8 @@ class TestRemoveAMOLinksInURLFields(TestCase):
 
         translation.activate('en-US')
         addon.reload()
-        assert addon.support_url.localized_string == self.allowed_url
+        assert addon.support_url == self.allowed_url
 
         translation.activate('fr')
         addon.reload()
-        assert addon.support_url.localized_string == u''
+        assert addon.support_url == u''
