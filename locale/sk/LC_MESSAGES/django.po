@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 19:27+0000\n"
+"PO-Revision-Date: 2018-10-26 19:39+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1724,16 +1724,16 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr "Administrátor {0} si zobrazil záznam aktivity používateľa {user}."
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "Hodnotenie {rating} pre {addon} bolo aktualizované."
 
 msgid "{addon} reviewed."
 msgstr "Doplnok {addon} skontrolovaný."
 
 msgid "User {user} banned."
-msgstr ""
+msgstr "Používateľ {user} bol zablokovaný."
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Obrázok používateľa {user} bol odstránený."
 
 msgid "User {0.name} added to {group}."
 msgstr "Používateľ {0.name} bol pridaný do skupiny {group}."
@@ -2177,9 +2177,8 @@ msgstr "Statická téma vzhľadu"
 msgid "Persona"
 msgstr "Téma Persona"
 
-#, fuzzy
 msgid "No Reputation"
-msgstr "Reputácia"
+msgstr "Žiadna reputácia"
 
 msgid "Good (1)"
 msgstr ""
@@ -2443,10 +2442,10 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Doplnky pre Thunderbird a SeaMonkey sú odteraz na samostatnej stránke addons.thunderbird.net. Pre aktualizáciu svojho doplnku môžete použiť svoj terajší účet."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Zastarané rozšírenia už nie sú vo Firefoxe podporované."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Od Firefoxu 53 môžu byť nové doplnky na tejto stránke len typu WebExtensions."
@@ -2602,9 +2601,8 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Vyžiadaná kontrola"
+msgstr "Vyžaduje sa kontrola."
 
 msgid "You must provide further details to proceed."
 msgstr "Pre pokračovanie musíte poskytnúť ďalšie detaily."
@@ -2619,7 +2617,7 @@ msgid "New API key created"
 msgstr "Nový kľúč API bol vytvorený."
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Kľúč API bol zneplatnený"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -2630,7 +2628,7 @@ msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribúcií doplnkov pre Firefox"
 
 msgid "Review Policies and Rules"
-msgstr ""
+msgstr "Zásady a pravidlá kontroly doplnkov"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr "Prečítal som si a súhlasím s podmienkami, pravidlami a zásadami"
@@ -2668,7 +2666,7 @@ msgid "Lightweight Themes"
 msgstr "Ľahké témy vzhľadu"
 
 msgid "Developer Policies"
-msgstr ""
+msgstr "Pravidlá pre vývojárov"
 
 msgid "Add-on Validator"
 msgstr "Overenie doplnku"
@@ -2824,11 +2822,9 @@ msgstr ""
 "<li><b>Vývojár</b> Môže spravovať všetko, čo sa týka stránky doplnku, s výnimkou pridávania/odoberania autorov a správy platieb.</li> <li><b>Pozorovateľ:</b> Môže zobraziť nastavenia doplnku a jeho "
 "štatistiky, ale nesmie robiť žiadne zmeny.</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Podrobnosti o doplnku"
+msgstr "Podrobnosti"
 
-#, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Podrobnosti o doplnku {0}"
 
@@ -2875,9 +2871,8 @@ msgid "Describe Add-on"
 msgstr "Popíšte doplnok"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Popíšte doplnok"
+msgstr "Popíšte {0}"
 
 msgid "Add-on URL"
 msgstr "URL adresa doplnku"
@@ -2910,7 +2905,7 @@ msgid "Requires Payment?"
 msgstr "Je vyžadovaná platba?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Toto pole zaškrtnite, ak kľúčové funkcie tohoto doplnku vyžadujú pre svoje fungovanie nejakú formu platby vopred či po ubehnutí skúšobnej doby."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr "Tento doplnok vyžaduje platbu, spoplatnené služby alebo softvér či dodatočný hardvér."
@@ -2927,7 +2922,7 @@ msgstr ""
 "Ak je doplnok pre túto aplikáciu vedený ako odporúčaný, nemôžete meniť jeho umiestnenie v kategóriách. Ak máte dôvod, prečo chcete kategórie upraviť, napíšte nám na e-mail <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Ak je doplnok pre túto aplikáciu vedený ako odporúčaný, nemôžete meniť jeho umiestnenie v kategóriách. Ak máte dôvod, prečo chcete kategórie upraviť, napíšte nám na e-mail <a "
@@ -2948,7 +2943,7 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
-"Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantne len"
+"Ak má váš doplnok stránku podpory alebo fórum, uveďte ich adresu tu. Ak je vaša webová stránka preložená do viacerých jazykov, môžete pridať viacero prekladov tohto poľa. Toto pole je relevantné len"
 " pre uverejnené doplnky."
 
 msgid "Images"
@@ -2979,7 +2974,7 @@ msgid "Add-on Flags"
 msgstr "Označenia doplnku"
 
 msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Tieto značky sa používajú na zaradenie doplnku. Sú relevantné len pre zverejnené doplnky."
 
 msgid "This add-on requires external software."
 msgstr "Tento doplnok vyžaduje externý softvér"
@@ -8108,9 +8103,8 @@ msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox pre Android"
+msgstr ""
 
 msgid "My Mobile Add-ons"
 msgstr "Moje mobilné doplnky"
@@ -8139,9 +8133,8 @@ msgstr "nie je možné zmeniť kompatibilitu môjho doplnku"
 msgid "my sdk-based add-on cannot be upgraded"
 msgstr "môj doplnok vytvorený pomocou SDK nie je možné aktualizovať"
 
-#, fuzzy
 msgid "my add-on is reviewed by a reviewer"
-msgstr "môj doplnok bol skontrolovaný editorom"
+msgstr ""
 
 msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla ma potrebuje kontaktovať ohľadne môjho doplnku"
@@ -8176,13 +8169,11 @@ msgstr "Používateľ nahlásený."
 msgid "new"
 msgstr "nové"
 
-#, fuzzy
 msgid "Ban"
-msgstr "a"
+msgstr ""
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Odstrániť môj obrázok používateľa"
+msgstr ""
 
 msgid "Delete User Account"
 msgstr "Odstrániť používateľský účet"
@@ -8226,9 +8217,8 @@ msgstr ""
 msgid "Please set your display name or username to complete the registration process."
 msgstr ""
 
-#, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Správa základných informácií o účte, ako napr. používateľské meno a e-mailová adresa."
+msgstr ""
 
 msgid "Username"
 msgstr "Používateľské meno"
@@ -8257,9 +8247,9 @@ msgstr "Odstrániť aktuálnu fotografiu"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Predstavte sa komunite, ak chcete! Tento text bude verejne dostupný na informačnej stránke o používateľovi."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Povolené HTML: {0}. Odkazy nie sú povolené."
+msgstr ""
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Rozhodnite sa, ktoré kolekcie budú zobrazené vo vašom profile."
@@ -8383,9 +8373,9 @@ msgstr "upraviť profil"
 msgid "We could not unsubscribe you"
 msgstr "Nebolo možné vás odhlásiť"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Bohužiaľ sa nepodarilo vás odhlásiť z odberu. Odkaz, na ktorý ste klikli, nie je platný. Stále sa môžete na <a href=\"%(edit_url)s\">stránke úpravy vášho profilu</a>."
+msgstr ""
 
 msgid "Developer Information"
 msgstr "Informácie o vývojárovi"
