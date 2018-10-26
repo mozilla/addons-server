@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 21:17+0000\n"
+"PO-Revision-Date: 2018-10-26 21:47+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -696,7 +696,7 @@ msgid "Admin Tools"
 msgstr "Kisamajib'al Nuk'samajel"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Chijun ütz"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -922,7 +922,7 @@ msgid "Error decoding signature."
 msgstr "Xsach toq xumecholajisaj ri' ri juch'."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Itzel ruwäch richin jun o ch'aqa' chik rupam"
 
 msgid "Invalid JWT Token."
 msgstr "Me'okel JWT Token."
@@ -2383,7 +2383,7 @@ msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Man tikirel ta yejal ri taq ruwäch toq ri atz'aqat ya'on ruq'ij."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
+msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addons.thunderbird.net. Yatikïr nawokisaj ri rub'i' taqoya'l richin ye'ak'ëx pa ri k'ak'a' ajk'amaya'l ruxaq."
 
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
