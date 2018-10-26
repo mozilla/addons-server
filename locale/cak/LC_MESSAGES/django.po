@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 23:30+0000\n"
+"PO-Revision-Date: 2018-10-26 23:44+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5627,13 +5627,13 @@ msgstr "Man nik'am ta ri rupam yakb'äl richin niya' retal cholb'ab'"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "¡Rik'in jub'a' xk'apïx ri niq'i': tachajij awi' chuqa' %(link_start)stataqa' jun rutzijol%(link_end)s chanin!"
 
 msgid "Add-on file being processed, please wait."
-msgstr ""
+msgstr "Xsamajïx ri tz'aqat yakb'äl, tawoyob'ej."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Kikolik ri xq'i' richin jikib'anïk..."
 
 msgid "Files:"
 msgstr "Taq yakb'äl:"
