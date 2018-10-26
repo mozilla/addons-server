@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 23:07+0000\n"
+"PO-Revision-Date: 2018-10-26 23:30+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5623,7 +5623,7 @@ msgid "Validation failed:"
 msgstr "Xsach ri jikib'anïk:"
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Man nik'am ta ri rupam yakb'äl richin niya' retal cholb'ab'"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
