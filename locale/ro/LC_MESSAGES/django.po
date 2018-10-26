@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-22 14:13+0000\n"
+"PO-Revision-Date: 2018-10-26 01:27+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4170,7 +4170,7 @@ msgstr "Tradu cu ușurință {start_sub_heading}cu {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Evidențiează orice text, dă clic dreapta și tradu instant."
+msgstr "Evidențiază orice text, dă clic dreapta și tradu instant."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
