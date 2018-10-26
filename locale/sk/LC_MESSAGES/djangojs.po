@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-06 21:06+0000\n"
+"PO-Revision-Date: 2018-10-26 19:24+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -781,15 +781,13 @@ msgid "Loading..."
 msgstr "Načítava sa..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "Zostáva <b>{0}</b> znak."
-msgstr[1] "Zostávajú <b>{0}</b> znaky."
-msgstr[2] "Zostáva <b>{0}</b> znakov."
+msgstr[0] "<b>{0}</b> znak"
+msgstr[1] "<b>{0}</b> znaky"
+msgstr[2] "<b>{0}</b> znakov"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "Zostáva <b>{0}</b> znak."
