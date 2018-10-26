@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 21:47+0000\n"
+"PO-Revision-Date: 2018-10-26 21:53+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5572,7 +5572,7 @@ msgstr "Man xilitäj ta jun rub'anikil ri tz'aqat."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Ri atz'aqat ID pa manifest.json or install.rdf (%s) man nikik'äm ta ki' rik'in ri Id richin ri atz'aqat pa AMO (%s)"
 
 msgid "Duplicate add-on ID found."
 msgstr ""
