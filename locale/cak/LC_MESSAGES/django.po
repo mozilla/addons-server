@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 22:51+0000\n"
+"PO-Revision-Date: 2018-10-26 23:07+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5604,23 +5604,23 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr "<em:type> pa ri ayakb'al install.rdf (%s) man nuk'äm ta ri' rik'in ri rucha'onem atz'aqat pa AMO (%s)"
 
 msgid "Back to review"
-msgstr ""
+msgstr "Titzolin pa runik'oxik"
 
 msgid "Back to add-on"
 msgstr "Titzolin pa Tz'aqat"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Ruwäch: %(version)s &bull; Nimilem: %(size)s &bull; SHA256 hash: %(sha256)s  &bull; Ruwäch MIME: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Junamanel Yakb'äl :: Taq rusamajib'al nik'onel"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Tz'etonel Yakb'äl :: Taq rusamajib'al nik'onel"
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "Xsach ri jikib'anïk:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
