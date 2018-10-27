@@ -288,9 +288,9 @@ pyquery==1.4.0 \
     --hash=sha256:07987c2ed2aed5cba29ff18af95e56e9eb04a2249f42ce47bddfb37f487229a3 \
     --hash=sha256:4771db76bd14352eba006463656aef990a0147a0eeaf094725097acfa90442bf
 # python-dateutil is required by elasticsearch-dsl
-python-dateutil==2.7.4 \
-    --hash=sha256:f7cde3aecf8a797553d6ec49b65f0fbcffe7ffb971ccac452d181c28fd279936 \
-    --hash=sha256:2f13d3ea236aeb237e7258d5729c46eafe1506fd7f8507f34730734ed8b37454
+python-dateutil==2.7.5 \
+    --hash=sha256:063df5763652e21de43de7d9e00ccf239f953a832941e37be541614732cdfc93 \
+    --hash=sha256:88f9287c0174266bb0d8cedd395cfba9c58e87e5ad86b2ce58859bc11be3cf02
 # pytz is required by Babel, celery
 pytz==2018.6 \
     --hash=sha256:91e3ccf2c344ffaa6defba1ce7f38f97026943f675b7703f44789768e4cb0ece \
