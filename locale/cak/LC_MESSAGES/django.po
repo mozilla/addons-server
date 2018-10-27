@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-27 21:32+0000\n"
+"PO-Revision-Date: 2018-10-27 21:50+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5711,19 +5711,19 @@ msgid "Easily connect to your social networks, and share or comment on the page 
 msgstr "Anin katok pa ri ak'amawinaqil, chuqa' takomonij chuqa' tatzijoj rij ri ruxaq natz'ët."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "Jun nab'ey rutz'etik richin ye'ajunamaj ri taq ajil toq yaloq'o pa k'amaya'l o ye'akanoj ajxik'ach'ich'."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Taq na'oj pa ruwi' ruq'ij Tat Patricio&rsquo;"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Tawiqa' ri awokik'amaya'l richin nanimaq'ijuj ruq'ij Tat Patricio&rsquo;."
 
 msgid "A+ add-ons for School"
-msgstr ""
+msgstr "A+ kitz'aqat Tijob'äl"
 
 msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
+msgstr "Kitz'aqat tijonela', tata'aj chuqa' tijoxela' yetzolin pa tijob'äl."
 
 msgid "Would you like to know which websites you can trust?"
 msgstr ""
