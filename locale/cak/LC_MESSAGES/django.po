@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-27 20:31+0000\n"
+"PO-Revision-Date: 2018-10-27 20:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5654,34 +5654,34 @@ msgid "Up file"
 msgstr "Tijotob'äx yakb'äl"
 
 msgid "Down file"
-msgstr ""
+msgstr "Tiqasäx yakb'äl"
 
 msgid "Previous diff"
-msgstr ""
+msgstr "Ruwa diff"
 
 msgid "Previous note"
-msgstr ""
+msgstr "Jun kan ch'utitzijol"
 
 msgid "Next diff"
-msgstr ""
+msgstr "Jun chik diff"
 
 msgid "Next note"
-msgstr ""
+msgstr "Jun chik ch'utitzijol"
 
 msgid "Expand all"
-msgstr ""
+msgstr "Tirik' ronojel"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Tewäx o tik'ut ruche'el"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Man tiqupïx o tiqupïx tz'ib'anïk"
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Majun yakb'äl pa ri yakb'äl xjotob'äx."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "Nika'am yakb'äl."
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
 msgstr ""
