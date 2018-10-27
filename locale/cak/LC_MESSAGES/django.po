@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-27 21:12+0000\n"
+"PO-Revision-Date: 2018-10-27 21:32+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5693,22 +5693,22 @@ msgid "Shopping Made Easy"
 msgstr "Anin Kaloq'on"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Kayakon kik'in ri jeb'ël taq atikojil pa ri awokik'amaya'l."
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Titz'uk' ri ütz chi ajk'amaya'l ruxaq"
 
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "¿La man awetaman ta e achike ri taq tz'aqat?"
 
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Man kab'ison, wawe' e k'o oxi' richin natikirisaj."
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Tatzalq'omij ri rupam ajk'amaya'l pa jun 40 ch'ab'äl."
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "Anin katok pa ri ak'amawinaqil, chuqa' takomonij chuqa' tatzijoj rij ri ruxaq natz'ët."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr ""
