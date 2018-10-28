@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-28 23:06+0000\n"
+"PO-Revision-Date: 2018-10-28 23:22+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5914,10 +5914,10 @@ msgid "Sections"
 msgstr "Taq peraj"
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Jujun taq na'oj richin ütz yetz'ib'äx taq ejqalem"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Junelïk taq K'utunïk pa kiwi' taq Tzijoxïk"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -5928,31 +5928,31 @@ msgid "Do:"
 msgstr "Tib'an:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Tatz'ib'aj achi'el yatzijon rik'in jun awachib'il pa ruwi' ri awetamab'al rik'in ri tz'aqat."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Ke'atz'ib'aj ri taq ejqalem richin ütz chuqa' anin niq'ax pan awi'."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Ke'aya' jikïl chuqa' utziläj taq b'anikil. Achi'el:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "¿La xsamäj re tz'aqat re' achi'el awoyob'en?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "¿Achike taq rub'anikil ütz o itzel xe'atz'ët?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "¿La xk'atzin?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "¿La man k'ayew ta xokisäx?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "¿La k'a xtawokisaj na re tz'aqat re'?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Taya' jun ach'utiramaj richin nasik'ij ri atzijoxik chuwäch nitaq richin yech'utinisäx sachoj taq tz'ib'."
 
 msgid "Don’t:"
 msgstr ""
