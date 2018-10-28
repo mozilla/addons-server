@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-28 21:14+0000\n"
+"PO-Revision-Date: 2018-10-28 21:44+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5774,10 +5774,10 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr "Utziläj taq chapoj ruwa ke'ab'ana', tawutzilaj awetamab'al kik'in ri silowäch pa k'amab'ey, tawetamaj natz'ük jun GIF chuqa' ch'aqa' chik pa taq kisamajib'al k'ïy k'oxom."
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "¡Ri rucha'oj Mozilla&rsquo; richin re ik'!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Katok jun Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
