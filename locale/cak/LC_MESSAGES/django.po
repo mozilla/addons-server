@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-28 21:44+0000\n"
+"PO-Revision-Date: 2018-10-28 22:00+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5780,10 +5780,10 @@ msgid "Become a Test Pilot"
 msgstr "Katok jun Test Pilot"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Metiq'at ri rokik okem pa ri tojtob'enel taq rub'anikil okik'amaya'l."
 
 msgid "Get Started"
-msgstr ""
+msgstr "Titikirisäx"
 
 msgid "Reported Status"
 msgstr "Xsik'ïx Rub'anikil"
@@ -5802,7 +5802,7 @@ msgid "Content Submitted"
 msgstr "Rupam Xtaq"
 
 msgid "View Rating on site"
-msgstr ""
+msgstr "Titz'et Rejqalem pa ri ruxaq"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
@@ -5822,7 +5822,7 @@ msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "Chi rij Mozilla Add-ons"
 
 msgid "What is this website?"
 msgstr ""
