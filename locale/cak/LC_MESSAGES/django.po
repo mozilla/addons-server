@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-28 22:42+0000\n"
+"PO-Revision-Date: 2018-10-28 23:06+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5835,7 +5835,7 @@ msgstr ""
 "natz'aqatisaj k'ak'a' taq samaj chuqa' nikijäl rusamaj ri awokik'amaya'l o chokoy. Tatz'eta' chuqa' takanoj k'ïy rub'anikil richin nawichinaj ab'anikil pa k'amab'ey."
 
 msgid "Who creates these add-ons?"
-msgstr ""
+msgstr "¿Achike nitz'ukun re taq tz'aqat re'?"
 
 msgid ""
 "The add-ons listed here have been created by thousands of developers from our community, ranging from individual hobbyists to large corporations. All publicly listed add-ons are reviewed by a team "
@@ -5911,7 +5911,7 @@ msgid "Over the years, many people have contributed to this website, including b
 msgstr ""
 
 msgid "Sections"
-msgstr ""
+msgstr "Taq peraj"
 
 msgid "Some tips for writing a great review"
 msgstr ""
