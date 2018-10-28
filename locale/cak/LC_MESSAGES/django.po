@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-28 20:51+0000\n"
+"PO-Revision-Date: 2018-10-28 21:01+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5762,10 +5762,10 @@ msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about any
 msgstr "Nima'q taq tz'aqat richin yasamäj, nakikotisaj ak'u'x, nachajij awichinanem, nawutzilaj ri asamaj&hellip; ¡Achoq pa ruwi' na nawajo'!"
 
 msgid "Games!"
-msgstr ""
+msgstr "¡Taq Etz'anem!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "Ruk'amon pe k'ïy kikotem k'u'x ri Firefox. Katetz'an rik'in k'ïy etz'anem pa ri awokik'amaya'l—puzzles, ojer chuqa' ch'ayokil taq etz'anem, chuqa' ¡ch'aqa' chik! "
 
 msgid "Must-Have Media"
 msgstr ""
