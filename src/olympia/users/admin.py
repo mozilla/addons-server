@@ -2,8 +2,10 @@ from functools import update_wrapper
 
 from django.conf.urls import url
 from django.contrib import admin, messages
+from django.contrib.admin.options import operator
 from django.contrib.admin.utils import unquote
 from django.urls import reverse
+from django.db import models
 from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
@@ -215,6 +217,58 @@ class UserAdmin(admin.ModelAdmin):
 
     def abuse_reports_for_this_user(self, obj):
         return self.related_content_link(obj, AbuseReport, 'user')
+
+    def get_search_results(self, request, queryset, search_term):
+        """
+        Returns a tuple containing a queryset to implement the search,
+        and a boolean indicating if the results may contain duplicates.
+
+        Copied from Django's, with a small difference: the operator joining the
+        query parts is dynamic: if the search term contain a comma and no
+        space, then the comma is used as the separator instead, and the query
+        parts are joined by OR, not AND, allowing admins to search by a list of
+        ids, emails or usernames and find all objects in that list.
+        """
+        # Apply keyword searches.
+        def construct_search(field_name):
+            if field_name.startswith('^'):
+                return "%s__istartswith" % field_name[1:]
+            elif field_name.startswith('='):
+                return "%s__iexact" % field_name[1:]
+            elif field_name.startswith('@'):
+                return "%s__search" % field_name[1:]
+            else:
+                return "%s__icontains" % field_name
+
+        use_distinct = False
+        search_fields = self.get_search_fields(request)
+        filters = []
+        joining_operator = operator.and_
+        if search_fields and search_term:
+            orm_lookups = [construct_search(str(search_field))
+                           for search_field in search_fields]
+            if ' ' not in search_term and ',' in search_term:
+                separator = ','
+                joining_operator = operator.or_
+            else:
+                separator = None
+            for bit in search_term.split(separator):
+                or_queries = [models.Q(**{orm_lookup: bit})
+                              for orm_lookup in orm_lookups]
+
+                q_for_this_term = models.Q(reduce(operator.or_, or_queries))
+                filters.append(q_for_this_term)
+
+            if not use_distinct:
+                for search_spec in orm_lookups:
+                    if admin.utils.lookup_needs_distinct(
+                            self.opts, search_spec):
+                        use_distinct = True
+                        break
+
+        if filters:
+            queryset = queryset.filter(reduce(joining_operator, filters))
+        return queryset, use_distinct
 
 
 class DeniedModelAdmin(admin.ModelAdmin):

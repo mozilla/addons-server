@@ -35,6 +35,21 @@ class TestUserAdmin(TestCase):
             'admin:users_userprofile_delete', args=(self.user.pk, )
         )
 
+    def test_search_for_multiple_users(self):
+        user = user_factory()
+        another_user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(
+            self.list_url,
+            {'q': '%s,%s' % (self.user.pk, another_user.pk)},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) in doc('#result_list').text()
+
     def test_can_not_edit_without_users_edit_permission(self):
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
