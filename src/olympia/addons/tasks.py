@@ -41,6 +41,7 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
 from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
+from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import License, Version
 
@@ -808,3 +809,27 @@ def disable_legacy_files(ids, **kw):
             for file_ in files:
                 log.info('Disabling file %d from addon %s', file_.pk, addon.pk)
                 file_.update(status=amo.STATUS_DISABLED)
+
+
+@task
+@use_primary_db
+def remove_amo_links_in_url_fields(ids, **kw):
+    """With the specified ids, remove the AMO links in the following URL fields
+    of each add-on: homepage, support_url, contribution."""
+    log.info('Deleting AMO links in URL fields %d-%d [%d].', ids[0], ids[-1],
+             len(ids))
+    addons = Addon.objects.filter(id__in=ids)
+    for addon in addons:
+        with transaction.atomic():
+            translation_ids = []
+            if addon.homepage_id:
+                translation_ids.append(addon.homepage_id)
+            if addon.support_url_id:
+                translation_ids.append(addon.support_url_id)
+            if translation_ids:
+                Translation.objects.filter(
+                    id__in=translation_ids,
+                    localized_string__icontains=settings.DOMAIN
+                ).update(localized_string=u'', localized_string_clean=u'')
+            if settings.DOMAIN.lower() in addon.contributions.lower():
+                addon.update(contributions=u'')
