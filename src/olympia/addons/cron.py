@@ -253,16 +253,6 @@ def deliver_hotness():
         time.sleep(10)
 
 
-def reindex_addons(index=None, addon_type=None):
-    from . import tasks
-    ids = Addon.unfiltered.values_list('id', flat=True)
-    if addon_type:
-        ids = ids.filter(type=addon_type)
-    ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
-          for chunk in chunked(sorted(list(ids)), 150)]
-    group(ts).apply_async()
-
-
 def cleanup_image_files():
     """
     Clean up all header images files for themes.

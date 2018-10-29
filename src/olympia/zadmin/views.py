@@ -16,6 +16,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.decorators import addon_view_factory
+from olympia.addons.indexers import get_mappings as get_addons_mappings
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
@@ -25,7 +26,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
-from olympia.search.indexers import get_mappings as get_addons_mappings
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
 from olympia.zadmin.forms import SiteEventForm
