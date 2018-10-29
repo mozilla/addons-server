@@ -1,6 +1,7 @@
 import json
 import os.path
 import random
+import re
 import uuid
 import zipfile
 
@@ -12,6 +13,7 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 import waffle
+from six import text_type
 
 from olympia import amo
 from olympia.lib.cache import memoize, memoize_key
@@ -188,18 +190,23 @@ def get_addon_recommendations_invalid():
         TAAR_LITE_FALLBACK_REASON_INVALID)
 
 
+MULTIPLE_STOPS_REGEX = re.compile(r'\.{2,}')
+
+
 def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     # create manifest
     accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
                    else amo.THEME_ACCENTCOLOR_DEFAULT)
     textcolor = '#%s' % (lwt.persona.textcolor or '000')
+
+    lwt_header = MULTIPLE_STOPS_REGEX.sub(u'.', text_type(lwt.persona.header))
     manifest = {
         "manifest_version": 2,
         "name": unicode(lwt.name or lwt.slug),
         "version": '1.0',
         "theme": {
             "images": {
-                "headerURL": lwt.persona.header
+                "headerURL": lwt_header
             },
             "colors": {
                 "accentcolor": accentcolor,
@@ -213,7 +220,7 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     # build zip with manifest and background file
     with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
         dest.writestr('manifest.json', json.dumps(manifest))
-        dest.write(lwt.persona.header_path, arcname=lwt.persona.header)
+        dest.write(lwt.persona.header_path, arcname=lwt_header)
 
 
 def build_webext_dictionary_from_legacy(addon, destination):
