@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-23 14:08+0000\n"
+"PO-Revision-Date: 2018-10-29 13:01+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -2527,7 +2527,7 @@ msgid "Header area text and icons"
 msgstr "ਸਿਰਲੇਖ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+msgstr "ਸਰਗਰਮ ਟੈਬ ਤੋਂ ਇਲਾਵਾ ਹੈਡਰ ਖੇਤਰ ਦੇ ਪਾਠ ਅਤੇ ਆਈਕਾਨ ਦਾ ਰੰਗ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  ਟੈਕਸਟ ਰੰਗ।"
 
 msgid "Toolbar area background"
 msgstr "ਟੂਲਬਾਰ ਖੇਤਰ ਦੀ ਬੈਕਗ੍ਰਾਉਂਡ"
@@ -5653,7 +5653,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "ਵਰਜਨ ਨੰਬਰਾਂ ਵਿੱਚ ਕੇਵਲ ਅੱਖਰ,ਨੰਬਰ ਅਤੇ ਇਹ ਵਿਰਾਮ ਚਿੰਨ੍ਹ ਸ਼ਾਮਲ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ: +*.-_।"
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "WebExtension ਥੀਮ ਲਈ ਅਧਿਕਤਮ ਆਕਾਰ {0}ਹੈ।"
 
 msgid "You cannot submit this type of add-on"
 msgstr "ਤੁਸੀਂ ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
