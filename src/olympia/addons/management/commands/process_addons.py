@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
@@ -15,8 +16,9 @@ from olympia.addons.tasks import (
     find_inconsistencies_between_es_and_db,
     migrate_legacy_dictionaries_to_webextension,
     migrate_lwts_to_static_themes,
-    migrate_addons_that_require_sensitive_data_access,
-    migrate_webextensions_to_git_storage)
+    migrate_webextensions_to_git_storage,
+    remove_amo_links_in_url_fields,
+    migrate_addons_that_require_sensitive_data_access)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -102,6 +104,15 @@ tasks = {
             Q(type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_LPAPP),
               versions__files__is_webextension=False,
               versions__files__is_mozilla_signed_extension=False)
+        ],
+        'pre': lambda values_qs: values_qs.distinct(),
+    },
+    'remove_amo_links_in_url_fields': {
+        'method': remove_amo_links_in_url_fields,
+        'qs': [
+            Q(homepage__localized_string__icontains=settings.DOMAIN) |
+            Q(support_url__localized_string__icontains=settings.DOMAIN) |
+            Q(contributions__icontains=settings.DOMAIN)
         ],
         'pre': lambda values_qs: values_qs.distinct(),
     },
