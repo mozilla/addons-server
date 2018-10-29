@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 21:07+0000\n"
+"PO-Revision-Date: 2018-10-29 21:23+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6043,25 +6043,25 @@ msgid "Continue using Firefox as you normally would. Depending on how you use th
 msgstr "Jutaqil tawokisaj Firefox achi'el jantape'. Rik'in jub'a' majun jaloj xtatz'ët: achike na rub'eyal nawokisaj ri k'amaya'l."
 
 msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
+msgstr "Chi rij jujun taq wuqq'ij, ruyonil xtik'is ri tijonïk. Ri Firefox xtitzolin achi'el rub'anon pe."
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Niqak'utuj chawe chi tanojisaj jun ko'öl cha'öy solan'oj chi rij ri awetamab'al. Man xtik'o ta 5 ch'utiramaj richin xtanojisaj."
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Titanab'äx kan ri tijonïk"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
+msgstr "Qitzij chi ri tijonïk pa ruyonil xtik'is pa jujun taq wuqq'ij. Yatikïr natanab'a' kan. We ke ri', ke'awojqaj re taq xak re':"
 
 msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
+msgstr "Tatz'ib'aj about:addons pa ri kikajtz'ik taq ochochib'äl chuqa' tapitz'a' enter."
 
 msgid "Find Plugin Safety in the addons list."
-msgstr ""
+msgstr "Takanoj Plugin Safety pa ri kicholb'al taq tz'aqat."
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Tapitz'a' ri rupitz'b'al tiyuj."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
