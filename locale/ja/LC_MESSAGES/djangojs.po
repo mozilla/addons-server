@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 11:12+0000\n"
+"PO-Revision-Date: 2018-10-29 11:19+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -743,16 +743,14 @@ msgid "Loading..."
 msgstr "読み込み中..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "残り <b>{0}</b> 文字です。"
+msgstr[0] "<b>{0}</b> 文字"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "残り <b>{0}</b> 文字です。"
+msgstr[0] "残り <b>{0}</b> 文字"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "この機能はサイトメンテナンスのため一時的に無効になっています。また後で試してください。"
@@ -797,7 +795,7 @@ msgid "Number of Reviews"
 msgstr "レビュー数"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "最大アップロードサイズは {0} です。小さいサイズの背景画像を選んでください。"
 
 msgid "Requested Info"
 msgstr "求められている情報"
