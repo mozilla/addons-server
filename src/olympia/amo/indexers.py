@@ -63,6 +63,27 @@ class BaseSearchIndexer(object):
             })
 
     @classmethod
+    def raw_field_definition(cls):
+        """
+        Return the mapping to use for the "raw" version of a field. Meant to be
+        used as part of a 'fields': {} definition in the mapping of an existing
+        field.
+
+        Used for exact matches and sorting
+        """
+        # It needs to be a keyword to turnoff all analysis ; that means we
+        # don't get the lowercase filter applied by the standard &
+        # language-specific analyzers, so we need to do that ourselves through
+        # a custom normalizer for exact matches to work in a case-insensitive
+        # way.
+        return {
+            'raw': {
+                'type': 'keyword',
+                'normalizer': 'lowercase_keyword_normalizer',
+            }
+        }
+
+    @classmethod
     def attach_language_specific_analyzers(cls, mapping, field_names):
         """
         For each field in field_names, attach language-specific mappings that
@@ -82,9 +103,27 @@ class BaseSearchIndexer(object):
                 }
 
     @classmethod
-    def extract_field_raw_translations(cls, obj, field, db_field=None):
+    def attach_language_specific_analyzers_with_raw_variant(
+            cls, mapping, field_names):
         """
-        Returns a dict containing raw translations that we need to store for
+        Like attach_language_specific_analyzers() but with an extra field to
+        storethe "raw" variant of the value, for exact matches.
+        """
+        doc_name = cls.get_doctype_name()
+
+        for analyzer in SEARCH_ANALYZER_MAP:
+            for field in field_names:
+                property_name = '%s_l10n_%s' % (field, analyzer)
+                mapping[doc_name]['properties'][property_name] = {
+                    'type': 'text',
+                    'analyzer': analyzer,
+                    'fields': cls.raw_field_definition()
+                }
+
+    @classmethod
+    def extract_field_api_translations(cls, obj, field, db_field=None):
+        """
+        Returns a dict containing translations that we need to store for
         the API.
         """
         if db_field is None:
@@ -92,7 +131,7 @@ class BaseSearchIndexer(object):
 
         extend_with_me = {
             '%s_translations' % field: [
-                {'lang': to_language(lang), 'string': string}
+                {'lang': to_language(lang), 'string': unicode(string)}
                 for lang, string in obj.translations[getattr(obj, db_field)]
                 if string
             ]
@@ -100,19 +139,19 @@ class BaseSearchIndexer(object):
         return extend_with_me
 
     @classmethod
-    def extract_field_search_translations(cls, obj, field, db_field=None):
+    def extract_field_search_translation(cls, obj, field, default_locale):
         """
-        Returns a dict containing all translations for the field, that will be
-        analyzed and indexed by ES *without* language-specific analyzers.
+        Returns the translation for this field in the object's default locale.
+        That field will be analyzed and indexed by ES *without*
+        language-specific analyzers.
         """
-        if db_field is None:
-            db_field = '%s_id' % field
+        translations = dict(obj.translations[getattr(obj, '%s_id' % field)])
+        default_locale = default_locale.lower() if default_locale else None
 
-        extend_with_me = {
-            field: list(
-                set(s for _, s in obj.translations[getattr(obj, db_field)]))
+        return {
+            field: unicode(
+                translations.get(default_locale, getattr(obj, field)))
         }
-        return extend_with_me
 
     @classmethod
     def extract_field_analyzed_translations(cls, obj, field, db_field=None):
@@ -129,7 +168,7 @@ class BaseSearchIndexer(object):
         # index with analyzer if the string's locale matches.
         for analyzer, languages in SEARCH_ANALYZER_MAP.iteritems():
             extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
-                set(string for locale, string
+                set(unicode(string) for locale, string
                     in obj.translations[getattr(obj, db_field)]
                     if locale.lower() in languages))
 
