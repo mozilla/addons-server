@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 21:51+0000\n"
+"PO-Revision-Date: 2018-10-29 22:05+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6108,16 +6108,18 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"¡Pa Mozilla, niqaya' qaq'ij ruma yeqatz'ük taq atikojil! Ruma ri' niqajo' chi yojato'. Toq yato'on pa re tijonïk re', yojato' yeqacha' utziläj taq na'oj ¡chuqa' yato'on rik'in ri ruk'aslem Firefox "
+"ri chwa'q kab'ij!"
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Nik'ut chawäch ruma:"
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Taq rejqalem %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "Taq Kinatab'al Runik'oxik re tz'aqat re'"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
@@ -6125,7 +6127,7 @@ msgid "Rated %d out of 5 stars"
 msgstr ""
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "We nacha' \"Jun chik\" k'o chi naya' jun ko'öl rutzijoxkil."
 
 msgid "Spam or otherwise non-review content"
 msgstr ""
@@ -6215,13 +6217,13 @@ msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this a
 msgstr ""
 
 msgid "Flagged for review"
-msgstr ""
+msgstr "Ya'on retal richin ninik'öx"
 
 msgid "Report this review"
-msgstr ""
+msgstr "Tiya' rutzijol re nik'oxïk re'"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Rutzolin tizj nik'oxik"
 
 msgid "Edit reply"
 msgstr ""
