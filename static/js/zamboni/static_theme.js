@@ -196,11 +196,18 @@ $(document).ready(function() {
                         dataType: 'json',
                         success: uploadDone,
                         error: function (xhr, text, error) {
-                            // Fake the validation so we can display as an error.
-                            uploadDone({validation:{
-                                errors:1,
-                                messages:[{message:error}]
-                            }});
+                            if (xhr.responseJSON && xhr.responseJSON.validation) {
+                                // even though we got an error response code, it's validation json.
+                                data = xhr.responseJSON;
+                            } else {
+                                // Fake the validation so we can display as an error.
+                                data = {
+                                    validation:{
+                                        errors:1,
+                                        messages:[{message:error}]
+                                }};
+                            }
+                            uploadDone(data);
                         }
                     });
                 }, 1000);
