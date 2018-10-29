@@ -20,11 +20,6 @@ from olympia.stats import search as stats_search
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
-
-time_limits = settings.CELERY_TIME_LIMITS[
-    'olympia.lib.es.management.commands.reindex']
-
-
 ES = get_es()
 
 
@@ -80,9 +75,6 @@ def unflag_database():
     unflag_reindexing_amo()
 
 
-# FIXME: time limits, need to pass
-# timeout timeout=time_limits['hard'], soft_timeout=time_limits['soft'] to the
-# tasks.
 def gather_index_data_tasks(alias, index):
     """
     Return a group of indexing tasks for that index.

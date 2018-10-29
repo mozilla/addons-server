@@ -1326,17 +1326,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
 }
 
-
-# This is just a place to store these values, you apply them in your
-# task decorator, for example:
-#   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
-# Otherwise your task will use the default settings.
-CELERY_TIME_LIMITS = {
-    # The reindex management command can take up to 3 hours to run.
-    'olympia.lib.es.management.commands.reindex': {
-        'soft': 10800, 'hard': 14400},
-}
-
 # When testing, we always want tasks to raise exceptions. Good for sanity.
 CELERY_TASK_EAGER_PROPAGATES = True
 
