@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 19:02+0000\n"
+"PO-Revision-Date: 2018-10-29 20:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5894,21 +5894,21 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 msgid "I have a question"
-msgstr ""
+msgstr "K'o jun nuk'utunik"
 
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
+msgstr "Jun ütz k'ojlib'äl richina nitikirisäx ja ri <a href=\"%(sumo_url)s\">Tob'äl Mozilla. We man nisol ta ri ak'utunik chi ri', yatikïr <a href=\"%(forum_url)s\"> nak'utuj pa ri qach'ob'omol</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "We kan nawajo' yatzijon rik'in jun ruwinaq rumolaj Mozilla, tatz'eta' pa ri <a href=\"%(url)s\"> tzijonem etamab'äl</a> ruxaq."
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "¿Achike nisamäj pa re ruxaq re'?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
+msgstr "K'ïy chik juna', k'ïy winaqi', achi'el ri e ruto'onel tinamït achi'el jun molaj nikisamajij ri AMO, xeto'on pa re ajk'amaya'l ruxaq re'."
 
 msgid "Sections"
 msgstr "Taq peraj"
@@ -5923,6 +5923,8 @@ msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
 " with these guidelines."
 msgstr ""
+"Ri kejqalem taq tz'aqat jun rub'anikil richin ye'akomonij ri taq ana'oj chi kij ri taq tz'aqat e'ayakon chuqa' e'awokisan. Pa kiq'a' ri qamolaj k'o richin yekipäj ri taq ejqalem richin yekixutuj o "
+"nikiyüj xab'achike ejqalem man rojqan ta xab'achike chi ke re taq rucholajil re'."
 
 msgid "Do:"
 msgstr "Tib'an:"
