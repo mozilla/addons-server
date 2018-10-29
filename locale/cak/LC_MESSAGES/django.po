@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 21:23+0000\n"
+"PO-Revision-Date: 2018-10-29 21:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6064,45 +6064,45 @@ msgid "Click the remove button."
 msgstr "Tapitz'a' ri rupitz'b'al tiyuj."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
+msgstr "We natanab'a' kan ri tijonïk chuwäch nik'is, xtiqak'utuj chawe chi nanojisaj jun molna'oj. Niqajo' niqetamaj ri awetamab'al, stape' man xak'ïs ta chijun ri tijonïk."
 
 msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
+msgstr "Toq natanab'a' kan jun tijonïk man xkaruq'ät ta richin xkato'on pa ch'aqa' chik tijonïk."
 
 msgid "Your privacy"
-msgstr ""
+msgstr "Awichinanem"
 
 msgid "All Shield Studies"
-msgstr ""
+msgstr "Ronojel Shield taq Tijonïk"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "Ri taq Shield Tijonïk yekimöl taq tzij chi kij nïm taq nimaq'ij achi'el, taq yakoj, k'amoj, rokisaxik q'ij q'ij chuqa' ruk'isik tijonïk. Chuqa' ruk'wan jun cha'on molna'oj."
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "Re taq tzij re' kiximon ki' rik'in ri rumolb'al <a href=\"%(url)s\">Firefox Telemetry</a>."
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Re tijonïk re'"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
+msgstr "Kik'in ri taq tzij emolon kuma' ri taq Rutijonïk Shield, ri Mozilla chuqa' xtumöl etamab'äl chi rij:"
 
 msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
+msgstr "Ajk'amaya'l ruxaq xke'atz'ët, ri nikitojtob'ej yekokisaj taq nak'ab'äl, chuqa' achike etamab'äl nuk'utuj ri nak'ab'äl ri';"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "Achike rub'eyal yasamäj rik'in ri rupam nak'ab'äl pa ri taq ruxaq ri', chuqa' we naya' q'ij chuqa' achike rub'eyal nitikïr ri nak'ab'äl."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
 msgstr ""
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "Yatikïr nawetamaj ch'aqa' chik chi rij ri kimolik tzij ruma re tijonïk re' <a href=\"%(url)s\">wawe'</a>."
 
 msgid "You Help Make Firefox Better"
-msgstr ""
+msgstr "Yato'on Nutziläx ri Firefox"
 
 msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
