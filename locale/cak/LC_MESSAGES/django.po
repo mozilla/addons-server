@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 21:51+0000\n"
+"PO-Revision-Date: 2018-10-30 22:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6206,17 +6206,17 @@ msgstr "Tacha' jun aruma:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "richin %(user)s <b>(B'anonel)</b> pa %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
-msgstr ""
+msgstr "Re ejqalem re' richin jun kan ruwäch tz'aqat ({0})."
 
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Re okisanel re' k'o <a href=\"%(user_review_url)s\">jun runik'oxik</a> re tz'aqat re'."
+msgstr[1] "Re okisanel re' <a href=\"%(user_review_url)s\">%(cnt)s k'o kan jun runik'oxik</a> re tz'aqat re'."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
