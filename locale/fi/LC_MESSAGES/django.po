@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 14:22+0000\n"
+"PO-Revision-Date: 2018-10-30 19:24+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -2077,7 +2077,7 @@ msgstr "Maisema"
 # 87%
 # 100%
 msgid "Seasonal"
-msgstr "Vuodenaikaiset"
+msgstr "Vuodenajat"
 
 msgid "Solid"
 msgstr "Tasaväriset"
