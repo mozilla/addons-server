@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 09:08+0000\n"
+"PO-Revision-Date: 2018-10-30 09:31+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3490,9 +3490,8 @@ msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ"
 msgid "optional"
 msgstr "ਵਿਕਲਪਿਕ"
 
-#, fuzzy
 msgid "Browser preview"
-msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
+msgstr "ਬ੍ਰਾਉਜ਼ਰ ਪ੍ਰੀਵਿਊ"
 
 msgid "Back"
 msgstr "ਪਿੱਛੇ ਜਾਉ"
@@ -3577,9 +3576,8 @@ msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਇਹ ਵਰਜਨ ਇੰਸਟਾਲ ਕੀਤਾ ਜਾਵੇਗਾ ਜੇਕਰ ਕੋਈ addons.mozilla.org ਤੇ ਇੰਸਟਾਲ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰਦਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-#, fuzzy
 msgid "Next Listed Version:"
-msgstr "ਅਗਲਾ ਵਰਜਨ:"
+msgstr "ਅਗਲਾ ਸੂਚੀਬੱਧ ਵਰਜ਼ਨ:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet."
 msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰਜਨ ਹੈ, ਹਾਲਾਂਕਿ ਇਹ ਹਾਲੇ ਤੱਕ ਇਸ ਸਾਈਟ ਤੇ ਠਹਿਰਾਓ ਨਹੀਂ।"
@@ -3610,13 +3608,11 @@ msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
 msgid "View All"
 msgstr "ਸਾਰੇ ਵੇਖੋ"
 
-#, fuzzy
 msgid "Listed Review Page"
-msgstr "ਦਰਮਿਆਨੀ ਸਮੀਖਿਆ ਚਿੱਠਾ"
+msgstr "ਸੂਚੀਬੱਧ ਸਮੀਖਿਆ ਪੰਨਾ"
 
-#, fuzzy
 msgid "Unlisted Review Page"
-msgstr "ਗੈਰਸੂਚੀਬੱਧ ਕਤਾਰਾਂ"
+msgstr "ਗੈਰ-ਸੂਚੀਬੱਧ ਰਿਵਿਊ ਪੰਨਾ"
 
 msgid "View Statistics Dashboard"
 msgstr "ਅੰਕੜੇ ਵਾਲਾ ਡੈਸ਼ਬੋਰਡ ਵੇਖੋ"
@@ -3868,9 +3864,8 @@ msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਪੇਸ਼ ਕਰੋ!"
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
 msgstr "ਕੀ ਐਡਆਨ ਤਿਆਰ ਹੈ? addons.mozilla.org ਤੇ ਸੂਚੀਬੱਧ ਹੋਣ ਲਈ ਆਪਣੀ ਐਕਸਟੈਂਸ਼ਨ ਜਾਂ ਥੀਮ ਦਰਜ਼ ਕਰੋ ਜਾਂ ਆਪਣੇ ਐਕਸਟੈਨਸ਼ਨ ਤੇ ਦਸਤਖਤ ਕਰੋ ਅਤੇ ਵੰਡੋ।"
 
-#, fuzzy
 msgid "Sign In"
-msgstr "ਐਡ-ਆਨ ਦਾਖਲ ਕਰੋ"
+msgstr "ਸਾਇਨ ਇਨ"
 
 msgid "Web-Ext"
 msgstr "ਵੈਬ-ਐਕਸਟੈਂਸ਼ਨ"
@@ -3882,16 +3877,14 @@ msgstr "ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਬਣਾਉਣ, ਰਨ ਅ�
 msgid "Automated code tests for your add-on."
 msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਐਡ-ਆਨ ਮੁਕੰਮਲ ਕਰੋ।"
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "ਅਨੁਕੂਲਤਾ ਪਰਖਾਂ"
+msgstr "ਅਨੁਕੂਲਤਾ ਟੈਸਟ"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "ਇਹ ਵੇਖਣ ਲਈ ਜਾਂਚ ਕਰੋ ਕਿ ਕੀ ਤੁਹਾਡਾ ਐਕਸਟੈਂਸ਼ਨ ਫਾਇਰਫਾਕਸ ਦੇ ਅਨੁਕੂਲ ਹੈ।"
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "ਸੂਚੀ ਵੇਖੋ"
+msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬਗਿੰਗ ਲਈ ਅਸਥਾਈ ਰੂਪ ਵਿੱਚ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਇੰਸਟਾਲ ਕਰੋ।"
@@ -5844,9 +5837,8 @@ msgstr "ਰਿਪੋਰਟ ਕੀਤੀ ਸਪੈਮ"
 msgid "Reported Ham"
 msgstr "ਦੁਰਵਿਹਾਰ ਸੂਚਨਾ"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "ਅਜੇ ਤੱਕ ਦਰਜਾਬੰਦੀ ਨਹੀਂ ਕੀਤੀ"
+msgstr "ਰਿਪੋਰਟ ਨਹੀਂ ਕੀਤੀ ਗਈ"
 
 msgid "Content Submitted"
 msgstr "ਸਮੱਗਰੀ ਪ੍ਰਸਤੁਤ ਕੀਤੀ"
@@ -6547,9 +6539,8 @@ msgstr "ਬਹੁ ਵਰਜਨ ਨੂੰ ਰੱਦ ਕਰੋ"
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
 msgstr "ਉਹ ਐਡ-ਆਨ ਨੂੰ ਰੱਦ ਅਤੇ ਇਸ ਨੂੰ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਹਟਾ ਦੇਣਗੇ।"
 
-#, fuzzy
 msgid "Reviewer reply"
-msgstr "ਡਿਵੈਲਪਰ ਖਬਰਾਂ"
+msgstr "ਸਮੀਖਿਅਕ ਜਵਾਬ"
 
 #, fuzzy
 msgid "This will send a message to the developer. You will be notified when they reply."
@@ -6568,9 +6559,8 @@ msgstr ""
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "ਇਸ ਵਰਜਨ ਇੱਕ ਟਿੱਪਣੀ ਕਰੋ। ਲੇਖਕ ਇਸ ਨੂੰ ਨਹੀਂ ਵੇਖ ਸਕੇਗਾ।"
 
-#, fuzzy
 msgid "Approve Content"
-msgstr "ਮਨਜ਼ੂਰ / ਨਾ ਮਨਜ਼ੂਰ"
+msgstr "ਸਮੱਗਰੀ ਨੂੰ ਸਵੀਕਾਰ ਕਰੋ"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬਗੈਰ, ਨਵੀਨਤਮ ਜਨਤਕ ਸੰਸਕਰਣ ਦੀ ਸਮਗਰੀ ਦੀ ਤੁਹਾਡੀ ਅਨੁਮਤੀ ਨੂੰ ਰਿਕਾਰਡ ਕਰਦਾ ਹੈ।"
@@ -6579,13 +6569,11 @@ msgstr "ਇਹ ਡਿਵੈਲਪਰ ਨੂੰ ਸੂਚਿਤ ਕੀਤੇ ਬ�
 msgid "Static Themes and Legacy Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "ਥੀਮ ਪੇਸਕਸ਼"
+msgstr "ਸਥਾਈ ਥੀਮ"
 
-#, fuzzy
 msgid "Legacy Add-ons"
-msgstr "ਮੇਰੇ ਐਡ-ਆਨ"
+msgstr "ਪੁਰਾਤਨ ਐਡਆਨ"
 
 #, fuzzy
 msgid "New ({0})"
