@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 22:29+0000\n"
+"PO-Revision-Date: 2018-10-30 22:47+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6271,31 +6271,31 @@ msgstr "Majun ejqalem xilitäj."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Junamilil</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "Tatz'ib'aj jun K'ak'a' Tzijoxïk"
 
 msgid "Be the first to write a review."
-msgstr ""
+msgstr "Nab'ey katz'ib'an jun tzijoxïk."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{num} rejqalem"
+msgstr[1] "{num} taq ejqalem"
 
 msgid "Rated {0} out of 5 stars"
-msgstr ""
+msgstr "Ya'on {0} richin 5 ch'umil"
 
 #, python-format
 msgid "Rated %(rating)s out of 5 stars"
-msgstr ""
+msgstr "Ya'on %(rating)s richin 5 taq ch'umil"
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "Ütz taq ejqalem"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Keyuj ri taq ejqalem"
 
 msgid "View entries between"
 msgstr ""
