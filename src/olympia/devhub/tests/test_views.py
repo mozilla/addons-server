@@ -24,6 +24,7 @@ from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, AddonFeatureCompatibility, AddonUser)
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     format_date, url as url_reverse)
 from olympia.amo.tests import (
@@ -1755,3 +1756,39 @@ def test_get_next_version_number():
     version_factory(addon=addon, version='36.0').delete()
     assert addon.current_version.version == '34.45.0a1pre'
     assert get_next_version_number(addon) == '37.0'
+
+
+class TestThemeBackgroundImage(TestCase):
+
+    def setUp(self):
+        user = user_factory(email='regular@mozilla.com')
+        assert self.client.login(email='regular@mozilla.com')
+        self.addon = addon_factory(users=[user])
+        self.url = reverse(
+            'devhub.submit.version.previous_background',
+            args=[self.addon.slug, 'listed'])
+
+    def test_wrong_user(self):
+        user_factory(email='irregular@mozilla.com')
+        assert self.client.login(email='irregular@mozilla.com')
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 403
+
+    def test_no_header_image(self):
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data == {}
+
+    def test_header_image(self):
+        destination = self.addon.current_version.all_files[0].current_file_path
+        zip_file = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        copy_stored_file(zip_file, destination)
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data
+        assert len(data.items()) == 1
+        assert 'weta.png' in data
+        assert len(data['weta.png']) == 168596  # base64-encoded size

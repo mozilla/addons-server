@@ -53,17 +53,28 @@ $(document).ready(function() {
             $svg_img.attr('preserveAspectRatio', 'xMaxYMin '+ meetOrSlice);
         });
 
+        function b64toBlob(data) {
+            var b64str = atob(data);
+            var counter = b64str.length;
+            var u8arr = new Uint8Array(counter);
+            while(counter--){
+                u8arr[counter] = b64str.charCodeAt(counter);
+            }
+            return new Blob([u8arr]);
+        }
+
         $wizard.find('#theme-header').each(function(index, element) {
             var img_src = $(element).data('existing-header');
             // If we already have a preview from a selected file don't overwrite it.
             if (getFile() || !img_src) return;
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", img_src);
-            xhr.responseType = "blob";
+            xhr.open("GET", window.location.href + "/background");
+            xhr.responseType = "json";
             // load the image as a blob so we can treat it as a File
             xhr.onload = function() {
-                preLoadBlob = xhr.response;
-                preLoadBlob.name = img_src.split('/').slice(-1)[0];
+                jsonResponse = xhr.response;
+                preLoadBlob = b64toBlob(jsonResponse[img_src]);
+                preLoadBlob.name = img_src;
                 $wizard.find('input[type="file"]').trigger('change');
             };
             xhr.send();

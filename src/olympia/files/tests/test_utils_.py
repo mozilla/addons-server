@@ -1020,3 +1020,60 @@ class TestExtractHeaderImg(TestCase):
         assert default_storage.size(additional_file_1) == 42
         assert default_storage.exists(additional_file_2)
         assert default_storage.size(additional_file_2) == 93371
+
+
+class TestGetBackgroundImages(TestCase):
+    file_obj = os.path.join(
+        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+
+    def test_get_background_images(self):
+        data = {'images': {'headerURL': 'weta.png'}}
+
+        images = utils.get_background_images(self.file_obj, data)
+        assert 'weta.png' in images
+        assert len(images.items()) == 1
+        assert len(images['weta.png']) == 126447
+
+    def test_get_background_images_no_theme_data_provided(self):
+        images = utils.get_background_images(self.file_obj, theme_data=None)
+        assert 'weta.png' in images
+        assert len(images.items()) == 1
+        assert len(images['weta.png']) == 126447
+
+    def test_get_background_images_missing(self):
+        data = {'images': {'headerURL': 'missing_file.png'}}
+
+        images = utils.get_background_images(self.file_obj, data)
+        assert not images
+
+    def test_get_background_images_not_image(self):
+        self.file_obj = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/static_theme_non_image.zip')
+        data = {'images': {'headerURL': 'not_an_image.js'}}
+
+        images = utils.get_background_images(self.file_obj, data)
+        assert not images
+
+    def test_get_background_images_with_additional_imgs(self):
+        self.file_obj = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
+        data = {'images': {
+            'headerURL': 'empty.png',
+            'additional_backgrounds': [
+                'transparent.gif', 'missing_&_ignored.png',
+                'weta_for_tiling.png']
+        }}
+
+        images = utils.get_background_images(self.file_obj, data)
+        assert len(images.items()) == 3
+        assert len(images['empty.png']) == 332
+        assert len(images['transparent.gif']) == 42
+        assert len(images['weta_for_tiling.png']) == 93371
+
+        # And again but only with the header image
+        images = utils.get_background_images(
+            self.file_obj, data, header_only=True)
+        assert len(images.items()) == 1
+        assert len(images['empty.png']) == 332

@@ -1,7 +1,7 @@
 import datetime
 import os
 import time
-
+from base64 import b64encode
 from uuid import UUID, uuid4
 
 from django import forms as django_forms, http
@@ -46,7 +46,7 @@ from olympia.devhub.utils import (
     get_addon_akismet_reports, wizard_unsupported_properties,
     extract_theme_properties)
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.utils import parse_addon
+from olympia.files.utils import get_background_images, parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
@@ -1783,3 +1783,18 @@ def send_key_revoked_email(to_email, key):
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )
+
+
+@dev_required
+@json_view
+def theme_background_image(request, addon_id, addon, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    version = addon.find_latest_version(channel_id)
+    if not version or not version.all_files:
+        return {}
+    backgrounds = get_background_images(
+        version.all_files[0], theme_data=None, header_only=True)
+    backgrounds = {
+        name: b64encode(background)
+        for name, background in backgrounds.items()}
+    return backgrounds

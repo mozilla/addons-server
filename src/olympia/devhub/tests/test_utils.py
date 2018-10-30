@@ -431,14 +431,14 @@ def test_extract_theme_properties():
     copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
     result = utils.extract_theme_properties(
         addon, addon.current_version.channel)
-    assert result['colors'] == {
-        "accentcolor": "#adb09f",
-        "textcolor": "#000"
-    }
-    assert result['images'] == {
-        "headerURL": '%s%s//%s/%s/%s' % (
-            settings.MEDIA_URL, 'addons', text_type(addon.id),
-            text_type(addon.current_version.id), 'weta.png')
+    assert result == {
+        "colors": {
+            "accentcolor": "#adb09f",
+            "textcolor": "#000"
+        },
+        "images": {
+            "headerURL": "weta.png"
+        }
     }
 
 
