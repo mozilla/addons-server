@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 21:09+0000\n"
+"PO-Revision-Date: 2018-10-30 21:28+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5887,17 +5887,17 @@ msgstr ""
 "sachoj k'o wakami; ri taqanel taq sachoj yatikïr ye'awojqaj pa Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "We niqa chawäch ri taq tz'aqat, estape' man kan ta at ajtïj, k'o ch'aqa' chik rub'anikil richin yato'on:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "¡Tatzijoj chi ke ri awachib'il! Tiketamaj achike taq tzaqat nawokisaj."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Kato'on pa <a href=\"%(url)s\">qach'ob'omol</a>."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Kamolon taq tz'aqat pa ri ruxaq. Ke ri' ri ajb'anöy yekutzilaj ri taq kitz'aqat chuqa' yekib'än ch'aqa' chik we niketamaj chi ri winaqi' nikiya' ruq'ij kisamaj."
 
 msgid "I have a question"
 msgstr "K'o jun nuk'utunik"
@@ -6101,7 +6101,7 @@ msgid "How you interact with plugin content on those sites, including whether an
 msgstr "Achike rub'eyal yasamäj rik'in ri rupam nak'ab'äl pa ri taq ruxaq ri', chuqa' we naya' q'ij chuqa' achike rub'eyal nitikïr ri nak'ab'äl."
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "Mozilla tuchajij ri etamab'äl, xab'achike etamab'äl xtukomonij chijun chuqa' pa säq xtub'än."
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
@@ -6130,19 +6130,19 @@ msgstr "Taq Kinatab'al Runik'oxik re tz'aqat re'"
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "Ya'on %d richin 5 ch'umil"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr "We nacha' \"Jun chik\" k'o chi naya' jun ko'öl rutzijoxkil."
 
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Man ruk'amon ta ri eltzijol o jun chik rupam"
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Man okel ta chi tzij/dialog"
 
 msgid "Misplaced bug report or support request"
-msgstr ""
+msgstr "Rutzijol k'ayewal o ruk'utuxik to'ïk pa jun itzel k'ojlib'äl"
 
 msgid "Other (please specify)"
 msgstr ""
