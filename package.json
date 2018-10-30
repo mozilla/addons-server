@@ -5,6 +5,9 @@
   "engines": {
     "node": ">= 16"
   },
+  "scripts": {
+    "potools": "potools"
+  },
   "dependencies": {
     "addons-linter": "~6.15.0",
     "clean-css": "4.2.3",
