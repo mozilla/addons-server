@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 23:12+0000\n"
+"PO-Revision-Date: 2018-10-30 23:33+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6329,93 +6329,93 @@ msgid "yes"
 msgstr "ja'"
 
 msgid "no"
-msgstr ""
+msgstr "manäq"
 
 msgid "Add-on Types"
-msgstr ""
+msgstr "Kiwäch Tz'aqat"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Tikanöx rik'in rub'i' tz'aqat / rutaqoya'l b'anel / k'wab'äl"
 
 msgid "Max. Version"
-msgstr ""
+msgstr "Nïm Ruwäch"
 
 msgid "Select an application first"
 msgstr "Nab'ey ticha' jun chokoy"
 
 msgid "Comments:"
-msgstr ""
+msgstr "Taq tzijoxïk"
 
 msgid "Operating systems:"
-msgstr ""
+msgstr "Samajel taq q'inoj:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "Taq chokoy:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Tik'utüx chi tutzolij pe tzij ri b'anonel pa…"
 
 msgid "days"
-msgstr ""
+msgstr "taq q'ij"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Ticha' jun k'o wi chi tzolin tzij..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "rub'i' wachinel"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "K'o chik jun nunik'oj re wachinel te'."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
-msgstr ""
+msgstr "wachinel, nuk'unel o ka'i' oxi' tzij"
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Ichinan Tz'ib'ab'äl"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Tik'oje' na nik'oxïk; keyuj taq yaketal"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Wakami tuk'owisaj"
 
 msgid "Needs Admin Content Review"
-msgstr ""
+msgstr "Nrajo' Runik'oxik Ka'i' Oxi' Rutzij Nuk'samajel"
 
 msgid "Needs Admin Static Theme Review"
 msgstr "K'atzinel Ninik'öx ri Mesilon Wachinel Ruma ri Nuk'samajel"
 
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Jetpack Tz'aqat"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "Xk'utüx Ch'aqa' chik Etamab'äl"
 
 msgid "Expired Information Request"
-msgstr ""
+msgstr "Xk'is Ruq'ijul ri Etamab'äl Xk'utüx"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Ya'on taq xe'el"
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Is locked by a reviewer."
-msgstr ""
+msgstr "Q'aton ruma jun nik'onel."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Kamulun Taqoj"
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Matyox xatäq ri Awachinel"
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "Jun k'ayewal rik'in rutaqik Awachinel"
 
 msgid "Theme submission flagged for review"
 msgstr ""
