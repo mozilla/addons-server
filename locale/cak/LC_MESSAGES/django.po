@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 22:47+0000\n"
+"PO-Revision-Date: 2018-10-30 23:12+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6298,35 +6298,35 @@ msgid "Deleted reviews"
 msgstr "Keyuj ri taq ejqalem"
 
 msgid "View entries between"
-msgstr ""
+msgstr "Ketz'et taq okem chi kikojol"
 
 msgid "and"
-msgstr ""
+msgstr "chuqa'"
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Tichayüx rik'in ruwäch/action"
 
 msgid "containing"
-msgstr ""
+msgstr "k'wayon"
 
 msgid "start"
-msgstr ""
+msgstr "titikirisäx"
 
 msgid "end"
-msgstr ""
+msgstr "ruchi'"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
-msgstr ""
+msgstr "tz'aqat, nuk'unel o tzijoxïk"
 
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Tikanöx rik'in rub'i' tz'aqat / rutaqoya'l b'anel"
 
 msgid "Needs Admin Code Review"
-msgstr ""
+msgstr "Nrajo' Runik'oxik Rub'itz'ib' Nuk'samajel"
 
 msgid "yes"
-msgstr ""
+msgstr "ja'"
 
 msgid "no"
 msgstr ""
