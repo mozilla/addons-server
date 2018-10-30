@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 22:09+0000\n"
+"PO-Revision-Date: 2018-10-30 22:29+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6220,7 +6220,7 @@ msgstr[1] "Re okisanel re' <a href=\"%(user_review_url)s\">%(cnt)s k'o kan jun r
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Re okisanel re' k'o <a href=\"%(user_review_url)s\">juley runik'oxik</a> re tz'aqat re'."
 
 msgid "Flagged for review"
 msgstr "Ya'on retal richin ninik'öx"
@@ -6232,42 +6232,42 @@ msgid "Reply to review"
 msgstr "Rutzolin tizj nik'oxik"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Tinuk' tzolin tzij"
 
 msgid "Edit review"
-msgstr ""
+msgstr "Tinuk' tzijoxïk"
 
 msgid "Delete reply"
-msgstr ""
+msgstr "Tiyuj tzolin tzij"
 
 msgid "Delete review"
-msgstr ""
+msgstr "Tiyuj tzijoxïk"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Taq Tzijoxïk"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Taq rejqalem {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
 msgid_plural "<b>{0}</b> reviews for this add-on"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> kitzijoxik re tz'aqat re'"
+msgstr[1] "<b>{0}</b> taq rutzijoxik re tz'aqat re'"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Rutzolin tzij rub'anonel {0}"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rejqalem %(addon)s richin %(user)s"
+msgstr[1] "Taq rejqalem %(addon)s richin %(user)s"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Majun ejqalem xilitäj."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
