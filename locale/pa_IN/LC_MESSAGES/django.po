@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 07:11+0000\n"
+"PO-Revision-Date: 2018-10-30 07:27+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3727,7 +3727,7 @@ msgid "Site Status"
 msgstr "ਸਾਈਟ ਦੀ ਸਥਿਤੀ"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "ਵੈਬ-ਐਕਸਟੈਂਟ: ਬਿਲਡ ਅਤੇ ਟੈਸਟ ਐਕਸਟੈਂਸ਼ਨ"
 
 msgid "Promote"
 msgstr "ਉਤਸ਼ਾਹਿਤ"
@@ -4158,6 +4158,8 @@ msgstr "ਖੋਜ ਨਤੀਜੇ ਅਤੇ ਸੂਚੀਬੱਧ ਸਫ਼ੇ ਨ�
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
+"{label_open}ਅਦਿੱਖ:{label_close} ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਸੂਚੀ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਬਣਾਇਆ ਹੈ। ਸੂਚੀ ਲਈ ਨਵੀਆਂ ਵਰਜਨ ਬੇਨਤੀਆਂ ਨੂੰ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ ਨਹੀਂ "
+"ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 #, fuzzy
 msgid "Listed versions"
@@ -4456,7 +4458,7 @@ msgstr "ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਤੇ ਪਾਠ ਨੂੰ ਹ
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਅਕਾਦਮਿਕ ਬੁੱਧ ਨਾਲ ਟੈਪ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
@@ -4464,7 +4466,7 @@ msgstr "10 ਮਿਲੀਅਨ ਰਿਸਰਚ ਪੇਪਰਾਂ ਤਕ ਮੁ�
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਮਾਊਸ ਸੰਕੇਤ ਨੂੰ ਅਨੁਕੂਲਿਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
@@ -4717,7 +4719,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਜ਼ਬਰਦਸਤ ਡਾਊਨਲੋਡ ਪ੍ਰਬੰਧਨ"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
@@ -4733,7 +4735,7 @@ msgstr "ਇੰਟਰਨੈੱਟ ਤੋਂ ਜਾਣਕਾਰੀ OneNote ਤੇ 
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਖੋਜ ਟਰੈਕਿੰਗ ਸੁਰੱਖਿਆ"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
@@ -4925,7 +4927,7 @@ msgstr "ਚੀਜ਼ਾਂ ਨੂੰ ਪ੍ਰਾਪਤ ਕਰਨ ਲਈ ਮਾ�
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਫ਼ੇ ਨੂੰ ਸ਼ੁਰੂ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -5009,11 +5011,11 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕੋ
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
-msgstr ""
+msgstr "ਉਸ ਵੈੱਬਸਾਈਟ ਤੇ ਸਿੱਧਾ ਜਾਓ ਜਿਸ ਤੇ ਤੁਸੀਂ ਪਹੁੰਚਣਾ ਚਾਹੁੰਦੇ ਹੋ, ਇਸਦੇ ਵਿਚਕਾਰ ਮੁੜ ਨਿਰਦੇਸ਼ਿਤ ਕੀਤੇ ਬਿਨਾਂ।"
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈਬ ਤੇ WhatsApp ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -5137,11 +5139,11 @@ msgstr "ਵੀਡੀਓ ਅਤੇ/ਜਾਂ ਔਡੀਓ ਡਾਊਨਲੋਡ �
 
 #. editorial content for the discovery pane.
 msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪੜ੍ਹਨ ਸਮੱਗਰੀ ਇਕੱਤਰ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਸਾਰੇ RSS/Atom/RDF ਸ੍ਰੋਤਾਂ ਨੂੰ ਇਕੱਤਰ ਕਰਨ ਲਈ ਇੱਕ ਵਿਕਸਿਤ ਪਾਠਕ।"
 
 #. editorial content for the discovery pane.
 msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5265,7 +5267,7 @@ msgstr "ਇੱਕ ਕਲਿੱਕ ਨਾਲ ਨਿੱਜੀ ਬ੍ਰਾਉਜ�
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਟੈਬ ਹਾਈਜੈਕਿੰਗ ਰੋਕੋ"
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
@@ -5313,7 +5315,7 @@ msgstr "ਸੌਖੀ ਤਰ੍ਹਾਂ ਵੈਬ ਸਮੱਗਰੀ ਨੂੰ �
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਅਖੀਰ ਟੈਬ ਕੰਟਰੋਲ"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
@@ -5321,7 +5323,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਇੱਕ ਅਜੀਬ ਸਿੱਖਿਆ ਦਾ ਆਨੰਦ ਮਾਣੋ"
 
 #. editorial content for the discovery pane.
 msgid "Load a random Wikipedia article each time you open a new tab."
@@ -5417,7 +5419,7 @@ msgstr "ਇੱਕ ਸਧਾਰਨ ਵਿਗਿਆਪਨ ਬਲੌਕਰ ਜੋ �
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਮਾਜ਼ਾਨ ਪਰਾਈਸਿੰਗ ਅਤੀਤ ਨੂੰ ਟ੍ਰੈਕ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
@@ -5477,7 +5479,7 @@ msgstr "ਪਾਸਵਰਡ-ਆਪਣੇ ਨਿੱਜੀ ਬੁਕਮਾਰਕ �
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} IP ਐਡਰੈੱਸ ਲੀਕ ਨੂੰ ਰੋਕੋ"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -5565,7 +5567,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪ
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
-msgstr ""
+msgstr "ਟਰੈਕਰ ਬਲਾਕਿੰਗ, ਸਮਾਰਟ ਏਨਕ੍ਰਿਪਸ਼ਨ, ਪ੍ਰਾਈਵੇਟ ਖੋਜ, ਅਤੇ ਹੋਰ ਜ਼ਰੂਰੀ ਚੀਜ਼ਾਂ ਹੋਰ ਸੁਰੱਖਿਆ ਦੇ ਨਾਲ ਖੋਜੋ।"
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5660,7 +5662,7 @@ msgstr "ਤੁਸੀਂ ਇਸ ਕਿਸਮ ਦੇ ਐਡ-ਆਨ ਨੂੰ ਦ�
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
