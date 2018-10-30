@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 13:01+0000\n"
+"PO-Revision-Date: 2018-10-30 06:53+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -695,7 +695,7 @@ msgstr "ਸਕਾਰਾਤਮਕ ਪੂਰਨ ਅੰਕ"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "ਇਹ ਖੇਤਰ ਕੇਵਲ ਬਾਹਰੀ ਵੈਬਸਾਈਟਸ ਨਾਲ ਲਿੰਕ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ। %(domain)s ਤੇ URLs ਦੀ ਇਜਾਜ਼ਤ ਨਹੀ ਹੈ।"
 
 msgid "Incorrect, please try again."
 msgstr "ਗਲਤ, ਕਿਰਪਾ ਕਰ ਕੇ ਮੁੜ ਤੋਂ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
@@ -5381,7 +5381,7 @@ msgstr "ਰੀਡਾਇਰੈਕਟਸ ਰੋਕੋ ਤਾਂ ਜੋ ਤੁਸ�
 
 #. editorial content for the discovery pane.
 msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading}ਟਾਈਪ ਕੀਤੇ ਪਾਸਵਰਡ ਪ੍ਰਗਟ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Adds show/hide ability to all password fields."
