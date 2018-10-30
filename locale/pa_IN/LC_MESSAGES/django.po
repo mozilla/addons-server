@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 08:05+0000\n"
+"PO-Revision-Date: 2018-10-30 09:08+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -1643,9 +1643,8 @@ msgstr "{addon} ਆਈਕਾਨ ਬਦਲਿਆ।"
 msgid "{rating} for {addon} approved."
 msgstr "{addon} ਲਈ {rating} ਮਨਜੂਰਸ਼ੁਦਾ।"
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} ਨੇ {addon} ਲਈ {review}ਸਵੀਕਾਰ ਕੀਤਾ।"
+msgstr "{user} ਨੇ {addon} ਲਈ {rating}ਸਵੀਕਾਰ ਕੀਤਾ।"
 
 msgid "Review {rating} for {addon} deleted."
 msgstr "{addon} ਦੀ {rating} ਸਮੀਖਿਆ ਹਟਾਈ।"
@@ -2771,9 +2770,8 @@ msgstr ""
 msgid "Additional Details"
 msgstr "ਹੋਰ ਵੇਰਵੇ"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "{0} ਲਈ ਐਡ-ਆਨ ਵੇਰਵਾ"
+msgstr "{0} ਲਈ ਵਧੀਕ ਵੇਰਵਾ"
 
 #, fuzzy
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
