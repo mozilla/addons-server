@@ -83,6 +83,9 @@ detail_patterns = [
     url('^versions/submit/wizard-(?P<channel>listed|unlisted)$',
         views.submit_version_theme_wizard,
         name='devhub.submit.version.wizard'),
+    url('^versions/submit/wizard-(?P<channel>listed|unlisted)/background$',
+        views.theme_background_image,
+        name='devhub.submit.version.previous_background'),
 
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),

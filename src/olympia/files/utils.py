@@ -530,6 +530,9 @@ class ManifestJSONExtractor(object):
         if self.certinfo is not None:
             data.update(self.certinfo.parse())
 
+        if self.type == amo.ADDON_STATICTHEME:
+            data['theme'] = self.get('theme', {})
+
         if not minimal:
             data.update({
                 'is_restart_required': False,
@@ -546,8 +549,6 @@ class ManifestJSONExtractor(object):
                     'permissions': self.get('permissions', []),
                     'content_scripts': self.get('content_scripts', []),
                 })
-            elif self.type == amo.ADDON_STATICTHEME:
-                data['theme'] = self.get('theme', {})
             elif self.type == amo.ADDON_DICT:
                 data['target_locale'] = self.target_locale()
         return data
@@ -1264,6 +1265,43 @@ def extract_header_img(file_obj, theme_data, dest_path):
                     pass
     except IOError as ioerror:
         log.debug(ioerror)
+
+
+def get_background_images(file_obj, theme_data, header_only=False):
+    """Extract static theme header image from `file_obj` and return in dict."""
+    xpi = get_filepath(file_obj)
+    if not theme_data:
+        # we might already have theme_data, but otherwise get it from the xpi.
+        try:
+            parsed_data = parse_xpi(xpi, minimal=True)
+            theme_data = parsed_data.get('theme', {})
+        except forms.ValidationError:
+            # If we can't parse the existing manifest safely return.
+            return {}
+    images_dict = theme_data.get('images', {})
+    # Get the reference in the manifest.  theme_frame is the Chrome variant.
+    header_url = images_dict.get(
+        'headerURL', images_dict.get('theme_frame'))
+    # And any additional backgrounds too.
+    additional_urls = (
+        images_dict.get('additional_backgrounds', []) if not header_only
+        else [])
+    image_urls = [header_url] + additional_urls
+    images = {}
+    try:
+        with zipfile.ZipFile(xpi, 'r') as source:
+            for url in image_urls:
+                _, file_ext = os.path.splitext(text_type(url).lower())
+                if file_ext not in amo.THEME_BACKGROUND_EXTS:
+                    # Just extract image files.
+                    continue
+                try:
+                    images[url] = source.read(url)
+                except KeyError:
+                    pass
+    except IOError as ioerror:
+        log.debug(ioerror)
+    return images
 
 
 @contextlib.contextmanager
