@@ -80,9 +80,12 @@ detail_patterns = [
         views.submit_version_finish,
         name='devhub.submit.version.finish'),
 
- #   url('^versions/submit/wizard-(?P<channel>listed|unlisted)$',
- #       views.submit_version_theme_wizard,
- #       name='devhub.submit.version.wizard'),
+    url('^versions/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_version_theme_wizard,
+        name='devhub.submit.version.wizard'),
+    url('^versions/submit/wizard-(?P<channel>listed|unlisted)/background$',
+        views.theme_background_image,
+        name='devhub.submit.version.previous_background'),
 
     url('^file/(?P<file_id>[^/]+)/validation$', views.file_validation,
         name='devhub.file_validation'),
@@ -141,8 +144,8 @@ urlpatterns = decorate(use_primary_db, [
         name='devhub.submit.distribution'),
     url('^addon/submit/upload-(?P<channel>listed|unlisted)$',
         views.submit_addon_upload, name='devhub.submit.upload'),
-    #url('^addon/submit/wizard-(?P<channel>listed|unlisted)$',
-    #    views.submit_addon_theme_wizard, name='devhub.submit.wizard'),
+    url('^addon/submit/wizard-(?P<channel>listed|unlisted)$',
+        views.submit_addon_theme_wizard, name='devhub.submit.wizard'),
 
     # Submission API
     url('^addon/agreement/$', views.api_key_agreement,
@@ -187,12 +190,12 @@ urlpatterns = decorate(use_primary_db, [
     url('^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
     # Themes submission.
-#    url('^theme/submit/?$', views.submit_theme, name='devhub.themes.submit'),
-#    url('^theme/%s/submit/done$' % ADDON_ID, views.submit_theme_done,
-#        name='devhub.themes.submit.done'),
-#    url('^theme/submit/upload/'
-#        '(?P<upload_type>persona_header)$',
-#        views.ajax_upload_image, name='devhub.personas.upload_persona'),
+    url('^theme/submit/?$', views.submit_theme, name='devhub.themes.submit'),
+    url('^theme/%s/submit/done$' % ADDON_ID, views.submit_theme_done,
+        name='devhub.themes.submit.done'),
+    url('^theme/submit/upload/'
+        '(?P<upload_type>persona_header)$',
+        views.ajax_upload_image, name='devhub.personas.upload_persona'),
     url('^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
