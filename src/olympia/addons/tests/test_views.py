@@ -3388,9 +3388,9 @@ class TestStaticCategoryView(TestCase):
             u'id': 1,
             u'application': u'firefox',
             u'description': (
-                u'Firefox extensions that remove clutter so you can stay '
-                u'up-to-date on social media, catch up on blogs, RSS feeds, '
-                u'reduce eye strain, and more.'
+                u'Download Firefox extensions that remove clutter so you '
+                u'can stay up-to-date on social media, catch up on blogs, '
+                u'RSS feeds, reduce eye strain, and more.'
             ),
             u'type': u'extension',
             u'slug': u'feeds-news-blogging'
