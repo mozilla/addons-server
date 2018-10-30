@@ -671,15 +671,19 @@ class TestESSearch(SearchBase):
                 assert addon_en.pk in result
                 assert addon.pk in result
 
-                response = self.client.get(url, {'q': 'Banana'})
+                # This will always match regardless of language, because it's
+                # part of the description in the default locale.
+                response = self.client.get(url, {'q': 'Browser'})
                 result = self.get_results(response, sort=False)
 
                 assert result[0] == addon.pk
 
-                response = self.client.get(url, {'q': 'plátanos'})
-                result = self.get_results(response, sort=False)
+                # This one will only match when requesting in Spanish
+                if locale == 'es':
+                    response = self.client.get(url, {'q': 'plátanos'})
+                    result = self.get_results(response, sort=False)
 
-                assert result[0] == addon.pk
+                    assert result[0] == addon.pk
 
 
 class TestPersonaSearch(SearchBase):

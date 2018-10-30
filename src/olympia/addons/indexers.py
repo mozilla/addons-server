@@ -152,20 +152,7 @@ class AddonIndexer(BaseSearchIndexer):
                         # words like 'tab', and punctuation, and eliminate
                         # duplicates.
                         'analyzer': 'standardPlusWordDelimiter',
-                        'fields': {
-                            # Add a "raw" version of the name to do sorting and
-                            # exact matches against.
-                            # It needs to be a keyword to turn off all
-                            # analysis ; that means we don't get the lowercase
-                            # filter applied by the standard &
-                            # language-specific analyzers, so we need to do
-                            # that ourselves through a custom normalizer for
-                            # exact matches to work in a case-insensitive way.
-                            'raw': {
-                                'type': 'keyword',
-                                'normalizer': 'lowercase_keyword_normalizer',
-                            }
-                        },
+                        'fields': cls.raw_field_definition()
                     },
                     'persona': {
                         'type': 'object',
@@ -223,7 +210,10 @@ class AddonIndexer(BaseSearchIndexer):
         # Add language-specific analyzers for localized fields that are
         # analyzed/indexed.
         cls.attach_language_specific_analyzers(
-            mapping, ('name', 'description', 'summary'))
+            mapping, ('description', 'summary'))
+
+        cls.attach_language_specific_analyzers_with_raw_variant(
+            mapping, ('name',))
 
         return mapping
 
@@ -375,22 +365,23 @@ class AddonIndexer(BaseSearchIndexer):
         # Handle localized fields.
         # First, deal with the 3 fields that need everything:
         for field in ('description', 'name', 'summary'):
-            data.update(cls.extract_field_raw_translations(obj, field))
-            data.update(cls.extract_field_search_translations(obj, field))
+            data.update(cls.extract_field_api_translations(obj, field))
+            data.update(cls.extract_field_search_translation(
+                obj, field, obj.default_locale))
             data.update(cls.extract_field_analyzed_translations(obj, field))
 
         # Then add fields that only need to be returned to the API without
         # contributing to search relevancy.
         for field in ('developer_comments', 'homepage', 'support_email',
                       'support_url'):
-            data.update(cls.extract_field_raw_translations(obj, field))
+            data.update(cls.extract_field_api_translations(obj, field))
         if obj.type != amo.ADDON_STATICTHEME:
             # Also do that for preview captions, which are set on each preview
             # object.
             attach_trans_dict(Preview, obj.current_previews)
             for i, preview in enumerate(obj.current_previews):
                 data['previews'][i].update(
-                    cls.extract_field_raw_translations(preview, 'caption'))
+                    cls.extract_field_api_translations(preview, 'caption'))
 
         return data
 
