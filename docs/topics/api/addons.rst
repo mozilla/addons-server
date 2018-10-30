@@ -158,7 +158,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json int average_daily_users: The average number of users for the add-on (updated daily).
     :>json object categories: Object holding the categories the add-on belongs to.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
-    :>json string|null contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set.
+    :>json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set. Can be an empty value.
     :>json string created: The date the add-on was created.
     :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
     :>json string default_locale: The add-on default locale for translations.
