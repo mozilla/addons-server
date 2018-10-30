@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 20:30+0000\n"
+"PO-Revision-Date: 2018-10-30 20:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -5852,15 +5852,15 @@ msgstr "K'ïy rub'anikil richin ye'awïl ri ruk'isib'äl taq rutzijol pa kiwi' r
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "Ri <a href=\"%(url)s\">Kichinya'l Tz'aqat</a> junelïk nik'ex rik'in ketamab'äl samajela' chuqa' b'anonela' taq tz'aqat."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
-msgstr ""
+msgstr "Jutaqil yeqelesaj taq rutzijol, taq pixa' chuqa' taq q'oloj pa rub'i' qataqoya'l richin Twitter, <a href=\"%(url)s\">mozamo</a>"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "Ri <a href=\"%(url)s\">qach'ob'omol</a> jeb'ël k'ojlib'äl richin yojtzijon rik'in ri kitamital taq tz'aqat chuqa' nitzijöx rij rujaloj ri AMO ri chwa'q kab'ij."
 
 msgid "This sounds great! How can I get involved?"
 msgstr ""
