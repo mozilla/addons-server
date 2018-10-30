@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 06:53+0000\n"
+"PO-Revision-Date: 2018-10-30 07:11+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -552,7 +552,7 @@ msgid "close"
 msgstr "ਬੰਦ ਕਰੋ"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "ਕੁਝ ਐਡਆਨ ਫੰਕਸ਼ਨ ਕਰਨ ਲਈ ਇਜਾਜਤ ਮੰਗਦਾ ਹੈ (ਉਦਾਹਰਣ: ਇੱਕ ਟੈਬ ਪ੍ਰਬੰਧਨ ਐਡਆਨ ਤੁਹਾਡੇ ਬ੍ਰਾਉਜ਼ਰ ਦੀ ਟੈਬ ਸਿਸਟਮ ਨੂੰ ਐਕਸੈਸ ਕਰਨ ਲਈ ਅਨੁਮਤੀ ਪੁੱਛੇਗਾ)।"
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -4565,7 +4565,7 @@ msgstr "ਸੁਥਰੇ ਸਾਈਡਬਾਰ ਵਿਚ ਆਪਣੇ ਖੁੱ�
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਨਿਕੀ ਟਰੈਕਰਜ ਅਤੇ ਪਾਬੰਦੀਆਂ ਤੋਂ ਬਚੋ"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
@@ -4689,7 +4689,7 @@ msgstr "ਇਹ ਪਤਾ ਲਗਾਓ ਕਿ ਤੁਹਾਨੂੰ ਕੌਣ ਟ
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਅਣਗਿਣਤ ਤੌਰ ਤੇ ਸਰਫ ਕਰਨਾ"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -4853,7 +4853,7 @@ msgstr "Google ਚਿੱਤਰ ਤੇ ਖੋਜ ਕਰਦੇ ਹੋਏ \"ਚਿ�
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਉਤਪਾਦਕਤਾ ਵਧਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
@@ -4901,7 +4901,7 @@ msgstr "ਪੌਪ-ਆਊਟ ਵਿਡਿਓ ਵਿੱਚ ਵਿਡੀਓਜ਼ �
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈਬਸਾਈਟ ਟ੍ਰੈਫਿਕ ਐਕਸੈਸ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
@@ -4965,7 +4965,7 @@ msgstr "ਆਪਣੇ ਮੌਜੂਦਾ ਟੈਬ ਦੇ ਸੱਜੇ ਪਾਸ�
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਪੈਮ ਨੂੰ ਹਰਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
@@ -4989,7 +4989,7 @@ msgstr "ਇਸ਼ਤਿਹਾਰ ਹਟਾਓ ਅਤੇ VK ਤੋਂ ਆਡੀ�
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤਤਕਾਲ ਅਨੁਵਾਦ ਪ੍ਰਾਪਤ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
@@ -5005,7 +5005,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕੋਈ ਹੋਰ ਰੀਡਾਇਰੈਕਟਸ ਨਹੀਂ"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
@@ -6777,7 +6777,7 @@ msgid "Rendered Preview"
 msgstr "ਹਟਾਈਆਂ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "ਪਿੱਠਭੂਮੀ ਫਾਇਲ {0} ਦੀ{1} - {2}"
 
 msgid "More about this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਬਾਰੇ ਹੋਰ"
@@ -7380,7 +7380,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "ਉਸ ਐਡਆਨ ਅਤੇ ਵਰਜ਼ਨ ਲਈ ਕੋਈ ਫਾਈਲ ਅਪਲੋਡ ਨਹੀਂ ਕੀਤੀ।"
 
 msgid "Overview"
 msgstr "ਸੰਖੇਪ ਜਾਣਕਾਰੀ"
@@ -7787,7 +7787,7 @@ msgstr "ਯੂਜ਼ਰ \"%(user)s\" ਤੇ ਪਾਬੰਦੀ ਲਗਾ ਦਿ�
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "ਯੂਜ਼ਰ \"%(user)s\" ਨਾਲ ਸਬੰਧਤ ਤਸਵੀਰ ਮਿਟਾਈ ਗਈ ਹੈ।"
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
@@ -7856,7 +7856,7 @@ msgid "someone writes a review of my add-on"
 msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ ਲਿਖੀ"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "ਐਡਆਨ ਡਿਵੈਲਪਰ (ਐਡਆਨ ਨਿਊਜ਼ਲੈਟਰ ਸਮੇਤ) ਨਾਲ ਸਬੰਧਤ ਖ਼ਬਰਾਂ ਅਤੇ ਸਮਾਗਮਾਂ ਦੇ ਨਾਲ ਨਵੀਨਤਮ ਰਹੋ"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦੀ"
