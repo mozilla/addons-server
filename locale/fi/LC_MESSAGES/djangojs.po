@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 14:03+0000\n"
-"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
+"PO-Revision-Date: 2018-10-26 14:21+0000\n"
+"Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -212,25 +212,22 @@ msgstr ""
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} lataus"
+msgstr[1] "{0} latausta"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} käyttäjää"
+msgstr[0] "{0} käyttäjä"
 msgstr[1] "{0} käyttäjää"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} lisäosaa"
+msgstr[0] "{0} lisäosa"
 msgstr[1] "{0} lisäosaa"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} kokoelmaa"
+msgstr[0] "{0} kokoelma"
 msgstr[1] "{0} kokoelmaa"
 
 msgid "{0} review"
@@ -240,19 +237,17 @@ msgstr[1] ""
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} myynti"
+msgstr[1] "{0} myyntiä"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} palautusta"
+msgstr[0] "{0} palautus"
 msgstr[1] "{0} palautusta"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} asennusta"
+msgstr[0] "{0} asennus"
 msgstr[1] "{0} asennusta"
 
 msgid "Downloads"
@@ -769,8 +764,8 @@ msgstr "Ladataan..."
 #. L10n: {0} is the number of characters entered.
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> merkki jäljellä."
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> merkki"
+msgstr[1] "<b>{0}</b> merkkiä"
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
