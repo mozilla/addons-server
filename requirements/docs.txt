@@ -83,9 +83,9 @@ markupsafe==1.1.1 \
     --hash=sha256:e8313f01ba26fbbe36c7be1966a7b7424942f670f38e666995b88d012765b9be \
     --hash=sha256:feb7b34d6325451ef96bc0e36e1a6c0c1c64bc1fbec4b854f4529e51887b1621
 # pytz is required by Babel, celery
-pytz==2018.6 \
-    --hash=sha256:91e3ccf2c344ffaa6defba1ce7f38f97026943f675b7703f44789768e4cb0ece \
-    --hash=sha256:642253af8eae734d1509fc6ac9c1aee5e5b69d76392660889979b9870610a46b
+pytz==2018.7 \
+    --hash=sha256:8e0f8568c118d3077b46be7d654cc8167fa916092e28320cde048e54bfc9f1e6 \
+    --hash=sha256:31cb35c89bd7d333cd32c5f278fca91b523b0834369e757f4c5641ea252236ca
 # requests is required by Sphinx
 requests==2.25.0 \
     --hash=sha256:7f1a0b932f4a60a1a65caa4263921bb7d9ee911957e0ae4a23a6dd08185ad5f8 \
