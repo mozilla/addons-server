@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 14:11+0000\n"
+"PO-Revision-Date: 2018-10-31 08:54+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -8038,10 +8038,10 @@ msgid "Report user {0}"
 msgstr "Reportar utilizador {0}"
 
 msgid "Unsubscribe"
-msgstr "Des-subscrever"
+msgstr "Cancelar subscrição"
 
 msgid "You are successfully unsubscribed!"
-msgstr "Des-subscrição efectuada com sucesso!"
+msgstr "A sua subscrição foi cancelada com sucesso!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
@@ -8057,7 +8057,7 @@ msgid "edit your profile"
 msgstr "edita o seu perfil"
 
 msgid "We could not unsubscribe you"
-msgstr "Não conseguimos des-subscrevê-lo"
+msgstr "Não conseguimos cancelar a sua subscrição"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
