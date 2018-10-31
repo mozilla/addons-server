@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 19:52+0000\n"
+"PO-Revision-Date: 2018-10-31 20:08+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -761,6 +761,8 @@ msgstr "ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ਾ"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"ਜੇ ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਸਥਾਨ ਤੋਂ ਕਿਸੇ ਲਿੰਕ ਦਾ ਅਨੁਸਰਣ ਕਰਦੇ ਹੋ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ %(open_bug_link)s ਇੱਕ ਸਮੱਸਿਆ%(close_bug_link)s ਕਰੋ। ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਸੀ ਅਤੇ ਜੋ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸ ਨੂੰ "
+"ਠੀਕ ਕਰਨ ਲਈ ਪੂਰੀ ਕੋਸ਼ਿਸ਼ ਕਰਾਂਗੇ।"
 
 msgid "Not Found"
 msgstr "ਨਹੀਂ ਮਿਲਿਆ"
@@ -3622,6 +3624,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
+"ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਸਥਾਪਿਤ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਹੇਠਾਂ ਦਿੱਤੇ ਅੰਤ-ਯੂਜ਼ਰ ਲਸੰਸ ਸਮਝੌਤੇ (EULA) ਨੂੰ ਸਵੀਕਾਰ ਕਰਨ ਦੀ ਲੋੜ ਹੋਵੇਗੀ। EULA ਦੀ ਮੌਜੂਦਗੀ ਮਹੱਤਵਪੂਰਨ ਤੌਰ ਤੇ ਐਡਆਨ ਪ੍ਰਾਪਤ ਕਰਨ ਵਾਲੀਆਂ ਡਾਊਨਲੋਡਾਂ ਦੀ ਸੰਖਿਆ "
+"ਨੂੰ ਪ੍ਰਭਾਵਿਤ ਕਰਦੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਧਿਆਨ ਦਿਉ ਕਿ ਇੱਕ EULA ਕੋਡ ਲਾਈਸੈਂਸ ਵਾਂਗ ਨਹੀਂ ਹੈ, ਜਿਵੇਂ ਕਿ GPL ਜਾਂ MPL।ਇਹ ਸਿਰਫ ਸੂਚੀਬੱਧ ਐਡਆਨ ਲਈ ਸੰਬੰਧਿਤ ਹੈ।"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr "ਜੇਕਰ ਤੁਹਾਡਾ ਐਡ-ਆਨ ਵਰਤੋਂਕਾਰ ਦੇ ਕੰਪਿਊਟਰ ਤੋਂ ਕੋਈ ਡਾਟਾ ਭੇਜਦਾ, ਇੱਕ ਪਰਦੇਦਾਰੀ ਨੀਤੀ ਦੀ ਲੋੜ ਹੈ ਜੋ ਦੱਸੇ ਕਿ ਕਿਹੜਾ ਡਾਟਾ ਭੇਜਿਆ ਅਤੇ ਇਹ ਕਿਵੇਂ ਵਰਤਿਆ ਜਾਏਗਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
@@ -4258,7 +4262,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੀ
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "YouTube, Facebook, Vimeo, Twitch, ਡੇਲੀਮੋਸ਼ਨ, ਪੇਰੀਸਕੋਪ ਅਤੇ ਹੋਰ ਸੈਂਕੜੇ ਹੋਰ ਵੀਡੀਓ ਸਾਈਟਾਂ ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4342,7 +4346,7 @@ msgstr "URL ਪੈਟਰਨ ਦੇ ਅਧਾਰ ਤੇ ਆਪਣੇ ਟੈਬਸ
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} Cryptocurrency mining ਨਾਲ ਰੋਕ ਦਿਓ"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
@@ -4899,7 +4903,7 @@ msgstr "Firefox ਵਿਚ ਬਿਲਟ-ਇਨ ਗੋਪਨੀਯਤਾ ਸੈਟ
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} VK ਤੇ ਆਪਣਾ ਅਨੁਭਵ ਵਧਾਓ"
 
 #. editorial content for the discovery pane.
 msgid "Remove ads and download audio from VK."
@@ -4939,7 +4943,7 @@ msgstr "ਨਾ-ਪੜਿਆ ਥ੍ਰੈਡਸ ਦੀ ਬੈਜ ਨੋਟੀਫ�
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਜਰਮਨ ਵਿੱਚ/ਤੋਂ ਅਨੁਵਾਦ ਕਰੋ"
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
@@ -5103,7 +5107,7 @@ msgstr "ਵੱਖੋ-ਵੱਖਰੇ ਰੰਗਾਂ ਅਤੇ ਬਚਾਉਣ �
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਦੁਨੀਆ ਭਰ ਦੇ ਸੰਗੀਤ ਦਾ ਆਨੰਦ ਮਾਣੋ"
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
@@ -5259,7 +5263,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਬਿ
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr ""
+msgstr "ਹਰ ਨਵੇਂ ਟੈਬ ਦੇ ਨਾਲ ਇੱਕ ਆਰਾਬੀਕਲੀ ਨੂੰ ਮਿਲੋ। ਇਸਨੂੰ ਕੰਨ ਦੇ ਪਿੱਛੇ ਇੱਕ ਸਕ੍ਰੈਚ ਕਰੋ ਅਤੇ ਦੇਖੋ ਕੀ ਹੁੰਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5870,6 +5874,8 @@ msgstr ""
 #, python-format
 msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
+"ਇਸ ਵੈਬਸਾਈਟ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰੋ। ਇਹ ਓਪਨ ਸੋਰਸ ਹੈ, ਅਤੇ ਤੁਸੀਂ ਬੱਗ ਦਰਜ ਕਰ ਸਕਦੇ ਹੋ ਅਤੇ ਪੈਚ ਦਰਜ ਕਰ ਸਕਦੇ ਹੋ। <a href=\"%(url)s\"> GitHub</a> ਵਿੱਚ ਸਾਡੇ ਸਾਰੇ ਮੌਜੂਦਾ ਬੱਗ ਹੁੰਦੇ ਹਨ, ਬੱਗਜ਼ੀਲਾ ਵਿੱਚ "
+"ਵਿਰਾਸਤੀ ਬੱਗ ਅਜੇ ਵੀ ਲੱਭੇ ਜਾ ਸਕਦੇ ਹਨ।"
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
 msgstr "ਜੇਕਰ ਤੁਹਾਡੀ ਐਡ-ਆਨਾਂ ਵਿੱਚ ਦਿਲਚਸਪੀ ਹੈ ਪਰ ਤਕਨੀਕੀ ਤੌਰ ਤੇ ਨਹੀਂ, ਤਾਂ ਵੀ ਇੱਥੇ ਸਹਾਇਤਾ ਕਰਨ ਦੇ ਕਈ ਢੰਗ ਹਨ:"
@@ -6015,6 +6021,8 @@ msgstr "ਹੁਣ ਸ਼ੁਰੂ ਕਰੋ"
 
 msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
 msgstr ""
+"ਮੋਜ਼ੀਲਾ ਸਾਡੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਸੁਰੱਖਿਅਤ ਰੱਖਣ ਦਾ ਸਭ ਤੋਂ ਵਧੀਆ ਤਰੀਕਾ ਲੱਭਣਾ ਚਾਹੁੰਦਾ ਹੈ ਜੇਕਰ ਉਹ ਥਰਡ-ਪਾਰਟੀ ਸੌਫਟਵੇਅਰ ਜਿਵੇਂ ਕਿ ਪਲੱਗਇਨ ਵਰਤਣ ਲਈ ਚੁਣਦੇ ਹਨ। ਇਸ ਅਧਿਐਨ ਵਿੱਚ ਭਾਗ ਲੈਣ ਨਾਲ ਸਾਨੂੰ ਪਤਾ ਲਗਾਉਣ ਵਿੱਚ ਮਦਦ "
+"ਮਿਲੇਗੀ!"
 
 msgid "What will happen next"
 msgstr "ਅਗਲਾ ਕੀ ਹੋਵੇਗਾ"
@@ -6023,7 +6031,7 @@ msgid "<strong>If you agree</strong> to participate:"
 msgstr "ਭਾਗ ਲੈਣ ਲਈ<strong> ਜੇ ਤੁਸੀਂ ਸਹਿਮਤ ਹੁੰਦੇ ਹੋ</strong>:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
+msgstr "ਅਸੀਂ ਔਨਲਾਈਨ ਸੁਰੱਖਿਆ ਅਤੇ ਕਾਰਗੁਜ਼ਾਰੀ ਲਈ ਫਾਇਰਫਾਕਸ ਵਿਚ ਸੁਰੱਖਿਆ ਅਤੇ ਪਲੱਗਇਨ ਕੰਟਰੋਲ ਫੀਚਰ ਸ਼ਾਮਲ ਕਰ ਸਕਦੇ ਹਾਂ।"
 
 msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
 msgstr "ਫਾਇਰਫਾਕਸ ਦੀ ਵਰਤੋਂ ਜਾਰੀ ਰੱਖੋ। ਜਿਵੇਂ ਕਿ ਤੁਸੀਂ ਆਮ ਤੌਰ ਤੇ ਤੁਸੀਂ ਵੈਬ ਦੀ ਵਰਤੋਂ ਕਿਵੇਂ ਕਰਦੇ ਹੋ ਉਸਦੇ ਆਧਾਰ ਤੇ, ਹੋ ਸਕਦਾ ਹੈ ਕਿ ਤੁਸੀਂ ਕੋਈ ਵੀ ਤਬਦੀਲੀ ਨਾ ਦੇਖ ਸਕੋ।"
@@ -6032,7 +6040,7 @@ msgid "After a few weeks, the study will end on its own. Your Firefox will go ba
 msgstr "ਕੁਝ ਹਫ਼ਤਿਆਂ ਦੇ ਬਾਅਦ, ਇਹ ਅਧਿਐਨ ਆਪਣੇ ਆਪ ਹੀ ਖਤਮ ਹੋ ਜਾਵੇਗਾ। ਤੁਹਾਡਾ ਫਾਇਰਫਾਕਸ ਵਾਪਸ ਸਧਾਰਣ ਹੋ ਜਾਵੇਗਾ।"
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "ਅਸੀਂ ਤੁਹਾਨੂੰ ਆਪਣੇ ਅਨੁਭਵ ਬਾਰੇ ਸਾਨੂੰ ਦੱਸਣ ਲਈ ਇਕ ਤੁਰੰਤ ਸਰਲ ਸਰਵੇਖਣ ਨੂੰ ਭਰਨ ਲਈ ਕਹਾਂਗੇ। ਸਰਵੇਖਣ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ 5 ਤੋਂ ਘੱਟ ਮਿੰਟ ਲੱਗਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
 msgid "Leaving the study"
 msgstr "ਅਧਿਐਨ ਛੱਡਣਾ"
@@ -6062,11 +6070,11 @@ msgid "All Shield Studies"
 msgstr "ਸਾਰੇ ਢਾਲ ਅਧਿਐਨ"
 
 msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
+msgstr "ਹਰ ਸ਼ੀਲਡ ਸਟੱਡੀ ਮਹੱਤਵਪੂਰਣ ਅਧਿਐਨ ਦੇ ਇਵੈਂਟਾਂ ਬਾਰੇ ਡਾਟਾ ਇਕੱਤਰ ਕਰਦੀ ਹੈ, ਜਿਵੇਂ ਕਿ ਇੰਸਟੌਲ, ਅਨਇੰਸਟੌਲ, ਰੋਜ਼ਾਨਾ ਵਰਤੋਂ ਅਤੇ ਅਧਿਐਨ ਦੇ ਅੰਤ। ਅਧਿਐਨ ਵਿੱਚ ਇੱਕ ਵਿਕਲਪਿਕ ਸਰਵੇਖਣ ਵੀ ਸ਼ਾਮਿਲ ਹਨ।"
 
 #, python-format
 msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
+msgstr "ਇਹ ਡੇਟਾ <a href=\"%(url)s\">ਫਾਇਰਫਾਕਸ ਟੈਲੀਮੈਟਰੀ ਸੰਗ੍ਰਹਿ</a>ਨਾਲ ਸੰਬੰਧਿਤ ਹੈ।"
 
 msgid "This particular Study"
 msgstr "ਇਹ ਖਾਸ ਅਧਿਐਨ"
@@ -6094,6 +6102,8 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"ਮੋਜ਼ੀਲਾ ਤੇ, ਅਸੀਂ ਤੁਹਾਡੇ ਲਈ ਉਤਪਾਦਾਂ ਬਣਾਉਣ ਵਾਲੇ, ਉਪਭੋਗਤਾ ਤੇ ਮਾਣ ਕਰਦੇ ਹਾਂ! ਇਸ ਲਈ ਸਾਨੂੰ ਤੁਹਾਡੀ ਮਦਦ ਦੀ ਲੋੜ ਹੈ। ਇਸ ਅਧਿਐਨ ਵਿੱਚ ਭਾਗ ਲੈਣ ਨਾਲ, ਤੁਸੀਂ ਸਾਡੀ ਸਹਾਇਤਾ ਲਈ ਬਿਹਤਰ ਫੈਸਲੇ ਲੈਣ ਵਿੱਚ ਮਦਦ ਕਰੋਗੇ ਅਤੇ ਫਾਇਰਫਾਕਸ "
+"ਦੇ ਭਵਿੱਖ ਨੂੰ ਸਿੱਧਾ ਸਿੱਧ ਕਰੋਗੇ!"
 
 msgid "Brought to you by:"
 msgstr "ਤੁਹਾਡੇ ਤੱਕ ਲੈ ਕੇ ਆਉਣ ਵਾਲੇ ਹਨ:"
@@ -7789,7 +7799,7 @@ msgstr "ਆਪਣਾ ਖਾਤਾ \"ਹਟਾਓ\" ਤੇ ਕਲਿੱਕ ਕਰ
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "ਇਸ ਈ-ਮੇਲ ਪਤੇ ਨਾਲ %(site)s ਦੇ ਵਿੱਚ ਦਾਖਲ ਹੋਵੋ ਇੱਕ ਨਵਾਂ ਖਾਤਾ ਬਣਾ ਦੇਵੇਗਾ ਜੋ ਕਿ ਇਸ ਖਾਤੇ ਨਾਲ ਕੋਈ ਸਬੰਧਿਤ ਨਹੀਂ ਹੈ।"
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
 msgstr "ਤੁਹਾਡੀਆਂ ਸਮੀਖਿਆਵਾਂ ਅਤੇ ਰੇਟਿੰਗਾਂ ਹਟਾਈਆਂ ਨਹੀਂ ਜਾਣਗੀਆਂ, ਪਰ ਹੁਣ ਉਹ ਤੁਹਾਡੇ ਨਾਲ ਸੰਬੰਧਤ ਨਹੀਂ ਰਹਿਣਗੀਆਂ।"
