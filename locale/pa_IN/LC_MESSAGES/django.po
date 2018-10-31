@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 11:24+0000\n"
+"PO-Revision-Date: 2018-10-31 19:11+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -5413,7 +5413,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਕਿ
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "ਵੈਬ ਤੇ ਇਕ ਦਿਲਚਸਪ ਤਸਵੀਰ ਲੱਭੋ? ਆਪਣੇ ਮੂਲ ਦੀ ਖੋਜ ਕਰਨ ਲਈ TinEye ਵਰਤੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5421,7 +5421,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵਾ
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "ਜਿਵੇਂ ਕਿ ਕਾਪੀ, ਓਪਨ, ਖੋਜ ਅਤੇ ਹੋਰ ਬਹੁਤ ਸਾਰੀਆਂ ਕਾਰਵਾਈਆਂ ਕਰਨ ਲਈ ਟੈਕਸਟ, ਚਿੱਤਰ ਜਾਂ ਲਿੰਕਾਂ ਨੂੰ ਡ੍ਰੈਗ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -5433,7 +5433,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਸਥ
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "ਜਾਣੋ ਕਿ ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਦਾ ਸਰਵਰ ਭੂਗੋਲਿਕ ਤੌਰ ਤੇ ਕਿੱਥੇ ਸਥਿਤ ਹੈ। ਇੱਕ ਸੂਚਿਤ ਵੈਬ ਯਾਤਰੀ ਬਣੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5441,7 +5441,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੰ
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
-msgstr ""
+msgstr "ਕੀ ਵੈਬਸਾਈਟ ਤੇ ਵਾਲੀਅਮ ਬਹੁਤ ਚੁੱਪ ਹੈ? ਬਹੁਤ ਉੱਚੀ? SoundFixer ਤੁਹਾਡੀ ਮਦਦ ਕਰ ਸਕਦਾ ਹੈ।"
 
 #. editorial content for the discovery pane.
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5449,7 +5449,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਪ੍
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
-msgstr ""
+msgstr "ਵਿਲੱਖਣ ਵਿਜ਼ੁਅਲ ਬਦਲਾਵ ਕਰੋ—ਤੁਸੀਂ ਕਿਸੇ ਵੀ ਵੈੱਬਪੇਜ ਨੂੰ ਛਾਪਣ ਲਈ ਵਿਗਿਆਪਨ ਜਾਂ ਬੇਲੋੜੀ ਸਮੱਗਰੀ ਹਟਾਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5485,7 +5485,7 @@ msgstr "ਟਰੈਕਰ ਬਲਾਕਿੰਗ, ਸਮਾਰਟ ਏਨਕ੍ਰ�
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
-msgstr ""
+msgstr "ਫਾਇਲ ਦਰਸ਼ਕ ਲਾਕ ਹੈ, %s ਲਈ ਖੋਲਣ ਦੀ ਕਾਰਵਾਈ ਜਾਰੀ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਲਗਭਗ 5 ਮਿੰਟ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
 #, python-format
 msgid "There was an error accessing file %s."
@@ -5526,7 +5526,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "ਸਭ ਤੋਂ ਘੱਟ ਸਮਰਥਿਤ \"ਸਖਤ_ਮੰਨ_ਵਰਜਨ\" 42.0 ਹੈ।"
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "ਘੱਟ/ਅਧਿਕਤਮ ਵਰਜਨ ਨਹੀਂ ਲੱਭ ਸਕਦੇ। ਹੋ ਸਕਦਾ ਹੈ ਕਿ \"strict_min_version\" ਜਾਂ \"strict_max_version\" ਇੱਕ ਅਸਮਰਥਿਤ ਵਰਜਨ ਸ਼ਾਮਲ ਹੈ?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -6192,7 +6192,7 @@ msgstr "ਇਹ ਸਮੀਖਿਆ ਐਡ-ਆਨ ({0}) ਦੇ ਪਿਛਲੇ ਵ
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
 msgstr[0] "ਇਸ ਐਡਆਨ ਦੇ ਇਸ ਉਪਯੋਗਕਰਤਾ ਕੋਲ ਇੱਕ <a href=\"%(user_review_url)s\">ਪਿਛਲੀ ਸਮੀਖਿਆ</a> ਹੈ।"
-msgstr[1] ""
+msgstr[1] "ਇਸ ਉਪਭੋਗੀ ਕੋਲ ਇਸ ਐਡ-ਆਨ ਲਈ <a href=\"%(user_review_url)s\">%(cnt)s ਪਿਛਲੀਆਂ ਸਮੀਖਿਆਵਾਂ</a> ਹਨ।"
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
