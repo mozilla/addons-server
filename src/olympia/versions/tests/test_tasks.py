@@ -230,7 +230,7 @@ def test_generate_static_theme_preview_with_chrome_properties(
                  'xMaxYMin meet', 'image/gif', True, colors, 720, 92, 720)
 
 
-def check_render_additional(svg_content, inner_svg_width):
+def check_render_additional(svg_content, inner_svg_width, colors):
     # check additional background pattern is correct
     image_width = 270
     image_height = 200
@@ -253,6 +253,9 @@ def check_render_additional(svg_content, inner_svg_width):
         header_blob = header_file.read()
     base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+    # check each of our colors was included
+    for color in colors:
+        assert color in svg_content
 
 
 @pytest.mark.django_db
@@ -271,8 +274,8 @@ def test_generate_preview_with_additional_backgrounds(
             "additional_backgrounds": ["weta_for_tiling.png"],
         },
         "colors": {
-            "accentcolor": "#918e43",
-            "textcolor": "#3deb60",
+            "textcolor": "#123456",
+            # Just textcolor, to test the template defaults and fallbacks.
         },
         "properties": {
             "additional_backgrounds_alignment": ["top"],
@@ -317,11 +320,23 @@ def test_generate_preview_with_additional_backgrounds(
         resize_image_mock.call_args_list[2][0],
         pngcrush_image_mock.call_args_list[2][0])
 
+    # These defaults are mostly defined in the xml template
+    default_colors = {
+        "accentcolor": "rgba(229,230,232,1)",  # amo.THEME_ACCENTCOLOR_DEFAULT
+        "textcolor": "#123456",     # the only one defined in the 'manifest'.
+        "toolbar_text": "#123456",  # should default to the value of textcolor
+        "toolbar_field": "rgba(255,255,255,1)",
+        "toolbar_field_text": "",
+        "tab_line": "rgba(0,0,0,0.25)",
+    }
+    colors = ['class="%s" fill="%s"' % (key, color)
+              for (key, color) in default_colors.items()]
+
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render_additional(header_svg, 680)
-    check_render_additional(list_svg, 760)
-    check_render_additional(single_svg, 720)
+    check_render_additional(header_svg, 680, colors)
+    check_render_additional(list_svg, 760, colors)
+    check_render_additional(single_svg, 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])

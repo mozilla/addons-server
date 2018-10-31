@@ -19,9 +19,10 @@ from olympia.versions.utils import (
 )
 def test_write_svg_to_png(filename):
     # If you want to regenerate these, e.g. the svg template has significantly
-    # changed, easiest way is to patch write_svg_to_png to not delete the
-    # temporary file (delete:False in temp_args) and copy the svg out of /tmp.
-    # Output png files are in user-media/version-previews/full and /thumbs.
+    # changed, you can grab the svg file from shared_storage/tmp - when
+    # settings.DEBUG==True it's not deleted afterwards.
+    # Output png files are in shared_storage/uploads/version-previews/full
+    # and /thumbs.
     out = tempfile.mktemp()
     svg_xml = os.path.join(
         settings.ROOT,
