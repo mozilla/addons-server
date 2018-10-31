@@ -23,6 +23,7 @@ class DiscoveryTestMixin(object):
         assert data['is_strict_compatibility_enabled'] is False
         assert data['files']
         assert len(data['files']) == 1
+        assert data['id'] == version.id
 
         result_file = data['files'][0]
         file_ = version.files.latest('pk')
