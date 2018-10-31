@@ -11,7 +11,10 @@ $(document).ready(function() {
         function getFile() {
             file_selector = $wizard.find('#header-img')[0];
             file = file_selector.files[0];
+						if (!file.name.match(/.(jpg | jpeg | png | gif | apng)$/i))
+							return null;
             return file ? file : preLoadBlob;
+						
         }
 
         $wizard.on('click', '.reset', _pd(function() {
