@@ -620,52 +620,85 @@ class TestESSearch(SearchBase):
         assert addon.pk not in self.get_results(response)
 
     def test_find_addon_default_non_en_us(self):
-        with self.activate('en-GB'):
-            addon = addon_factory(
-                status=amo.STATUS_PUBLIC,
-                type=amo.ADDON_EXTENSION,
-                default_locale='en-GB',
-                name='Banana Bonkers',
-                description=u'Let your browser eat your bananas',
-                summary=u'Banana Summary',
-            )
-
-            addon.name = {'es': u'Banana Bonkers espanole'}
-            addon.description = {
-                'es': u'Deje que su navegador coma sus plátanos'}
-            addon.summary = {'es': u'resumen banana'}
-            addon.save()
-
-        addon_en = addon_factory(
-            slug='English Addon', name=u'My English Addôn')
-
-        self.refresh()
-
-        # Make sure we have en-US active
-        for locale in ('en-US', 'en-GB', 'es'):
+        def test_search_in_locale(locale):
             with self.activate(locale):
                 url = self.url.replace('en-US', locale)
 
                 response = self.client.get(url, {'q': ''})
                 result = self.get_results(response, sort=False)
 
-                # 3 add-ons in self.addon + the two just created
-                assert addon_en.pk in result
-                assert addon.pk in result
+                # 3 add-ons in self.addons + the two just created
+                assert addon_en_only.pk in result
+                assert addon_english_and_spanish.pk in result
 
-                # This will always match regardless of language, because it's
-                # part of the description in the default locale.
+                # This should work all the time. It's present in the name
+                # in all translations.
+                response = self.client.get(url, {'q': 'Banana'})
+                result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
+
+                # This should only work in Spanish, when searching in other
+                # languages we are not trying to match against the spanish
+                # translation.
+                response = self.client.get(url, {'q': 'plátanos'})
+                result = self.get_results(response, sort=False)
+                if locale == 'es':
+                    assert result[0] == addon_english_and_spanish.pk
+                else:
+                    assert len(result) == 0
+
+                # This should work in all locales:
+                # - In english (en-GB *and* en-US) because it's part of the
+                #   english name (same analyzer used for en-US vs en-GB)
+                # - In french, because we have no french translation so we fall
+                #   back to the default locale.
+                # - In spanish, even though we do have a translated name, we
+                #   should still be searching against the default locale as
+                #   well (we just don't apply the same kind of matching).
                 response = self.client.get(url, {'q': 'Browser'})
                 result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
 
-                assert result[0] == addon.pk
+                # Same thing, but with something in the description instead of
+                # the name. We do a multi match with the description in the
+                # default locale, so it should always work regardless of the
+                # request lang.
+                response = self.client.get(url, {'q': 'Pirate'})
+                result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
 
-                # This one will only match when requesting in Spanish
-                if locale == 'es':
-                    response = self.client.get(url, {'q': 'plátanos'})
-                    result = self.get_results(response, sort=False)
+                # Same thing again, but with the summary.
+                response = self.client.get(url, {'q': 'Ninja'})
+                result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
 
-                    assert result[0] == addon.pk
+        with self.activate('en-GB'):
+            addon_english_and_spanish = addon_factory(
+                status=amo.STATUS_PUBLIC,
+                type=amo.ADDON_EXTENSION,
+                default_locale='en-GB',
+                name='Banana Browser Bonkers',
+                description=u'Let your browser pirate your bananas',
+                summary=u'Banana Summary Ninja',
+            )
+
+            addon_english_and_spanish.name = {'es': u'Banana Bonkers espanole'}
+            addon_english_and_spanish.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            addon_english_and_spanish.summary = {'es': u'resumen banana'}
+            addon_english_and_spanish.save()
+
+        addon_en_only = addon_factory(
+            slug='English Addon', name=u'My English Addôn')
+
+        self.refresh()
+
+        # Test in various locales. It's important to test in the one used as
+        # default_locale for the add-on (en-GB), another used for all
+        # translations (es), another that we don't have translations for (fr)
+        # and en-US for good measure.
+        for locale in ('en-US', 'en-GB', 'es', 'fr'):
+            test_search_in_locale(locale)
 
 
 class TestPersonaSearch(SearchBase):
