@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 19:21+0000\n"
+"PO-Revision-Date: 2018-10-31 19:52+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -3307,7 +3307,7 @@ msgid "Manage Listing"
 msgstr "ਸੂਚੀ ਪ੍ਰਬੰਧਿਤ ਕਰੋ"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਇਸ ਵਰਜਨ ਨੂੰ ਵਰਜਨ ਨੋਟਸ, ਜਾਂ ਸੋਰਸ ਕੋਡ ਨੂੰ ਜੋੜਨ ਲਈ ਸੰਪਾਦਿਤ ਕਰ ਸਕਦੇ ਹੋ ਜੇਕਰ ਤੁਹਾਡੀ ਸਬਜ਼ੀ ਵਿਚ minified, obfuscated ਜਾਂ ਕੰਪਾਇਲ ਕੀਤਾ ਕੋਡ ਸ਼ਾਮਲ ਹੈ।"
 
 msgid "Edit version {0}"
 msgstr "ਸੰਪਾਦਨ ਵਰਜਨ{0}"
@@ -3430,7 +3430,7 @@ msgid "Theme generator"
 msgstr "ਥੀਮ ਜਰਨੇਟਰ"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "ਚੇਤਾਵਨੀ: ਨਿਮਨਲਿਖਤ ਮੈਨੀਫੈਸਟ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਜਿਹੜੀਆਂ ਤੁਹਾਡੇ ਸਭ ਤੋਂ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਮੈਨੀਫੈਸਟਨ ਵਿੱਚ ਵਰਤੀਆਂ ਗਈਆਂ ਹਨ ਇਸ ਵਿਜ਼ਰਡ ਵਿੱਚ ਅਸਮਰਥਿਤ ਹਨ ਅਤੇ ਅਣਡਿੱਠੀਆਂ ਕੀਤੀਆਂ ਜਾਣਗੀਆਂ:"
 
 msgid "Theme name"
 msgstr "ਥੀਮ ਨਾਂ"
@@ -3479,7 +3479,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "ਵਿਸਥਾਰਤ ਹਦਾਇਤਾਂ ਲਈ, <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜਾਂ</a> ਤੇ ਵਿਚਾਰ ਕਰੋ।"
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "ਆਪਣੀ API ਕੁੰਜੀਆਂ ਨੂੰ ਗੁਪਤ ਰੱਖੋ ਅਤੇ ਮੋਜ਼ੀਲਾ ਸਹਿਯੋਗੀਆਂ ਸਮੇਤ <strong>ਉਹਨਾਂ ਨੂੰ ਕਿਸੇ ਨਾਲ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ</strong>।"
 
 msgid "JWT issuer"
 msgstr "JWT ਜਾਰੀ ਕਰਤਾ"
@@ -3492,6 +3492,8 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"API ਬੇਨਤੀ ਕਰਨ ਲਈ, ਇੱਕ <a href=\"%(jwt_url)s\">JSON ਵੈਬ ਟੋਕਨ (JWT)</a> ਨੂੰ ਅਧਿਕ੍ਰਿਤੀ ਸਿਰਲੇਖ ਦੇ ਤੌਰ ਤੇ ਭੇਜੋ। ਤੁਹਾਨੂੰ <a href=\"%(docs_url)s\">API ਦਸਤਾਵੇਜ਼ਾਂ</a>ਵਿੱਚ ਦੱਸੇ ਗਏ ਹਰ ਬੇਨਤੀ ਲਈ JWT ਤਿਆਰ ਕਰਨ ਦੀ"
+" ਜ਼ਰੂਰਤ ਹੋਏਗੀ।"
 
 msgid "You don't have any API credentials."
 msgstr "ਤੁਹਾਡੇ ਕੋਲ ਕੋਈ API ਕ੍ਰੈਡੈਂਸ਼ੀਅਲ ਨਹੀਂ ਹਨ।"
@@ -3518,7 +3520,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਅਤੇ ਉਪਭੋਗੀ ਆਪਣੇ ਆਪ ਹੀ ਅੱਪਡੇਟਾਂ ਪ੍ਰਾਪਤ ਕਰ ਰਹੇ ਹਨ।"
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਐਡਆਨ ਨੂੰ ਸਾਈਟ ਪ੍ਰਬੰਧਕ ਵੱਲੋਂ ਅਸਮਰੱਥ ਬਣਾਇਆ ਗਿਆ ਸੀ ਅਤੇ ਹੁਣ ਸਾਡੀ ਗੈਲਰੀ ਵਿੱਚ ਦਿਖਾਇਆ ਨਹੀਂ ਗਿਆ ਹੈ। ਜੇ ਤੁਹਾਡੇ ਕੋਈ ਪ੍ਰਸ਼ਨ ਹੋਣ, ਕਿਰਪਾ ਕਰਕੇ ਈ-ਮੇਲ ਕਰੋ amo-admins@mozilla.org।"
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "ਤੁਹਾਡੇ ਐਡਆਨ ਨੂੰ ਖੋਜ ਪਰਿਣਾਮਾਂ ਵਿੱਚ ਸ਼ਾਮਲ ਨਹੀਂ ਕੀਤਾ ਜਾਵੇਗਾ, ਅਤੇ ਇਸ ਦੀ ਸੂਚੀ ਪੰਨੇ ਇਹ ਸੰਕੇਤ ਦੇਵੇਗੀ ਕਿ ਤੁਸੀਂ ਇਸ ਨੂੰ ਅਸਮਰੱਥ ਕੀਤਾ ਹੈ। ਸੂਚੀ ਲਈ ਨਵੀਂ ਵਰਜਨ ਲਈ ਸਬਮਿਸ਼ਨ ਇਸ ਰਾਜ ਵਿੱਚ ਸਵੀਕਾਰ ਨਹੀਂ ਕੀਤੇ ਜਾਣਗੇ।"
@@ -4409,7 +4411,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਲੁ
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "ਕੀ ਉਹ ਪੇਜ ਹੈ ਜੋ ਤੁਸੀਂ ਅਣਉਪਲਬਧ ਲਈ ਲੱਭ ਰਹੇ ਹੋ? ਇੱਕ ਆਰਕਾਈਵ/cached ਕੀਤੇ ਵਰਜਨ ਲਈ ਖੋਜ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4629,7 +4631,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪ
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "ਫਾਇਰਫਾਕਸ ਨੂੰ ਤੇਜ਼ ਕਰਨ ਲਈ ਆਪਣੇ ਸਾਰੇ ਖੁੱਲੇ ਟੈਬਸ ਨੂੰ ਇੱਕ ਲਿਸਟ ਵਿੱਚ ਬਦਲੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4917,7 +4919,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਨਵ
 
 #. editorial content for the discovery pane.
 msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr ""
+msgstr "ਆਪਣੀ ਮਨਪਸੰਦ ਸਾਈਟਾਂ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਕੇ ਅਤੇ ਥੀਮ ਨੂੰ ਚੁਣਨ ਦੇ ਕੇ ਸਿਰਜਣਾਤਮਕ ਬਣੋ ਅਤੇ ਆਪਣਾ ਨਵਾਂ ਟੈਬ ਸਫ਼ਾ ਕਸਟਮ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5217,7 +5219,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਐਮ
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
-msgstr ""
+msgstr "ਹੋਰ ਆਨਲਾਈਨ ਦੁਕਾਨਾਂ ਤੇ ਉਤਪਾਦ ਪੰਨਿਆਂ ਨੂੰ ਦੇਖਦੇ ਹੋਏ, ਜੇ ਇਹ ਐਮਾਜ਼ਾਨ ਤੇ ਵੀ ਉਪਲਬਧ ਹੈ ਤਾਂ ਤੁਸੀਂ ਇਸ ਦੀ ਐਮਾਜ਼ਾਨ ਸੂਚੀਕਰਨ ਨੂੰ ਚੈੱਕ ਕਰਨ ਲਈ ਇਕ ਬਟਨ ਤੇ ਕਲਿਕ ਕਰ ਸਕਦੇ ਹੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5233,7 +5235,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਅਖ
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "ਇਸ ਲਈ ਬਹੁਤ ਸਾਰੇ ਟੈਬ ਕੰਟਰੋਲ ਚੋਣਾਂ —ਡੁਪਲੀਕੇਟ ਟੈਬਸ ਨੂੰ ਬੰਦ ਕਰੋ, ਵਿੰਡੋਜ਼ ਨੂੰ ਮਿਲਾਓ, ਟੈਬ ਸਿਰਲੇਖ ਦੀ ਕਾਪੀ ਕਰੋ ਅਤੇ ਹੋਰ।"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5353,7 +5355,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਉਤ
 
 #. editorial content for the discovery pane.
 msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
-msgstr ""
+msgstr "ਤੁਹਾਡੇ ਦੁਆਰਾ ਕੰਪਿਊਟਰ ਤੇ, ਜਾਂ ਟ੍ਰੇਲੋ, JIRA, ਬੇਸਕਾਮਪ, GitHub, ਅਤੇ ਹੋਰ ਬਹੁਤ ਸਾਰੇ ਖਾਸ ਕੰਮ ਦੇ ਐਪਸ ਤੇ ਖਰਚਣ ਦੇ ਸਮੇਂ ਦੀ ਮਾਤਰਾ ਮਾਪੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
@@ -5397,7 +5399,7 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} IP ਐ
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "ਕੀ ਤੁਸੀਂ ਇੱਕ VPN ਵਰਤਦੇ ਹੋ? ਤੁਹਾਡਾ IP ਪਤਾ ਲੀਕ ਕਰ ਸਕਦਾ ਹੈ। WebRTC ਨੂੰ ਅਯੋਗ ਕਰਕੇ ਇਸ ਨੂੰ ਰੋਕ ਦਿਓ।"
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6076,14 +6078,14 @@ msgid "Websites you visit that try to use plugins, and what content on the site 
 msgstr "ਵੈਬਸਾਈਟਾਂ ਜਿਹੜੀਆਂ ਤੁਸੀਂ ਵਿਜ਼ਿਟ ਕਰਦੇ ਹੋ ਜੋ ਪਲਗਇੰਸ ਦੀ ਵਰਤੋਂ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ਼ ਕਰਦੇ ਹਨ, ਅਤੇ ਸਾਈਟ ਤੇ ਕਿਹੜਾ ਸਮਗਰੀ ਪਲਗਇਨ ਦੀ ਲੋੜ ਹੈ;"
 
 msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਉਹਨਾਂ ਸਾਈਟਾਂ ਤੇ ਪਲਗਇਨ ਸਮਗਰੀ ਦੇ ਨਾਲ ਕਿਵੇਂ ਤਾਲਮੇਲ ਕਰਦੇ ਹੋ, ਇਸ ਵਿੱਚ ਸ਼ਾਮਲ ਹੈ ਕਿ ਤੁਸੀਂ ਪਲਗਇਨ ਨੂੰ ਚਲਾਉਣ ਦੀ ਇਜਾਜ਼ਤ ਦੇਣ ਲਈ ਕਿੱਥੇ ਅਤੇ ਕਿਵੇਂ ਚੁਣਿਆ।"
 
 msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
+msgstr "ਮੋਜ਼ੀਲਾ ਇਸ ਜਾਣਕਾਰੀ ਨੂੰ ਨਿੱਜੀ ਰੱਖਣਗੇ; ਕਿਸੇ ਵੀ ਡੇਟਾ ਨੂੰ ਸਿਰਫ਼ ਕੁੱਲ ਜਾਂ ਅਗਿਆਤ ਫਾਰਮ ਵਿੱਚ ਸਾਂਝਾ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 #, python-format
 msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
+msgstr "ਤੁਸੀਂ ਇਸ ਅਧਿਐਨ ਲਈ ਡੇਟਾ ਸੰਗ੍ਰਿਹ ਬਾਰੇ ਹੋਰ ਜਾਣ ਸਕਦੇ ਹੋ <a href=\"%(url)s\">ਇੱਥੇ</a>।"
 
 msgid "You Help Make Firefox Better"
 msgstr "ਤੁਸੀਂ ਫਾਇਰਫਾਕਸ ਨੂੰ ਬਿਹਤਰ ਬਣਾਉਣ ਵਿੱਚ ਮਦਦ ਕਰਦੇ ਹੋ"
@@ -6162,6 +6164,12 @@ msgid ""
 "community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
 "Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
+"<h2>ਇਨ੍ਹਾਂ ਸੁਝਾਆਂ ਨੂੰ ਧਿਆਨ ਵਿਚ ਰੱਖੋ:</h2> <ul> <li> ਲਿਖੋ ਕਿ ਤੁਸੀਂ ਐਡਆਨ ਨਾਲ ਆਪਣੇ ਅਨੁਭਵ ਬਾਰੇ ਕਿਸੇ ਦੋਸਤ ਨੂੰ ਦੱਸ ਰਹੇ ਹੋ। ਖਾਸ ਅਤੇ ਖਾਸ ਵੇਰਵੇ ਦਿਓ, ਜਿਵੇਂ ਕਿ ਤੁਹਾਨੂੰ ਕਿਹੜੀਆਂ ਵਿਸ਼ੇਸ਼ਤਾਵਾਂ ਪਸੰਦ ਆਈਆਂ ਹਨ ਅਤੇ/ਜਾਂ"
+" ਨਾਪਸੰਦ ਕੀਤੀਆਂ ਗਈਆਂ ਹਨ, ਇਸਦਾ ਉਪਯੋਗ ਕਰਨਾ ਕਿੰਨਾ ਸੌਖਾ ਹੈ, ਅਤੇ ਇਸ ਵਿੱਚ ਕੋਈ ਵੀ ਨੁਕਸਾਨ ਹਨ। ਆਮ ਸ਼ਬਦ ਜਿਵੇਂ ਕਿ \"ਮਹਾਨ\" ਜਾਂ \"ਭੈੜਾ\" ਕਹਿਣ ਤੋਂ ਪਰਹੇਜ਼ ਕਰੋ, ਜਿੰਨਾ ਚਿਰ ਤੁਸੀਂ ਇਹ ਨਹੀਂ ਦੇ ਸਕਦੇ ਹੋ ਕਿ ਤੁਹਾਨੂੰ ਕਿਉਂ "
+"ਲੱਗਦਾ ਹੈ ਕਿ ਇਹ ਇਸ ਤਰ੍ਹਾਂ ਹੈ। </li> <li> ਕਿਰਪਾ ਕਰਕੇ ਬੱਗ ਰਿਪੋਰਟਾਂ ਇੱਥੇ ਪੋਸਟ ਨਾ ਕਰੋ। ਅਸੀਂ ਐਡਆਨ ਦੇ ਡਿਵੈਲਪਰਾਂ ਲਈ ਆਪਣਾ ਈਮੇਲ ਪਤਾ ਉਪਲਬਧ ਨਹੀਂ ਕਰਾਉਂਦੇ, ਤਾਂ ਜੋ ਉਹ ਤੁਹਾਡੇ ਮੁੱਦੇ ਨੂੰ ਹੱਲ ਕਰਨ ਲਈ ਤੁਹਾਡੇ ਨਾਲ ਸੰਪਰਕ "
+"ਨਾ ਕਰ ਸਕਣ। ਇਹ ਪਤਾ ਲਗਾਉਣ ਲਈ ਕਿ ਇਹ ਸਹਾਇਤਾ ਉਪਲਬਧ ਹੈ, ਇਸ ਐਡਆਨ ਦੇ <a href=\"%(support)s\">ਸਹਾਇਤਾ ਵਿਭਾਗ</a>ਨੂੰ ਦੇਖੋ। ਤੁਸੀਂ ਮਦਦ ਲਈ <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
+"support\">ਐਡਆਨ ਕਮਿਊਨਿਟੀ</a> ਨੂੰ ਪੁੱਛਣ ਦੀ ਕੋਸ਼ਿਸ਼ ਵੀ ਕਰ ਸਕਦੇ ਹੋ। </li> <li> ਕਿਰਪਾ ਕਰਕੇ ਸਮੀਖਿਆਵਾਂ ਨੂੰ ਸਾਫ਼ ਰੱਖੋ, ਗਲਤ ਭਾਸ਼ਾ ਵਰਤਣ ਤੋਂ ਬਚੋ ਅਤੇ ਕੋਈ ਵੀ ਨਿੱਜੀ ਜਾਣਕਾਰੀ ਪੋਸਟ ਨਾ ਕਰੋ। </li> </ul> <p>ਕਿਰਪਾ ਕਰਕੇ "
+"ਉਪਯੋਗਕਰਤਾ ਐਡਆਨ ਸਮੀਖਿਆਵਾਂ ਬਾਰੇ ਅਧਿਕ ਵੇਰਵਿਆਂ ਲਈ <a href=\"%(guide)s\">ਸਮੀਖਿਆ ਦਿਸ਼ਾ ਨਿਰਦੇਸ਼</a> ਪੜ੍ਹੋ।</p>"
 
 msgid "Reply to review by {0}"
 msgstr "{0} ਵੱਲੋਂ ਸਮੀਖਿਆ ਦਾ ਜਵਾਬ"
@@ -6923,7 +6931,7 @@ msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹ�
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] %(date)s ਉੱਤੇ %(object)s ਰਿਪੋਰਟ ਕੀਤਾ"
 
 msgid "Dismiss this announcement"
 msgstr "ਇਹ ਐਲਾਨ ਖਾਰਜ ਕਰੋ"
@@ -7232,13 +7240,13 @@ msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "ਕੇਵਲ ਵੈਬ WebExtensions ਨੂੰ ਹੀ GUID ਛੱਡਣ ਦੀ ਆਗਿਆ ਹੈ"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਮੈਨੀਫੈਸਟ ਵਿੱਚ ਆਪਣੀ ਐਡ-ਆਨ GUID ਨਿਸ਼ਚਿਤ ਕਰੋ ਜੇਕਰ ਇਹ 64 ਅੱਖਰਾਂ ਤੋਂ ਲੰਮਾ ਹੈ।"
 
 msgid "Invalid GUID in URL"
 msgstr "URL ਵਿੱਚ ਅਪ੍ਰਮਾਣਿਕ ​​GUID"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "ਗੁੰਮਸ਼ੁਦਾ ਮੈਟਾਡੇਟਾ ਕਰਕੇ ਤੁਸੀਂ API ਰਾਹੀਂ ਇਸ ਐਡਆਨ ਵਿਚ ਇਕ ਸੂਚੀਬੱਧ ਵਰਜਨ ਨਹੀਂ ਜੋੜ ਸਕਦੇ। ਕਿਰਪਾ ਕਰਕੇ ਵੈਬਸਾਈਟ ਰਾਹੀਂ ਦਰਜ ਕਰੋ"
 
 msgid "No uploaded file for that addon and version."
 msgstr "ਉਸ ਐਡਆਨ ਅਤੇ ਵਰਜ਼ਨ ਲਈ ਕੋਈ ਫਾਈਲ ਅਪਲੋਡ ਨਹੀਂ ਕੀਤੀ।"
@@ -7360,7 +7368,7 @@ msgid "Custom..."
 msgstr "ਪਸੰਦੀਦਾ..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "ਅੰਕੜੇ ਪ੍ਰੋਸੈਸਿੰਗ ਇਸ ਵੇਲੇ ਅਸਮਰੱਥ ਹਨ, ਇਸਲਈ ਹਾਲ ਦੇ ਡੇਟਾ ਅਣਉਪਲਬਧ ਹਨ। ਅੰਕੜੇ ਅਜੇ ਵੀ ਇਕੱਤਰ ਕੀਤੇ ਜਾ ਰਹੇ ਹਨ ਅਤੇ ਇਹ ਸਫ਼ਾ ਜਲਦੀ ਹੀ ਗੁੰਮ ਹੋਏ ਡਾਟਾ ਦੇ ਨਾਲ ਅਪਡੇਟ ਕੀਤਾ ਜਾਵੇਗਾ।"
 
 msgid "Loading the latest data&hellip;"
 msgstr "ਤਾਜ਼ਾ ਡਾਟਾ ਲੋਡ ਕਰ ਰਿਹਾ&hellip;"
