@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 19:11+0000\n"
+"PO-Revision-Date: 2018-10-31 19:21+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -5537,7 +5537,7 @@ msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕ�
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr ""
+msgstr "ਅਕਾਇਵ ਵਿੱਚ ਗਲਤ ਫਾਇਲ ਨਾਂ। ਕਿਰਪਾ ਕਰਕੇ ਯਕੀਨੀ ਬਣਾਓ ਕਿ ਸਾਰੇ ਫਾਈਲਾਂ ਦੇ ਨਾਂ utf-8 ਜਾਂ latin1 ਏਨਕੋਡ ਕੀਤੇ ਗਏ ਹੋਣ।"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
@@ -5557,7 +5557,7 @@ msgstr "ਐਡ-ਆਨ ਆਈਡੀ ਨਹੀਂ ਲੱਭ ਸਕਿਆ।"
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ਤੁਹਾਡੇ manifest. Json ਜਾਂ install.rdf (%s) ਵਿੱਚ ਐਡਆਨ ਆਈਡੀ AMO (%s) ਤੇ ਤੁਹਾਡੇ ਐਡਆਨ ਦੇ ID ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
 msgid "Duplicate add-on ID found."
 msgstr "ਡੁਪਲੀਕੇਟ ਐਡ-ਔਨ ਆਈਡੀ ਪਾਇਆ ਗਿਆ।"
@@ -5586,7 +5586,7 @@ msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em: ਕਿਸਮ> ਤੁਹਾਡੇ install.rdf (%s)ਵਿੱਚ AMO (%s) ਉੱਪਰ ਤੁਹਾਡੇ ਐਡਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
 msgid "Back to review"
 msgstr "ਸਮੀਖਿਆ ਤੇ ਵਾਪਸ"
@@ -5612,7 +5612,7 @@ msgstr "ਫਾਈਲ ਸਮੱਗਰੀ ਸਿੰਟੈਕਸ ਹਾਈਲਾਇ
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "ਆਉਟਪੁੱਟ ਨੂੰ ਤੋੜਿਆ ਜਾ ਸਕਦਾ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਸਾਵਧਾਨ ਰਹੋ ਅਤੇ %(link_start)sਇੱਕ ਮੁੱਦਾ%(link_end)sਨੂੰ ਤੁਰੰਤ ਰਿਪੋਰਟ ਕਰੋ!"
 
 msgid "Add-on file being processed, please wait."
 msgstr "ਐਡ-ਆਨ ਫ਼ਾਈਲ ਤੇ ਕਾਰਵਾਈ ਹੋ ਰਹੀ ਹੈ, ਕਿਰਪਾ ਕਰਕੇ ਉਡੀਕ ਕਰੋ।"
@@ -5669,7 +5669,7 @@ msgid "Fetching file."
 msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
 
 msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
+msgstr "API ਵਰਜਨ, {0:.1f}, ਤੁਸੀਂ ਵਰਤ ਰਹੇ ਹੋ ਜਾਇਜ ਨਹੀਂ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਮੌਜੂਦਾ ਵਰਜਨ {1:.1f} API ਤੇ ਅਪਗ੍ਰੇਡ ਕਰੋ।"
 
 msgid "Not implemented yet."
 msgstr "ਹਾਲੇ ਤੱਕ ਲਾਗੂ ਨਹੀਂ ਕੀਤਾ।"
@@ -5750,7 +5750,7 @@ msgid "Games!"
 msgstr "ਖੇਡਾਂ!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
+msgstr "ਆਪਣੇ ਫਾਇਰਫਾਕਸ ਵਿਚ ਹੋਰ ਮਜ਼ੇਦਾਰ ਚੀਜ਼ਾਂ ਜੋੜੋ। ਆਪਣੇ ਬ੍ਰਾਉਜ਼ਰ-ਪਿਕਸੇ, ਕਲਾਸਿਕ ਆਰਕੇਡ, ਐਕਸ਼ਨ ਗੇਮਜ਼ ਅਤੇ ਹੋਰ ਬਹੁਤ ਕੁਝ ਤੋਂ ਕਈ ਗੇਮਜ਼ ਖੇਡੋ!"
 
 msgid "Must-Have Media"
 msgstr "ਮੀਡੀਆ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ"
