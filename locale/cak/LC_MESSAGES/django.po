@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 21:11+0000\n"
+"PO-Revision-Date: 2018-10-31 21:18+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6502,7 +6502,7 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "We nana'ojij chi ri nuk'samajel k'o ta chi nunik'oj re tz'aqat re', katzib'an kan pa xulan. Man xtiqatäq ta chi re ri b'anonel."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Tatzijoj rij re ruwäch re'. Man xtitikïr ta xtutz'ët ri b'anonel."
 
 msgid "Approve Content"
 msgstr ""
