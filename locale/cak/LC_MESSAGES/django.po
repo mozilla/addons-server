@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 23:38+0000\n"
+"PO-Revision-Date: 2018-10-31 20:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6466,22 +6466,22 @@ msgid "Weight"
 msgstr "Ralal"
 
 msgid "Information Request Deadline"
-msgstr ""
+msgstr "Ruk'isib'äl Q'ijul richin Nik'utuüx Etamab'äl"
 
 msgid "Last Content Review"
 msgstr "Ruk'isib'äl Runik'oxik Rupam"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Re re' ütz xtutz'ët, xtujüx chuqa' xtrelesaj rutzijol ri ruwäch. Xkeruk'ül ri taq na'oj ri b'anonel."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Re re' xtuyüj re ruwäch re' chuqa' xtuyüj el pa kicholajem nik'oxïk. Xtitaq taq na'oj chi re r' b'anobnel."
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Tijikib'äx Ütz Tz'etoj"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
-msgstr ""
+msgstr "Ri ruk'isib'äl ruwäch re tz'aqat re' ri elesan rutzijol ruyonil ütz xtz'et. Re re' nuyäk ri ajikib'anik richin ütz rutz'etik re ruwäch re', akuchi' man xya' ta rutzijol chi re ri b'anonel."
 
 msgid "Reject Multiple Versions"
 msgstr ""
