@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 22:25+0000\n"
+"PO-Revision-Date: 2018-10-31 22:45+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6621,46 +6621,48 @@ msgstr[1] "{0} ütz xesamajib'ëx ri taq rejqalem wachinel (+ (1) taq retal, {2}
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"Ütz xelesäx rutzijol ri awachinel. Ch'aqa' chik nik'onela' yatikïr yekinik'oj wakami ri taq wachinel elesan kitzijol. Rik'in jub'a' k'o chi nak'ëx ri ruxaq richin natz'ët ri taq jaloj pa re kajtz'ik"
+" re'."
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Kitzijol Tz'ilanem"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
-msgstr ""
+msgstr "Rutz'ijol Tz'ilanem ruma {addon} chuqa' rub'anonela' ({num})"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
-msgstr ""
+msgstr "Nisamäj rik'in"
 
 msgid "Visibility"
-msgstr ""
+msgstr "Wachel"
 
 msgid "Visible"
-msgstr ""
+msgstr "Tz'etel"
 
 msgid "Average Daily Users"
-msgstr ""
+msgstr "Kipajik Okisanela' Q'ij Q'ij"
 
 msgid "Abuse Reports"
-msgstr ""
+msgstr "Kitzijol Tz'ilanem"
 
 msgid "View Privacy Policy"
-msgstr ""
+msgstr "Titz'et Runa'ojil Ichinanem"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "K'o chi Nitoj"
 
 msgid "EULA"
-msgstr ""
+msgstr "EULA"
 
 msgid "Last Approval Date"
-msgstr ""
+msgstr "Ruk'isib'äl Q'ij Ütz Nitz'et"
 
 msgid "Abuse Reports ({num})"
-msgstr ""
+msgstr "Kitzijol Tz'ilanem ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr ""
+msgstr "Kejqalem Itzel Okisanel ({num})"
 
 msgid "Theme Images"
 msgstr "Kiwachib'al Wachinel"
@@ -6669,25 +6671,25 @@ msgid "Rendered Preview"
 msgstr "Nab'ey Rutzub'al Xb'an"
 
 msgid "Background file {0} of {1} - {2}"
-msgstr ""
+msgstr "Ruyakb'al rupam {0} richin {1} - {2}"
 
 msgid "More about this add-on"
-msgstr ""
+msgstr "Ch'aqa' chik chi rij re tz'aqat re'"
 
 msgid "Image Gallery"
-msgstr ""
+msgstr "Ruwachib'al Wachib'äl Jay"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "¡Majun tz'etel wawe'!   Majun rub'anikil xutz'aqatisaj ri b'anonel."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Titzolin pa ri ruxaq Rusamajib'al Nik'onel"
 
 msgid "Reviewer Leaderboard"
-msgstr ""
+msgstr "Rupas Rajil Nik'onel"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "K'a wakami majun rajil ya'on."
 
 msgid "Rank"
 msgstr ""
