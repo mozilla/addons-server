@@ -2,6 +2,7 @@
 import os.path
 
 from django.conf import settings
+from django.forms import ValidationError
 from django.test.utils import override_settings
 
 import mock
@@ -416,6 +417,17 @@ class TestGetAddonAkismetReports(TestCase):
                 property_name='description', property_value=u'lé foo',
                 user_agent=user_agent, referrer=referrer)]
         self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
+
+    def test_broken_upload(self):
+        user = user_factory()
+        upload = FileUpload.objects.create()
+        self.parse_addon_mock.side_effect = ValidationError('foo')
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+        reports = utils.get_addon_akismet_reports(
+            user, user_agent, referrer, upload=upload)
+        assert reports == []
+        self.create_for_addon_mock.assert_not_called()
 
 
 @pytest.mark.django_db
