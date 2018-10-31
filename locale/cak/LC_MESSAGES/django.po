@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 23:12+0000\n"
+"PO-Revision-Date: 2018-10-31 23:33+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6739,19 +6739,19 @@ msgid "Save"
 msgstr "Tiyak"
 
 msgid "Add-on Reviewer Performance"
-msgstr ""
+msgstr "Rub'eyal Nisamäj Runik'onel Tz'aqat"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "Ketz'et rumolob'a' okisanel"
 
 msgid "Range"
-msgstr ""
+msgstr "Rajilab'al"
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "Taq Atzijoxik"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "Ruma {user_name}"
 
 msgid "Total Reviews"
 msgstr ""
