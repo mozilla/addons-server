@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 23:33+0000\n"
+"PO-Revision-Date: 2018-10-31 23:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6754,54 +6754,54 @@ msgid "By {user_name}"
 msgstr "Ruma {user_name}"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "Ronojel taq Tzijoxïk"
 
 msgid "Active Contributors"
-msgstr ""
+msgstr "Samajel To'onela'"
 
 msgid "This Month"
-msgstr ""
+msgstr "Re ik' re'"
 
 msgid "This Year"
-msgstr ""
+msgstr "Re Juna' Re'"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Rub'eyal Nisamäj Richin ri Ik'"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Rucholik Nïm Ejqalem ruma Ruwäch"
 
 msgid "Total"
-msgstr ""
+msgstr "Ronojel"
 
 msgid "Month"
-msgstr ""
+msgstr "Ik'"
 
 msgid "Year"
-msgstr ""
+msgstr "Juna'"
 
 msgid "All-Time"
-msgstr ""
+msgstr "Ronojel-Q'ij"
 
 msgid "Advanced Search"
-msgstr ""
+msgstr "Q'axinäq Kanoxïk"
 
 msgid "clear search"
-msgstr ""
+msgstr "Tijosq'ïx kanoxïk"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Kesamajïx taq Nik'oxïk"
 
 msgid "Moderation actions:"
-msgstr ""
+msgstr "Kib'anik taq Etwachinïk:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "ruma %(user)s pa %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ya'on retal ruma %(user)s ri %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr ""
