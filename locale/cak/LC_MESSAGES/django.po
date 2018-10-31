@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 20:51+0000\n"
+"PO-Revision-Date: 2018-10-31 21:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6484,22 +6484,22 @@ msgid "The latest public version of this add-on was automatically approved. This
 msgstr "Ri ruk'isib'äl ruwäch re tz'aqat re' ri elesan rutzijol ruyonil ütz xtz'et. Re re' nuyäk ri ajikib'anik richin ütz rutz'etik re ruwäch re', akuchi' man xya' ta rutzijol chi re ri b'anonel."
 
 msgid "Reject Multiple Versions"
-msgstr ""
+msgstr "Kexutüx K'ïy taq Ruwäch"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Re re' xkeruyüj ri aj winäq taq ruwäch echa'on. Xkeruk'ül ri taq na'oj ri b'anonel."
 
 msgid "Reviewer reply"
-msgstr ""
+msgstr "Tzolin rutzij nik'onel"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Re re' xtutäq rutzijol chi re ri b'anonel. Xtiya' rutzijol toq xtitzolïx pe tzij."
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Tik'utüx nimanik'oxïk"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "We nana'ojij chi ri nuk'samajel k'o ta chi nunik'oj re tz'aqat re', katzib'an kan pa xulan. Man xtiqatäq ta chi re ri b'anonel."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
