@@ -11,6 +11,7 @@ from olympia.versions.compare import version_int
 
 
 def get_locale_analyzer(lang):
+    """Return analyzer to use for the specified language code, or None."""
     analyzer = amo.SEARCH_LANGUAGE_TO_ANALYZER.get(lang)
     return analyzer
 
@@ -306,35 +307,86 @@ class SearchQueryFilter(BaseFilterBackend):
     MAX_QUERY_LENGTH = 100
     MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH = 20
 
+    def generate_exact_name_match_query(self, search_query, analyzer):
+        """
+        Return the query used for exact name matching.
+
+        If the name of the add-on is an exact match for the search query, it's
+        likely to be what the user wanted to find. To support that, we need to
+        do a term query against a non-analyzed field and boost it super high.
+        Since we need to support translations, this function has 2 modes:
+        - In the first one, used when we are dealing with a language for which
+          we know we didn't store a translation in ES (because we don't have an
+          analyzer for it), it only executes a term query against `name.raw`.
+        - In the second one, we did store a translation in that language...
+          potentially. We don't know in advance if there is a translation for
+          each add-on! We need to do a query against both `name.raw` and
+          `name_l10n_<analyzer>.raw`, applying the boost only once if both
+          match. This is where the DisMax comes in, it's what MultiMatch
+          would do, except that it works with Term queries.
+        """
+        if analyzer is None:
+            clause = query.Term(**{
+                'name.raw': {
+                    '_name': 'Term(name.raw)',
+                    'value': search_query, 'boost': 100.0
+                }
+            })
+        else:
+            query_name = 'DisMax(Term(name.raw), Term(name_l10n_%s.raw))' % (
+                analyzer)
+            clause = query.DisMax(
+                # We only care if one of these matches, so we leave tie_breaker
+                # to the default value of 0.0.
+                _name=query_name,
+                boost=100.0,
+                queries=[
+                    {'term': {'name.raw': search_query}},
+                    {'term': {'name_l10n_%s.raw' % analyzer: search_query}},
+                ]
+            )
+        return clause
+
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
 
         These are the ones using the strongest boosts, so they are only applied
-        to a specific set of fields like the name, the slug and authors.
+        to a specific set of fields: name and author's name(s).
 
         Applied rules:
 
-        * Prefer phrase matches that allows swapped terms (boost=4)
-        * Then text matches, using the standard text analyzer (boost=3)
-        * Then text matches, using a language specific analyzer (boost=2.5)
-        * Then look for the query as a prefix of a name (boost=1.5)
+        * Exact match on the name, using the right translation if possible
+          (boost=100.0)
+        * Then text matches, using a language specific analyzer if possible
+          (boost=5.0)
+        * Phrase matches that allows swapped terms (boost=8.0)
+        * Then text matches, using the standard text analyzer (boost=6.0)
+        * Then look for the query as a prefix of a name (boost=3.0)
         """
         should = [
-            # Exact matches need to be queried against a non-analyzed field.
-            # Let's do a term query on `name.raw` for an exact match against
-            # the add-on name and boost it since this is likely what the user
-            # wants.
-            # Use a super-high boost to avoid `description` or `summary`
-            # getting in our way.
-            # Put the raw query first to give it a higher priority during
-            # Scoring, `boost` alone doesn't necessarily put it first.
-            query.Term(**{
-                'name.raw': {
-                    'value': search_query, 'boost': 100.0
-                }
-            })
+            self.generate_exact_name_match_query(search_query, analyzer)
         ]
 
+        # If we are searching with a language that we support, we also try to
+        # do a match against the translated field. If not, we'll do a match
+        # against the name in default locale below.
+        if analyzer:
+            should.append(
+                query.Match(**{
+                    'name_l10n_%s' % analyzer: {
+                        '_name': 'Match(name_l10n_%s)' % analyzer,
+                        'query': search_query,
+                        'boost': 5.0,
+                        'analyzer': analyzer,
+                        'operator': 'and'
+                    }
+                })
+            )
+
+        # The rest of the rules are applied to the field containing the default
+        # locale only. That field has word delimiter rules to help find
+        # matches, lowercase filter, etc, at the expense of any
+        # language-specific features.
         rules = [
             (query.MatchPhrase, {
                 'query': search_query, 'boost': 8.0, 'slop': 1}),
@@ -345,33 +397,29 @@ class SearchQueryFilter(BaseFilterBackend):
                 'value': search_query, 'boost': 3.0}),
         ]
 
-        # Add a rule for fuzzy matches ("fire bug" => firebug) (boost=2) for
-        # short query strings only (long strings, depending on what characters
-        # they contain and how many words are present, can be too costly).
+        # Add a rule for fuzzy matches ("fire bug" => firebug) for short query
+        # strings only (long strings, depending on what characters they contain
+        # and how many words are present, can be too costly).
+        # Again, this is applied to the field without the language-specific
+        # analysis.
         if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
             rules.append((query.Match, {
                 'query': search_query, 'boost': 4.0,
                 'prefix_length': 4, 'fuzziness': 'AUTO'}))
 
-        # Apply rules to search on few base fields. Some might not be present
-        # in every document type / indexes.
-        for query_cls, opts in rules:
+        # Apply all the rules we built above to name and listed_authors.name.
+        for query_cls, definition in rules:
             for field in ('name', 'listed_authors.name'):
+                # Add a _name for debugging (will appear in matched_queries in
+                # meta object for each result).
+                cls_name = query_cls.__name__
+                if definition.get('fuzziness') == 'AUTO':
+                    cls_name = 'Fuzzy%s' % cls_name
+                opts = {
+                    '_name': '%s(%s)' % (cls_name, field),
+                }
+                opts.update(definition)
                 should.append(query_cls(**{field: opts}))
-
-        # For name, also search in translated field with the right language
-        # and analyzer.
-        if analyzer:
-            should.append(
-                query.Match(**{
-                    'name_l10n_%s' % analyzer: {
-                        'query': search_query,
-                        'boost': 5.0,
-                        'analyzer': analyzer,
-                        'operator': 'and'
-                    }
-                })
-            )
 
         return should
 
@@ -379,34 +427,51 @@ class SearchQueryFilter(BaseFilterBackend):
         """Return "secondary" should rules for the query.
 
         These are the ones using the weakest boosts, they are applied to fields
-        containing more text like description & summary.
+        containing more text: description & summary.
 
         Applied rules:
 
-        * Look for phrase matches inside the summary (boost=2.0)
-        * Look for phrase matches inside the summary using language specific
-          analyzer (boost=3.0)
+        * Look for phrase matches inside the summary (boost=3.0)
         * Look for phrase matches inside the description (boost=2.0).
-        * Look for phrase matches inside the description using language
-          specific analyzer (boost=3.0).
-        """
-        should = [
-            query.MatchPhrase(summary={'query': search_query, 'boost': 2.0}),
-            query.MatchPhrase(description={
-                'query': search_query, 'boost': 2.0}),
-        ]
 
-        # For description and summary, also search in translated field with the
-        # right language and analyzer.
+        If we're using a supported language, both rules are done through a
+        multi_match that considers both the default locale translation
+        (using snowball analyzer) and the translation in the current language
+        (using language-specific analyzer). If we're not using a supported
+        language then only the first part is applied.
+        """
         if analyzer:
-            should.extend([
-                query.MatchPhrase(**{'summary_l10n_%s' % analyzer: {
-                    'query': search_query, 'boost': 3.0,
-                    'analyzer': analyzer}}),
-                query.MatchPhrase(**{'description_l10n_%s' % analyzer: {
-                    'query': search_query, 'boost': 3.0,
-                    'analyzer': analyzer}})
-            ])
+            summary_query_name = (
+                'MultiMatch(MatchPhrase(summary),'
+                'MatchPhrase(summary_l10n_%s))' % analyzer)
+            description_query_name = (
+                'MultiMatch(MatchPhrase(description),'
+                'MatchPhrase(description_l10n_%s))' % analyzer)
+            should = [
+                query.MultiMatch(
+                    _name=summary_query_name,
+                    query=search_query,
+                    type='phrase',
+                    fields=['summary', 'summary_l10n_%s' % analyzer],
+                    boost=3.0,
+                ),
+                query.MultiMatch(
+                    _name=description_query_name,
+                    query=search_query,
+                    type='phrase',
+                    fields=['description', 'description_l10n_%s' % analyzer],
+                    boost=2.0,
+                ),
+            ]
+        else:
+            should = [
+                query.MatchPhrase(summary={
+                    '_name': 'MatchPhrase(summary)',
+                    'query': search_query, 'boost': 3.0}),
+                query.MatchPhrase(description={
+                    '_name': 'MatchPhrase(description)',
+                    'query': search_query, 'boost': 2.0}),
+            ]
 
         return should
 
