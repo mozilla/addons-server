@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 21:18+0000\n"
+"PO-Revision-Date: 2018-10-31 21:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6505,10 +6505,10 @@ msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tatzijoj rij re ruwäch re'. Man xtitikïr ta xtutz'ët ri b'anonel."
 
 msgid "Approve Content"
-msgstr ""
+msgstr "Ütz Titz'et Rupam"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Re re' nutz'ib'aj ri ütz atz'etoj chi rij ri ruk'isib'äl ruwäch elesan rutzijol, akuchi' majun niya' rutzijol chi re ri b'anonel."
 
 msgid "Static Themes and Legacy Add-ons"
 msgstr ""
@@ -6517,10 +6517,10 @@ msgid "Static Themes"
 msgstr "Mesilon taq Wachinel"
 
 msgid "Legacy Add-ons"
-msgstr ""
+msgstr "K'exon taq Tz'aqat"
 
 msgid "New ({0})"
-msgstr ""
+msgstr "K'ak'a' ({0})"
 
 msgid "Updates ({0})"
 msgstr "Taq k'exoj ({0})"
@@ -6535,16 +6535,16 @@ msgid "Theme Review Guide"
 msgstr "Rucholajem Rutzijoxik Wachinel"
 
 msgid "Auto-Approved Add-ons"
-msgstr ""
+msgstr "Ruyon Ütz Etz'eton taq Tz'aqat"
 
 msgid "Auto Approved Add-ons ({0})"
-msgstr ""
+msgstr "Ruyon Ütz Etz'eton taq Tz'aqat ({0})"
 
 msgid "Add-on Review Log"
-msgstr ""
+msgstr "Kitz'ib'axik Runik'oxik Tz'aqat"
 
 msgid "Review Guide"
-msgstr ""
+msgstr "Ruk'amöl Nik'oxïk"
 
 msgid "Content Review"
 msgstr ""
