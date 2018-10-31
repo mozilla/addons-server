@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 21:51+0000\n"
+"PO-Revision-Date: 2018-10-31 22:14+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6547,69 +6547,69 @@ msgid "Review Guide"
 msgstr "Ruk'amöl Nik'oxïk"
 
 msgid "Content Review"
-msgstr ""
+msgstr "Runik'oxik Rupam"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Runik'oxik Rupam ({0})"
+msgstr[1] "Runik'oxik Rupam ({0})"
 
 msgid "New Themes ({0})"
-msgstr ""
+msgstr "K'ak'a' Wachinel ({0})"
 
 msgid "Themes Updates ({0})"
-msgstr ""
+msgstr "Kik'exoj Wachinel ({0})"
 
 msgid "Flagged Themes ({0})"
-msgstr ""
+msgstr "Wachinel ({0}) Ya'on Ketal"
 
 msgid "Lightweight Themes Review Log"
 msgstr "Kitz'ib'axik Kinik'oxik Anin taq Wachinel"
 
 msgid "Deleted Themes Log"
-msgstr ""
+msgstr "Xyuj ri Rutz'ib'axik Wachinel"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Kiwetwachinik ri Kejaqalem Okisanela'"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Kiwetwachinik Oyob'en taq Ejqalem ({0})"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Kitz'ib'axik Etwachin taq Nik'oxïk"
 
 msgid "Moderation Guide"
-msgstr ""
+msgstr "Kicholajil Etwachinela'"
 
 msgid "Unlisted Add-ons"
-msgstr ""
+msgstr "Mecholajin taq Tz'aqat"
 
 msgid "All Unlisted Add-ons"
-msgstr ""
+msgstr "Ronojel Mecholajin taq Tz'aqat"
 
 msgid "Announcement"
-msgstr ""
+msgstr "Eltzijol"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Tik'ex ri tzijol wakami"
 
 msgid "Expired Information Requests ({0})"
-msgstr ""
+msgstr "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
 
 msgid "An unknown error occurred"
-msgstr ""
+msgstr "Xk'ulwachitäj jun man etaman ta ruwäch chi sachoj."
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Man ya'on ta q'ij chi ke ri kiyon yenik'on."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Ütz xsamajïx ri nik'oxïk."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Xq'i' ruchi' kiq'atoj taq nik'oxïk"
 
 msgid "{addon} :: EULA"
-msgstr ""
+msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Runa'ojil Ichinanem"
