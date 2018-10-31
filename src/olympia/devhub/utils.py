@@ -334,8 +334,13 @@ def get_addon_akismet_reports(user, user_agent, referrer, upload=None,
 
     if upload:
         addon = addon or upload.addon
-        data = data or Addon.resolve_webext_translations(
-            parse_addon(upload, addon, user, minimal=True), upload)
+        if not data:
+            try:
+                data = Addon.resolve_webext_translations(
+                    parse_addon(upload, addon, user, minimal=True), upload)
+            except ValidationError:
+                # The xpi is broken - it'll be rejected by the linter so abort.
+                return []
 
     reports = []
     for prop in properties:
