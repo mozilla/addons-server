@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-30 23:33+0000\n"
+"PO-Revision-Date: 2018-10-30 23:38+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6418,58 +6418,58 @@ msgid "A problem with your Theme submission"
 msgstr "Jun k'ayewal rik'in rutaqik Awachinel"
 
 msgid "Theme submission flagged for review"
-msgstr ""
+msgstr "Rutaqik wachinel ya'on retal richin ninik'öx"
 
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "Jun k'utunïk chi rij ri rutaqik Awachinel"
 
 msgid "Type"
-msgstr ""
+msgstr "Ruwäch"
 
 msgid "Waiting Time"
-msgstr ""
+msgstr "Ramaj Xtoyob'ëx"
 
 msgid "Flags"
-msgstr ""
+msgstr "Tiya' ketal"
 
 msgid "moments ago"
-msgstr ""
+msgstr "nimakol"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ch'utiramaj"
+msgstr[1] "{0} taq ch'utiramaj"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} ramaj"
+msgstr[1] "{0} taq ramaj"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
 msgid_plural "{0} days"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} q'ij"
+msgstr[1] "{0} taq q'ij"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Ruk'isib'äl nik'oxïk"
 
 msgid "Last Update"
-msgstr ""
+msgstr "Ruk'isib'äl k'exoj"
 
 msgid "No Reviews"
-msgstr ""
+msgstr "Majun taq Tzijoxïk"
 
 msgid "Weight"
-msgstr ""
+msgstr "Ralal"
 
 msgid "Information Request Deadline"
 msgstr ""
 
 msgid "Last Content Review"
-msgstr ""
+msgstr "Ruk'isib'äl Runik'oxik Rupam"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
 msgstr ""
