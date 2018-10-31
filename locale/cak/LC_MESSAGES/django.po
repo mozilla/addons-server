@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 22:45+0000\n"
+"PO-Revision-Date: 2018-10-31 23:12+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6692,48 +6692,48 @@ msgid "No review points awarded yet."
 msgstr "K'a wakami majun rajil ya'on."
 
 msgid "Rank"
-msgstr ""
+msgstr "K'ojlib'äl"
 
 msgid "Score"
-msgstr ""
+msgstr "Rejqalem"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Tichayüx"
 
 msgid "Date"
-msgstr ""
+msgstr "Q'ijul"
 
 msgid "Event"
-msgstr ""
+msgstr "Molojri'ïl"
 
 msgid "More details."
-msgstr ""
+msgstr "Ch'aqa' chik rub'anikil."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Majun molojri'ïl xe'ilitäj pa re q'ijul re'."
 
 msgid "Log details"
-msgstr ""
+msgstr "Kib'anikil kitz'ib'anik"
 
 msgid "Review Author"
-msgstr ""
+msgstr "Rub'anel Nik'oxïk"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "Rub'i' Tz'aqat"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Tinik'öx Tz'ib'anïk"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Ri nik'oxik ya'on retal richin niyuj."
 
 msgid "Undelete"
-msgstr ""
+msgstr "Man tiyuj"
 
 msgid "Save"
 msgstr "Tiyak"
