@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 23:51+0000\n"
+"PO-Revision-Date: 2018-10-31 23:57+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6804,10 +6804,10 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr "<strong>%(reason)s</strong> <span class=\"light\">Ya'on retal ruma %(user)s ri %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "Xek'is ronojel ri taq nik'oxïk. ¡Ütz asamaj!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Majun ruwäch re tz'aqat re richin ninik'öx."
 
 msgid "Helpful Links:"
 msgstr ""
@@ -6820,11 +6820,11 @@ msgstr ""
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
-msgstr ""
+msgstr "Runik'oxik Rupam {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "Nik'oxïk {0}"
 
 msgid "Add-on user change history"
 msgstr ""
