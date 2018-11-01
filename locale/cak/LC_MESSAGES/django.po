@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 18:52+0000\n"
+"PO-Revision-Date: 2018-11-01 18:55+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7080,29 +7080,29 @@ msgid "Reviewers' Guide"
 msgstr "Kik'amöl Nik'onela'"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Runik'oxik Wachinel richin {0}"
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Rik'in Jub'a' Kamul Xtaq)"
 
 msgid "Submitted"
 msgstr "Taqon"
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "E'ik'owinäq Ruch'utitzijol Nik'oxïk"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "Xk'utüx Ch'aqa' Chik Etamab'äl: {0}"
 
 msgid "Flagged: {0}"
-msgstr ""
+msgstr "Ya'on retal: {0}"
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Ütz Titz'et Wachinel"
 
 msgid "Field required"
-msgstr ""
+msgstr "Rajowaxik k'ojlib'äl"
 
 msgid "Enter the ID or URL of the duplicate"
 msgstr ""
