@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 17:07+0000\n"
+"PO-Revision-Date: 2018-11-01 17:30+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6411,7 +6411,7 @@ msgid "Is locked by a reviewer."
 msgstr "Q'aton ruma jun nik'onel."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Achupun retal ruyon-ütz-nitz'et."
 
 msgid "Duplicate Submission"
 msgstr "Kamulun Taqoj"
@@ -6516,7 +6516,7 @@ msgid "This records your approbation of the content of the latest public version
 msgstr "Re re' nutz'ib'aj ri ütz atz'etoj chi rij ri ruk'isib'äl ruwäch elesan rutzijol, akuchi' majun niya' rutzijol chi re ri b'anonel."
 
 msgid "Static Themes and Legacy Add-ons"
-msgstr ""
+msgstr "Che' Wachinel chuqa' Ojer taq Tz'aqat"
 
 msgid "Static Themes"
 msgstr "Mesilon taq Wachinel"
@@ -6815,13 +6815,13 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "Majun ruwäch re tz'aqat re richin ninik'öx."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Jeb'ël taq Ximonel:"
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "Kina'ojil Tz'aqat"
 
 msgid "Reviewer's Guide"
-msgstr ""
+msgstr "Kik'amöl Nik'onela'"
 
 #. "Content Review [add-on name]"
 msgid "Content Review {0}"
@@ -6832,7 +6832,7 @@ msgid "Review {0}"
 msgstr "Nik'oxïk {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Jalon runatab'al rokisanel tz'aqat"
 
 msgid "Add-on History"
 msgstr ""
