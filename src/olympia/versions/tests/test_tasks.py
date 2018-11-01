@@ -89,6 +89,7 @@ def test_generate_static_theme_preview(
             "toolbar_field": "#cc29cc",
             "toolbar_field_text": "#17747d",
             "tab_line": "#00db12",
+            "tab_selected": "#40df39",
         }
     }
     if header_url is not None:
@@ -328,6 +329,7 @@ def test_generate_preview_with_additional_backgrounds(
         "toolbar_field": "rgba(255,255,255,1)",
         "toolbar_field_text": "",
         "tab_line": "rgba(0,0,0,0.25)",
+        "tab_selected": "rgba(0,0,0,0)",
     }
     colors = ['class="%s" fill="%s"' % (key, color)
               for (key, color) in default_colors.items()]
