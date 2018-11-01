@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 17:56+0000\n"
+"PO-Revision-Date: 2018-11-01 18:32+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6866,79 +6866,79 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr "K'a man samajib'en ta ri runuk' ruyon ütz nitz'et pa re ruwäch re'."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Man nik'on ta re ruwäch re'."
 
 msgid "Please select one or more versions in the list above."
-msgstr ""
+msgstr "Tacha' jun o ch'aqa' chik ruwäch pa ri rucholb'äl ajsik."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "K'a yatikïr natäq re nojwuj re', ütz we awetaman chi majun k'ayewal."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Tinim jun k'o wi chi tzolin tzij..."
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Tojtob'en pa:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>¡K'ayewal!</strong> Jun chik okisanel xutz'ët re ruxaq re' chawäch."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Ri tz'alamtz'ib'ab'äl jun k'ojlib'äl akuchi' nikomonïx nïm taq retamab'al tz'aqat (xab'achike ruwäch) chi kikojol b'anonel chuqa' nuk'unel. Chi ka'i' yatikïr nikitz'ët chuqa' nikinük'."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Ri ichinan tz'alamtz'ib'äl nokisäx richin chi ri nik'onela' kikek'exela' etamab'äl chuqa' rujachon ri' rik'in ri ruwäch. Jikïl tzij nrokisaj. Xa xe wachel chi kiwäch ri nik'onela'."
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Kek'ex tz'alamtz'ib'ab'äl"
 
 msgid "More Actions"
-msgstr ""
+msgstr "Ch'aqa' chik taq B'anoj"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Tiya' rutzijol chwe toq k'o k'ak'a' ch'olajin ruwäch"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Tib'an chi tichup ri tz'aqat"
 
 msgid "Force-enable add-on"
-msgstr ""
+msgstr "Tib'an chi titzij ri tz'aqat"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Tichup Ruyon-Ütz-Nitz'et"
 
 msgid "Enable Auto-Approval"
-msgstr ""
+msgstr "Titzij Ruyon-Ütz-Nitz'et"
 
 msgid "Clear information request"
-msgstr ""
+msgstr "Tijosq'ïx ruk'utuxik etamab'äl"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Tijosq'ïx Retal Runik'oxik Rub'itz'ib' Nuk'samajel"
 
 msgid "Clear Admin Content Review Flag"
-msgstr ""
+msgstr "Tijosq'ïx Retal Runik'oxik Rupam Nuk'samajel"
 
 msgid "Clear Admin Static Theme Review Flag"
-msgstr ""
+msgstr "Tijosq'ïx Retal Runik'oxik Che' Ruwachinel Nuk'samajel"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(nuk'samajel)"
 
 msgid "Admin Page"
-msgstr ""
+msgstr "Ruxaq Nuk'samajinïk"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "nik'öx Re Tz'aqat Re'"
 
 msgid "More Information"
-msgstr ""
+msgstr "Ch'aqa' chik Rutzijol"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Rusaqil"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Nik'onel"
 
 msgid "Add-on has been deleted."
 msgstr ""
