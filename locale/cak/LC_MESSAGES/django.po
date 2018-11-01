@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 18:32+0000\n"
+"PO-Revision-Date: 2018-11-01 18:52+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6941,143 +6941,143 @@ msgid "Reviewer"
 msgstr "Nik'onel"
 
 msgid "Add-on has been deleted."
-msgstr ""
+msgstr "Xyuj ri tz'aqat."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Kek'ut Ka'i' oxi' Na'oj"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Ke'ewäx Ka'i' Oxi' Na'oj"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Majun nik'oxïk xe'ilitäj pa re q'ijul re'."
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] xya' rutzijol %(object)s pa %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Titz'apïx re rutzijol re'"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Taq ruyakb'al re ruwäch re':"
 
 msgid "Contents"
-msgstr ""
+msgstr "Taq rupam"
 
 msgid "Compare"
-msgstr ""
+msgstr "Tijunamäx"
 
 msgid "Permissions:"
-msgstr ""
+msgstr "Taq ya'oj q'ij:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div> Ruma %(user)s pa %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Ojer"
 
 msgid "Newer"
-msgstr ""
+msgstr "K'ak'a'"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "K'ak'a' Rajil"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "K'a majun rajil ya'on."
 
 msgid "Top Reviewers (past 7 days)"
-msgstr ""
+msgstr "Samajel Nik'onela' (ruk'isib'äl 7 taq q'ij)"
 
 msgid "No top reviewers yet."
-msgstr ""
+msgstr "Majun nik'onel ya'on ruq'ij."
 
 msgid "All Time"
-msgstr ""
+msgstr "Ronojel Q'ij"
 
 #. {0} is a number, like "480".
 msgid "You have <span>{0}</span> points."
-msgstr ""
+msgstr "K'o <span>{0}</span> taq awajil."
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s pa %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "Ruq'ijul Yujuj"
 
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Majun ruyujik wachinel xe'ilitäj pa re q'ijul re'."
 
 msgid "Theme Review History for {0}"
-msgstr ""
+msgstr "Runatab'al Runik'oxik Wachinel ruma {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "Ruq'ijul Nik'oxïk"
 
 msgid "Action"
-msgstr ""
+msgstr "B'anoj"
 
 msgid "Reason"
-msgstr ""
+msgstr "Aruma"
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Wakami majun nik'oxïk."
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Yaketan taq Wachinel"
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Rucholajem Runik'oxik Wachinel"
 
 msgid "Queues"
-msgstr ""
+msgstr "Cholaj"
 
 msgid "Review Options"
-msgstr ""
+msgstr "Taq Rucha'oj Nik'oxïk"
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Ruyon-q'axanïk chi rij nik'oxïk"
 
 msgid "Enable keyboard shortcuts"
-msgstr ""
+msgstr "Titz'ij ruq'a' rub'ey pitz'b'äl"
 
 msgid "Keyboard Shortcuts"
-msgstr ""
+msgstr "Ruq'a' Rub'ey Keyboard"
 
 msgid "Next Theme"
-msgstr ""
+msgstr "Jun chik Wachinel"
 
 msgid "Previous Theme"
-msgstr ""
+msgstr "Jun kan Wachinel"
 
 msgid "Your Review History"
-msgstr ""
+msgstr "Runatab'al Anik'oxik"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "Titaq Nik'oxïk"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Ketaq Nik'oxïk"
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} richin {1} enik'on"
 
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Wakami majun Wachinel richin ninik'öx."
 
 msgid "Clear Search"
-msgstr ""
+msgstr "Tijosq'ïx Kanoxïk"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Ke'osq'opïx ri taq Ruq'atik Nuwachinel"
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Silonel Rucholajem Wachinel"
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Kik'amöl Nik'onela'"
 
 msgid "Theme Review for {0}"
 msgstr ""
