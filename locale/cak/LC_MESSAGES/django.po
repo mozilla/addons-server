@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 17:30+0000\n"
+"PO-Revision-Date: 2018-11-01 17:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -6835,26 +6835,26 @@ msgid "Add-on user change history"
 msgstr "Jalon runatab'al rokisanel tz'aqat"
 
 msgid "Add-on History"
-msgstr ""
+msgstr "Runatab'al Tz'aqat"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Ruwäch %(version)s &middot; %(created)s <span class=\"light\">&middot;%(version_status)s</span>"
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Xjikib'äx)"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "K'amonïk:"
 
 msgid "Additional sources:"
-msgstr ""
+msgstr "Rutz'aqat ruxe'el:"
 
 msgid "Download files"
-msgstr ""
+msgstr "Ruyakb'al qasanïk"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Xuya' ri ruxe'el b'itz'ib' ri b'anonel."
 
 msgid "Weight:"
 msgstr ""
