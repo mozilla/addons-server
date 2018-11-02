@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-02 16:27+0000\n"
+"PO-Revision-Date: 2018-11-02 17:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7191,66 +7191,66 @@ msgid "Search Results"
 msgstr "Taq Ruq'i'oj Kanoxïk"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Man Wachel ta ri Kanoxïk"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Wakami man wachel ta ri kanoxïk. Tatojtob'ej chik pa jun ka'i' oxi' ch'utiramaj."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Taq Ruq'i'oj Kikanoxik taq Ruwachinel {0}"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Taq Kiq'i'oj Kanoxïk Wachinel"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Kanoxïk"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Kiq'i'oj Rukanoxik \"{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Yaketal"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Kiq'i'oj Rukanoxik yaketal \"{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> junam kiwa q'i'oj"
+msgstr[1] "<b>{0}</b> junam kiwa taq q'i'oj"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Kichayub'al Q'i'oj"
 
 msgid "Category"
-msgstr ""
+msgstr "Ruwäch"
 
 msgid "Tag"
-msgstr ""
+msgstr "Etal"
 
 msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
+msgstr "Kik'utuik {0} - {1} richin {2} ruq'i'oj <strong>{3}</strong>"
 
 msgid "Showing {0} - {1} of {2} results"
-msgstr ""
+msgstr "Kik'utuik {0} - {1} kichin {2} taq q'i'oj"
 
 msgid "Could not find add-on with id \"{}\"."
-msgstr ""
+msgstr "Man xilitäj ta tz'aqat rik'in ri id \"{}\"."
 
 msgid "You do not own this addon."
-msgstr ""
+msgstr "Man awichin ta re tz'aqat re'."
 
 msgid "Missing \"upload\" key in multipart file data."
 msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Man yatikïr ta ye'atz'aqatisaj taq ruwäch jun tz'aqat rik'in kib'anikil: %s."
 
 msgid "Version does not match the manifest file."
 msgstr ""
@@ -7260,13 +7260,13 @@ msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Xa xe WebExtensions nitikïr nurepuj ri GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Man okel ta ri GUID pa URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
