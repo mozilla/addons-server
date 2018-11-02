@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-29 11:26+0000\n"
+"PO-Revision-Date: 2018-11-02 12:41+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
@@ -2719,9 +2719,8 @@ msgstr "<p>アドオンの作者は何名でも追加でき、次のいずれか
 msgid "Additional Details"
 msgstr "アドオンの詳細"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "アドオン「{0}」の詳細"
+msgstr "アドオン {0} の詳細"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0}個のタグを指定できます。"
@@ -3767,9 +3766,8 @@ msgstr "互換性テスト"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "あなたの拡張機能が Firefox と互換性があるかどうか確認してみましょう。"
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "詳細ページを表示"
+msgstr "ライブテスト"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "実際の動作テストとデバッグを行うため、あなたの拡張機能を Firefox へ一時的にインストールします。"
