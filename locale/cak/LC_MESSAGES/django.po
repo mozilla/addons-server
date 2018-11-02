@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-02 17:11+0000\n"
+"PO-Revision-Date: 2018-11-02 17:28+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7272,153 +7272,153 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Majun ruyakb'al jotob'an richin ri tz'aqat ri' chuqa' ri ruwäch."
 
 msgid "Overview"
-msgstr ""
+msgstr "Chijun rutzijoxkil"
 
 msgid "by Source"
-msgstr ""
+msgstr "chi Ruxe'el"
 
 msgid "by Add-on Version"
-msgstr ""
+msgstr "chi Ruwäch Tz'aqat"
 
 msgid "by Application"
-msgstr ""
+msgstr "chi Chokoy"
 
 msgid "by Language"
-msgstr ""
+msgstr "chi Ch'ab'äl"
 
 msgid "by Platform"
-msgstr ""
+msgstr "chi Nuk'uche'el"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "chi Kib'anikilTz'aqat"
 
 msgid "Add-on Statistics"
-msgstr ""
+msgstr "Kimolob'a' Tz'aqat"
 
 msgid "Add-ons in Use"
-msgstr ""
+msgstr "Taq Tz'aqat Ye'okisäx"
 
 msgid "Add-ons Created"
-msgstr ""
+msgstr "Taq Tz'aqat Etz'ukun"
 
 msgid "Add-ons Downloaded"
-msgstr ""
+msgstr "Taq Tz'aqat Eqasan"
 
 msgid "Add-ons Updated"
-msgstr ""
+msgstr "Taq Tz'aqat Xek'ex"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Taq Mol Xetz'uk"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Taq Tzijoxïk Etz'ib'an"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Rutz'ib'axik Kib'i' Okisanela'"
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Yakon Etamab'äl"
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Kajlab'al Ichinan Q'ijul"
 
 msgid "From"
-msgstr ""
+msgstr "Richin"
 
 msgid "To"
-msgstr ""
+msgstr "Chi re"
 
 msgid "Update"
-msgstr ""
+msgstr "Tik'ex"
 
 msgid "Export"
-msgstr ""
+msgstr "Tik'wäx el"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Rupas Molob'a' :: Kitz'aqat {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Rupas Molob'a'"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Rupas Molob'a' :: Kitz'aqat {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
-msgstr ""
+msgstr "Rumolob'a' {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Rupas Molob'a'"
 
 msgid "Controls:"
-msgstr ""
+msgstr "Kisamajib'al:"
 
 msgid "reset zoom"
-msgstr ""
+msgstr "titzolïx runimilem"
 
 msgid "Group by:"
-msgstr ""
+msgstr "Tzub'ajin ruma:"
 
 msgid "day"
-msgstr ""
+msgstr "q'ij"
 
 msgid "week"
-msgstr ""
+msgstr "wuqq'ij"
 
 msgid "month"
-msgstr ""
+msgstr "ik'"
 
 msgid "For last:"
-msgstr ""
+msgstr "Chi ruk'isib'äl:"
 
 msgid "7 days"
-msgstr ""
+msgstr "7 taq q'ij"
 
 msgid "30 days"
-msgstr ""
+msgstr "30 taq q'ij"
 
 msgid "90 days"
-msgstr ""
+msgstr "90 taq q'ij"
 
 msgid "365 days"
-msgstr ""
+msgstr "365 taq q'ij"
 
 msgid "Custom..."
-msgstr ""
+msgstr "Ichinan..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Yesamajib'ëx ri ruk'isib'äl taq tzij&hellip;"
 
 msgid "No data available."
-msgstr ""
+msgstr "Majun tzij wachel"
 
 msgid "This dashboard is currently <b>public</b>."
-msgstr ""
+msgstr "Wakami re pas re' <b>aj winäq</b>."
 
 msgid "This dashboard is currently <b>private</b>."
-msgstr ""
+msgstr "Wakami re pas re' <b>ichinan</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Kejal taq nuk'ulem."
 
 msgid "Add-ons Created by Date"
-msgstr ""
+msgstr "Taq Tz'aqat Etz'ukun chi Q'ij"
 
 msgid "Add-ons Downloaded by Date"
-msgstr ""
+msgstr "Taq Tz'aqat Eqasan chi Q'ij"
 
 msgid "Add-ons in Use by Date"
-msgstr ""
+msgstr "Taq Tz'aqat E'okisan chi Q'ij"
 
 msgid "Add-ons Updated by Date"
-msgstr ""
+msgstr "Taq Tz'aqat Ejotob'an chi Q'ij"
 
 msgid "Application usage by Date"
 msgstr ""
