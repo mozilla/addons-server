@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 20:58+0000\n"
+"PO-Revision-Date: 2018-11-02 16:27+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -698,7 +698,7 @@ msgstr "Integre positive"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Iste campo pote esser usate solo pro ligamine a sitos web externe. URLs sur %(domain)s non es consentite."
 
 msgid "Incorrect, please try again."
 msgstr "Error, per favor reproba."
