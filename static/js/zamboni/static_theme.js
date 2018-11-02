@@ -11,6 +11,8 @@ $(document).ready(function() {
         function getFile() {
             file_selector = $wizard.find('#header-img')[0];
             file = file_selector.files[0];
+            if (file && $wizard.find('#header-img').attr('accept').split(',').indexOf(file.type) == -1)
+                return null;
             return file ? file : preLoadBlob;
         }
 
