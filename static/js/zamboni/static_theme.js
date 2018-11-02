@@ -33,7 +33,6 @@ $(document).ready(function() {
                 $preview_img.attr('src', e.target.result);
                 $preview_img.show().addClass('loaded');
                 $row.find('.reset').show().css('display', 'block');
-                updateManifest();
                 $row.find('input[type=file], .note').hide();
                 var filename = file.name.replace(/\.[^/.]+$/, "");
                 $wizard.find('a.download').attr('download', filename + ".zip");
@@ -41,6 +40,7 @@ $(document).ready(function() {
                 if (!name_input.val()) {
                     name_input.val(filename);
                 }
+                updateManifest();
             };
             reader.readAsDataURL(file);
         });
