@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-02 16:11+0000\n"
+"PO-Revision-Date: 2018-11-02 16:27+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7114,81 +7114,81 @@ msgid "Describe your reason for rejection"
 msgstr "Tatzijoj rij jun aruma naxutüj"
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Tab'ana' jun k'utunïk chi re ri ajb'anöy"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Tatzijoj rij jun aruma naya' retal"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Exutun o Man Enik'on ta"
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[rub'anikil:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ruk'exoj ({0})"
+msgstr[1] "Kik'exoj ({0})"
 
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Runik'oxik Rajil ({0})"
+msgstr[1] "Kinik'oxik Kajil ({0})"
 
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ruyon Ütz Nitz'et ({0})"
+msgstr[1] "Ruyonil Ütz Yetz'et ({0})"
 
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Xk'is Ruq'ijul Ruk'utuxik Etamab'äl ({0})"
+msgstr[1] "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Xya' retal"
 
 msgid "Updates"
-msgstr ""
+msgstr "Taq K'exoj"
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Xq'i' ri nïm raqän k'ulub'enïk."
 
 msgid "search for add-ons"
-msgstr ""
+msgstr "kekanöx taq tz'aqat"
 
 msgid "search for themes"
-msgstr ""
+msgstr "kekanöx taq wachinel"
 
 msgid "search for apps"
-msgstr ""
+msgstr "kekanöx taq chokoy"
 
 msgid "Relevance"
-msgstr ""
+msgstr "K'o ruq'ij"
 
 msgid "All Add-ons"
-msgstr ""
+msgstr "Ronojel ri taq Tz'aqat"
 
 msgid "Any {0}"
-msgstr ""
+msgstr "Xab'achike {0}"
 
 #. L10n: "All Systems" means show everything regardless of platform.
 msgid "All Systems"
-msgstr ""
+msgstr "Ronojel taq Q'inoj"
 
 msgid "All Tags"
-msgstr ""
+msgstr "Ronojel taq Yaketal"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Taq Ruq'i'oj Kikanoxik taq Rumol {0}"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Taq Ruq'i'oj Kikanoxik taq Mol"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Taq Ruq'i'oj Kanoxïk"
 
 msgid "Search Unavailable"
 msgstr ""
