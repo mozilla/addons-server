@@ -28,7 +28,7 @@ from .widgets import (
 
 
 log = olympia.core.logger.getLogger('z.users')
-admin_re = re.compile('(?=.*\d)(?=.*[a-zA-Z])')
+admin_re = re.compile(r'(?=.*\d)(?=.*[a-zA-Z])')
 
 
 class UserDeleteForm(forms.Form):

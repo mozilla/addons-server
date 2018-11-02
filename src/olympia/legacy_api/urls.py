@@ -33,20 +33,20 @@ def build_urls(base, appendages):
 base_search_regexp = r'search/(?P<query>[^/]+)'
 appendages = [
     # Regular expressions that we use in our urls.
-    '/(?P<addon_type>[^/]*)',
-    '/(?P<limit>\d*)',
-    '/(?P<platform>\w*)',
-    '/(?P<version>[^/]*)',
-    '(?:/(?P<compat_mode>(?:strict|normal|ignore)))?',
+    r'/(?P<addon_type>[^/]*)',
+    r'/(?P<limit>\d*)',
+    r'/(?P<platform>\w*)',
+    r'/(?P<version>[^/]*)',
+    r'(?:/(?P<compat_mode>(?:strict|normal|ignore)))?',
 ]
 search_regexps = build_urls(base_search_regexp, appendages)
 
-appendages.insert(0, '/(?P<list_type>[^/]+)')
+appendages.insert(0, r'/(?P<list_type>[^/]+)')
 list_regexps = build_urls(r'list', appendages)
 
 legacy_api_patterns = [
     # Addon_details
-    url('addon/%s$' % ADDON_ID, api_view(views.AddonDetailView),
+    url(r'addon/%s$' % ADDON_ID, api_view(views.AddonDetailView),
         name='legacy_api.addon_detail'),
     url(r'^get_language_packs$', api_view(views.LanguageView),
         name='legacy_api.language'),
@@ -54,17 +54,17 @@ legacy_api_patterns = [
 
 for regexp in search_regexps:
     legacy_api_patterns.append(
-        url(regexp + '/?$', api_view(views.SearchView),
+        url(regexp + r'/?$', api_view(views.SearchView),
             name='legacy_api.search'))
 
 for regexp in list_regexps:
     legacy_api_patterns.append(
-        url(regexp + '/?$', api_view(views.ListView),
+        url(regexp + r'/?$', api_view(views.ListView),
             name='legacy_api.list'))
 
 urlpatterns = [
     # Redirect api requests without versions
-    url('^((?:addon|search|list)/.*)$', views.redirect_view),
+    url(r'^((?:addon|search|list)/.*)$', views.redirect_view),
 
     # Endpoints.
     url(r'^1.5/search_suggestions/', views.search_suggestions),

@@ -351,7 +351,7 @@ class File(OnChangeMixin, ModelBase):
         self.move_file(
             src, dst, 'Moving undisabled file: {source} => {destination}')
 
-    _get_localepicker = re.compile('^locale browser ([\w\-_]+) (.*)$', re.M)
+    _get_localepicker = re.compile(r'^locale browser ([\w\-_]+) (.*)$', re.M)
 
     @memoize(prefix='localepicker', timeout=None)
     def get_localepicker(self):

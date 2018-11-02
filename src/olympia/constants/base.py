@@ -386,7 +386,7 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "ending_tier": 5,
 }
 
-VERSION_SEARCH = re.compile('\.(\d+)$')
+VERSION_SEARCH = re.compile(r'\.(\d+)$')
 
 # Types of SiteEvent
 SITE_EVENT_OTHER = 1

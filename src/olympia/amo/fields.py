@@ -77,7 +77,7 @@ class ColorField(fields.CharField):
 
     def clean(self, value):
         super(ColorField, self).clean(value)
-        if value and not re.match('^\#([0-9a-fA-F]{6})$', value):
+        if value and not re.match(r'^\#([0-9a-fA-F]{6})$', value):
             raise exceptions.ValidationError(ugettext(
                 u'This must be a valid hex color code, such as #000000.'))
         return value

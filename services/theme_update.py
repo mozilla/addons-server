@@ -223,7 +223,7 @@ class LWThemeUpdate(ThemeUpdate):
         return '%s/%s%s' % (domain, self.data.get('locale', 'en-US'), url)
 
 
-url_re = re.compile('(?P<locale>.+)?/themes/update-check/(?P<id>\d+)$')
+url_re = re.compile(r'(?P<locale>.+)?/themes/update-check/(?P<id>\d+)$')
 
 
 def application(environ, start_response):

@@ -461,7 +461,7 @@ class TestFeaturedLocale(TestCase):
         # are changing.
         doc = pq(content)
         ass = doc('.featured-inner .item a')
-        rx = re.compile('/(en-US|es)/firefox/addon/(\d+)/$')
+        rx = re.compile(r'/(en-US|es)/firefox/addon/(\d+)/$')
         for a in ass:
             mtch = rx.match(a.attrib['href'])
             if mtch:

@@ -5,7 +5,7 @@ from .views import module_admin
 
 
 urlpatterns = [
-    url('^modules$', module_admin, name='discovery.module_admin'),
-    url('^.*', lambda request: redirect(
+    url(r'^modules$', module_admin, name='discovery.module_admin'),
+    url(r'^.*', lambda request: redirect(
         'https://www.mozilla.org/firefox/new/', permanent=True)),
 ]

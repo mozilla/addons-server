@@ -16,6 +16,6 @@ urlpatterns = [
         name='signing.version'),
     # .* at the end to match filenames.
     # /file/:id/some-file.xpi
-    url('^file/(?P<file_id>\d+)(?:/.*)?',
+    url(r'^file/(?P<file_id>\d+)(?:/.*)?',
         views.SignedFile.as_view(), name='signing.file'),
 ]

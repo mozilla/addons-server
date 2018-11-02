@@ -17,8 +17,8 @@ class TestRedirects(TestCase):
             '/en-US/firefox/themes/film-and-tv/')
 
     def test_contribute_installed(self):
-        """`/addon/\d+/about` should go to
-           `/addon/\d+/contribute/installed`."""
+        r"""`/addon/\d+/about` should go to
+            `/addon/\d+/contribute/installed`."""
         r = self.client.get(u'/addon/5326/about', follow=True)
         redirect = r.redirect_chain[-1][0]
         assert redirect.endswith(
@@ -162,7 +162,7 @@ class TestPersonaRedirect(TestCase):
     fixtures = ['addons/persona']
 
     def test_persona_redirect(self):
-        """`/persona/\d+` should go to `/addon/\d+`."""
+        r"""`/persona/\d+` should go to `/addon/\d+`."""
         r = self.client.get('/persona/813', follow=True)
         self.assert3xx(r, '/en-US/firefox/addon/a15663/', status_code=301)
 
