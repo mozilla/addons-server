@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 23:11+0000\n"
+"PO-Revision-Date: 2018-11-03 23:25+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7836,71 +7836,71 @@ msgid "Please set your display name"
 msgstr "Tajikib'a' ri ab'i'"
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Tajikib'a' ri ab'i' o awokisanel richin nitz'aqatisäx rub'eyal tz'ib'anïk b'i'aj."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Tinuk'samajïx retamab'al rub'i' taqoya'l, achi'el rub'i' okisanel chuqa' ri runuk'ulem Rub'i' Taqoya'l richin Firefox."
 
 msgid "Username"
-msgstr ""
+msgstr "Rub'i' okisanel"
 
 msgid "Email Address"
-msgstr ""
+msgstr "Rochochib'al taqoya'l"
 
 msgid "Manage Firefox Account..."
-msgstr ""
+msgstr "Tinuk'samajïx Rub'i' Rutaqoya'l Firefox..."
 
 msgid "Profile"
-msgstr ""
+msgstr "Ruwäch B'i'aj"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
+msgstr "Tatzijoj chi qe jub'a' chik chawij. Man e rajowaxik ta ri taq k'ojlib'äl, po xkeruto' ch'aqa' chik okisanela' richin niketamaj chik jub'a' awäch."
 
 msgid "This URL will only be visible if you are a developer."
-msgstr ""
+msgstr "Re URL re' xtiwachin we at b'anonel."
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Tacha' Wachib'äl&hellip;"
 
 msgid "Delete current photo"
-msgstr ""
+msgstr "Tiyuj wachib'äl k'o wakami"
 
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
+msgstr "¡We nawajo', tatzijoj awi' pa tinamït! Re re' konojel ri winaqi' xtikitz'ët pa ruxaq awetamab'al richin okisanel."
 
 #, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
+msgstr "Ya'on q'ij HTML: %(html)s. Eq'aton taq ximonel."
 
 msgid "Decide what collections should be shown in your profile."
-msgstr ""
+msgstr "Tacha' achike taq mol xkek'ut pa ruwäch ab'i'."
 
 msgid "Display the collections I have created"
-msgstr ""
+msgstr "Kek'ut ri taq mol enutz'ukun"
 
 msgid "Notifications"
-msgstr ""
+msgstr "Taq rutzijol"
 
 msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
+msgstr "K'o mul re', ri Mozilla xkerutäq taq taqoya'l chawe chi kij ri k'ak'a' taq ruwäch taq nimaq'ij kichin taq tz'aqat. Ke'acha' ri taq na'oj nawajo' nawetamaj."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
 msgstr ""
 
 msgid "Admin"
-msgstr ""
+msgstr "Tinuk'samajïx"
 
 msgid "Delete Account"
-msgstr ""
+msgstr "Tiyuj Rub'i' Taqoya'l"
 
 msgid "Update Account"
-msgstr ""
+msgstr "Tik'ex Rub'i' Taqoya'l"
 
 msgid "none"
-msgstr ""
+msgstr "majun"
 
 msgid "all"
-msgstr ""
+msgstr "ronojel"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
@@ -7912,19 +7912,19 @@ msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"
-msgstr ""
+msgstr "Titzolïx Ewan Tzij"
 
 msgid "User Info for {0}"
 msgstr ""
 
 msgid "Edit profile"
-msgstr ""
+msgstr "Tinuk' ruwäch b'i'aj"
 
 msgid "Manage user"
-msgstr ""
+msgstr "Tinuk'samajïx okisanel"
 
 msgid "Report user"
-msgstr ""
+msgstr "Tiya' rutzijol okisanel"
 
 msgid "Add-ons Developer"
 msgstr ""
@@ -7954,7 +7954,7 @@ msgid "Created by Me"
 msgstr ""
 
 msgid "My Reviews"
-msgstr ""
+msgstr "Taq Nunik'oxik"
 
 msgid "No add-on reviews yet."
 msgstr ""
