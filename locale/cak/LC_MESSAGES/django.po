@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-02 17:28+0000\n"
+"PO-Revision-Date: 2018-11-03 18:27+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7246,14 +7246,14 @@ msgid "You do not own this addon."
 msgstr "Man awichin ta re tz'aqat re'."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Nrajo' na ri \"upload\" tzij pa ri kiyakb'al multipart."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
 msgstr "Man yatikïr ta ye'atz'aqatisaj taq ruwäch jun tz'aqat rik'in kib'anikil: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Man nik'äm ta ri' ri ruwäch rik'in ri ruyakb'al tzijoxïk."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
