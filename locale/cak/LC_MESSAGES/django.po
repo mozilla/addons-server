@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 21:11+0000\n"
+"PO-Revision-Date: 2018-11-03 21:31+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7436,51 +7436,53 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>¿Achike rub'eyal ye'ajiläx ri taq qasanïk?</h2> <p> Ri kajilab'al taq qasanïk chaq'a' ch'aqa' yek'ex xa xe kik'wan ri qitzij taq ruqasaxik ri tz'aqat, manäq ri taq ruk'exoj. Ri taq qasanïk "
+"tikirel yejach ruma ri ruxe'el xximo ri qasanïk. </p>"
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "Kich'ab'äl okisanela' chi Q'ijul"
 
 msgid "Platform usage by Date"
-msgstr ""
+msgstr "Rokisaxik nuk'uch'el chi Q'ijul"
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> Taq Qasanïk"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Nisamajib'ëx..."
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr ""
+msgstr "<b>{0}</b>Taq ajq'ij Rokisanela' K'oxom"
 
 msgid "Top Applications"
-msgstr ""
+msgstr "Ütz taq Chokoy"
 
 msgid "See more applications&hellip;"
-msgstr ""
+msgstr "Ketz'et ch'aqa' chik taq chokoy&hellip;"
 
 msgid "Top Languages"
-msgstr ""
+msgstr "Ütz taq Ch'ab'äl"
 
 msgid "See more languages&hellip;"
-msgstr ""
+msgstr "Ketz'et ch'aqa' chik taq ch'ab'äl&hellip;"
 
 msgid "Top Platforms"
-msgstr ""
+msgstr "Ütz taq Nuk'uch'e'el"
 
 msgid "See more platforms&hellip;"
-msgstr ""
+msgstr "Ketz'et ch'aqa' chik taq nuk'uche'el&hellip;"
 
 msgid "Ratings by Date"
-msgstr ""
+msgstr "Taq ajil chi Q'ijul"
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Taq Nik'oxïk Etz'ukun chi Q'ij"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Kixe'el qasanïk chi Q'ijul"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "Chi rij rojqaxik ch rij kixe'el..."
 
 #, python-format
 msgid ""
@@ -7492,16 +7494,16 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Rub'anikil Tz'aqat chi Q'ij"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Tz'ib'anela' b'i'aj chi Q'ijul"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Q'ij Q'ij Okisanela' chi Q'ijul"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "¿Achike ri q'ij q'ij okisanela'?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
