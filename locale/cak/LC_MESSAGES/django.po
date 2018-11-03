@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 22:29+0000\n"
+"PO-Revision-Date: 2018-11-03 22:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7720,7 +7720,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr "Richin yak'oje' pan ewanïk, tatz'ib'aj jun aruma richin ri jaloj po majun chik achike k'ojlib'äl tajäl."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Majun okisanel rik'in ri taqoya'l ri' xilitäj."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
@@ -7728,64 +7728,64 @@ msgid "Firefox user {id}"
 msgstr "Firefox okisanel {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Oyonib'äl Taq Nutz'aqat"
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "jun b'anonel tz'aqat nutzolij tzij chi rij ri nunik'oxïk"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "e k'o k'ak'a' taq rutz'aqat o rub'anikil Firefox"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "ri k'amonel nutz'aqat ütz nuk'ëx ri'"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "ri nutz'aqat rik'in sdk-ruxe'el ütz xk'extäj"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "k'o nutz'ib'aj jun ejqalem chi rij ri nutz'aqat"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "tawetamaj q'ij q'ij pa kiwi' ri taq tzijol chuqa' taq kinimaq'ij b'anonel taq tz'aqat (chuqa' ri ko'öl ruwäch rutzijol about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "man tikirel ta nik'ex ri ruk'amonel nutz'aqat"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "man tikirel ta nik'ex ri sdk-ruxe'el nutz'aqat"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "ri nutz'aqat ninik'öx ruma jun nuk'unel"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla nrajo' nitzijon wik'in ruma ri tz'aqat wichin"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Kitzijol Okisanel"
 
 msgid "An email address is required."
-msgstr ""
+msgstr "Najowäx jun rochochib'al taqoya'l."
 
 msgid "A user with that email address does not exist."
-msgstr ""
+msgstr "Majun okisanel rik'in ri rochochib'al taqoya'l ri'."
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Yujun Ruwäch B'i'aj"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Yujun Wachib'äl"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "K'exon Ruwäch B'i'aj"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Taq Sachoj Xe'ilitäj"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
+msgstr "E k'o sachoj pa ri taq jaloj xab'än. Ke'achojmirisaj k'a ri ke'ataqa' chik."
 
 msgid "User reported."
-msgstr ""
+msgstr "Rutzijol okisanel."
 
 msgid "new"
 msgstr ""
