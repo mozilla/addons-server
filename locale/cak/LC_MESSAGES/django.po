@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 21:51+0000\n"
+"PO-Revision-Date: 2018-11-03 22:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7569,67 +7569,69 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Man keta ri' we <a href=\"https://www.mozilla.org/about/legal/\">jun wi ri nitzijöx</a>, ri rupam re ruxaq re' ya'on q'ij chi re rik'in ri ajilab'äl <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Atribution Share-Alike License v3.0 </a> o jun chik ruwäch nipe."
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "tawetamaj kiwäch <b>tz'aqat</b>"
 
 msgid "Download Firefox"
-msgstr ""
+msgstr "Taqasaj Firefox"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Android Okik'amaya'l"
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "iOS Okik'amaya'l"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Focus Okik'amaya'l"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Ajkematz'ib' Okik'amaya'l"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
-msgstr ""
+msgstr "Ch'aqa' chik taq ch'ab'äl"
 
 msgid "Return to the {0} Add-ons homepage"
-msgstr ""
+msgstr "Titzolin pa ri ruxaq {0} Tz'aqat"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Taq Tz'aqat"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Taq Tz'aqat"
 
 msgid "My Account"
-msgstr ""
+msgstr "Rub'i' Nutaqoya'l"
 
 msgid "Welcome, {0}"
-msgstr ""
+msgstr "Ütz Apetik, {0}"
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr ""
+msgstr "<a href=\"%(reg)s\">Rutz'ib'axik b'i'aj</a></a> o <a href=\"%(login)s\">Titikirisäx molojri'ïl</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
+msgstr "Richin yetojtob'ëx ri janila chi tz'aqat e k'o wawe', taqasaj <a href=\"%(url)s\">Mozilla Firefox</a>, ¡jun aninäq chuqa' sipan rub'anikil richin yatok pan Ajk'amaya'l!"
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr ""
+msgstr "Ütz apetik pa {0} Taq Tz'aqat."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Ke'acha' chi kikojol k'ïy taq samaj chuqa' b'anikil richin nab'än awichin ri Firefox."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
+msgstr "Ke'atz'aqatisaj taq samaj chuqa' taq b'anikil pan %(app)s awichin."
 
 msgid "On the go?"
-msgstr ""
+msgstr "¿La at mitij?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
 msgstr ""
