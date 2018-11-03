@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 22:51+0000\n"
+"PO-Revision-Date: 2018-11-03 23:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7788,50 +7788,52 @@ msgid "User reported."
 msgstr "Rutzijol okisanel."
 
 msgid "new"
-msgstr ""
+msgstr "k'ak'a'"
 
 msgid "Ban"
-msgstr ""
+msgstr "Tik'aq"
 
 msgid "Delete picture"
 msgstr "Tiyuj wachib'äl"
 
 msgid "Delete User Account"
-msgstr ""
+msgstr "Tiyuj Rub'i' Rutaqoya'l Okisanel"
 
 #, python-format
 msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
+"Man yatikïr ta nayüj ri rub'i' ataqoya'l we atcholajin achi'el jun <a href=\"%(link)s\"> rub'anel xab'achike tz'aqat</a>. Richin nayüj rub'i' ataqoya'l, tak'utuj chi re jun chik ruwinaq amolaj "
+"richin b'anonel chi karuyuju' el pa kicholajem kib'anonela' taq tz'aqat. K'a ri' yatikïr nayüj el ri rub'i' ataqoya'l wawe'."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Toq napïtz \"tiyuj\" ri rub'i' ataqoya'l <strong>jumul xtiyuj</strong>. Re re' nuq'ajuj chi:"
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
+msgstr "We natikirisaj chik molojri'ïl pa re rochochib'al taqoya'l %(site)s xtitz'ukutuj jun k'ak'a' rub'i' taqoya'l, ri majun xtuxïm ta ri' rik'in re rub'i' taqoya'l re'."
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Man xkeyuj ta el ri taq atzijol chuqa' taq awejqalem, po majun chik xtikixïm ta ki' awik'in."
 
 msgid "Confirm account deletion"
-msgstr ""
+msgstr "Tijikib'äx ruyujik rub'i' taqoya'l"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Niq'ax pa nuwi' chi man tikirel ta nitzolïx re re'."
 
 msgid "Delete my user account now"
-msgstr ""
+msgstr "Tiyuj ri rub'i' rutaqoyal wokisanel wakami"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Tiyuj Ruwachib'al Okisanel"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Tiyuj ri rub'i' ruwachib'al wokisanel wakami"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Tajikib'a' ri ab'i'"
 
 msgid "Please set your display name or username to complete the registration process."
 msgstr ""
