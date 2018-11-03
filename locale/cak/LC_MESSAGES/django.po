@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 21:31+0000\n"
+"PO-Revision-Date: 2018-11-03 21:51+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7509,35 +7509,39 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>¿Achike nuq'ajuj q'ij q'ij okisanela'?</h2> <p> Ri taq wachinel eyakon rik'in re ruxaq re' nunik'oj we e k'o jun k'exoj pa jun q'ij. Ri kajilab'al re taq ruping k'exoj etaman kiwäch achi'el "
+"Tzijïl Q'ij Q'ij Okisanela', o ronojel ri winaqi' nikokisaj ri awachinel q'ij q'ij. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>¿Achike ri q'ij q'ij okisanela'?</h2> <p> Ri taq tz'aqat eqasan rik'in re ruxaq re' nunik'oj we e k'o jun k'exoj pa jun q'ij. Ri kajilab'al re taq qasanïk re' etaman kiwäch achi'el Tzijïl Q'ij "
+"Q'ij Okisanela'. Ri q'ij q'ij taq okisanela' yetikïr nikijäch chi ruwäch ri tz'aqat, samajel q'inoj, rub'anikil tz'aqat, chokoy chuqa' ch'ab'äl.</p>"
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Kitz'ib'axik Okisanela' chi Q'ijul"
 
 msgid "Application versions by Date"
-msgstr ""
+msgstr "Taq Ruwäch chokoy chi Q'ijul"
 
 msgid "Mozilla Add-ons"
-msgstr ""
+msgstr "Rutz'aqat Mozilla"
 
 msgid "Find add-ons for other applications"
-msgstr ""
+msgstr "Ke'awila' taq kitz'aqat ch'aqa' chik taq chokoy"
 
 msgid "Other Applications"
-msgstr ""
+msgstr "Ch'aqa' chik taq Chokoy"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO xujäl rub'anikil. ¿La nawajo' natz'ët?"
 
 msgid "Visit the new site"
-msgstr ""
+msgstr "Tib'etz'et ri k'ak'a' ruxaq"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Richin natz'ük amol, k'o chi k'o jun rub'i' ataqoya'l richin Mozilla Add-on."
 
 msgid "Create an Add-ons Account"
 msgstr "Titz'uk jun Add-on Rub'i' Taqoya'l"
@@ -7547,19 +7551,19 @@ msgid "or <a href=\"%(login)s\">log in to your current account</a>"
 msgstr "o <a href=\"%(login)s\">katok pa rub'i' ataqoya'l k'o wakami</a>"
 
 msgid "Footer logo"
-msgstr ""
+msgstr "Ruwachib'al kamuluntzij"
 
 msgid "Choose a category"
-msgstr ""
+msgstr "Tacha' jun ruwäch"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Ri k'ak'a' ajk'amaya'l ruxaq nuköch' oyonib'äl chuqa' ajch'atal taq okisanela'"
 
 msgid "View the new site"
-msgstr ""
+msgstr "Titz'et ri k'ak'a' ruxaq"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Tiya' rutzijol jun sachoj"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
