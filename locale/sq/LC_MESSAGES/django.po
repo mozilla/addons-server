@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-28 11:13+0000\n"
+"PO-Revision-Date: 2018-11-03 13:06+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2623,9 +2623,8 @@ msgstr "Zhvillim Zgjerimesh"
 msgid "Lightweight Themes"
 msgstr "Tema të Peshës së Lehtë"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Lajme Zhvilluesish"
+msgstr "Rregulla Zhvilluesish"
 
 msgid "Add-on Validator"
 msgstr "Vleftësues Shtese"
@@ -4283,9 +4282,8 @@ msgid "Choose the page you see every time you open a new tab."
 msgstr "Caktoni faqen që shihni sa herë që hapni një skedë të re."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Kërkim figurash së prapthi {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -4340,19 +4338,16 @@ msgid "Highlight any text and right-click to quickly perform an image search."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shijoni faqerojtës pamorë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access your favorite sites from a tile layout."
-msgstr "Ruajini gjërat e parapëlqyera drejt e nga komforti i shfletuesi tuaj."
+msgstr "Përdorini sajtet tuaj të parapëlqyer që nga skemë grafike mozaik."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përdorni dije {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
@@ -4384,9 +4379,8 @@ msgid "Organize your tabs by color grouping them based on URL patterns."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Parandaloni shfrytëzimin e kompjuterit tuaj për gjetje kriptomonedhash {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
@@ -4401,9 +4395,8 @@ msgid "Get grammar help anywhere you write on the web—social media, email, doc
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shihni kohë globale {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -4452,18 +4445,16 @@ msgid "Ecosia uses 80% of its search profits to fund tree-planting programs arou
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Gjeni lëndë web që mungon  {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Gjeni lëndë web që mungon {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4499,9 +4490,8 @@ msgid "Stop trackers in their tracks and learn more about them."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ripërfytyroni skedat {start_sub_heading}përmes {addon_name}{end_sub_heading}"
+msgstr "Lini një gjurmë dixhitale të pastër {start_sub_heading}përmes {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
@@ -4524,18 +4514,16 @@ msgid "Get more screen space by removing ads from your web-based inbox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Gjeni skedat tuaja {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shmangni gjurmues tinëzarë dhe kufizime {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
@@ -4558,27 +4546,24 @@ msgid "Privately distinguish your various online identities—work, personal, et
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ndalni gjurmues {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Lexoni kartela ePub {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përmirësoni shfrytëzimin tuaj të YoutTube-it {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
