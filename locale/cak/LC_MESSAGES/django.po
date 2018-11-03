@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 22:11+0000\n"
+"PO-Revision-Date: 2018-11-03 22:29+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7634,90 +7634,90 @@ msgid "On the go?"
 msgstr "¿La at mitij?"
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Tanik'oj ri <a class=\"mobile-link\" href=\"#\">Ruxaq Kitz'aqat Oyonib'äl</a>."
 
 msgid "Android Add-ons"
-msgstr ""
+msgstr "Taq rutz'aqat Android"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Rajowaxik taq k'ojlib'äl"
 
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr ""
+msgstr "Titzalq'omïx richin: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
-msgstr ""
+msgstr "Ch'ab'äl e K'o"
 
 msgid "New Locales"
-msgstr ""
+msgstr "K'ak'a' taq Ch'ab'äl"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr ""
+msgstr "K'o taq jaloj man e'ayakon ta pa ri <b>{0}</b> ch'ab'äl. ¿La nawajo' ye'ayäk chuwäch yaq'ax pa jun chik ch'ab'äl?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Kech'aqïx taq Jaloj"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "¿La kan nawajo' ye'ayüj ri taq <b>{0}</b> tzalq'omanïk? Man xkatikïr ta xtatzolij re'"
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Tiyuj Ch'ab'äl"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Xyuj ri okisanel \"%(user)s\"."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Xyuj ruwachib'al ri okisanel \"%(user)s\"."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Xech'aqïx el ri taq okisanela' \"%(users)s\"."
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Kech'aqïx el ri okisanela' echa'on"
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Ruwachib'al Ruwäch B'i'aj"
 
 msgid "Addons"
-msgstr ""
+msgstr "Taq tz'aqat"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Kejqalem"
 
 msgid "Activity Logs"
 msgstr "Kitz'ib'axik Samaj"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "Ri taqoya'l k'o chi {email}."
 
 msgid "Display Name"
-msgstr ""
+msgstr "Tik'ut B'i'aj"
 
 msgid "Location"
-msgstr ""
+msgstr "K'ojlib'äl"
 
 msgid "Occupation"
-msgstr ""
+msgstr "Samaj"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Yatikïr najäl rochochib'al ataqoya'l pan Rub'i' Ataqoya'l richin Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
+msgstr "Re URL re man okel ta ri rub'anikil. Ri okel URLs ke re' yetzu'un http://example.com/my_page."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Richin yak'oje' pan ewanïk, tatz'ib'aj jun aruma richin ri jaloj po majun chik achike k'ojlib'äl tajäl."
 
 msgid "No user with that email."
 msgstr ""
