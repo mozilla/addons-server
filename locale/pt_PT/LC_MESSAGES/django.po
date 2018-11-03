@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 10:05+0000\n"
+"PO-Revision-Date: 2018-11-02 23:52+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -5223,7 +5223,7 @@ msgstr "Preencha formulários automaticamente {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr "Guarde dados introduzidos outrora e este irá preencher automaticamente da próxima vez."
+msgstr "Guarde dados introduzidos outrora e este irá auto-preencher da próxima vez."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
