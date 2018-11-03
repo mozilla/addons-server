@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 18:35+0000\n"
+"PO-Revision-Date: 2018-11-03 21:11+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7269,7 +7269,7 @@ msgid "Invalid GUID in URL"
 msgstr "Man okel ta ri GUID pa URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Man yatikïr ta natz'aqatisaj jun cholajin ruwäch re tz'aqat re' rik'in ri API ruma majun ichintzij. Tatojtob'ej pa ajk'amaya'l ruxaq."
 
 msgid "No uploaded file for that addon and version."
 msgstr "Majun ruyakb'al jotob'an richin ri tz'aqat ri' chuqa' ri ruwäch."
@@ -7391,7 +7391,7 @@ msgid "Custom..."
 msgstr "Ichinan..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
-msgstr ""
+msgstr "Wakami chupül ri rub'eyal molob'a', ruma ri' toq ri k'ak'a' taq tzij man e wachel ta. K'a yeqamöl taq molob'a' chuqa' xtuk'ëx ri' ri ruxaq rik'in ri taq tzij k'a nrajo' na."
 
 msgid "Loading the latest data&hellip;"
 msgstr "Yesamajib'ëx ri ruk'isib'äl taq tzij&hellip;"
@@ -7421,16 +7421,16 @@ msgid "Add-ons Updated by Date"
 msgstr "Taq Tz'aqat Ejotob'an chi Q'ij"
 
 msgid "Application usage by Date"
-msgstr ""
+msgstr "Rokisaxik chokoy chi Q'ijul"
 
 msgid "Collections Created by Date"
-msgstr ""
+msgstr "Taq Mol Xetz'uk chi Q'ijul"
 
 msgid "Downloaded by Date"
-msgstr ""
+msgstr "Niqasäx chi Q'ijul"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "¿Achike rub'eyal ye'ajiläx ri taq qasanïk?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
