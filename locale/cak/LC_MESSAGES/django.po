@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 23:25+0000\n"
+"PO-Revision-Date: 2018-11-04 15:30+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7885,7 +7885,7 @@ msgid "From time to time, Mozilla may send you email about upcoming releases and
 msgstr "K'o mul re', ri Mozilla xkerutäq taq taqoya'l chawe chi kij ri k'ak'a' taq ruwäch taq nimaq'ij kichin taq tz'aqat. Ke'acha' ri taq na'oj nawajo' nawetamaj."
 
 msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
+msgstr "Mozilla yatrumäj richin nitzijon awik'in chi kij taq kina'oj taq tz'aqat e'ayakon."
 
 msgid "Admin"
 msgstr "Tinuk'samajïx"
@@ -7903,10 +7903,10 @@ msgid "all"
 msgstr "ronojel"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Wakami yatok pa taq rutz'aqat Mozilla rik'in ri rub'i' rutaqoya'l Firefox. Tak'isa' richin natz'aqatisaj ri rutikirisanik molojri'ïl."
 
 msgid "User Login"
-msgstr ""
+msgstr "Retamaxik Ruwäch Okisanel"
 
 msgid "Log in with Firefox Accounts"
 msgstr ""
