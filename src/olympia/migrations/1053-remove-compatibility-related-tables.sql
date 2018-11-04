@@ -1,2 +1,3 @@
-DROP TABLE 'compatibility_reports';
-DROP TABLE 'compat_totals';
+DROP TABLE IF EXISTS 'compatibility_reports';
+DROP TABLE IF EXISTS 'compat_totals';
+
