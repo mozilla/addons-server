@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-04 15:30+0000\n"
+"PO-Revision-Date: 2018-11-04 15:49+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -7909,13 +7909,13 @@ msgid "User Login"
 msgstr "Retamaxik Ruwäch Okisanel"
 
 msgid "Log in with Firefox Accounts"
-msgstr ""
+msgstr "Titikirisäx molojri'ïl rik'in ri Rub'i' Rutaqoya'l Firefox"
 
 msgid "Password Reset"
 msgstr "Titzolïx Ewan Tzij"
 
 msgid "User Info for {0}"
-msgstr ""
+msgstr "Retamab'al okisanel {0}"
 
 msgid "Edit profile"
 msgstr "Tinuk' ruwäch b'i'aj"
@@ -7927,84 +7927,84 @@ msgid "Report user"
 msgstr "Tiya' rutzijol okisanel"
 
 msgid "Add-ons Developer"
-msgstr ""
+msgstr "B'anöy Tz'aqat"
 
 msgid "Themes Artist"
-msgstr ""
+msgstr "B'anöy Wachinel"
 
 msgid "About me"
-msgstr ""
+msgstr "Chwij rïn"
 
 msgid "In a little more detail..."
-msgstr ""
+msgstr "Rik'in chik jub'a' taq b'anikil..."
 
 msgid "Add-ons I've created"
-msgstr ""
+msgstr "Taq tz'aqat enutz'ukun"
 
 msgid "View all"
 msgstr "Titz'et ronojel"
 
 msgid "My Most Popular Themes"
-msgstr ""
+msgstr "Taq Nuwachinel K'o Ruwinaq"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Taq wachinel enutz'ukun"
 
 msgid "Created by Me"
-msgstr ""
+msgstr "Nuk'un Wuma"
 
 msgid "My Reviews"
 msgstr "Taq Nunik'oxik"
 
 msgid "No add-on reviews yet."
-msgstr ""
+msgstr "Majun kejqalem tz'aqat."
 
 msgid "Report User"
-msgstr ""
+msgstr "Tiya' Rutzijol Okisanel"
 
 msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
+msgstr "Tacholo' achike ruma natzijoj rij re okisanel re', rik'in jub'a' ruma seq'tzijol o jun tz'ilanel ruwachib'al."
 
 msgid "Report user {0}"
-msgstr ""
+msgstr "Tiya' rutzijol okisanel {0}"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "Tiq'at rutz'ib'axik b'i'aj"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "¡Ütz xyuj ri rutz'ib'axik ab'i'!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "Ri rochochib'al taqoya'l <strong>%(email)s</strong> man xkeruk'ül ta chik taq tzijol toq:"
 
 msgid "More Actions:"
-msgstr ""
+msgstr "Ch'aqa' chik taq B'anoj:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "tanuk'u' runuk'ulem atzijol"
 
 msgid "edit your profile"
-msgstr ""
+msgstr "tTanuk'u' ruwäch ab'i'"
 
 msgid "We could not unsubscribe you"
-msgstr ""
+msgstr "Man xojtikïr ta xqaq'ät ri rutz'ib'axik ab'i'"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 
 msgid "Developer Information"
-msgstr ""
+msgstr "Retamab'al B'anonel"
 
 msgid "User since"
-msgstr ""
+msgstr "Okisanel pa"
 
 msgid "Time of last login"
-msgstr ""
+msgstr "Ruramaj ruk'isib'äl okem"
 
 msgid "IP address of last login"
-msgstr ""
+msgstr "IP rochochib'al ruk'isib'äl okem"
 
 msgid "Number of add-ons developed"
 msgstr ""
