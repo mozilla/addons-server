@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-04 15:49+0000\n"
+"PO-Revision-Date: 2018-11-04 16:04+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cak\n"
@@ -8007,67 +8007,67 @@ msgid "IP address of last login"
 msgstr "IP rochochib'al ruk'isib'äl okem"
 
 msgid "Number of add-ons developed"
-msgstr ""
+msgstr "Kajilab'al taq tz'aqat eb'anon"
 
 msgid "{0} add-ons"
-msgstr ""
+msgstr "{0} taq tz'aqat"
 
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s wachinel"
+msgstr[1] "%(num)s taq wachinel"
 
 #, python-format
 msgid "%(num)s add-on"
 msgid_plural "%(num)s add-ons"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(num)s tz'aqat"
+msgstr[1] "%(num)s taq tz'aqat"
 
 msgid "Average rating of developer's add-ons"
-msgstr ""
+msgstr "Nik'aj kejqalem taq rutz'aqat b'anonel"
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "juley chik"
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "%s Runatab'al Ruwäch"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Runatab'al Ruwäch rik'in ri kicholb'al Jaloj"
 
 msgid "{app} {min} and later"
-msgstr ""
+msgstr "{app} {min} chuqa' ri nipe"
 
 msgid "Permanent link to this version"
-msgstr ""
+msgstr "Jutaqil ruximonel re ruwäch re'"
 
 #. {0} is a timestamp, such as September 28, 2011.
 msgid "Released {0}"
-msgstr ""
+msgstr "Elesan rutzijol {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
+msgstr "Rub'itz'ib' ruxe'el elesan rutzijol rik'in <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"
-msgstr ""
+msgstr "{0} Runatab'al Ruwäch"
 
 #. {0} is a number.
 msgid "<b>{0}</b> version"
 msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<b>{0}</b> ruwäch"
+msgstr[1] "<b>{0}</b> taq ruwäch"
 
 msgid "Be careful with old versions!"
-msgstr ""
+msgstr "¡Tachajij awi' chi kiwäch ri ojer taq ruwäch!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Re ruwäch re' nik'ut xa xe richin retal chuqa' rutojtob'exik. Junelïk k'o chi nawokisaj ri <a href=\"%(url)s\">ruk'isib'äl ruwäch</a> jun tz'aqat."
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Man tikirel ta yejal ri taq ruwäch eyujun el."
