@@ -1215,7 +1215,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'olympia.lib.akismet.tasks.comment_check': {'queue': 'devhub'},
+    'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},

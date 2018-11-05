@@ -542,7 +542,7 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
-    from olympia.lib.akismet.tasks import comment_check   # circular import
+    from olympia.lib.akismet.tasks import akismet_comment_check   # circ import
 
     if (channel == amo.RELEASE_CHANNEL_LISTED):
         existing_data = (
@@ -560,7 +560,7 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
     # We HAVE to have a pretask here that returns a result, so we're always
     # doing a comment_check task call even when it's pointless because
     # there are no report ids in the list.  See tasks.validate for more.
-    akismet_checks = comment_check.si(
+    akismet_checks = akismet_comment_check.si(
         [report.id for _, report in akismet_reports])
     if submit:
         tasks.validate_and_submit(
