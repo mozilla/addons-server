@@ -1326,7 +1326,7 @@ class TestUploadDetail(BaseUploadTest):
         assert report.result == AkismetReport.MAYBE_SPAM
         data = json.loads(response.content)
         assert data['validation']['messages'][0]['id'] == [
-            u'validation', u'messages', u'akismet_is_spam'
+            u'validation', u'messages', u'akismet_is_spam_name'
         ]
 
     @override_switch('akismet-spam-check', active=True)

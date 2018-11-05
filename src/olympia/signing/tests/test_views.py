@@ -529,7 +529,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'spam' in validation_response.content
         data = json.loads(validation_response.content)
         assert data['validation_results']['messages'][0]['id'] == [
-            u'validation', u'messages', u'akismet_is_spam'
+            u'validation', u'messages', u'akismet_is_spam_name'
         ]
 
 
