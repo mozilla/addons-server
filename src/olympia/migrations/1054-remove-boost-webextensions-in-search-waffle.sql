@@ -1,1 +1,1 @@
-DELETE FROM waffle_switch_mkt WHERE name = 'boost-webextensions-in-search';
+DELETE FROM waffle_switch WHERE name = 'boost-webextensions-in-search';
