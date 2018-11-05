@@ -8,7 +8,7 @@ from mock import Mock, patch
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
@@ -142,24 +142,6 @@ class TestQueryFilter(FilterTestsBase):
                 SearchQueryFilter, 'MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH', 100):
             should = do_test()
             assert expected in should
-
-    def test_webextension_boost(self):
-        create_switch('boost-webextensions-in-search')
-
-        # Repeat base test with the switch enabled.
-        qs = self._test_q()
-        functions = qs['query']['function_score']['functions']
-
-        assert len(functions) == 2
-        assert functions[1] == {
-            'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
-            'filter': {'bool': {'should': [
-                {'term': {'current_version.files.is_webextension': True}},
-                {'term': {
-                    'current_version.files.is_mozilla_signed_extension': True
-                }}
-            ]}}
-        }
 
     def test_q_exact(self):
         qs = self._filter(data={'q': 'Adblock Plus'})
