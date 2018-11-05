@@ -15,8 +15,7 @@ from olympia import amo
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona)
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
-from olympia.amo.tests import (
-    ESTestCaseWithAddons, addon_factory, create_switch)
+from olympia.amo.tests import ESTestCaseWithAddons, addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.search import views
 from olympia.search.utils import floor_version
@@ -620,23 +619,6 @@ class TestESSearch(SearchBase):
         response = self.client.get(self.url, {'q': 'Addon'})
         assert addon.pk not in self.get_results(response)
 
-    def test_webextension_boost(self):
-        web_extension = list(sorted(
-            self.addons, key=lambda x: x.name, reverse=True))[0]
-        web_extension.current_version.files.update(is_webextension=True)
-        web_extension.save()
-        self.refresh()
-
-        response = self.client.get(self.url, {'q': 'Addon'})
-        result = self.get_results(response, sort=False)
-        assert result[0] != web_extension.pk
-
-        create_switch('boost-webextensions-in-search')
-        # The boost chosen should have made that addon the first one.
-        response = self.client.get(self.url, {'q': 'Addon'})
-        result = self.get_results(response, sort=False)
-        assert result[0] == web_extension.pk
-
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
@@ -959,21 +941,6 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_basic_search(self):
         public_addons = Addon.objects.public().all()
         self.search_addons('q=addon', public_addons)
-
-    def test_webextension_boost(self):
-        public_addons = Addon.objects.public().all()
-        web_extension = public_addons.order_by('name')[0]
-        web_extension.current_version.files.update(is_webextension=True)
-        web_extension.save()
-        self.refresh()
-
-        data = self.search_addons('q=Addon', public_addons)
-        assert int(data[0]['id']) != web_extension.id
-
-        create_switch('boost-webextensions-in-search')
-        # The boost chosen should have made that addon the first one.
-        data = self.search_addons('q=Addon', public_addons)
-        assert int(data[0]['id']) == web_extension.id
 
 
 class TestSearchSuggestions(TestAjaxSearch):
