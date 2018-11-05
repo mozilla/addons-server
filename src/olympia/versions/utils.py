@@ -8,9 +8,9 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 
 from PIL import Image
-from pyquery import PyQuery as pq
 
 import olympia.core.logger
+from olympia.lib.safe_xml import lxml
 
 
 log = olympia.core.logger.getLogger('z.versions.utils')
@@ -56,8 +56,9 @@ def encode_header_image(path):
 def encode_header(header_blob, file_ext):
     try:
         if file_ext == '.svg':
-            width = int(pq(header_blob).attr('width'))
-            height = int(pq(header_blob).attr('height'))
+            tree = lxml.etree.fromstring(header_blob)
+            width = int(tree.get('width'))
+            height = int(tree.get('height'))
             img_format = 'svg+xml'
         else:
             with Image.open(StringIO.StringIO(header_blob)) as header_image:
