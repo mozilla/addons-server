@@ -35,7 +35,7 @@
         initExtraReviewActions();
     }
 
-    if ($('.background').length) {
+    if ($('.all-backgrounds').length) {
         initBackgroundImagesForTheme();
     }
 
@@ -262,15 +262,50 @@ function initExtraReviewActions() {
 }
 
 function initBackgroundImagesForTheme() {
-    /* $('div.zoombox').zoomBox(); */
-    $('div.background img').on('load', function(e) {
+
+    function rollOverInit(e) {
         if (!e.target.complete) return;
         var $target = $(e.target);
         $target.attr('height', e.target.naturalHeight);
         $target.attr('width', e.target.naturalWidth);
         $target.parent().zoomBox();
-    });
-    $('div.background img').trigger('load');
+    }
+
+    function loadBackgroundImages($parent_element) {
+        var url = $parent_element.data('backgrounds-url');
+        if (!url) return;
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url);
+        xhr.responseType = "json";
+        // load the image as a blob so we can treat it as a File
+        xhr.onload = function() {
+            var jsonResponse = xhr.response,
+                loop_len = Object.keys(jsonResponse).length;
+                loop_count = 0;
+            $.each(jsonResponse,
+                function(background_filename, background_b64) {
+                    loop_count++;
+                    var blob = b64toBlob(background_b64),
+                        imageUrl = window.URL.createObjectURL(blob);
+                    var $div_element = $("<div>")
+                                       .addClass("background zoombox")
+                                       .appendTo($parent_element);
+                    var $img_element = $("<img>")
+                                       .attr("src", imageUrl)
+                                       .attr("width", "1000")
+                                       .attr("height", "200")
+                                       .appendTo($div_element);
+                    var span_content = document.createTextNode(
+                        format("Background file {0} of {1} - {2}",
+                               [loop_count, loop_len, background_filename]));
+                    $("<span>").append(span_content).appendTo($div_element);
+                    $img_element.on('load', rollOverInit).trigger('load');
+                });
+        };
+        xhr.send();
+    }
+
+    loadBackgroundImages($('div.all-backgrounds'));
 }
 
 function insertAtCursor(textarea, text) {
