@@ -23,130 +23,130 @@ handler500 = 'olympia.amo.views.handler500'
 
 urlpatterns = [
     # Legacy Discovery pane is first for undetectable efficiency wins.
-    url('^discovery/', include('olympia.legacy_discovery.urls')),
+    url(r'^discovery/', include('olympia.legacy_discovery.urls')),
 
     # Home.
-    url('^$', addons_views.home, name='home'),
+    url(r'^$', addons_views.home, name='home'),
 
     # Add-ons.
-    url('', include('olympia.addons.urls')),
+    url(r'', include('olympia.addons.urls')),
 
     # Browse pages.
-    url('', include('olympia.browse.urls')),
+    url(r'', include('olympia.browse.urls')),
 
     # Tags.
-    url('', include('olympia.tags.urls')),
+    url(r'', include('olympia.tags.urls')),
 
     # Collections.
-    url('', include('olympia.bandwagon.urls')),
+    url(r'', include('olympia.bandwagon.urls')),
 
     # Files
-    url('^files/', include('olympia.files.urls')),
+    url(r'^files/', include('olympia.files.urls')),
 
     # Downloads.
-    url('^downloads/', include(download_patterns)),
+    url(r'^downloads/', include(download_patterns)),
 
     # Users
-    url('', include('olympia.users.urls')),
+    url(r'', include('olympia.users.urls')),
 
     # Developer Hub.
-    url('^developers/', include('olympia.devhub.urls')),
+    url(r'^developers/', include('olympia.devhub.urls')),
 
     # Reviewers Hub.
-    url('^reviewers/', include('olympia.reviewers.urls')),
+    url(r'^reviewers/', include('olympia.reviewers.urls')),
 
     # Redirect everything under editors/ (old reviewer urls) to reviewers/.
-    url('^editors/(.*)',
+    url(r'^editors/(.*)',
         lambda r, path: redirect('/reviewers/%s' % path, permanent=True)),
 
     # AMO admin (not django admin).
-    url('^admin/', include('olympia.zadmin.urls')),
+    url(r'^admin/', include('olympia.zadmin.urls')),
 
     # Localizable pages.
-    url('', include('olympia.pages.urls')),
+    url(r'', include('olympia.pages.urls')),
 
     # App versions.
-    url('pages/appversions/', include('olympia.applications.urls')),
+    url(r'pages/appversions/', include('olympia.applications.urls')),
 
     # Services
-    url('', include('olympia.amo.urls')),
+    url(r'', include('olympia.amo.urls')),
 
     # Search
-    url('^search/', include('olympia.search.urls')),
+    url(r'^search/', include('olympia.search.urls')),
 
     # Javascript translations.
     # Should always be called with a cache-busting querystring.
-    url('^jsi18n\.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
+    url(r'^jsi18n\.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
     # SAMO (Legacy API)
-    url('^api/', include('olympia.legacy_api.urls')),
+    url(r'^api/', include('olympia.legacy_api.urls')),
 
     # API v3+.
-    url('^api/', include('olympia.api.urls')),
+    url(r'^api/', include('olympia.api.urls')),
 
     # Site events data.
-    url('^statistics/events-(?P<start>\d{8})-(?P<end>\d{8})\.json$',
+    url(r'^statistics/events-(?P<start>\d{8})-(?P<end>\d{8})\.json$',
         stats_views.site_events, name='amo.site_events'),
 
     # Site statistics that we are going to catch, the rest will fall through.
-    url('^statistics/', include('olympia.stats.urls')),
+    url(r'^statistics/', include('olympia.stats.urls')),
 
     # Fall through for any URLs not matched above stats dashboard.
-    url('^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
+    url(r'^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Redirect patterns.
-    url('^bookmarks/?$',
+    url(r'^bookmarks/?$',
         lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
 
-    url('^reviews/display/(\d+)',
+    url(r'^reviews/display/(\d+)',
         lambda r, id: redirect('addons.ratings.list', id, permanent=True)),
 
-    url('^reviews/add/(\d+)',
+    url(r'^reviews/add/(\d+)',
         lambda r, id: redirect('addons.ratings.add', id, permanent=True)),
 
-    url('^users/info/(\d+)',
+    url(r'^users/info/(\d+)',
         lambda r, id: redirect('users.profile', id, permanent=True)),
 
-    url('^pages/about$',
+    url(r'^pages/about$',
         lambda r: redirect('pages.about', permanent=True)),
 
     # Redirect persona/xxx
-    url('^getpersonas$',
+    url(r'^getpersonas$',
         lambda r: redirect('http://www.getpersonas.com/gallery/All/Popular',
                            permanent=True)),
 
-    url('^persona/(?P<persona_id>\d+)',
+    url(r'^persona/(?P<persona_id>\d+)',
         addons_views.persona_redirect, name='persona'),
 
-    url('^personas/film and tv/?$',
+    url(r'^personas/film and tv/?$',
         lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
 
-    url('^addons/versions/(\d+)/?$',
+    url(r'^addons/versions/(\d+)/?$',
         lambda r, id: redirect('addons.versions', id, permanent=True)),
 
-    url('^addons/versions/(\d+)/format:rss$',
+    url(r'^addons/versions/(\d+)/format:rss$',
         lambda r, id: redirect('addons.versions.rss', id, permanent=True)),
 
     # Legacy redirect. Requires a view to get extra data not provided in URL.
-    url('^versions/updateInfo/(?P<version_id>\d+)',
+    url(r'^versions/updateInfo/(?P<version_id>\d+)',
         version_views.update_info_redirect),
 
-    url('^addons/reviews/(\d+)/format:rss$',
+    url(r'^addons/reviews/(\d+)/format:rss$',
         lambda r, id: redirect('addons.ratings.list.rss', id, permanent=True)),
 
-    url('^search-engines.*$',
+    url(r'^search-engines.*$',
         lambda r: redirect(urlparams(reverse('search.search'), atype=4),
                            permanent=True)),
 
-    url('^addons/contribute/(\d+)/?$',
+    url(r'^addons/contribute/(\d+)/?$',
         lambda r, id: redirect('addons.contribute', id, permanent=True)),
 
-    url('^recommended$',
+    url(r'^recommended$',
         lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
                            permanent=True)),
 
-    url('^recommended/format:rss$',
+    url(r'^recommended/format:rss$',
         lambda r: redirect('browse.featured.rss', permanent=True)),
 ]
 

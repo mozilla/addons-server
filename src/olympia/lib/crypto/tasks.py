@@ -72,7 +72,7 @@ on https://addons.mozilla.org
 """
 
 version_regex = re.compile(
-    '^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$')
+    r'^(?P<prefix>.*)(?P<version>\.1\-signed)(|\-(?P<number>\d+))$')
 
 
 def get_new_version_number(version):

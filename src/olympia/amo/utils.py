@@ -452,7 +452,7 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
             rv.append(' ')
     new = ''.join(rv).strip()
     if not spaces:
-        new = re.sub('[-\s]+', delimiter, new)
+        new = re.sub(r'[-\s]+', delimiter, new)
     return new.lower() if lower else new
 
 

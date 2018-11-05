@@ -55,8 +55,8 @@ class ParseError(forms.ValidationError):
     pass
 
 
-VERSION_RE = re.compile('^[-+*.\w]{,32}$')
-SIGNED_RE = re.compile('^META\-INF/(\w+)\.(rsa|sf)$')
+VERSION_RE = re.compile(r'^[-+*.\w]{,32}$')
+SIGNED_RE = re.compile(r'^META\-INF/(\w+)\.(rsa|sf)$')
 
 # This is essentially what Firefox matches
 # (see toolkit/components/extensions/ExtensionUtils.jsm)

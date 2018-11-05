@@ -4,6 +4,6 @@ from . import views
 
 
 urlpatterns = [
-    url('^$', views.appversions, name='apps.appversions'),
-    url('^format:rss$', views.AppversionsFeed(), name='apps.appversions.rss'),
+    url(r'^$', views.appversions, name='apps.appversions'),
+    url(r'^format:rss$', views.AppversionsFeed(), name='apps.appversions.rss'),
 ]
