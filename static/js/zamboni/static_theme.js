@@ -136,13 +136,18 @@ $(document).ready(function() {
         var $color = $wizard.find('input.color-picker');
         $color.change(function() {
             var $this = $(this),
-                $svg_element = $('.' + $this[0].id);
+                color_property_selector = '.' + $this[0].id,
+                $svg_element = $(color_property_selector),
+                // If there's no value set and we have a fallback color we can use that instead
+                $have_fallback = $(color_property_selector + '[data-fallback]').not('[data-fallback=' + $this[0].id + ']');
             if (!$this.val()) {
                 $svg_element.attr('fill', $svg_element.data('fill'));
+                $have_fallback.attr('fill', $('#' + $svg_element.data('fallback')).val())
+                              .addClass($svg_element.data('fallback'));
             } else {
+                $have_fallback.removeClass($svg_element.data('fallback'));
                 $svg_element.attr('fill', $this.val());
             }
-
             updateManifest();
         }).trigger('change');
 
