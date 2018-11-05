@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-05 17:11+0000\n"
+"PO-Revision-Date: 2018-11-05 17:44+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -687,7 +687,7 @@ msgid "Admin Tools"
 msgstr "అడ్మిన్ ఉపకరణాలు"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "ధన పూర్ణాంకం"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
@@ -2099,13 +2099,13 @@ msgid "No Reputation"
 msgstr "ప్రఖ్యాతి ఏమీ లేదు"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "మంచిది (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "చాలా మంచిది (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "అద్భుతం (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "మానవీయ సమీక్షకుల బిందువులు"
@@ -3288,7 +3288,7 @@ msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
 msgstr ""
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "వీటిలో మీరు దేనినైనా వాడుతారా?"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
@@ -3391,7 +3391,7 @@ msgid "Recommended height: 200 pixels"
 msgstr ""
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6.9MB గరిష్టం"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr ""
