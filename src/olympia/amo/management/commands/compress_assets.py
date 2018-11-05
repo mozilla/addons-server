@@ -177,7 +177,7 @@ class Command(BaseCommand):
         def _parse(url):
             return self._cachebust_regex(url, css_file)
 
-        css_parsed = re.sub('url\(([^)]*?)\)', _parse, css_content)
+        css_parsed = re.sub(r'url\(([^)]*?)\)', _parse, css_content)
 
         with open(css_file, 'w') as css_out:
             css_out.write(css_parsed)

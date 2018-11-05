@@ -48,9 +48,9 @@ class RatingForm(RatingReplyForm):
     # octets. It does not match IPv6 addresses or long strings such as
     # "example dot com".
     link_pattern = re.compile(
-        '((://)|'  # Protocols (e.g.: http://)
-        '((\d{1,3}\.){3}(\d{1,3}))|'
-        '([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
+        r'((://)|'  # Protocols (e.g.: http://)
+        r'((\d{1,3}\.){3}(\d{1,3}))|'
+        r'([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
         flags)
 
     def _post_clean(self):
