@@ -9,6 +9,7 @@ from django.db import transaction
 from django.forms import ValidationError
 from django.utils import translation
 
+from django_statsd.clients import statsd
 from elasticsearch_dsl import Search
 from PIL import Image
 
@@ -26,7 +27,8 @@ from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image)
+    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image,
+    utc_millesecs_from_epoch)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
@@ -541,6 +543,7 @@ def _get_lwt_default_author():
 
 
 @transaction.atomic
+@statsd.timer('addons.tasks.migrate_lwts_to_static_theme.add_from_lwt')
 def add_static_theme_from_lwt(lwt):
     from olympia.activity.models import AddonLog
     olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
@@ -648,6 +651,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
     for lwt in lwts:
         static = None
         try:
+            start_ts = utc_millesecs_from_epoch(datetime.now())
             with translation.override(lwt.default_locale):
                 static = add_static_theme_from_lwt(lwt)
             mlog.info(
@@ -661,6 +665,9 @@ def migrate_lwts_to_static_themes(ids, **kw):
             slug = lwt.slug
             lwt.delete(send_delete_email=False)
             static.update(slug=slug)
+            now_ts = utc_millesecs_from_epoch(datetime.now())
+            statsd.timing(
+                'addons.tasks.migrate_lwts_to_static_theme', now_ts - start_ts)
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
             mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)
