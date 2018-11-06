@@ -8,6 +8,7 @@ import mock
 import pytest
 
 from olympia import amo
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
@@ -74,7 +75,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
          'image/svg+xml', True),
         ('transparent.svg', 1, 'xMaxYMin meet', 'image/svg+xml', True),
         ('missing_file.png', 0, 'xMaxYMin meet', '', False),
-        ('empty-no-ext', 10, 'xMaxYMin meet', 'image/png', True),
+        ('empty-no-ext', 0, 'xMaxYMin meet', '', False),
         (None, 0, 'xMaxYMin meet', '', False),  # i.e. no headerURL entry
     )
 )
@@ -99,8 +100,10 @@ def test_generate_static_theme_preview(
     if header_url is not None:
         theme_manifest['images']['headerURL'] = header_url
     addon = addon_factory()
-    generate_static_theme_preview(
-        theme_manifest, HEADER_ROOT, addon.current_version.pk)
+    destination = addon.current_version.all_files[0].current_file_path
+    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
+    copy_stored_file(zip_file, destination)
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 3
@@ -179,8 +182,10 @@ def test_generate_static_theme_preview_with_chrome_properties(
         }
     }
     addon = addon_factory()
-    generate_static_theme_preview(
-        theme_manifest, HEADER_ROOT, addon.current_version.pk)
+    destination = addon.current_version.all_files[0].current_file_path
+    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
+    copy_stored_file(zip_file, destination)
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 3
@@ -292,8 +297,12 @@ def test_generate_preview_with_additional_backgrounds(
         },
     }
     addon = addon_factory()
-    generate_static_theme_preview(
-        theme_manifest, HEADER_ROOT, addon.current_version.pk)
+    destination = addon.current_version.all_files[0].current_file_path
+    zip_file = os.path.join(
+        settings.ROOT,
+        'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
+    copy_stored_file(zip_file, destination)
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 3

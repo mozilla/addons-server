@@ -10,14 +10,16 @@ from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import pngcrush_image
 from olympia.devhub.tasks import resize_image
+from olympia.files.models import File
+from olympia.files.utils import get_background_images
 from olympia.versions.models import Version, VersionPreview
 
 from .utils import (
     AdditionalBackground, process_color_value,
-    encode_header_image, write_svg_to_png)
+    encode_header, write_svg_to_png)
 
 
-def _build_static_theme_preview_context(theme_manifest, header_root):
+def _build_static_theme_preview_context(theme_manifest, file_):
     # First build the context shared by both the main preview and the thumb
     context = {'amo': amo}
     context.update(dict(
@@ -26,8 +28,10 @@ def _build_static_theme_preview_context(theme_manifest, header_root):
     images_dict = theme_manifest.get('images', {})
     header_url = images_dict.get(
         'headerURL', images_dict.get('theme_frame', ''))
-    header_src, header_width, header_height = encode_header_image(
-        os.path.join(header_root, header_url))
+    file_ext = os.path.splitext(header_url)[1]
+    backgrounds = get_background_images(file_, theme_manifest)
+    header_src, header_width, header_height = encode_header(
+        backgrounds.get(header_url), file_ext)
     context.update(
         header_src=header_src,
         header_src_height=header_height,
@@ -40,7 +44,7 @@ def _build_static_theme_preview_context(theme_manifest, header_root):
     additional_tiling = (theme_manifest.get('properties', {})
                          .get('additional_backgrounds_tiling', []))
     additional_backgrounds = [
-        AdditionalBackground(path, alignment, tiling, header_root)
+        AdditionalBackground(path, alignment, tiling, backgrounds.get(path))
         for (path, alignment, tiling) in izip_longest(
             additional_srcs, additional_alignments, additional_tiling)
         if path is not None]
@@ -50,10 +54,13 @@ def _build_static_theme_preview_context(theme_manifest, header_root):
 
 @task
 @use_primary_db
-def generate_static_theme_preview(theme_manifest, header_root, version_pk):
+def generate_static_theme_preview(theme_manifest, version_pk):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
-    context = _build_static_theme_preview_context(theme_manifest, header_root)
+    file_ = File.objects.filter(version_id=version_pk).first()
+    if not file_:
+        return
+    context = _build_static_theme_preview_context(theme_manifest, file_)
     sizes = sorted(
         amo.THEME_PREVIEW_SIZES.values(),
         lambda x, y: x['position'] - y['position'])

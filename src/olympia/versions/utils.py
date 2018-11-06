@@ -5,7 +5,6 @@ import tempfile
 from base64 import b64encode
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 
 from PIL import Image
 
@@ -43,16 +42,6 @@ def write_svg_to_png(svg_content, out):
     return True
 
 
-def encode_header_image(path):
-    try:
-        with storage.open(path, 'rb') as image:
-            _, file_ext = os.path.splitext(path)
-            return encode_header(image.read(), file_ext)
-    except IOError as io_error:
-        log.debug(io_error)
-        return (None, 0, 0)
-
-
 def encode_header(header_blob, file_ext):
     try:
         if file_ext == '.svg':
@@ -65,8 +54,8 @@ def encode_header(header_blob, file_ext):
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
         src = 'data:image/%s;base64,%s' % (img_format, b64encode(header_blob))
-    except (IOError, ValueError, TypeError) as io_error:
-        log.debug(io_error)
+    except (IOError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
+        log.debug(err)
         return (None, 0, 0)
     return (src, width, height)
 
@@ -89,13 +78,13 @@ class AdditionalBackground(object):
         else:
             return ('', '')
 
-    def __init__(self, path, alignment, tiling, header_root):
+    def __init__(self, path, alignment, tiling, background):
         # If there an unequal number of alignments or tiling to srcs the value
         # will be None so use defaults.
         self.alignment = (alignment or 'right top').lower()
         self.tiling = (tiling or 'no-repeat').lower()
-        self.src, self.width, self.height = encode_header_image(
-            os.path.join(header_root, path))
+        file_ext = os.path.splitext(path)[1]
+        self.src, self.width, self.height = encode_header(background, file_ext)
 
     def calculate_pattern_offsets(self, svg_width, svg_height):
         align_x, align_y = self.split_alignment(self.alignment)
