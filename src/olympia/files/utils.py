@@ -1242,31 +1242,6 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
     return message['message']
 
 
-def extract_header_img(file_obj, theme_data, dest_path):
-    """Extract static theme header image from `file_obj`."""
-    xpi = get_filepath(file_obj)
-    images_dict = theme_data.get('images', {})
-    # Get the reference in the manifest.  theme_frame is the Chrome variant.
-    header_url = images_dict.get(
-        'headerURL', images_dict.get('theme_frame'))
-    # And any additional backgrounds too.
-    additional_urls = images_dict.get('additional_backgrounds', [])
-    image_urls = [header_url] + additional_urls
-    try:
-        with zipfile.ZipFile(xpi, 'r') as source:
-            for url in image_urls:
-                _, file_ext = os.path.splitext(text_type(url).lower())
-                if file_ext not in amo.THEME_BACKGROUND_EXTS:
-                    # wrong exts get served with wrong mimetype by the CDN.
-                    continue
-                try:
-                    source.extract(url, dest_path)
-                except KeyError:
-                    pass
-    except IOError as ioerror:
-        log.debug(ioerror)
-
-
 def get_background_images(file_obj, theme_data, header_only=False):
     """Extract static theme header image from `file_obj` and return in dict."""
     xpi = get_filepath(file_obj)

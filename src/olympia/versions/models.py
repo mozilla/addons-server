@@ -24,7 +24,7 @@ from olympia.amo.fields import PositiveAutoField
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import (
     BasePreview, ManagerBase, ModelBase, OnChangeMixin)
-from olympia.amo.templatetags.jinja_helpers import id_to_path, user_media_path
+from olympia.amo.templatetags.jinja_helpers import id_to_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -258,12 +258,7 @@ class Version(OnChangeMixin, ModelBase):
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
                 channel == amo.RELEASE_CHANNEL_LISTED):
-            dst_root = os.path.join(user_media_path('addons'), str(addon.id))
             theme_data = parsed_data.get('theme', {})
-            version_root = os.path.join(dst_root, unicode(version.id))
-
-            utils.extract_header_img(
-                version.all_files[0].file_path, theme_data, version_root)
             generate_static_theme_preview(theme_data, version.pk)
 
         # Track the time it took from first upload through validation
@@ -648,8 +643,7 @@ def generate_static_theme_preview(theme_data, version_pk):
     needed, in tests."""
     # To avoid a circular import
     from . import tasks
-    tasks.generate_static_theme_preview.delay(
-        theme_data, version_pk)
+    tasks.generate_static_theme_preview.delay(theme_data, version_pk)
 
 
 class VersionPreview(BasePreview, ModelBase):
