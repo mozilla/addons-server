@@ -499,13 +499,18 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     previews = ESPreviewSerializer(many=True, source='current_previews')
     _score = serializers.SerializerMethodField()
 
+    # This field is stricly for debugging local envs and tests, it should not
+    # be exposed in dev/stage/prod. to_representation() removes it from the
+    # output if necessary.
+    _matched_queries = serializers.SerializerMethodField()
+
     datetime_fields = ('created', 'last_updated', 'modified')
     translated_fields = ('name', 'description', 'developer_comments',
                          'homepage', 'summary', 'support_email', 'support_url')
 
     class Meta:
         model = Addon
-        fields = AddonSerializer.Meta.fields + ('_score', )
+        fields = AddonSerializer.Meta.fields + ('_score', '_matched_queries')
 
     def fake_preview_object(self, obj, data, model_class=Preview):
         # This is what ESPreviewSerializer.fake_object() would do, but we do
@@ -640,10 +645,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         obj._is_featured = data.get('is_featured', False)
 
-        # Elasticsearch score for this document. Useful for debugging relevancy
-        # issues.
-        obj._score = data.get('_score', None)
-
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')
             if persona_data:
@@ -670,7 +671,14 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         return obj
 
     def get__score(self, obj):
+        # es_meta is added by BaseESSerializer.to_representation() before DRF's
+        # to_representation() is called, so it's present on all objects.
         return obj._es_meta['score']
+
+    def get__matched_queries(self, obj):
+        if settings.DEBUG or settings.IN_TEST_SUITE:
+            return obj._es_meta.to_dict().get('matched_queries', [])
+        return None  # Will be removed by to_representation() anyway.
 
     def to_representation(self, obj):
         data = super(ESAddonSerializer, self).to_representation(obj)
@@ -678,6 +686,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         if request and '_score' in data and not is_gate_active(
                 request, 'addons-search-_score-field'):
             data.pop('_score')
+        # matched_queries is just used in tests and local environments.
+        if not settings.DEBUG and not settings.IN_TEST_SUITE:
+            data.pop('_matched_queries')
         return data
 
 
