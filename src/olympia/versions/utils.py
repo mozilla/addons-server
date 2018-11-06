@@ -10,6 +10,7 @@ from django.core.files.storage import default_storage as storage
 from PIL import Image
 
 import olympia.core.logger
+from olympia.lib.safe_xml import lxml
 
 
 log = olympia.core.logger.getLogger('z.versions.utils')
@@ -45,12 +46,26 @@ def write_svg_to_png(svg_content, out):
 def encode_header_image(path):
     try:
         with storage.open(path, 'rb') as image:
-            header_blob = image.read()
+            _, file_ext = os.path.splitext(path)
+            return encode_header(image.read(), file_ext)
+    except IOError as io_error:
+        log.debug(io_error)
+        return (None, 0, 0)
+
+
+def encode_header(header_blob, file_ext):
+    try:
+        if file_ext == '.svg':
+            tree = lxml.etree.fromstring(header_blob)
+            width = int(tree.get('width'))
+            height = int(tree.get('height'))
+            img_format = 'svg+xml'
+        else:
             with Image.open(StringIO.StringIO(header_blob)) as header_image:
                 (width, height) = header_image.size
-            src = 'data:image/%s;base64,%s' % (
-                header_image.format.lower(), b64encode(header_blob))
-    except IOError as io_error:
+                img_format = header_image.format.lower()
+        src = 'data:image/%s;base64,%s' % (img_format, b64encode(header_blob))
+    except (IOError, ValueError, TypeError) as io_error:
         log.debug(io_error)
         return (None, 0, 0)
     return (src, width, height)
