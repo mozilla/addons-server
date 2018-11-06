@@ -265,8 +265,7 @@ class Version(OnChangeMixin, ModelBase):
 
             utils.extract_header_img(
                 version.all_files[0].file_path, theme_data, version_root)
-            generate_static_theme_preview(
-                theme_data, version_root, version.pk)
+            generate_static_theme_preview(theme_data, version.pk)
 
         # Track the time it took from first upload through validation
         # (and whatever else) until a version was created.
@@ -648,13 +647,13 @@ class Version(OnChangeMixin, ModelBase):
         return out
 
 
-def generate_static_theme_preview(theme_data, version_root, version_pk):
+def generate_static_theme_preview(theme_data, version_pk):
     """This redirection is so we can mock generate_static_theme_preview, where
     needed, in tests."""
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(
-        theme_data, version_root, version_pk)
+        theme_data, version_pk)
 
 
 class VersionPreview(BasePreview, ModelBase):
