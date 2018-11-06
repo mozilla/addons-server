@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-06 13:51+0000\n"
+"PO-Revision-Date: 2018-11-06 13:56+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -5302,7 +5302,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Bir tıklamayla gizli gezinti moduna geçin."
 
 #. editorial content for the discovery pane.
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6219,9 +6219,9 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Sunan:"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Reviews for %s"
-msgstr "İncelemeler"
+msgstr "%s İncelemeleri"
 
 #, fuzzy
 msgid "Review History for this Addon"
@@ -6233,13 +6233,13 @@ msgid "Rated %d out of 5 stars"
 msgstr ""
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Bildirme nedeni olarak “Diğer”i seçerken kısa bir açıklama yapılmalıdır."
 
 msgid "Spam or otherwise non-review content"
-msgstr ""
+msgstr "Spam veya inceleme olmayan içerik"
 
 msgid "Inappropriate language/dialog"
-msgstr ""
+msgstr "Uygunsuz dil/konuşma"
 
 msgid "Misplaced bug report or support request"
 msgstr "Yanlış yere konmuş hata raporu veya destek isteği"
@@ -6335,9 +6335,8 @@ msgstr "İleri inceleme için işaretlenmiş"
 msgid "Report this review"
 msgstr "Bu incelemeyi rapor et"
 
-#, fuzzy
 msgid "Reply to review"
-msgstr "Ön izleme için üstüne gelin"
+msgstr "İncelemeyi yanıtla"
 
 msgid "Edit reply"
 msgstr "Yanıtı düzenle"
@@ -6401,13 +6400,11 @@ msgstr ""
 msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
-#, fuzzy
 msgid "Approved reviews"
-msgstr "Onaylandı"
+msgstr "Onaylanmış incelemeler"
 
-#, fuzzy
 msgid "Deleted reviews"
-msgstr "Silindi"
+msgstr "Silinmiş incelemeler"
 
 # 76%
 # 75%
@@ -6419,19 +6416,17 @@ msgstr "Bu koleksiyonu gör"
 msgid "and"
 msgstr "ve"
 
-#, fuzzy
 msgid "Filter by type/action"
-msgstr "Uygulamaya göre süz"
+msgstr "Türe/eyleme göre filtrele"
 
 msgid "containing"
-msgstr ""
+msgstr "içeren"
 
 msgid "start"
 msgstr "başlangıç"
 
-#, fuzzy
 msgid "end"
-msgstr "Beklemede"
+msgstr "bitiş"
 
 #. L10n: Description of what can be searched for
 #, fuzzy
@@ -6455,7 +6450,7 @@ msgid "Add-on Types"
 msgstr "Eklenti türleri"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Eklenti adı / sahip e-posta adresi / guid ile ara"
 
 msgid "Max. Version"
 msgstr "En yüksek sürüm"
@@ -6562,7 +6557,7 @@ msgid "Flags"
 msgstr "Bayraklar"
 
 msgid "moments ago"
-msgstr ""
+msgstr "birkaç dakika önce"
 
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
@@ -6691,13 +6686,12 @@ msgstr "Eklenti İnceleme Süreci"
 msgid "Review Guide"
 msgstr "İnceleme Yönergesi"
 
-#, fuzzy
 msgid "Content Review"
-msgstr "İncelemeyi Tamamla"
+msgstr "İçerik İncelemesi"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
+msgstr[0] "İçerik İncelemesi ({0})"
 msgstr[1] "İçerik İncelemesi ({0})"
 
 msgid "New Themes ({0})"
@@ -6921,9 +6915,8 @@ msgstr ""
 msgid "Total Reviews"
 msgstr "Toplam inceleme"
 
-#, fuzzy
 msgid "Active Contributors"
-msgstr "Katkıda Bulunan Ekle"
+msgstr "Etkin Katkıda Bulunanlar"
 
 msgid "This Month"
 msgstr "Bu ay"
@@ -6931,9 +6924,8 @@ msgstr "Bu ay"
 msgid "This Year"
 msgstr "Bu yıl"
 
-#, fuzzy
 msgid "Monthly Performance"
-msgstr "Performans"
+msgstr "Aylık performans"
 
 msgid "All-time Point Breakdown by Type"
 msgstr ""
@@ -7027,9 +7019,8 @@ msgstr "Geliştirici, kaynak kodunu paylaştı."
 msgid "Weight:"
 msgstr ""
 
-#, fuzzy
 msgid "Not Auto Approved Because"
-msgstr "Engellenen Eklentiler"
+msgstr "Otomatik olarak onaylanmadı çünkü"
 
 msgid "Auto-Approval script has not run yet on this version."
 msgstr ""
@@ -7050,7 +7041,7 @@ msgid "Tested on:"
 msgstr "Test platformu:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Uyarı</strong> Başka bir kullanıcı sizden önce bu sayfayı görüntülüyordu."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -7067,7 +7058,7 @@ msgid "More Actions"
 msgstr "Diğer eylemler:"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Yeni listelenen sürümler hakkında beni bilgilendir"
 
 msgid "Force-disable add-on"
 msgstr ""
@@ -7388,7 +7379,7 @@ msgid "Search Unavailable"
 msgstr "Arama kullanılamıyor"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Arama geçici olarak kullanılamıyor. Lütfen birkaç dakika sonra tekrar deneyin."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
@@ -7535,9 +7526,8 @@ msgstr ""
 msgid "To"
 msgstr ""
 
-#, fuzzy
 msgid "Update"
-msgstr "Güncelleme"
+msgstr "Güncelle"
 
 msgid "Export"
 msgstr "Dışa aktar"
@@ -7712,9 +7702,8 @@ msgid "Add-on Status by Date"
 msgstr ""
 
 # 100%
-#, fuzzy
 msgid "Subscribers by Date"
-msgstr "Abone ol"
+msgstr "Tarihe göre aboneler"
 
 msgid "Daily Users by Date"
 msgstr "Tarihe göre günlük kullanıcı"
@@ -7735,9 +7724,8 @@ msgstr ""
 msgid "User Signups by Date"
 msgstr "Tarihe göre kullanıcı kayıtları"
 
-#, fuzzy
 msgid "Application versions by Date"
-msgstr "Uygulama Sürümleri"
+msgstr "Tarihe göre uygulama sürümleri"
 
 # 75%
 # 100%
@@ -7751,14 +7739,13 @@ msgid "Other Applications"
 msgstr "Diğer uygulamalar"
 
 msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
+msgstr "AMO yeni bir görünüm kazanıyor. Görmek ister misiniz?"
 
 msgid "Visit the new site"
 msgstr "Yeni siteye git"
 
-#, fuzzy
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Koleksiyonları puanlamak için eklentiler hesabınız olmalı."
+msgstr "Kendi koleksiyonlarınızı yaratmak için Mozilla Eklentileri hesabınız olmalı."
 
 msgid "Create an Add-ons Account"
 msgstr "Eklentiler hesabı oluştur"
@@ -7774,7 +7761,7 @@ msgid "Choose a category"
 msgstr "Bir kategori seçin"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Yeni web sitesi mobil ve masaüstü istemcileri destekliyor"
 
 msgid "View the new site"
 msgstr "Yeni siteye bak"
@@ -7828,9 +7815,9 @@ msgstr "Hesabım"
 msgid "Welcome, {0}"
 msgstr "Hoş geldin {0}"
 
-#, fuzzy, python-format
+#, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "Sayfa <a href=\"%(current_pg_url)s\">%(current_pg)s</a> / <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
+msgstr "<a href=\"%(reg)s\">Kaydol</a> veya <a href=\"%(login)s\">giriş yap</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -7860,9 +7847,9 @@ msgid "Required fields"
 msgstr "Gerekli alanlar"
 
 #. {0} is a language name, like 'French'
-#, fuzzy, python-format
+#, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
-msgstr "veya <a id=\"change-owner-cancel\" href=\"#\">Vazgeç</a>"
+msgstr "<a id=\"change-locale\" href=\"#\">%(dl)s</a> için yerelleştir"
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
@@ -7903,7 +7890,7 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Seçilen kullanıcıları engelle"
 
 msgid "Profile Photo"
 msgstr "Profil Resmi"
@@ -7915,9 +7902,8 @@ msgstr "Eklentiler"
 msgid "Ratings"
 msgstr "Puanlama"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Etkinlik"
+msgstr "Etkinlik günlükleri"
 
 msgid "Email must be {email}."
 msgstr "E-posta {email} olmalı."
@@ -7932,7 +7918,7 @@ msgid "Occupation"
 msgstr "Meslek"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "E-posta adresinizi Firefox Hesaplarından değiştirebilirsiniz."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Bu URL geçersiz biçimde. Geçerli URL'ler http://example.com/my_page şeklinde görünür."
@@ -8133,7 +8119,7 @@ msgid "all"
 msgstr "tümü"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Mozilla Eklentileri, giriş yapmak için Firefox Hesaplarına geçmiştir. Basit giriş işlemini tamamlamaya devam edin."
 
 msgid "User Login"
 msgstr "Kullanıcı Girişi"
@@ -8268,7 +8254,7 @@ msgid "%s Version History"
 msgstr "%s Sürüm Geçmişi"
 
 msgid "Version History with Changelogs"
-msgstr ""
+msgstr "Sürüm Tarihçesi ile Değişilik Günlüğü"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} ve sonrası"
@@ -8299,7 +8285,7 @@ msgstr "Eski sürümleri dikkatli kullanın!"
 
 #, python-format
 msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
+msgstr "Bu sürümler referans ve test amaçları için görüntülenir. Her zaman bir eklentinin <a href=\"%(url)s\">en son sürümünü</a> kullanmalısınız."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Silinmiş sürümler değiştirilemez."
