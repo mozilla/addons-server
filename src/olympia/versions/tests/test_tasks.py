@@ -69,6 +69,10 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
         ('transparent.gif', 1, 'xMaxYMin meet', 'image/gif', True),
         ('weta.png', 200, 'xMaxYMin meet', 'image/png', True),
         ('wetalong.png', 200, 'xMaxYMin slice', 'image/png', True),
+        ('weta_theme_full.svg', 92,  # different value for 680 and 760/720
+         ('xMaxYMin slice', 'xMaxYMin meet', 'xMaxYMin meet'),
+         'image/svg+xml', True),
+        ('transparent.svg', 1, 'xMaxYMin meet', 'image/svg+xml', True),
         ('missing_file.png', 0, 'xMaxYMin meet', '', False),
         ('empty-no-ext', 10, 'xMaxYMin meet', 'image/png', True),
         (None, 0, 'xMaxYMin meet', '', False),  # i.e. no headerURL entry
@@ -138,14 +142,18 @@ def test_generate_static_theme_preview(
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
     colors = ['class="%s" fill="%s"' % (key, color)
               for (key, color) in theme_manifest['colors'].items()]
+    preserve_aspect_ratio = (
+        (preserve_aspect_ratio, ) * 3
+        if not isinstance(preserve_aspect_ratio, tuple)
+        else preserve_aspect_ratio)
     check_render(header_svg, header_url, header_height,
-                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 preserve_aspect_ratio[0], mimetype, valid_img, colors,
                  680, 92, 680)
     check_render(list_svg, header_url, header_height,
-                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 preserve_aspect_ratio[1], mimetype, valid_img, colors,
                  760, 92, 760)
     check_render(single_svg, header_url, header_height,
-                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 preserve_aspect_ratio[2], mimetype, valid_img, colors,
                  720, 92, 720)
 
     index_addons_mock.assert_called_with([addon.id])
