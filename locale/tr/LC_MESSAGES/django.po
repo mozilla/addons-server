@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 00:02+0000\n"
+"PO-Revision-Date: 2018-11-06 13:51+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -62,7 +62,7 @@ msgid "Need help?"
 msgstr "Yardım mı lazım?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Eklenti veya tema geliştirenler hesaplarını silemezler. Önce hesaba bağlı bütün eklenti ve temaların ya silinmesi ya da başka kullanıcılara geçirilmesi gerekir."
+msgstr "Eklenti veya tema geliştirenler hesaplarını silemezler. Bunun için hesaba bağlı bütün eklenti ve temaların ya silinmesi ya da başka kullanıcılara geçirilmesi gerekir."
 
 msgid "Review"
 msgstr "İnceleme"
@@ -3552,7 +3552,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Resim yüksekliği 200 piksel olmalıdır"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "en fazla 6,9 MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG veya GIF (animasyonsuz)"
@@ -3589,7 +3589,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Ayrıntılı yönergeler için <a href=\"%(docs_url)s\">API belgelerimize</a> bakabilirsiniz."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "API anahtarlarınızı gizli tutun ve bunları Mozilla gönüllüleri de dahil olmak üzere <strong>asla kimseyle paylaşmayın</strong>."
 
 msgid "JWT issuer"
 msgstr "JWT düzenleyen"
@@ -3622,13 +3622,13 @@ msgid "Please complete your add-on by adding a version or missing metadata."
 msgstr "Lütfen bir sürüm bilgisi veya eksik üst veriyi ekleyerek eklentinizi tamamlayın."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
-msgstr ""
+msgstr "İnceleme tamamlandığında bir e-posta alacaksınız. O zamana kadar eklentiniz galerimizde listelenmez, ancak ayrıntılar sayfasından doğrudan erişilebilir. "
 
 msgid "Your add-on is displayed in our gallery and users are receiving automatic updates."
-msgstr ""
+msgstr "Eklentiniz galerimizde gösteriliyor ve kullanıcılar otomatik güncellemeler alıyor."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr ""
+msgstr "Eklentiniz bir site yöneticisi tarafından devre dışı bırakıldı ve artık galerimizde gösterilmiyor. Herhangi bir sorunuz varsa lütfen amo-admins@mozilla.org adresine e-posta gönderin."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr ""
@@ -3787,10 +3787,10 @@ msgid "Site Status"
 msgstr "Site durumu"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: Eklentileri geliştirip test edin"
 
 msgid "Promote"
-msgstr ""
+msgstr "Tanıtım"
 
 # 75%
 # 100%
@@ -4181,7 +4181,7 @@ msgid "Loading Review History..."
 msgstr "İnceleme geçmişi yükleniyor..."
 
 msgid "We had a problem retrieving review notes"
-msgstr ""
+msgstr "İnceleme notları alınırken sorun yaşadık"
 
 msgid "Load older..."
 msgstr "Daha eskileri yükle..."
@@ -4308,7 +4308,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Herhangi bir metni vurgulayın, sağ tıklayın ve anında tercüme edin."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4377,11 +4377,11 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Videoları {start_sub_heading}{addon_name} ile{end_sub_heading} indirin"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
-msgstr ""
+msgstr "YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope ve diğer yüzlerce video sitesiyle çalışır."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4501,7 +4501,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "10 milyondan fazla araştırma makalesine ücretsiz erişimin tadını çıkarın."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4509,7 +4509,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "50'den fazla fare hareketiyle gezinmenin yeni bir yolunu keşfedin."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4698,7 +4698,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Vurgulanan metni veya tüm web sayfasını çevirin"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4706,7 +4706,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Etiketleri ve daha fazlasını kullanarak Reddit'te gezinme şeklinizi değiştirin."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4714,7 +4714,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Web sayfalarının ekran görüntüsünü alın, düzenleyin ve paylaşın."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -4726,7 +4726,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Sizi kimin takip ettiğini ve bilgilerinizi nerede paylaşıyor olabileceklerini öğrenin."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4746,7 +4746,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Yeni sekmeleriniz için özel bir giriş sayfası tanımlayın."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5214,7 +5214,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
-msgstr ""
+msgstr "Tarayıcınızda bir yapılacaklar listesi oluşturun ve yönetin."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
