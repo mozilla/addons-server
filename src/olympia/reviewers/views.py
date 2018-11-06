@@ -934,8 +934,6 @@ def review(request, addon, channel=None):
     wb_form_cls = PublicWhiteboardForm if is_static_theme else WhiteboardForm
     whiteboard_form = wb_form_cls(instance=whiteboard, prefix='whiteboard')
 
-    backgrounds = version.get_background_image_urls() if version else []
-
     user_changes_actions = [
         amo.LOG.ADD_USER_WITH_ROLE.id,
         amo.LOG.CHANGE_USER_WITH_ROLE.id,
@@ -948,7 +946,7 @@ def review(request, addon, channel=None):
         actions_full=actions_full, addon=addon,
         api_token=request.COOKIES.get(API_TOKEN_COOKIE, None),
         approvals_info=approvals_info, auto_approval_info=auto_approval_info,
-        backgrounds=backgrounds, content_review_only=content_review_only,
+        content_review_only=content_review_only,
         count=count, eula_url=eula_url, flags=flags, form=form,
         is_admin=is_admin, num_pages=num_pages, pager=pager, reports=reports,
         privacy_url=privacy_url, show_diff=show_diff,
@@ -1172,6 +1170,14 @@ def privacy(request, addon):
     return policy_viewer(request, addon, addon.privacy_policy,
                          page_title=ugettext('{addon} :: Privacy Policy'),
                          long_title=ugettext('Privacy Policy'))
+
+
+@any_reviewer_required
+@json_view
+def theme_background_images(request, version_id):
+    """similar to devhub.views.theme_background_image but returns all images"""
+    version = get_object_or_404(Version, id=int(version_id))
+    return version.get_background_images_encoded(header_only=False)
 
 
 class AddonReviewerViewSet(GenericViewSet):

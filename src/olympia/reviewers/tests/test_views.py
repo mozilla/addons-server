@@ -30,8 +30,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
     AddonUser)
-from olympia.amo.templatetags.jinja_helpers import (
-    user_media_path, user_media_url)
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
@@ -4422,15 +4421,7 @@ class TestReview(ReviewBase):
             [action[0] for action in response.context['actions']] ==
             expected_actions)
 
-    @mock.patch('olympia.versions.models.walkfiles')
-    def test_static_theme_backgrounds(self, walkfiles_mock):
-        background_files = ['a.png', 'b.png', 'c.png']
-        walkfiles_folder = os.path.join(
-            user_media_path('addons'), str(self.addon.id),
-            unicode(self.addon.current_version.id))
-        walkfiles_mock.return_value = [
-            os.path.join(walkfiles_folder, filename)
-            for filename in background_files]
+    def test_static_theme_backgrounds(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         self.grant_permission(self.reviewer, 'Addons:ThemeReview')
 
@@ -4438,23 +4429,10 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         backgrounds_div = doc('div.all-backgrounds')
-        assert backgrounds_div.length == 1
-        images = doc('div.all-backgrounds .background.zoombox')
-        assert images.length == len(walkfiles_mock.return_value)
-        background_file_folder = '/'.join([
-            user_media_url('addons'), str(self.addon.id),
-            unicode(self.addon.current_version.id)])
-        background_file_urls = [
-            background_file_folder + '/' + filename
-            for filename in background_files]
-        loop_ct = 0
-        for div_tag in images:
-            assert div_tag[0].attrib['src'] in background_file_urls
-            assert ''.join(div_tag.itertext()).strip() == (
-                'Background file {0} of {1} - {2}'.format(
-                    loop_ct + 1, len(background_files),
-                    background_files[loop_ct]))
-            loop_ct += 1
+        assert backgrounds_div.attr('data-backgrounds-url') == (
+            reverse('reviewers.theme_background_images',
+                    args=[self.addon.current_version.id])
+        )
 
 
 class TestReviewPending(ReviewBase):
@@ -5174,3 +5152,42 @@ class TestAddonReviewerViewSet(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.ADMIN_ALTER_INFO_REQUEST.id
         assert activity_log.arguments[0] == self.addon
+
+
+class TestThemeBackgroundImages(ReviewBase):
+
+    def setUp(self):
+        super(TestThemeBackgroundImages, self).setUp()
+        self.url = reverse(
+            'reviewers.theme_background_images',
+            args=[self.addon.current_version.id])
+
+    def test_not_reviewer(self):
+        user_factory(email='irregular@mozilla.com')
+        assert self.client.login(email='irregular@mozilla.com')
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 403
+
+    def test_no_header_image(self):
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data == {}
+
+    def test_header_images(self):
+        destination = self.addon.current_version.all_files[0].current_file_path
+        zip_file = os.path.join(
+            settings.ROOT,
+            'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
+        copy_stored_file(zip_file, destination)
+        response = self.client.post(self.url, follow=True)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data
+        assert len(data.items()) == 3
+        assert 'empty.png' in data
+        assert len(data['empty.png']) == 444  # base64-encoded size
+        assert 'weta_for_tiling.png' in data
+        assert len(data['weta_for_tiling.png']) == 124496  # b64-encoded size
+        assert 'transparent.gif' in data
+        assert len(data['transparent.gif']) == 56  # base64-encoded size

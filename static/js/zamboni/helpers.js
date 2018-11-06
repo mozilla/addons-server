@@ -19,3 +19,13 @@ $(document).ajaxSend(function(event, xhr, ajaxSettings) {
 }).ajaxSuccess(function(event, xhr, ajaxSettings) {
     $(window).trigger('resize'); // Redraw what needs to be redrawn.
 });
+
+function b64toBlob(data) {
+    var b64str = atob(data);
+    var counter = b64str.length;
+    var u8arr = new Uint8Array(counter);
+    while(counter--){
+        u8arr[counter] = b64str.charCodeAt(counter);
+    }
+    return new Blob([u8arr]);
+}
