@@ -16,7 +16,6 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
     CompatOverrideRange)
-from olympia.amo.templatetags.jinja_helpers import user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, version_factory, user_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
@@ -987,10 +986,6 @@ class TestStaticThemeFromUpload(UploadTest):
             parsed_data=parsed_data)
         assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
-        assert version.get_background_image_urls() == [
-            '%s/%s/%s/%s' % (user_media_url('addons'), str(self.addon.id),
-                             unicode(version.id), 'weta.png')
-        ]
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_while_public(
@@ -1002,10 +997,6 @@ class TestStaticThemeFromUpload(UploadTest):
             parsed_data=parsed_data)
         assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
-        assert version.get_background_image_urls() == [
-            '%s/%s/%s/%s' % (user_media_url('addons'), str(self.addon.id),
-                             unicode(version.id), 'weta.png')
-        ]
 
     @mock.patch('olympia.versions.models.generate_static_theme_preview')
     def test_new_version_with_additional_backgrounds(
@@ -1020,14 +1011,6 @@ class TestStaticThemeFromUpload(UploadTest):
             parsed_data=parsed_data)
         assert len(version.all_files) == 1
         assert generate_static_theme_preview_mock.call_count == 1
-        image_url_folder = u'%s/%s/%s/' % (
-            user_media_url('addons'), self.addon.id, version.id)
-
-        assert sorted(version.get_background_image_urls()) == [
-            image_url_folder + 'empty.png',
-            image_url_folder + 'transparent.gif',
-            image_url_folder + 'weta_for_tiling.png',
-        ]
 
 
 class TestApplicationsVersions(TestCase):

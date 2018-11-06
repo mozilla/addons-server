@@ -184,15 +184,7 @@
         {% endfor %}
         {% endwith %}
       </div>
-      <div class="all-backgrounds">
-        {% for background in backgrounds %}
-          {% with filename=background.rsplit('/', 1)[1] %}
-          <div class="background zoombox">
-              <img src="{{ background }}" alt="" width="1000" height="200">
-              <span>{{ _('Background file {0} of {1} - {2}')|format_html(loop.index, loop.length, filename) }}</span>
-          </div>
-          {% endwith %}
-        {% endfor %}
+      <div class="all-backgrounds" data-backgrounds-url="{{ url('reviewers.theme_background_images', version.id if version else 0) }}">
       </div>
     </div>
   {% elif addon.description or addon.current_previews|length > 1 or addon.developer_comments %}

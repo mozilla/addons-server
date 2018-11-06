@@ -58,6 +58,9 @@ urlpatterns = (
     url(r'^abuse-reports/%s$' % ADDON_ID, views.abuse_reports,
         name='reviewers.abuse_reports'),
     url(r'^leaderboard/$', views.leaderboard, name='reviewers.leaderboard'),
+    url(r'^theme_background_images/(?P<version_id>[^ /]+)?$',
+        views.theme_background_images,
+        name='reviewers.theme_background_images'),
 
     url(r'^themes$',
         lambda request: redirect('reviewers.dashboard', permanent=True)),
