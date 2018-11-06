@@ -4,6 +4,8 @@ import re
 from time import time
 from wsgiref.handlers import format_date_time
 
+from six import text_type
+
 from olympia.constants import base
 
 from services.utils import (
@@ -36,8 +38,8 @@ class ThemeUpdate(object):
 class MigratedUpdate(ThemeUpdate):
 
     def get_data(self):
-        if hasattr(self, 'row'):
-            return self.row
+        if hasattr(self, 'data'):
+            return self.data
 
         primary_key = (
             'getpersonas_id' if self.from_gp else 'lightweight_theme_id')
@@ -226,6 +228,10 @@ class LWThemeUpdate(ThemeUpdate):
 url_re = re.compile(r'(?P<locale>.+)?/themes/update-check/(?P<id>\d+)$')
 
 
+def is_android_ua(user_agent):
+    return 'android' in text_type(user_agent).lower()
+
+
 def application(environ, start_response):
     """
     Developing locally?
@@ -248,9 +254,12 @@ def application(environ, start_response):
         try:
             query_string = environ.get('QUERY_STRING')
             update = MigratedUpdate(locale, id_, query_string)
-            if not update.is_migrated:
+            is_migrated = update.is_migrated
+            if not is_migrated:
                 update = LWThemeUpdate(locale, id_, query_string)
-            output = update.get_json()
+            elif is_android_ua(environ.get('HTTP_USER_AGENT')):
+                update = None
+            output = update.get_json() if update else None
             if not output:
                 start_response('404 Not Found', [])
                 return ['']

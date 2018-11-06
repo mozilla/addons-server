@@ -18,6 +18,13 @@ from olympia.amo.tests import addon_factory, TestCase
 from olympia.versions.models import Version
 
 
+DESKTOP_UA = (
+    'Mozilla/5.0 (Windows NT x.y; Win64; x64; rv:10.0) Gecko/20100101 '
+    'Firefox/10.0')
+ANDROID_UA = (
+    'Mozilla/5.0 (Android 4.4; Mobile; rv:41.0) Gecko/41.0 Firefox/41.0')
+
+
 class TestWSGIApplication(TestCase):
 
     def setUp(self):
@@ -69,6 +76,7 @@ class TestWSGIApplication(TestCase):
             theme_update.application(environ, self.start_response)
             assert not LWThemeUpdate_mock.called
             MigratedUpdate_mock.assert_called_with(*call_args)
+            self.start_response.assert_called_with('200 OK', mock.ANY)
 
         # From getpersonas.com we append `?src=gp` so we know to consume
         # the ID as the `persona_id`.
@@ -98,6 +106,32 @@ class TestWSGIApplication(TestCase):
             assert not LWThemeUpdate_mock.called
             assert not MigratedUpdate_mock.called
             self.start_response.assert_called_with('404 Not Found', [])
+
+    @mock.patch('services.theme_update.MigratedUpdate')
+    @mock.patch('services.theme_update.LWThemeUpdate')
+    def test_404_for_migrated_but_android(
+            self, LWThemeUpdate_mock, MigratedUpdate_mock):
+        urls = {
+            '/themes/update-check/5': ['en-US', 5, None],
+            '/en-US/themes/update-check/5': ['en-US', 5, None],
+            '/fr/themes/update-check/5': ['fr', 5, None]
+        }
+        MigratedUpdate_mock.return_value.is_migrated = True
+        for path_info, call_args in urls.iteritems():
+            environ = dict(self.environ, PATH_INFO=path_info,
+                           HTTP_USER_AGENT=ANDROID_UA)
+            theme_update.application(environ, self.start_response)
+            assert not LWThemeUpdate_mock.called
+            MigratedUpdate_mock.assert_called_with(*call_args)
+            self.start_response.assert_called_with('404 Not Found', [])
+        # Then double check a desktop UA does still work
+        for path_info, call_args in urls.iteritems():
+            environ = dict(self.environ, PATH_INFO=path_info,
+                           HTTP_USER_AGENT=DESKTOP_UA)
+            theme_update.application(environ, self.start_response)
+            assert not LWThemeUpdate_mock.called
+            MigratedUpdate_mock.assert_called_with(*call_args)
+            self.start_response.assert_called_with('200 OK', mock.ANY)
 
 
 class TestThemeUpdate(TestCase):
