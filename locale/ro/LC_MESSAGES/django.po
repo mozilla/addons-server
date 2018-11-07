@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 21:29+0000\n"
+"PO-Revision-Date: 2018-11-07 01:24+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -7873,34 +7873,34 @@ msgid "My Mobile Add-ons"
 msgstr ""
 
 msgid "an add-on developer replies to my review"
-msgstr ""
+msgstr "un dezvoltator de suplimente răspunde la recenzia mea"
 
 msgid "new add-ons or Firefox features are available"
-msgstr ""
+msgstr "suplimente sau funcții Firefox noi devin disponibile"
 
 msgid "my add-on's compatibility is upgraded successfully"
-msgstr ""
+msgstr "compatibilitatea suplimentului meu este actualizată cu succes"
 
 msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
+msgstr "suplimentul meu bazat pe SDK a fost actualizat cu succes"
 
 msgid "someone writes a review of my add-on"
-msgstr ""
+msgstr "cineva scrie o recenzie a suplimentului meu"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "stai la curent cu știrile și evenimentele relevante pentru dezvoltatorii de suplimente (inclusiv buletinul de știri about:addons)"
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
+msgstr "compatibilitatea suplimentului meu nu poate fi actualizată"
 
 msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
+msgstr "suplimentul meu bazat pe SDK nu poate fi actualizat"
 
 msgid "my add-on is reviewed by a reviewer"
-msgstr ""
+msgstr "suplimentul meu este recenzat de un recenzor"
 
 msgid "Mozilla needs to contact me about my individual add-on"
-msgstr ""
+msgstr "Mozilla trebuie să mă contacteze cu privire la suplimentul meu individual"
 
 msgid "User Notifications"
 msgstr ""
