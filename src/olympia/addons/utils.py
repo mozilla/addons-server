@@ -12,6 +12,8 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 import waffle
+from django_statsd.clients import statsd
+from six import text_type
 
 from olympia import amo
 from olympia.lib.cache import memoize, memoize_key
@@ -188,6 +190,10 @@ def get_addon_recommendations_invalid():
         TAAR_LITE_FALLBACK_REASON_INVALID)
 
 
+MULTIPLE_STOPS_REGEX = re.compile(r'\.{2,}')
+
+
+@statsd.timer('addons.tasks.migrate_lwts_to_static_theme.build_xpi')
 def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     # create manifest
     accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
