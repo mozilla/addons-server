@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-07 01:24+0000\n"
+"PO-Revision-Date: 2018-11-07 01:50+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5629,7 +5629,7 @@ msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Access your data for {name}"
-msgstr ""
+msgstr "Să îți acceseze datele pentru {name}"
 
 msgid "Access your data on the following websites:"
 msgstr ""
@@ -7438,7 +7438,7 @@ msgid "by Platform"
 msgstr "după platformă"
 
 msgid "by Add-on Status"
-msgstr ""
+msgstr "după starea suplimentului"
 
 msgid "Add-on Statistics"
 msgstr ""
@@ -7468,16 +7468,16 @@ msgid "Archived Data"
 msgstr ""
 
 msgid "Custom Date Range"
-msgstr ""
+msgstr "Interval de perioadă personalizat"
 
 msgid "From"
-msgstr ""
+msgstr "Din"
 
 msgid "To"
-msgstr ""
+msgstr "Până în"
 
 msgid "Update"
-msgstr ""
+msgstr "Actualizează"
 
 msgid "Export"
 msgstr "Exportă"
@@ -7619,10 +7619,10 @@ msgid "Ratings by Date"
 msgstr "Evaluări în funcție de dată"
 
 msgid "Reviews Created by Date"
-msgstr ""
+msgstr "Recenzii create în funcție de dată"
 
 msgid "Download sources by Date"
-msgstr ""
+msgstr "Surse de descărcare în funcție de dată"
 
 msgid "About tracking external sources..."
 msgstr ""
@@ -7637,13 +7637,13 @@ msgid ""
 msgstr ""
 
 msgid "Add-on Status by Date"
-msgstr ""
+msgstr "Starea suplimentului în funcție de dată"
 
 msgid "Subscribers by Date"
-msgstr ""
+msgstr "Abonați în funcție de dată"
 
 msgid "Daily Users by Date"
-msgstr ""
+msgstr "Utilizatori zilnici în funcție de dată"
 
 msgid "What are daily users?"
 msgstr ""
@@ -7659,7 +7659,7 @@ msgid ""
 msgstr ""
 
 msgid "User Signups by Date"
-msgstr ""
+msgstr "Înscrieri ale utilizatorilor în funcție de dată"
 
 msgid "Application versions by Date"
 msgstr "Versiunile aplicației în funcție de dată"
