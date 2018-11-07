@@ -232,7 +232,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_nav_links(self):
         if self.listed:
             links = [
-                self.addon.get_dev_url('edit'),  # Edit Information
+                self.addon.get_dev_url('edit'),  # Edit Product Page
                 self.addon.get_dev_url('owner'),  # Manage Authors
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
                 self.addon.get_url_path(),  # View Listing
@@ -241,7 +241,7 @@ class BaseTestEditDescribe(BaseTestEdit):
             ]
         else:
             links = [
-                self.addon.get_dev_url('edit'),  # Edit Information
+                self.addon.get_dev_url('edit'),  # Edit Product Page
                 self.addon.get_dev_url('owner'),  # Manage Authors
                 self.addon.get_dev_url('versions'),  # Manage Status & Versions
                 reverse('devhub.feed', args=[self.addon.slug]),  # View Recent
