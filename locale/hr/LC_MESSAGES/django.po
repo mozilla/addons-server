@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2017-02-20 17:37+0000\n"
-"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
+"PO-Revision-Date: 2018-11-07 18:09+0000\n"
+"Last-Translator: echrs <echrs@outlook.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
@@ -19,22 +19,22 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Poveznice nisu dopuštene."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Ovo ime za prikaz ne može se koristiti."
 
 msgid "Usernames cannot contain only digits."
-msgstr ""
+msgstr "Korisnička imena ne mogu sadržavati samo brojke."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
 msgid "This username cannot be used."
-msgstr ""
+msgstr "Ovo korisničko ime ne može biti korišteno."
 
 msgid "This username is already in use."
-msgstr ""
+msgstr "Ovo korisničko ime je već u upotrebi."
 
 # 87%
 # 100%
@@ -42,7 +42,7 @@ msgid "Images must be either PNG or JPG."
 msgstr "Slike moraju biti ili PNG ili JPG."
 
 msgid "Images cannot be animated."
-msgstr ""
+msgstr "Slike ne smiju biti animirane."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -86,7 +86,7 @@ msgid "Status"
 msgstr "Status"
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Dodatak nije na AMO -"
 
 msgid "Download Now"
 msgstr "Preuzmite sada"
@@ -170,10 +170,10 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Prije nego što promijenite zadani jezik trebate imati ime, sažetak i opis na tom jeziku. Nedostaje vam %s."
 
 msgid "A license must be selected."
-msgstr ""
+msgstr "Licenca mora biti odabrana."
 
 msgid "Give Your Theme a Name."
-msgstr ""
+msgstr "Imenujte vašu temu."
 
 msgid "Describe your Theme."
 msgstr "Opišite vašu temu."
@@ -311,11 +311,11 @@ msgstr "od"
 
 #. {0} is a category name, such as Nature
 msgid "More {0} Themes"
-msgstr ""
+msgstr "Više {0} tema"
 
 #. {0} is a category name, such as Nature
 msgid "See all {0} Themes"
-msgstr ""
+msgstr "Pogledajte sve teme kategorije {0}"
 
 msgid "More by this Artist"
 msgstr "Više od ovog umjetnika"
@@ -395,7 +395,7 @@ msgid "Privacy Policy"
 msgstr "Zaštita Privatnosti"
 
 msgid "Report Abuse"
-msgstr ""
+msgstr "Prijava zloupotrebe"
 
 #, python-format
 msgid ""
@@ -487,10 +487,10 @@ msgid "Average"
 msgstr ""
 
 msgid "Write a review"
-msgstr ""
+msgstr "Napišite recenziju"
 
 msgid "Related Categories"
-msgstr ""
+msgstr "Slične kategorije"
 
 msgid "Part of these Collections"
 msgstr ""
@@ -513,7 +513,7 @@ msgid "View statistics"
 msgstr ""
 
 msgid "Manage"
-msgstr ""
+msgstr "Upravljanje"
 
 #, fuzzy
 msgid "Add-on Review"
@@ -525,7 +525,7 @@ msgstr "Stranica administratora"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Ikona {0}"
 
 msgid "Contribute"
 msgstr "Donacije"
@@ -564,7 +564,7 @@ msgid "Custom License"
 msgstr "Korisnička licenca"
 
 msgid "About this Add-on"
-msgstr ""
+msgstr "O ovom dodatku"
 
 msgid "Developer’s Comments"
 msgstr ""
@@ -618,7 +618,7 @@ msgid "support email"
 msgstr "Informacije podrške"
 
 msgid "permalink"
-msgstr ""
+msgstr "poveznica"
 
 #, python-format
 msgid "See all user reviews"
@@ -654,7 +654,7 @@ msgid "Add-on Information for {0}"
 msgstr "Informacija dodatka za {0}"
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "Uredi temu"
 
 msgid "Approve / Reject"
 msgstr "Odobri / Odbaci"
@@ -823,10 +823,10 @@ msgstr "Nema rezultata"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr ""
+msgstr "Nazad"
 
 msgid "Next"
-msgstr ""
+msgstr "Naprijed"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -1186,14 +1186,14 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "by {0}"
-msgstr ""
+msgstr "od {0}"
 
 msgid "Edit this Collection"
 msgstr "Uredi ovu zbirku"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
-msgstr ""
+msgstr "Izbriši {0}"
 
 msgid "Are you sure?"
 msgstr "Jeste li sigurni?"
@@ -1206,7 +1206,7 @@ msgstr "Ne"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
-msgstr ""
+msgstr "Uredi {0}"
 
 msgid "Description"
 msgstr "Opis"
@@ -1384,7 +1384,7 @@ msgid "Language Pack"
 msgstr "Jezični paket"
 
 msgid "All locales"
-msgstr ""
+msgstr "Svi jezici"
 
 msgid "List of language packs and dictionaries."
 msgstr "Lista jezičnih paketa i rječnika."
