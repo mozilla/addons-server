@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-31 20:28+0000\n"
+"PO-Revision-Date: 2018-11-07 19:27+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -101,7 +101,7 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension ਅੱਪਗ੍ਰੇਡ ਕਰੋ"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "ਅਸੀਂ ਇੱਕ ਅਪਗ੍ਰੇਡ ਦੀ ਇਜ਼ਾਜ਼ਤ ਅਤੇ ਪ੍ਰੇਰਿਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ । ਇੱਕ ਵਾਰ ਤੁਹਾਡੇ ਉਪਭੋਗਤਾ ਕੋਲ ਵੈਬ ਐਕਸਟੈਂਸ਼ਨ ਹੋਵੇ, ਉਹ ਇੱਕ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਸਥਾਪਿਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।"
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "MDN ਉੱਤੇ ਫਾਇਰਫਾਕਸ ਐਡ-ਆਨ ਸੰਪੱਤੀ ਪੋਰਟ ਹੋ ਰਹੀ ਹੈ"
@@ -210,17 +210,15 @@ msgstr "ਅਸਲ ਵਰਤੋ"
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " ਡਾਊਨਲੋਡ"
-msgstr[1] " ਡਾਊਨਲੋਡ"
+msgstr[0] "{0} ਡਾਊਨਲੋਡ"
+msgstr[1] "{0} ਡਾਊਨਲੋਡ"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} ਵਰਤੋਂਕਾਰ"
-msgstr[1] "{0} ਵਰਤੋਂਕਾਰ"
+msgstr[0] "{0} ਉਪਭੋਗੀ"
+msgstr[1] "{0} ਉਪਭੋਗੀ"
 
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
@@ -242,7 +240,6 @@ msgid_plural "{0} sales"
 msgstr[0] "{0} ਵਿਕਰੀ"
 msgstr[1] "{0} ਵਿਕਰੀ"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} ਮੁੜਾਈ"
@@ -819,7 +816,7 @@ msgid "Number of Reviews"
 msgstr "ਸਮੀਖਿਆਵਾਂ ਦੀ ਗਿਣਤੀ"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "ਅਧਿਕਤਮ ਅਪਲੋਡ ਅਕਾਰ ਹੈ {0} - ਛੋਟਾ ਬੈਕਗਰਾਊਂਡ ਚਿੱਤਰ ਚੁਣੋ।"
 
 msgid "Requested Info"
 msgstr "ਜਾਣਕਾਰੀ ਲਈ ਬੇਨਤੀ"
