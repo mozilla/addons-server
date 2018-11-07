@@ -17,7 +17,6 @@ from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
 from six import text_type
 from xml.dom import minidom
-from zipfile import ZipFile
 
 from django import forms
 from django.conf import settings
@@ -107,13 +106,13 @@ def get_file(fileorpath):
 
 
 def make_xpi(files):
-    f = cStringIO()
-    z = ZipFile(f, 'w')
+    file_obj = cStringIO()
+    zip_file = zipfile.ZipFile(file_obj, 'w')
     for path, data in files.items():
-        z.writestr(path, data)
-    z.close()
-    f.seek(0)
-    return f
+        zip_file.writestr(path, data)
+    zip_file.close()
+    file_obj.seek(0)
+    return file_obj
 
 
 class Extractor(object):
@@ -652,6 +651,44 @@ class FsyncedZipFile(zipfile.ZipFile):
         self._fsync_file(targetpath)
 
 
+def archive_member_validator(archive, member):
+    """Validate a member of an archive member (TarInfo or ZipInfo)."""
+    filename = getattr(member, 'filename', getattr(member, 'name', None))
+    filesize = getattr(member, 'file_size', getattr(member, 'size', None))
+
+    if filename is None or filesize is None:
+        raise forms.ValidationError(ugettext('Unsupported archive type.'))
+
+    try:
+        force_text(filename)
+    except UnicodeDecodeError:
+        # We can't log the filename unfortunately since it's encoding
+        # is obviously broken :-/
+        log.error('Extraction error, invalid file name encoding in '
+                  'archive: %s' % archive)
+        # L10n: {0} is the name of the invalid file.
+        msg = ugettext(
+            'Invalid file name in archive. Please make sure '
+            'all filenames are utf-8 or latin1 encoded.')
+        raise forms.ValidationError(msg.format(filename))
+
+    if '..' in filename or filename.startswith('/'):
+        log.error('Extraction error, invalid file name (%s) in '
+                  'archive: %s' % (filename, archive))
+        # L10n: {0} is the name of the invalid file.
+        msg = ugettext('Invalid file name in archive: {0}')
+        raise forms.ValidationError(msg.format(filename))
+
+    if filesize > settings.FILE_UNZIP_SIZE_LIMIT:
+        log.error('Extraction error, file too big (%s) for file (%s): '
+                  '%s' % (archive, filename, filesize))
+        # L10n: {0} is the name of the invalid file.
+        raise forms.ValidationError(
+            ugettext(
+                'File exceeding size limit in archive: {0}'
+            ).format(filename))
+
+
 class SafeZip(object):
     def __init__(self, source, mode='r', force_fsync=False):
         self.source = source
@@ -676,34 +713,7 @@ class SafeZip(object):
         info_list = zip_file.infolist()
 
         for info in info_list:
-            try:
-                force_text(info.filename)
-            except UnicodeDecodeError:
-                # We can't log the filename unfortunately since it's encoding
-                # is obviously broken :-/
-                log.error('Extraction error, invalid file name encoding in '
-                          'archive: %s' % self.source)
-                # L10n: {0} is the name of the invalid file.
-                msg = ugettext(
-                    'Invalid file name in archive. Please make sure '
-                    'all filenames are utf-8 or latin1 encoded.')
-                raise forms.ValidationError(msg.format(info.filename))
-
-            if '..' in info.filename or info.filename.startswith('/'):
-                log.error('Extraction error, invalid file name (%s) in '
-                          'archive: %s' % (info.filename, self.source))
-                # L10n: {0} is the name of the invalid file.
-                msg = ugettext('Invalid file name in archive: {0}')
-                raise forms.ValidationError(msg.format(info.filename))
-
-            if info.file_size > settings.FILE_UNZIP_SIZE_LIMIT:
-                log.error('Extraction error, file too big (%s) for file (%s): '
-                          '%s' % (self.source, info.filename, info.file_size))
-                # L10n: {0} is the name of the invalid file.
-                raise forms.ValidationError(
-                    ugettext(
-                        'File exceeding size limit in archive: {0}'
-                    ).format(info.filename))
+            archive_member_validator(self.source, info)
 
         self.info_list = info_list
         self.zip_file = zip_file
