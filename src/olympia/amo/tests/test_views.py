@@ -356,6 +356,10 @@ class TestOtherStuff(TestCase):
         assert doc('#site-nav #more .more-lang a').attr('href') == (
             reverse('browse.language-tools'))
 
+    def test_no_dictionaries_link_when_not_firefox(self):
+        doc = pq(test.Client().get('/android', follow=True).content)
+        assert doc('#site-nav #more .more-lang').length == 0
+
     def test_mobile_link_firefox(self):
         doc = pq(test.Client().get('/firefox', follow=True).content)
         assert doc('#site-nav #more .more-mobile a').length == 1
