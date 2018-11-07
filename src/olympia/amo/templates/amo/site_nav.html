@@ -74,9 +74,9 @@
         {% if request and request.APP == amo.FIREFOX %}
           <li class="more-mobile"><a href="{{ locale_url(amo.ANDROID.short) }}">
             {{ _('Add-ons for Mobile') }}</a></li>
+          <li class="more-lang"><a href="{{ url('browse.language-tools') }}">
+            {{ _('Dictionaries & Language Packs') }}</a></li>
         {% endif %}
-        <li class="more-lang"><a href="{{ url('browse.language-tools') }}">
-          {{ _('Dictionaries & Language Packs') }}</a></li>
         <li><a href="{{ url('browse.search-tools') }}">{{ _('Search Tools') }}</a></li>
         <li><a href="{{ url('devhub.index') }}">{{ _('Developer Hub') }}</a></li>
       </ul>
