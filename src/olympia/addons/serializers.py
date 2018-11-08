@@ -90,18 +90,22 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
+    is_custom = serializers.SerializerMethodField()
     name = serializers.SerializerMethodField()
     text = TranslationSerializerField()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = License
-        fields = ('id', 'name', 'text', 'url')
+        fields = ('id', 'is_custom', 'name', 'text', 'url')
 
     def __init__(self, *args, **kwargs):
         super(LicenseSerializer, self).__init__(*args, **kwargs)
         self.db_name = TranslationSerializerField()
         self.db_name.bind('name', self)
+
+    def get_is_custom(self, obj):
+        return not bool(obj.builtin)
 
     def get_url(self, obj):
         return obj.url or self.get_version_license_url(obj)
@@ -134,11 +138,19 @@ class LicenseSerializer(serializers.ModelSerializer):
                 lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
                 return {lang: unicode(license_constant.name)}
 
+    def to_representation(self, instance):
+        data = super(LicenseSerializer, self).to_representation(instance)
+        request = self.context.get('request', None)
+        if request and is_gate_active(
+                request, 'del-version-license-is-custom'):
+            data.pop('is_custom', None)
+        return data
+
 
 class CompactLicenseSerializer(LicenseSerializer):
     class Meta:
         model = License
-        fields = ('id', 'name', 'url')
+        fields = ('id', 'is_custom', 'name', 'url')
 
 
 class MinimalVersionSerializer(serializers.ModelSerializer):

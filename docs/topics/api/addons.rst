@@ -384,6 +384,7 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file. Clients using this API can append an optional ``src`` query parameter to the url which would indicate the source of the request (See :ref:`download sources <download-sources>`).
     :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from add-on search endpoint.
+    :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on detail endpoint.
     :>json string|null license.url: The URL of the full text of license.
