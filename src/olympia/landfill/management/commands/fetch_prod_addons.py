@@ -22,8 +22,12 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            '--max', metavar='MAX', type=int,
+            '--max', metavar='max', type=int,
             help='max amount of pages to fetch.'
+        )
+        parser.add_argument(
+            '--guid', metavar='guid', type=str,
+            help='specific guid(s) to fetch.'
         )
 
     def handle(self, *args, **options):
@@ -33,14 +37,19 @@ class Command(BaseCommand):
             )
         self.fetch_addon_data(options)
 
-    def get_max_pages(self, options):
-        response = requests.get(self.SEARCH_API_URL)
+    def get_max_pages(self, params=None):
+        response = requests.get(self.SEARCH_API_URL, params=params)
         return response.json()['page_count']
 
-    def _get_addons_from_page(self, page):
+    def _get_addons_from_page(self, page, params=None):
         data = []
         print('fetching %s' % page)
-        response = requests.get(self.SEARCH_API_URL, params={'page': page})
+        query_params = {
+            'page': page
+        }
+        if params:
+            query_params.update(params)
+        response = requests.get(self.SEARCH_API_URL, params=query_params)
         print('fetched %s' % page)
 
         for addon in response.json()['results']:
@@ -130,11 +139,14 @@ class Command(BaseCommand):
             )
 
     def fetch_addon_data(self, options):
-        pages = range(1, self.get_max_pages(options))
+        params = {}
+        if options.get('guid'):
+            params['guid'] = options['guid']
+        pages = range(1, self.get_max_pages(params) + 1)
 
         if options.get('max'):
             pages = pages[:options.get('max')]
 
         print('Fetching pages from 1 to %s' % max(pages))
         for page in pages:
-            self._get_addons_from_page(page)
+            self._get_addons_from_page(page, params)
