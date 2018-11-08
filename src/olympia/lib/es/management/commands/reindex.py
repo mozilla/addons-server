@@ -205,7 +205,9 @@ class Command(BaseCommand):
             )
             # ... Then start indexing data. gather_index_data_tasks() is a
             # function returning a group of indexing tasks.
-            _chain |= gather_index_data_tasks(alias, new_index)
+            index_data_tasks = gather_index_data_tasks(alias, new_index)
+            if index_data_tasks.tasks:
+                _chain |= index_data_tasks
 
             # Append that chain to the workflow we're going to execute.
             workflow.append(_chain)
