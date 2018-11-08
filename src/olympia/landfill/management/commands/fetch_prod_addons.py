@@ -29,6 +29,10 @@ class Command(BaseCommand):
             '--guid', metavar='guid', type=str,
             help='specific guid(s) to fetch.'
         )
+        parser.add_argument(
+            '--type', metavar='type', type=str,
+            help='only consider this specific add-on type'
+        )
 
     def handle(self, *args, **options):
         if not settings.DEBUG:
@@ -70,6 +74,10 @@ class Command(BaseCommand):
                 'platform': amo.PLATFORM_DICT[files[0]['platform']].id,
                 'size': files[0]['size'],
                 'is_webextension': files[0]['is_webextension'],
+                'is_mozilla_signed_extension': (
+                    files[0]['is_mozilla_signed_extension']),
+                'strict_compatibility': (
+                    version['is_strict_compatibility_enabled'])
             }
         except (KeyError, IndexError):
             file_kw = {}
@@ -139,9 +147,14 @@ class Command(BaseCommand):
             )
 
     def fetch_addon_data(self, options):
-        params = {}
+        params = {
+            'app': 'firefox',
+            'appversion': '60.0'
+        }
         if options.get('guid'):
             params['guid'] = options['guid']
+        if options.get('type'):
+            params['type'] = options['type']
         pages = range(1, self.get_max_pages(params) + 1)
 
         if options.get('max'):
