@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-07 01:50+0000\n"
+"PO-Revision-Date: 2018-11-08 20:58+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -525,7 +525,7 @@ msgid "Enjoy this add-on?"
 msgstr "Îți place acest supliment?"
 
 msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Dezvoltatorul acestui supliment îți solicită să contribui la sprijinirea dezvoltării sale continue, făcând o mică donație."
+msgstr "Dezvoltatorul acestui supliment îți solicită să contribui pentru sprijinirea dezvoltării continue a acestuia, făcând o mică donație."
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
