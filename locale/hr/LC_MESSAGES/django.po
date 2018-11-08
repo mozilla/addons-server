@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-07 18:09+0000\n"
+"PO-Revision-Date: 2017-02-15 17:32+0000\n"
 "Last-Translator: echrs <echrs@outlook.com>\n"
 "Language-Team: Croatian\n"
 "Language: hr\n"
@@ -75,9 +75,8 @@ msgid "Version {0}"
 msgstr "Inačica {0}"
 
 # 75%
-#, fuzzy
 msgid "Review note"
-msgstr "Recenzent"
+msgstr "Napomena pregleda"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Samo najnovije verzije dodataka mogu imati dodane bilješke."
@@ -715,9 +714,8 @@ msgid "Manage API Keys"
 msgstr "Upravljanje API ključevima"
 
 # 75%
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "Recenzent"
+msgstr "Alati za recenzente"
 
 msgid "Admin Tools"
 msgstr "Administratorski alati"
