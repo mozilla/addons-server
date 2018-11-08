@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-08 04:51+0000\n"
+"PO-Revision-Date: 2018-11-08 05:03+0000\n"
 "Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1591,7 +1591,7 @@ msgid "{addon} is now featured."
 msgstr "{addon} ఇప్పుడు ఫీచర్ అవ్వుతోంది."
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} ఇకపై ఫీచర్ అవ్వదు."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -1617,7 +1617,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "{addon} కోసం {user} {rating}ను ఆమోదించారు."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "తొలగించబడిన {addon} కోసం {rating} సమీక్ష తొలగించబడింది."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{addon} కోసం {user} {rating}ను తొలగించారు."
@@ -1759,22 +1759,22 @@ msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
 
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "నిర్వాహక పొడిగింత-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} admin content-review requested."
 msgstr ""
 
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "నిర్వాహక కంటెంట్-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
 
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "నిర్వాహక అలంకారం-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
+msgstr "{addon} తేలికపాటి అలంకారం నుండి వలస వచ్చింది."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2090,7 +2090,7 @@ msgid "Android"
 msgstr "Android"
 
 msgid "Static Theme"
-msgstr ""
+msgstr "స్టాటిక్ అలంకరణ"
 
 msgid "Persona"
 msgstr "పెర్సోనా"
@@ -2143,13 +2143,13 @@ msgid "Theme Review"
 msgstr "అలంకారపు సమీక్ష"
 
 msgid "Theme (Static) Review"
-msgstr ""
+msgstr "అలంకారం (స్థిరమైన) సమీక్ష"
 
 msgid "New Search Provider Review"
 msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "ప్రాధమిక శోధన ప్రదాత సమీక్ష"
 
 msgid "Updated Search Provider Review"
 msgstr ""
