@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-26 14:21+0000\n"
+"PO-Revision-Date: 2018-11-08 17:11+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
@@ -52,8 +52,8 @@ msgstr "Olemme ottaneet käyttöön uuden seulojan, joka käsittelee lisäosasi.
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lisäosasi tarkistuksessa ilmeni {0} virhettä."
+msgstr[1] "Lisäosasi tarkistuksessa ilmeni {0} virhettä."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -73,13 +73,13 @@ msgid "Received an empty response from the server; status: {0}"
 msgstr "Vastaanotettiin tyhjä vastaus palvelimelta; tila: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr ""
+msgstr "Odottamaton palvelinvirhe lisäosaa tarkistettaessa."
 
 msgid "Finished validating {0}"
 msgstr ""
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Lisäosasi tarkistus aikakatkaistiin. Se tarkistetaan myöhemmin manuaalisesti."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -306,7 +306,7 @@ msgid "Unknown"
 msgstr "Tuntematon"
 
 msgid "Add-ons Manager"
-msgstr ""
+msgstr "Lisäosien hallinta"
 
 msgid "Add-ons Manager Promo"
 msgstr ""
@@ -610,19 +610,19 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr ""
+msgstr "Myynnit, viimeiset {0} päivää"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr ""
+msgstr "Myynnit aikaväillä {0} - {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr ""
+msgstr "Asennukset viimeisten {0} päivän aikana"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr ""
+msgstr "Asennukset aikavälillä {0} - {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
@@ -770,8 +770,8 @@ msgstr[1] "<b>{0}</b> merkkiä"
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] ""
-msgstr[1] "<b>{0}</b> merkkiä jäljellä."
+msgstr[0] "<b>{0}</b> merkki jäljellä"
+msgstr[1] "<b>{0}</b> merkkiä jäljellä"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Tämä toiminto on väliaikaisesti poissa käytöstä, sillä suoritamme verkkosivun huoltoa. Tarkista tilanne hieman myöhemmin uudelleen."
