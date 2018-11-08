@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-03 13:06+0000\n"
+"PO-Revision-Date: 2018-11-08 13:07+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -4578,18 +4578,16 @@ msgid "Get a glimpse into who's tracking you with just a click."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ndërroni shërbyesin tuaj ndërmjetës {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Kontrolloni luajtjen e videove {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
@@ -4604,27 +4602,24 @@ msgid "Add encrypted security to any site that supports HTTPS."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Blini & kurseni {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përkthime të rrufeshme {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përmirësoni Reddit-in {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
@@ -4644,18 +4639,16 @@ msgid "A superior Windows-only downloader tool."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Njihni ata që ju gjurmojnë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shfletoni anonimisht {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
@@ -4666,27 +4659,24 @@ msgid "Access your favorite sites, recently closed tabs, and more—all from a g
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Caktoni faqen tuaj hyrëse {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shfaqni skedat tuaja {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Administrim i fuqishëm shkarkimesh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
@@ -4720,9 +4710,8 @@ msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shtojuni figura përfundimeve të kërkimit {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
@@ -4738,54 +4727,48 @@ msgid "Make the web easier on the eyes by darkening its display."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ndalni flluskat {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përshtatni sajtet që parapëlqeni {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përshtatni ç’hapet kur hapni skedën tuaj të re {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Merrni përkthime të shpejta {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any website, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Administroni fjalëkalimet tuaja {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Njihni se ku shkoni në internet {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
@@ -4801,18 +4784,16 @@ msgid "Make the text you're reading more appealing by removing the clutter aroun
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Hapni disa lidhje njëherësh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Rimerrni skeda {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
@@ -4828,9 +4809,8 @@ msgid "Modify your new tab page to display a beautiful background, set your dail
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shihni figura {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
@@ -4877,9 +4857,8 @@ msgid "Track historical pricing, find competing products, know the seller's rati
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Bëjeni tuajën {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
@@ -4894,9 +4873,8 @@ msgid "Get in-depth engagement and traffic information for any website."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Stilizoni Wikipedia-n {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
@@ -4911,9 +4889,8 @@ msgid "Use mouse gestures to get to things done—quicker."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Maskojeni faqen {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -4936,9 +4913,8 @@ msgid "Disguise your location to throw off trackers and protect your privacy."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Censor i vetes {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
@@ -5053,18 +5029,16 @@ msgid "Enable night mode for a better viewing experience."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Kërkoni figura {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Ruajeni për më vonë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
@@ -5171,9 +5145,8 @@ msgid "Clear your browser cache with a click or keystroke."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëjini edhe më tërheqës emoji-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Mos harroni më kurrë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
@@ -5196,27 +5169,24 @@ msgid "Access 30,000+ radio stations from all over the globe."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Dëgjoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shndërroni tekst në figura {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shfletoni të parrezikuar {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
@@ -5240,9 +5210,8 @@ msgid "Stop ads from appearing within your search results."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bëni foto ekrani {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Administrojini pa rrezil fjalëkalimet {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -5257,18 +5226,16 @@ msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Plotësojini formularët automatikisht {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shfletoni privatisht {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -5284,9 +5251,8 @@ msgid "Don't let clicked links take control of your current tab and load content
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Hyni lehtësisht në Wikipedia {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."

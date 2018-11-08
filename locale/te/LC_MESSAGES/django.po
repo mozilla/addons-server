@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-05 17:44+0000\n"
-"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
+"PO-Revision-Date: 2018-11-08 05:03+0000\n"
+"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -492,7 +492,7 @@ msgid "Add-on Review"
 msgstr "పొడిగింత యొక్క సమీక్ష"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "నిర్వాహక నిర్వహించండం"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -900,7 +900,7 @@ msgid "Error decoding signature."
 msgstr "సంతకం డీకోడు చేయడంలో పొరపాటు."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "పేలోడ్లో ఒకటి లేదా మరిన్ని కీలు తప్పు రకంలో ఉన్నాయి"
 
 msgid "Invalid JWT Token."
 msgstr "చెల్లని JWT టోకేను."
@@ -1250,7 +1250,7 @@ msgid "Search tools relating to %s"
 msgstr "%sకు సంబంధించిన శోధన ఉపకరణాలు"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "శోధన సాధనాలు మరియు శోధన సంబంధిత పొడిగింతలు"
 
 msgid "Search tools"
 msgstr "శోధన సాధనాలు"
@@ -1292,7 +1292,7 @@ msgstr "విశేష పొడిగింత"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "మీరు %(app)s అనుకూలీకరించడం ప్రారంభించడంలో సహాయపడటానికి మా అభిమాన పొడిగింతలలో కొన్ని."
 
 msgid "Install Dictionary"
 msgstr "నిఘంటువును స్థాపించు"
@@ -1357,11 +1357,11 @@ msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-
 msgstr "{0} లో <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">శోధన పట్టీ</a> గురించి మరింత తెలుసుకోండి"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "<a href=\"http://mycroftproject.com/\">mycro ftproject.com</a> లో మరిన్ని శోధన ప్రొవైడర్ల ద్వారా విహరించండి"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sమీ సొంత%(amo_mdn_link_close)s శోధన సాధనాన్ని తయారు చేసుకోండి"
 
 msgid "Most Popular Extensions"
 msgstr "అత్యధికంగా జనాదరణ పొందిన పొడిగింతలు"
@@ -1413,8 +1413,8 @@ msgstr "రబొయె రొజులొ కొత్త అలంకారా
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(name)s &raquo; లలో %(cnt)s పొడిగింతను చూడండి;"
+msgstr[1] "%(name)s &raquo; లలో %(cnt)s పొడిగింతలను చూడండి;"
 
 msgid "{0} Themes"
 msgstr "{0} అలంకారాలు"
@@ -1439,10 +1439,10 @@ msgid "View All Recently Added"
 msgstr "ఇటీవల చేర్చబడినవన్ని చూడండి"
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "అత్యంత ప్రముకమైనవి చుపించండి"
 
 msgid "View All Top Rated"
-msgstr ""
+msgstr "అన్ని అగ్ర రేటింగ్లను వీక్షించండి"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
@@ -1463,7 +1463,7 @@ msgid "Up & Coming Themes"
 msgstr "రాబోయే అలంకారాలు"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "అన్ని రాబోయేవి వీక్షించండి"
 
 msgid "No themes found"
 msgstr "ఏ అలంకారాలు కనుగొనబడలేదు"
@@ -1535,7 +1535,7 @@ msgid "Retained"
 msgstr "ఉంచబడింది"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} ఫిర్యాదు చేయబడింది."
 
 msgid "Super review requested"
 msgstr "ఉత్తమమైన సమీక్ష అభ్యర్థించబడింది"
@@ -1591,7 +1591,7 @@ msgid "{addon} is now featured."
 msgstr "{addon} ఇప్పుడు ఫీచర్ అవ్వుతోంది."
 
 msgid "{addon} is no longer featured."
-msgstr ""
+msgstr "{addon} ఇకపై ఫీచర్ అవ్వదు."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
@@ -1617,7 +1617,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "{addon} కోసం {user} {rating}ను ఆమోదించారు."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "తొలగించబడిన {addon} కోసం {rating} సమీక్ష తొలగించబడింది."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "{addon} కోసం {user} {rating}ను తొలగించారు."
@@ -1759,22 +1759,22 @@ msgid "{addon} {version} admin add-on-review requested."
 msgstr ""
 
 msgid "Admin add-on-review requested"
-msgstr ""
+msgstr "నిర్వాహక పొడిగింత-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} admin content-review requested."
 msgstr ""
 
 msgid "Admin content-review requested"
-msgstr ""
+msgstr "నిర్వాహక కంటెంట్-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} {version} admin theme-review requested."
 msgstr ""
 
 msgid "Admin theme-review requested"
-msgstr ""
+msgstr "నిర్వాహక అలంకారం-సమీక్ష అభ్యర్థించబడింది"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
+msgstr "{addon} తేలికపాటి అలంకారం నుండి వలస వచ్చింది."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2090,7 +2090,7 @@ msgid "Android"
 msgstr "Android"
 
 msgid "Static Theme"
-msgstr ""
+msgstr "స్టాటిక్ అలంకరణ"
 
 msgid "Persona"
 msgstr "పెర్సోనా"
@@ -2143,13 +2143,13 @@ msgid "Theme Review"
 msgstr "అలంకారపు సమీక్ష"
 
 msgid "Theme (Static) Review"
-msgstr ""
+msgstr "అలంకారం (స్థిరమైన) సమీక్ష"
 
 msgid "New Search Provider Review"
 msgstr "క్రొత్త శోధన ప్రదాత సమీక్ష"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "ప్రాధమిక శోధన ప్రదాత సమీక్ష"
 
 msgid "Updated Search Provider Review"
 msgstr ""
