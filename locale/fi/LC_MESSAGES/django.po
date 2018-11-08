@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2017-01-09 10:44+0000\n"
+"PO-Revision-Date: 2018-10-30 20:30+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -576,7 +576,7 @@ msgstr ""
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
-msgstr "Tämä lisäosa voi:"
+msgstr "Tämä lisäosa voitehdä seuraavaa:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
@@ -1008,9 +1008,8 @@ msgstr "Kuvakkeiden tulee olla PNG- tai JPG-muotoa."
 msgid "Icons cannot be animated."
 msgstr ""
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Tämä osoitemuoto on jo käytössä. Valitse jokin toinen."
+msgstr "Tämä osoitemuoto on jo käytössä jossakin toisessa kokoelmassasi."
 
 msgid "Name cannot be empty."
 msgstr "Nimi ei voi olla tyhjä."
@@ -1230,9 +1229,9 @@ msgstr "Kokoelmia ei löytynyt."
 msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
 msgstr "Kokoelmat ovat toisiinsa liittyvien lisäosien ryhmiä, joita kuka tahansa voi luoda ja jakaa. Selaa muiden käyttäjien luomia kokoelmia tai <a href=\"%(url)s\">luo oma</a> kokoelma."
 
-#, fuzzy, python-format
+#, python-format
 msgid "by %(author_link)s"
-msgstr "tekijänä %(users)s"
+msgstr "tekijältä %(author_link)s"
 
 # 89%
 # 100%
@@ -2060,7 +2059,7 @@ msgid "Fashion"
 msgstr "Muoti"
 
 msgid "Film and TV"
-msgstr ""
+msgstr "Elokuva ja TV"
 
 msgid "Foxkeh"
 msgstr ""
@@ -2460,6 +2459,8 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
+"Tällä sivustolla. <span class=\"helptext\">Lisäosasi esitellään koodintarkistuksen jälkeen tällä sivustolla ja Firefoxin Lisäosien hallinnassa miljoonille käyttäjille. Automaattiset päivitykset "
+"käsitellään tällä sivustolla. Lisäosasi huomioidaan myös Mozillan suosituksissa ja kilpailuissa. Myös itse tarjotttu lisäosan jakelu on mahdollista.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
@@ -2654,7 +2655,7 @@ msgid ""
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
-msgstr ""
+msgstr "Firefoxin lisäosan jakelusopimus"
 
 # 85%
 #, fuzzy
@@ -2694,11 +2695,10 @@ msgid "Extension Development"
 msgstr ""
 
 msgid "Lightweight Themes"
-msgstr ""
+msgstr "Kevyet teemat"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Kehitysuutiset"
+msgstr "Kehittäjän säännöt"
 
 msgid "Add-on Validator"
 msgstr "Lisäosan kelpuutus"
@@ -2716,7 +2716,7 @@ msgid "Add-ons Forum"
 msgstr "Lisäosien keskustelualue"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Lisää resursseja"
 
 msgid "Search Developer Docs"
 msgstr "Etsi kehitysdokumenteista"
@@ -2804,14 +2804,14 @@ msgid "Close"
 msgstr "Sulje"
 
 msgid "Recent Activity"
-msgstr ""
+msgstr "Viimeisimmät toiminnot"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
 msgstr ""
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Omien lisäosien aikaisemmat toiminnot"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -3502,7 +3502,7 @@ msgid "Upload source code:"
 msgstr "Lähdekoodi"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "Lisäosan jakelusopimus"
 
 #, fuzzy
 msgid "Upload Add-on"
@@ -3890,7 +3890,7 @@ msgstr "Lue lisää"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Haluatko, että laajennustasi suositellaan %(amo_link_open)saddons.mozilla.org%(amo_link_close)s -sivustolla? Suositeltujen lisäosien käytäntömme kertovat tätä varten kaiken tarvittavan."
 
 msgid "Learn More"
 msgstr "Lue lisää"
@@ -3901,14 +3901,13 @@ msgid "View All Submissions"
 msgstr "Näytä kaikki versiot"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Täällä voit tarkastella ja hallinnoida lisäosiasi ja teemojasi. Aloita ensimmäisen lisäosasi julkaiseminen napsauttamalla \"Julkaise ensimmäinen lisäosani\" tai \"Julkaise ensimmäinen teemani\"."
 
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Lisää lisäosa"
+msgstr "Julkaise ensimmäinen lisäosani"
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "Julkaise ensimmäinen teemani"
 
 # The title for a user if they are a developer
 #, fuzzy
