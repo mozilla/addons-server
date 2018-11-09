@@ -577,10 +577,12 @@ def add_static_theme_from_lwt(lwt):
 
     # Create addon + version
     parsed_data = parse_addon(upload, user=author)
+    timer.log_interval('2a.parse_addon')
+
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
     addon_updates = {}
-    timer.log_interval('2.initialize_addon')
+    timer.log_interval('2b.initialize_addon')
 
     # static themes are only compatible with Firefox at the moment,
     # not Android
