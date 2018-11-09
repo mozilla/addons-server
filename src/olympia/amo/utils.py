@@ -994,3 +994,18 @@ class AMOJSONEncoder(JSONEncoder):
         if isinstance(obj, Translation):
             return force_text(obj)
         return super(AMOJSONEncoder, self).default(obj)
+
+
+class StopWatch():
+    def __init__(self, label_prefix=''):
+        self.prefix = label_prefix
+
+    def start(self):
+        self._timestamp = utc_millesecs_from_epoch()
+
+    def log_interval(self, label):
+        now = utc_millesecs_from_epoch()
+        statsd.timing(self.prefix + label, now - self._timestamp)
+        log.debug(
+            "%s: %s", self.prefix + label, now - self._timestamp)
+        self._timestamp = now
