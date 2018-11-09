@@ -233,7 +233,7 @@ def is_android_ua(user_agent):
     return 'android' in text_type(user_agent).lower()
 
 
-update_log = olympia.core.logger.getLogger('z.update')
+update_log = olympia.core.logger.getLogger('z.addons')
 
 
 def application(environ, start_response):
@@ -260,7 +260,7 @@ def application(environ, start_response):
             update = MigratedUpdate(locale, id_, query_string)
             is_migrated = update.is_migrated
             user_agent_string = environ.get('HTTP_USER_AGENT')
-            update_log.debug(
+            update_log.info(
                 "HTTP_USER_AGENT %s; is_migrated: %s, is_android_ua: %s",
                 user_agent_string, is_migrated,
                 is_android_ua(user_agent_string))
