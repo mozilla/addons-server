@@ -27,7 +27,7 @@ from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image,
+    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image, StopWatch,
     utc_millesecs_from_epoch)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
@@ -545,18 +545,6 @@ def _get_lwt_default_author():
 @transaction.atomic
 @statsd.timer('addons.tasks.migrate_lwts_to_static_theme.add_from_lwt')
 def add_static_theme_from_lwt(lwt):
-    class StopWatch():
-        def __init__(self, label_prefix=''):
-            self.prefix = label_prefix
-
-        def start(self):
-            self._timestamp = utc_millesecs_from_epoch(datetime.now())
-
-        def log_interval(self, label):
-            now = utc_millesecs_from_epoch(datetime.now())
-            statsd.timing(self.prefix + label, now - self._timestamp)
-            self._timestamp = now
-
     from olympia.activity.models import AddonLog
 
     timer = StopWatch(
