@@ -40,7 +40,7 @@ from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
-    send_mail, slugify, sorted_groupby, timer, to_language)
+    send_mail, slugify, sorted_groupby, timer, to_language, StopWatch)
 from olympia.constants.applications import THUNDERBIRD
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
@@ -556,6 +556,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def initialize_addon_from_upload(cls, data, upload, channel, user):
+        timer = StopWatch('addons.models.initialize_addon_from_upload.')
+        timer.start()
         fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
@@ -574,13 +576,17 @@ class Addon(OnChangeMixin, ModelBase):
 
         if generate_guid:
             data['guid'] = guid = generate_addon_guid()
+        timer.log_interval('1.guids')
 
         data = cls.resolve_webext_translations(data, upload)
+        timer.log_interval('2.resolve_translations')
 
         if channel == amo.RELEASE_CHANNEL_UNLISTED:
             data['slug'] = get_random_slug()
+        timer.log_interval('3.get_random_slug')
 
         addon = Addon(**{k: v for k, v in data.items() if k in fields})
+        timer.log_interval('4.instance_init')
 
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
@@ -588,8 +594,10 @@ class Addon(OnChangeMixin, ModelBase):
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
+        timer.log_interval('5.default_locale')
 
         addon.save()
+        timer.log_interval('6.addon_save')
 
         if old_guid_addon:
             old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
@@ -597,6 +605,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         if user:
             AddonUser(addon=addon, user=user).save()
+        timer.log_interval('7.end')
         return addon
 
     @classmethod
