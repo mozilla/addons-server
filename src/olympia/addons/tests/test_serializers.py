@@ -54,6 +54,7 @@ class AddonSerializerOutputTestMixin(object):
         assert data['license']
         assert dict(data['license']) == {
             'id': version.license.pk,
+            'is_custom': True,
             'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
             # License text is not present in version serializer used from
             # AddonSerializer.
@@ -987,6 +988,7 @@ class TestVersionSerializerOutput(TestCase):
         assert result['license']
         assert dict(result['license']) == {
             'id': license.pk,
+            'is_custom': True,
             'name': {'en-US': u'My License', 'fr': u'Mä Licence'},
             'text': {
                 'en-US': u'Lorem ipsum dolor sit amet, has nemore patrioqué',
@@ -1021,13 +1023,27 @@ class TestVersionSerializerOutput(TestCase):
         assert result['id'] == self.version.pk
         assert result['license']
         assert result['license']['id'] == license.pk
+        assert result['license']['is_custom'] is True
         assert result['license']['url'] == absolutify(
             self.version.license_url())
+
+        # And make sure it's not present in v3
+        gates = {None: ('del-version-license-is-custom',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert 'is_custom' not in result['license']
 
         license.update(builtin=1)
         result = self.serialize()
         # Builtin licenses with no url shouldn't get the version license url.
         assert result['license']['url'] is None
+        assert result['license']['is_custom'] is False
+
+        # Again, make sure it's not present in v3
+        gates = {None: ('del-version-license-is-custom',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
+            assert 'is_custom' not in result['license']
 
     def test_license_serializer_no_url_no_parent(self):
         # This should not happen (LicenseSerializer should always be called
@@ -1054,6 +1070,7 @@ class TestVersionSerializerOutput(TestCase):
         result = LicenseSerializer(
             context={'request': self.request}).to_representation(license)
         assert result['id'] == license.pk
+        assert result['is_custom'] is False
         # A request with no ?lang gets you the site default l10n in a dict to
         # match how non-constant values are returned.
         assert result['name'] == {
