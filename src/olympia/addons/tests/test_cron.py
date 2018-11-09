@@ -53,11 +53,11 @@ class TestLastUpdated(TestCase):
 
     def test_appsupport(self):
         ids = Addon.objects.values_list('id', flat=True)
-        cron._update_appsupport(ids)
+        cron.update_appsupport(ids)
         assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 3  # ??
 
         # Run it again to test deletes.
-        cron._update_appsupport(ids)
+        cron.update_appsupport(ids)
         assert AppSupport.objects.filter(app=amo.FIREFOX.id).count() == 3  # ??
 
     def test_appsupport_listed(self):
