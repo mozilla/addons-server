@@ -545,9 +545,23 @@ def _get_lwt_default_author():
 @transaction.atomic
 @statsd.timer('addons.tasks.migrate_lwts_to_static_theme.add_from_lwt')
 def add_static_theme_from_lwt(lwt):
+    class StopWatch():
+        def __init__(self, label_prefix=''):
+            self.prefix = label_prefix
+
+        def start(self):
+            self._timestamp = utc_millesecs_from_epoch(datetime.now())
+
+        def log_interval(self, label):
+            now = utc_millesecs_from_epoch(datetime.now())
+            statsd.timing(self.prefix + label, now - self._timestamp)
+            self._timestamp = now
+
     from olympia.activity.models import AddonLog
-    timing_ts = utc_millesecs_from_epoch(datetime.now())
-    timing_prefix = 'addons.tasks.migrate_lwts_to_static_theme.add_from_lwt.'
+
+    timer = StopWatch(
+        'addons.tasks.migrate_lwts_to_static_theme.add_from_lwt.')
+    timer.start()
 
     olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
     # Try to handle LWT with no authors
@@ -559,16 +573,14 @@ def add_static_theme_from_lwt(lwt):
         user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
     build_static_theme_xpi_from_lwt(lwt, destination)
     upload.update(path=destination)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '1.build_xpi', timing_ts)
+    timer.log_interval('1.build_xpi')
 
     # Create addon + version
     parsed_data = parse_addon(upload, user=author)
     addon = Addon.initialize_addon_from_upload(
         parsed_data, upload, amo.RELEASE_CHANNEL_LISTED, author)
     addon_updates = {}
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '2.initialize_addon', timing_ts)
+    timer.log_interval('2.initialize_addon')
 
     # static themes are only compatible with Firefox at the moment,
     # not Android
@@ -576,8 +588,7 @@ def add_static_theme_from_lwt(lwt):
         upload, addon, selected_apps=[amo.FIREFOX.id],
         channel=amo.RELEASE_CHANNEL_LISTED,
         parsed_data=parsed_data)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '3.initialize_version', timing_ts)
+    timer.log_interval('3.initialize_version')
 
     # Set category
     static_theme_categories = CATEGORIES.get(amo.FIREFOX.id, []).get(
@@ -589,22 +600,19 @@ def add_static_theme_from_lwt(lwt):
     AddonCategory.objects.create(
         addon=addon,
         category=Category.from_static_category(static_category, True))
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '4.set_categories', timing_ts)
+    timer.log_interval('4.set_categories')
 
     # Set license
     lwt_license = PERSONA_LICENSES_IDS.get(
         lwt.persona.license, LICENSE_COPYRIGHT_AR)  # default to full copyright
     static_license = License.objects.get(builtin=lwt_license.builtin)
     version.update(license=static_license)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '5.set_license', timing_ts)
+    timer.log_interval('5.set_license')
 
     # Set tags
     for addon_tag in AddonTag.objects.filter(addon=lwt):
         AddonTag.objects.create(addon=addon, tag=addon_tag.tag)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '6.set_tags', timing_ts)
+    timer.log_interval('6.set_tags')
 
     # Steal the ratings (even with soft delete they'll be deleted anyway)
     addon_updates.update(
@@ -613,8 +621,7 @@ def add_static_theme_from_lwt(lwt):
         total_ratings=lwt.total_ratings,
         text_ratings_count=lwt.text_ratings_count)
     Rating.unfiltered.filter(addon=lwt).update(addon=addon, version=version)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '7.move_ratings', timing_ts)
+    timer.log_interval('7.move_ratings')
 
     # Modify the activity log entry too.
     rating_activity_log_ids = [
@@ -622,8 +629,7 @@ def add_static_theme_from_lwt(lwt):
     addonlog_qs = AddonLog.objects.filter(
         addon=lwt, activity_log__action__in=rating_activity_log_ids)
     [alog.transfer(addon) for alog in addonlog_qs.iterator()]
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '8.move_activity_logs', timing_ts)
+    timer.log_interval('8.move_activity_logs')
 
     # Copy the ADU statistics - the raw(ish) daily UpdateCounts for stats
     # dashboard and future update counts, and copy the average_daily_users.
@@ -633,8 +639,7 @@ def add_static_theme_from_lwt(lwt):
     addon_updates.update(
         average_daily_users=lwt.persona.popularity or 0,
         hotness=0)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '9.copy_statistics', timing_ts)
+    timer.log_interval('9.copy_statistics')
 
     # Logging
     activity.log_create(
@@ -647,8 +652,7 @@ def add_static_theme_from_lwt(lwt):
             datestatuschanged=lwt.last_updated,
             reviewed=datetime.now(),
             status=amo.STATUS_PUBLIC)
-    timing_ts = utc_millesecs_from_epoch(datetime.now()) - timing_ts
-    statsd.timing(timing_prefix + '10.sign_files', timing_ts)
+    timer.log_interval('10.sign_files')
     addon_updates['status'] = amo.STATUS_PUBLIC
 
     # set the modified and creation dates to match the original.
