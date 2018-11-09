@@ -1776,6 +1776,7 @@ DRF_API_GATES = {
         'addons-locale_disambiguation-shim',
         'del-addons-created-field',
         'del-accounts-fxa-edit-email-url',
+        'del-version-license-is-custom',
     ),
     'v4': (
         'l10n_flat_input_output',
