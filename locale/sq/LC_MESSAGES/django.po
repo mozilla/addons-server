@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-10 12:12+0000\n"
+"PO-Revision-Date: 2018-11-10 12:32+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -938,7 +938,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Kodi {lang_code} për gjuhën është i pavlefshëm."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Duhet të furnizoni një objekt {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -2142,25 +2142,25 @@ msgid "No Reputation"
 msgstr "S’ka Reputacion"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "I mirë (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Shumë i Mirë (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "I shkëlqyer (3)"
 
 msgid "Manual Reviewer Points"
 msgstr "Pikë Shqyrtuesi Dorazi"
 
 msgid "New Legacy Add-on Review"
-msgstr ""
+msgstr "Shqyrtim i Ri Shtese të Dikurshme"
 
 msgid "Preliminary Add-on Review"
 msgstr "Shqyrtim Paraprak Shtese"
 
 msgid "Updated Legacy Add-on Review"
-msgstr ""
+msgstr "Shqyrtimi i Shtesës së Dikurshme u Përditësua"
 
 msgid "New Dictionary Review"
 msgstr "Shqyrtim Fjalori të Ri"
@@ -2374,7 +2374,7 @@ msgid "You have not uploaded a source file."
 msgstr "S’keni ngarkuar kartelë burim."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Kartela burim u ngarkua, por keni përcaktuar se s’lypset burim."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "S’lejohen më tepër se 3 shtesa të domosdoshme."
@@ -3462,7 +3462,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Lartësi e këshilluar: 200 piksel"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6.9MB maks."
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ose GIF (jo të animuar)"
@@ -3751,7 +3751,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Që të Përpunoni dhe Përditësoni Shtesën Tuaj, Bëni Hyrjen"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Burime për një fillim të suksesshëm"
 
 #, python-format
 msgid ""
@@ -5431,18 +5431,16 @@ msgid "Clip web content like articles, videos, images, and more to save and use 
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shfletoni më mënyrë të sigurt {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Administroni cookie-t {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
@@ -5467,9 +5465,8 @@ msgid "Password-protect your personal bookmarks."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Shkarkoni video {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Parandaloni rrjedhje adrese IP {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -5525,9 +5522,8 @@ msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Përpunojeni përpara shtypjesh {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
@@ -5552,9 +5548,8 @@ msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Përshtatje Skedash {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Mbrojtje privatësie {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
@@ -5856,9 +5851,8 @@ msgstr "Lejoni përdorim të hershëm për veçori eksperimentale shfletuesi."
 msgid "Get Started"
 msgstr "Nisjani"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Gjendje Sajti"
+msgstr "Gjendje Raportimi"
 
 #, fuzzy
 msgid "Reported Spam"
@@ -5869,25 +5863,22 @@ msgstr "Lloj Raporti"
 msgid "Reported Ham"
 msgstr "Njoftoni një të metë"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Ende e pavlerësuar"
+msgstr "I paraportuar"
 
 msgid "Content Submitted"
 msgstr "Lënda u Parashtrua"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Shihni sajtin e ri "
+msgstr "Shihini Vlerësimin në sajt"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, fuzzy
 msgid "Submit Ham to Akismet"
 msgstr "Parashtroni një Kartelë të Re"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Parashtroni një Kartelë të Re"
+msgstr "Parashtroni Në Akismet Mesazh të Padëshiruar"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -7344,9 +7335,9 @@ msgstr "S’mund të shtoni versione te një shtesë që ka gjendjen: %s."
 msgid "Version does not match the manifest file."
 msgstr "Versioni nuk përputhet me kartelën manifest."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Versioni ekziston."
+msgstr "Versioni ekziston. Versioni më i ri është: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Lënia jashtë e GUID-së lejohet vetëm për WebExtensions"
