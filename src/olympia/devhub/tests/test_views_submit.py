@@ -745,7 +745,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert response.context['form'].errors == {
             'source': [
                 u'Unsupported file type, please upload an archive file '
-                u'(.zip, .tar.gz, .tar.bz2).'],
+                u'(.zip, .tar.gz or .tar.bz2).'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
