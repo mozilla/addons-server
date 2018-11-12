@@ -5,6 +5,7 @@ import tempfile
 from datetime import datetime
 
 from django.conf import settings
+from django.core import mail
 from django.test.utils import override_settings
 
 from freezegun import freeze_time
@@ -12,7 +13,7 @@ from freezegun import freeze_time
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons import cron
-from olympia.addons.models import AddonCategory, MigratedLWT
+from olympia.addons.models import Addon, AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
     migrate_legacy_dictionary_to_webextension, migrate_lwts_to_static_themes,
@@ -98,16 +99,26 @@ class TestPersonaImageFunctions(TestCase):
 @pytest.mark.django_db
 @mock.patch('olympia.addons.tasks.add_static_theme_from_lwt')
 def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
+    # Include two LWT that won't get migrated sandwiched between some good LWTs
     persona_a = addon_factory(type=amo.ADDON_PERSONA, slug='theme_a')
+    persona_none = addon_factory(type=amo.ADDON_PERSONA, slug='theme_none')
     persona_b = addon_factory(type=amo.ADDON_PERSONA, slug='theme_b')
+    persona_raise = addon_factory(type=amo.ADDON_PERSONA, slug='theme_raise')
+    persona_c = addon_factory(type=amo.ADDON_PERSONA, slug='theme_c')
+
     addon_a = addon_factory(type=amo.ADDON_STATICTHEME)
     addon_b = addon_factory(type=amo.ADDON_STATICTHEME)
-    add_static_theme_from_lwt_mock.side_effect = [addon_a, addon_b]
+    addon_c = addon_factory(type=amo.ADDON_STATICTHEME)
+    add_static_theme_from_lwt_mock.side_effect = [
+        addon_a, False, addon_b, Exception('foo'), addon_c]
 
     # call the migration task, as the command would:
-    migrate_lwts_to_static_themes([persona_a.id, persona_b.id])
+    migrate_lwts_to_static_themes(
+        [persona_a.id, persona_none.id, persona_b.id, persona_raise.id,
+         persona_c.id])
 
-    assert MigratedLWT.objects.all().count() == 2
+    assert MigratedLWT.objects.all().count() == 3
+    assert Addon.objects.filter(type=amo.ADDON_PERSONA).count() == 2
 
     persona_a.reload()
     addon_a.reload()
@@ -117,11 +128,19 @@ def test_migrate_lwts_to_static_themes(add_static_theme_from_lwt_mock):
     assert addon_a.slug == 'theme_a'
 
     persona_b.reload()
-    addon_a.reload()
+    addon_b.reload()
     assert persona_b.status == amo.STATUS_DELETED
     assert MigratedLWT.objects.get(
         lightweight_theme=persona_b).static_theme == addon_b
     assert addon_b.slug == 'theme_b'
+
+    persona_c.reload()
+    addon_c.reload()
+    assert persona_c.status == amo.STATUS_DELETED
+    assert MigratedLWT.objects.get(
+        lightweight_theme=persona_c).static_theme == addon_c
+    assert addon_c.slug == 'theme_c'
+    assert len(mail.outbox) == 0
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

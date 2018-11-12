@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 17:11+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2018-10-27 07:37+0000\n"
+"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -5315,7 +5315,7 @@ msgstr "用密码保护您的个人书签。"
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "IP 地址防泄漏 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
+msgstr "IP 地址防泄露 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
@@ -7634,7 +7634,7 @@ msgid "User Notifications"
 msgstr "用户通知"
 
 msgid "An email address is required."
-msgstr "电子邮件地址是必须的。"
+msgstr "电子邮件地址是必填的。"
 
 msgid "A user with that email address does not exist."
 msgstr "该电子邮件地址的用户不存在。"

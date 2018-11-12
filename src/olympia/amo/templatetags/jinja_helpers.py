@@ -543,23 +543,15 @@ def format_html(string, *args, **kwargs):
 
 
 @library.global_function
-def js(bundle, debug=None, defer=False, async=False):
+def js(bundle, debug=None):
     """
     If we are in debug mode, just output a single script tag for each js file.
     If we are not in debug mode, return a script that points at bundle-min.js.
 
     Copied from jingo-minify until we switch to something better...
     """
-    attrs = []
     urls = get_js_urls(bundle, debug)
-
-    attrs.append('src="%s"')
-
-    if defer:
-        attrs.append('defer')
-
-    if async:
-        attrs.append('async')
+    attrs = ['src="%s"']
 
     return _build_html(urls, '<script %s></script>' % ' '.join(attrs))
 

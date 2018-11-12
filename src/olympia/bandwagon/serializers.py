@@ -1,6 +1,7 @@
 from django.core.serializers import serialize as object_serialize
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import waffle
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
@@ -40,12 +41,14 @@ class CollectionAkismetSpamValidator(object):
             referrer=request_meta.get('HTTP_REFERER'),
             collection=self.serializer.instance,
             data=data)
+        raise_if_spam = waffle.switch_is_active('akismet-collection-action')
         if any((report.comment_check() for report in reports)):
             # We have to serialize and send it off to a task because the DB
             # transaction will be rolled back because of the ValidationError.
-            save_akismet_report.delay(object_serialize("json", reports))
-            raise serializers.ValidationError(ugettext(
-                'The text entered has been flagged as spam.'))
+            if raise_if_spam:
+                save_akismet_report.delay(object_serialize("json", reports))
+                raise serializers.ValidationError(ugettext(
+                    'The text entered has been flagged as spam.'))
 
 
 class CollectionSerializer(serializers.ModelSerializer):

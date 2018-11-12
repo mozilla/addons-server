@@ -1,22 +1,19 @@
+import copy
+
 from django.core.exceptions import ObjectDoesNotExist
 
-import olympia.core.logger
+import waffle
 
+import olympia.core.logger
 from olympia import amo
 from olympia.amo.indexers import BaseSearchIndexer
 from olympia.amo.utils import attach_trans_dict
+from olympia.amo.celery import create_chunked_tasks_signatures
+from olympia.lib.es.utils import create_index
 from olympia.versions.compare import version_int
 
 
 log = olympia.core.logger.getLogger('z.es')
-
-
-# When the 'boost-webextensions-in-search' waffle switch is enabled, queries
-# against the addon index should be scored to assign this weight to
-# webextensions.
-# The value is used to multiply matching documents score.A value of 1 is
-# neutral.
-WEBEXTENSIONS_WEIGHT = 2.0
 
 
 class AddonIndexer(BaseSearchIndexer):
@@ -143,23 +140,11 @@ class AddonIndexer(BaseSearchIndexer):
                     'modified': {'type': 'date', 'index': False},
                     'name': {
                         'type': 'text',
-                        # Adding word-delimiter to split on camelcase and
-                        # punctuation.
+                        # Adding word-delimiter to split on camelcase, known
+                        # words like 'tab', and punctuation, and eliminate
+                        # duplicates.
                         'analyzer': 'standardPlusWordDelimiter',
-                        'fields': {
-                            # Add a "raw" version of the name to do sorting and
-                            # exact matches against.
-                            # It needs to be a keyword to turn off all
-                            # analysis ; that means we don't get the lowercase
-                            # filter applied by the standard &
-                            # language-specific analyzers, so we need to do
-                            # that ourselves through a custom normalizer for
-                            # exact matches to work in a case-insensitive way.
-                            'raw': {
-                                'type': 'keyword',
-                                'normalizer': 'lowercase_keyword_normalizer',
-                            }
-                        },
+                        'fields': cls.raw_field_definition()
                     },
                     'persona': {
                         'type': 'object',
@@ -217,7 +202,10 @@ class AddonIndexer(BaseSearchIndexer):
         # Add language-specific analyzers for localized fields that are
         # analyzed/indexed.
         cls.attach_language_specific_analyzers(
-            mapping, ('name', 'description', 'summary'))
+            mapping, ('description', 'summary'))
+
+        cls.attach_language_specific_analyzers_with_raw_variant(
+            mapping, ('name',))
 
         return mapping
 
@@ -369,21 +357,139 @@ class AddonIndexer(BaseSearchIndexer):
         # Handle localized fields.
         # First, deal with the 3 fields that need everything:
         for field in ('description', 'name', 'summary'):
-            data.update(cls.extract_field_raw_translations(obj, field))
-            data.update(cls.extract_field_search_translations(obj, field))
+            data.update(cls.extract_field_api_translations(obj, field))
+            data.update(cls.extract_field_search_translation(
+                obj, field, obj.default_locale))
             data.update(cls.extract_field_analyzed_translations(obj, field))
 
         # Then add fields that only need to be returned to the API without
         # contributing to search relevancy.
         for field in ('developer_comments', 'homepage', 'support_email',
                       'support_url'):
-            data.update(cls.extract_field_raw_translations(obj, field))
+            data.update(cls.extract_field_api_translations(obj, field))
         if obj.type != amo.ADDON_STATICTHEME:
             # Also do that for preview captions, which are set on each preview
             # object.
             attach_trans_dict(Preview, obj.current_previews)
             for i, preview in enumerate(obj.current_previews):
                 data['previews'][i].update(
-                    cls.extract_field_raw_translations(preview, 'caption'))
+                    cls.extract_field_api_translations(preview, 'caption'))
 
         return data
+
+
+# addons index settings.
+INDEX_SETTINGS = {
+    'analysis': {
+        'analyzer': {
+            'standardPlusWordDelimiter': {
+                # This analyzer tries to split the text into words by using
+                # various methods. It also lowercases them and make sure each
+                # token is only returned once.
+                # Only use for short things with extremely meaningful content
+                # like add-on name - it makes too many modifications to be
+                # useful for things like descriptions, for instance.
+                'tokenizer': 'standard',
+                'filter': [
+                    'standard', 'wordDelim', 'lowercase', 'stop', 'dict',
+                    'unique'
+                ]
+            }
+        },
+        'normalizer': {
+            'lowercase_keyword_normalizer': {
+                'type': 'custom',
+                'filter': ['lowercase'],
+            },
+        },
+        'filter': {
+            'wordDelim': {
+                # This filter is useful for add-on names that have multiple
+                # words sticked together in a way that is easy to recognize,
+                # like FooBar, which should be indexed as FooBar and Foo Bar.
+                # (preserve_original: True makes us index both the original
+                # and the split version.)
+                'type': 'word_delimiter',
+                'preserve_original': True
+            },
+            'dict': {
+                # This filter is also useful for add-on names that have
+                # multiple words sticked together, but without a pattern that
+                # we can automatically recognize. To deal with those, we use
+                # a small dictionary of common words. It allows us to index
+                # "awesometabpassword"  as "awesome tab password", helping
+                # users looking for "tab password" find that add-on.
+                'type': 'dictionary_decompounder',
+                'word_list': [
+                    'all', 'auto', 'ball', 'bar', 'block', 'blog', 'bookmark',
+                    'browser', 'bug', 'button', 'cat', 'chat', 'click', 'clip',
+                    'close', 'color', 'context', 'cookie', 'cool', 'css',
+                    'delete', 'dictionary', 'down', 'download', 'easy', 'edit',
+                    'fill', 'fire', 'firefox', 'fix', 'flag', 'flash', 'fly',
+                    'forecast', 'fox', 'foxy', 'google', 'grab', 'grease',
+                    'html', 'http', 'image', 'input', 'inspect', 'inspector',
+                    'iris', 'js', 'key', 'keys', 'lang', 'link', 'mail',
+                    'manager', 'map', 'mega', 'menu', 'menus', 'monkey',
+                    'name', 'net', 'new', 'open', 'password', 'persona',
+                    'privacy', 'query', 'screen', 'scroll', 'search', 'secure',
+                    'select', 'smart', 'so', 'spring', 'status', 'style',
+                    'super', 'sync', 'tab', 'text', 'think', 'this', 'time',
+                    'title', 'translate', 'tree', 'undo', 'up', 'upload',
+                    'url', 'user', 'video', 'window', 'with', 'word', 'zilla',
+                ]
+            }
+        }
+    }
+}
+
+
+def create_new_index(index_name=None):
+    """
+    Create a new index for addons in ES.
+
+    Intended to be used by reindexation (and tests), generally a bad idea to
+    call manually.
+    """
+    if index_name is None:
+        index_name = AddonIndexer.get_index_alias()
+
+    index_settings = copy.deepcopy(INDEX_SETTINGS)
+
+    if waffle.switch_is_active('es-use-classic-similarity'):
+        # http://bit.ly/es5-similarity-module-docs
+        index_settings['similarity'] = {
+            'default': {
+                'type': 'classic'
+            }
+        }
+
+    config = {
+        'mappings': get_mappings(),
+        'settings': {
+            # create_index will add its own index settings like number of
+            # shards and replicas.
+            'index': index_settings
+        },
+    }
+    create_index(index_name, config)
+
+
+def get_mappings():
+    """
+    Return a dict with all addons-related ES mappings.
+    """
+    indexers = (AddonIndexer,)
+    return {idxr.get_doctype_name(): idxr.get_mapping() for idxr in indexers}
+
+
+def reindex_tasks_group(index_name):
+    """
+    Return the group of tasks to execute for a full reindex of addons on the
+    index called `index_name` (which is not an alias but the real index name).
+    """
+    from olympia.addons.models import Addon
+    from olympia.addons.tasks import index_addons
+
+    ids = Addon.unfiltered.values_list('id', flat=True).order_by('id')
+    chunk_size = 150
+    return create_chunked_tasks_signatures(index_addons, list(ids), chunk_size)

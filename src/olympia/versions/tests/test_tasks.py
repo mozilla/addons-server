@@ -8,6 +8,7 @@ import mock
 import pytest
 
 from olympia import amo
+from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
 from olympia.versions.models import VersionPreview
 from olympia.versions.tasks import generate_static_theme_preview
@@ -69,8 +70,12 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
         ('transparent.gif', 1, 'xMaxYMin meet', 'image/gif', True),
         ('weta.png', 200, 'xMaxYMin meet', 'image/png', True),
         ('wetalong.png', 200, 'xMaxYMin slice', 'image/png', True),
+        ('weta_theme_full.svg', 92,  # different value for 680 and 760/720
+         ('xMaxYMin slice', 'xMaxYMin meet', 'xMaxYMin meet'),
+         'image/svg+xml', True),
+        ('transparent.svg', 1, 'xMaxYMin meet', 'image/svg+xml', True),
         ('missing_file.png', 0, 'xMaxYMin meet', '', False),
-        ('empty-no-ext', 10, 'xMaxYMin meet', 'image/png', True),
+        ('empty-no-ext', 0, 'xMaxYMin meet', '', False),
         (None, 0, 'xMaxYMin meet', '', False),  # i.e. no headerURL entry
     )
 )
@@ -89,13 +94,16 @@ def test_generate_static_theme_preview(
             "toolbar_field": "#cc29cc",
             "toolbar_field_text": "#17747d",
             "tab_line": "#00db12",
+            "tab_selected": "#40df39",
         }
     }
     if header_url is not None:
         theme_manifest['images']['headerURL'] = header_url
     addon = addon_factory()
-    generate_static_theme_preview(
-        theme_manifest, HEADER_ROOT, addon.current_version.pk)
+    destination = addon.current_version.all_files[0].current_file_path
+    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
+    copy_stored_file(zip_file, destination)
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 3
@@ -137,14 +145,18 @@ def test_generate_static_theme_preview(
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
     colors = ['class="%s" fill="%s"' % (key, color)
               for (key, color) in theme_manifest['colors'].items()]
+    preserve_aspect_ratio = (
+        (preserve_aspect_ratio, ) * 3
+        if not isinstance(preserve_aspect_ratio, tuple)
+        else preserve_aspect_ratio)
     check_render(header_svg, header_url, header_height,
-                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 preserve_aspect_ratio[0], mimetype, valid_img, colors,
                  680, 92, 680)
     check_render(list_svg, header_url, header_height,
-                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 preserve_aspect_ratio[1], mimetype, valid_img, colors,
                  760, 92, 760)
     check_render(single_svg, header_url, header_height,
-                 preserve_aspect_ratio, mimetype, valid_img, colors,
+                 preserve_aspect_ratio[2], mimetype, valid_img, colors,
                  720, 92, 720)
 
     index_addons_mock.assert_called_with([addon.id])
@@ -170,8 +182,10 @@ def test_generate_static_theme_preview_with_chrome_properties(
         }
     }
     addon = addon_factory()
-    generate_static_theme_preview(
-        theme_manifest, HEADER_ROOT, addon.current_version.pk)
+    destination = addon.current_version.all_files[0].current_file_path
+    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
+    copy_stored_file(zip_file, destination)
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 3
@@ -230,7 +244,7 @@ def test_generate_static_theme_preview_with_chrome_properties(
                  'xMaxYMin meet', 'image/gif', True, colors, 720, 92, 720)
 
 
-def check_render_additional(svg_content, inner_svg_width):
+def check_render_additional(svg_content, inner_svg_width, colors):
     # check additional background pattern is correct
     image_width = 270
     image_height = 200
@@ -253,6 +267,9 @@ def check_render_additional(svg_content, inner_svg_width):
         header_blob = header_file.read()
     base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
+    # check each of our colors was included
+    for color in colors:
+        assert color in svg_content
 
 
 @pytest.mark.django_db
@@ -271,8 +288,8 @@ def test_generate_preview_with_additional_backgrounds(
             "additional_backgrounds": ["weta_for_tiling.png"],
         },
         "colors": {
-            "accentcolor": "#918e43",
-            "textcolor": "#3deb60",
+            "textcolor": "#123456",
+            # Just textcolor, to test the template defaults and fallbacks.
         },
         "properties": {
             "additional_backgrounds_alignment": ["top"],
@@ -280,8 +297,12 @@ def test_generate_preview_with_additional_backgrounds(
         },
     }
     addon = addon_factory()
-    generate_static_theme_preview(
-        theme_manifest, HEADER_ROOT, addon.current_version.pk)
+    destination = addon.current_version.all_files[0].current_file_path
+    zip_file = os.path.join(
+        settings.ROOT,
+        'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
+    copy_stored_file(zip_file, destination)
+    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
 
     assert resize_image_mock.call_count == 3
     assert write_svg_to_png_mock.call_count == 3
@@ -317,11 +338,24 @@ def test_generate_preview_with_additional_backgrounds(
         resize_image_mock.call_args_list[2][0],
         pngcrush_image_mock.call_args_list[2][0])
 
+    # These defaults are mostly defined in the xml template
+    default_colors = {
+        "accentcolor": "rgba(229,230,232,1)",  # amo.THEME_ACCENTCOLOR_DEFAULT
+        "textcolor": "#123456",     # the only one defined in the 'manifest'.
+        "toolbar_text": "#123456",  # should default to the value of textcolor
+        "toolbar_field": "rgba(255,255,255,1)",
+        "toolbar_field_text": "",
+        "tab_line": "rgba(0,0,0,0.25)",
+        "tab_selected": "rgba(0,0,0,0)",
+    }
+    colors = ['class="%s" fill="%s"' % (key, color)
+              for (key, color) in default_colors.items()]
+
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render_additional(header_svg, 680)
-    check_render_additional(list_svg, 760)
-    check_render_additional(single_svg, 720)
+    check_render_additional(header_svg, 680, colors)
+    check_render_additional(list_svg, 760, colors)
+    check_render_additional(single_svg, 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])

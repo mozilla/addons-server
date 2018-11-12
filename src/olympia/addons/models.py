@@ -40,7 +40,7 @@ from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
-    send_mail, slugify, sorted_groupby, timer, to_language)
+    send_mail, slugify, sorted_groupby, timer, to_language, StopWatch)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
@@ -439,8 +439,48 @@ class Addon(OnChangeMixin, ModelBase):
     def is_soft_deleteable(self):
         return self.status or Version.unfiltered.filter(addon=self).exists()
 
+    def _prepare_deletion_email(self, msg, reason):
+        user = core.get_user()
+        # Don't localize email to admins, use 'en-US' always.
+        with translation.override(settings.LANGUAGE_CODE):
+            # The types are lazy translated in apps/constants/base.py.
+            atype = amo.ADDON_TYPE.get(self.type, 'unknown').upper()
+        context = {
+            'atype': atype,
+            'authors': [u.email for u in self.authors.all()],
+            'adu': self.average_daily_users,
+            'guid': self.guid,
+            'id': self.id,
+            'msg': msg,
+            'reason': reason,
+            'name': self.name,
+            'slug': self.slug,
+            'total_downloads': self.total_downloads,
+            'url': jinja_helpers.absolutify(self.get_url_path()),
+            'user_str': ("%s, %s (%s)" % (user.display_name or
+                                          user.username, user.email,
+                                          user.id) if user else "Unknown"),
+        }
+
+        email_msg = u"""
+        The following %(atype)s was deleted.
+        %(atype)s: %(name)s
+        URL: %(url)s
+        DELETED BY: %(user_str)s
+        ID: %(id)s
+        GUID: %(guid)s
+        AUTHORS: %(authors)s
+        TOTAL DOWNLOADS: %(total_downloads)s
+        AVERAGE DAILY USERS: %(adu)s
+        NOTES: %(msg)s
+        REASON GIVEN BY USER FOR DELETION: %(reason)s
+        """ % context
+        log.debug('Sending delete email for %(atype)s %(id)s' % context)
+        subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
+        return subject, email_msg
+
     @transaction.atomic
-    def delete(self, msg='', reason=''):
+    def delete(self, msg='', reason='', send_delete_email=True):
         # To avoid a circular import
         from . import tasks
         from olympia.versions import tasks as version_tasks
@@ -469,46 +509,9 @@ class Addon(OnChangeMixin, ModelBase):
 
             log.debug('Deleting add-on: %s' % self.id)
 
-            to = [settings.FLIGTAR]
-            user = core.get_user()
-
-            # Don't localize email to admins, use 'en-US' always.
-            with translation.override(settings.LANGUAGE_CODE):
-                # The types are lazy translated in apps/constants/base.py.
-                atype = amo.ADDON_TYPE.get(self.type, 'unknown').upper()
-            context = {
-                'atype': atype,
-                'authors': [u.email for u in self.authors.all()],
-                'adu': self.average_daily_users,
-                'guid': self.guid,
-                'id': self.id,
-                'msg': msg,
-                'reason': reason,
-                'name': self.name,
-                'slug': self.slug,
-                'total_downloads': self.total_downloads,
-                'url': jinja_helpers.absolutify(self.get_url_path()),
-                'user_str': ("%s, %s (%s)" % (user.display_name or
-                                              user.username, user.email,
-                                              user.id) if user else "Unknown"),
-            }
-
-            email_msg = u"""
-            The following %(atype)s was deleted.
-            %(atype)s: %(name)s
-            URL: %(url)s
-            DELETED BY: %(user_str)s
-            ID: %(id)s
-            GUID: %(guid)s
-            AUTHORS: %(authors)s
-            TOTAL DOWNLOADS: %(total_downloads)s
-            AVERAGE DAILY USERS: %(adu)s
-            NOTES: %(msg)s
-            REASON GIVEN BY USER FOR DELETION: %(reason)s
-            """ % context
-            log.debug('Sending delete email for %(atype)s %(id)s' % context)
-            subject = 'Deleting %(atype)s %(slug)s (%(id)d)' % context
-
+            if send_delete_email:
+                email_to = [settings.FLIGTAR]
+                subject, email_msg = self._prepare_deletion_email(msg, reason)
             # If the add-on was disabled by Mozilla, add the guid to
             #  DeniedGuids to prevent resubmission after deletion.
             if self.status == amo.STATUS_DISABLED:
@@ -529,7 +532,8 @@ class Addon(OnChangeMixin, ModelBase):
                         _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
 
-            send_mail(subject, email_msg, recipient_list=to)
+            if send_delete_email:
+                send_mail(subject, email_msg, recipient_list=email_to)
         else:
             # Real deletion path.
             super(Addon, self).delete()
@@ -543,6 +547,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @classmethod
     def initialize_addon_from_upload(cls, data, upload, channel, user):
+        timer = StopWatch('addons.models.initialize_addon_from_upload.')
+        timer.start()
         fields = [field.name for field in cls._meta.get_fields()]
         guid = data.get('guid')
         old_guid_addon = None
@@ -561,13 +567,17 @@ class Addon(OnChangeMixin, ModelBase):
 
         if generate_guid:
             data['guid'] = guid = generate_addon_guid()
+        timer.log_interval('1.guids')
 
         data = cls.resolve_webext_translations(data, upload)
+        timer.log_interval('2.resolve_translations')
 
         if channel == amo.RELEASE_CHANNEL_UNLISTED:
             data['slug'] = get_random_slug()
+        timer.log_interval('3.get_random_slug')
 
         addon = Addon(**{k: v for k, v in data.items() if k in fields})
+        timer.log_interval('4.instance_init')
 
         addon.status = amo.STATUS_NULL
         locale_is_set = (addon.default_locale and
@@ -575,8 +585,10 @@ class Addon(OnChangeMixin, ModelBase):
                          data.get('default_locale') == addon.default_locale)
         if not locale_is_set:
             addon.default_locale = to_language(trans_real.get_language())
+        timer.log_interval('5.default_locale')
 
         addon.save()
+        timer.log_interval('6.addon_save')
 
         if old_guid_addon:
             old_guid_addon.update(guid='guid-reused-by-pk-{}'.format(addon.pk))
@@ -584,6 +596,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         if user:
             AddonUser(addon=addon, user=user).save()
+        timer.log_interval('7.end')
         return addon
 
     @classmethod

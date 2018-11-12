@@ -27,7 +27,7 @@ data-featured-collection-url="{{ url('zadmin.featured_collection') }}"
         data-collection="{{ collection_id }}">
       <div class="current-collection js-hidden"></div>
       <input type="text" class="placeholder collection-ac{% if collection_id %} js-hidden{% endif %}"
-             placeholder="Enter collection ID or name">
+             placeholder="Enter collection ID or slug">
       {{ form.collection }}
       {{ form.collection.errors }}
     </td>

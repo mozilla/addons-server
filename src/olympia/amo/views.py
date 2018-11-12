@@ -48,7 +48,11 @@ def robots(request):
     if _service or not settings.ENGAGE_ROBOTS:
         template = "User-agent: *\nDisallow: /"
     else:
-        template = render(request, 'amo/robots.html', {'apps': amo.APP_USAGE})
+        ctx = {
+            'apps': amo.APP_USAGE,
+            'mozilla_user_id': settings.TASK_USER_ID,
+        }
+        template = render(request, 'amo/robots.html', ctx)
 
     return HttpResponse(template, content_type="text/plain")
 

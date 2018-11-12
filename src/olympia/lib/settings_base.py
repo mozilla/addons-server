@@ -1215,7 +1215,7 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.submit_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file': {'queue': 'devhub'},
     'olympia.devhub.tasks.validate_file_path': {'queue': 'devhub'},
-    'olympia.lib.akismet.tasks.comment_check': {'queue': 'devhub'},
+    'olympia.lib.akismet.tasks.akismet_comment_check': {'queue': 'devhub'},
 
     # Activity (goes to devhub queue).
     'olympia.activity.tasks.process_email': {'queue': 'devhub'},
@@ -1252,11 +1252,9 @@ CELERY_TASK_ROUTES = {
     'olympia.api.tasks.process_webhook': {'queue': 'api'},
 
     # Crons
-    'olympia.addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
-    'olympia.addons.cron._update_addon_download_totals': {'queue': 'cron'},
-    'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
-    'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
-    'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_download_totals': {'queue': 'cron'},
+    'olympia.addons.tasks.update_appsupport': {'queue': 'cron'},
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
@@ -1324,17 +1322,6 @@ CELERY_TASK_ROUTES = {
     'olympia.devhub.tasks.pngcrush_existing_theme': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_preview': {'queue': 'addons'},
     'olympia.devhub.tasks.pngcrush_existing_icons': {'queue': 'addons'},
-}
-
-
-# This is just a place to store these values, you apply them in your
-# task decorator, for example:
-#   @task(time_limit=CELERY_TIME_LIMITS['lib...']['hard'])
-# Otherwise your task will use the default settings.
-CELERY_TIME_LIMITS = {
-    # The reindex management command can take up to 3 hours to run.
-    'olympia.lib.es.management.commands.reindex': {
-        'soft': 10800, 'hard': 14400},
 }
 
 # When testing, we always want tasks to raise exceptions. Good for sanity.
@@ -1483,6 +1470,7 @@ CSP_BASE_URI = (
 CSP_CONNECT_SRC = (
     "'self'",
     'https://sentry.prod.mozaws.net',
+    PROD_CDN_HOST,
 )
 CSP_FORM_ACTION = (
     "'self'",
@@ -1786,6 +1774,7 @@ DRF_API_GATES = {
         'addons-locale_disambiguation-shim',
         'del-addons-created-field',
         'del-accounts-fxa-edit-email-url',
+        'del-version-license-is-custom',
     ),
     'v4': (
         'l10n_flat_input_output',
@@ -1899,11 +1888,9 @@ CRON_JOBS = {
     'update_addon_download_totals': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
     'update_addon_appsupport': 'olympia.addons.cron',
-    'update_all_appsupport': 'olympia.addons.cron',
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
     'deliver_hotness': 'olympia.addons.cron',
-    'reindex_addons': 'olympia.addons.cron',
     'cleanup_image_files': 'olympia.addons.cron',
 
     'gc': 'olympia.amo.cron',

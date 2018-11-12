@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2016-10-17 14:08+0000\n"
-"Last-Translator: Googleโครม! <tamisun32646@gmail.com>\n"
+"PO-Revision-Date: 2018-10-28 07:01+0000\n"
+"Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -804,7 +804,7 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
-msgstr ""
+msgstr "จำนวนคำวิจารณ์"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
@@ -873,7 +873,7 @@ msgstr[0] "{0} คำเตือน"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
+msgstr[0] "{0} ประกาศ"
 
 msgid "Validation task could not complete or completed with errors"
 msgstr "งานการตรวจสอบไม่สามารถเสร็จสิ้นได้เพราะมีข้อผิดพลาด"

@@ -19,9 +19,10 @@ from olympia.versions.utils import (
 )
 def test_write_svg_to_png(filename):
     # If you want to regenerate these, e.g. the svg template has significantly
-    # changed, easiest way is to patch write_svg_to_png to not delete the
-    # temporary file (delete:False in temp_args) and copy the svg out of /tmp.
-    # Output png files are in user-media/version-previews/full and /thumbs.
+    # changed, you can grab the svg file from shared_storage/tmp - when
+    # settings.DEBUG==True it's not deleted afterwards.
+    # Output png files are in shared_storage/uploads/version-previews/full
+    # and /thumbs.
     out = tempfile.mktemp()
     svg_xml = os.path.join(
         settings.ROOT,
@@ -60,7 +61,7 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
     assert AdditionalBackground.split_alignment(alignment) == alignments_tuple
 
 
-@mock.patch('olympia.versions.utils.encode_header_image')
+@mock.patch('olympia.versions.utils.encode_header')
 @pytest.mark.parametrize(
     'alignment, tiling, image_width, image_height, '  # inputs
     'pattern_width, pattern_height, pattern_x, pattern_y',  # results
@@ -105,14 +106,12 @@ def test_additional_background_split_alignment(alignment, alignments_tuple):
     )
 )
 def test_additional_background(
-        encode_header_image_mock, alignment, tiling, image_width, image_height,
+        encode_header_mock, alignment, tiling, image_width, image_height,
         pattern_width, pattern_height, pattern_x, pattern_y):
-    encode_header_image_mock.return_value = (
+    encode_header_mock.return_value = (
         'foobaa', image_width, image_height)
     path = 'empty.png'
-    header_root = os.path.join(
-        settings.ROOT, 'src/olympia/versions/tests/static_themes/')
-    background = AdditionalBackground(path, alignment, tiling, header_root)
+    background = AdditionalBackground(path, alignment, tiling, None)
     assert background.src == 'foobaa'
     assert background.width == image_width
     assert background.height == image_height

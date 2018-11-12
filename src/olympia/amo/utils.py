@@ -452,7 +452,7 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
             rv.append(' ')
     new = ''.join(rv).strip()
     if not spaces:
-        new = re.sub('[-\s]+', delimiter, new)
+        new = re.sub(r'[-\s]+', delimiter, new)
     return new.lower() if lower else new
 
 
@@ -994,3 +994,18 @@ class AMOJSONEncoder(JSONEncoder):
         if isinstance(obj, Translation):
             return force_text(obj)
         return super(AMOJSONEncoder, self).default(obj)
+
+
+class StopWatch():
+    def __init__(self, label_prefix=''):
+        self.prefix = label_prefix
+
+    def start(self):
+        self._timestamp = datetime.datetime.utcnow()
+
+    def log_interval(self, label):
+        now = datetime.datetime.utcnow()
+        statsd.timing(self.prefix + label, now - self._timestamp)
+        log.debug(
+            "%s: %s", self.prefix + label, now - self._timestamp)
+        self._timestamp = now

@@ -80,7 +80,7 @@ class ActivityEmailParser(object):
         followed by headers like "From: nobody@mozilla.org" and
         strips that part out.
         """
-        email_header_re = re.compile('From: [^@]+@[^@]+\.[^@]+')
+        email_header_re = re.compile(r'From: [^@]+@[^@]+\.[^@]+')
         split_email = email_header_re.split(email)
         if split_email[0].startswith('From: '):
             # In case, it's a bottom reply, return everything.

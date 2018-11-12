@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-09-17 16:00+0000\n"
+"PO-Revision-Date: 2018-11-05 17:11+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -24,7 +24,7 @@ msgid "There was a problem contacting the server."
 msgstr "సర్వర్ ని సంప్రదించడంలో సమస్య ఉంది."
 
 msgid "Select a file..."
-msgstr "ఫైలు ఎంచుకోండి..."
+msgstr "ఫైలును ఎంచుకోండి..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "మీ పొడిగింతను .zip, .xpi, .crx, .jar లేదా .xml తో ముగించాలి"
@@ -218,10 +218,9 @@ msgid_plural "{0} users"
 msgstr[0] "{0} వాడుకరి"
 msgstr[1] "{0} వాడుకరులు"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} పొడిగింతలు"
+msgstr[0] "{0} పొడిగింత"
 msgstr[1] "{0} పొడిగింతలు"
 
 msgid "{0} collection"
@@ -234,16 +233,14 @@ msgid_plural "{0} reviews"
 msgstr[0] "{0} సమీక్ష"
 msgstr[1] "{0} సమీక్షలు"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} అమ్మకాలు"
+msgstr[0] "{0} అమ్మకం"
 msgstr[1] "{0} అమ్మకాలు"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} వాపసులు"
+msgstr[0] "{0} వాపసు"
 msgstr[1] "{0} వాపసులు"
 
 msgid "{0} install"
@@ -763,18 +760,16 @@ msgid "Loading..."
 msgstr "లోడవుతున్నది..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
-msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
+msgstr[0] "<b>{0}</b> అక్షరం"
+msgstr[1] "<b>{0}</b> అక్షరాలు"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది."
-msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి."
+msgstr[0] "<b>{0}</b> అక్షరం మిగిలి ఉంది"
+msgstr[1] "<b>{0}</b> అక్షరాలు మిగిలి ఉన్నాయి"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "వెబ్‌సైటు నిర్వహణ స్థితిలో ఉన్నప్పుడు ఈ సౌలభ్యం తాత్కాలికంగా నిలిపివేయబడుతుంది. దయచేసి కొంతసేపటి తర్వాత మళ్లీ చూడండి."

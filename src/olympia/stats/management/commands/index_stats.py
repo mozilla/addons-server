@@ -1,13 +1,12 @@
-import random
-
-from datetime import date, timedelta
+from datetime import timedelta
 
 from django.core.management.base import BaseCommand
 from django.db.models import Max, Min
 
-import olympia.core.logger
+from celery import group
 
-from olympia.amo.celery import create_subtasks
+import olympia.core.logger
+from olympia.amo.celery import create_chunked_tasks_signatures
 from olympia.stats.models import (
     DownloadCount, ThemeUserCount, UpdateCount)
 from olympia.stats.search import CHUNK_SIZE
@@ -18,7 +17,7 @@ from olympia.stats.tasks import (
 log = olympia.core.logger.getLogger('z.stats')
 
 # Number of days of stats to process in one chunk if we're indexing everything.
-STEP = 5
+STEP = 6
 
 HELP = """\
 Start tasks to index stats. Without constraints, everything will be
@@ -35,7 +34,11 @@ To limit the  date range:
 """
 
 
-def index_stats(index, addons=None, dates=None):
+def gather_index_stats_tasks(index, addons=None, dates=None):
+    """
+    Return the list of task groups to execute to index statistics for the given
+    index/dates/addons.
+    """
     queries = [
         (UpdateCount.objects, index_update_counts,
             {'date': 'date'}),
@@ -44,6 +47,8 @@ def index_stats(index, addons=None, dates=None):
         (ThemeUserCount.objects, index_theme_user_counts,
             {'date': 'date'})
     ]
+
+    jobs = []
 
     for qs, task, fields in queries:
         date_field = fields['date']
@@ -76,24 +81,20 @@ def index_stats(index, addons=None, dates=None):
                 continue
 
             num_days = (limits['max'] - limits['min']).days
-            today = date.today()
             for start in range(0, num_days, STEP):
-                stop = start + STEP
-                date_range = (today - timedelta(days=stop),
-                              today - timedelta(days=start))
-
+                stop = start + STEP - 1
+                date_range = (limits['max'] - timedelta(days=stop),
+                              limits['max'] - timedelta(days=start))
                 data = list(qs.filter(**{
                     '%s__range' % date_field: date_range
                 }))
-                create_subtasks(
-                    task, data, CHUNK_SIZE,
-                    countdown=random.randint(1, 6),
-                    task_args=(index,))
+                if data:
+                    jobs.append(create_chunked_tasks_signatures(
+                        task, data, CHUNK_SIZE, task_args=(index,)))
         else:
-            create_subtasks(
-                task, list(qs), CHUNK_SIZE,
-                countdown=random.randint(1, 6),
-                task_args=(index,))
+            jobs.append(create_chunked_tasks_signatures(
+                task, list(qs), CHUNK_SIZE, task_args=(index,)))
+    return jobs
 
 
 class Command(BaseCommand):
@@ -118,4 +119,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         addons, dates, index = kw['addons'], kw['date'], kw['index']
-        index_stats(index=index, addons=addons, dates=dates)
+        workflow = group(
+            gather_index_stats_tasks(index=index, addons=addons, dates=dates)
+        )
+        workflow.apply_async()

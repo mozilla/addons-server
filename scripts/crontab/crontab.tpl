@@ -32,19 +32,19 @@ HOME=/tmp
 45 7 * * * %(django)s dump_apps
 0 8 * * * %(django)s update_product_details
 
-# Once per day after metrics import is done
-00 9 * * * %(z_cron)s update_addon_download_totals
-05 9 * * * %(z_cron)s weekly_downloads
-55 9 * * * %(z_cron)s update_global_totals
-00 10 * * * %(z_cron)s update_addon_average_daily_users
-30 10 * * * %(z_cron)s index_latest_stats
-
 # Update ADI metrics from S3.
 # Once per day after 0800 UTC
-00 8 * * * %(django)s update_counts_from_file
-30 8 * * * %(django)s download_counts_from_file
-45 8 * * * %(django)s theme_update_counts_from_file
-00 9 * * * %(django)s update_theme_popularity_movers
+30 9 * * * %(django)s update_counts_from_file
+00 10 * * * %(django)s download_counts_from_file
+15 10 * * * %(django)s theme_update_counts_from_file
+30 10 * * * %(django)s update_theme_popularity_movers
+
+# Once per day after metrics import is done
+30 10 * * * %(z_cron)s update_addon_download_totals
+35 10 * * * %(z_cron)s weekly_downloads
+25 11 * * * %(z_cron)s update_global_totals
+30 11 * * * %(z_cron)s update_addon_average_daily_users
+00 12 * * * %(z_cron)s index_latest_stats
 
 # Do not put crons below this line
 

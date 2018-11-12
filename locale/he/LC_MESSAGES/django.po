@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 16:01+0000\n"
+"PO-Revision-Date: 2018-11-07 16:51+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2420,7 +2420,7 @@ msgid "You have not uploaded a source file."
 msgstr "לא העלית קובץ מקור."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "הועלה קובץ מקור אבל ציינת שאין צורך במקור."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "לא יכולות להיות למעלה מ־3 תוספות נדרשות."
@@ -3385,7 +3385,7 @@ msgid "Do You Need to Submit Source Code?"
 msgstr "האם עליך להגיש קוד מקור?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr ""
+msgstr "עליך לספק קוד מקור. אם לא יסופק כזה, יתכן שהתוספת שלך תוסר מהאתר!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3414,13 +3414,13 @@ msgstr "ההגשה שלך דורשת קוד מקור."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr ""
+msgstr "על קוד המקור לעמוד ב<a %(a_attrs)s>דרישות המדיניות</a>, שכוללות:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
-msgstr ""
+msgstr "הנחיות בנייה בצעד אחר צעד ליצירת עותק מדויק של קוד התוספת."
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "סקריפט בנייה שמפעיל את כל השלבים הטכניים הנדרשים."
 
 msgid "Operating system and build environment requirements."
 msgstr "דרישות סביבת הידור קוד ומערכת הפעלה."
@@ -4296,7 +4296,7 @@ msgstr "חסימת פרסומות {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr ""
+msgstr "בידוד הזהות שלך בפייסבוק ל”מגירה” נפרדת שמקשה על פייסבוק לאתר את הפעולות שלך ברחבי האינטרנט."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4498,7 +4498,7 @@ msgstr "הורדת סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "האם הדף שחיפשת אינו זמין? ניתן לחפש גרסת ארכיון/עבר."
 
 #. editorial content for the discovery pane.
 #, fuzzy

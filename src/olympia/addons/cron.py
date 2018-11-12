@@ -16,8 +16,11 @@ from celery import group
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.models import Addon, AppSupport, FrozenAddon
-from olympia.amo.celery import task
+from olympia.addons.models import Addon, FrozenAddon
+from olympia.addons.tasks import (
+    update_addon_average_daily_users as _update_addon_average_daily_users,
+    update_addon_download_totals as _update_addon_download_totals,
+    update_appsupport)
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked, walkfiles
 from olympia.files.models import File
@@ -50,26 +53,6 @@ def update_addon_average_daily_users():
     group(ts).apply_async()
 
 
-@task
-def _update_addon_average_daily_users(data, **kw):
-    task_log.info("[%s] Updating add-ons ADU totals." % (len(data)))
-
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
-    for pk, count in data:
-        try:
-            addon = Addon.objects.get(pk=pk)
-        except Addon.DoesNotExist:
-            # The processing input comes from metrics which might be out of
-            # date in regards to currently existing add-ons
-            m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
-            task_log.debug(m % (count, pk))
-            continue
-
-        addon.update(average_daily_users=int(float(count)))
-
-
 def update_addon_download_totals():
     """Update add-on total and average downloads."""
     if not waffle.switch_is_active('local-statistics-processing'):
@@ -84,30 +67,6 @@ def update_addon_download_totals():
     ts = [_update_addon_download_totals.subtask(args=[chunk])
           for chunk in chunked(qs, 250)]
     group(ts).apply_async()
-
-
-@task
-def _update_addon_download_totals(data, **kw):
-    task_log.info('[%s] Updating add-ons download+average totals.' %
-                  (len(data)))
-
-    if not waffle.switch_is_active('local-statistics-processing'):
-        return False
-
-    for pk, sum_download_counts in data:
-        try:
-            addon = Addon.objects.get(pk=pk)
-            # Don't trigger a save unless we have to (the counts may not have
-            # changed)
-            if (sum_download_counts and
-                    addon.total_downloads != sum_download_counts):
-                addon.update(total_downloads=sum_download_counts)
-        except Addon.DoesNotExist:
-            # We exclude deleted add-ons in the cron, but an add-on could have
-            # been deleted by the time the task is processed.
-            m = ("Got new download totals (total=%s) but the add-on"
-                 "doesn't exist (%s)" % (sum_download_counts, pk))
-            task_log.debug(m)
 
 
 def _change_last_updated(next):
@@ -160,27 +119,9 @@ def update_addon_appsupport():
            .filter(newish, good).values_list('id', flat=True))
 
     task_log.info('Updating appsupport for %d new-ish addons.' % len(ids))
-    ts = [_update_appsupport.subtask(args=[chunk])
+    ts = [update_appsupport.subtask(args=[chunk])
           for chunk in chunked(ids, 20)]
     group(ts).apply_async()
-
-
-def update_all_appsupport():
-    from .tasks import update_appsupport
-    ids = sorted(set(AppSupport.objects.values_list('addon', flat=True)))
-    task_log.info('Updating appsupport for %s addons.' % len(ids))
-    for idx, chunk in enumerate(chunked(ids, 100)):
-        if idx % 10 == 0:
-            task_log.info('[%s/%s] Updating appsupport.'
-                          % (idx * 100, len(ids)))
-        update_appsupport(chunk)
-
-
-@task
-def _update_appsupport(ids, **kw):
-    from .tasks import update_appsupport
-    task_log.info('Updating appsupport for %d of new-ish addons.' % len(ids))
-    update_appsupport(ids)
 
 
 def hide_disabled_files():
@@ -251,16 +192,6 @@ def deliver_hotness():
                 addon.update(hotness=0)
         # Let the database catch its breath.
         time.sleep(10)
-
-
-def reindex_addons(index=None, addon_type=None):
-    from . import tasks
-    ids = Addon.unfiltered.values_list('id', flat=True)
-    if addon_type:
-        ids = ids.filter(type=addon_type)
-    ts = [tasks.index_addons.subtask(args=[chunk], kwargs=dict(index=index))
-          for chunk in chunked(sorted(list(ids)), 150)]
-    group(ts).apply_async()
 
 
 def cleanup_image_files():

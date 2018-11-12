@@ -2,13 +2,14 @@
 import copy
 
 from django.test.client import RequestFactory
+from django.utils import translation
 
 from elasticsearch_dsl import Search
 from mock import Mock, patch
 from rest_framework import serializers
 
 from olympia import amo
-from olympia.amo.tests import TestCase, create_switch
+from olympia.amo.tests import TestCase
 from olympia.constants.categories import CATEGORIES
 from olympia.search.filters import (
     ReviewedContentFilter, SearchParameterFilter, SearchQueryFilter,
@@ -45,35 +46,44 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match_phrase': {
                 'name': {
-                    'query': 'tea pot', 'boost': 4, 'slop': 1
+                    'query': 'tea pot', 'boost': 8.0, 'slop': 1,
+                    '_name': 'MatchPhrase(name)',
                 }
             }
         }
         assert expected in should
 
         expected = {
-            'prefix': {'name': {'boost': 1.5, 'value': 'tea pot'}}
+            'prefix': {
+                'name': {
+                    'boost': 3.0, 'value': 'tea pot',
+                    '_name': 'Prefix(name)',
+                }
+            }
         }
         assert expected in should
 
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'query': 'tea pot', 'boost': 2.5,
+                    'query': 'tea pot', 'boost': 5.0,
                     'analyzer': 'english',
-                    'operator': 'and'
+                    'operator': 'and',
+                    '_name': 'Match(name_l10n_english)',
                 }
             }
         }
         assert expected in should
 
         expected = {
-            'match_phrase': {
-                'description_l10n_english': {
-                    'query': 'tea pot',
-                    'boost': 0.6,
-                    'analyzer': 'english',
-                }
+            'multi_match': {
+                '_name': (
+                    'MultiMatch(MatchPhrase(summary),'
+                    'MatchPhrase(summary_l10n_english))'),
+                'query': 'tea pot',
+                'type': 'phrase',
+                'fields': ['summary', 'summary_l10n_english'],
+                'boost': 3.0,
             }
         }
         assert expected in should
@@ -97,8 +107,8 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'blah',
-                    'fuzziness': 'AUTO',
+                    'boost': 4.0, 'prefix_length': 4, 'query': 'blah',
+                    'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
                 }
             }
         }
@@ -110,8 +120,8 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4, 'query': 'search terms',
-                    'fuzziness': 'AUTO',
+                    'boost': 4.0, 'prefix_length': 4, 'query': 'search terms',
+                    'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
                 }
             }
         }
@@ -128,9 +138,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 2, 'prefix_length': 4,
+                    'boost': 4.0, 'prefix_length': 4,
                     'query': 'this search query is too long.',
-                    'fuzziness': 'AUTO',
+                    'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
                 }
             }
         }
@@ -143,32 +153,35 @@ class TestQueryFilter(FilterTestsBase):
             should = do_test()
             assert expected in should
 
-    def test_webextension_boost(self):
-        create_switch('boost-webextensions-in-search')
-
-        # Repeat base test with the switch enabled.
-        qs = self._test_q()
-        functions = qs['query']['function_score']['functions']
-
-        assert len(functions) == 2
-        assert functions[1] == {
-            'weight': 2.0,  # WEBEXTENSIONS_WEIGHT,
-            'filter': {'bool': {'should': [
-                {'term': {'current_version.files.is_webextension': True}},
-                {'term': {
-                    'current_version.files.is_mozilla_signed_extension': True
-                }}
-            ]}}
-        }
-
     def test_q_exact(self):
         qs = self._filter(data={'q': 'Adblock Plus'})
+        should = qs['query']['function_score']['query']['bool']['should']
+
+        expected = {
+            'dis_max': {
+                'queries': [
+                    {'term': {'name.raw': u'adblock plus'}},
+                    {'term': {'name_l10n_english.raw': u'adblock plus'}},
+                ],
+                'boost': 100.0,
+                '_name': 'DisMax(Term(name.raw), Term(name_l10n_english.raw))'
+            }
+        }
+
+        assert expected in should
+
+        # In a language we don't have a language-specific analyzer for, it
+        # should fall back to the "name.raw" field that uses the default locale
+        # translation.
+        with translation.override('mn'):
+            qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
 
         expected = {
             'term': {
                 'name.raw': {
                     'boost': 100, 'value': u'adblock plus',
+                    '_name': 'Term(name.raw)'
                 }
             }
         }
@@ -593,8 +606,8 @@ class TestCombinedFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name_l10n_english': {
-                    'analyzer': 'english', 'boost': 2.5, 'query': u'test',
-                    'operator': 'and'
+                    'analyzer': 'english', 'boost': 5.0, 'query': u'test',
+                    'operator': 'and', '_name': 'Match(name_l10n_english)',
                 }
             }
         }

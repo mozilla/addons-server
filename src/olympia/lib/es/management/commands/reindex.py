@@ -10,21 +10,16 @@ from elasticsearch.exceptions import NotFoundError
 
 import olympia.core.logger
 
+from olympia.addons import indexers as addons_indexer
 from olympia.amo.celery import task
 from olympia.amo.search import get_es
 from olympia.lib.es.utils import (
     flag_reindexing_amo, is_reindexing_amo, timestamp_index,
     unflag_reindexing_amo)
-from olympia.search import indexers as search_indexers
 from olympia.stats import search as stats_search
 
 
 logger = olympia.core.logger.getLogger('z.elasticsearch')
-
-time_limits = settings.CELERY_TIME_LIMITS[
-    'olympia.lib.es.management.commands.reindex']
-
-
 ES = get_es()
 
 
@@ -37,10 +32,8 @@ def get_modules(with_stats=True):
     the value of settings.ES_INDEXES to hit test-specific aliases."""
     rval = {
         # The keys are the index alias names, the values the python modules.
-        # The 'default' in ES_INDEXES is confusingly named 'addons', but it
-        # contains all the main document types we search for in AMO: addons,
-        # and app compatibility.
-        settings.ES_INDEXES['default']: search_indexers,
+        # The 'default' in ES_INDEXES is actually named 'addons'
+        settings.ES_INDEXES['default']: addons_indexer,
     }
     if with_stats:
         rval[settings.ES_INDEXES['stats']] = stats_search
@@ -68,19 +61,6 @@ def create_new_index(alias, new_index):
     get_modules()[alias].create_new_index(new_index)
 
 
-@task(ignore_result=False, timeout=time_limits['hard'],
-      soft_timeout=time_limits['soft'])
-def index_data(alias, index):
-    logger.info('Reindexing {0}'.format(index))
-
-    try:
-        get_modules()[alias].reindex(index)
-    except Exception as exc:
-        index_data.retry(
-            args=(alias, index), exc=exc, max_retries=3)
-        raise
-
-
 @task(ignore_result=False)
 def flag_database(new_index, old_index, alias):
     """Flags the database to indicate that the reindexing has started."""
@@ -93,6 +73,14 @@ def unflag_database():
     """Unflag the database to indicate that the reindexing is over."""
     logger.info('Unflagging the database')
     unflag_reindexing_amo()
+
+
+def gather_index_data_tasks(alias, index):
+    """
+    Return a group of indexing tasks for that index.
+    """
+    logger.info('Returning reindexing group for {0}'.format(index))
+    return get_modules()[alias].reindex_tasks_group(index)
 
 
 _SUMMARY = """
@@ -209,26 +197,37 @@ class Command(BaseCommand):
             if ES.indices.exists(alias):
                 old_index = alias
 
-            # Flag the database.
-            workflow.append(
+            # Main chain for this alias: flag the database, then create the new
+            # index...
+            _chain = (
                 flag_database.si(new_index, old_index, alias) |
-                create_new_index.si(alias, new_index) |
-                index_data.si(alias, new_index)
+                create_new_index.si(alias, new_index)
             )
+            # ... Then start indexing data. gather_index_data_tasks() is a
+            # function returning a group of indexing tasks.
+            index_data_tasks = gather_index_data_tasks(alias, new_index)
+            if index_data_tasks.tasks:
+                _chain |= index_data_tasks
+
+            # Append that chain to the workflow we're going to execute.
+            workflow.append(_chain)
 
             # Adding new index to the alias.
             add_alias_action('add', new_index, alias)
 
+        # Group each alias chain so that they are executed in parallel if there
+        # is more than one alias to deal with.
         workflow = group(workflow)
 
-        # Alias the new index and remove the old aliases, if any.
+        # Chain the global group with a task that updates the aliases to point
+        # to the new indexes and remove the old aliases, if any.
         workflow |= update_aliases.si(alias_actions)
 
-        # Unflag the database - there's no need to duplicate the
-        # indexing anymore.
+        # Chain that with a task that unflags the database - there's no need to
+        # duplicate the indexing anymore.
         workflow |= unflag_database.si()
 
-        # Delete the old indexes, if any.
+        # Finish the chain by a task that deletes the old indexes, if any.
         if to_remove:
             workflow |= delete_indexes.si(to_remove)
 
@@ -239,6 +238,7 @@ class Command(BaseCommand):
 
         try:
             workflow.apply_async()
+
             if not getattr(settings, 'CELERY_ALWAYS_EAGER', False):
                 time.sleep(10)   # give celeryd some time to flag the DB
             while is_reindexing_amo():

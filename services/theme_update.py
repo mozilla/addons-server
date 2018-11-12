@@ -4,6 +4,8 @@ import re
 from time import time
 from wsgiref.handlers import format_date_time
 
+from six import text_type
+
 from olympia.constants import base
 
 from services.utils import (
@@ -13,6 +15,7 @@ from services.utils import (
 # This has to be imported after the settings (utils).
 from django_statsd.clients import statsd
 
+import olympia.core.logger
 
 # Configure the log.
 log_configure()
@@ -36,8 +39,8 @@ class ThemeUpdate(object):
 class MigratedUpdate(ThemeUpdate):
 
     def get_data(self):
-        if hasattr(self, 'row'):
-            return self.row
+        if hasattr(self, 'data'):
+            return self.data
 
         primary_key = (
             'getpersonas_id' if self.from_gp else 'lightweight_theme_id')
@@ -223,7 +226,14 @@ class LWThemeUpdate(ThemeUpdate):
         return '%s/%s%s' % (domain, self.data.get('locale', 'en-US'), url)
 
 
-url_re = re.compile('(?P<locale>.+)?/themes/update-check/(?P<id>\d+)$')
+url_re = re.compile(r'(?P<locale>.+)?/themes/update-check/(?P<id>\d+)$')
+
+
+def is_android_ua(user_agent):
+    return 'android' in text_type(user_agent).lower()
+
+
+update_log = olympia.core.logger.getLogger('z.addons')
 
 
 def application(environ, start_response):
@@ -248,9 +258,17 @@ def application(environ, start_response):
         try:
             query_string = environ.get('QUERY_STRING')
             update = MigratedUpdate(locale, id_, query_string)
-            if not update.is_migrated:
+            is_migrated = update.is_migrated
+            user_agent_string = environ.get('HTTP_USER_AGENT')
+            update_log.info(
+                "HTTP_USER_AGENT %s; is_migrated: %s, is_android_ua: %s",
+                user_agent_string, is_migrated,
+                is_android_ua(user_agent_string))
+            if not is_migrated:
                 update = LWThemeUpdate(locale, id_, query_string)
-            output = update.get_json()
+            elif is_android_ua(user_agent_string):
+                update = None
+            output = update.get_json() if update else None
             if not output:
                 start_response('404 Not Found', [])
                 return ['']

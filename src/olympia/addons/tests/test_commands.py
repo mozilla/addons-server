@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.forms import ValidationError
+from django.utils import translation
 
 import mock
 import pytest
@@ -659,3 +660,83 @@ class TestDisableLegacyAddons(TestCase):
             assert addon.current_version
             file_ = addon.versions.all()[0].all_files[0]
             assert file_.status == amo.STATUS_PUBLIC
+
+
+class TestRemoveAMOLinksInURLFields(TestCase):
+    domain = settings.DOMAIN
+    allowed_url = u'https://example.org'
+
+    def test_remove_links_in_homepages(self):
+        addons = [
+            addon_factory(homepage=u'%s' % self.domain),
+            addon_factory(homepage=u'https://%s/page.html' % self.domain),
+        ]
+
+        call_command('process_addons', task='remove_amo_links_in_url_fields')
+
+        for addon in addons:
+            addon.reload()
+            assert addon.homepage.localized_string == u''
+            assert addon.homepage.localized_string_clean == u''
+
+    def test_remove_links_in_support_urls(self):
+        addons = [
+            addon_factory(support_url=u'%s' % self.domain),
+            addon_factory(support_url=u'https://%s/page.html' % self.domain),
+        ]
+
+        call_command('process_addons', task='remove_amo_links_in_url_fields')
+
+        for addon in addons:
+            addon.reload()
+            assert addon.support_url.localized_string == u''
+            assert addon.support_url.localized_string_clean == u''
+
+    def test_remove_links_in_contributions(self):
+        addons = [
+            addon_factory(contributions=u'%s' % self.domain),
+            addon_factory(contributions=u'https://%s/page.html' % self.domain),
+        ]
+
+        call_command('process_addons', task='remove_amo_links_in_url_fields')
+
+        for addon in addons:
+            addon.reload()
+            assert addon.contributions == u''
+
+    def test_remove_links_in_support_url_and_homepage(self):
+        addons = [
+            addon_factory(
+                homepage=u'http://%s' % self.domain,
+                support_url=u'%s' % self.domain,
+            ),
+        ]
+        should_be_kept_intact = [
+            addon_factory(support_url=self.allowed_url),
+        ]
+
+        call_command('process_addons', task='remove_amo_links_in_url_fields')
+
+        for addon in addons:
+            addon.reload()
+            assert addon.homepage == u''
+            assert addon.support_url == u''
+        for addon in should_be_kept_intact:
+            addon.reload()
+            assert addon.support_url == self.allowed_url
+
+    def test_with_multiple_translations(self):
+        addon = addon_factory(support_url={
+            'en-US': self.allowed_url,
+            'fr': u'http://%s' % self.domain,
+        })
+
+        call_command('process_addons', task='remove_amo_links_in_url_fields')
+
+        translation.activate('en-US')
+        addon.reload()
+        assert addon.support_url == self.allowed_url
+
+        translation.activate('fr')
+        addon.reload()
+        assert addon.support_url == u''

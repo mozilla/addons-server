@@ -2,6 +2,7 @@
 import os.path
 
 from django.conf import settings
+from django.forms import ValidationError
 from django.test.utils import override_settings
 
 import mock
@@ -417,6 +418,17 @@ class TestGetAddonAkismetReports(TestCase):
                 user_agent=user_agent, referrer=referrer)]
         self.create_for_addon_mock.assert_has_calls(calls, any_order=True)
 
+    def test_broken_upload(self):
+        user = user_factory()
+        upload = FileUpload.objects.create()
+        self.parse_addon_mock.side_effect = ValidationError('foo')
+        user_agent = 'Mr User/Agent'
+        referrer = 'http://foo.baa/'
+        reports = utils.get_addon_akismet_reports(
+            user, user_agent, referrer, upload=upload)
+        assert reports == []
+        self.create_for_addon_mock.assert_not_called()
+
 
 @pytest.mark.django_db
 def test_extract_theme_properties():
@@ -431,14 +443,14 @@ def test_extract_theme_properties():
     copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
     result = utils.extract_theme_properties(
         addon, addon.current_version.channel)
-    assert result['colors'] == {
-        "accentcolor": "#adb09f",
-        "textcolor": "#000"
-    }
-    assert result['images'] == {
-        "headerURL": '%s%s//%s/%s/%s' % (
-            settings.MEDIA_URL, 'addons', text_type(addon.id),
-            text_type(addon.current_version.id), 'weta.png')
+    assert result == {
+        "colors": {
+            "accentcolor": "#adb09f",
+            "textcolor": "#000"
+        },
+        "images": {
+            "headerURL": "weta.png"
+        }
     }
 
 

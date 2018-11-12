@@ -90,18 +90,22 @@ class ESPreviewSerializer(BaseESSerializer, PreviewSerializer):
 
 
 class LicenseSerializer(serializers.ModelSerializer):
+    is_custom = serializers.SerializerMethodField()
     name = serializers.SerializerMethodField()
     text = TranslationSerializerField()
     url = serializers.SerializerMethodField()
 
     class Meta:
         model = License
-        fields = ('id', 'name', 'text', 'url')
+        fields = ('id', 'is_custom', 'name', 'text', 'url')
 
     def __init__(self, *args, **kwargs):
         super(LicenseSerializer, self).__init__(*args, **kwargs)
         self.db_name = TranslationSerializerField()
         self.db_name.bind('name', self)
+
+    def get_is_custom(self, obj):
+        return not bool(obj.builtin)
 
     def get_url(self, obj):
         return obj.url or self.get_version_license_url(obj)
@@ -134,11 +138,19 @@ class LicenseSerializer(serializers.ModelSerializer):
                 lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
                 return {lang: unicode(license_constant.name)}
 
+    def to_representation(self, instance):
+        data = super(LicenseSerializer, self).to_representation(instance)
+        request = self.context.get('request', None)
+        if request and is_gate_active(
+                request, 'del-version-license-is-custom'):
+            data.pop('is_custom', None)
+        return data
+
 
 class CompactLicenseSerializer(LicenseSerializer):
     class Meta:
         model = License
-        fields = ('id', 'name', 'url')
+        fields = ('id', 'is_custom', 'name', 'url')
 
 
 class MinimalVersionSerializer(serializers.ModelSerializer):
@@ -640,10 +652,6 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         obj._is_featured = data.get('is_featured', False)
 
-        # Elasticsearch score for this document. Useful for debugging relevancy
-        # issues.
-        obj._score = data.get('_score', None)
-
         if data['type'] == amo.ADDON_PERSONA:
             persona_data = data.get('persona')
             if persona_data:
@@ -670,6 +678,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
         return obj
 
     def get__score(self, obj):
+        # es_meta is added by BaseESSerializer.to_representation() before DRF's
+        # to_representation() is called, so it's present on all objects.
         return obj._es_meta['score']
 
     def to_representation(self, obj):

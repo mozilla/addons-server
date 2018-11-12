@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 14:11+0000\n"
+"PO-Revision-Date: 2018-11-08 22:43+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -34,7 +34,7 @@ msgid "This username is already in use."
 msgstr "Este nome de utilizador já está a ser utilizado."
 
 msgid "Images must be either PNG or JPG."
-msgstr "As imagens devem ser ou PNG ou JPG."
+msgstr "As imagens devem de ser PNG ou JPG."
 
 msgid "Images cannot be animated."
 msgstr "As imagens não podem ser animadas."
@@ -5223,7 +5223,7 @@ msgstr "Preencha formulários automaticamente {start_sub_heading}com {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr "Guarde dados introduzidos outrora e este irá preencher automaticamente da próxima vez."
+msgstr "Guarde dados introduzidos outrora e este irá auto-preencher da próxima vez."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7633,8 +7633,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Exceto onde <a href=\"https://www.mozilla.org/about/legal/\">anunciado</a>, o conteúdo neste site está licenciado sob a <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> licença "
-"Creative Commons Atribuição-CompartilhaIgual v3.0 </a> ou qualquer versão mais recente."
+"Exceto onde <a href=\"https://www.mozilla.org/about/legal/\">anotado</a> o contrário, o conteúdo neste site está licenciado sob a <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
+"licença Creative Commons Atribuição-CompartilhaIgual v3.0 </a> ou qualquer versão mais recente."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "conheça os <b>extras</b>"
@@ -8038,10 +8038,10 @@ msgid "Report user {0}"
 msgstr "Reportar utilizador {0}"
 
 msgid "Unsubscribe"
-msgstr "Des-subscrever"
+msgstr "Cancelar subscrição"
 
 msgid "You are successfully unsubscribed!"
-msgstr "Des-subscrição efectuada com sucesso!"
+msgstr "A sua subscrição foi cancelada com sucesso!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
@@ -8057,7 +8057,7 @@ msgid "edit your profile"
 msgstr "edita o seu perfil"
 
 msgid "We could not unsubscribe you"
-msgstr "Não conseguimos des-subscrevê-lo"
+msgstr "Não conseguimos cancelar a sua subscrição"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."

@@ -20,7 +20,7 @@ from olympia.ratings.models import Rating
 
 from .admin import AkismetAdmin
 from .models import AkismetReport
-from .tasks import comment_check, submit_to_akismet
+from .tasks import akismet_comment_check, submit_to_akismet
 
 
 class BaseAkismetReportsModelTest(object):
@@ -459,6 +459,6 @@ def test_comment_check_task(_post_mock):
     user = user_factory()
     report = AkismetReport.create_for_addon(
         upload, None, user, 'foo', 'baa', '', '')
-    comment_check([report.id])
+    akismet_comment_check([report.id])
     _post_mock.assert_called_once()
     _post_mock.assert_called_with('comment-check')

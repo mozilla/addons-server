@@ -303,8 +303,41 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert unicode(addon.description) == data['description']
 
     @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=False)
     @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
-    def test_akismet_edit_is_spam(self, comment_check_mock):
+    def test_akismet_edit_is_spam_logging_only(self, comment_check_mock):
+        comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
+        data = self.get_dict()
+
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+
+        # Akismet check is there
+        assert AkismetReport.objects.count() == 3
+        name_report = AkismetReport.objects.first()
+        assert name_report.comment_type == 'product-name'
+        assert name_report.comment == data['name']
+        summary_report = AkismetReport.objects.all()[1]
+        assert summary_report.comment_type == 'product-summary'
+        assert summary_report.comment == data['summary']
+        description_report = AkismetReport.objects.all()[2]
+        assert description_report.comment_type == 'product-description'
+        assert description_report.comment == data['description']
+
+        assert comment_check_mock.call_count == 3
+        # But because we're not taking any action from the spam, don't report.
+        assert 'spam' not in response.content
+
+        # And metadata was updated
+        addon = self.get_addon()
+        assert unicode(addon.name) == data['name']
+        assert unicode(addon.summary) == data['summary']
+        assert unicode(addon.description) == data['description']
+
+    @override_switch('akismet-spam-check', active=True)
+    @override_switch('akismet-addon-action', active=True)
+    @mock.patch('olympia.lib.akismet.models.AkismetReport.comment_check')
+    def test_akismet_edit_is_spam_action_taken(self, comment_check_mock):
         comment_check_mock.return_value = AkismetReport.MAYBE_SPAM
         old_name = self.addon.name
         old_summary = self.addon.summary
@@ -376,6 +409,12 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.client.post(self.describe_edit_url, data)
         addon = self.get_addon()
         assert addon.description == ''
+
+    def test_description_min_length_not_in_html_attrs(self):
+        response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#trans-description textarea').attr('minlength')
 
 
 class L10nTestsMixin(object):
@@ -670,6 +709,21 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         data['description'] = '1234567890'
         self.client.post(self.describe_edit_url, data)
         assert self.get_addon().description == '1234567890'
+
+    def test_description_min_length_not_in_html_attrs(self):
+        """Override from BaseTestEditDescribe - need to check present too."""
+        # Check the min-length attribute isn't in tag when waffle is off.
+        with override_switch('content-optimization', active=False):
+            response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#trans-description textarea').attr('minlength')
+        # But min-length attribute is in tag when waffle is on.
+        with override_switch('content-optimization', active=True):
+            response = self.client.get(self.describe_edit_url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#trans-description textarea').attr('minlength') == '10'
 
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):

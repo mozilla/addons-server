@@ -1,7 +1,6 @@
 import datetime
 import os
 import time
-
 from uuid import UUID, uuid4
 
 from django import forms as django_forms, http
@@ -542,7 +541,7 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
         automated_signing=automated_signing, addon=addon, user=user)
     log.info('FileUpload created: %s' % upload.uuid.hex)
 
-    from olympia.lib.akismet.tasks import comment_check   # circular import
+    from olympia.lib.akismet.tasks import akismet_comment_check   # circ import
 
     if (channel == amo.RELEASE_CHANNEL_LISTED):
         existing_data = (
@@ -560,7 +559,7 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
     # We HAVE to have a pretask here that returns a result, so we're always
     # doing a comment_check task call even when it's pointless because
     # there are no report ids in the list.  See tasks.validate for more.
-    akismet_checks = comment_check.si(
+    akismet_checks = akismet_comment_check.si(
         [report.id for _, report in akismet_reports])
     if submit:
         tasks.validate_and_submit(
@@ -1783,3 +1782,12 @@ def send_key_revoked_email(to_email, key):
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[to_email],
     )
+
+
+@dev_required
+@json_view
+def theme_background_image(request, addon_id, addon, channel):
+    channel_id = amo.CHANNEL_CHOICES_LOOKUP[channel]
+    version = addon.find_latest_version(channel_id)
+    return (version.get_background_images_encoded(header_only=True) if version
+            else {})

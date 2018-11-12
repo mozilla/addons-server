@@ -524,12 +524,16 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
 
 
 def annotate_akismet_spam_check(results, akismet_results):
-    msg = ugettext('The text entered has been flagged as spam.')
-    for report_result in akismet_results:
-        if report_result in (
+    msg = ugettext(u'[{field}] The text in the "{field}" field has been '
+                   u'flagged as spam.')
+    error_if_spam = waffle.switch_is_active('akismet-addon-action')
+    for (comment_type, report_result) in akismet_results:
+        if error_if_spam and report_result in (
                 AkismetReport.MAYBE_SPAM, AkismetReport.DEFINITE_SPAM):
+            field = comment_type.split('-')[1]  # drop the "product-"
             insert_validation_message(
-                results, message=msg, msg_id='akismet_is_spam')
+                results, message=msg.format(field=field),
+                msg_id='akismet_is_spam_%s' % field)
 
 
 def check_for_api_keys_in_file(results, upload):

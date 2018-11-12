@@ -15,13 +15,12 @@ from olympia import amo
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser, Category, Persona)
 from olympia.amo.templatetags.jinja_helpers import locale_url, urlparams
-from olympia.amo.tests import (
-    ESTestCaseWithAddons, addon_factory, create_switch)
+from olympia.amo.tests import ESTestCaseWithAddons, addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.search import views
 from olympia.search.utils import floor_version
 from olympia.search.views import version_sidebar
-from olympia.tags.models import AddonTag, Tag
+from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.compare import (
     MAXVERSION, num as vnum, version_int as vint)
@@ -609,31 +608,6 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, {'q': 'pony'})
         assert self.get_results(r) == [a.id]
 
-    def test_tag_search(self):
-        a = self.addons[0]
-
-        tag_name = 'tagretpractice'
-        r = self.client.get(self.url, {'q': tag_name})
-        assert self.get_results(r) == []
-
-        AddonTag.objects.create(
-            addon=a, tag=Tag.objects.create(tag_text=tag_name))
-
-        a.save()
-        self.refresh()
-
-        r = self.client.get(self.url, {'q': tag_name})
-        assert self.get_results(r) == [a.id]
-
-        # Multiple tags.
-        tag_name_2 = 'bagemtagem'
-        AddonTag.objects.create(
-            addon=a, tag=Tag.objects.create(tag_text=tag_name_2))
-        a.save()
-        self.refresh()
-        r = self.client.get(self.url, {'q': '%s %s' % (tag_name, tag_name_2)})
-        assert self.get_results(r) == [a.id]
-
     def test_search_doesnt_return_unlisted_addons(self):
         addon = self.addons[0]
         response = self.client.get(self.url, {'q': 'Addon'})
@@ -645,66 +619,86 @@ class TestESSearch(SearchBase):
         response = self.client.get(self.url, {'q': 'Addon'})
         assert addon.pk not in self.get_results(response)
 
-    def test_webextension_boost(self):
-        web_extension = list(sorted(
-            self.addons, key=lambda x: x.name, reverse=True))[0]
-        web_extension.current_version.files.update(is_webextension=True)
-        web_extension.save()
-        self.refresh()
-
-        response = self.client.get(self.url, {'q': 'Addon'})
-        result = self.get_results(response, sort=False)
-        assert result[0] != web_extension.pk
-
-        create_switch('boost-webextensions-in-search')
-        # The boost chosen should have made that addon the first one.
-        response = self.client.get(self.url, {'q': 'Addon'})
-        result = self.get_results(response, sort=False)
-        assert result[0] == web_extension.pk
-
     def test_find_addon_default_non_en_us(self):
-        with self.activate('en-GB'):
-            addon = addon_factory(
-                status=amo.STATUS_PUBLIC,
-                type=amo.ADDON_EXTENSION,
-                default_locale='en-GB',
-                name='Banana Bonkers',
-                description=u'Let your browser eat your bananas',
-                summary=u'Banana Summary',
-            )
-
-            addon.name = {'es': u'Banana Bonkers espanole'}
-            addon.description = {
-                'es': u'Deje que su navegador coma sus plátanos'}
-            addon.summary = {'es': u'resumen banana'}
-            addon.save()
-
-        addon_en = addon_factory(
-            slug='English Addon', name=u'My English Addôn')
-
-        self.refresh()
-
-        # Make sure we have en-US active
-        for locale in ('en-US', 'en-GB', 'es'):
+        def test_search_in_locale(locale):
             with self.activate(locale):
                 url = self.url.replace('en-US', locale)
 
                 response = self.client.get(url, {'q': ''})
                 result = self.get_results(response, sort=False)
 
-                # 3 add-ons in self.addon + the two just created
-                assert addon_en.pk in result
-                assert addon.pk in result
+                # 3 add-ons in self.addons + the two just created
+                assert addon_en_only.pk in result
+                assert addon_english_and_spanish.pk in result
 
+                # This should work all the time. It's present in the name
+                # in all translations.
                 response = self.client.get(url, {'q': 'Banana'})
                 result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
 
-                assert result[0] == addon.pk
-
+                # This should only work in Spanish, when searching in other
+                # languages we are not trying to match against the spanish
+                # translation.
                 response = self.client.get(url, {'q': 'plátanos'})
                 result = self.get_results(response, sort=False)
+                if locale == 'es':
+                    assert result[0] == addon_english_and_spanish.pk
+                else:
+                    assert len(result) == 0
 
-                assert result[0] == addon.pk
+                # This should work in all locales:
+                # - In english (en-GB *and* en-US) because it's part of the
+                #   english name (same analyzer used for en-US vs en-GB)
+                # - In french, because we have no french translation so we fall
+                #   back to the default locale.
+                # - In spanish, even though we do have a translated name, we
+                #   should still be searching against the default locale as
+                #   well (we just don't apply the same kind of matching).
+                response = self.client.get(url, {'q': 'Browser'})
+                result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
+
+                # Same thing, but with something in the description instead of
+                # the name. We do a multi match with the description in the
+                # default locale, so it should always work regardless of the
+                # request lang.
+                response = self.client.get(url, {'q': 'Pirate'})
+                result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
+
+                # Same thing again, but with the summary.
+                response = self.client.get(url, {'q': 'Ninja'})
+                result = self.get_results(response, sort=False)
+                assert result[0] == addon_english_and_spanish.pk
+
+        with self.activate('en-GB'):
+            addon_english_and_spanish = addon_factory(
+                status=amo.STATUS_PUBLIC,
+                type=amo.ADDON_EXTENSION,
+                default_locale='en-GB',
+                name='Banana Browser Bonkers',
+                description=u'Let your browser pirate your bananas',
+                summary=u'Banana Summary Ninja',
+            )
+
+            addon_english_and_spanish.name = {'es': u'Banana Bonkers espanole'}
+            addon_english_and_spanish.description = {
+                'es': u'Deje que su navegador coma sus plátanos'}
+            addon_english_and_spanish.summary = {'es': u'resumen banana'}
+            addon_english_and_spanish.save()
+
+        addon_en_only = addon_factory(
+            slug='English Addon', name=u'My English Addôn')
+
+        self.refresh()
+
+        # Test in various locales. It's important to test in the one used as
+        # default_locale for the add-on (en-GB), another used for all
+        # translations (es), another that we don't have translations for (fr)
+        # and en-US for good measure.
+        for locale in ('en-US', 'en-GB', 'es', 'fr'):
+            test_search_in_locale(locale)
 
 
 class TestPersonaSearch(SearchBase):
@@ -980,21 +974,6 @@ class TestGenericAjaxSearch(TestAjaxSearch):
     def test_basic_search(self):
         public_addons = Addon.objects.public().all()
         self.search_addons('q=addon', public_addons)
-
-    def test_webextension_boost(self):
-        public_addons = Addon.objects.public().all()
-        web_extension = public_addons.order_by('name')[0]
-        web_extension.current_version.files.update(is_webextension=True)
-        web_extension.save()
-        self.refresh()
-
-        data = self.search_addons('q=Addon', public_addons)
-        assert int(data[0]['id']) != web_extension.id
-
-        create_switch('boost-webextensions-in-search')
-        # The boost chosen should have made that addon the first one.
-        data = self.search_addons('q=Addon', public_addons)
-        assert int(data[0]['id']) == web_extension.id
 
 
 class TestSearchSuggestions(TestAjaxSearch):

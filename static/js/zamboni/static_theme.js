@@ -11,6 +11,8 @@ $(document).ready(function() {
         function getFile() {
             file_selector = $wizard.find('#header-img')[0];
             file = file_selector.files[0];
+            if (file && $wizard.find('#header-img').attr('accept').split(',').indexOf(file.type) == -1)
+                return null;
             return file ? file : preLoadBlob;
         }
 
@@ -31,7 +33,6 @@ $(document).ready(function() {
                 $preview_img.attr('src', e.target.result);
                 $preview_img.show().addClass('loaded');
                 $row.find('.reset').show().css('display', 'block');
-                updateManifest();
                 $row.find('input[type=file], .note').hide();
                 var filename = file.name.replace(/\.[^/.]+$/, "");
                 $wizard.find('a.download').attr('download', filename + ".zip");
@@ -39,6 +40,7 @@ $(document).ready(function() {
                 if (!name_input.val()) {
                     name_input.val(filename);
                 }
+                updateManifest();
             };
             reader.readAsDataURL(file);
         });
@@ -58,12 +60,13 @@ $(document).ready(function() {
             // If we already have a preview from a selected file don't overwrite it.
             if (getFile() || !img_src) return;
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", img_src);
-            xhr.responseType = "blob";
+            xhr.open("GET", window.location.href + "/background");
+            xhr.responseType = "json";
             // load the image as a blob so we can treat it as a File
             xhr.onload = function() {
-                preLoadBlob = xhr.response;
-                preLoadBlob.name = img_src.split('/').slice(-1)[0];
+                jsonResponse = xhr.response;
+                preLoadBlob = b64toBlob(jsonResponse[img_src]);
+                preLoadBlob.name = img_src;
                 $wizard.find('input[type="file"]').trigger('change');
             };
             xhr.send();
@@ -123,13 +126,18 @@ $(document).ready(function() {
         var $color = $wizard.find('input.color-picker');
         $color.change(function() {
             var $this = $(this),
-                $svg_element = $('.' + $this[0].id);
+                color_property_selector = '.' + $this[0].id,
+                $svg_element = $(color_property_selector),
+                // If there's no value set and we have a fallback color we can use that instead
+                $have_fallback = $(color_property_selector + '[data-fallback]').not('[data-fallback=' + $this[0].id + ']');
             if (!$this.val()) {
                 $svg_element.attr('fill', $svg_element.data('fill'));
+                $have_fallback.attr('fill', $('#' + $svg_element.data('fallback')).val())
+                              .addClass($svg_element.data('fallback'));
             } else {
+                $have_fallback.removeClass($svg_element.data('fallback'));
                 $svg_element.attr('fill', $this.val());
             }
-
             updateManifest();
         }).trigger('change');
 
@@ -196,11 +204,18 @@ $(document).ready(function() {
                         dataType: 'json',
                         success: uploadDone,
                         error: function (xhr, text, error) {
-                            // Fake the validation so we can display as an error.
-                            uploadDone({validation:{
-                                errors:1,
-                                messages:[{message:error}]
-                            }});
+                            if (xhr.responseJSON && xhr.responseJSON.validation) {
+                                // even though we got an error response code, it's validation json.
+                                data = xhr.responseJSON;
+                            } else {
+                                // Fake the validation so we can display as an error.
+                                data = {
+                                    validation:{
+                                        errors:1,
+                                        messages:[{message:error}]
+                                }};
+                            }
+                            uploadDone(data);
                         }
                     });
                 }, 1000);
