@@ -27,8 +27,7 @@ from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image, StopWatch,
-    utc_millesecs_from_epoch)
+    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image, StopWatch)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
@@ -670,7 +669,8 @@ def migrate_lwts_to_static_themes(ids, **kw):
     for lwt in lwts:
         static = None
         try:
-            start_ts = utc_millesecs_from_epoch(datetime.now())
+            timer = StopWatch('addons.tasks.migrate_lwts_to_static_theme')
+            timer.start()
             with translation.override(lwt.default_locale):
                 static = add_static_theme_from_lwt(lwt)
             mlog.info(
@@ -684,9 +684,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
             slug = lwt.slug
             lwt.delete(send_delete_email=False)
             static.update(slug=slug)
-            now_ts = utc_millesecs_from_epoch(datetime.now())
-            statsd.timing(
-                'addons.tasks.migrate_lwts_to_static_theme', now_ts - start_ts)
+            timer.log_interval('')
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
             mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)

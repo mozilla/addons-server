@@ -1001,10 +1001,10 @@ class StopWatch():
         self.prefix = label_prefix
 
     def start(self):
-        self._timestamp = utc_millesecs_from_epoch()
+        self._timestamp = datetime.datetime.utcnow()
 
     def log_interval(self, label):
-        now = utc_millesecs_from_epoch()
+        now = datetime.datetime.utcnow()
         statsd.timing(self.prefix + label, now - self._timestamp)
         log.debug(
             "%s: %s", self.prefix + label, now - self._timestamp)
