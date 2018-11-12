@@ -351,6 +351,45 @@ class TestFeatures(TestCase):
         self.client.post(self.url, formset(data, initial_count=1))
         assert FeaturedCollection.objects.count() == 0
 
+    def test_collection_json(self):
+        self.url = reverse('zadmin.collections_json')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        data = response.json()
+        assert data == []
+
+        response = self.client.get(self.url, {'q': 80})
+        assert response.status_code == 200
+        data = response.json()
+        assert data == [{
+            u'url': u'/en-US/firefox/collections/clouserw/lolwut/',
+            u'id': 80,
+            u'slug': u'lolwut',
+            u'name': u'WebDev',
+            u'all_personas': False
+        }]
+
+        response = self.client.get(self.url, {'q': 'something'})
+        assert response.status_code == 200
+        data = response.json()
+        assert data == []
+
+        response = self.client.get(self.url, {'q': 'lol'})
+        assert response.status_code == 200
+        data = response.json()
+        assert data == [{
+            u'url': u'/en-US/firefox/collections/clouserw/lolwut/',
+            u'id': 80,
+            u'slug': u'lolwut',
+            u'name': u'WebDev',
+            u'all_personas': False
+        }]
+
+    def test_collection_json_not_admin(self):
+        self.url = reverse('zadmin.collections_json')
+        self.client.login(email='regular@mozilla.com')
+        assert self.client.get(self.url).status_code == 403
+
 
 class TestLookup(TestCase):
     fixtures = ['base/users']

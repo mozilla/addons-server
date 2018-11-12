@@ -53,13 +53,14 @@ $(document).ready(function(){
                 $td.find('.errorlist').remove();
                 var current = template(
                     '<a href="{url}" ' +
-                    'class="collectionitem {is_personas}">{name}</a>' +
+                    'class="collectionitem {is_personas}">{name} ({slug})</a>' +
                     '<a href="#" class="replace">Replace with another collection</a>'
                 );
                 $td.find('.current-collection').show().html(current({
                     url: item.url,
                     is_personas: item.all_personas ? 'personas-collection' : '',
-                    name: _.escape(item.name)
+                    name: _.escape(item.name),
+                    slug: _.escape(item.slug),
                 }));
                 $td.find('input[type=hidden]').val(item.id);
                 $td.attr('data-collection', item.id);
@@ -85,7 +86,7 @@ $(document).ready(function(){
                 return false;
             }
         }).data('ui-autocomplete')._renderItem = function(ul, item) {
-            var html = format('<a>{0}<b>ID: {1}</b></a>', [_.escape(item.name), item.id]);
+            var html = format('<a>{0} ({1})<b>ID: {2}</b></a>', [_.escape(item.name), _.escape(item.slug), item.id]);
             return $('<li>').data('item.autocomplete', item).append(html).appendTo(ul);
         };
     });
