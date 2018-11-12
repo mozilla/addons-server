@@ -9,6 +9,7 @@ from django.db import transaction
 from django.forms import ValidationError
 from django.utils import translation
 
+import waffle
 from django_statsd.clients import statsd
 from elasticsearch_dsl import Search
 from PIL import Image
@@ -81,8 +82,9 @@ def update_last_updated(addon_id):
         Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
+@task
 @use_primary_db
-def update_appsupport(ids):
+def update_appsupport(ids, **kw):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
     addons = Addon.objects.filter(id__in=ids).no_transforms()
@@ -104,6 +106,49 @@ def update_appsupport(ids):
     with transaction.atomic():
         AppSupport.objects.filter(addon__id__in=ids).delete()
         AppSupport.objects.bulk_create(support)
+
+
+@task
+def update_addon_average_daily_users(data, **kw):
+    log.info("[%s] Updating add-ons ADU totals." % (len(data)))
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
+    for pk, count in data:
+        try:
+            addon = Addon.objects.get(pk=pk)
+        except Addon.DoesNotExist:
+            # The processing input comes from metrics which might be out of
+            # date in regards to currently existing add-ons
+            m = "Got an ADU update (%s) but the add-on doesn't exist (%s)"
+            log.debug(m % (count, pk))
+            continue
+
+        addon.update(average_daily_users=int(float(count)))
+
+
+@task
+def update_addon_download_totals(data, **kw):
+    log.info('[%s] Updating add-ons download+average totals.' % (len(data)))
+
+    if not waffle.switch_is_active('local-statistics-processing'):
+        return False
+
+    for pk, sum_download_counts in data:
+        try:
+            addon = Addon.objects.get(pk=pk)
+            # Don't trigger a save unless we have to (the counts may not have
+            # changed)
+            if (sum_download_counts and
+                    addon.total_downloads != sum_download_counts):
+                addon.update(total_downloads=sum_download_counts)
+        except Addon.DoesNotExist:
+            # We exclude deleted add-ons in the cron, but an add-on could have
+            # been deleted by the time the task is processed.
+            msg = ("Got new download totals (total=%s) but the add-on"
+                   "doesn't exist (%s)" % (sum_download_counts, pk))
+            log.debug(msg)
 
 
 @task

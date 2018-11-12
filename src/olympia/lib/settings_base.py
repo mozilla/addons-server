@@ -1252,11 +1252,9 @@ CELERY_TASK_ROUTES = {
     'olympia.api.tasks.process_webhook': {'queue': 'api'},
 
     # Crons
-    'olympia.addons.cron._update_addon_average_daily_users': {'queue': 'cron'},
-    'olympia.addons.cron._update_addon_download_totals': {'queue': 'cron'},
-    'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
-    'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
-    'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_average_daily_users': {'queue': 'cron'},
+    'olympia.addons.tasks.update_addon_download_totals': {'queue': 'cron'},
+    'olympia.addons.tasks.update_appsupport': {'queue': 'cron'},
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
@@ -1890,7 +1888,6 @@ CRON_JOBS = {
     'update_addon_download_totals': 'olympia.addons.cron',
     'addon_last_updated': 'olympia.addons.cron',
     'update_addon_appsupport': 'olympia.addons.cron',
-    'update_all_appsupport': 'olympia.addons.cron',
     'hide_disabled_files': 'olympia.addons.cron',
     'unhide_disabled_files': 'olympia.addons.cron',
     'deliver_hotness': 'olympia.addons.cron',
