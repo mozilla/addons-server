@@ -42,7 +42,7 @@ urlpatterns = [
         views.download_file_upload, name='zadmin.download_file_upload'),
 
     url(r'^features$', views.features, name='zadmin.features'),
-    url(r'^features/collections\.json$', views.es_collections_json,
+    url(r'^features/collections\.json$', views.collections_json,
         name='zadmin.collections_json'),
     url(r'^features/featured-collection$', views.featured_collection,
         name='zadmin.featured_collection'),
