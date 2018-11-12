@@ -20,7 +20,7 @@ from olympia.addons.indexers import get_mappings as get_addons_mappings
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required, post_required)
+    json_view, permission_required, post_required)
 from olympia.amo.mail import DevEmailBackend
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, chunked, render
@@ -85,24 +85,27 @@ def email_preview_csv(request, topic):
     return resp
 
 
-@login_required
+@admin_required
 @json_view
-def es_collections_json(request):
+def collections_json(request):
     app = request.GET.get('app', '')
     q = request.GET.get('q', '')
-    qs = Collection.search()
+    data = []
+    if not q:
+        return data
+    qs = Collection.objects.all()
     try:
-        qs = qs.query(id__startswith=int(q))
+        qs = qs.filter(pk=int(q))
     except ValueError:
-        qs = qs.query(name__match=q)
+        qs = qs.filter(slug__startswith=q)
     try:
-        qs = qs.filter(app=int(app))
+        qs = qs.filter(application=int(app))
     except ValueError:
         pass
-    data = []
     for c in qs[:7]:
         data.append({'id': c.id,
                      'name': unicode(c.name),
+                     'slug': unicode(c.slug),
                      'all_personas': c.all_personas,
                      'url': c.get_url_path()})
     return data
