@@ -70,7 +70,7 @@ class TestRankingScenarios(ESTestCase):
             # sense though!)
             # if found_score != expected_score:
             #     filename = 'src/olympia/search/tests/test_search_ranking.py'
-            #     with open('sed_me.sh', 'a+') as f:
+            #     with open('/code/tmp/sed_me.sh', 'a+') as f:
             #         f.write('sed -i s/%s/%s/ %s\n' % (
             #             expected_score, found_score, filename))
             #     continue
@@ -481,34 +481,33 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_tab_center_redux(self):
         self._check_scenario('tab center redux', (
-            ['Tab Center Redux', 69.21394],
-            ['Tab Mix Plus', 0.06495905],
-            ['Redux DevTools', 0.04430029],
+            ['Tab Center Redux', 69.479675],
+            ['Tab Mix Plus', 0.06520844],
+            ['Redux DevTools', 0.044470366],
         ))
 
     def test_scenario_open_image_new_tab(self):
         self._check_scenario('Open Image in New Tab', (
-            ['Open Image in New Tab', 24.277237],
-            ['Open image in a new tab', 5.6800475],
+            ['Open Image in New Tab', 34.353912],
+            ['Open image in a new tab', 10.394562],
         ))
 
     def test_scenario_coinhive(self):
         # TODO, should match "CoinBlock". Check word delimiting analysis maybe?
         self._check_scenario('CoinHive', (
-            ['Coinhive Blocker', 3.891288],
-            ['NoMiners', 0.017959397],  # via description
+            ['Coinhive Blocker', 4.5972457],
+            ['NoMiners', 0.28269354],  # via description
             # ['CoinBlock', 0],  # via prefix search
         ))
 
     def test_scenario_privacy(self):
         self._check_scenario('Privacy', (
-            ['Privacy Badger', 8.7432165],
-            ['Privacy Settings', 4.559415],
-            ['Google Privacy', 4.350088],  # More users, summary
+            ['Privacy Badger', 9.068837],
+            ['Privacy Settings', 4.8850355],
+            ['Google Privacy', 4.6105843],  # More users, summary
             ['Privacy Pass', 3.2087922],
-            ['Ghostery', 0.09441561],  # Crazy amount of users, summary
-            # summary + a lot of users, but not as many as ghostery
-            ['Blur', 0.0776396],
+            ['Blur', 0.5335082],
+            ['Ghostery', 0.42003605],
         ))
 
     def test_scenario_firebu(self):
@@ -529,14 +528,14 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_menu_wizzard(self):
         self._check_scenario('Menu Wizzard', (
-            ['Menu Wizard', 0.10683497],  # (fuzzy, typo)
+            ['Menu Wizard', 0.106938206],  # (fuzzy, typo)
             # partial match + users
-            ['Add-ons Manager Context Menu', 0.0791911],
+            ['Add-ons Manager Context Menu', 0.07926763],
         ))
 
     def test_scenario_frame_demolition(self):
         self._check_scenario('Frame Demolition', (
-            ['Frame Demolition', 20.48827],
+            ['Frame Demolition', 20.522936],
         ))
 
     def test_scenario_demolition(self):
@@ -554,7 +553,7 @@ class TestRankingScenarios(ESTestCase):
         # Doesn't find "RapidShare DownloadHelper" anymore
         # since we now query by "MegaUpload AND DownloadHelper"
         self._check_scenario('MegaUpload DownloadHelper', (
-            ['MegaUpload DownloadHelper', 42.920856],
+            ['MegaUpload DownloadHelper', 42.974842],
         ))
 
     def test_scenario_downloadhelper(self):
@@ -569,29 +568,37 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_megaupload(self):
         self._check_scenario('MegaUpload', (
-            ['MegaUpload DownloadHelper', 3.269901],
+            ['MegaUpload DownloadHelper', 3.7998059],
             ['Popup Blocker', 1.4292603],
         ))
 
     def test_scenario_no_flash(self):
         self._check_scenario('No Flash', (
-            ['No Flash', 46.64575],
-            ['Download Flash and Video', 4.4118795],
-            ['YouTube Flash Player', 3.5120416],
-            ['YouTube Flash Video Player', 3.202704],
+            ['No Flash', 47.00143],
+            ['Download Flash and Video', 4.781514],
+            ['YouTube Flash Player', 3.763546],
+            ['YouTube Flash Video Player', 3.6051111],
         ))
 
         # Case should not matter.
         self._check_scenario('no flash', (
-            ['No Flash', 46.64575],
-            ['Download Flash and Video', 4.4118795],
-            ['YouTube Flash Player', 3.5120416],
-            ['YouTube Flash Video Player', 3.202704],
+            ['No Flash', 47.00143],
+            ['Download Flash and Video', 4.781514],
+            ['YouTube Flash Player', 3.763546],
+            ['YouTube Flash Video Player', 3.6051111],
+        ))
+
+    def test_scenario_youtube_html5_player(self):
+        # Both are found thanks to their descriptions (matches each individual
+        # term, then get rescored with a match_phrase w/ slop.
+        self._check_scenario('Youtube html5 Player', (
+            ['YouTube Flash Player', 0.40480357],
+            ['No Flash', 0.07806653],
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
         self._check_scenario('Disable Hello, Pocket & Reader+', (
-            ['Disable Hello, Pocket & Reader+', 59.37624],  # yeay!
+            ['Disable Hello, Pocket & Reader+', 59.80632],  # yeay!
         ))
 
     def test_scenario_grapple(self):
@@ -600,7 +607,7 @@ class TestRankingScenarios(ESTestCase):
         see `legacy_api.SearchTest` for various examples.
         """
         self._check_scenario('grapple', (
-            ['GrApple Yummy', 0.97180986],
+            ['GrApple Yummy', 1.7876518],
         ))
 
     def test_scenario_delicious(self):
@@ -609,36 +616,36 @@ class TestRankingScenarios(ESTestCase):
         see `legacy_api.SearchTest` for various examples.
         """
         self._check_scenario('delicious', (
-            ['Delicious Bookmarks', 1.1302524],
+            ['Delicious Bookmarks', 1.9460943],
         ))
 
     def test_score_boost_name_match(self):
         # Tests that we match directly "Merge Windows" and also find
         # "Merge All Windows" because of slop=1
         self._check_scenario('merge windows', (
-            ['Merge Windows', 12.554659],
-            ['Merge All Windows', 1.7936656],
+            ['Merge Windows', 13.634404],
+            ['Merge All Windows', 3.2467458],
         ), no_match=(
             'All Downloader Professional',
         ))
 
         self._check_scenario('merge all windows', (
-            ['Merge All Windows', 14.103567],
-            ['Merge Windows', 0.042702418],
-            ['All Downloader Professional', 0.0070751677],
+            ['Merge All Windows', 15.524793],
+            ['Merge Windows', 0.042835273],
+            ['All Downloader Professional', 0.00709718],
         ))
 
     def test_score_boost_exact_match(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('test addon test21', (
-            ['test addon test21', 14.293872],
+            ['test addon test21', 15.742278],
         ))
 
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 34.255657],
-            ['1-Click YouTube Video Download', 0.22216046],
+            ['Amazon 1-Click Lock', 34.837643],
+            ['1-Click YouTube Video Download', 0.22360161],
         ))
 
     def test_score_boost_exact_match_in_right_language(self):
@@ -646,13 +653,13 @@ class TestRankingScenarios(ESTestCase):
         # First in english. Straightforward: it should be an exact match, the
         # translation exists.
         self._check_scenario(u'foobar unique english', (
-            [u'Foobar unique english', 4.675893],
+            [u'Foobar unique english', 5.9928703],
         ), lang='en-US')
 
         # Then check in french. Also straightforward: it should be an exact
         # match, the translation exists, it's even the default locale.
         self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique francais', 14.146512],
+            [u'Foobar unique francais', 15.588857],
         ), lang='fr')
 
         # Check with a language that we don't have a translation for (mn), and
@@ -663,7 +670,7 @@ class TestRankingScenarios(ESTestCase):
         assert 'mn' not in SEARCH_LANGUAGE_TO_ANALYZER
         assert 'mn' in settings.LANGUAGES
         self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique francais', 12.54679],
+            [u'Foobar unique francais', 21.74215],
         ), lang='mn', expected_lang='fr')
 
         # Check with a language that we don't have a translation for (ca), and
@@ -674,12 +681,12 @@ class TestRankingScenarios(ESTestCase):
         assert 'ca' in SEARCH_LANGUAGE_TO_ANALYZER
         assert 'ca' in settings.LANGUAGES
         self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique francais', 11.289922],
+            [u'Foobar unique francais', 12.796962],
         ), lang='ca', expected_lang='fr')
 
         # Check with a language that we do have a translation for (en-US), but
         # we're requesting the string that matches the default locale (fr).
         # Note that the name returned follows the language requested.
         self._check_scenario(u'foobar unique francais', (
-            [u'Foobar unique english', 9.786429],
+            [u'Foobar unique english', 11.158682],
         ), lang='en-US')

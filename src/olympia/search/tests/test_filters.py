@@ -78,12 +78,24 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'multi_match': {
                 '_name': (
-                    'MultiMatch(MatchPhrase(summary),'
-                    'MatchPhrase(summary_l10n_english))'),
+                    'MultiMatch(Match(summary),Match(summary_l10n_english))'),
                 'query': 'tea pot',
-                'type': 'phrase',
+                'operator': 'and',
                 'fields': ['summary', 'summary_l10n_english'],
                 'boost': 3.0,
+            }
+        }
+        assert expected in should
+
+        expected = {
+            'multi_match': {
+                '_name': (
+                    'MultiMatch(Match(description),'
+                    'Match(description_l10n_english))'),
+                'query': 'tea pot',
+                'operator': 'and',
+                'fields': ['description', 'description_l10n_english'],
+                'boost': 2.0,
             }
         }
         assert expected in should
@@ -92,10 +104,52 @@ class TestQueryFilter(FilterTestsBase):
         assert functions[0] == {'field_value_factor': {'field': 'boost'}}
         return qs
 
+    def test_no_rescore_if_not_sorting_by_relevance(self):
+        pass
+
     def test_q(self):
         qs = self._test_q()
         functions = qs['query']['function_score']['functions']
         assert len(functions) == 1
+
+        expected_rescore = {
+            'bool': {
+                'should': [
+                    {
+                        'multi_match': {
+                            '_name': (
+                                'MultiMatch(MatchPhrase(summary),'
+                                'MatchPhrase(summary_l10n_english))'),
+                            'query': 'tea pot',
+                            'slop': 10,
+                            'type': 'phrase',
+                            'fields': ['summary', 'summary_l10n_english'],
+                            'boost': 3.0,
+                        },
+                    },
+                    {
+                        'multi_match': {
+                            '_name': (
+                                'MultiMatch(MatchPhrase(description),'
+                                'MatchPhrase(description_l10n_english))'),
+                            'query': 'tea pot',
+                            'slop': 10,
+                            'type': 'phrase',
+                            'fields': ['description',
+                                       'description_l10n_english'],
+                            'boost': 2.0,
+                        },
+                    }
+                ]
+            }
+        }
+
+        assert qs['rescore'] == {
+            'window_size': 10,
+            'query': {
+                'rescore_query': expected_rescore
+            }
+        }
 
     def test_q_too_long(self):
         with self.assertRaises(serializers.ValidationError):

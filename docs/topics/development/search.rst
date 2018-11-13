@@ -38,7 +38,7 @@ Flow of a search query through AMO
 
 Let's assume we search on addons-frontend (not legacy) the search query hits the API and gets handled by ``AddonSearchView``, which directly queries ElasticSearch and doesn't involve the database at all.
 
-There are a few filters that are described in the :ref:`/api/v4/addons/search/ docs <addon-search>` but most of them are not very relevant for raw search queries. Examples are filters by guid, platform, category, add-on type or appversion (application version compatibility).
+There are a few filters that are described in the :ref:`/api/v4/addons/search/ docs <addon-search>` but most of them are not very relevant for raw search queries. Examples are filters by guid, platform, category, add-on type or appversion (application version compatibility). Those filters are applied using a ``filter`` clause and shouldn't affect scoring.
 
 Much more relevant for raw add-on searches (and this is primarily used when you use the search on the frontend) is ``SearchQueryFilter``.
 
@@ -70,10 +70,17 @@ containing more text like description, summary and tags.
 
 **Applied rules** (merged via ``should``):
 
-1. Look for phrase matches inside the summary (``boost=3.0``)
-2. Look for phrase matches inside the description (``boost=2.0``)
+1. Look for matches inside the summary (``boost=3.0``, ``operator=and``)
+2. Look for matches inside the description (``boost=2.0``, ``operator=and``)
 
 If the language of the request matches a known language-specific analyzer, those are made using a ``multi_match`` query using ``summary`` or ``description`` and the corresponding ``{field}_l10n_{analyzer}``, similar to how exact name matches are performed above, in order to support potential translations.
+
+
+Rescoring rules
+---------------
+
+On top of the two sets of rules above, a ``rescore`` query is applied with a ``window_size`` of ``10``. In production, we have 5 shards, so that
+should re-adjust the score of the top 50 results returned only. The rules used for rescoring are the same used in the secondary rules above, with just one difference: it's using ``match_phrase`` instead of ``match``, with a slop of ``10``.
 
 
 General query flow:
@@ -83,4 +90,4 @@ General query flow:
  2. Fetch locale specific analyzer (`List of analyzers <https://github.com/mozilla/addons-server/blob/master/src/olympia/constants/search.py#L15-L61>`_)
  3. Merge primary and secondary *should* rules
  4. Create a ``function_score`` query that uses a ``field_value_factor`` function on ``boost`` field that we set when indexing
- 5. Add a specific query-time boost for webextension add-ons
+ 5. Add the ``rescore`` query to the mix

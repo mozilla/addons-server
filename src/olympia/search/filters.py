@@ -427,7 +427,8 @@ class SearchQueryFilter(BaseFilterBackend):
 
         return should
 
-    def secondary_should_rules(self, search_query, analyzer):
+    def secondary_should_rules(
+            self, search_query, analyzer, rescore_mode=False):
         """Return "secondary" should rules for the query.
 
         These are the ones using the weakest boosts, they are applied to fields
@@ -435,51 +436,96 @@ class SearchQueryFilter(BaseFilterBackend):
 
         Applied rules:
 
-        * Look for phrase matches inside the summary (boost=3.0)
-        * Look for phrase matches inside the description (boost=2.0).
+        * Look for matches inside the summary (boost=3.0)
+        * Look for matches inside the description (boost=2.0).
 
         If we're using a supported language, both rules are done through a
         multi_match that considers both the default locale translation
         (using snowball analyzer) and the translation in the current language
         (using language-specific analyzer). If we're not using a supported
         language then only the first part is applied.
+
+        If rescore_mode is True, the match applied are match_phrase queries
+        with a slop of 5 instead of a regular match. As those are more
+        expensive they are only done in the 'rescore' part of the query.
         """
+        if rescore_mode is False:
+            query_class = query.Match
+            query_kwargs = {
+                'operator': 'and',
+            }
+            query_class_name = 'Match'
+            multi_match_kwargs = {
+                'operator': 'and',
+            }
+        else:
+            query_class = query.MatchPhrase
+            query_kwargs = {
+                'slop': 10,
+            }
+            query_class_name = 'MatchPhrase'
+            multi_match_kwargs = {
+                'slop': 10,
+                'type': 'phrase',
+            }
+
         if analyzer:
             summary_query_name = (
-                'MultiMatch(MatchPhrase(summary),'
-                'MatchPhrase(summary_l10n_%s))' % analyzer)
+                'MultiMatch(%s(summary),%s(summary_l10n_%s))' % (
+                    query_class_name, query_class_name, analyzer))
             description_query_name = (
-                'MultiMatch(MatchPhrase(description),'
-                'MatchPhrase(description_l10n_%s))' % analyzer)
+                'MultiMatch(%s(description),%s(description_l10n_%s))' % (
+                    query_class_name, query_class_name, analyzer))
             should = [
+                # Note the presence of operator='and', which may seem weird
+                # for a multimatch query. It makes sense here because we really
+                # want all terms to be present in either of the fields
+                # individually. ES docs warn against this, but this is exactly
+                # what we want here.
                 query.MultiMatch(
                     _name=summary_query_name,
                     query=search_query,
-                    type='phrase',
                     fields=['summary', 'summary_l10n_%s' % analyzer],
                     boost=3.0,
+                    **multi_match_kwargs
                 ),
                 query.MultiMatch(
                     _name=description_query_name,
                     query=search_query,
-                    type='phrase',
                     fields=['description', 'description_l10n_%s' % analyzer],
                     boost=2.0,
+                    **multi_match_kwargs
                 ),
             ]
         else:
             should = [
-                query.MatchPhrase(summary={
-                    '_name': 'MatchPhrase(summary)',
-                    'query': search_query, 'boost': 3.0}),
-                query.MatchPhrase(description={
-                    '_name': 'MatchPhrase(description)',
-                    'query': search_query, 'boost': 2.0}),
+                query_class(
+                    summary=dict(
+                        _name='%s(summary)' % query_class_name,
+                        query=search_query,
+                        boost=3.0,
+                        **query_kwargs)),
+                query_class(
+                    summary=dict(
+                        _name='%s(description)' % query_class_name,
+                        query=search_query,
+                        boost=2.0,
+                        **query_kwargs)),
             ]
 
         return should
 
-    def apply_search_query(self, search_query, qs):
+    def rescore_rules(self, search_query, analyzer):
+        """
+        Rules for the rescore part of the query. Currently just more expensive
+        version of secondary_search_rules(), doing match_phrase with a slop
+        against summary & description, including translated variants if
+        possible.
+        """
+        return self.secondary_should_rules(
+            search_query, analyzer, rescore_mode=True)
+
+    def apply_search_query(self, search_query, qs, sort=None):
         lang = translation.get_language()
         analyzer = get_locale_analyzer(lang)
 
@@ -494,14 +540,25 @@ class SearchQueryFilter(BaseFilterBackend):
             query.SF('field_value_factor', field='boost'),
         ]
 
-        # Assemble everything together and return the search "queryset".
-        return qs.query(
+        # Assemble everything together
+        qs = qs.query(
             'function_score',
             query=query.Bool(should=primary_should + secondary_should),
             functions=functions)
 
+        if sort is None or sort == 'relevance':
+            # If we are searching by relevancy, rescore the top 10
+            # (window_size below) results per shard with more expensive rules
+            # using match_phrase + slop.
+            rescore_query = self.rescore_rules(search_query, analyzer)
+            qs = qs.extra(rescore={'window_size': 10, 'query': {
+                'rescore_query': query.Bool(should=rescore_query).to_dict()}})
+
+        return qs
+
     def filter_queryset(self, request, qs, view):
         search_query = request.GET.get('q', '').lower()
+        sort_param = request.GET.get('sort')
 
         if not search_query:
             return qs
@@ -510,7 +567,7 @@ class SearchQueryFilter(BaseFilterBackend):
             raise serializers.ValidationError(
                 ugettext('Maximum query length exceeded.'))
 
-        return self.apply_search_query(search_query, qs)
+        return self.apply_search_query(search_query, qs, sort_param)
 
 
 class SearchParameterFilter(BaseFilterBackend):
