@@ -130,9 +130,9 @@ billiard==3.5.0.4 \
 bleach==3.0.2 \
     --hash=sha256:73d26f018af5d5adcdabf5c1c974add4361a9c76af215fe32fdec8a6fc5fb9b9 \
     --hash=sha256:48d39675b80a75f6d1c3bdbffec791cf0bbbab665cf01e20da701c77de278718
-boto3==1.9.43 \
-    --hash=sha256:dbd1f9d2b27f9f83879f4a6f8b0eef53964da2f09fc75d4a27d23000220b8551 \
-    --hash=sha256:6792803663c6e0c29d3137c5e76f7b38cde5f4b6c12f2a0ed0f10dc6f81c5b32
+boto3==1.9.44 \
+    --hash=sha256:205bb45ab209f038d3014a468f9556ea5c7953225a0a57e49edcfd0486ff815a \
+    --hash=sha256:4a1ac4afcb73a701c44fbba44ba7a385612c7ee76baf6f4f26da05928fa56e8a
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
