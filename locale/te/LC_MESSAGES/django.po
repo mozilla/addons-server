@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-09 11:01+0000\n"
+"PO-Revision-Date: 2018-11-13 13:02+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2115,7 +2115,7 @@ msgid "New Legacy Add-on Review"
 msgstr "కొత్త పొడిగింత సమీక్ష"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "ప్రాథమిక పొడగింత సమీక్ష"
 
 #, fuzzy
 msgid "Updated Legacy Add-on Review"
@@ -3108,7 +3108,7 @@ msgid "View Statistics"
 msgstr "గణాంకాలు వీక్షించు"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "ఈ అంలంకారపు యజమానిని మార్చండి."
 
 msgid "Transfer Ownership"
 msgstr "యాజమాన్యాన్ని బదిలీ చేయండి"
@@ -3120,7 +3120,7 @@ msgid "This add-on is missing some required information before it can be submitt
 msgstr ""
 
 msgid "This add-on doesn't have any versions."
-msgstr ""
+msgstr "ఈ పొడగింతకి ఏ వెర్షన్లేమీ లేవు."
 
 msgid "Status:"
 msgstr "స్థితి:"
