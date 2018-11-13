@@ -32,8 +32,7 @@ HOME=/tmp
 45 7 * * * %(django)s dump_apps
 0 8 * * * %(django)s update_product_details
 
-# Update ADI metrics from S3.
-# Once per day after 0800 UTC
+# Update ADI metrics from S3 once per day
 30 11 * * * %(django)s update_counts_from_file
 00 12 * * * %(django)s download_counts_from_file
 15 12 * * * %(django)s theme_update_counts_from_file
