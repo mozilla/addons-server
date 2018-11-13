@@ -27,8 +27,8 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="tooltip"
-         title="{{ _("Edit information about this add-on.") }}">
-        {{ _('Edit Information') }}</a>
+         title="{{ _("Edit details on this add-on's product page.") }}">
+        {{ _('Edit Product Page') }}</a>
     </li>
     {% if not addon.is_disabled %}
       <li>
