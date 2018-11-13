@@ -3,6 +3,9 @@ import urllib
 import json
 import os
 import stat
+import StringIO
+import tarfile
+import zipfile
 
 from datetime import datetime, timedelta
 
@@ -101,6 +104,35 @@ class TestSubmitBase(TestCase):
 
     def get_version(self):
         return self.get_addon().versions.latest()
+
+    def generate_source_zip(self, suffix='.zip', data='z' * (2 ** 21),
+                            compression=zipfile.ZIP_DEFLATED):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
+        with zipfile.ZipFile(source, 'w', compression=compression) as zip_file:
+            zip_file.writestr('foo', data)
+        source.seek(0)
+        return source
+
+    def generate_source_compressed_tar(
+            self, suffix='.tar.gz', data='t' * (2 ** 21)):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
+        mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
+        with tarfile.open(fileobj=source, mode=mode) as tar_file:
+            tar_info = tarfile.TarInfo('foo')
+            tar_info.size = len(data)
+            tar_file.addfile(tar_info, StringIO.StringIO(data))
+
+        source.seek(0)
+        return source
+
+    def generate_source_garbage(self, suffix='.zip', data='g' * (2 ** 21)):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
+        source.write(data)
+        source.seek(0)
+        return source
 
 
 class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
@@ -619,16 +651,33 @@ class TestAddonSubmitSource(TestSubmitBase):
                 assert response.context['form'].errors == {}
         return response
 
-    def get_source(self, suffix='.zip'):
-        tdir = temp.gettempdir()
-        source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
-        source.write('a' * (2 ** 21))
-        source.seek(0)
-        return source
-
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
     def test_submit_source(self):
-        response = self.post(has_source=True, source=self.get_source())
+        response = self.post(
+            has_source=True, source=self.generate_source_zip())
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert self.get_version().source
+        assert self.addon.needs_admin_code_review
+        mode = (
+            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+        assert mode == '0100644'
+
+    def test_submit_source_targz(self):
+        response = self.post(
+            has_source=True, source=self.generate_source_compressed_tar())
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert self.get_version().source
+        assert self.addon.needs_admin_code_review
+        mode = (
+            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+        assert mode == '0100644'
+
+    def test_submit_source_tarbz2(self):
+        response = self.post(
+            has_source=True, source=self.generate_source_compressed_tar(
+                suffix='.tar.bz2'))
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
@@ -640,9 +689,10 @@ class TestAddonSubmitSource(TestSubmitBase):
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
     def test_say_no_but_submit_source_anyway_fails(self):
         response = self.post(
-            has_source=False, source=self.get_source(), expect_errors=True)
+            has_source=False, source=self.generate_source_zip(),
+            expect_errors=True)
         assert response.context['form'].errors == {
-            'has_source': [
+            'source': [
                 u'Source file uploaded but you indicated no source was needed.'
             ]
         }
@@ -654,7 +704,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         response = self.post(
             has_source=True, source=None, expect_errors=True)
         assert response.context['form'].errors == {
-            'has_source': [u'You have not uploaded a source file.']
+            'source': [u'You have not uploaded a source file.']
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -662,7 +712,10 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
     def test_submit_source_in_memory_upload(self):
-        response = self.post(has_source=True, source=self.get_source())
+        source = self.generate_source_zip()
+        source_size = os.stat(source.name)[stat.ST_SIZE]
+        assert source_size < settings.FILE_UPLOAD_MAX_MEMORY_SIZE
+        response = self.post(has_source=True, source=source)
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
@@ -671,19 +724,75 @@ class TestAddonSubmitSource(TestSubmitBase):
             oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
-    def test_with_bad_source_format(self):
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
+    def test_submit_source_in_memory_upload_with_targz(self):
+        source = self.generate_source_compressed_tar()
+        source_size = os.stat(source.name)[stat.ST_SIZE]
+        assert source_size < settings.FILE_UPLOAD_MAX_MEMORY_SIZE
+        response = self.post(has_source=True, source=source)
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert self.get_version().source
+        assert self.addon.needs_admin_code_review
+        mode = (
+            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+        assert mode == '0100644'
+
+    def test_with_bad_source_extension(self):
         response = self.post(
-            has_source=True, source=self.get_source(suffix='.exe'),
+            has_source=True, source=self.generate_source_zip(suffix='.exe'),
             expect_errors=True)
         assert response.context['form'].errors == {
             'source': [
-                u"Unsupported file type, please upload an archive file "
-                "('.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', "
-                "'.tar.bz2', '.tar.xz')."],
-            # Django deletes the source data from the cleaned form data
-            # in case of an error on a field, so that `source` doesn't
-            # exist for the `has_source` check
-            'has_source': [u'You have not uploaded a source file.']
+                u'Unsupported file type, please upload an archive file '
+                u'(.zip, .tar.gz, .tar.bz2).'],
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_bad_source_not_an_actual_archive(self):
+        response = self.post(
+            has_source=True, source=self.generate_source_garbage(
+                suffix='.zip'), expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': [u'Invalid or broken archive.'],
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_bad_source_broken_archive(self):
+        source = self.generate_source_zip(
+            data='Hello World', compression=zipfile.ZIP_STORED)
+        data = source.read().replace('Hello World', 'dlroW olleH')
+        source.seek(0)  # First seek to rewrite from the beginning
+        source.write(data)
+        source.seek(0)  # Second seek to reset like it's fresh.
+        # Still looks like a zip at first glance.
+        assert zipfile.is_zipfile(source)
+        source.seek(0)  # Last seek to reset source descriptor before posting.
+        response = self.post(
+            has_source=True, source=source, expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': [u'Invalid or broken archive.'],
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_bad_source_broken_archive_compressed_tar(self):
+        source = self.generate_source_compressed_tar()
+        with open(source.name, "r+b") as fobj:
+            fobj.truncate(512)
+        # Still looks like a tar at first glance.
+        assert tarfile.is_tarfile(source.name)
+        # Re-open and post.
+        with open(source.name, 'rb'):
+            response = self.post(
+                has_source=True, source=source, expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': [u'Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -1117,14 +1226,8 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def test_source_submission_notes_shown(self):
         url = reverse('devhub.submit.source', args=[self.addon.slug])
 
-        temp_dir = temp.gettempdir()
-        source = temp.NamedTemporaryFile(suffix='.zip', dir=temp_dir)
-        source.write('a' * (2 ** 21))
-        source.seek(0)
-
         response = self.client.post(url, {
-            'has_source': 'yes',
-            'source': source,
+            'has_source': 'yes', 'source': self.generate_source_zip(),
         }, follow=True)
 
         assert response.status_code == 200
