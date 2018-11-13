@@ -1275,7 +1275,10 @@ class Addon(OnChangeMixin, ModelBase):
                                         'featuredcollection__locale'))
         out = collections.defaultdict(set)
         for app, locale in qset:
-            out[app].add(locale)
+            # Even if the locale for the FeaturedCollection is an empty string
+            # instead of None, we return it as None so that it keeps its
+            # special meaning.
+            out[app].add(locale or None)
         return out
 
     def has_full_profile(self):

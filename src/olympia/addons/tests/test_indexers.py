@@ -205,9 +205,17 @@ class TestAddonIndexer(TestCase):
 
     def test_extract_featured_for(self):
         collection = collection_factory()
-        FeaturedCollection.objects.create(collection=collection,
-                                          application=amo.FIREFOX.id)
+        featured_collection = FeaturedCollection.objects.create(
+            collection=collection, application=amo.FIREFOX.id)
         collection.add_addon(self.addon)
+        extracted = self._extract()
+        assert extracted['featured_for'] == [
+            {'application': [amo.FIREFOX.id], 'locales': [None]}]
+
+        # Even if the locale for the FeaturedCollection is an empty string
+        # instead of None, we extract it as None so that it keeps its special
+        # meaning.
+        featured_collection.update(locale='')
         extracted = self._extract()
         assert extracted['featured_for'] == [
             {'application': [amo.FIREFOX.id], 'locales': [None]}]
