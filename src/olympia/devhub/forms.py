@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
+import tarfile
+import zipfile
 
 from django import forms
 from django.conf import settings
@@ -28,7 +30,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import FileUpload
-from olympia.files.utils import parse_addon
+from olympia.files.utils import (
+    archive_member_validator, parse_addon, SafeZip)
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
@@ -288,12 +291,32 @@ class PolicyForm(TranslationFormMixin, AMOModelForm):
 class WithSourceMixin(object):
     def clean_source(self):
         source = self.cleaned_data.get('source')
-        if source and not source.name.endswith(VALID_SOURCE_EXTENSIONS):
-            raise forms.ValidationError(
-                ugettext(
-                    'Unsupported file type, please upload an archive '
-                    'file {extensions}.'.format(
-                        extensions=VALID_SOURCE_EXTENSIONS)))
+        if source:
+            try:
+                if source.name.endswith('.zip'):
+                    zip_file = SafeZip(source)
+                    # testzip() returns None if there are no broken CRCs.
+                    if zip_file.zip_file.testzip() is not None:
+                        raise zipfile.BadZipfile()
+                elif source.name.endswith(('.tar.gz', '.tar.bz2')):
+                    # For tar files we need to do a little more work.
+                    # Fortunately tarfile.open() already handles compression
+                    # formats for us automatically.
+                    with tarfile.open(fileobj=source) as archive:
+                        archive_members = archive.getmembers()
+                        for member in archive_members:
+                            archive_member_validator(archive, member)
+                else:
+                    valid_extensions_string = u'(%s)' % u', '.join(
+                        VALID_SOURCE_EXTENSIONS)
+                    raise forms.ValidationError(
+                        ugettext(
+                            'Unsupported file type, please upload an archive '
+                            'file {extensions}.'.format(
+                                extensions=valid_extensions_string)))
+            except (zipfile.BadZipfile, tarfile.ReadError, IOError):
+                raise forms.ValidationError(
+                    ugettext('Invalid or broken archive.'))
         return source
 
 
@@ -565,15 +588,19 @@ class SourceForm(WithSourceMixin, forms.ModelForm):
         self.request = kwargs.pop('request')
         super(SourceForm, self).__init__(*args, **kwargs)
 
-    def clean_has_source(self):
-        data = self.cleaned_data
-        if data.get('has_source') == 'yes' and not data.get('source'):
+    def clean_source(self):
+        source = self.cleaned_data.get('source')
+        has_source = self.data.get('has_source')  # Not cleaned yet.
+        if has_source == 'yes' and not source:
             raise forms.ValidationError(
                 ugettext(u'You have not uploaded a source file.'))
-        elif data.get('has_source') == 'no' and data.get('source'):
+        elif has_source == 'no' and source:
             raise forms.ValidationError(
                 ugettext(u'Source file uploaded but you indicated no source '
                          u'was needed.'))
+        # At this point we know we can proceed with the actual archive
+        # validation.
+        return super(SourceForm, self).clean_source()
 
 
 class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):

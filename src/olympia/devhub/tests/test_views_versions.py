@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 import datetime
+import mock
 import re
+import zipfile
 
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-
-import mock
 
 from pyquery import PyQuery as pq
 
@@ -668,9 +668,10 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert doc('p.add-app')[0].attrib['class'] == 'add-app hide'
 
     def test_existing_source_link(self):
-        tmp_file = temp.NamedTemporaryFile
-        with tmp_file(suffix=".zip", dir=temp.gettempdir()) as source_file:
-            source_file.write('a' * (2 ** 21))
+        with temp.NamedTemporaryFile(
+                suffix='.zip', dir=temp.gettempdir()) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
             source_file.seek(0)
             self.version.source = DjangoFile(source_file)
             self.version.save()
@@ -684,10 +685,10 @@ class TestVersionEditDetails(TestVersionEditBase):
             'downloads.source', args=(self.version.pk, ))
 
     def test_should_accept_zip_source_file(self):
-        tdir = temp.gettempdir()
-        tmp_file = temp.NamedTemporaryFile
-        with tmp_file(suffix=".zip", dir=tdir) as source_file:
-            source_file.write('a' * (2 ** 21))
+        with temp.NamedTemporaryFile(
+                suffix='.zip', dir=temp.gettempdir()) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -701,10 +702,10 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert log
 
     def test_should_not_accept_exe_source_file(self):
-        tdir = temp.gettempdir()
-        tmp_file = temp.NamedTemporaryFile
-        with tmp_file(suffix=".exe", dir=tdir) as source_file:
-            source_file.write('a' * (2 ** 21))
+        with temp.NamedTemporaryFile(
+                suffix='.exe', dir=temp.gettempdir()) as source_file:
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
@@ -715,7 +716,8 @@ class TestVersionEditDetails(TestVersionEditBase):
         tdir = temp.gettempdir()
         tmp_file = temp.NamedTemporaryFile
         with tmp_file(suffix=".zip", dir=tdir) as source_file:
-            source_file.write('a' * (2 ** 21))
+            with zipfile.ZipFile(source_file, 'w') as zip_file:
+                zip_file.writestr('foo', 'a' * (2 ** 21))
             source_file.seek(0)
             data = self.formset(source=source_file)
             response = self.client.post(self.url, data)
