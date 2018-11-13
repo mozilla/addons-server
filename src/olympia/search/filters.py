@@ -266,9 +266,9 @@ class AddonExcludeAddonsQueryParam(AddonQueryParam):
         ids = [value for value in values if value.isdigit()]
         slugs = [value for value in values if not value.isdigit()]
         if ids:
-            filters.append(~Q('ids', values=ids))
+            filters.append(Q('ids', values=ids))
         if slugs:
-            filters.append(~Q('terms', slug=slugs))
+            filters.append(Q('terms', slug=slugs))
         return filters
 
 
@@ -285,22 +285,18 @@ class AddonFeaturedQueryParam(AddonQueryParam):
         locale = self.request.GET.get('lang')
         if not app and not locale:
             # If neither app nor locale is specified fall back on is_featured.
-            # It's a simple term clause.
             return [Q('term', is_featured=True)]
-        # If either app or locale are specified then we need to do a nested
-        # query to look for the right featured_for fields.
-        clauses = []
+        queries = []
         if app:
             # Search for featured collections targeting `app`.
-            clauses.append(
+            queries.append(
                 Q('term', **{'featured_for.application': app}))
         if locale:
             # Search for featured collections targeting `locale` or all locales
-            # ('ALL' is the null_value for featured_for.locales).
-            clauses.append(
+            queries.append(
                 Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
-        return [Q('nested', path='featured_for', query=query.Bool(
-            filter=clauses))]
+        return [Q('nested', path='featured_for',
+                  query=query.Bool(must=queries))]
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -519,22 +515,17 @@ class SearchParameterFilter(BaseFilterBackend):
     matching a specific set of params in request.GET: app, appversion,
     author, category, exclude_addons, platform, tag and type.
     """
-    available_clauses = [
-        AddonAppQueryParam,
-        AddonAppVersionQueryParam,
-        AddonAuthorQueryParam,
-        AddonCategoryQueryParam,
-        AddonExcludeAddonsQueryParam,
-        AddonFeaturedQueryParam,
-        AddonGuidQueryParam,
-        AddonPlatformQueryParam,
-        AddonTagQueryParam,
-        AddonTypeQueryParam,
-    ]
+    available_filters = [AddonAppQueryParam, AddonAppVersionQueryParam,
+                         AddonAuthorQueryParam, AddonCategoryQueryParam,
+                         AddonGuidQueryParam, AddonFeaturedQueryParam,
+                         AddonPlatformQueryParam, AddonTagQueryParam,
+                         AddonTypeQueryParam]
 
-    def get_applicable_clauses(self, request):
+    available_excludes = [AddonExcludeAddonsQueryParam]
+
+    def get_applicable_clauses(self, request, params_to_try):
         clauses = []
-        for param_class in self.available_clauses:
+        for param_class in params_to_try:
             try:
                 # Initialize the param class if its query parameter is
                 # present in the request, otherwise don't, to avoid raising
@@ -546,8 +537,20 @@ class SearchParameterFilter(BaseFilterBackend):
         return clauses
 
     def filter_queryset(self, request, qs, view):
-        filters = self.get_applicable_clauses(request)
-        return qs.query(query.Bool(filter=filters)) if filters else qs
+        bool_kwargs = {}
+
+        must = self.get_applicable_clauses(
+            request, self.available_filters)
+        must_not = self.get_applicable_clauses(
+            request, self.available_excludes)
+
+        if must:
+            bool_kwargs['must'] = must
+
+        if must_not:
+            bool_kwargs['must_not'] = must_not
+
+        return qs.query(query.Bool(**bool_kwargs)) if bool_kwargs else qs
 
 
 class ReviewedContentFilter(BaseFilterBackend):
@@ -557,11 +560,12 @@ class ReviewedContentFilter(BaseFilterBackend):
     disabled.
     """
     def filter_queryset(self, request, qs, view):
-        return qs.query(query.Bool(filter=[
-            Q('terms', status=amo.REVIEWED_STATUSES),
-            Q('exists', field='current_version'),
-            Q('term', is_disabled=False),
-        ]))
+        return qs.query(
+            query.Bool(
+                must=[Q('terms', status=amo.REVIEWED_STATUSES),
+                      Q('exists', field='current_version')],
+                must_not=[Q('term', is_deleted=True),
+                          Q('term', is_disabled=True)]))
 
 
 class SortingFilter(BaseFilterBackend):
