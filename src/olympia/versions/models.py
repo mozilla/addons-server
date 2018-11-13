@@ -41,6 +41,12 @@ from .compare import version_dict, version_int
 log = olympia.core.logger.getLogger('z.versions')
 
 
+# Valid source extensions. Used in error messages to the user and to skip
+# early in source_upload_path() if necessary, but the actual validation is
+# more complex and done in olympia.devhub.WithSourceMixin.clean_source
+VALID_SOURCE_EXTENSIONS = ('.zip', '.tar.gz', '.tar.bz2',)
+
+
 class VersionManager(ManagerBase):
 
     def __init__(self, include_deleted=False):
@@ -76,9 +82,12 @@ class VersionManager(ManagerBase):
 
 
 def source_upload_path(instance, filename):
-    # At this point we already know that the
+    # At this point we already know that ext is one of VALID_SOURCE_EXTENSIONS
+    # because we already checked for that in
     # /src/olympia/devhub/forms.py#WithSourceMixin.clean_source.
-    extension = os.path.splitext(filename)[1]
+    for ext in VALID_SOURCE_EXTENSIONS:
+        if filename.endswith(ext):
+            break
 
     return os.path.join(
         u'version_source',
@@ -86,7 +95,7 @@ def source_upload_path(instance, filename):
         u'{0}-{1}-src{2}'.format(
             instance.addon.slug,
             instance.version,
-            extension)
+            ext)
     )
 
 

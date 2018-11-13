@@ -37,7 +37,8 @@ from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
     TranslationTextarea, TranslationTextInput)
-from olympia.versions.models import ApplicationsVersions, License, Version
+from olympia.versions.models import (
+    VALID_SOURCE_EXTENSIONS, ApplicationsVersions, License, Version)
 
 from . import tasks
 
@@ -306,11 +307,13 @@ class WithSourceMixin(object):
                         for member in archive_members:
                             archive_member_validator(archive, member)
                 else:
+                    valid_extensions_string = u'(%s)' % u', '.join(
+                        VALID_SOURCE_EXTENSIONS)
                     raise forms.ValidationError(
                         ugettext(
-                            u'Unsupported file type, please upload an archive '
-                            u'file {extensions}.'.format(
-                                extensions=u'(.zip, .tar.gz or .tar.bz2)')))
+                            'Unsupported file type, please upload an archive '
+                            'file {extensions}.'.format(
+                                extensions=valid_extensions_string)))
             except (zipfile.BadZipfile, tarfile.ReadError, IOError):
                 raise forms.ValidationError(
                     ugettext('Invalid or broken archive.'))
