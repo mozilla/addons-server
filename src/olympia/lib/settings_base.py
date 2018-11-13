@@ -1935,6 +1935,8 @@ GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
 
 MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
 
+MIGRATED_LWT_UPDATES_ENABLED = False
+
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
