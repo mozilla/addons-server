@@ -195,12 +195,13 @@ class TestReviewedContentFilter(FilterTestsBase):
 
     def test_status(self):
         qs = self._filter(self.req)
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
+        must_not = qs['query']['bool']['must_not']
 
-        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
-        assert {'exists': {'field': 'current_version'}} in filter_
-        assert {'term': {'is_disabled': False}} in filter_
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
+        assert {'exists': {'field': 'current_version'}} in must
+        assert {'term': {'is_disabled': True}} in must_not
+        assert {'term': {'is_deleted': True}} in must_not
 
 
 class TestSortingFilter(FilterTestsBase):
@@ -306,37 +307,27 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_type_id(self):
         qs = self._filter(data={'type': unicode(amo.ADDON_EXTENSION)})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in must
 
         qs = self._filter(data={'type': unicode(amo.ADDON_PERSONA)})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in must
 
     def test_search_by_type_string(self):
         qs = self._filter(data={'type': 'extension'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'terms': {'type': [amo.ADDON_EXTENSION]}} in must
 
         qs = self._filter(data={'type': 'persona'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'terms': {'type': [amo.ADDON_PERSONA]}} in must
 
         qs = self._filter(data={'type': 'persona,extension'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert (
             {'terms': {'type': [amo.ADDON_PERSONA, amo.ADDON_EXTENSION]}}
-            in filter_)
+            in must)
 
     def test_search_by_app_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -348,29 +339,21 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_app_id(self):
         qs = self._filter(data={'app': unicode(amo.FIREFOX.id)})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'app': amo.FIREFOX.id}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
 
         qs = self._filter(data={'app': unicode(amo.ANDROID.id)})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'app': amo.ANDROID.id}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'app': amo.ANDROID.id}} in must
 
     def test_search_by_app_string(self):
         qs = self._filter(data={'app': 'firefox'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'app': amo.FIREFOX.id}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
 
         qs = self._filter(data={'app': 'android'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'app': amo.ANDROID.id}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'app': amo.ANDROID.id}} in must
 
     def test_search_by_appversion_app_missing(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -392,14 +375,12 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_appversion(self):
         qs = self._filter(data={'appversion': '46.0',
                                 'app': 'firefox'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'app': amo.FIREFOX.id}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'app': amo.FIREFOX.id}} in must
         assert {'range': {'current_version.compatible_apps.1.min':
-                {'lte': 46000000200100}}} in filter_
+                {'lte': 46000000200100}}} in must
         assert {'range': {'current_version.compatible_apps.1.max':
-                {'gte': 46000000000100}}} in filter_
+                {'gte': 46000000000100}}} in must
 
     def test_search_by_platform_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -411,61 +392,45 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_platform_id(self):
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_WIN.id)})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
 
         qs = self._filter(data={'platform': unicode(amo.PLATFORM_LINUX.id)})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
 
     def test_search_by_platform_string(self):
         qs = self._filter(data={'platform': 'windows'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
 
         qs = self._filter(data={'platform': 'win'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in must
 
         qs = self._filter(data={'platform': 'darwin'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
 
         qs = self._filter(data={'platform': 'mac'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
 
         qs = self._filter(data={'platform': 'macosx'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_MAC.id, amo.PLATFORM_ALL.id]}} in must
 
         qs = self._filter(data={'platform': 'linux'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert {'terms': {'platforms': [
-            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in filter_
+            amo.PLATFORM_LINUX.id, amo.PLATFORM_ALL.id]}} in must
 
     def test_search_by_category_slug_no_app_or_type(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -484,10 +449,8 @@ class TestSearchParameterFilter(FilterTestsBase):
             'app': 'firefox',
             'type': 'extension'
         })
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'category': [category.id]}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'terms': {'category': [category.id]}} in must
 
     def test_search_by_category_slug_multiple_types(self):
         category_a = CATEGORIES[amo.FIREFOX.id][amo.ADDON_EXTENSION]['other']
@@ -497,11 +460,9 @@ class TestSearchParameterFilter(FilterTestsBase):
             'app': 'firefox',
             'type': 'extension,persona'
         })
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
+        must = qs['query']['bool']['must']
         assert (
-            {'terms': {'category': [category_a.id, category_b.id]}} in filter_)
+            {'terms': {'category': [category_a.id, category_b.id]}} in must)
 
     def test_search_by_category_id(self):
         qs = self._filter(data={
@@ -509,10 +470,8 @@ class TestSearchParameterFilter(FilterTestsBase):
             'app': 'firefox',
             'type': 'extension'
         })
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'terms': {'category': [1]}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'terms': {'category': [1]}} in must
 
     def test_search_by_category_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
@@ -522,99 +481,64 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_tag(self):
         qs = self._filter(data={'tag': 'foo'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'tags': 'foo'}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'tags': 'foo'}} in must
 
         qs = self._filter(data={'tag': 'foo,bar'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'tags': 'foo'}} in filter_
-        assert {'term': {'tags': 'bar'}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'tags': 'foo'}} in must
+        assert {'term': {'tags': 'bar'}} in must
 
     def test_search_by_author(self):
         qs = self._filter(data={'author': 'fooBar'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        should = filter_[0]['bool']['should']
+        must = qs['query']['bool']['must']
+        assert len(must) == 1
+        should = must[0]['bool']['should']
         assert {'terms': {'listed_authors.id': []}} in should
         assert {'terms': {'listed_authors.username': ['fooBar']}} in should
 
         qs = self._filter(data={'author': 'foo,bar'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        should = filter_[0]['bool']['should']
+        must = qs['query']['bool']['must']
+        assert len(must) == 1
+        should = must[0]['bool']['should']
         assert {'terms': {'listed_authors.id': []}} in should
         assert {'terms': {'listed_authors.username': ['foo', 'bar']}} in should
 
         qs = self._filter(data={'author': '123,456'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        should = filter_[0]['bool']['should']
+        must = qs['query']['bool']['must']
+        assert len(must) == 1
+        should = must[0]['bool']['should']
         assert {'terms': {'listed_authors.id': ['123', '456']}} in should
         assert {'terms': {'listed_authors.username': []}} in should
 
         qs = self._filter(data={'author': '123,bar'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        should = filter_[0]['bool']['should']
+        must = qs['query']['bool']['must']
+        assert len(must) == 1
+        should = must[0]['bool']['should']
         assert {'terms': {'listed_authors.id': ['123']}} in should
         assert {'terms': {'listed_authors.username': ['bar']}} in should
 
     def test_exclude_addons(self):
         qs = self._filter(data={'exclude_addons': 'fooBar'})
         assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-
-        # We've got another bool query inside our filter to handle the
-        # must_not here.
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert 'must' not in filter_[0]['bool']
-        must_not = filter_[0]['bool']['must_not']
+        must_not = qs['query']['bool']['must_not']
         assert must_not == [{'terms': {'slug': [u'fooBar']}}]
 
         qs = self._filter(data={'exclude_addons': 1})
         assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        assert 'must' not in filter_[0]['bool']
-        must_not = filter_[0]['bool']['must_not']
+        must_not = qs['query']['bool']['must_not']
         assert must_not == [{'ids': {'values': [u'1']}}]
 
         qs = self._filter(data={'exclude_addons': 'fooBar,1'})
         assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        # elasticsearch-dsl seems to separate our 2 bool clauses instead of
-        # keeping them together. It might be a byproduct of using
-        # nested+filter. The resulting query is ugly but it should still work,
-        # and it's an edge-case anyway, usually clients won't pass 2 different
-        # types of identifiers.
-        assert len(filter_) == 2
-        assert 'must' not in filter_[0]['bool']
-        assert 'must' not in filter_[1]['bool']
-        must_not = filter_[0]['bool']['must_not']
+        must_not = qs['query']['bool']['must_not']
         assert {'ids': {'values': [u'1']}} in must_not
-        must_not = filter_[1]['bool']['must_not']
         assert {'terms': {'slug': [u'fooBar']}} in must_not
 
     def test_search_by_featured_no_app_no_locale(self):
         qs = self._filter(data={'featured': 'true'})
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert {'term': {'is_featured': True}} in filter_
+        must = qs['query']['bool']['must']
+        assert {'term': {'is_featured': True}} in must
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'featured': 'false'})
@@ -622,12 +546,11 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_featured_yes_app_no_locale(self):
         qs = self._filter(data={'featured': 'true', 'app': 'firefox'})
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 2
-        assert filter_[0] == {'term': {'app': amo.FIREFOX.id}}
-        inner = filter_[1]['nested']['query']['bool']['filter']
-        assert len(inner) == 1
+        must = qs['query']['bool']['must']
+        assert {'term': {'is_featured': True}} not in must
+        assert must[0] == {'term': {'app': amo.FIREFOX.id}}
+        inner = must[1]['nested']['query']['bool']['must']
+        assert len(must) == 2
         assert {'term': {'featured_for.application': amo.FIREFOX.id}} in inner
 
         with self.assertRaises(serializers.ValidationError) as context:
@@ -637,12 +560,11 @@ class TestSearchParameterFilter(FilterTestsBase):
     def test_search_by_featured_yes_app_yes_locale(self):
         qs = self._filter(data={'featured': 'true', 'app': 'firefox',
                                 'lang': 'fr'})
-        assert 'must' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 2
-        assert filter_[0] == {'term': {'app': amo.FIREFOX.id}}
-        inner = filter_[1]['nested']['query']['bool']['filter']
-        assert len(inner) == 2
+        must = qs['query']['bool']['must']
+        assert {'term': {'is_featured': True}} not in must
+        assert must[0] == {'term': {'app': amo.FIREFOX.id}}
+        inner = must[1]['nested']['query']['bool']['must']
+        assert len(must) == 2
         assert {'term': {'featured_for.application': amo.FIREFOX.id}} in inner
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
@@ -652,12 +574,10 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_featured_no_app_yes_locale(self):
         qs = self._filter(data={'featured': 'true', 'lang': 'fr'})
-        assert 'must' not in qs['query']['bool']
-        assert 'must_not' not in qs['query']['bool']
-        filter_ = qs['query']['bool']['filter']
-        assert len(filter_) == 1
-        inner = filter_[0]['nested']['query']['bool']['filter']
-        assert len(inner) == 1
+        must = qs['query']['bool']['must']
+        assert {'term': {'is_featured': True}} not in must
+        inner = must[0]['nested']['query']['bool']['must']
+        assert len(must) == 1
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
 
@@ -671,18 +591,18 @@ class TestCombinedFilter(FilterTestsBase):
 
     def test_combined(self):
         qs = self._filter(data={'q': 'test'})
-        bool_ = qs['query']['bool']
+        filtered = qs['query']['bool']
+        assert filtered['must'][2]['function_score']
 
-        assert 'must_not' not in bool_
+        must = filtered['must']
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
 
-        filter_ = bool_['filter']
-        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
-        assert {'exists': {'field': 'current_version'}} in filter_
-        assert {'term': {'is_disabled': False}} in filter_
+        must_not = filtered['must_not']
+        assert {'term': {'is_disabled': True}} in must_not
 
         assert qs['sort'] == ['_score']
 
-        should = bool_['must'][0]['function_score']['query']['bool']['should']
+        should = must[2]['function_score']['query']['bool']['should']
         expected = {
             'match': {
                 'name_l10n_english': {
@@ -695,17 +615,15 @@ class TestCombinedFilter(FilterTestsBase):
 
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
-        bool_ = qs['query']['bool']
+        filtered = qs['query']['bool']
+        must = filtered['must']
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in must
 
-        assert 'must_not' not in bool_
-
-        filter_ = bool_['filter']
-        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
-        assert {'exists': {'field': 'current_version'}} in filter_
-        assert {'term': {'is_disabled': False}} in filter_
+        must_not = filtered['must_not']
+        assert {'term': {'is_disabled': True}} in must_not
 
         assert qs['sort'] == ['_score']
 
-        assert bool_['must'][0]['function_score']['functions'] == [
+        assert filtered['must'][2]['function_score']['functions'] == [
             {'random_score': {}}
         ]
