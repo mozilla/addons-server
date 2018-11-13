@@ -313,6 +313,27 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         return super(RatingViewSet, self).get_addon_object(
             permission_classes=[AllowIfPublic])
 
+    def should_include_flags(self):
+        if not hasattr(self, '_should_include_flags'):
+            request = self.request
+            self._should_include_flags = (
+                'include_flags_for' in request.GET and
+                not is_gate_active(request, 'del-ratings-flags')
+            )
+            if self._should_include_flags:
+                # Check the parameter was sent correctly
+                try:
+                    should_include_flags_for = (
+                        serializers.IntegerField().to_internal_value(
+                            request.GET['include_flags_for']))
+                    if should_include_flags_for != request.user.pk:
+                        raise serializers.ValidationError
+                except serializers.ValidationError:
+                    raise ParseError(
+                        'include_flags_for parameter value should be equal to '
+                        'the user id of the authenticated user')
+        return self._should_include_flags
+
     def check_permissions(self, request):
         """Perform permission checks.
 
@@ -412,6 +433,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                     'the user id of the authenticated user')
             extra_data['can_reply'] = (
                 self.check_can_reply_permission_for_ratings_list())
+        self.should_include_flags()
         response = super(RatingViewSet, self).get_paginated_response(data)
         if extra_data:
             response.data.update(extra_data)
