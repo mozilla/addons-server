@@ -794,6 +794,10 @@ class TestAddonModels(TestCase):
         # Get the applications this addon is featured for.
         assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
 
+        featured_coll.update(locale='')
+        # Check that an empty string is considered None.
+        assert addon.get_featured_by_app() == {amo.FIREFOX.id: {None}}
+
         featured_coll.update(locale='fr')
         # Check the locale works.
         assert addon.get_featured_by_app() == {amo.FIREFOX.id: {'fr'}}
