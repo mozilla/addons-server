@@ -159,7 +159,8 @@ Reply
 .. rating-reply:
 
 This endpoint allows you to reply to an existing user rating.
-If successful a :ref:`rating reply object <rating-detail-object>` is returned.
+If successful a :ref:`rating reply object <rating-detail-object>` is returned -
+a `rating` object but with the fields ``rating``, ``reply`` and ``version`` omitted.
 
  .. note::
      Requires authentication and either Addons:Edit permission or a user account
