@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-05-11 17:00+0000\n"
-"Last-Translator: gilsonjunior359 <gilsonjunior359@gmail.com>\n"
+"PO-Revision-Date: 2018-11-14 16:30+0000\n"
+"Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
@@ -211,52 +211,44 @@ msgstr "Usar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " downloads"
-msgstr[1] " downloads"
+msgstr[0] "{0} download"
+msgstr[1] "{0} downloads"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} usuários"
+msgstr[0] "{0} usuário"
 msgstr[1] "{0} usuários"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} extensões"
+msgstr[0] "{0} extensão"
 msgstr[1] "{0} extensões"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} coleções"
+msgstr[0] "{0} coleção"
 msgstr[1] "{0} coleções"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} análises"
+msgstr[0] "{0} análise"
 msgstr[1] "{0} análises"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} vendas"
+msgstr[0] "{0} venda"
 msgstr[1] "{0} vendas"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} reembolsos"
+msgstr[0] "{0} reembolso"
 msgstr[1] "{0} reembolsos"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalações"
+msgstr[0] "{0} instalação"
 msgstr[1] "{0} instalações"
 
 msgid "Downloads"
@@ -771,18 +763,16 @@ msgid "Loading..."
 msgstr "Carregando..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> caractere restante."
-msgstr[1] "<b>{0}</b> caracteres restantes."
+msgstr[0] "<b>{0}</b> caractere"
+msgstr[1] "<b>{0}</b> caracteres"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> caractere restante."
-msgstr[1] "<b>{0}</b> caracteres restantes."
+msgstr[0] "<b>{0}</b> caractere restante"
+msgstr[1] "<b>{0}</b> caracteres restantes"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Este recurso foi temporariamente desabilitado para realizamos a manutenção do site. Por favor, volte mais tarde."
