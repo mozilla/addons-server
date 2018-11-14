@@ -38,8 +38,7 @@ class TestQueryFilter(FilterTestsBase):
 
     filter_classes = [SearchQueryFilter]
 
-    def _test_q(self):
-        qs = self._filter(data={'q': 'tea pot'})
+    def _test_q(self, qs):
         # Spot check a few queries.
         should = qs['query']['function_score']['query']['bool']['should']
 
@@ -105,10 +104,12 @@ class TestQueryFilter(FilterTestsBase):
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
-        pass
+        qs = self._test_q(
+            self._filter(data={'q': 'tea pot', 'sort': 'rating'}))
+        assert 'rescore' not in qs
 
     def test_q(self):
-        qs = self._test_q()
+        qs = self._test_q(self._filter(data={'q': 'tea pot'}))
         functions = qs['query']['function_score']['functions']
         assert len(functions) == 1
 
