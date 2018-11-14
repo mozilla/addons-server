@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-14 01:52+0000\n"
+"PO-Revision-Date: 2018-11-14 01:56+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -7540,7 +7540,7 @@ msgid "Loading the latest data&hellip;"
 msgstr ""
 
 msgid "No data available."
-msgstr ""
+msgstr "Nu există date disponibile."
 
 msgid "This dashboard is currently <b>public</b>."
 msgstr "Acest tablou de bord este în prezent <b>public</b>."
@@ -7623,7 +7623,7 @@ msgid "Download sources by Date"
 msgstr "Surse de descărcare în funcție de dată"
 
 msgid "About tracking external sources..."
-msgstr ""
+msgstr "În ceea ce privește urmărirea surselor externe"
 
 #, python-format
 msgid ""
@@ -7644,7 +7644,7 @@ msgid "Daily Users by Date"
 msgstr "Utilizatori zilnici în funcție de dată"
 
 msgid "What are daily users?"
-msgstr ""
+msgstr "Ce sunt utilizatorii zilnici?"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
@@ -8157,9 +8157,9 @@ msgstr "{0} suplimente"
 #, python-format
 msgid "%(num)s theme"
 msgid_plural "%(num)s themes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s temă"
+msgstr[1] "%(num)s teme"
+msgstr[2] "%(num)s de teme"
 
 #, python-format
 msgid "%(num)s add-on"
