@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-14 01:26+0000\n"
+"PO-Revision-Date: 2018-11-14 01:52+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1495,7 +1495,7 @@ msgid "View All Up & Coming"
 msgstr ""
 
 msgid "No themes found"
-msgstr ""
+msgstr "Nicio temă găsită"
 
 msgid "{addon} was created."
 msgstr ""
@@ -1879,7 +1879,7 @@ msgid "Theme (Static)"
 msgstr ""
 
 msgid "Complete Themes"
-msgstr ""
+msgstr "Teme complete"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
@@ -1896,7 +1896,7 @@ msgid "Plugins"
 msgstr ""
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Teme (Statice)"
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -2143,13 +2143,13 @@ msgid "Manual Reviewer Points"
 msgstr ""
 
 msgid "New Legacy Add-on Review"
-msgstr "Recenzie nouă supliment moștenit"
+msgstr "Recenzie nouă pentru supliment obsolet"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
 msgid "Updated Legacy Add-on Review"
-msgstr "Recenzie actualizată supliment moștenit"
+msgstr "Recenzie actualizată pentru supliment obsolet"
 
 # Plural in this context means many of the add-on type
 msgid "New Dictionary Review"
@@ -2384,7 +2384,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr ""
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Extensiile obsolete nu mai sunt suportate în Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr ""
@@ -6608,13 +6608,11 @@ msgstr ""
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Static Themes and Legacy Add-ons"
-msgstr "Suplimente obsolete"
+msgstr "Teme statice și suplimente obsolete"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Temele mele"
+msgstr "Teme statice"
 
 msgid "Legacy Add-ons"
 msgstr "Suplimente obsolete"
@@ -8090,7 +8088,7 @@ msgid "My Most Popular Themes"
 msgstr "Cele mai populare teme ale mele"
 
 msgid "Themes I've created"
-msgstr ""
+msgstr "Teme pe care le-am creat"
 
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
