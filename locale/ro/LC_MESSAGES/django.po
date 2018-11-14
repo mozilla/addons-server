@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-08 20:58+0000\n"
+"PO-Revision-Date: 2018-11-14 01:26+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -245,7 +245,7 @@ msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "Teme deosebite"
 
 msgid "Featured Collections"
 msgstr "Colecții deosebite"
@@ -762,10 +762,10 @@ msgid "Suggested Pages"
 msgstr "Pagini sugerate"
 
 msgid "Browse all extensions"
-msgstr ""
+msgstr "Răsfoiește toate extensiile"
 
 msgid "Browse all themes"
-msgstr ""
+msgstr "Răsfoiește toate temele"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -1107,9 +1107,9 @@ msgstr ""
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(num)s temă în această colecție"
+msgstr[1] "%(num)s teme în această colecție"
+msgstr[2] "%(num)s de teme în această colecție"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
@@ -1429,10 +1429,10 @@ msgid "Newest Complete Themes"
 msgstr "Cele mai noi teme complete"
 
 msgid "Complete Themes by Name"
-msgstr ""
+msgstr "Teme complete după nume"
 
 msgid "Complete Themes by Weekly Downloads"
-msgstr ""
+msgstr "Teme complete după descărcări săptămânale"
 
 msgid "Recently Updated Complete Themes"
 msgstr "Teme complete actualizate recent"
@@ -1448,7 +1448,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "Teme {0}"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
@@ -2065,7 +2065,7 @@ msgid "Photos & Media"
 msgstr "Foto și video"
 
 msgid "Security & Privacy"
-msgstr ""
+msgstr "Intimitate și securitate"
 
 msgid "Social Networking"
 msgstr ""
@@ -7484,7 +7484,7 @@ msgstr "Exportă"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
-msgstr ""
+msgstr "{0} :: Tablou de bord pentru statistici :: Suplimente pentru {1}"
 
 msgid "{0} :: Statistics Dashboard"
 msgstr ""
