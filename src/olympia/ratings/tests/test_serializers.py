@@ -68,7 +68,7 @@ class TestBaseRatingSerializer(TestCase):
         assert result['version'] is None
         # Check the default, when DRF_API_GATES['ratings-title-shim'] isn't set
         assert 'title' not in result
-        # Check the default, when `include_flags_for=...` isn't sent.
+        # Check the default, when `show_flags_for=...` isn't sent.
         assert 'flags' not in result
 
     def test_deleted_rating_but_view_allowing_it_to_be_shown(self):

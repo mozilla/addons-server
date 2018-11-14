@@ -317,20 +317,20 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         if not hasattr(self, '_should_include_flags'):
             request = self.request
             self._should_include_flags = (
-                'include_flags_for' in request.GET and
+                'show_flags_for' in request.GET and
                 not is_gate_active(request, 'del-ratings-flags')
             )
             if self._should_include_flags:
                 # Check the parameter was sent correctly
                 try:
-                    should_include_flags_for = (
+                    show_flags_for = (
                         serializers.IntegerField().to_internal_value(
-                            request.GET['include_flags_for']))
-                    if should_include_flags_for != request.user.pk:
+                            request.GET['show_flags_for']))
+                    if show_flags_for != request.user.pk:
                         raise serializers.ValidationError
                 except serializers.ValidationError:
                     raise ParseError(
-                        'include_flags_for parameter value should be equal to '
+                        'show_flags_for parameter value should be equal to '
                         'the user id of the authenticated user')
         return self._should_include_flags
 

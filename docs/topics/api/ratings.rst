@@ -27,7 +27,7 @@ user has already posted a rating for the current version of an add-on.
 .. http:get:: /api/v4/ratings/rating/
 
     :query string addon: The :ref:`add-on <addon-detail>` id, slug, or guid to fetch ratings from. When passed, the ratings shown will always be the latest posted by each user on this particular add-on (which means there should only be one rating per user in the results), unless the ``version`` parameter is also passed.
-    :query string include_flags_for: The user id to show flags for. If the request is made with an authenticated user matching this parameter value, a ``flags`` property will be added to the response as described below in :ref:`ratings <rating-detail-object>`.
+    :query string show_flags_for: The user id to show flags for. If the request is made with an authenticated user matching this parameter value, a ``flags`` property will be added to the response as described below in :ref:`ratings <rating-detail-object>`.
     :query string show_permissions_for: The user id to show permissions for. If the request is made with an authenticated user matching this parameter value, and the ``addon`` parameter is also present, a ``can_reply`` property will be added to the response as described below.
     :query string filter: The :ref:`filter(s) <rating-filtering-param>` to apply.
     :query int user: The user id to fetch ratings from.
@@ -79,14 +79,14 @@ This endpoint allows you to fetch a rating by its id.
 
     .. _rating-detail-object:
 
-    :query string include_flags_for: The user id to show flags for. If the request is made with an authenticated user matching this parameter value, a ``flags`` property will be added to the response as described below.
+    :query string show_flags_for: The user id to show flags for. If the request is made with an authenticated user matching this parameter value, a ``flags`` property will be added to the response as described below.
     :>json int id: The rating id.
     :>json object addon: A simplified :ref:`add-on <addon-detail-object>` object that contains only a few properties: ``id``, ``name``, ``icon_url`` and ``slug``.
     :>json string|null body: The text of the rating.
     :>json boolean is_deleted: Boolean indicating whether the rating has been deleted or not.
     :>json boolean is_latest: Boolean indicating whether the rating is the latest posted by the user on the same add-on.
     :>json int previous_count: The number of ratings posted by the user on the same add-on before this one.
-    :>json object flags[]: A list of flags the user requesting has previously applied to this add-on (that haven't been processed by moderators already).  In the current implementation the list will only ever contain one item, or be an empty list if there are no flags from the user.  Only present if ``include_flags_for`` parameter sent.
+    :>json object flags[]: A list of flags the user requesting has previously applied to this rating (that haven't been processed by moderators already). Only present if ``show_flags_for`` parameter sent.
     :>json string flags.flag: A :ref:`constant<rating-flag-constants>` describing the reason behind the flagging.
     :>json string|null flags.note: A note to explain further the reason behind the flagging if ``flag`` was ``rating_flag_reason_other``; null otherwise.
     :>json int score: The score the user gave as part of the rating.

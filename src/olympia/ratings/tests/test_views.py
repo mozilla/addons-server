@@ -824,7 +824,7 @@ class TestRatingViewSetGet(TestCase):
         if 'show_grouped_ratings' not in kwargs:
             assert 'grouped_ratings' not in data
 
-        if 'include_flags_for' not in kwargs:
+        if 'show_for' not in kwargs:
             assert 'flags' not in data['results'][0]
             assert 'flags' not in data['results'][1]
 
@@ -1306,33 +1306,31 @@ class TestRatingViewSetGet(TestCase):
         data = json.loads(response.content)
         assert data['detail'] == 'Need an addon or user parameter'
 
-    def test_list_include_flags_for_anonymous(self):
+    def test_list_show_flags_for_anonymous(self):
         response = self.client.get(
-            self.url, {'addon': self.addon.pk,
-                       'include_flags_for': 666})
+            self.url, {'addon': self.addon.pk, 'show_flags_for': 666})
         assert response.status_code == 400
         assert response.data['detail'] == (
-            'include_flags_for parameter value should be equal to the user '
+            'show_flags_for parameter value should be equal to the user '
             'id of the authenticated user')
 
-    def test_list_include_flags_for_not_int(self):
+    def test_list_show_flags_for_not_int(self):
         response = self.client.get(
-            self.url, {'addon': self.addon.pk,
-                       'include_flags_for': 'nope'})
+            self.url, {'addon': self.addon.pk, 'show_flags_for': 'nope'})
         assert response.status_code == 400
         assert response.data['detail'] == (
-            'include_flags_for parameter value should be equal to the user '
+            'show_flags_for parameter value should be equal to the user '
             'id of the authenticated user')
 
-    def test_list_include_flags_for_not_right_user(self):
+    def test_list_show_flags_for_not_right_user(self):
         self.user = user_factory()
         self.client.login_api(self.user)
         response = self.client.get(
             self.url, {'addon': self.addon.pk,
-                       'include_flags_for': self.user.pk + 42})
+                       'show_flags_for': self.user.pk + 42})
         assert response.status_code == 400
         assert response.data['detail'] == (
-            'include_flags_for parameter value should be equal to the user '
+            'show_flags_for parameter value should be equal to the user '
             'id of the authenticated user')
 
     def test_list_rating_flags(self):
@@ -1347,7 +1345,7 @@ class TestRatingViewSetGet(TestCase):
         reply_to_0 = Rating.objects.create(
             addon=self.addon, body='reply to review 0', reply_to=rating0,
             user=user_factory())
-        params = {'addon': self.addon.pk, 'include_flags_for': self.user.pk}
+        params = {'addon': self.addon.pk, 'show_flags_for': self.user.pk}
 
         # First, not flagged
         response = self.client.get(self.url, params)
@@ -1387,7 +1385,7 @@ class TestRatingViewSetGet(TestCase):
         RatingFlag.objects.create(
             rating=rating, user=self.user, flag=RatingFlag.OTHER,
             note=u'foo')
-        params = {'addon': self.addon.pk, 'include_flags_for': self.user.pk}
+        params = {'addon': self.addon.pk, 'show_flags_for': self.user.pk}
         response = self.client.get(
             reverse_ns('rating-list', api_version='v3'), params)
         assert response.status_code == 200
@@ -1461,39 +1459,37 @@ class TestRatingViewSetGet(TestCase):
         assert data['reply']
         assert data['reply']['id'] == reply.pk
 
-    def test_detail_include_flags_for_anonymous(self):
+    def test_detail_show_flags_for_anonymous(self):
         rating = Rating.objects.create(
             addon=self.addon, body='review', user=user_factory())
         detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
-        response = self.client.get(
-            detail_url, {'include_flags_for': 666})
+        response = self.client.get(detail_url, {'show_flags_for': 666})
         assert response.status_code == 400
         assert response.data['detail'] == (
-            'include_flags_for parameter value should be equal to the user '
+            'show_flags_for parameter value should be equal to the user '
             'id of the authenticated user')
 
-    def test_detail_include_flags_for_not_int(self):
+    def test_detail_show_flags_for_not_int(self):
         rating = Rating.objects.create(
             addon=self.addon, body='review', user=user_factory())
         detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
-        response = self.client.get(
-            detail_url, {'include_flags_for': 'nope'})
+        response = self.client.get(detail_url, {'show_flags_for': 'nope'})
         assert response.status_code == 400
         assert response.data['detail'] == (
-            'include_flags_for parameter value should be equal to the user '
+            'show_flags_for parameter value should be equal to the user '
             'id of the authenticated user')
 
-    def test_detail_include_flags_for_not_right_user(self):
+    def test_detail_show_flags_for_not_right_user(self):
         self.user = user_factory()
         self.client.login_api(self.user)
         rating = Rating.objects.create(
             addon=self.addon, body='review', user=user_factory())
         detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
         response = self.client.get(
-            detail_url, {'include_flags_for': self.user.pk + 42})
+            detail_url, {'show_flags_for': self.user.pk + 42})
         assert response.status_code == 400
         assert response.data['detail'] == (
-            'include_flags_for parameter value should be equal to the user '
+            'show_flags_for parameter value should be equal to the user '
             'id of the authenticated user')
 
     def test_detail_rating_flags(self):
@@ -1504,7 +1500,7 @@ class TestRatingViewSetGet(TestCase):
             rating=2)
 
         detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
-        params = {'include_flags_for': self.user.pk}
+        params = {'show_flags_for': self.user.pk}
 
         # First, not flagged
         response = self.client.get(detail_url, params)
@@ -1534,7 +1530,7 @@ class TestRatingViewSetGet(TestCase):
             note=u'foo')
         detail_url = reverse_ns(
             self.detail_url_name, kwargs={'pk': rating.pk}, api_version='v3')
-        params = {'include_flags_for': self.user.pk}
+        params = {'show_flags_for': self.user.pk}
         response = self.client.get(detail_url, params)
         assert response.status_code == 200
         data = json.loads(response.content)
