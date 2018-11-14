@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-14 16:32+0000\n"
+"PO-Revision-Date: 2018-11-14 16:44+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2406,9 +2406,8 @@ msgstr "Ocorreu um erro ao enviar seu arquivo. Por favor, tente novamente."
 msgid "Override failed validation"
 msgstr "Substituir validação com falha"
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Você deve selecionar pelo menos uma aplicação compatível."
+msgstr "Precisa selecionar pelo menos uma aplicação."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "A versão {version} foi carregada antes e excluída."
@@ -2670,9 +2669,8 @@ msgstr "Desenvolvimento de extensões"
 msgid "Lightweight Themes"
 msgstr "Temas leves"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Notícias para desenvolvedores"
+msgstr "Políticas para desenvolvedores"
 
 msgid "Add-on Validator"
 msgstr "Validador de extensões"
@@ -2832,13 +2830,11 @@ msgstr ""
 "<p>As extensões podem ter qualquer número de autores com 2 possíveis cargos:</p> <ul> <li><b>Proprietário:</b> pode gerenciar todos os detalhes da extensão, incluindo adicionar e remover outros "
 "autores</li> <li><b>Desenvolvedor:</b> pode gerenciar todos os detalhes da extensão, exceto adicionar ou remover outros autores</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Detalhes da extensão"
+msgstr "Detalhes adicionais"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Detalhes de {0}"
+msgstr "Detalhes adicionais de {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "As etiquetas ajudam os usuários a encontrar a sua extensão e devem ser descritores curtos como abas, barra de ferramenta, ou twitter. Você pode ter um máximo de {0} etiquetas."
@@ -2882,9 +2878,8 @@ msgid "Describe Add-on"
 msgstr "Descreva a extensão"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Descreva a extensão"
+msgstr "Descreva {0}"
 
 msgid "Add-on URL"
 msgstr "URL da extensão"
@@ -3304,9 +3299,8 @@ msgstr "Resumo:"
 msgid "required"
 msgstr "obrigatório"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Descrição"
+msgstr "Descrição:"
 
 msgid "This add-on is experimental"
 msgstr "Esta extensão é experimental"
@@ -3430,9 +3424,8 @@ msgstr "Envio de Código Fonte"
 msgid "Do You Need to Submit Source Code?"
 msgstr "Precisa Enviar O Código Fonte?"
 
-#, fuzzy
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Talvez seja necessário que você envie o código fonte. Se você não enviar o código fonte correto agora, sua extensão pode ser removida do site!"
+msgstr "Pode ser que você precise enviar o código fonte. Caso contrário, sua extensão pode ser removida do site!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3509,9 +3502,8 @@ msgstr "Enviar versão"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr "Use os campos abaixo para fazer o upload do seu pacote de extensão. Após o upload, uma série de testes de validação automatizados serão executados no seu arquivo."
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "Esse arquivo é compatível com quais plataformas?"
+msgstr "Com que aplicações esta versão é compatível?"
 
 msgid "Administrative overrides"
 msgstr "Substituições administrativas"
@@ -3541,9 +3533,8 @@ msgstr "Nome do tema"
 msgid "Select a header image for your theme"
 msgstr "Selecione uma imagem de cabeçalho para o seu tema"
 
-#, fuzzy
 msgid "Recommended height: 200 pixels"
-msgstr "A altura da imagem deve ser de 200 pixels"
+msgstr "Altura recomendada: 200 pixels"
 
 msgid "6.9MB max"
 msgstr ""
@@ -3955,9 +3946,8 @@ msgstr "Teste de compatibilidade"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Marque para verificar se sua extensão é compatível com o Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Ver listagem"
+msgstr "Teste ao vivo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -5250,9 +5240,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Desfrute música de todo o mundo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr "Acesse cerca de 20,000 estações de rádio de todo os lugares do mundo."
+msgstr "Acesse mais de 30.000 estações de rádio do mundo todo."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5926,39 +5915,31 @@ msgstr "Libere seu acesso antecipado a funcionalidades experimentais do navegado
 msgid "Get Started"
 msgstr "Começar"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Status do site"
+msgstr "Status relatado"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Tipo de relatório"
+msgstr "Spam relatado"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Relatar um bug"
+msgstr "Relatado que não é spam"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Ainda sem avaliação"
+msgstr "Não relatado"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Versão submetida"
+msgstr "Conteúdo enviado"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Visite o novo site"
+msgstr "Ver avaliação no site"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Enviar novo arquivo"
+msgstr "Enviar para Akismet que não é spam"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Enviar novo arquivo"
+msgstr "Enviar spam para Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -7434,9 +7415,9 @@ msgstr "Não é possível adicionar versões à uma extensão com o estado: %s."
 msgid "Version does not match the manifest file."
 msgstr "A versão não corresponde ao arquivo manifest."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Versão já existente."
+msgstr "Versão já existente. A versão mais recente é: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Apenas WebExtensions tem permissão para omitir o GUID"
@@ -7921,9 +7902,8 @@ msgstr "Nenhum usuário com esse e-mail."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox para Android"
+msgstr "Usuário {id} do Firefox"
 
 msgid "My Mobile Add-ons"
 msgstr "Minhas extensões móveis"
