@@ -124,7 +124,7 @@ class BaseSearchIndexer(object):
     def extract_field_api_translations(cls, obj, field, db_field=None):
         """
         Returns a dict containing translations that we need to store for
-        the API.
+        the API. Empty translations are skipped entirely.
         """
         if db_field is None:
             db_field = '%s_id' % field
@@ -141,23 +141,26 @@ class BaseSearchIndexer(object):
     @classmethod
     def extract_field_search_translation(cls, obj, field, default_locale):
         """
-        Returns the translation for this field in the object's default locale.
+        Returns the translation for this field in the object's default locale,
+        in the form a dict with one entry (the field being the key and the
+        translation being the value, or an empty string if none was found).
+
         That field will be analyzed and indexed by ES *without*
         language-specific analyzers.
         """
         translations = dict(obj.translations[getattr(obj, '%s_id' % field)])
         default_locale = default_locale.lower() if default_locale else None
+        value = translations.get(default_locale, getattr(obj, field))
 
         return {
-            field: unicode(
-                translations.get(default_locale, getattr(obj, field)))
+            field: unicode(value) if value else ''
         }
 
     @classmethod
     def extract_field_analyzed_translations(cls, obj, field, db_field=None):
         """
         Returns a dict containing translations for each language-specific
-        analyzer for the given field.
+        analyzer for the given field. Empty translations are skipped entirely.
         """
         if db_field is None:
             db_field = '%s_id' % field
@@ -170,6 +173,6 @@ class BaseSearchIndexer(object):
             extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
                 set(unicode(string) for locale, string
                     in obj.translations[getattr(obj, db_field)]
-                    if locale.lower() in languages))
+                    if locale.lower() in languages and string))
 
         return extend_with_me
