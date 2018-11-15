@@ -637,8 +637,9 @@ def addon_factory(
         'created': when,
         'last_updated': when,
     }
-    if type_ != amo.ADDON_PERSONA:
-        # Personas don't have a summary.
+    if type_ != amo.ADDON_PERSONA and 'summary' not in kw:
+        # Assign a dummy summary if none was specified in keyword args, unless
+        # we're creating a Persona since they don't have summaries.
         kwargs['summary'] = u'Summary for %s' % name
     if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
         # Personas and search engines don't need guids
