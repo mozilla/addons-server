@@ -433,6 +433,8 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                     'the user id of the authenticated user')
             extra_data['can_reply'] = (
                 self.check_can_reply_permission_for_ratings_list())
+        # Call this here so the validation checks on the `show_flags_for` are
+        # carried out even when there are no results to serialize.
         self.should_include_flags()
         response = super(RatingViewSet, self).get_paginated_response(data)
         if extra_data:
