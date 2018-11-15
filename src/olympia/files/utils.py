@@ -449,6 +449,10 @@ class ManifestJSONExtractor(object):
                 (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD),
             )
         else:
+            webext_min = (
+                amo.DEFAULT_WEBEXT_MIN_VERSION
+                if self.get('browser_specific_settings', None) is None
+                else amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
             apps = (
                 (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD),
             )

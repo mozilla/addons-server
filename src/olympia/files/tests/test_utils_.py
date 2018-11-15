@@ -177,6 +177,13 @@ class TestManifestJSONExtractor(TestCase):
                 'gecko': {
                     'id': 'some-id'}}})['guid'] == 'some-id'
 
+    def test_guid_from_browser_specific_settings(self):
+        """Use applications>gecko>id for the guid."""
+        assert self.parse(
+            {'browser_specific_settings': {
+                'gecko': {
+                    'id': 'some-id'}}})['guid'] == 'some-id'
+
     @pytest.mark.xfail(reason="ATN requires a guid for each and every extension.")
     def test_name_for_guid_if_no_id(self):
         """Don't use the name for the guid if there is no id."""
@@ -290,6 +297,16 @@ class TestManifestJSONExtractor(TestCase):
         assert app.appdata == amo.THUNDERBIRD
         assert app.min.version == (
             amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD)
+        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        # But if 'browser_specific_settings' is used, it's higher min version.
+        data = {'browser_specific_settings': {'gecko': {'id': 'some-id'}}}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1  # Only Firefox for now.
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min.version == (
+            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
