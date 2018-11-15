@@ -77,14 +77,14 @@ class Rating(ModelBase):
     reply_to = models.OneToOneField(
         'self', null=True, related_name='reply', db_column='reply_to')
 
-    rating = models.PositiveSmallIntegerField(null=True)
+    rating = models.PositiveSmallIntegerField(null=True, db_index=True)
     body = models.TextField(db_column='text_body', null=True)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
 
-    deleted = models.BooleanField(default=False)
+    deleted = models.BooleanField(default=False, db_index=True)
 
     # Denormalized fields for easy lookup queries.
     # TODO: index on addon, user, latest
