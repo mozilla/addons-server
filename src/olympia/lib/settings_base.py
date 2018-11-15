@@ -1773,6 +1773,7 @@ DRF_API_GATES = {
         'del-addons-created-field',
         'del-accounts-fxa-edit-email-url',
         'del-version-license-is-custom',
+        'del-ratings-flags',
     ),
     'v4': (
         'l10n_flat_input_output',
