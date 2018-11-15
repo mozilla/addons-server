@@ -2,7 +2,6 @@
 import json
 
 from django.conf import settings
-from django.utils import translation
 
 from olympia import amo
 from olympia.amo.tests import (
