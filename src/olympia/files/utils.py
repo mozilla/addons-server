@@ -388,8 +388,11 @@ class ManifestJSONExtractor(object):
 
     @property
     def gecko(self):
-        """Return the "applications["gecko"]" part of the manifest."""
-        return self.get('applications', {}).get('gecko', {})
+        """Return the "applications|browser_specific_settings["gecko"]" part
+        of the manifest."""
+        parent_block = self.get(
+            'browser_specific_settings', self.get('applications', {}))
+        return parent_block.get('gecko', {})
 
     @property
     def guid(self):
@@ -434,8 +437,14 @@ class ManifestJSONExtractor(object):
                 (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD),
             )
         else:
+            webext_min = (
+                amo.DEFAULT_WEBEXT_MIN_VERSION
+                if self.get('browser_specific_settings', None) is None
+                else amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
             apps = (
                 (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD),
+                (amo.FIREFOX, webext_min),
+                (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
             )
 
         doesnt_support_no_id = (

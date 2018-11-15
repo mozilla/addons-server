@@ -283,7 +283,7 @@ def build_webext_dictionary_from_legacy(addon, destination):
         manifest = {
             'manifest_version': 2,
             'name': unicode(addon.name),
-            'applications': {
+            'browser_specific_settings': {
                 'gecko': {
                     'id': addon.guid,
                 },

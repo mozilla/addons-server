@@ -171,10 +171,17 @@ class TestManifestJSONExtractor(TestCase):
         extractor = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
         assert extractor.data == data
 
-    def test_guid(self):
+    def test_guid_from_applications(self):
         """Use applications>gecko>id for the guid."""
         assert self.parse(
             {'applications': {
+                'gecko': {
+                    'id': 'some-id'}}})['guid'] == 'some-id'
+
+    def test_guid_from_browser_specific_settings(self):
+        """Use applications>gecko>id for the guid."""
+        assert self.parse(
+            {'browser_specific_settings': {
                 'gecko': {
                     'id': 'some-id'}}})['guid'] == 'some-id'
 
@@ -272,6 +279,16 @@ class TestManifestJSONExtractor(TestCase):
         app = apps[0]
         assert app.appdata == amo.FIREFOX
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
+        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        # But if 'browser_specific_settings' is used, it's higher min version.
+        data = {'browser_specific_settings': {'gecko': {'id': 'some-id'}}}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1  # Only Firefox for now.
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min.version == (
+            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
