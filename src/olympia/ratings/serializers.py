@@ -33,10 +33,11 @@ class BaseRatingSerializer(serializers.ModelSerializer):
     is_latest = serializers.BooleanField(read_only=True)
     previous_count = serializers.IntegerField(read_only=True)
     user = BaseUserSerializer(read_only=True)
+    flags = serializers.SerializerMethodField()
 
     class Meta:
         model = Rating
-        fields = ('id', 'addon', 'body', 'created', 'is_deleted',
+        fields = ('id', 'addon', 'body', 'created', 'flags', 'is_deleted',
                   'is_developer_reply', 'is_latest', 'previous_count', 'user')
 
     def __init__(self, *args, **kwargs):
@@ -90,10 +91,22 @@ class BaseRatingSerializer(serializers.ModelSerializer):
 
         return data
 
+    def get_flags(self, obj):
+        if self.context['view'].should_include_flags():
+            # should be maximum one RatingFlag per rating+user anyway.
+            rating_flags = obj.ratingflag_set.filter(
+                user=self.context['request'].user)
+            return [
+                {'flag': flag.flag, 'note': flag.note or None}
+                for flag in rating_flags]
+        return None
+
     def to_representation(self, instance):
         out = super(BaseRatingSerializer, self).to_representation(instance)
         if self.request and is_gate_active(self.request, 'ratings-title-shim'):
             out['title'] = None
+        if not self.context['view'].should_include_flags():
+            out.pop('flags', None)
         return out
 
 
@@ -160,7 +173,7 @@ class RatingSerializer(BaseRatingSerializer):
             is_gate_active(self.request, 'ratings-rating-shim'))
         if score_to_rating:
             score_field = self.fields.pop('score')
-            score_field.source = None  # drf complains if we specifiy source.
+            score_field.source = None  # drf complains if we specify source.
             self.fields['rating'] = score_field
 
     def validate_version(self, version):

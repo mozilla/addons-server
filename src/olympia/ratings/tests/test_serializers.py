@@ -6,15 +6,16 @@ from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.ratings.models import Rating
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.ratings.serializers import RatingSerializer
 
 
 class TestBaseRatingSerializer(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.view = Mock(spec=['get_addon_object'])
+        self.view = Mock(spec=['get_addon_object', 'should_include_flags'])
         self.view.get_addon_object.return_value = None
+        self.view.should_include_flags.return_value = False
         self.user = user_factory()
 
     def serialize(self, **extra_context):
@@ -67,6 +68,8 @@ class TestBaseRatingSerializer(TestCase):
         assert result['version'] is None
         # Check the default, when DRF_API_GATES['ratings-title-shim'] isn't set
         assert 'title' not in result
+        # Check the default, when `show_flags_for=...` isn't sent.
+        assert 'flags' not in result
 
     def test_deleted_rating_but_view_allowing_it_to_be_shown(self):
         # We don't need to change self.view.should_access_deleted_ratings
@@ -293,3 +296,23 @@ class TestBaseRatingSerializer(TestCase):
         assert serializer.fields['id'].read_only is True
         assert serializer.fields['reply'].read_only is True
         assert serializer.fields['user'].read_only is True
+
+    def test_include_flags(self):
+        addon = addon_factory()
+        self.request.user = user_factory()
+        self.view.get_addon_object.return_value = addon
+        self.view.should_include_flags.return_value = True
+        self.rating = Rating.objects.create(
+            addon=addon, user=self.user, rating=4,
+            version=addon.current_version, body=u'This is my rëview. Like ît?')
+
+        result = self.serialize()
+        assert 'flags' in result
+        assert result['flags'] == []
+
+        RatingFlag.objects.create(
+            rating=self.rating, user=self.request.user, flag=RatingFlag.OTHER,
+            note=u'foo')
+        result = self.serialize()
+        assert 'flags' in result
+        assert result['flags'] == [{'flag': RatingFlag.OTHER, 'note': 'foo'}]
