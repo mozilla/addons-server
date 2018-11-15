@@ -477,11 +477,12 @@ class SearchQueryFilter(BaseFilterBackend):
                 'MultiMatch(%s(description),%s(description_l10n_%s))' % (
                     query_class_name, query_class_name, analyzer))
             should = [
-                # Note the presence of operator='and', which may seem weird
-                # for a multimatch query. It makes sense here because we really
-                # want all terms to be present in either of the fields
-                # individually. ES docs warn against this, but this is exactly
-                # what we want here.
+                # When *not* doing a rescore, we do regular non-phrase matches
+                # with 'operator': 'and' (see query_class/multi_match_kwargs
+                # above). This may seem wrong, the ES docs warn against this,
+                # but this is exactly what we want here: we want all terms
+                # to be present in either of the fields individually, not some
+                # in one and some in another.
                 query.MultiMatch(
                     _name=summary_query_name,
                     query=search_query,
