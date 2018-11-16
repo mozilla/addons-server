@@ -473,8 +473,8 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=566337, weekly_downloads=150000,
             summary=None,
             description=(
-                'button, click that button, 1-Click Youtube Video '
-                'Downloader is a click click great tool')),
+                'This addon contains Amazon 1-Click Lock in its description '
+                ' but not in its name.')),
         amo.tests.addon_factory(
             name='Amazon 1-Click Lock', type=amo.ADDON_EXTENSION,
             average_daily_users=50, weekly_downloads=1, summary=None)
@@ -484,8 +484,11 @@ class TestRankingScenarios(ESTestCase):
     def test_scenario_tab_center_redux(self):
         self._check_scenario('tab center redux', (
             ['Tab Center Redux', 69.5371],
-            ['Tab Mix Plus', 0.06526235],
-            ['Redux DevTools', 0.044507127],
+            # Those used to be found but we now require all terms to be present
+            # through operator: and on the fuzzy name query (and they have
+            # nothing else to match).
+            # ['Tab Mix Plus', 0.06526235],
+            # ['Redux DevTools', 0.044507127],
         ))
 
     def test_scenario_open_image_new_tab(self):
@@ -530,9 +533,10 @@ class TestRankingScenarios(ESTestCase):
 
     def test_scenario_menu_wizzard(self):
         self._check_scenario('Menu Wizzard', (
-            ['Menu Wizard', 0.10698298],  # (fuzzy, typo)
-            # partial match + users
-            ['Add-ons Manager Context Menu', 0.07930083],
+            ['Menu Wizard', 0.43297172],  # (fuzzy, typo)
+            # 'Add-ons Manager Context Menu'  used to be found but we now
+            # require all terms to be present through operator: and on the
+            # fuzzy name query (and it has nothing else to match).
         ))
 
     def test_scenario_frame_demolition(self):
@@ -594,8 +598,8 @@ class TestRankingScenarios(ESTestCase):
         # Both are found thanks to their descriptions (matches each individual
         # term, then get rescored with a match_phrase w/ slop.
         self._check_scenario('Youtube html5 Player', (
-            ['YouTube Flash Player', 0.41867542],
-            ['No Flash', 0.068471745],
+            ['YouTube Flash Player', 0.41527697],
+            ['No Flash', 0.06847079],
         ))
 
     def test_scenario_disable_hello_pocket_reader_plus(self):
@@ -621,6 +625,11 @@ class TestRankingScenarios(ESTestCase):
             ['Delicious Bookmarks', 0.85394204],
         ))
 
+    def test_scenario_name_fuzzy(self):
+        self._check_scenario('opeb boocmarks tab', (
+            ['Open Bookmarks in New Tab', 0.4235528],
+        ))
+
     def test_score_boost_name_match(self):
         # Tests that we match directly "Merge Windows" and also find
         # "Merge All Windows" because of slop=1
@@ -633,21 +642,24 @@ class TestRankingScenarios(ESTestCase):
 
         self._check_scenario('merge all windows', (
             ['Merge All Windows', 11.195793],
-            ['Merge Windows', 0.04285209],
-            ['All Downloader Professional', 0.0070999665],
+            # These used to be found but we now require all terms to be present
+            # through operator: and on the fuzzy name query (and they have
+            # nothing else to match).
+            # ['Merge Windows', 0.04285209],
+            # ['All Downloader Professional', 0.0070999665],
         ))
 
     def test_score_boost_exact_match(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('test addon test21', (
-            ['test addon test21', 11.341756],
+            ['test addon test21', 11.338805],
         ))
 
     def test_score_boost_exact_match_description_hijack(self):
         """Test that we rank exact matches at the top."""
         self._check_scenario('Amazon 1-Click Lock', (
-            ['Amazon 1-Click Lock', 26.223818],
-            ['1-Click YouTube Video Download', 0.22368877],
+            ['Amazon 1-Click Lock', 26.224829],
+            ['1-Click YouTube Video Download', 0.1229738],
         ))
 
     def test_score_boost_exact_match_in_right_language(self):
