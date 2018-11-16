@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-16 17:31+0000\n"
+"PO-Revision-Date: 2018-11-16 17:36+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -465,7 +465,7 @@ msgstr "Instalări și utilizatori zilnici, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalări și utilizatori zilnici de la {0} până la {1}"
+msgstr "Instalări și utilizatori zilnici din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -473,7 +473,7 @@ msgstr "Descărcări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Descărcări de la {0} până la {1}"
+msgstr "Descărcări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -489,7 +489,7 @@ msgstr "Aplicații, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Aplicații de la {0} până la {1}"
+msgstr "Aplicații din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -497,7 +497,7 @@ msgstr "Platforme, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "Platforme de la {0} până la {1}"
+msgstr "Platforme din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -505,7 +505,7 @@ msgstr "Limbi, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "Limbi de la {0} până la {1}"
+msgstr "Limbi din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
@@ -513,7 +513,7 @@ msgstr "Versiunile suplimentului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Versiunile supliment de la {0} până la {1}"
+msgstr "Versiunile suplimentului din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -521,7 +521,7 @@ msgstr "Starea suplimentului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Stare supliment de la {0} până la {1}"
+msgstr "Starea suplimentului din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -529,7 +529,7 @@ msgstr "Sursele de descărcare, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Sursele de descărcare de la {0} până la {1}"
+msgstr "Sursele de descărcare din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -537,7 +537,7 @@ msgstr "Contribuții, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Contribuții de la {0} până la {1}"
+msgstr "Contribuții din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -545,7 +545,7 @@ msgstr "Indicatorii metrici ai site-ului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Indicatori metrici ai site-ului de la {0} până la {1}"
+msgstr "Indicatori metrici ai site-ului din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -553,7 +553,7 @@ msgstr "Suplimente în uz, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Suplimente în uz de la {0} până la {1}"
+msgstr "Suplimente în uz din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
@@ -569,7 +569,7 @@ msgstr "Suplimente create, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Suplimente create de la {0} până la {1}"
+msgstr "Suplimente create din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -577,7 +577,7 @@ msgstr "Suplimente actualizate, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Suplimente actualizate de la {0} până la {1}"
+msgstr "Suplimente actualizate din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -585,7 +585,7 @@ msgstr "Recenzii scrise, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Recenzii scrise de la {0} până la {1}"
+msgstr "Recenzii scrise din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -593,7 +593,7 @@ msgstr "Înscrieri de utilizatori, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Înscrieri de utilizatori de al {0} până la {1}"
+msgstr "Înscrieri de utilizatori din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -601,7 +601,7 @@ msgstr "Colecții create, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Colecții create de la {0} până la {1}"
+msgstr "Colecții create din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -609,7 +609,7 @@ msgstr "Abonați, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Abonați de la {0} până la {1}"
+msgstr "Abonați din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -617,7 +617,7 @@ msgstr "Evaluări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "Evaluări de la {0} până la {1}"
+msgstr "Evaluări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -625,7 +625,7 @@ msgstr "Vânzări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr "Vânzări de la {0} până la {1}"
+msgstr "Vânzări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
@@ -633,7 +633,7 @@ msgstr "Instalări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr "Instalări de la {0} până la {1}"
+msgstr "Instalări din {0} până în {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
@@ -641,7 +641,7 @@ msgstr "<b>{0}</b> în ultimele {1} zile"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> de la {1} până la {2}"
+msgstr "<b>{0}</b> din {0} până în {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
