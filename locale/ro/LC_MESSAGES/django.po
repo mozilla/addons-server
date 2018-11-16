@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-16 17:32+0000\n"
+"PO-Revision-Date: 2018-11-16 17:55+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -6654,9 +6654,8 @@ msgstr "Suplimente pentru {0}"
 msgid "Add-on Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Review Guide"
-msgstr "Ghid pentru recenzii"
+msgstr "Ghid pentru recenzenți"
 
 msgid "Content Review"
 msgstr "Recenzie de conţinut"
@@ -7202,7 +7201,7 @@ msgid "Interactive Theme Queue"
 msgstr ""
 
 msgid "Reviewers' Guide"
-msgstr ""
+msgstr "Ghidul recenzentului"
 
 msgid "Theme Review for {0}"
 msgstr ""
@@ -7719,16 +7718,16 @@ msgid "Android Browser"
 msgstr ""
 
 msgid "iOS Browser"
-msgstr ""
+msgstr "Browser pentru iOS"
 
 msgid "Focus Browser"
-msgstr ""
+msgstr "Browser Focus"
 
 msgid "Desktop Browser"
-msgstr ""
+msgstr "Browser pentru desktop"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "Beta, Nightly, Developer Edition"
 
 msgid "Other languages"
 msgstr "Alte limbi"
