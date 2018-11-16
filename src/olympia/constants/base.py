@@ -419,8 +419,11 @@ DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
 # The default version of Firefox that supported `browser_specific_settings`
 DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC = '48.0'
 
-# The version of Firefox that first supported static themes.  Not Android yet.
+# The version of desktop Firefox that first supported static themes.
 DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
+
+# The version of Android that first minimally supported static themes.
+DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 
 # The version of Firefox that first supported webext dictionaries. Note that
 # on AMO at the moment, dicts have no compatibility exposed - ADDON_DICT is in

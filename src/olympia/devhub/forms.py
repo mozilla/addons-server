@@ -436,10 +436,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         # the add-on does not already have.
         version = self.form_kwargs.get('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
-        if static_theme:
-            available_apps = amo.APP_USAGE_STATICTHEME
-        else:
-            available_apps = amo.APP_USAGE
+        available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
 
         # Only display the apps we care about, if somehow obsolete apps were
@@ -453,12 +450,16 @@ class BaseCompatFormSet(BaseModelFormSet):
                           'max': appver.max.pk} for appver in self.queryset] +
                         [{'application': app.id} for app in available_apps
                          if app.id not in initial_apps])
-        self.extra = max(len(available_apps) - len(self.forms), 0)
+        self.extra = (
+            max(len(available_apps) - len(self.forms), 0) if not static_theme
+            else 0)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
         # ask for a new one to be built.
-        del self.forms
+        # del self.forms
+        if hasattr(self, 'forms'):
+            del self.forms
         self.forms
 
     def clean(self):
