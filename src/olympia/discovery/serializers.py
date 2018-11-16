@@ -9,13 +9,25 @@ from olympia.versions.models import Version
 class DiscoveryEditorialContentSerializer(serializers.ModelSerializer):
     """
     Serializer used to fetch editorial-content only, for internal use when
-    generating the .po files containing all editorial content to be translated.
+    generating the .po files containing all editorial content to be translated
+    or for internal consumption by the TAAR team.
     """
+    addon = serializers.SerializerMethodField()
+
     class Meta:
         model = DiscoveryItem
         # We only need fields that require a translation, that's custom_heading
-        # and custom_description.
-        fields = ('custom_heading', 'custom_description')
+        # and custom_description, plus a guid to identify the add-on.
+        fields = ('addon', 'custom_heading', 'custom_description')
+
+    def get_addon(self, obj):
+        return {
+            # Note: we select_related() the addon, so we don't have extra
+            # queries. But that also means the Addon transformers don't run!
+            # It's fine (and better for perf) as long as we don't need more
+            # complex fields.
+            'guid': obj.addon.guid,
+        }
 
 
 class DiscoveryVersionSerializer(VersionSerializer):

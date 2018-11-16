@@ -64,5 +64,6 @@ strings the content team came up with.
  .. http:get:: /api/v4/discovery/editorial/
 
     :>json array results: The array containing the results for this query. There is no pagination, all results are returned.
+    :>json object results[].addon: A :ref:`add-on <addon-detail-object>` object for this item, but only containing one field: ``guid``.
     :>json string|null results[].custom_heading: The custom heading for this item, if any.
     :>json string|null results[].custom_description: The custom description for this item, if any.

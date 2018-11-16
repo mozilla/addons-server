@@ -83,7 +83,8 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 class DiscoveryItemViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
     permission_classes = []
-    queryset = DiscoveryItem.objects.all().order_by('pk')
+    queryset = DiscoveryItem.objects.all().select_related(
+        'addon').order_by('pk')
     serializer_class = DiscoveryEditorialContentSerializer
 
     def list(self, request, *args, **kwargs):

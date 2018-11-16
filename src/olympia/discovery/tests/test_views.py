@@ -364,21 +364,24 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
 
 class TestDiscoveryItemViewSet(TestCase):
     def setUp(self):
-        DiscoveryItem.objects.create(
-            addon=addon_factory(),
-            custom_addon_name=u'Fôoooo')
-        DiscoveryItem.objects.create(
-            addon=addon_factory(),
-            custom_heading=u'My Custöm Headîng',
-            custom_description=u'')
-        DiscoveryItem.objects.create(
-            addon=addon_factory(),
-            custom_heading=u'Änother custom heading',
-            custom_description=u'This time with a custom description as well')
+        self.items = [
+            DiscoveryItem.objects.create(
+                addon=addon_factory(),
+                custom_addon_name=u'Fôoooo'),
+            DiscoveryItem.objects.create(
+                addon=addon_factory(),
+                custom_heading=u'My Custöm Headîng',
+                custom_description=u''),
+            DiscoveryItem.objects.create(
+                addon=addon_factory(),
+                custom_heading=u'Änother custom heading',
+                custom_description=u'This time with a custom description')
+        ]
         self.url = reverse_ns('discovery-editorial-list')
 
     def test_basic(self):
-        response = self.client.get(self.url)
+        with self.assertNumQueries(1):
+            response = self.client.get(self.url)
         assert response.status_code == 200
         assert 'count' not in response.data
         assert 'next' not in response.data
@@ -389,12 +392,15 @@ class TestDiscoveryItemViewSet(TestCase):
         result = response.data['results'][0]
         assert result['custom_heading'] == u''
         assert result['custom_description'] == u''
+        assert result['addon'] == {'guid': self.items[0].addon.guid}
 
         result = response.data['results'][1]
         assert result['custom_heading'] == u'My Custöm Headîng'
         assert result['custom_description'] == u''
+        assert result['addon'] == {'guid': self.items[1].addon.guid}
 
         result = response.data['results'][2]
         assert result['custom_heading'] == u'Änother custom heading'
         assert result['custom_description'] == (
-            u'This time with a custom description as well')
+            u'This time with a custom description')
+        assert result['addon'] == {'guid': self.items[2].addon.guid}
