@@ -162,8 +162,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 4.0, 'prefix_length': 4, 'query': 'blah',
+                    'boost': 4.0, 'prefix_length': 2, 'query': 'blah',
                     'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
+                    'operator': 'and',
                 }
             }
         }
@@ -175,8 +176,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 4.0, 'prefix_length': 4, 'query': 'search terms',
+                    'boost': 4.0, 'prefix_length': 2, 'query': 'search terms',
                     'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
+                    'operator': 'and',
                 }
             }
         }
@@ -193,9 +195,10 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 4.0, 'prefix_length': 4,
+                    'boost': 4.0, 'prefix_length': 2,
                     'query': 'this search query is too long.',
                     'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
+                    'operator': 'and',
                 }
             }
         }

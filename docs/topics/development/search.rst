@@ -57,7 +57,7 @@ to a specific set of fields: add-on name and author(s) name.
 3. A ``phrase`` match on ``name`` that allows swapped terms (``boost=8.0``, ``slop=1``)
 4. A ``match`` on ``name``, using the standard text analyzer (``boost=6.0``, ``analyzer=standard``, ``operator=and``)
 5. A ``prefix`` match on ``name`` (``boost=3.0``)
-6. If a query is < 20 characters long, a fuzzy match on ``name`` (``boost=4.0``, ``prefix_length=4``, ``fuzziness=AUTO``)
+6. If a query is < 20 characters long, a fuzzy match on ``name`` (``boost=4.0``, ``prefix_length=2``, ``fuzziness=AUTO``, ``operator=and``)
 
 All rules except 1 and 2 are applied to both ``name`` and ``listed_authors.name``.
 
