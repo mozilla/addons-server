@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-16 17:13+0000\n"
+"PO-Revision-Date: 2018-11-16 17:18+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -3340,10 +3340,10 @@ msgstr "Ahat tesriḍ ad tazneḍ tangalt aɣbalu. Ma yella ala, azegrir-ik/im y
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "Ma ulac aɣilif, cegger <a%(a_attrs)s>tasertit n tuzna n tangalt aɣbalu</a>."
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Tseqdaceḍ yiwen seg wigi?"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
