@@ -409,7 +409,11 @@ class SearchQueryFilter(BaseFilterBackend):
         if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
             rules.append((query.Match, {
                 'query': search_query, 'boost': 4.0,
-                'prefix_length': 4, 'fuzziness': 'AUTO'}))
+                'prefix_length': 2, 'fuzziness': 'AUTO',
+                # 1 or 2 terms: should all be present
+                # 3 terms: 2 should be present
+                # 4 terms or more: 25% can be absent
+                'minimum_should_match': '2<2 3<-25%'}))
 
         # Apply all the rules we built above to name and listed_authors.name.
         for query_cls, definition in rules:
