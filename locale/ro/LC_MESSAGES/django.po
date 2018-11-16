@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-14 01:56+0000\n"
+"PO-Revision-Date: 2018-11-16 17:27+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1455,7 +1455,7 @@ msgid "{0}'s Themes"
 msgstr "Temele lui {0}"
 
 msgid "View Profile"
-msgstr ""
+msgstr "Vezi profilul"
 
 msgid "Create Your Own Theme"
 msgstr "Creează-ți propria temă"
@@ -3910,7 +3910,7 @@ msgstr ""
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+msgstr "de <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
 msgstr ""
@@ -7990,7 +7990,7 @@ msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr ""
@@ -8127,7 +8127,7 @@ msgid "edit your notification settings"
 msgstr ""
 
 msgid "edit your profile"
-msgstr ""
+msgstr "editează-ți profilul"
 
 msgid "We could not unsubscribe you"
 msgstr ""
