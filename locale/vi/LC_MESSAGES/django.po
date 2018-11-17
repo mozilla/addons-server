@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-17 10:30+0000\n"
+"PO-Revision-Date: 2018-11-17 10:46+0000\n"
 "Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -189,7 +189,7 @@ msgid "View privacy policy"
 msgstr "Xem chính sách riêng tư"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "Xem Thỏa thuận giấy phép người dùng cuối"
 
 msgid "This add-on has not been reviewed by Mozilla."
 msgstr ""
@@ -235,7 +235,7 @@ msgid "Up &amp; Coming Extensions"
 msgstr ""
 
 msgid "Featured Themes"
-msgstr ""
+msgstr "Giao diện nổi bật"
 
 msgid "Featured Collections"
 msgstr "Bộ sưu tập Khuyến nghị"
@@ -260,7 +260,7 @@ msgstr[0] "%(num)s lượt tải hàng tuần%(num)s lượt tải hàng tuần"
 #, python-format
 msgid "%(num)s user"
 msgid_plural "%(num)s users"
-msgstr[0] "%(num)s người dùng%(num)s người dùng"
+msgstr[0] "%(num)s người dùng"
 
 msgid "Requires Restart"
 msgstr "Bắt buộc khởi động lại"
@@ -279,7 +279,7 @@ msgstr[0] "{0} lượt tải hàng tuần{0} lượt tải hàng tuần"
 #. {0} is the number of users.
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} người dùng{0} người dùng"
+msgstr[0] "{0} người dùng"
 
 msgid "by"
 msgstr "bởi"
@@ -328,7 +328,7 @@ msgstr "Chấp thuận"
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
 msgid_plural "<strong>{0}</strong> users"
-msgstr[0] "<strong>{0}</strong> người dùng<strong>{0}</strong> người dùng"
+msgstr[0] "<strong>{0}</strong> người dùng"
 
 msgid "Hover to Preview"
 msgstr "Rê chuột lên để Xem trước"
@@ -474,7 +474,7 @@ msgstr[0] "Các tiện ích khác bởi các tác giả này"
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> đánh giá của người dùng<span itemprop=\"ratingCount\">%(num)s</span> đánh giá của người dùng"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> nhận xét của người dùng"
 
 msgid "View statistics"
 msgstr ""
@@ -589,7 +589,7 @@ msgstr "liên kết thường trực"
 #, python-format
 msgid "See all user reviews"
 msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Xem tất cả đánh giá của người dùngXem tất cả %(cnt)s đánh giá của người dùng"
+msgstr[0] "Xem tất cả %(cnt)s nhận xét của người dùng"
 
 msgid "This add-on has not yet been reviewed."
 msgstr ""
@@ -610,20 +610,20 @@ msgid "My Add-ons"
 msgstr "Tiện ích của Tôi"
 
 msgid "My Themes"
-msgstr ""
+msgstr "Giao diện của tôi"
 
 #. This is a caption for a table. {0} is an add-on name.
 msgid "Add-on Information for {0}"
 msgstr "Thông tin Tiện ích cho {0}"
 
 msgid "Edit Theme"
-msgstr ""
+msgstr "Chỉnh sửa giao diện"
 
 msgid "Approve / Reject"
-msgstr ""
+msgstr "Chấp nhận / Từ chối"
 
 msgid "Review History"
-msgstr ""
+msgstr "Xem lại lịch sử"
 
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
@@ -1052,7 +1052,7 @@ msgid "Name:"
 msgstr "Tên:"
 
 msgid "(optional)"
-msgstr "(phụ)"
+msgstr "(không bắt buộc)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "hoặc <a id=\"collections-new-cancel\" href=\"#\">Hủy</a>"
@@ -3853,9 +3853,8 @@ msgstr "Đăng xuất"
 msgid "No Photo"
 msgstr "Không có Ảnh"
 
-#, fuzzy
 msgid "User Photo"
-msgstr "Xóa Hình ảnh Người dùng"
+msgstr "Ảnh người dùng"
 
 #, fuzzy, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
@@ -7667,9 +7666,8 @@ msgstr "Chọn một phân mục"
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
-#, fuzzy
 msgid "View the new site"
-msgstr "Xem trang Di động"
+msgstr "Xem trang mới"
 
 msgid "Report a bug"
 msgstr "Báo cáo lỗi"
