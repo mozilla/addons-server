@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-10 12:03+0000\n"
-"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
+"PO-Revision-Date: 2018-11-17 09:30+0000\n"
+"Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgid_plural "{0} stars"
 msgstr[0] "{0} sao{0} sao"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Kết nối tới máy chủ có vấn đề."
 
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
