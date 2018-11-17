@@ -34,7 +34,7 @@
     <ul class="refinements">
       {% if show_listed %}
       <li><a href="{{ addon.get_url_path() }}">
-        {{ _('View Listing') }}</a></li>
+        {{ _('View Product Page') }}</a></li>
       {% endif %}
       {% if action_allowed(amo.permissions.ADDONS_EDIT) %}
         <li><a href="{{ url('reviewers.review', addon.slug) }}">
