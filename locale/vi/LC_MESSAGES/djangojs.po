@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-17 09:47+0000\n"
+"PO-Revision-Date: 2018-11-17 10:02+0000\n"
 "Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -76,27 +76,27 @@ msgid "Finished validating {0}"
 msgstr "Đã hoàn tất xác thực {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Xác thực tiện ích của bạn đã quá thời gian qui định và đã được chuyển sang đánh giá thủ công."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi và {0} cảnh báo."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi và {0} lời nhắn."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Tiện ích của bạn đã được xác thực không có lỗi hay cảnh báo nào."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Bản đệ trình của bạn sẽ được chứng thực tự động."
 
 msgid "WebExtension upgrade"
 msgstr "Nâng cấp WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr ""
