@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-17 10:28+0000\n"
+"PO-Revision-Date: 2018-11-17 10:42+0000\n"
 "Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -17,7 +17,7 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} sao{0} sao"
+msgstr[0] "{0} sao"
 
 msgid "There was a problem contacting the server."
 msgstr "Kết nối tới máy chủ có vấn đề."
@@ -140,10 +140,10 @@ msgid "Follow this Collection"
 msgstr "Theo dõi bộ sưu tập này"
 
 msgid "Stop Following"
-msgstr "Dừng dõi theo"
+msgstr "Ngừng theo dõi"
 
 msgid "Following"
-msgstr "Đang dõi theo"
+msgstr "Đang theo dõi"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -285,7 +285,7 @@ msgid "Ratings"
 msgstr "Số đánh giá"
 
 msgid "Sales"
-msgstr ""
+msgstr "Giảm giá"
 
 msgid "Installs"
 msgstr "Cài đặt"
