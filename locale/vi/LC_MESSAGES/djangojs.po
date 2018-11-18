@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-17 10:42+0000\n"
+"PO-Revision-Date: 2018-11-18 02:55+0000\n"
 "Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -106,9 +106,11 @@ msgstr "Bao gồm các ghi chú chi tiết (điều này có thể hoàn tất t
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Nếu tiện ích bổ sung của bạn yêu cầu tài khoản cho trang web để được kiểm tra đầy đủ, nhớ đính kèm tên người dùng và mật khẩu thử nghiệm trong Ghi chú cho đánh giá viên (điều này có thể được hoàn "
+"thành trong bước tiếp theo)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Danh sách kiểm tra bản đệ trình tiện ích"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
