@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -840,7 +840,7 @@ msgid "Other"
 msgstr ""
 
 #: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1192
-#: static/js/zamboni/reviewers.js:410
+#: static/js/zamboni/reviewers.js:445
 msgid "Select an application first"
 msgstr ""
 
@@ -1029,43 +1029,43 @@ msgstr ""
 msgid "Receipt was not checked by app."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:338
+#: static/js/zamboni/reviewers.js:373
 msgid "{name} was viewing this add-on first."
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:349 static/js/zamboni/reviewers.js:371
+#: static/js/zamboni/reviewers.js:384 static/js/zamboni/reviewers.js:406
 msgid "Loading&hellip;"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:354
+#: static/js/zamboni/reviewers.js:389
 msgid "Version Notes"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:359
+#: static/js/zamboni/reviewers.js:394
 msgid "Notes for Reviewers"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:364
+#: static/js/zamboni/reviewers.js:399
 msgid "No version notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:376
+#: static/js/zamboni/reviewers.js:411
 msgid "Review Text"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:381
+#: static/js/zamboni/reviewers.js:416
 msgid "Review notes found"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:445
+#: static/js/zamboni/reviewers.js:480
 msgid "Average Reviews"
 msgstr ""
 
-#: static/js/zamboni/reviewers.js:500
+#: static/js/zamboni/reviewers.js:535
 msgid "Number of Reviews"
 msgstr ""
 
-#: static/js/zamboni/static_theme.js:166
+#: static/js/zamboni/static_theme.js:174
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
