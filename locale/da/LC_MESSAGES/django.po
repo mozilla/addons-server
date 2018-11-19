@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-08 20:59+0000\n"
-"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-20 13:44+0000\n"
+"Last-Translator: Kim Ludvigsen <kim@kimsside.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,9 @@ msgstr "Links ikke tilladt."
 
 msgid "This display name cannot be used."
 msgstr "Dette Vist navn kan ikke benyttes."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
 
 msgid "Usernames cannot contain only digits."
 msgstr "Brugernavne kan ikke udelukkende indeholde tal."
@@ -52,8 +55,8 @@ msgstr "Du er allerede logget ind."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Dit forsøg på at logge ind kunne ikke fortolkes. Prøv igen."
 
-msgid "Your account could not be found. Please try again."
-msgstr "Din konto kunne ikke findes. Prøv igen."
+msgid "Your Firefox Account could not be found. Please try again."
+msgstr "Din Firefox-konto kunne ikke findes. Prøv igen."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Du kunne ikke logges ind. Prøv igen."
@@ -567,18 +570,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner (Fx: En tilføjelse, der håndterer faneblade, vil bede om lov til at tilgå din browsers fanebladssystem)."
 
 msgid ""
-"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
-"Eftersom det er dig, der bestemmer over din Thunderbird, er det også dig, der bestemmer, om du vil give tilladelse eller ej. En tilladelse betyder ikke, at du sætter Firefox' sikkerhed eller ydelse over"
-" styr, men i sjældne tilfælde kan der være en risiko."
+"Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej. En tilladelse betyder ikke, at du sætter Firefox' sikkerhed eller ydelse "
+"over styr, men i sjældne tilfælde kan der være en risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Denne tilføjelse kan:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
-msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Thunderbird, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Nogle tilføjelser beder om tilladelse til at udføre visse funktioner. Eftersom det er dig, der bestemmer over din Firefox, er det også dig, der bestemmer, om du vil give tilladelse eller ej."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Bemærk at denne tilføjelse bruger forældet teknologi, hvilket giver den adgang til alle browserens funktioner og data, uden at bede om din tilladelse."
@@ -1927,41 +1930,86 @@ msgstr "Inkompatibel"
 msgid "Alerts & Updates"
 msgstr "Påmindelser & opdateringer"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Udseende"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Bogmærker"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Filhentningshåndtering"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds, nyheder & blogs"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Spil & underholdning"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Sproglig støtte"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Fotos, musik & videoer"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Privatliv & sikkerhed"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Shopping"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Socialt & kommunikation"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Faneblade"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Webudvikling"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "Dyr"
@@ -1993,35 +2041,80 @@ msgstr "Sport"
 msgid "Abstract"
 msgstr "Abstrakt"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Formål"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Mode"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Film og TV"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Ferie"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Musik"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Landskab"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Sæsonbestemt"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Fast"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Websteder"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Generelt"
@@ -2059,29 +2152,62 @@ msgstr "Video"
 msgid "Device Features & Location"
 msgstr "Enhedsfunktioner & position"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "Eksperimentelle"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "Feeds, nyheder & blogs"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "Ydelse"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "Fotos & medier"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "Sikkerhed & privatliv"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "Sociale netværk"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "Sport & spil"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "Brugerflade"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Alle rettigheder forbeholdes"
@@ -2350,6 +2476,10 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Ugyldig arkiv."
+
 msgid "View current"
 msgstr ""
 
@@ -2417,6 +2547,9 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
@@ -2744,8 +2877,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> temaer"
 
-msgid "Edit Information"
-msgstr "Rediger information"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Ingen"
@@ -2826,9 +2959,8 @@ msgid "Describe Add-on"
 msgstr "Beskriv tilføjelse"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Beskriv tilføjelse"
+msgstr "Beskriv {0}"
 
 msgid "Add-on URL"
 msgstr "Tilføjelsens URL"
@@ -3129,7 +3261,7 @@ msgstr "Slet denne tilføjelse."
 msgid "Delete"
 msgstr "Slet"
 
-msgid "Edit information about this add-on."
+msgid "Edit details on this add-on's product page."
 msgstr ""
 
 msgid "Upload a new version of this add-on."
@@ -3153,10 +3285,7 @@ msgstr ""
 msgid "View Recent Changes"
 msgstr ""
 
-msgid "Edit details about this theme's listing."
-msgstr ""
-
-msgid "Edit Listing"
+msgid "Edit details on this theme's product page."
 msgstr ""
 
 msgid "View the popularity of this theme over time."
@@ -3197,7 +3326,7 @@ msgstr[0] "<strong>{0}</strong> aktiv bruger"
 msgstr[1] "<strong>{0}</strong> aktive brugere"
 
 msgid "Submit a New Version"
-msgstr ""
+msgstr "Indsend en ny version"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -3214,9 +3343,8 @@ msgstr "Sammendrag:"
 msgid "required"
 msgstr "påkrævet"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Beskrivelse"
+msgstr "Beskrivelse:"
 
 msgid "This add-on is experimental"
 msgstr "Denne tilføjelse er eksperimentel"
@@ -3249,7 +3377,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "Husk"
 
 #, python-format
 msgid ""
@@ -3271,7 +3399,7 @@ msgid "Describe Version"
 msgstr "Beskriv version"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "Udgivelsesnoter:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr "Fortæl dine brugere hvad der er nyt og hvilke ændringer der er i denne version."
@@ -3755,7 +3883,7 @@ msgstr "Vis statisitik for bruger"
 msgid "Welcome Back"
 msgstr "Velkommen tilbage"
 
-msgid "Help users discover your extension by creating an appealing listing."
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr ""
 
 msgid "Learn How"
@@ -3985,7 +4113,7 @@ msgstr ""
 
 #, python-format
 msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
+msgstr "Deltag i samtalerne i vores <a href=\"%(forum_url)s\">forummer</a>."
 
 msgid "Select a header image for your Theme."
 msgstr ""
@@ -4204,7 +4332,7 @@ msgstr "Oversæt nemt {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr ""
+msgstr "Markér noget tekst, højreklik og oversæt øjeblikkeligt."
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4232,9 +4360,8 @@ msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
 msgstr "Har du tonsvis af åbne faneblade? Sortér dem i et sidepanel."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Stop Facebook-sporing {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -4342,9 +4469,8 @@ msgid "Automatically add Britannica facts to your search results."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Fjern YouTube-reklamer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
@@ -4428,7 +4554,7 @@ msgstr "Optimér videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Gør siden rundt om videoafspilleren mørkere, så du bedre kan koncentrere dig om videoen."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4458,7 +4584,7 @@ msgstr "Forstør billeder {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Hold musemarkøren over et billede for at forstørre det."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4466,7 +4592,7 @@ msgstr "Få cookies til at forsvinde {start_sub_heading}med {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Slet automatisk cookies, når du lukker et faneblad."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4620,7 +4746,7 @@ msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Oversæt markeret tekst eller hele websiden"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4714,7 +4840,7 @@ msgstr "Dynamisk navigation {start_sub_heading}med {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Brug musebevægelser til at lukke faneblade, gå én side tilbage, genindlæse sider mm."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -4904,7 +5030,7 @@ msgstr "Arbejd hurtigere {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
-msgstr ""
+msgstr "Brug musebevægelser til at få ting gjort — hurtigere."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5268,7 +5394,7 @@ msgstr "Surf privat {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
-msgstr ""
+msgstr "Skift til privat browsing-tilstand med ét klik."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5372,7 +5498,7 @@ msgstr "Firefox-søgning {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
-msgstr ""
+msgstr "Få nem adgang til dine åbne faneblade, bogmærker og historik."
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
@@ -5480,7 +5606,7 @@ msgstr "Håndtér cookies {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Tag fuld kontrol over de cookies, der blev gemt, mens du browsede."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5491,13 +5617,12 @@ msgid "Automatically delete browser history for websites you select."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Forbedr videoer {start_sub_heading}med {addon_name}{end_sub_heading}"
+msgstr "Beskyt bogmærker {start_sub_heading}med {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Beskyt dine personlige bogmærker med adgangskode."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5651,6 +5776,9 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "Could not parse uploaded file."
+msgstr ""
+
+msgid "Unsupported archive type."
 msgstr ""
 
 #. L10n: {0} is the name of the invalid file.
@@ -6809,9 +6937,6 @@ msgstr "Tema-billeder"
 msgid "Rendered Preview"
 msgstr "Slet anmeldelse"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr ""
-
 msgid "More about this add-on"
 msgstr "Mere om denne tilføjelse"
 
@@ -7222,6 +7347,9 @@ msgstr ""
 msgid "Theme Review for {0}"
 msgstr ""
 
+msgid "Edit Listing"
+msgstr ""
+
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
@@ -7392,7 +7520,7 @@ msgstr "Viser {0} - {1} af {2} resultater af søgningen <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Viser {0} - {1} af {2} resultater"
 
-msgid "Could not find add-on with id \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
@@ -7859,8 +7987,8 @@ msgstr "Sted"
 msgid "Occupation"
 msgstr "Stilling"
 
-msgid "See this help article for information on how to change your email address."
-msgstr ""
+msgid "You can change your email address on Firefox Accounts."
+msgstr "Du kan ændre din mailadresse på din Firefox-konto."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Denne URL har et ugyldigt format. Gyldige URLs ligner http://eksempel.com/min_side."
@@ -7985,8 +8113,8 @@ msgstr "Angiv dit Vist navn"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Angiv dit Vist navn eller brugernavn for at færdiggøre registreringsprocessen."
 
-msgid "Manage basic account information."
-msgstr "Håndter grundlæggende kontoinformation såsom brugernavn og indstillinger af konti."
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgstr "Håndter grundlæggende kontoinformation såsom brugernavn og indstillinger af Firefox-konti."
 
 msgid "Username"
 msgstr "Brugernavn"
@@ -7994,8 +8122,8 @@ msgstr "Brugernavn"
 msgid "Email Address"
 msgstr "Mailadresse"
 
-msgid "Manage other account details..."
-msgstr "Håndter konto..."
+msgid "Manage Firefox Account..."
+msgstr "Håndter Firefox-konto..."
 
 msgid "Profile"
 msgstr "Profil"
@@ -8049,11 +8177,14 @@ msgstr "ingen"
 msgid "all"
 msgstr "alle"
 
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
+msgstr "Mozilla-tilføjelser er gået over til Firefox-konti til login. Fortsæt for at fuldføre den enkle login-proces."
+
 msgid "User Login"
 msgstr "Bruger-login"
 
-msgid "Log in"
-msgstr "Log ind med konti"
+msgid "Log in with Firefox Accounts"
+msgstr "Log ind med Firefox-konti"
 
 msgid "Password Reset"
 msgstr "Nulstil adgangskode"

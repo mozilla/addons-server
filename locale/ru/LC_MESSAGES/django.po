@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-03 05:24+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-10-31 15:24+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -26,6 +26,10 @@ msgstr "Ссылки не разрешены."
 
 msgid "This display name cannot be used."
 msgstr "Это отображаемое имя не может быть использовано."
+
+#, fuzzy
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Это поле можно использовать только для ссылок на внешние веб-сайты. URL на %(domain)s не разрешены."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Имена пользователей не могут содержать только цифры."
@@ -55,8 +59,8 @@ msgstr "Вы уже вошли."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Ваша попытка входа не может быть обработана. Пожалуйста, попробуйте снова."
 
-msgid "Your account could not be found. Please try again."
-msgstr "Ваш аккаунт не найден. Пожалуйста, попробуйте снова."
+msgid "Your Firefox Account could not be found. Please try again."
+msgstr "Ваш Firefox аккаунт не найден. Пожалуйста, попробуйте снова."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Не удалось войти. Пожалуйста, попробуйте снова."
@@ -584,18 +588,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций (например, дополнение управления вкладками может запросить доступ к системе вкладок вашего браузера)."
 
 msgid ""
-"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"В связи с тем, что вы контролируете Thunderbird, выбор предоставления или запрета разрешения всецело принадлежит вам. Предоставление разрешений как правило не влияет на быстродействие и безопасность "
+"В связи с тем, что вы контролируете Firefox, выбор предоставления или запрета разрешения всецело принадлежит вам. Предоставление разрешений как правило не влияет на быстродействие и безопасность "
 "браузера, но в отдельных редких случаях есть определенный риск."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Это дополнение может:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
-msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций. Так как именно вы контролируете свой Thunderbird, выбор предоставления или отклонения этих запросов остаётся за вами."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Некоторые дополнения запрашивают разрешение на выполнение некоторых функций. Так как именно вы контролируете свой Firefox, выбор предоставления или отклонения этих запросов остаётся за вами."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Обратите внимание, что это дополнение использует устаревшую технологию, которая дает ему доступ ко всем функциям и данным браузера без запроса у вас разрешения."
@@ -726,7 +730,7 @@ msgstr "Положительное целое число"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Это поле можно использовать только для ссылок на внешние веб-сайты. URL на %(domain)s не разрешены."
 
 msgid "Incorrect, please try again."
 msgstr "Некорректно, пожалуйста, попробуйте снова."
@@ -1954,41 +1958,86 @@ msgstr "Несовместимое"
 msgid "Alerts & Updates"
 msgstr "Оповещения и обновления"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Внешний вид"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Закладки"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Управление загрузкой файлов"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Ленты новостей и блоги"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Игры и развлечения"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Языковые инструменты"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Фотографии, музыка и видео"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Приватность и защита"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Шоппинг"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Общение и коммуникация"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Вкладки"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Веб-разработка"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "Животные"
@@ -2020,35 +2069,80 @@ msgstr "Спортивные"
 msgid "Abstract"
 msgstr "Абстрактные"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Активистские"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Мода"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Кино и телевидение"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Праздники"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Музыка"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Пейзажи"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Времена года"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Заливка"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Веб-сайты"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Общее"
@@ -2086,29 +2180,62 @@ msgstr "Видео"
 msgid "Device Features & Location"
 msgstr "Возможности устройства и местоположение"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "Экспериментальные"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "Новости и блоги"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "Производительность"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "Фото и медиа"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "Безопасность и приватность"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "Социальные сети"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "Спорт и игры"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "Интерфейс пользователя"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Все права защищены"
@@ -2366,6 +2493,10 @@ msgstr "Пожалуйста, укажите политику приватнос
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите архивный файл {extensions}."
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Некорректный архив."
+
 msgid "View current"
 msgstr "Просмотреть текущее"
 
@@ -2439,6 +2570,10 @@ msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Вы не можете обновить WebExtensions дополнение на устаревшее. Ваши пользователи не смогут использовать вашу новую версию потому, что Firefox не поддерживает этот тип обновлений."
+
+#, fuzzy
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "Введённый текст был отмечен как спам."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "В загруженном файле найден ваш API-ключ разработчика. Чтобы защитить ваш аккаунт, ключ будет отозван."
@@ -2644,9 +2779,8 @@ msgstr "Разработка расширения"
 msgid "Lightweight Themes"
 msgstr "Лёгкие темы"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Новости разработчиков"
+msgstr "Политика разработчиков"
 
 msgid "Add-on Validator"
 msgstr "Валидатор дополнений"
@@ -2771,8 +2905,8 @@ msgstr[0] "<b>{0}</b> тема"
 msgstr[1] "<b>{0}</b> темы"
 msgstr[2] "<b>{0}</b> тем"
 
-msgid "Edit Information"
-msgstr "Изменить информацию"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Нет"
@@ -2802,13 +2936,11 @@ msgstr ""
 "<p>Дополнения могут иметь любое количество авторов с 2 возможными ролями:</p> <ul> <li><b>Владелец:</b> Может управлять всеми аспектами размещения дополнения, включая добавление и удаление других "
 "авторов</li> <li><b>Разработчик:</b> Может управлять всеми аспектами размещения дополнения, кроме добавления и удаления других авторов</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Информация о дополнении"
+msgstr "Дополнительные сведения"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Информация о дополнении для {0}"
+msgstr "Дополнительные сведения о {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Метки помогают пользователям найти ваше дополнение и должны быть кратким описанием, таким как, например, вкладки, панели или твиттер. Вы можете добавить до {0} меток."
@@ -2859,9 +2991,8 @@ msgid "Describe Add-on"
 msgstr "Опишите дополнение"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Опишите дополнение"
+msgstr "Опишите {0}"
 
 msgid "Add-on URL"
 msgstr "URL дополнения"
@@ -3189,8 +3320,9 @@ msgstr "Удалить это дополнение."
 msgid "Delete"
 msgstr "Удалить"
 
-msgid "Edit information about this add-on."
-msgstr "Изменить информацию об этом дополнении."
+#, fuzzy
+msgid "Edit details on this add-on's product page."
+msgstr "Редактировать информацию о странице этой темы.  "
 
 msgid "Upload a new version of this add-on."
 msgstr "Загрузить новую версию этого дополнения."
@@ -3213,11 +3345,9 @@ msgstr "Показать страницу дополнения"
 msgid "View Recent Changes"
 msgstr "Просмотреть последние изменения"
 
-msgid "Edit details about this theme's listing."
+#, fuzzy
+msgid "Edit details on this theme's product page."
 msgstr "Редактировать информацию о странице этой темы.  "
-
-msgid "Edit Listing"
-msgstr "Редактировать страницу"
 
 msgid "View the popularity of this theme over time."
 msgstr "Просмотр популярности этой темы с течением времени."
@@ -3275,9 +3405,8 @@ msgstr "Сводка:"
 msgid "required"
 msgstr "требуется"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Описание"
+msgstr "Описание:"
 
 msgid "This add-on is experimental"
 msgstr "Это дополнение экспериментальное"
@@ -3505,7 +3634,7 @@ msgid "Theme generator"
 msgstr "Генератор темы"
 
 msgid "Warning: the following manifest properties that your most recent version upload used in it's manifest are unsupported in this wizard and will be ignored:"
-msgstr ""
+msgstr "Предупреждение: следующие свойства манифеста, которые используются в вашей самой последней загруженной версии, не поддерживаются в этом мастере и будут игнорироваться:"
 
 msgid "Theme name"
 msgstr "Имя темы"
@@ -3830,7 +3959,8 @@ msgstr "Посмотреть ресурсы для размещающих при
 msgid "Welcome Back"
 msgstr "С возвращением"
 
-msgid "Help users discover your extension by creating an appealing listing."
+#, fuzzy
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr "Помогите пользователям узнать о вашем расширении, создав хорошее описание."
 
 msgid "Learn How"
@@ -3935,7 +4065,7 @@ msgid "Transfer ownership"
 msgstr "Передача владения"
 
 msgid "Theme Details"
-msgstr "Информация об теме"
+msgstr "Информация о теме"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Указать красивый URL для вашей страницы со сведениями."
@@ -4094,10 +4224,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
-"Информация об изменениях в этом релизе, новые возможности,\n"
-"                              известные баги, и другая полезная информация, относящаяся к\n"
-"                              этому релизу/версии. Эта информация также показывается в\n"
-"                              менеджере дополнений, при обновлении."
+"Информация об изменениях в этом релизе, новые возможности, известные баги, и другая полезная информация, относящаяся к этому релизу/версии. Эта информация также показывается в менеджере дополнений, "
+"при обновлении."
 
 msgid "Approval Status"
 msgstr "Статус одобрения"
@@ -5641,6 +5769,9 @@ msgstr "Не удалось распарсить загруженный файл
 msgid "Could not parse uploaded file."
 msgstr "Не удалось распарсить загруженный файл."
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Недопустимое имя файла в архиве. Пожалуйста, убедитесь, что все имена файлов в кодировке utf-8 или latin1."
@@ -6781,9 +6912,6 @@ msgstr "Изображения темы"
 msgid "Rendered Preview"
 msgstr "Предварительный Просмотр"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Файл изображения фона {0} из {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Подробнее об этом дополнении"
 
@@ -7188,6 +7316,9 @@ msgstr "Руководство редактора"
 msgid "Theme Review for {0}"
 msgstr "Проверка темы для {0}"
 
+msgid "Edit Listing"
+msgstr "Редактировать страницу"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Вероятно дублирующее представление)"
 
@@ -7357,7 +7488,8 @@ msgstr "Показываю {0} - {1} из {2} результатов для <str
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Показываю {0} - {1} из {2} результатов"
 
-msgid "Could not find add-on with id \"{}\"."
+#, fuzzy
+msgid "Could not find add-on with guid \"{}\"."
 msgstr "Не удалось найти дополнение с идентификатором \"{}\"."
 
 msgid "You do not own this addon."
@@ -7373,9 +7505,9 @@ msgstr "Вы не можете добавить к этому дополнени
 msgid "Version does not match the manifest file."
 msgstr "Версия не соответствует манифесту."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Версия уже существует."
+msgstr "Версия уже существует. Последняя версия: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Только в WebExtensions можно не указывать GUID"
@@ -7835,8 +7967,8 @@ msgstr "Местонахождение"
 msgid "Occupation"
 msgstr "Род деятельности"
 
-msgid "See this help article for information on how to change your email address."
-msgstr ""
+msgid "You can change your email address on Firefox Accounts."
+msgstr "Вы можете изменить свой адрес электронной почты в Аккаунтах Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Этот URL имеет неверный формат. Правильные URL имеют вид http://example.com/my_page."
@@ -7963,8 +8095,8 @@ msgstr "Пожалуйста, введите свое отображаемое �
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Пожалуйста, введите отображаемое имя или имя пользователя, чтобы завершить процесс регистрации."
 
-msgid "Manage basic account information."
-msgstr "Управление базовой информацией учётной записи, такой как имя пользователя и настройки Аккаунтов."
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgstr "Управление базовой информацией учётной записи, такой как имя пользователя и настройки Аккаунтов Firefox."
 
 msgid "Username"
 msgstr "Имя пользователя"
@@ -7972,8 +8104,8 @@ msgstr "Имя пользователя"
 msgid "Email Address"
 msgstr "Адрес эл. почты"
 
-msgid "Manage other account details..."
-msgstr "Управление аккаунтом..."
+msgid "Manage Firefox Account..."
+msgstr "Управление аккаунтом Firefox..."
 
 msgid "Profile"
 msgstr "Профиль"
@@ -8027,11 +8159,14 @@ msgstr "нет"
 msgid "all"
 msgstr "все"
 
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
+msgstr "Сайт дополнений Mozilla теперь использует для входа Аккаунты Firefox. Продолжите для завершения простого процесса входа."
+
 msgid "User Login"
 msgstr "Вход пользователя"
 
-msgid "Log in"
-msgstr "Войти через Аккаунты"
+msgid "Log in with Firefox Accounts"
+msgstr "Войти через Аккаунты Firefox"
 
 msgid "Password Reset"
 msgstr "Сброс пароля"

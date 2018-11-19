@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,9 @@ msgstr "Ƞǿ ŀīƞķş ȧřḗ ȧŀŀǿẇḗḓ."
 
 msgid "This display name cannot be used."
 msgstr "Ŧħīş ḓīşƥŀȧẏ ƞȧḿḗ ƈȧƞƞǿŧ ƀḗ ŭşḗḓ."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Ŧħḗ ħǿḿḗƥȧɠḗ ƒīḗŀḓ ƈȧƞ ǿƞŀẏ ƀḗ ŭşḗḓ ŧǿ ŀīƞķ ŧǿ ḗẋŧḗřƞȧŀ ẇḗƀşīŧḗş."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Ŭşḗřƞȧḿḗş ƈȧƞƞǿŧ ƈǿƞŧȧīƞ ǿƞŀẏ ḓīɠīŧş."
@@ -1910,41 +1913,86 @@ msgstr "Īƞƈǿḿƥȧŧīƀŀḗ"
 msgid "Alerts & Updates"
 msgstr "Aŀḗřŧş & Ŭƥḓȧŧḗş"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ħḗŀƥ ẏǿŭ şŧȧẏ ŭƥ-ŧǿ-ḓȧŧḗ, ŧřȧƈķ ŧȧşķş, īḿƥřǿṽḗ ḗƒƒīƈīḗƞƈẏ. Ƒīƞḓ ḗẋŧḗƞşīǿƞş ŧħȧŧ řḗŀǿȧḓ ŧȧƀş, ḿȧƞȧɠḗ ƥřǿḓŭƈŧīṽīŧẏ, ȧƞḓ ḿǿřḗ."
+
 msgid "Appearance"
 msgstr "Aƥƥḗȧřȧƞƈḗ"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ ḗẋŧḗƞşīǿƞş ŧħȧŧ ḿǿḓīƒẏ ŧħḗ ȧƥƥḗȧřȧƞƈḗ ǿƒ ẇḗƀşīŧḗş ȧƞḓ ŧħḗ ƀřǿẇşḗř Ƒīřḗƒǿẋ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ḗẋŧḗƞşīǿƞş ƒǿř ḓȧřķ ŧħḗḿḗş, ŧȧƀ ḿȧƞȧɠḗḿḗƞŧ, ȧƞḓ ḿǿřḗ."
 
 msgid "Bookmarks"
 msgstr "Ɓǿǿķḿȧřķş"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ ḗẋŧḗƞşīǿƞş ŧħȧŧ ḗƞħȧƞƈḗ ƀǿǿķḿȧřķş ƀẏ ƥȧşşẇǿřḓ-ƥřǿŧḗƈŧīƞɠ ŧħḗḿ, şḗȧřƈħīƞɠ ƒǿř ḓŭƥŀīƈȧŧḗş, ƒīƞḓīƞɠ ƀřǿķḗƞ ƀǿǿķḿȧřķş, ȧƞḓ ḿǿřḗ."
+
 msgid "Download Management"
 msgstr "Ḓǿẇƞŀǿȧḓ Ḿȧƞȧɠḗḿḗƞŧ"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ħḗŀƥ ḓǿẇƞŀǿȧḓ ẇḗƀ, ḿŭşīƈ ȧƞḓ ṽīḓḗǿ ƈǿƞŧḗƞŧ. Ẏǿŭ ƈȧƞ ȧŀşǿ ƒīƞḓ ḗẋŧḗƞşīǿƞş ŧǿ ḿȧƞȧɠḗ ḓǿẇƞŀǿȧḓş, şħȧřḗ ƒīŀḗş, ȧƞḓ ḿǿřḗ."
 
 msgid "Feeds, News & Blogging"
 msgstr "Ƒḗḗḓş, Ƞḗẇş & Ɓŀǿɠɠīƞɠ"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ řḗḿǿṽḗ ƈŀŭŧŧḗř şǿ ẏǿŭ ƈȧƞ şŧȧẏ ŭƥ-ŧǿ-ḓȧŧḗ ǿƞ şǿƈīȧŀ ḿḗḓīȧ, ƈȧŧƈħ ŭƥ ǿƞ ƀŀǿɠş, ŘŞŞ ƒḗḗḓş, řḗḓŭƈḗ ḗẏḗ şŧřȧīƞ, ȧƞḓ ḿǿřḗ."
+
 msgid "Games & Entertainment"
 msgstr "Ɠȧḿḗş & Ḗƞŧḗřŧȧīƞḿḗƞŧ"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ƀǿǿşŧ ẏǿŭř ḗƞŧḗřŧȧīƞḿḗƞŧ ḗẋƥḗřīḗƞƈḗ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ḗƞħȧƞƈḗ ɠȧḿīƞɠ, ƈǿƞŧřǿŀ ṽīḓḗǿ ƥŀȧẏƀȧƈķ, ȧƞḓ ḿǿřḗ."
 
 msgid "Language Support"
 msgstr "Ŀȧƞɠŭȧɠḗ Şŭƥƥǿřŧ"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ǿƒƒḗř ŀȧƞɠŭȧɠḗ şŭƥƥǿřŧ ŀīķḗ ɠřȧḿḿȧř ƈħḗƈķ, ŀǿǿķ-ŭƥ ẇǿřḓş, ŧřȧƞşŀȧŧḗ ŧḗẋŧ, ƥřǿṽīḓḗ ŧḗẋŧ-ŧǿ-şƥḗḗƈħ, ȧƞḓ ḿǿřḗ."
+
 msgid "Photos, Music & Videos"
 msgstr "Ƥħǿŧǿş, Ḿŭşīƈ & Ṽīḓḗǿş"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ḗƞħȧƞƈḗ ƥħǿŧǿ, ḿŭşīƈ ȧƞḓ ṽīḓḗǿ ḗẋƥḗřīḗƞƈḗş. Ḗẋŧḗƞşīǿƞş īƞ ŧħīş ƈȧŧḗɠǿřẏ ḿǿḓīƒẏ ȧŭḓīǿ ȧƞḓ ṽīḓḗǿ, řḗṽḗřşḗ īḿȧɠḗ şḗȧřƈħ, ȧƞḓ ḿǿřḗ."
 
 msgid "Privacy & Security"
 msgstr "Ƥřīṽȧƈẏ & Şḗƈŭřīŧẏ"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ƀřǿẇşḗ ƥřīṽȧŧḗŀẏ ȧƞḓ şḗƈŭřḗŀẏ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ḗẋŧḗƞşīǿƞş ŧǿ ƀŀǿƈķ ȧƞƞǿẏīƞɠ ȧḓş, ƥřḗṽḗƞŧ ŧřȧƈķīƞɠ, ḿȧƞȧɠḗ řḗḓīřḗƈŧş, ȧƞḓ ḿǿřḗ."
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ƒǿř şḗȧřƈħ ȧƞḓ ŀǿǿķ-ŭƥ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ḗẋŧḗƞşīǿƞş ŧħȧŧ ħīɠħŀīɠħŧ ȧƞḓ şḗȧřƈħ ŧḗẋŧ, ŀǿǿķŭƥ ĪƤ ȧḓḓřḗşşḗş/ḓǿḿȧīƞş, ȧƞḓ ḿǿřḗ."
+
 msgid "Shopping"
 msgstr "Şħǿƥƥīƞɠ"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ḗƞħȧƞƈḗ ẏǿŭř ǿƞŀīƞḗ şħǿƥƥīƞɠ ḗẋƥḗřīḗƞƈḗ ẇīŧħ ƈǿŭƥǿƞ ƒīƞḓḗřş, ḓḗȧŀ ƒīƞḓḗřş, řḗṽīḗẇ ȧƞȧŀẏẑḗřş, ḿǿřḗ."
 
 msgid "Social & Communication"
 msgstr "Şǿƈīȧŀ & Ƈǿḿḿŭƞīƈȧŧīǿƞ"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ḗƞħȧƞƈḗ şǿƈīȧŀ ḿḗḓīȧ ȧƞḓ īƞşŧȧƞŧ ḿḗşşȧɠīƞɠ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş īḿƥřǿṽḗḓ ŧȧƀ ƞǿŧīƒīƈȧŧīǿƞş, ṽīḓḗǿ ḓǿẇƞŀǿȧḓḗřş, ȧƞḓ ḿǿřḗ."
+
 msgid "Tabs"
 msgstr "Ŧȧƀş"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞ ŧǿ ƈŭşŧǿḿīẑḗ ŧȧƀş ȧƞḓ ŧħḗ ƞḗẇ ŧȧƀ ƥȧɠḗ. Ḓīşƈǿṽḗř ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ƈǿƞŧřǿŀ ŧȧƀş, ƈħȧƞɠḗ ŧħḗ ẇȧẏ ẏǿŭ īƞŧḗřȧƈŧ ẇīŧħ ŧħḗḿ, ȧƞḓ ḿǿřḗ."
+
 msgid "Web Development"
 msgstr "Ẇḗƀ Ḓḗṽḗŀǿƥḿḗƞŧ"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ƒḗȧŧŭřḗ ẇḗƀ ḓḗṽḗŀǿƥḿḗƞŧ ŧǿǿŀş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ḗẋŧḗƞşīǿƞş ƒǿř ƓīŧĦŭƀ, ŭşḗř ȧɠḗƞŧ şẇīŧƈħīƞɠ, ƈǿǿķīḗ ḿȧƞȧɠḗḿḗƞŧ, ȧƞḓ ḿǿřḗ."
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ƀḗ ŭƞƥřḗḓīƈŧȧƀŀḗ ȧƞḓ ƈřḗȧŧīṽḗ, ẏḗŧ ŭşḗƒŭŀ ƒǿř ŧħǿşḗ ǿḓḓ ŧȧşķş."
 
 msgid "Animals"
 msgstr "Aƞīḿȧŀş"
@@ -1976,35 +2024,80 @@ msgstr "Şƥǿřŧş"
 msgid "Abstract"
 msgstr "Aƀşŧřȧƈŧ"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ȧřŧīşŧīƈ ȧƞḓ ƈǿƞƈḗƥŧŭȧŀ ŧħḗḿḗş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ƈǿŀǿřƒŭŀ ƥȧŀḗŧŧḗş ȧƞḓ şħȧƥḗş, ƒȧƞŧȧşẏ ŀȧƞḓşƈȧƥḗş, ƥŀȧẏƒŭŀ ƈȧŧş, ƥşẏƈħḗḓḗŀīƈ ƒŀǿẇḗřş."
+
 msgid "Causes"
 msgstr "Ƈȧŭşḗş"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ƒǿř ƞīƈħḗ īƞŧḗřḗşŧş ȧƞḓ ŧǿƥīƈş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş şƥǿřŧş ŧħḗḿḗş, ħǿŀīḓȧẏş, ƥħīŀȧƞŧħřǿƥīƈ ƈȧŭşḗş, ƞȧŧīǿƞȧŀīŧīḗş, ȧƞḓ ḿŭƈħ ḿǿřḗ."
 
 msgid "Fashion"
 msgstr "Ƒȧşħīǿƞ"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ŧħȧŧ ƈḗŀḗƀřȧŧḗ şŧẏŀḗ ǿƒ ȧŀŀ ƒǿřḿş—ƥȧŧŧḗřƞş, ƒŀǿřȧŀş, ŧḗẋŧŭřḗş, ḿǿḓḗŀş, ȧƞḓ ḿǿřḗ."
+
 msgid "Film and TV"
 msgstr "Ƒīŀḿ ȧƞḓ ŦṼ"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ẇīŧħ ḿǿṽīḗş ȧƞḓ ŧḗŀḗṽīşīǿƞ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ȧƞīḿḗ ŀīķḗ Ŭƈħīħȧ Ḿȧḓȧřȧ, ḿǿṽīḗş ŀīķḗ Ŧħḗ Ḿȧŧřīẋ, şħǿẇş (Ɠȧḿḗ ǿƒ Ŧħřǿƞḗş), ȧƞḓ ḿǿřḗ."
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ẇīŧħ ŧħḗ Ƒīřḗƒǿẋ ƀřǿẇşḗř ŧħḗḿḗ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ƈǿŀǿřƒŭŀ, ḓīṽḗřşḗ ḓḗƥīƈŧīǿƞş ǿƒ ŧħḗ Ƒīřḗƒǿẋ ŀǿɠǿ, īƞƈŀŭḓīƞɠ ḿǿřḗ ɠḗƞḗřȧŀ ƒǿẋ ŧħḗḿḗş."
 
 msgid "Foxkeh"
 msgstr "Ƒǿẋķḗħ"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ẇīŧħ ŧħḗ Ĵȧƥȧƞḗşḗ Ƒīřḗƒǿẋ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ŧħḗḿḗş ŧħȧŧ ḓḗƥīƈŧ ŧħḗ ƈŭŧḗ Ƒǿẋķḗħ ḿȧşƈǿŧ īƞ ṽȧřīǿŭş ƥǿşḗş ǿƞ ḓīṽḗřşḗ ŀȧƞḓşƈȧƥḗş."
+
 msgid "Holiday"
 msgstr "Ħǿŀīḓȧẏ"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ẇīŧħ ħǿŀīḓȧẏş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş Ƈħřīşŧḿȧş, Ħȧŀŀǿẇḗḗƞ, Ŧħȧƞķşɠīṽīƞɠ, Şŧ. Ƥȧŧřīƈķ’ş Ḓȧẏ, Ḗȧşŧḗř, Ƒǿŭřŧħ ǿƒ Ĵŭŀẏ, ȧƞḓ ḿǿřḗ."
 
 msgid "Music"
 msgstr "Ḿŭşīƈ"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ƒǿř ḿŭşīƈȧŀ īƞŧḗřḗşŧş ȧƞḓ ȧřŧīşŧş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ƥǿƥŭŀȧř ƀȧƞḓş ŀīķḗ Ƞīřṽȧƞȧ ȧƞḓ ƁŦŞ, īƞşŧřŭḿḗƞŧş, ḿŭşīƈ ṽīḓḗǿş, ȧƞḓ ḿŭƈħ ḿǿřḗ."
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ẇīŧħ ȧƞīḿȧŀş ȧƞḓ ƞȧŧŭřȧŀ ŀȧƞḓşƈȧƥḗş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ƒŀǿẇḗřş, şŭƞşḗŧş, ƒǿẋḗş, şḗȧşǿƞş, ƥŀȧƞḗŧş, ķīŧŧḗƞş, ƀīřḓş, ȧƞḓ ḿǿřḗ."
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ŧħȧŧ ȧřḗ īƞŧḗřḗşŧīƞɠ, ƈřḗȧŧīṽḗ, ȧƞḓ ŭƞīɋŭḗ."
+
 msgid "Scenery"
 msgstr "Şƈḗƞḗřẏ"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ŧħȧŧ ƒḗȧŧŭřḗ ŧħḗ ḗƞṽīřǿƞḿḗƞŧ ȧƞḓ ŧħḗ ƞȧŧŭřȧŀ ẇǿřŀḓ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş şŭƞşḗŧş, ƀḗȧƈħḗş, īŀŀŭşŧřȧŧīǿƞş, ƈīŧẏ şķẏŀīƞḗş, ȧƞḓ ḿǿřḗ."
 
 msgid "Seasonal"
 msgstr "Şḗȧşǿƞȧŀ"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ƒǿř ȧŀŀ ƒǿŭř şḗȧşǿƞş—ƒȧŀŀ, ẇīƞŧḗř, şƥřīƞɠ, ȧƞḓ şŭḿḿḗř. Aŭŧŭḿƞ ŀḗȧṽḗş, şƞǿẇẏ ḿǿŭƞŧȧīƞ ƥḗȧķş, şŭƞƞẏ şŭḿḿḗř ḓȧẏş, ȧƞḓ şƥřīƞɠ ƒŀǿẇḗřş."
+
 msgid "Solid"
 msgstr "Şǿŀīḓ"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ẇīŧħ şǿŀīḓ ȧƞḓ ɠřȧḓīḗƞŧ ƈǿŀǿřş ŧǿ ƥḗřşǿƞȧŀīẑḗ ẏǿŭř ƀřǿẇşḗř. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ƀǿŀḓ řḗḓş, ƥȧşŧḗŀş, şǿƒŧ ɠřḗẏş, ȧƞḓ ḿŭƈħ ḿǿřḗ."
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ŧħȧŧ ƒḗȧŧŭřḗ ȧ ṽȧřīḗŧẏ ǿƒ şƥǿřŧş. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ƈǿŭƞŧřẏ ƒŀȧɠş, şƥǿřŧş ŧḗȧḿş, şǿƈƈḗř, ħǿƈķḗẏ, ȧƞḓ ḿǿřḗ."
+
 msgid "Websites"
 msgstr "Ẇḗƀşīŧḗş"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ŧħḗḿḗş ŧħȧŧ ƈȧƥŧŭřḗ ŧħḗ ḗşşḗƞƈḗ ǿƒ ŧħḗ ẇḗƀ—ƈȧƥŧīṽȧŧīƞɠ, ŭƞŭşŭȧŀ, ȧƞḓ ḓīşŧīƞƈŧīṽḗ."
 
 msgid "General"
 msgstr "Ɠḗƞḗřȧŀ"
@@ -2042,29 +2135,62 @@ msgstr "Ṽīḓḗǿ"
 msgid "Device Features & Location"
 msgstr "Ḓḗṽīƈḗ Ƒḗȧŧŭřḗş & Ŀǿƈȧŧīǿƞ"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ ḗẋŧḗƞşīǿƞş ŧǿ ḗƞħȧƞƈḗ Ƒīřḗƒǿẋ ƒǿř Aƞḓřǿīḓ. Ƥḗřƒǿřḿ ɋŭīƈķ şḗȧřƈħḗş, ƒřḗḗ ŭƥ şẏşŧḗḿ řḗşǿŭřƈḗş, ŧȧķḗ ƞǿŧḗş, ȧƞḓ ḿǿřḗ."
+
 msgid "Experimental"
 msgstr "Ḗẋƥḗřīḿḗƞŧȧŀ"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ȧřḗ řḗɠŭŀȧřŀẏ ŭƥḓȧŧḗḓ ȧƞḓ řḗȧḓẏ ƒǿř ƥŭƀŀīƈ ŧḗşŧīƞɠ. Ẏǿŭř ƒḗḗḓƀȧƈķ īƞƒǿřḿş ḓḗṽḗŀǿƥḗřş ǿƞ ƈħȧƞɠḗş ŧǿ ḿȧķḗ īƞ ŭƥƈǿḿīƞɠ ṽḗřşīǿƞş."
 
 msgid "Feeds, News, & Blogging"
 msgstr "Ƒḗḗḓş, Ƞḗẇş, & Ɓŀǿɠɠīƞɠ"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ƒǿř ƞḗẇş, ẇḗƀ ƒḗḗḓş, ȧƞḓ ƀŀǿɠş ƀẏ řḗḿǿṽīƞɠ ƈŀŭŧŧḗř, ŭŧīŀīẑīƞɠ ṽǿīƈḗ řḗȧḓḗřş, ȧƞḓ ḿǿřḗ."
+
 msgid "Performance"
 msgstr "Ƥḗřƒǿřḿȧƞƈḗ"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr "Ḓǿẇƞŀǿȧḓ ḗẋŧḗƞşīǿƞş ŧħȧŧ ɠīṽḗ Ƒīřḗƒǿẋ ȧ ƥḗřƒǿřḿȧƞƈḗ ƀǿǿşŧ. Ƒīƞḓ ḗẋŧḗƞşīǿƞş ŧħȧŧ ħḗŀƥ ẏǿŭ ƀḗ ḿǿřḗ ƥřǿḓŭƈŧīṽḗ ȧƞḓ ḗƒƒīƈīḗƞŧ ƀẏ ƀŀǿƈķīƞɠ ȧƞƞǿẏīƞɠ ȧḓş ȧƞḓ ḿǿřḗ."
 
 msgid "Photos & Media"
 msgstr "Ƥħǿŧǿş & Ḿḗḓīȧ"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ḗƞħȧƞƈḗ ƥħǿŧǿş ȧƞḓ ḿḗḓīȧ. Ŧħīş ƈȧŧḗɠǿřẏ īƞƈŀŭḓḗş ḗẋŧḗƞşīǿƞş ŧǿ řḗṽḗřşḗ şḗȧřƈħ īḿȧɠḗş, ƈȧƥŧŭřḗ ƒŭŀŀ ƥȧɠḗ şƈřḗḗƞşħǿŧş, ȧƞḓ ḿǿřḗ."
+
 msgid "Security & Privacy"
 msgstr "Şḗƈŭřīŧẏ & Ƥřīṽȧƈẏ"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ şŭřƒ şȧƒḗŀẏ ȧƞḓ ƥřīṽȧŧḗŀẏ. Ḓīşƈǿṽḗř ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ şŧǿƥ şƞḗȧķẏ ȧḓ ŧřȧƈķḗřş īƞ ŧħḗīř ŧřȧƈķş, ḗȧşīŀẏ ƈŀḗȧř ƀřǿẇşīƞɠ ħīşŧǿřẏ, ȧƞḓ ḿǿřḗ."
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ḗƞħȧƞƈḗ ẏǿŭř ǿƞŀīƞḗ şħǿƥƥīƞɠ ḗẋƥḗřīḗƞƈḗ ƀẏ ȧƞȧŀẏẑīƞɠ řḗṽīḗẇş, ƒīƞḓīƞɠ ḓḗȧŀş ȧƞḓ ƈǿŭƥǿƞş, ȧƞḓ ḿǿřḗ."
 
 msgid "Social Networking"
 msgstr "Şǿƈīȧŀ Ƞḗŧẇǿřķīƞɠ"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ḗƞħȧƞƈḗ ẏǿŭř ḗẋƥḗřīḗƞƈḗ ǿƞ ƥǿƥŭŀȧř şǿƈīȧŀ ƞḗŧẇǿřķīƞɠ ẇḗƀşīŧḗş şŭƈħ ȧş ẎǿŭŦŭƀḗ, ƓīŧĦŭƀ, Řḗḓḓīŧ, ȧƞḓ ḿǿřḗ."
+
 msgid "Sports & Games"
 msgstr "Şƥǿřŧş & Ɠȧḿḗş"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ɠīṽḗ ẏǿŭř ḗƞŧḗřŧȧīƞḿḗƞŧ ḗẋƥḗřīḗƞƈḗ ȧ ƀǿǿşŧ ẇīŧħ ŀīṽḗ şŧřḗȧḿ ḗƞħȧƞƈḗřş, şƥǿřŧş ŭƥḓȧŧḗş, ȧƞḓ ḿǿřḗ."
+
 msgid "User Interface"
 msgstr "Ŭşḗř Īƞŧḗřƒȧƈḗ"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr "Ḓǿẇƞŀǿȧḓ ŭşḗř īƞŧḗřƒȧƈḗ Ƒīřḗƒǿẋ ḗẋŧḗƞşīǿƞş ŧǿ ȧŀŧḗř ẇḗƀ ƥȧɠḗş ƒǿř ḗȧşīḗř řḗȧḓīƞɠ, şḗȧřƈħīƞɠ, ƀřǿẇşīƞɠ, ȧƞḓ ḿǿřḗ."
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr "Ḓǿẇƞŀǿȧḓ ǿḓḓ ȧƞḓ īƞŧḗřḗşŧīƞɠ ḗẋŧḗƞşīǿƞş ŧħȧŧ ƈȧƞ ɠīṽḗ Ƒīřḗƒǿẋ ƒǿř Aƞḓřǿīḓ ȧ ƀǿǿşŧ."
 
 msgid "All Rights Reserved"
 msgstr "Aŀŀ Řīɠħŧş Řḗşḗřṽḗḓ"
@@ -2322,6 +2448,9 @@ msgstr "Ƥŀḗȧşḗ şƥḗƈīƒẏ ẏǿŭř ȧḓḓ-ǿƞ'ş Ƥřīṽȧƈ
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Ŭƞşŭƥƥǿřŧḗḓ ƒīŀḗ ŧẏƥḗ, ƥŀḗȧşḗ ŭƥŀǿȧḓ ȧƞ ȧřƈħīṽḗ ƒīŀḗ {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "Īƞṽȧŀīḓ ǿř ƀřǿķḗƞ ȧřƈħīṽḗ."
+
 msgid "View current"
 msgstr "Ṽīḗẇ ƈŭřřḗƞŧ"
 
@@ -2393,6 +2522,9 @@ msgstr "Ẇḗ ȧŀŀǿẇ ȧƞḓ ḗƞƈǿŭřȧɠḗ ȧƞ ŭƥɠřȧḓḗ ƀ
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ẏǿŭ ƈȧƞƞǿŧ ŭƥḓȧŧḗ ȧ ẆḗƀḖẋŧḗƞşīǿƞş ȧḓḓ-ǿƞ ẇīŧħ ȧ ŀḗɠȧƈẏ ȧḓḓ-ǿƞ. Ẏǿŭř ŭşḗřş ẇǿŭŀḓ ƞǿŧ ƀḗ ȧƀŀḗ ŧǿ ŭşḗ ẏǿŭř ƞḗẇ ṽḗřşīǿƞ ƀḗƈȧŭşḗ Ƒīřḗƒǿẋ ḓǿḗş ƞǿŧ şŭƥƥǿřŧ ŧħīş ŧẏƥḗ ǿƒ ŭƥḓȧŧḗ."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] Ŧħḗ ŧḗẋŧ īƞ ŧħḗ \"{field}\" ƒīḗŀḓ ħȧş ƀḗḗƞ ƒŀȧɠɠḗḓ ȧş şƥȧḿ."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Ẏǿŭř ḓḗṽḗŀǿƥḗř AƤĪ ķḗẏ ẇȧş ƒǿŭƞḓ īƞ ŧħḗ şŭƀḿīŧŧḗḓ ƒīŀḗ. Ŧǿ ƥřǿŧḗƈŧ ẏǿŭř ȧƈƈǿŭƞŧ, ŧħḗ ķḗẏ ẇīŀŀ ƀḗ řḗṽǿķḗḓ."
@@ -2723,8 +2855,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> ŧħḗḿḗ"
 msgstr[1] "<b>{0}</b> ŧħḗḿḗş"
 
-msgid "Edit Information"
-msgstr "Ḗḓīŧ Īƞƒǿřḿȧŧīǿƞ"
+msgid "Edit Product Page"
+msgstr "Ḗḓīŧ Ƥřǿḓŭƈŧ Ƥȧɠḗ"
 
 msgid "None"
 msgstr "Ƞǿƞḗ"
@@ -3119,8 +3251,8 @@ msgstr "Ḓḗŀḗŧḗ ŧħīş ȧḓḓ-ǿƞ."
 msgid "Delete"
 msgstr "Ḓḗŀḗŧḗ"
 
-msgid "Edit information about this add-on."
-msgstr "Ḗḓīŧ īƞƒǿřḿȧŧīǿƞ ȧƀǿŭŧ ŧħīş ȧḓḓ-ǿƞ."
+msgid "Edit details on this add-on's product page."
+msgstr "Ḗḓīŧ ḓḗŧȧīŀş ǿƞ ŧħīş ȧḓḓ-ǿƞ'ş ƥřǿḓŭƈŧ ƥȧɠḗ."
 
 msgid "Upload a new version of this add-on."
 msgstr "Ŭƥŀǿȧḓ ȧ ƞḗẇ ṽḗřşīǿƞ ǿƒ ŧħīş ȧḓḓ-ǿƞ."
@@ -3143,11 +3275,8 @@ msgstr "Ṽīḗẇ Aḓḓ-ǿƞ Ŀīşŧīƞɠ"
 msgid "View Recent Changes"
 msgstr "Ṽīḗẇ Řḗƈḗƞŧ Ƈħȧƞɠḗş"
 
-msgid "Edit details about this theme's listing."
-msgstr "Ḗḓīŧ ḓḗŧȧīŀş ȧƀǿŭŧ ŧħīş ŧħḗḿḗ'ş ŀīşŧīƞɠ."
-
-msgid "Edit Listing"
-msgstr "Ḗḓīŧ Ŀīşŧīƞɠ"
+msgid "Edit details on this theme's product page."
+msgstr "Ḗḓīŧ ḓḗŧȧīŀş ǿƞ ŧħīş ŧħḗḿḗ'ş ƥřǿḓŭƈŧ ƥȧɠḗ."
 
 msgid "View the popularity of this theme over time."
 msgstr "Ṽīḗẇ ŧħḗ ƥǿƥŭŀȧřīŧẏ ǿƒ ŧħīş ŧħḗḿḗ ǿṽḗř ŧīḿḗ."
@@ -3743,8 +3872,8 @@ msgstr "Ṽīḗẇ Řḗşǿŭřƈḗş ƒǿř Ƥŭƀŀīşħḗřş"
 msgid "Welcome Back"
 msgstr "Ẇḗŀƈǿḿḗ Ɓȧƈķ"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Ħḗŀƥ ŭşḗřş ḓīşƈǿṽḗř ẏǿŭř ḗẋŧḗƞşīǿƞ ƀẏ ƈřḗȧŧīƞɠ ȧƞ ȧƥƥḗȧŀīƞɠ ŀīşŧīƞɠ."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Ħḗŀƥ ŭşḗřş ḓīşƈǿṽḗř ẏǿŭř ḗẋŧḗƞşīǿƞ ƀẏ ƈřḗȧŧīƞɠ ȧƞ ȧƥƥḗȧŀīƞɠ ƥřǿḓŭƈŧ ƥȧɠḗ."
 
 msgid "Learn How"
 msgstr "Ŀḗȧřƞ Ħǿẇ"
@@ -5540,6 +5669,9 @@ msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ, ḿīşş�
 msgid "Could not parse uploaded file."
 msgstr "Ƈǿŭŀḓ ƞǿŧ ƥȧřşḗ ŭƥŀǿȧḓḗḓ ƒīŀḗ."
 
+msgid "Unsupported archive type."
+msgstr "Ŭƞşŭƥƥǿřŧḗḓ ȧřƈħīṽḗ ŧẏƥḗ."
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Īƞṽȧŀīḓ ƒīŀḗ ƞȧḿḗ īƞ ȧřƈħīṽḗ. Ƥŀḗȧşḗ ḿȧķḗ şŭřḗ ȧŀŀ ƒīŀḗƞȧḿḗş ȧřḗ ŭŧƒ-8 ǿř ŀȧŧīƞ1 ḗƞƈǿḓḗḓ."
@@ -6661,9 +6793,6 @@ msgstr "Ŧħḗḿḗ Īḿȧɠḗş"
 msgid "Rendered Preview"
 msgstr "Řḗƞḓḗřḗḓ Ƥřḗṽīḗẇ"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Ɓȧƈķɠřǿŭƞḓ ƒīŀḗ {0} ǿƒ {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Ḿǿřḗ ȧƀǿŭŧ ŧħīş ȧḓḓ-ǿƞ"
 
@@ -7068,6 +7197,9 @@ msgstr "Řḗṽīḗẇḗřş' Ɠŭīḓḗ"
 msgid "Theme Review for {0}"
 msgstr "Ŧħḗḿḗ Řḗṽīḗẇ ƒǿř {0}"
 
+msgid "Edit Listing"
+msgstr "Ḗḓīŧ Ŀīşŧīƞɠ"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Ƥřǿƀȧƀŀḗ Ḓŭƥŀīƈȧŧḗ Şŭƀḿīşşīǿƞ)"
 
@@ -7225,8 +7357,8 @@ msgstr "Şħǿẇīƞɠ {0} - {1} ǿƒ {2} řḗşŭŀŧş ƒǿř <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Şħǿẇīƞɠ {0} - {1} ǿƒ {2} řḗşŭŀŧş"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧḓḓ-ǿƞ ẇīŧħ īḓ \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "Ƈǿŭŀḓ ƞǿŧ ƒīƞḓ ȧḓḓ-ǿƞ ẇīŧħ ɠŭīḓ \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Ẏǿŭ ḓǿ ƞǿŧ ǿẇƞ ŧħīş ȧḓḓǿƞ."
