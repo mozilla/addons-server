@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 21:25+0000\n"
+"PO-Revision-Date: 2018-11-19 22:30+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1897,25 +1897,25 @@ msgid "Alerts & Updates"
 msgstr "Makluman & Kemaskini"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang membantu anda sentiasa terkini, mengesan tugas dan meningkatkan kecekapan. Cari ekstensi yang memuat semula tab, menguruskan produktiviti dan banyak lagi."
 
 msgid "Appearance"
 msgstr "Penampilan"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Muat turun ekstensi yang mengubah suai penampilan laman web dan pelayar Firefox. Kategori ini termasuk ekstensi tema gelap, pengurusan tab dan banyak lagi."
 
 msgid "Bookmarks"
 msgstr "Tandabuku"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Muat turun ekstensi yang meningkatkan tandabuku dengan melindungi kata laluan, mencari duplikasi, mencari tandabuku yang rosak dan banyak lagi."
 
 msgid "Download Management"
 msgstr "Pengurusan Muat turun"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang dapat membantu memuat turun kandungan web, muzik dan video. Anda juga boleh mencari ekstensi untuk mengurus muat turun, berkongsi fail dan banyak lagi."
 
 msgid "Feeds, News & Blogging"
 msgstr "Suapan, Berita & Blog"
@@ -2431,9 +2431,8 @@ msgstr "Sila tetapkan Polisi Privasi add-on anda:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Jenis fail tidak disokong, sila muat naik fail arkib {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Arkib tidak sah."
+msgstr "Arkib tidak sah atau rosak."
 
 msgid "View current"
 msgstr "Tinjau semasa"
@@ -2506,9 +2505,8 @@ msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan pr
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Teks yang dimasukkan telah ditanda sebagai spam."
+msgstr "[{field}] Teks dalam medan \"{field}\" telah ditandakan sebagai spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kunci API pembangun anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi akaun anda, kunci akan dijana semula."
@@ -3227,9 +3225,8 @@ msgstr "Buang add-on ini."
 msgid "Delete"
 msgstr "Buang"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Edit butiran penyenaraian tema ini."
+msgstr "Edit butiran halaman produk add-on ini."
 
 msgid "Upload a new version of this add-on."
 msgstr "Muat naik versi baru add-on ini."
@@ -3252,9 +3249,8 @@ msgstr "Tinjau Penyenaraian Add-on"
 msgid "View Recent Changes"
 msgstr "Papar Perubahan Terbaru"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Edit butiran penyenaraian tema ini."
+msgstr "Edit butiran halaman produk tema ini."
 
 msgid "View the popularity of this theme over time."
 msgstr "Lihat populariti tema ini sepanjang tempoh."
@@ -3852,9 +3848,8 @@ msgstr "Lihat Sumber untuk Penerbit"
 msgid "Welcome Back"
 msgstr "Selamat Kembali"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Bantu pengguna mencari ekstensi anda dengan mencipta senarai yang menarik."
+msgstr "Bantu pengguna mencari ekstensi anda dengan mencipta halaman produk yang menarik."
 
 msgid "Learn How"
 msgstr "Belajar Caranya"
@@ -7331,9 +7326,8 @@ msgstr "Memaparkan {0} - {1} daripada {2} carian untuk <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Memaparkan {0} - {1} daripada {2} hasil"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Tidak dapat menemukan add-on dengan id \"{}\"."
+msgstr "Tidak dapat menemukan add-on dengan guid \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Anda bukan pemilik add-on ini."
