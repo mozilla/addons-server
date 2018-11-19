@@ -410,6 +410,9 @@ for type_ in CATEGORIES_NO_APP:
         object.__setattr__(cat, 'misc', slug in ('miscellaneous', 'other'))
 
 
+# These numbers are ids for Category model instances in the database.
+# For existing categories they MUST match, for the fk in AddonCategory to work.
+# To add a category to an app you can use any unused id (needs a migration too)
 CATEGORIES = {
     FIREFOX.id: {
         ADDON_EXTENSION: {
