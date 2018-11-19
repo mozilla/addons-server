@@ -77,17 +77,16 @@ class Rating(ModelBase):
     reply_to = models.OneToOneField(
         'self', null=True, related_name='reply', db_column='reply_to')
 
-    rating = models.PositiveSmallIntegerField(null=True, db_index=True)
+    rating = models.PositiveSmallIntegerField(null=True)
     body = models.TextField(db_column='text_body', null=True)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 
     editorreview = models.BooleanField(default=False)
     flag = models.BooleanField(default=False)
 
-    deleted = models.BooleanField(default=False, db_index=True)
+    deleted = models.BooleanField(default=False)
 
     # Denormalized fields for easy lookup queries.
-    # TODO: index on addon, user, latest
     is_latest = models.BooleanField(
         default=True, editable=False,
         help_text="Is this the user's latest rating for the add-on?")
@@ -105,6 +104,10 @@ class Rating(ModelBase):
         # description
         base_manager_name = 'unfiltered'
         ordering = ('-created',)
+        index_together = (
+            ('deleted', 'addon', 'rating'),
+            ('deleted', 'user', 'rating'),
+        )
 
     def __unicode__(self):
         return truncate(unicode(self.body), 10)
