@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 22:30+0000\n"
+"PO-Revision-Date: 2018-11-19 22:49+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -1921,61 +1921,61 @@ msgid "Feeds, News & Blogging"
 msgstr "Suapan, Berita & Blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang membuang kecelaruan supaya anda boleh kekal terkini di media sosial, mengikuti blog, suapan RSS, mengurangkan ketegangan mata dan banyak lagi."
 
 msgid "Games & Entertainment"
 msgstr "Permainan & Hiburan"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk meningkatkan pengalaman hiburan. Kategori ini termasuk ekstensi yang boleh meningkatkan permainan, mengawal main semula video dan banyak lagi."
 
 msgid "Language Support"
 msgstr "Sokongan Bahasa"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang menawarkan sokongan bahasa seperti semakan tatabahasa, mencari perkataan, menterjemahkan teks, menyediakan teks-ke-ucapan dan banyak lagi."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto, Muzik & Video"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang meningkatkan pengalaman gambar, muzik dan video. Ekstensi dalam kategori ini mengubah suai audio dan video, carian imej terbalik dan banyak lagi."
 
 msgid "Privacy & Security"
 msgstr "Privasi & Keselamatan"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk melayar secara peribadi dan selamat. Kategori ini termasuk ekstensi untuk menyekat iklan, mencegah penjejakan, mengurus pelencongan dan banyak lagi."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk mencari dan memeriksa. Kategori ini termasuk ekstensi yang menyerlah dan mencari teks, mencari alamat/domains, IP dan banyak lagi."
 
 msgid "Shopping"
 msgstr "Beli-belah"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang boleh meningkatkan pengalaman membeli-belah atas talian dengan pencari kupon, pencari tawaran, penganalisis kajian dan banyak lagi."
 
 msgid "Social & Communication"
 msgstr "Sosial & Komunikasi"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk meningkatkan media sosial dan pemesejan segera. Kategori ini termasuk notifikasi tab yang lebih baik, pemuat turun video dan banyak lagi."
 
 msgid "Tabs"
 msgstr "Tab"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk menyesuaikan tab dan halaman tab baru. Cari ekstensi yang boleh mengawal tab, mengubah cara berinteraksi dan banyak lagi."
 
 msgid "Web Development"
 msgstr "Pembangunan Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang memaparkan alat pembangunan web. Kategori ini termasuk ekstensi untuk GitHub, pertukaran ejen pengguna, pengurusan kuki dan banyak lagi."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang tidak dapat diramal dan kreatif, namun berguna untuk tugasan yang sukar."
 
 msgid "Animals"
 msgstr "Haiwan"
@@ -2008,52 +2008,52 @@ msgid "Abstract"
 msgstr "Abstrak"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Muat turun tema artistik dan konseptual Firefox. Kategori ini termasuk palet dan bentuk berwarna-warni, landskap fantasi, kucing yang suka bermain dan bunga psychedelic."
 
 msgid "Causes"
 msgstr "Alasan"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Muat turun tema Firefox untuk minat dan topik niche. Kategori ini termasuk tema sukan, cuti, filantropi, kebangsaan dan banyak lagi."
 
 msgid "Fashion"
 msgstr "Fesyen"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Muat turun tema Firefox yang meraikan gaya semua corak bentuk, bunga, tekstur, model dan banyak lagi."
 
 msgid "Film and TV"
 msgstr "Filem dan TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Muat turun tema Firefox dengan filem dan televisyen. Kategori ini termasuk anime seperti Uchiha Madara, filem seperti The Matrix, permainan (Game of Thrones), dan banyak lagi."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Muat turun tema Firefox dengan tema pelayar Firefox. Kategori ini termasuk gambaran berwarna-warni, pelbagai logo Firefox, termasuk tema rubah umum."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Muat turun tema Firefox dengan Firefox Jepun. Kategori ini termasuk tema yang menggambarkan maskot Foxkeh comel dalam pelbagai pose landskap."
 
 msgid "Holiday"
 msgstr "Percutian"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Muat turun tema Firefox dengan cuti. Kategori ini termasuk Krismas, Halloween, Thanksgiving, Hari St Patrick, Paskah, Julai Keempat dan banyak lagi."
 
 msgid "Music"
 msgstr "Muzik"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Muat turun tema Firefox untuk kepentingan muzik dan artis. Kategori ini termasuk kumpulan popular seperti Nirvana dan BTS, instrumen, video muzik dan banyak lagi."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Muat turun tema Firefox dengan haiwan dan landskap semulajadi. Kategori ini termasuk bunga, matahari, rubah, musim, planet, anak kucing, burung dan banyak lagi."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Muat turun tema Firefox yang menarik, kreatif dan unik."
 
 msgid "Scenery"
 msgstr "Pemandangan"
