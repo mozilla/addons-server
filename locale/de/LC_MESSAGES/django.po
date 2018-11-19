@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 17:55+0000\n"
+"PO-Revision-Date: 2018-11-19 18:04+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2025,15 +2025,17 @@ msgstr "Tabs"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
+"Laden Sie Firefox-Erweiterungen herunter, um Tabs und die Neuer-Tab-Seite anzupassen. Entdecken Sie Erweiterungen, die Tabs steuern, die Art und Weise ändern können, wie Sie mit ihnen interagieren, "
+"und vieles mehr."
 
 msgid "Web Development"
 msgstr "Webentwicklung"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen mit Web-Entwicklungswerkzeugen herunter. Diese Kategorie enthält Erweiterungen für GitHub, User-Agent-Wechsel, Cookie-Verwaltung und mehr."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen herunter, die unvorhersehbar und kreativ sein können, aber für diese ungewöhnlichen Aufgaben nützlich sind."
 
 msgid "Animals"
 msgstr "Tiere"
@@ -2067,78 +2069,80 @@ msgstr "Abstrakt"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
 msgstr ""
+"Laden Sie die künstlerischen und konzeptionellen Themes von Firefox herunter. Diese Kategorie umfasst bunte Paletten und Formen, Fantasielandschaften, verspielte Katzen und psychedelische Blumen."
 
 msgid "Causes"
 msgstr "Anlässe"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes für Nischeninteressen und Themen herunter. Diese Kategorie umfasst Sport-Themes, Feiertage, philanthropische Ursachen, Nationalitäten und vieles mehr."
 
 msgid "Fashion"
 msgstr "Mode"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes herunter, die den Stil aller Formen – Muster, Blumenmuster, Texturen, Modelle usw. – feiern."
 
 msgid "Film and TV"
 msgstr "Film und Fernsehen"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes mit Film und Fernsehen herunter. Diese Kategorie umfasst Anime wie Uchiha Madara, Filme wie The Matrix, Shows (Game of Thrones) und mehr."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Laden Sie Firefox-Designs mit dem Firefox-Browser-Design herunter. Diese Kategorie umfasst farbenfrohe, vielfältige Darstellungen des Firefox-Logos, einschließlich allgemeiner Fuchs-Themes."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
+"Laden Sie Firefox-Themes mit dem japanischen Firefox herunter. Diese Kategorie enthält Themes, die das niedliche Foxkeh-Maskottchen in verschiedenen Posen auf verschiedenen Landschaften darstellen."
 
 msgid "Holiday"
 msgstr "Urlaub"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes mit Feiertagen herunter. Diese Kategorie umfasst Weihnachten, Halloween, Thanksgiving, St. Patrick’s Day, Ostern, den 4. Juli und mehr."
 
 msgid "Music"
 msgstr "Musik"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes für Musikinteressierte und Künstler herunter. Diese Kategorie umfasst beliebte Bands wie Nirvana und BTS, Instrumente, Musikvideos und vieles mehr."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes mit Tieren und Naturlandschaften herunter. Diese Kategorie umfasst Blumen, Sonnenuntergänge, Füchse, Jahreszeiten, Planeten, Kätzchen, Vögel und mehr."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes herunter, die interessant, kreativ und einzigartig sind."
 
 msgid "Scenery"
 msgstr "Landschaft"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes herunter, die sich auf die Umwelt und die Natur beziehen. Diese Kategorie umfasst Sonnenuntergänge, Strände, Illustrationen, Skylines der Stadt und vieles mehr."
 
 msgid "Seasonal"
 msgstr "Jahreszeiten"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes für alle vier Jahreszeiten herunter: Herbst, Winter, Frühling und Sommer. Herbstlaub, schneebedeckte Bergspitzen, sonnige Sommertage und Frühlingsblumen."
 
 msgid "Solid"
 msgstr "Ausgefüllte Themen"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes mit Farben und Farbverläufen herunter, um Ihren Browser zu personalisieren. Diese Kategorie umfasst kräftige Rottöne, Pastelle, weiche Grautöne und vieles mehr."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes herunter, die verschiedene Sportarten darstellen. Diese Kategorie umfasst Länderflaggen, Sportmannschaften, Fußball, Hockey und mehr."
 
 msgid "Websites"
 msgstr "Webseiten"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Laden Sie Firefox-Themes herunter, die die Essenz des Webs einfangen – fesselnd, ungewöhnlich und unverwechselbar."
 
 msgid "General"
 msgstr "Allgemein"
@@ -2177,61 +2181,68 @@ msgid "Device Features & Location"
 msgstr "Gerätefunktionen und Ortsbestimmung"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Laden Sie Erweiterungen herunter, um Firefox für Android zu verbessern. Führen Sie schnelle Suchen durch, machen Sie Systemressourcen frei, machen Sie sich Notizen und vieles mehr."
 
 msgid "Experimental"
 msgstr "Experimentell"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Laden Sie Firefox-Erweiterungen herunter, die regelmäßig aktualisiert werden und für öffentliche Tests bereit sind. Ihr Feedback informiert Entwickler über Änderungen, die in den kommenden Versionen"
+" vorgenommen werden sollen."
 
 msgid "Feeds, News, & Blogging"
 msgstr "Feeds, Nachrichten und Bloggen"
 
 msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen für Nachrichten, Web-Feeds und Blogs herunter, die Unordnung entfernen, Voice-Reader verwenden und vieles mehr."
 
 msgid "Performance"
 msgstr "Leistung"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
+"Laden Sie Erweiterungen herunter, die Firefox eine Leistungssteigerung verleihen. Finden Sie Erweiterungen, die Ihnen helfen, produktiver und effizienter zu sein, indem Sie störende Anzeigen und "
+"mehr blockieren."
 
 msgid "Photos & Media"
 msgstr "Fotos und Medien"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"Laden Sie Firefox-Erweiterungen herunter, um Fotos und Medien zu verbessern. Diese Kategorie enthält Erweiterungen zur umgekehrten Bildersuche, Aufnehmen ganzseitiger Bildschirmfotos und mehr."
 
 msgid "Security & Privacy"
 msgstr "Sicherheit und Privatsphäre"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Laden Sie die Firefox-Erweiterungen herunter, um sicher und privat zu surfen. Entdecken Sie Erweiterungen, mit denen hinterlistige Werbe-Tracker gestoppt werden, die Surf-Chronik problemlos gelöscht"
+" werden kann und vieles mehr."
 
 msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen herunter, die Ihr Online-Einkaufserlebnis verbessern können, indem sie Bewertungen analysieren, Angebote und Gutscheine suchen und mehr."
 
 msgid "Social Networking"
 msgstr "Soziale Netzwerke"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen herunter, um Ihre Erfahrungen auf beliebten Websites für soziale Netzwerke wie YouTube, GitHub, Reddit und anderen zu verbessern."
 
 msgid "Sports & Games"
 msgstr "Sport und Spiele"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen herunter, um Ihr Unterhaltungserlebnis mit Live-Stream-Erweiterungen, Sportnachrichten und mehr zu steigern."
 
 msgid "User Interface"
 msgstr "Benutzeroberfläche"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Laden Sie Firefox-Erweiterungen für die Benutzeroberfläche herunter, die Webseiten ändern, sodass Sie diese leichter lesen, durchsuchen, durchstöbern und mehr tun können."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
+msgstr "Laden Sie ungewöhnliche und interessante Erweiterungen herunter, die Firefox für Android verbessern können."
 
 msgid "All Rights Reserved"
 msgstr "Alle Rechte vorbehalten"
