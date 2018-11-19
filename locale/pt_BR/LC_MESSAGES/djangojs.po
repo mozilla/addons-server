@@ -817,7 +817,7 @@ msgid "Number of Reviews"
 msgstr "Número de análises"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "O tamanho de carregamento máximo é de {0} - escolha uma imagem de fundo menor."
 
 msgid "Requested Info"
 msgstr "Informações solicitadas"
