@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 17:25+0000\n"
+"PO-Revision-Date: 2018-11-19 18:59+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -3318,9 +3318,8 @@ msgstr "Izbriši ta dodatek"
 msgid "Delete"
 msgstr "Izbriši"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Urejanje podrobnosti za objavo te teme."
+msgstr "Urejanje podrobnosti na strani tega dodatka."
 
 msgid "Upload a new version of this add-on."
 msgstr "Naloži novo različico tega dodatka."
@@ -3343,9 +3342,8 @@ msgstr "Prikaži stran dodatka"
 msgid "View Recent Changes"
 msgstr "Prikaži zadnje spremembe"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Urejanje podrobnosti za objavo te teme."
+msgstr "Urejanje podrobnosti na strani te teme."
 
 msgid "View the popularity of this theme over time."
 msgstr "Oglejte si priljubljenost te teme skozi čas."
@@ -3959,7 +3957,6 @@ msgstr "Prikaži vire za objavitelje"
 msgid "Welcome Back"
 msgstr "Dobrodošli nazaj"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
 msgstr "Pomagajte uporabnikom odkriti vašo razširitev z ustvaritvijo privlačne strani."
 
