@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 19:51+0000\n"
+"PO-Revision-Date: 2018-11-19 19:53+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2900,7 +2900,7 @@ msgstr[2] "<b>{0}</b> drasty"
 msgstr[3] "<b>{0}</b> drastow"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Produktowu stronu wobdźěłać"
 
 msgid "None"
 msgstr "Žane"
@@ -3931,9 +3931,8 @@ msgstr "Resursy za wozjewjerjow pokazać"
 msgid "Welcome Back"
 msgstr "Witajće wróćo"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Wutworće spodobny lisćinowy zapisk, zo byšće pomhał wužiwarjam, waše rozšěrjenje wotkryć."
+msgstr "Wutworće spodobny produktowu stronu, zo byšće pomhał wužiwarjam, waše rozšěrjenje wotkryć."
 
 msgid "Learn How"
 msgstr "Zhońće, kak to dźe"
@@ -5737,7 +5736,7 @@ msgid "Could not parse uploaded file."
 msgstr "Nahrata dataja njeda so analyzować."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Njepodpěrany archiwowy typ."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -7458,9 +7457,8 @@ msgstr "Pokazuje so {0} - {1} z {2} wuslědkow za <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Pokazuje so {0} - {1} z {2} wuslědkow"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Přidatk z ID „{}“ njeda so namakać."
+msgstr "Přidatk z GUID „{}“ njeda so namakać."
 
 msgid "You do not own this addon."
 msgstr "Tutón přidatk wam njesłuša."
