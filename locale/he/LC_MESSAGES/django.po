@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 17:12+0000\n"
+"PO-Revision-Date: 2018-11-19 17:26+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2920,7 +2920,7 @@ msgstr[0] "ערכת נושא <b>אחת</b>"
 msgstr[1] "<b>{0}</b> ערכות נושא"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "עריכת דף המוצר"
 
 msgid "None"
 msgstr "ללא"
@@ -3565,10 +3565,10 @@ msgid "How to Submit:"
 msgstr "כיצד להגיש:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "יש לכלול הנחיות בקובץ README כחלק מקוד המקור,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "או בהערות הסוקר בעמוד הבא (אם רלוונטי)."
 
 msgid "Upload source code:"
 msgstr "העלאת קוד מקור:"
@@ -3922,7 +3922,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "התחברות לעריכה ועדכון התוספת שלך"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "משאבים להשקה מוצלחת"
 
 #, python-format
 msgid ""
@@ -3939,9 +3939,8 @@ msgstr "הצגת סטטיסטיקה למשתמש"
 msgid "Welcome Back"
 msgstr "ברוכים השבים"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "עזרו למשתמשים לגלות את ההרחבה שלכם על ידי יצירת רשומה מעניינת."
+msgstr "עזרו למשתמשים לגלות את ההרחבה שלכם על ידי יצירת עמוד מוצר מעניין."
 
 msgid "Learn How"
 msgstr "למדו כיצד"
@@ -4559,7 +4558,7 @@ msgstr "מניעת כריית מטבע מבוזר {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "חסימת גישה מפני אתרים זדוניים להשתמש בעצמת העיבוד של המחשב שלך כדי לכרות מטבעות וירטואליים."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4575,7 +4574,7 @@ msgstr "בדיקת זמנים עולמיים {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "הצגת שעונים מכל רחבי העולם בסרגל המצב של Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5087,7 +5086,7 @@ msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "הסתרת חלקים מהאתרים המופיעים בפניך."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5120,7 +5119,7 @@ msgstr "שיפור לשוניות חדשות {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "פתיחת לשונית חדשה משמאל ללשונית הנוכחית, במקום בסוף השורה."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5256,7 +5255,7 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "הפשטת עיצוב בלתי הכרחי לצורך העתקת הטקסט עצמו בלבד."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -5426,7 +5425,7 @@ msgstr "מילוי טפסים באופן אוטומטי {start_sub_heading}עם 
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "שמירת נתונים שהוכנסו פעם אחת לצורך מילוי אוטומטי בפעם הבאה."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5443,7 +5442,7 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "לא לאפשר לקישורים עליהם לחצת להשתלט על הלשונית הנוכחית שלך ולטעון תוכן שלא ביקשת."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5460,7 +5459,7 @@ msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "חיפוש מבוקשך בתוך מתחם מסוים."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5637,7 +5636,7 @@ msgstr "לגלוש באופן מאובטח {start_sub_heading}עם {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "לאפשר הרצת תוכן מקוון מאתרים מהימנים בעיניך."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5816,7 +5815,7 @@ msgid "Could not parse uploaded file."
 msgstr "לא ניתן לנתח את הקובץ שהועלה."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "סוג ארכיון לא נתמך."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -7536,9 +7535,8 @@ msgstr "מוצגים {0} - {1} מתוך {2} תוצאות עבור <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "מוצגים {0} - {1} מתוך {2} תוצאות"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "לא ניתן למצוא תוספת עם המזהה ״{}״."
+msgstr "לא ניתן למצוא תוספת עם ה־guid ״{}״."
 
 msgid "You do not own this addon."
 msgstr "אינך הבעלים של תוספת זו."
