@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-19 22:49+0000\n"
+"PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -2059,28 +2059,29 @@ msgid "Scenery"
 msgstr "Pemandangan"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Muat turun tema Firefox yang memaparkan persekitaran dan dunia semulajadi. Kategori ini termasuk matahari, pantai, ilustrasi, bandar dan banyak lagi."
 
 msgid "Seasonal"
 msgstr "Musim"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
+"Muat turun tema Firefox untuk semua empat musim-musim luruh, musim sejuk, musim bunga dan musim panas. Daun musim gugur, puncak gunung bersalji, hari musim panas yang cerah dan bunga musim bunga."
 
 msgid "Solid"
 msgstr "Padu"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Muat turun tema Firefox dengan warna pekat dan kecerunan untuk memperibadikan pelayar. Kategori ini termasuk merah terang, pastel, kelabu dan banyak lagi."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Muat turun tema Firefox yang memaparkan pelbagai jenis sukan. Kategori ini termasuk bendera negara, pasukan sukan, bola sepak, hoki dan banyak lagi."
 
 msgid "Websites"
 msgstr "Laman web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Muat turun tema Firefox yang mengandungi intipati web yang menawan, luar biasa dan tersendiri."
 
 msgid "General"
 msgstr "Umum"
@@ -2119,61 +2120,61 @@ msgid "Device Features & Location"
 msgstr "Ciri & Lokasi Peranti"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Muat turun ekstensi yang meningkatkan Firefox untuk Android. Carian pantas, bebaskan sumber sistem, ambil nota dan banyak lagi."
 
 msgid "Experimental"
 msgstr "Eksperimen"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang sentiasa dikemaskini dan sedia untuk ujian awam. Maklum balas anda memaklumkan pembangun mengenai perubahan untuk versi yang akan datang."
 
 msgid "Feeds, News, & Blogging"
 msgstr "Suapan, Berita & Blog"
 
 msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk berita, suapan web dan blog dengan membuang kecelaruan, menggunakan pembaca suara dan banyak lagi."
 
 msgid "Performance"
 msgstr "Prestasi"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Muat turun ekstensi yang memberi Firefox prestasi peningkatan. Cari ekstensi yang membantu anda menjadi lebih produktif dan cekap dengan menyekat iklan dan banyak lagi."
 
 msgid "Photos & Media"
 msgstr "Foto & Media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk meningkatkan foto dan media. Kategori ini termasuk ekstensi untuk membalikkan imej carian, skrinyot penuh dan banyak lagi."
 
 msgid "Security & Privacy"
 msgstr "Keselamatan & Privasi"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk melayar dengan selamat dan secara peribadi. Cari ekstensi yang boleh menghentikan penjejak iklan yang licik, sejarah pelayaran dan banyak lagi."
 
 msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox yang boleh meningkatkan pengalaman membeli-belah dalam talian dengan menganalisis ulasan, mencari tawaran dan kupon dan banyak lagi."
 
 msgid "Social Networking"
 msgstr "Rangkaian Sosial"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk meningkatkan pengalaman di laman web rangkaian sosial yang popular seperti YouTube, GitHub, Reddit dan banyak lagi."
 
 msgid "Sports & Games"
 msgstr "Sukan & Permainan"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Muat turun ekstensi Firefox untuk memberikan pengalaman hiburan dengan peningkatan penapis aliran langsung, kemas kini sukan dan banyak lagi."
 
 msgid "User Interface"
 msgstr "Antaramuka Pengguna"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Muat turun ekstensi antara muka pengguna Firefox untuk mengubah halaman web supaya lebih mudah dibaca, mencari, melayar dan banyak lagi."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
+msgstr "Muat turun ekstensi ganjil dan menarik yang boleh memberikan rangsangan kepada Firefox untuk Android."
 
 msgid "All Rights Reserved"
 msgstr "Hak Cipta Terpelihara"
@@ -2835,7 +2836,7 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Edit Halaman Produk"
 
 msgid "None"
 msgstr "Tiada"
@@ -5647,7 +5648,7 @@ msgid "Could not parse uploaded file."
 msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Jenis arkib tidak disokong."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
