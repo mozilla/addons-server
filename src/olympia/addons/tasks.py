@@ -625,15 +625,15 @@ def add_static_theme_from_lwt(lwt):
     timer.log_interval('3.initialize_version')
 
     # Set category
-    static_theme_categories = CATEGORIES.get(amo.FIREFOX.id, []).get(
-        amo.ADDON_STATICTHEME, [])
     lwt_category = (lwt.categories.all() or [None])[0]  # lwt only have 1 cat.
     lwt_category_slug = lwt_category.slug if lwt_category else 'other'
-    static_category = static_theme_categories.get(
-        lwt_category_slug, static_theme_categories.get('other'))
-    AddonCategory.objects.create(
-        addon=addon,
-        category=Category.from_static_category(static_category, True))
+    for app, type_dict in CATEGORIES.items():
+        static_theme_categories = type_dict.get(amo.ADDON_STATICTHEME, [])
+        static_category = static_theme_categories.get(
+            lwt_category_slug, static_theme_categories.get('other'))
+        AddonCategory.objects.create(
+            addon=addon,
+            category=Category.from_static_category(static_category, True))
     timer.log_interval('4.set_categories')
 
     # Set license
