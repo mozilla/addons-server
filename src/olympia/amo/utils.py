@@ -1,4 +1,3 @@
-import calendar
 import collections
 import contextlib
 import datetime
@@ -986,7 +985,13 @@ def utc_millesecs_from_epoch(for_datetime=None):
     """
     if not for_datetime:
         for_datetime = datetime.datetime.now()
-    return calendar.timegm(for_datetime.utctimetuple()) * 1000
+    # Number of seconds.
+    seconds = time.mktime(for_datetime.timetuple())
+    # timetuple() doesn't care about more precision than seconds, but we do.
+    # Add microseconds as a fraction of a second to keep the precision.
+    seconds += for_datetime.microsecond / 1000000.
+    # Now convert to milliseconds.
+    return int(seconds * 1000)
 
 
 class AMOJSONEncoder(JSONEncoder):
