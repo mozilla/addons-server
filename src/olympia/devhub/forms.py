@@ -28,7 +28,7 @@ from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.constants.categories import CATEGORIES
+from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.files.models import FileUpload
 from olympia.files.utils import (
     archive_member_validator, parse_addon, SafeZip)
@@ -436,10 +436,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         # the add-on does not already have.
         version = self.form_kwargs.get('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
-        if static_theme:
-            available_apps = amo.APP_USAGE_STATICTHEME
-        else:
-            available_apps = amo.APP_USAGE
+        available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
 
         # Only display the apps we care about, if somehow obsolete apps were
@@ -453,12 +450,16 @@ class BaseCompatFormSet(BaseModelFormSet):
                           'max': appver.max.pk} for appver in self.queryset] +
                         [{'application': app.id} for app in available_apps
                          if app.id not in initial_apps])
-        self.extra = max(len(available_apps) - len(self.forms), 0)
+        self.extra = (
+            max(len(available_apps) - len(self.forms), 0) if not static_theme
+            else 0)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
         # ask for a new one to be built.
-        del self.forms
+        # del self.forms
+        if hasattr(self, 'forms'):
+            del self.forms
         self.forms
 
     def clean(self):
@@ -791,28 +792,30 @@ class SingleCategoryForm(forms.Form):
         self.addon = kw.pop('addon')
         self.request = kw.pop('request', None)
         if len(self.addon.all_categories) > 0:
-            kw['initial'] = {'category': self.addon.all_categories[0].id}
+            kw['initial'] = {'category': self.addon.all_categories[0].slug}
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
-        # Hack because we know this is only used for Static Themes that only
-        # support Firefox.  Hoping to unify per-app categories in the meantime.
-        app = amo.FIREFOX
-        sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
+        sorted_cats = sorted(CATEGORIES_NO_APP[self.addon.type].items(),
                              key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [
-            (c.id, c.name) for _, c in sorted_cats]
+            (slug, c.name) for slug, c in sorted_cats]
 
-        # If this add-on is featured for this application, category changes are
+        # If this add-on is featured for any application, category changes are
         # forbidden.
         if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            self.disabled = self.addon.is_featured(app)
+            self.disabled = any(
+                (self.addon.is_featured(app) for app in amo.APP_USAGE))
 
     def save(self):
-        category = self.cleaned_data['category']
+        category_slug = self.cleaned_data['category']
         # Clear any old categor[y|ies]
         AddonCategory.objects.filter(addon=self.addon).delete()
-        # Add new category
-        AddonCategory(addon=self.addon, category_id=category).save()
+        # Add new categor[y|ies]
+        for app in CATEGORIES.keys():
+            category = CATEGORIES[app].get(
+                self.addon.type, {}).get(category_slug, None)
+            if category:
+                AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
 

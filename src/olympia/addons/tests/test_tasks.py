@@ -176,8 +176,12 @@ class TestAddStaticThemeFromLwt(TestCase):
         # metadata is correct
         assert list(static_theme.authors.all()) == authors
         assert list(static_theme.tags.all()) == tags
-        assert [cat.name for cat in static_theme.all_categories] == [
-            cat.name for cat in categories]
+        assert len(categories) == 1
+        lwt_cat = categories[0]
+        static_theme_cats = [
+            (cat.name, cat.application) for cat in static_theme.all_categories]
+        assert static_theme_cats == [
+            (lwt_cat.name, amo.FIREFOX.id), (lwt_cat.name, amo.ANDROID.id)]
         assert static_theme.current_version.license.builtin == license_
         # status is good
         assert static_theme.status == amo.STATUS_PUBLIC
@@ -268,13 +272,16 @@ class TestAddStaticThemeFromLwt(TestCase):
 
         default_author = UserProfile.objects.get(
             email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
-        default_category = (
+        desktop_default_category = (
             CATEGORIES[amo.FIREFOX.id][amo.ADDON_STATICTHEME]['other'])
+        android_default_category = (
+            CATEGORIES[amo.ANDROID.id][amo.ADDON_STATICTHEME]['other'])
         self._check_result(
-            static_theme, [default_author], [], [default_category],
+            static_theme, [default_author], [], [desktop_default_category],
             licenses.LICENSE_COPYRIGHT_AR.builtin, [rating])
         # Double check its the exact category we want.
-        assert static_theme.all_categories == [default_category]
+        assert static_theme.all_categories == [
+            desktop_default_category, android_default_category]
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

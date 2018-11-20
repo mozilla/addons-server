@@ -159,7 +159,6 @@ class UNKNOWN_APP(App):
 # UAs will attempt to match in this order.
 APP_DETECT = (ANDROID, FIREFOX)
 APP_USAGE = (FIREFOX, ANDROID)
-APP_USAGE_STATICTHEME = (FIREFOX,)
 APPS = {app.short: app for app in APP_USAGE}
 APP_OBSOLETE = (MOZILLA, SUNBIRD, MOBILE, THUNDERBIRD, SEAMONKEY)
 APPS_ALL = {app.id: app for app in APP_USAGE + APP_OBSOLETE}
