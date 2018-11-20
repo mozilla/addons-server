@@ -4,7 +4,6 @@ from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.options import operator
 from django.contrib.admin.utils import unquote
-from django.urls import reverse
 from django.db import models
 from django.db.utils import IntegrityError
 from django.http import (
@@ -22,6 +21,7 @@ from olympia.addons.models import Addon
 from olympia.amo.utils import render
 from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
+from olympia.zadmin.admin import related_content_link
 
 from . import forms
 from .models import DeniedName, GroupUser, UserProfile
@@ -185,38 +185,28 @@ class UserAdmin(admin.ModelAdmin):
             .values_list('created', flat=True).first())
         return display_for_value(user_log, '')
 
-    def related_content_link(self, obj, related_class, related_field,
-                             related_manager='objects'):
-        url = 'admin:{}_{}_changelist'.format(
-            related_class._meta.app_label, related_class._meta.model_name)
-        queryset = getattr(related_class, related_manager).filter(
-            **{related_field: obj})
-        return format_html(
-            '<a href="{}?{}={}">{}</a>',
-            reverse(url), related_field, obj.pk, queryset.count())
-
     def collections_created(self, obj):
-        return self.related_content_link(obj, Collection, 'author')
+        return related_content_link(obj, Collection, 'author')
     collections_created.short_description = _('Collections')
 
     def addons_created(self, obj):
-        return self.related_content_link(obj, Addon, 'authors',
-                                         related_manager='unfiltered')
+        return related_content_link(obj, Addon, 'authors',
+                                    related_manager='unfiltered')
     addons_created.short_description = _('Addons')
 
     def ratings_created(self, obj):
-        return self.related_content_link(obj, Rating, 'user')
+        return related_content_link(obj, Rating, 'user')
     ratings_created.short_description = _('Ratings')
 
     def activity(self, obj):
-        return self.related_content_link(obj, ActivityLog, 'user')
+        return related_content_link(obj, ActivityLog, 'user')
     activity.short_description = _('Activity Logs')
 
     def abuse_reports_by_this_user(self, obj):
-        return self.related_content_link(obj, AbuseReport, 'reporter')
+        return related_content_link(obj, AbuseReport, 'reporter')
 
     def abuse_reports_for_this_user(self, obj):
-        return self.related_content_link(obj, AbuseReport, 'user')
+        return related_content_link(obj, AbuseReport, 'user')
 
     def get_search_results(self, request, queryset, search_term):
         """
