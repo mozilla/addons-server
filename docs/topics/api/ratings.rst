@@ -27,13 +27,14 @@ user has already posted a rating for the current version of an add-on.
 .. http:get:: /api/v4/ratings/rating/
 
     :query string addon: The :ref:`add-on <addon-detail>` id, slug, or guid to fetch ratings from. When passed, the ratings shown will always be the latest posted by each user on this particular add-on (which means there should only be one rating per user in the results), unless the ``version`` parameter is also passed.
-    :query string show_flags_for: The user id to show flags for. If the request is made with an authenticated user matching this parameter value, a ``flags`` property will be added to the response as described below in :ref:`ratings <rating-detail-object>`.
-    :query string show_permissions_for: The user id to show permissions for. If the request is made with an authenticated user matching this parameter value, and the ``addon`` parameter is also present, a ``can_reply`` property will be added to the response as described below.
-    :query string filter: The :ref:`filter(s) <rating-filtering-param>` to apply.
-    :query int user: The user id to fetch ratings from.
-    :query boolean show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
-    :query int version: The version id to fetch ratings from.
     :query string exclude_ratings: Exclude ratings by their ``id``. Multiple ratings can be specified, separated by comma(s).
+    :query string filter: The :ref:`filter(s) <rating-filtering-param>` to apply.
+    :query string score: Only include ratings that have been given a specific ``score``. Multiple scores can be specified, separated by comma(s).
+    :query string show_flags_for: The user id to show flags for. If the request is made with an authenticated user matching this parameter value, a ``flags`` property will be added to the response as described below in :ref:`ratings <rating-detail-object>`.
+    :query boolean show_grouped_ratings: Whether or not to show ratings aggregates for this add-on in the response (Use "true"/"1" as truthy values, "0"/"false" as falsy ones).
+    :query string show_permissions_for: The user id to show permissions for. If the request is made with an authenticated user matching this parameter value, and the ``addon`` parameter is also present, a ``can_reply`` property will be added to the response as described below.
+    :query int user: The user id to fetch ratings from.
+    :query int version: The version id to fetch ratings from.
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :>json int count: The number of results for this query.

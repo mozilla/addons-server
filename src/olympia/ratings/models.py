@@ -87,7 +87,6 @@ class Rating(ModelBase):
     deleted = models.BooleanField(default=False)
 
     # Denormalized fields for easy lookup queries.
-    # TODO: index on addon, user, latest
     is_latest = models.BooleanField(
         default=True, editable=False,
         help_text="Is this the user's latest rating for the add-on?")

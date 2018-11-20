@@ -1264,6 +1264,65 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == old_review.pk
 
+    def test_list_addon_score_filter(self):
+        rating_3a = Rating.objects.create(
+            addon=self.addon, body='review 3a', user=user_factory(), rating=3)
+        rating_3b = Rating.objects.create(
+            addon=self.addon, body='review 3b', user=user_factory(), rating=3)
+        rating_4 = Rating.objects.create(
+            addon=self.addon, body='review 4', user=user_factory(), rating=4)
+        # Throw in some other ratings with different scores
+        Rating.objects.create(
+            addon=self.addon, body='review 2', user=user_factory(), rating=2)
+        Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(), rating=1)
+
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'score': '3,4'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == len(data['results']) == 3
+        assert data['results'][0]['id'] == rating_4.pk
+        assert data['results'][1]['id'] == rating_3b.pk
+        assert data['results'][2]['id'] == rating_3a.pk
+
+        # and with just one score
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'score': '3'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == len(data['results']) == 2
+        assert data['results'][0]['id'] == rating_3b.pk
+        assert data['results'][1]['id'] == rating_3a.pk
+
+    def test_list_addon_score_filter_invalid(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'score': '3,foo'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['detail'] == (
+            'score parameter should be an integer or a list of integers '
+            '(separated by a comma).'
+        )
+
+    def test_score_filter_ignored_for_v3(self):
+        Rating.objects.create(
+            addon=self.addon, body='review 2', user=user_factory(), rating=2)
+        params = {'addon': self.addon.pk, 'score': '3,4'}
+
+        # with a default (v4+) url first
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 0
+
+        # But will be ignored in v3
+        response = self.client.get(
+            reverse_ns('rating-list', api_version='v3'), params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == len(data['results']) == 1
+
     def test_list_addon_exclude_ratings(self):
         excluded_review1 = Rating.objects.create(
             addon=self.addon, body='review excluded 1', user=user_factory(),

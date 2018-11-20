@@ -358,6 +358,10 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             addon_identifier = self.request.GET.get('addon')
             user_identifier = self.request.GET.get('user')
             version_identifier = self.request.GET.get('version')
+            score_filter = (
+                self.request.GET.get('score')
+                if is_gate_active(self.request, 'ratings-score-filter')
+                else None)
             exclude_ratings = self.request.GET.get('exclude_ratings')
             if addon_identifier:
                 qs = qs.filter(addon=self.get_addon_object())
@@ -389,6 +393,14 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
                 # because the frontend wants to call this before and after
                 # having posted a new rating, and needs accurate results.
                 self.pagination_class = OneOrZeroPageNumberPagination
+            if score_filter:
+                try:
+                    scores = [int(score) for score in score_filter.split(',')]
+                except ValueError:
+                    raise ParseError(
+                        'score parameter should be an integer or a list of '
+                        'integers (separated by a comma).')
+                qs = qs.filter(rating__in=scores)
             if exclude_ratings:
                 try:
                     exclude_ratings = [
