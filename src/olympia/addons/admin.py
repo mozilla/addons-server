@@ -11,6 +11,8 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from olympia import amo
 from olympia.access import acl
 from olympia.amo.urlresolvers import reverse
+from olympia.ratings.models import Rating
+from olympia.zadmin.admin import related_content_link
 
 from . import models
 
@@ -28,7 +30,11 @@ class AddonAdmin(admin.ModelAdmin):
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')
 
-    readonly_fields = ('id', 'status_with_admin_manage_link',)
+    readonly_fields = ('id', 'status_with_admin_manage_link',
+                       'average_rating', 'bayesian_rating',
+                       'total_ratings_link', 'text_ratings_count',
+                       'weekly_downloads', 'total_downloads',
+                       'average_daily_users')
 
     fieldsets = (
         (None, {
@@ -44,8 +50,8 @@ class AddonAdmin(admin.ModelAdmin):
             'fields': ('support_url', 'support_email'),
         }),
         ('Stats', {
-            'fields': ('average_rating', 'bayesian_rating', 'total_ratings',
-                       'text_ratings_count',
+            'fields': ('total_ratings_link', 'average_rating',
+                       'bayesian_rating', 'text_ratings_count',
                        'weekly_downloads', 'total_downloads',
                        'average_daily_users'),
         }),
@@ -60,6 +66,12 @@ class AddonAdmin(admin.ModelAdmin):
 
     def queryset(self, request):
         return models.Addon.unfiltered
+
+    def total_ratings_link(self, obj):
+        return related_content_link(
+            obj, Rating, 'addon', related_manager='without_replies',
+            count=obj.total_ratings)
+    total_ratings_link.short_description = _(u'Ratings')
 
     def status_with_admin_manage_link(self, obj):
         # We don't want admins to be able to change the status without logging
