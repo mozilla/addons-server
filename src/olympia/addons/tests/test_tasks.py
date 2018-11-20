@@ -181,8 +181,12 @@ class TestAddStaticThemeFromLwt(TestCase):
         # metadata is correct
         assert list(static_theme.authors.all()) == authors
         assert list(static_theme.tags.all()) == tags
-        assert [cat.name for cat in static_theme.all_categories] == [
-            cat.name for cat in categories]
+        assert len(categories) == 1
+        lwt_cat = categories[0]
+        static_theme_cats = [
+            (cat.name, cat.application) for cat in static_theme.all_categories]
+        assert static_theme_cats == [
+            (lwt_cat.name, amo.FIREFOX.id), (lwt_cat.name, amo.ANDROID.id)]
         assert static_theme.current_version.license.builtin == license_
         # status is good
         assert static_theme.status == amo.STATUS_PUBLIC

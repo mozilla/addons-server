@@ -662,11 +662,16 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
         data = {}
         apps = self.parse(data)['apps']
-        assert len(apps) == 1  # Only Firefox for now.
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min.version == amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert len(apps) == 2
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == (
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min.version == (
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""

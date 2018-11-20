@@ -1154,7 +1154,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
-        cat_form = {'category': 300}
+        cat_form = {'category': 'abstract'}
         license_form = {'license-builtin': 11}
         result.update(describe_form)
         result.update(cat_form)
@@ -1210,10 +1210,12 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert sorted(addon_cats) == [320]
 
     def test_submit_categories_change(self):
-        category = Category.objects.get(id=300)
-        AddonCategory(addon=self.addon, category=category).save()
+        category_desktop = Category.objects.get(id=300)
+        category_android = Category.objects.get(id=400)
+        AddonCategory(addon=self.addon, category=category_desktop).save()
+        AddonCategory(addon=self.addon, category=category_android).save()
         assert sorted(
-            [cat.id for cat in self.get_addon().all_categories]) == [300]
+            [cat.id for cat in self.get_addon().all_categories]) == [300, 400]
 
         self.client.post(self.url, self.get_dict(category=320))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]

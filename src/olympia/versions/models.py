@@ -209,6 +209,10 @@ class Version(OnChangeMixin, ModelBase):
             )
             feature_compatibility.update(e10s=e10s_compatibility)
 
+        if addon.type == amo.ADDON_STATICTHEME:
+            # We don't let developers select apps for static themes
+            selected_apps = [app.id for app in amo.APP_USAGE]
+
         compatible_apps = {}
         for app in parsed_data.get('apps', []):
             if app.id not in selected_apps:
