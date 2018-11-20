@@ -22,6 +22,10 @@ class Base(Page):
         return Header(self)
 
     @property
+    def footer(self):
+        return Footer(self)
+
+    @property
     def logged_in(self):
         """Returns True if a user is logged in"""
         return self.is_element_displayed(*self.header._user_locator)
@@ -126,3 +130,21 @@ class Header(Region):
         textbox.send_keys(u'\ue007')
         from pages.desktop.search import Search
         return Search(self.selenium, self.page).wait_for_page_to_load()
+
+
+class Footer(Region):
+
+    _root_locator = (By.CSS_SELECTOR, '.Footer-wrapper')
+    _footer_amo_links = (By.CSS_SELECTOR, '.Footer-amo-links')
+    _footer_firefox_links = (By.CSS_SELECTOR, '.Footer-firefox-links')
+    _footer_links = (By.CSS_SELECTOR, '.Footer-links li a')
+
+    @property
+    def addon_links(self):
+        header = self.find_element(*self._footer_amo_links)
+        return header.find_elements(*self._footer_links)
+
+    @property
+    def firefox_links(self):
+        header = self.find_element(*self._footer_firefox_links)
+        return header.find_elements(*self._footer_links)

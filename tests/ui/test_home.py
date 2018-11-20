@@ -89,3 +89,43 @@ def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
     page = Home(selenium, base_url).open()
     page.header.more_menu(item=i)
     assert page_url in selenium.current_url
+
+
+@pytest.mark.desktop_only
+@pytest.mark.parametrize(
+    'i, links',
+    enumerate([
+        'about',
+        'blog.mozilla.org',
+        'developers',
+        'AMO/Policy',
+        'discourse',
+        '#Contact_us',
+        'review_guide',
+        'status',
+    ])
+)
+@pytest.mark.nondestructive
+def test_add_ons_footer_links(base_url, selenium, i, links):
+    page = Home(selenium, base_url).open()
+    page.footer.addon_links[i].click()
+    assert links in selenium.current_url
+
+
+@pytest.mark.desktop_only
+@pytest.mark.parametrize(
+    'i, links',
+    enumerate([
+        'firefox/new',
+        'firefox/mobile',
+        'firefox/mobile',
+        'firefox/mobile',
+        'firefox',
+        'firefox/channel/desktop',
+    ])
+)
+@pytest.mark.nondestructive
+def test_firefox_footer_links(base_url, selenium, i, links):
+    page = Home(selenium, base_url).open()
+    page.footer.firefox_links[i].click()
+    assert links in selenium.current_url
