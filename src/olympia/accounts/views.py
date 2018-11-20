@@ -14,8 +14,6 @@ from django.utils.html import format_html
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-import waffle
-
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
@@ -569,11 +567,8 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
         user = self.get_account_viewset().get_object()
         queryset = UserNotification.objects.filter(user=user)
 
-        # Fetch all `UserNotification` instances and then, if the
-        # waffle-switch is active overwrite their value with the
-        # data from basket. Once we switched the integration "on" on prod
-        # all `UserNotification` instances that are now handled by basket
-        # can be deleted.
+        # Fetch all `UserNotification` instances and then,
+        # overwrite their value with the data from basket.
 
         # Put it into a dict so we can easily check for existence.
         set_notifications = {
@@ -581,18 +576,17 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             if user_nfn.notification}
         out = []
 
-        if waffle.switch_is_active('activate-basket-sync'):
-            newsletters = None  # Lazy - fetch the first time needed.
-            by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
-            for basket_id, notification in by_basket_id.items():
-                if notification.group == 'dev' and not user.is_developer:
-                    # We only return dev notifications for developers.
-                    continue
-                if newsletters is None:
-                    newsletters = fetch_subscribed_newsletters(user)
-                user_notification = self._get_default_object(notification)
-                user_notification.enabled = basket_id in newsletters
-                set_notifications[notification.short] = user_notification
+        newsletters = None  # Lazy - fetch the first time needed.
+        by_basket_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID
+        for basket_id, notification in by_basket_id.items():
+            if notification.group == 'dev' and not user.is_developer:
+                # We only return dev notifications for developers.
+                continue
+            if newsletters is None:
+                newsletters = fetch_subscribed_newsletters(user)
+            user_notification = self._get_default_object(notification)
+            user_notification.enabled = basket_id in newsletters
+            set_notifications[notification.short] = user_notification
 
         for notification in NOTIFICATIONS_COMBINED:
             if notification.group == 'dev' and not user.is_developer:

@@ -1435,8 +1435,6 @@ class TestAccountNotificationViewSetList(TestCase):
             response.data)
 
     def test_basket_integration(self):
-        create_switch('activate-basket-sync')
-
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1455,8 +1453,6 @@ class TestAccountNotificationViewSetList(TestCase):
 
     def test_basket_integration_non_dev(self):
         self.user.addons.all().delete()
-        create_switch('activate-basket-sync')
-
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -1473,8 +1469,6 @@ class TestAccountNotificationViewSetList(TestCase):
             not in response.data)
 
     def test_basket_integration_ignore_db(self):
-        create_switch('activate-basket-sync')
-
         # Add some old obsolete data in the database for a notification that
         # is handled by basket: it should be ignored.
         notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
@@ -1627,19 +1621,6 @@ class TestAccountNotificationViewSetUpdate(TestCase):
         assert (
             {'name': u'announcements', 'enabled': False, 'mandatory': False} in
             self.client.get(self.list_url).data)
-
-        with mock.patch('basket.base.request', autospec=True) as request_call:
-            request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['announcements']}
-            self.client.post(
-                self.url,
-                data={'announcements': True})
-
-        # We haven't set the switch yet, so there are no calls.
-        assert request_call.call_count == 0
-
-        create_switch('activate-basket-sync')
 
         with mock.patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
