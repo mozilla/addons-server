@@ -1,4 +1,4 @@
-Thanks for opening a Pull Request (PR), here are a few guidelines as to what we need in your PR before we review it.
+Thanks for opening a Pull Request (PR), here's a few guidelines as to what we need in your PR before we review it.
 
 Please delete anything that isn't relevant to your patch.
 
