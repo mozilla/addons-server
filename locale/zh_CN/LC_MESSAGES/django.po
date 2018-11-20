@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-27 07:37+0000\n"
+"PO-Revision-Date: 2018-11-20 00:24+0000\n"
 "Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -22,7 +22,7 @@ msgid "This display name cannot be used."
 msgstr "无法使用这个显示名。"
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "主页字段仅能用于链接到外部网站。"
 
 msgid "Usernames cannot contain only digits."
 msgstr "用户名不能仅包含数字。"
@@ -2418,7 +2418,7 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩文件。"
 
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "无效或损坏的压缩文件。"
 
 msgid "View current"
 msgstr "查看当前"
@@ -2489,7 +2489,7 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "您不能用一个旧式附加组件更新 WebExtension 附加组件。您的用户将无法使用您的新版本，因为 Firefox 不支持此种更新。"
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
+msgstr "[{field}]“{field}”栏中输入的文本已被标记为垃圾留言。"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "在提交的文件中发现了您的开发者 API 密钥。为确保您的账户安全，将作废此密钥。"
@@ -2812,7 +2812,7 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> 个主题"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "编辑产品页面"
 
 msgid "None"
 msgstr "无"
@@ -3186,7 +3186,7 @@ msgid "Delete"
 msgstr "删除"
 
 msgid "Edit details on this add-on's product page."
-msgstr ""
+msgstr "前往此附加组件的产品页面编辑详细信息。"
 
 msgid "Upload a new version of this add-on."
 msgstr "上传这个附加组件的新版本。"
@@ -3210,7 +3210,7 @@ msgid "View Recent Changes"
 msgstr "查看最近更改"
 
 msgid "Edit details on this theme's product page."
-msgstr ""
+msgstr "前往此主题的产品页面编辑详细信息。"
 
 msgid "View the popularity of this theme over time."
 msgstr "查看这款主题随时间推移的传播情况。"
@@ -3796,7 +3796,7 @@ msgid "Welcome Back"
 msgstr "欢迎回来"
 
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
+msgstr "创建亮眼的产品页面，有助于用户发现您的扩展。"
 
 msgid "Learn How"
 msgstr "了解方法"
@@ -5587,7 +5587,7 @@ msgid "Could not parse uploaded file."
 msgstr "无法解析上传的文件。"
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "不支持的压缩文件类型。"
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -7245,7 +7245,7 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "共有 {2} 项结果，显示 {0} - {1} 项"
 
 msgid "Could not find add-on with guid \"{}\"."
-msgstr ""
+msgstr "未能找到 GUID 为“{}”的附加组件。"
 
 msgid "You do not own this addon."
 msgstr "您不拥有此附加组件。"
