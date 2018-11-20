@@ -3052,7 +3052,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3062,7 +3062,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
                 reverse('zadmin.addon_manage', args=[self.addon.id])),
@@ -3070,7 +3070,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'), verify=False)
 
     def test_unlisted_addon_action_links_as_admin(self):
-        """No "View Listing" link for unlisted addons, "edit"/"manage" links
+        """No "View Product Page" link for unlisted addons, "edit"/"manage" links
         for the admins."""
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
@@ -3097,7 +3097,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
             ('Unlisted Review Page', reverse(
                 'reviewers.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
@@ -3119,7 +3119,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
             ('Listed Review Page',
                 reverse('reviewers.review', args=(self.addon.slug,))),
             ('Edit', self.addon.get_dev_url()),
@@ -3139,7 +3139,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
