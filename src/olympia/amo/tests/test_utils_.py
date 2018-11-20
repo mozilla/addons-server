@@ -1,9 +1,11 @@
 import collections
+import datetime
 import tempfile
 
 from django.conf import settings
 from django.utils.functional import cached_property
 
+import freezegun
 import mock
 import pytest
 
@@ -14,7 +16,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
     attach_trans_dict, get_locale_from_lang, pngcrush_image,
-    translations_for_field, walkfiles)
+    translations_for_field, utc_millesecs_from_epoch, walkfiles)
 from olympia.versions.models import Version
 
 
@@ -224,3 +226,18 @@ def test_pngcrush_image(subprocess_mock):
     # Make sure that exceptions for this are silent.
     subprocess_mock.Popen.side_effect = Exception
     assert not pngcrush_image('/tmp/some_other_file.png')
+
+
+def test_utc_millesecs_from_epoch():
+
+    with freezegun.freeze_time('2018-11-18 06:05:04.030201'):
+        timestamp = utc_millesecs_from_epoch()
+    assert timestamp == 1542521104030
+
+    future_now = datetime.datetime(2018, 11, 20, 4, 8, 15, 162342)
+    timestamp = utc_millesecs_from_epoch(future_now)
+    assert timestamp == 1542686895162
+
+    new_timestamp = utc_millesecs_from_epoch(
+        future_now + datetime.timedelta(milliseconds=42))
+    assert new_timestamp == timestamp + 42
