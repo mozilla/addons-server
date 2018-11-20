@@ -1781,10 +1781,12 @@ DRF_API_GATES = {
         'l10n_flat_input_output',
         'addons-search-_score-field',
         'ratings-can_reply',
+        'ratings-score-filter',
     ),
     'v4dev': (
         'addons-search-_score-field',
         'ratings-can_reply',
+        'ratings-score-filter',
     ),
 }
 

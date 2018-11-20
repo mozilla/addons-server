@@ -290,3 +290,4 @@ v4 API changelog
 * 2018-10-31: added ``id`` to discovery API ``addons.current_version`` object. This change was also backported to the `v3` API. https://github.com/mozilla/addons-server/issues/9855
 * 2018-11-15: added ``is_custom`` to the license object in version detail output in the addons API.
 * 2018-11-22: added ``flags`` to the rating object in the ratings API when ``show_flags_for`` parameter supplied.
+* 2018-11-22: added ``score`` parameter to the ratings API list endpoint.
