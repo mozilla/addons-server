@@ -989,7 +989,7 @@ def utc_millesecs_from_epoch(for_datetime=None):
     seconds = time.mktime(for_datetime.utctimetuple())
     # timetuple() doesn't care about more precision than seconds, but we do.
     # Add microseconds as a fraction of a second to keep the precision.
-    seconds += for_datetime.microsecond / 1000000.
+    seconds += for_datetime.microsecond / 1000000.0
     # Now convert to milliseconds.
     return int(seconds * 1000)
 
