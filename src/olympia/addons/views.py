@@ -513,6 +513,8 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
                 'detail': exc.detail,
                 'is_disabled_by_developer': obj.disabled_by_user,
                 'is_disabled_by_mozilla': obj.status == amo.STATUS_DISABLED,
+                # is_pending() only applies to Personas.
+                'is_unreviewed': obj.is_unreviewed() or obj.is_pending(),
             }
             raise exc
 

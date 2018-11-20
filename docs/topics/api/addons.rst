@@ -139,6 +139,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
             * ``detail``: string containing a message about the error.
             * ``is_disabled_by_developer``: boolean set to ``true`` when the add-on has been voluntarily disabled by its developer.
             * ``is_disabled_by_mozilla``: boolean set to ``true`` when the add-on has been disabled by Mozilla.
+            * ``is_unreviewed``: boolean set to ``true`` when the add-on has not been reviewed yet.
 
 .. http:get:: /api/v4/addons/addon/(int:id|string:slug|string:guid)/
 

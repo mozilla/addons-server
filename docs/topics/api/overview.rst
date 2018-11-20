@@ -291,3 +291,4 @@ v4 API changelog
 * 2018-11-15: added ``is_custom`` to the license object in version detail output in the addons API.
 * 2018-11-22: added ``flags`` to the rating object in the ratings API when ``show_flags_for`` parameter supplied.
 * 2018-11-22: added ``score`` parameter to the ratings API list endpoint.
+* 2018-11-22: added ``is_unreviewed`` to the 403/401 error responses in the addons detail API. This change was also backported to the `v3` API.
