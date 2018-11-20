@@ -104,10 +104,6 @@ class Rating(ModelBase):
         # description
         base_manager_name = 'unfiltered'
         ordering = ('-created',)
-        index_together = (
-            ('deleted', 'addon', 'rating'),
-            ('deleted', 'user', 'rating'),
-        )
 
     def __unicode__(self):
         return truncate(unicode(self.body), 10)
