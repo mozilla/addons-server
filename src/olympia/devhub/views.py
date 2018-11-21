@@ -953,6 +953,22 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                 errors.append(ugettext('Image must be exactly {0} pixels '
                                        'wide and {1} pixels tall.')
                               .format(expected_size[0], expected_size[1]))
+        content_waffle = waffle.switch_is_active('content-optimization')
+        if check.is_image() and upload_type == 'preview' and content_waffle:
+            min_size = amo.ADDON_PREVIEW_SIZES.get('min')
+            # * 100 to get a nice integer to compare against rather than 1.3333
+            required_ratio = min_size[0] * 100 / min_size[1]
+            with storage.open(loc, 'rb') as fp:
+                actual_size = Image.open(fp).size
+                actual_ratio = actual_size[0] * 100 / actual_size[1]
+            if actual_size[0] < min_size[0] or actual_size[1] < min_size[1]:
+                # L10n: {0} is an image width (in pixels), {1} is a height.
+                errors.append(
+                    ugettext('Image must be at least {0} pixels wide and {1} '
+                             'pixels tall.').format(min_size[0], min_size[1]))
+            if actual_ratio != required_ratio:
+                errors.append(
+                    ugettext('Image dimensions must be in the ratio 4:3.'))
         if errors and upload_type == 'preview' and os.path.exists(loc):
             # Delete the temporary preview file in case of error.
             os.unlink(loc)

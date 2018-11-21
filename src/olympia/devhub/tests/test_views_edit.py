@@ -1002,9 +1002,8 @@ class TestEditMedia(BaseTestEdit):
         self.check_image_animated(self.preview_upload,
                                   'Images cannot be animated.')
 
-    def preview_add(self, amount=1):
-        img = get_image_path('mozilla.png')
-        src_image = open(img, 'rb')
+    def preview_add(self, amount=1, image_name='preview_4x3.jpg'):
+        src_image = open(get_image_path(image_name), 'rb')
 
         data = {'upload_image': src_image}
         data_formset = self.formset_media(**data)
@@ -1023,10 +1022,50 @@ class TestEditMedia(BaseTestEdit):
         data_formset = self.formset_media(*fields)
         self.client.post(self.media_edit_url, data_formset)
 
+    @override_switch('content-optimization', active=False)
     def test_edit_media_preview_add(self):
+        # mozilla.png is too small and the wrong ratio but waffle is off so OK.
+        self.preview_add(image_name='mozilla.png')
+
+        assert str(self.get_addon().previews.all()[0].caption) == 'hi'
+
+    @override_switch('content-optimization', active=True)
+    def test_edit_media_preview_add_content_optimization(self):
         self.preview_add()
 
         assert str(self.get_addon().previews.all()[0].caption) == 'hi'
+
+    @override_switch('content-optimization', active=True)
+    def test_preview_dimensions_and_ratio(self):
+        size_msg = (
+            'Image must be at least 1000 pixels wide and 750 pixels tall.')
+        ratio_msg = 'Image dimensions must be in the ratio 4:3.'
+
+        # mozilla.png is too small and the wrong ratio now
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('mozilla.png'), 'rb')})
+        assert json.loads(response.content)['errors'] == [size_msg, ratio_msg]
+
+        # preview_landscape.jpg is the right ratio-ish, but too small
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(
+                get_image_path('preview_landscape.jpg'), 'rb')})
+        assert json.loads(response.content)['errors'] == [size_msg]
+
+        # teamaddons.jpg is big enough but still wrong ratio.
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('teamaddons.jpg'), 'rb')})
+        assert json.loads(response.content)['errors'] == [ratio_msg]
+
+        # and preview_4x3.jpg is the right ratio and big enough
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('preview_4x3.jpg'), 'rb')})
+        assert json.loads(response.content)['errors'] == []
+        assert json.loads(response.content)['upload_hash']
 
     def test_edit_media_preview_edit(self):
         self.preview_add()
