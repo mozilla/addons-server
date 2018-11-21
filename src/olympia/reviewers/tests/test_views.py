@@ -2152,8 +2152,7 @@ class TestContentReviewQueue(QueueTest):
         AddonReviewerFlags.objects.create(
             addon=extra_addon4, needs_admin_content_review=True)
 
-        # This first add-on has been content reviewed so long ago that we
-        # should do it again.
+        # This first add-on has been content reviewed long ago.
         addon1 = addon_factory(name=u'Addön 1')
         AutoApprovalSummary.objects.create(
             version=addon1.current_version,
@@ -2191,9 +2190,9 @@ class TestContentReviewQueue(QueueTest):
             verdict=amo.AUTO_APPROVED, confirmed=True)
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
-        # Addons with no last_content_review date should be first, ordered by
+        # Addons with no last_content_review date, ordered by
         # their creation date, older first.
-        self.expected_addons = [addon3, addon4, addon2, addon1]
+        self.expected_addons = [addon3, addon4]
 
     def test_only_viewable_with_specific_permission(self):
         # Regular addon reviewer does not have access.
@@ -2216,7 +2215,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout('Content Review',
-                                tab_position=2, total_addons=4, total_queues=3,
+                                tab_position=2, total_addons=2, total_queues=3,
                                 per_page=1)
 
     def test_queue_layout_admin(self):
@@ -2226,7 +2225,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout('Content Review',
-                                tab_position=2, total_addons=5, total_queues=4)
+                                tab_position=2, total_addons=3, total_queues=4)
 
 
 class TestPerformance(QueueTest):
