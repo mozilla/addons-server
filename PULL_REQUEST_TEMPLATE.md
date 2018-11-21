@@ -5,7 +5,7 @@ Please delete anything that isn't relevant to your patch.
 * [ ] This PR relates to an existing open issue and there are no existing
       PRs open for the same issue.
 * [ ] Add `Fixes #ISSUENUM` at the top of your PR.
-* [ ] Add a description of the the changes introduced in this PR.
+* [ ] Add a description of the changes introduced in this PR.
 * [ ] The change has been successfully run locally.
 * [ ] Add tests to cover the changes added in this PR.
 * [ ] Add before and after screenshots (Only for changes that impact the UI).
