@@ -22,7 +22,9 @@ FROM
               WHERE name IN ('Staff', 'No Reviewer Incentives'))) THEN 'volunteer' ELSE 'all' END AS `gruppe`
       FROM reviewer_scores rs
       WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END
+       /* Filter out internal task user */
         AND user_id <> 4757633
+        /* The type of review, see constants/reviewers.py */
         AND rs.note_key IN (10, 12, 20, 22, 30, 32, 50, 52, 102, 103, 104, 105)) iner ON iner.version_id = aa.version_id
    GROUP BY risk_category,
             `gruppe`) tmp

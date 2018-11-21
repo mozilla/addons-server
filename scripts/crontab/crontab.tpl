@@ -47,7 +47,7 @@ HOME=/tmp
 00 12 * * * %(z_cron)s index_latest_stats
 
 # Once per week
-0 12 * * 1 %(django)s review_reports
+1 9 * * 1 %(django)s review_reports
 
 # Do not put crons below this line
 
