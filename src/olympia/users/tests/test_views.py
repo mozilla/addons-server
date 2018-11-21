@@ -5,7 +5,6 @@ from urlparse import urlparse
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
 
@@ -536,15 +535,11 @@ class TestProfileLinks(UserViewBase):
         admingroup = Group(rules='Users:Edit')
         admingroup.save()
         GroupUser.objects.create(group=admingroup, user=self.user)
-        cache.clear()
 
         # Admin, own profile.
         links = get_links(self.user.id)
         assert links.length == 2
         assert links.eq(0).attr('href') == reverse('users.edit')
-        # TODO XXX Uncomment when we have real user editing pages
-        # assert links.eq(1).attr('href') + "/" == (
-        # reverse('admin:users_userprofile_change', args=[self.user.id]))
 
     def test_user_properties(self):
         self.client.login(email='jbalogh@mozilla.com')
@@ -673,7 +668,6 @@ class TestProfileSections(TestCase):
     def test_my_reviews(self):
         rating = Rating.objects.filter(reply_to=None)[0]
         rating.update(user=self.user)
-        cache.clear()
         self.assertSetEqual(set(self.user.ratings), {rating})
 
         response = self.client.get(self.url)
@@ -699,7 +693,6 @@ class TestProfileSections(TestCase):
         rating = Rating.objects.filter(reply_to=None)[0]
         rating.user_id = 999
         rating.save()
-        cache.clear()
         slug = Addon.objects.get(id=rating.addon_id).slug
         delete_url = reverse('addons.ratings.delete', args=[slug, rating.pk])
 
@@ -730,7 +723,6 @@ class TestProfileSections(TestCase):
         rating.user_id = 999
         rating.editorreview = True
         rating.save()
-        cache.clear()
         slug = Addon.objects.get(id=rating.addon_id).slug
         delete_url = reverse('addons.ratings.delete', args=[slug, rating.pk])
 
