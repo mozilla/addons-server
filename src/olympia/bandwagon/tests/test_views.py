@@ -21,7 +21,6 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, collection_factory, reverse_ns,
     user_factory)
-from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.amo.utils import urlparams
 from olympia.bandwagon import forms
