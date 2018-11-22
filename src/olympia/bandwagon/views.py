@@ -1,6 +1,5 @@
 import functools
 import hashlib
-import os
 
 from django import http
 from django.conf import settings
@@ -10,8 +9,6 @@ from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext, ugettext_lazy as _lazy
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.http import require_POST
 
 from django_statsd.clients import statsd
 from rest_framework import serializers
@@ -38,7 +35,7 @@ from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
 from olympia.users.models import UserProfile
 
-from . import forms, tasks
+from . import forms
 from .models import SPECIAL_SLUGS, Collection, CollectionAddon
 from .permissions import (
     AllowCollectionAuthor, AllowCollectionContributor, AllowContentCurators)
