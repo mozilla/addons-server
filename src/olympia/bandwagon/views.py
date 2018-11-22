@@ -217,7 +217,6 @@ def collection_detail_json(request, username, slug):
     return {
         'name': collection.name,
         'url': collection.get_abs_url(),
-        'iconUrl': collection.icon_url,
         'addons': addons_dict
     }
 
@@ -461,27 +460,6 @@ def delete(request, username, slug):
             return http.HttpResponseRedirect(collection.get_url_path())
 
     return render_cat(request, 'bandwagon/delete.html', data)
-
-
-@require_POST
-@use_primary_db
-@login_required
-@owner_required
-@json_view
-@csrf_protect
-def delete_icon(request, collection, username, slug):
-    log.debug(u"User deleted collection (%s) icon " % slug)
-    tasks.delete_icon(os.path.join(collection.get_img_dir(),
-                                   '%d.png' % collection.id))
-
-    collection.icontype = ''
-    collection.save()
-
-    if request.is_ajax():
-        return {'icon': collection.icon_url}
-    else:
-        messages.success(request, ugettext('Icon Deleted'))
-        return http.HttpResponseRedirect(collection.edit_url())
 
 
 @login_required

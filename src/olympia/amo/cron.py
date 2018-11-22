@@ -69,17 +69,6 @@ def gc(test_result=True):
     else:
         log.warning('MEDIA_ROOT not defined.')
 
-    if user_media_path('collection_icons'):
-        log.debug('Cleaning up uncompressed icons.')
-
-        cmd = ('find', user_media_path('collection_icons'),
-               '-name', '*__unconverted', '-mtime', '+1', '-type', 'f',
-               '-exec', 'rm', '{}', ';')
-        output = Popen(cmd, stdout=PIPE).communicate()[0]
-
-        for line in output.split("\n"):
-            log.debug(line)
-
     USERPICS_PATH = user_media_path('userpics')
     if USERPICS_PATH:
         log.debug('Cleaning up uncompressed userpics.')

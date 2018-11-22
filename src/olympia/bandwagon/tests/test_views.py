@@ -168,36 +168,6 @@ class TestViews(TestCase):
         # All markup is escaped, all links are stripped.
         self.assertContains(response, '&lt;b&gt;foo&lt;/b&gt; some text')
 
-    def test_delete_icon(self):
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        collection = user.favorites_collection()
-        edit_url = collection.edit_url()
-
-        # User not logged in: redirect to login page.
-        res = self.client.post(collection.delete_icon_url())
-        assert res.status_code == 302
-        assert res.url != edit_url
-
-        self.client.login(email='jbalogh@mozilla.com')
-
-        res = self.client.post(collection.delete_icon_url())
-        assert res.status_code == 302
-        assert res.url == edit_url
-
-    def test_delete_icon_csrf_protected(self):
-        """The delete icon view only accepts POSTs and is csrf protected."""
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        collection = user.favorites_collection()
-        client = django.test.Client(enforce_csrf_checks=True)
-
-        client.login(email='jbalogh@mozilla.com')
-
-        res = client.get(collection.delete_icon_url())
-        assert res.status_code == 405  # Only POSTs are allowed.
-
-        res = client.post(collection.delete_icon_url())
-        assert res.status_code == 403  # The view is csrf protected.
-
     def test_no_xss_in_collection_page(self):
         coll = Collection.objects.get(slug='wut-slug')
         name = '"><script>alert(/XSS/);</script>'
@@ -803,65 +773,6 @@ class AjaxTest(TestCase):
 
 class TestCollectionForm(TestCase):
     fixtures = ['base/collection_57181', 'users/test_backends']
-
-    @patch('olympia.amo.models.ModelBase.update')
-    def test_icon(self, update_mock):
-        collection = Collection.objects.get(pk=57181)
-        # TODO(andym): altering this form is too complicated, can we simplify?
-        form = forms.CollectionForm(
-            {'listed': collection.listed,
-             'slug': collection.slug,
-             'name': collection.name},
-            instance=collection,
-            files={'icon': get_uploaded_file('transparent.png')},
-            initial={'author': collection.author,
-                     'application': collection.application})
-        assert form.is_valid()
-        form.save()
-        assert update_mock.called
-
-    def test_icon_invalid_though_content_type_is_correct(self):
-        collection = Collection.objects.get(pk=57181)
-        # This file is not an image at all, but we'll try to upload it with an
-        # image mime type. It should not work.
-        fake_image = get_uploaded_file('non-image.png')
-        assert fake_image.content_type == 'image/png'
-        form = forms.CollectionForm(
-            {'listed': collection.listed,
-             'slug': collection.slug,
-             'name': collection.name},
-            instance=collection,
-            files={'icon': fake_image},
-            initial={'author': collection.author,
-                     'application': collection.application})
-        assert not form.is_valid()
-        assert form.errors == {'icon': [u'Icons must be either PNG or JPG.']}
-
-    def test_icon_invalid_gif(self):
-        collection = Collection.objects.get(pk=57181)
-        form = forms.CollectionForm(
-            {'listed': collection.listed,
-             'slug': collection.slug,
-             'name': collection.name},
-            instance=collection,
-            files={'icon': get_uploaded_file('animated.gif')},
-            initial={'author': collection.author,
-                     'application': collection.application})
-        assert not form.is_valid()
-        assert form.errors == {'icon': [u'Icons must be either PNG or JPG.']}
-
-    def test_icon_invalid_animated(self):
-        collection = Collection.objects.get(pk=57181)
-        form = forms.CollectionForm(
-            {'listed': collection.listed,
-             'slug': collection.slug,
-             'name': collection.name},
-            instance=collection,
-            files={'icon': get_uploaded_file('animated.png')},
-            initial={'author': collection.author,
-                     'application': collection.application})
-        assert not form.is_valid()
-        assert form.errors == {'icon': [u'Icons cannot be animated.']}
 
     def test_denied_name(self):
         form = forms.CollectionForm()
