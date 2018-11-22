@@ -86,6 +86,29 @@ ul.refinements:last-child {
     width: 370px;
 }
 
+#submit-describe .combine-name-summary,
+#addon-edit-describe .combine-name-summary {
+    display: flex;
+    margin-right: 2px;
+}
+
+#submit-describe .combine-name-summary #trans-name,
+#addon-edit-describe .combine-name-summary #trans-name {
+    flex-grow: 20;
+}
+
+#submit-describe .combine-name-summary #trans-summary,
+#addon-edit-describe .combine-name-summary #trans-summary {
+    flex-grow: 50;
+}
+
+#submit-describe .combine-name-summary #trans-name input,
+#addon-edit-describe .combine-name-summary #trans-name input,
+#submit-describe .combine-name-summary #trans-summary input,
+#addon-edit-describe .combine-name-summary #trans-summary input {
+    width: 95%;
+}
+
 /*#id_homepage, #id_support_url, #id_support_email {*/
 #trans-support_email input,
 #trans-homepage input,

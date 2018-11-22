@@ -761,9 +761,11 @@ def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
     static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {}
+    content_waffle = waffle.switch_is_active('content-optimization')
     if show_listed:
         models.update({
-            'describe': forms.DescribeForm,
+            'describe': (forms.DescribeForm if not content_waffle
+                         else forms.DescribeFormContentOptimization),
             'additional_details': addon_forms.AdditionalDetailsForm,
             'technical': addon_forms.AddonFormTechnical
         })
@@ -771,7 +773,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
             models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
-            'describe': forms.DescribeFormUnlisted,
+            'describe': (forms.DescribeFormUnlisted if not content_waffle
+                         else forms.DescribeFormUnlistedContentOptimization),
             'additional_details': addon_forms.AdditionalDetailsFormUnlisted,
             'technical': addon_forms.AddonFormTechnicalUnlisted
         })
@@ -1478,7 +1481,10 @@ def _submit_details(request, addon, version):
     show_all_fields = not version or not addon.has_complete_metadata()
 
     if show_all_fields:
-        describe_form = forms.DescribeForm(
+        content_waffle = waffle.switch_is_active('content-optimization')
+        describe_form_cls = (forms.DescribeForm if not content_waffle
+                             else forms.DescribeFormContentOptimization)
+        describe_form = describe_form_cls(
             post_data, instance=addon, request=request, version=version)
         cat_form_class = (addon_forms.CategoryFormSet if not static_theme
                           else forms.SingleCategoryForm)

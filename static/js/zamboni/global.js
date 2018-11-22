@@ -58,7 +58,7 @@ jQuery.fn.tooltip = function(tip_el) {
 
     $(document.body).on("tooltip_change", setTip);
 
-    function mouseover(e) {
+    function mouseover() {
         $tgt = $(this);
         if ($tgt.hasClass("formerror")) $tip.addClass("error");
         $title = $tgt.attr('title') ? $tgt : $("[title]", $tgt).first();
@@ -67,7 +67,7 @@ jQuery.fn.tooltip = function(tip_el) {
         }
     }
 
-    function mouseout(e) {
+    function mouseout() {
         clearTimeout(timeout);
         $tip.hide()
             .removeClass("error");
@@ -395,13 +395,13 @@ $.fn.modal = function(click_target, o) {
 
 // Modal from URL. Pass in a URL, and load it in a modal.
 function modalFromURL(url, settings) {
+    settings = settings || {};
     var a = $('<a>'),
         defaults = {'deleteme': true, 'close': true},
-        settings = settings || {},
-        data = settings['data'] || {},
-        callback = settings['callback'];
+        data = settings.data || {},
+        callback = settings.callback;
 
-    delete settings['callback'];
+    delete settings.callback;
     settings = $.extend(defaults, settings);
 
     var inside = $('<div>', {'class': 'modal-inside', 'text': gettext('Loading...')}),
@@ -460,10 +460,8 @@ function slugify() {
 
 // Initializes character counters for textareas.
 function initCharCount() {
-    var countChars = function(el, cc) {
-        var $el = $(el),
-            val = $el.val(),
-            max = parseInt(cc.attr('data-maxlength'), 10),
+    var countChars = function(val, cc) {
+        var max = parseInt(cc.attr('data-maxlength'), 10),
             min = parseInt(cc.attr('data-minlength'), 10) || 0,
             // Count \r\n as one character, not two.
             lineBreaks = val.split('\n').length - 1,
@@ -480,19 +478,36 @@ function initCharCount() {
             output.push(format(ngettext('<b>{0}</b> character left',
                                         '<b>{0}</b> characters left', left), [left]));
         }
-        cc.html(output.join('; ') + '.')
+        cc.html((cc.attr('data-text-prefix') || '') + output.join('; ') + (cc.attr('data-text-postfix') || '.'))
           .toggleClass('error', left < 0 || count < min);
     };
     $('.char-count').each(function() {
         var $cc = $(this),
             $form = $(this).closest('form'),
-            $el;
-        if ($cc.attr('data-for-startswith') !== undefined) {
-            $el = $('textarea[id^="' + $cc.attr('data-for-startswith') + '"]:visible', $form);
+            $el,
+            multi=false;
+        if ($cc.data('for-names') !== undefined) {
+            multi=true;
+            var query_string = $cc.data('for-names').split(',').map(function(field_name) {
+                return 'textarea[name^="' + field_name + '"]:visible, input[name^="' + field_name + '"]:visible';
+            }).join(', ');
+            $el = $(query_string, $form);
+        } else if ($cc.attr('data-for-startswith') !== undefined) {
+            $el = $('textarea[id^="' + $cc.attr('data-for-startswith') + '"]:visible, input[id^="' + $cc.attr('data-for-startswith') + '"]:visible', $form);
         } else {
             $el = $('textarea#' + $cc.attr('data-for'), $form);
         }
-        $el.on('keyup blur', function() { countChars(this, $cc); }).trigger('blur');
+        $el.on('keyup blur', function() {
+            var $this=$(this),
+                val;
+            if (multi) {
+                val = $el.filter('[name$="' + $this.attr('lang') + '"]').map(function() {
+                        return $(this).val();
+                    }).get().join('');
+            } else {
+                val = $this.val();
+            }
+            countChars(val, $cc); }).trigger('blur');
     });
 }
 

@@ -416,6 +416,65 @@ class BaseTestEditDescribe(BaseTestEdit):
         doc = pq(response.content)
         assert not doc('#trans-description textarea').attr('minlength')
 
+    @override_switch('content-optimization', active=False)
+    def test_name_summary_lengths_short(self):
+        # check the separate name and summary labels, etc are served
+        response = self.client.get(self.url)
+        assert 'Name and Summary' not in response.content
+        assert 'It will be shown in listings and searches' in response.content
+
+        self.client.post(
+            self.describe_edit_url, self.get_dict(name='a', summary='b'))
+        assert self.get_addon().name == 'a'
+        assert self.get_addon().summary == 'b'
+
+    @override_switch('content-optimization', active=False)
+    def test_name_summary_lengths_long(self):
+        self.client.post(
+            self.describe_edit_url, self.get_dict(
+                name='a' * 50, summary='b' * 50))
+        assert self.get_addon().name == 'a' * 50
+        assert self.get_addon().summary == 'b' * 50
+
+    @override_switch('content-optimization', active=True)
+    def test_name_summary_lengths_content_optimization(self):
+        # check the combined name and summary label, etc are served
+        response = self.client.get(self.url)
+        assert 'Name and Summary' in response.content
+
+        # name and summary are too short
+        response = self.client.post(
+            self.describe_edit_url, self.get_dict(name='a', summary='b'))
+        assert self.get_addon().name != 'a'
+        assert self.get_addon().summary != 'b'
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'Ensure this value has at least 2 characters (it has 1).')
+        self.assertFormError(
+            response, 'form', 'summary',
+            'Ensure this value has at least 2 characters (it has 1).')
+
+        # name and summary individually are okay, but together are too long
+        response = self.client.post(
+            self.describe_edit_url, self.get_dict(
+                name='a' * 50, summary='b' * 50))
+        assert self.get_addon().name != 'a' * 50
+        assert self.get_addon().summary != 'b' * 50
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'Ensure name and summary combined are at most 70 characters '
+            u'(they have 100).')
+
+        # success: together name and summary are 70 characters.
+        response = self.client.post(
+            self.describe_edit_url, self.get_dict(
+                name='a' * 2, summary='b' * 68))
+        assert self.get_addon().name == 'a' * 2
+        assert self.get_addon().summary == 'b' * 68
+        assert response.status_code == 200
+
 
 class L10nTestsMixin(object):
     def get_l10n_urls(self):

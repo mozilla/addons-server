@@ -32,7 +32,8 @@ from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.files.models import FileUpload
 from olympia.files.utils import (
     archive_member_validator, parse_addon, SafeZip)
-from olympia.translations.fields import TransField, TransTextarea
+from olympia.translations.fields import (
+    LocaleErrorMessage, TransField, TransTextarea)
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
@@ -657,6 +658,35 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
         return obj
 
 
+class CombinedNameSummaryCleanMixin(object):
+    def clean(self):
+        message = _('Ensure name and summary combined are at most 70 '
+                    'characters (they have {0}).')
+        super(CombinedNameSummaryCleanMixin, self).clean()
+        name_summary_locales = set(
+            self.cleaned_data.get('name', {}).keys() +
+            self.cleaned_data.get('summary', {}).keys())
+        default_locale = self.instance.default_locale
+        name_values = self.cleaned_data.get('name') or {}
+        name_default = name_values.get(default_locale) or ''
+        summary_values = self.cleaned_data.get('summary') or {}
+        summary_default = summary_values.get(default_locale) or ''
+        for locale in name_summary_locales:
+            val_len = len(name_values.get(locale, name_default) +
+                          summary_values.get(locale, summary_default))
+            if val_len > 70:
+                self.add_error(
+                    'name', LocaleErrorMessage(
+                        message=message.format(val_len), locale=locale))
+        return self.cleaned_data
+
+
+class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin,
+                                      DescribeForm):
+    name = TransField(max_length=68, min_length=2)
+    summary = TransField(max_length=68, min_length=2)
+
+
 class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
@@ -670,6 +700,12 @@ class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'description')
+
+
+class DescribeFormUnlistedContentOptimization(CombinedNameSummaryCleanMixin,
+                                              DescribeFormUnlisted):
+    name = TransField(max_length=68, min_length=2)
+    summary = TransField(max_length=68, min_length=2)
 
 
 class PreviewForm(forms.ModelForm):
