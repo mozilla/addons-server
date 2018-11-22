@@ -82,9 +82,6 @@ class CollectionForm(forms.ModelForm):
         choices=privacy_choices,
         initial=True)
 
-    icon = forms.FileField(label=_(u'Icon'),
-                           required=False)
-
     # This is just a honeypot field for bots to get caught
     # L10n: bots is short for robots
     your_name = forms.CharField(
@@ -136,54 +133,15 @@ class CollectionForm(forms.ModelForm):
 
         return slug
 
-    def clean_icon(self):
-        icon = self.cleaned_data['icon']
-        if not icon:
-            return
-        icon_check = ImageCheck(icon)
-        if (icon.content_type not in amo.IMG_TYPES or
-                not icon_check.is_image()):
-            raise forms.ValidationError(
-                ugettext('Icons must be either PNG or JPG.'))
-
-        if icon_check.is_animated():
-            raise forms.ValidationError(ugettext('Icons cannot be animated.'))
-
-        if icon.size > settings.MAX_ICON_UPLOAD_SIZE:
-            size_in_mb = settings.MAX_ICON_UPLOAD_SIZE / 1024 / 1024 - 1
-            raise forms.ValidationError(
-                ugettext('Please use images smaller than %dMB.') % size_in_mb)
-        return icon
-
     def save(self, default_locale=None):
         collection = super(CollectionForm, self).save(commit=False)
         collection.author = self.initial['author']
         collection.application = self.initial['application']
-        icon = self.cleaned_data.get('icon')
 
         if default_locale:
             collection.default_locale = default_locale
 
-        if icon:
-            collection.icontype = 'image/png'
-
         collection.save()
-
-        if icon:
-            dirname = collection.get_img_dir()
-
-            destination = os.path.join(dirname, '%d.png' % collection.id)
-            tmp_destination = os.path.join(
-                dirname, '%d.png__unconverted' % collection.id)
-            # Seek back to the beginning before reading the icon file since we
-            # went through ImageCheck() in clean_icon().
-            icon.seek(0)
-            with storage.open(tmp_destination, 'w') as fh:
-                for chunk in icon.chunks():
-                    fh.write(chunk)
-            tasks.resize_icon.delay(
-                tmp_destination, destination,
-                set_modified_on=collection.serializable_reference())
 
         return collection
 

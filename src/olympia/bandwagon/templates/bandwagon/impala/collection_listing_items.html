@@ -3,7 +3,8 @@
     <div class="info">
       <h3>
         <a href="{{ c.get_url_path() }}">
-          <img src="{{ c.icon_url }}" alt="">{{ c.name }}</a>
+          {{ c.name }}
+        </a>
         {% if c.author %}
           <span class="author">{{ _('by %(author_link)s', author_link=c.author|user_link|safe) }}</span>
         {% endif %}

@@ -99,7 +99,6 @@ def path():
           user_media_path('addons'),
           user_media_path('guarded_addons'),
           user_media_path('addon_icons'),
-          user_media_path('collection_icons'),
           user_media_path('previews'),
           user_media_path('userpics'),
           dump_apps.Command.get_json_path(),)

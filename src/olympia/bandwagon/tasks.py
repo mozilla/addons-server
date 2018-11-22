@@ -1,46 +1,16 @@
-from django.core.files.storage import default_storage as storage
 from django.db.models import Count
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, use_primary_db
-from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.utils import resize_image
+from olympia.amo.decorators import use_primary_db
 from olympia.tags.models import Tag
 
 from .models import Collection, CollectionAddon
 
 
 log = olympia.core.logger.getLogger('z.task')
-
-
-@task
-@set_modified_on
-def resize_icon(src, dst, **kw):
-    """Resizes collection icons to 32x32"""
-    log.info('[1@None] Resizing icon: %s' % dst)
-
-    try:
-        resize_image(src, dst, (32, 32))
-        return True
-    except Exception as e:
-        log.error("Error saving collection icon: %s" % e)
-
-
-@task
-def delete_icon(dst, **kw):
-    log.info('[1@None] Deleting icon: %s.' % dst)
-
-    if not dst.startswith(user_media_path('collection_icons')):
-        log.error("Someone tried deleting something they shouldn't: %s" % dst)
-        return
-
-    try:
-        storage.delete(dst)
-    except Exception as e:
-        log.error("Error deleting icon: %s" % e)
 
 
 @task
