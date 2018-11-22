@@ -13,7 +13,8 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import SafeZip
+from olympia.files.utils import SafeZip, id_to_path
+
 
 log = olympia.core.logger.getLogger('z.git_storage')
 
@@ -67,7 +68,7 @@ class AddonGitRepository(object):
 
         self.git_repository_path = os.path.join(
             settings.GIT_FILE_STORAGE_PATH,
-            str(addon_id),
+            id_to_path(addon_id),
             package_type)
 
     @cached_property
