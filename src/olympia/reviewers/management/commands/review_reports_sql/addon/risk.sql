@@ -1,6 +1,6 @@
 SELECT risk_category AS `Risk Category`,
        FORMAT(SUM(n), 0) AS `All Reviewers`,
-       FORMAT(SUM(CASE WHEN `gruppe` = 'volunteer' THEN n ELSE 0 END), 0) AS 'Volunteers'
+       FORMAT(SUM(CASE WHEN `group_category` = 'volunteer' THEN n ELSE 0 END), 0) AS 'Volunteers'
 FROM
   (SELECT CASE
               WHEN weight > @RISK_HIGHEST THEN 'highest'
@@ -8,7 +8,7 @@ FROM
               WHEN weight > @RISK_MEDIUM THEN 'medium'
               ELSE 'low'
           END AS risk_category,
-          gruppe,
+          group_category,
           COUNT(*) AS n
    FROM editors_autoapprovalsummary aa
    JOIN
@@ -19,14 +19,14 @@ FROM
          WHERE group_id IN
              (SELECT id
               FROM groups
-              WHERE name IN ('Staff', 'No Reviewer Incentives'))) THEN 'volunteer' ELSE 'all' END AS `gruppe`
+              WHERE name IN ('Staff', 'No Reviewer Incentives'))) THEN 'volunteer' ELSE 'all' END AS `group_category`
       FROM reviewer_scores rs
       WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END
        /* Filter out internal task user */
         AND user_id <> 4757633
         /* The type of review, see constants/reviewers.py */
-        AND rs.note_key IN (10, 12, 20, 22, 30, 32, 50, 52, 102, 103, 104, 105)) iner ON iner.version_id = aa.version_id
+        AND rs.note_key IN (10, 12, 20, 22, 30, 32, 50, 52, 102, 103, 104, 105)) reviews ON reviews.version_id = aa.version_id
    GROUP BY risk_category,
-            `gruppe`) tmp
+            `group_category`) risk
 GROUP BY 1
 ORDER BY FIELD(risk_category,'highest','high','medium', 'low');
