@@ -96,6 +96,23 @@ def get_filepath(fileorpath):
     return fileorpath
 
 
+def id_to_path(pk):
+    """
+    Generate a path from an id, to distribute folders in the file system.
+    1 => 1/1/1
+    12 => 2/12/12
+    123456 => 6/56/123456
+    """
+    pk = unicode(pk)
+    path = [pk[-1]]
+    if len(pk) >= 2:
+        path.append(pk[-2:])
+    else:
+        path.append(pk)
+    path.append(pk)
+    return os.path.join(*path)
+
+
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
     if hasattr(fileorpath, 'path'):  # FileUpload

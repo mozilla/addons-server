@@ -517,18 +517,3 @@ class TestMediaUrl(TestCase):
         settings.MEDIA_URL = '/mediapath/'
         url = jinja_helpers.user_media_url('userpics')
         assert url == '/mediapath/userpics/'
-
-
-class TestIdToPath(TestCase):
-
-    def test_with_1_digit(self):
-        assert jinja_helpers.id_to_path(1) == '1/1/1'
-
-    def test_with_2_digits(self):
-        assert jinja_helpers.id_to_path(12) == '2/12/12'
-
-    def test_with_3_digits(self):
-        assert jinja_helpers.id_to_path(123) == '3/23/123'
-
-    def test_with_many_digits(self):
-        assert jinja_helpers.id_to_path(123456789) == '9/89/123456789'
