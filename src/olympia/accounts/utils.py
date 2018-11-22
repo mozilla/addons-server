@@ -25,7 +25,8 @@ def fxa_config(request):
     return config
 
 
-def fxa_login_url(config, state, next_path=None, action=None):
+def fxa_login_url(
+        config, state, next_path=None, action=None, force_two_factor=False):
     if next_path and is_safe_url(next_path):
         state += ':' + urlsafe_b64encode(next_path.encode('utf-8')).rstrip('=')
     query = {
@@ -36,6 +37,10 @@ def fxa_login_url(config, state, next_path=None, action=None):
     }
     if action is not None:
         query['action'] = action
+    if force_two_factor is True:
+        # Specifying AAL2 will require the token to have an authentication
+        # assurance level >= 2 which corresponds to requiring 2FA.
+        query['acr_values'] = 'AAL2'
     return '{host}/authorization?{query}'.format(
         host=config['oauth_host'], query=urlencode(query))
 

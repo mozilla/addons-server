@@ -576,6 +576,111 @@ class TestWithUser(TestCase):
         LoginView().post(self.request)
         self.fxa_identify.assert_called_with('foo', config=fxa_config)
 
+    def test_addon_developer_should_redirect_for_two_factor_auth(self):
+        self.create_switch('2fa-for-developers', active=True)
+        self.user = user_factory()
+        # They have developed themes, but also an extension, so they will need
+        # 2FA.
+        addon_factory(users=[self.user])
+        addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
+        addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode('/a/path/?')),
+        }
+        # @with_user should return a redirect response directly in that case.
+        response = self.fn(self.request)
+
+        # Query params should be kept on the redirect to FxA, with
+        # acr_values=AAL2 added to force two-factor auth on FxA side.
+        assert response.status_code == 302
+        url = urlparse.urlparse(response['Location'])
+        base = '{scheme}://{netloc}{path}'.format(
+            scheme=url.scheme, netloc=url.netloc, path=url.path)
+        fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
+        assert base == '{host}{path}'.format(
+            host=fxa_config['oauth_host'],
+            path='/authorization')
+        query = urlparse.parse_qs(url.query)
+        next_path = base64.urlsafe_b64encode('/a/path/?').rstrip('=')
+        assert query == {
+            'acr_values': ['AAL2'],
+            'action': ['signin'],
+            'client_id': [fxa_config['client_id']],
+            'redirect_url': [fxa_config['redirect_url']],
+            'scope': [fxa_config['scope']],
+            'state': ['some-blob:{next_path}'.format(next_path=next_path)],
+        }
+
+    def test_theme_developer_should_not_redirect_for_two_factor_auth(self):
+        self.create_switch('2fa-for-developers', active=True)
+        self.user = user_factory()
+        addon_factory(users=[self.user], type=amo.ADDON_STATICTHEME)
+        addon_factory(users=[self.user], type=amo.ADDON_PERSONA)
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode('/a/path/?')),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': '/a/path/?',
+        }
+
+    def test_addon_developer_already_using_two_factor_should_continue(self):
+        self.create_switch('2fa-for-developers', active=True)
+        self.user = user_factory()
+        addon_factory(users=[self.user])
+        identity = {
+            'uid': '1234',
+            'email': 'hey@yo.it',
+            'twoFactorAuthentication': True
+        }
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode('/a/path/?')),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': '/a/path/?',
+        }
+
+    def test_waffle_switch_off_developer_without_2fa_should_continue(self):
+        self.create_switch('2fa-for-developers', active=False)
+        self.user = user_factory()
+        addon_factory(users=[self.user])
+        identity = {'uid': '1234', 'email': 'hey@yo.it'}
+        self.fxa_identify.return_value = identity
+        self.find_user.return_value = self.user
+        self.request.data = {
+            'code': 'foo',
+            'state': u'some-blob:{next_path}'.format(
+                next_path=base64.urlsafe_b64encode('/a/path/?')),
+        }
+        args, kwargs = self.fn(self.request)
+        assert args == (self, self.request)
+        assert kwargs == {
+            'user': self.user,
+            'identity': identity,
+            'next_path': '/a/path/?',
+        }
+
 
 @override_settings(FXA_CONFIG={
     'foo': {'FOO': 123},
