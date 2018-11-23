@@ -1,4 +1,3 @@
-import datetime
 import random
 
 import mock
@@ -40,23 +39,6 @@ class TestCollections(TestCase):
                         'http://example.com <b>foo</b> some text')
         # All markup escaped, links are stripped.
         assert unicode(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
-
-    def test_icon_url(self):
-        # Has no icon.
-        c = Collection(pk=512, modified=datetime.datetime.now())
-        assert c.icon_url.endswith('img/icons/collection.png')
-
-        c.icontype = 'image/png'
-        url = c.icon_url.split('?')[0]
-        assert url.endswith('0/512.png')
-
-        c.id = 12341234
-        url = c.icon_url.split('?')[0]
-        assert url.endswith('12341/12341234.png')
-
-        c.icontype = None
-        c.type = amo.COLLECTION_FAVORITES
-        assert c.icon_url.endswith('img/icons/heart.png')
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""

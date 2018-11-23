@@ -1,11 +1,7 @@
-import os
-import re
-import time
 import uuid
 
 from datetime import datetime
 
-from django.conf import settings
 from django.core.cache import cache
 from django.db import connection, models
 
@@ -15,8 +11,7 @@ from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, BaseQuerySet
-from olympia.amo.templatetags.jinja_helpers import (
-    absolutify, user_media_path, user_media_url)
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.fields import (
     LinkifiedField, NoLinksNoMarkupField, TranslatedField, save_signal)
@@ -102,7 +97,6 @@ class Collection(ModelBase):
                                       db_column='defaultlocale')
     type = models.PositiveIntegerField(db_column='collection_type',
                                        choices=TYPE_CHOICES, default=0)
-    icontype = models.CharField(max_length=25, blank=True)
 
     listed = models.BooleanField(
         default=True, help_text='Collections are either listed or private.')
@@ -170,20 +164,12 @@ class Collection(ModelBase):
     def get_abs_url(self):
         return absolutify(self.get_url_path())
 
-    def get_img_dir(self):
-        return os.path.join(user_media_path('collection_icons'),
-                            str(self.id / 1000))
-
     def edit_url(self):
         return reverse('collections.edit',
                        args=[self.author_username, self.slug])
 
     def delete_url(self):
         return reverse('collections.delete',
-                       args=[self.author_username, self.slug])
-
-    def delete_icon_url(self):
-        return reverse('collections.delete_icon',
                        args=[self.author_username, self.slug])
 
     def share_url(self):
@@ -206,22 +192,6 @@ class Collection(ModelBase):
     def url_slug(self):
         """uuid or nickname if chosen"""
         return self.nickname or self.uuid
-
-    @property
-    def icon_url(self):
-        modified = int(time.mktime(self.modified.timetuple()))
-        if self.icontype:
-            # [1] is the whole ID, [2] is the directory
-            split_id = re.match(r'((\d*?)\d{1,3})$', str(self.id))
-            path = "/".join([
-                split_id.group(2) or '0',
-                "%s.png?m=%s" % (self.id, modified)
-            ])
-            return user_media_url('collection_icons') + path
-        elif self.type == amo.COLLECTION_FAVORITES:
-            return settings.STATIC_URL + 'img/icons/heart.png'
-        else:
-            return settings.STATIC_URL + 'img/icons/collection.png'
 
     def set_addons(self, addon_ids, comments=None):
         """Replace the current add-ons with a new list of add-on ids."""
