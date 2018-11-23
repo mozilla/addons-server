@@ -24,7 +24,6 @@ from olympia.amo.fields import PositiveAutoField
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import (
     BasePreview, ManagerBase, ModelBase, OnChangeMixin)
-from olympia.amo.templatetags.jinja_helpers import id_to_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import sorted_groupby, utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
@@ -91,7 +90,7 @@ def source_upload_path(instance, filename):
 
     return os.path.join(
         u'version_source',
-        id_to_path(instance.pk),
+        utils.id_to_path(instance.pk),
         u'{0}-{1}-src{2}'.format(
             instance.addon.slug,
             instance.version,

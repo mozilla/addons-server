@@ -28,6 +28,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants import licenses
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import FileUpload
+from olympia.files.utils import id_to_path
 from olympia.ratings.models import Rating
 from olympia.stats.models import ThemeUpdateCount, UpdateCount
 from olympia.tags.models import Tag
@@ -358,7 +359,7 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
         repo = AddonGitRepository(addon.pk)
 
         assert repo.git_repository_path == os.path.join(
-            settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
+            settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
         assert os.listdir(repo.git_repository_path) == ['.git']
 
     @mock.patch('olympia.addons.tasks.extract_file_obj_to_git')

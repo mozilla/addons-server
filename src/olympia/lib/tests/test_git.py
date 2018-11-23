@@ -8,6 +8,7 @@ from django.conf import settings
 from olympia import amo
 from olympia.amo.tests import addon_factory, version_factory, user_factory
 from olympia.lib.git import AddonGitRepository, TemporaryWorktree
+from olympia.files.utils import id_to_path
 
 
 def test_temporary_worktree():
@@ -37,7 +38,7 @@ def test_git_repo_init():
     repo = AddonGitRepository(1)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(1), 'package')
+        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
 
     assert not os.path.exists(repo.git_repository_path)
 
@@ -49,7 +50,7 @@ def test_git_repo_init():
 
 def test_git_repo_init_opens_existing_repo():
     expected_path = os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(1), 'package')
+        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
 
     assert not os.path.exists(expected_path)
     repo = AddonGitRepository(1)
@@ -72,7 +73,7 @@ def test_extract_and_commit_from_file_obj():
         amo.RELEASE_CHANNEL_LISTED)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -123,7 +124,7 @@ def test_extract_and_commit_from_file_obj_multiple_versions():
         amo.RELEASE_CHANNEL_LISTED)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly

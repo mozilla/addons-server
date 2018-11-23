@@ -1040,3 +1040,14 @@ class TestGetBackgroundImages(TestCase):
             self.file_obj, data, header_only=True)
         assert len(images.items()) == 1
         assert len(images['empty.png']) == 332
+
+
+@pytest.mark.parametrize('value, expected', [
+    (1, '1/1/1'),
+    (1, '1/1/1'),
+    (12, '2/12/12'),
+    (123, '3/23/123'),
+    (123456789, '9/89/123456789'),
+])
+def test_id_to_path(value, expected):
+    assert utils.id_to_path(value) == expected
