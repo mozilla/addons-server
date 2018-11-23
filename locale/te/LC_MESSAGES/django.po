@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 08:44+0000\n"
+"PO-Revision-Date: 2018-11-23 09:00+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2298,21 +2298,17 @@ msgstr ""
 msgid "Add-on Content Review"
 msgstr "పొడిగింత విషయం సమీక్ష"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
+msgstr ""
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "పొడిగింత యొక్క సమీక్ష"
+msgstr ""
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "యాడ్-ఆన్ సమీక్ష గైడు"
+msgstr ""
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "పొడిగింత యొక్క సమీక్ష"
+msgstr ""
 
 msgid "Level 1"
 msgstr "స్థాయి 1"
@@ -2432,9 +2428,8 @@ msgstr "దయచేసి మీ పొడిగింత యొక్క గ�
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "చెల్లని JWT టోకేను."
+msgstr ""
 
 msgid "View current"
 msgstr "ప్రస్తుతంది చూడండి"
@@ -4179,7 +4174,7 @@ msgid "Version"
 msgstr "వెర్షను"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "వెర్షను {version}ను తొలగించు"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
@@ -5460,7 +5455,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "మీ వ్యక్తిగత ఇష్టాంశాలను సంకేతపదంతో కాపాడుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5833,7 +5828,7 @@ msgid "Take better screenshots, improve your online video experience, finally le
 msgstr ""
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
+msgstr "నెలలో Mozilla ఎంపిక!"
 
 msgid "Become a Test Pilot"
 msgstr "ఒక Test Pilot అవ్వండి"
