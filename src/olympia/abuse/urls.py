@@ -6,9 +6,9 @@ from .views import AddonAbuseViewSet, UserAbuseViewSet
 
 reporting = SimpleRouter()
 reporting.register(r'addon', AddonAbuseViewSet,
-                   base_name='abusereportaddon')
+                   basename='abusereportaddon')
 reporting.register(r'user', UserAbuseViewSet,
-                   base_name='abusereportuser')
+                   basename='abusereportuser')
 
 urlpatterns = [
     url(r'report/', include(reporting.urls)),

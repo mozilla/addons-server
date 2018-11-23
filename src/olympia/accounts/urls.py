@@ -9,19 +9,19 @@ from . import views
 
 
 accounts = SimpleRouter()
-accounts.register(r'account', views.AccountViewSet, base_name='account')
+accounts.register(r'account', views.AccountViewSet, basename='account')
 
 collections = NestedSimpleRouter(accounts, r'account', lookup='user')
 collections.register(r'collections', CollectionViewSet,
-                     base_name='collection')
+                     basename='collection')
 sub_collections = NestedSimpleRouter(collections, r'collections',
                                      lookup='collection')
 sub_collections.register('addons', CollectionAddonViewSet,
-                         base_name='collection-addon')
+                         basename='collection-addon')
 
 notifications = NestedSimpleRouter(accounts, r'account', lookup='user')
 notifications.register(r'notifications', views.AccountNotificationViewSet,
-                       base_name='notification')
+                       basename='notification')
 
 urlpatterns = [
     url(r'^authenticate/$', views.AuthenticateView.as_view(),
