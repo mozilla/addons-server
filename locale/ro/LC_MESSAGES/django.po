@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 20:51+0000\n"
+"PO-Revision-Date: 2018-11-23 20:55+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -6283,7 +6283,7 @@ msgid "After a few weeks, the study will end on its own. Your Firefox will go ba
 msgstr ""
 
 msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
+msgstr "Îți vom cere să completezi un chestionar opțional rapid ca să ne spui despre experiența ta. Completarea chestionarului ar trebui să dureze mai puțin de 5 minute."
 
 msgid "Leaving the study"
 msgstr ""
@@ -8116,7 +8116,7 @@ msgid "Please set your display name"
 msgstr ""
 
 msgid "Please set your display name or username to complete the registration process."
-msgstr ""
+msgstr "Te rugăm să îți setezi numele de afișat sau numele de utilizator pentru a finaliza procedura de înregistrare."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
@@ -8183,7 +8183,7 @@ msgid "all"
 msgstr ""
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
+msgstr "Mozilla Add-ons a făcut tranziția la gestionarea autentificărilor prin Conturile Firefox. Continuă pentru finalizarea procedurii simple de autentificare."
 
 msgid "User Login"
 msgstr ""
