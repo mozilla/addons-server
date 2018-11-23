@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 07:06+0000\n"
+"PO-Revision-Date: 2018-11-23 08:06+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1955,43 +1955,43 @@ msgid "Bookmarks"
 msgstr "Bladwijzers"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Download extensies die bladwijzers verbeteren door ze met een wachtwoord te beveiligen, naar dubbelingen te zoeken, defecte bladwijzers te zoeken, en meer."
 
 msgid "Download Management"
 msgstr "Downloadbeheer"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Download Firefox-extensies die kunnen helpen met downloaden van web-, muziek- en video-inhoud. U kunt ook extensies vinden om downloads te beheren, bestanden te delen, en meer."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds, nieuws en blogging"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Download Firefox-extensies die verstoringen opruimen, zodat u up-to-date kunt blijven bij sociale media, blogs en RSS-feeds kunt volgen, oogvermoeidheid kunt tegengaan, en meer."
 
 msgid "Games & Entertainment"
 msgstr "Spellen en amusement"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om uw entertainmentervaring te verbeteren. Deze categorie omvat extensies die het spelen van spellen verbeteren, afspelen van video’s beheren, en meer."
 
 msgid "Language Support"
 msgstr "Taalondersteuning"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Download Firefox-extensies die taalondersteuning bieden, zoals grammaticacontrole, woordzoeken, tekstvertaling, tekst-naar-spraak, en meer."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto’s, muziek en video’s"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Download Firefox-extensies die uw ervaring van foto’s, muziek en video verbeteren. Extensies in deze categorie passen audio en video aan, bieden omgekeerd afbeelding zoeken, en meer."
 
 msgid "Privacy & Security"
 msgstr "Privacy en beveiliging"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om privé en veilig te navigeren. Deze categorie omvat extensies om vervelende advertenties te blokkeren, volgen te voorkomen, doorsturingen te beheren, en meer."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
