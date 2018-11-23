@@ -134,7 +134,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "auto_repackage": true,
             "slug": "addon-337203",
             "name": 2426062,
             "created": "2011-06-06 23:31:00",

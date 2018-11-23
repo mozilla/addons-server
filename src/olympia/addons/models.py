@@ -323,10 +323,6 @@ class Addon(OnChangeMixin, ModelBase):
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
 
-    auto_repackage = models.BooleanField(
-        default=True, help_text='Automatically upgrade jetpack add-on to a '
-                                'new sdk version?')
-
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
         help_text='For dictionaries and language packs. Identifies the '

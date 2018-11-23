@@ -1475,20 +1475,6 @@ class TestEditTechnical(BaseTestEdit):
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
-    def test_auto_repackage_not_shown(self):
-        file_ = self.addon.current_version.all_files[0]
-        file_.jetpack_version = None
-        file_.save()
-        response = self.client.get(self.technical_edit_url)
-        self.assertNotContains(response, 'Upgrade SDK?')
-
-    def test_auto_repackage_shown(self):
-        file_ = self.addon.current_version.all_files[0]
-        file_.jetpack_version = '1.0'
-        file_.save()
-        response = self.client.get(self.technical_edit_url)
-        self.assertContains(response, 'Upgrade SDK?')
-
     def test_dependencies_none(self):
         AddonDependency.objects.all().delete()
         assert list(self.addon.all_dependencies) == []

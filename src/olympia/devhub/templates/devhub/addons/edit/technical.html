@@ -91,21 +91,6 @@
                        _("No, this add-on's stats are not publicly viewable.")) }}
             </td>
           </tr>
-          {% if addon.current_version.is_jetpack %}
-          <tr>
-            <th>
-              {{ tip(_('Upgrade SDK?'),
-                     _("If selected, we will try to automatically upgrade your "
-                       "add-on when a new version of the SDK is released. "
-                       "It is only relevant for listed add-ons.")) }}
-            </th>
-            <td>
-              {{ flags(_('This add-on will be automatically upgraded to new versions of the Add-on SDK.'),
-                       form.auto_repackage if editable else addon.auto_repackage, editable,
-                       _('No, this add-on will be upgraded manually.')) }}
-            </td>
-          </tr>
-          {% endif %}
           {% endif %}
           <tr>
             <th>
