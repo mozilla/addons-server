@@ -334,9 +334,6 @@ class Addon(OnChangeMixin, ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
     categories = models.ManyToManyField('Category', through='AddonCategory')
-    dependencies = models.ManyToManyField('self', symmetrical=False,
-                                          through='AddonDependency',
-                                          related_name='addons')
 
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
@@ -1402,11 +1399,6 @@ class Addon(OnChangeMixin, ModelBase):
         """Check whether the user should be prompted to add a review or not."""
         return not user.is_authenticated or not self.has_author(user)
 
-    @property
-    def all_dependencies(self):
-        """Return all the (valid) add-ons this add-on depends on."""
-        return list(self.dependencies.valid().all()[:3])
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
@@ -1818,15 +1810,6 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
-
-
-class AddonDependency(models.Model):
-    addon = models.ForeignKey(Addon, related_name='addons_dependencies')
-    dependent_addon = models.ForeignKey(Addon, related_name='dependent_on')
-
-    class Meta:
-        db_table = 'addons_dependencies'
-        unique_together = ('addon', 'dependent_addon')
 
 
 class AddonFeatureCompatibility(ModelBase):

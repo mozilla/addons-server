@@ -42,13 +42,6 @@ def flag(context, addon):
 
 
 @library.global_function
-@library.render_with('addons/impala/dependencies_note.html')
-@jinja2.contextfunction
-def dependencies_note(context, addon):
-    return new_context(**locals())
-
-
-@library.global_function
 @library.render_with('addons/review_list_box.html')
 @jinja2.contextfunction
 def review_list_box(context, addon, reviews):

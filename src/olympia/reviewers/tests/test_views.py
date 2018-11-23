@@ -28,8 +28,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
-    AddonUser)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
@@ -3452,17 +3451,6 @@ class TestReview(ReviewBase):
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
             assert mock_sign.called
         return action
-
-    def test_dependencies_listed(self):
-        AddonDependency.objects.create(addon=self.addon,
-                                       dependent_addon=self.addon)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        deps = doc('.addon-info .addon-dependencies')
-        assert deps.length == 1
-        assert deps.find('li').length == 1
-        assert deps.find('a').attr('href') == self.addon.get_url_path()
 
     def test_eula_displayed(self):
         assert not bool(self.addon.eula)
