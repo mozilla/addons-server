@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 06:48+0000\n"
+"PO-Revision-Date: 2018-11-23 07:06+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1943,13 +1943,13 @@ msgid "Alerts & Updates"
 msgstr "Waarschuwingen en updates"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Download Firefox-extensies die u helpen up-to-date te blijven, taken te volgen en uw efficiëntie te verbeteren. Zoek extensies die tabbladen opnieuw laden, productiviteit beheren, en meer."
 
 msgid "Appearance"
 msgstr "Vormgeving"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Download extensies die de weergave van websites en de browser Firefox aanpassen. Deze categorie omvat extensies voor donkere thema’s, tabbladbeheer, en meer."
 
 msgid "Bookmarks"
 msgstr "Bladwijzers"
@@ -2479,9 +2479,8 @@ msgstr "Geef het privacybeleid van uw add-on op:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een archiefbestand {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Ongeldig archief."
+msgstr "Ongeldig of beschadigd archief."
 
 msgid "View current"
 msgstr "Huidige weergeven"
@@ -2558,9 +2557,8 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "U kunt geen WebExtensions-add-on bijwerken met een verouderde add-on. Uw gebruikers zouden uw nieuwe versie dan niet kunnen gebruiken, omdat Firefox dit type update niet ondersteunt."
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "De ingevoerde tekst is gemarkeerd als spam."
+msgstr "[{field}] De tekst in het veld ‘{field}’ is gemarkeerd als spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "In het ingediende bestand is uw ontwikkelaars-API-sleutel aangetroffen. Om uw account te beschermen, zal de sleutel worden ingetrokken."
@@ -3288,9 +3286,8 @@ msgstr "Deze add-on verwijderen."
 msgid "Delete"
 msgstr "Verwijderen"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Details van dit thema bewerken."
+msgstr "Details op de productpagina van deze add-on bewerken."
 
 msgid "Upload a new version of this add-on."
 msgstr "Een nieuwe versie van deze add-on uploaden."
@@ -3313,9 +3310,8 @@ msgstr "Add-onvermelding bekijken"
 msgid "View Recent Changes"
 msgstr "Recente wijzigingen bekijken"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Details van dit thema bewerken."
+msgstr "Details op de productpagina van dit thema bewerken."
 
 msgid "View the popularity of this theme over time."
 msgstr "Het populariteitsverloop van dit thema bekijken."
@@ -3921,9 +3917,8 @@ msgstr "Hulpbronnen voor uitgevers bekijken"
 msgid "Welcome Back"
 msgstr "Welkom terug"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Help gebruikers uw extensie te ontdekken door een aantrekkelijke vermelding te maken."
+msgstr "Help gebruikers uw extensie te ontdekken door een aantrekkelijke productpagina te maken."
 
 msgid "Learn How"
 msgstr "Meer info"
@@ -7430,9 +7425,8 @@ msgstr "Weergegeven: {0} - {1} van {2} resultaten voor <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Weergegeven: {0} - {1} van {2} resultaten"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Kon geen add-on met id ‘{}’ vinden."
+msgstr "Kon geen add-on met guid ‘{}’ vinden."
 
 msgid "You do not own this addon."
 msgstr "Deze add-on is niet van u."
