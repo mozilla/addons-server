@@ -2270,11 +2270,8 @@ class TestAddonSearchView(ESTestCase):
 
         source_keys = response.hits.hits[0]['_source'].keys()
 
-        # TODO: 'name', 'description', 'hotness' and 'summary' are in there...
-        # for some reason I don't yet understand... (cgrebs 0717)
-        # maybe because they're used for boosting or filtering or so?
         assert not any(key in source_keys for key in (
-            'boost',
+            'boost', 'description', 'hotness', 'name', 'summary',
         ))
 
         assert not any(
@@ -2287,6 +2284,10 @@ class TestAddonSearchView(ESTestCase):
 
         assert not any(
             key.startswith('summary_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.endswith('.raw') for key in source_keys
         )
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
