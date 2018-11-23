@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-16 17:36+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"PO-Revision-Date: 2018-11-23 20:32+0000\n"
+"Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -910,7 +910,7 @@ msgstr[1] ""
 msgstr[2] ""
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Sarcina de validare nu a putut fi finalizată sau a fost finalizată cu erori"
 
 msgid "Internal server error"
 msgstr ""
