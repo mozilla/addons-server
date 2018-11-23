@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 08:12+0000\n"
+"PO-Revision-Date: 2018-11-23 08:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3263,7 +3263,7 @@ msgid "Delete"
 msgstr "Deler"
 
 msgid "Edit details on this add-on's product page."
-msgstr "Editar detalios sur iste pagina del producto del additivo."
+msgstr "Editar detalios sur iste pagina de producto del additivo."
 
 msgid "Upload a new version of this add-on."
 msgstr "Cargar un nove version de iste additivo."
@@ -3287,7 +3287,7 @@ msgid "View Recent Changes"
 msgstr "Vider recente cambiamentos"
 
 msgid "Edit details on this theme's product page."
-msgstr "Editar detalios sur iste pagina de producto del additivo."
+msgstr "Editar detalios sur iste pagina de producto del thema."
 
 msgid "View the popularity of this theme over time."
 msgstr "Vider le popularitate de iste thema in le tempore."
@@ -3890,9 +3890,8 @@ msgstr "Vide le ressources pro le editores"
 msgid "Welcome Back"
 msgstr "Ben-retornate"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Adjuta le usatores a discoperir tu extensiones per crear un lista de presentation attrahente."
+msgstr "Adjuta le usatores a discoperir tu extensiones per un lista de presentation attrahente."
 
 msgid "Learn How"
 msgstr "Apprende como"
@@ -7387,9 +7386,8 @@ msgstr "Monstra de {0} - {1} de {2} resultatos pro <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Monstra de {0} - {1} de {2} resultatos"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Impossibile trovar additivo con id \"{}\"."
+msgstr "Impossibile trovar un additivo con id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Tu non es proprietario de iste additivo."
