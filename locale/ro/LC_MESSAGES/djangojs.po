@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-15 07:30+0000\n"
+"PO-Revision-Date: 2018-11-23 22:28+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -777,20 +777,18 @@ msgid "Loading..."
 msgstr "Se încarcă..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> caracter rămas."
-msgstr[1] "<b>{0}</b> caractere rămase."
-msgstr[2] "<b>{0}</b> de caractere rămase."
+msgstr[0] "<b>{0}</b> caracter"
+msgstr[1] "<b>{0}</b> caractere"
+msgstr[2] "<b>{0}</b> de caractere"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> caracter rămas."
-msgstr[1] "<b>{0}</b> caractere rămase."
-msgstr[2] "<b>{0}</b> de caractere rămase."
+msgstr[0] "<b>{0}</b> caracter rămas"
+msgstr[1] "<b>{0}</b> caractere rămase"
+msgstr[2] "<b>{0}</b> de caractere rămase"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Această funcție este dezactivată temporar în timp ce site-ul este în mentenanță. Revino puțin mai târziu."
