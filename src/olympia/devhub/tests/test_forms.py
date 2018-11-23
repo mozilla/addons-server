@@ -272,7 +272,7 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         preview = addon.previews.all()[0]
         assert preview.sizes == (
-            {u'image': [250, 297], u'thumbnail': [168, 200],
+            {u'image': [250, 297], u'thumbnail': [202, 240],
              u'original': [250, 297]})
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)
