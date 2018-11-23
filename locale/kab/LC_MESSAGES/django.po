@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-08-20 17:22+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-16 17:18+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -21,6 +21,9 @@ msgstr "Iseɣwan gedlen."
 
 msgid "This display name cannot be used."
 msgstr "Isem-agi ur yettwaseqdac ara."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
 
 msgid "Usernames cannot contain only digits."
 msgstr "Ur issefk ara isem n useqdac ad yegber aweẓlu."
@@ -134,7 +137,7 @@ msgstr[0] "Yessefk akk tibzimint ad gebrent ma drus {0} n usekkil."
 msgstr[1] "Yessefk akk tibzimint ad gebrent ma drus {0} n isekkilen."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas-agi."
@@ -1909,41 +1912,86 @@ msgstr "Aramṣadan"
 msgid "Alerts & Updates"
 msgstr "Alɣu & Ileqman"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Arwes"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Ticraḍ n isebtar"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Asefrek n usider"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Isuddam, isallen & ublugi"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Uraren & Zhu"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Asefrek n tutlayt"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Tiwlafin, aẓawan & tvidyutin"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Tabaḍnit  & Taɣellist"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Tiɣin"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Timetti & Taɣwalt"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Iccaren"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Taneflit Web"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "Iγeṛsiwen"
@@ -1975,35 +2023,80 @@ msgstr "Addal"
 msgid "Abstract"
 msgstr "Agzul"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Tignatin"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Amaynut"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Isura & Tiliẓri"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Amras"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Aẓawan"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Iẓir"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Asemhay"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Ukmil"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Ismal web"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Amatu"
@@ -2041,29 +2134,62 @@ msgstr "Tividyutin"
 msgid "Device Features & Location"
 msgstr "Timahilin akked wadig n ibenkan"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "Armitan"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "Isuddam, isallen & ublugi"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "Tamellit"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "Tiwlafin & Allalen n teɣwalt"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "Taɣellist & Tabaḍnit"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "Aẓeṭṭa n tmetti"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "Addal & uraren"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "Agrudem n useqdac"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Akk izerfan ttwaḥerzen"
@@ -2327,6 +2453,10 @@ msgstr "Ma ulac aɣilif, mudd-d tasertit n tbadnit n uzegrir inek:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Yir aɣbaṛ"
+
 msgid "View current"
 msgstr "Wal lqem amiran"
 
@@ -2400,6 +2530,10 @@ msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ur tezmired ara ad tsemselsiḍ azegrir WebExtensions s uzegrir aqbuṛ. Iseqdacen inek ur ttizmiren ara ad sqedcen lqem amaynut acku Firefox ur isefrak ara anaw-agi n uleqqem."
+
+#, fuzzy
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tasarut-ik API n tneflit tettwaf deg ufaylu yettwaznen. Akken ad tḥerzeḍ amiḍan-ik, tasarutt ad tattwaḥwi."
@@ -2729,8 +2863,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> asentel"
 msgstr[1] "<b>{0}</b> isental"
 
-msgid "Edit Information"
-msgstr "Ẓreg talɣut"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Ulac"
@@ -3130,8 +3264,9 @@ msgstr "Kkes azegrir-agi."
 msgid "Delete"
 msgstr "Kkes"
 
-msgid "Edit information about this add-on."
-msgstr "Ẓreg talγut γef uzegrir-agi."
+#, fuzzy
+msgid "Edit details on this add-on's product page."
+msgstr "Ẓreg talqayt n tebdart n usentel-agi."
 
 msgid "Upload a new version of this add-on."
 msgstr "Sali lqem amaynut n uzegrir-agi."
@@ -3154,11 +3289,9 @@ msgstr "Sken tabdart n izegrar"
 msgid "View Recent Changes"
 msgstr "Sken asnifel n melmi kan"
 
-msgid "Edit details about this theme's listing."
+#, fuzzy
+msgid "Edit details on this theme's product page."
 msgstr "Ẓreg talqayt n tebdart n usentel-agi."
-
-msgid "Edit Listing"
-msgstr "Ẓreg tabdart"
 
 msgid "View the popularity of this theme over time."
 msgstr "Wali amek yettwassen usentel-agi deg akud."
@@ -3252,7 +3385,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Yella wayen nniḍen i yessefk ad ẓren imsekyaden i ucegger n uzegrir-agi?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Cfu"
 
 #, python-format
 msgid ""
@@ -3340,17 +3473,17 @@ msgid "Source Code Upload"
 msgstr "Tangalt aɣbalu tuli"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "Tesriḍ ad tazneḍ tangalt aɣbalu?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr ""
+msgstr "Ahat tesriḍ ad tazneḍ tangalt aɣbalu. Ma yella ala, azegrir-ik/im yezmer ad yettwakkes seg usmel!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr ""
+msgstr "Ma ulac aɣilif, cegger <a%(a_attrs)s>tasertit n tuzna n tangalt aɣbalu</a>."
 
 msgid "Do you use any of the following?"
-msgstr ""
+msgstr "Tseqdaceḍ yiwen seg wigi?"
 
 msgid "Code minifiers or obfuscators"
 msgstr ""
@@ -3758,7 +3891,8 @@ msgstr "Sken tidaddanin i useqdac"
 msgid "Welcome Back"
 msgstr "Anṣuf ar tuɣalin"
 
-msgid "Help users discover your extension by creating an appealing listing."
+#, fuzzy
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr "Mudd afus i yiseqdacen ad  walin asiɣzef s tira n uglam ijebbden."
 
 msgid "Learn How"
@@ -5713,6 +5847,9 @@ msgstr "Ur izmir ara ad isleḍ afaylu yulin, aferdis <%s>ulac-it neɣ d ilem"
 msgid "Could not parse uploaded file."
 msgstr "Ur izmir ara ad isleḍ afaylu yulin."
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -6828,9 +6965,6 @@ msgstr "Tugniwin n usentel"
 msgid "Rendered Preview"
 msgstr "Taskant n wudem"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr ""
-
 msgid "More about this add-on"
 msgstr "Ugar γef uzegrir-agi"
 
@@ -7235,6 +7369,9 @@ msgstr "Amnir n yimcegger"
 msgid "Theme Review for {0}"
 msgstr "Acegger n usentel i {0}"
 
+msgid "Edit Listing"
+msgstr "Ẓreg tabdart"
+
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
@@ -7392,7 +7529,8 @@ msgstr "Askan {0} - {1} si {2} igmaḍ i <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Askan {0} - {1} n {2} n igmaḍ"
 
-msgid "Could not find add-on with id \"{}\"."
+#, fuzzy
+msgid "Could not find add-on with guid \"{}\"."
 msgstr "UR izmir ara ad d-yaf azegrir s usulay id \"{}\"."
 
 msgid "You do not own this addon."

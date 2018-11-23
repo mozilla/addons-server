@@ -96,6 +96,23 @@ def get_filepath(fileorpath):
     return fileorpath
 
 
+def id_to_path(pk):
+    """
+    Generate a path from an id, to distribute folders in the file system.
+    1 => 1/1/1
+    12 => 2/12/12
+    123456 => 6/56/123456
+    """
+    pk = unicode(pk)
+    path = [pk[-1]]
+    if len(pk) >= 2:
+        path.append(pk[-2:])
+    else:
+        path.append(pk)
+    path.append(pk)
+    return os.path.join(*path)
+
+
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
     if hasattr(fileorpath, 'path'):  # FileUpload
@@ -387,8 +404,11 @@ class ManifestJSONExtractor(object):
 
     @property
     def gecko(self):
-        """Return the "applications["gecko"]" part of the manifest."""
-        return self.get('applications', {}).get('gecko', {})
+        """Return the "applications|browser_specific_settings["gecko"]" part
+        of the manifest."""
+        parent_block = self.get(
+            'browser_specific_settings', self.get('applications', {}))
+        return parent_block.get('gecko', {})
 
     @property
     def guid(self):
@@ -423,9 +443,11 @@ class ManifestJSONExtractor(object):
                 (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
             )
         elif type_ == amo.ADDON_STATICTHEME:
-            # Static themes are only compatible with Firefox desktop >= 53.
+            # Static themes are only compatible with Firefox desktop >= 53
+            # and Firefox for Android >=65.
             apps = (
                 (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
+                (amo.ANDROID, amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID),
             )
         elif type_ == amo.ADDON_DICT:
             # WebExt dicts are only compatible with Firefox desktop >= 61.
@@ -433,8 +455,12 @@ class ManifestJSONExtractor(object):
                 (amo.FIREFOX, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX),
             )
         else:
+            webext_min = (
+                amo.DEFAULT_WEBEXT_MIN_VERSION
+                if self.get('browser_specific_settings', None) is None
+                else amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
             apps = (
-                (amo.FIREFOX, amo.DEFAULT_WEBEXT_MIN_VERSION),
+                (amo.FIREFOX, webext_min),
                 (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
             )
 

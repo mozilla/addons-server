@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-01 13:58+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-15 19:47+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -52,8 +52,8 @@ msgstr "Έχουμε ενεργοποιήσει ένα νέο linter για επ
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Το πρόσθετο σας απέτυχε να επικυρωθεί, επιστρέφοντας {0} σφάλμα."
-msgstr[1] "Το πρόσθετο σας απέτυχε να επικυρωθεί, επιστρέφοντας {0} σφάλματα."
+msgstr[0] "Αποτυχία επαλήθευσης προσθέτου με {0} σφάλμα."
+msgstr[1] "Αποτυχία επαλήθευσης προσθέτου με {0} σφάλματα."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -289,7 +289,7 @@ msgid "Add-ons Updated"
 msgstr "Ενημερωμένα πρόσθετα"
 
 msgid "Reviews Written"
-msgstr "Συνταχθείσες αξιολογήσεις"
+msgstr "Γραπτές κριτικές"
 
 msgid "User Signups"
 msgstr "Εγγραφές χρήστη"

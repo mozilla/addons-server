@@ -31,28 +31,4 @@
     {{ form.listed }}
   </div>
 
-  <div id="icon_form">
-    <label for="id_icon">
-      {{ form.icon.label }}
-      <span class="optional">{{ _('(optional)') }}</span>
-    </label>
-    <div id="icon_upload">
-      {% if collection %}
-        <div class="icon_preview">
-          <img src="{{ collection.icon_url }}" alt="{{ _('Collection Icon') }}" />
-         {% if collection.icontype %}
-          <a href="{{ collection.delete_icon_url() }}" id="remove_icon">{{ _('Reset') }}</a>
-          {% endif %}
-        </div>
-      {% endif %}
-
-      {{ form.icon.errors }}
-      {{ form.icon }}
-
-      <p class="note">
-      {{ _('PNG and JPG supported.  Image will be resized to 32x32.') }}
-      </p>
-    </div>
-  </div>
-
 </fieldset>

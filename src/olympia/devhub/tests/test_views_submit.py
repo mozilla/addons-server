@@ -1251,8 +1251,10 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory.objects.filter(
             addon=self.get_addon(),
             category=Category.objects.get(id=71)).delete()
-        Category.from_static_category(CATEGORIES_BY_ID[300]).save()
-        Category.from_static_category(CATEGORIES_BY_ID[308]).save()
+        Category.from_static_category(CATEGORIES_BY_ID[300]).save()  # abstract
+        Category.from_static_category(CATEGORIES_BY_ID[308]).save()  # firefox
+        Category.from_static_category(CATEGORIES_BY_ID[400]).save()  # abstract
+        Category.from_static_category(CATEGORIES_BY_ID[408]).save()  # firefox
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=11, on_form=True, creative_commons=True)
@@ -1266,7 +1268,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
-        cat_form = {'category': 300}
+        cat_form = {'category': 'abstract'}
         license_form = {'license-builtin': 11}
         result.update(describe_form)
         result.update(cat_form)
@@ -1316,21 +1318,23 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
     def test_submit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
-        self.is_success(self.get_dict(category=308))
+        self.is_success(self.get_dict(category='firefox'))
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [308, 408]
 
     def test_submit_categories_change(self):
-        category = Category.objects.get(id=300)
-        AddonCategory(addon=self.addon, category=category).save()
+        category_desktop = Category.objects.get(id=300)
+        category_android = Category.objects.get(id=400)
+        AddonCategory(addon=self.addon, category=category_desktop).save()
+        AddonCategory(addon=self.addon, category=category_android).save()
         assert sorted(
-            [cat.id for cat in self.get_addon().all_categories]) == [300]
+            [cat.id for cat in self.get_addon().all_categories]) == [300, 400]
 
-        self.client.post(self.url, self.get_dict(category=308))
+        self.client.post(self.url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [308]
+        assert category_ids_new == [308, 408]
 
     def test_creative_commons_licenses(self):
         response = self.client.get(self.url)

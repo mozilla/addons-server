@@ -155,10 +155,17 @@ class TestManifestJSONExtractor(TestCase):
         extractor = utils.ManifestJSONExtractor(zipfile.ZipFile(fake_zip))
         assert extractor.data == data
 
-    def test_guid(self):
+    def test_guid_from_applications(self):
         """Use applications>gecko>id for the guid."""
         assert self.parse(
             {'applications': {
+                'gecko': {
+                    'id': 'some-id'}}})['guid'] == 'some-id'
+
+    def test_guid_from_browser_specific_settings(self):
+        """Use applications>gecko>id for the guid."""
+        assert self.parse(
+            {'browser_specific_settings': {
                 'gecko': {
                     'id': 'some-id'}}})['guid'] == 'some-id'
 
@@ -256,6 +263,16 @@ class TestManifestJSONExtractor(TestCase):
         app = apps[0]
         assert app.appdata == amo.FIREFOX
         assert app.min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
+        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        # But if 'browser_specific_settings' is used, it's higher min version.
+        data = {'browser_specific_settings': {'gecko': {'id': 'some-id'}}}
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1  # Only Firefox for now.
+        app = apps[0]
+        assert app.appdata == amo.FIREFOX
+        assert app.min.version == (
+            amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
         assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_is_webextension(self):
@@ -502,8 +519,12 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert self.parse({})['type'] == amo.ADDON_STATICTHEME
 
     def create_webext_default_versions(self):
-        self.create_appversion('firefox',
-                               amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        self.create_appversion(
+            'firefox', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        self.create_appversion(
+            'android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        self.create_appversion(
+            'android', amo.DEFAULT_WEBEXT_MAX_VERSION)
         return (super(TestManifestJSONExtractorStaticTheme, self)
                 .create_webext_default_versions())
 
@@ -515,20 +536,16 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
         data = {}
         apps = self.parse(data)['apps']
-        assert len(apps) == 1
+        assert len(apps) == 2
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == (
             amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
         assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
-        # Static themes don't support Android yet.  So check they aren't there.
-        self.create_appversion(
-            'android', amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID)
-        self.create_appversion(
-            'android', amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
-        self.create_appversion('android', amo.DEFAULT_WEBEXT_MAX_VERSION)
-
-        assert apps == self.parse(data)['apps']  # Same as before.
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min.version == (
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_default_versions_if_none_provided(self):
         """Use the default min and max versions if none provided."""
@@ -536,33 +553,42 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
         data = {'applications': {'gecko': {'id': 'some-id'}}}
         apps = self.parse(data)['apps']
-        assert len(apps) == 1  # Only Firefox for now.
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min.version == amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX
-        assert app.max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+        assert len(apps) == 2
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == (
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX)
+        assert apps[0].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
+
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min.version == (
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID)
+        assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_apps_use_provided_versions(self):
         """Use the min and max versions if provided."""
-        firefox_min_version = self.create_appversion('firefox', '54.0')
-        firefox_max_version = self.create_appversion('firefox', '54.*')
+        firefox_min_version = self.create_appversion('firefox', '66.0')
+        firefox_max_version = self.create_appversion('firefox', '66.*')
+        android_min_version = self.create_appversion('android', '66.0')
+        android_max_version = self.create_appversion('android', '66.*')
 
         self.create_webext_default_versions()
         data = {
             'applications': {
                 'gecko': {
-                    'strict_min_version': '>=54.0',
-                    'strict_max_version': '=54.*',
+                    'strict_min_version': '>=66.0',
+                    'strict_max_version': '=66.*',
                     'id': '@random'
                 }
             }
         }
         apps = self.parse(data)['apps']
-        assert len(apps) == 1
-        app = apps[0]
-        assert app.appdata == amo.FIREFOX
-        assert app.min == firefox_min_version
-        assert app.max == firefox_max_version
+        assert len(apps) == 2
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min == firefox_min_version
+        assert apps[0].max == firefox_max_version
+        assert apps[1].appdata == amo.ANDROID
+        assert apps[1].min == android_min_version
+        assert apps[1].max == android_max_version
 
     def test_apps_contains_wrong_versions(self):
         """Use the min and max versions if provided."""
@@ -1014,3 +1040,14 @@ class TestGetBackgroundImages(TestCase):
             self.file_obj, data, header_only=True)
         assert len(images.items()) == 1
         assert len(images['empty.png']) == 332
+
+
+@pytest.mark.parametrize('value, expected', [
+    (1, '1/1/1'),
+    (1, '1/1/1'),
+    (12, '2/12/12'),
+    (123, '3/23/123'),
+    (123456789, '9/89/123456789'),
+])
+def test_id_to_path(value, expected):
+    assert utils.id_to_path(value) == expected

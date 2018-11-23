@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
 "PO-Revision-Date: 2018-10-30 11:12+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -27,6 +27,10 @@ msgstr "Посилання не дозволені."
 
 msgid "This display name cannot be used."
 msgstr "Це ім'я для показу не можна використати."
+
+#, fuzzy
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Це поле можна використовувати лише для посилання на зовнішні веб-сайти. URL-адреси на %(domain)s не дозволяються."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Імена користувачів не можуть містити лише цифри."
@@ -578,8 +582,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Деяким додаткам потрібен дозвіл для виконання певних функцій (наприклад: додаток для керування вкладками запитає вас про дозвіл на доступ до системи вкладок браузера)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "У зв'язку з тим, що ви контролюєте Firefox, вибір надання чи заборони дозволу цілком належить вам. Загалом, надання дозволів не впливає на швидкодію і безпеку браузера, але в окремих рідкісних "
 "випадках є певний ризик."
@@ -791,17 +795,17 @@ msgstr "Не знайдено"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Вибачте, проте ми не можемо знайти те, що ви шукали.</h1> <p>Запитану сторінку чи файл не знайдено на нашому сайті. Можливо, ви натиснули застаріле посилання або неправильно ввели адресу. </p> "
 "<ul> <li>Якщо ви вводили адресу вручну, переконайтесь у її правильності.</li> <li> Якщо ви перейшли за посиланням, <a href=\"https://github.com/mozilla/addons-server/issues/new/\">повідомте про "
-"проблему</a>. Розкажіть нам звідки ви перейшли і що ви шукали і ми зробимо все можливе, щоб це виправити. </li> </ul> <p>Або ж ви можете просто перейти до деяких популярних сторінок нашого "
-"сайту.</p> <ul> <li>Можливо, вас зацікавить <a href=\"%(rec)s\">список обраних додатків</a>?</li> <li> Або ж ви хочете <a href=\"%(search)s\">знайти додаток</a>? Ви можете перейти на <a "
-"href=\"%(search)s\">сторінку пошуку</a> або просто скористатися полем пошуку, розташованим вгорі. </li> <li> Якщо ви бажаєте почати спочатку, просто перейдіть на <a href=\"%(home)s\">головну "
-"сторінку додатків</a>. </li> </ul>"
+"проблему</a>. Розкажіть нам звідки ви перейшли і що ви шукали і ми зробимо все можливе, щоб це виправити. </li> </ul> <p>Або ж ви можете просто перейти до деяких популярних сторінок нашого сайту.</"
+"p> <ul> <li>Можливо, вас зацікавить <a href=\"%(rec)s\">список обраних додатків</a>?</li> <li> Або ж ви хочете <a href=\"%(search)s\">знайти додаток</a>? Ви можете перейти на <a href=\"%(search)s"
+"\">сторінку пошуку</a> або просто скористатися полем пошуку, розташованим вгорі. </li> <li> Якщо ви бажаєте почати спочатку, просто перейдіть на <a href=\"%(home)s\">головну сторінку додатків</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Ой"
@@ -848,8 +852,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Введіть будь ласка <strong>всі слова</strong> внизу, <strong>разом з пробілами</strong>. </p> <p> Якщо важко прочитати, ви можете <a href=\"#\" id=\"recaptcha_different\">спробувати інші "
-"слова</a> або <a href=\"#\" id=\"recaptcha_audio\">спробувати інший тип відображення</a> натомість. </p>"
+"<p> Введіть будь ласка <strong>всі слова</strong> внизу, <strong>разом з пробілами</strong>. </p> <p> Якщо важко прочитати, ви можете <a href=\"#\" id=\"recaptcha_different\">спробувати інші слова</"
+"a> або <a href=\"#\" id=\"recaptcha_audio\">спробувати інший тип відображення</a> натомість. </p>"
 
 msgid "Top Rated"
 msgstr "Найвище оцінені"
@@ -985,8 +989,8 @@ msgstr "Версії"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Навіть якщо підтримуваний Вами застосунок не вимагає файлу маніфесту, Вам все одно необхідно вказати %(amo_manifests_mdn_link_open)sтут%(amo_manifests_mdn_link_close)s властивості, що вимагаються."
 
@@ -1159,8 +1163,8 @@ msgstr ""
 "побачити. Якщо Ви хочете приховати її від публічного перегляду, натисніть розташовану нижче кнопку, щоб зробити її приватною."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Додатки, які ви позначаєте як улюблені, використовуючи <b>Додати до вподобань</b>, з'являться нижче. Ця збірка наразі є <b>приватною</b>, що означає, що лише ви можете її бачити.  Якщо ви хочете, "
 "щоб всі мали змогу бачити ваші вподобання, натисніть на кнопку нижче."
@@ -1353,8 +1357,8 @@ msgstr "Встановити мовний пакет"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 "Встановлення словника у вигляді розширення додасть нову мову в функцію перевірки правопису %(app_name)s, яка перевіряє наявність помилок у тексті, який ви вводите у веб-формах. Мовні пакунки "
 "повністю змінюють мову програми."
@@ -1943,41 +1947,86 @@ msgstr "Несумісно"
 msgid "Alerts & Updates"
 msgstr "Дані сторінок, повідомлення та віджети"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Налаштування інтерфейсу"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Закладки"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Завантаження та керування файлами"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS, новини та блоги"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Ігри та розваги"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Підтримка мов та перекладів"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Фото та мультимедіа"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Конфіденційність та безпека"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Покупки"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Соціальні"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Вкладки"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Інструменти розробника"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "Тварини"
@@ -2009,35 +2058,80 @@ msgstr "Спорт"
 msgid "Abstract"
 msgstr "Абстрактні"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Активізм"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Мода"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Фільми й телебачення"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Святкові"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Музичні"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Пейзажі"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Пори року"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Суцільні"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Веб-сайти"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Загальне"
@@ -2075,29 +2169,62 @@ msgstr "Відео"
 msgid "Device Features & Location"
 msgstr "Функції пристрою і розташування"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "Експериментальні"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "Стрічки, новини та блоги"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "Швидкодія"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "Фото і медіа"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "Безпека і приватність"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "Соціальні мережі"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "Спорт та ігри"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "Інтерфейс користувача"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Всі права захищені"
@@ -2355,6 +2482,10 @@ msgstr "Вкажіть політику приватності вашого до
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Непідтримуваний тип файлу, вивантажте будь ласка файл архіву (розширення)."
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Некоректний архів."
+
 msgid "View current"
 msgstr "Переглянути поточний"
 
@@ -2398,7 +2529,8 @@ msgstr ""
 "На цьому сайті. <span class=\"helptext\">Після проходження перевірки коду, ваше подання буде опубліковано на цьому сайті та в менеджері додатків Firefox для мільйонів користувачів. Автоматичні "
 "оновлення проводяться цим сайтом. Цей додаток також буде розглядатися для поширення та конкурсів Mozilla. Також можливо розповсюджувати перевірені файли власними засобами.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Власними засобами. <span class=\"helptext\">Ваше подання буде негайно підписано для розповсюдження власними засобами. Оновлення повинні проводитися вами вручну через updateURL або зовнішні "
 "оновлення.</span>"
@@ -2427,6 +2559,10 @@ msgstr "Ми дозволяємо і заохочуємо оновлення, а
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Ви не можете оновити додаток WebExtensions на застарілий додаток. Ваші користувачі не зможуть використовувати нову версію, тому що Firefox не підтримує цей тип оновлення."
+
+#, fuzzy
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "Введений текст було позначено як спам."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Ваш API-ключ розробника було знайдено у відправленому файлі. Для захисту вашого облікового запису ключ буде відкликано."
@@ -2585,8 +2721,8 @@ msgid "API key revoked"
 msgstr "API ключ відкликано"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Перш ніж почати, будь ласка прочитайте і прийміть нашу Угода про розповсюдження додатків Firefox, а також наші Політики і Правила перевірки. Угода про розповсюдження додатків Firefox також "
 "посилається на Повідомлення про приватність, яке пояснює, як ми обробляємо вашу інформацію."
@@ -2710,7 +2846,9 @@ msgstr ""
 "його нової версії."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Оновити сумісність</a> <a href=\"%(version_url)s\" class=\"button\">Завантажити нову версію</a> або <a href=\"#\" "
 "class=\"close\">Ігнорувати</a>"
@@ -2756,8 +2894,8 @@ msgstr[0] "<b>{0}</b> тема"
 msgstr[1] "<b>{0}</b> теми"
 msgstr[2] "<b>{0}</b> тем"
 
-msgid "Edit Information"
-msgstr "Змінити інформацію"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Жодного"
@@ -2784,8 +2922,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Додатки можуть мати будь-яку кількість авторів з 2 можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатка, включаючи додавання і вилучення інших "
-"авторів</li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатка, за винятком додавання і вилучення інших авторів</li> </ul>"
+"<p>Додатки можуть мати будь-яку кількість авторів з 2 можливими ролями:</p> <ul> <li><b>Власник:</b> Може керувати всіма аспектами розміщення додатка, включаючи додавання і вилучення інших авторів</"
+"li> <li><b>Розробник:</b> Може керувати всіма аспектами розміщення додатка, за винятком додавання і вилучення інших авторів</li> </ul>"
 
 msgid "Additional Details"
 msgstr "Додаткові подробиці"
@@ -2883,7 +3021,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Категорії є основним критерієм, за яким користувачі переглядають додатки. Виберіть будь-яку, яка найкращим чином відповідає функціональності вашого додатка."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Якщо Ваш додаток для цієї програми є Обраним, його категорії не можуть бути змінені. Якщо у Вас є причина, через яку Вам необхідно змінити Ваші категорії, будь ласка, напишіть за цією адресою <a "
 "href=\"mailto:%(email)s\">%(email)s</a>."
@@ -2891,15 +3030,15 @@ msgstr ""
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Поки ваш додаток знаходиться серед обраних, його категорію змінити неможливо. Якщо у вас є причина для зміни категорії, будь ласка, надішліть повідомлення на адресу <a "
-"href=\"mailto:%(email)s\">%(email)s</a>."
+"Поки ваш додаток знаходиться серед обраних, його категорію змінити неможливо. Якщо у вас є причина для зміни категорії, будь ласка, надішліть повідомлення на адресу <a href=\"mailto:%(email)s\">"
+"%(email)s</a>."
 
 msgid "Email"
 msgstr "Адреса ел. пошти"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Якщо ви хочете показати адресу електронної пошти для запитів підтримки, введіть її тут. Якщо у вас є різні адреси для для кожної мови, для цього поля можна додати кілька перекладів. Це стосується "
 "тільки додатків, що знаходяться в списку."
@@ -3165,8 +3304,9 @@ msgstr "Вилучити цей додаток."
 msgid "Delete"
 msgstr "Вилучити"
 
-msgid "Edit information about this add-on."
-msgstr "Змінити інформацію про цей додаток."
+#, fuzzy
+msgid "Edit details on this add-on's product page."
+msgstr "Редагувати інформацію про сторінку цієї теми."
 
 msgid "Upload a new version of this add-on."
 msgstr "Вивантажити нову версію цього додатка."
@@ -3189,11 +3329,9 @@ msgstr "Показати сторінку додатка"
 msgid "View Recent Changes"
 msgstr "Переглянути нещодавні зміни"
 
-msgid "Edit details about this theme's listing."
+#, fuzzy
+msgid "Edit details on this theme's product page."
 msgstr "Редагувати інформацію про сторінку цієї теми."
-
-msgid "Edit Listing"
-msgstr "Редагувати"
 
 msgid "View the popularity of this theme over time."
 msgstr "Переглянути популярність цієї теми протягом часу."
@@ -3259,8 +3397,8 @@ msgstr "Цей додаток є експериментальним"
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
-"Позначте цю опцію, якщо ваш додаток є експериментальним або з будь-яких причин не готовий до загального використання.  Додаток буде опубліковано, але із зниженим рівнем видимості.  Ви можете пізніше"
-" змінити це налаштування."
+"Позначте цю опцію, якщо ваш додаток є експериментальним або з будь-яких причин не готовий до загального використання.  Додаток буде опубліковано, але із зниженим рівнем видимості.  Ви можете "
+"пізніше змінити це налаштування."
 
 msgid "Select a category for this add-on:"
 msgstr "Оберіть категорію для цього додатка:"
@@ -3420,11 +3558,11 @@ msgid "Operating system and build environment requirements."
 msgstr "Вимоги до операційної системи й середовища компонування."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
-"Подробиці (включно з необхідною версією та інструкціями з встановлення) про будь-яку програму, що використовується для процесу компонування (наприклад: використана версія <span class=\"tech-"
-"emphasis\">node</span> та <span class=\"tech-emphasis\">npm</span>)."
+"Подробиці (включно з необхідною версією та інструкціями з встановлення) про будь-яку програму, що використовується для процесу компонування (наприклад: використана версія <span class=\"tech-emphasis"
+"\">node</span> та <span class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
@@ -3539,11 +3677,11 @@ msgstr "JWT таємниця"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Для здійснення запитів API, надішліть <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> в якості заголовку авторизації. Вам потрібно згенерувати JWT для кожного запиту, як описано у <a "
-"href=\"%(docs_url)s\">API документації</a>."
+"Для здійснення запитів API, надішліть <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> в якості заголовку авторизації. Вам потрібно згенерувати JWT для кожного запиту, як описано у <a href="
+"\"%(docs_url)s\">API документації</a>."
 
 msgid "You don't have any API credentials."
 msgstr "У вас немає жодних облікових даних API."
@@ -3677,8 +3815,8 @@ msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
-"Користувачам треба буде обов'язково прийняти наступну Ліцензійну Угоду Кінцевого Користувача (EULA) до встановлення вашого додатка. Присутність EULA істотно впливає на кількість завантажень додатка."
-" Будь ласка, зауважте, що ліцензійна угода це не те ж саме, що і ліцензія на код, така як GPL або MPL. Це стосується тільки додатків, які включені до галереї."
+"Користувачам треба буде обов'язково прийняти наступну Ліцензійну Угоду Кінцевого Користувача (EULA) до встановлення вашого додатка. Присутність EULA істотно впливає на кількість завантажень "
+"додатка. Будь ласка, зауважте, що ліцензійна угода це не те ж саме, що і ліцензія на код, така як GPL або MPL. Це стосується тільки додатків, які включені до галереї."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3789,11 +3927,11 @@ msgstr "Ресурси для успішного запуску"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Ви створили розширення і готові його оприлюднити. Що далі? Ознайомтеся з нашими порадами про створення привабливої сторінки додатка, долучення до відібраних на "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, знаходження відповідей на питання стосовно розробки, а також щоб бути в курсі новин та подій, що стосуються розробників розширень."
+"Ви створили розширення і готові його оприлюднити. Що далі? Ознайомтеся з нашими порадами про створення привабливої сторінки додатка, долучення до відібраних на %(amo_link_open)saddons.mozilla.org"
+"%(amo_link_close)s, знаходження відповідей на питання стосовно розробки, а також щоб бути в курсі новин та подій, що стосуються розробників розширень."
 
 msgid "View Resources for Publishers"
 msgstr "Перегляд ресурсів для тих, хто розміщує розширення"
@@ -3801,7 +3939,8 @@ msgstr "Перегляд ресурсів для тих, хто розміщує
 msgid "Welcome Back"
 msgstr "З поверненням"
 
-msgid "Help users discover your extension by creating an appealing listing."
+#, fuzzy
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr "Допоможіть користувачам дізнатися про ваше розширення, створивши гарний опис."
 
 msgid "Learn How"
@@ -3851,8 +3990,8 @@ msgstr "Пристосуйте Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Додатки дозволяють мільйонам користувачів Firefox розширювати їхні можливості в мережі Інтернет. Якщо ви знаєте %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s та "
 "%(css_link_open)sCSS%(link_close)s, у вас вже є всі необхідні навички для створення чудового додатка."
@@ -4002,11 +4141,11 @@ msgstr "Дайте назву своїй темі."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Я погоджуюся з %(agreement_link_open)sУгодою про розповсюдження додатків Firefox%(link_close)s і з тим, що моя інформація обробляється у відповідності з %(privacy_notice_link_open)sПовідомленням про"
-" приватність веб-сайтів, комунікацій та куків%(link_close)s."
+"Я погоджуюся з %(agreement_link_open)sУгодою про розповсюдження додатків Firefox%(link_close)s і з тим, що моя інформація обробляється у відповідності з %(privacy_notice_link_open)sПовідомленням "
+"про приватність веб-сайтів, комунікацій та куків%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Представити тему"
@@ -5598,6 +5737,9 @@ msgstr "Не вдалося розібрати завантажений файл
 msgid "Could not parse uploaded file."
 msgstr "Не вдалося розібрати завантажений файл."
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Неправильна назва файлу в архіві. Переконайтеся, що всі назви файлів мають кодування utf-8 або latin1."
@@ -5929,7 +6071,8 @@ msgstr ""
 "додатків."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Допоможіть покращити цей веб-сайт. Його програмний код є відкритим і ви можете реєструвати помилки та відправляти виправлення. <a href=\"%(url)s\">GitHub</a> містить всі наші поточні помилки, "
 "успадковані помилки все ще можуть бути знайдені в Bugzilla."
@@ -5974,8 +6117,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Поширені питання про відгуки"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Відгуки є способом поділитися своїми враженнями про використання додатку. Наша команда модераторів залишає за собою право відхиляти або видаляти будь-який відгук, який не відповідає цим критеріям."
 
@@ -6162,8 +6305,8 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
-"В Mozilla ми з гордістю створюємо продукти для вас, користувачів! Ось чому нам потрібна ваша допомога. Беручи участь у цьому дослідженні, ви допоможете нам приймати кращі рішення від вашого імені, а"
-" також безпосередньо визначати майбутнє Firefox!"
+"В Mozilla ми з гордістю створюємо продукти для вас, користувачів! Ось чому нам потрібна ваша допомога. Беручи участь у цьому дослідженні, ви допоможете нам приймати кращі рішення від вашого імені, "
+"а також безпосередньо визначати майбутнє Firefox!"
 
 msgid "Brought to you by:"
 msgstr "Надано:"
@@ -6229,16 +6372,16 @@ msgstr "Додати відгук для {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Зверніть увагу на ці поради:</h2> <ul> <li> Пишіть так, наче ви розповідаєте друзям про ваші враження при роботі з додатком. Додавайте конкретні та корисні подробиці, наприклад, які функції вам "
 "сподобались чи не сподобались, наскільки він є простим в користуванні, а також будь-які його недоліки. Уникайте загальних виразів, наприклад, \"Чудово\", або \"Погано\", якщо ви не можете вказати "
 "причини того, чому ви так вважаєте. </li> <li> Не повідомляйте про помилки тут. Ми не робимо вашу адресу електронної пошти доступною розробникам додатків, отже вони не зможуть зв'язатися з вами для "
-"вирішення проблеми. Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб перевірити наявність допомоги. Ви також можете задати питання <a href=\"https://discourse.mozilla-community.org/c"
-"/add-ons/add-on-support\">спільноті додатків</a> для отримання допомоги. </li> <li>Будь ласка, пишіть відгуки чисто, уникайте використання недоречних виразів і не публікуйте ніякої особистої "
+"вирішення проблеми. Перегляньте <a href=\"%(support)s\">розділ підтримки</a>, щоб перевірити наявність допомоги. Ви також можете задати питання <a href=\"https://discourse.mozilla-community.org/c/"
+"add-ons/add-on-support\">спільноті додатків</a> для отримання допомоги. </li> <li>Будь ласка, пишіть відгуки чисто, уникайте використання недоречних виразів і не публікуйте ніякої особистої "
 "інформації. </li> </ul> <p>Ознайомтеся з <a href=\"%(guide)s\">Настановами про відгуки</a> для отримання докладнішої інформації про відгуки користувачів про додатки.</p>"
 
 msgid "Reply to review by {0}"
@@ -6731,9 +6874,6 @@ msgstr "Зображення теми"
 msgid "Rendered Preview"
 msgstr "Відображений перегляд"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Файл зображення тла {0} із {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Докладніше про цей додаток"
 
@@ -7138,6 +7278,9 @@ msgstr "Інструкція редактора"
 msgid "Theme Review for {0}"
 msgstr "Перегляд теми для {0}"
 
+msgid "Edit Listing"
+msgstr "Редагувати"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Можливо повторюване представлення)"
 
@@ -7300,7 +7443,8 @@ msgstr "Показ результатів {0} - {1} з {2} для <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Показ результатів {0} - {1} з {2}"
 
-msgid "Could not find add-on with id \"{}\"."
+#, fuzzy
+msgid "Could not find add-on with guid \"{}\"."
 msgstr "Не вдалося знайти додаток з ID \"{}\"."
 
 msgid "You do not own this addon."
@@ -7547,18 +7691,18 @@ msgstr "Про відстеження зовнішніх джерел..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Відстеження зовнішніх джерел</h2> <p> Якщо ви посилаєтеся на сторінку інформації про ваш додаток чи безпосередньо на його файл з стороннього сайту, такого як ваш блог або веб-сайт, ви можете "
-"додати параметр для відстеження додаткових джерел завантаження на цій сторінці. Наприклад, наступні посилання з'являться як ті, що виходять з вашого блогу: <dl> <dt>Сторінка інформації про "
-"додаток</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Пряме посилання на файл</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Будуть відслідковані тільки параметри src, що починаються з \"external-\", "
-"довжиною до 61 додаткового символа. Будь-який текст після \"external-\" може бути використаний для опису джерела, наприклад \"external-blog\", \"external-sidebar\", \"external-campaign225\", і т.д. "
-"Дозволені наступні безпечні для створення URL символи: <code>a-z A-Z - . _ ~ %% +</code>"
+"додати параметр для відстеження додаткових джерел завантаження на цій сторінці. Наприклад, наступні посилання з'являться як ті, що виходять з вашого блогу: <dl> <dt>Сторінка інформації про додаток</"
+"dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Пряме посилання на файл</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?"
+"src=<b>external-blog</b></dd> </dl> <p> Будуть відслідковані тільки параметри src, що починаються з \"external-\", довжиною до 61 додаткового символа. Будь-який текст після \"external-\" може бути "
+"використаний для опису джерела, наприклад \"external-blog\", \"external-sidebar\", \"external-campaign225\", і т.д. Дозволені наступні безпечні для створення URL символи: <code>a-z A-Z - . _ ~ %% "
+"+</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Статус додатка за датою"
@@ -7576,8 +7720,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>Що таке щоденні користувачі?</h2> <p> Теми, встановлені з цього сайту, перевіряють наявність оновлень один раз на день. Загальна кількість таких перевірок на поновлення відомо як Активні Щоденні"
-" Користувачі, або загальне число людей, що використовують вашу тему за день. </p>"
+"<h2>Що таке щоденні користувачі?</h2> <p> Теми, встановлені з цього сайту, перевіряють наявність оновлень один раз на день. Загальна кількість таких перевірок на поновлення відомо як Активні "
+"Щоденні Користувачі, або загальне число людей, що використовують вашу тему за день. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "

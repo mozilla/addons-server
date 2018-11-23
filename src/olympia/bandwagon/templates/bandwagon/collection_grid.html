@@ -6,14 +6,6 @@
     <li>
       <div class="hovercard collection addon">
         <a href="{{ collection.get_url_path() }}">
-          <div class="icon">
-            {% if first_page %}
-              <img src="{{ collection.icon_url }}" alt="">
-            {% else %}
-              <img data-defer-src="{{ collection.icon_url }}"  alt=""
-                   src="{{ static('img/addon-icons/default-32.png') }}">
-            {% endif %}
-          </div>
           <div class="summary">
             <h3>{{ collection.name }}</h3>
             <p class="desc">{{ collection.description|striptags }}</p>

@@ -135,9 +135,14 @@
                 </div>
                 <div class="edit-media-details">
                   {% trans %}
-                    PNG and JPG supported. The maximum and recommended size for screenshots is
-                    1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller
-                    images. Having screenshots in your product page greatly increases its chances of
+                    PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is
+                    2400x1800 pixels.
+                  {% endtrans %}
+                  {% if waffle.switch('content-optimization') %}
+                    {{ _('Minimum size is 1000x750, and a ratio of 4:3 is required.') }}
+                  {% endif %}
+                  {% trans %}
+                    Having screenshots in your product page greatly increases its chances of
                     being installed and being featured in the homepage.
                   {% endtrans %}
                 </div>

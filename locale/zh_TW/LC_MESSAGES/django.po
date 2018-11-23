@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-04 04:59+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-19 14:57+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -20,6 +20,9 @@ msgstr "不允許加入鏈結。"
 
 msgid "This display name cannot be used."
 msgstr "無法使用此顯示名稱。"
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "首頁欄位僅能用於鏈結到外部網站。"
 
 msgid "Usernames cannot contain only digits."
 msgstr "使用者名稱不能只有數字。"
@@ -1888,41 +1891,86 @@ msgstr "不相容"
 msgid "Alerts & Updates"
 msgstr "警示與更新"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "外觀"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "書籤"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "下載管理"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "資訊來源、新聞、部落格"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "遊戲與娛樂"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "語言支援"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "相片、音樂、影片"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "隱私與安全"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "購物"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "社交通訊"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "分頁"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "網頁開發"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "動物"
@@ -1954,35 +2002,80 @@ msgstr "體育"
 msgid "Abstract"
 msgstr "抽象"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "原因"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "流行"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "電影電視"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "假期"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "音樂"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "風景"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "季節"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "固體"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "網站"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "一般"
@@ -2020,29 +2113,62 @@ msgstr "影片"
 msgid "Device Features & Location"
 msgstr "裝置功能與地理位置"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "實驗中"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "資訊來源、新聞、部落格"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "效能"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "相片與媒體"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "安全性與隱私"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "社交網路"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "體育與競賽"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "使用者介面"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "保留所有權利"
@@ -2306,6 +2432,9 @@ msgstr "請註明您附加元件的隱私權保護政策:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支援的檔案格式，請上傳 {extensions} 格式的封存檔。"
 
+msgid "Invalid or broken archive."
+msgstr "無效或毀損的壓縮檔。"
+
 msgid "View current"
 msgstr "檢視目前檔案"
 
@@ -2373,6 +2502,9 @@ msgstr "我們允許，也鼓勵您升級，但升級後就不能回頭了。當
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "無法用傳統附加元件來更新取代 WebExtensions 附加元件。因為 Firefox 不支援這樣的更新，您的使用者將無法使用新版本。"
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}]「{field}」欄位當中輸入的文字已被標示為垃圾留言。"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "在您送出的檔案中發現開發者 API 金鑰。為了確保您的帳戶安全，將註銷該金鑰。"
@@ -2694,8 +2826,8 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b>個佈景主題"
 
-msgid "Edit Information"
-msgstr "編輯資訊"
+msgid "Edit Product Page"
+msgstr "編輯產品頁面"
 
 msgid "None"
 msgstr "無"
@@ -3074,8 +3206,8 @@ msgstr "刪除這個附加元件。"
 msgid "Delete"
 msgstr "刪除"
 
-msgid "Edit information about this add-on."
-msgstr "編輯此附加元件的資訊。"
+msgid "Edit details on this add-on's product page."
+msgstr "到此附加元件的產品頁面編輯詳細資訊。"
 
 msgid "Upload a new version of this add-on."
 msgstr "上傳新版本的附加元件。"
@@ -3098,11 +3230,8 @@ msgstr "檢視附加元件頁面"
 msgid "View Recent Changes"
 msgstr "檢視近期更新"
 
-msgid "Edit details about this theme's listing."
-msgstr "編輯此佈景主題的詳細資訊。"
-
-msgid "Edit Listing"
-msgstr "編輯資訊"
+msgid "Edit details on this theme's product page."
+msgstr "到此佈景主題的產品頁面編輯詳細資訊。"
 
 msgid "View the popularity of this theme over time."
 msgstr "檢視這個佈景主題到目前為止的熱門度"
@@ -3692,8 +3821,8 @@ msgstr "檢視發布者的資源"
 msgid "Welcome Back"
 msgstr "歡迎回來"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "填寫吸引人的上架資訊，幫助使用者找到您的擴充套件。"
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "建立吸引人的產品頁面，幫助使用者找到您的擴充套件。"
 
 msgid "Learn How"
 msgstr "更多資訊"
@@ -5489,6 +5618,9 @@ msgstr "無法剖析已上傳的檔案，缺少 <%s> 元素，或該元素空白
 msgid "Could not parse uploaded file."
 msgstr "無法解析已上傳的檔案。"
 
+msgid "Unsupported archive type."
+msgstr "不支援的壓縮檔類型。"
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "壓縮檔案中的檔名不正確。請確認檔名使用 UTF-8 或 latin1 編碼。"
@@ -6580,9 +6712,6 @@ msgstr "佈景主題圖片"
 msgid "Rendered Preview"
 msgstr "產生的預覽"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "背景圖檔案第 {0} 張，共 {1} 張 - {2}"
-
 msgid "More about this add-on"
 msgstr "關於此附加元件的更多資訊"
 
@@ -6988,6 +7117,9 @@ msgstr "審核者指南"
 msgid "Theme Review for {0}"
 msgstr "{0} 的佈景主題審核"
 
+msgid "Edit Listing"
+msgstr "編輯資訊"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "（可能重複送出的項目）"
 
@@ -7148,8 +7280,8 @@ msgstr "顯示關鍵字 <strong>{3}</strong> 的 {2} 筆結果中的第 {0} - {1
 msgid "Showing {0} - {1} of {2} results"
 msgstr "顯示 {2} 筆結果中的第 {0} - {1} 筆"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "找不到 ID 為「{}」的附加元件。"
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "找不到 GUID 為「{}」的附加元件。"
 
 msgid "You do not own this addon."
 msgstr "您並未擁有此附加元件。"

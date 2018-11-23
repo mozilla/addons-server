@@ -2,11 +2,9 @@
 import json
 import random
 import re
-import os
 
 from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
 from django.test.utils import override_settings
 from django.test.client import Client
 from django.utils.http import urlunquote
@@ -62,7 +60,6 @@ def add_addon_author(original, copy):
 
 def check_cat_sidebar(url, addon):
     """Ensures that the sidebar shows the categories for the correct type."""
-    cache.clear()
     for type_ in [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_SEARCH]:
         addon.update(type=type_)
         r = Client().get(url)
@@ -921,7 +918,6 @@ class TestDetailPage(TestCase):
         req = Addon.objects.get(id=592)
         AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
         assert self.addon.all_dependencies == [req]
-        cache.clear()
         d = self.get_pq()('.dependencies .hovercard')
         assert d.length == 1
         assert d.find('h3').text() == unicode(req.name)
@@ -1025,17 +1021,6 @@ class TestPersonas(object):
         return AddonUser.objects.create(addon=addon, user_id=999)
 
 
-# Overwrite the caches setting to a MemcachedCache backend to test a
-# regression that caused cache-keys to be longer than 250 characters
-# https://github.com/mozilla/addons-server/issues/8598
-cache_settings = settings.CACHES.copy()
-cache_settings['default'] = {
-    'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-    'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
-}
-
-
-@override_settings(CACHES=cache_settings)
 class TestPersonaDetailPage(TestPersonas, TestCase):
 
     def setUp(self):
@@ -2285,11 +2270,8 @@ class TestAddonSearchView(ESTestCase):
 
         source_keys = response.hits.hits[0]['_source'].keys()
 
-        # TODO: 'name', 'description', 'hotness' and 'summary' are in there...
-        # for some reason I don't yet understand... (cgrebs 0717)
-        # maybe because they're used for boosting or filtering or so?
         assert not any(key in source_keys for key in (
-            'boost',
+            'boost', 'description', 'hotness', 'name', 'summary',
         ))
 
         assert not any(
@@ -2302,6 +2284,10 @@ class TestAddonSearchView(ESTestCase):
 
         assert not any(
             key.startswith('summary_l10n_') for key in source_keys
+        )
+
+        assert not any(
+            key.endswith('.raw') for key in source_keys
         )
 
     def perform_search(self, url, data=None, expected_status=200, **headers):
@@ -3367,7 +3353,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 81
+        assert len(data) == 96
 
         # some basic checks to verify integrity
         entry = data[0]
@@ -3396,7 +3382,7 @@ class TestStaticCategoryView(TestCase):
         assert response.status_code == 200
         data = json.loads(response.content)
 
-        assert len(data) == 81
+        assert len(data) == 96
 
         # some basic checks to verify integrity
         entry = data[0]

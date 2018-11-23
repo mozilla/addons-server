@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-07 16:51+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-05 13:13+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -24,6 +24,9 @@ msgstr "קישורים אינם מותרים."
 
 msgid "This display name cannot be used."
 msgstr "לא ניתן להשתמש בשם תצוגה זה."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
 
 msgid "Usernames cannot contain only digits."
 msgstr "שמות משתמשים לא יכולים להכיל רק ספרות."
@@ -1973,41 +1976,86 @@ msgstr "לא נתמך"
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "תצוגה"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "סימניות"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "ניהול הורדות"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "הזנות, חדשות ובלוגים"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "משחקים ובידור"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "תמיכה בשפות"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "תמונות, מוסיקה ווידאו"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "פרטיות ואבטחה"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "קניות"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "חברתי ותקשורתי"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "לשוניות"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "פיתוח הרשת"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "חיות"
@@ -2039,35 +2087,80 @@ msgstr "ספורט"
 msgid "Abstract"
 msgstr "מופשט"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "גורמים"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "אופנה"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "קולנוע וטלוויזיה"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "חופשה"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "מוזיקה"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "נופי"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "עונתי"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "אחיד"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "אתרים"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "כללי"
@@ -2107,29 +2200,62 @@ msgstr "וידאו"
 msgid "Device Features & Location"
 msgstr "תכונות התקן ומיקום"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "ניסיוני"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "הזנות, חדשות ובלוגים"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "ביצועים"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "תמונות ומדיה"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "אבטחה ופרטיות"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "רשתות חברתיות"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "ספורט ומשחקים"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "ממשק משתמש"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "כל הזכויות שמורות"
@@ -2389,6 +2515,9 @@ msgstr "נא לציין את מדיניות הפרטיות של התוספת ש�
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "סוג הקובץ לא נתמך, נא להעלות קובץ ארכיון {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "ארכיון לא חוקי או פגום."
+
 msgid "View current"
 msgstr "צפייה בנוכחי"
 
@@ -2458,6 +2587,9 @@ msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "לא ניתן לעדכן תוספת של WebExtensions בתוספת מדור קודם. המשתמשים שלך לא יוכלו להשתמש בגרסה החדשה שלך כיוון שב־Firefox אין עוד תמיכה בעדכון מסוג זה."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] הטקסט בשדה ״{field}״ סומן בדגל כספאם."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "מפתח ה־API שלך לצורכי פיתוח נמצא בקובץ שהוגש. כדי להגן על החשבון שלך, המפתח יישלל."
@@ -2787,8 +2919,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "ערכת נושא <b>אחת</b>"
 msgstr[1] "<b>{0}</b> ערכות נושא"
 
-msgid "Edit Information"
-msgstr "עריכת מידע"
+msgid "Edit Product Page"
+msgstr "עריכת דף המוצר"
 
 msgid "None"
 msgstr "ללא"
@@ -2867,9 +2999,8 @@ msgstr "תיאור התוספת"
 #. {0} is the addon name
 # 75%
 # 100%
-#, fuzzy
 msgid "Describe {0}"
-msgstr "תיאור התוספת"
+msgstr "תיאור {0}"
 
 msgid "Add-on URL"
 msgstr "כתובת התוספת"
@@ -3174,8 +3305,8 @@ msgstr "מחיקת תוספת זו."
 msgid "Delete"
 msgstr "מחיקה"
 
-msgid "Edit information about this add-on."
-msgstr "עריכת מידע על תוספת זו."
+msgid "Edit details on this add-on's product page."
+msgstr "עריכת פרטים בעמוד המוצר של תוספת זו."
 
 msgid "Upload a new version of this add-on."
 msgstr "העלאת גרסה חדשה לתוספת זו."
@@ -3198,11 +3329,8 @@ msgstr "הצגת רשומת התוספת"
 msgid "View Recent Changes"
 msgstr "הצגת שינויים אחרונים"
 
-msgid "Edit details about this theme's listing."
-msgstr "עריכת פרטים על רשומת ערכת הנושא הזו."
-
-msgid "Edit Listing"
-msgstr "עריכת רשומה"
+msgid "Edit details on this theme's product page."
+msgstr "עריכת פרטים בעמוד המוצר של ערכת נושא זו."
 
 msgid "View the popularity of this theme over time."
 msgstr "צפייה בפופולריות של ערכת נושא זו לאורך זמן."
@@ -3407,7 +3535,7 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr ""
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr ""
+msgstr "אין צורך לספק קוד מקור, ניתן להמשיך לשלב הבא."
 
 msgid "Your Submission Requires Source Code."
 msgstr "ההגשה שלך דורשת קוד מקור."
@@ -3437,10 +3565,10 @@ msgid "How to Submit:"
 msgstr "כיצד להגיש:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "יש לכלול הנחיות בקובץ README כחלק מקוד המקור,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "או בהערות הסוקר בעמוד הבא (אם רלוונטי)."
 
 msgid "Upload source code:"
 msgstr "העלאת קוד מקור:"
@@ -3794,7 +3922,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "התחברות לעריכה ועדכון התוספת שלך"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "משאבים להשקה מוצלחת"
 
 #, python-format
 msgid ""
@@ -3811,8 +3939,8 @@ msgstr "הצגת סטטיסטיקה למשתמש"
 msgid "Welcome Back"
 msgstr "ברוכים השבים"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "עזרו למשתמשים לגלות את ההרחבה שלכם על ידי יצירת רשומה מעניינת."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "עזרו למשתמשים לגלות את ההרחבה שלכם על ידי יצירת עמוד מוצר מעניין."
 
 msgid "Learn How"
 msgstr "למדו כיצד"
@@ -4430,7 +4558,7 @@ msgstr "מניעת כריית מטבע מבוזר {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "חסימת גישה מפני אתרים זדוניים להשתמש בעצמת העיבוד של המחשב שלך כדי לכרות מטבעות וירטואליים."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4446,7 +4574,7 @@ msgstr "בדיקת זמנים עולמיים {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "הצגת שעונים מכל רחבי העולם בסרגל המצב של Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4958,7 +5086,7 @@ msgstr "ניהול ססמאות {start_sub_heading}עם {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "הסתרת חלקים מהאתרים המופיעים בפניך."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4991,7 +5119,7 @@ msgstr "שיפור לשוניות חדשות {start_sub_heading}עם {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "פתיחת לשונית חדשה משמאל ללשונית הנוכחית, במקום בסוף השורה."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5127,7 +5255,7 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "הפשטת עיצוב בלתי הכרחי לצורך העתקת הטקסט עצמו בלבד."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
@@ -5297,7 +5425,7 @@ msgstr "מילוי טפסים באופן אוטומטי {start_sub_heading}עם 
 
 #. editorial content for the discovery pane.
 msgid "Save entered data once and it will autofill next time."
-msgstr ""
+msgstr "שמירת נתונים שהוכנסו פעם אחת לצורך מילוי אוטומטי בפעם הבאה."
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5314,7 +5442,7 @@ msgstr "התאמה אישית של לשוניות {start_sub_heading}עם {addon
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
-msgstr ""
+msgstr "לא לאפשר לקישורים עליהם לחצת להשתלט על הלשונית הנוכחית שלך ולטעון תוכן שלא ביקשת."
 
 #. editorial content for the discovery pane.
 msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5331,7 +5459,7 @@ msgstr "שיפור סרטונים {start_sub_heading}עם {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
-msgstr ""
+msgstr "חיפוש מבוקשך בתוך מתחם מסוים."
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5508,7 +5636,7 @@ msgstr "לגלוש באופן מאובטח {start_sub_heading}עם {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "לאפשר הרצת תוכן מקוון מאתרים מהימנים בעיניך."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5685,6 +5813,9 @@ msgstr "לא ניתן לנתח את הקובץ שהועלה, הרכיב <%s> ר�
 
 msgid "Could not parse uploaded file."
 msgstr "לא ניתן לנתח את הקובץ שהועלה."
+
+msgid "Unsupported archive type."
+msgstr "סוג ארכיון לא נתמך."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6823,9 +6954,6 @@ msgstr "תמונות של ערכת נושא"
 msgid "Rendered Preview"
 msgstr "סקירות שנמחקו"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "קובץ רקע {0} מתוך {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "עוד על התוספת הזאת"
 
@@ -7236,6 +7364,9 @@ msgstr "מדריך לסוקרים"
 msgid "Theme Review for {0}"
 msgstr "סקירת ערכת נושא עבור {0}"
 
+msgid "Edit Listing"
+msgstr "עריכת רשומה"
+
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
@@ -7404,8 +7535,8 @@ msgstr "מוצגים {0} - {1} מתוך {2} תוצאות עבור <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "מוצגים {0} - {1} מתוך {2} תוצאות"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "לא ניתן למצוא תוספת עם המזהה ״{}״."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "לא ניתן למצוא תוספת עם ה־guid ״{}״."
 
 msgid "You do not own this addon."
 msgstr "אינך הבעלים של תוספת זו."

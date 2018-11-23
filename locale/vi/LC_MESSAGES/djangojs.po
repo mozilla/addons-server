@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-10 12:03+0000\n"
-"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-18 02:55+0000\n"
+"Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -17,16 +17,16 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} sao{0} sao"
+msgstr[0] "{0} sao"
 
 msgid "There was a problem contacting the server."
-msgstr ""
+msgstr "Kết nối tới máy chủ có vấn đề."
 
 msgid "Select a file..."
 msgstr "Chọn tập tin…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr ""
+msgstr "Tiện ích của bạn phải có đuôi là .zip, .xpi, .crx, .jar or .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -44,71 +44,73 @@ msgid "Uploading {0}"
 msgstr "Đang tải lên {0}"
 
 msgid "Error with {0}"
-msgstr ""
+msgstr "Lỗi {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Chúng tôi đã kích hoạt một trình tối ưu mã mới để xử lý tiện ích của bạn. Vui lòng đảm bảo báo cáo mọi sự cố trên GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] ""
+msgstr[0] "Tiện ích của bạn đã được xác thực không thành công với {0} lỗi."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
+msgstr[0] "&hellip; và {0} cái khác"
 
 msgid "See full validation report"
-msgstr ""
+msgstr "Xem bản báo cáo đầy đủ của quá trình xác thực"
 
 msgid "Validating {0}"
 msgstr "Xác nhận {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "Tiện ích của bạn vượt quá kích thước tối đa {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr ""
+msgstr "Đã nhận được phản hồi trống từ máy chủ; trạng thái: {0}"
 
 msgid "Unexpected server error while validating."
 msgstr "Xảy ra lỗi khi xác nhận từ máy chủ."
 
 msgid "Finished validating {0}"
-msgstr ""
+msgstr "Đã hoàn tất xác thực {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "Xác thực tiện ích của bạn đã quá thời gian qui định và đã được chuyển sang đánh giá thủ công."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi và {0} cảnh báo."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "Tiện ích của bạn đã được xác thực không có lỗi và {0} lời nhắn."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Tiện ích của bạn đã được xác thực không có lỗi hay cảnh báo nào."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Bản đệ trình của bạn sẽ được chứng thực tự động."
 
 msgid "WebExtension upgrade"
 msgstr "Nâng cấp WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "Chuyển đổi tiện ích Firefox cũ trên MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr ""
+msgstr "Bao gồm các ghi chú chi tiết (điều này có thể hoàn tất trong bước tiếp theo)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
+"Nếu tiện ích bổ sung của bạn yêu cầu tài khoản cho trang web để được kiểm tra đầy đủ, nhớ đính kèm tên người dùng và mật khẩu thử nghiệm trong Ghi chú cho đánh giá viên (điều này có thể được hoàn "
+"thành trong bước tiếp theo)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Danh sách kiểm tra bản đệ trình tiện ích"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
 msgstr ""
@@ -128,7 +130,7 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr ""
 
 msgid "You cancelled the upload."
-msgstr ""
+msgstr "Bạn đã hủy quá trình tải lên."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Các hình ảnh phải dưới dạng PNG hoặc JPEG."
@@ -140,10 +142,10 @@ msgid "Follow this Collection"
 msgstr "Theo dõi bộ sưu tập này"
 
 msgid "Stop Following"
-msgstr "Dừng dõi theo"
+msgstr "Ngừng theo dõi"
 
 msgid "Following"
-msgstr "Đang dõi theo"
+msgstr "Đang theo dõi"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -180,10 +182,10 @@ msgid "Your input is required"
 msgstr "Vui lòng điền thông tin"
 
 msgid "Marked for deletion"
-msgstr ""
+msgstr "Đánh dấu để xóa"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Cập nhật kết quả&hellip;"
 
 msgid "Category"
 msgstr "Phân mục"
@@ -245,10 +247,10 @@ msgid "Daily Users"
 msgstr "Người dùng Hàng ngày"
 
 msgid "Amount, in USD"
-msgstr ""
+msgstr "Số tiền, bằng USD"
 
 msgid "Number of Contributions"
-msgstr ""
+msgstr "Số lần đóng góp"
 
 msgid "More Info..."
 msgstr "Thêm thông tin…"
@@ -276,16 +278,16 @@ msgid "Reviews Written"
 msgstr "Số bài xem xét được viết"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Đăng ký người dùng"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "Người theo dõi"
 
 msgid "Ratings"
 msgstr "Số đánh giá"
 
 msgid "Sales"
-msgstr ""
+msgstr "Giảm giá"
 
 msgid "Installs"
 msgstr "Cài đặt"
@@ -297,13 +299,13 @@ msgid "Add-ons Manager"
 msgstr "Trình quản lý tiện ích"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Quản lý tiện ích khuyến mãi"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Quản lý tiện ích nổi bật"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Quản lý tiện ích khám phá"
 
 msgid "Search Suggestions"
 msgstr "Gợi ý tìm kiếm"
@@ -312,10 +314,10 @@ msgid "Search Results"
 msgstr "Kết quả tìm kiếm"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "Trang chủ khuyến mãi"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Trang chủ nổi bật"
 
 msgid "Homepage Up and Coming"
 msgstr ""
@@ -333,7 +335,7 @@ msgid "Detail Page (Development Channel)"
 msgstr "Trang Chi tiết (Kênh Phát triển)"
 
 msgid "Often Used With"
-msgstr ""
+msgstr "Thường dùng với"
 
 msgid "Others By Author"
 msgstr ""
@@ -405,7 +407,7 @@ msgid "Average Contribution"
 msgstr "Khoản góp Trung bình"
 
 msgid "Usage"
-msgstr ""
+msgstr "Lưu lượng sử dụng"
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -681,16 +683,16 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "Rất tiếc, bạn cần phải sử dụng một trình duyệt gốc Mozilla (ví dụ như Firefox) để cài đặt một công cụ tìm kiếm."
 
 msgid "Adding to Favorites&hellip;"
-msgstr ""
+msgstr "Đang thêm vào ưa thích&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Đang gỡ bỏ mục ưa thích&hellip;"
 
 msgid "Add to Favorites"
 msgstr "Thêm vào ưa thích"
 
 msgid "Remove from Favorites"
-msgstr ""
+msgstr "Gỡ bỏ khỏi ưa thích"
 
 msgid "Pending"
 msgstr "Đang chờ đợi"
@@ -702,7 +704,7 @@ msgid "Comment"
 msgstr "Bình luận"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Gỡ bỏ tiện ích khỏi bộ sưu tập"
 
 msgid "Remove"
 msgstr "Gỡ bỏ"
@@ -720,24 +722,24 @@ msgid "Your browser does not support the video tag"
 msgstr "Trình duyệt của bạn không hỗ trợ thẻ video"
 
 msgid "Changes Saved"
-msgstr ""
+msgstr "Đã lưu các thay đổi"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "Nhập địa chỉ email của tác giả mới"
 
 msgid "There was an error uploading your file."
-msgstr ""
+msgstr "Xảy ra lỗi trong quá trình tải lên tệp tin."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] ""
+msgstr[0] "{files} tệp"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] "{reviews} đánh giá của người dùng{reviews} đánh giá của người dùng"
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "Thay đổi hình ảnh đang được xử lý"
 
 msgid "No results found."
 msgstr "Không tìm thấy kết quả."
@@ -766,10 +768,10 @@ msgid "{name} was viewing this page first."
 msgstr ""
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Hóa đơn đã được kiểm tra bằng ứng dụng."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Hóa đơn chưa được kiểm tra bằng ứng dụng."
 
 msgid "{name} was viewing this add-on first."
 msgstr ""
@@ -787,7 +789,7 @@ msgid "No version notes found"
 msgstr "Không tìm thấy ghi chú về phiên bản"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Xem lại văn bản"
 
 msgid "Review notes found"
 msgstr ""
@@ -820,7 +822,7 @@ msgid "No results found"
 msgstr ""
 
 msgid "Theme"
-msgstr ""
+msgstr "Giao diện"
 
 msgid "Reviewer"
 msgstr ""
@@ -835,7 +837,7 @@ msgid "These tests were not run."
 msgstr ""
 
 msgid "Tests"
-msgstr ""
+msgstr "Kiểm tra"
 
 msgid "Error"
 msgstr "Lỗi"
@@ -844,24 +846,24 @@ msgid "Warning"
 msgstr "Cảnh báo"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} dòng {1} cột {2}"
 
 msgid "{0} line {1}"
-msgstr ""
+msgstr "{0} dòng {1}"
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "Tiện ích xác thực không thành công."
 
 msgid "Add-on passed validation."
 msgstr ""
 
 msgid "{0} error"
 msgid_plural "{0} errors"
-msgstr[0] ""
+msgstr[0] "{0} lỗi"
 
 msgid "{0} warning"
 msgid_plural "{0} warnings"
-msgstr[0] ""
+msgstr[0] "{0} cảnh báo"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"

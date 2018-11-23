@@ -18,7 +18,6 @@ from django.views.decorators.csrf import csrf_exempt
 import waffle
 
 from django_statsd.clients import statsd
-from PIL import Image
 
 import olympia.core.logger
 
@@ -912,26 +911,29 @@ def ajax_upload_image(request, upload_type, addon_id=None):
 
         is_icon = upload_type == 'icon'
         is_persona = upload_type.startswith('persona_')
+        is_preview = upload_type == 'preview'
+        image_check = amo_utils.ImageCheck(upload_preview)
+        is_animated = image_check.is_animated()  # will also cache .is_image()
 
-        check = amo_utils.ImageCheck(upload_preview)
         if (upload_preview.content_type not in amo.IMG_TYPES or
-                not check.is_image()):
+                not image_check.is_image()):
             if is_icon:
                 errors.append(ugettext('Icons must be either PNG or JPG.'))
             else:
                 errors.append(ugettext('Images must be either PNG or JPG.'))
 
-        if check.is_animated():
+        if is_animated:
             if is_icon:
                 errors.append(ugettext('Icons cannot be animated.'))
             else:
                 errors.append(ugettext('Images cannot be animated.'))
 
-        max_size = None
         if is_icon:
             max_size = settings.MAX_ICON_UPLOAD_SIZE
-        if is_persona:
+        elif is_persona:
             max_size = settings.MAX_PERSONA_UPLOAD_SIZE
+        else:
+            max_size = None
 
         if max_size and upload_preview.size > max_size:
             if is_icon:
@@ -943,17 +945,33 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                     ugettext('Images cannot be larger than %dKB.')
                     % (max_size / 1024))
 
-        if check.is_image() and is_persona:
+        if image_check.is_image() and is_persona:
             persona, img_type = upload_type.split('_')  # 'header' or 'footer'
             expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
-            with storage.open(loc, 'rb') as fp:
-                actual_size = Image.open(fp).size
+            actual_size = image_check.size
             if actual_size != expected_size:
                 # L10n: {0} is an image width (in pixels), {1} is a height.
                 errors.append(ugettext('Image must be exactly {0} pixels '
                                        'wide and {1} pixels tall.')
                               .format(expected_size[0], expected_size[1]))
-        if errors and upload_type == 'preview' and os.path.exists(loc):
+
+        content_waffle = waffle.switch_is_active('content-optimization')
+        if image_check.is_image() and content_waffle and is_preview:
+            min_size = amo.ADDON_PREVIEW_SIZES.get('min')
+            # * 100 to get a nice integer to compare against rather than 1.3333
+            required_ratio = min_size[0] * 100 / min_size[1]
+            actual_size = image_check.size
+            actual_ratio = actual_size[0] * 100 / actual_size[1]
+            if actual_size[0] < min_size[0] or actual_size[1] < min_size[1]:
+                # L10n: {0} is an image width (in pixels), {1} is a height.
+                errors.append(
+                    ugettext('Image must be at least {0} pixels wide and {1} '
+                             'pixels tall.').format(min_size[0], min_size[1]))
+            if actual_ratio != required_ratio:
+                errors.append(
+                    ugettext('Image dimensions must be in the ratio 4:3.'))
+
+        if errors and is_preview and os.path.exists(loc):
             # Delete the temporary preview file in case of error.
             os.unlink(loc)
     else:

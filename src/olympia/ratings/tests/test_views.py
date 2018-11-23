@@ -3,8 +3,9 @@ import json
 
 from datetime import timedelta
 
+from django.conf import settings
 from django.core import mail
-from django.core.cache import cache
+from django.test.utils import override_settings
 
 import mock
 from waffle.testutils import override_switch
@@ -24,6 +25,10 @@ from olympia.amo.tests import (
 from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.users.models import UserProfile
+
+
+locmem_cache = settings.CACHES.copy()
+locmem_cache['default']['BACKEND'] = 'django.core.cache.backends.locmem.LocMemCache'  # noqa
 
 
 class ReviewTest(TestCase):
@@ -823,6 +828,11 @@ class TestRatingViewSetGet(TestCase):
 
         if 'show_grouped_ratings' not in kwargs:
             assert 'grouped_ratings' not in data
+
+        if 'show_for' not in kwargs:
+            assert 'flags' not in data['results'][0]
+            assert 'flags' not in data['results'][1]
+
         return data
 
     def test_list_show_permission_for_anonymous(self):
@@ -902,7 +912,6 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 3
 
-        cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
@@ -954,7 +963,6 @@ class TestRatingViewSetGet(TestCase):
 
         assert Rating.unfiltered.count() == 5
 
-        cache.clear()
         with self.assertNumQueries(5):
             # 5 queries:
             # - Two for opening and releasing a savepoint. Those only happen in
@@ -1259,6 +1267,65 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 1
         assert data['results'][0]['id'] == old_review.pk
 
+    def test_list_addon_score_filter(self):
+        rating_3a = Rating.objects.create(
+            addon=self.addon, body='review 3a', user=user_factory(), rating=3)
+        rating_3b = Rating.objects.create(
+            addon=self.addon, body='review 3b', user=user_factory(), rating=3)
+        rating_4 = Rating.objects.create(
+            addon=self.addon, body='review 4', user=user_factory(), rating=4)
+        # Throw in some other ratings with different scores
+        Rating.objects.create(
+            addon=self.addon, body='review 2', user=user_factory(), rating=2)
+        Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(), rating=1)
+
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'score': '3,4'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == len(data['results']) == 3
+        assert data['results'][0]['id'] == rating_4.pk
+        assert data['results'][1]['id'] == rating_3b.pk
+        assert data['results'][2]['id'] == rating_3a.pk
+
+        # and with just one score
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'score': '3'})
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == len(data['results']) == 2
+        assert data['results'][0]['id'] == rating_3b.pk
+        assert data['results'][1]['id'] == rating_3a.pk
+
+    def test_list_addon_score_filter_invalid(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'score': '3,foo'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data['detail'] == (
+            'score parameter should be an integer or a list of integers '
+            '(separated by a comma).'
+        )
+
+    def test_score_filter_ignored_for_v3(self):
+        Rating.objects.create(
+            addon=self.addon, body='review 2', user=user_factory(), rating=2)
+        params = {'addon': self.addon.pk, 'score': '3,4'}
+
+        # with a default (v4+) url first
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == 0
+
+        # But will be ignored in v3
+        response = self.client.get(
+            reverse_ns('rating-list', api_version='v3'), params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['count'] == len(data['results']) == 1
+
     def test_list_addon_exclude_ratings(self):
         excluded_review1 = Rating.objects.create(
             addon=self.addon, body='review excluded 1', user=user_factory(),
@@ -1300,6 +1367,92 @@ class TestRatingViewSetGet(TestCase):
         assert response.status_code == 400
         data = json.loads(response.content)
         assert data['detail'] == 'Need an addon or user parameter'
+
+    def test_list_show_flags_for_anonymous(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'show_flags_for': 666})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_flags_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_list_show_flags_for_not_int(self):
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk, 'show_flags_for': 'nope'})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_flags_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_list_show_flags_for_not_right_user(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        response = self.client.get(
+            self.url, {'addon': self.addon.pk,
+                       'show_flags_for': self.user.pk + 42})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_flags_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_list_rating_flags(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        rating1 = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=2)
+        rating0 = Rating.objects.create(
+            addon=self.addon, body='review 0', user=user_factory(),
+            rating=1)
+        reply_to_0 = Rating.objects.create(
+            addon=self.addon, body='reply to review 0', reply_to=rating0,
+            user=user_factory())
+        params = {'addon': self.addon.pk, 'show_flags_for': self.user.pk}
+
+        # First, not flagged
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['results'][0]['flags'] == []
+        assert data['results'][0]['reply']['flags'] == []
+        assert data['results'][1]['flags'] == []
+
+        # then add some RatingFlag - one for a rating, the other a reply
+        RatingFlag.objects.create(
+            rating=rating1, user=self.user, flag=RatingFlag.LANGUAGE)
+        RatingFlag.objects.create(
+            rating=reply_to_0, user=self.user, flag=RatingFlag.OTHER,
+            note=u'foo')
+
+        response = self.client.get(self.url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        rating0 = data['results'][0]
+        rating1 = data['results'][1]
+        assert 'flags' in rating0
+        assert 'flags' in rating1
+        assert 'flags' in rating0['reply']
+        assert rating0['flags'] == []
+        assert rating0['reply']['flags'] == [
+            {'flag': RatingFlag.OTHER, 'note': 'foo'}]
+        assert rating1['flags'] == [
+            {'flag': RatingFlag.LANGUAGE, 'note': None}]
+
+    def test_list_rating_flags_absent_in_v3(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        rating = Rating.objects.create(
+            addon=self.addon, body='review', user=user_factory(),
+            rating=1)
+        RatingFlag.objects.create(
+            rating=rating, user=self.user, flag=RatingFlag.OTHER,
+            note=u'foo')
+        params = {'addon': self.addon.pk, 'show_flags_for': self.user.pk}
+        response = self.client.get(
+            reverse_ns('rating-list', api_version='v3'), params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert 'flags' not in data['results'][0]
 
     def test_detail(self):
         review = Rating.objects.create(
@@ -1367,6 +1520,83 @@ class TestRatingViewSetGet(TestCase):
         assert data['id'] == review.pk
         assert data['reply']
         assert data['reply']['id'] == reply.pk
+
+    def test_detail_show_flags_for_anonymous(self):
+        rating = Rating.objects.create(
+            addon=self.addon, body='review', user=user_factory())
+        detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
+        response = self.client.get(detail_url, {'show_flags_for': 666})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_flags_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_detail_show_flags_for_not_int(self):
+        rating = Rating.objects.create(
+            addon=self.addon, body='review', user=user_factory())
+        detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
+        response = self.client.get(detail_url, {'show_flags_for': 'nope'})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_flags_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_detail_show_flags_for_not_right_user(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        rating = Rating.objects.create(
+            addon=self.addon, body='review', user=user_factory())
+        detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
+        response = self.client.get(
+            detail_url, {'show_flags_for': self.user.pk + 42})
+        assert response.status_code == 400
+        assert response.data['detail'] == (
+            'show_flags_for parameter value should be equal to the user '
+            'id of the authenticated user')
+
+    def test_detail_rating_flags(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        rating = Rating.objects.create(
+            addon=self.addon, body='review 1', user=user_factory(),
+            rating=2)
+
+        detail_url = reverse_ns(self.detail_url_name, kwargs={'pk': rating.pk})
+        params = {'show_flags_for': self.user.pk}
+
+        # First, not flagged
+        response = self.client.get(detail_url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert data['flags'] == []
+
+        # then add some RatingFlag - one for a rating, the other a reply
+        RatingFlag.objects.create(
+            rating=rating, user=self.user, flag=RatingFlag.LANGUAGE)
+
+        response = self.client.get(detail_url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert 'flags' in data
+        assert data['flags'] == [
+            {'flag': RatingFlag.LANGUAGE, 'note': None}]
+
+    def test_detail_rating_flags_absent_in_v3(self):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        rating = Rating.objects.create(
+            addon=self.addon, body='review', user=user_factory(),
+            rating=1)
+        RatingFlag.objects.create(
+            rating=rating, user=self.user, flag=RatingFlag.OTHER,
+            note=u'foo')
+        detail_url = reverse_ns(
+            self.detail_url_name, kwargs={'pk': rating.pk}, api_version='v3')
+        params = {'show_flags_for': self.user.pk}
+        response = self.client.get(detail_url, params)
+        assert response.status_code == 200
+        data = json.loads(response.content)
+        assert 'flags' not in data
 
     def test_list_by_admin_does_not_show_deleted_by_default(self):
         self.user = user_factory()
@@ -2156,6 +2386,7 @@ class TestRatingViewSetPost(TestCase):
             u"You can't leave more than one review for the same version of "
             u"an add-on."]
 
+    @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
         with freeze_time('2017-11-01') as frozen_time:
             self.user = user_factory()
@@ -2182,6 +2413,7 @@ class TestRatingViewSetPost(TestCase):
                 'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
 
+    @override_settings(CACHES=locmem_cache)
     def test_rating_throttle_separated_from_abuse_throttle(self):
         with freeze_time('2017-11-01') as frozen_time:
             self.user = user_factory()
@@ -2575,6 +2807,7 @@ class TestRatingViewSetReply(TestCase):
         assert response.data['non_field_errors'] == [
             u"You can't reply to a review that is already a reply."]
 
+    @override_settings(CACHES=locmem_cache)
     def test_throttle(self):
         self.addon_author = user_factory()
         self.addon.addonuser_set.create(user=self.addon_author)

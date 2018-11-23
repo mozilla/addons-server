@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-20 15:58+0000\n"
-"Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-14 13:55+0000\n"
+"Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -182,7 +182,7 @@ msgid "Flagged for review"
 msgstr "מסומן לסקירה"
 
 msgid "Your input is required"
-msgstr "דרוש משוב"
+msgstr "נדרש משוב מצדך"
 
 msgid "Marked for deletion"
 msgstr "מסומן למחיקה"
@@ -355,7 +355,7 @@ msgid "Upsell"
 msgstr ""
 
 msgid "Meet the Developer"
-msgstr "הכירו את המפתח"
+msgstr "היכרות עם המפתח"
 
 msgid "User Profile"
 msgstr "פרופיל משתמש"

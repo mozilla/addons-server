@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-09 07:23+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-23 08:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -21,6 +21,9 @@ msgstr "Nulle ligamines es consentite."
 
 msgid "This display name cannot be used."
 msgstr "Iste nomine de schermo non pote ser usate."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Le campo del pagina principal pote esser usate solo pro ligamine a sitos web externe."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Le nomines de usator non pote continer solo digitos."
@@ -1919,41 +1922,86 @@ msgstr "Incompatibile"
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Apparentia"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Marcapaginas"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Gestion de discargamento"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Supporto de linguas"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Photos, Musica & Videos"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Confidentialitate & securitate"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Compras"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Social & communication"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Schedas"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Disveloppamento del Web"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "Animales"
@@ -1985,35 +2033,80 @@ msgstr "Sports"
 msgid "Abstract"
 msgstr "Abstracte"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Causas"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Moda"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Film e TV"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Vacantias"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Musica"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Paisage"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Saisonal"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Colores uniforme"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Sitos web"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "General"
@@ -2051,29 +2144,62 @@ msgstr "Video"
 msgid "Device Features & Location"
 msgstr "Functionalitates del apparato & position"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "Experimental"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "Feed de novas, novas e blog"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "Prestationes"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "Photos & medios"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "Securitate & confidentialitate"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "Retes social"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "Sports & jocos"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "Interface de usator"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate"
@@ -2331,6 +2457,9 @@ msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Typo de file non tractate, per favor carga un file archivo {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "Archivo non valide o rupte."
+
 msgid "View current"
 msgstr "Vider version actual"
 
@@ -2404,6 +2533,9 @@ msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste proc
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Tu non pote actualisar un additivo de WebExtensions con un precedente additivo. Tu usatores non potera usar tu nove version pois que Firefox non supporta iste typo de actualisation."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] Le texto inserite in le campo \"{field}\" esseva signalate como spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tu clave API de disveloppator esseva trovate in le file inviate. Pro proteger tu conto, le clave essera revocate."
@@ -2732,8 +2864,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> themas"
 
-msgid "Edit Information"
-msgstr "Rediger le informationes"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Nulle"
@@ -3130,8 +3262,8 @@ msgstr "Deler iste additivo."
 msgid "Delete"
 msgstr "Deler"
 
-msgid "Edit information about this add-on."
-msgstr "Rediger informationes de iste additivo."
+msgid "Edit details on this add-on's product page."
+msgstr "Editar detalios sur iste pagina de producto del additivo."
 
 msgid "Upload a new version of this add-on."
 msgstr "Cargar un nove version de iste additivo."
@@ -3154,11 +3286,8 @@ msgstr "Vider le lista de presentation del additivo"
 msgid "View Recent Changes"
 msgstr "Vider recente cambiamentos"
 
-msgid "Edit details about this theme's listing."
-msgstr "Editar detalios del lista de iste thema."
-
-msgid "Edit Listing"
-msgstr "Rediger le lista de presentation"
+msgid "Edit details on this theme's product page."
+msgstr "Editar detalios sur iste pagina de producto del thema."
 
 msgid "View the popularity of this theme over time."
 msgstr "Vider le popularitate de iste thema in le tempore."
@@ -3761,8 +3890,8 @@ msgstr "Vide le ressources pro le editores"
 msgid "Welcome Back"
 msgstr "Ben-retornate"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Adjuta le usatores a discoperir tu extensiones per crear un lista de presentation attrahente."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Adjuta le usatores a discoperir tu extensiones per un lista de presentation attrahente."
 
 msgid "Learn How"
 msgstr "Apprende como"
@@ -5564,6 +5693,9 @@ msgstr "Impossibile tractar le file cargate, elemento <%s> mancante o vacue"
 msgid "Could not parse uploaded file."
 msgstr "Impossibile tractar le file cargate."
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nomine de file non valide in le archivo. Per favor verifica que le nomines de file es codificate utf-8 o latin1."
@@ -6690,9 +6822,6 @@ msgstr "Imagines del thema"
 msgid "Rendered Preview"
 msgstr "Ante-prima rendite"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "File de fundo {0} de {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Altero re iste additivo"
 
@@ -7097,6 +7226,9 @@ msgstr "Guida del revisores"
 msgid "Theme Review for {0}"
 msgstr "Revision de thema pro {0}"
 
+msgid "Edit Listing"
+msgstr "Rediger le lista de presentation"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Probabile invio duplicate)"
 
@@ -7254,8 +7386,8 @@ msgstr "Monstra de {0} - {1} de {2} resultatos pro <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Monstra de {0} - {1} de {2} resultatos"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "Impossibile trovar additivo con id \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "Impossibile trovar un additivo con id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Tu non es proprietario de iste additivo."

@@ -2,9 +2,9 @@
 import json
 import os
 
-from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.db.models import Q
+from django.core.cache import cache
 
 import mock
 
@@ -27,6 +27,7 @@ from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.forms import DescribeForm
 from olympia.devhub.views import edit_theme
 from olympia.lib.akismet.models import AkismetReport
+from olympia.lib.cache import memoize_key
 from olympia.tags.models import AddonTag, Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import VersionPreview
@@ -50,7 +51,6 @@ class BaseTestEdit(TestCase):
             ac.save()
             AddonCategory.objects.filter(addon=addon,
                                          category__id__in=[1, 71]).delete()
-            cache.clear()
 
             self.tags = ['tag3', 'tag2', 'tag1']
             for t in self.tags:
@@ -262,7 +262,9 @@ class BaseTestEditDescribe(BaseTestEdit):
             addon_id=addon_id, collection=Collection.objects.create())
         FeaturedCollection.objects.create(collection=c_addon.collection,
                                           application=amo.FIREFOX.id)
-        cache.clear()
+
+        # Clear relevant featured caches
+        cache.delete(memoize_key('addons:featured', amo.FIREFOX, None))
 
     @override_switch('akismet-spam-check', active=False)
     def test_akismet_waffle_off(self):
@@ -460,8 +462,8 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
     def test_edit_categories_add_featured(self):
         """Ensure that categories cannot be changed for featured add-ons."""
         self._feature_addon()
-
         self.cat_initial['categories'] = [22, 1]
+
         response = self.client.post(self.describe_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
@@ -1002,9 +1004,8 @@ class TestEditMedia(BaseTestEdit):
         self.check_image_animated(self.preview_upload,
                                   'Images cannot be animated.')
 
-    def preview_add(self, amount=1):
-        img = get_image_path('mozilla.png')
-        src_image = open(img, 'rb')
+    def preview_add(self, amount=1, image_name='preview_4x3.jpg'):
+        src_image = open(get_image_path(image_name), 'rb')
 
         data = {'upload_image': src_image}
         data_formset = self.formset_media(**data)
@@ -1023,10 +1024,50 @@ class TestEditMedia(BaseTestEdit):
         data_formset = self.formset_media(*fields)
         self.client.post(self.media_edit_url, data_formset)
 
+    @override_switch('content-optimization', active=False)
     def test_edit_media_preview_add(self):
+        # mozilla.png is too small and the wrong ratio but waffle is off so OK.
+        self.preview_add(image_name='mozilla.png')
+
+        assert str(self.get_addon().previews.all()[0].caption) == 'hi'
+
+    @override_switch('content-optimization', active=True)
+    def test_edit_media_preview_add_content_optimization(self):
         self.preview_add()
 
         assert str(self.get_addon().previews.all()[0].caption) == 'hi'
+
+    @override_switch('content-optimization', active=True)
+    def test_preview_dimensions_and_ratio(self):
+        size_msg = (
+            'Image must be at least 1000 pixels wide and 750 pixels tall.')
+        ratio_msg = 'Image dimensions must be in the ratio 4:3.'
+
+        # mozilla.png is too small and the wrong ratio now
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('mozilla.png'), 'rb')})
+        assert json.loads(response.content)['errors'] == [size_msg, ratio_msg]
+
+        # preview_landscape.jpg is the right ratio-ish, but too small
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(
+                get_image_path('preview_landscape.jpg'), 'rb')})
+        assert json.loads(response.content)['errors'] == [size_msg]
+
+        # teamaddons.jpg is big enough but still wrong ratio.
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('teamaddons.jpg'), 'rb')})
+        assert json.loads(response.content)['errors'] == [ratio_msg]
+
+        # and preview_4x3.jpg is the right ratio and big enough
+        response = self.client.post(
+            self.preview_upload,
+            {'upload_image': open(get_image_path('preview_4x3.jpg'), 'rb')})
+        assert json.loads(response.content)['errors'] == []
+        assert json.loads(response.content)['upload_hash']
 
     def test_edit_media_preview_edit(self):
         self.preview_add()
@@ -1671,9 +1712,11 @@ class StaticMixin(object):
         addon.update(type=amo.ADDON_STATICTHEME)
         if self.listed:
             AddonCategory.objects.filter(addon=addon).delete()
-            cache.clear()
+            # 300 & 400: abstract; 308 & 408: firefox.
             Category.from_static_category(CATEGORIES_BY_ID[300], save=True)
             Category.from_static_category(CATEGORIES_BY_ID[308], save=True)
+            Category.from_static_category(CATEGORIES_BY_ID[400], save=True)
+            Category.from_static_category(CATEGORIES_BY_ID[408], save=True)
             VersionPreview.objects.create(version=addon.current_version)
 
 
@@ -1684,32 +1727,36 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
     def get_dict(self, **kw):
         result = {'name': 'new name', 'slug': 'test_slug',
                   'summary': 'new summary', 'description': 'new description',
-                  'category': 300}
+                  'category': 'abstract'}
         result.update(**kw)
         return result
 
     def test_edit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
         response = self.client.post(
-            self.describe_edit_url, self.get_dict(category=308))
+            self.describe_edit_url, self.get_dict(category='firefox'))
         assert set(response.context['addon'].all_categories) == set(
             self.get_addon().all_categories)
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [308, 408]
 
     def test_edit_categories_change(self):
-        category = Category.objects.get(id=300)
-        AddonCategory(addon=self.addon, category=category).save()
+        category_desktop = Category.objects.get(id=300)
+        category_android = Category.objects.get(id=400)
+        AddonCategory(addon=self.addon, category=category_desktop).save()
+        AddonCategory(addon=self.addon, category=category_android).save()
         assert sorted(
-            [cat.id for cat in self.get_addon().all_categories]) == [300]
+            [cat.id for cat in self.get_addon().all_categories]) == [300, 400]
 
-        self.client.post(self.describe_edit_url, self.get_dict(category=308))
+        self.client.post(
+            self.describe_edit_url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
-        # Only ever one category for Static Themes
-        assert category_ids_new == [308]
+        # Only ever one category for Static Themes (per application)
+        assert category_ids_new == [308, 408]
         # Check we didn't delete the Category object too!
-        assert category.reload()
+        assert category_desktop.reload()
+        assert category_android.reload()
 
     def test_edit_categories_required(self):
         data = self.get_dict(category='')
@@ -1720,15 +1767,17 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
 
     def test_edit_categories_add_featured(self):
         """Ensure that categories cannot be changed for featured add-ons."""
-        category = Category.objects.get(id=308)
-        AddonCategory(addon=self.addon, category=category).save()
+        category_desktop = Category.objects.get(id=308)
+        category_android = Category.objects.get(id=408)
+        AddonCategory(addon=self.addon, category=category_desktop).save()
+        AddonCategory(addon=self.addon, category=category_android).save()
         self._feature_addon(self.addon.id)
 
         response = self.client.post(self.describe_edit_url, self.get_dict())
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
 
         # This add-on's categories should not change.
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [308, 408]
         self.assertFormError(
             response, 'cat_form', 'category',
             'Categories cannot be changed while your add-on is featured.')
@@ -1736,8 +1785,10 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
     def test_edit_categories_add_new_creatured_admin(self):
         """Ensure that admins can change categories for creatured add-ons."""
         assert self.client.login(email='admin@mozilla.com')
-        category = Category.objects.get(id=308)
-        AddonCategory(addon=self.addon, category=category).save()
+        category_desktop = Category.objects.get(id=308)
+        category_android = Category.objects.get(id=408)
+        AddonCategory(addon=self.addon, category=category_desktop).save()
+        AddonCategory(addon=self.addon, category=category_android).save()
         self._feature_addon(self.addon.id)
 
         response = self.client.get(self.describe_edit_url)
@@ -1748,7 +1799,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
         assert 'category' not in response.context['cat_form'].errors
         # This add-on's categories should change.
-        assert sorted(addon_cats) == [300]
+        assert sorted(addon_cats) == [300, 400]
 
     def test_edit_categories_disable_creatured(self):
         """Ensure that other forms are okay when disabling category changes."""

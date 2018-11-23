@@ -38,8 +38,7 @@ class TestQueryFilter(FilterTestsBase):
 
     filter_classes = [SearchQueryFilter]
 
-    def _test_q(self):
-        qs = self._filter(data={'q': 'tea pot'})
+    def _test_q(self, qs):
         # Spot check a few queries.
         should = qs['query']['function_score']['query']['bool']['should']
 
@@ -78,12 +77,24 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'multi_match': {
                 '_name': (
-                    'MultiMatch(MatchPhrase(summary),'
-                    'MatchPhrase(summary_l10n_english))'),
+                    'MultiMatch(Match(summary),Match(summary_l10n_english))'),
                 'query': 'tea pot',
-                'type': 'phrase',
+                'operator': 'and',
                 'fields': ['summary', 'summary_l10n_english'],
                 'boost': 3.0,
+            }
+        }
+        assert expected in should
+
+        expected = {
+            'multi_match': {
+                '_name': (
+                    'MultiMatch(Match(description),'
+                    'Match(description_l10n_english))'),
+                'query': 'tea pot',
+                'operator': 'and',
+                'fields': ['description', 'description_l10n_english'],
+                'boost': 2.0,
             }
         }
         assert expected in should
@@ -92,10 +103,54 @@ class TestQueryFilter(FilterTestsBase):
         assert functions[0] == {'field_value_factor': {'field': 'boost'}}
         return qs
 
+    def test_no_rescore_if_not_sorting_by_relevance(self):
+        qs = self._test_q(
+            self._filter(data={'q': 'tea pot', 'sort': 'rating'}))
+        assert 'rescore' not in qs
+
     def test_q(self):
-        qs = self._test_q()
+        qs = self._test_q(self._filter(data={'q': 'tea pot'}))
         functions = qs['query']['function_score']['functions']
         assert len(functions) == 1
+
+        expected_rescore = {
+            'bool': {
+                'should': [
+                    {
+                        'multi_match': {
+                            '_name': (
+                                'MultiMatch(MatchPhrase(summary),'
+                                'MatchPhrase(summary_l10n_english))'),
+                            'query': 'tea pot',
+                            'slop': 10,
+                            'type': 'phrase',
+                            'fields': ['summary', 'summary_l10n_english'],
+                            'boost': 3.0,
+                        },
+                    },
+                    {
+                        'multi_match': {
+                            '_name': (
+                                'MultiMatch(MatchPhrase(description),'
+                                'MatchPhrase(description_l10n_english))'),
+                            'query': 'tea pot',
+                            'slop': 10,
+                            'type': 'phrase',
+                            'fields': ['description',
+                                       'description_l10n_english'],
+                            'boost': 2.0,
+                        },
+                    }
+                ]
+            }
+        }
+
+        assert qs['rescore'] == {
+            'window_size': 10,
+            'query': {
+                'rescore_query': expected_rescore
+            }
+        }
 
     def test_q_too_long(self):
         with self.assertRaises(serializers.ValidationError):
@@ -107,8 +162,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 4.0, 'prefix_length': 4, 'query': 'blah',
+                    'boost': 4.0, 'prefix_length': 2, 'query': 'blah',
                     'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
+                    'minimum_should_match': '2<2 3<-25%',
                 }
             }
         }
@@ -120,8 +176,9 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 4.0, 'prefix_length': 4, 'query': 'search terms',
+                    'boost': 4.0, 'prefix_length': 2, 'query': 'search terms',
                     'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
+                    'minimum_should_match': '2<2 3<-25%',
                 }
             }
         }
@@ -138,9 +195,10 @@ class TestQueryFilter(FilterTestsBase):
         expected = {
             'match': {
                 'name': {
-                    'boost': 4.0, 'prefix_length': 4,
+                    'boost': 4.0, 'prefix_length': 2,
                     'query': 'this search query is too long.',
                     'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
+                    'minimum_should_match': '2<2 3<-25%',
                 }
             }
         }

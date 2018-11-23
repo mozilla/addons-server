@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-12 09:58+0000\n"
+"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"PO-Revision-Date: 2018-11-15 20:06+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -20,6 +20,9 @@ msgstr "Δεν επιτρέπονται σύνδεσμοι."
 
 msgid "This display name cannot be used."
 msgstr "Αυτό το όνομα προβολής δεν μπορεί να χρησιμοποιηθεί."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
 
 msgid "Usernames cannot contain only digits."
 msgstr "Τα ονόματα χρήστη δεν μπορούν να περιέχουν μόνο ψηφία."
@@ -1950,41 +1953,86 @@ msgstr "Μη συμβατό"
 msgid "Alerts & Updates"
 msgstr "Ειδοποιήσεις & ενημερώσεις"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Εμφάνιση"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Διαχείριση λήψεων"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Ροές, ειδήσεις & ιστολόγια"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Παιχνίδια & ψυχαγωγία"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Υποστήριξη γλωσσών"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Εικόνες & πολυμέσα"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Απόρρητο & ασφάλεια"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Αγορές"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Κοινωνικά δίκτυα & επικοινωνία"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Καρτέλες"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Ανάπτυξη εφαρμογών ιστού"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
 
 msgid "Animals"
 msgstr "Ζώα"
@@ -2016,35 +2064,80 @@ msgstr "Αθλητικά"
 msgid "Abstract"
 msgstr "Αφηρημένα"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Εκδηλώσεις"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Μόδα"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Κινηματογράφος & τηλεόραση"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Γιορτές"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Μουσική"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Τοπία"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Εποχικά"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Συμπαγή"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Ιστοσελίδες"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Γενικά"
@@ -2082,29 +2175,62 @@ msgstr "Βίντεο"
 msgid "Device Features & Location"
 msgstr "Λειτουργίες συσκευής & τοποθεσία"
 
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
 msgid "Experimental"
 msgstr "Πειραματικά"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
 
 msgid "Feeds, News, & Blogging"
 msgstr "Ροές, νέα & ιστολόγια"
 
+msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
+msgstr ""
+
 msgid "Performance"
 msgstr "Επιδόσεις"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
 
 msgid "Photos & Media"
 msgstr "Εικόνες & πολυμέσα"
 
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
 msgid "Security & Privacy"
 msgstr "Ασφάλεια & απόρρητο"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
+msgstr ""
 
 msgid "Social Networking"
 msgstr "Κοινωνική δικτύωση"
 
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
 msgid "Sports & Games"
 msgstr "Αθλητισμός & παιχνίδια"
 
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
 msgid "User Interface"
 msgstr "Περιβάλλον χρήστη"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
+msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
+msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Με την επιφύλαξη παντός δικαιώματος"
@@ -2362,6 +2488,10 @@ msgstr "Παρακαλούμε ορίστε την πολιτική απορρή
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλούμε μεταφορτώστε ένα αρχείο {extensions}."
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Μη έγκυρο συμπιεσμένο αρχείο."
+
 msgid "View current"
 msgstr "Προβολή τρέχοντος"
 
@@ -2439,6 +2569,9 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr ""
 "Δεν μπορείτε να ενημερώσετε ένα πρόσθετο WebExtensions σε ένα πρόσθετο παλαιού τύπου. Οι χρήστες δεν θα μπορούν να χρησιμοποιήσουν τη νέα έκδοσή σας, επειδή το Firefox δεν υποστηρίζει αυτό τον τύπο "
 "ενημέρωσης."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε στο υποβεβλημένο αρχείο. Για να προστατεύσετε το λογαριασμό σας, το κλειδί θα ανακληθεί."
@@ -2644,9 +2777,8 @@ msgstr "Ανάπτυξη επεκτάσεων"
 msgid "Lightweight Themes"
 msgstr "\"Ελαφριά\" θέματα"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Ειδήσεις προγραμματιστών"
+msgstr "Πολιτικές προγραμματιστή"
 
 msgid "Add-on Validator"
 msgstr "Επικύρωση προσθέτων"
@@ -2772,8 +2904,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> θέμα"
 msgstr[1] "<b>{0}</b> θέματα"
 
-msgid "Edit Information"
-msgstr "Επεξεργασία πληροφοριών"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Κανένα"
@@ -2803,13 +2935,11 @@ msgstr ""
 "<p>Τα πρόσθετα μπορούν να έχουν οποιονδήποτε αριθμό δημιουργών με 2 πιθανούς ρόλους:</p> <ul> <li><b>Ιδιοκτήτης:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, όπως προσθήκη "
 "και αφαίρεση άλλων δημιουργών</li> <li><b>Προγραμματιστής:</b> Μπορεί να διαχειριστεί κάθε πτυχή της καταχώρησης του προσθέτου, εκτός από προσθήκη και αφαίρεση άλλων δημιουργών</li> </ul>"
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Λεπτομέρειες πρόσθετου"
+msgstr "Επιπρόσθετες λεπτομέρειες"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Λεπτομέρειες πρόσθετου για το {0}"
+msgstr "Επιπρόσθετες λεπτομέρειες για το {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Οι ετικέτες βοηθούν τους χρήστες να βρουν το πρόσθετό σας και θα πρέπει να είναι μικρές περιγραφικές φράσεις, όπως καρτέλες, γραμμές εργαλείων ή twitter. Έχετε το πολύ {0} ετικέτες."
@@ -2853,9 +2983,8 @@ msgid "Describe Add-on"
 msgstr "Περιγραφή προσθέτου"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Περιγραφή προσθέτου"
+msgstr "Περιγραφή του {0}"
 
 msgid "Add-on URL"
 msgstr "URL πρόσθετου"
@@ -3174,8 +3303,9 @@ msgstr "Διαγραφή του πρόσθετου."
 msgid "Delete"
 msgstr "Διαγραφή"
 
-msgid "Edit information about this add-on."
-msgstr "Επεξεργασία πληροφοριών γι' αυτό το πρόσθετο."
+#, fuzzy
+msgid "Edit details on this add-on's product page."
+msgstr "Επεξεργασία λεπτομερειών σχετικά με την καταχώριση του θέματος."
 
 msgid "Upload a new version of this add-on."
 msgstr "Ανεβάστε μια νέα έκδοση του πρόσθετου."
@@ -3198,11 +3328,9 @@ msgstr "Προβολή της σελίδας του πρόσθετου"
 msgid "View Recent Changes"
 msgstr "Προβολή πρόσφατων αλλαγών"
 
-msgid "Edit details about this theme's listing."
+#, fuzzy
+msgid "Edit details on this theme's product page."
 msgstr "Επεξεργασία λεπτομερειών σχετικά με την καταχώριση του θέματος."
-
-msgid "Edit Listing"
-msgstr "Επεξεργασία καταχώρησης"
 
 msgid "View the popularity of this theme over time."
 msgstr "Προβολή της δημοτικότητας αυτού του θέματος στο χρόνο."
@@ -3259,9 +3387,8 @@ msgstr "Σύνοψη:"
 msgid "required"
 msgstr "απαιτείται "
 
-#, fuzzy
 msgid "Description:"
-msgstr "Περιγραφή"
+msgstr "Περιγραφή:"
 
 msgid "This add-on is experimental"
 msgstr "Αυτό το πρόσθετο είναι πειραματικό"
@@ -3798,7 +3925,7 @@ msgstr "Προβολή πόρων για εκδότες"
 msgid "Welcome Back"
 msgstr "Καλώς ορίσατε ξανά"
 
-msgid "Help users discover your extension by creating an appealing listing."
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr ""
 
 msgid "Learn How"
@@ -5615,6 +5742,9 @@ msgstr ""
 msgid "Could not parse uploaded file."
 msgstr ""
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -6726,9 +6856,6 @@ msgstr "Εικόνες θέματος"
 msgid "Rendered Preview"
 msgstr "Προβαλλόμενη προεπισκόπηση"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Αρχείο παρασκηνίου {0} από {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Περισσότερα γι' αυτό το πρόσθετο"
 
@@ -7133,6 +7260,9 @@ msgstr "Οδηγός του κριτή"
 msgid "Theme Review for {0}"
 msgstr "Αξιολόγηση θέματος για {0}"
 
+msgid "Edit Listing"
+msgstr "Επεξεργασία καταχώρησης"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Πιθανή διπλή υποβολή)"
 
@@ -7300,7 +7430,8 @@ msgstr "Προβολή {0} - {1} από {2} αποτελέσματα για: <st
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Προβολή {0} - {1} από {2} αποτελέσματα"
 
-msgid "Could not find add-on with id \"{}\"."
+#, fuzzy
+msgid "Could not find add-on with guid \"{}\"."
 msgstr "Αδυναμία εύρεσης προσθέτου με το id \"{}\"."
 
 msgid "You do not own this addon."
@@ -7316,9 +7447,9 @@ msgstr "Δεν μπορείτε να προσθέσετε εκδόσεις σε 
 msgid "Version does not match the manifest file."
 msgstr "Η έκδοση δεν ταιριάζει με το αρχείο μανιφέστου."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr "Η έκδοση υπάρχει ήδη."
+msgstr "Η έκδοση υπάρχει ήδη. Η πιο πρόσφατη είναι η: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
 msgstr "Μόνο τα WebExtensions επιτρέπεται να παραλείπουν το GUID"

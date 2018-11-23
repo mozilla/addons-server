@@ -130,15 +130,15 @@ billiard==3.5.0.4 \
 bleach==3.0.2 \
     --hash=sha256:73d26f018af5d5adcdabf5c1c974add4361a9c76af215fe32fdec8a6fc5fb9b9 \
     --hash=sha256:48d39675b80a75f6d1c3bdbffec791cf0bbbab665cf01e20da701c77de278718
-boto3==1.9.43 \
-    --hash=sha256:dbd1f9d2b27f9f83879f4a6f8b0eef53964da2f09fc75d4a27d23000220b8551 \
-    --hash=sha256:6792803663c6e0c29d3137c5e76f7b38cde5f4b6c12f2a0ed0f10dc6f81c5b32
+boto3==1.9.50 \
+    --hash=sha256:8c63e616b91907037ab19236afbcf0057efb31411faf38b46f4590e634dc17ea \
+    --hash=sha256:177e9dd53db5028bb43050da20cc7956287889fc172e5e6275a634e42a10beeb
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.43 \
-    --hash=sha256:575a8f23ee29b407f6090d127212150e7725084902dfbdf935f2ce1b22eecfcd \
-    --hash=sha256:4a4e2e6baf7d7b9904452d93189af79cc4c18d3f6a746d1455bb7c4a1054ddff
+botocore==1.12.50 \
+    --hash=sha256:07fae5a2b8cfb5a92c1dbee3f2feb4da7c471bcead7e18ce735babe5f39e270f \
+    --hash=sha256:eeaa190f50ee05a56225ee78c64cb8bf0c3bf090ec605ca6c2f325aa3826a347
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -182,9 +182,9 @@ django-csp==3.4 \
 django-environ==0.4.5 \
     --hash=sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4 \
     --hash=sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde
-django-extensions==2.1.3 \
-    --hash=sha256:30cb6a8c7d6f75a55edf0c0c4491bd98f8264ae1616ce105f9cecac4387edd07 \
-    --hash=sha256:4ad86a7a5e84f1c77db030761ae87a600647250c652030a2b71a16e87f3a3d62
+django-extensions==2.1.4 \
+    --hash=sha256:a76a61566f1c8d96acc7bcf765080b8e91367a25a2c6f8c5bddd574493839180 \
+    --hash=sha256:8317a3fe479b1ba3e3a04ecf33fb8d6ccf09bb18f30eab64e34c40a593741d26
 django-mozilla-product-details==0.13 \
     --hash=sha256:ce97fc2533aa06560d9b438ebba2522dc0b2ada86d6e0537cfb5ac06db1a6aa2 \
     --hash=sha256:4ffa5a104f53645460a50c9342a41e3ea02d432851becf56e820d42faa94839f
@@ -287,14 +287,17 @@ lxml==4.2.5 \
 # m2secret is required by django-aesfield
 m2secret-py3==1.3 \
     --hash=sha256:94dfae937e8a61bf48812fab6a0b8de300781c4e1dbee0cee3aa57cb01915864
+python-memcached==1.59 \
+    --hash=sha256:4dac64916871bd3550263323fc2ce18e1e439080a2d5670c594cf3118d99b594 \
+    --hash=sha256:a2e28637be13ee0bf1a8b6843e7490f9456fd3f2a4cb60471733c7b5d5557e4f
 # mock is required by amo-validator
 mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
 # natsort is required by amo-validator
-natsort==5.4.1 \
-    --hash=sha256:ea0bbac61fbc2511607f667a3e1adead7e65f75dd59bf8a429298d56c506db34 \
-    --hash=sha256:ae73b005135dc152e7b282b2d4cf19380d8cab4c4026461ee9f37bf3aa12e344
+natsort==5.5.0 \
+    --hash=sha256:e1ad0618d3aa0cc43dfc3298ffcdbfeb47dfff1d875359dc81c72434ae8c62bf \
+    --hash=sha256:e29031f37aa264145d6ad9acdab335479ce3636806fc7aa70b7675a2b2198d09
 newrelic==4.6.0.106 \
     --hash=sha256:b6d10cb2e6a0efddd7145ef30b923249443d14b9bea4217cfe96d806a80a94b1
 nobot==0.5 \
@@ -328,9 +331,9 @@ raven==6.9.0 \
 # rdflib is required by amo-validator
 rdflib==3.4.0 \
     --hash=sha256:78d5f11a7001661d7637f9e61554a5f8971e197f3f6d17ba5e4039b0668116cf # pyup: ==3.4.0
-redis==2.10.6 \
-    --hash=sha256:8a1900a9f2a0a44ecf6e8b5eb3e967a9909dfed219ad66df094f27f7d6f330fb \
-    --hash=sha256:a22ca993cea2962dbb588f9f30d0015ac4afcc45bee27d3978c0dbe9e97c6c0f
+redis==3.0.1 \
+    --hash=sha256:8e0bdd2de02e829b6225b25646f9fb9daffea99a252610d040409a6738541f0a \
+    --hash=sha256:2100750629beff143b6a200a2ea8e719fcf26420adabb81402895e144c5083cf
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
 requests==2.20.1 \
     --hash=sha256:65b3a120e4329e33c9889db89c80976c5272f56ea92d3e74da8a463992e3ff54 \
@@ -410,3 +413,6 @@ pygit2==0.27.2 \
 webencodings==0.5.1 \
     --hash=sha256:a0af1213f3c2226497a97e2b3aa01a7e4bee4f403f95be16fc9acd2947514a78 \
     --hash=sha256:b36a1c245f2d304965eb4e0a82848379241dc04b865afcc4aab16748587e1923
+premailer==3.2.0 \
+    --hash=sha256:a344b2013f8e099962bdea3a433fbea8614006fbe2ef62cd89c653a2b33290ad \
+    --hash=sha256:ca97cec6115fea6590b49558c55d891996f9eb4da6490c7b60c3a8af4c8c0735
