@@ -6,7 +6,7 @@ from olympia.reviewers.views import AddonReviewerViewSet
 
 
 addons = SimpleRouter()
-addons.register(r'addon', AddonReviewerViewSet, base_name='reviewers-addon')
+addons.register(r'addon', AddonReviewerViewSet, basename='reviewers-addon')
 
 urlpatterns = [
     url(r'', include(addons.urls)),

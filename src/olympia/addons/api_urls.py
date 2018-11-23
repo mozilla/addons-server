@@ -12,14 +12,14 @@ from .views import (
 
 
 addons = SimpleRouter()
-addons.register(r'addon', AddonViewSet, base_name='addon')
+addons.register(r'addon', AddonViewSet, basename='addon')
 
 # Router for children of /addons/addon/{addon_pk}/.
 sub_addons = NestedSimpleRouter(addons, r'addon', lookup='addon')
-sub_addons.register('versions', AddonVersionViewSet, base_name='addon-version')
+sub_addons.register('versions', AddonVersionViewSet, basename='addon-version')
 sub_versions = NestedSimpleRouter(sub_addons, r'versions', lookup='version')
 sub_versions.register(r'reviewnotes', VersionReviewNotesViewSet,
-                      base_name='version-reviewnotes')
+                      basename='version-reviewnotes')
 
 urlpatterns = [
     url(r'', include(addons.urls)),

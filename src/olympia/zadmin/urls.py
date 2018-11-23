@@ -61,7 +61,8 @@ urlpatterns = [
         name='zadmin.site_events.delete'),
 
     # The Django admin.
-    url(r'^models/', include(admin.site.urls)),
+    url(r'^models/',
+        include((admin.site.get_urls(), 'admin'), namespace=admin.site.name)),
     url(r'^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
         views.general_search, name='zadmin.search'),
 ]
