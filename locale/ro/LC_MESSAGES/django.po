@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 22:04+0000\n"
+"PO-Revision-Date: 2018-11-23 22:29+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2459,9 +2459,8 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Indicativ JWT nevalid."
+msgstr "Arhivă invalidă sau coruptă."
 
 msgid "View current"
 msgstr ""
@@ -2736,9 +2735,8 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Comentarii de la dezvoltator"
+msgstr "Politicile dezvoltatorilor"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -2886,16 +2884,14 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Resurse adiționale"
+msgstr "Detalii suplimentare"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Suplimente pentru {0}"
+msgstr "Detalii suplimentare pentru {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -2939,9 +2935,8 @@ msgid "Describe Add-on"
 msgstr "Descrie supliment"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Descrie supliment"
+msgstr "Descrie {0}"
 
 msgid "Add-on URL"
 msgstr ""
@@ -3330,9 +3325,8 @@ msgstr ""
 msgid "required"
 msgstr ""
 
-#, fuzzy
 msgid "Description:"
-msgstr "Descriere"
+msgstr "Descriere:"
 
 msgid "This add-on is experimental"
 msgstr ""
