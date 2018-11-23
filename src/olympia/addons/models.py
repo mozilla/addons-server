@@ -322,8 +322,7 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    external_software = models.BooleanField(default=False,
-                                            db_column='externalsoftware')
+
     auto_repackage = models.BooleanField(
         default=True, help_text='Automatically upgrade jetpack add-on to a '
                                 'new sdk version?')

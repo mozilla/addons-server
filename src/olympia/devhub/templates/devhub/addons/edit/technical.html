@@ -66,24 +66,6 @@
           </tr>
           <tr>
             <th>
-              {{ tip(_("Add-on Flags"),
-                     _("These flags are used to classify add-ons. It is only "
-                       "relevant for listed add-ons.")) }}
-            </th>
-            <td>
-              <div id="addon-flags">
-              {{ flags(_("This add-on requires external software."),
-                       form.external_software if editable else addon.external_software,
-                       editable) }}
-
-              {% if not editable %}
-                {% call empty_unless(addon.external_software) %}{% endcall %}
-              {% endif %}
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th>
               {{ tip(_("View Source?"),
                      _("Whether the source of your add-on can be displayed in our "
                        "online viewer. It is only relevant for listed add-ons.")) }}

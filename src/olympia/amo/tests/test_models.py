@@ -78,22 +78,22 @@ class TestModelBase(TestCase):
 
     def test_change_called_on_update(self):
         addon = Addon.objects.get(pk=3615)
-        addon.update(external_software=False)
+        addon.update(public_stats=True)
         assert self.cb.called
         kw = self.cb.call_args[1]
-        assert kw['old_attr']['external_software']
-        assert not kw['new_attr']['external_software']
+        assert not kw['old_attr']['public_stats']
+        assert kw['new_attr']['public_stats']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
 
     def test_change_called_on_save(self):
         addon = Addon.objects.get(pk=3615)
-        addon.external_software = False
+        addon.public_stats = True
         addon.save()
         assert self.cb.called
         kw = self.cb.call_args[1]
-        assert kw['old_attr']['external_software']
-        assert not kw['new_attr']['external_software']
+        assert not kw['old_attr']['public_stats']
+        assert kw['new_attr']['public_stats']
         assert kw['instance'].id == addon.id
         assert kw['sender'] == Addon
 

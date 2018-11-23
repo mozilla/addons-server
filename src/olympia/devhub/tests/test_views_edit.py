@@ -598,19 +598,6 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
             ['Select a valid choice. 100 is not one of the available '
              'choices.'])
 
-    def test_text_not_none_when_has_flags(self):
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#addon-flags').text() == (
-            'This add-on requires external software.')
-
-    def test_text_none_when_no_flags(self):
-        addon = self.get_addon()
-        addon.update(external_software=False)
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        assert doc('#addon-flags').text() == 'None'
-
     def test_nav_links_admin(self):
         assert self.client.login(email='admin@mozilla.com')
         response = self.client.get(self.url)
@@ -1447,7 +1434,6 @@ class TestEditTechnical(BaseTestEdit):
         # Turn everything on
         data = {
             'developer_comments': 'Test comment!',
-            'external_software': 'on',
             'view_source': 'on',
             'whiteboard-public': 'Whiteboard info.'
         }
@@ -1471,13 +1457,11 @@ class TestEditTechnical(BaseTestEdit):
             self.technical_edit_url, self.formset(data))
         addon = self.get_addon()
 
-        assert not addon.external_software
         assert not addon.view_source
 
     def test_technical_devcomment_notrequired(self):
         data = {
             'developer_comments': '',
-            'external_software': 'on',
             'view_source': 'on'
         }
         response = self.client.post(

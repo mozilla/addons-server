@@ -401,7 +401,7 @@ class AddonFormTechnical(AddonFormBase):
 
     class Meta:
         model = Addon
-        fields = ('developer_comments', 'view_source', 'external_software',
+        fields = ('developer_comments', 'view_source',
                   'auto_repackage', 'public_stats')
 
 

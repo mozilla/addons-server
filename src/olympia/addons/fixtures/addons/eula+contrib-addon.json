@@ -56,7 +56,6 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "external_software": 0,
             "name": 410718,
             "created": "2009-04-30 16:42:42",
             "type": 4,
