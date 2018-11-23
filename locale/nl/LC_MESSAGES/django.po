@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 08:06+0000\n"
+"PO-Revision-Date: 2018-11-23 15:01+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1994,19 +1994,19 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr "Download Firefox-extensies om privé en veilig te navigeren. Deze categorie omvat extensies om vervelende advertenties te blokkeren, volgen te voorkomen, doorsturingen te beheren, en meer."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om te zoeken. Deze categorie omvat extensies die tekst markeren en zoeken, IP-adressen/domeinen opzoeken, en meer."
 
 msgid "Shopping"
 msgstr "Winkelen"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Dowload Firefox-extensies die uw online winkelbeleving verbeteren met kortingsbonzoekers, aanbiedingszoekers, beoordelingsanalyses, en meer."
 
 msgid "Social & Communication"
 msgstr "Sociaal en communicatie"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om sociale media en chatten te verbeteren. Deze categorie omvat verbeterde tabbladnotificaties, videodownloaders, en meer."
 
 msgid "Tabs"
 msgstr "Tabbladen"
@@ -2099,7 +2099,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Download interessante, creatieve en unieke Firefox-thema’s."
 
 msgid "Scenery"
 msgstr "Landschap"
@@ -2219,7 +2219,7 @@ msgid "Download user interface Firefox extensions to alter web pages for easier 
 msgstr ""
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
+msgstr "Download vreemde en interessante extensies die Firefox voor Android een boost kunnen geven."
 
 msgid "All Rights Reserved"
 msgstr "Alle rechten voorbehouden"
@@ -2889,7 +2889,7 @@ msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> thema’s"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Productpagina bewerken"
 
 msgid "None"
 msgstr "Geen"
@@ -5723,7 +5723,7 @@ msgid "Could not parse uploaded file."
 msgstr "Kon geüploade bestand niet uitpakken."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Niet-ondersteund archieftype."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
