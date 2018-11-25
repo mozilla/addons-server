@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-24 11:23+0000\n"
+"PO-Revision-Date: 2018-11-21 17:01+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -27,9 +27,8 @@ msgstr "Ссылки не разрешены."
 msgid "This display name cannot be used."
 msgstr "Это отображаемое имя не может быть использовано."
 
-#, fuzzy
 msgid "The homepage field can only be used to link to external websites."
-msgstr "Это поле можно использовать только для ссылок на внешние веб-сайты. URL на %(domain)s не разрешены."
+msgstr "Поле «домашняя страница» можно использовать только для ссылок на внешние веб-сайты."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Имена пользователей не могут содержать только цифры."
@@ -2492,9 +2491,8 @@ msgstr "Пожалуйста, укажите политику приватнос
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Неподдерживаемый тип файла, пожалуйста, загрузите архивный файл {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Некорректный архив."
+msgstr "Некорректный или повреждённый архив."
 
 msgid "View current"
 msgstr "Просмотреть текущее"
@@ -2569,9 +2567,8 @@ msgstr ""
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Вы не можете обновить WebExtensions дополнение на устаревшее. Ваши пользователи не смогут использовать вашу новую версию потому, что Firefox не поддерживает этот тип обновлений."
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Введённый текст был отмечен как спам."
+msgstr "[{field}] Текст, введённый в «{field}», был отмечен как спам."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "В загруженном файле найден ваш API-ключ разработчика. Чтобы защитить ваш аккаунт, ключ будет отозван."
@@ -3315,9 +3312,8 @@ msgstr "Удалить это дополнение."
 msgid "Delete"
 msgstr "Удалить"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Редактировать информацию о странице этой темы.  "
+msgstr "Редактировать информацию на странице этого дополнения."
 
 msgid "Upload a new version of this add-on."
 msgstr "Загрузить новую версию этого дополнения."
@@ -3340,9 +3336,8 @@ msgstr "Показать страницу дополнения"
 msgid "View Recent Changes"
 msgstr "Просмотреть последние изменения"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Редактировать информацию о странице этой темы.  "
+msgstr "Редактировать информацию на странице этой темы."
 
 msgid "View the popularity of this theme over time."
 msgstr "Просмотр популярности этой темы с течением времени."
@@ -3954,9 +3949,8 @@ msgstr "Посмотреть ресурсы для размещающих при
 msgid "Welcome Back"
 msgstr "С возвращением"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Помогите пользователям узнать о вашем расширении, создав хорошее описание."
+msgstr "Помогите пользователям узнать о вашем расширении, хорошо настроив его страницу."
 
 msgid "Learn How"
 msgstr "Узнайте как"
@@ -4405,7 +4399,7 @@ msgstr "Настраивайте страницы новых вкладок {sta
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Насладитесь красивой новой страницей с настраиваемым фоном, информацией о местной погоде и другим."
+msgstr "Насладитесь красивой страницей новой вкладки с настраиваемым фоном, прогнозом погоды и многим другим."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4509,7 +4503,7 @@ msgstr "Блокируйте рекламу {start_sub_heading}с помощью
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr "Простой и эффективный блокировщик рекламы. uBlock Origin применяет к контенту тысячи фильтров, не занимая много памяти."
+msgstr "Лёгкий и эффективный блокировщик рекламы. uBlock Origin применяет тысячи фильтров к веб-содержимому без «съедания» большого количества памяти."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5765,7 +5759,7 @@ msgid "Could not parse uploaded file."
 msgstr "Не удалось распарсить загруженный файл."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Неподдерживаемый тип архива."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -7482,9 +7476,8 @@ msgstr "Показываю {0} - {1} из {2} результатов для <str
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Показываю {0} - {1} из {2} результатов"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Не удалось найти дополнение с идентификатором \"{}\"."
+msgstr "Не удалось найти дополнение с guid «{}»."
 
 msgid "You do not own this addon."
 msgstr "Вы не владеете этим дополнением."
