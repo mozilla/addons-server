@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 09:05+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2018-11-25 10:46+0000\n"
+"Last-Translator: Francesco Lodolo <francesco.lodolo@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -1964,19 +1964,23 @@ msgid "Bookmarks"
 msgstr "Segnalibri"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Scarica estensioni che migliorano la gestione dei segnalibri proteggendoli con una password, rilevando elementi duplicati o non funzionanti e molto altro ancora."
 
 msgid "Download Management"
 msgstr "Download e gestione dei file"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Scarica estensioni per Firefox che ti consentiranno di scaricare in modo più semplice contenuti web, audio e video. Qui troverai anche estensioni per la gestione dei download, la condivisione dei "
+"file e altro ancora."
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS, news e blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Scarica estensioni per Firefox che rimuovono gli elementi di disturbo per migliorare la tua esperienza su social media, rimanere aggiornato con blog e feed RSS, ma anche ridurre l’affaticamento "
+"della vista e molto altro."
 
 msgid "Games & Entertainment"
 msgstr "Giochi e divertimento"
@@ -1990,7 +1994,7 @@ msgid "Language Support"
 msgstr "Supporto lingue"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Scarica estensioni per Firefox che offrono supporto linguistico, come correttori ortografici, consultazione rapida di definizioni, traduzione, sintesi vocale e altro ancora."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto, musica e video"
@@ -2010,6 +2014,8 @@ msgstr ""
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
+"Scarica estensioni per Firefox che facilitano le operazioni di ricerca e consultazione. In questa categoria troverai strumenti per sottolineare e cercare il testo, ricerca di indirizzi IP e domini e"
+" altro ancora."
 
 msgid "Shopping"
 msgstr "Shopping"
@@ -2036,10 +2042,10 @@ msgid "Web Development"
 msgstr "Sviluppo web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Scarica estensioni per Firefox che includono strumenti di sviluppo web. In questa categoria troverai estensioni per GitHub, cambio di user agent, gestione dei cookie e altro ancora."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Scarica estensioni per Firefox che sapranno stupirti con la loro imprevedibilità e creatività, ma allo stesso tempo risultare utili per le attività più bizzarre."
 
 msgid "Animals"
 msgstr "Animali"
@@ -2072,7 +2078,7 @@ msgid "Abstract"
 msgstr "Astratto"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Scarica temi artistici e astratti per Firefox. In questa categoria troverai tonalità di colore e forme variopinte, paesaggi fantastici, gatti giocherelloni e fiori psichedelici."
 
 msgid "Causes"
 msgstr "Iniziative"
@@ -2084,7 +2090,7 @@ msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Scarica temi per Firefox che valorizzano la bellezza di tutte le forme: motivi astratti, floreali, trame, modelli e altro ancora."
 
 msgid "Film and TV"
 msgstr "Film e tv"
@@ -2201,6 +2207,8 @@ msgstr "Sperimentali"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Scarica estensioni per Firefox aggiornate con regolarità e pronte per essere provate dal pubblico. I tuoi commenti aiutano gli sviluppatori a decidere che modifiche apportare nelle versioni "
+"successive."
 
 msgid "Feeds, News, & Blogging"
 msgstr "RSS, news e blog"
@@ -2246,12 +2254,16 @@ msgstr "Sport e giochi"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
 msgstr ""
+"Scarica estensioni per Firefox che daranno una marcia in più ai tuoi momenti di intrattenimento con strumenti per migliorare lo streaming dal vivo, aggiornamenti sui tuoi sport preferiti e altre "
+"funzioni utili."
 
 msgid "User Interface"
 msgstr "Interfaccia utente"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
 msgstr ""
+"Scarica estensioni per l’interfaccia utente di Firefox in grado di modificare l’aspetto delle pagine web per adattare alle tue esigenze la lettura, la ricerca, la navigazione e altri aspetti della "
+"tua esperienza web."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
 msgstr "Scarica estensioni bizzarre e divertenti e porta una ventata di novità su Firefox per Android."
@@ -2929,7 +2941,7 @@ msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> temi"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Modifica pagina del prodotto"
 
 msgid "None"
 msgstr "Nessuno"
