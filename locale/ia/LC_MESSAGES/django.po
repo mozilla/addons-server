@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 05:11+0000\n"
+"PO-Revision-Date: 2018-11-25 05:29+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2005,9 +2005,11 @@ msgstr "Disveloppamento del Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+"Discarga extensiones de Firefox que ha functionalitates de utensiles de disveloppator del web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e "
+"altero ancora."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, ancora utile pro ille labores impar."
 
 msgid "Animals"
 msgstr "Animales"
@@ -2040,13 +2042,13 @@ msgid "Abstract"
 msgstr "Abstracte"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Discarga themas de Firefox artistic e conceptual. Iste categoria include palettas pictoresc e formas, paisages phantastic, cattos jocose, flores psychedelic."
 
 msgid "Causes"
 msgstr "Causas"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Discarga themas de Firefox pro interesses e argumentos de niche. Iste categoria include themas de sports, vacantias, causas philanthropic, nationalitates e multo altere."
 
 msgid "Fashion"
 msgstr "Moda"
