@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 05:29+0000\n"
+"PO-Revision-Date: 2018-11-25 05:43+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2054,22 +2054,22 @@ msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Discarga themas de Firefox que celebra stilos de tote le formas — patronos, ramages, contexturas, modellos, e altero ancora."
 
 msgid "Film and TV"
 msgstr "Film e TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Discarga themas de Firefox con films e television. Iste categoria include animationes como Uchiha Madara, films como Matrix, spectaculos (Joco de Thrones) e altero ancora."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Discarga themas de Firefox del Navigator mesme. Iste categoria include pictoresc, diverse depictiones del logo de Firefox, anque le altere themas del vulpe general."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Discarga themas de Firefox con Firefox japonese. Iste categoria include themas que depinge le agradabile mascotte Foxkeh in varie posas sur diverse paisages."
 
 msgid "Holiday"
 msgstr "Vacantias"
