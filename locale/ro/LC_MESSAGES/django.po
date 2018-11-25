@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 08:48+0000\n"
+"PO-Revision-Date: 2018-11-25 09:01+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -6908,7 +6908,7 @@ msgstr ""
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Înapoi la panoul de bord cu uneltele de revizuire"
+msgstr "Înapoi la tabloul de bord cu unelte de revizuire"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
