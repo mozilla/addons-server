@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 13:06+0000\n"
+"PO-Revision-Date: 2018-11-25 13:16+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2207,10 +2207,10 @@ msgid "User Interface"
 msgstr "Interface de usator"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox pro incrementar tu experientia de intertenimento con melioratores de live stream, actualitates sportive, e altero ancora."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
+msgstr "Discarga le extensiones de interfacie de usator de Firefox pro altere paginas web pro plus facile lectura, recerca, exploration e altero ancora."
 
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate"
@@ -2876,7 +2876,7 @@ msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> themas"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Redige le pagina de producto"
 
 msgid "None"
 msgstr "Nulle"
@@ -5705,7 +5705,7 @@ msgid "Could not parse uploaded file."
 msgstr "Impossibile tractar le file cargate."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Typo de archivo non admittite."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
