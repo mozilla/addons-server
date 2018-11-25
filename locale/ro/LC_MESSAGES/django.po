@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 09:01+0000\n"
+"PO-Revision-Date: 2018-11-25 17:06+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -706,7 +706,7 @@ msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
 
 msgid "Reviewer Tools"
-msgstr "Unelte de revizuire"
+msgstr "Unelte pentru recenzenți"
 
 msgid "Admin Tools"
 msgstr ""
@@ -1737,7 +1737,7 @@ msgid "Reply by reviewer on {addon} {version}."
 msgstr ""
 
 msgid "Reviewer Reply"
-msgstr "Răspunsul recenzorului"
+msgstr "Răspunsul recenzentului"
 
 msgid "Approval notes changed for {addon} {version}."
 msgstr ""
@@ -3413,7 +3413,8 @@ msgid "You’re done! This version will be available on our site shortly."
 msgstr ""
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
-msgstr "Ai terminat! Această versiune a fost trimisă spre revizuire. Vei fi anunțat la finalizarea revizuirii sau dacă recenzenții noștri au întrebări legate de propunerea depusă."
+msgstr ""
+"Ai terminat! Această versiune a fost depusă pentru recenzie. Vei fi notificat la finalizarea recenziei sau dacă recenzenții noștri au să-ți adreseze orice întrebări legate de propunerea depusă."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr ""
@@ -5821,10 +5822,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr ""
 
 msgid "File Compare :: Reviewer tools"
-msgstr "Comparare fișiere: Unelte de revizuire"
+msgstr "Comparare fișiere: Unelte pentru recenzenți"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr "Vizualizator de fișiere:: Unelte de revizuire"
+msgstr "Vizualizator de fișiere:: Unelte pentru recenzenți"
 
 msgid "Validation failed:"
 msgstr ""
@@ -6908,7 +6909,7 @@ msgstr ""
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Înapoi la tabloul de bord cu unelte de revizuire"
+msgstr "Înapoi la tabloul de bord cu unelte pentru recenzenți"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
