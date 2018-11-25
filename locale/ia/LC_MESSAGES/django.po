@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 12:09+0000\n"
+"PO-Revision-Date: 2018-11-25 12:24+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2172,21 +2172,24 @@ msgstr "Prestationes"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
+"Discarga le extensiones que da a Firefox un incremento de performance. Trova extensiones que te adjuta a ser plus productive e efficiente per le bloco del enoiose avisos publicitari e altero ancora."
 
 msgid "Photos & Media"
 msgstr "Photos & medios"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox pro meliorar photos e medios. Discarga extensiones de Firefox pro meliorar photos e medios."
 
 msgid "Security & Privacy"
 msgstr "Securitate & confidentialitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Discarga extensiones de Firefox pro navigar con securitate e privatemente. Discoperi extensiones que pote stoppar in lor traciamento furtive avisos publicitari traciator, clarar facilemente le "
+"chronologia de exploration e altero ancora."
 
 msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online per le analyse del revisiones, trovante offertas e coupons e altero ancora."
 
 msgid "Social Networking"
 msgstr "Retes social"
