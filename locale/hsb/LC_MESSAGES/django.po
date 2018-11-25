@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 12:16+0000\n"
+"PO-Revision-Date: 2018-11-25 15:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1966,19 +1966,19 @@ msgid "Appearance"
 msgstr "Napohlad"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja, kotrež napohlad websydłow a wobhladowak Firefox měnjeja. Tuta kategorija rozšěrjenja za ćmowe drasty, rjadowanje rajtarkow a wjace zapřijima."
 
 msgid "Bookmarks"
 msgstr "Zapołožki"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja, zo byšće zapołožki polěpšił: škitajće je z hesłom, pytajće za duplikatami, namakajće njepłaćiwe zapołožki a wjace."
 
 msgid "Download Management"
 msgstr "Rjadowanje sćehnjenjow"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja Firefox, z kotrymiž wobsah weba, hudźby a wideja sćahnyć. Móžeće tež rozšěrjenje namakać, zo byšće sćehnjenja rjadował, dataje dźělił a wjace."
 
 msgid "Feeds, News & Blogging"
 msgstr "Kanale, powěsće a blogowanje"
