@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 13:16+0000\n"
+"PO-Revision-Date: 2018-11-25 13:42+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2009,7 +2009,7 @@ msgstr ""
 "altero ancora."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, ancora utile pro ille labores impar."
+msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
 
 msgid "Animals"
 msgstr "Animales"
@@ -2210,7 +2210,7 @@ msgid "Download user interface Firefox extensions to alter web pages for easier 
 msgstr "Discarga extensiones de Firefox pro incrementar tu experientia de intertenimento con melioratores de live stream, actualitates sportive, e altero ancora."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr "Discarga le extensiones de interfacie de usator de Firefox pro altere paginas web pro plus facile lectura, recerca, exploration e altero ancora."
+msgstr "Discarga curiose e interessante extensiones que pote dar incremento a Firefox pro Android."
 
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate"
