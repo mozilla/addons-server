@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 00:05+0000\n"
+"PO-Revision-Date: 2018-11-25 00:32+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -1930,31 +1930,31 @@ msgid "Appearance"
 msgstr "Apparentia"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Discarga le extensiones que modifica le apparentia del sitos web e del navigator Firefox. Iste categoria include le extensiones pro themas obscur, gestion de schedas e altero ancora."
 
 msgid "Bookmarks"
 msgstr "Marcapaginas"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Discarga extensiones que meliora le marcapaginas per lor protection con contrasignos, le recerca de duplicatos e de marcapaginas corrupte, e altero ancora."
 
 msgid "Download Management"
 msgstr "Gestion de discargamento"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox que pote adjutar a discargar contento del Web, musica e video. Tu pote alsi trovar extensiones pro gerer discargamentos, compartir files e altero ancora."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox que remove disordine assi que tu pote restar actualisate sur le medios social, prender sur blogs, RSS feeds, reducer le effortio del oculo e altero ancora."
 
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox pro stimular tu experientia de intertenimento. Iste categoria include extensiones que pote meliorar le jocos, controlar reproduction video e altero ancora."
 
 msgid "Language Support"
 msgstr "Supporto de linguas"
