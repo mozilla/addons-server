@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 22:45+0000\n"
+"PO-Revision-Date: 2018-11-25 08:48+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -706,7 +706,7 @@ msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
 
 msgid "Reviewer Tools"
-msgstr "Instrumente pentru recenzori"
+msgstr "Unelte de revizuire"
 
 msgid "Admin Tools"
 msgstr ""
@@ -3697,7 +3697,7 @@ msgid "Unlisted Review Page"
 msgstr ""
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "Vezi tabloul de bord pentru statistici"
 
 msgid "Developer News"
 msgstr ""
@@ -5821,10 +5821,10 @@ msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s
 msgstr ""
 
 msgid "File Compare :: Reviewer tools"
-msgstr ""
+msgstr "Comparare fișiere: Unelte de revizuire"
 
 msgid "File Viewer :: Reviewer tools"
-msgstr ""
+msgstr "Vizualizator de fișiere:: Unelte de revizuire"
 
 msgid "Validation failed:"
 msgstr ""
@@ -6907,9 +6907,8 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr ""
 
 # {0} is the application name.  Example:  Firefox
-#, fuzzy
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Înapoi la pagina de start a suplimentelor {0}"
+msgstr "Înapoi la panoul de bord cu uneltele de revizuire"
 
 msgid "Reviewer Leaderboard"
 msgstr ""
@@ -7588,17 +7587,17 @@ msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
 msgstr "{0} :: Tablou de bord pentru statistici :: Suplimente pentru {1}"
 
 msgid "{0} :: Statistics Dashboard"
-msgstr ""
+msgstr "{0} :: Tablou de bord pentru statistici"
 
 msgid "Statistics Dashboard :: Add-ons for {0}"
-msgstr ""
+msgstr "Tablou de bord pentru statistici :: Suplimente pentru {0}"
 
 #. {0} is an add-on name
 msgid "Statistics for {0}"
 msgstr "Statistici pentru {0}"
 
 msgid "Statistics Dashboard"
-msgstr ""
+msgstr "Tablou de bord pentru statistici"
 
 msgid "Controls:"
 msgstr "Opțiuni de control:"
