@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 00:11+0000\n"
+"PO-Revision-Date: 2018-11-25 00:28+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -2031,79 +2031,79 @@ msgid "Abstract"
 msgstr "Abstrakt"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Hämta Firefox konstnärliga och konceptuella teman. Denna kategori innehåller färgglada paletter och former, fantasibilder, lekfulla katter, psykedeliska blommor."
 
 msgid "Causes"
 msgstr "Orsaker"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Hämta Firefox-teman för nischintressen och ämnen. Denna kategori innehåller sportteman, semester, filantropiska orsaker, nationaliteter och mycket mer."
 
 msgid "Fashion"
 msgstr "Mode"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Hämta Firefox-teman som firar stil i alla former—mönster, blommigt, texturer, modeller och mer."
 
 msgid "Film and TV"
 msgstr "Film och TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Hämta Firefox-teman med filmer och tv. Denna kategori innehåller anime som Uchiha Madara, filmer som The Matrix, serier (Game of Thrones) och mer."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Hämta Firefox-teman med webbläsartemat Firefox. Den här kategorin innehåller färgglada och mångsidiga skildringar av Firefox-logotypen, inklusive mer allmänna fox-teman."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Hämta Firefox-teman med den japanska Firefox. Denna kategori innehåller teman som skildrar den söta Foxkeh-maskoten i olika poser i olika landskap."
 
 msgid "Holiday"
 msgstr "Semester"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Hämta Firefox-teman med semester. Den här kategorin omfattar jul, halloween, tacksägelse, St Patrick's Day, påsk, fjärde juli och mer."
 
 msgid "Music"
 msgstr "Musik"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Hämta Firefox-teman för musikaliska intressen och artister. Denna kategori innehåller populära band som Nirvana och BTS, instrument, musikvideor och mycket mer."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Hämta Firefox-teman med djur och naturlandskap. Denna kategori omfattar blommor, solnedgångar, rävar, årstider, planeter, kattungar, fåglar och mycket mer."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Hämta Firefox-teman som är intressanta, kreativa och unika."
 
 msgid "Scenery"
 msgstr "Landskap"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Hämta Firefox-teman som visar miljön och den naturliga världen. Denna kategori innehåller solnedgångar, stränder, illustrationer, skyltar och mycket mer."
 
 msgid "Seasonal"
 msgstr "Säsongsbetonat"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Hämta Firefox-teman för alla fyra säsonger—höst, vinter, vår och sommar. Höstlöv, snöiga bergstoppar, soliga sommardagar och vårblommor."
 
 msgid "Solid"
 msgstr "Enfärgad"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Ladda ner Firefox-teman med solida och lutande färger för att anpassa din webbläsare. Denna kategori innehåller djärvt rött, pasteller, mjuka gråtoner och mycket mer."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Hämta Firefox-teman som innehåller en mängd olika sporter. Denna kategori omfattar flaggor, sportlag, fotboll, hockey och mer."
 
 msgid "Websites"
 msgstr "Webbplatser"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Hämta Firefox-teman som fångat kärnan i webben—fängslande, ovanliga och distinkta."
 
 msgid "General"
 msgstr "Allmänt"
@@ -2187,16 +2187,16 @@ msgid "Sports & Games"
 msgstr "Sport & Spel"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Hämta utökningar för Firefox för att ge din underhållningsupplevelse lite extra med live stream-förbättringar, sportuppdateringar och mycket mer."
 
 msgid "User Interface"
 msgstr "Användarinterface"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Hämta användargränssnittet för Firefox-utökningar för att ändra webbsidor för att lättare läsa, söka, surfa och mer."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
+msgstr "Hämta udda och intressanta utökningar som kan ge lite mer till Firefox för Android."
 
 msgid "All Rights Reserved"
 msgstr "Med ensamrätt"
@@ -2529,9 +2529,8 @@ msgstr "Vi tillåter och uppmuntrar en uppgradering, men du kan inte ångra denn
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Du kan inte uppdatera ett WebExtensions-tillägg med ett äldre tillägg. Användarna kan inte använda den nya versionen eftersom Firefox inte stöder denna typ av uppdatering."
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Texten som angivits har flaggats som skräppost."
+msgstr "[{field}] Texten i fältet \"{field}\" har flaggats som skräppost."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Utvecklarens API-nyckel hittades i den inskickade filen. För att skydda ditt konto kommer nyckeln att återkallas."
@@ -2861,7 +2860,7 @@ msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> teman"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Redigera produktsida"
 
 msgid "None"
 msgstr "Ingen"
@@ -3283,9 +3282,8 @@ msgstr "Ta bort detta tillägg."
 msgid "Delete"
 msgstr "Ta bort"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Redigera detaljer om detta temas listning."
+msgstr "Redigera detaljer på det här tilläggets produktsida."
 
 msgid "Upload a new version of this add-on."
 msgstr "Ladda upp en ny version av detta tillägg."
@@ -3308,9 +3306,8 @@ msgstr "Visa listning för tillägg"
 msgid "View Recent Changes"
 msgstr "Visa senaste ändringar"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Redigera detaljer om detta temas listning."
+msgstr "Redigera detaljer på det här temats produktsida."
 
 msgid "View the popularity of this theme over time."
 msgstr "Visa populariteten för detta tema över tiden."
@@ -3919,9 +3916,8 @@ msgstr "Visa resurser för utgivare"
 msgid "Welcome Back"
 msgstr "Välkommen tillbaka"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Hjälp användare att upptäcka ditt tillägg genom att skapa en tilltalande lista."
+msgstr "Hjälp användare att upptäcka din utökning genom att skapa en tilltalande produktsida."
 
 msgid "Learn How"
 msgstr "Lär dig hur"
@@ -5727,7 +5723,7 @@ msgid "Could not parse uploaded file."
 msgstr "Det gick inte att tolka uppladdad fil."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Arkivtypen stöds inte."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -7415,9 +7411,8 @@ msgstr "Visar {0} - {1} av {2} resultat för <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Visar {0} - {1} av {2} resultat"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Kunde inte hitta tillägg med id \"{}\"."
+msgstr "Det gick inte att hitta tillägg med guid \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Du äger inte detta tillägg."
