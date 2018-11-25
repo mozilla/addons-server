@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 11:50+0000\n"
+"PO-Revision-Date: 2018-11-25 12:09+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2114,7 +2114,7 @@ msgid "Websites"
 msgstr "Sitos web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Discarga themas de Firefox que captura le essentia del Web: captivante, inusual e distinctive."
 
 msgid "General"
 msgstr "General"
@@ -2153,19 +2153,19 @@ msgid "Device Features & Location"
 msgstr "Functionalitates del apparato & position"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque rapide recercas, libera ressources de systema, prende notas e altero ancora."
 
 msgid "Experimental"
 msgstr "Experimental"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Discarga extensiones de Firefox que es regularmente actualisate e preste pro le test public. Tu commentarios informa le disveloppatores sur le cambios a facer in le versiones approchante."
 
 msgid "Feeds, News, & Blogging"
 msgstr "Feed de novas, novas e blog"
 
 msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
+msgstr "Discarga extensiones de Firefox pro le novas, le feeds del Web e le blogs per le remotion del disordine, per le utilisation de lectores vocal e altero ancora."
 
 msgid "Performance"
 msgstr "Prestationes"
