@@ -37,7 +37,7 @@ class TestRatingAdmin(TestCase):
                  u'intellegebat ea, mollis expetendis usu ei. Cetero aeterno '
                  u'nostrud eu për.')
         Rating.objects.create(
-            addon=addon, body=u'Fôo', rating=5, user=user_factory())
+            addon=addon, body=None, rating=5, user=user_factory())
         # Create a reply.
         Rating.objects.create(
             addon=addon, user=user, body=u'Réply', reply_to=self.rating)

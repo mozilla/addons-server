@@ -59,7 +59,7 @@ class RatingAdmin(admin.ModelAdmin):
         return Rating.unfiltered.all()
 
     def truncated_body(self, obj):
-        return truncate_text(obj.body, 140)[0]
+        return truncate_text(obj.body, 140)[0] if obj.body else ''
 
     def is_reply(self, obj):
         return bool(obj.reply_to)
