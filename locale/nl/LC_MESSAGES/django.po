@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-23 15:01+0000\n"
+"PO-Revision-Date: 2018-11-26 07:12+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2012,16 +2012,16 @@ msgid "Tabs"
 msgstr "Tabbladen"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om tabbladen en de Nieuw tabblad-pagina aan te passen. Ontdek extensies die tabbladen aansturen, de manier waarop u ermee omgaat wijzigen, en meer."
 
 msgid "Web Development"
 msgstr "Webontwikkeling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Download Firefox-extensies met webontwikkelhulpmiddelen. Deze categorie omvat extensies voor GitHub, wisselen van user agent, cookiebeheer, en meer."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Download Firefox-extensies die onvoorspelbaar en creatief kunnen zijn, maar wel handig zijn voor dat soort ongebruikelijke taken."
 
 msgid "Animals"
 msgstr "Dieren"
@@ -2054,49 +2054,49 @@ msgid "Abstract"
 msgstr "Abstract"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Download artistieke en conceptuele thema’s voor Firefox. Deze categorie omvat kleurrijke paletten en vormen, fantasievolle landschappen, speelse katten en psychedelische bloemen."
 
 msgid "Causes"
 msgstr "Goede doelen"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Download Firefox-thema’s voor bijzondere interesses en onderwerpen. Deze categorie omvat sportthema’s, vakanties, filantropische doelen, nationaliteiten, en nog veel meer."
 
 msgid "Fashion"
 msgstr "Mode"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Download Firefox-thema’s die alle stijlvormen vieren - patronen, bloemvormen, texturen, modellen, en meer."
 
 msgid "Film and TV"
 msgstr "Film en tv"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Download Firefox-thema’s met films en televisie. Deze categorie omvat anime als Uchiha Madara, films als The Matrix, series (Game of Thrones) en meer."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Download Firefox-thema’s met het Firefoxbrowserthema. Deze categorie omvat kleurrijke, uiteenlopende weergaven van het Firefox-logo, alsmede meer algemene vossenthema’s."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Download Firefox-thema’s met de Japanse Firefox. Deze categorie omvat thema’s die de schattige Foxkeh-mascotte in diverse poses in diverse landschappen weergeven."
 
 msgid "Holiday"
 msgstr "Feestdagen"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Download Firefox-thema’s met feestdagen. Deze categorie omvat Kerstmis, Halloween, Thanksgiving, St. Patrick’s Day, Fourth of July, en meer."
 
 msgid "Music"
 msgstr "Muziek"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Download Firefox-thema’s voor muzikale interesses en artiesten. Deze categorie omvat populaire bands als Nirvana en BTS, instrumenten, muziekvideo’s, en nog veel meer."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Download Firefox-thema’s met dieren en natuurlandschappen. Deze categorie omvat bloemen, zonsondergangen, vossen, seizoenen, planeten, kittens, vogels, en meer."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Download interessante, creatieve en unieke Firefox-thema’s."
