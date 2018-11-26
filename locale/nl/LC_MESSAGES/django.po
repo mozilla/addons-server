@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-26 07:12+0000\n"
+"PO-Revision-Date: 2018-11-26 07:32+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2105,28 +2105,28 @@ msgid "Scenery"
 msgstr "Landschap"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Download Firefox-thema’s over het milieu en de natuur. Deze categorie omvat zonsondergangen, stranden, illustraties, stadsgezichten, en meer."
 
 msgid "Seasonal"
 msgstr "Seizoensgebonden"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Download Firefox-thema’s voor alle vier de seizoenen - herfst, winter, lente en zomer. Herfstbladeren, besneeuwde bergtoppen, zonnige zomerdagen en lentebloesem."
 
 msgid "Solid"
 msgstr "Dekkend"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Download Firefox-thema’s met vaste en geschakeerde kleuren om uw browser aan te passen. Deze categorie omvat hardrood, pastelkleuren, zachtgrijs, en nog veel meer."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Download Firefox-thema’s over een scala aan sporten. Deze categorie omvat vlaggen, sportteams, voetbal, ijshockey, en meer."
 
 msgid "Websites"
 msgstr "Websites"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Download Firefox-thema’s die de essentie van het web vangen - boeiend, ongebruikelijk en bijzonder."
 
 msgid "General"
 msgstr "Algemeen"
@@ -2165,31 +2165,33 @@ msgid "Device Features & Location"
 msgstr "Apparaatfuncties en -locatie"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Download extensies om Firefox voor Android te verbeteren. Voer snelle zoekopdrachten uit, schoon het systeem op, maak notities, en meer."
 
 msgid "Experimental"
 msgstr "Experimenteel"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Download Firefox-extensies die regelmatig worden bijgewerkt en klaar zijn voor testen door het publiek. Uw feedback informeert ontwikkelaars over wijzigingen die ze in toekomstige versies kunnen "
+"maken."
 
 msgid "Feeds, News, & Blogging"
 msgstr "Feeds, nieuws en blogging"
 
 msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
+msgstr "Download Firefox-extensies voor nieuws, webfeeds en blogs die onnodige informatie verwijderen, gebruikmaken van stemlezers, en meer."
 
 msgid "Performance"
 msgstr "Prestaties"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Download extensies die de prestaties van Firefox een boost geven. Vind extensies die u helpen productiever en efficiënter te zijn door vervelende advertenties te blokkeren en meer."
 
 msgid "Photos & Media"
 msgstr "Foto’s en media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om foto's en media te verbeteren. Deze categorie omvat extensies voor het omgekeerd zoeken van afbeeldingen, het maken van volledige schermafbeeldingen en meer."
 
 msgid "Security & Privacy"
 msgstr "Beveiliging en privacy"
