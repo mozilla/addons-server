@@ -9,6 +9,49 @@
   <form method="post" id="submit-describe" class="item">
     {{ form.non_field_errors() }}
     {% csrf_token %}
+    {% if waffle.switch('content-optimization') %}
+    <div class="addon-submission-field">
+      <div class="combine-name-summary">
+        <label for="id_name">{{ _("Name and Summary:") }}<span class="req" title="{{ _('required') }}">*</span></label>
+        {{ form.name }}&nbsp;{{ form.summary }}
+        {{ form.name.errors }}
+        {{ form.summary.errors }}
+      </div>
+      <div class="edit-addon-details">
+        {{ _('The summary should explain what your add-on does, clearly and '
+             'concisely. Both the name and summary will appear on your product '
+             'page and search results. They have a combined maximum length of '
+             '70 characters and a minimum length of 2 characters for each.') }}
+        <div class="char-count"
+             data-for-names="name,summary"
+             data-maxlength="{{ form.name.field.min_length + form.summary.field.max_length }}"></div>
+        <div class="char-count"
+             data-text-prefix="{{ _('Summary') }}&nbsp;"
+             data-text-postfix=";&nbsp;"
+             data-for-startswith="{{ form.summary.auto_id }}_"
+             data-minlength="{{ form.summary.field.min_length }}"></div>
+        <div class="char-count"
+             data-text-prefix="{{ _('Name') }}&nbsp;"
+             data-text-postfix=";&nbsp;"
+             data-for-startswith="{{ form.name.auto_id }}_"
+             data-minlength="{{ form.name.field.min_length }}"></div>
+      </div>
+    </div>
+    <div class="addon-submission-field slug-edit">
+      <label>{{ _("Add-on URL:") }}</label>
+      <div id="slug_edit" class="edit_with_prefix edit_initially_hidden">
+        <span>{{ settings.SITE_URL }}</span>{{ form.slug }}
+        <div class="edit-addon-details">
+          {{ _('Please use only letters, numbers, underscores, and dashes in your URL.') }}
+        </div>
+      </div>
+      <span id="slug_readonly">
+        {{ settings.SITE_URL }}/&hellip;/<span id="slug_value"></span>
+        <a id="edit_slug" href="#">{{ _('Edit') }}</a>
+      </span>
+      {{ form.slug.errors }}
+    </div>
+    {% else %}
     <div class="addon-submission-field">
       <label for="id_name">{{ _("Name:") }}</label>
       <span class="tip tooltip" title="{{ _('Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox') }}" data-oldtitle="">?</span>
@@ -40,6 +83,7 @@
              data-maxlength="{{ form.summary.field.max_length }}"></div>
       </div>
     </div>
+    {% endif %}
     {% if addon.type == amo.ADDON_EXTENSION %}
     <div class="addon-submission-field">
       <label>{{ _('Description:') }}

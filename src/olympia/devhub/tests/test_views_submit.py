@@ -987,6 +987,58 @@ class DetailsPageMixin(object):
         comment_check_mock.assert_not_called()
         assert AkismetReport.objects.count() == 0
 
+    @override_switch('content-optimization', active=False)
+    def test_name_summary_lengths_short(self):
+        # check the separate name and summary labels, etc are served
+        response = self.client.get(self.url)
+        assert 'Name and Summary' not in response.content
+        assert 'It will be shown in listings and searches' in response.content
+
+        data = self.get_dict(name='a', summary='b')
+        self.is_success(data)
+
+    @override_switch('content-optimization', active=False)
+    def test_name_summary_lengths_long(self):
+        data = self.get_dict(name='a' * 50, summary='b' * 50)
+        self.is_success(data)
+
+    @override_switch('content-optimization', active=True)
+    def test_name_summary_lengths_content_optimization(self):
+        # check the combined name and summary label, etc are served
+        response = self.client.get(self.url)
+        assert 'Name and Summary' in response.content
+
+        # name and summary are too short
+        response = self.client.post(
+            self.url, self.get_dict(
+                name='a', summary='b', description='c' * 10))
+        assert self.get_addon().name != 'a'
+        assert self.get_addon().summary != 'b'
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'Ensure this value has at least 2 characters (it has 1).')
+        self.assertFormError(
+            response, 'form', 'summary',
+            'Ensure this value has at least 2 characters (it has 1).')
+
+        # name and summary individually are okay, but together are too long
+        response = self.client.post(
+            self.url, self.get_dict(
+                name='a' * 50, summary='b' * 50, description='c' * 10))
+        assert self.get_addon().name != 'a' * 50
+        assert self.get_addon().summary != 'b' * 50
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'Ensure name and summary combined are at most 70 characters '
+            u'(they have 100).')
+
+        # success: together name and summary are 70 characters.
+        data = self.get_dict(
+            name='a' * 2, summary='b' * 68, description='c' * 10)
+        self.is_success(data)
+
 
 class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
