@@ -13,7 +13,7 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import SafeZip, id_to_path
+from olympia.files.utils import id_to_path, extract_extension_to_dest
 
 
 log = olympia.core.logger.getLogger('z.git_storage')
@@ -103,7 +103,7 @@ class AddonGitRepository(object):
 
         * Create a temporary `git worktree`_
         * Remove all files in that worktree
-        * Extract the zip behind `file_obj` into the worktree
+        * Extract the extension behind `file_obj` into the worktree
         * Commit all files
 
         Kinda like doing::
@@ -164,14 +164,13 @@ class AddonGitRepository(object):
 
         branch = repo.find_or_create_branch(BRANCHES[channel])
 
-        # Create a temporary worktree that we can use to unpack the zip
+        # Create a temporary worktree that we can use to unpack the extension
         # without disturbing the current git workdir since it creates a new
         # temporary directory where we extract to.
         with TemporaryWorktree(repo.git_repository) as worktree:
-            # Now extract the zip to the workdir
-            zip_file = SafeZip(file_obj.current_file_path, force_fsync=True)
-            zip_file.extract_to_dest(worktree.path)
-
+            # Now extract the extension to the workdir
+            extract_extension_to_dest(
+                file_obj.current_file_path, force_fsync=True)
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
             # state.

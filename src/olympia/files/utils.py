@@ -9,6 +9,7 @@ import shutil
 import stat
 import StringIO
 import struct
+import tarfile
 import tempfile
 import zipfile
 import scandir
@@ -632,8 +633,11 @@ def parse_search(fileorpath, addon=None):
             'version': datetime.now().strftime('%Y%m%d')}
 
 
-class FsyncedZipFile(zipfile.ZipFile):
-    """Subclass of ZipFile that calls `fsync` for file extractions.
+class FSyncMixin(object):
+    """Mixin that implements fsync for file extractions.
+
+    This mixin uses the `_extract_member` interface used by `ziplib` and
+    `tarfile` so it's somewhat unversal.
 
     We need this to make sure that on EFS / NFS all data is immediately
     written to avoid any data loss on the way.
@@ -654,7 +658,7 @@ class FsyncedZipFile(zipfile.ZipFile):
         os.fsync(descriptor)
         os.close(descriptor)
 
-    def _extract_member(self, member, targetpath, pwd):
+    def _extract_member(self, member, targetpath, *args, **kwargs):
         """Extends `ZipFile._extract_member` to call fsync().
 
         For every extracted file we are ensuring that it's data has been
@@ -667,14 +671,24 @@ class FsyncedZipFile(zipfile.ZipFile):
         This is inspired by https://github.com/2ndquadrant-it/barman/
         (see backup.py -> backup_fsync_and_set_sizes and utils.py)
         """
-        targetpath = super(FsyncedZipFile, self)._extract_member(
-            member, targetpath, pwd)
+        targetpath = super(FSyncMixin, self)._extract_member(
+            member, targetpath, *args, **kwargs)
 
         parent_dir = os.path.dirname(targetpath)
         if parent_dir:
             self._fsync_dir(parent_dir)
 
         self._fsync_file(targetpath)
+
+
+class FSyncedZipFile(FSyncMixin, zipfile.ZipFile):
+    """Subclass of ZipFile that calls `fsync` for file extractions."""
+    pass
+
+
+class FSyncedTarFile(FSyncMixin, tarfile.TarFile):
+    """Subclass of TarFile that calls `fsync` for file extractions."""
+    pass
 
 
 def archive_member_validator(archive, member):
@@ -732,7 +746,7 @@ class SafeZip(object):
             return True
 
         if self.force_fsync:
-            zip_file = FsyncedZipFile(self.source, self.mode)
+            zip_file = FSyncedZipFile(self.source, self.mode)
         else:
             zip_file = zipfile.ZipFile(self.source, self.mode)
 
@@ -827,6 +841,48 @@ def extract_zip(source, remove=False, force_fsync=False):
     if remove:
         os.remove(source)
     return tempdir
+
+
+def extract_extension_to_dest(source, dest=None, force_fsync=False):
+    """Extract `source` to `dest`.
+
+    `source` can be an extension or extension source, can be a zip, tar
+    (gzip, bzip) or a search provider (.xml file).
+
+    Note that this doesn't verify the contents of `source` except for
+    that it requires something valid to be extracted.
+
+    :returns: Extraction target directory, if `dest` is `None` it'll be a
+              temporary directory.
+    """
+    target, tempdir = None, None
+
+    if dest is None:
+        target = tempdir = tempfile.mkdtemp(dir=settings.TMP_PATH)
+    else:
+        target = dest
+
+    try:
+        if source.endswith(('.zip', '.xpi')):
+            zip_file = SafeZip(source, force_fsync=force_fsync)
+            zip_file.extract_to_dest(target)
+        elif source.endswith(('.tar.gz', '.tar.bz2')):
+            tarfile_class = (
+                tarfile.TarFile
+                if not force_fsync else FSyncedTarFile)
+            with tarfile_class.open(source) as archive:
+                archive.extractall(target)
+        elif source.endswith('.xml'):
+            shutil.copy(source, target)
+            if force_fsync:
+                FSyncMixin()._fsync_file(target)
+    except (zipfile.BadZipfile, tarfile.ReadError, IOError):
+        raise forms.ValidationError(
+            ugettext('Invalid or broken archive.'))
+    finally:
+        if tempdir is not None:
+            rm_local_tmp_dir(tempdir)
+    return target
 
 
 def copy_over(source, dest):
