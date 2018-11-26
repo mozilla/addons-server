@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-26 13:51+0000\n"
+"PO-Revision-Date: 2018-11-26 14:04+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -163,7 +163,7 @@ msgstr ""
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
+msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezumat și o descriere în limba respectivă. Îți lipsește %s."
 
 msgid "A license must be selected."
 msgstr "O licență trebuie să fie selectată."
@@ -181,16 +181,16 @@ msgid "Listed"
 msgstr "Listat"
 
 msgid "Addon and collection paths need to end with \"/\""
-msgstr ""
+msgstr "Căile către suplimente și colecții trebuie să se termie în „/”"
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau Firefox."
 
 msgid "Abuse reported."
 msgstr "Abuzul a fost raportat."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
+msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii."
 
 msgid "No compatible versions"
 msgstr "Nicio versiune compatibilă"
@@ -209,11 +209,11 @@ msgid "This add-on has not been reviewed by Mozilla."
 msgstr ""
 
 msgid "This add-on has been marked as experimental by its developers."
-msgstr ""
+msgstr "Acest supliment a fost marcat ca experimental de dezvoltatori."
 
 #. {0} is the name of the add-on.
 msgid "End-User License Agreement for {0}"
-msgstr ""
+msgstr "Acord de licență pentru utilizatorul final aferent {0}"
 
 msgid "End-User License Agreement"
 msgstr "Acord de licență cu utilizatorul final"
@@ -446,7 +446,7 @@ msgid "by %(user)s on %(date)s"
 msgstr "de %(user)s în %(date)s"
 
 msgid "Show the developer's reply to this review"
-msgstr ""
+msgstr "Afișează răspunsul dezvoltatorului la această recenzie"
 
 #, python-format
 msgid "See all reviews of this add-on"
@@ -491,14 +491,14 @@ msgid "Related Categories"
 msgstr "Categorii conexe"
 
 msgid "Part of these Collections"
-msgstr ""
+msgstr "Face parte din aceste colecții"
 
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Alte suplimente de la %(author)s"
+msgstr[1] "Alte suplimente de la acești autori"
+msgstr[2] "Alte suplimente de la acești autori"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
@@ -521,7 +521,7 @@ msgstr "Setări administrative"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
-msgstr ""
+msgstr "Pictogramă {0}"
 
 msgid "Contribute"
 msgstr "Contribuie"
@@ -534,7 +534,7 @@ msgstr "Dezvoltatorul acestui supliment îți solicită să contribui pentru spr
 
 #. {0} is an index.
 msgid "Add-on screenshot #{0}"
-msgstr ""
+msgstr "Captură de ecran cu suplimentul #{0}"
 
 msgid "Add-on home page"
 msgstr "Pagina de start a suplimentului"
@@ -543,7 +543,7 @@ msgid "Support site"
 msgstr "Site pentru suport"
 
 msgid "Support E-mail"
-msgstr ""
+msgstr "Adresă de e-mail pentru asistență"
 
 msgid "Info"
 msgstr "Informații"
@@ -563,7 +563,7 @@ msgid "About this Add-on"
 msgstr "Despre acest supliment"
 
 msgid "Developer’s Comments"
-msgstr ""
+msgstr "Comentariile dezvoltatorului"
 
 msgid "Version Information"
 msgstr "Informații privind versiunea"
