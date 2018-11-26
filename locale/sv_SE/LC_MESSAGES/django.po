@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-26 14:57+0000\n"
-"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
+"PO-Revision-Date: 2018-11-26 16:28+0000\n"
+"Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -2461,7 +2461,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Källfilen laddades upp men du angav att ingen källa behövdes."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "Kontrollera att namnet och sammanfattningen är sammanlagt högst 70 tecken (de har {0})."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Det kan inte finnas fler än 3 tillägg som krävs."
@@ -2595,13 +2595,11 @@ msgstr "Bilder kan inte vara större än %dkB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Bild måste vara exakt {0} pixlar bred och {1} pixlar hög."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Bild måste vara exakt {0} pixlar bred och {1} pixlar hög."
+msgstr "Bilden måste vara minst {0} pixlar bred och {1} pixlar hög."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Bilder måste vara antingen PNG eller JPG."
+msgstr "Bildens mått måste vara i förhållandet 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "Ett fel uppstod med uppladdning av förhandsvisning."
@@ -2940,6 +2938,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Sammanfattningen ska förklara vad din utökning gör, tydligt och koncist. Både namn och sammanfattning kommer att visas på din produktsida och sökresultat. De har en kombinerad max längd på 70 tecken"
+" och en minsta längd på 2 tecken för varje."
 
 msgid "Summary"
 msgstr "Sammanfattning"
@@ -3183,13 +3183,13 @@ msgid "Add a Screenshot..."
 msgstr "Lägg till en skärmdump..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG och JPG stöds, PNG rekommenderas. Den maximala och rekommenderade storleken för skärmdumpar är 2400x1800 pixlar."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Minsta storlek är 1000x750, och ett förhållande av 4:3 krävs."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Att ha skärmdumpar på din produktsida ökar kraftigt chansen att den installeras och visas på hemsidan."
 
 msgid "Continue"
 msgstr "Fortsätt"
@@ -3902,13 +3902,13 @@ msgstr "Logga in för att redigera och uppdatera ditt tillägg"
 msgid "Resources for a successful launch"
 msgstr "Resurser för en framgångsrik lansering"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Du har byggt din utökning och är redo att publicera den. Vad kommer härnäst? Kolla in våra tips för att skapa en tilltalande sida för att få din utökning visad "
-"på%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, hitta svar på utvecklingsfrågor och hålla dig uppdaterad med nyheter och händelser som är relevanta för utökningsutvecklare."
+"Du har byggt din utökning och är redo att publicera den. Vad kommer härnäst? Kolla in våra tips för att skapa en tilltalande produktsida, få din utökning tillgänglig på "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, hitta svar på utvecklingsfrågor och hålla dig uppdaterad med nyheter och händelser som är relevanta för utökningsutvecklare."
 
 msgid "View Resources for Publishers"
 msgstr "Visa resurser för utgivare"
@@ -4256,16 +4256,12 @@ msgstr "Svara"
 msgid "Listing visibility"
 msgstr "Tilläggets synlighet"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Synlig:{label_close} Synlig för alla på {site_url} och ingår i sökresultat och listningssidor."
+msgstr "{label_open}Synlig:{label_close} Synlig för alla på {site_url} och ingår i sökresultat och produktsidor."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr ""
-"{label_open}Osynlig:{label_close} Kommer inte att inkluderas i sökresultaten och på dess listningssida anges att du har inaktiverat det. Nya bidragsversioner för listning kommer inte att godtas i "
-"detta tillstånd."
+msgstr "{label_open}Osynlig:{label_close} Ingår inte i sökresultaten, och produktsidan indikerar att du inaktiverat den. Nya versioner för produkten kommer inte att accepteras i detta tillstånd."
 
 msgid "Listed versions"
 msgstr "Listade versioner"
@@ -6299,7 +6295,7 @@ msgid "User"
 msgstr "Användare"
 
 msgid "IP Address"
-msgstr "IP adress"
+msgstr "IP-adress"
 
 #, python-format
 msgid "Reviews for %s"
