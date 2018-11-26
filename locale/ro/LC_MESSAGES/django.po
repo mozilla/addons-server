@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-26 12:57+0000\n"
+"PO-Revision-Date: 2018-11-26 13:18+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -19,16 +19,16 @@ msgid "No links are allowed."
 msgstr "Linkurile nu sunt permise."
 
 msgid "This display name cannot be used."
-msgstr ""
+msgstr "Acest nume de afișare nu poate fi utilizat."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Câmpul pentru pagina de start poate fi utilizat numai pentru linkuri către site-uri web externe."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Numele de utilizator nu pot conține doar cifre."
 
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "Introdu un nume de utilizator valid, alcătuit din litere, numere, liniuță jos sau cratimă."
 
 msgid "This username cannot be used."
 msgstr "Acest nume te utilizator nu poate fi folosit."
@@ -62,7 +62,7 @@ msgid "Need help?"
 msgstr "Ai nevoie de ajutor?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "Dezvoltatorii de suplimente sau de teme nu își pot șterge conturile. Trebuie să ștergi toate suplimentele și temele asociate acestui cont sau să le transferi altor utilizatori."
 
 msgid "Review"
 msgstr "Verifică"
@@ -80,7 +80,7 @@ msgid "Status"
 msgstr "Stare"
 
 msgid "- Add-on not on AMO -"
-msgstr ""
+msgstr "- Supliment inexistent în AMO -"
 
 msgid "Download Now"
 msgstr "Descarcă acum"
@@ -2924,7 +2924,7 @@ msgid "Information about your add-on is displayed in this locale unless you over
 msgstr ""
 
 msgid "Homepage"
-msgstr "Pagina principală"
+msgstr "Pagină de start"
 
 msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
