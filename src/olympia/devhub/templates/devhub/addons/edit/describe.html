@@ -17,6 +17,60 @@
         {# L10n: {0} is the addon name #}
         <caption>{{ _('Describe {0}')|format_html(addon.name) }}</caption>
         <tbody>
+          {% if waffle.switch('content-optimization') %}
+          <tr>
+            <th><label data-for="name">{{ _("Name and Summary") }}
+                {{ tip(None,
+                       _("The summary should explain what your add-on does, "
+                         "clearly and concisely. Both the name and summary will "
+                         "appear on your product page and search results. They "
+                         "have a combined maximum length of 70 characters and a "
+                         "minimum length of 2 characters for each.")) }}
+            </label></th>
+            <td>
+              {% if editable %}
+                <div class="combine-name-summary">
+                  {{ form.name }}&nbsp;{{ form.summary }}
+                  {{ form.name.errors }}
+                  {{ form.summary.errors }}
+                </div>
+                <div class="char-count"
+                  data-text-prefix="{{ _('Name') }}&nbsp;"
+                  data-text-postfix=";&nbsp;"
+                  data-for-startswith="{{ form.name.auto_id }}_"
+                  data-minlength="{{ form.name.field.min_length }}"></div>
+                <div class="char-count"
+                  data-text-prefix="{{ _('Summary') }}&nbsp;"
+                  data-text-postfix=";&nbsp;"
+                  data-for-startswith="{{ form.summary.auto_id }}_"
+                  data-minlength="{{ form.summary.field.min_length }}"></div>
+                <div class="char-count"
+                  data-for-names="name,summary"
+                  data-maxlength="{{ form.name.field.min_length + form.summary.field.max_length }}"></div>
+              {% else %}
+                {{ addon|all_locales('name') }}
+                {{ addon|all_locales('summary') }}
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th>
+              {{ tip(_("Add-on URL"),
+                 _("Choose a short, unique URL slug for your add-on.")) }}
+            </th>
+            <td id="slug_edit">
+              {% if editable %}
+                <div class="edit_with_prefix">
+                  <span>{{ settings.SITE_URL }}/&hellip;/</span>{{ form.slug }}
+                </div>
+                {{ form.slug.errors }}
+              {% else %}
+                {{ settings.SITE_URL }}/&hellip;/{{ addon.slug }}
+                {% if addon.has_listed_versions() %}<a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a>{% endif %}
+              {% endif %}
+            </td>
+          </tr>
+          {% else %}
           <tr>
             <th><label data-for="name">{{ _("Name") }}</label></th>
             <td>
@@ -67,6 +121,7 @@
               {% endif %}
             </td>
           </tr>
+          {% endif %}
           <tr>
             <th>
               <label data-for="description">
