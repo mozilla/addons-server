@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-11-06 13:56+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -79,6 +79,10 @@ msgstr "İnceleme notu"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Eklentilerin yalnızca son sürümlerine not eklenebilir."
+
+# 100%
+msgid "Ratings"
+msgstr "Puanlama"
 
 msgid "Status"
 msgstr "Durum"
@@ -1011,9 +1015,6 @@ msgstr "Koleksiyonunuzu tanımlayın. (Bağlantılara izin verilmez.)"
 msgid "Privacy:"
 msgstr "Gizlilik:"
 
-msgid "Icon"
-msgstr "Simge"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Lütfen bu alanı doldurmayın, botları yakalamak için kullanılır"
 
@@ -1022,12 +1023,6 @@ msgstr "Bu isim kullanılamaz."
 
 msgid "This url is already in use by another collection"
 msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Simgeler PNG veya JPG olmalıdır."
-
-msgid "Icons cannot be animated."
-msgstr "Simgeler hareketli olamaz."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -1071,9 +1066,6 @@ msgstr "Koleksiyon güncellendi!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "Değişiklikleri görmek için <a href=\"%(url)s\">koleksiyonunuzu görüntüleyin</a>."
-
-msgid "Icon Deleted"
-msgstr "Simge silindi"
 
 # 89%
 # 82%
@@ -1255,15 +1247,6 @@ msgstr "Koleksiyon Oluştur"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Koleksiyonlar, sevilen eklentileri takip etmenizi ve kusursuzca özelleştirdiğiniz tarayıcınızı diğer kişiler ile paylaşmanızı kolaylaştırır."
-
-msgid "Collection Icon"
-msgstr "Koleksiyon Simgesi"
-
-msgid "Reset"
-msgstr "Sıfırla"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG ve JPG destekleniyor.  Resim 32x32 olarak boyutlandırılacaktır."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Formda hatalar var. Lütfen aşağıda bunları düzeltin."
@@ -2076,6 +2059,56 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
+# 80%
+# 100%
+msgid "Device Features & Location"
+msgstr "Cihaz Özellikleri ve Konum"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Deneysel"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Performans"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Fotoğraf ve Multimedya"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Güvenlik ve Gizlilik"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Sosyal Ağlar"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Spor ve Maçlar"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Kullanıcı Arayüzü"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
 msgid "Animals"
 msgstr "Hayvanlar"
 
@@ -2214,68 +2247,6 @@ msgstr "Seyahat"
 
 msgid "Video"
 msgstr "Video"
-
-# 80%
-# 100%
-msgid "Device Features & Location"
-msgstr "Cihaz Özellikleri ve Konum"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr "Deneysel"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Feeds, News, & Blogging"
-msgstr "Akışlar, Haberler ve Blog'lar"
-
-msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
-
-msgid "Performance"
-msgstr "Performans"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr "Fotoğraf ve Multimedya"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr "Güvenlik ve Gizlilik"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr "Sosyal Ağlar"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr "Spor ve Maçlar"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr "Kullanıcı Arayüzü"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Tüm hakları saklıdır"
@@ -2585,6 +2556,9 @@ msgstr "Yüklenen dosya çözümlenemedi."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kaynak dosya yüklendi fakat hiçbir kaynağın gerekmediğini belirttiniz."
 
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
+
 msgid "There cannot be more than 3 required add-ons."
 msgstr "3'ten fazla gerekli eklenti olamaz."
 
@@ -2701,6 +2675,12 @@ msgstr "Eklentinizdeki bir yazar silindi"
 msgid "Validate Add-on"
 msgstr "Eklentiyi doğrula"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Simgeler PNG veya JPG olmalıdır."
+
+msgid "Icons cannot be animated."
+msgstr "Simgeler hareketli olamaz."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Resimler %d KB'den büyük olamaz."
@@ -2708,6 +2688,14 @@ msgstr "Resimler %d KB'den büyük olamaz."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Resimler PNG veya JPG olmalıdır."
 
 msgid "There was an error uploading your preview."
 msgstr "Ön izlemenizi yüklerken bir hata oluştu."
@@ -3052,6 +3040,18 @@ msgstr "Eklentinizi tanımlayın"
 msgid "Describe {0}"
 msgstr "Eklentinizi tanımlayın"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Özet"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Özet"
+
 msgid "Add-on URL"
 msgstr "Eklenti URL'si"
 
@@ -3061,8 +3061,9 @@ msgstr "Eklentiniz için kısa ve benzersiz bir kısa URL seçin."
 msgid "View Listing"
 msgstr "Listelemeyi gör"
 
-msgid "Summary"
-msgstr "Özet"
+#, fuzzy
+msgid "View Product Page"
+msgstr "Kullanıcı Kimliğine Bak"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3266,9 +3267,13 @@ msgstr "Lütfen bu ekran görüntüsüne bir başlık verin:"
 msgid "Add a Screenshot..."
 msgstr "Ekran görüntüsü ekle..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr ""
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
 
 msgid "Continue"
@@ -3382,9 +3387,6 @@ msgstr "İstatistikler"
 msgid "Manage Status & Versions"
 msgstr "Durumu ve Sürümleri Yönet"
 
-msgid "View Add-on Listing"
-msgstr "Eklenti Listelemesine Bak"
-
 msgid "View Recent Changes"
 msgstr "Son Değişikliklere Bak"
 
@@ -3432,8 +3434,12 @@ msgstr[1] "<strong>{0}</strong> etkin kullanıcı"
 msgid "Submit a New Version"
 msgstr "Yeni sürüm gönder"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Özet:"
+
+msgid "required"
+msgstr "gerekli"
 
 msgid "Add-on URL:"
 msgstr "Eklenti URL'si:"
@@ -3441,11 +3447,11 @@ msgstr "Eklenti URL'si:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Lütfen URL'nizde yalnızca harf, rakam, alt çizgi ve tire kullanın."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Summary:"
 msgstr "Özet:"
-
-msgid "required"
-msgstr "gerekli"
 
 #, fuzzy
 msgid "Description:"
@@ -3986,7 +3992,7 @@ msgstr "Başarılı bir başlangıç için kaynaklar"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
@@ -4332,11 +4338,11 @@ msgstr "Yanıtla"
 msgid "Listing visibility"
 msgstr "Görünürlük"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr ""
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 
 msgid "Listed versions"
@@ -6360,6 +6366,14 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Sunan:"
 
+#, fuzzy
+msgid "User"
+msgstr "Kullanıcı Adı"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "E-posta Adresi"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "%s İncelemeleri"
@@ -8041,10 +8055,6 @@ msgstr "Profil Resmi"
 
 msgid "Addons"
 msgstr "Eklentiler"
-
-# 100%
-msgid "Ratings"
-msgstr "Puanlama"
 
 msgid "Activity Logs"
 msgstr "Etkinlik günlükleri"
