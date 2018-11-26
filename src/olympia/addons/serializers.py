@@ -441,14 +441,13 @@ class AddonSerializer(serializers.ModelSerializer):
         return absolutify(obj.get_icon_url(64))
 
     def get_icons(self, obj):
-        # We're using only 32 and 64 for compatibility reasons with the
-        # old search API. https://github.com/mozilla/addons-server/issues/7514
         if self.is_broken_persona(obj):
             get_icon = obj.get_default_icon_url
         else:
             get_icon = obj.get_icon_url
 
-        return {str(size): absolutify(get_icon(size)) for size in (32, 64)}
+        return {str(size): absolutify(get_icon(size))
+                for size in amo.ADDON_ICON_SIZES}
 
     def get_ratings(self, obj):
         return {
