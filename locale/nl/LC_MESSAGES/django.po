@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-26 07:32+0000\n"
+"PO-Revision-Date: 2018-11-26 07:35+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2197,28 +2197,28 @@ msgid "Security & Privacy"
 msgstr "Beveiliging en privacy"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om veilig en privé te surfen. Ontdek extensies die stiekeme advertentietrackers kunnen stoppen, eenvoudig de surfgeschiedenis kunnen wissen, en meer."
 
 msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
+msgstr "Download Firefox-extensies die uw online winkelervaring kunnen verbeteren door beoordelingen te analyseren, aanbiedingen en kortingsbonnen te vinden, en meer."
 
 msgid "Social Networking"
 msgstr "Sociale netwerken"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om uw ervaring op populaire sociale netwerksites zoals YouTube, GitHub, Reddit en meer te verbeteren."
 
 msgid "Sports & Games"
 msgstr "Sport en spel"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Download Firefox-extensies om uw entertainmentervaring een boost te geven met livestreamverbetering, sportupdates, en meer."
 
 msgid "User Interface"
 msgstr "Gebruikersinterface"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Download Firefox-extensies voor uw gebruikersinterface om webpagina’s te wijzigen voor eenvoudiger lezen, zoeken, surfen, en meer."
 
 msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
 msgstr "Download vreemde en interessante extensies die Firefox voor Android een boost kunnen geven."
