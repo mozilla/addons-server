@@ -100,6 +100,59 @@ def test_default_fxa_register_url_with_state():
     }
 
 
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_fxa_login_url_without_requiring_two_factor_auth():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'], next_path=path, action='signin',
+        force_two_factor=False)
+
+    url = urlparse.urlparse(raw_url)
+    base = '{scheme}://{netloc}{path}'.format(
+        scheme=url.scheme, netloc=url.netloc, path=url.path)
+    assert base == 'https://accounts.firefox.com/oauth/authorization'
+    query = urlparse.parse_qs(url.query)
+    next_path = urlsafe_b64encode(path).rstrip('=')
+    assert query == {
+        'action': ['signin'],
+        'client_id': ['foo'],
+        'redirect_url': ['https://testserver/fxa'],
+        'scope': ['profile'],
+        'state': ['myfxastate:{next_path}'.format(next_path=next_path)],
+    }
+
+
+@override_settings(FXA_CONFIG=FXA_CONFIG)
+def test_fxa_login_url_requiring_two_factor_auth():
+    path = '/en-US/addons/abp/?source=ddg'
+    request = RequestFactory().get(path)
+    request.session = {'fxa_state': 'myfxastate'}
+
+    raw_url = utils.fxa_login_url(
+        config=FXA_CONFIG['default'],
+        state=request.session['fxa_state'], next_path=path, action='signin',
+        force_two_factor=True)
+
+    url = urlparse.urlparse(raw_url)
+    base = '{scheme}://{netloc}{path}'.format(
+        scheme=url.scheme, netloc=url.netloc, path=url.path)
+    assert base == 'https://accounts.firefox.com/oauth/authorization'
+    query = urlparse.parse_qs(url.query)
+    next_path = urlsafe_b64encode(path).rstrip('=')
+    assert query == {
+        'acr_values': ['AAL2'],
+        'action': ['signin'],
+        'client_id': ['foo'],
+        'redirect_url': ['https://testserver/fxa'],
+        'scope': ['profile'],
+        'state': ['myfxastate:{next_path}'.format(next_path=next_path)],
+    }
+
+
 def test_unicode_next_path():
     path = u'/en-US/føø/bãr'
     request = RequestFactory().get(path)

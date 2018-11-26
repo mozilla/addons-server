@@ -14,6 +14,7 @@ from django.utils.html import format_html
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import waffle
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
@@ -258,8 +259,26 @@ def with_user(format, config=None):
                     request, ERROR_NO_PROFILE, next_path=next_path,
                     format=format)
             else:
+                user = find_user(identity)
+                if (waffle.switch_is_active('2fa-for-developers') and
+                        user.is_addon_developer and
+                        not identity.get('twoFactorAuthentication')):
+                    # https://github.com/mozilla/addons/issues/732
+                    # The user is an add-on developer (with other types of
+                    # add-ons than just themes), but hasn't logged in with a
+                    # second factor. Immediately redirect them to start the FxA
+                    # flow again, this time requesting 2FA to be present.
+                    return HttpResponseRedirect(
+                        fxa_login_url(
+                            config=fxa_config,
+                            state=request.session['fxa_state'],
+                            next_path=next_path,
+                            action='signin',
+                            force_two_factor=True
+                        )
+                    )
                 return fn(
-                    self, request, user=find_user(identity), identity=identity,
+                    self, request, user=user, identity=identity,
                     next_path=next_path)
         return inner
     return outer
@@ -336,6 +355,9 @@ class AuthenticateView(FxAConfigMixin, APIView):
 
     @with_user(format='html')
     def get(self, request, user, identity, next_path):
+        # At this point @with_user guarantees that we have a valid fxa
+        # identity. We are proceeding with either registering the user or
+        # logging them on.
         if user is None:
             user = register_user(self.__class__, request, identity)
             fxa_config = self.get_fxa_config(request)
