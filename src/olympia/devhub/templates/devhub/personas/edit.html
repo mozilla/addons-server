@@ -54,7 +54,7 @@
         {% endif %}
 
 	{% if addon.status == amo.STATUS_PUBLIC or addon.status == amo.STATUS_PENDING %}
-	    <p><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></p>
+	    <p><a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a></p>
 	{% endif %}
 
 	<p><a href="{{ url('devhub.feed', addon.slug) }}">
