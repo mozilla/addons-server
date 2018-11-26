@@ -33,6 +33,7 @@ site-static/*
 storage/shared_storage/*
 storage/guarded-addons/*
 storage/files/*
+storage/git-storage/*
 .tox/
 MANIFEST
 docker/artifacts/*
