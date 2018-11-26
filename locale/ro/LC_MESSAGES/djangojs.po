@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-25 17:09+0000\n"
+"PO-Revision-Date: 2018-11-26 13:11+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -97,10 +97,10 @@ msgstr[1] "Suplimentul tău a fost validat fără nicio eroare și cu {0} mesaje
 msgstr[2] "Suplimentul tău a fost validat fără nicio eroare și cu {0} de mesaje."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Suplimentul a fost validat fără erori sau avertismente."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Propunerea ta va fi semnată automat."
 
 msgid "WebExtension upgrade"
 msgstr "Actualizare WebExtension"
@@ -115,13 +115,13 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Include notițe de versiune detaliate (acest lucru se poate face în următorul pas)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către recenzent (se poate face în etapa următoare)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Listă de verificare cu propunerile de suplimente"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de recenzie:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -129,7 +129,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Procedura de validare a condus la constatarea următoarelor aspecte, care se pot solda cu respingeri:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipul de fișier pe care l-ai încărcat nu e recunoscut."
@@ -163,22 +163,22 @@ msgid "All Rights Reserved"
 msgstr "Toate drepturile rezervate"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială-Partajare similare 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Partajare similare 3.0"
 
 msgid "Your Theme's Name"
 msgstr "Numele temei tale"
@@ -187,13 +187,13 @@ msgid "Flagged for review"
 msgstr "Marcat pentru recenzie"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "Avem nevoie de opinia ta"
 
 msgid "Marked for deletion"
 msgstr "Marcat pentru ștergere"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Se actualizează rezultatele&hellip;"
 
 msgid "Category"
 msgstr "Categorie"
@@ -299,7 +299,7 @@ msgid "Reviews Written"
 msgstr "Recenzii scrise"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Înregistrări de utilizatori"
 
 msgid "Subscribers"
 msgstr "Abonați"
@@ -320,13 +320,13 @@ msgid "Add-ons Manager"
 msgstr "Manage de suplimente"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promoție în managerul de suplimente"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Promovate în managerul de suplimente"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Află mai multe în managerul de suplimente"
 
 msgid "Search Suggestions"
 msgstr "Sugestii de căutare"
@@ -338,34 +338,34 @@ msgid "Homepage Promo"
 msgstr "Promovare pe pagina principală"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Promovate pe pagina de start"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "În curs de apariție pe pagina de start"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Cele mai populare pe pagina de start"
 
 msgid "Detail Page"
 msgstr "Pagina cu detalii"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Pagina de detalii (jos)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Pagina de detalii (canalul de dezvoltare)"
 
 msgid "Often Used With"
 msgstr "Adesea folosit cu"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Altele de la același autor"
 
 msgid "Dependencies"
 msgstr "Dependențe"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Promovare produse asociate"
 
 msgid "Meet the Developer"
 msgstr "Fă cunoștință cu dezvoltatorul"
@@ -380,52 +380,52 @@ msgid "Sharing"
 msgstr "Distribuire"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Pagini de categorii"
 
 msgid "Collections"
 msgstr "Colecții"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Categorie care ajunge în caruselul de suplimente promovate"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Categorie care ajunge în cele mai apreciate"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Categorie care ajunge în cele mai populare"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Categorie care ajunge în cele adăugate recent"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după suplimente promovate"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după utilizatori"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după evaluări"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după data creării"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după nume"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după popularitate"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după data actualizării"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după data lansării (viitoare)"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Total contribuții"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Contribuție medie"
 
 msgid "Usage"
 msgstr "Utilizare"
