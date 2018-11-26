@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,6 +75,9 @@ msgid "Review note"
 msgstr "Pregledajte napomenu"
 
 msgid "Only latest versions of addons can have notes added."
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 msgid "Status"
@@ -985,9 +988,6 @@ msgstr ""
 msgid "Privacy:"
 msgstr ""
 
-msgid "Icon"
-msgstr ""
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
@@ -996,12 +996,6 @@ msgstr ""
 
 msgid "This url is already in use by another collection"
 msgstr ""
-
-msgid "Icons must be either PNG or JPG."
-msgstr ""
-
-msgid "Icons cannot be animated."
-msgstr "Ikone ne mogu biti animirane."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ovaj prilagođeni URL već koristi druga vaša kolekcija."
@@ -1039,9 +1033,6 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
-
-msgid "Icon Deleted"
 msgstr ""
 
 msgid "Create a New Collection"
@@ -1202,15 +1193,6 @@ msgid "Create a Collection"
 msgstr ""
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
-
-msgid "Collection Icon"
-msgstr ""
-
-msgid "Reset"
-msgstr ""
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
 
 msgid "There are errors in this form.  Please correct them below."
@@ -1997,6 +1979,54 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
+msgid "Device Features & Location"
+msgstr ""
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr ""
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr ""
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr ""
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr ""
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr ""
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr ""
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr ""
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
 msgid "Animals"
 msgstr ""
 
@@ -2133,66 +2163,6 @@ msgid "Travel"
 msgstr ""
 
 msgid "Video"
-msgstr ""
-
-msgid "Device Features & Location"
-msgstr ""
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr ""
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Feeds, News, & Blogging"
-msgstr ""
-
-msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
-
-msgid "Performance"
-msgstr ""
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr ""
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr ""
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr ""
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr ""
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr ""
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
 msgstr ""
 
 msgid "All Rights Reserved"
@@ -2496,6 +2466,9 @@ msgstr "Ne možete učitati više datoteka za ovu verziju."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
+
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Ne može biti više od 3 tražena dodatka."
 
@@ -2615,6 +2588,12 @@ msgstr "Autor je uklonjen s vašeg dodatka"
 msgid "Validate Add-on"
 msgstr ""
 
+msgid "Icons must be either PNG or JPG."
+msgstr ""
+
+msgid "Icons cannot be animated."
+msgstr "Ikone ne mogu biti animirane."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Slike ne mogu biti veće od %dKB."
@@ -2622,6 +2601,13 @@ msgstr "Slike ne mogu biti veće od %dKB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
+
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Dogodila se greška pri učitavanju vašeg pregleda."
@@ -2957,6 +2943,17 @@ msgstr "Opišite dodatak"
 msgid "Describe {0}"
 msgstr "Opišite dodatak"
 
+msgid "Name and Summary"
+msgstr ""
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr ""
+
 msgid "Add-on URL"
 msgstr ""
 
@@ -2966,8 +2963,9 @@ msgstr "Odaberite kratak, jedinstven URL za vaš dodatak."
 msgid "View Listing"
 msgstr ""
 
-msgid "Summary"
-msgstr ""
+#, fuzzy
+msgid "View Product Page"
+msgstr "Prikazati izvor?"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Ovaj sažetak bi trebao jasno objasniti šta vaš dodatak radi. Bit će prikazan u listama i pretragama i biće korišten od pregledača za testiranje vašeg dodatka."
@@ -3169,9 +3167,13 @@ msgstr "Molimo navedite naslov za ovaj snimak:"
 msgid "Add a Screenshot..."
 msgstr "Dodaj snimak..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr ""
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
 
 msgid "Continue"
@@ -3284,9 +3286,6 @@ msgstr ""
 msgid "Manage Status & Versions"
 msgstr "Upravljanje statusima i verzijama"
 
-msgid "View Add-on Listing"
-msgstr "Prikaži oglas dodatka"
-
 msgid "View Recent Changes"
 msgstr "Prikaži nedavne promjene"
 
@@ -3335,7 +3334,10 @@ msgstr[2] ""
 msgid "Submit a New Version"
 msgstr "Pošaljite novu verziju"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgid "Name and Summary:"
+msgstr ""
+
+msgid "required"
 msgstr ""
 
 msgid "Add-on URL:"
@@ -3344,10 +3346,10 @@ msgstr "URL dodatka:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Molimo koristite samo slova, brojeve, donje crte i srednje crte u vašem URL-u."
 
-msgid "Summary:"
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
-msgid "required"
+msgid "Summary:"
 msgstr ""
 
 #, fuzzy
@@ -3878,7 +3880,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
@@ -4223,11 +4225,13 @@ msgstr "Odgovori"
 msgid "Listing visibility"
 msgstr "Vidljivost oglasa"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Vidljivo:{label_close} Vidljivo svima na {site_url} i uključeno je u rezultate pretrage i stranice oglasa."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Nevidljivo:{label_close} Neće biti uključeno u rezultate pretrage, a stranica dodatka će označiti da ste je onemogućili. Nove verzije za dodatak neće biti prihvaćene u ovom statusu."
 
@@ -6405,6 +6409,12 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ""
 
+msgid "User"
+msgstr ""
+
+msgid "IP Address"
+msgstr ""
+
 #, python-format
 msgid "Reviews for %s"
 msgstr ""
@@ -7976,9 +7986,6 @@ msgid "Profile Photo"
 msgstr ""
 
 msgid "Addons"
-msgstr ""
-
-msgid "Ratings"
 msgstr ""
 
 #, fuzzy
