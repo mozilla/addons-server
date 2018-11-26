@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-11-02 12:41+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -79,6 +79,9 @@ msgstr "審査担当者へのメモ"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "ノートを追加できるのはアドオンの最新版のみです。"
+
+msgid "Ratings"
+msgstr "レーティング"
 
 msgid "Status"
 msgstr "ステータス"
@@ -987,9 +990,6 @@ msgstr "コレクションの説明を記入してください (リンクの使�
 msgid "Privacy:"
 msgstr "公開範囲:"
 
-msgid "Icon"
-msgstr "アイコン"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "この欄はボット対策のためにあるので、何も入力しないでください"
 
@@ -998,12 +998,6 @@ msgstr "この名前は使えません。"
 
 msgid "This url is already in use by another collection"
 msgstr "この URL は他のコレクションで既に使われています"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "アイコンは PNG か JPG 形式でなければなりません。"
-
-msgid "Icons cannot be animated."
-msgstr "アニメーションするアイコンは使用できません。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
@@ -1042,9 +1036,6 @@ msgstr "コレクションが更新されました！"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">コレクションを表示</a> して変更を確認"
-
-msgid "Icon Deleted"
-msgstr "アイコンが削除されました"
 
 msgid "Create a New Collection"
 msgstr "新しいコレクションを作成"
@@ -1204,15 +1195,6 @@ msgstr "コレクションを作成"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "コレクションを使えば、お気に入りのアドオンをチェックしたり、完全にカスタマイズされたブラウザーを他のユーザーと共有したりすることが簡単にできます。"
-
-msgid "Collection Icon"
-msgstr "コレクションのアイコン"
-
-msgid "Reset"
-msgstr "リセット"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG 形式と JPG 形式がサポートされています。  画像は 32x32 にサイズ変更されます。"
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "このフォームにエラーがあります。  以下を修正してください。"
@@ -1997,6 +1979,54 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
+msgid "Device Features & Location"
+msgstr "デバイス機能／位置情報"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "実験的"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "パフォーマンス"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "写真／メディア"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "プライバシー／セキュリティ"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "ソーシャルネットワーキング"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "スポーツ／ゲーム"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "ユーザーインタフェース"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
 msgid "Animals"
 msgstr "動物"
 
@@ -2134,66 +2164,6 @@ msgstr "トラベル"
 
 msgid "Video"
 msgstr "動画"
-
-msgid "Device Features & Location"
-msgstr "デバイス機能／位置情報"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr "実験的"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Feeds, News, & Blogging"
-msgstr "フィード／ニュース／ブログ"
-
-msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
-
-msgid "Performance"
-msgstr "パフォーマンス"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr "写真／メディア"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr "プライバシー／セキュリティ"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr "ソーシャルネットワーキング"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr "スポーツ／ゲーム"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr "ユーザーインタフェース"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
@@ -2488,6 +2458,9 @@ msgstr "ソースファイルをアップロードしていません。"
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "ソースファイルがアップロードされましたが、あなたはソースが必要ないと示しています。"
 
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
+
 msgid "There cannot be more than 3 required add-ons."
 msgstr "依存アドオンを 3 つ以上指定することはできません。"
 
@@ -2607,6 +2580,12 @@ msgstr "このアドオンの作者が削除されました"
 msgid "Validate Add-on"
 msgstr "アドオンの検証"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "アイコンは PNG か JPG 形式でなければなりません。"
+
+msgid "Icons cannot be animated."
+msgstr "アニメーションするアイコンは使用できません。"
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "画像は %dKB 未満でなければなりません。"
@@ -2614,6 +2593,14 @@ msgstr "画像は %dKB 未満でなければなりません。"
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければなりません。"
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければなりません。"
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "画像は PNG か JPG 形式でなければなりません。"
 
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
@@ -2935,6 +2922,18 @@ msgstr "アドオンの説明"
 msgid "Describe {0}"
 msgstr "{0} の説明"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "概要"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "概要"
+
 msgid "Add-on URL"
 msgstr "アドオンの URL"
 
@@ -2944,8 +2943,9 @@ msgstr "アドオンのページに付ける短くて固有な URL スラグを�
 msgid "View Listing"
 msgstr "詳細ページを表示"
 
-msgid "Summary"
-msgstr "概要"
+#, fuzzy
+msgid "View Product Page"
+msgstr "プロファイルを見る"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "この要約はアドオンが何をするかを明確に説明すべきです。詳細ページや検索結果に表示され、アドオンをテストする審査担当者にも機能と照らし合わせて確認されます。"
@@ -3152,12 +3152,14 @@ msgstr "このスクリーンショットの説明を入力してください:"
 msgid "Add a Screenshot..."
 msgstr "スクリーンショットを追加..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
-"対応形式は PNG と JPG です。スクリーンショットの最大および推奨サイズは、1280 × 800 ピクセルです。小さい画像しかない場合は、640 × 400 ピクセルもご使用いただけます。スクリーンショットを詳細ページに入"
-"れることで、インストール率や、ホームページでおすすめされるチャンスが増加します。"
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
 
 msgid "Continue"
 msgstr "続ける"
@@ -3269,9 +3271,6 @@ msgstr "統計情報"
 msgid "Manage Status & Versions"
 msgstr "ステータスとバージョンを管理"
 
-msgid "View Add-on Listing"
-msgstr "アドオンの詳細ページを表示"
-
 msgid "View Recent Changes"
 msgstr "最近の変更を表示"
 
@@ -3318,8 +3317,12 @@ msgstr[0] "アクティブユーザー <strong>{0}</strong> 名"
 msgid "Submit a New Version"
 msgstr "新しいバージョンを登録"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "このサイトの詳細ページに表示される名前。Firefox 内で表示される、アドオン内の名称と異なる場合があります。"
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "概要:"
+
+msgid "required"
+msgstr "必須"
 
 msgid "Add-on URL:"
 msgstr "アドオンの URL:"
@@ -3327,11 +3330,11 @@ msgstr "アドオンの URL:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "URL には、英数字、アンダーバー、ハイフンのみ使用できます。"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "このサイトの詳細ページに表示される名前。Firefox 内で表示される、アドオン内の名称と異なる場合があります。"
+
 msgid "Summary:"
 msgstr "概要:"
-
-msgid "required"
-msgstr "必須"
 
 msgid "Description:"
 msgstr "説明:"
@@ -3861,9 +3864,9 @@ msgstr "ログインしてアドオンを編集・更新"
 msgid "Resources for a successful launch"
 msgstr "開始に役立つリソース"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 "拡張機能を作成し、公開する準備ができました。次の手順は？魅力的な詳細ページを作成したり、拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらったり、開発に関する疑問の"
@@ -4209,11 +4212,13 @@ msgstr "返信"
 msgid "Listing visibility"
 msgstr "公開状態"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}公開:{label_close} {site_url} 上ですべての人に公開され、検索結果や一覧ページにも表示されます。"
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr "{label_open}非公開:{label_close} 検索結果に含まれず、詳細ページにはあなたがそれを無効化していることが記載されます。この状態では、新バージョンの登録は受け付けられません。"
 
 msgid "Listed versions"
@@ -6244,6 +6249,14 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "開発者:"
 
+#, fuzzy
+msgid "User"
+msgstr "ユーザー名"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "メールアドレス"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "%sのレビュー"
@@ -7816,9 +7829,6 @@ msgstr "プロファイル写真"
 
 msgid "Addons"
 msgstr "アドオン"
-
-msgid "Ratings"
-msgstr "レーティング"
 
 msgid "Activity Logs"
 msgstr "アクティビティログ"

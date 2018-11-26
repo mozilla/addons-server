@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-11-15 20:06+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -77,6 +77,9 @@ msgstr "Σημείωση αξιολόγησης"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Μόνο οι τελευταίες εκδόσεις προσθέτων μπορούν να έχουν σημειώσεις."
+
+msgid "Ratings"
+msgstr "Βαθμολογίες"
 
 msgid "Status"
 msgstr "Κατάσταση"
@@ -1013,9 +1016,6 @@ msgstr "Περιγράψτε τη συλλογή σας (δεν επιτρέπο
 msgid "Privacy:"
 msgstr "Απόρρητο:"
 
-msgid "Icon"
-msgstr "Εικονίδιο"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Παρακαλώ μην συμπληρώσετε αυτό το πεδίο, χρησιμοποιείται για να πιάνονται τα bots"
 
@@ -1024,12 +1024,6 @@ msgstr "Αυτό το όνομα δεν μπορεί να χρησιμοποιη
 
 msgid "This url is already in use by another collection"
 msgstr "Αυτό το url χρησιμοποιείται ήδη από άλλη συλλογή"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
-
-msgid "Icons cannot be animated."
-msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το προσαρμοσμένο URL χρησιμοποιείται ήδη από κάποιο άλλο στις συλλογές σας."
@@ -1068,9 +1062,6 @@ msgstr "Η συλλογή ενημερώθηκε!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Προβάλλετε τη συλλογήσ ας</a> για να δείτε τις αλλαγές."
-
-msgid "Icon Deleted"
-msgstr "Η εικόνα διαγράφηκε"
 
 msgid "Create a New Collection"
 msgstr "Δημιουργία νέας συλλογής"
@@ -1235,15 +1226,6 @@ msgstr "Δημιουργία συλλογής"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Οι συλλογές κάνουν εύκολη την παρακολούθηση αγαπημένων προσθέτων και την κοινή χρήση του τέλεια προσαρμοσμένου προγράμματος περιήγησής σας με άλλους χρήστες."
-
-msgid "Collection Icon"
-msgstr "Εικονίδιο συλλογής"
-
-msgid "Reset"
-msgstr "Επαναφορά"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "Υποστηρίζονται PNG και JPG.  Το μέγεθος της εικόνας θα αλλάξει σε 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Υπάρχουν σφάλματα σε αυτή τη φόρμα.  Παρακαλώ διορθώστε τα παρακάτω."
@@ -2034,6 +2016,54 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
+msgid "Device Features & Location"
+msgstr "Λειτουργίες συσκευής & τοποθεσία"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Πειραματικά"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Επιδόσεις"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Εικόνες & πολυμέσα"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Ασφάλεια & απόρρητο"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Κοινωνική δικτύωση"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Αθλητισμός & παιχνίδια"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Περιβάλλον χρήστη"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
 msgid "Animals"
 msgstr "Ζώα"
 
@@ -2171,66 +2201,6 @@ msgstr "Ταξίδια"
 
 msgid "Video"
 msgstr "Βίντεο"
-
-msgid "Device Features & Location"
-msgstr "Λειτουργίες συσκευής & τοποθεσία"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr "Πειραματικά"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Feeds, News, & Blogging"
-msgstr "Ροές, νέα & ιστολόγια"
-
-msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
-
-msgid "Performance"
-msgstr "Επιδόσεις"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr "Εικόνες & πολυμέσα"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr "Ασφάλεια & απόρρητο"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr "Κοινωνική δικτύωση"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr "Αθλητισμός & παιχνίδια"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr "Περιβάλλον χρήστη"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Με την επιφύλαξη παντός δικαιώματος"
@@ -2525,6 +2495,9 @@ msgstr "Δεν έχετε μεταφορτώσει αρχείο πηγής."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Το αρχείο πηγής μεταφορτώθηκε, αλλά υποδείξατε ότι δεν χρειαζόταν πηγή."
 
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
+
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Δεν μπορείτε να έχετε πάνω από 3 απαιτούμενα πρόσθετα."
 
@@ -2649,6 +2622,12 @@ msgstr "Ένας δημιουργός έχει αφαιρεθεί από το π
 msgid "Validate Add-on"
 msgstr "Επικύρωση πρόσθετου"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Τα εικονίδια θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Δεν επιτρέπονται κινούμενες εικόνες."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Οι εικόνες δεν μπορούν να είναι μεγαλύτερες από %dKB."
@@ -2656,6 +2635,14 @@ msgstr "Οι εικόνες δεν μπορούν να είναι μεγαλύτ
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
 
 msgid "There was an error uploading your preview."
 msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή εικόνας προεπισκόπησης."
@@ -2986,6 +2973,18 @@ msgstr "Περιγραφή προσθέτου"
 msgid "Describe {0}"
 msgstr "Περιγραφή του {0}"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Σύνοψη"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Σύνοψη"
+
 msgid "Add-on URL"
 msgstr "URL πρόσθετου"
 
@@ -2995,8 +2994,9 @@ msgstr "Επιλέξτε ένα σύντομο και μοναδικό URL slug 
 msgid "View Listing"
 msgstr "Σελίδα πρόσθετου"
 
-msgid "Summary"
-msgstr "Σύνοψη"
+#, fuzzy
+msgid "View Product Page"
+msgstr "Προβολή προφίλ"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Αυτή η περίληψη θα πρέπει να εξηγεί σαφώς τι κάνει το πρόσθετό σας. Θα εμφανίζεται σε λίστες και αναζητήσεις και θα χρησιμοποιηθεί από τους αξιολογητές για δοκιμή του προσθέτου σας."
@@ -3205,12 +3205,14 @@ msgstr "Παρακαλούμε δώστε μια λεζάντα για το στ
 msgid "Add a Screenshot..."
 msgstr "Προσθήκη στιγμιότυπου..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
-"Υποστηρίζονται PNG και JPG. Το μέγιστο και προτεινόμενο μέγεθος για στιγμιότυπα είναι 1280x800 pixels. Η ανάλυση 640x400 pixels είναι καλή εναλλακτική αν έχετε μόνο μικρότερες εικόνες. Τα "
-"στιγμιότυπα στη σελίδα του προσθέτου σας αυξάνουν σημαντικά τις πιθανότητες να εγκατασταθεί και να προταθεί στην αρχική σελίδα."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
 
 msgid "Continue"
 msgstr "Συνέχεια"
@@ -3322,9 +3324,6 @@ msgstr "Στατιστικά"
 msgid "Manage Status & Versions"
 msgstr "Διαχείριση κατάστασης & έκδοσης"
 
-msgid "View Add-on Listing"
-msgstr "Προβολή της σελίδας του πρόσθετου"
-
 msgid "View Recent Changes"
 msgstr "Προβολή πρόσφατων αλλαγών"
 
@@ -3372,8 +3371,12 @@ msgstr[1] "<strong>{0}</strong> ενεργοί χρήστες"
 msgid "Submit a New Version"
 msgstr "Υποβολή νέας έκδοσης"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Όνομα αναγραφής στην ιστοσελίδα. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Σύνοψη:"
+
+msgid "required"
+msgstr "απαιτείται "
 
 msgid "Add-on URL:"
 msgstr "URL προσθέτου:"
@@ -3381,11 +3384,11 @@ msgstr "URL προσθέτου:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Παρακαλώ χρησιμοποιήστε μόνο γράμματα, αριθμούς, κάτω παύλες και παύλες στο URL σας."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Όνομα αναγραφής στην ιστοσελίδα. Μπορεί να είναι διαφορετικό από το όνομα εντός του προσθέτου, που εμφανίζεται μέσα στο Firefox"
+
 msgid "Summary:"
 msgstr "Σύνοψη:"
-
-msgid "required"
-msgstr "απαιτείται "
 
 msgid "Description:"
 msgstr "Περιγραφή:"
@@ -3915,7 +3918,7 @@ msgstr "Πόροι για μια επιτυχή αρχή"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
@@ -4259,11 +4262,13 @@ msgstr "Απάντηση"
 msgid "Listing visibility"
 msgstr "Ορατότητα στη λίστα"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταχώρησης."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Αόρατο:{label_close} Δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση "
 "δεν θα γίνονται αποδεκτές σε αυτή την κατάσταση,"
@@ -6299,6 +6304,14 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Παρέχεται σε εσάς από:"
 
+#, fuzzy
+msgid "User"
+msgstr "Όνομα χρήστη"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Διεύθυνση email"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "Αξιολογήσεις για το %s"
@@ -7882,9 +7895,6 @@ msgstr "Φωτογραφία προφίλ"
 
 msgid "Addons"
 msgstr "Πρόσθετα"
-
-msgid "Ratings"
-msgstr "Βαθμολογίες"
 
 msgid "Activity Logs"
 msgstr "Αρχεία δραστηριότητας"
