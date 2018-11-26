@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,6 +79,9 @@ msgstr "Opmerking by beoardieling"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Allinnich by de lêste ferzjes fan add-ons kinne opmerkingen tafoege wurde."
+
+msgid "Ratings"
+msgstr "Wurdearring"
 
 msgid "Status"
 msgstr "Steat"
@@ -998,9 +1001,6 @@ msgstr "Beskriuw jo kolleksje (keppelingen net tastien)."
 msgid "Privacy:"
 msgstr "Privacy:"
 
-msgid "Icon"
-msgstr "Piktogram"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Folje dit fjild net yn, it wurdt brûkt om bots te fangen"
 
@@ -1009,12 +1009,6 @@ msgstr "Dizze namme kin net brûkt wurde."
 
 msgid "This url is already in use by another collection"
 msgstr "Dizze URL wurdt al troch in oare kolleksje brûkt"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
-
-msgid "Icons cannot be animated."
-msgstr "Piktogrammen meie net bewegend wêze."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
@@ -1053,9 +1047,6 @@ msgstr "Kolleksje bywurke!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Besjoch jo kolleksje</a> om de wizigingen te sjen."
-
-msgid "Icon Deleted"
-msgstr "Piktogram fuortsmiten"
 
 msgid "Create a New Collection"
 msgstr "In nije kolleksje oanmeitsje"
@@ -1217,15 +1208,6 @@ msgstr "In kolleksje meitsje"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Kolleksjes meitsje it ienfâldich om favorite add-ons te folgjen en jo perfekt oanpaste browser mei oaren te dielen."
-
-msgid "Collection Icon"
-msgstr "Kolleksjepiktogram"
-
-msgid "Reset"
-msgstr "Opnij ynstelle"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG en JPG wurde stipe. Ofbyldingsgrutte wurdt oanpast nei 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Der sitte flaters yn dit formulier. Korrizjearje se hjirûnder."
@@ -2014,6 +1996,54 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
+msgid "Device Features & Location"
+msgstr "Apparaatfunksjes en -lokaasje"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Eksperiminteel"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Prestaasjes"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Foto’s en media"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Befeiliging en privacy"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Sosjale netwurken"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Sport en spul"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Brûkersinterface"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
 msgid "Animals"
 msgstr "Bisten"
 
@@ -2152,66 +2182,6 @@ msgstr "Reizigje"
 
 msgid "Video"
 msgstr "Fideo"
-
-msgid "Device Features & Location"
-msgstr "Apparaatfunksjes en -lokaasje"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr "Eksperiminteel"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Feeds, News, & Blogging"
-msgstr "Feeds, nijs en blogging"
-
-msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
-
-msgid "Performance"
-msgstr "Prestaasjes"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr "Foto’s en media"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr "Befeiliging en privacy"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr "Sosjale netwurken"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr "Sport en spul"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr "Brûkersinterface"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Alle rjochten foarbehâlden"
@@ -2508,6 +2478,9 @@ msgstr "Jo hawwe gjin boarnebestân opladen."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
+
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Der meie net mear as 3 fereaske add-ons wêze."
 
@@ -2630,6 +2603,12 @@ msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
 msgid "Validate Add-on"
 msgstr "Add-on falidearje"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Piktogrammen moatte yn PNG- of JPG-opmaak wêze."
+
+msgid "Icons cannot be animated."
+msgstr "Piktogrammen meie net bewegend wêze."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Ofbyldingen meie net grutter wêze as %dKB."
@@ -2637,6 +2616,14 @@ msgstr "Ofbyldingen meie net grutter wêze as %dKB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Ofbyldingen moatte eksakt {0} piksels breed en {1} piksels heech wêze."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Ofbyldingen moatte eksakt {0} piksels breed en {1} piksels heech wêze."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
 
 msgid "There was an error uploading your preview."
 msgstr "Der is in flater bard by it opladen fan jo foarbyld."
@@ -2969,6 +2956,18 @@ msgstr "Beskriuw jo add-on"
 msgid "Describe {0}"
 msgstr "Beskriuw jo add-on"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Gearfetting"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Gearfetting"
+
 msgid "Add-on URL"
 msgstr "Add-on-URL"
 
@@ -2978,8 +2977,9 @@ msgstr "Kies in koarte, unike URL-identifikator foar jo add-on."
 msgid "View Listing"
 msgstr "List besjen"
 
-msgid "Summary"
-msgstr "Gearfetting"
+#, fuzzy
+msgid "View Product Page"
+msgstr "Profyl besjen"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Dizze gearfetting moat dúdlik útlizze wat jo add-on docht. Dizze ferskynt yn listen en sykopdrachten, en wurdt troch beoardielers brûkt om jo add-on te testen."
@@ -3187,12 +3187,14 @@ msgstr "Jou in titel foar dizze skermôfbylding:"
 msgid "Add a Screenshot..."
 msgstr "In skermôfbylding tafoegje…"
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
-"PNG en JPG wurde stipe. De maksimale en oanrekommandearre grutte foar skermôfbyldingen is 1280x800 piksels. 640x400 piksels is in goed alternatyf as jo allinnich lytsere ôfbyldingen hawwe. De "
-"beskikberheid fan skermôfbyldingen op jo add-onside fergruttet de kâns op ynstallaasje en oanrekommandaasje op de startside signifikant."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
 
 msgid "Continue"
 msgstr "Trochgean"
@@ -3304,9 +3306,6 @@ msgstr "Statistiken"
 msgid "Manage Status & Versions"
 msgstr "Steat en ferzjes beheare"
 
-msgid "View Add-on Listing"
-msgstr "Add-onfermelding besjen"
-
 msgid "View Recent Changes"
 msgstr "Resinte wizigingen besjen"
 
@@ -3354,8 +3353,12 @@ msgstr[1] "<strong>{0}</strong> aktive brûkers"
 msgid "Submit a New Version"
 msgstr "In nije ferzje yntsjinje"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Namme yn fermelding op dizze website. Kin oars wêze as de namme binnen de add-on, dy’t binnen Firefox toand wurdt"
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Gearfetting:"
+
+msgid "required"
+msgstr "fereaske"
 
 msgid "Add-on URL:"
 msgstr "Add-on-URL:"
@@ -3363,11 +3366,11 @@ msgstr "Add-on-URL:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Brûk útslutend letters, sifers, lizzende streepkes en streepkes yn jo URL."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Namme yn fermelding op dizze website. Kin oars wêze as de namme binnen de add-on, dy’t binnen Firefox toand wurdt"
+
 msgid "Summary:"
 msgstr "Gearfetting:"
-
-msgid "required"
-msgstr "fereaske"
 
 #, fuzzy
 msgid "Description:"
@@ -3899,9 +3902,9 @@ msgstr "Meld jo oan om jo add-on te bewurkjen en by te wurkjen"
 msgid "Resources for a successful launch"
 msgstr "Boarnen foar in suksesfolle lansearring"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 "Jo hawwe jo útwreiding bouwd en binne ree foar publikaasje derfan. Wat no? Besjoch ús tips foar it meitsjen fan in oantreklike fermeldingsside, it oanrekommandearre krijen fan jo útwreiding op "
@@ -4252,11 +4255,13 @@ msgstr "Antwurdzje"
 msgid "Listing visibility"
 msgstr "Sichtberheid fan fermelding"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Sichtber:{label_close} Sichtber foar elkenien op {site_url} en opnommen yn sykresultaten en fermeldingssiden."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Unsichtber:{label_close} Wurdt net yn sykresultaten opnommen, en de fermeldingsside derfan jout oan dat jo de add-on útskeakele hawwe. Ynstjoeringen fan nije ferzjes foar fermelding "
 "wurde yn dizze tastân net akseptearre."
@@ -6292,6 +6297,14 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Oanbean troch:"
 
+#, fuzzy
+msgid "User"
+msgstr "Brûkersnamme"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "E-mailadres"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "Beoardielingen foar %s"
@@ -7884,9 +7897,6 @@ msgstr "Profylfoto"
 
 msgid "Addons"
 msgstr "Add-ons"
-
-msgid "Ratings"
-msgstr "Wurdearring"
 
 msgid "Activity Logs"
 msgstr "Aktiviteitenlochboek"
