@@ -161,8 +161,7 @@ msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
-"Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu.\n"
-"\n"
+"Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
