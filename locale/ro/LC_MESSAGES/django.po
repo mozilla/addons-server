@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-26 13:18+0000\n"
+"PO-Revision-Date: 2018-11-26 13:51+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -125,25 +125,25 @@ msgstr[2] ""
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Ai {0} etichetă în plus."
+msgstr[1] "Ai {0} etichete în plus."
+msgstr[2] "Ai {0} de etichete în plus."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
+msgstr "Toate etichetele trebuie să fie din %s de caractere sau mai puțin după eliminarea caracterelor invalide."
 
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Toate etichetele trebuie să aibă cel puțin {0} caracter."
+msgstr[1] "Toate etichetele trebuie să aibă cel puțin {0} caractere."
+msgstr[2] "Toate etichetele trebuie să aibă cel puțin {0} de caractere."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Textul introdus a fost semnalizat ca spam."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
+msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat pentru această aplicație."
 
 #. L10n: {0} is the number of categories.
 msgid "You can have only {0} category."
@@ -153,11 +153,13 @@ msgstr[1] "Poți avea doar {0} categorii."
 msgstr[2] "Poți avea doar {0} de categorii."
 
 msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
+msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
+"Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu.\n"
+"\n"
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
