@@ -21,8 +21,7 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons.forms import AddonFormBase, AkismetSpamCheckFormMixin
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
-    Preview)
+    Addon, AddonCategory, AddonReviewerFlags, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
@@ -747,41 +746,6 @@ class BasePreviewFormSet(BaseModelFormSet):
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       form=PreviewForm, can_delete=True,
                                       extra=1)
-
-
-def DependencyFormSet(*args, **kw):
-    addon_parent = kw.pop('addon')
-
-    # Add-ons: Required add-ons cannot include apps nor personas.
-    # Apps:    Required apps cannot include any add-ons.
-    qs = (Addon.objects.public().exclude(id=addon_parent.id).
-          exclude(type__in=[amo.ADDON_PERSONA]))
-
-    class _Form(forms.ModelForm):
-        addon = forms.CharField(required=False, widget=forms.HiddenInput)
-        dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
-
-        class Meta:
-            model = AddonDependency
-            fields = ('addon', 'dependent_addon')
-
-        def clean_addon(self):
-            return addon_parent
-
-    class _FormSet(BaseModelFormSet):
-
-        def clean(self):
-            if any(self.errors):
-                return
-            form_count = len([f for f in self.forms
-                              if not f.cleaned_data.get('DELETE', False)])
-            if form_count > 3:
-                raise forms.ValidationError(
-                    ugettext('There cannot be more than 3 required add-ons.'))
-
-    FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
-                                   form=_Form, extra=0, can_delete=True)
-    return FormSet(*args, **kw)
 
 
 class DistributionChoiceForm(forms.Form):

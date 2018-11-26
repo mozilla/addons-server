@@ -322,11 +322,6 @@ class Addon(OnChangeMixin, ModelBase):
                                            db_column='inactive')
     view_source = models.BooleanField(default=True, db_column='viewsource')
     public_stats = models.BooleanField(default=False, db_column='publicstats')
-    external_software = models.BooleanField(default=False,
-                                            db_column='externalsoftware')
-    auto_repackage = models.BooleanField(
-        default=True, help_text='Automatically upgrade jetpack add-on to a '
-                                'new sdk version?')
 
     target_locale = models.CharField(
         max_length=255, db_index=True, blank=True, null=True,
@@ -339,9 +334,6 @@ class Addon(OnChangeMixin, ModelBase):
     authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
                                      related_name='addons')
     categories = models.ManyToManyField('Category', through='AddonCategory')
-    dependencies = models.ManyToManyField('self', symmetrical=False,
-                                          through='AddonDependency',
-                                          related_name='addons')
 
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
@@ -1407,11 +1399,6 @@ class Addon(OnChangeMixin, ModelBase):
         """Check whether the user should be prompted to add a review or not."""
         return not user.is_authenticated or not self.has_author(user)
 
-    @property
-    def all_dependencies(self):
-        """Return all the (valid) add-ons this add-on depends on."""
-        return list(self.dependencies.valid().all()[:3])
-
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
         """
@@ -1823,15 +1810,6 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
-
-
-class AddonDependency(models.Model):
-    addon = models.ForeignKey(Addon, related_name='addons_dependencies')
-    dependent_addon = models.ForeignKey(Addon, related_name='dependent_on')
-
-    class Meta:
-        db_table = 'addons_dependencies'
-        unique_together = ('addon', 'dependent_addon')
 
 
 class AddonFeatureCompatibility(ModelBase):

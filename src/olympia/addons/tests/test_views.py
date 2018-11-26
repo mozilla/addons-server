@@ -21,7 +21,7 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
-    Addon, AddonDependency, AddonFeatureCompatibility, AddonUser, Category,
+    Addon, AddonFeatureCompatibility, AddonUser, Category,
     CompatOverride, CompatOverrideRange, Persona, ReplacementAddon,
     AddonCategory)
 from olympia.addons.utils import generate_addon_guid
@@ -912,18 +912,6 @@ class TestDetailPage(TestCase):
         # Check link to statistics dashboard for add-on authors.
         assert self.get_pq()('#weekly-downloads a.stats').attr('href') == (
             reverse('stats.overview', args=[self.addon.slug]))
-
-    def test_dependencies(self):
-        assert self.get_pq()('.dependencies').length == 0
-        req = Addon.objects.get(id=592)
-        AddonDependency.objects.create(addon=self.addon, dependent_addon=req)
-        assert self.addon.all_dependencies == [req]
-        d = self.get_pq()('.dependencies .hovercard')
-        assert d.length == 1
-        assert d.find('h3').text() == unicode(req.name)
-        assert d.find('a').attr('href').endswith('?src=dp-dl-dependencies')
-        assert d.find('.install-button a').attr('href').endswith(
-            '?src=dp-hc-dependencies')
 
     def test_license_link_builtin(self):
         g = 'http://google.com'
