@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-10-26 12:38+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -79,6 +79,9 @@ msgstr "Catatan ulasan"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Hanya versi terbaru dari pengaya dapat memiliki catatan yang ditambahkan."
+
+msgid "Ratings"
+msgstr "Peringkat"
 
 msgid "Status"
 msgstr "Status"
@@ -990,9 +993,6 @@ msgstr "Terangkan koleksi anda (tak ada tautan yang diperkenankan)."
 msgid "Privacy:"
 msgstr "Privasi:"
 
-msgid "Icon"
-msgstr "Ikon"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Mohon jangan isi bidang ini, ia hanya digunakan untuk menangkap bot"
 
@@ -1001,12 +1001,6 @@ msgstr "Nama ini tidak dapat digunakan."
 
 msgid "This url is already in use by another collection"
 msgstr "URL ini telah dipakai oleh koleksi lain"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Ikon harus dalam PNG atau JPG."
-
-msgid "Icons cannot be animated."
-msgstr "Icon tidak dapat dijadikan animasi."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ubahsuai ini telah dipakai oleh koleksi Anda yang lain."
@@ -1045,9 +1039,6 @@ msgstr "Koleksi diperbarui!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Lihat koleksi Anda</a>untuk melihat pergantian."
-
-msgid "Icon Deleted"
-msgstr "Ikon Dihapus"
 
 msgid "Create a New Collection"
 msgstr "Buat Koleksi Baru"
@@ -1206,15 +1197,6 @@ msgstr "Membuat Koleksi"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Koleksi mempermudah mengikuti perkembangan pengaya favorit dan mempermudah Anda membagikan ubahsuaian Anda dengan yang lain."
-
-msgid "Collection Icon"
-msgstr "Ikon Koleksi"
-
-msgid "Reset"
-msgstr "Setel Ulang"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG dan JPG didukung.  Gambar akan diubah ukurannya menjadi 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Ada sejumlah kesalahan dalam formulir ini.  Silakan memperbaikinya."
@@ -2000,6 +1982,54 @@ msgstr ""
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
 
+msgid "Device Features & Location"
+msgstr "Fitur Perangkat dan Lokasi"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Eksperimental"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Kinerja"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Foto & Media"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Privasi dan Keamanan"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Jejaring Sosial"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Olahraga dan Gim"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Antarmuka"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
+
 msgid "Animals"
 msgstr "Binatang"
 
@@ -2137,66 +2167,6 @@ msgstr "Jalan-jalan"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Device Features & Location"
-msgstr "Fitur Perangkat dan Lokasi"
-
-msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
-
-msgid "Experimental"
-msgstr "Eksperimental"
-
-msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
-
-msgid "Feeds, News, & Blogging"
-msgstr "Feed, Berita, & Blog"
-
-msgid "Download Firefox extensions for news, web feeds, and blogs by removing clutter, utilizing voice readers, and more."
-msgstr ""
-
-msgid "Performance"
-msgstr "Kinerja"
-
-msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
-
-msgid "Photos & Media"
-msgstr "Foto & Media"
-
-msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
-
-msgid "Security & Privacy"
-msgstr "Privasi dan Keamanan"
-
-msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
-
-msgid "Download Firefox extensions that can enhance your online shopping experience by analyzing reviews, finding deals and coupons, and more."
-msgstr ""
-
-msgid "Social Networking"
-msgstr "Jejaring Sosial"
-
-msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
-
-msgid "Sports & Games"
-msgstr "Olahraga dan Gim"
-
-msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
-
-msgid "User Interface"
-msgstr "Antarmuka"
-
-msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
-
-msgid "Download odd and interesting extensions that can give Firefox for Android a boost."
-msgstr ""
 
 msgid "All Rights Reserved"
 msgstr "Всі права захищені"
@@ -2491,6 +2461,9 @@ msgstr "Anda tidak mengunggah berkas sumber."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File sumber telah diunggah tetapi Anda menyatakan tidak ada sumber yang diperlukan."
 
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
+
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Tidak bisa ada lebih dari 3 pengaya yang diminta."
 
@@ -2612,6 +2585,12 @@ msgstr "Seorang penulis telah dihapus dari pengaya anda"
 msgid "Validate Add-on"
 msgstr "Pengaya Divalidasi"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Ikon harus dalam PNG atau JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Icon tidak dapat dijadikan animasi."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Gambar tidak bisa lebih besar daripada %dKB."
@@ -2619,6 +2598,14 @@ msgstr "Gambar tidak bisa lebih besar daripada %dKB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Gambar harus dalam bentuk PNG atau JPG."
 
 msgid "There was an error uploading your preview."
 msgstr "Terjadi kesalahan menggunggah pratinjau anda."
@@ -2952,6 +2939,18 @@ msgstr "Menjelaskan Pengaya"
 msgid "Describe {0}"
 msgstr "Jelaskan {0}"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Звіт"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Звіт"
+
 msgid "Add-on URL"
 msgstr "URL Pengaya"
 
@@ -2961,8 +2960,9 @@ msgstr "Pilihlah URL slug yang unik dan pendek untuk pengaya anda."
 msgid "View Listing"
 msgstr "Tampilkan pada Daftar"
 
-msgid "Summary"
-msgstr "Звіт"
+#, fuzzy
+msgid "View Product Page"
+msgstr "Lihat Profil"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Ringkasan ini harus dengan jelas menerangkan apa yang pengaya Anda lakukan. Hal ini akan ditampilkan dalam daftar dan pencarian, dan akan digunakan para peninjau untuk menguji pengaya Anda."
@@ -3190,12 +3190,14 @@ msgstr "Harap menyediakan keterangan untuk tangkapan layar ini:"
 msgid "Add a Screenshot..."
 msgstr "Tambahkan Tangkapan layar..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
-"PNG dan JPG didukung. Ukuran maksimum dan direkomendasikan untuk tangkapan layar adalah 1280x800 pixels. 640x400 pixels adalah alternatif yang baik jika Anda hanya memiliki gambar yang lebih kecil. "
-"Memiliki tangkapan layar dalam laman daftar Anda akan sangat meningkatkan peluangnya untuk dipasang dan diunggulkan di beranda."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
 
 msgid "Continue"
 msgstr "Lanjut"
@@ -3307,9 +3309,6 @@ msgstr "Statistik"
 msgid "Manage Status & Versions"
 msgstr "Kelola Status & Versi"
 
-msgid "View Add-on Listing"
-msgstr "Lihat Daftar Pengaya"
-
 msgid "View Recent Changes"
 msgstr "Lihat Perubahan Baru-baru ini"
 
@@ -3356,8 +3355,12 @@ msgstr[0] "<strong>{0}</strong> pengguna aktif"
 msgid "Submit a New Version"
 msgstr "Mengajukan Versi Baru"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Nama pada daftar di situs ini. Mungkin berbeda dengan nama di dalam pengaya, yang ditampilkan di dalam Firefox"
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Rangkuman:"
+
+msgid "required"
+msgstr "wajib diisi"
 
 msgid "Add-on URL:"
 msgstr "URL Pengaya:"
@@ -3365,11 +3368,11 @@ msgstr "URL Pengaya:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Harap hanya menggunakan huruf, angka, garis bawah, dan garis sambung dalam URL anda."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Nama pada daftar di situs ini. Mungkin berbeda dengan nama di dalam pengaya, yang ditampilkan di dalam Firefox"
+
 msgid "Summary:"
 msgstr "Rangkuman:"
-
-msgid "required"
-msgstr "wajib diisi"
 
 msgid "Description:"
 msgstr "Deskripsi:"
@@ -3905,9 +3908,9 @@ msgstr "Masuk ke Sunting dan Perbarui Pengaya Anda"
 msgid "Resources for a successful launch"
 msgstr "Sumber daya untuk peluncuran yang sukses"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 "Anda telah membuat ekstensi dan siap menerbitkannya. Selanjutnya bagaimana? Cek kiat kami untuk membuat laman daftar yang menarik, menampilkan ekstensi Anda di %(amo_link_open)saddons.mozilla.org"
@@ -4263,11 +4266,13 @@ msgstr "Balas"
 msgid "Listing visibility"
 msgstr "Visibilitas daftar"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open} Terlihat: {label_close} Terlihat untuk semua orang di {site_url} dan disertakan dalam hasil pencarian dan daftar halaman."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open} Tak terlihat:{label_close} Tidak akan disertakan dalam hasil penelusuran, dan laman daftarnya akan menunjukkan bahwa Anda yang menonaktifkannya. Pengajuan versi baru untuk daftar tidak "
 "akan diterima dalam keadaan ini."
@@ -6306,6 +6311,14 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Dipersembahkan oleh:"
 
+#, fuzzy
+msgid "User"
+msgstr "Nama pengguna"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Alamat Email"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "Ulasan untuk %s"
@@ -7879,9 +7892,6 @@ msgstr "Foto Profil"
 
 msgid "Addons"
 msgstr "Pengaya"
-
-msgid "Ratings"
-msgstr "Peringkat"
 
 msgid "Activity Logs"
 msgstr "Log Aktivitas"
