@@ -110,8 +110,6 @@ detail_patterns = [
 ]
 # These will all start with /ajax/addon/<addon_id>/
 ajax_patterns = [
-    url(r'^dependencies$', views.ajax_dependencies,
-        name='devhub.ajax.dependencies'),
     url(r'^versions/compatibility/status$',
         views.ajax_compat_status, name='devhub.ajax.compat.status'),
     url(r'^versions/compatibility/error$',

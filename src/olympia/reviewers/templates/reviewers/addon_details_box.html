@@ -71,22 +71,6 @@
             </td>
           </tr>
           {% endif %}
-          {% set deps = addon.all_dependencies %}
-          {% if deps %}
-            <tr class="addon-dependencies">
-              <th>
-                {{ _('Required Add-ons') }}
-              </th>
-              <td>
-                <ul>
-                  {% for d in deps %}
-                    <li><a href="{{ d.get_url_path() }}">
-                      {{ d.name }}</a></li>
-                  {% endfor %}
-                </ul>
-              </td>
-            </tr>
-          {% endif %}
           {# XXX future feature: 'Localizations' ... #}
           <tr>
             <th>{{ _('Rating') }}</th>

@@ -42,48 +42,6 @@
           </tr>
           <tr>
             <th>
-              {{ _('Required Add-ons') }}
-              {% if editable %}
-                <span class="hint">{{ _('Limit 3') }}</span>
-              {% endif %}
-            </th>
-            <td id="required-addons"
-                data-src="{{ url('devhub.ajax.dependencies', addon.slug) }}">
-              {% if editable %}
-                {% include "devhub/addons/edit/technical_dependencies.html" %}
-              {% else %}
-                {% set deps = addon.all_dependencies %}
-                {% call empty_unless(deps) %}
-                  <ul>
-                    {% for d in deps %}
-                      <li><a href="{{ d.get_url_path() }}">
-                        {{ d.name }}</a></li>
-                    {% endfor %}
-                  </ul>
-                {% endcall %}
-              {% endif %}
-            </td>
-          </tr>
-          <tr>
-            <th>
-              {{ tip(_("Add-on Flags"),
-                     _("These flags are used to classify add-ons. It is only "
-                       "relevant for listed add-ons.")) }}
-            </th>
-            <td>
-              <div id="addon-flags">
-              {{ flags(_("This add-on requires external software."),
-                       form.external_software if editable else addon.external_software,
-                       editable) }}
-
-              {% if not editable %}
-                {% call empty_unless(addon.external_software) %}{% endcall %}
-              {% endif %}
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <th>
               {{ tip(_("View Source?"),
                      _("Whether the source of your add-on can be displayed in our "
                        "online viewer. It is only relevant for listed add-ons.")) }}
@@ -109,21 +67,6 @@
                        _("No, this add-on's stats are not publicly viewable.")) }}
             </td>
           </tr>
-          {% if addon.current_version.is_jetpack %}
-          <tr>
-            <th>
-              {{ tip(_('Upgrade SDK?'),
-                     _("If selected, we will try to automatically upgrade your "
-                       "add-on when a new version of the SDK is released. "
-                       "It is only relevant for listed add-ons.")) }}
-            </th>
-            <td>
-              {{ flags(_('This add-on will be automatically upgraded to new versions of the Add-on SDK.'),
-                       form.auto_repackage if editable else addon.auto_repackage, editable,
-                       _('No, this add-on will be upgraded manually.')) }}
-            </td>
-          </tr>
-          {% endif %}
           {% endif %}
           <tr>
             <th>

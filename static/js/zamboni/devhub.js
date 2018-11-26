@@ -299,9 +299,6 @@ function addonFormSubmit() {
                 if ($form.find('#addon-categories-edit').length) {
                     initCatFields();
                 }
-                if ($form.find('#required-addons').length) {
-                    initRequiredAddons();
-                }
 
                 if (!hasErrors) {
                     var e = $(format('<b class="save-badge">{0}</b>',
@@ -340,9 +337,6 @@ function initEditAddon() {
                 if (parent_div.find('#addon-categories-edit').length) {
                     initCatFields();
                 }
-                if (parent_div.find('#required-addons').length) {
-                    initRequiredAddons();
-                }
                 $(this).each(addonFormSubmit);
                 initInvisibleUploads();
             });
@@ -356,34 +350,6 @@ function initEditAddon() {
     initUploadIcon();
     initUploadPreview();
 }
-
-
-function initRequiredAddons() {
-    var $req = $('#required-addons');
-    if (!$req.length || !$('input.autocomplete', $req).length) {
-        return;
-    }
-    $.zAutoFormset({
-        delegate: '#required-addons',
-        forms: 'ul.dependencies',
-        prefix: 'dependencies',
-        hiddenField: 'dependent_addon',
-        addedCB: function(emptyForm, item) {
-            var f = template(emptyForm)({
-                icon: item.icons['32'],
-                name: _.escape(item.name) || ''
-            });
-            // Firefox automatically escapes the contents of `href`, borking
-            // the curly braces in the {url} placeholder, so let's do this.
-            // Note: the trim removes the leading space from the template
-            // output so that jquery 1.9 treats it as HTML not a selector.
-            var $f = $(f.trim());
-            $f.find('div a').attr('href', item.url);
-            return $f;
-        }
-    });
-}
-
 
 function create_new_preview_field() {
     var forms_count = $('#id_files-TOTAL_FORMS').val(),

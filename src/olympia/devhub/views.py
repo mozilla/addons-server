@@ -50,7 +50,6 @@ from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
-from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
 from olympia.versions import compare
 from olympia.versions.models import Version
@@ -743,18 +742,6 @@ def upload_detail(request, uuid, format='html'):
     return render(request, 'devhub/validation.html', context)
 
 
-class AddonDependencySearch(BaseAjaxSearch):
-    # No personas.
-    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
-             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
-
-
-@dev_required
-@json_view
-def ajax_dependencies(request, addon_id, addon):
-    return AddonDependencySearch(request, excluded_ids=[addon_id]).items
-
-
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
@@ -799,12 +786,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
         previews = forms.PreviewFormSet(
             request.POST or None,
             prefix='files', queryset=addon.previews.all())
-
-    elif section == 'technical' and show_listed and not static_theme:
-        dependency_form = forms.DependencyFormSet(
-            request.POST or None,
-            queryset=addon.addons_dependencies.all(), addon=addon,
-            prefix='dependencies')
 
     if section == 'technical':
         try:

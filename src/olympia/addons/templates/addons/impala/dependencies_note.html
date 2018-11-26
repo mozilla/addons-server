@@ -1,7 +1,0 @@
-{% set deps = addon.all_dependencies %}
-{% if deps %}
-  <div class="notice dependencies">
-    <h3>{{ _('This add-on requires the following add-ons to work properly:') }}</h3>
-    {{ deps|addon_grid(cols=3, src='dp-hc-dependencies', dl_src='dp-dl-dependencies') }}
-  </div>
-{% endif %}
