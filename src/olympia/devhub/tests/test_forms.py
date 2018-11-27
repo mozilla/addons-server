@@ -263,7 +263,7 @@ class TestPreviewForm(TestCase):
     @mock.patch('olympia.amo.utils.pngcrush_image')
     def test_preview_size(self, pngcrush_image_mock):
         addon = Addon.objects.get(pk=3615)
-        name = 'non-animated.gif'
+        name = 'teamaddons.jpg'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'w') as f:
@@ -272,8 +272,8 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         preview = addon.previews.all()[0]
         assert preview.sizes == (
-            {u'image': [250, 297], u'thumbnail': [202, 240],
-             u'original': [250, 297]})
+            {u'image': [2400, 1600], u'thumbnail': [640, 427],
+             u'original': [3000, 2000]})
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)
         assert os.path.exists(preview.original_path)
