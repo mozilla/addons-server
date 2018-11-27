@@ -12,8 +12,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-26 17:36+0000\n"
-"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
+"PO-Revision-Date: 2018-11-27 13:10+0000\n"
+"Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
@@ -2612,13 +2612,11 @@ msgstr "A kép nem lehet nagyobb, mint %d KB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A képnek pontosan {0} képpont szélesnek és {1} képpont magasnak kell lennie."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "A képnek pontosan {0} képpont szélesnek és {1} képpont magasnak kell lennie."
+msgstr "A képnek legalább {0} képpont szélesnek és {1} képpont magasnak kell lennie."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
+msgstr "A kép méretarányának 4:3-asnak kell lennie."
 
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
@@ -2947,9 +2945,8 @@ msgstr "Kiegészítő leírása"
 msgid "Describe {0}"
 msgstr "A(z) {0} leírása"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Összefoglalás"
+msgstr "Név és összegzés"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2968,9 +2965,8 @@ msgstr "Válasszon rövid, egyedi SEO URL-t a kiegészítőjéhez."
 msgid "View Listing"
 msgstr "Megjelenés megtekintése"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Profil megtekintése"
+msgstr "Termékoldal megtekintése"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Ez a leírás be kellene mutassa, hogy pontosan mit csinál a kiegészítő. Meg fog jelenni a listázásokban és a kereséseken, valamit az értékelők is ez alapján fogják tesztelni a kiegészítőt."
@@ -3341,9 +3337,8 @@ msgstr[1] "<strong>{0}</strong> aktív felhasználó"
 msgid "Submit a New Version"
 msgstr "Új verzió beküldése"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Összegzés:"
+msgstr "Név és összegzés:"
 
 msgid "required"
 msgstr "szükséges"
@@ -3897,12 +3892,12 @@ msgstr "Jelentkezzen be, hogy szerkessze és frissítse a kiegészítőjét"
 msgid "Resources for a successful launch"
 msgstr "Erőforrások a sikeres induláshoz"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Elkészítette a kiegészítőjét, és készen áll a közzétételre. Most mi következik? Nézze meg a tippjeinket a vonzó részletező oldal létrehozásáról, emelje ki a kiterjesztését az "
+"Elkészítette a kiegészítőjét, és készen áll a közzétételre. Most mi következik? Nézze meg a tippjeinket a vonzó termékoldal létrehozásáról, emelje ki a kiterjesztését az "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on, találjon választ fejlesztési kérdésekre, és legyen naprakész a kiegészítőfejlesztőkkel kapcsolatos hírekkel és eseményekkel."
 
 msgid "View Resources for Publishers"
@@ -4247,15 +4242,13 @@ msgstr "Válasz"
 msgid "Listing visibility"
 msgstr "Listázás láthatósága"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Látható:{label_close} Mindenki számára látható itt: {site_url}, valamint szerepel a találatok között és a listázási oldalakon."
+msgstr "{label_open}Látható:{label_close} Mindenki számára látható itt: {site_url}, valamint szerepel a találatok között és a termékoldalakon."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Láthatatlan:{label_close} Nem fog szerepelni a keresési találatokban, és a listázó oldala jelezni fogja, hogy letiltotta. Az új benyújtott verziók nem lesznek elfogadva ebben az "
+"{label_open}Láthatatlan:{label_close} Nem fog szerepelni a keresési találatokban, és a termékoldala jelezni fogja, hogy letiltotta. A termék új benyújtott verziói nem lesznek elfogadva ebben az "
 "állapotban."
 
 msgid "Listed versions"
