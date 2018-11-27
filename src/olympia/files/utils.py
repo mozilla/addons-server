@@ -671,10 +671,10 @@ class FSyncMixin(object):
         This is inspired by https://github.com/2ndquadrant-it/barman/
         (see backup.py -> backup_fsync_and_set_sizes and utils.py)
         """
-        targetpath = super(FSyncMixin, self)._extract_member(
+        super(FSyncMixin, self)._extract_member(
             member, targetpath, *args, **kwargs)
 
-        parent_dir = os.path.dirname(targetpath)
+        parent_dir = os.path.dirname(os.path.normpath(targetpath))
         if parent_dir:
             self._fsync_dir(parent_dir)
 

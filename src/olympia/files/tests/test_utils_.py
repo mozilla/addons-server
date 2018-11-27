@@ -673,6 +673,14 @@ def test_repack():
         'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
         'popup'
     ]),
+    ('webextension_no_id.tar.gz', [
+        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
+        'popup'
+    ]),
+    ('webextension_no_id.tar.bz2', [
+        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
+        'popup'
+    ]),
     ('search.xml', [
         'search.xml',
     ])
@@ -691,7 +699,8 @@ def test_extract_extension_to_dest(filename, expected_files):
 
 
 @pytest.mark.parametrize('filename', [
-    'webextension_no_id.xpi', 'webextension_no_id.zip', 'search.xml',
+    'webextension_no_id.xpi', 'webextension_no_id.zip',
+    'webextension_no_id.tar.bz2', 'webextension_no_id.tar.gz', 'search.xml',
 ])
 def test_extract_extension_to_dest_call_fsync(filename):
     extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
