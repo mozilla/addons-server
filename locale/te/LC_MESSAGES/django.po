@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-27 10:49+0000\n"
+"PO-Revision-Date: 2018-11-27 11:21+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2640,7 +2640,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
 msgid "New API key created"
-msgstr ""
+msgstr "కొత్త API కీ సృష్టించబడింది"
 
 msgid "API key revoked"
 msgstr "API కీ ఉపసంహరించబడింది"
@@ -2997,7 +2997,7 @@ msgid "These flags are used to classify add-ons. It is only relevant for listed 
 msgstr ""
 
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "ఈ పొడగింతకు బయటి సాఫ్ట్‌వేరు కావాలి."
 
 msgid "View Source?"
 msgstr "మూలాన్ని వీక్షించండి?"
@@ -4042,7 +4042,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "మీ అలంకారం కోసం ఒక ముఖచిత్రాన్ని ఎంచుకోండి."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 పిక్సెల్లు"
