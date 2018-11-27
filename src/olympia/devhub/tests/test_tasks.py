@@ -139,7 +139,7 @@ def test_recreate_previews(pngcrush_image_mock):
     tasks.recreate_previews([addon.id])
 
     assert preview_no_original.reload().sizes == {
-        'image': [533, 400], 'thumbnail': [320, 240]}
+        'image': [533, 400], 'thumbnail': [533, 400]}
     # Check no resize for full size, but resize happened for thumbnail
     assert (storage.size(preview_no_original.image_path) ==
             storage.size(get_image_path('preview_landscape.jpg')))
@@ -147,7 +147,7 @@ def test_recreate_previews(pngcrush_image_mock):
             storage.size(get_image_path('mozilla.png')))
 
     assert preview_has_original.reload().sizes == {
-        'image': [2400, 1600], 'thumbnail': [320, 213],
+        'image': [2400, 1600], 'thumbnail': [640, 427],
         'original': [3000, 2000]}
     # Check both full and thumbnail changed, but original didn't.
     assert (storage.size(preview_has_original.image_path) !=
