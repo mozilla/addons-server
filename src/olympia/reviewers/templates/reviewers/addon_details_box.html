@@ -29,6 +29,14 @@
           <caption>{{ _('Add-on Information for {0}')|format_html(addon_name) }}</caption>
         {% endwith %}
         <tbody>
+          <tr class="addon-guid">
+            <th>{{ _('Add-on ID') }}</th>
+            <td>{{ addon.guid }}</td>
+          </tr>
+          <tr class="addon-amo-id">
+            <th>{{ _('Internal AMO ID') }}</th>
+            <td>{{ addon.id }}</td>
+          </tr>
           {% if addon.is_deleted %}
           <tr class="addon-status">
             <th>{{ _('Status') }}</th>
