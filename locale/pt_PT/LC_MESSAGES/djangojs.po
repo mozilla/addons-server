@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-10-31 10:05+0000\n"
+"PO-Revision-Date: 2018-11-27 22:41+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -290,7 +290,7 @@ msgid "Reviews Written"
 msgstr "Revisões escritas"
 
 msgid "User Signups"
-msgstr "Subscrições de utilizadores"
+msgstr "Registos de utilizadores"
 
 msgid "Subscribers"
 msgstr "Subscritores"
@@ -580,7 +580,7 @@ msgstr "Análises escritas desde {0} a {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Subscrição de utilizadores, últimos {0} dias"
+msgstr "Registos de utilizadores, últimos {0} dias"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
