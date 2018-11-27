@@ -3518,6 +3518,18 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         assert 'Yes' in doc('tr.requires-payment td').text()
 
+    def test_addon_id_display(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert self.addon.guid in doc('tr.addon-guid td').text()
+
+    def test_amo_id_display(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.addon.id) in doc('tr.addon-amo-id td').text()
+
     def test_viewing(self):
         url = reverse('reviewers.review_viewing')
         response = self.client.post(url, {'addon_id': self.addon.id})
