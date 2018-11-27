@@ -233,7 +233,7 @@ ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
 _size_tuple = namedtuple('SizeTuple', 'width height')
 # Preview upload sizes - see mozilla/addons-server#9487 for background.
 ADDON_PREVIEW_SIZES = {
-    'thumb': _size_tuple(320, 240),
+    'thumb': _size_tuple(640, 480),
     'min': _size_tuple(1000, 750),
     'full': _size_tuple(2400, 1800)
 }
