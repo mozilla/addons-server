@@ -33,6 +33,10 @@ class Command(BaseCommand):
             '--type', metavar='type', type=str,
             help='only consider this specific add-on type'
         )
+        parser.add_argument(
+            '--query', metavar='type', type=unicode,
+            help='only consider add-ons matching this query'
+        )
 
     def handle(self, *args, **options):
         if not settings.DEBUG:
@@ -92,6 +96,11 @@ class Command(BaseCommand):
             print('Skipping %s (slug already exists)' % addon_data['slug'])
             return
 
+        if addon_data['guid'] and Addon.objects.filter(
+                guid=addon_data['guid']).exists():
+            print('Skipping %s (guid already exists)' % addon_data['guid'])
+            return
+
         users = []
 
         for user in addon_data['authors']:
@@ -149,12 +158,14 @@ class Command(BaseCommand):
     def fetch_addon_data(self, options):
         params = {
             'app': 'firefox',
-            'appversion': '60.0'
+            'appversion': '60.0',
         }
         if options.get('guid'):
             params['guid'] = options['guid']
         if options.get('type'):
             params['type'] = options['type']
+        if options.get('query'):
+            params['q'] = options['query']
         pages = range(1, self.get_max_pages(params) + 1)
 
         if options.get('max'):
