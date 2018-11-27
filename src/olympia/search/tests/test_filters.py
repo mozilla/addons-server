@@ -100,7 +100,25 @@ class TestQueryFilter(FilterTestsBase):
         assert expected in should
 
         functions = qs['query']['function_score']['functions']
-        assert functions[0] == {'field_value_factor': {'field': 'boost'}}
+        assert len(functions) == 2
+        assert functions[0] == {
+            'field_value_factor': {
+                'field': 'average_daily_users', 'modifier': 'log2p'
+            }
+        }
+        assert functions[1] == {
+            'filter': {
+                'bool': {
+                    'must': [
+                        {'term': {'is_experimental': False}},
+                        {'terms': {'status': (4,)}},
+                        {'exists': {'field': 'current_version'}},
+                        {'term': {'is_disabled': False}}
+                    ]
+                }
+            },
+            'weight': 4.0
+        }
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
@@ -110,8 +128,6 @@ class TestQueryFilter(FilterTestsBase):
 
     def test_q(self):
         qs = self._test_q(self._filter(data={'q': 'tea pot'}))
-        functions = qs['query']['function_score']['functions']
-        assert len(functions) == 1
 
         expected_rescore = {
             'bool': {
@@ -160,12 +176,29 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'match': {
-                'name': {
-                    'boost': 4.0, 'prefix_length': 2, 'query': 'blah',
-                    'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
-                    'minimum_should_match': '2<2 3<-25%',
-                }
+            'dis_max': {
+                'queries': [
+                    {
+                        'match': {
+                            'name': {
+                                'prefix_length': 2,
+                                'query': 'blah',
+                                'fuzziness': 'AUTO',
+                                'minimum_should_match': '2<2 3<-25%',
+                            }
+                        }
+                    },
+                    {
+                        'match': {
+                            'name.trigrams': {
+                                'query': 'blah',
+                                'minimum_should_match': '66%',
+                            }
+                        }
+                    },
+                ],
+                'boost': 4.0,
+                '_name': 'DisMax(FuzzyMatch(name), Match(name.trigrams))'
             }
         }
         assert expected in should
@@ -174,12 +207,29 @@ class TestQueryFilter(FilterTestsBase):
         qs = self._filter(data={'q': 'search terms'})
         should = qs['query']['function_score']['query']['bool']['should']
         expected = {
-            'match': {
-                'name': {
-                    'boost': 4.0, 'prefix_length': 2, 'query': 'search terms',
-                    'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
-                    'minimum_should_match': '2<2 3<-25%',
-                }
+            'dis_max': {
+                'queries': [
+                    {
+                        'match': {
+                            'name': {
+                                'prefix_length': 2,
+                                'query': 'search terms',
+                                'fuzziness': 'AUTO',
+                                'minimum_should_match': '2<2 3<-25%',
+                            }
+                        }
+                    },
+                    {
+                        'match': {
+                            'name.trigrams': {
+                                'query': 'search terms',
+                                'minimum_should_match': '66%',
+                            }
+                        }
+                    },
+                ],
+                'boost': 4.0,
+                '_name': 'DisMax(FuzzyMatch(name), Match(name.trigrams))'
             }
         }
         assert expected in should
@@ -193,13 +243,29 @@ class TestQueryFilter(FilterTestsBase):
         # Make sure there is no fuzzy clause (the search query is too long).
         should = do_test()
         expected = {
-            'match': {
-                'name': {
-                    'boost': 4.0, 'prefix_length': 2,
-                    'query': 'this search query is too long.',
-                    'fuzziness': 'AUTO', '_name': 'FuzzyMatch(name)',
-                    'minimum_should_match': '2<2 3<-25%',
-                }
+            'dis_max': {
+                'queries': [
+                    {
+                        'match': {
+                            'name': {
+                                'prefix_length': 2,
+                                'query': 'this search query is too long.',
+                                'fuzziness': 'AUTO',
+                                'minimum_should_match': '2<2 3<-25%',
+                            }
+                        }
+                    },
+                    {
+                        'match': {
+                            'name.trigrams': {
+                                'query': 'this search query is too long.',
+                                'minimum_should_match': '66%',
+                            }
+                        }
+                    },
+                ],
+                'boost': 4.0,
+                '_name': 'DisMax(FuzzyMatch(name), Match(name.trigrams))'
             }
         }
         assert expected not in should
