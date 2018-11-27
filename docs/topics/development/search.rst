@@ -28,9 +28,7 @@ The key fields we search against are ``name``, ``summary`` and ``description``. 
 - Once with the translation in the language-specific analyzer if supported, under ``{field}_l10n_{analyzer}``
 - Once with the translation in the default locale of the add-on, under ``{field}``, analyzed with just the ``snowball`` analyzer for ``description`` and ``summary``, and a custom analyzer for ``name`` that applies the following filters: ``standard``, ``word_delimiter`` (a custom version with ``preserve_original`` set to ``true``), ``lowercase``, ``stop``, and ``dictionary_decompounder`` (with a specific word list) and ``unique``.
 
-In addition, for the name, both fields also contains a subfield called ``raw`` that holds a non-analyzed variant for exact matches in the corresponding language (stored as a ``keyword``, with a ``lowercase`` normalizer).
-
-For each document, we store a ``boost`` field that depends on the average number of users for the add-on, as well as a multiplier for public, non-experimental add-ons.
+In addition, for the name, both fields also contains a subfield called ``raw`` that holds a non-analyzed variant for exact matches in the corresponding language (stored as a ``keyword``, with a ``lowercase`` normalizer). We also have a ``name.trigram`` variant for the field in the default language, which is using a custom analyzer that depends on a ``ngram`` tokenizer (with ``min_gram=3``, ``max_gram=3`` and ``token_chars=["letter", "digit"]``)
 
 
 Flow of a search query through AMO
@@ -47,8 +45,7 @@ It composes various rules to define a more or less usable ranking:
 Primary rules
 -------------
 
-These are the ones using the strongest boosts, so they are only applied
-to a specific set of fields: add-on name and author(s) name.
+These are the ones using the strongest boosts, so they are only applied to the add-on name.
 
 **Applied rules** (merged via ``should``):
 
@@ -57,16 +54,13 @@ to a specific set of fields: add-on name and author(s) name.
 3. A ``phrase`` match on ``name`` that allows swapped terms (``boost=8.0``, ``slop=1``)
 4. A ``match`` on ``name``, using the standard text analyzer (``boost=6.0``, ``analyzer=standard``, ``operator=and``)
 5. A ``prefix`` match on ``name`` (``boost=3.0``)
-6. If a query is < 20 characters long, a fuzzy match on ``name`` (``boost=4.0``, ``prefix_length=2``, ``fuzziness=AUTO``, ``minimum_should_match=2<2 3<-25%``)
-
-All rules except 1 and 2 are applied to both ``name`` and ``listed_authors.name``.
+6. If a query is < 20 characters long, a ``dis_max`` query (``boost=4.0``) composed of a fuzzy match on ``name`` (``boost=4.0``, ``prefix_length=2``, ``fuzziness=AUTO``, ``minimum_should_match=2<2 3<-25%``) and a ``match`` query on ``name.trigram``, with a ``minimum_should_match=66%`` to avoid noise.
 
 
 Secondary rules
 ---------------
 
-These are the ones using the weakest boosts, they are applied to fields
-containing more text like description, summary and tags.
+These are the ones using the weakest boosts, they are applied to fields containing more text like description, summary and tags.
 
 **Applied rules** (merged via ``should``):
 
@@ -89,5 +83,5 @@ General query flow:
  1. Fetch current translation
  2. Fetch locale specific analyzer (`List of analyzers <https://github.com/mozilla/addons-server/blob/master/src/olympia/constants/search.py#L15-L61>`_)
  3. Merge primary and secondary *should* rules
- 4. Create a ``function_score`` query that uses a ``field_value_factor`` function on ``boost`` field that we set when indexing
+ 4. Create a ``function_score`` query that uses a ``field_value_factor`` function on ``average_daily_users`` with a ``log2p`` modifier, as well as a ``4.0`` weight if the add-on is public & non-experimental.
  5. Add the ``rescore`` query to the mix
