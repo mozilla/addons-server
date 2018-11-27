@@ -664,6 +664,66 @@ def test_repack():
             assert zf.read('foo.bar') == 'foobar'
 
 
+@pytest.mark.parametrize('filename, expected_files', [
+    ('webextension_no_id.xpi', [
+        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
+        'popup'
+    ]),
+    ('webextension_no_id.zip', [
+        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
+        'popup'
+    ]),
+    ('webextension_no_id.tar.gz', [
+        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
+        'popup'
+    ]),
+    ('webextension_no_id.tar.bz2', [
+        'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
+        'popup'
+    ]),
+    ('search.xml', [
+        'search.xml',
+    ])
+])
+def test_extract_extension_to_dest(filename, expected_files):
+    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
+        fname=filename)
+
+    with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
+        temp_folder = utils.extract_extension_to_dest(extension_file)
+
+    assert sorted(os.listdir(temp_folder)) == expected_files
+
+    # fsync isn't called by default
+    assert not fsync_mock.called
+
+
+@pytest.mark.parametrize('filename', [
+    'webextension_no_id.xpi', 'webextension_no_id.zip',
+    'webextension_no_id.tar.bz2', 'webextension_no_id.tar.gz', 'search.xml',
+])
+def test_extract_extension_to_dest_call_fsync(filename):
+    extension_file = 'src/olympia/files/fixtures/files/{fname}'.format(
+        fname=filename)
+
+    with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
+        utils.extract_extension_to_dest(extension_file, force_fsync=True)
+
+    # fsync isn't called by default
+    assert fsync_mock.called
+
+
+def test_extract_extension_to_dest_invalid_archive():
+    extension_file = 'src/olympia/files/fixtures/files/doesntexist.zip'
+
+    with mock.patch('olympia.files.utils.shutil.rmtree') as mock_rmtree:
+        with pytest.raises(forms.ValidationError):
+            utils.extract_extension_to_dest(extension_file)
+
+    # Make sure we are cleaning up our temprary directory if possible
+    assert mock_rmtree.called
+
+
 @pytest.fixture
 def file_obj():
     addon = amo.tests.addon_factory()
