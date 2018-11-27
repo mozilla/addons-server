@@ -877,11 +877,10 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
             if force_fsync:
                 FSyncMixin()._fsync_file(target)
     except (zipfile.BadZipfile, tarfile.ReadError, IOError):
-        raise forms.ValidationError(
-            ugettext('Invalid or broken archive.'))
-    finally:
         if tempdir is not None:
             rm_local_tmp_dir(tempdir)
+        raise forms.ValidationError(
+            ugettext('Invalid or broken archive.'))
     return target
 
 
