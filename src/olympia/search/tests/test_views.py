@@ -589,7 +589,7 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, {'q': 'omgyes'})
         assert self.get_results(r) == []
 
-    def test_authors_indexed(self):
+    def test_authors_indexed_but_not_searched(self):
         a = self.addons[0]
 
         r = self.client.get(self.url, {'q': 'boop'})
@@ -604,9 +604,9 @@ class TestESSearch(SearchBase):
         r = self.client.get(self.url, {'q': 'garbage'})
         assert self.get_results(r) == []
         r = self.client.get(self.url, {'q': 'boop'})
-        assert self.get_results(r) == [a.id]
-        r = self.client.get(self.url, {'q': 'pony'})
-        assert self.get_results(r) == [a.id]
+        assert self.get_results(r) == []
+        r = self.client.get(self.url, {'q': ''})
+        assert self.get_results(r) == [addon.id for addon in self.addons]
 
     def test_search_doesnt_return_unlisted_addons(self):
         addon = self.addons[0]
