@@ -66,8 +66,8 @@ class BaseSearchIndexer(object):
     def raw_field_definition(cls):
         """
         Return the mapping to use for the "raw" version of a field. Meant to be
-        used as part of a 'fields': {} definition in the mapping of an existing
-        field.
+        used as part of a 'fields': {'raw': ... } definition in the mapping of
+        an existing field.
 
         Used for exact matches and sorting
         """
@@ -77,10 +77,8 @@ class BaseSearchIndexer(object):
         # a custom normalizer for exact matches to work in a case-insensitive
         # way.
         return {
-            'raw': {
-                'type': 'keyword',
-                'normalizer': 'lowercase_keyword_normalizer',
-            }
+            'type': 'keyword',
+            'normalizer': 'lowercase_keyword_normalizer',
         }
 
     @classmethod
@@ -117,7 +115,9 @@ class BaseSearchIndexer(object):
                 mapping[doc_name]['properties'][property_name] = {
                     'type': 'text',
                     'analyzer': analyzer,
-                    'fields': cls.raw_field_definition()
+                    'fields': {
+                        'raw': cls.raw_field_definition(),
+                    }
                 }
 
     @classmethod
