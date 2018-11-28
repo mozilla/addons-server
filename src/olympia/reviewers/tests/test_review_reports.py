@@ -23,7 +23,7 @@ class TestReviewReports(TestCase):
             user, addon, addon.status, version=addon.versions.all()[0],
             post_review=True, content_review=content_review)
 
-    def setUp(self):
+    def generate_review_data(self):
         super(TestReviewReports, self).setUp()
         with freeze_time(self.last_week_begin):
             reviewer1 = user_factory(display_name='Volunteer A')
@@ -83,6 +83,7 @@ class TestReviewReports(TestCase):
                                              review_action[3])
 
     def test_report_addon_reviewer(self):
+        self.generate_review_data()
         command = Command()
         data = command.fetch_report_data('addon')
         assert data == [
@@ -122,6 +123,7 @@ class TestReviewReports(TestCase):
         assert subject in email.subject
 
     def test_report_content_reviewer(self):
+        self.generate_review_data()
         command = Command()
         data = command.fetch_report_data('content')
 
@@ -143,6 +145,76 @@ class TestReviewReports(TestCase):
         assert 'Weekly Add-on Content Reviews Report' in html
         assert 'Volunteer Content C' in html
         assert 'Staff Content D' in html
+
+        to = 'addon-content-reviewers@mozilla.org'
+        subject = '%s %s-%s' % (
+                  'Weekly Add-on Content Reviews Report',
+                  self.last_week_begin, self.last_week_end)
+        command.mail_report(to, subject, html)
+
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert to in email.to
+        assert subject in email.subject
+
+    def test_empty_report_addon_reviewer(self):
+        command = Command()
+        data = command.fetch_report_data('addon')
+        assert data == [
+            ('Weekly Add-on Reviews, 5 Reviews or More',
+             ['Name', 'Staff', 'Total Risk', 'Average Risk', 'Points',
+              'Add-ons Reviewed'],
+             ()),
+            ('Weekly Volunteer Contribution Ratio',
+             ['Group', 'Total Risk', 'Average Risk', 'Add-ons Reviewed'],
+             ((u'All Reviewers', u'-', u'-', u'0'),
+              (u'Volunteers', u'-', u'-', u'0'))),
+            ('Weekly Add-on Reviews by Risk Profiles',
+             ['Risk Category', 'All Reviewers', 'Volunteers'],
+             ()),
+            ('Quarterly contributions',
+             ['Name', 'Points', 'Add-ons Reviewed'],
+             ())
+        ]
+
+        html = command.generate_report_html('addon', data)
+
+        assert 'Weekly Add-on Reviews Report' in html
+        assert 'Volunteer A' not in html
+        assert 'Staff B' not in html
+
+        to = 'addon-reviewers@mozilla.org'
+        subject = '%s %s-%s' % (
+                  'Weekly Add-on Reviews Report',
+                  self.last_week_begin, self.last_week_end)
+        command.mail_report(to, subject, html)
+
+        assert len(mail.outbox) == 1
+        email = mail.outbox[0]
+        assert to in email.to
+        assert subject in email.subject
+
+    def test_empty_report_content_reviewer(self):
+        command = Command()
+        data = command.fetch_report_data('content')
+
+        assert data == [
+            ('Weekly Content Reviews, 10 Reviews or More',
+             ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
+             ()),
+            ('Weekly Volunteer Contribution Ratio',
+             ['Group', 'Add-ons Reviewed'],
+             ((u'All Reviewers', u'0'), (u'Volunteers', u'0'))),
+            ('Quarterly contributions',
+             ['Name', 'Points', 'Add-ons Reviewed'],
+             ())
+        ]
+
+        html = command.generate_report_html('content', data)
+
+        assert 'Weekly Add-on Content Reviews Report' in html
+        assert 'Volunteer Content C' not in html
+        assert 'Staff Content D' not in html
 
         to = 'addon-content-reviewers@mozilla.org'
         subject = '%s %s-%s' % (
