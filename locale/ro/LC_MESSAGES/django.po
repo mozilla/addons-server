@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 18:52+0000\n"
+"PO-Revision-Date: 2018-11-28 19:12+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -721,48 +721,52 @@ msgid "Reviewer Tools"
 msgstr "Unelte pentru recenzenți"
 
 msgid "Admin Tools"
-msgstr ""
+msgstr "Unelte de administrare"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Număr întreg pozitiv"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Acest câmp poate fi utilizat numai pentru legături către site-uri web externe. URL-urile de pe %(domain)s nu sunt permise."
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Incorect. Te rugăm să încerci din nou."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Eroare la verificarea datelor introduse. Te rugăm să încerci din nou."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Trebuie să fie un cod de culoare hex valabil, cum ar fi #000000."
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "Unele caracteristici sunt dezactivate temporar în timp ce efectuăm întreținerea site-ului. Revenim imediat la capacitate maximă."
 
 msgid "Not allowed"
-msgstr ""
+msgstr "Nepermis"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Ups! Nu e permis."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Ai încercat să faci ceva pentru care nu ai permisiuni."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Vezi acest mesaj deoarece acest site HTTPS necesită ca browserul tău să trimită un antet „Referer”, dar nu a fost trimis niciunul. Acest antet este necesar din motive de securitate pentru asigurarea"
+" că browserul nu este deturnat de părți terțe."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Dacă ți-ai configurat browserul ca să dezactiveze antetele „Referer”, te rugăm să le reactivezi, cel puțin pentru acest site sau pentru conexiunile HTTPS sau pentru cereri tip „same-origin”."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Vezi acest mesaj deoarece site-ul necesită un cookie CSRF la depunerea de formulare. Acest cookie este necesar din motive de securitate, pentru asigurarea că browserul nu este deturnat de părți "
+"terțe."
 
 msgid "Page Not Found"
 msgstr "Pagina nu a fost găsită"
@@ -771,7 +775,7 @@ msgid "Firefox Add-ons"
 msgstr "Suplimente Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Ne pare rău, dar nu am reușit să găsim nimic la adresa pe care ai introdus-o. Dacă ai urmat un link spre un supliment, este posibil ca suplimentul să fi fost eliminat chiar de autor."
 
 msgid "Suggested Pages"
 msgstr "Pagini sugerate"
@@ -791,9 +795,10 @@ msgstr "Pagina de start a suplimentelor"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Dacă ai urmat un link de undeva, te rugăm %(open_bug_link)ssă deschizi un tichet%(close_bug_link)s. Spune-ne de unde veneai și ce căutai și vom face tot ce ne stă în putință ca să rezolvăm problema."
 
 msgid "Not Found"
-msgstr ""
+msgstr "Nu a fost găsit"
 
 #, python-format
 msgid ""
@@ -809,10 +814,10 @@ msgstr "Ups"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>Ups!  A apărut o eroare.</h1> <p>O vom corecta imediat.</p> <p> Poți încerca să reîmprospătezi pagina sau mergi înapoi la <a href=\"%(home)s\">pagina de start pentru suplimente</a>. </p>"
 
 msgid "Some rights reserved"
-msgstr ""
+msgstr "Unele drepturi rezervate"
 
 msgid "No results found"
 msgstr "Nu s-a găsit niciun rezultat"
@@ -829,13 +834,13 @@ msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <str
 msgstr "Rezultate <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> din <strong>%(count)s</strong>"
 
 msgid "Maintenance in progress"
-msgstr ""
+msgstr "Mentenanță în curs"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "Această caracteristică este dezactivată temporar cât realizăm mentenanță pe site. Te rugăm să folosești butonul Înapoi al browserului și să încerci din nou mai târziu."
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
-msgstr ""
+msgstr "Unele caracteristici ale acestei pagini sunt dezactivate temporar cât efectuăm mentenanța pe site. Te rugăm încerci din nou puțin mai târziu."
 
 msgid "Are you human?"
 msgstr "Ești om?"
@@ -929,16 +934,16 @@ msgid "Another Body"
 msgstr "Alt conținut"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "Antet de autorizare invalid. Nu s-au furnizat acreditări."
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "Antet de autorizare invalid. Șirul de acreditări nu trebuie să conțină spații."
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Semnătura a expirat."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Eroare la decodarea semnăturii."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
@@ -947,13 +952,13 @@ msgid "Invalid JWT Token."
 msgstr "Indicativ JWT nevalid."
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "Câmpul trebuie să aibă o lungime de cel puțin {num} (de) caractere."
 
 msgid "The language code {lang_code} is invalid."
-msgstr ""
+msgstr "Codul limbii {lang_code} este invalid."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -963,17 +968,19 @@ msgid "Application Versions"
 msgstr "Versiuni de aplicație"
 
 msgid "Acceptable versions for all applications on AMO."
-msgstr ""
+msgstr "Versiuni acceptabile pentru toate aplicațiile de pe AMO."
 
 msgid "Valid Application Versions"
 msgstr "Versiuni valide de aplicație"
 
 msgid "Add-ons submitted to Mozilla Add-ons must have a manifest file with at least one of the below applications supported. Only the versions listed below are allowed for these applications."
 msgstr ""
+"Suplimente trimise către Mozilla Suplimentele trebuie să aibă un fișier manifest care să suporte cel puțin una dintre aplicațiile de mai jos. Numai versiunile enumerate mai jos sunt permise pentru "
+"aceste aplicații."
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Te rugăm să fii atent că WebExtensions nu va accepta un „*” în %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -986,33 +993,35 @@ msgid ""
 "If your supported application does not require a manifest file, you still must include one with the required properties as specified "
 "%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
+"Dacă aplicația ta suportată nu necesită un fișier manifest, tot trebuie să incluzi unul care să aibă proprietățile obligatorii, conform specificațiilor%(amo_manifests_mdn_link_open)sde "
+"aici%(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
-msgstr ""
+msgstr "Numai eu pot vedea această colecție."
 
 msgid "Anybody can view this collection."
-msgstr ""
+msgstr "Oricine poate vedea această colecție."
 
 msgid "Give your collection a name."
-msgstr ""
+msgstr "Dă o denumire colecției tale."
 
 msgid "URL:"
-msgstr ""
+msgstr "URL:"
 
 msgid "Describe your collection (no links allowed)."
-msgstr ""
+msgstr "Descrie colecția (nu se permit linkuri)."
 
 msgid "Privacy:"
-msgstr ""
+msgstr "Confidențialitate:"
 
 msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
+msgstr "Te rugăm să nu completezi acest câmp; este utilizat pentru captura de rotoți"
 
 msgid "This name cannot be used."
-msgstr ""
+msgstr "Această denumire nu poate fi utilizată."
 
 msgid "This url is already in use by another collection"
-msgstr ""
+msgstr "Acest URL este deja utilizat de altă colecție"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
