@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 19:12+0000\n"
+"PO-Revision-Date: 2018-11-28 19:32+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1024,61 +1024,61 @@ msgid "This url is already in use by another collection"
 msgstr "Acest URL este deja utilizat de altă colecție"
 
 msgid "This custom URL is already in use by another one of your collections."
-msgstr ""
+msgstr "Acest URL personalizat este deja utilizat de una dintre celelalte colecții ale tale."
 
 msgid "Name cannot be empty."
 msgstr "Numele nu poate fi gol."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
-msgstr ""
+msgstr "URL-ul personalizat trebuie să fie alcătuit din litere, numere, liniuță jos sau cratime."
 
 msgid "This custom URL cannot be used."
 msgstr "Acest URL personalizat nu poate fi folosit."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
+msgstr "Acest supliment deja face parte din colecție"
 
 msgid "Added"
-msgstr ""
+msgstr "Adăugat"
 
 msgid "Popularity"
-msgstr ""
+msgstr "Popularitate"
 
 msgid "Name"
 msgstr "Nume"
 
 msgid "Collection created!"
-msgstr ""
+msgstr "Colecție creată!"
 
 #, python-format
 msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
+msgstr "Noua ta colecție este afișată mai jos. Poți <a href=\"%(url)s\">edita setări suplimentare</a>dacă vrei."
 
 msgid "Collection updated!"
-msgstr ""
+msgstr "Colecție actualizată!"
 
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Afișează colecția</a> ca să vezi modificările."
 
 msgid "Create a New Collection"
-msgstr ""
+msgstr "Creează o colecție nouă"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
 msgstr ""
 
 msgid "Create Collection"
-msgstr ""
+msgstr "Creează colecția"
 
 msgid "View this collection"
-msgstr ""
+msgstr "Afișează această colecție"
 
 msgid "Start a new collection..."
-msgstr ""
+msgstr "Începe o colecție nouă..."
 
 msgid "Start a New Collection"
-msgstr ""
+msgstr "Începe o colecție nouă"
 
 msgid "Name:"
 msgstr "Nume:"
@@ -1087,34 +1087,34 @@ msgid "(optional)"
 msgstr "(opțional)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "sau <a id=\"collections-new-cancel\" href=\"#\">Anulează</a>"
 
 msgid "{0} :: Collections"
 msgstr "{0} :: Colecții"
 
 msgid "private"
-msgstr ""
+msgstr "privată"
 
 msgid "About this Collection"
 msgstr "Despre această colecție"
 
 msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
+msgstr "Suplimente sincronizate cu Firefox-ul meu pentru mobil"
 
 msgid "Make this Collection Private"
-msgstr ""
+msgstr "Fă privată această colecție"
 
 msgid "Make this Collection Public"
-msgstr ""
+msgstr "Fă publică această colecție"
 
 msgid "More Options:"
 msgstr "Mai multe opțiuni:"
 
 msgid "Edit Collection"
-msgstr ""
+msgstr "Editează colecția"
 
 msgid "Delete Collection"
-msgstr ""
+msgstr "Șterge colecția"
 
 #, python-format
 msgid "%(num)s Theme in this Collection"
@@ -1140,20 +1140,24 @@ msgid "Collections are groups of related add-ons that anyone can create and shar
 msgstr "Colecțiile sunt grupuri de suplimente conexe pe care oricine le poate crea și partaja."
 
 msgid "Explore Collections"
-msgstr ""
+msgstr "Explorează colecțiile"
 
 msgid "Common Tags"
-msgstr ""
+msgstr "Etichete frecvente"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
+"Suplimentele pe care le marchezi ca favorite utilizând funcționalitatea <b>Adaugă la favorite</b>sunt afișate aici mai jos. Această colecție este acum <b>publică</b>, ceea ce înseamnă că oricine o "
+"poate vedea. Dacă vrei să o ascunzi de ochii publicului, dă clic pe butonul de mai jos pentru a o face privată."
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
+"Suplimentele pe care le marchezi ca favorite utilizând funcționalitatea <b>Adaugă la favorite</b>sunt afișate aici mai jos. Această colecție este acum <b>privată</b>, ceea ce înseamnă că numai tu o "
+"poți vedea. Dacă vrei ca oricine să îți poată vedea favoritele, dă clic pe butonul de mai jos pentru a o face publică."
 
 msgid "My favorite add-ons"
 msgstr "Suplimentele mele favorite"
@@ -1161,15 +1165,15 @@ msgstr "Suplimentele mele favorite"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<span>%(addons)s</span> supliment"
+msgstr[1] "<span>%(addons)s</span> suplimente"
+msgstr[2] "<span>%(addons)s</span> de suplimente"
 
 msgid "by {0}"
 msgstr "de {0}"
 
 msgid "Edit this Collection"
-msgstr ""
+msgstr "Editează această colecție"
 
 #. %s is the name of the collection.
 msgid "Delete {0}"
@@ -1179,10 +1183,10 @@ msgid "Are you sure?"
 msgstr "Sigur vrei asta?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 msgid "No"
-msgstr ""
+msgstr "Nu"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
@@ -1192,17 +1196,17 @@ msgid "Description"
 msgstr "Descriere"
 
 msgid "Save Changes"
-msgstr ""
+msgstr "Salvează modificările"
 
 msgid "Remove from favorites"
-msgstr ""
+msgstr "Elimină din favorite"
 
 msgid "Add to favorites"
-msgstr ""
+msgstr "Adaugă la favorite"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr ""
+msgstr "Colecții de către {0}"
 
 msgid "No collections found."
 msgstr "Nicio colecție găsită."
@@ -1216,46 +1220,46 @@ msgid "by %(author_link)s"
 msgstr "de %(author_link)s"
 
 msgid "Create a Collection"
-msgstr ""
+msgstr "Creează o colecție"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
+msgstr "Colecțiile fac ușoară gestionarea suplimentelor favorite și partajarea browserului tău perfect personalizat cu ceilalți."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Acest formular conține erori.  Te rugăm să le corectezi mai jos."
 
 msgid "Add-ons in Your Collection"
 msgstr "Suplimente în colecția ta"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Pentru a include un supliment în această colecție, introdu-i denumirea în caseta de mai jos și apasă pe Enter."
 
 msgid "Add-on"
-msgstr ""
+msgstr "Supliment"
 
 msgid "Comment"
-msgstr ""
+msgstr "Comentariu"
 
 msgid "Remove"
-msgstr ""
+msgstr "Elimină"
 
 msgid "Enter the name of the add-on to include"
-msgstr ""
+msgstr "Introdu denumirea suplimentului care să fie inclus"
 
 msgid "Add to Collection"
-msgstr ""
+msgstr "Adaugă în colecție"
 
 msgid "Pending"
-msgstr ""
+msgstr "În așteptare"
 
 msgid "Add a comment"
-msgstr ""
+msgstr "Adaugă un comentariu"
 
 msgid "Remove this add-on from the collection"
-msgstr ""
+msgstr "Elimină acest supliment din colecție"
 
 msgid "Favorite"
-msgstr ""
+msgstr "Favorite"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1274,18 +1278,18 @@ msgstr "Suplimente deosebite :: %s"
 #. L10n: %s is an app name.
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
+msgstr "Ai aici câteva dintre suplimentele noastre favorite ca să te ajute să începi personalizarea %s."
 
 #. L10n: %s is a category name.
 #, python-format
 msgid "Search tools relating to %s"
-msgstr ""
+msgstr "Caută unelte legate de %s"
 
 msgid "Search tools and search-related extensions"
-msgstr ""
+msgstr "Caută unelte și extensii legate de căutare"
 
 msgid "Search tools"
-msgstr ""
+msgstr "Caută unelte"
 
 msgid "Most Users"
 msgstr "Cu cei mai mulți utilizatori"
@@ -1297,7 +1301,7 @@ msgid "Recently Updated"
 msgstr "Actualizare recent"
 
 msgid "Up & Coming"
-msgstr ""
+msgstr "În curs de apariție"
 
 msgid "Recently Added"
 msgstr "Adăugate recent"
@@ -1324,7 +1328,7 @@ msgstr "Suplimente deosebite"
 
 #, python-format
 msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
+msgstr "Ai aici câteva dintre suplimentele noastre favorite ca să te ajute să începi personalizarea %(app)s."
 
 msgid "Install Dictionary"
 msgstr "Instalează dicționarul"
@@ -1337,31 +1341,33 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Instalarea unui supliment tip dicționar va adăuga o opțiune nouă de limbă în corectorul tău ortografic %(app_name)s, care îți verifică ortografia când completezi formulare pe Web. Suplimentele de "
+"pachete lingvistice modifică limba întregii aplicații."
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "Disponibil în limba ta"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Listă de pachete lingvistice și dicționare disponibile în limba ta."
 
 msgid "Language"
 msgstr "Limbă"
 
 msgid "Dictionary"
-msgstr ""
+msgstr "Dicționar"
 
 msgid "Language Pack"
 msgstr "Pachet lingvistic"
 
 msgid "All locales"
-msgstr ""
+msgstr "Toate limbile"
 
 msgid "List of language packs and dictionaries."
 msgstr "Lista de pachete lingvistice și dicționare."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr ""
+msgstr "{0} :: Unelte de căutare"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -1371,16 +1377,16 @@ msgstr[1] "<b>{0}</b> suplimente"
 msgstr[2] "<b>{0}</b> de suplimente"
 
 msgid "Search Extensions"
-msgstr ""
+msgstr "Caută extensii"
 
 msgid "Add search-related functionality to Firefox"
-msgstr ""
+msgstr "Adaugă în Firefox funcționalități legate de căutare"
 
 msgid "Search Providers"
-msgstr ""
+msgstr "Furnizori de căutare"
 
 msgid "Find new providers for your search bar"
-msgstr ""
+msgstr "Descoperă furnizori noi pentru bara ta de căutare"
 
 msgid "Additional Resources"
 msgstr "Resurse adiționale"
