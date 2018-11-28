@@ -714,25 +714,27 @@ class TestAddonModels(TestCase):
         4. Test for default non-THEME icon.
         """
         addon = Addon.objects.get(pk=3615)
-        assert addon.icon_url.endswith('/3/3615-32.png?modified=1275037317')
+        assert addon.get_icon_url(32).endswith(
+            '/3/3615-32.png?modified=1275037317')
 
         addon.icon_hash = 'somehash'
-        assert addon.icon_url.endswith('/3/3615-32.png?modified=somehash')
+        assert addon.get_icon_url(32).endswith(
+            '/3/3615-32.png?modified=somehash')
 
         addon = Addon.objects.get(pk=6704)
         addon.icon_type = None
-        assert addon.icon_url.endswith('/icons/default-theme.png'), (
-            'No match for %s' % addon.icon_url)
+        assert addon.get_icon_url(32).endswith('/icons/default-theme.png'), (
+            'No match for %s' % addon.get_icon_url(32))
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
-        assert addon.icon_url.endswith('icons/default-32.png')
+        assert addon.get_icon_url(32).endswith('icons/default-32.png')
 
     def test_icon_url_default(self):
         a = Addon.objects.get(pk=3615)
         a.update(icon_type='')
         default = 'icons/default-32.png'
-        assert a.icon_url.endswith(default)
+        assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32, use_default=True).endswith(default)
         assert a.get_icon_url(32, use_default=False) is None

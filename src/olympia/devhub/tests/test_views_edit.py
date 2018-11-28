@@ -1048,6 +1048,37 @@ class TestEditMedia(BaseTestEdit):
         self.check_image_animated(self.preview_upload,
                                   'Images cannot be animated.')
 
+    @override_switch('content-optimization', active=True)
+    def test_icon_dimensions_and_ratio(self):
+        size_msg = 'Icon must be at least 128 pixels wide and tall.'
+        ratio_msg = 'Icon must be square (same width and height).'
+
+        # mozilla-snall.png is too small and not square
+        response = self.client.post(
+            self.icon_upload,
+            {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')})
+        assert json.loads(response.content)['errors'] == [size_msg, ratio_msg]
+
+        # icon64.png is the right ratio, but only 64x64
+        response = self.client.post(
+            self.icon_upload,
+            {'upload_image': open(
+                get_image_path('icon64.png'), 'rb')})
+        assert json.loads(response.content)['errors'] == [size_msg]
+
+        # mozilla.png is big enough but still not square
+        response = self.client.post(
+            self.icon_upload,
+            {'upload_image': open(get_image_path('mozilla.png'), 'rb')})
+        assert json.loads(response.content)['errors'] == [ratio_msg]
+
+        # and mozilla-sq is the right ratio and big enough
+        response = self.client.post(
+            self.icon_upload,
+            {'upload_image': open(get_image_path('mozilla-sq.png'), 'rb')})
+        assert json.loads(response.content)['errors'] == []
+        assert json.loads(response.content)['upload_hash']
+
     def preview_add(self, amount=1, image_name='preview_4x3.jpg'):
         src_image = open(get_image_path(image_name), 'rb')
 

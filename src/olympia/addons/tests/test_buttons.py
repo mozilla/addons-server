@@ -301,7 +301,7 @@ class TestButtonHtml(ButtonTest):
     def test_basics(self):
         a = self.addon
         a.id = '12345'
-        a.icon_url = 'icon url'
+        a.get_icon_url.return_value = 'icon url'
         a.meet_the_dev_url.return_value = 'meet.dev'
         a.name = 'addon name'
         self.file.hash = 'file hash'

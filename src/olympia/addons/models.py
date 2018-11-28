@@ -1125,10 +1125,6 @@ class Addon(OnChangeMixin, ModelBase):
     def show_adu(self):
         return self.type != amo.ADDON_SEARCH
 
-    @property
-    def icon_url(self):
-        return self.get_icon_url(32)
-
     def authors_other_addons(self, app=None):
         """
         Return other addons by the author(s) of this addon,

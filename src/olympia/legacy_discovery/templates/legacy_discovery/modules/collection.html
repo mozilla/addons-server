@@ -23,7 +23,7 @@
               <h3 class="htruncate">{{ addon.name }}</h3>
               {{ persona_preview(addon.persona, linked=False) }}
             {% else %}
-              <img src="{{ addon.icon_url }}" width="32" height="32" alt="">
+              <img src="{{ addon.get_icon_url(32) }}" width="32" height="32" alt="">
               <h3 class="htruncate">{{ addon.name }}</h3>
               <p class="desc vtruncate">{{ descriptions.get(addon.id, addon.summary|clean(true)) }}</p>
             {% endif %}
