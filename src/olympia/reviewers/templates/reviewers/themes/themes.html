@@ -26,7 +26,7 @@
       <dd>
         {% set author = theme.addon.listed_authors[0] %}
         {% if author %}
-          <a href="{{ url('users.profile', author.username) }}">
+          <a href="{{ url('users.profile', author.id) }}">
             {{ author.username }}
           </a>
         {% endif %}

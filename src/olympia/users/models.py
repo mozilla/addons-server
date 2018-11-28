@@ -253,26 +253,21 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return salted_hmac(key_salt, str(self.auth_id)).hexdigest()
 
     @staticmethod
-    def create_user_url(id_, username=None, url_name='profile', src=None,
-                        args=None):
+    def create_user_url(id_, url_name='profile', src=None, args=None):
         """
         We use <username> as the slug, unless it contains gross
         characters - in which case use <id> as the slug.
         """
         from olympia.amo.utils import urlparams
-        chars = '/<>"\''
-        if not username or any(x in chars for x in username):
-            username = id_
         args = args or []
-        url = reverse('users.%s' % url_name, args=[username] + args)
+        url = reverse('users.%s' % url_name, args=[id_] + args)
         return urlparams(url, src=src)
 
     def get_themes_url_path(self, src=None, args=None):
-        return self.create_user_url(self.id, self.username, 'themes', src=src,
-                                    args=args)
+        return self.create_user_url(self.id, 'themes', src=src, args=args)
 
     def get_url_path(self, src=None):
-        return self.create_user_url(self.id, self.username, 'profile', src=src)
+        return self.create_user_url(self.id, 'profile', src=src)
 
     @cached_property
     def groups_list(self):

@@ -143,9 +143,9 @@ class TestUnlistedViewAllListTable(TestCase):
         doc = pq(self.table.render_authors(row))
         assert doc('span').text() == 'bob steve'
         assert doc('span a:eq(0)').attr('href') == UserProfile.create_user_url(
-            123, username='bob')
+            123)
         assert doc('span a:eq(1)').attr('href') == UserProfile.create_user_url(
-            456, username='steve')
+            456)
         assert doc('span').attr('title') == 'bob steve'
 
     def test_authors_four(self):
@@ -155,11 +155,11 @@ class TestUnlistedViewAllListTable(TestCase):
         doc = pq(self.table.render_authors(row))
         assert doc.text() == 'bob steve cvan ...'
         assert doc('span a:eq(0)').attr('href') == UserProfile.create_user_url(
-            123, username='bob')
+            123)
         assert doc('span a:eq(1)').attr('href') == UserProfile.create_user_url(
-            456, username='steve')
+            456)
         assert doc('span a:eq(2)').attr('href') == UserProfile.create_user_url(
-            789, username='cvan')
+            789)
         assert doc('span').attr('title') == 'bob steve cvan basta', doc.html()
 
 

@@ -18,7 +18,7 @@ class TestAbuse(TestCase):
         assert (
             mail.outbox[0].subject ==
             u'[User] Abuse Report for regularuser التطب')
-        assert 'user/regularuser' in mail.outbox[0].body
+        assert 'user/999' in mail.outbox[0].body
 
         assert mail.outbox[0].to == [settings.ABUSE_EMAIL]
 

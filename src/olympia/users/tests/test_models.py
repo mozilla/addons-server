@@ -441,13 +441,9 @@ class TestUserProfile(TestCase):
         assert c.slug == 'favorites'
 
     def test_get_url_path(self):
-        assert UserProfile(username='yolo').get_url_path() == (
-            '/en-US/firefox/user/yolo/')
-        assert UserProfile(username='yolo', id=1).get_url_path() == (
-            '/en-US/firefox/user/yolo/')
         assert UserProfile(id=1).get_url_path() == (
             '/en-US/firefox/user/1/')
-        assert UserProfile(username='<yolo>', id=1).get_url_path() == (
+        assert UserProfile(username='yolo', id=1).get_url_path() == (
             '/en-US/firefox/user/1/')
 
     def test_mobile_addons(self):
