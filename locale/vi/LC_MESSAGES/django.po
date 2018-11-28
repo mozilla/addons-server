@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 06:41+0000\n"
+"PO-Revision-Date: 2018-11-28 07:47+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -855,7 +855,7 @@ msgid "Dictionaries & Language Packs"
 msgstr "Gói Ngôn ngữ & Từ điển"
 
 msgid "Search Tools"
-msgstr "Công cụ Tìm kiếm"
+msgstr "Công cụ tìm kiếm"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -1322,7 +1322,7 @@ msgstr "Danh sách gói ngôn ngữ và từ điển."
 
 #. {0} is a category name, like "Music".
 msgid "{0} :: Search Tools"
-msgstr "{0} :: Công cụ Tìm kiếm"
+msgstr "{0} :: Công cụ tìm kiếm"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> add-on"
@@ -1939,7 +1939,7 @@ msgid "Download Firefox extensions that can help download web, music and video c
 msgstr ""
 
 msgid "Feeds, News & Blogging"
-msgstr "Feed, Tin tức & Blog"
+msgstr "Nguồn cấp dữ liệu, tin tức & blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
@@ -2754,9 +2754,8 @@ msgstr ""
 msgid "Lightweight Themes"
 msgstr ""
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Bình luận của Nhà phát triển"
+msgstr "Chính sách nhà phát triển"
 
 msgid "Add-on Validator"
 msgstr "Kiểm định Tiện ích"
