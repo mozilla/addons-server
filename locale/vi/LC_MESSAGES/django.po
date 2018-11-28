@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 07:47+0000\n"
+"PO-Revision-Date: 2018-11-28 08:50+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -223,7 +223,7 @@ msgid "Add-ons for {0}"
 msgstr "Tiện ích {0}"
 
 msgid "Featured Extensions"
-msgstr "Phần mở rộng Chọn lọc"
+msgstr "Tiện ích nổi bật"
 
 msgid "Popular Extensions"
 msgstr "Phần mở rộng Thông dụng Nhất"
@@ -827,7 +827,7 @@ msgstr "Khám phá"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
-msgstr "Phần mở rộng"
+msgstr "Tiện ích"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
@@ -1243,7 +1243,7 @@ msgid "Search tools relating to %s"
 msgstr "Công cụ tìm kiếm liên quan %s"
 
 msgid "Search tools and search-related extensions"
-msgstr "Tìm kiếm công cụ và phần mở rộng liên quan đến tìm kiếm"
+msgstr "Công cụ tìm kiếm và tiện ích liên quan đến tìm kiếm"
 
 msgid "Search tools"
 msgstr "Công cụ tìm kiếm"
@@ -1330,7 +1330,7 @@ msgid_plural "<b>{0}</b> add-ons"
 msgstr[0] "<b>{0}</b> tiện ích"
 
 msgid "Search Extensions"
-msgstr "Phần mở rộng cho Tìm kiếm"
+msgstr "Tiện ích tìm kiếm"
 
 msgid "Add search-related functionality to Firefox"
 msgstr "Thêm chức năng liên quan đến tìm kiếm cho Firefox"
@@ -1357,10 +1357,10 @@ msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr "Phần mở rộng Thông dụng Nhất"
+msgstr "Tiện ích phổ biến nhất"
 
 msgid "Top-Rated Extensions"
-msgstr "Phần mở rộng Xếp hạng Cao nhất"
+msgstr "Tiện ích được xếp hạng cao nhất"
 
 msgid "Newest Extensions"
 msgstr ""
@@ -1369,7 +1369,7 @@ msgid "Extensions by Name"
 msgstr ""
 
 msgid "Extensions by Weekly Downloads"
-msgstr "Phần mở rộng theo Lượt tải Hàng tuần"
+msgstr "Tiện ích mở rộng theo lượt tải xuống hàng tuần"
 
 msgid "Recently Updated Extensions"
 msgstr ""
@@ -1851,7 +1851,7 @@ msgid "Developer"
 msgstr "Nhà phát triển"
 
 msgid "Extension"
-msgstr "Phần mở rộng"
+msgstr "Tiện ích"
 
 msgid "Complete Theme"
 msgstr ""
@@ -2740,7 +2740,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Trung tâm Nhà phát triển <small>Tiện ích</small>"
+msgstr "Trung tâm Nhà phát triển <small>tiện ích</small>"
 
 msgid "more add-ons..."
 msgstr "thêm tiện ích..."
@@ -2773,7 +2773,7 @@ msgid "Add-ons Forum"
 msgstr "Diễn đàn Tiện ích"
 
 msgid "More Resources"
-msgstr ""
+msgstr "Nhiều tài nguyên hơn"
 
 msgid "Search Developer Docs"
 msgstr "Tìm kiếm trong Tài liệu Nhà phát triển"
@@ -3229,7 +3229,7 @@ msgid "Localization Tests"
 msgstr "Kiểm tra Bản địa hóa"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Kiểm tra tính tương thích"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3825,14 +3825,13 @@ msgid "Read more about the source code review policy."
 msgstr ""
 
 msgid "Latest News"
-msgstr ""
+msgstr "Tin mới nhất"
 
 msgid "Read more in our Blog"
-msgstr ""
+msgstr "Xem thêm chi tiết tại blog của chúng tôi"
 
-#, fuzzy
 msgid "Resources"
-msgstr "Tài nguyên Khác"
+msgstr "Tài nguyên"
 
 #, fuzzy
 msgid "Porting"
@@ -3867,7 +3866,7 @@ msgid "Site Status"
 msgstr ""
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: xây dựng và thử nghiệm tiện ích"
 
 msgid "Promote"
 msgstr ""
@@ -3918,24 +3917,25 @@ msgstr ""
 msgid "See how"
 msgstr ""
 
-#, fuzzy
 msgid "Manage Your Add-on"
-msgstr "Thêm Tiện ích"
+msgstr "Quản lý tiện ích của bạn"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "Đăng nhập để chỉnh sửa và cập nhật tiện ích của bạn"
 
 msgid "Resources for a successful launch"
-msgstr ""
+msgstr "Tài nguyên để khởi chạy thành công"
 
 #, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
+"Bạn đã xây dựng tiện ích của mình và sẵn sàng xuất bản. Tiếp theo là gì? Xem các mẹo của chúng tôi để tạo trang sản phẩm hấp dẫn, làm cho tiện ích mở rộng của bạn nổi bật trên "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, tìm câu trả lời cho câu hỏi phát triển và luôn cập nhật tin tức và sự kiện liên quan đến các nhà phát triển tiện ích."
 
 msgid "View Resources for Publishers"
-msgstr ""
+msgstr "Xem tài nguyên dành cho nhà xuất bản"
 
 msgid "Welcome Back"
 msgstr "Chào mừng trở lại"
@@ -3959,20 +3959,17 @@ msgid "View All Submissions"
 msgstr "Xem Tất cả Phiên bản"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
+msgstr "Đây là nơi bạn xem và quản lý các tiện ích và chủ đề của mình. Để xuất bản tiện ích bổ sung đầu tiên của bạn, hãy nhấp vào \"Gửi tiện ích đầu tiên của bạn\" hoặc \"Gửi chủ đề đầu tiên của bạn\"."
 
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "Gửi lên một Tiện ích Mới"
+msgstr "Gửi tiện ích đầu tiên của bạn"
 
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "Gửi lên một Giao diện Mới"
+msgstr "Gửi chủ đề đầu tiên của bạn"
 
 # The title for a user if they are a developer
-#, fuzzy
 msgid "Add-on Developer Hub"
-msgstr "Nhà phát triển Tiện ích"
+msgstr "Trung tâm Nhà phát triển tiện ích"
 
 msgid "Docs"
 msgstr ""
@@ -3998,52 +3995,50 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
+"Tiện ích bổ sung cho phép hàng triệu người dùng Firefox nâng cao trải nghiệm duyệt web của họ. Nếu bạn biết %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s và "
+"%(css_link_open)sCSS%(link_close)s, bạn đã có tất cả các kỹ năng cần thiết để tạo ra một tiện ích."
 
-#, fuzzy
 msgid "Learn How to Make an Add-on"
-msgstr "Tìm hiểu Đầy đủ về Tiện ích"
+msgstr "Tìm hiểu cách tạo một tiện ích bổ sung"
 
-#, fuzzy
 msgid "Port a Chrome Extension"
-msgstr "Phần mở rộng Thông dụng Nhất"
+msgstr "Tạo từ một tiện ích mở rộng của Chrome"
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox hỗ trợ API WebExtension, mà trong hầu hết các trường hợp đều tương thích với các API mở rộng mà Chrome, Opera và Edge hỗ trợ, vì vậy các tiện ích mở rộng của bạn sẽ chạy trong Firefox chỉ "
+"với một vài thay đổi."
 
-#, fuzzy
 msgid "Publish Your Add-on"
-msgstr "Khám phá Tiện ích"
+msgstr "Xuất bản tiện ích của bạn"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Có sẵn một tiện ích chưa? Gửi tiện ích mở rộng hoặc chủ đề của bạn để được liệt kê trên addons.mozilla.org hoặc ký tên và tự phân phối tiện ích mở rộng của bạn."
 
 msgid "Sign In"
 msgstr "Đăng nhập"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "Một công cụ dòng lệnh để xây dựng, chạy và thử nghiệm các tiện ích mở rộng."
 
-#, fuzzy
 msgid "Automated code tests for your add-on."
-msgstr "Vui lòng hoàn tất tiện ích của bạn."
+msgstr "Kiểm tra mã tự động cho tiện ích của bạn."
 
-#, fuzzy
 msgid "Compatibility Test"
-msgstr "Tính tương thích"
+msgstr "Kiểm tra tính tương thích"
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Kiểm tra xem tiện ích mở rộng của bạn có tương thích với Firefox hay không."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Xem Liệt Kê"
+msgstr "Thử nghiệm trực tiếp"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Tạm thời cài đặt tiện ích của bạn trong Firefox để thử nghiệm và gỡ lỗi trực tiếp."
 
 msgid "Transfer ownership"
 msgstr ""
@@ -6056,7 +6051,7 @@ msgid "How do I keep up with what's happening at AMO?"
 msgstr ""
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Có một số cách để tìm hiểu tin tức mới nhất từ ​​thế giới tiện ích:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
@@ -6814,9 +6809,8 @@ msgstr ""
 msgid "Moderation Guide"
 msgstr "Thao tác điều chỉnh:"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Kiểm định Tiện ích"
+msgstr "Tiện ích bổ sung không công khai"
 
 msgid "All Unlisted Add-ons"
 msgstr ""
