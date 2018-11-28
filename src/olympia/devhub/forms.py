@@ -5,7 +5,7 @@ import zipfile
 
 from django import forms
 from django.conf import settings
-from django.core.validators import MinLengthValidator
+from django.core.validators import MaxLengthValidator, MinLengthValidator
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.forms.widgets import RadioSelect
@@ -658,6 +658,20 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
 
 
 class CombinedNameSummaryCleanMixin(object):
+
+    def __init__(self, *args, **kw):
+        self.should_auto_crop = kw.pop('should_auto_crop', False)
+        super(CombinedNameSummaryCleanMixin, self).__init__(*args, **kw)
+        if self.should_auto_crop:
+            # The MaxLengthValidator stops the auto cropping
+            self.fields['name'].validators = [
+                validator for validator in self.fields['name'].validators
+                if not isinstance(validator, MaxLengthValidator)]
+            self.fields['description'].validators = [
+                validator for validator
+                in self.fields['description'].validators
+                if not isinstance(validator, MaxLengthValidator)]
+
     def clean(self):
         message = _('Ensure name and summary combined are at most 70 '
                     'characters (they have {0}).')
@@ -665,7 +679,7 @@ class CombinedNameSummaryCleanMixin(object):
         name_summary_locales = set(
             self.cleaned_data.get('name', {}).keys() +
             self.cleaned_data.get('summary', {}).keys())
-        default_locale = self.instance.default_locale
+        default_locale = self.instance.default_locale.lower()
         name_values = self.cleaned_data.get('name') or {}
         name_default = name_values.get(default_locale) or ''
         summary_values = self.cleaned_data.get('summary') or {}
@@ -674,9 +688,26 @@ class CombinedNameSummaryCleanMixin(object):
             val_len = len(name_values.get(locale, name_default) +
                           summary_values.get(locale, summary_default))
             if val_len > 70:
-                self.add_error(
-                    'name', LocaleErrorMessage(
-                        message=message.format(val_len), locale=locale))
+                if locale == default_locale or not self.should_auto_crop:
+                    # if we're not auto-cropping add an error.
+                    self.add_error(
+                        'name', LocaleErrorMessage(
+                            message=message.format(val_len), locale=locale))
+                else:
+                    # otherwise we need to shorten the summary (and or name?)
+                    if locale in name_values:
+                        # if only default summary need to shorten name instead.
+                        max_name_length = (68 if locale in summary_values
+                                           else 70 - len(summary_default))
+                        name = name_values[locale][:max_name_length]
+                        name_length = len(name)
+                        self.cleaned_data['name'][locale] = name
+                    else:
+                        name_length = len(name_default)
+                    if locale in summary_values:
+                        max_summary_length = 70 - name_length
+                        self.cleaned_data['summary'][locale] = (
+                            summary_values[locale][:max_summary_length])
         return self.cleaned_data
 
 

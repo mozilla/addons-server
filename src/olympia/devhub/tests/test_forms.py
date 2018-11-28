@@ -962,6 +962,8 @@ class TestDescribeForm(TestCase):
         assert form.errors['name'] == [
             u'Ensure name and summary combined are at most 70 characters '
             u'(they have 130).']
+        assert form.errors['summary'] == [
+            u'Ensure this value has at most 68 characters (it has 81).']
 
         # DescribeForm has a lower limit for name length
         form = forms.DescribeForm(
@@ -974,3 +976,73 @@ class TestDescribeForm(TestCase):
             under_70_data, request=self.request, instance=delicious)
         assert form.is_valid()
         assert len(under_70_data['name']) + len(under_70_data['summary']) == 56
+
+    def test_name_summary_auto_cropping(self):
+        delicious = Addon.objects.get()
+        assert delicious.default_locale == 'en-US'
+
+        summary_needs_cropping = {
+            'name_en-us': 'a' * 25,
+            'name_fr': 'b' * 30,
+            'summary_en-us': 'c' * 45,
+            'summary_fr': 'd' * 45,  # 30 + 45 is > 70
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
+        }
+        form = forms.DescribeFormContentOptimization(
+            summary_needs_cropping, request=self.request, instance=delicious,
+            should_auto_crop=True)
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['name']['en-us'] == 'a' * 25  # no change
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 45  # no change
+        assert form.cleaned_data['name']['fr'] == 'b' * 30  # no change
+        assert form.cleaned_data['summary']['fr'] == 'd' * 40  # 45 to 40
+
+        summary_needs_cropping_no_name = {
+            'name_en-us': 'a' * 25,
+            'summary_en-us': 'c' * 45,
+            'summary_fr': 'd' * 50,
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
+        }
+        form = forms.DescribeFormContentOptimization(
+            summary_needs_cropping_no_name, request=self.request,
+            instance=delicious, should_auto_crop=True)
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['name']['en-us'] == 'a' * 25
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 45
+        assert 'fr' not in form.cleaned_data['name']  # we've not added it
+        assert form.cleaned_data['summary']['fr'] == 'd' * 45  # 50 to 45
+
+        name_needs_cropping = {
+            'name_en-us': 'a' * 67,
+            'name_fr': 'b' * 69,
+            'summary_en-us': 'c' * 2,
+            'summary_fr': 'd' * 3,
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
+        }
+        form = forms.DescribeFormContentOptimization(
+            name_needs_cropping, request=self.request,
+            instance=delicious, should_auto_crop=True)
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['name']['en-us'] == 'a' * 67  # no change
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 2  # no change
+        assert form.cleaned_data['name']['fr'] == 'b' * 68  # 69 to 68
+        assert form.cleaned_data['summary']['fr'] == 'd' * 2  # 3 to 2
+
+        name_needs_cropping_no_summary = {
+            'name_en-us': 'a' * 50,
+            'name_fr': 'b' * 69,
+            'summary_en-us': 'c' * 20,
+            'slug': 'slug',
+            'description_en-us': 'z' * 10,
+        }
+        form = forms.DescribeFormContentOptimization(
+            name_needs_cropping_no_summary, request=self.request,
+            instance=delicious, should_auto_crop=True)
+        assert form.is_valid(), form.errors
+        assert form.cleaned_data['name']['en-us'] == 'a' * 50  # no change
+        assert form.cleaned_data['summary']['en-us'] == 'c' * 20  # no change
+        assert form.cleaned_data['name']['fr'] == 'b' * 50  # 69 to 50
+        assert 'fr' not in form.cleaned_data['summary']
