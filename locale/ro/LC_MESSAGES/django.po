@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 20:32+0000\n"
+"PO-Revision-Date: 2018-11-28 20:40+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2629,9 +2629,8 @@ msgstr "Imaginea trebuie să aibă fix {0} pixeli lățime și {1} pixeli înăl
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Imaginea trebuie să fie de cel puțin {0} pixeli lățime și {1} pixeli înălțime."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Imaginile trebuie să fie PNG sau JPG."
+msgstr "Imaginile trebuie să fie la un raport de 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "A apărut o eroare la încărcarea previzualizării tale."
@@ -2846,13 +2845,13 @@ msgstr ""
 "Dacă modifici aici informațiile aplicației, aceasta va permite utilizatorilor să instaleze suplimentul tău chiar dacă manifestul de instalare din pachet arată că suplimentul este incompatibil."
 
 msgid "Application"
-msgstr ""
+msgstr "Aplicație"
 
 msgid "Supported Versions"
 msgstr "Versiuni suportate"
 
 msgid "Add Another Application&hellip;"
-msgstr ""
+msgstr "Adaugă altă aplicație &hellip;"
 
 msgid "Close"
 msgstr "Închide"
@@ -2865,7 +2864,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s de %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "Activitate veche pentru suplimentele mele"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2875,19 +2874,19 @@ msgstr[1] "<b>{0}</b> teme"
 msgstr[2] "<b>{0}</b> de teme"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Editează pagina produsului"
 
 msgid "None"
-msgstr ""
+msgstr "Nimic"
 
 msgid "Preview"
-msgstr ""
+msgstr "Previzualizare"
 
 msgid "Preview of listed version"
 msgstr "Previzualizare versiuni listate"
 
 msgid "Preview still being generated - come back later or refresh the page."
-msgstr ""
+msgstr "Previzualizarea este încă în curs de generare - revino mai târziu sau reîmprospătează pagina."
 
 msgid "Manage Authors & License"
 msgstr "Gestionează autorii și licența"
@@ -2896,7 +2895,7 @@ msgid "Authors"
 msgstr "Autori"
 
 msgid "About author roles"
-msgstr ""
+msgstr "Despre rolurile autorilor"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
@@ -2926,9 +2925,9 @@ msgstr ""
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Etichetă rezervată:"
+msgstr[1] "Etichete rezervate:"
+msgstr[2] "Etichete rezervate:"
 
 msgid "Contributions URL"
 msgstr "Contribuții URL"
@@ -2977,27 +2976,26 @@ msgstr ""
 msgid "View Listing"
 msgstr ""
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Vezi profilul"
+msgstr "Afișează pagina produsului"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
 msgid "Experimental?"
-msgstr ""
+msgstr "Experimental?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
 msgid "This add-on is experimental."
-msgstr ""
+msgstr "Acest supliment este experimental."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Acest supliment este gata pentru uz general."
 
 msgid "Requires Payment?"
-msgstr ""
+msgstr "Necesită plată?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3040,14 +3038,14 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Imagini"
 
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalii tehnice"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Detalii tehnice pentru {0}"
 
 msgid "Developer Comments"
 msgstr "Comentarii de la dezvoltator"
@@ -3056,6 +3054,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
+"Orice informații pe care utilizatorii finali ar vrea să le știe și care nu sunt neapărat obligatoriu de inclus în rezumatul sau în descrierea suplimentului. Utilizările frecvente inclus enumerarea "
+"erorilor majore, informații despre raportarea erorilor, data preconizată de lansare a unei versiuni noi etc. Este relevant numai pentru suplimentele listate."
 
 msgid "Required Add-ons"
 msgstr "Suplimente necesare"
@@ -3070,7 +3070,7 @@ msgid "These flags are used to classify add-ons. It is only relevant for listed 
 msgstr ""
 
 msgid "This add-on requires external software."
-msgstr ""
+msgstr "Acest supliment necesită programe externe."
 
 msgid "View Source?"
 msgstr ""
@@ -3878,12 +3878,12 @@ msgstr ""
 msgid "Resources for a successful launch"
 msgstr ""
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Ai creat o extensie și ești gata să o publici. Ce urmează? Vezi ponturile noastre despre crearea unei pagini de listare atractive, includerea extensiei tale printre cele promovate pe "
+"Ai creat o extensie și ești gata să o publici. Ce urmează? Vezi ponturile noastre despre crearea unei pagini atractive de produs, includerea extensiei tale printre cele promovate pe "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, găsirea de răspunsuri la întrebări despre dezvoltare și pentru a fi la curent cu știri și evenimente relevante pentru dezvoltatorii de "
 "extensii."
 
