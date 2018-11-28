@@ -955,6 +955,18 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                 errors.append(
                     ugettext('Image dimensions must be in the ratio 4:3.'))
 
+        if image_check.is_image() and content_waffle and is_icon:
+            standard_size = amo.ADDON_ICON_SIZES[-1]
+            icon_size = image_check.size
+            if icon_size[0] < standard_size or icon_size[1] < standard_size:
+                # L10n: {0} is an image width/height (in pixels).
+                errors.append(
+                    ugettext(u'Icon must be at least {0} pixels wide and '
+                             u'tall.').format(standard_size))
+            if icon_size[0] != icon_size[1]:
+                errors.append(
+                    ugettext(u'Icon must be square (same width and height).'))
+
         if errors and is_preview and os.path.exists(loc):
             # Delete the temporary preview file in case of error.
             os.unlink(loc)

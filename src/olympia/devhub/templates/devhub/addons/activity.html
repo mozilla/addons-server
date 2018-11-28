@@ -24,7 +24,7 @@
       {% if pager.object_list %}
         {% for item in pager.object_list %}
         <div class="item">
-          <img class="icon" width="32" height="32" src="{{ addon.icon_url }}" alt="">
+          <img class="icon" width="32" height="32" src="{{ addon.get_icon_url(32) if addon else '' }}" alt="">
           <p>
             <span class="action {{ log_action_class(item.action) }}"></span>
             {{ item }}

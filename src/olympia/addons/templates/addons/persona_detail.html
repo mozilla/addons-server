@@ -8,7 +8,7 @@
 
 <hgroup>
   <h2 class="addon"{{ addon.name|locale_html }}>
-    <img src="{{ addon.icon_url }}" class="icon" alt="" />
+    <img src="{{ addon.get_icon_url(32) }}" class="icon" alt="" />
     <span>
       {{ addon.name }}
     </span>

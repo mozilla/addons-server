@@ -4,7 +4,7 @@
 <div class="install-shell">
 <div class="install {{ button.install_class|join(' ') }}"
      data-addon="{{ addon.id }}"
-     data-icon="{{ addon.icon_url }}"
+     data-icon="{{ addon.get_icon_url(32) }}"
      data-developers="{{ addon.meet_the_dev_url() }}"
      data-versions="{{ url('addons.versions', addon.id) }}"
      data-name="{{ addon.name }}"

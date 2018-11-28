@@ -20,7 +20,7 @@
 
   <div class="island swagger theme-info c">
     <div class="addon-name-and-icon c">
-      <img class="addon-icon" src="{{ addon.icon_url }}" alt="">
+      <img class="addon-icon" src="{{ addon.get_icon_url(32) }}" alt="">
       <h2 class="addon-name">{{ addon.name }}</h2>
       <h3 class="author">
         {{ _('by {0}')|format_html(users_list(addon.listed_authors)|safe or persona.display_username|safe) }}

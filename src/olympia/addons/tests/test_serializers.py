@@ -229,7 +229,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['icons'] == {
             '32': absolutify(self.addon.get_icon_url(32)),
-            '64': absolutify(self.addon.get_icon_url(64))
+            '64': absolutify(self.addon.get_icon_url(64)),
+            '128': absolutify(self.addon.get_icon_url(128)),
         }
         assert result['is_disabled'] == self.addon.is_disabled
         assert result['is_experimental'] == self.addon.is_experimental is False
@@ -387,7 +388,8 @@ class AddonSerializerOutputTestMixin(object):
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
         assert result['icons'] == {
             '32': absolutify(self.addon.get_icon_url(32)),
-            '64': absolutify(self.addon.get_icon_url(64))
+            '64': absolutify(self.addon.get_icon_url(64)),
+            '128': absolutify(self.addon.get_icon_url(128)),
         }
 
     def test_no_current_version(self):
@@ -542,7 +544,8 @@ class AddonSerializerOutputTestMixin(object):
             'http://testserver/static/img/addon-icons/default-64.png')
         assert result['icons'] == {
             '32': 'http://testserver/static/img/addon-icons/default-32.png',
-            '64': 'http://testserver/static/img/addon-icons/default-64.png'
+            '64': 'http://testserver/static/img/addon-icons/default-64.png',
+            '128': 'http://testserver/static/img/addon-icons/default-128.png',
         }
 
     def test_webextension(self):
