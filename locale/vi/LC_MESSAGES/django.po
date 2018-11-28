@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 08:50+0000\n"
+"PO-Revision-Date: 2018-11-28 08:53+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -2764,7 +2764,7 @@ msgid "Development Add-ons"
 msgstr "Tiện ích Phát triển"
 
 msgid "Community & Support"
-msgstr ""
+msgstr "Cộng đồng & hỗ trợ"
 
 msgid "Add-ons Blog"
 msgstr "Blog Tiện ích"
@@ -3833,13 +3833,11 @@ msgstr "Xem thêm chi tiết tại blog của chúng tôi"
 msgid "Resources"
 msgstr "Tài nguyên"
 
-#, fuzzy
 msgid "Porting"
-msgstr "Xếp hạng"
+msgstr "Chuyển đổi"
 
-#, fuzzy
 msgid "Community"
-msgstr "Bình luận"
+msgstr "Cộng đồng"
 
 msgid "About"
 msgstr "Giới thiệu"
@@ -3851,9 +3849,8 @@ msgstr "Diễn đàn"
 msgid "Blog"
 msgstr "Blog"
 
-#, fuzzy
 msgid "Contact Us"
-msgstr "Danh bạ"
+msgstr "Liên hệ với chúng tôi"
 
 msgid "Support"
 msgstr "Hỗ trợ"
@@ -3863,7 +3860,7 @@ msgid "Report Bug"
 msgstr "Báo cáo Lạm dụng"
 
 msgid "Site Status"
-msgstr ""
+msgstr "Trạng thái trang"
 
 msgid "Web-Ext: build & test extensions"
 msgstr "Web-Ext: xây dựng và thử nghiệm tiện ích"
