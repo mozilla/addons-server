@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 19:32+0000\n"
+"PO-Revision-Date: 2018-11-28 19:51+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1393,17 +1393,17 @@ msgstr "Resurse adiționale"
 
 #. {0} is an app name, like Firefox.
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr ""
+msgstr "Află mai multe despre <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">bara de căutare</a> în {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Descoperă și mai mulți furnizori de căutare la <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
 msgstr ""
 
 msgid "Most Popular Extensions"
-msgstr ""
+msgstr "Cele mai populare extensii"
 
 msgid "Top-Rated Extensions"
 msgstr "Extensii în topul evaluărilor"
@@ -1452,9 +1452,9 @@ msgstr "Teme complete disponibile în curând"
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Afișează %(cnt)s extensia în %(name)s &raquo;"
+msgstr[1] "Afișează toate %(cnt)s extensiile în %(name)s &raquo;"
+msgstr[2] "Afișează toate %(cnt)s extensiile în %(name)s &raquo;"
 
 msgid "{0} Themes"
 msgstr "Teme {0}"
@@ -1479,14 +1479,14 @@ msgid "View All Recently Added"
 msgstr "Vezi toate adăugate recent"
 
 msgid "View All Most Popular"
-msgstr ""
+msgstr "Vezi toate cele mai populare"
 
 msgid "View All Top Rated"
 msgstr "Vezi toate în topul evaluărilor"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Peste 300.000 de designuri cu care să îți personalizezi browserul! Treci cu mouse-ul peste o temă de fundal ca să o încerci. <a href=\"%(url)s\" class=\"more-info\">Începe explorarea</a>"
 
 msgid "Want more personalization?"
 msgstr "Vrei mai multă personalizare?"
@@ -1498,7 +1498,7 @@ msgid "Complete Themes transform the look of your browser with styles for the wi
 msgstr "Temele complete transformă aspectul browserului cu stiluri pentru cadrul ferestrei, bara de adrese, butoane, file și meniuri. <a href=\"%(url)s\" class=\"more-info\">Începe explorarea</a>"
 
 msgid "Up & Coming Themes"
-msgstr ""
+msgstr "Teme în curs de apariție"
 
 msgid "View All Up & Coming"
 msgstr ""
@@ -1507,64 +1507,64 @@ msgid "No themes found"
 msgstr "Nicio temă găsită"
 
 msgid "{addon} was created."
-msgstr ""
+msgstr "{addon} a fost creat."
 
 msgid "{addon} properties edited."
-msgstr ""
+msgstr "Proprietățile {addon} au fost editate."
 
 msgid "{addon} description edited."
-msgstr ""
+msgstr "Descrierea {addon} a fost editată."
 
 msgid "Categories edited for {addon}."
-msgstr ""
+msgstr "Au fost editate categoriile pentru {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) a fost adăugat în {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr ""
+msgstr "{0.name} ({1}) a fost eliminat din {addon}."
 
 msgid "Contributions for {addon}."
-msgstr ""
+msgstr "Contribuții pentru {addon}."
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} a fost dezactivat."
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} a fost activat."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr ""
+msgstr "Starea {addon} a fost modificată în {status}."
 
 msgid "{version} added to {addon}."
-msgstr ""
+msgstr "{version} a fost adăugată la {addon}."
 
 msgid "{version} edited for {addon}."
-msgstr ""
+msgstr "{version} a fost editată pentru {addon}."
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr ""
+msgstr "Versiunea {0} a fost ștearsă din {addon}."
 
 msgid "File {0.name} added to {version} of {addon}."
-msgstr ""
+msgstr "Fișierul {0.name} a fost adăugat la {version} de {addon}."
 
 msgid "File {0} deleted from {version} of {addon}."
-msgstr ""
+msgstr "Fișierul {0} a fost șters din {version} de {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} a fost aprobată."
 
 msgid "{addon} {version} given preliminary review."
 msgstr ""
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Aprobat preliminar"
 
 msgid "{addon} {version} rejected."
-msgstr ""
+msgstr "{addon} {version} a fost respins."
 
 msgid "{addon} {version} retained."
 msgstr ""
@@ -1597,7 +1597,7 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr ""
 
 msgid "Comment on {addon} {version}."
-msgstr ""
+msgstr "Comentariu despre {addon} {version}."
 
 msgid "Commented"
 msgstr ""
@@ -1664,31 +1664,31 @@ msgid "Application max version for {version} updated."
 msgstr ""
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr ""
+msgstr "Autorilor li s-a trimis un mesaj e-mail despre compatibilitatea {version}."
 
 msgid "Email sent to Author about add-on compatibility."
-msgstr ""
+msgstr "S-a trimis un mesaj de e-mail autorului despre compatibilitatea suplimentului."
 
 msgid "Password changed."
-msgstr ""
+msgstr "Parolă a fost modificată."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} a fost aprobat, dar așteaptă publicarea."
 
 msgid "Approved but waiting"
 msgstr "Aprobat, însă în așteptare"
 
 msgid "Account updated."
-msgstr ""
+msgstr "Contul a fost actualizat."
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "Creat: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Câmp editat: {2} setat pe: {0}."
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Șters: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -1827,7 +1827,7 @@ msgid "Sunbird"
 msgstr "Sunbird"
 
 msgid "Mobile"
-msgstr ""
+msgstr "Mobil"
 
 msgid "Firefox for Android"
 msgstr "Firefox pentru Android"
@@ -1836,25 +1836,25 @@ msgid "Mozilla"
 msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Necunoscut"
 
 msgid "Incomplete"
 msgstr "Incompletă"
 
 msgid "Disabled by Mozilla"
-msgstr ""
+msgstr "Dezactivat de Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Șters"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "În așteptarea aprobării"
 
 msgid "Flagged for further review"
 msgstr ""
 
 msgid "Unlisted"
-msgstr ""
+msgstr "Nelistat"
 
 # <option> text in a <select> for Author role in an add-on.
 msgid "Owner"
@@ -1876,16 +1876,16 @@ msgid "Language Pack (Application)"
 msgstr "Pachet lingvistic (Aplicație)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Pachet lingvistic (supliment)"
 
 msgid "Plugin"
 msgstr "Plugin"
 
 msgid "Theme"
-msgstr ""
+msgstr "Temă"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Temă (statică)"
 
 msgid "Complete Themes"
 msgstr "Teme complete"
@@ -1899,10 +1899,10 @@ msgid "Language Packs (Application)"
 msgstr "Pachete lingvistice (Aplicație)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Pachete lingvistice (supliment)"
 
 msgid "Plugins"
-msgstr ""
+msgstr "Pluginuri"
 
 msgid "Themes (Static)"
 msgstr "Teme (Statice)"
@@ -1912,19 +1912,19 @@ msgid "Other"
 msgstr "Altele"
 
 msgid "Exception"
-msgstr ""
+msgstr "Excepție"
 
 msgid "Release"
 msgstr ""
 
 msgid "Change"
-msgstr ""
+msgstr "Modificare"
 
 msgid "Compatible"
-msgstr ""
+msgstr "Compatibil"
 
 msgid "Incompatible"
-msgstr ""
+msgstr "Incompatibil"
 
 msgid "Alerts & Updates"
 msgstr "Alerte și actualizări"
@@ -1948,7 +1948,7 @@ msgid "Download Management"
 msgstr "Gestionare de descărcări"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Descarcă extensii Firefox care te ajută să descarci conținut web, audio și video. Poți găsi și extensii pentru gestionarea descărcărilor, partajarea fișierelor și multe altele."
 
 msgid "Feeds, News & Blogging"
 msgstr "Fluxuri, știri și blogging"
@@ -2011,13 +2011,13 @@ msgid "Download Firefox extensions that can be unpredictable and creative, yet u
 msgstr ""
 
 msgid "Device Features & Location"
-msgstr ""
+msgstr "Funcționalități și poziție dispozitive"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Descarcă extensii care îmbunătățesc Firefox pentru Android. Efectuează căutări rapide, eliberează resursele sistemului, ia notițe și multe altele."
 
 msgid "Experimental"
-msgstr ""
+msgstr "Experimental"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
