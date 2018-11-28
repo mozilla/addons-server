@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 19:51+0000\n"
+"PO-Revision-Date: 2018-11-28 20:12+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2021,27 +2021,33 @@ msgstr "Experimental"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Descarcă extensii Firefox care sunt actualizate periodic și sunt gata pentru a fi testate de public. Feedbackul tău informează dezvoltatorii despre modificările pe care să le facă în versiunile "
+"viitoare."
 
 msgid "Performance"
 msgstr "Performanță"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Descarcă extensii care îmbunătățesc performanța Firefox. Descoperă extensii care te ajută să fii mai productiv și mai eficient prin blocarea reclamelor sâcâitoare și multe altele."
 
 msgid "Photos & Media"
 msgstr "Foto și video"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"Descarcă extensii Firefox pentru a îmbunătăți fotografiile și materialele media. Această categorie include extensii pentru căutare inversă de imagini, capturi de instantanee cu toată pagina și multe"
+" altele."
 
 msgid "Security & Privacy"
 msgstr "Intimitate și securitate"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Descarcă extensii Firefox ca să navighezi în siguranță și confidențial. Descoperă extensii care pot opri instant elementele de urmărire insidioase din reclame, care șterg ușor istoricul de navigare "
+"și multe altele."
 
 msgid "Social Networking"
-msgstr ""
+msgstr "Rețele sociale"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
 msgstr ""
@@ -2218,55 +2224,55 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr ""
 
 msgid "Any"
-msgstr ""
+msgstr "Oricare"
 
 msgid "All Platforms"
-msgstr ""
+msgstr "Toate platformele"
 
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 msgid "Mac OS X"
-msgstr ""
+msgstr "Mac OS X"
 
 msgid "BSD"
-msgstr ""
+msgstr "BSD"
 
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 msgid "Solaris"
-msgstr ""
+msgstr "Solaris"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 msgid "Static Theme"
 msgstr "Temă statică"
 
 msgid "Persona"
-msgstr ""
+msgstr "Persona"
 
 msgid "No Reputation"
 msgstr "Nicio reputație"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Bine (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Foarte bine (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Excelent (3)"
 
 msgid "Manual Reviewer Points"
-msgstr ""
+msgstr "Puncte recenzori manuali"
 
 msgid "New Legacy Add-on Review"
 msgstr "Recenzie nouă pentru supliment obsolet"
 
 msgid "Preliminary Add-on Review"
-msgstr ""
+msgstr "Recenzie preliminară supliment"
 
 msgid "Updated Legacy Add-on Review"
 msgstr "Recenzie actualizată pentru supliment obsolet"
@@ -2276,34 +2282,34 @@ msgid "New Dictionary Review"
 msgstr "Recenzie de dicționar nouă"
 
 msgid "Preliminary Dictionary Review"
-msgstr ""
+msgstr "Recenzie suplimentară dicționar"
 
 msgid "Updated Dictionary Review"
-msgstr ""
+msgstr "Recenzie dicționar actualizată"
 
 msgid "New Language Pack Review"
 msgstr "Recenzie de pachet lingvistic nouă"
 
 msgid "Preliminary Language Pack Review"
-msgstr ""
+msgstr "Recenzie preliminară pachet lingvistic"
 
 msgid "Updated Language Pack Review"
-msgstr ""
+msgstr "Recenzie pachet lingvistic actualizată"
 
 msgid "Theme Review"
-msgstr ""
+msgstr "Recenzie la temă"
 
 msgid "Theme (Static) Review"
 msgstr "Recenzie temă (statică)"
 
 msgid "New Search Provider Review"
-msgstr ""
+msgstr "Recenzie furnizor de căutare nou"
 
 msgid "Preliminary Search Provider Review"
-msgstr ""
+msgstr "Recenzie preliminară furnizor de căutare"
 
 msgid "Updated Search Provider Review"
-msgstr ""
+msgstr "Recenzie furnizor de căutare actualizată"
 
 msgid "New Complete Theme Review"
 msgstr "Recenzie nouă a temei complete"
@@ -2336,31 +2342,31 @@ msgid "Add-on Review (Low Risk)"
 msgstr "Recenzie suplimente (risc de nivel scăzut)"
 
 msgid "Level 1"
-msgstr ""
+msgstr "Nivelul 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Nivelul 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Nivelul 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Nivelul 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Nivelul 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Nivelul 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Nivelul 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Nivelul 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Nivelul 9"
 
 msgid "Request More Info"
 msgstr "Cere mai multe informații"
@@ -2378,80 +2384,80 @@ msgid "Approve"
 msgstr ""
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Conținut sexual sau pornografic"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Conținut necuviincios sau ofensator"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Imagini cu violență, război sau arme"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Conținut nazist sau de natură discriminatorie"
 
 msgid "Defamatory content"
-msgstr ""
+msgstr "Conținut calomniator"
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Jocuri de noroc online"
 
 msgid "Spam content"
-msgstr ""
+msgstr "Conținut spam"
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Imagine de calitate proastă, deformată sau goală"
 
 msgid "Header image alignment problem"
-msgstr ""
+msgstr "Problemă de aliniere a imaginii antetului"
 
 msgid "Core"
-msgstr ""
+msgstr "Nucleu"
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Modificări recente pentru %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Modificări recente pentru suplimentele mele"
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "Trebuie să aibă cel puțin un proprietar."
 
 msgid "At least one author must be listed."
-msgstr ""
+msgstr "Trebuie să fie listat cel puțin un autor."
 
 msgid "An author can only be listed once."
-msgstr ""
+msgstr "Autorii pot fi listați numai o dată."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug incorect."
 
 msgid "Details"
 msgstr "Detalii"
 
 msgid "What is your license's name?"
-msgstr ""
+msgstr "Care este denumirea licenței tale?"
 
 msgid "Provide the text of your license."
-msgstr ""
+msgstr "Furnizează textul licenței tale."
 
 msgid "License text is required when choosing Other."
-msgstr ""
+msgstr "Textul licenței este necesar când alegi Altele."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Acest supliment are un acord de licență pentru utilizatorul final"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Te rugăm să specifici acordul de licență pentru utilizatorul final aferent suplimentului tău:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Acest supliment are o politică de confidențialitate"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Te rugăm să specifici politica de confidențialitate aferentă suplimentului tău:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Tip de fișier nesuportat. Te rugăm să încarci un fișier tip arhivă {extensions}."
 
 msgid "Invalid or broken archive."
 msgstr "Arhivă invalidă sau coruptă."
@@ -2460,40 +2466,40 @@ msgid "View current"
 msgstr ""
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Domeniu de versiune invalid."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Necesită cel puțin o aplicație compatibilă."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "A apărut o eroare la încărcare. Te rugăm să încerci din nou."
 
 msgid "Override failed validation"
 msgstr ""
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "Necesită selectarea cel puțin a unei aplicații."
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "Versiunea {version} a mai fost încărcată și apoi ștearsă."
 
 msgid "Version {version} already exists."
-msgstr ""
+msgstr "Versiunea {version} există deja."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "Continui în schimb cu încărcarea existentă?"
 
 msgid "You have not uploaded a source file."
-msgstr ""
+msgstr "Nu ai încărcat un fișier-sursă."
 
 msgid "Source file uploaded but you indicated no source was needed."
-msgstr ""
+msgstr "Fișier-sursă încărcat, dar ai indicat că nu este necesară nicio sursă."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "Asigură-te că denumirea și rezumatul au cel mult 70 de caractere în total (au {0})."
 
 msgid "There cannot be more than 3 required add-ons."
-msgstr ""
+msgstr "Nu se poate să necesite mai mult de 3 suplimente."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2538,7 +2544,7 @@ msgstr ""
 
 #, python-format
 msgid "%s responded with %s (%s)."
-msgstr ""
+msgstr "%s a răspuns cu %s (%s)."
 
 #, python-format
 msgid "Connection to \"%s\" timed out."
@@ -2559,7 +2565,7 @@ msgid "All My Add-ons"
 msgstr "Toate suplimentele mele"
 
 msgid "All Activity"
-msgstr ""
+msgstr "Toată activitatea"
 
 msgid "Add-on Updates"
 msgstr ""
