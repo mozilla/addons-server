@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 03:07+0000\n"
+"PO-Revision-Date: 2018-11-29 20:10+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1913,13 +1913,15 @@ msgid "Bookmarks"
 msgstr "სანიშნები"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ გაფართოებები, რომლებიც გააუმჯობესებს სანიშნებით სარგებლობას, მათი პაროლით დაცვის გზით, ორმაგი ჩანაწერების მოცილებით, დაზიანებულების პოვნით და ა.შ."
 
 msgid "Download Management"
 msgstr "ჩამოტვირთვების მართვა"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"ჩამოტვირთეთ გაფართოებები, რომლებიც დაგეხმარებათ მარტივად გადმოწეროთ ვებშიგთავსი, სიმღერები და ვიდეოები. აგრეთვე შეგიძლიათ მონახოთ გაფართოებები ჩამოტვირთვების სამართავად, ფაილების გასაზიარებლად და "
+"ა.შ."
 
 msgid "Feeds, News & Blogging"
 msgstr "სიახლეების არხები და სვეტები"
@@ -3154,13 +3156,13 @@ msgid "Add a Screenshot..."
 msgstr "სურათების დამატება..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG და JPG მხარდაჭერილია, PNG მეტად სასურველია. სურათის ზომა არ უნდა აღემატებოდეს და სასურველია შეადგენდეს 2400x1800 პიქსელს."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "უმცირესი ზომაა 1000x750, ხოლო ფარდობა უნდა იყოს 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "თქვენი ნამუშევრის გვერდზე სურათის დამატება მნიშვნელოვნად გაზრდის მისი გამოყენების მსურველთა რაოდენობას და მთავარ გვერდზე მოხვედრის ალბათობას."
 
 msgid "Continue"
 msgstr "გაგრძელება"
