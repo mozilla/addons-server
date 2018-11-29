@@ -261,7 +261,7 @@ def with_user(format, config=None):
             else:
                 user = find_user(identity)
                 if (waffle.switch_is_active('2fa-for-developers') and
-                        user.is_addon_developer and
+                        user and user.is_addon_developer and
                         not identity.get('twoFactorAuthentication')):
                     # https://github.com/mozilla/addons/issues/732
                     # The user is an add-on developer (with other types of

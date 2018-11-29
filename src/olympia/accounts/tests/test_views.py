@@ -16,7 +16,7 @@ import mock
 
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.settings import api_settings
-from rest_framework.test import APIRequestFactory, APITestCase
+from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Switch
 
 from olympia import amo
@@ -55,8 +55,9 @@ SKIP_REDIRECT_FXA_CONFIG = {
     'default': FXA_CONFIG,
     'skip': SKIP_REDIRECT_FXA_CONFIG,
 })
-class BaseAuthenticationView(APITestCase, PatchMixin,
+class BaseAuthenticationView(TestCase, PatchMixin,
                              InitializeSessionMixin):
+    client_class = APIClient
 
     def setUp(self):
         self.url = reverse_ns(self.view_name)
@@ -792,6 +793,10 @@ class TestAuthenticateView(BaseAuthenticationView):
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(username='foo')
+
+    def test_success_no_account_registers_with_force_2fa_waffle(self):
+        self.create_switch('2fa-for-developers', active=True)
+        self.test_success_no_account_registers()
 
     def test_register_redirects_edit(self):
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
