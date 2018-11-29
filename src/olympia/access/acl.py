@@ -75,7 +75,7 @@ def check_collection_ownership(request, collection, require_owner=False):
 
     if request.user.id == collection.author_id:
         return True
-    elif collection.author.username == 'mozilla' and action_allowed_user(
+    elif collection.author_id == settings.TASK_USER_ID and action_allowed_user(
             request.user, amo.permissions.ADMIN_CURATION):
         return True
     elif not require_owner:

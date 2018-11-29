@@ -4,9 +4,9 @@
   {% if request.user.is_authenticated %}
     <ul>
       <li id="p-mine">
-        <a href="{{ url('collections.user', user.username) }}">
+        <a href="{{ url('collections.user', user.id) }}">
           {{ _("Collections I've Made") }}</a></li>
-      <li><a href="{{ url('collections.detail', user.username, 'favorites') }}">
+      <li><a href="{{ url('collections.detail', user.id, 'favorites') }}">
         {{ _('My Favorite Add-ons') }}</a></li>
     </ul>
   {% endif %}
