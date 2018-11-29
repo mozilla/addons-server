@@ -124,6 +124,7 @@ class Version(OnChangeMixin, ModelBase):
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
     git_hash = models.CharField(max_length=40, blank=True)
+    source_git_hash = models.CharField(max_length=40, blank=True)
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.

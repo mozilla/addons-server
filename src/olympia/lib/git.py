@@ -96,14 +96,14 @@ class AddonGitRepository(object):
         return git_repository
 
     @classmethod
-    def extract_and_commit_from_file_obj(cls, file_obj, channel, author=None):
-        """Extract all files from `file_obj` and comit them.
+    def extract_and_commit_from_version(cls, version, author=None):
+        """Extract the XPI from `version` and comit it.
 
         This is doing the following:
 
         * Create a temporary `git worktree`_
         * Remove all files in that worktree
-        * Extract the extension behind `file_obj` into the worktree
+        * Extract the xpi behind `version` into the worktree
         * Commit all files
 
         Kinda like doing::
@@ -159,62 +159,58 @@ class AddonGitRepository(object):
         # Make sure we're always using the en-US locale by default
         translation.activate('en-US')
 
-        addon = file_obj.version.addon
-        repo = cls(addon.id)
+        repo = cls(version.addon.id)
+        file_obj = version.all_files[0]
 
-        branch = repo.find_or_create_branch(BRANCHES[channel])
+        branch = repo.find_or_create_branch(BRANCHES[version.channel])
 
-        # Create a temporary worktree that we can use to unpack the extension
-        # without disturbing the current git workdir since it creates a new
-        # temporary directory where we extract to.
-        with TemporaryWorktree(repo.git_repository) as worktree:
-            # Now extract the extension to the workdir
-            extract_extension_to_dest(
-                file_obj.current_file_path, force_fsync=True)
-            # Stage changes, `TemporaryWorktree` always cleans the whole
-            # directory so we can simply add all changes and have the correct
-            # state.
-
-            # Add all changes to the index (git add ...)
-            worktree.repo.index.add_all()
-            worktree.repo.index.write()
-
-            tree = worktree.repo.index.write_tree()
-
-            # Now create an commit directly on top of the respective branch
-
-            message = (
+        commit = repo._commit_through_worktree(
+            path=file_obj.current_file_path,
+            message=(
                 'Create new version {version} ({version_id}) for '
                 '{addon} from {file_obj}'.format(
-                    version=repr(file_obj.version),
-                    version_id=file_obj.version.id,
-                    addon=repr(addon),
-                    file_obj=repr(file_obj)))
-
-            oid = worktree.repo.create_commit(
-                None,
-                # author, using the actual uploading user
-                repo.get_author(author),
-                # committer, using addons-robot because that's the user
-                # actually doing the commit.
-                repo.get_author(),  # commiter, using addons-robot
-                message,
-                tree,
-                # Set the current branch HEAD as the parent of this commit
-                # so that it'll go straight into the branches commit log
-                [branch.target]
-            )
-
-            # Fetch the commit object
-            commit = worktree.repo.get(oid)
-
-            # And set the commit we just created as HEAD of the relevant
-            # branch, and updates the reflog. This does not require any
-            # merges.
-            branch.set_target(commit.hex)
+                    version=repr(version),
+                    version_id=version.id,
+                    addon=repr(version.addon),
+                    file_obj=repr(file_obj))),
+            author=author,
+            branch=branch)
 
         # Set the latest git hash on the related version.
-        file_obj.version.update(git_hash=commit.hex)
+        version.update(git_hash=commit.hex)
+
+        return repo
+
+    @classmethod
+    def extract_and_commit_source_from_version(cls, version, author=None):
+        """Extract the source file from `version` and comit it.
+
+        This is doing the following:
+
+        * Create a temporary `git worktree`_
+        * Remove all files in that worktree
+        * Extract the xpi behind `version` into the worktree
+        * Commit all files
+
+        See `extract_and_commit_from_version` for more details.
+        """
+        repo = cls(version.addon.id, package_type='source')
+        branch = repo.find_or_create_branch(BRANCHES[version.channel])
+
+        commit = repo._commit_through_worktree(
+            path=version.source.path,
+            message=(
+                'Create new version {version} ({version_id}) for '
+                '{addon} from source file'.format(
+                    version=repr(version),
+                    version_id=version.id,
+                    addon=repr(version.addon))),
+            author=author,
+            branch=branch)
+
+        # Set the latest git hash on the related version.
+        version.update(source_git_hash=commit.hex)
+
         return repo
 
     def get_author(self, user=None):
@@ -235,3 +231,48 @@ class AddonGitRepository(object):
                 name, self.git_repository.head.peel())
 
         return branch
+
+    def _commit_through_worktree(self, path, message, author, branch):
+        """
+        Create a temporary worktree that we can use to unpack the extension
+        without disturbing the current git workdir since it creates a new
+        temporary directory where we extract to.
+        """
+        with TemporaryWorktree(self.git_repository) as worktree:
+            # Now extract the extension to the workdir
+            extract_extension_to_dest(path, force_fsync=True)
+            # Stage changes, `TemporaryWorktree` always cleans the whole
+            # directory so we can simply add all changes and have the correct
+            # state.
+
+            # Add all changes to the index (git add ...)
+            worktree.repo.index.add_all()
+            worktree.repo.index.write()
+
+            tree = worktree.repo.index.write_tree()
+
+            # Now create an commit directly on top of the respective branch
+
+            oid = worktree.repo.create_commit(
+                None,
+                # author, using the actual uploading user
+                self.get_author(author),
+                # committer, using addons-robot because that's the user
+                # actually doing the commit.
+                self.get_author(),  # commiter, using addons-robot
+                message,
+                tree,
+                # Set the current branch HEAD as the parent of this commit
+                # so that it'll go straight into the branches commit log
+                [branch.target]
+            )
+
+            # Fetch the commit object
+            commit = worktree.repo.get(oid)
+
+            # And set the commit we just created as HEAD of the relevant
+            # branch, and updates the reflog. This does not require any
+            # merges.
+            branch.set_target(commit.hex)
+
+        return commit
