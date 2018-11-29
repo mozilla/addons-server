@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-27 11:30+0000\n"
+"PO-Revision-Date: 2018-11-23 14:23+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -1933,12 +1933,14 @@ msgstr "Alertes et mises à jour"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Téléchargez les extensions de Firefox qui vous aident à rester à jour, effectuer le suivi des tâches, améliorer votre efficacité. Trouvez des extensions qui rechargent les onglets, gèrent la "
+"productivité, etc."
 
 msgid "Appearance"
 msgstr "Apparence"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Téléchargez des extensions qui modifient l’apparence des sites web et du navigateur Firefox. Cette catégorie comprend des extensions pour les thèmes sombres, la gestion des onglets, etc."
 
 msgid "Bookmarks"
 msgstr "Marque-pages"
@@ -1951,6 +1953,8 @@ msgstr "Gestion des téléchargements"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Téléchargez des extensions Firefox qui permettent de télécharger des contenus web, de la musique et des vidéos. Vous pouvez également trouver des extensions pour gérer les téléchargements, partager "
+"des fichiers, etc."
 
 msgid "Feeds, News & Blogging"
 msgstr "Flux, nouvelles et blogs"
