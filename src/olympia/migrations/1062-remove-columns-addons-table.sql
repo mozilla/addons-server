@@ -1,3 +1,4 @@
 ALTER TABLE `addons`
- DROP COLUMN `auto_repackage`, `externalsoftware`;
+ DROP COLUMN `auto_repackage`,
+ DROP COLUMN `externalsoftware`;
 
