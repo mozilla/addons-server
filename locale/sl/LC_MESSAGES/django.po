@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-26 15:22+0000\n"
-"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
+"PO-Revision-Date: 2018-11-29 17:06+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2516,7 +2516,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Izvorna datoteka naložena, vendar ste označili, da vir ni potreben."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "Ime in povzetek sta lahko skupaj dolga največ 70 znakov (trenutno {0})."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Več kot 3 aplikacije se ne more zahtevati."
@@ -2648,13 +2648,11 @@ msgstr "Slike ne morejo biti večje od %dKB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Slike morajo biti široke natanko {0} pikslov in visoke {1} pikslov."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Slike morajo biti široke natanko {0} pikslov in visoke {1} pikslov."
+msgstr "Slika mora biti široka vsaj {0} pik in visoka vsaj {1} pik."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Slike morajo biti bodisi PNG ali JPG."
+msgstr "Dimenzije slik morajo biti v razmerju 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "Med nalaganjem predogleda je prišlo do napake."
@@ -3002,9 +3000,8 @@ msgstr "Izberite kratko, enolično rekleto za spletni naslov vašega dodatka."
 msgid "View Listing"
 msgstr "Prikaži stran"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Urejanje strani izdelka"
+msgstr "Ogled strani izdelka"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Ta povzetek naj jasno razloži, kaj vaš dodatek počne. Prikazan bo na seznamu in v iskanjih, pregledovalci pa ga bodo uporabili pri preskušanju vašega dodatka."
@@ -3216,10 +3213,10 @@ msgid "Add a Screenshot..."
 msgstr "Dodaj posnetek zaslona ..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Podprti obliki sta PNG in JPG, priporočena je PNG. Največja in priporočena velikost posnetkov zaslona je 2400 × 1800 pik."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Najmanjša dovoljena velikost je 1000 × 750; zahtevano je razmerje 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
@@ -3944,7 +3941,7 @@ msgstr "Prijavite se za urejanje in upravljanje dodatka"
 msgid "Resources for a successful launch"
 msgstr "Viri za uspešno izdajo"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
@@ -4305,14 +4302,12 @@ msgstr "Odgovor"
 msgid "Listing visibility"
 msgstr "Vidnost dodatka"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Vidno:{label_close} Vidno vsem na {site_url} ter vključeno v iskalne rezultate in sezname dodatkov."
+msgstr "{label_open}Vidno:{label_close} Vidno vsem na {site_url}, vključeno med zadetki iskanja in na straneh izdelkov."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "{label_open}Nevidno:{label_close} Ne bo vključen v rezultate iskanja in na njegovi strani bo pisalo, da ste ga onemogočili. V tem stanju oddaje novih različic ne bodo sprejete."
+msgstr "{label_open}Nevidno:{label_close} Ne bo vključeno v zadetke iskanja in na njegovi strani bo pisalo, da ste ga onemogočili. V tem stanju oddaje novih različic ne bodo sprejete."
 
 msgid "Listed versions"
 msgstr "Navedene različice"
