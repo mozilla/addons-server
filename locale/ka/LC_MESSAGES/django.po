@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 20:30+0000\n"
+"PO-Revision-Date: 2018-11-29 20:53+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1985,63 +1985,73 @@ msgstr "ჩანართები"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის გაფართოებები, ჩანართებისა და ახალი გვერდების მოსარგებად. აღმოაჩინეთ გაფართოებები, რომლებიც გამართავენ თქვენს ჩანართებს, სრულად შეცვლიან მისი გამოყენების შესაძლებლობებს და ა.შ."
 
 msgid "Web Development"
 msgstr "ვებშემუშავება"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს ვებშემუშავების ხელსაწყოებს. ეს ჯგუფი მოიცავს გაფართოებებს, GitHub-ისთვის, მომხმარებლის პროგრამის გადართვისთვის, ფუნთუშების მართვისთვის და "
+"ა.შ."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც შეიძლება აღმოჩნდეს მეტად უჩვეულო, ახლებური და გამოსადეგი სხვადასხვა საქმიანობისთვის."
 
 msgid "Device Features & Location"
 msgstr "მოწყობილობის შესაძლებლობები და ადგილმდებარეობა"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ გაფართოებები Firefox-ის გასაუმჯობესებლად Android-ზე. მოიძიეთ სწრაფად, მოხსენით სისტემის დატვირთულობა, გააკეთეთ ჩანიშვნები და ა.შ."
 
 msgid "Experimental"
 msgstr "საცდელი"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც მუდმივად ახლდება და მზადაა საჯარო გამოცდისთვის. თქვენი გამოხმაურება დაეხმარება შემმუშავებლებს უფრო მეტი ცვლილებების შემოთავაზებაში, მომავალი "
+"ვერსიებისთვის."
 
 msgid "Performance"
 msgstr "წარმადობა"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
+"ჩამოტვირთეთ გაფართოებები, რომლებიც Firefox-ის წარმადობას აამაღლებს. მონახეთ გაფართოებები, რომლებიც დაგეხმარებათ შედეგიანობისა და სარგებლიანობის გაზრდაში, მომაბეზრებელი რეკლამების შეზღუდვით და ა.შ."
 
 msgid "Photos & Media"
 msgstr "ფოტო და მედია"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის გაფართოებები, რომლებიც გააუმჯობესებს სურათებით და სხვა ფაილებით სარგებლობის შესაძლებლობებს. ამ ჯგუფის გაფართოებებით შესაძლებელია სურათებით, მსგავსი სურათების მოძიება, სრული "
+"ვებგვერდისთვის სურათის გადაღება და ა.შ."
 
 msgid "Security & Privacy"
 msgstr "უსაფრთხოება და პირადულობა"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც გვერდებს მოინახულებთ უსაფრთხოდ და პირადი მონაცემების დაცვით. აღმოაჩინეთ გაფართოებებს, რომლებიც ზღუდავს გაიძვერა რეკლამებს და მათ მიერ "
+"თვალთვალს, მარტივად ასუფთავებს ისტორიას და ა.შ."
 
 msgid "Social Networking"
 msgstr "სოციალური ქსელები"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც უკეთ შეძლებთ ისარგებლოთ სოციალური ქსელებით, მათ შორის YouTube, GitHub, Reddit და ა.შ."
 
 msgid "Sports & Games"
 msgstr "სპორტი და თამაშები"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის გაფართოებები, რომელთა საშუალებითაც უკეთ გაერთობით და გაუმჯობესებულად შეძლებთ პირდაპირ ეთერში ადევნოთ თვალი სპორტის სიახლეებს და ა.შ."
 
 msgid "User Interface"
 msgstr "სამომხმარებლო გარემო"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ იერსახის შემცვლელი Firefox-ის გაფართოებები, რომლებიც სრულად გადაასხვაფერებენ ვებგვერდებს, ტექსტების უკეთ ამოსაკითხად, ძიების გასამარტივებლად და ა.შ."
 
 msgid "Animals"
 msgstr "ცხოველები"
