@@ -458,10 +458,10 @@ INDEX_SETTINGS = {
                     'manager', 'map', 'mega', 'menu', 'menus', 'monkey',
                     'name', 'net', 'new', 'open', 'password', 'persona',
                     'privacy', 'query', 'screen', 'scroll', 'search', 'secure',
-                    'select', 'smart', 'so', 'spring', 'status', 'style',
-                    'super', 'sync', 'tab', 'text', 'think', 'this', 'time',
-                    'title', 'translate', 'tree', 'undo', 'up', 'upload',
-                    'url', 'user', 'video', 'window', 'with', 'word', 'zilla',
+                    'select', 'smart', 'spring', 'status', 'style', 'super',
+                    'sync', 'tab', 'text', 'think', 'this', 'time', 'title',
+                    'translate', 'tree', 'undo', 'upload', 'url', 'user',
+                    'video', 'window', 'with', 'word', 'zilla',
                 ]
             },
         }
