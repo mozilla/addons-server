@@ -50,8 +50,8 @@ class RatingAdmin(admin.ModelAdmin):
                        'ip_address_link', 'user_link')
     fields = ('addon_link', 'version', 'body', 'rating', 'ip_address_link',
               'user_link', 'deleted')
-    list_display = ('id', 'addon', 'truncated_body', 'rating', 'user',
-                    'ip_address', 'flag', 'is_reply', 'deleted',)
+    list_display = ('id', 'addon', 'created', 'user', 'ip_address', 'rating',
+                    'is_reply', 'flag', 'deleted', 'truncated_body',)
     list_filter = ('deleted', RatingTypeFilter)
     actions = ('delete_selected',)
 
