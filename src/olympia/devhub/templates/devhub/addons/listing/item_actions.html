@@ -8,7 +8,7 @@
         {% csrf_token %}
         <button
           class="link tooltip" type="submit"
-          title="{{ _("Resume the submission process for this add-on.")}}">
+          title="{{ _("Resume the submission process for this add-on")}}">
           {{ _('Resume') }}
         </button>
       </form>
@@ -27,14 +27,14 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="tooltip"
-         title="{{ _("Edit details on this add-on's product page.") }}">
+         title="{{ _("Edit details on this add-on's product page") }}">
         {{ _('Edit Product Page') }}</a>
     </li>
     {% if not addon.is_disabled %}
       <li>
         {% set version_upload_url = url('devhub.submit.version', addon.slug) %}
         <a href="{{ version_upload_url }}" class="tooltip"
-           title="{{ _('Upload a new version of this add-on.') }}">
+           title="{{ _('Upload a new version of this add-on') }}">
           {{ _('New Version') }}</a>
       </li>
     {% endif %}
@@ -50,7 +50,7 @@
   {% if not addon.disabled_by_user and show_listed and addon.status == amo.STATUS_PUBLIC %}
     <li>
       <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip"
-         title="{{ _('Daily statistics on downloads and users.') }}">
+         title="{{ _('Daily statistics on downloads and users') }}">
         {{ _('Statistics') }}</a>
     </li>
   {% endif %}

@@ -48,7 +48,7 @@
 <li class="e10s-compatibility e10s-{{ addon.feature_compatibility.get_e10s_classname() }}">
   <strong>{{ _('Add-on Multi Process Status:') }}</strong>
   <b>{{ addon.feature_compatibility.get_e10s_display() }}</b>
-  <span class="tip tooltip" title="{{ _('Your add-on compatibility with Multi Process Firefox (e10s).') }}">?</span>
+  <span class="tip tooltip" title="{{ _('Your add-on compatibility with Multi Process Firefox (e10s)') }}">?</span>
 </li>
 {% endif %}
 
@@ -56,7 +56,7 @@
     {% if addon.has_unlisted_versions() %}
       <li class="distribution-tag-listed">
         <span class="distribution-tag-listed tooltip"
-              title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site.') }}"
+              title="{{ _('Listed on this site after passing code review. Automatic updates are handled by this site') }}"
               >AMO</span>
       </li>
     {% endif %}
@@ -72,7 +72,7 @@
         <a href="{{ addon.current_version.get_url_path() }}">{{ addon.current_version.version }}</a>
         <span class="tip tooltip" title="{{ _('This is the version of your add-on that will '
                                               'be installed if someone clicks the Install '
-                                              'button on addons.mozilla.org.') }}">?</span>
+                                              'button on addons.mozilla.org') }}">?</span>
       </li>
     {% endif %}
 
@@ -81,7 +81,7 @@
       <li>
         <strong>{{ _('Next Listed Version:') }}</strong>
         <a href="{{ addon.get_dev_url('versions') }}">{{ latest_listed_version.version }}</a>
-        <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet.') }}">?</span>
+        <span class="tip tooltip" title="{{ _('This is the newest uploaded version, however it isn’t live on the site yet') }}">?</span>
       </li>
     {% endif %}
 
@@ -119,6 +119,6 @@
     <li>
       <strong>{{ _('Latest Version:') }}</strong>
       {{ latest_unlisted_version.version }}
-      <span class="tip tooltip" title="{{ _('This is the newest uploaded unlisted version.') }}">?</span>
+      <span class="tip tooltip" title="{{ _('This is the newest uploaded unlisted version') }}">?</span>
     </li>
 {% endif %}

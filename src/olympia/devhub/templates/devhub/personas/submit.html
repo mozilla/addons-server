@@ -52,7 +52,7 @@
                             tooltip=_("A short explanation of your theme's "
                                       "basic functionality that is displayed in "
                                       "search and browse listings, as well as at "
-                                      "the top of your theme's details page."),
+                                      "the top of your theme's details page"),
                             tag=None, opt=True, validate=True) }}
             <div class="note">
               {{ some_html_tip() }}
@@ -85,10 +85,10 @@
         <h3>{{ _('Select colors for your Theme.') }}</h3>
         <ul class="colors">
           {{ pretty_field(form.textcolor, label=_('Foreground Text'),
-                          tooltip=_('This is the color of the tab text.'),
+                          tooltip=_('This is the color of the tab text'),
                           validate=True) }}
           {{ pretty_field(form.accentcolor, label=_('Background'),
-                          tooltip=_('This is the color of the tabs.'),
+                          tooltip=_('This is the color of the tabs'),
                           validate=True) }}
         </ul>
       </fieldset>
