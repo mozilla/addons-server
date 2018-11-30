@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-23 14:23+0000\n"
+"PO-Revision-Date: 2018-11-30 19:45+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3303,9 +3303,8 @@ msgstr "Supprimer ce module."
 msgid "Delete"
 msgstr "Supprimer"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Modifier les détails à propos de la liste de ce thème."
+msgstr "Modifiez les détails de la page produit de ce module complémentaire."
 
 msgid "Upload a new version of this add-on."
 msgstr "Envoyer une nouvelle version de ce module."
@@ -3325,9 +3324,8 @@ msgstr "Gérer l’état et les versions"
 msgid "View Recent Changes"
 msgstr "Voir les changements récents"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Modifier les détails à propos de la liste de ce thème."
+msgstr "Modifiez les détails de la page produit de ce thème."
 
 msgid "View the popularity of this theme over time."
 msgstr "Voir la popularité de ce thème dans le temps."
@@ -3924,14 +3922,14 @@ msgstr "Connectez-vous pour modifier et mettre à jour votre module"
 msgid "Resources for a successful launch"
 msgstr "Ressources pour un lancement réussi"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Vous avez développé une extension et vous êtes prêt à la publier. Comment faire ? Consultez nos conseils pour créer une page de présentation séduisante, publier votre extension sur "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trouver des réponses à vos questions de développement et vous tenir informé des nouvelles et des évènements utiles pour les développeurs "
-"d’extension."
+"Vous avez développé une extension et vous êtes prêt⋅e à la publier. Comment faire ? Consultez nos conseils pour créer une page de présentation séduisante, publier votre extension sur "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trouver des réponses à vos questions sur le développement et vous tenir informé⋅e des nouvelles et des évènements utiles pour les développeurs "
+"d’extensions."
 
 msgid "View Resources for Publishers"
 msgstr "Voir les ressources pour les éditeurs"
@@ -3939,9 +3937,8 @@ msgstr "Voir les ressources pour les éditeurs"
 msgid "Welcome Back"
 msgstr "Heureux de vous revoir !"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Aidez les utilisateurs à découvrir votre extension en rédigeant une description attrayante."
+msgstr "Aidez les utilisateurs à découvrir votre extension en créant une page de produit attrayante."
 
 msgid "Learn How"
 msgstr "Découvrez comment"
