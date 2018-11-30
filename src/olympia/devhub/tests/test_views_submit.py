@@ -249,7 +249,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert doc('.g-recaptcha')
 
         verify_data = urllib.urlencode({
-            'secret': 'privkey',
+            'secret': '',
             'remoteip': '127.0.0.1',
             'response': 'test',
         })
