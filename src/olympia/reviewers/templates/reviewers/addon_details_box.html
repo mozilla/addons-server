@@ -29,6 +29,14 @@
           <caption>{{ _('Add-on Information for {0}')|format_html(addon_name) }}</caption>
         {% endwith %}
         <tbody>
+          <tr class="addon-guid">
+            <th>{{ _('Add-on ID') }}</th>
+            <td>{{ addon.guid }}</td>
+          </tr>
+          <tr class="addon-amo-id">
+            <th>{{ _('Internal AMO ID') }}</th>
+            <td>{{ addon.id }}</td>
+          </tr>
           {% if addon.is_deleted %}
           <tr class="addon-status">
             <th>{{ _('Status') }}</th>
@@ -70,22 +78,6 @@
               {% endif %}
             </td>
           </tr>
-          {% endif %}
-          {% set deps = addon.all_dependencies %}
-          {% if deps %}
-            <tr class="addon-dependencies">
-              <th>
-                {{ _('Required Add-ons') }}
-              </th>
-              <td>
-                <ul>
-                  {% for d in deps %}
-                    <li><a href="{{ d.get_url_path() }}">
-                      {{ d.name }}</a></li>
-                  {% endfor %}
-                </ul>
-              </td>
-            </tr>
           {% endif %}
           {# XXX future feature: 'Localizations' ... #}
           <tr>

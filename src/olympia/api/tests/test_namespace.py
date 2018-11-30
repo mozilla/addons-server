@@ -25,8 +25,8 @@ class TestNamespacing(WithDynamicEndpoints, TestCase):
             r'baa', EmptyViewSet.as_view(actions={'get': 'list'}), name='baa')
         both_url = url(
             r'yay', EmptyViewSet.as_view(actions={'get': 'list'}), name='yay')
-        v3_url = url(r'v3/', include([v3_only_url, both_url], namespace='v3'))
-        v4_url = url(r'v4/', include([v4_only_url, both_url], namespace='v4'))
+        v3_url = url(r'v3/', include(([v3_only_url, both_url], 'v3')))
+        v4_url = url(r'v4/', include(([v4_only_url, both_url], 'v4')))
         self.endpoint(
             include([v3_url, v4_url]),
             url_regex=r'^api/')

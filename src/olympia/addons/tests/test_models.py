@@ -10,7 +10,6 @@ from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 
-from django.db import IntegrityError
 from django.utils import translation
 
 import pytest
@@ -20,7 +19,7 @@ from olympia import amo, core
 from olympia.addons import models as addons_models
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonCategory, AddonDependency,
+    Addon, AddonApprovalsCounter, AddonCategory,
     AddonFeatureCompatibility, AddonReviewerFlags, AddonUser, AppSupport,
     Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
     FrozenAddon, IncompatibleVersions, MigratedLWT, Persona, Preview,
@@ -715,25 +714,27 @@ class TestAddonModels(TestCase):
         4. Test for default non-THEME icon.
         """
         addon = Addon.objects.get(pk=3615)
-        assert addon.icon_url.endswith('/3/3615-32.png?modified=1275037317')
+        assert addon.get_icon_url(32).endswith(
+            '/3/3615-32.png?modified=1275037317')
 
         addon.icon_hash = 'somehash'
-        assert addon.icon_url.endswith('/3/3615-32.png?modified=somehash')
+        assert addon.get_icon_url(32).endswith(
+            '/3/3615-32.png?modified=somehash')
 
         addon = Addon.objects.get(pk=6704)
         addon.icon_type = None
-        assert addon.icon_url.endswith('/icons/default-theme.png'), (
-            'No match for %s' % addon.icon_url)
+        assert addon.get_icon_url(32).endswith('/icons/default-theme.png'), (
+            'No match for %s' % addon.get_icon_url(32))
 
         addon = Addon.objects.get(pk=3615)
         addon.icon_type = None
-        assert addon.icon_url.endswith('icons/default-32.png')
+        assert addon.get_icon_url(32).endswith('icons/default-32.png')
 
     def test_icon_url_default(self):
         a = Addon.objects.get(pk=3615)
         a.update(icon_type='')
         default = 'icons/default-32.png'
-        assert a.icon_url.endswith(default)
+        assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32).endswith(default)
         assert a.get_icon_url(32, use_default=True).endswith(default)
         assert a.get_icon_url(32, use_default=False) is None
@@ -1759,8 +1760,6 @@ class TestAddonDelete(TestCase):
         AddonCategory.objects.create(
             addon=addon,
             category=Category.objects.create(type=amo.ADDON_EXTENSION))
-        AddonDependency.objects.create(
-            addon=addon, dependent_addon=addon)
         AddonUser.objects.create(
             addon=addon, user=UserProfile.objects.create())
         AppSupport.objects.create(addon=addon, app=1)
@@ -2190,53 +2189,6 @@ class TestPreviewModel(BasePreviewMixin, TestCase):
 
     def get_object(self):
         return Preview.objects.get(pk=24)
-
-
-class TestAddonDependencies(TestCase):
-    fixtures = ['base/appversion',
-                'base/users',
-                'base/addon_5299_gcal',
-                'base/addon_3615',
-                'base/addon_3723_listed',
-                'base/addon_6704_grapple',
-                'base/addon_4664_twitterbar']
-
-    def test_dependencies(self):
-        ids = [3615, 3723, 4664, 6704]
-        addon = Addon.objects.get(id=5299)
-        dependencies = Addon.objects.in_bulk(ids)
-
-        for dependency in dependencies.values():
-            AddonDependency(addon=addon, dependent_addon=dependency).save()
-
-        # Make sure all dependencies were saved correctly.
-        assert sorted([a.id for a in addon.dependencies.all()]) == sorted(ids)
-
-        # Add-on 3723 is disabled and won't show up in `all_dependencies`
-        # property.
-        assert addon.all_dependencies == [
-            dependencies[3615], dependencies[4664], dependencies[6704]]
-
-        # Adding another dependency won't change anything because we're already
-        # at the maximum (3).
-        new_dep = amo.tests.addon_factory()
-        AddonDependency.objects.create(addon=addon, dependent_addon=new_dep)
-        assert addon.all_dependencies == [
-            dependencies[3615], dependencies[4664], dependencies[6704]]
-
-        # Removing the first dependency will allow the one we just created to
-        # be visible.
-        dependencies[3615].delete()
-        assert addon.all_dependencies == [
-            dependencies[4664], dependencies[6704], new_dep]
-
-    def test_unique_dependencies(self):
-        a = Addon.objects.get(id=5299)
-        b = Addon.objects.get(id=3615)
-        AddonDependency.objects.create(addon=a, dependent_addon=b)
-        assert list(a.dependencies.values_list('id', flat=True)) == [3615]
-        with self.assertRaises(IntegrityError):
-            AddonDependency.objects.create(addon=a, dependent_addon=b)
 
 
 class TestListedAddonTwoVersions(TestCase):

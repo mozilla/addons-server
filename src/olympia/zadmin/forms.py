@@ -132,7 +132,3 @@ class SiteEventForm(ModelForm):
         model = SiteEvent
         fields = ('start', 'end', 'event_type', 'description',
                   'more_info_url')
-
-
-class YesImSure(forms.Form):
-    yes = forms.BooleanField(required=True, label="Yes, I'm sure")

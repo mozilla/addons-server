@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-08-27 14:15+0000\n"
 "Last-Translator: Bjørn I. <bjorn.svindseth@online.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,9 @@ msgstr "Ingen lenker er tillatne."
 
 msgid "This display name cannot be used."
 msgstr "Dette visingsnamnet kan ikkje brukast."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
 
 msgid "Usernames cannot contain only digits."
 msgstr "Brukarnamn kan ikkje berre innehalde siffer."
@@ -73,6 +76,9 @@ msgstr "Vurderingsmerknad"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Berre siste versjonar av utvidingar kan ha merknadar."
+
+msgid "Ratings"
+msgstr "Vurderingar"
 
 msgid "Status"
 msgstr "Status"
@@ -976,9 +982,6 @@ msgstr "Beskriv samlinga di (ingen lenker er lov)."
 msgid "Privacy:"
 msgstr "Personvern:"
 
-msgid "Icon"
-msgstr "Ikon"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Ikkje fyll ut dette feltet, det vert brukt til å fange robotar"
 
@@ -987,12 +990,6 @@ msgstr "Dette namnet kan ikkje brukast."
 
 msgid "This url is already in use by another collection"
 msgstr "Denne URL-en vert allereie brukt av ei anna samling"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Ikon må anten vera PNG eller JPG."
-
-msgid "Icons cannot be animated."
-msgstr "Ikon kan ikkje vere animerte."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne tilpassa adressa vert allereie brukt av ei av samlingane dine."
@@ -1031,9 +1028,6 @@ msgstr "Samling oppdatert!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Vis samlinga di</a> for å sjå endringane."
-
-msgid "Icon Deleted"
-msgstr "Ikon sletta"
 
 msgid "Create a New Collection"
 msgstr "Lag ei ny samling"
@@ -1191,15 +1185,6 @@ msgstr "Lag ei samling"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Samlingar gjer det enkelt å følgje med på favorittutvidingane dine, og dele den perfekte tilpassa nettlesaren din med andre."
-
-msgid "Collection Icon"
-msgstr "Ikon for samling"
-
-msgid "Reset"
-msgstr "Tilbakestill"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG og JPG er støtta.  Bilde vert skalerte til 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Det er feil i dette skjemaet.  Ver snill og rett dei opp nedanfor."
@@ -1910,41 +1895,134 @@ msgstr "Inkompatibel"
 msgid "Alerts & Updates"
 msgstr "Varslingar og oppdateringar"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Utsjånad"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Bokmerke"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Nerladdningshandsaming"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS-kjelder, nyheiter og blogging"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Spel og underhaldning"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Språkstøtte"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Foto, musikk og videoar"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Personvern og sikkerheit"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Shopping"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Sosialt og kommunikasjon"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Faner"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Nettutvikling"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "Eininga sin funksjon og plassering"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Eksperimentell"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Yting"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Foto og media"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "SIkkerheit og personvern"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Sosiale nettverk"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Sport og spel"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Brukargrensesnitt"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "Dyr"
@@ -1976,35 +2054,80 @@ msgstr "Sport"
 msgid "Abstract"
 msgstr "Abstrakt"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Føremål"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Mote"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Film og TV"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Ferie"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Musikk"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Landskap"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Sesong"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Fast"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Nettstadar"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Generelt"
@@ -2038,33 +2161,6 @@ msgstr "Reise"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Device Features & Location"
-msgstr "Eininga sin funksjon og plassering"
-
-msgid "Experimental"
-msgstr "Eksperimentell"
-
-msgid "Feeds, News, & Blogging"
-msgstr "RSS-kjelder, nyheiter og bloggning"
-
-msgid "Performance"
-msgstr "Yting"
-
-msgid "Photos & Media"
-msgstr "Foto og media"
-
-msgid "Security & Privacy"
-msgstr "SIkkerheit og personvern"
-
-msgid "Social Networking"
-msgstr "Sosiale nettverk"
-
-msgid "Sports & Games"
-msgstr "Sport og spel"
-
-msgid "User Interface"
-msgstr "Brukargrensesnitt"
 
 msgid "All Rights Reserved"
 msgstr "Alle rettar med atterhald"
@@ -2329,6 +2425,10 @@ msgstr "Spesifiser personvernpraksisen til utvidinga di:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Filtypen er ikkje støtta, last opp ei arkivfil {extensions}."
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Ugyldig arkiv."
+
 msgid "View current"
 msgstr "Vis gjeldande"
 
@@ -2362,6 +2462,9 @@ msgid "You have not uploaded a source file."
 msgstr "Klarte ikkje å tolke opplasta fil."
 
 msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
@@ -2398,6 +2501,9 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
@@ -2476,6 +2582,12 @@ msgstr "Ein opphavsmann er fjerna frå utvidinga di"
 msgid "Validate Add-on"
 msgstr "Valider utvidinga"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Ikon må anten vera PNG eller JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Ikon kan ikkje vere animerte."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Bilde kan ikkje vere større enn %dkB."
@@ -2483,6 +2595,14 @@ msgstr "Bilde kan ikkje vere større enn %dkB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Bilde må vere akkurat {0} pikslar breie og {1} pikslar høge."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Bilde må anten vere PNG eller JPG."
 
 msgid "There was an error uploading your preview."
 msgstr "Det oppstod ein feil under opplasting av førehandsvisinga di."
@@ -2732,8 +2852,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> tema"
 
-msgid "Edit Information"
-msgstr "Rediger informasjon"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Ingen"
@@ -2813,6 +2933,18 @@ msgstr "Beskriv utvidinga"
 msgid "Describe {0}"
 msgstr "Beskriv utvidinga"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Samandrag"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Samandrag"
+
 msgid "Add-on URL"
 msgstr "URL for utvidingar"
 
@@ -2822,8 +2954,9 @@ msgstr "Vel ein kort, unik URL-slugg for utvidinga di."
 msgid "View Listing"
 msgstr "Vis listning"
 
-msgid "Summary"
-msgstr "Samandrag"
+#, fuzzy
+msgid "View Product Page"
+msgstr "Vis profil"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3020,9 +3153,13 @@ msgstr "Spesifiser ein bildetekst for dette skjermbildet:"
 msgid "Add a Screenshot..."
 msgstr "Legg til eit skjermbilde…"
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr ""
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
 
 msgid "Continue"
@@ -3114,8 +3251,9 @@ msgstr "Slett denne utvidinga."
 msgid "Delete"
 msgstr "Slett"
 
-msgid "Edit information about this add-on."
-msgstr "Rediger informasjon om denne utvidinga."
+#, fuzzy
+msgid "Edit details on this add-on's product page."
+msgstr "Rediger detaljar for listinga av dette temaet."
 
 msgid "Upload a new version of this add-on."
 msgstr "Last opp ein ny versjon av denne utvidinga."
@@ -3132,17 +3270,12 @@ msgstr "Statistikk"
 msgid "Manage Status & Versions"
 msgstr "Handsam status og versjonar"
 
-msgid "View Add-on Listing"
-msgstr "Vis listing for utvidinga"
-
 msgid "View Recent Changes"
 msgstr "Vis siste endringar"
 
-msgid "Edit details about this theme's listing."
+#, fuzzy
+msgid "Edit details on this theme's product page."
 msgstr "Rediger detaljar for listinga av dette temaet."
-
-msgid "Edit Listing"
-msgstr "Rediger oppføringa"
 
 msgid "View the popularity of this theme over time."
 msgstr "Vis popularitet for dette temaet gjennom tidene."
@@ -3184,8 +3317,12 @@ msgstr[1] "<strong>{0}</strong> aktive brukarar"
 msgid "Submit a New Version"
 msgstr "Send inn ein ny versjon"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Samandrag:"
+
+msgid "required"
+msgstr "påkravd"
 
 msgid "Add-on URL:"
 msgstr "URL for utviding:"
@@ -3193,11 +3330,11 @@ msgstr "URL for utviding:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Summary:"
 msgstr "Samandrag:"
-
-msgid "required"
-msgstr "påkravd"
 
 #, fuzzy
 msgid "Description:"
@@ -3728,7 +3865,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
@@ -3739,7 +3876,7 @@ msgstr "Vis statistikk for brukar"
 msgid "Welcome Back"
 msgstr "Velkomen tilbake"
 
-msgid "Help users discover your extension by creating an appealing listing."
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr ""
 
 msgid "Learn How"
@@ -4070,11 +4207,13 @@ msgstr "Svar"
 msgid "Listing visibility"
 msgstr "Synlegheit i opføring"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Synleg:{label_close} Synleg for alle på {site_url} og er inkludert i søkjeresultat og listesider."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Usynleg:{label_close} Vil ikkje bli inkludert i søkjeresultat og på listesidene vert det spesifisert at du har inaktivert det. Nye bidragsversjonar for listning vert ikkje godteke i "
 "denne tilstanden."
@@ -5696,6 +5835,9 @@ msgstr ""
 msgid "Could not parse uploaded file."
 msgstr "Klarte ikkje å tolke opplasta fil."
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -6251,6 +6393,14 @@ msgstr ""
 
 msgid "Brought to you by:"
 msgstr "Presentert av:"
+
+#, fuzzy
+msgid "User"
+msgstr "Brukarnamn"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "E-postadresse"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6808,9 +6958,6 @@ msgstr "Temabilde"
 msgid "Rendered Preview"
 msgstr "Sletta vurderingar"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Bakgrunnsfil {0} av {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Meir om denne utvidinga"
 
@@ -7217,6 +7364,9 @@ msgstr "Retningslinjer for vurderarar"
 msgid "Theme Review for {0}"
 msgstr "Temavurdering for {0}"
 
+msgid "Edit Listing"
+msgstr "Rediger oppføringa"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Sannsynlegvis ei dubbel innsending)"
 
@@ -7376,7 +7526,8 @@ msgstr "Viser {0} - {1} av {2} resultat for <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Viser {0} - {1} av {2} resultat"
 
-msgid "Could not find add-on with id \"{}\"."
+#, fuzzy
+msgid "Could not find add-on with guid \"{}\"."
 msgstr "Klarte ikkje å finne ei utviding med ID-en \"{}\"."
 
 msgid "You do not own this addon."
@@ -7820,9 +7971,6 @@ msgstr "Profilfoto"
 
 msgid "Addons"
 msgstr "Tillegg"
-
-msgid "Ratings"
-msgstr "Vurderingar"
 
 msgid "Activity Logs"
 msgstr "Aktivitetsloggar"

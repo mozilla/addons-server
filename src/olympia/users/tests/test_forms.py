@@ -7,7 +7,7 @@ import basket
 from mock import Mock, patch, MagicMock
 from pyquery import PyQuery as pq
 
-from olympia.amo.tests import TestCase, addon_factory, create_switch
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.amo.urlresolvers import reverse
 from olympia.users.forms import AdminUserEditForm, UserEditForm
@@ -219,8 +219,6 @@ class TestUserEditForm(UserFormBase):
         assert self.user.reload().email == 'me@example.com'
 
     def test_only_show_notifications_user_has_permission_to(self):
-        create_switch('activate-basket-sync')
-
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
                 'status': 'ok', 'token': '123', 'newsletters': []}
@@ -253,8 +251,6 @@ class TestUserEditForm(UserFormBase):
         ]
 
     def test_basket_unsubscribe_newsletter(self):
-        create_switch('activate-basket-sync')
-
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.return_value = {
                 'status': 'ok', 'token': '123',
@@ -286,8 +282,6 @@ class TestUserEditForm(UserFormBase):
     def test_basket_data_is_used_for_initial_checkbox_state_subscribed(self):
         # When using basket, what's in the database is ignored for the
         # notification
-        create_switch('activate-basket-sync')
-
         notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
 
         # Add some old obsolete data in the database for a notification that
@@ -314,8 +308,6 @@ class TestUserEditForm(UserFormBase):
     def test_basket_data_is_used_for_initial_checkbox_state(self):
         # When using basket, what's in the database is ignored for the
         # notification
-        create_switch('activate-basket-sync')
-
         notification_id = REMOTE_NOTIFICATIONS_BY_BASKET_ID['about-addons'].id
 
         # Add some old obsolete data in the database for a notification that
@@ -343,8 +335,6 @@ class TestUserEditForm(UserFormBase):
         """
         Test that unsubscribing from a newsletter if user didn't exist yet
         """
-        create_switch('activate-basket-sync')
-
         with patch('basket.base.request', autospec=True) as request_call:
             request_call.side_effect = basket.base.BasketException(
                 'description', status_code=401,
@@ -360,8 +350,6 @@ class TestUserEditForm(UserFormBase):
             params={'email': u'jbalogh@mozilla.com'})
 
     def test_basket_subscribe_newsletter(self):
-        create_switch('activate-basket-sync')
-
         addon_factory(users=[self.user])
 
         with patch('basket.base.request', autospec=True) as request_call:
@@ -395,17 +383,6 @@ class TestUserEditForm(UserFormBase):
                 'newsletters': 'about-addons', 'sync': 'Y',
                 'optin': 'Y', 'source_url': 'http://testserver/users/edit/',
                 'email': u'jbalogh@mozilla.com'})
-
-    def test_basket_sync_behind_flag(self):
-
-        with patch('basket.base.request', autospec=True) as request_call:
-            request_call.return_value = {
-                'status': 'ok', 'token': '123',
-                'newsletters': ['announcements']}
-
-            UserEditForm({}, instance=self.user)
-
-        assert request_call.call_count == 0
 
 
 class TestAdminUserEditForm(UserFormBase):

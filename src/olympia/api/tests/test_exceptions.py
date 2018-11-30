@@ -19,7 +19,7 @@ class DummyViewSet(GenericViewSet):
 
 
 test_exception = SimpleRouter()
-test_exception.register('testexcept', DummyViewSet, base_name='test-exception')
+test_exception.register('testexcept', DummyViewSet, basename='test-exception')
 
 
 @override_settings(ROOT_URLCONF=test_exception.urls)

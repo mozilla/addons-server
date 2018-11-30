@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^addon/recalc-hash/(?P<file_id>\d+)/', views.recalc_hash,
         name='zadmin.recalc_hash'),
     url(r'^env$', views.env, name='zadmin.env'),
-    url(r'^memcache$', views.memcache, name='zadmin.memcache'),
     url(r'^settings', views.show_settings, name='zadmin.settings'),
     url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
     url(r'^email_preview/(?P<topic>.*)\.csv$',
@@ -62,7 +61,8 @@ urlpatterns = [
         name='zadmin.site_events.delete'),
 
     # The Django admin.
-    url(r'^models/', include(admin.site.urls)),
+    url(r'^models/',
+        include((admin.site.get_urls(), 'admin'), namespace=admin.site.name)),
     url(r'^models/(?P<app_id>.+)/(?P<model_id>.+)/search\.json$',
         views.general_search, name='zadmin.search'),
 ]

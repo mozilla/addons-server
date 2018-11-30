@@ -8,7 +8,7 @@
           {% set dl_url = dl_url|urlparams(src=dl_src) %}
         {% endif %}
         <a href="{{ dl_url }}">
-          <img src="{{ addon.icon_url }}" alt="">{{ addon.name }}</a>
+          <img src="{{ addon.get_icon_url(32) }}" alt="">{{ addon.name }}</a>
         {{ addon_flags(addon, addon.current_version) }}
         {% if addon.is_featured(request.APP, request.LANG) %}
           <span class="featured">{{ _('Featured') }}</span>

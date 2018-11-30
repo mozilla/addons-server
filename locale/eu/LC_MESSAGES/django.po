@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  messages.pootle\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2013-11-07 07:24+0000\n"
 "Last-Translator: Julen <julenx@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -22,6 +22,9 @@ msgid "No links are allowed."
 msgstr ""
 
 msgid "This display name cannot be used."
+msgstr ""
+
+msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
 msgid "Usernames cannot contain only digits."
@@ -75,6 +78,9 @@ msgid "Review note"
 msgstr "Berrikusi"
 
 msgid "Only latest versions of addons can have notes added."
+msgstr ""
+
+msgid "Ratings"
 msgstr ""
 
 msgid "Status"
@@ -997,9 +1003,6 @@ msgstr ""
 msgid "Privacy:"
 msgstr "Pribatutasuna:"
 
-msgid "Icon"
-msgstr "Ikonoa"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
@@ -1008,12 +1011,6 @@ msgstr ""
 
 msgid "This url is already in use by another collection"
 msgstr "URLa beste bilduma batek darabil"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Ikonoek PNG edo JPG izan behar dute."
-
-msgid "Icons cannot be animated."
-msgstr "Ikonoak ezin dira animatuak izan."
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -1056,9 +1053,6 @@ msgstr "Bilduma eguneratuta!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr ""
-
-msgid "Icon Deleted"
-msgstr "Ikonoa ezabatuta"
 
 msgid "Create a New Collection"
 msgstr "Sortu bilduma berria"
@@ -1215,15 +1209,6 @@ msgid "Create a Collection"
 msgstr "Sortu bilduma"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
-
-msgid "Collection Icon"
-msgstr "Bildumaren ikonoa"
-
-msgid "Reset"
-msgstr "Berrezarri"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
 msgstr ""
 
 msgid "There are errors in this form.  Please correct them below."
@@ -1969,41 +1954,134 @@ msgstr "Osatu gabea"
 msgid "Alerts & Updates"
 msgstr "Alertak eta eguneraketak"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Itxura"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Laster-markak"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Deskargen kudeaketa"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Jarioak, albisteak eta blogak"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Jokuak eta aisialdia"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Hizkuntzen euskarria"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Argazkiak, musika eta bideoak"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Pribatutasuna eta segurtasuna"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Erosketak"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Soziala eta komunikazioa"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Fitxak"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Web garapena"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "Gailuaren ezaugarriak eta kokapena"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Esperimentalak"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Errendimendua"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Argazkiak eta media"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Segurtasuna eta pribatutasuna"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Sare sozialak"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Kirolak eta jokuak"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Erabiltzaile interfazea"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "Animaliak"
@@ -2035,35 +2113,80 @@ msgstr "Kirolak"
 msgid "Abstract"
 msgstr "Abstraktua"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
+msgstr ""
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
 msgstr ""
 
 msgid "Fashion"
 msgstr "Moda"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Filmak eta telebista"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Oporrak"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Musika"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Dekorazioa"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Garaikoak"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Sendoak"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Webguneak"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Orokorra"
@@ -2097,34 +2220,6 @@ msgstr "Bidaiak"
 
 msgid "Video"
 msgstr "Bideoak"
-
-msgid "Device Features & Location"
-msgstr "Gailuaren ezaugarriak eta kokapena"
-
-msgid "Experimental"
-msgstr "Esperimentalak"
-
-#, fuzzy
-msgid "Feeds, News, & Blogging"
-msgstr "Jarioak, albisteak eta blogak"
-
-msgid "Performance"
-msgstr "Errendimendua"
-
-msgid "Photos & Media"
-msgstr "Argazkiak eta media"
-
-msgid "Security & Privacy"
-msgstr "Segurtasuna eta pribatutasuna"
-
-msgid "Social Networking"
-msgstr "Sare sozialak"
-
-msgid "Sports & Games"
-msgstr "Kirolak eta jokuak"
-
-msgid "User Interface"
-msgstr "Erabiltzaile interfazea"
 
 msgid "All Rights Reserved"
 msgstr "Eskubide guztiak erreserbatuta"
@@ -2402,6 +2497,10 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "Artxibo baliogabea."
+
 msgid "View current"
 msgstr ""
 
@@ -2433,6 +2532,9 @@ msgid "You have not uploaded a source file."
 msgstr ""
 
 msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
@@ -2469,6 +2571,9 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
@@ -2547,6 +2652,12 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "Balidatu gehigarria"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Ikonoek PNG edo JPG izan behar dute."
+
+msgid "Icons cannot be animated."
+msgstr "Ikonoak ezin dira animatuak izan."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr ""
@@ -2554,6 +2665,13 @@ msgstr ""
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr ""
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr ""
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Irudiek PNG edo JPG izan behar dute."
 
 msgid "There was an error uploading your preview."
 msgstr "Errorea gertatu da aurrebista igotzean."
@@ -2799,9 +2917,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
-msgid "Edit Information"
-msgstr "Informazio gehiago"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "Bat ere ez"
@@ -2887,6 +3004,18 @@ msgstr "Deskribatu zure gehigarria"
 msgid "Describe {0}"
 msgstr "Deskribatu zure gehigarria"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Laburpena"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Laburpena"
+
 msgid "Add-on URL"
 msgstr ""
 
@@ -2896,8 +3025,8 @@ msgstr ""
 msgid "View Listing"
 msgstr "Ikusi zerrenda"
 
-msgid "Summary"
-msgstr "Laburpena"
+msgid "View Product Page"
+msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3096,9 +3225,13 @@ msgstr ""
 msgid "Add a Screenshot..."
 msgstr "Gehitu pantaila-argazkia..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr ""
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
 
 msgid "Continue"
@@ -3190,9 +3323,8 @@ msgstr ""
 msgid "Delete"
 msgstr "Ezabatu"
 
-#, fuzzy
-msgid "Edit information about this add-on."
-msgstr "Gehiago gehigarri honi buruz"
+msgid "Edit details on this add-on's product page."
+msgstr ""
 
 msgid "Upload a new version of this add-on."
 msgstr ""
@@ -3209,16 +3341,10 @@ msgstr "Estatistikak"
 msgid "Manage Status & Versions"
 msgstr ""
 
-msgid "View Add-on Listing"
-msgstr ""
-
 msgid "View Recent Changes"
 msgstr ""
 
-msgid "Edit details about this theme's listing."
-msgstr ""
-
-msgid "Edit Listing"
+msgid "Edit details on this theme's product page."
 msgstr ""
 
 msgid "View the popularity of this theme over time."
@@ -3263,8 +3389,12 @@ msgstr[1] "<strong>{0}</strong> erabiltzaile aktibo"
 msgid "Submit a New Version"
 msgstr "Bidali gehigarri berria"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Laburpena"
+
+msgid "required"
+msgstr "beharrezkoa"
 
 #, fuzzy
 msgid "Add-on URL:"
@@ -3273,12 +3403,12 @@ msgstr "Gehigarria"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 #, fuzzy
 msgid "Summary:"
 msgstr "Laburpena"
-
-msgid "required"
-msgstr "beharrezkoa"
 
 #, fuzzy
 msgid "Description:"
@@ -3863,7 +3993,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
@@ -3874,7 +4004,7 @@ msgstr ""
 msgid "Welcome Back"
 msgstr "Ongi etorri, {0}"
 
-msgid "Help users discover your extension by creating an appealing listing."
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr ""
 
 #, fuzzy
@@ -4225,11 +4355,11 @@ msgstr "Erantzun"
 msgid "Listing visibility"
 msgstr "Gehigarriaren politika"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr ""
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 
 #, fuzzy
@@ -5694,6 +5824,9 @@ msgstr ""
 msgid "Could not parse uploaded file."
 msgstr ""
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -6251,6 +6384,14 @@ msgstr ""
 
 msgid "Brought to you by:"
 msgstr ""
+
+#, fuzzy
+msgid "User"
+msgstr "Erabiltzaile-izena"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Helbide elektronikoa"
 
 # 80%
 # 100%
@@ -6860,9 +7001,6 @@ msgstr "Gaia"
 msgid "Rendered Preview"
 msgstr "Ezabatutako berrikuspenak"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr ""
-
 msgid "More about this add-on"
 msgstr "Gehiago gehigarri honi buruz"
 
@@ -7285,6 +7423,9 @@ msgstr ""
 msgid "Theme Review for {0}"
 msgstr ""
 
+msgid "Edit Listing"
+msgstr ""
+
 msgid "(Probable Duplicate Submission)"
 msgstr ""
 
@@ -7457,7 +7598,7 @@ msgstr "<strong>{3}</strong> bilaketarako {2} emaitzatik {0} - {1} tartea erakus
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{2} emaitzatik {0} - {1} tartea erakusten"
 
-msgid "Could not find add-on with id \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
@@ -7905,9 +8046,6 @@ msgid "Profile Photo"
 msgstr "Profilaren argazkia"
 
 msgid "Addons"
-msgstr ""
-
-msgid "Ratings"
 msgstr ""
 
 #, fuzzy

@@ -1,6 +1,5 @@
 import functools
 import hashlib
-import os
 
 from django import http
 from django.conf import settings
@@ -10,8 +9,6 @@ from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext, ugettext_lazy as _lazy
-from django.views.decorators.csrf import csrf_protect
-from django.views.decorators.http import require_POST
 
 from django_statsd.clients import statsd
 from rest_framework import serializers
@@ -38,7 +35,7 @@ from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
 from olympia.users.models import UserProfile
 
-from . import forms, tasks
+from . import forms
 from .models import SPECIAL_SLUGS, Collection, CollectionAddon
 from .permissions import (
     AllowCollectionAuthor, AllowCollectionContributor, AllowContentCurators)
@@ -217,7 +214,6 @@ def collection_detail_json(request, username, slug):
     return {
         'name': collection.name,
         'url': collection.get_abs_url(),
-        'iconUrl': collection.icon_url,
         'addons': addons_dict
     }
 
@@ -461,27 +457,6 @@ def delete(request, username, slug):
             return http.HttpResponseRedirect(collection.get_url_path())
 
     return render_cat(request, 'bandwagon/delete.html', data)
-
-
-@require_POST
-@use_primary_db
-@login_required
-@owner_required
-@json_view
-@csrf_protect
-def delete_icon(request, collection, username, slug):
-    log.debug(u"User deleted collection (%s) icon " % slug)
-    tasks.delete_icon(os.path.join(collection.get_img_dir(),
-                                   '%d.png' % collection.id))
-
-    collection.icontype = ''
-    collection.save()
-
-    if request.is_ajax():
-        return {'icon': collection.icon_url}
-    else:
-        messages.success(request, ugettext('Icon Deleted'))
-        return http.HttpResponseRedirect(collection.edit_url())
 
 
 @login_required

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-19 17:31+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-29 21:27+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -21,6 +21,9 @@ msgstr "Wótkaze njejsu dowólone."
 
 msgid "This display name cannot be used."
 msgstr "Tós to pokazane mě njedajo se wužywaś."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Pólo startowego boka dajo se jano wužywaś, aby z eksternymi websedłami zwězało."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Wužywarske mjenja njesměju jano cyfry wopśimowaś."
@@ -73,6 +76,9 @@ msgstr "Pśeglědański pśipisk"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Pśipiski daju se jano nejnowšym wersijam dodankow pśidaś."
+
+msgid "Ratings"
+msgstr "Pógódnośenja"
 
 msgid "Status"
 msgstr "Status"
@@ -1018,9 +1024,6 @@ msgstr "Wopisajśo swóju zběrku (wótkaze njejsu dowólone)."
 msgid "Privacy:"
 msgstr "Priwatnosć:"
 
-msgid "Icon"
-msgstr "Symbol"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Pšosym njewupolnjujśo toś to pólo, wužywa se, aby awtomatizěrowane zapiski spóznał"
 
@@ -1029,12 +1032,6 @@ msgstr "Toś to mě njedajo se wužywaś."
 
 msgid "This url is already in use by another collection"
 msgstr "Toś ten URL wužywa se južo wót drugeje zběrki"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Symbole muse pak we formaśe PNG pak JPG byś."
-
-msgid "Icons cannot be animated."
-msgstr "Symbole njedaju se animěrowaś."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Toś ten swójski URL se južo wót drugeje z wašych zběrkow wužywa."
@@ -1073,9 +1070,6 @@ msgstr "Zběrka jo se zaktualizěrowała!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Woglědajśo se swóju zběrku</a>, aby změny wiźeł."
-
-msgid "Icon Deleted"
-msgstr "Symbol wulašowany"
 
 msgid "Create a New Collection"
 msgstr "Nowu zběrku napóraś"
@@ -1243,15 +1237,6 @@ msgstr "Zběrku napóraś"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Zběrki wólažcuju slědowanje wašych nejlubšych dodankow a źělenje wašogo perfektnje pśiměrjonego wobglědowaka z drugimi."
-
-msgid "Collection Icon"
-msgstr "Symbol zběrki"
-
-msgid "Reset"
-msgstr "Slědk stajiś"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG a JPG se pódpěratej. Wobraz se na 32x32 pśiměrjujo."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Zmólki su w formularje. Pšosym pópšawśo je dołojce."
@@ -1958,41 +1943,134 @@ msgstr "Inkompatibelny"
 msgid "Alerts & Updates"
 msgstr "Pokaze a aktualizacije"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Naglěd"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Cytańske znamjenja"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Zastojanje ześěgnjenjow"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Kanale, powěsći a blogowanje"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Graśa a rozdrosćenje"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Rěcna pódpora"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Fota, muzika a wideo"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Priwatnosć a wěstota"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Nakupowanje"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Socialne a komunikacija"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Rejtarki"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Webwuwiśe"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "Rědowe funkcije a městno"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Eksperimentelny"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Wugbaśe"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Fota a medije"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Wěstota a priwatnosć"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Socialne seśi"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Sport a graśa"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Wužywarski pówjerch"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "Zwěrjeta"
@@ -2024,35 +2102,80 @@ msgstr "Sport"
 msgid "Abstract"
 msgstr "Abstraktne"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Góźby"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Moda"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Film a telewizija"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Dowol"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Muzika"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Krajina"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Lětne case"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Solidne"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Websedła"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Powšykne"
@@ -2086,33 +2209,6 @@ msgstr "Drogowanje"
 
 msgid "Video"
 msgstr "Wideo"
-
-msgid "Device Features & Location"
-msgstr "Rědowe funkcije a městno"
-
-msgid "Experimental"
-msgstr "Eksperimentelny"
-
-msgid "Feeds, News, & Blogging"
-msgstr "Kanale, powěsći a blogowanje"
-
-msgid "Performance"
-msgstr "Wugbaśe"
-
-msgid "Photos & Media"
-msgstr "Fota a medije"
-
-msgid "Security & Privacy"
-msgstr "Wěstota a priwatnosć"
-
-msgid "Social Networking"
-msgstr "Socialne seśi"
-
-msgid "Sports & Games"
-msgstr "Sport a graśa"
-
-msgid "User Interface"
-msgstr "Wužywarski pówjerch"
 
 msgid "All Rights Reserved"
 msgstr "Wšykne pšawa wuměnjone"
@@ -2370,6 +2466,9 @@ msgstr "Pšosym pódajśo pšawidła priwatnosći swójogo dodanka:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo archiwowu dataju {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "Njepłaśiwy abo wobškóźony archiw."
+
 msgid "View current"
 msgstr "Aktualne pokazaś"
 
@@ -2402,6 +2501,9 @@ msgstr "Njejsćo nagrał žrědłowu dataju."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Žrědłowa dataja jo se nagrała, ale sćo pódał, až žrědło njejo trěbne."
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Wěcej ako 3 trěbnych dodankow njejo móžne."
@@ -2439,6 +2541,9 @@ msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten pro
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Njamóžośo dodank typa WebExtensions pśez dodank starego typa aktualizěrowaś. Waše wužywarje njemógli wašu nowu wersiju wužywaś, dokulaž Firefox njepódpěra toś ten typ aktualizacije."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] Tekst w \"{field}\" pólu jo se markěrował ako spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Waš wuwijarski API-kluc jo so w zapódanej dataji namakał. Aby se wašo konto šćitało, se kluc wótwołajo."
@@ -2516,6 +2621,12 @@ msgstr "Awtor jo se z wašogo dodanka wótpórał"
 msgid "Validate Add-on"
 msgstr "Dodank pśeglědowaś"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Symbole muse pak we formaśe PNG pak JPG byś."
+
+msgid "Icons cannot be animated."
+msgstr "Symbole njedaju se animěrowaś."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Wobraze njesměju wětše ako %d KB byś."
@@ -2523,6 +2634,12 @@ msgstr "Wobraze njesměju wětše ako %d KB byś."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Wobraz musy eksaktnje {0} pikselow šyroki a {1} pikselow wusoki byś."
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Wobraz musy nanejmjenjej {0} pikselow šyroki a {1} pikselow wusoki byś."
+
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Wobrazowe wótměry muse w poměrje 4:3 byś."
 
 msgid "There was an error uploading your preview."
 msgstr "Pśi nagrawanju wašogo pśeglěda jo zmólka nastała."
@@ -2769,8 +2886,8 @@ msgstr[1] "<b>{0}</b> drastwje"
 msgstr[2] "<b>{0}</b> drastwy"
 msgstr[3] "<b>{0}</b> drastwow"
 
-msgid "Edit Information"
-msgstr "Informacije wobźěłaś"
+msgid "Edit Product Page"
+msgstr "Produktowy bok wobźěłaś"
 
 msgid "None"
 msgstr "Žedno"
@@ -2855,6 +2972,17 @@ msgstr "Dodank wopisaś"
 msgid "Describe {0}"
 msgstr "Wopišćo {0}"
 
+msgid "Name and Summary"
+msgstr "Mě a zespominanje"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Zespominanje"
+
 msgid "Add-on URL"
 msgstr "URL dodanka"
 
@@ -2864,8 +2992,8 @@ msgstr "Wubjeŕśo krotke, jadnorazowe adresowe mě za URL za toś ten dodank."
 msgid "View Listing"
 msgstr "Lisćinowy zapisk pokazaś"
 
-msgid "Summary"
-msgstr "Zespominanje"
+msgid "View Product Page"
+msgstr "Produktowy bok pokazaś"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Toś to zespominanje měło rozjasniś, což waš dodank gótujo. Pokazujo se w lisćinach a pytańskich wuslědkach, a wužywa se wót pśeglědowarjow za testowanje wašogo dodanka."
@@ -3073,12 +3201,14 @@ msgstr "Pšosym pódajśo pomjenjenje za toś to foto wobrazowki:"
 msgid "Add a Screenshot..."
 msgstr "Foto wobrazowki pśidaś..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
-"PNG a JPG se njepódpěratej. Maksimalna a dopórucona wjelikosć za fota wobrazowki jo 1280x800 pikselow. 640x400 pikselow jo dobra alternatiwa, jolic maśo jano mjeńše wobraze. Fota wobrazowki na wašom"
-" lisćinowem boku jasnje šanse pówušuju, až se waš dodank instalěrujo a na startowem boku pśedstaja."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr "PNG a JPG se pódpěratej, PNG se pśiraźijo. Maksimalna a pśiraźona wjelikosć za fota wobrazowki jo 2400x1800 pikselow."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr "Minimalna wjelikosć jo 1000x750, a poměr 4:3 jo trěbny."
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr "Fota wobrazowki na wašem produktowem boku pówušuju šanse wašogo dodanka, až se na startowem boku instalěrujo a pśedstaja."
 
 msgid "Continue"
 msgstr "Dalej"
@@ -3171,8 +3301,8 @@ msgstr "Toś ten dodank lašowaś."
 msgid "Delete"
 msgstr "Wulašowaś"
 
-msgid "Edit information about this add-on."
-msgstr "Informacije wó toś tom dodanku wobźěłaś."
+msgid "Edit details on this add-on's product page."
+msgstr "Drobnostki wó produktowem boku toś togo dodanka wobźěłaś."
 
 msgid "Upload a new version of this add-on."
 msgstr "Nowu wersiju toś togo nałoženja nagraś."
@@ -3189,17 +3319,11 @@ msgstr "Statistika"
 msgid "Manage Status & Versions"
 msgstr "Status a wersije zastojaś"
 
-msgid "View Add-on Listing"
-msgstr "Lisćinowy zapisk dodanka pokazaś"
-
 msgid "View Recent Changes"
 msgstr "Nejnowše změny pokazaś"
 
-msgid "Edit details about this theme's listing."
-msgstr "Drobnostki wó lisćinowem zapisku toś teje drastwy wobźěłaś."
-
-msgid "Edit Listing"
-msgstr "Zapisk lisćiny wobźěłaś"
+msgid "Edit details on this theme's product page."
+msgstr "Drobnostki wó produktowem boku toś teje drastwy wobźěłaś."
 
 msgid "View the popularity of this theme over time."
 msgstr "Woblubowanosć toś teje drastwy pó casu pokazaś."
@@ -3243,8 +3367,11 @@ msgstr[3] "<strong>{0}</strong> aktiwnych wužywarjow"
 msgid "Submit a New Version"
 msgstr "Nowu wersiju zapódaś"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Mě w zapisku na toś tom sedle. Smějo se wót mjenja w dodanku rozeznawaś, kótarež jo se w Firefox pokazujo"
+msgid "Name and Summary:"
+msgstr "Mě a zespominanje:"
+
+msgid "required"
+msgstr "trěbny"
 
 msgid "Add-on URL:"
 msgstr "URL dodanka:"
@@ -3252,11 +3379,11 @@ msgstr "URL dodanka:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Pšosym wužywajśo jano pismiki, licby, pódsmužki a nakósne smužki w swójom URL."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Mě w zapisku na toś tom sedle. Smějo se wót mjenja w dodanku rozeznawaś, kótarež jo se w Firefox pokazujo"
+
 msgid "Summary:"
 msgstr "Zespominanje:"
-
-msgid "required"
-msgstr "trěbny"
 
 msgid "Description:"
 msgstr "Wopisanje:"
@@ -3791,10 +3918,10 @@ msgstr "Resurse za wuspěšny start"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Sćo swójo rozšyrjenje wuwił a móžośo jo něnto wózjawiś. Co ako pśiduce pśiźo? Cytajśo naše pokaze, kak móžośo spódobny bok zapiska napóraś, aby se wašo rozšyrjenje na "
+"Sćo swójo rozšyrjenje wuwił a móžośo jo něnto wózjawiś. Co ako pśiduce pśiźo? Cytajśo naše pokaze, kak móžośo spódobny produktowy bok napóraś, aby se wašo rozšyrjenje na "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s pśedstajiło, by se wótegrona na wuwijańske pšašanja namakali a z nowosćami a tšojenjami na běžnem wóstali, kótarež su relewantne za wuwijarje "
 "rozšyrjenjow."
 
@@ -3804,8 +3931,8 @@ msgstr "Resursy za wudawarje pokazaś"
 msgid "Welcome Back"
 msgstr "Witajśo slědk"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Napórajśo spódobny lisćinowy zapisk, aby pomagał wužywarjam, wašo rozšyrjenje namakaś."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Napórajśo spódobny produktowy bok, aby pomagał wužywarjam, wašo rozšyrjenje namakaś."
 
 msgid "Learn How"
 msgstr "Zgóńśo, kak to źo"
@@ -4138,13 +4265,13 @@ msgstr "Wótegroniś"
 msgid "Listing visibility"
 msgstr "Widobnosć lisćinowego zapiska"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{label_open}Widobny:{label_close} Widobny za wše na {site_url} a wopśimowany w pytańskich wuslědkach a na lisćinowych bokach."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr "{label_open}Widobny:{label_close} Widobny za wše na {site_url} a wopśimowany w pytańskich wuslědkach a na produktowych bokach."
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Njewidobny:{label_close} Njezjawijo se w pytańskich wuslědkach, a jogo lisćinowy bok pokažo, až sćo jen znjemóžnił. Zapodaśa nowych wersijow za lisćinu njebudu se w toś tom statusu "
+"{label_open}Njewidobny:{label_close} Njezjawijo se w pytańskich wuslědkach, a jogo produktowy bok pokažo, až sćo jen znjemóžnił. Zapodaśa nowych wersijow za produkt njebudu se w toś tom statusu "
 "akceptěrowaś."
 
 msgid "Listed versions"
@@ -5608,6 +5735,9 @@ msgstr "Nagrata dataja njedajo se analyzěrowaś, felujucy abo prozny element <%
 msgid "Could not parse uploaded file."
 msgstr "Nagrata dataja njedajo se analyzěrowaś."
 
+msgid "Unsupported archive type."
+msgstr "Njepódpěrany archiwowy typ."
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Njepłaśiwe datajowe mě w archiwje. Pšosym zawěsććo, až wše datajowe mjenja su z UTF-8 abo Latin 1 skoděrowane."
@@ -6175,6 +6305,12 @@ msgstr ""
 
 msgid "Brought to you by:"
 msgstr "Prezentěrowany wót:"
+
+msgid "User"
+msgstr "Wužywaŕ"
+
+msgid "IP Address"
+msgstr "IP-adresa"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6748,9 +6884,6 @@ msgstr "Wobraze drastwy"
 msgid "Rendered Preview"
 msgstr "Nakreslony pśeglěd"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Slězynowa dataja {0} z {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Wěcej wó toś tom dodanku"
 
@@ -7156,6 +7289,9 @@ msgstr "Pśirucka pśepytowarja"
 msgid "Theme Review for {0}"
 msgstr "Drastwowe pśeglědanje za {0}"
 
+msgid "Edit Listing"
+msgstr "Zapisk lisćiny wobźěłaś"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Nejskerjej dwójne zapódaśe)"
 
@@ -7323,8 +7459,8 @@ msgstr "Pokazujo se {0} - {1} z {2} wuslědkow za <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Pokazujo se {0} - {1} z {2} wuslědkow"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "Dodank z ID „{}“ njedajo se namakaś."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "Dodank z GUID „{}“ njedajo se namakaś."
 
 msgid "You do not own this addon."
 msgstr "Toś ten dodank wam njesłuša."
@@ -7781,9 +7917,6 @@ msgstr "Profilowe foto"
 
 msgid "Addons"
 msgstr "Dodanki"
-
-msgid "Ratings"
-msgstr "Pógódnośenja"
 
 msgid "Activity Logs"
 msgstr "Protokole aktiwnosći"

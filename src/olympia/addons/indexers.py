@@ -143,8 +143,16 @@ class AddonIndexer(BaseSearchIndexer):
                         # Adding word-delimiter to split on camelcase, known
                         # words like 'tab', and punctuation, and eliminate
                         # duplicates.
-                        'analyzer': 'standardPlusWordDelimiter',
-                        'fields': cls.raw_field_definition()
+                        'analyzer': 'standard_with_word_split',
+                        'fields': {
+                            # Raw field for exact matches and sorting.
+                            'raw': cls.raw_field_definition(),
+                            # Trigrams for partial matches.
+                            'trigrams': {
+                                'type': 'text',
+                                'analyzer': 'trigram',
+                            }
+                        }
                     },
                     'persona': {
                         'type': 'object',
@@ -382,7 +390,7 @@ class AddonIndexer(BaseSearchIndexer):
 INDEX_SETTINGS = {
     'analysis': {
         'analyzer': {
-            'standardPlusWordDelimiter': {
+            'standard_with_word_split': {
                 # This analyzer tries to split the text into words by using
                 # various methods. It also lowercases them and make sure each
                 # token is only returned once.
@@ -391,19 +399,37 @@ INDEX_SETTINGS = {
                 # useful for things like descriptions, for instance.
                 'tokenizer': 'standard',
                 'filter': [
-                    'standard', 'wordDelim', 'lowercase', 'stop', 'dict',
-                    'unique'
+                    'standard', 'custom_word_delimiter', 'lowercase', 'stop',
+                    'custom_dictionary_decompounder', 'unique',
                 ]
+            },
+            'trigram': {
+                # Analyzer that splits the text into trigrams.
+                'tokenizer': 'ngram_tokenizer',
+                'filter': [
+                    'lowercase',
+                ]
+            },
+        },
+        'tokenizer': {
+            'ngram_tokenizer': {
+                'type': 'ngram',
+                'min_gram': 3,
+                'max_gram': 3,
+                'token_chars': ['letter', 'digit']
             }
         },
         'normalizer': {
             'lowercase_keyword_normalizer': {
+                # By default keywords are indexed 'as-is', but for exact name
+                # matches we need to lowercase them before indexing, so this
+                # normalizer does that for us.
                 'type': 'custom',
                 'filter': ['lowercase'],
             },
         },
         'filter': {
-            'wordDelim': {
+            'custom_word_delimiter': {
                 # This filter is useful for add-on names that have multiple
                 # words sticked together in a way that is easy to recognize,
                 # like FooBar, which should be indexed as FooBar and Foo Bar.
@@ -412,13 +438,13 @@ INDEX_SETTINGS = {
                 'type': 'word_delimiter',
                 'preserve_original': True
             },
-            'dict': {
+            'custom_dictionary_decompounder': {
                 # This filter is also useful for add-on names that have
                 # multiple words sticked together, but without a pattern that
                 # we can automatically recognize. To deal with those, we use
                 # a small dictionary of common words. It allows us to index
-                # "awesometabpassword"  as "awesome tab password", helping
-                # users looking for "tab password" find that add-on.
+                # 'awesometabpassword'  as 'awesome tab password', helping
+                # users looking for 'tab password' find that add-on.
                 'type': 'dictionary_decompounder',
                 'word_list': [
                     'all', 'auto', 'ball', 'bar', 'block', 'blog', 'bookmark',
@@ -437,7 +463,7 @@ INDEX_SETTINGS = {
                     'title', 'translate', 'tree', 'undo', 'up', 'upload',
                     'url', 'user', 'video', 'window', 'with', 'word', 'zilla',
                 ]
-            }
+            },
         }
     }
 }

@@ -263,7 +263,7 @@ class TestPreviewForm(TestCase):
     @mock.patch('olympia.amo.utils.pngcrush_image')
     def test_preview_size(self, pngcrush_image_mock):
         addon = Addon.objects.get(pk=3615)
-        name = 'non-animated.gif'
+        name = 'teamaddons.jpg'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
         with storage.open(os.path.join(self.dest, name), 'w') as f:
@@ -272,8 +272,8 @@ class TestPreviewForm(TestCase):
         form.save(addon)
         preview = addon.previews.all()[0]
         assert preview.sizes == (
-            {u'image': [250, 297], u'thumbnail': [168, 200],
-             u'original': [250, 297]})
+            {u'image': [2400, 1600], u'thumbnail': [640, 427],
+             u'original': [3000, 2000]})
         assert os.path.exists(preview.image_path)
         assert os.path.exists(preview.thumbnail_path)
         assert os.path.exists(preview.original_path)
@@ -852,7 +852,7 @@ class TestDescribeForm(TestCase):
             request=self.request, instance=Addon.objects.get())
         assert form.is_valid(), form.errors
 
-    def test_summary_optional(self):
+    def test_description_optional(self):
         delicious = Addon.objects.get()
         assert delicious.type == amo.ADDON_EXTENSION
 
@@ -887,7 +887,7 @@ class TestDescribeForm(TestCase):
                 instance=delicious)
             assert form.is_valid(), form.errors
 
-    def test_summary_min_length(self):
+    def test_description_min_length(self):
         delicious = Addon.objects.get()
         assert delicious.type == amo.ADDON_EXTENSION
 
@@ -913,7 +913,7 @@ class TestDescribeForm(TestCase):
                 request=self.request, instance=delicious)
             assert form.is_valid()
 
-            #  Do it again, but this time with a description
+            #  Do it again, but this time with a longer description
             delicious.update(type=amo.ADDON_EXTENSION)
             form = forms.DescribeForm(
                 {'name': 'Delicious for everyone', 'summary': 'foo',
@@ -921,3 +921,56 @@ class TestDescribeForm(TestCase):
                 request=self.request,
                 instance=delicious)
             assert form.is_valid(), form.errors
+
+    def test_name_summary_lengths(self):
+        delicious = Addon.objects.get()
+        short_data = {
+            'name': 'n', 'summary': 's', 'slug': 'bar',
+            'description': '1234567890'}
+        over_70_data = {
+            'name': 'this is a name that hits the 50 char limit almost',
+            'summary': 'this is a summary that doesn`t get close to the '
+                       'existing 250 limit but is over 70',
+            'slug': 'bar', 'description': '1234567890'}
+        under_70_data = {
+            'name': 'this is a name that is over the 50 char limit by a few',
+            'summary': 'ab',
+            'slug': 'bar', 'description': '1234567890'}
+
+        # short name and summary - both allowed with DescribeForm
+        form = forms.DescribeForm(
+            short_data, request=self.request, instance=delicious)
+        assert form.is_valid()
+        # but not with DescribeFormContentOptimization
+        form = forms.DescribeFormContentOptimization(
+            short_data, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['name'] == [
+            u'Ensure this value has at least 2 characters (it has 1).']
+        assert form.errors['summary'] == [
+            u'Ensure this value has at least 2 characters (it has 1).']
+
+        # As are long names and summaries
+        form = forms.DescribeForm(
+            over_70_data, request=self.request, instance=delicious)
+        assert form.is_valid()
+        # but together are over 70 chars so no longer allowed
+        form = forms.DescribeFormContentOptimization(
+            over_70_data, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert len(over_70_data['name']) + len(over_70_data['summary']) == 130
+        assert form.errors['name'] == [
+            u'Ensure name and summary combined are at most 70 characters '
+            u'(they have 130).']
+
+        # DescribeForm has a lower limit for name length
+        form = forms.DescribeForm(
+            under_70_data, request=self.request, instance=delicious)
+        assert not form.is_valid()
+        assert form.errors['name'] == [
+            u'Ensure this value has at most 50 characters (it has 54).']
+        # DescribeFormContentOptimization only cares that the total is <= 70
+        form = forms.DescribeFormContentOptimization(
+            under_70_data, request=self.request, instance=delicious)
+        assert form.is_valid()
+        assert len(under_70_data['name']) + len(under_70_data['summary']) == 56

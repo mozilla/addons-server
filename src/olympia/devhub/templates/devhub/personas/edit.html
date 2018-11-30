@@ -20,7 +20,7 @@
 
   <div class="island swagger theme-info c">
     <div class="addon-name-and-icon c">
-      <img class="addon-icon" src="{{ addon.icon_url }}" alt="">
+      <img class="addon-icon" src="{{ addon.get_icon_url(32) }}" alt="">
       <h2 class="addon-name">{{ addon.name }}</h2>
       <h3 class="author">
         {{ _('by {0}')|format_html(users_list(addon.listed_authors)|safe or persona.display_username|safe) }}
@@ -54,7 +54,7 @@
         {% endif %}
 
 	{% if addon.status == amo.STATUS_PUBLIC or addon.status == amo.STATUS_PENDING %}
-	    <p><a href="{{ addon.get_url_path() }}">{{ _('View Listing') }}</a></p>
+	    <p><a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a></p>
 	{% endif %}
 
 	<p><a href="{{ url('devhub.feed', addon.slug) }}">

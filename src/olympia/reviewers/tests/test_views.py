@@ -28,8 +28,7 @@ from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonDependency, AddonReviewerFlags,
-    AddonUser)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
@@ -2152,8 +2151,7 @@ class TestContentReviewQueue(QueueTest):
         AddonReviewerFlags.objects.create(
             addon=extra_addon4, needs_admin_content_review=True)
 
-        # This first add-on has been content reviewed so long ago that we
-        # should do it again.
+        # This first add-on has been content reviewed long ago.
         addon1 = addon_factory(name=u'Addön 1')
         AutoApprovalSummary.objects.create(
             version=addon1.current_version,
@@ -2191,9 +2189,9 @@ class TestContentReviewQueue(QueueTest):
             verdict=amo.AUTO_APPROVED, confirmed=True)
         assert not AddonApprovalsCounter.objects.filter(addon=addon4).exists()
 
-        # Addons with no last_content_review date should be first, ordered by
+        # Addons with no last_content_review date, ordered by
         # their creation date, older first.
-        self.expected_addons = [addon3, addon4, addon2, addon1]
+        self.expected_addons = [addon3, addon4]
 
     def test_only_viewable_with_specific_permission(self):
         # Regular addon reviewer does not have access.
@@ -2216,7 +2214,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout('Content Review',
-                                tab_position=2, total_addons=4, total_queues=3,
+                                tab_position=2, total_addons=2, total_queues=3,
                                 per_page=1)
 
     def test_queue_layout_admin(self):
@@ -2226,7 +2224,7 @@ class TestContentReviewQueue(QueueTest):
         self.generate_files()
 
         self._test_queue_layout('Content Review',
-                                tab_position=2, total_addons=5, total_queues=4)
+                                tab_position=2, total_addons=3, total_queues=4)
 
 
 class TestPerformance(QueueTest):
@@ -3052,7 +3050,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3062,7 +3060,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
             ('Edit', self.addon.get_dev_url()),
             ('Admin Page',
                 reverse('zadmin.addon_manage', args=[self.addon.id])),
@@ -3070,7 +3068,7 @@ class TestReview(ReviewBase):
         check_links(expected, doc('#actions-addon a'), verify=False)
 
     def test_unlisted_addon_action_links_as_admin(self):
-        """No "View Listing" link for unlisted addons, "edit"/"manage" links
+        """No "View Product Page" link for unlisted addons, "edit"/"manage" links
         for the admins."""
         self.make_addon_unlisted(self.addon)
         self.login_as_admin()
@@ -3097,7 +3095,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
             ('Unlisted Review Page', reverse(
                 'reviewers.review', args=('unlisted', self.addon.slug))),
             ('Edit', self.addon.get_dev_url()),
@@ -3119,7 +3117,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
             ('Listed Review Page',
                 reverse('reviewers.review', args=(self.addon.slug,))),
             ('Edit', self.addon.get_dev_url()),
@@ -3139,7 +3137,7 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         expected = [
-            ('View Listing', self.addon.get_url_path()),
+            ('View Product Page', self.addon.get_url_path()),
         ]
         check_links(expected, doc('#actions-addon a'), verify=False)
 
@@ -3453,17 +3451,6 @@ class TestReview(ReviewBase):
             assert mock_sign.called
         return action
 
-    def test_dependencies_listed(self):
-        AddonDependency.objects.create(addon=self.addon,
-                                       dependent_addon=self.addon)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        deps = doc('.addon-info .addon-dependencies')
-        assert deps.length == 1
-        assert deps.find('li').length == 1
-        assert deps.find('a').attr('href') == self.addon.get_url_path()
-
     def test_eula_displayed(self):
         assert not bool(self.addon.eula)
         response = self.client.get(self.url)
@@ -3529,6 +3516,18 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert 'Yes' in doc('tr.requires-payment td').text()
+
+    def test_addon_id_display(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert self.addon.guid in doc('tr.addon-guid td').text()
+
+    def test_amo_id_display(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.addon.id) in doc('tr.addon-amo-id td').text()
 
     def test_viewing(self):
         url = reverse('reviewers.review_viewing')
@@ -3603,7 +3602,7 @@ class TestReview(ReviewBase):
     def test_viewing_review_unlocks(self):
         reviewing_url = reverse('reviewers.review_viewing')
         self.client.post(reviewing_url, {'addon_id': self.addon.id})
-        key = '%s:review_viewing:%s' % (settings.CACHE_PREFIX, self.addon.id)
+        key = 'review_viewing:{id}'.format(id=self.addon.id)
         assert cache.get(key) == self.reviewer.id
 
         self.client.post(self.url, {'action': 'comment',

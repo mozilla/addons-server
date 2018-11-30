@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-24 10:07+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-27 14:59+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -28,6 +28,9 @@ msgstr "Hivatkozások nem engedélyezettek."
 
 msgid "This display name cannot be used."
 msgstr "Ez a megjelenítendő név nem használható."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "A honlap mező csak külső weboldalakra hivatkozáshoz használható."
 
 msgid "Usernames cannot contain only digits."
 msgstr "A felhasználónevek nem tartalmazhatnak csak számokat."
@@ -80,6 +83,9 @@ msgstr "Értékelési megjegyzés"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Csak a legfrissebb verziókhoz lehet jegyzeteket hozzáadni."
+
+msgid "Ratings"
+msgstr "Értékelések"
 
 msgid "Status"
 msgstr "Állapot"
@@ -996,9 +1002,6 @@ msgstr "Írja le gyűjteményét (hivatkozások nem engedélyezettek)."
 msgid "Privacy:"
 msgstr "Titoktartás:"
 
-msgid "Icon"
-msgstr "Ikon"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Kérjük, ne töltse ki ezt a mezőt, ez a botok elfogására szolgál"
 
@@ -1007,12 +1010,6 @@ msgstr "Ez a név nem használható."
 
 msgid "This url is already in use by another collection"
 msgstr "Ezt az URL-t egy másik gyűjtemény használja"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
-
-msgid "Icons cannot be animated."
-msgstr "Az ikon nem lehet animált."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ezt az egyéni URL-t már egy másik gyűjteménye használja."
@@ -1051,9 +1048,6 @@ msgstr "A gyűjtemény frissítése megtörtént!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Nézze meg gyűjteményét</a> a változások megjelenítéséhez."
-
-msgid "Icon Deleted"
-msgstr "Az ikon törölve"
 
 msgid "Create a New Collection"
 msgstr "Új gyűjtemény létrehozása"
@@ -1217,15 +1211,6 @@ msgstr "Gyűjtemény készítése"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "A gyűjtemények egyszerűvé teszik a kedvenc kiegészítők figyelemmel kísérését és másokkal való megosztását."
-
-msgid "Collection Icon"
-msgstr "Gyűjtemény ikonja"
-
-msgid "Reset"
-msgstr "Visszaállítás"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "A PNG és a JPG formátum támogatott, a kép mérete 32×32 pixelre lesz átméretezve."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Hibák vannak ezen az űrlapon. Kérjük javítsa ezeket."
@@ -1931,41 +1916,134 @@ msgstr "Nem kompatibilis"
 msgid "Alerts & Updates"
 msgstr "Riasztások és frissítések"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Megjelenés"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Könyvjelzők"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Letöltéskezelők"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Hírcsatornák, hírek és blogolás"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Játékok és szórakozás"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Nyelvi támogatás"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Fotók, zenék és videók"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Adatvédelem és biztonság"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Vásárlás"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Közösség és kommunikáció"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Fülek"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Webfejlesztés"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "Eszközfunkciók és helymeghatározás"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Kísérleti"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Teljesítmény"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Fotók és média"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Biztonság és adatvédelem"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Közösségi hálózatok"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Sport és játékok"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Felhasználói felület"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "Állatok"
@@ -1997,35 +2075,80 @@ msgstr "Sport"
 msgid "Abstract"
 msgstr "Absztrakt"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Ügyek"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Divat"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Film és TV"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Szabadság"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Zene"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Tájkép"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Időszakos"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Kiforrott"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Weboldalak"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Általános"
@@ -2059,33 +2182,6 @@ msgstr "Utazás"
 
 msgid "Video"
 msgstr "Videó"
-
-msgid "Device Features & Location"
-msgstr "Eszközfunkciók és helymeghatározás"
-
-msgid "Experimental"
-msgstr "Kísérleti"
-
-msgid "Feeds, News, & Blogging"
-msgstr "Hírcsatornák, hírek és blogolás"
-
-msgid "Performance"
-msgstr "Teljesítmény"
-
-msgid "Photos & Media"
-msgstr "Fotók és média"
-
-msgid "Security & Privacy"
-msgstr "Biztonság és adatvédelem"
-
-msgid "Social Networking"
-msgstr "Közösségi hálózatok"
-
-msgid "Sports & Games"
-msgstr "Sport és játékok"
-
-msgid "User Interface"
-msgstr "Felhasználói felület"
 
 msgid "All Rights Reserved"
 msgstr "Minden jog fenntartva"
@@ -2343,6 +2439,9 @@ msgstr "Adja meg a kiegészítő adatvédelmi irányelveit:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Nem támogatott fájlformátum, {extensions} archívumfájlt töltsön fel."
 
+msgid "Invalid or broken archive."
+msgstr "Érvénytelen vagy hibás archívum."
+
 msgid "View current"
 msgstr "Jelenlegi megjelenítése"
 
@@ -2375,6 +2474,9 @@ msgstr "Nem töltött fel forrásfájlt."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "A forrásfájl feltöltésre került, de azt jelezte, hogy nincs szükség forrásra."
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Nem lehet 3-nál több szükséges kiegészítő."
@@ -2416,6 +2518,9 @@ msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem fordí
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Nem frissítheti a WebExtension kiegészítőket hagyományos kiegészítőkkel. A felhasználók nem fogják tudni használni az új verzióját, mert a Firefox nem támogatja az ilyen frissítéseket."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] A(z) „{field}” mező szövege spamként lett megjelölve."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "A fejlesztői API kulcsa megtalálható a beküldött fájlban. A fiókja biztonsága érdekében a kulcs vissza lesz vonva."
@@ -2493,6 +2598,12 @@ msgstr "A kiegészítő egy szerzője eltávolításra került"
 msgid "Validate Add-on"
 msgstr "Kiegészítő ellenőrzése"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
+
+msgid "Icons cannot be animated."
+msgstr "Az ikon nem lehet animált."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "A kép nem lehet nagyobb, mint %d KB."
@@ -2500,6 +2611,12 @@ msgstr "A kép nem lehet nagyobb, mint %d KB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A képnek pontosan {0} képpont szélesnek és {1} képpont magasnak kell lennie."
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "A képnek legalább {0} képpont szélesnek és {1} képpont magasnak kell lennie."
+
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "A kép méretarányának 4:3-asnak kell lennie."
 
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
@@ -2746,8 +2863,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> téma"
 msgstr[1] "<b>{0}</b> téma"
 
-msgid "Edit Information"
-msgstr "Információk szerkesztése"
+msgid "Edit Product Page"
+msgstr "Termékoldal szerkesztése"
 
 msgid "None"
 msgstr "Nincs"
@@ -2828,6 +2945,17 @@ msgstr "Kiegészítő leírása"
 msgid "Describe {0}"
 msgstr "A(z) {0} leírása"
 
+msgid "Name and Summary"
+msgstr "Név és összegzés"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Összefoglalás"
+
 msgid "Add-on URL"
 msgstr "Kiegészítő URL-je"
 
@@ -2837,8 +2965,8 @@ msgstr "Válasszon rövid, egyedi SEO URL-t a kiegészítőjéhez."
 msgid "View Listing"
 msgstr "Megjelenés megtekintése"
 
-msgid "Summary"
-msgstr "Összefoglalás"
+msgid "View Product Page"
+msgstr "Termékoldal megtekintése"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Ez a leírás be kellene mutassa, hogy pontosan mit csinál a kiegészítő. Meg fog jelenni a listázásokban és a kereséseken, valamit az értékelők is ez alapján fogják tesztelni a kiegészítőt."
@@ -3045,12 +3173,14 @@ msgstr "Adjon meg képaláírást ehhez a képernyőképhez."
 msgid "Add a Screenshot..."
 msgstr "Képernyőkép hozzáadása…"
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr "A PNG és a JPG támogatott, a PNG ajánlott. A képernyőképek maximális és ajánlott mérete 2400×1800 képpont."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr "A minimális méret 1000×750, és 4:3-as képarány szükséges."
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
-"A PNG és JPG formátum támogatott. A képernyőképek legnagyobb és ajánlott mérete 120×800 képpont. A 640×400 képpont jó alternatíva, ha csak kisebb képei vannak. Ha vannak képernyőképei a listázási "
-"oldalon, akkor az lényegesen megnöveli a valószínűségét annak, hogy telepíteni fogják, és kiemelésre kerül a főoldalon."
 
 msgid "Continue"
 msgstr "Folytatás"
@@ -3143,8 +3273,8 @@ msgstr "Kiegészítő törlése-"
 msgid "Delete"
 msgstr "Törlés"
 
-msgid "Edit information about this add-on."
-msgstr "Kiegészítő tudnivalóinak szerkesztése."
+msgid "Edit details on this add-on's product page."
+msgstr "A kiegészítő termékoldalának részleteinek szerkesztése."
 
 msgid "Upload a new version of this add-on."
 msgstr "Kiegészítő újabb verziójának feltöltése."
@@ -3161,17 +3291,11 @@ msgstr "Statisztika"
 msgid "Manage Status & Versions"
 msgstr "Állapot és verziók kezelése"
 
-msgid "View Add-on Listing"
-msgstr "Kiegészítő megjelenésének megtekintése"
-
 msgid "View Recent Changes"
 msgstr "Legutóbbi változtatások megtekintése"
 
-msgid "Edit details about this theme's listing."
-msgstr "A téma megjelenésének szerkesztése."
-
-msgid "Edit Listing"
-msgstr "Megjelenés szerkesztése"
+msgid "Edit details on this theme's product page."
+msgstr "A téma termékoldalának részleteinek szerkesztése."
 
 msgid "View the popularity of this theme over time."
 msgstr "A téma népszerűségének megjelenítése az idő függvényében."
@@ -3213,8 +3337,11 @@ msgstr[1] "<strong>{0}</strong> aktív felhasználó"
 msgid "Submit a New Version"
 msgstr "Új verzió beküldése"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Név az ezen oldalon felsoroláshoz. Különbözhet a kiegészítőben található névtől, amely a Firefoxon belül jelenik meg"
+msgid "Name and Summary:"
+msgstr "Név és összegzés:"
+
+msgid "required"
+msgstr "szükséges"
 
 msgid "Add-on URL:"
 msgstr "Kiegészítő URL:"
@@ -3222,11 +3349,11 @@ msgstr "Kiegészítő URL:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Csak betűket, számokat, aláhúzásokat és kötőjeleket használjon az URL-ben."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Név az ezen oldalon felsoroláshoz. Különbözhet a kiegészítőben található névtől, amely a Firefoxon belül jelenik meg"
+
 msgid "Summary:"
 msgstr "Összegzés:"
-
-msgid "required"
-msgstr "szükséges"
 
 msgid "Description:"
 msgstr "Leírás:"
@@ -3767,10 +3894,10 @@ msgstr "Erőforrások a sikeres induláshoz"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Elkészítette a kiegészítőjét, és készen áll a közzétételre. Most mi következik? Nézze meg a tippjeinket a vonzó részletező oldal létrehozásáról, emelje ki a kiterjesztését az "
+"Elkészítette a kiegészítőjét, és készen áll a közzétételre. Most mi következik? Nézze meg a tippjeinket a vonzó termékoldal létrehozásáról, emelje ki a kiterjesztését az "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s-on, találjon választ fejlesztési kérdésekre, és legyen naprakész a kiegészítőfejlesztőkkel kapcsolatos hírekkel és eseményekkel."
 
 msgid "View Resources for Publishers"
@@ -3779,8 +3906,8 @@ msgstr "Kiadóknak szóló erőforrások megtekintése"
 msgid "Welcome Back"
 msgstr "Üdvözöljük újra"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Segítsen a felhasználóknak felfedezni a kiegészítőjét, azáltal hogy tetszetős listázást készít."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Segítsen a felhasználóknak felfedezni a kiegészítőjét azáltal, hogy tetszetős termékoldalt készít."
 
 msgid "Learn How"
 msgstr "Tudja meg hogyan"
@@ -4115,13 +4242,13 @@ msgstr "Válasz"
 msgid "Listing visibility"
 msgstr "Listázás láthatósága"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{label_open}Látható:{label_close} Mindenki számára látható itt: {site_url}, valamint szerepel a találatok között és a listázási oldalakon."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr "{label_open}Látható:{label_close} Mindenki számára látható itt: {site_url}, valamint szerepel a találatok között és a termékoldalakon."
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Láthatatlan:{label_close} Nem fog szerepelni a keresési találatokban, és a listázó oldala jelezni fogja, hogy letiltotta. Az új benyújtott verziók nem lesznek elfogadva ebben az "
+"{label_open}Láthatatlan:{label_close} Nem fog szerepelni a keresési találatokban, és a termékoldala jelezni fogja, hogy letiltotta. A termék új benyújtott verziói nem lesznek elfogadva ebben az "
 "állapotban."
 
 msgid "Listed versions"
@@ -5584,6 +5711,9 @@ msgstr "Nem sikerült feldolgozni a feltöltött fájlt, hiányzó vagy üres <%
 msgid "Could not parse uploaded file."
 msgstr "Nem sikerült feldolgozni a feltöltött fájlt."
 
+msgid "Unsupported archive type."
+msgstr "Nem támogatott archívumtípus."
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Érvénytelen fájlnév az archívumban. Ellenőrizze, hogy az összes fájlnév utf-8 vagy latin1 kódolású."
@@ -6155,6 +6285,12 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Nekik köszönhetően:"
 
+msgid "User"
+msgstr "Felhasználó"
+
+msgid "IP Address"
+msgstr "IP-cím"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "%s értékelései"
@@ -6713,9 +6849,6 @@ msgstr "Téma képek"
 msgid "Rendered Preview"
 msgstr "Renderelt előnézet"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Háttér fájl {0} / {1} – {2}"
-
 msgid "More about this add-on"
 msgstr "További tudnivalók a kiegészítőről"
 
@@ -7122,6 +7255,9 @@ msgstr "Értékelők útmutatója"
 msgid "Theme Review for {0}"
 msgstr "Téma értékelés ehhez: {0}"
 
+msgid "Edit Listing"
+msgstr "Megjelenés szerkesztése"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Lehetséges ismételt benyújtások)"
 
@@ -7286,8 +7422,8 @@ msgstr "{2} találat erre: <strong>{3}</strong>, megjelenítve {0} - {1}"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{2} találat, megjelenítve {0} - {1}"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "A(z) „{}” azonosítójú kiegészítő nem található."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "A(z) „{}” guid értékkel kiegészítő nem található."
 
 msgid "You do not own this addon."
 msgstr "Nem Ön a kiegészítő tulajdonosa."
@@ -7744,9 +7880,6 @@ msgstr "Profilkép"
 
 msgid "Addons"
 msgstr "Kiegészítők"
-
-msgid "Ratings"
-msgstr "Értékelések"
 
 msgid "Activity Logs"
 msgstr "Tevékenységnaplók"

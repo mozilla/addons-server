@@ -30,7 +30,7 @@
             {% if editable %}
               <div id="icon_preview">
                 <div class="icon_preview" id="icon_preview_32">
-                  <img src="{{ addon.icon_url }}" alt="">
+                  <img src="{{ addon.get_icon_url(32) }}" alt="">
                 </div>
                 <div class="edit-media-details">
                   {# L10n: The size of the icon #}
@@ -48,6 +48,15 @@
                   {{ _('64x64px') }}
                   {{ tip(None, _("Used in add-on detail pages.")) }}
                 </div>
+
+                <div class="icon_preview" id="icon_preview_128">
+                  <img src="{{ addon.get_icon_url(128) }}" alt="">
+                </div>
+                <div class="edit-media-details">
+                  {# L10n: The size of the icon #}
+                  {{ _('128x128px') }}
+                  {{ tip(None, _("Will be the standard in future add-on detail pages.")) }}
+                </div>
               </div>
               <ul id="icons_default">
                 {{ form.icon_type }}
@@ -62,17 +71,20 @@
                 {{ form.icon_upload_hash }}
               </div>
               <div class="edit-media-details">
-                {% trans %}
-                PNG and JPG supported. Icons resized to 64x64 pixels if larger.
-                {% endtrans %}
+                {{ _('PNG and JPG supported.') }}
+                {% if waffle.switch('content-optimization') %}
+                  {{ _('Icons must be square and a minimum size of 128x128 pixels.') }}
+                {% endif %}
+                {{ _('Icons will be resized to 128x128 pixels if larger.') }}
               </div>
               <ul class="errorlist">
                 <li id="edit-icon-error"></li>
               </ul>
             {% else %}
               <div id="icon_preview_readonly">
+                  <img src="{{ addon.get_icon_url(128) }}" alt="">
                   <img src="{{ addon.get_icon_url(64) }}" alt="">
-                  <img src="{{ addon.icon_url }}" alt="">
+                  <img src="{{ addon.get_icon_url(32) }}" alt="">
               </div>
             {% endif %}
           </td>
@@ -135,9 +147,14 @@
                 </div>
                 <div class="edit-media-details">
                   {% trans %}
-                    PNG and JPG supported. The maximum and recommended size for screenshots is
-                    1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller
-                    images. Having screenshots in your listing page greatly increases its chances of
+                    PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is
+                    2400x1800 pixels.
+                  {% endtrans %}
+                  {% if waffle.switch('content-optimization') %}
+                    {{ _('Minimum size is 1000x750, and a ratio of 4:3 is required.') }}
+                  {% endif %}
+                  {% trans %}
+                    Having screenshots in your product page greatly increases its chances of
                     being installed and being featured in the homepage.
                   {% endtrans %}
                 </div>

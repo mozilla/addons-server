@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-14 01:34+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-26 13:12+0000\n"
+"Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -17,9 +17,9 @@ msgstr ""
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} steluță"
-msgstr[1] "{0} steluțe"
-msgstr[2] "{0} de steluțe"
+msgstr[0] "{0} stea"
+msgstr[1] "{0} stele"
+msgstr[2] "{0} de stele"
 
 msgid "There was a problem contacting the server."
 msgstr "A apărut o problemă la contactarea serverului."
@@ -82,25 +82,25 @@ msgid "Finished validating {0}"
 msgstr "S-a terminat validarea {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "Validarea suplimentului tău a depășit timpul acordat, acesta va fi verificat manual."
+msgstr "Timpul alocat pentru validarea suplimentului a expirat; suplimentul va fi revizuit manual."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Suplimentul tău fost validat fără nicio eroare și cu {0} avertizare."
+msgstr[1] "Suplimentul tău fost validat fără nicio eroare și cu {0} avertizări."
+msgstr[2] "Suplimentul tău fost validat fără nicio eroare și cu {0} de avertizări."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Suplimentul tău a fost validat fără nicio eroare și cu {0} mesaj."
+msgstr[1] "Suplimentul tău a fost validat fără nicio eroare și cu {0} mesaje."
+msgstr[2] "Suplimentul tău a fost validat fără nicio eroare și cu {0} de mesaje."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "Suplimentul a fost validat fără erori sau avertismente."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "Propunerea ta va fi semnată automat."
 
 msgid "WebExtension upgrade"
 msgstr "Actualizare WebExtension"
@@ -115,13 +115,13 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Include notițe de versiune detaliate (acest lucru se poate face în următorul pas)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către recenzent (se poate face în etapa următoare)."
 
 msgid "Add-on submission checklist"
-msgstr ""
+msgstr "Listă de verificare cu propunerile de suplimente"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de recenzie:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -129,7 +129,7 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "Procedura de validare a condus la constatarea următoarelor aspecte, care se pot solda cu respingeri:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipul de fișier pe care l-ai încărcat nu e recunoscut."
@@ -163,37 +163,37 @@ msgid "All Rights Reserved"
 msgstr "Toate drepturile rezervate"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială-Partajare similare 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Partajare similare 3.0"
 
 msgid "Your Theme's Name"
 msgstr "Numele temei tale"
 
 msgid "Flagged for review"
-msgstr "Semnalat pentru revizuire"
+msgstr "Marcat pentru recenzie"
 
 msgid "Your input is required"
-msgstr ""
+msgstr "Avem nevoie de opinia ta"
 
 msgid "Marked for deletion"
 msgstr "Marcat pentru ștergere"
 
 msgid "Updating results&hellip;"
-msgstr ""
+msgstr "Se actualizează rezultatele&hellip;"
 
 msgid "Category"
 msgstr "Categorie"
@@ -299,7 +299,7 @@ msgid "Reviews Written"
 msgstr "Recenzii scrise"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Înregistrări de utilizatori"
 
 msgid "Subscribers"
 msgstr "Abonați"
@@ -320,13 +320,13 @@ msgid "Add-ons Manager"
 msgstr "Manage de suplimente"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "Promoție în managerul de suplimente"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "Promovate în managerul de suplimente"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "Află mai multe în managerul de suplimente"
 
 msgid "Search Suggestions"
 msgstr "Sugestii de căutare"
@@ -335,37 +335,37 @@ msgid "Search Results"
 msgstr "Rezultate ale căutării"
 
 msgid "Homepage Promo"
-msgstr "Promovare pe pagina principală"
+msgstr "Promoție pe pagina de start"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "Promovate pe pagina de start"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "În curs de apariție pe pagina de start"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "Cele mai populare pe pagina de start"
 
 msgid "Detail Page"
 msgstr "Pagina cu detalii"
 
 msgid "Detail Page (bottom)"
-msgstr ""
+msgstr "Pagina de detalii (jos)"
 
 msgid "Detail Page (Development Channel)"
-msgstr ""
+msgstr "Pagina de detalii (canalul de dezvoltare)"
 
 msgid "Often Used With"
 msgstr "Adesea folosit cu"
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Altele de la același autor"
 
 msgid "Dependencies"
 msgstr "Dependențe"
 
 msgid "Upsell"
-msgstr ""
+msgstr "Promovare produse asociate"
 
 msgid "Meet the Developer"
 msgstr "Fă cunoștință cu dezvoltatorul"
@@ -380,52 +380,52 @@ msgid "Sharing"
 msgstr "Distribuire"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "Pagini de categorii"
 
 msgid "Collections"
 msgstr "Colecții"
 
 msgid "Category Landing Featured Carousel"
-msgstr ""
+msgstr "Categorie care ajunge în caruselul de suplimente promovate"
 
 msgid "Category Landing Top Rated"
-msgstr ""
+msgstr "Categorie care ajunge în cele mai apreciate"
 
 msgid "Category Landing Most Popular"
-msgstr ""
+msgstr "Categorie care ajunge în cele mai populare"
 
 msgid "Category Landing Recently Added"
-msgstr ""
+msgstr "Categorie care ajunge în cele adăugate recent"
 
 msgid "Browse Listing Featured Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după suplimente promovate"
 
 msgid "Browse Listing Users Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după utilizatori"
 
 msgid "Browse Listing Rating Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după evaluări"
 
 msgid "Browse Listing Created Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după data creării"
 
 msgid "Browse Listing Name Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după nume"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după popularitate"
 
 msgid "Browse Listing Updated Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după data actualizării"
 
 msgid "Browse Listing Up and Coming Sort"
-msgstr ""
+msgstr "Parcurge lista ordonată după data lansării (viitoare)"
 
 msgid "Total Amount Contributed"
-msgstr ""
+msgstr "Total contribuții"
 
 msgid "Average Contribution"
-msgstr ""
+msgstr "Contribuție medie"
 
 msgid "Usage"
 msgstr "Utilizare"
@@ -465,7 +465,7 @@ msgstr "Instalări și utilizatori zilnici, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalări și utilizatori zilnici de la {0} până la {1}"
+msgstr "Instalări și utilizatori zilnici din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -473,7 +473,7 @@ msgstr "Descărcări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Descărcări de la {0} până la {1}"
+msgstr "Descărcări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -489,7 +489,7 @@ msgstr "Aplicații, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Aplicații de la {0} până la {1}"
+msgstr "Aplicații din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -497,7 +497,7 @@ msgstr "Platforme, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "Platforme de la {0} până la {1}"
+msgstr "Platforme din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -505,7 +505,7 @@ msgstr "Limbi, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "Limbi de la {0} până la {1}"
+msgstr "Limbi din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
@@ -513,7 +513,7 @@ msgstr "Versiunile suplimentului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Versiunile supliment de la {0} până la {1}"
+msgstr "Versiunile suplimentului din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -521,7 +521,7 @@ msgstr "Starea suplimentului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Stare supliment de la {0} până la {1}"
+msgstr "Starea suplimentului din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
@@ -529,7 +529,7 @@ msgstr "Sursele de descărcare, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Sursele de descărcare de la {0} până la {1}"
+msgstr "Sursele de descărcare din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -537,7 +537,7 @@ msgstr "Contribuții, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "Contribuții de la {0} până la {1}"
+msgstr "Contribuții din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -545,7 +545,7 @@ msgstr "Indicatorii metrici ai site-ului, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Indicatori metrici ai site-ului de la {0} până la {1}"
+msgstr "Indicatori metrici ai site-ului din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -553,7 +553,7 @@ msgstr "Suplimente în uz, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "Suplimente în uz de la {0} până la {1}"
+msgstr "Suplimente în uz din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
@@ -569,7 +569,7 @@ msgstr "Suplimente create, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "Suplimente create de la {0} până la {1}"
+msgstr "Suplimente create din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
@@ -577,7 +577,7 @@ msgstr "Suplimente actualizate, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "Suplimente actualizate de la {0} până la {1}"
+msgstr "Suplimente actualizate din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -585,7 +585,7 @@ msgstr "Recenzii scrise, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "Recenzii scrise de la {0} până la {1}"
+msgstr "Recenzii scrise din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -593,7 +593,7 @@ msgstr "Înscrieri de utilizatori, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Înscrieri de utilizatori de al {0} până la {1}"
+msgstr "Înscrieri de utilizatori din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -601,7 +601,7 @@ msgstr "Colecții create, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "Colecții create de la {0} până la {1}"
+msgstr "Colecții create din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
@@ -609,7 +609,7 @@ msgstr "Abonați, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Abonați de la {0} până la {1}"
+msgstr "Abonați din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
@@ -617,7 +617,7 @@ msgstr "Evaluări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "Evaluări de la {0} până la {1}"
+msgstr "Evaluări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
@@ -625,7 +625,7 @@ msgstr "Vânzări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr "Vânzări de la {0} până la {1}"
+msgstr "Vânzări din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
@@ -633,7 +633,7 @@ msgstr "Instalări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr "Instalări de la {0} până la {1}"
+msgstr "Instalări din {0} până în {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
@@ -641,7 +641,7 @@ msgstr "<b>{0}</b> în ultimele {1} zile"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
-msgstr "<b>{0}</b> de la {1} până la {2}"
+msgstr "<b>{0}</b> din {0} până în {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> average in last {1} days"
@@ -667,9 +667,9 @@ msgstr[2] "Setează {0} de suplimente la o versiune maximă de {1} și trimite e
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Trimite un mesaj pe e-mail autorului suplimentului care nu a trecut validarea."
+msgstr[1] "Trimite un mesaj pe e-mail autorilor celor {2} suplimente care nu au trecut validarea."
+msgstr[2] "Trimite un mesaj pe e-mail autorilor celor {2} de suplimente care nu au trecut validarea."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -711,7 +711,7 @@ msgid "Adding to Favorites&hellip;"
 msgstr "Se adaugă la favorite&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr ""
+msgstr "Se elimină din favorite&hellip;"
 
 msgid "Add to Favorites"
 msgstr "Adaugă la favorite"
@@ -741,10 +741,10 @@ msgid "Remove from favorites"
 msgstr "Șterge din favorite"
 
 msgid "Stop following"
-msgstr ""
+msgstr "Nu mai urmări"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "Browserul nu suportă etichetarea de videoclipuri"
 
 msgid "Changes Saved"
 msgstr "Modificările au fost salvate"
@@ -777,65 +777,63 @@ msgid "Loading..."
 msgstr "Se încarcă..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> caracter rămas."
-msgstr[1] "<b>{0}</b> caractere rămase."
-msgstr[2] "<b>{0}</b> de caractere rămase."
+msgstr[0] "<b>{0}</b> caracter"
+msgstr[1] "<b>{0}</b> caractere"
+msgstr[2] "<b>{0}</b> de caractere"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> caracter rămas."
-msgstr[1] "<b>{0}</b> caractere rămase."
-msgstr[2] "<b>{0}</b> de caractere rămase."
+msgstr[0] "<b>{0}</b> caracter rămas"
+msgstr[1] "<b>{0}</b> caractere rămase"
+msgstr[2] "<b>{0}</b> de caractere rămase"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Această funcție este dezactivată temporar în timp ce site-ul este în mentenanță. Revino puțin mai târziu."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "Elimină această localizare"
 
 msgid "{name} was viewing this page first."
-msgstr ""
+msgstr "{name} a vizualizat mai întâi această pagină."
 
 msgid "Receipt checked by app."
-msgstr ""
+msgstr "Primire verificată de aplicație."
 
 msgid "Receipt was not checked by app."
-msgstr ""
+msgstr "Primirea nu a fost verificată de aplicație."
 
 msgid "{name} was viewing this add-on first."
-msgstr ""
+msgstr "{name} a vizualizat mai întâi acest supliment."
 
 msgid "Loading&hellip;"
 msgstr "Se încarcă&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Note asupra versiunii"
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Note pentru recenzenți"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Nu s-a găsit nicio notă asupra versiunii"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Revizuiește textul"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "Note de revizuire găsite"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "Număr mediu de recenzii"
 
 msgid "Number of Reviews"
 msgstr "Numărul de recenzii"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Mărimea maximă de încărcare este {0} - alege o imagine de fundal mai mică."
 
 msgid "Requested Info"
 msgstr "Informații solicitate"
@@ -859,7 +857,7 @@ msgid "Theme"
 msgstr "Temă"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Recenzent"
 
 msgid "Status"
 msgstr "Stare"
@@ -889,7 +887,7 @@ msgid "Add-on failed validation."
 msgstr "Validarea suplimentului a eșuat."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Suplimentul a trecut validarea."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -905,12 +903,12 @@ msgstr[2] "{0} de avertismente"
 
 msgid "{0} notice"
 msgid_plural "{0} notices"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} notificare"
+msgstr[1] "{0} notificări"
+msgstr[2] "{0} de notificări"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Sarcina de validare nu a putut fi finalizată sau a fost finalizată cu erori"
 
 msgid "Internal server error"
-msgstr ""
+msgstr "Eroare internă server"

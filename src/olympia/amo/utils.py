@@ -1,4 +1,3 @@
-import calendar
 import collections
 import contextlib
 import datetime
@@ -624,16 +623,24 @@ class ImageCheck(object):
         self._img = image
 
     def is_image(self):
-        try:
-            self._img.seek(0)
-            self.img = Image.open(self._img)
-            # PIL doesn't tell us what errors it will raise at this point,
-            # just "suitable ones", so let's catch them all.
-            self.img.verify()
-            return True
-        except Exception:
-            log.error('Error decoding image', exc_info=True)
-            return False
+        if not hasattr(self, '_is_image'):
+            try:
+                self._img.seek(0)
+                self.img = Image.open(self._img)
+                # PIL doesn't tell us what errors it will raise at this point,
+                # just "suitable ones", so let's catch them all.
+                self.img.verify()
+                self._is_image = True
+            except Exception:
+                log.error('Error decoding image', exc_info=True)
+                self._is_image = False
+        return self._is_image
+
+    @property
+    def size(self):
+        if not self.is_image():
+            return None
+        return self.img.size if hasattr(self, 'img') else None
 
     def is_animated(self, size=100000):
         if not self.is_image():
@@ -986,7 +993,13 @@ def utc_millesecs_from_epoch(for_datetime=None):
     """
     if not for_datetime:
         for_datetime = datetime.datetime.now()
-    return calendar.timegm(for_datetime.utctimetuple()) * 1000
+    # Number of seconds.
+    seconds = time.mktime(for_datetime.utctimetuple())
+    # timetuple() doesn't care about more precision than seconds, but we do.
+    # Add microseconds as a fraction of a second to keep the precision.
+    seconds += for_datetime.microsecond / 1000000.0
+    # Now convert to milliseconds.
+    return int(seconds * 1000)
 
 
 class AMOJSONEncoder(JSONEncoder):

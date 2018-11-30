@@ -228,13 +228,14 @@ VALID_CONTRIBUTION_DOMAINS = (
 )
 
 # Icon upload sizes
-ADDON_ICON_SIZES = [32, 48, 64, 128, 256, 512]
+ADDON_ICON_SIZES = [32, 64, 128]
 
 _size_tuple = namedtuple('SizeTuple', 'width height')
-# Preview upload sizes - see mozilla/addons-server#7908 for background.
+# Preview upload sizes - see mozilla/addons-server#9487 for background.
 ADDON_PREVIEW_SIZES = {
-    'thumb': _size_tuple(320, 200),  # 1/4 of 'full' size.
-    'full': _size_tuple(1280, 800)  # Chrome store uses this size too.
+    'thumb': _size_tuple(640, 480),
+    'min': _size_tuple(1000, 750),
+    'full': _size_tuple(2400, 1800)
 }
 
 # Static theme preview sizes
@@ -416,8 +417,14 @@ DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
 # The default version of Firefox that supports WebExtensions without an id
 DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
 
-# The version of Firefox that first supported static themes.  Not Android yet.
+# The default version of Firefox that supported `browser_specific_settings`
+DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC = '48.0'
+
+# The version of desktop Firefox that first supported static themes.
 DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
+
+# The version of Android that first minimally supported static themes.
+DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 
 # The version of Firefox that first supported webext dictionaries. Note that
 # on AMO at the moment, dicts have no compatibility exposed - ADDON_DICT is in

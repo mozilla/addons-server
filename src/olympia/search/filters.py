@@ -354,8 +354,8 @@ class SearchQueryFilter(BaseFilterBackend):
     def primary_should_rules(self, search_query, analyzer):
         """Return "primary" should rules for the query.
 
-        These are the ones using the strongest boosts, so they are only applied
-        to a specific set of fields: name and author's name(s).
+        These are the ones using the strongest boosts and are only applied to
+        the add-on name.
 
         Applied rules:
 
@@ -387,47 +387,80 @@ class SearchQueryFilter(BaseFilterBackend):
                 })
             )
 
-        # The rest of the rules are applied to the field containing the default
-        # locale only. That field has word delimiter rules to help find
-        # matches, lowercase filter, etc, at the expense of any
+        # The rest of the rules are applied to 'name', the field containing the
+        # default locale translation only. That field has word delimiter rules
+        # to help find matches, lowercase filter, etc, at the expense of any
         # language-specific features.
-        rules = [
-            (query.MatchPhrase, {
-                'query': search_query, 'boost': 8.0, 'slop': 1}),
-            (query.Match, {
-                'query': search_query, 'boost': 6.0,
-                'analyzer': 'standard', 'operator': 'and'}),
-            (query.Prefix, {
-                'value': search_query, 'boost': 3.0}),
-        ]
+        should.extend([
+            query.MatchPhrase(**{
+                'name': {
+                    '_name': 'MatchPhrase(name)',
+                    'query': search_query, 'boost': 8.0, 'slop': 1,
+                },
+            }),
+            query.Match(**{
+                'name': {
+                    '_name': 'Match(name)',
+                    'analyzer': 'standard',
+                    'query': search_query, 'boost': 6.0, 'operator': 'and',
+                },
+            }),
+            query.Prefix(**{
+                'name': {
+                    '_name': 'Prefix(name)',
+                    'value': search_query, 'boost': 3.0
+                },
+            }),
+        ])
 
-        # Add a rule for fuzzy matches ("fire bug" => firebug) for short query
-        # strings only (long strings, depending on what characters they contain
-        # and how many words are present, can be too costly).
-        # Again, this is applied to the field without the language-specific
-        # analysis.
+        # Add two queries inside a single DisMax rule (avoiding overboosting
+        # when an add-on name matches both queries) to support partial & fuzzy
+        # matches (both allowing some words in the query to be absent).
+        # For short query strings only (long strings, depending on what
+        # characters they contain and how many words are present, can be too
+        # costly).
+        # Again applied to 'name' in the default locale, without the
+        # language-specific analysis.
         if len(search_query) < self.MAX_QUERY_LENGTH_FOR_FUZZY_SEARCH:
-            rules.append((query.Match, {
-                'query': search_query, 'boost': 4.0,
-                'prefix_length': 4, 'fuzziness': 'AUTO'}))
-
-        # Apply all the rules we built above to name and listed_authors.name.
-        for query_cls, definition in rules:
-            for field in ('name', 'listed_authors.name'):
-                # Add a _name for debugging (will appear in matched_queries in
-                # meta object for each result).
-                cls_name = query_cls.__name__
-                if definition.get('fuzziness') == 'AUTO':
-                    cls_name = 'Fuzzy%s' % cls_name
-                opts = {
-                    '_name': '%s(%s)' % (cls_name, field),
-                }
-                opts.update(definition)
-                should.append(query_cls(**{field: opts}))
+            should.append(query.DisMax(
+                # We only care if one of these matches, so we leave tie_breaker
+                # to the default value of 0.0.
+                _name='DisMax(FuzzyMatch(name), Match(name.trigrams))',
+                boost=4.0,
+                queries=[
+                    # For the fuzzy query, only slight mispellings should be
+                    # corrected, but we allow some of the words to be absent
+                    # as well:
+                    # 1 or 2 terms: should all be present
+                    # 3 terms: 2 should be present
+                    # 4 terms or more: 25% can be absent
+                    {
+                        'match': {
+                            'name': {
+                                'query': search_query,
+                                'prefix_length': 2,
+                                'fuzziness': 'AUTO',
+                                'minimum_should_match': '2<2 3<-25%'
+                            }
+                        }
+                    },
+                    # For the trigrams query, we require at least 66% of the
+                    # trigrams to be present.
+                    {
+                        'match': {
+                            'name.trigrams': {
+                                'query': search_query,
+                                'minimum_should_match': '66%'
+                            }
+                        }
+                    },
+                ]
+            ))
 
         return should
 
-    def secondary_should_rules(self, search_query, analyzer):
+    def secondary_should_rules(
+            self, search_query, analyzer, rescore_mode=False):
         """Return "secondary" should rules for the query.
 
         These are the ones using the weakest boosts, they are applied to fields
@@ -435,51 +468,97 @@ class SearchQueryFilter(BaseFilterBackend):
 
         Applied rules:
 
-        * Look for phrase matches inside the summary (boost=3.0)
-        * Look for phrase matches inside the description (boost=2.0).
+        * Look for matches inside the summary (boost=3.0)
+        * Look for matches inside the description (boost=2.0).
 
         If we're using a supported language, both rules are done through a
         multi_match that considers both the default locale translation
         (using snowball analyzer) and the translation in the current language
         (using language-specific analyzer). If we're not using a supported
         language then only the first part is applied.
+
+        If rescore_mode is True, the match applied are match_phrase queries
+        with a slop of 5 instead of a regular match. As those are more
+        expensive they are only done in the 'rescore' part of the query.
         """
+        if rescore_mode is False:
+            query_class = query.Match
+            query_kwargs = {
+                'operator': 'and',
+            }
+            query_class_name = 'Match'
+            multi_match_kwargs = {
+                'operator': 'and',
+            }
+        else:
+            query_class = query.MatchPhrase
+            query_kwargs = {
+                'slop': 10,
+            }
+            query_class_name = 'MatchPhrase'
+            multi_match_kwargs = {
+                'slop': 10,
+                'type': 'phrase',
+            }
+
         if analyzer:
             summary_query_name = (
-                'MultiMatch(MatchPhrase(summary),'
-                'MatchPhrase(summary_l10n_%s))' % analyzer)
+                'MultiMatch(%s(summary),%s(summary_l10n_%s))' % (
+                    query_class_name, query_class_name, analyzer))
             description_query_name = (
-                'MultiMatch(MatchPhrase(description),'
-                'MatchPhrase(description_l10n_%s))' % analyzer)
+                'MultiMatch(%s(description),%s(description_l10n_%s))' % (
+                    query_class_name, query_class_name, analyzer))
             should = [
+                # When *not* doing a rescore, we do regular non-phrase matches
+                # with 'operator': 'and' (see query_class/multi_match_kwargs
+                # above). This may seem wrong, the ES docs warn against this,
+                # but this is exactly what we want here: we want all terms
+                # to be present in either of the fields individually, not some
+                # in one and some in another.
                 query.MultiMatch(
                     _name=summary_query_name,
                     query=search_query,
-                    type='phrase',
                     fields=['summary', 'summary_l10n_%s' % analyzer],
                     boost=3.0,
+                    **multi_match_kwargs
                 ),
                 query.MultiMatch(
                     _name=description_query_name,
                     query=search_query,
-                    type='phrase',
                     fields=['description', 'description_l10n_%s' % analyzer],
                     boost=2.0,
+                    **multi_match_kwargs
                 ),
             ]
         else:
             should = [
-                query.MatchPhrase(summary={
-                    '_name': 'MatchPhrase(summary)',
-                    'query': search_query, 'boost': 3.0}),
-                query.MatchPhrase(description={
-                    '_name': 'MatchPhrase(description)',
-                    'query': search_query, 'boost': 2.0}),
+                query_class(
+                    summary=dict(
+                        _name='%s(summary)' % query_class_name,
+                        query=search_query,
+                        boost=3.0,
+                        **query_kwargs)),
+                query_class(
+                    summary=dict(
+                        _name='%s(description)' % query_class_name,
+                        query=search_query,
+                        boost=2.0,
+                        **query_kwargs)),
             ]
 
         return should
 
-    def apply_search_query(self, search_query, qs):
+    def rescore_rules(self, search_query, analyzer):
+        """
+        Rules for the rescore part of the query. Currently just more expensive
+        version of secondary_search_rules(), doing match_phrase with a slop
+        against summary & description, including translated variants if
+        possible.
+        """
+        return self.secondary_should_rules(
+            search_query, analyzer, rescore_mode=True)
+
+    def apply_search_query(self, search_query, qs, sort=None):
         lang = translation.get_language()
         analyzer = get_locale_analyzer(lang)
 
@@ -488,20 +567,43 @@ class SearchQueryFilter(BaseFilterBackend):
         primary_should = self.primary_should_rules(search_query, analyzer)
         secondary_should = self.secondary_should_rules(search_query, analyzer)
 
-        # We alter scoring depending on the "boost" field which is defined in
-        # the mapping (used to boost public addons higher than the rest).
+        # We alter scoring depending on add-on popularity and whether the
+        # add-on is reviewed & public & non-experimental.
         functions = [
-            query.SF('field_value_factor', field='boost'),
+            query.SF(
+                'field_value_factor',
+                field='average_daily_users',
+                modifier='log2p'),
+            query.SF({
+                'weight': 4.0,
+                'filter': (
+                    Q('term', is_experimental=False) &
+                    Q('terms', status=amo.REVIEWED_STATUSES) &
+                    Q('exists', field='current_version') &
+                    Q('term', is_disabled=False)
+                )
+            }),
         ]
 
-        # Assemble everything together and return the search "queryset".
-        return qs.query(
+        # Assemble everything together
+        qs = qs.query(
             'function_score',
             query=query.Bool(should=primary_should + secondary_should),
             functions=functions)
 
+        if sort is None or sort == 'relevance':
+            # If we are searching by relevancy, rescore the top 10
+            # (window_size below) results per shard with more expensive rules
+            # using match_phrase + slop.
+            rescore_query = self.rescore_rules(search_query, analyzer)
+            qs = qs.extra(rescore={'window_size': 10, 'query': {
+                'rescore_query': query.Bool(should=rescore_query).to_dict()}})
+
+        return qs
+
     def filter_queryset(self, request, qs, view):
         search_query = request.GET.get('q', '').lower()
+        sort_param = request.GET.get('sort')
 
         if not search_query:
             return qs
@@ -510,7 +612,7 @@ class SearchQueryFilter(BaseFilterBackend):
             raise serializers.ValidationError(
                 ugettext('Maximum query length exceeded.'))
 
-        return self.apply_search_query(search_query, qs)
+        return self.apply_search_query(search_query, qs, sort_param)
 
 
 class SearchParameterFilter(BaseFilterBackend):

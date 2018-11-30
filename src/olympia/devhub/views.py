@@ -18,7 +18,6 @@ from django.views.decorators.csrf import csrf_exempt
 import waffle
 
 from django_statsd.clients import statsd
-from PIL import Image
 
 import olympia.core.logger
 
@@ -51,7 +50,6 @@ from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
-from olympia.search.views import BaseAjaxSearch
 from olympia.users.models import UserProfile
 from olympia.versions import compare
 from olympia.versions.models import Version
@@ -744,26 +742,16 @@ def upload_detail(request, uuid, format='html'):
     return render(request, 'devhub/validation.html', context)
 
 
-class AddonDependencySearch(BaseAjaxSearch):
-    # No personas.
-    types = [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_DICT,
-             amo.ADDON_SEARCH, amo.ADDON_LPAPP]
-
-
-@dev_required
-@json_view
-def ajax_dependencies(request, addon_id, addon):
-    return AddonDependencySearch(request, excluded_ids=[addon_id]).items
-
-
 @dev_required
 def addons_section(request, addon_id, addon, section, editable=False):
     show_listed = addon.has_listed_versions()
     static_theme = addon.type == amo.ADDON_STATICTHEME
     models = {}
+    content_waffle = waffle.switch_is_active('content-optimization')
     if show_listed:
         models.update({
-            'describe': forms.DescribeForm,
+            'describe': (forms.DescribeForm if not content_waffle
+                         else forms.DescribeFormContentOptimization),
             'additional_details': addon_forms.AdditionalDetailsForm,
             'technical': addon_forms.AddonFormTechnical
         })
@@ -771,7 +759,8 @@ def addons_section(request, addon_id, addon, section, editable=False):
             models.update({'media': addon_forms.AddonFormMedia})
     else:
         models.update({
-            'describe': forms.DescribeFormUnlisted,
+            'describe': (forms.DescribeFormUnlisted if not content_waffle
+                         else forms.DescribeFormUnlistedContentOptimization),
             'additional_details': addon_forms.AdditionalDetailsFormUnlisted,
             'technical': addon_forms.AddonFormTechnicalUnlisted
         })
@@ -797,12 +786,6 @@ def addons_section(request, addon_id, addon, section, editable=False):
         previews = forms.PreviewFormSet(
             request.POST or None,
             prefix='files', queryset=addon.previews.all())
-
-    elif section == 'technical' and show_listed and not static_theme:
-        dependency_form = forms.DependencyFormSet(
-            request.POST or None,
-            queryset=addon.addons_dependencies.all(), addon=addon,
-            prefix='dependencies')
 
     if section == 'technical':
         try:
@@ -912,26 +895,29 @@ def ajax_upload_image(request, upload_type, addon_id=None):
 
         is_icon = upload_type == 'icon'
         is_persona = upload_type.startswith('persona_')
+        is_preview = upload_type == 'preview'
+        image_check = amo_utils.ImageCheck(upload_preview)
+        is_animated = image_check.is_animated()  # will also cache .is_image()
 
-        check = amo_utils.ImageCheck(upload_preview)
         if (upload_preview.content_type not in amo.IMG_TYPES or
-                not check.is_image()):
+                not image_check.is_image()):
             if is_icon:
                 errors.append(ugettext('Icons must be either PNG or JPG.'))
             else:
                 errors.append(ugettext('Images must be either PNG or JPG.'))
 
-        if check.is_animated():
+        if is_animated:
             if is_icon:
                 errors.append(ugettext('Icons cannot be animated.'))
             else:
                 errors.append(ugettext('Images cannot be animated.'))
 
-        max_size = None
         if is_icon:
             max_size = settings.MAX_ICON_UPLOAD_SIZE
-        if is_persona:
+        elif is_persona:
             max_size = settings.MAX_PERSONA_UPLOAD_SIZE
+        else:
+            max_size = None
 
         if max_size and upload_preview.size > max_size:
             if is_icon:
@@ -943,17 +929,45 @@ def ajax_upload_image(request, upload_type, addon_id=None):
                     ugettext('Images cannot be larger than %dKB.')
                     % (max_size / 1024))
 
-        if check.is_image() and is_persona:
+        if image_check.is_image() and is_persona:
             persona, img_type = upload_type.split('_')  # 'header' or 'footer'
             expected_size = amo.PERSONA_IMAGE_SIZES.get(img_type)[1]
-            with storage.open(loc, 'rb') as fp:
-                actual_size = Image.open(fp).size
+            actual_size = image_check.size
             if actual_size != expected_size:
                 # L10n: {0} is an image width (in pixels), {1} is a height.
                 errors.append(ugettext('Image must be exactly {0} pixels '
                                        'wide and {1} pixels tall.')
                               .format(expected_size[0], expected_size[1]))
-        if errors and upload_type == 'preview' and os.path.exists(loc):
+
+        content_waffle = waffle.switch_is_active('content-optimization')
+        if image_check.is_image() and content_waffle and is_preview:
+            min_size = amo.ADDON_PREVIEW_SIZES.get('min')
+            # * 100 to get a nice integer to compare against rather than 1.3333
+            required_ratio = min_size[0] * 100 / min_size[1]
+            actual_size = image_check.size
+            actual_ratio = actual_size[0] * 100 / actual_size[1]
+            if actual_size[0] < min_size[0] or actual_size[1] < min_size[1]:
+                # L10n: {0} is an image width (in pixels), {1} is a height.
+                errors.append(
+                    ugettext('Image must be at least {0} pixels wide and {1} '
+                             'pixels tall.').format(min_size[0], min_size[1]))
+            if actual_ratio != required_ratio:
+                errors.append(
+                    ugettext('Image dimensions must be in the ratio 4:3.'))
+
+        if image_check.is_image() and content_waffle and is_icon:
+            standard_size = amo.ADDON_ICON_SIZES[-1]
+            icon_size = image_check.size
+            if icon_size[0] < standard_size or icon_size[1] < standard_size:
+                # L10n: {0} is an image width/height (in pixels).
+                errors.append(
+                    ugettext(u'Icon must be at least {0} pixels wide and '
+                             u'tall.').format(standard_size))
+            if icon_size[0] != icon_size[1]:
+                errors.append(
+                    ugettext(u'Icon must be square (same width and height).'))
+
+        if errors and is_preview and os.path.exists(loc):
             # Delete the temporary preview file in case of error.
             os.unlink(loc)
     else:
@@ -1478,7 +1492,10 @@ def _submit_details(request, addon, version):
     show_all_fields = not version or not addon.has_complete_metadata()
 
     if show_all_fields:
-        describe_form = forms.DescribeForm(
+        content_waffle = waffle.switch_is_active('content-optimization')
+        describe_form_cls = (forms.DescribeForm if not content_waffle
+                             else forms.DescribeFormContentOptimization)
+        describe_form = describe_form_cls(
             post_data, instance=addon, request=request, version=version)
         cat_form_class = (addon_forms.CategoryFormSet if not static_theme
                           else forms.SingleCategoryForm)

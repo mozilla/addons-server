@@ -2,12 +2,14 @@ import os
 import subprocess
 
 import pytest
+import mock
 
 from django.conf import settings
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, version_factory, user_factory
 from olympia.lib.git import AddonGitRepository, TemporaryWorktree
+from olympia.files.utils import id_to_path
 
 
 def test_temporary_worktree():
@@ -37,7 +39,7 @@ def test_git_repo_init():
     repo = AddonGitRepository(1)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(1), 'package')
+        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
 
     assert not os.path.exists(repo.git_repository_path)
 
@@ -49,7 +51,7 @@ def test_git_repo_init():
 
 def test_git_repo_init_opens_existing_repo():
     expected_path = os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(1), 'package')
+        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
 
     assert not os.path.exists(expected_path)
     repo = AddonGitRepository(1)
@@ -72,7 +74,7 @@ def test_extract_and_commit_from_file_obj():
         amo.RELEASE_CHANNEL_LISTED)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -123,7 +125,7 @@ def test_extract_and_commit_from_file_obj_multiple_versions():
         amo.RELEASE_CHANNEL_LISTED)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, str(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -210,3 +212,39 @@ def test_extract_and_commit_from_file_obj_use_addons_robot_default():
         'Commit: Mozilla Add-ons Robot '
         '<addons-dev-automation+github@mozilla.com>'
         in output)
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('filename', [
+    'webextension_no_id.xpi',
+    'webextension_no_id.zip',
+    'search.xml',
+])
+def test_extract_and_commit_from_file_obj_valid_extensions(filename):
+    addon = addon_factory(file_kw={'filename': filename})
+
+    with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
+        repo = AddonGitRepository.extract_and_commit_from_file_obj(
+            addon.current_version.all_files[0],
+            amo.RELEASE_CHANNEL_LISTED)
+
+        # Make sure we are always calling fsync after extraction
+        assert fsync_mock.called
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    env = {'GIT_DIR': repo.git_repository.path}
+
+    output = subprocess.check_output('git branch', shell=True, env=env)
+    assert 'listed' in output
+    assert 'unlisted' not in output
+
+    output = subprocess.check_output('git log listed', shell=True, env=env)
+    expected = 'Create new version {} ({}) for {} from {}'.format(
+        repr(addon.current_version), addon.current_version.id, repr(addon),
+        repr(addon.current_version.all_files[0]))
+    assert expected in output

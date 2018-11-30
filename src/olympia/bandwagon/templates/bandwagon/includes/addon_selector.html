@@ -31,7 +31,7 @@
       <tr>
         <td class="item">
           <input type="hidden" value="{{ addon.id }}" name="addon">
-          <img src="{{ addon.icon_url }}" alt="">
+          <img src="{{ addon.get_icon_url(32) }}" alt="">
           <h3>{{ addon.name }}</h3>
           <p class="comments{% if comments[addon.id] %} hascomment{% endif %}">
             <textarea name="addon_comment">{{ comments[addon.id] }}</textarea>

@@ -21,18 +21,18 @@ from olympia.activity.models import ActivityLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons.forms import AddonFormBase, AkismetSpamCheckFormMixin
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
-    Preview)
+    Addon, AddonCategory, AddonReviewerFlags, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.constants.categories import CATEGORIES
+from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.files.models import FileUpload
 from olympia.files.utils import (
     archive_member_validator, parse_addon, SafeZip)
-from olympia.translations.fields import TransField, TransTextarea
+from olympia.translations.fields import (
+    LocaleErrorMessage, TransField, TransTextarea)
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
 from olympia.translations.widgets import (
@@ -436,10 +436,7 @@ class BaseCompatFormSet(BaseModelFormSet):
         # the add-on does not already have.
         version = self.form_kwargs.get('version')
         static_theme = version and version.addon.type == amo.ADDON_STATICTHEME
-        if static_theme:
-            available_apps = amo.APP_USAGE_STATICTHEME
-        else:
-            available_apps = amo.APP_USAGE
+        available_apps = amo.APP_USAGE
         self.can_delete = not static_theme  # No tinkering with apps please.
 
         # Only display the apps we care about, if somehow obsolete apps were
@@ -453,12 +450,16 @@ class BaseCompatFormSet(BaseModelFormSet):
                           'max': appver.max.pk} for appver in self.queryset] +
                         [{'application': app.id} for app in available_apps
                          if app.id not in initial_apps])
-        self.extra = max(len(available_apps) - len(self.forms), 0)
+        self.extra = (
+            max(len(available_apps) - len(self.forms), 0) if not static_theme
+            else 0)
 
         # After these changes, the forms need to be rebuilt. `forms`
         # is a cached property, so we delete the existing cache and
         # ask for a new one to be built.
-        del self.forms
+        # del self.forms
+        if hasattr(self, 'forms'):
+            del self.forms
         self.forms
 
     def clean(self):
@@ -656,6 +657,35 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
         return obj
 
 
+class CombinedNameSummaryCleanMixin(object):
+    def clean(self):
+        message = _('Ensure name and summary combined are at most 70 '
+                    'characters (they have {0}).')
+        super(CombinedNameSummaryCleanMixin, self).clean()
+        name_summary_locales = set(
+            self.cleaned_data.get('name', {}).keys() +
+            self.cleaned_data.get('summary', {}).keys())
+        default_locale = self.instance.default_locale
+        name_values = self.cleaned_data.get('name') or {}
+        name_default = name_values.get(default_locale) or ''
+        summary_values = self.cleaned_data.get('summary') or {}
+        summary_default = summary_values.get(default_locale) or ''
+        for locale in name_summary_locales:
+            val_len = len(name_values.get(locale, name_default) +
+                          summary_values.get(locale, summary_default))
+            if val_len > 70:
+                self.add_error(
+                    'name', LocaleErrorMessage(
+                        message=message.format(val_len), locale=locale))
+        return self.cleaned_data
+
+
+class DescribeFormContentOptimization(CombinedNameSummaryCleanMixin,
+                                      DescribeForm):
+    name = TransField(max_length=68, min_length=2)
+    summary = TransField(max_length=68, min_length=2)
+
+
 class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
     name = TransField(max_length=50)
     slug = forms.CharField(max_length=30)
@@ -669,6 +699,12 @@ class DescribeFormUnlisted(AkismetSpamCheckFormMixin, AddonFormBase):
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'description')
+
+
+class DescribeFormUnlistedContentOptimization(CombinedNameSummaryCleanMixin,
+                                              DescribeFormUnlisted):
+    name = TransField(max_length=68, min_length=2)
+    summary = TransField(max_length=68, min_length=2)
 
 
 class PreviewForm(forms.ModelForm):
@@ -710,41 +746,6 @@ class BasePreviewFormSet(BaseModelFormSet):
 PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       form=PreviewForm, can_delete=True,
                                       extra=1)
-
-
-def DependencyFormSet(*args, **kw):
-    addon_parent = kw.pop('addon')
-
-    # Add-ons: Required add-ons cannot include apps nor personas.
-    # Apps:    Required apps cannot include any add-ons.
-    qs = (Addon.objects.public().exclude(id=addon_parent.id).
-          exclude(type__in=[amo.ADDON_PERSONA]))
-
-    class _Form(forms.ModelForm):
-        addon = forms.CharField(required=False, widget=forms.HiddenInput)
-        dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
-
-        class Meta:
-            model = AddonDependency
-            fields = ('addon', 'dependent_addon')
-
-        def clean_addon(self):
-            return addon_parent
-
-    class _FormSet(BaseModelFormSet):
-
-        def clean(self):
-            if any(self.errors):
-                return
-            form_count = len([f for f in self.forms
-                              if not f.cleaned_data.get('DELETE', False)])
-            if form_count > 3:
-                raise forms.ValidationError(
-                    ugettext('There cannot be more than 3 required add-ons.'))
-
-    FormSet = modelformset_factory(AddonDependency, formset=_FormSet,
-                                   form=_Form, extra=0, can_delete=True)
-    return FormSet(*args, **kw)
 
 
 class DistributionChoiceForm(forms.Form):
@@ -791,28 +792,30 @@ class SingleCategoryForm(forms.Form):
         self.addon = kw.pop('addon')
         self.request = kw.pop('request', None)
         if len(self.addon.all_categories) > 0:
-            kw['initial'] = {'category': self.addon.all_categories[0].id}
+            kw['initial'] = {'category': self.addon.all_categories[0].slug}
         super(SingleCategoryForm, self).__init__(*args, **kw)
 
-        # Hack because we know this is only used for Static Themes that only
-        # support Firefox.  Hoping to unify per-app categories in the meantime.
-        app = amo.FIREFOX
-        sorted_cats = sorted(CATEGORIES[app.id][self.addon.type].items(),
+        sorted_cats = sorted(CATEGORIES_NO_APP[self.addon.type].items(),
                              key=lambda slug_cat: slug_cat[0])
         self.fields['category'].choices = [
-            (c.id, c.name) for _, c in sorted_cats]
+            (slug, c.name) for slug, c in sorted_cats]
 
-        # If this add-on is featured for this application, category changes are
+        # If this add-on is featured for any application, category changes are
         # forbidden.
         if not acl.action_allowed(self.request, amo.permissions.ADDONS_EDIT):
-            self.disabled = self.addon.is_featured(app)
+            self.disabled = any(
+                (self.addon.is_featured(app) for app in amo.APP_USAGE))
 
     def save(self):
-        category = self.cleaned_data['category']
+        category_slug = self.cleaned_data['category']
         # Clear any old categor[y|ies]
         AddonCategory.objects.filter(addon=self.addon).delete()
-        # Add new category
-        AddonCategory(addon=self.addon, category_id=category).save()
+        # Add new categor[y|ies]
+        for app in CATEGORIES.keys():
+            category = CATEGORIES[app].get(
+                self.addon.type, {}).get(category_slug, None)
+            if category:
+                AddonCategory(addon=self.addon, category_id=category.id).save()
         # Remove old, outdated categories cache on the model.
         del self.addon.all_categories
 

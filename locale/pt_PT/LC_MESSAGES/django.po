@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-08 22:43+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-27 22:41+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -20,6 +20,9 @@ msgstr "Não são permitidas ligações."
 
 msgid "This display name cannot be used."
 msgstr "Este nome de apresentação não pode ser utilizado."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "O campo de página inicial apenas pode ser utilizado para ligações para sites externos."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Nomes de utilizador não podem conter apenas dígitos."
@@ -72,6 +75,10 @@ msgstr "Nota da revisão"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Apenas as versões mais recentes de extras podem ter notas adicionadas."
+
+# 85%
+msgid "Ratings"
+msgstr "Avaliações"
 
 msgid "Status"
 msgstr "Estado"
@@ -993,9 +1000,6 @@ msgstr "Descreva a sua coleção (não são permitidas ligações)"
 msgid "Privacy:"
 msgstr "Privacidade:"
 
-msgid "Icon"
-msgstr "Ícone"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Por favor, não preencha este campo, pois é utilizado para apanhar bots"
 
@@ -1004,12 +1008,6 @@ msgstr "Este nome não pode ser utilizado."
 
 msgid "This url is already in use by another collection"
 msgstr "Este url já está a ser utilizado por outra coleção"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Os ícones devem ser PNG ou JPG."
-
-msgid "Icons cannot be animated."
-msgstr "Os ícones não podem ser animados."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Este URL personalizado já está a ser utilizado por uma outra coleção sua."
@@ -1048,9 +1046,6 @@ msgstr "Coleção atualizada!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Veja a sua coleção</a> com as alterações."
-
-msgid "Icon Deleted"
-msgstr "Ícone eliminado"
 
 msgid "Create a New Collection"
 msgstr "Criar uma nova coleção"
@@ -1212,15 +1207,6 @@ msgstr "Criar uma coleção"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "As coleções tornam mais fácil seguir os extras favoritos e partilhar o seu navegador perfeitamente personalizado com outros."
-
-msgid "Collection Icon"
-msgstr "Ícone da coleção"
-
-msgid "Reset"
-msgstr "Repor"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "São suportados PNG e JPG.  A imagem será redimensionada para 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Existem erros neste formulário.  Por favor, corrija-os em baixo."
@@ -1930,41 +1916,134 @@ msgstr "Incompatível"
 msgid "Alerts & Updates"
 msgstr "Alertas e atualizações"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "Aparência"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "Marcadores"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "Gestão de transferências"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "Fontes, notícias e blogging"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "Jogos e entretenimento"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "Suporte de idiomas"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "Fotos, música e vídeos"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "Privacidade e segurança"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "Compras"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "Social e comunicação"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "Separadores"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "Desenvolvimento da web"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "Funcionalidades do dispositivo e localização"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "Experimental"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "Desempenho"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "Fotos e multimédia"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "Segurança e privacidade"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "Rede social"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "Desportos e jogos"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "Interface do utilizador"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "Animais"
@@ -1996,35 +2075,80 @@ msgstr "Desportos"
 msgid "Abstract"
 msgstr "Abstrato"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "Causas"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "Moda"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "Filme e TV"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "Férias"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "Música"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "Cenário"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "Sazonal"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "Sólido"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "Websites"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "Geral"
@@ -2058,33 +2182,6 @@ msgstr "Viagem"
 
 msgid "Video"
 msgstr "Vídeo"
-
-msgid "Device Features & Location"
-msgstr "Funcionalidades do dispositivo e localização"
-
-msgid "Experimental"
-msgstr "Experimental"
-
-msgid "Feeds, News, & Blogging"
-msgstr "Fontes, notícias e blogging"
-
-msgid "Performance"
-msgstr "Desempenho"
-
-msgid "Photos & Media"
-msgstr "Fotos e multimédia"
-
-msgid "Security & Privacy"
-msgstr "Segurança e privacidade"
-
-msgid "Social Networking"
-msgstr "Rede social"
-
-msgid "Sports & Games"
-msgstr "Desportos e jogos"
-
-msgid "User Interface"
-msgstr "Interface do utilizador"
 
 msgid "All Rights Reserved"
 msgstr "Todos os direitos reservados"
@@ -2342,6 +2439,9 @@ msgstr "Por favor especifique a Política de privacidade do seu extra:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tipo de ficheiro não suportado, por favor envie um arquivo {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "Arquivo inválido ou quebrado."
+
 msgid "View current"
 msgstr "Ver atual"
 
@@ -2374,6 +2474,9 @@ msgstr "Não enviou um ficheiro de código."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Ficheiro fonte enviado mas indicou que não era necessária nenhuma fonte."
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Não pode haver mais do que 3 extras pedidos."
@@ -2413,6 +2516,9 @@ msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter es
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Não pode atualizar uma extensão WebExtensions com um extra de legado. Os seus utilizadores não poderão utilizar a sua nova versão porque o Firefox não suporta este tipo de atualização."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] O texto no campo \"{field}\" foi marcado como spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "A sua chave de API de programador foi encontrada no ficheiro submetido. Para proteger a sua conta, a chave irá ser revogada."
@@ -2490,6 +2596,12 @@ msgstr "Foi removido um autor do seu extra"
 msgid "Validate Add-on"
 msgstr "Validar extra"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Os ícones devem ser PNG ou JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Os ícones não podem ser animados."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "As imagens não podem ser maiores que %dKB."
@@ -2497,6 +2609,14 @@ msgstr "As imagens não podem ser maiores que %dKB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A imagem tem de ter exactamente {0} pixéis de largura e {1} pixéis de altura."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "A imagem tem de ter exactamente {0} pixéis de largura e {1} pixéis de altura."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "As imagens devem de ser PNG ou JPG."
 
 msgid "There was an error uploading your preview."
 msgstr "Houve um erro ao carregar a sua pré-visualização."
@@ -2741,8 +2861,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> temas"
 
-msgid "Edit Information"
-msgstr "Editar informação"
+msgid "Edit Product Page"
+msgstr "Editar página de produto"
 
 msgid "None"
 msgstr "Nenhum"
@@ -2823,6 +2943,18 @@ msgstr "Descreva o extra"
 msgid "Describe {0}"
 msgstr "Descreva {0}"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "Sumário"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Sumário"
+
 msgid "Add-on URL"
 msgstr "URL do extra"
 
@@ -2832,8 +2964,9 @@ msgstr "Escolha um pequeno e único URL para o seu extra."
 msgid "View Listing"
 msgstr "Ver listagem"
 
-msgid "Summary"
-msgstr "Sumário"
+#, fuzzy
+msgid "View Product Page"
+msgstr "Editar página de produto"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Este sumário deve explicar claramente o que o seu extra faz. Será mostrado nas listagens e pesquisar, e irá ser utilizado por revisores para testar o seu extra."
@@ -3043,12 +3176,14 @@ msgstr "Favor fornecer uma legenda para esta imagem:"
 msgid "Add a Screenshot..."
 msgstr "Adicionar um Screenshot ..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
-"PNG e JPG são suportados. O tamanho máximo e recomendado para capturas de ecrã é de 1280x800 pixeis. 640x400 pixeis é uma boa alternativa se apenas tem imagens mais pequenas. Ter capturas de ecrã na"
-" sua página de listagem aumenta grandemente as chances de ser instalada e destacada na página inicial."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
 
 msgid "Continue"
 msgstr "Continuar"
@@ -3145,8 +3280,8 @@ msgstr "Eliminar este extra."
 msgid "Delete"
 msgstr "Apagar"
 
-msgid "Edit information about this add-on."
-msgstr "Editar informação acerca deste extra."
+msgid "Edit details on this add-on's product page."
+msgstr "Editar os detalhes na página de produto deste extra."
 
 msgid "Upload a new version of this add-on."
 msgstr "Carregar uma nova versão deste extra."
@@ -3163,17 +3298,11 @@ msgstr "Estatísticas"
 msgid "Manage Status & Versions"
 msgstr "Gerir o estado e a versão"
 
-msgid "View Add-on Listing"
-msgstr "Ver lista de extras"
-
 msgid "View Recent Changes"
 msgstr "Ver alterados recentemente"
 
-msgid "Edit details about this theme's listing."
-msgstr "Editar os detalhes acerca da listagem pública deste tema."
-
-msgid "Edit Listing"
-msgstr "Editar listagem"
+msgid "Edit details on this theme's product page."
+msgstr "Editar os detalhes na página de produto deste tema."
 
 msgid "View the popularity of this theme over time."
 msgstr "Ver a popularidade deste tema ao longo do tempo."
@@ -3215,8 +3344,12 @@ msgstr[1] "<strong>{0}</strong> utilizadores ativos"
 msgid "Submit a New Version"
 msgstr "Submeter uma nova versão"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Nome na listagem deste site. Pode ser diferente do nome dentro do extra, que é mostrado dentro do Firefox"
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "Resumo:"
+
+msgid "required"
+msgstr "necessário"
 
 msgid "Add-on URL:"
 msgstr "URL do extra:"
@@ -3224,11 +3357,11 @@ msgstr "URL do extra:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Por favor, utilize apenas letras, números, underscores e hífenes  na sua URL. "
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Nome na listagem deste site. Pode ser diferente do nome dentro do extra, que é mostrado dentro do Firefox"
+
 msgid "Summary:"
 msgstr "Resumo:"
-
-msgid "required"
-msgstr "necessário"
 
 msgid "Description:"
 msgstr "Descrição:"
@@ -3764,9 +3897,9 @@ msgstr "Iniciar sessão para editar e atualizar o seu extra"
 msgid "Resources for a successful launch"
 msgstr "Recursos para um lançamento com sucesso"
 
-#, python-format
+#, fuzzy, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 "Construiu a sua extensão e está pronto(a) para publicá-la. O que vem a seguir? Verifique as nossas dicas para criar uma página de listagem atraente, obter a sua extensão em destaque em "
@@ -3778,8 +3911,8 @@ msgstr "Ver recursos para publicadores"
 msgid "Welcome Back"
 msgstr "Bem-vindo(a) de volta"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Ajude os utilizadores a descobrir a sua extensão ao criar uma listagem atraente."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Ajude os utilizadores a descobrir a sua extensão ao criar uma página de produto atraente."
 
 msgid "Learn How"
 msgstr "Saber mais"
@@ -4120,11 +4253,13 @@ msgstr "Responder"
 msgid "Listing visibility"
 msgstr "Visibilidade nas listas"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído nos resultados de pesquisa e nas páginas listadas."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Invisível:{label_close} Não será incluído nos resultados de pesquisa e a respetiva página listada irá indicar-lhe para desativá-lo. As submissões na nova versão de listagem não serão "
 "aceites neste estado."
@@ -5589,6 +5724,9 @@ msgstr "Não foi possível analisar o ficheiro carregado. Existe um elemento <%s
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível analisar o ficheiro carregado."
 
+msgid "Unsupported archive type."
+msgstr "Tipo de arquivo não suportado."
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nome de ficheiro inválido no arquivo. Por favor certifique-se que todos os nomes de ficheiros são codificados em utf-8 ou latin1."
@@ -6162,6 +6300,14 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Trazido a si por:"
 
+#, fuzzy
+msgid "User"
+msgstr "Nome de utilizador"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "Endereço de email"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "Análises para %s"
@@ -6718,9 +6864,6 @@ msgstr "Imagens do tema"
 msgid "Rendered Preview"
 msgstr "Pré-visualização renderizada"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Ficheiro de fundo {0} de {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Mais acerca deste extra"
 
@@ -7127,6 +7270,9 @@ msgstr "Guia dos revisores"
 msgid "Theme Review for {0}"
 msgstr "Revisão do tema para {0}"
 
+msgid "Edit Listing"
+msgstr "Editar listagem"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Provavelmente uma submissão duplicada)"
 
@@ -7293,8 +7439,8 @@ msgstr "A mostrar {0} - {1} de {2} resultados para <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "A mostrar {0} - {1} de {2} resultados"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "Não foi possível encontrar um extra com o id \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "Não foi possível encontrar o extra com o guid \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Não é proprietário deste extra."
@@ -7584,7 +7730,7 @@ msgstr ""
 "utilizadores diários ativos. Os utilizadores diários podem ser decompostos por versão do extra, sistema operativo, estado do extra, aplicação e idioma. </p>"
 
 msgid "User Signups by Date"
-msgstr "Registos de utilizador por data"
+msgstr "Registos de utilizadores por data"
 
 msgid "Application versions by Date"
 msgstr "Versões da aplicação por data"
@@ -7756,10 +7902,6 @@ msgstr "Fotografia do perfil"
 
 msgid "Addons"
 msgstr "Extras"
-
-# 85%
-msgid "Ratings"
-msgstr "Avaliações"
 
 msgid "Activity Logs"
 msgstr "Registos de atividade"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -23,6 +23,9 @@ msgstr "링크는 넣을 수 없습니다."
 
 msgid "This display name cannot be used."
 msgstr "이 표시 이름은 사용할 수 없습니다."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr ""
 
 msgid "Usernames cannot contain only digits."
 msgstr "사용자 이름은 숫자로만 만들 수 없습니다."
@@ -75,6 +78,9 @@ msgstr "검토 노트"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "오직 최신 버젼의 부가 기능만 노트를 추가할 수 있습니다."
+
+msgid "Ratings"
+msgstr "별점"
 
 msgid "Status"
 msgstr "상태"
@@ -970,9 +976,6 @@ msgstr "모음집에 대한 설명을 입력해주세요. (링크 첨부 금지)
 msgid "Privacy:"
 msgstr "프라이버시:"
 
-msgid "Icon"
-msgstr "아이콘"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "이 필드를 채우지 마십시오 - 이 필드는 봇을 잡기 위해 사용됩니다."
 
@@ -981,12 +984,6 @@ msgstr "이 이름은 사용할 수 없습니다."
 
 msgid "This url is already in use by another collection"
 msgstr "이 url은 이미 다른 모음집에서 사용중입니다"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
-
-msgid "Icons cannot be animated."
-msgstr "움직이는 아이콘은 사용할 수 없습니다."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "이 URL은 이미 다른 모음집에서 사용중입니다."
@@ -1025,9 +1022,6 @@ msgstr "모음집이 업데이트 되었습니다!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "변경 내역을 보려면 <a href=\"%(url)s\">모음집을 확인하세요</a>."
-
-msgid "Icon Deleted"
-msgstr "아이콘이 삭제되었습니다"
 
 msgid "Create a New Collection"
 msgstr "새 모음집 제작하기"
@@ -1187,15 +1181,6 @@ msgstr "모음집 제작하기"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "모음집은 좋아하는 부가 기능을 쉽게 찾을 수 있게 해주며 남들에게 완벽하게 개인화한 브라우저 환경을 공유할 수 있게 해줍니다."
-
-msgid "Collection Icon"
-msgstr "모음집 아이콘"
-
-msgid "Reset"
-msgstr "초기화"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG와 JPG 형식을 지원합니다.  이미지는 32x32 크기로 재조정될 것입니다."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "양식에 오류가 있습니다.  아래 사항을 정정해 주세요."
@@ -1897,41 +1882,134 @@ msgstr "호환되지 않음"
 msgid "Alerts & Updates"
 msgstr "웹 데이터 위젯"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "외양"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "북마크"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "다운로드 및 파일 관리"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS 뉴스 및 블로그"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "게임 & 엔터테인먼트"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "언어 지원 및 번역"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "사진 및 동영상"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "개인 정보 보안"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "쇼핑"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "소셜 서비스"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "탭"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "웹 개발 도구"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "위치 기반"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "테스트용"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "성능"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+
+msgid "Photos & Media"
+msgstr "사진 및 미디어"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr ""
+
+msgid "Security & Privacy"
+msgstr "보안 및 개인 정보"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+
+msgid "Social Networking"
+msgstr "소셜네트웍"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr ""
+
+msgid "Sports & Games"
+msgstr "스포츠 및 게임"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr ""
+
+msgid "User Interface"
+msgstr "시용자 인터페이스"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "동물"
@@ -1963,35 +2041,80 @@ msgstr "스포츠"
 msgid "Abstract"
 msgstr "추상"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "무늬"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "패션"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "영화 및 드라마"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "기념일"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "음악"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "풍경"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "계절"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr ""
+
 msgid "Solid"
 msgstr "원색"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "웹사이트"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "일반"
@@ -2025,33 +2148,6 @@ msgstr "여행"
 
 msgid "Video"
 msgstr "동영상"
-
-msgid "Device Features & Location"
-msgstr "위치 기반"
-
-msgid "Experimental"
-msgstr "테스트용"
-
-msgid "Feeds, News, & Blogging"
-msgstr "피드, 뉴스 및 블로그"
-
-msgid "Performance"
-msgstr "성능"
-
-msgid "Photos & Media"
-msgstr "사진 및 미디어"
-
-msgid "Security & Privacy"
-msgstr "보안 및 개인 정보"
-
-msgid "Social Networking"
-msgstr "소셜네트웍"
-
-msgid "Sports & Games"
-msgstr "스포츠 및 게임"
-
-msgid "User Interface"
-msgstr "시용자 인터페이스"
 
 msgid "All Rights Reserved"
 msgstr "All Rights Reserved"
@@ -2311,6 +2407,10 @@ msgstr "부가 기능의 개인 정보 보호 정책을 기입해 주세요:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "지원하지 않는 파일 형식입니다. {extensions} 압축 파일을 업로드 해 주십시오."
 
+#, fuzzy
+msgid "Invalid or broken archive."
+msgstr "잘못된 압축 파일입니다."
+
 msgid "View current"
 msgstr "현재 보기"
 
@@ -2343,6 +2443,9 @@ msgid "You have not uploaded a source file."
 msgstr "소스 파일을 업로드 하지 않았습니다."
 
 msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
@@ -2380,6 +2483,9 @@ msgstr "우리는 업그레이드를 허용하고 장려하지만, 이 절차를
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "레거시 부가 기능과 함께 WebExtensions를 업데이트할 수는 없습니다. 파이어폭스가 이런 종류의 업데이트를 지원하지 않기 때문에 사용자들은 당신의 새로운 버전을 사용할 수 없습니다."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2457,6 +2563,12 @@ msgstr ""
 msgid "Validate Add-on"
 msgstr "부가 기능 검사"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "아이콘은 반드시 PNG나 JPG 형식이어야 합니다."
+
+msgid "Icons cannot be animated."
+msgstr "움직이는 아이콘은 사용할 수 없습니다."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "이미지는 %dKB보다 작아야 합니다."
@@ -2464,6 +2576,14 @@ msgstr "이미지는 %dKB보다 작아야 합니다."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
+
+#, fuzzy
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
+
+#, fuzzy
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
 
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
@@ -2709,8 +2829,8 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> 테마"
 
-msgid "Edit Information"
-msgstr "정보 수정"
+msgid "Edit Product Page"
+msgstr ""
 
 msgid "None"
 msgstr "없음"
@@ -2792,6 +2912,18 @@ msgstr "부가 기능 설명"
 msgid "Describe {0}"
 msgstr "부가 기능 설명"
 
+#, fuzzy
+msgid "Name and Summary"
+msgstr "요약 정보"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "요약 정보"
+
 msgid "Add-on URL"
 msgstr "부가 기능 URL"
 
@@ -2801,8 +2933,9 @@ msgstr "부가 기능이 갖게될 짧고 고유한 URL 주소로 선택해 주�
 msgid "View Listing"
 msgstr "목록 보기"
 
-msgid "Summary"
-msgstr "요약 정보"
+#, fuzzy
+msgid "View Product Page"
+msgstr "프로필 보기"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2998,9 +3131,13 @@ msgstr "스크린샷에 설명을 입력해 주세요:"
 msgid "Add a Screenshot..."
 msgstr "스크린샷 추가...."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr ""
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
 
 msgid "Continue"
@@ -3103,8 +3240,9 @@ msgstr "부가 기능을 삭제합니다."
 msgid "Delete"
 msgstr "삭제"
 
-msgid "Edit information about this add-on."
-msgstr "이 부가 기능에 대한 정보를 수정합니다."
+#, fuzzy
+msgid "Edit details on this add-on's product page."
+msgstr "이 테마의 목록에 대한 상세 편집"
 
 msgid "Upload a new version of this add-on."
 msgstr "이 부가 기능의 새 버전을 업로드 합니다."
@@ -3121,17 +3259,12 @@ msgstr "통계"
 msgid "Manage Status & Versions"
 msgstr "상태 및 버전 관리"
 
-msgid "View Add-on Listing"
-msgstr "부가 기능 나열 상태 보기"
-
 msgid "View Recent Changes"
 msgstr "최근 변경 사항 보기"
 
-msgid "Edit details about this theme's listing."
+#, fuzzy
+msgid "Edit details on this theme's product page."
 msgstr "이 테마의 목록에 대한 상세 편집"
-
-msgid "Edit Listing"
-msgstr "목록 표시 내역 편집하기"
 
 msgid "View the popularity of this theme over time."
 msgstr "이 테마의 전체 시간에 대비 인기도를 봅니다."
@@ -3172,8 +3305,12 @@ msgstr[0] "현재 사용자 <strong>{0}</strong>명"
 msgid "Submit a New Version"
 msgstr "새 버전 올리기"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr ""
+#, fuzzy
+msgid "Name and Summary:"
+msgstr "요약:"
+
+msgid "required"
+msgstr "필수 입력"
 
 msgid "Add-on URL:"
 msgstr "부가 기능 URL:"
@@ -3181,11 +3318,11 @@ msgstr "부가 기능 URL:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "URL엔 문자, 숫자, 밑줄과 대시문자만 사용하세요."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr ""
+
 msgid "Summary:"
 msgstr "요약:"
-
-msgid "required"
-msgstr "필수 입력"
 
 #, fuzzy
 msgid "Description:"
@@ -3727,7 +3864,7 @@ msgstr ""
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
 "mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
@@ -3738,7 +3875,7 @@ msgstr "사용자 통계 보기"
 msgid "Welcome Back"
 msgstr "환영합니다"
 
-msgid "Help users discover your extension by creating an appealing listing."
+msgid "Help users discover your extension by creating an appealing product page."
 msgstr ""
 
 msgid "Learn How"
@@ -4089,11 +4226,11 @@ msgstr "댓글"
 msgid "Listing visibility"
 msgstr "부가 기능 변경 내역"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr ""
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 
 #, fuzzy
@@ -5556,6 +5693,9 @@ msgstr "업로드한 파일을 인식할 수 없습니다."
 msgid "Could not parse uploaded file."
 msgstr "업로드한 파일을 인식할 수 없습니다."
 
+msgid "Unsupported archive type."
+msgstr ""
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr ""
@@ -6126,6 +6266,14 @@ msgstr ""
 
 msgid "Brought to you by:"
 msgstr ""
+
+#, fuzzy
+msgid "User"
+msgstr "사용자 이름"
+
+#, fuzzy
+msgid "IP Address"
+msgstr "이메일 주소"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6703,9 +6851,6 @@ msgstr "테마 이름"
 msgid "Rendered Preview"
 msgstr "삭제된 심사"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr ""
-
 msgid "More about this add-on"
 msgstr "상세 정보"
 
@@ -7120,6 +7265,9 @@ msgstr "검토자 지침사항"
 msgid "Theme Review for {0}"
 msgstr "{0}의 테마 검토"
 
+msgid "Edit Listing"
+msgstr "목록 표시 내역 편집하기"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(제출 양식 복제 가능)"
 
@@ -7283,7 +7431,7 @@ msgstr "<strong>{3}</strong>(으)로 {2}개 검색 / {0} - {1} 표시중"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "{2}개 검색 / {0} - {1} 표시중"
 
-msgid "Could not find add-on with id \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
 msgid "You do not own this addon."
@@ -7754,9 +7902,6 @@ msgstr "프로필 사진"
 
 msgid "Addons"
 msgstr ""
-
-msgid "Ratings"
-msgstr "별점"
 
 msgid "Activity Logs"
 msgstr "활동 로그"

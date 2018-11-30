@@ -43,7 +43,7 @@ def addon_to_dict(addon, disco=False, src='api'):
         'summary': (
             strip_tags(unicode(addon.summary)) if addon.summary else None),
         'description': strip_tags(unicode(addon.description)),
-        'icon': addon.icon_url,
+        'icon': addon.get_icon_url(32),
         'learnmore': learnmore,
         'reviews': url(addon.ratings_url),
         'total_dls': addon.total_downloads,

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-11-09 07:23+0000\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-26 21:58+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -21,6 +21,9 @@ msgstr "Nulle ligamines es consentite."
 
 msgid "This display name cannot be used."
 msgstr "Iste nomine de schermo non pote ser usate."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Le campo del pagina principal pote esser usate solo pro ligamine a sitos web externe."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Le nomines de usator non pote continer solo digitos."
@@ -73,6 +76,9 @@ msgstr "Nota de revision"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Solmente le ultime versiones del additivos pote haber notas addite."
+
+msgid "Ratings"
+msgstr "Valutationes"
 
 msgid "Status"
 msgstr "Stato"
@@ -987,9 +993,6 @@ msgstr "Describe tu collection (non es permittite includer ligamines)."
 msgid "Privacy:"
 msgstr "Confidentialitate:"
 
-msgid "Icon"
-msgstr "Icone"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Per favor non plenar iste campo, illo es usate pro trappar bots"
 
@@ -998,12 +1001,6 @@ msgstr "Iste nomine non pote ser usate."
 
 msgid "This url is already in use by another collection"
 msgstr "Iste adresse es ja in uso per un altere collection"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Le icones debe ser PNG o JPG."
-
-msgid "Icons cannot be animated."
-msgstr "Le icones non pote ser animate."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste adresse personalisate es ja in uso per un altere de tu collectiones."
@@ -1042,9 +1039,6 @@ msgstr "Collection actualisate!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Vide tu collection</a> pro reguardar le cambiamentos."
-
-msgid "Icon Deleted"
-msgstr "Icone delite"
 
 msgid "Create a New Collection"
 msgstr "Crear un nove collection"
@@ -1206,15 +1200,6 @@ msgstr "Crear un collection"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Le collectiones rende facile tener tracia del additivos favorite e compartir tu navigator perfectemente personalisate con alteres."
-
-msgid "Collection Icon"
-msgstr "Icone del collection"
-
-msgid "Reset"
-msgstr "Restabilir"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG e JPG supportate. Le imagine essera redimensionate a 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Il ha errores in iste forma. Per favor corrige illos infra."
@@ -1919,41 +1904,145 @@ msgstr "Incompatibile"
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+"Discarga le extensiones de Firefox que adjuta te a restar actualisate, traciar le labores, meliorar le efficientia. Trova le extensiones que recarga schedas, gere tu productivitate e altero ancora."
+
 msgid "Appearance"
 msgstr "Apparentia"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr "Discarga le extensiones que modifica le apparentia del sitos web e del navigator Firefox. Iste categoria include le extensiones pro themas obscur, gestion de schedas e altero ancora."
 
 msgid "Bookmarks"
 msgstr "Marcapaginas"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr "Discarga extensiones que meliora le marcapaginas per lor protection con contrasignos, le recerca de duplicatos e de marcapaginas corrupte, e altero ancora."
+
 msgid "Download Management"
 msgstr "Gestion de discargamento"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr "Discarga extensiones de Firefox que pote adjutar a discargar contento del Web, musica e video. Tu pote alsi trovar extensiones pro gerer discargamentos, compartir files e altero ancora."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds de novas, novas e blog"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr "Discarga extensiones de Firefox que remove disordine assi que tu pote restar actualisate sur le medios social, prender sur blogs, RSS feeds, reducer le effortio del oculo e altero ancora."
+
 msgid "Games & Entertainment"
 msgstr "Jocos e amusamento"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr "Discarga extensiones de Firefox pro stimular tu experientia de intertenimento. Iste categoria include extensiones que pote meliorar le jocos, controlar reproduction video e altero ancora."
 
 msgid "Language Support"
 msgstr "Supporto de linguas"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr "Discarga extensiones de Firefox que offere supporto del lingua como controlar grammatica, cercar parolas, traducer texto, converter le texto in parolas e altero ancora."
+
 msgid "Photos, Music & Videos"
 msgstr "Photos, Musica & Videos"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
+"Discarga extensiones de Firefox que meliora le experientias de photos, musica e video. Le extensiones in iste categoria modifica audio e video, face recerca inverse del imagines e altero ancora."
 
 msgid "Privacy & Security"
 msgstr "Confidentialitate & securitate"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+"Discarga extensiones de Firefox pro navigar privatemente e con securitate. Iste categoria include extensiones pro blocar enoiose avisos publicitari, impedir le traciamento, gerer re-directiones e "
+"altero ancora."
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr "Discarga extensiones de Firefox pro cercar e filtrar. Iste categoria include extensiones que evidentia e cerca texto, filtra proprietate intellectual adresses/dominios, e altero ancora."
+
 msgid "Shopping"
 msgstr "Compras"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online con cercator de coupon e de accordos, analysatores de revision altero ancora."
 
 msgid "Social & Communication"
 msgstr "Social & communication"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr "Discarga extensiones de Firefox pro meliorar medios social e messages instantanee. Iste categoria include notificationes de scheda meliorate, discargatores video e altero ancora."
+
 msgid "Tabs"
 msgstr "Schedas"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+"Discarga Firefox extension pro personalisar le schedas e le apparentia del nove schedas. Discoperi extensiones que pote controlar schedas, modificar le maniera que tu interage con illos e altero "
+"ancora."
+
 msgid "Web Development"
 msgstr "Disveloppamento del Web"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+"Discarga extensiones de Firefox que ha functionalitates de utensiles de disveloppator del web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e "
+"altero ancora."
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
+
+msgid "Device Features & Location"
+msgstr "Functionalitates del apparato & position"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr "Discarga extensiones pro meliorar Firefox pro Android. Exeque rapide recercas, libera ressources de systema, prende notas e altero ancora."
+
+msgid "Experimental"
+msgstr "Experimental"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr "Discarga extensiones de Firefox que es regularmente actualisate e preste pro le test public. Tu commentarios informa le disveloppatores sur le cambios a facer in le versiones approchante."
+
+msgid "Performance"
+msgstr "Prestationes"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr ""
+"Discarga le extensiones que da a Firefox un incremento de performance. Trova extensiones que te adjuta a ser plus productive e efficiente per le bloco del enoiose avisos publicitari e altero ancora."
+
+msgid "Photos & Media"
+msgstr "Photos & medios"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr "Discarga extensiones de Firefox pro meliorar photos e medios. Discarga extensiones de Firefox pro meliorar photos e medios."
+
+msgid "Security & Privacy"
+msgstr "Securitate & confidentialitate"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr ""
+"Discarga extensiones de Firefox pro navigar con securitate e privatemente. Discoperi extensiones que pote stoppar in lor traciamento furtive avisos publicitari traciator, clarar facilemente le "
+"chronologia de exploration e altero ancora."
+
+msgid "Social Networking"
+msgstr "Retes social"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr "Discarga extensiones de Firefox que pote meliorar tu experientia de compras online per le analyse del recensiones, trovante offertas e coupons e altero ancora."
+
+msgid "Sports & Games"
+msgstr "Sports & jocos"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr "Discarga extensiones de Firefox pro meliorar tu experientia sur sitos web de retes social popular tal como YouTube, GitHub, Reddit e altero ancora."
+
+msgid "User Interface"
+msgstr "Interface de usator"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr "Discarga extensiones de Firefox pro incrementar tu experientia de intertenimento con melioratores de live stream, actualitates sportive, e altero ancora."
 
 msgid "Animals"
 msgstr "Animales"
@@ -1985,35 +2074,80 @@ msgstr "Sports"
 msgid "Abstract"
 msgstr "Abstracte"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr "Discarga themas de Firefox artistic e conceptual. Iste categoria include palettas pictoresc e formas, paisages phantastic, cattos jocose, flores psychedelic."
+
 msgid "Causes"
 msgstr "Causas"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr "Discarga themas de Firefox pro interesses e argumentos de niche. Iste categoria include themas de sports, vacantias, causas philanthropic, nationalitates e multo altere."
 
 msgid "Fashion"
 msgstr "Moda"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr "Discarga themas de Firefox que celebra stilos de tote le formas — patronos, ramages, contexturas, modellos, e altero ancora."
+
 msgid "Film and TV"
 msgstr "Film e TV"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr "Discarga themas de Firefox con films e television. Iste categoria include animationes como Uchiha Madara, films como Matrix, spectaculos (Joco de Thrones) e altero ancora."
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr "Discarga themas de Firefox del Navigator mesme. Iste categoria include pictoresc, diverse depictiones del logo de Firefox, anque le altere themas del vulpe general."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr "Discarga themas de Firefox con Firefox japonese. Iste categoria include themas que depinge le agradabile mascotte Foxkeh in varie posas sur diverse paisages."
+
 msgid "Holiday"
 msgstr "Vacantias"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr "Discarga themas de Firefox con vacantias. Iste categoria include: Nativitate, halloween, die del action de gratias, die de sancte Patricio, Pascha, quatro de julio e altero ancora."
 
 msgid "Music"
 msgstr "Musica"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr "Discarga themas de Firefox pro interesses musical e artistas. Iste categoria include bandas popular como le Nirvana e le BTS, instrumentos, videos musical e multo altero ancora."
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr "Discarga themas de Firefox con animales e paisages natural. Iste categoria include flores, poner del sol, vulpes, saisones, planetas, cattones, aves e altero ancora."
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr "Discarga themas de Firefox que es interessante, creative e unic."
+
 msgid "Scenery"
 msgstr "Paisage"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr "Discarga themas de Firefox que characterisa le ambiente e le natura. Iste categoria include poner del sol, plagias, illustrationes, lineas del horizonte de citates e altero ancora."
 
 msgid "Seasonal"
 msgstr "Saisonal"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr "Discarga themas de Firefox pro tote le quatro saisones: autumno, hiberno, primavera e estate. Folios autumnal, culmines nivate, dies de estate insolate, e flores primaveral."
+
 msgid "Solid"
 msgstr "Colores uniforme"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr "Discarga themas de Firefox con colores uniforme o gradiente pro personalisar tu navigator. Iste categoria include rubies hardite, pastellos, grises blande e multo altero ancora."
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr "Discarga themas de Firefox que characterisa un varietate de sports. Iste categoria include bandieras de paises, equipas sportive, football, hockey e altero ancora."
+
 msgid "Websites"
 msgstr "Sitos web"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr "Discarga themas de Firefox que captura le essentia del Web: captivante, inusual e distinctive."
 
 msgid "General"
 msgstr "General"
@@ -2047,33 +2181,6 @@ msgstr "Viages"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Device Features & Location"
-msgstr "Functionalitates del apparato & position"
-
-msgid "Experimental"
-msgstr "Experimental"
-
-msgid "Feeds, News, & Blogging"
-msgstr "Feed de novas, novas e blog"
-
-msgid "Performance"
-msgstr "Prestationes"
-
-msgid "Photos & Media"
-msgstr "Photos & medios"
-
-msgid "Security & Privacy"
-msgstr "Securitate & confidentialitate"
-
-msgid "Social Networking"
-msgstr "Retes social"
-
-msgid "Sports & Games"
-msgstr "Sports & jocos"
-
-msgid "User Interface"
-msgstr "Interface de usator"
 
 msgid "All Rights Reserved"
 msgstr "Tote le derectos es reservate"
@@ -2331,6 +2438,9 @@ msgstr "Per favor specifica tu Politica de confidentialitate del additivo:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Typo de file non tractate, per favor carga un file archivo {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "Archivo non valide o rupte."
+
 msgid "View current"
 msgstr "Vider version actual"
 
@@ -2363,6 +2473,9 @@ msgstr "Tu non ha cargate un file fonte."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File fonte cargate, ma tu indicava que nulle fonte era necessari."
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr ""
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Il non pote ser plus de 3 additivos requirite."
@@ -2404,6 +2517,9 @@ msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste proc
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "Tu non pote actualisar un additivo de WebExtensions con un precedente additivo. Tu usatores non potera usar tu nove version pois que Firefox non supporta iste typo de actualisation."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] Le texto inserite in le campo \"{field}\" esseva signalate como spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tu clave API de disveloppator esseva trovate in le file inviate. Pro proteger tu conto, le clave essera revocate."
@@ -2481,6 +2597,12 @@ msgstr "Un autor ha essite removite ex tu additivo"
 msgid "Validate Add-on"
 msgstr "Validar additivo"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Le icones debe ser PNG o JPG."
+
+msgid "Icons cannot be animated."
+msgstr "Le icones non pote ser animate."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Le imagines non pote ser major de %dKB."
@@ -2488,6 +2610,12 @@ msgstr "Le imagines non pote ser major de %dKB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Le imagine debe ser large exactemente {0} pixels e alte {1} pixels."
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Le imagine debe ser al minus large {0} pixels e alte {1} pixels."
+
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Le dimensiones del imagines debe ser il le ration 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "Error durante le cargamento de tu vista preliminar."
@@ -2732,8 +2860,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> themas"
 
-msgid "Edit Information"
-msgstr "Rediger le informationes"
+msgid "Edit Product Page"
+msgstr "Redige le pagina de producto"
 
 msgid "None"
 msgstr "Nulle"
@@ -2814,6 +2942,17 @@ msgstr "Describer additivo"
 msgid "Describe {0}"
 msgstr "Describer {0}"
 
+msgid "Name and Summary"
+msgstr "Nomine e summario"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+
+msgid "Summary"
+msgstr "Summario"
+
 msgid "Add-on URL"
 msgstr "URL de additivo"
 
@@ -2823,8 +2962,8 @@ msgstr "Elige un URL (slug - limace) breve, unic pro tu additivo."
 msgid "View Listing"
 msgstr "Vide le lista"
 
-msgid "Summary"
-msgstr "Summario"
+msgid "View Product Page"
+msgstr "Vide le pagina de producto"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Iste summario debe explicar clarmente lo que tu additivo face. Illo sera monstrate in listas e recercas, e illo sera usate per le revisores pro testar tu additivo."
@@ -3032,12 +3171,14 @@ msgstr "Per favor forni un legenda pro iste instantaneo de schermo:"
 msgid "Add a Screenshot..."
 msgstr "Adder un instantaneo de schermo..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr ""
-"PNG e JPG supportate. Le dimensiones maxime e recommendate pro le instantaneos de schermo es 1280x800 pixels. 640x400 pixels es un bon alternative si tu ha solo imagines minor. Con instantaneos de "
-"schermo in tu pagina de lista tu incrementa assatis su chances de esser installate e de esser consiliate in le pagina principal."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr ""
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr ""
 
 msgid "Continue"
 msgstr "Continuar"
@@ -3130,8 +3271,8 @@ msgstr "Deler iste additivo."
 msgid "Delete"
 msgstr "Deler"
 
-msgid "Edit information about this add-on."
-msgstr "Rediger informationes de iste additivo."
+msgid "Edit details on this add-on's product page."
+msgstr "Editar detalios sur iste pagina de producto del additivo."
 
 msgid "Upload a new version of this add-on."
 msgstr "Cargar un nove version de iste additivo."
@@ -3148,17 +3289,11 @@ msgstr "Statistica"
 msgid "Manage Status & Versions"
 msgstr "Gerer stato e versiones"
 
-msgid "View Add-on Listing"
-msgstr "Vider le lista de presentation del additivo"
-
 msgid "View Recent Changes"
 msgstr "Vider recente cambiamentos"
 
-msgid "Edit details about this theme's listing."
-msgstr "Editar detalios del lista de iste thema."
-
-msgid "Edit Listing"
-msgstr "Rediger le lista de presentation"
+msgid "Edit details on this theme's product page."
+msgstr "Editar detalios sur iste pagina de producto del thema."
 
 msgid "View the popularity of this theme over time."
 msgstr "Vider le popularitate de iste thema in le tempore."
@@ -3200,8 +3335,11 @@ msgstr[1] "<strong>{0}</strong> usatores active"
 msgid "Submit a New Version"
 msgstr "Inviar un nove version"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Nomine sur le lista de presentation sur iste sito. Pote ser differente al nomine intra le additivo, que es monstrate intra Firefox"
+msgid "Name and Summary:"
+msgstr "Nomine e summario:"
+
+msgid "required"
+msgstr "necessari"
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -3209,11 +3347,11 @@ msgstr "URL del additivo:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Per favor usa solo litteras, numeros, lineettas basse e lineettas in tu URL."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Nomine sur le lista de presentation sur iste sito. Pote ser differente al nomine intra le additivo, que es monstrate intra Firefox"
+
 msgid "Summary:"
 msgstr "Summario:"
-
-msgid "required"
-msgstr "necessari"
 
 msgid "Description:"
 msgstr "Description:"
@@ -3749,11 +3887,12 @@ msgstr "Ressources pro un lanceamento plen de successo"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Tu ha compilate tu extension e tu es preste a publicar illo. Que veni pois? Controla nostre suggestiones pro crear un pagina de lista de presentation attrahente, render consiliate tu extension sur "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trovar responsas pro questiones circa le disveloppamento, e remaner actualisate con novas e eventos pertinente al disveloppatores de extension."
+"Tu ha compilate tu extension e tu es preste a publicar illo. Que veni pois? Controla nostre suggestiones pro crear un pagina presentation de productode attrahente, render consiliate tu extension sur"
+" %(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trovar responsas pro questiones circa le disveloppamento, e remaner actualisate con novas e eventos pertinente al disveloppatores de "
+"extension."
 
 msgid "View Resources for Publishers"
 msgstr "Vide le ressources pro le editores"
@@ -3761,8 +3900,8 @@ msgstr "Vide le ressources pro le editores"
 msgid "Welcome Back"
 msgstr "Ben-retornate"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Adjuta le usatores a discoperir tu extensiones per crear un lista de presentation attrahente."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Adjuta le usatores a discoperir tu extensiones per un lista de presentation attrahente."
 
 msgid "Learn How"
 msgstr "Apprende como"
@@ -4095,11 +4234,13 @@ msgstr "Replicar"
 msgid "Listing visibility"
 msgstr "Visibilitate del lista de presentation"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
+#, fuzzy
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e includite in le paginas de resultatos del recerca e del lista de presentation."
 
+#, fuzzy
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
 "{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina del lista de presentation indicara que tu disactivava illo. Le submission de nove versiones pro le"
 " lista de presentation non essera acceptate in iste stato."
@@ -5564,6 +5705,9 @@ msgstr "Impossibile tractar le file cargate, elemento <%s> mancante o vacue"
 msgid "Could not parse uploaded file."
 msgstr "Impossibile tractar le file cargate."
 
+msgid "Unsupported archive type."
+msgstr "Typo de archivo non admittite."
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Nomine de file non valide in le archivo. Per favor verifica que le nomines de file es codificate utf-8 o latin1."
@@ -6135,6 +6279,12 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Create pro te per:"
 
+msgid "User"
+msgstr "Usator"
+
+msgid "IP Address"
+msgstr "Adresse IP"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "Revisiones pro %s"
@@ -6690,9 +6840,6 @@ msgstr "Imagines del thema"
 msgid "Rendered Preview"
 msgstr "Ante-prima rendite"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "File de fundo {0} de {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Altero re iste additivo"
 
@@ -7097,6 +7244,9 @@ msgstr "Guida del revisores"
 msgid "Theme Review for {0}"
 msgstr "Revision de thema pro {0}"
 
+msgid "Edit Listing"
+msgstr "Rediger le lista de presentation"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Probabile invio duplicate)"
 
@@ -7254,8 +7404,8 @@ msgstr "Monstra de {0} - {1} de {2} resultatos pro <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Monstra de {0} - {1} de {2} resultatos"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "Impossibile trovar additivo con id \"{}\"."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "Impossibile trovar un additivo con id \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Tu non es proprietario de iste additivo."
@@ -7714,9 +7864,6 @@ msgstr "Photo del profilo"
 
 msgid "Addons"
 msgstr "Additivos"
-
-msgid "Ratings"
-msgstr "Valutationes"
 
 msgid "Activity Logs"
 msgstr "Registros del activitate"

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-27 07:37+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-26 16:02+0000\n"
+"Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -20,6 +20,9 @@ msgstr "不允许使用链接。"
 
 msgid "This display name cannot be used."
 msgstr "无法使用这个显示名。"
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "主页字段仅能用于链接到外部网站。"
 
 msgid "Usernames cannot contain only digits."
 msgstr "用户名不能仅包含数字。"
@@ -72,6 +75,9 @@ msgstr "审核说明"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "仅最新版的 addons 可添加说明。"
+
+msgid "Ratings"
+msgstr "评分量"
 
 msgid "Status"
 msgstr "状态"
@@ -959,9 +965,6 @@ msgstr "描述您的收藏集（不允许使用链接）。"
 msgid "Privacy:"
 msgstr "公开范围："
 
-msgid "Icon"
-msgstr "图标"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "请不要填写此字段，它用于抓捕机器人"
 
@@ -970,12 +973,6 @@ msgstr "不能使用这个名字。"
 
 msgid "This url is already in use by another collection"
 msgstr "此网址已被其他收藏集使用"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "图标必须为 PNG 或 JPG 格式。"
-
-msgid "Icons cannot be animated."
-msgstr "不能使用动画图标。"
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "此自定义网址已被您的另一个收藏集使用。"
@@ -1014,9 +1011,6 @@ msgstr "收藏集已更新！"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">查看您的收藏集</a>以了解变动。"
-
-msgid "Icon Deleted"
-msgstr "图标已删除"
 
 msgid "Create a New Collection"
 msgstr "创建新收藏集"
@@ -1171,15 +1165,6 @@ msgstr "创建收藏集"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "收藏集可以很方便的将您喜爱的附加组件记录下来，让您与别人分享充满个性的浏览器。"
-
-msgid "Collection Icon"
-msgstr "收藏集图标"
-
-msgid "Reset"
-msgstr "重置"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "支持 PNG 和 JPG。图像将被缩放为 32x32。"
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "此表单存在错误。请在下面进行更正。"
@@ -1879,41 +1864,134 @@ msgstr "不兼容"
 msgid "Alerts & Updates"
 msgstr "提醒和更新"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr ""
+
 msgid "Appearance"
 msgstr "外观"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr ""
 
 msgid "Bookmarks"
 msgstr "书签"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr ""
+
 msgid "Download Management"
 msgstr "下载管理"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr ""
 
 msgid "Feeds, News & Blogging"
 msgstr "收取点、新闻和博客"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr ""
+
 msgid "Games & Entertainment"
 msgstr "游戏和娱乐"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr ""
 
 msgid "Language Support"
 msgstr "语言工具"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr ""
+
 msgid "Photos, Music & Videos"
 msgstr "照片、音乐和视频"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr ""
 
 msgid "Privacy & Security"
 msgstr "隐私和安全"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr ""
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr ""
+
 msgid "Shopping"
 msgstr "购物"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr ""
 
 msgid "Social & Communication"
 msgstr "社交和通信"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr ""
+
 msgid "Tabs"
 msgstr "标签页"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr ""
+
 msgid "Web Development"
 msgstr "网页开发"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr ""
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr ""
+
+msgid "Device Features & Location"
+msgstr "设备特性和位置"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr ""
+
+msgid "Experimental"
+msgstr "实验性"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+
+msgid "Performance"
+msgstr "性能"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr "下载 Firefox 扩展，提升浏览器的性能。找到扩展来拦截恼人的广告、提高您的工作效率等。"
+
+msgid "Photos & Media"
+msgstr "照片和媒体"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr "下载 Firefox 扩展，增强图片和媒体体验。此分类包括以图搜图、截取整个页面等扩展。"
+
+msgid "Security & Privacy"
+msgstr "安全和隐私"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr "下载 Firefox 扩展，安全私密地遨游网络。找到扩展阻止鬼祟的广告跟踪器、轻松清除历史记录等。"
+
+msgid "Social Networking"
+msgstr "社交网络"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr "下载 Firefox 扩展，增强您在 YouTube、GitHub、Reddit 等热门社交网站上的体验。"
+
+msgid "Sports & Games"
+msgstr "体育和游戏"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr "下载 Firefox 扩展，提升您观看视频直播、体育赛事的娱乐体验。"
+
+msgid "User Interface"
+msgstr "用户界面"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr ""
 
 msgid "Animals"
 msgstr "动物"
@@ -1945,35 +2023,80 @@ msgstr "运动"
 msgid "Abstract"
 msgstr "抽象"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr ""
+
 msgid "Causes"
 msgstr "理念"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr ""
 
 msgid "Fashion"
 msgstr "时尚"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr ""
+
 msgid "Film and TV"
 msgstr "电影和电视"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr ""
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr ""
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr ""
+
 msgid "Holiday"
 msgstr "假日"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr ""
 
 msgid "Music"
 msgstr "音乐"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr ""
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr ""
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr ""
+
 msgid "Scenery"
 msgstr "风景"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr ""
 
 msgid "Seasonal"
 msgstr "季节"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr "下载 Firefox 四季主题 - 秋·冬·春·夏。秋天的落叶、白雪皑皑的山峰、阳光灿烂的夏日和春天的花朵。"
+
 msgid "Solid"
 msgstr "纯色"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr ""
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr ""
+
 msgid "Websites"
 msgstr "网站"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr ""
 
 msgid "General"
 msgstr "一般"
@@ -2007,33 +2130,6 @@ msgstr "旅行"
 
 msgid "Video"
 msgstr "视频"
-
-msgid "Device Features & Location"
-msgstr "设备特性和位置"
-
-msgid "Experimental"
-msgstr "实验性"
-
-msgid "Feeds, News, & Blogging"
-msgstr "收取点、新闻和博客"
-
-msgid "Performance"
-msgstr "性能"
-
-msgid "Photos & Media"
-msgstr "照片和媒体"
-
-msgid "Security & Privacy"
-msgstr "安全和隐私"
-
-msgid "Social Networking"
-msgstr "社交网络"
-
-msgid "Sports & Games"
-msgstr "体育和游戏"
-
-msgid "User Interface"
-msgstr "用户界面"
 
 msgid "All Rights Reserved"
 msgstr "保留所有权利"
@@ -2291,6 +2387,9 @@ msgstr "请指定您的附加组件的隐私政策:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "不支持的文件类型，请上传一个 {extensions} 格式的压缩文件。"
 
+msgid "Invalid or broken archive."
+msgstr "无效或损坏的压缩文件。"
+
 msgid "View current"
 msgstr "查看当前"
 
@@ -2323,6 +2422,9 @@ msgstr "您尚未上传源文件。"
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "源文件已上传，但您标明无需源文件。"
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr "名称与摘要合计不得超过 70 个字符（目前有 {0} 个字符）。"
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "必需的附加组件不能超过三个。"
@@ -2358,6 +2460,9 @@ msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "您不能用一个旧式附加组件更新 WebExtension 附加组件。您的用户将无法使用您的新版本，因为 Firefox 不支持此种更新。"
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}]“{field}”栏中输入的文本已被标记为垃圾留言。"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "在提交的文件中发现了您的开发者 API 密钥。为确保您的账户安全，将作废此密钥。"
@@ -2435,6 +2540,12 @@ msgstr "一个作者已被从您的附加组件中移除"
 msgid "Validate Add-on"
 msgstr "验证附加组件"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "图标必须为 PNG 或 JPG 格式。"
+
+msgid "Icons cannot be animated."
+msgstr "不能使用动画图标。"
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "图像大小不能超过 %dKB。"
@@ -2442,6 +2553,12 @@ msgstr "图像大小不能超过 %dKB。"
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "图像宽度必须刚好为 {0} 像素且高度为 {1} 像素。"
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "图片宽度必须至少为 {0} 像素且高度为 {1} 像素。"
+
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "图片比例必须为 4:3。"
 
 msgid "There was an error uploading your preview."
 msgstr "上传预览图的过程中发生错误。"
@@ -2679,8 +2796,8 @@ msgid "<b>{0}</b> theme"
 msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> 个主题"
 
-msgid "Edit Information"
-msgstr "编辑信息"
+msgid "Edit Product Page"
+msgstr "编辑产品页面"
 
 msgid "None"
 msgstr "无"
@@ -2755,6 +2872,17 @@ msgstr "描述附加组件"
 msgid "Describe {0}"
 msgstr "介绍 {0}"
 
+msgid "Name and Summary"
+msgstr "名称和摘要"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr "在摘要中，应清楚而简洁地阐述您的附加组件有哪些功能。名称与摘要都会出现在产品页面与搜索结果中，两者合计不得超过 70 个字符，而各自都不得少于 2 个字符。"
+
+msgid "Summary"
+msgstr "概述"
+
 msgid "Add-on URL"
 msgstr "附加组件网址"
 
@@ -2764,8 +2892,8 @@ msgstr "给您的附加组件选择一个短小、唯一的网址。"
 msgid "View Listing"
 msgstr "查看公开页面"
 
-msgid "Summary"
-msgstr "概述"
+msgid "View Product Page"
+msgstr "查看产品页面"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "此摘要应清楚阐述您的附加组件的作用。它将在信息页面和搜索结果中显示，审核员也将基于它来测试您的附加组件。"
@@ -2959,10 +3087,14 @@ msgstr "请提供一段此屏幕截图的说明："
 msgid "Add a Screenshot..."
 msgstr "添加屏幕截图..."
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
-msgstr "支持 PNG 和 JPG。屏幕截图的尺寸最大且建议为 1280x800 像素。如果您只有较小的图像，640x400 像素也不错。在您的列表页面中放上屏幕截图可以大大增加其安装量和在主页中显示的机会。"
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr "支持 PNG 与 JPG 格式，推荐使用 PNG。最大且推荐的屏幕截图大小为 2400x1800 像素。"
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr "最小尺寸为 1000x750，比例必须为 4:3。"
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr "在产品页面中放入屏幕截图，可大幅增加安装、被选为精选附加组件，以及在首页为附加组件宣传的机会。"
 
 msgid "Continue"
 msgstr "继续"
@@ -3053,8 +3185,8 @@ msgstr "删除这个附加组件。"
 msgid "Delete"
 msgstr "删除"
 
-msgid "Edit information about this add-on."
-msgstr "编辑此附加组件的相关信息。"
+msgid "Edit details on this add-on's product page."
+msgstr "前往此附加组件的产品页面编辑详细信息。"
 
 msgid "Upload a new version of this add-on."
 msgstr "上传这个附加组件的新版本。"
@@ -3071,17 +3203,11 @@ msgstr "统计数据"
 msgid "Manage Status & Versions"
 msgstr "管理状态和版本"
 
-msgid "View Add-on Listing"
-msgstr "查看附加组件页面"
-
 msgid "View Recent Changes"
 msgstr "查看最近更改"
 
-msgid "Edit details about this theme's listing."
-msgstr "编辑这个主题显示在公开页面上的详细信息。"
-
-msgid "Edit Listing"
-msgstr "编辑信息"
+msgid "Edit details on this theme's product page."
+msgstr "前往此主题的产品页面编辑详细信息。"
 
 msgid "View the popularity of this theme over time."
 msgstr "查看这款主题随时间推移的传播情况。"
@@ -3122,8 +3248,11 @@ msgstr[0] "<strong>{0}</strong> 位活跃用户"
 msgid "Submit a New Version"
 msgstr "提交新版本"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "在此站点上列出的名称；可能与附加组件的名称（显示在 Firefox 之中）不同"
+msgid "Name and Summary:"
+msgstr "名称和摘要："
+
+msgid "required"
+msgstr "必需"
 
 msgid "Add-on URL:"
 msgstr "附加组件网址："
@@ -3131,11 +3260,11 @@ msgstr "附加组件网址："
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "在网址中仅能使用字母、数字、下划线和连字符。"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "在此站点上列出的名称；可能与附加组件的名称（显示在 Firefox 之中）不同"
+
 msgid "Summary:"
 msgstr "概述："
-
-msgid "required"
-msgstr "必需"
 
 msgid "Description:"
 msgstr "描述："
@@ -3656,9 +3785,9 @@ msgstr "成功上架的相关资源"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
-msgstr "您已经构建好扩展并准备好发布它。接下来要做什么？请参考我们的提示来了解：如何建立吸引人的上架页面，努力使扩展成为 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 上的精选扩展，寻找开发问题相关解答，及时了解与扩展开发者相关的新闻和事件。"
+msgstr "您已经构建好扩展并准备好发布它。接下来要做什么？请参考我们的提示来了解：如何建立吸引人的产品页面，努力使扩展成为 %(amo_link_open)saddons.mozilla.org%(amo_link_close)s 上的精选扩展，寻找开发问题相关解答，及时了解与扩展开发者相关的新闻和事件。"
 
 msgid "View Resources for Publishers"
 msgstr "查看发布者的资源"
@@ -3666,8 +3795,8 @@ msgstr "查看发布者的资源"
 msgid "Welcome Back"
 msgstr "欢迎回来"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "创建亮眼的上架信息，有助于用户发现您的扩展。"
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "创建亮眼的产品页面，有助于用户发现您的扩展。"
 
 msgid "Learn How"
 msgstr "了解方法"
@@ -3994,12 +4123,12 @@ msgstr "回复"
 msgid "Listing visibility"
 msgstr "公开程度"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{label_open}可见性：{label_close}对所有 {site_url} 访客可见，并出现在搜索结果和列表页面中。"
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr "{label_open}可见：{label_close}对所有 {site_url} 访客可见，并出现在搜索结果和产品页面中。"
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
-msgstr "{label_open}可见性：{label_close}不会出现在搜索结果中，其详情页面将显示您已禁用它。此状态下不接受提交新版本。"
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
+msgstr "{label_open}隐藏：{label_close}不会出现在搜索结果中，其产品页面将显示您已禁用它。此状态下不接受提交新版本。"
 
 msgid "Listed versions"
 msgstr "上架版本"
@@ -5457,6 +5586,9 @@ msgstr "无法解析上传的文件，缺少或者空的 <%s> 元素"
 msgid "Could not parse uploaded file."
 msgstr "无法解析上传的文件。"
 
+msgid "Unsupported archive type."
+msgstr "不支持的压缩文件类型。"
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "归档中的文件名无效。请确保文件名为 utf-8 或 latin1 编码。"
@@ -6004,6 +6136,12 @@ msgstr "Mozilla 的人们为自己为用户建立产品而感到自豪！这也�
 msgid "Brought to you by:"
 msgstr "诚挚问候——"
 
+msgid "User"
+msgstr "用户"
+
+msgid "IP Address"
+msgstr "IP 地址"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "对 %s 的意见"
@@ -6546,9 +6684,6 @@ msgstr "主题图片"
 msgid "Rendered Preview"
 msgstr "渲染的预览"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "背景图文件第 {0} 张，共 {1} 张 - {2}"
-
 msgid "More about this add-on"
 msgstr "关于此附加组件的更多信息"
 
@@ -6953,6 +7088,9 @@ msgstr "审核员指南"
 msgid "Theme Review for {0}"
 msgstr "{0}的主题校验"
 
+msgid "Edit Listing"
+msgstr "编辑信息"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "（可能重复提交）"
 
@@ -7112,8 +7250,8 @@ msgstr "包含 <strong>{3}</strong> 的结果共有 {2} 项，显示第 {0} - {1
 msgid "Showing {0} - {1} of {2} results"
 msgstr "共有 {2} 项结果，显示 {0} - {1} 项"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "未能找到 ID 为 \"{}\" 的附加组件。"
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "未能找到 GUID 为“{}”的附加组件。"
 
 msgid "You do not own this addon."
 msgstr "您不拥有此附加组件。"
@@ -7561,9 +7699,6 @@ msgstr "个人资料照片"
 
 msgid "Addons"
 msgstr "附加组件"
-
-msgid "Ratings"
-msgstr "评分量"
 
 msgid "Activity Logs"
 msgstr "活动日志"

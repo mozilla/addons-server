@@ -987,6 +987,58 @@ class DetailsPageMixin(object):
         comment_check_mock.assert_not_called()
         assert AkismetReport.objects.count() == 0
 
+    @override_switch('content-optimization', active=False)
+    def test_name_summary_lengths_short(self):
+        # check the separate name and summary labels, etc are served
+        response = self.client.get(self.url)
+        assert 'Name and Summary' not in response.content
+        assert 'It will be shown in listings and searches' in response.content
+
+        data = self.get_dict(name='a', summary='b')
+        self.is_success(data)
+
+    @override_switch('content-optimization', active=False)
+    def test_name_summary_lengths_long(self):
+        data = self.get_dict(name='a' * 50, summary='b' * 50)
+        self.is_success(data)
+
+    @override_switch('content-optimization', active=True)
+    def test_name_summary_lengths_content_optimization(self):
+        # check the combined name and summary label, etc are served
+        response = self.client.get(self.url)
+        assert 'Name and Summary' in response.content
+
+        # name and summary are too short
+        response = self.client.post(
+            self.url, self.get_dict(
+                name='a', summary='b', description='c' * 10))
+        assert self.get_addon().name != 'a'
+        assert self.get_addon().summary != 'b'
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'Ensure this value has at least 2 characters (it has 1).')
+        self.assertFormError(
+            response, 'form', 'summary',
+            'Ensure this value has at least 2 characters (it has 1).')
+
+        # name and summary individually are okay, but together are too long
+        response = self.client.post(
+            self.url, self.get_dict(
+                name='a' * 50, summary='b' * 50, description='c' * 10))
+        assert self.get_addon().name != 'a' * 50
+        assert self.get_addon().summary != 'b' * 50
+        assert response.status_code == 200
+        self.assertFormError(
+            response, 'form', 'name',
+            'Ensure name and summary combined are at most 70 characters '
+            u'(they have 100).')
+
+        # success: together name and summary are 70 characters.
+        data = self.get_dict(
+            name='a' * 2, summary='b' * 68, description='c' * 10)
+        self.is_success(data)
+
 
 class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
@@ -1251,8 +1303,10 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         AddonCategory.objects.filter(
             addon=self.get_addon(),
             category=Category.objects.get(id=71)).delete()
-        Category.from_static_category(CATEGORIES_BY_ID[300]).save()
-        Category.from_static_category(CATEGORIES_BY_ID[308]).save()
+        Category.from_static_category(CATEGORIES_BY_ID[300]).save()  # abstract
+        Category.from_static_category(CATEGORIES_BY_ID[308]).save()  # firefox
+        Category.from_static_category(CATEGORIES_BY_ID[400]).save()  # abstract
+        Category.from_static_category(CATEGORIES_BY_ID[408]).save()  # firefox
 
         self.next_step = reverse('devhub.submit.finish', args=['a3615'])
         License.objects.create(builtin=11, on_form=True, creative_commons=True)
@@ -1266,7 +1320,7 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
         if not minimal:
             describe_form.update({'support_url': 'http://stackoverflow.com',
                                   'support_email': 'black@hole.org'})
-        cat_form = {'category': 300}
+        cat_form = {'category': 'abstract'}
         license_form = {'license-builtin': 11}
         result.update(describe_form)
         result.update(cat_form)
@@ -1316,21 +1370,23 @@ class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
     def test_submit_categories_set(self):
         assert [cat.id for cat in self.get_addon().all_categories] == []
-        self.is_success(self.get_dict(category=308))
+        self.is_success(self.get_dict(category='firefox'))
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
-        assert sorted(addon_cats) == [308]
+        assert sorted(addon_cats) == [308, 408]
 
     def test_submit_categories_change(self):
-        category = Category.objects.get(id=300)
-        AddonCategory(addon=self.addon, category=category).save()
+        category_desktop = Category.objects.get(id=300)
+        category_android = Category.objects.get(id=400)
+        AddonCategory(addon=self.addon, category=category_desktop).save()
+        AddonCategory(addon=self.addon, category=category_android).save()
         assert sorted(
-            [cat.id for cat in self.get_addon().all_categories]) == [300]
+            [cat.id for cat in self.get_addon().all_categories]) == [300, 400]
 
-        self.client.post(self.url, self.get_dict(category=308))
+        self.client.post(self.url, self.get_dict(category='firefox'))
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         # Only ever one category for Static Themes
-        assert category_ids_new == [308]
+        assert category_ids_new == [308, 408]
 
     def test_creative_commons_licenses(self):
         response = self.client.get(self.url)

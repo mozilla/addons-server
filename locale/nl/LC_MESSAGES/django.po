@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-10-19 12:58+0000\n"
-"PO-Revision-Date: 2018-10-15 17:12+0000\n"
-"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
+"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"PO-Revision-Date: 2018-11-28 10:26+0000\n"
+"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,9 @@ msgstr "Koppelingen zijn niet toegestaan."
 
 msgid "This display name cannot be used."
 msgstr "Deze schermnaam kan niet worden gebruikt."
+
+msgid "The homepage field can only be used to link to external websites."
+msgstr "Het startpaginaveld mag alleen worden gebruikt voor koppelingen naar externe websites."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Gebruikersnamen mogen niet alleen getallen bevatten."
@@ -76,6 +79,9 @@ msgstr "Opmerking bij beoordeling"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Alleen bij de nieuwste versies van add-ons kunnen opmerkingen worden toegevoegd."
+
+msgid "Ratings"
+msgstr "Waarderingen"
 
 msgid "Status"
 msgstr "Status"
@@ -1002,9 +1008,6 @@ msgstr "Beschrijf uw collectie (koppelingen niet toegestaan)."
 msgid "Privacy:"
 msgstr "Privacy:"
 
-msgid "Icon"
-msgstr "Pictogram"
-
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr "Vul dit veld niet in, het wordt gebruikt om bots te vangen"
 
@@ -1013,12 +1016,6 @@ msgstr "Deze naam kan niet worden gebruikt."
 
 msgid "This url is already in use by another collection"
 msgstr "Deze URL wordt al door een andere collectie gebruikt"
-
-msgid "Icons must be either PNG or JPG."
-msgstr "Pictogrammen dienen in PNG- of JPG-opmaak te zijn."
-
-msgid "Icons cannot be animated."
-msgstr "Pictogrammen mogen niet bewegend zijn."
 
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Deze aangepaste URL wordt al door een van uw andere collecties gebruikt."
@@ -1057,9 +1054,6 @@ msgstr "Collectie bijgewerkt!"
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr "<a href=\"%(url)s\">Bekijk uw collectie</a> om de wijzigingen te zien."
-
-msgid "Icon Deleted"
-msgstr "Pictogram verwijderd"
 
 msgid "Create a New Collection"
 msgstr "Een nieuwe collectie aanmaken"
@@ -1221,15 +1215,6 @@ msgstr "Een collectie maken"
 
 msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
 msgstr "Collecties maken het eenvoudig om favoriete add-ons te volgen en uw perfect aangepaste browser met anderen te delen."
-
-msgid "Collection Icon"
-msgstr "Collectiepictogram"
-
-msgid "Reset"
-msgstr "Opnieuw instellen"
-
-msgid "PNG and JPG supported.  Image will be resized to 32x32."
-msgstr "PNG en JPG worden ondersteund. Afbeeldingsgrootte wordt aangepast naar 32x32."
 
 msgid "There are errors in this form.  Please correct them below."
 msgstr "Er zitten fouten in dit formulier. Corrigeer ze hieronder."
@@ -1939,41 +1924,136 @@ msgstr "Incompatibel"
 msgid "Alerts & Updates"
 msgstr "Waarschuwingen en updates"
 
+msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
+msgstr "Download Firefox-extensies die u helpen up-to-date te blijven, taken te volgen en uw efficiëntie te verbeteren. Zoek extensies die tabbladen opnieuw laden, productiviteit beheren, en meer."
+
 msgid "Appearance"
 msgstr "Vormgeving"
+
+msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
+msgstr "Download extensies die de weergave van websites en de browser Firefox aanpassen. Deze categorie omvat extensies voor donkere thema’s, tabbladbeheer, en meer."
 
 msgid "Bookmarks"
 msgstr "Bladwijzers"
 
+msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
+msgstr "Download extensies die bladwijzers verbeteren door ze met een wachtwoord te beveiligen, naar dubbelingen te zoeken, defecte bladwijzers te zoeken, en meer."
+
 msgid "Download Management"
 msgstr "Downloadbeheer"
+
+msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
+msgstr "Download Firefox-extensies die kunnen helpen met downloaden van web-, muziek- en video-inhoud. U kunt ook extensies vinden om downloads te beheren, bestanden te delen, en meer."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds, nieuws en blogging"
 
+msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
+msgstr "Download Firefox-extensies die verstoringen opruimen, zodat u up-to-date kunt blijven bij sociale media, blogs en RSS-feeds kunt volgen, oogvermoeidheid kunt tegengaan, en meer."
+
 msgid "Games & Entertainment"
 msgstr "Spellen en amusement"
+
+msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
+msgstr "Download Firefox-extensies om uw entertainmentervaring te verbeteren. Deze categorie omvat extensies die het spelen van spellen verbeteren, afspelen van video’s beheren, en meer."
 
 msgid "Language Support"
 msgstr "Taalondersteuning"
 
+msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
+msgstr "Download Firefox-extensies die taalondersteuning bieden, zoals grammaticacontrole, woordzoeken, tekstvertaling, tekst-naar-spraak, en meer."
+
 msgid "Photos, Music & Videos"
 msgstr "Foto’s, muziek en video’s"
+
+msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
+msgstr "Download Firefox-extensies die uw ervaring van foto’s, muziek en video verbeteren. Extensies in deze categorie passen audio en video aan, bieden omgekeerd afbeelding zoeken, en meer."
 
 msgid "Privacy & Security"
 msgstr "Privacy en beveiliging"
 
+msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
+msgstr "Download Firefox-extensies om privé en veilig te navigeren. Deze categorie omvat extensies om vervelende advertenties te blokkeren, volgen te voorkomen, doorsturingen te beheren, en meer."
+
+msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
+msgstr "Download Firefox-extensies om te zoeken. Deze categorie omvat extensies die tekst markeren en zoeken, IP-adressen/domeinen opzoeken, en meer."
+
 msgid "Shopping"
 msgstr "Winkelen"
+
+msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
+msgstr "Dowload Firefox-extensies die uw online winkelbeleving verbeteren met kortingsbonzoekers, aanbiedingszoekers, beoordelingsanalyses, en meer."
 
 msgid "Social & Communication"
 msgstr "Sociaal en communicatie"
 
+msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
+msgstr "Download Firefox-extensies om sociale media en chatten te verbeteren. Deze categorie omvat verbeterde tabbladnotificaties, videodownloaders, en meer."
+
 msgid "Tabs"
 msgstr "Tabbladen"
 
+msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
+msgstr "Download Firefox-extensies om tabbladen en de Nieuw tabblad-pagina aan te passen. Ontdek extensies die tabbladen aansturen, de manier waarop u ermee omgaat wijzigen, en meer."
+
 msgid "Web Development"
 msgstr "Webontwikkeling"
+
+msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
+msgstr "Download Firefox-extensies met webontwikkelhulpmiddelen. Deze categorie omvat extensies voor GitHub, wisselen van user agent, cookiebeheer, en meer."
+
+msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
+msgstr "Download Firefox-extensies die onvoorspelbaar en creatief kunnen zijn, maar wel handig zijn voor dat soort ongebruikelijke taken."
+
+msgid "Device Features & Location"
+msgstr "Apparaatfuncties en -locatie"
+
+msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
+msgstr "Download extensies om Firefox voor Android te verbeteren. Voer snelle zoekopdrachten uit, schoon het systeem op, maak notities, en meer."
+
+msgid "Experimental"
+msgstr "Experimenteel"
+
+msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
+msgstr ""
+"Download Firefox-extensies die regelmatig worden bijgewerkt en klaar zijn voor testen door het publiek. Uw feedback informeert ontwikkelaars over wijzigingen die ze in toekomstige versies kunnen "
+"maken."
+
+msgid "Performance"
+msgstr "Prestaties"
+
+msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
+msgstr "Download extensies die de prestaties van Firefox een boost geven. Vind extensies die u helpen productiever en efficiënter te zijn door vervelende advertenties te blokkeren en meer."
+
+msgid "Photos & Media"
+msgstr "Foto’s en media"
+
+msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
+msgstr "Download Firefox-extensies om foto's en media te verbeteren. Deze categorie omvat extensies voor het omgekeerd zoeken van afbeeldingen, het maken van volledige schermafbeeldingen en meer."
+
+msgid "Security & Privacy"
+msgstr "Beveiliging en privacy"
+
+msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
+msgstr "Download Firefox-extensies om veilig en privé te surfen. Ontdek extensies die stiekeme advertentietrackers kunnen stoppen, eenvoudig de surfgeschiedenis kunnen wissen, en meer."
+
+msgid "Social Networking"
+msgstr "Sociale netwerken"
+
+msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
+msgstr "Download Firefox-extensies om uw ervaring op populaire sociale netwerksites zoals YouTube, GitHub, Reddit en meer te verbeteren."
+
+msgid "Sports & Games"
+msgstr "Sport en spel"
+
+msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
+msgstr "Download Firefox-extensies om uw entertainmentervaring een boost te geven met livestreamverbetering, sportupdates, en meer."
+
+msgid "User Interface"
+msgstr "Gebruikersinterface"
+
+msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
+msgstr "Download Firefox-extensies voor uw gebruikersinterface om webpagina’s te wijzigen voor eenvoudiger lezen, zoeken, surfen, en meer."
 
 msgid "Animals"
 msgstr "Dieren"
@@ -2005,35 +2085,80 @@ msgstr "Sport"
 msgid "Abstract"
 msgstr "Abstract"
 
+msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
+msgstr "Download artistieke en conceptuele thema’s voor Firefox. Deze categorie omvat kleurrijke paletten en vormen, fantasievolle landschappen, speelse katten en psychedelische bloemen."
+
 msgid "Causes"
 msgstr "Goede doelen"
+
+msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
+msgstr "Download Firefox-thema’s voor bijzondere interesses en onderwerpen. Deze categorie omvat sportthema’s, vakanties, filantropische doelen, nationaliteiten, en nog veel meer."
 
 msgid "Fashion"
 msgstr "Mode"
 
+msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
+msgstr "Download Firefox-thema’s die alle stijlvormen vieren - patronen, bloemvormen, texturen, modellen, en meer."
+
 msgid "Film and TV"
 msgstr "Film en tv"
+
+msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
+msgstr "Download Firefox-thema’s met films en televisie. Deze categorie omvat anime als Uchiha Madara, films als The Matrix, series (Game of Thrones) en meer."
+
+msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
+msgstr "Download Firefox-thema’s met het Firefoxbrowserthema. Deze categorie omvat kleurrijke, uiteenlopende weergaven van het Firefox-logo, alsmede meer algemene vossenthema’s."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
+msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
+msgstr "Download Firefox-thema’s met de Japanse Firefox. Deze categorie omvat thema’s die de schattige Foxkeh-mascotte in diverse poses in diverse landschappen weergeven."
+
 msgid "Holiday"
 msgstr "Feestdagen"
+
+msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
+msgstr "Download Firefox-thema’s met feestdagen. Deze categorie omvat Kerstmis, Halloween, Thanksgiving, St. Patrick’s Day, Fourth of July, en meer."
 
 msgid "Music"
 msgstr "Muziek"
 
+msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
+msgstr "Download Firefox-thema’s voor muzikale interesses en artiesten. Deze categorie omvat populaire bands als Nirvana en BTS, instrumenten, muziekvideo’s, en nog veel meer."
+
+msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
+msgstr "Download Firefox-thema’s met dieren en natuurlandschappen. Deze categorie omvat bloemen, zonsondergangen, vossen, seizoenen, planeten, kittens, vogels, en meer."
+
+msgid "Download Firefox themes that are interesting, creative, and unique."
+msgstr "Download interessante, creatieve en unieke Firefox-thema’s."
+
 msgid "Scenery"
 msgstr "Landschap"
+
+msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
+msgstr "Download Firefox-thema’s over het milieu en de natuur. Deze categorie omvat zonsondergangen, stranden, illustraties, stadsgezichten, en meer."
 
 msgid "Seasonal"
 msgstr "Seizoensgebonden"
 
+msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
+msgstr "Download Firefox-thema’s voor alle vier de seizoenen - herfst, winter, lente en zomer. Herfstbladeren, besneeuwde bergtoppen, zonnige zomerdagen en lentebloesem."
+
 msgid "Solid"
 msgstr "Dekkend"
 
+msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
+msgstr "Download Firefox-thema’s met vaste en geschakeerde kleuren om uw browser aan te passen. Deze categorie omvat hardrood, pastelkleuren, zachtgrijs, en nog veel meer."
+
+msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
+msgstr "Download Firefox-thema’s over een scala aan sporten. Deze categorie omvat vlaggen, sportteams, voetbal, ijshockey, en meer."
+
 msgid "Websites"
 msgstr "Websites"
+
+msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
+msgstr "Download Firefox-thema’s die de essentie van het web vangen - boeiend, ongebruikelijk en bijzonder."
 
 msgid "General"
 msgstr "Algemeen"
@@ -2067,33 +2192,6 @@ msgstr "Reizen"
 
 msgid "Video"
 msgstr "Video"
-
-msgid "Device Features & Location"
-msgstr "Apparaatfuncties en -locatie"
-
-msgid "Experimental"
-msgstr "Experimenteel"
-
-msgid "Feeds, News, & Blogging"
-msgstr "Feeds, nieuws en blogging"
-
-msgid "Performance"
-msgstr "Prestaties"
-
-msgid "Photos & Media"
-msgstr "Foto’s en media"
-
-msgid "Security & Privacy"
-msgstr "Beveiliging en privacy"
-
-msgid "Social Networking"
-msgstr "Sociale netwerken"
-
-msgid "Sports & Games"
-msgstr "Sport en spel"
-
-msgid "User Interface"
-msgstr "Gebruikersinterface"
 
 msgid "All Rights Reserved"
 msgstr "Alle rechten voorbehouden"
@@ -2353,6 +2451,9 @@ msgstr "Geef het privacybeleid van uw add-on op:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een archiefbestand {extensions}."
 
+msgid "Invalid or broken archive."
+msgstr "Ongeldig of beschadigd archief."
+
 msgid "View current"
 msgstr "Huidige weergeven"
 
@@ -2385,6 +2486,9 @@ msgstr "U hebt geen bronbestand geüpload."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Bronbestand geüpload, maar u hebt aangegeven dat er geen bron nodig was."
+
+msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgstr "Zorg ervoor dat de naam en de samenvatting samen uit ten hoogste 70 tekens bestaan (ze bestaan nu uit {0} tekens)."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "Er kunnen niet meer dan 3 vereiste add-ons zijn."
@@ -2427,6 +2531,9 @@ msgstr ""
 
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "U kunt geen WebExtensions-add-on bijwerken met een verouderde add-on. Uw gebruikers zouden uw nieuwe versie dan niet kunnen gebruiken, omdat Firefox dit type update niet ondersteunt."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] De tekst in het veld ‘{field}’ is gemarkeerd als spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "In het ingediende bestand is uw ontwikkelaars-API-sleutel aangetroffen. Om uw account te beschermen, zal de sleutel worden ingetrokken."
@@ -2505,6 +2612,12 @@ msgstr "Er is een schrijver verwijderd van uw add-on"
 msgid "Validate Add-on"
 msgstr "Add-on valideren"
 
+msgid "Icons must be either PNG or JPG."
+msgstr "Pictogrammen dienen in PNG- of JPG-opmaak te zijn."
+
+msgid "Icons cannot be animated."
+msgstr "Pictogrammen mogen niet bewegend zijn."
+
 #, python-format
 msgid "Images cannot be larger than %dKB."
 msgstr "Afbeeldingen mogen niet groter zijn dan %dKB."
@@ -2512,6 +2625,12 @@ msgstr "Afbeeldingen mogen niet groter zijn dan %dKB."
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Afbeeldingen dienen exact {0} pixels breed en {1} pixels hoog te zijn."
+
+msgid "Image must be at least {0} pixels wide and {1} pixels tall."
+msgstr "Afbeelding dient ten minste {0} pixels breed en {1} pixels hoog te zijn."
+
+msgid "Image dimensions must be in the ratio 4:3."
+msgstr "Afbeeldingsafmetingen dienen in de verhouding 4:3 te zijn."
 
 msgid "There was an error uploading your preview."
 msgstr "Er is een fout opgetreden bij het uploaden van uw voorbeeld."
@@ -2756,8 +2875,8 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> thema"
 msgstr[1] "<b>{0}</b> thema’s"
 
-msgid "Edit Information"
-msgstr "Gegevens bewerken"
+msgid "Edit Product Page"
+msgstr "Productpagina bewerken"
 
 msgid "None"
 msgstr "Geen"
@@ -2838,6 +2957,19 @@ msgstr "Beschrijf uw add-on"
 msgid "Describe {0}"
 msgstr "Beschrijf {0}"
 
+msgid "Name and Summary"
+msgstr "Naam en samenvatting"
+
+msgid ""
+"The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
+"characters and a minimum length of 2 characters for each."
+msgstr ""
+"De samenvatting dient uit te leggen wat uw add-on doet, op een duidelijke en korte wijze. Zowel de naam als de samenvatting verschijnen op uw productpagina en in zoekresultaten. Ze hebben een "
+"maximale gecombineerde lengte van 70 tekens en een minimale lengte van 2 tekens elk."
+
+msgid "Summary"
+msgstr "Samenvatting"
+
 msgid "Add-on URL"
 msgstr "Add-on-URL"
 
@@ -2847,8 +2979,8 @@ msgstr "Kies een korte, unieke URL-identificator voor uw add-on."
 msgid "View Listing"
 msgstr "Lijst bekijken"
 
-msgid "Summary"
-msgstr "Samenvatting"
+msgid "View Product Page"
+msgstr "Productpagina bekijken"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Deze samenvatting dient duidelijk uit te leggen wat uw add-on doet. Deze verschijnt in lijsten en zoekopdrachten, en wordt door beoordelaars gebruikt om uw add-on te testen."
@@ -3056,12 +3188,14 @@ msgstr "Geef een titel voor deze schermafbeelding:"
 msgid "Add a Screenshot..."
 msgstr "Een schermafbeelding toevoegen…"
 
-msgid ""
-"PNG and JPG supported. The maximum and recommended size for screenshots is 1280x800 pixels. 640x400 pixels is a good alternative if you only have smaller images. Having screenshots in your listing "
-"page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
-"PNG en JPG worden ondersteund. De maximale en aanbevolen grootte voor schermafbeeldingen bedraagt 1280x800 pixels. 640x400 pixels is een goed alternatief als u alleen kleinere afbeeldingen hebt. De "
-"beschikbaarheid van schermafbeeldingen op uw add-onpagina vergroot de kans op installatie en aanbeveling op de startpagina significant."
+msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
+msgstr "PNG en JPG worden ondersteund, PNG wordt aanbevolen. De maximale en aanbevolen afmeting voor schermafdrukken is 2400x1800 pixels."
+
+msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
+msgstr "De minimale grootte is 1000x750, en een verhouding van 4:3 is vereist."
+
+msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
+msgstr "Het opnemen van schermafdrukken op uw productpagina vergroot de kans dat uw deze wordt geïnstalleerd en op de startpagina wordt aanbevolen aanzienlijk."
 
 msgid "Continue"
 msgstr "Doorgaan"
@@ -3154,8 +3288,8 @@ msgstr "Deze add-on verwijderen."
 msgid "Delete"
 msgstr "Verwijderen"
 
-msgid "Edit information about this add-on."
-msgstr "Gegevens over deze add-on bewerken."
+msgid "Edit details on this add-on's product page."
+msgstr "Details op de productpagina van deze add-on bewerken."
 
 msgid "Upload a new version of this add-on."
 msgstr "Een nieuwe versie van deze add-on uploaden."
@@ -3172,17 +3306,11 @@ msgstr "Statistieken"
 msgid "Manage Status & Versions"
 msgstr "Status en versies beheren"
 
-msgid "View Add-on Listing"
-msgstr "Add-onvermelding bekijken"
-
 msgid "View Recent Changes"
 msgstr "Recente wijzigingen bekijken"
 
-msgid "Edit details about this theme's listing."
-msgstr "Details van dit thema bewerken."
-
-msgid "Edit Listing"
-msgstr "Lijstvermelding bewerken"
+msgid "Edit details on this theme's product page."
+msgstr "Details op de productpagina van dit thema bewerken."
 
 msgid "View the popularity of this theme over time."
 msgstr "Het populariteitsverloop van dit thema bekijken."
@@ -3224,8 +3352,11 @@ msgstr[1] "<strong>{0}</strong> actieve gebruikers"
 msgid "Submit a New Version"
 msgstr "Een nieuwe versie indienen"
 
-msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
-msgstr "Naam in vermelding op deze website. Kan anders zijn dan de naam binnen de add-on, die binnen Firefox wordt getoond"
+msgid "Name and Summary:"
+msgstr "Naam en samenvatting:"
+
+msgid "required"
+msgstr "vereist"
 
 msgid "Add-on URL:"
 msgstr "Add-on-URL:"
@@ -3233,11 +3364,11 @@ msgstr "Add-on-URL:"
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Gebruik uitsluitend letters, cijfers, liggende streepjes en streepjes in uw URL."
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "Naam in vermelding op deze website. Kan anders zijn dan de naam binnen de add-on, die binnen Firefox wordt getoond"
+
 msgid "Summary:"
 msgstr "Samenvatting:"
-
-msgid "required"
-msgstr "vereist"
 
 msgid "Description:"
 msgstr "Beschrijving:"
@@ -3775,10 +3906,10 @@ msgstr "Bronnen voor een succesvolle lancering"
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on "
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"U hebt uw extensie gebouwd en bent klaar voor publicatie ervan. Wat nu? Bekijk onze tips voor het maken van een aantrekkelijke vermeldingspagina, het aanbevolen krijgen van uw extensie op "
+"U hebt uw extensie gebouwd en bent klaar voor publicatie ervan. Wat nu? Bekijk onze tips voor het maken van een aantrekkelijke productpagina, het aanbevolen krijgen van uw extensie op "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, het vinden van antwoorden op ontwikkelvragen, en het up-to-date blijven over nieuws en evenementen die relevant zijn voor "
 "extensieontwikkelaars."
 
@@ -3788,8 +3919,8 @@ msgstr "Hulpbronnen voor uitgevers bekijken"
 msgid "Welcome Back"
 msgstr "Welkom terug"
 
-msgid "Help users discover your extension by creating an appealing listing."
-msgstr "Help gebruikers uw extensie te ontdekken door een aantrekkelijke vermelding te maken."
+msgid "Help users discover your extension by creating an appealing product page."
+msgstr "Help gebruikers uw extensie te ontdekken door een aantrekkelijke productpagina te maken."
 
 msgid "Learn How"
 msgstr "Meer info"
@@ -4124,14 +4255,14 @@ msgstr "Antwoorden"
 msgid "Listing visibility"
 msgstr "Zichtbaarheid van vermelding"
 
-msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and listing pages."
-msgstr "{label_open}Zichtbaar:{label_close} Zichtbaar voor iedereen op {site_url} en opgenomen in zoekresultaten en vermeldingspagina’s."
+msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
+msgstr "{label_open}Zichtbaar:{label_close} Zichtbaar voor iedereen op {site_url} en opgenomen in zoekresultaten en productpagina’s."
 
 msgid ""
-"{label_open}Invisible:{label_close} Won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
+"{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Onzichtbaar:{label_close} Wordt niet in zoekresultaten opgenomen, en de vermeldingspagina ervan geeft aan dat u de add-on hebt uitgeschakeld. Inzendingen van nieuwe versies voor "
-"vermelding worden in deze toestand niet geaccepteerd."
+"{label_open}Onzichtbaar:{label_close} Wordt niet in zoekresultaten opgenomen, en de productpagina ervan geeft aan dat u de add-on hebt uitgeschakeld. Inzendingen van nieuwe versies voor het product "
+"worden in deze toestand niet geaccepteerd."
 
 msgid "Listed versions"
 msgstr "Vermelde versies"
@@ -5593,6 +5724,9 @@ msgstr "Kon geüploade bestand niet uitpakken; ontbrekend of leeg <%s>-element"
 msgid "Could not parse uploaded file."
 msgstr "Kon geüploade bestand niet uitpakken."
 
+msgid "Unsupported archive type."
+msgstr "Niet-ondersteund archieftype."
+
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
 msgstr "Ongeldige bestandsnaam in archief. Zorg ervoor dat alle bestandsnamen utf-8- of latin1-gecodeerd zijn."
@@ -6163,6 +6297,12 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Aangeboden door:"
 
+msgid "User"
+msgstr "Gebruiker"
+
+msgid "IP Address"
+msgstr "IP-adres"
+
 #, python-format
 msgid "Reviews for %s"
 msgstr "Beoordelingen voor %s"
@@ -6720,9 +6860,6 @@ msgstr "Thema-afbeeldingen"
 msgid "Rendered Preview"
 msgstr "Verwerkt voorbeeld"
 
-msgid "Background file {0} of {1} - {2}"
-msgstr "Achtergrondbestand {0} van {1} - {2}"
-
 msgid "More about this add-on"
 msgstr "Meer over deze add-on"
 
@@ -7129,6 +7266,9 @@ msgstr "Beoordelingsrichtlijnen"
 msgid "Theme Review for {0}"
 msgstr "Thema-beoordeling voor {0}"
 
+msgid "Edit Listing"
+msgstr "Lijstvermelding bewerken"
+
 msgid "(Probable Duplicate Submission)"
 msgstr "(Waarschijnlijk dubbel ingediend)"
 
@@ -7293,8 +7433,8 @@ msgstr "Weergegeven: {0} - {1} van {2} resultaten voor <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Weergegeven: {0} - {1} van {2} resultaten"
 
-msgid "Could not find add-on with id \"{}\"."
-msgstr "Kon geen add-on met id ‘{}’ vinden."
+msgid "Could not find add-on with guid \"{}\"."
+msgstr "Kon geen add-on met guid ‘{}’ vinden."
 
 msgid "You do not own this addon."
 msgstr "Deze add-on is niet van u."
@@ -7756,9 +7896,6 @@ msgstr "Profielfoto"
 
 msgid "Addons"
 msgstr "Add-ons"
-
-msgid "Ratings"
-msgstr "Waarderingen"
 
 msgid "Activity Logs"
 msgstr "Activiteitenlogboeken"
