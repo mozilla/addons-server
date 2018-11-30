@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 20:58+0000\n"
+"PO-Revision-Date: 2018-11-30 20:29+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2007,28 +2007,28 @@ msgid "Social & Communication"
 msgstr "Socialne a komunikacija"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja Firefox, zo byšće socialne medije a wuměnu hnydomnych powěsćow polěpšił. Tuta kategorija zapřijima polěpšene rajtarkowe zdźělenki, sćehnjenja widejow a wjace."
 
 msgid "Tabs"
 msgstr "Rajtarki"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenje Firefox, zo byšće stronu noweho rajtarka přiměrił. Wuslědźće rozšěrjenja, kotrež rajtarki wodźa, wašnje změnić, na kotrež z nimi interagujeće a wjace."
 
 msgid "Web Development"
 msgstr "Webwuwiwanje"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja Firefox, kotrež nastroje webwuwića předstajeja. Tuta kategorija zapřijima rozšěrjenja za GitHub, přeměnjenje wužiwarskeho agenta, rjadowanje plackow a wjace."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja Firefox, kotrež móža njepředwidźomne a kreatiwne być, ale su wužitne za tute njewšědne nadawki."
 
 msgid "Device Features & Location"
 msgstr "Gratowe funkcije a stejnišćo"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja, zo byšće Firefox za Android polěpšił. Přewjedźće spěšne pytanja, wuswobodźće systemowe resursy, čińće sej noticy a wjace."
 
 msgid "Experimental"
 msgstr "Eksperimentelne"
