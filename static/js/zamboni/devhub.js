@@ -38,9 +38,6 @@ $(document).ready(function() {
     $("#submit-describe").exists(initCatFields);
     $("#submit-describe").exists(initCCLicense);
 
-    // Submission > Descript > Summary
-    $('.addon-submission-process #submit-describe').exists(initTruncateSummary);
-
     // Submission > Media
     $('#submit-media').exists(function() {
         initUploadIcon();
@@ -737,11 +734,33 @@ function initSubmit() {
                 $('#id_slug').attr('data-customized', 0);
                 slugify();
             }
-        });
+        })
+        .on('keyup blur', showNameSummaryCroppingWarnings);
     $('#id_slug').each(slugify);
+    showNameSummaryCroppingWarnings();
     reorderPreviews();
     $('.invisible-upload [disabled]').prop("disabled", false);
     $('.invisible-upload .disabled').removeClass("disabled");
+}
+
+function showNameSummaryCroppingWarnings() {
+    var exceeds_max_length = false,
+        max_length = $('.edit-addon-details .char-count').data('maxlength'),
+        name_default_val = $('[name^="name_"]:visible').val(),
+        summary_default_val = $('[name^="summary_"]:visible').val(),
+        selectors ='.combine-name-summary [name^="name_"]:hidden, .combine-name-summary [name^="summary_"]:hidden';
+
+    $(selectors).each(function(index, element) {
+        var locale = $(element).attr('lang'),
+            name_val = $('[name="name_' + locale + '"]').val() || name_default_val,
+            summary_val = $('[name="summary_' + locale + '"]').val() || summary_default_val;
+        if (locale != "init" && (name_val.length + summary_val.length > max_length)) {
+            exceeds_max_length = true;
+            return false;
+        }
+    });
+
+    $('#name-summary-locales-warning').toggle(exceeds_max_length);
 }
 
 function generateErrorList(o) {
@@ -1174,35 +1193,6 @@ function initAddonCompatCheck($doc) {
         !$('#id_app_version option:selected', $form).val()) {
         // If an app is selected when page loads and it's not a form post.
         $elem.trigger('change');
-    }
-}
-
-function initTruncateSummary() {
-    // If the summary from a manifest is too long, truncate it!
-    // EN-US only, since it'll be way too hard to accomodate all languages properly.
-    var $submit_describe = $('#submit-describe'),
-        $summary = $('textarea[name=summary_en-us]', $submit_describe),
-        $desc = $('textarea[name=description_en-us]', $submit_describe);
-
-    if($summary.length && $desc.length) {
-        var max_length = parseInt($('.char-count', $submit_describe).attr('data-maxlength'), 10),
-            text = $summary.val(),
-            submitted = ($('.errorlist li', $submit_describe).length > 0);
-
-        if($desc.val() === "" && text.length > max_length && !submitted) {
-            var new_text = text.substr(0, max_length),
-                // New line or punctuation followed by a space
-                punctuation = new_text.match(/\n|[.?!]\s/g);
-
-            if(punctuation.length) {
-                var d = punctuation[punctuation.length - 1];
-                new_text = new_text.substr(0, new_text.lastIndexOf(d)+1).trim();
-                if(new_text.length > 0) {
-                    $desc.val(text);
-                    $summary.val(new_text).trigger('keyup');
-                }
-            }
-        }
     }
 }
 

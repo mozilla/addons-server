@@ -1492,11 +1492,13 @@ def _submit_details(request, addon, version):
     show_all_fields = not version or not addon.has_complete_metadata()
 
     if show_all_fields:
-        content_waffle = waffle.switch_is_active('content-optimization')
-        describe_form_cls = (forms.DescribeForm if not content_waffle
-                             else forms.DescribeFormContentOptimization)
-        describe_form = describe_form_cls(
-            post_data, instance=addon, request=request, version=version)
+        if waffle.switch_is_active('content-optimization'):
+            describe_form = forms.DescribeFormContentOptimization(
+                post_data, instance=addon, request=request, version=version,
+                should_auto_crop=True)
+        else:
+            describe_form = forms.DescribeForm(
+                post_data, instance=addon, request=request, version=version)
         cat_form_class = (addon_forms.CategoryFormSet if not static_theme
                           else forms.SingleCategoryForm)
         cat_form = cat_form_class(post_data, addon=addon, request=request)
