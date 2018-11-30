@@ -36,6 +36,16 @@
              data-for-startswith="{{ form.name.auto_id }}_"
              data-minlength="{{ form.name.field.min_length }}"></div>
       </div>
+      <div class="edit-addon-details">
+        <div id="name-summary-locales-warning" class="error">
+          {% trans max_length=form.name.field.min_length + form.summary.field.max_length %}
+          Warning: you have name/summary values in other locales that will be
+          automatically cropped to fit under the limit of {{ max_length }}
+          characters.  To edit these go to Edit Product Page after the submission
+          process is complete.
+          {% endtrans %}
+        </div>
+      </div>
     </div>
     <div class="addon-submission-field slug-edit">
       <label>{{ _("Add-on URL:") }}</label>

@@ -1039,6 +1039,48 @@ class DetailsPageMixin(object):
             name='a' * 2, summary='b' * 68, description='c' * 10)
         self.is_success(data)
 
+    @override_switch('content-optimization', active=True)
+    def test_summary_auto_cropping_content_optimization(self):
+        # See test_forms.py::TestDescribeForm for some more variations.
+        data = self.get_dict(minimal=False)
+        data.pop('name')
+        data.pop('summary')
+        data.update({
+            'name_en-us': 'a' * 25,
+            'name_fr': 'b' * 30,
+            'summary_en-us': 'c' * 45,
+            'summary_fr': 'd' * 45,  # 30 + 45 is > 70
+        })
+        self.is_success(data)
+
+        assert self.get_addon().name == 'a' * 25
+        assert self.get_addon().summary == 'c' * 45
+
+        with self.activate('fr'):
+            assert self.get_addon().name == 'b' * 30
+            assert self.get_addon().summary == 'd' * 40
+
+    @override_switch('content-optimization', active=True)
+    def test_name_auto_cropping_content_optimization(self):
+        # See test_forms.py::TestDescribeForm for some more variations.
+        data = self.get_dict(minimal=False)
+        data.pop('name')
+        data.pop('summary')
+        data.update({
+            'name_en-us': 'a' * 67,
+            'name_fr': 'b' * 69,
+            'summary_en-us': 'c' * 2,
+            'summary_fr': 'd' * 3,
+        })
+        self.is_success(data)
+
+        assert self.get_addon().name == 'a' * 67
+        assert self.get_addon().summary == 'c' * 2
+
+        with self.activate('fr'):
+            assert self.get_addon().name == 'b' * 68
+            assert self.get_addon().summary == 'd' * 2
+
 
 class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
 
