@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-28 08:49+0000\n"
+"PO-Revision-Date: 2018-12-01 13:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -709,9 +709,8 @@ msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chún
 msgid "Not allowed"
 msgstr "Không cho phép"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Không cho phép"
+msgstr "Rất tiếc! Không cho phép."
 
 msgid "You tried to do something that you weren't allowed to."
 msgstr ""
@@ -982,9 +981,8 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr "Url này đã được dùng bởi bộ sưu tập khác"
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "Url này đã được dùng bởi bộ sưu tập khác"
+msgstr "Một bộ sưu tập khác của bạn đã được sử dụng URL tùy chỉnh này."
 
 msgid "Name cannot be empty."
 msgstr "Tên không được để trống."
@@ -992,9 +990,8 @@ msgstr "Tên không được để trống."
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#, fuzzy
 msgid "This custom URL cannot be used."
-msgstr "\"{0}\"\\ là nhãn dự phòng và không thể dùng."
+msgstr "Không thể sử dụng URL tùy chỉnh này."
 
 #, fuzzy
 msgid "This add-on already belongs to the collection"
@@ -1345,9 +1342,8 @@ msgid "Additional Resources"
 msgstr "Tài nguyên Khác"
 
 #. {0} is an app name, like Firefox.
-#, fuzzy
 msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Tìm hiểu thêm về <a href=\"http://support.mozilla.com/kb/Search+bar\">thanh tìm kiếm</a> trong {0}"
+msgstr "Tìm hiểu thêm về <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">thanh tìm kiếm</a> trong {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 msgstr ""
@@ -1710,20 +1706,17 @@ msgstr "{review} cho {addon} được viết."
 msgid "Reviewer Reply"
 msgstr "Trả lời nhà phát triển của {0}"
 
-#, fuzzy
 msgid "Approval notes changed for {addon} {version}."
-msgstr "{review} cho {addon} được viết."
+msgstr "Đã thay đổi các ghi chú phê duyệt cho {addon} {version}."
 
 msgid "Approval notes changed"
 msgstr ""
 
-#, fuzzy
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Giấy phép Mã nguồn cho {addon}"
+msgstr "Mã nguồn được tải lên cho {addon} {version}."
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "Giấy phép Mã nguồn"
+msgstr "Đã tải lên mã nguồn"
 
 #, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
