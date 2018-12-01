@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 10:22+0000\n"
+"PO-Revision-Date: 2018-12-01 10:48+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1595,6 +1595,8 @@ msgstr ""
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
+"Suplimentul a fost semnalat pentru revizuire de către un administrator.   Încă se află în coada de așteptare pentru revizuire, dar va trebui verificat de unul dintre recenzenții noștri cu drepturi "
+"de administrare. Revizuirea poate dura mai mult decât de obicei."
 
 msgid "Comment on {addon} {version}."
 msgstr "Comentariu despre {addon} {version}."
@@ -1740,7 +1742,7 @@ msgid "Developer Reply"
 msgstr "Răspunsul dezvoltatorului"
 
 msgid "Reply by reviewer on {addon} {version}."
-msgstr ""
+msgstr "Răspunsul recenzentului pentru {addon} {version}."
 
 msgid "Reviewer Reply"
 msgstr "Răspunsul recenzentului"
@@ -2266,7 +2268,7 @@ msgid "Excellent (3)"
 msgstr "Excelent (3)"
 
 msgid "Manual Reviewer Points"
-msgstr "Puncte recenzori manuali"
+msgstr "Puncte recenzenți manuali"
 
 msgid "New Legacy Add-on Review"
 msgstr "Recenzie nouă pentru supliment obsolet"
@@ -2980,7 +2982,7 @@ msgid "View Product Page"
 msgstr "Afișează pagina produsului"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr ""
+msgstr "Rezumatul trebuie să explice clar ce face suplimentul. Va fi afișat în listări și căutări și va fi utilizat de recenzenți la testarea suplimentului."
 
 msgid "Experimental?"
 msgstr "Experimental?"
@@ -3124,6 +3126,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
+"Tabla albă este pentru furnizat recenzenților informații relevate despre supliment, indiferent de versiune. Folosește-o ca să indici modalități de testare a suplimentului și orice informații "
+"adiționale utile. Poate fi editată și de recenzenți."
 
 msgid "Remove this dependent add-on"
 msgstr ""
@@ -3386,10 +3390,10 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "Notes to Reviewer:"
-msgstr "Note pentru recenzent:"
+msgstr "Note către recenzent:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
-msgstr ""
+msgstr "E ceva de care recenzenții noștri ar trebui să țină cont la analizarea acestui supliment?"
 
 msgid "Remember"
 msgstr ""
@@ -3401,7 +3405,7 @@ msgid ""
 msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
-msgstr ""
+msgstr "Notele vor fi vizibile numai pentru tine și recenzenții noștri."
 
 msgid "Cancel and Disable Version"
 msgstr "Anulează și dezactivează versiunea"
@@ -3538,7 +3542,7 @@ msgid "Include instructions in a README file in the source code,"
 msgstr ""
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "sau în notele recenzentului de pe pagina următoare (dacă este cazul)."
 
 msgid "Upload source code:"
 msgstr ""
@@ -3779,7 +3783,7 @@ msgid "If your add-on contains binary or obfuscated code other than known librar
 msgstr ""
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
-msgstr ""
+msgstr "Te rugăm să incluzi instrucțiuni despre reproducerea fișierului final al suplimentului, fie într-un fișier README, fie în Notele către recenzent pentru această versiune."
 
 msgid "Read more about the source code review policy."
 msgstr ""
@@ -4154,7 +4158,7 @@ msgid "Approval Status"
 msgstr ""
 
 msgid "Notes for Reviewers"
-msgstr ""
+msgstr "Note pentru recenzenți"
 
 msgid "Optionally, enter any information that may be useful to the Reviewer of this add-on, such as test account information."
 msgstr ""
