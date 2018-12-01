@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-18 02:55+0000\n"
-"Last-Translator: Anh Vỹ <anhvy@madeezi.com>\n"
+"PO-Revision-Date: 2018-12-01 13:09+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -209,7 +209,6 @@ msgid "{0} download"
 msgid_plural "{0} downloads"
 msgstr[0] "{0} tải xuống"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} người dùng"
@@ -222,7 +221,6 @@ msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} bộ sưu tập"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} đánh giá"
@@ -753,10 +751,9 @@ msgid_plural "<b>{0}</b> characters"
 msgstr[0] ""
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "Trung bình <b>{0}</b> vào {1} ngày trước"
+msgstr[0] "<b>{0}</b> ký tự còn lại"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr " Tính năng này tạm thời bị vô hiệu hóa trong khi chúng tôi đang bảo trì trang web. Vui lòng kiểm tra lại sau. "
