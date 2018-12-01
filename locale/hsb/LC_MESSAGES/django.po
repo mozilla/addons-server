@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 20:30+0000\n"
+"PO-Revision-Date: 2018-12-01 20:47+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2163,7 +2163,7 @@ msgid "Seasonal"
 msgstr "Počasy"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Sćehńće drasty Firefox za wšě štyri počasy - nazymu, zymu, nalěćo a lěćo. Nazymske lisćo, zasněžene wjerški hór, słónčen lětnje dny a nalětnje kwětki."
 
 msgid "Solid"
 msgstr "Solidne"
@@ -2172,13 +2172,13 @@ msgid "Download Firefox themes with solid and gradient colors to personalize you
 msgstr ""
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Sćehńće drasty Firefox, kotrež wšelake sportowe družiny předstajeja. Tuta kategorija krajne chorhojčki, sportowe mustwa, kopańcu, hokej a wjace zapřijima."
 
 msgid "Websites"
 msgstr "Websydła"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Sćehńće drasty Firefox, kotrež bytosć weba zapopadnyć - putawje, njewšědnje a njezaměnjomnje."
 
 msgid "General"
 msgstr "Powšitkowne"
