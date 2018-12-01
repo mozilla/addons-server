@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 14:36+0000\n"
+"PO-Revision-Date: 2018-12-01 15:12+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -545,7 +545,7 @@ msgid "Add-on home page"
 msgstr "Pagina de start a suplimentului"
 
 msgid "Support site"
-msgstr "Site pentru suport"
+msgstr "Site de asistență"
 
 msgid "Support E-mail"
 msgstr "Adresă de e-mail pentru asistență"
@@ -616,10 +616,10 @@ msgid "Source Code License"
 msgstr "Licență de cod-sursă"
 
 msgid "support section"
-msgstr "secțiune de suport"
+msgstr "secțiune de asistență"
 
 msgid "support email"
-msgstr "e-mail de suport"
+msgstr "e-mail de asistență tehnică"
 
 msgid "permalink"
 msgstr "link permanent"
@@ -2773,7 +2773,7 @@ msgid "Development Add-ons"
 msgstr "Suplimente de dezvoltare"
 
 msgid "Community & Support"
-msgstr "Comunitate și suport"
+msgstr "Comunitate și asistență"
 
 msgid "Add-ons Blog"
 msgstr "Blog despre suplimente"
@@ -3384,7 +3384,7 @@ msgid "Select a category for this add-on:"
 msgstr "Selectează o categorie pentru acest supliment:"
 
 msgid "Support email:"
-msgstr "E-mail de suport:"
+msgstr "E-mail de asistență:"
 
 msgid "Support website:"
 msgstr "Site de asistență:"
@@ -3767,7 +3767,7 @@ msgid "Allowed HTML: %(allowed_html)s"
 msgstr ""
 
 msgid "Some HTML supported."
-msgstr ""
+msgstr "Unele HTML sunt suportate."
 
 msgid "Remove this application"
 msgstr ""
@@ -3826,7 +3826,7 @@ msgid "Contact Us"
 msgstr "Contactează-ne"
 
 msgid "Support"
-msgstr "Suport"
+msgstr "Asistență"
 
 msgid "Report Bug"
 msgstr ""
@@ -5702,7 +5702,7 @@ msgid "Could not parse uploaded file."
 msgstr ""
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Tip de arhivă nesuportat."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -5777,7 +5777,7 @@ msgid "Validation failed:"
 msgstr ""
 
 msgid "File content not supported for syntax highlighting"
-msgstr ""
+msgstr "Conținutul fișierului nu este suportat pentru evidențierea sintaxei"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
@@ -6289,7 +6289,7 @@ msgid "Inappropriate language/dialog"
 msgstr "Limbaj necorespunzător"
 
 msgid "Misplaced bug report or support request"
-msgstr "Raport de defect sau cerere de asistență amplasate greșit"
+msgstr "Raport de defect sau cerere de asistență plasat(ă) greșit"
 
 msgid "Other (please specify)"
 msgstr "Altele (vă rugăm să specificați)"
@@ -6336,9 +6336,9 @@ msgstr ""
 "<h2>Reține aceste ponturi:</h2><ul><li>Scrie ca și când i-ai spune unui prieten despre experiența ta cu suplimentul. Dă detalii specifice și utile, cum ar fi ce funcționalități ți-au plăcut sau nu "
 "ți-au plăcut, cât e de ușor de folosit și orice dezavantaje pe care le-ar avea. Evită limbajul generic, precum atributele „grozav” sau „slab” dacă nu poți motiva o asemenea calificare. </li><li>Te "
 "rugăm să nu postezi aici rapoarte de defecțiuni. Nu punem la dispoziția dezvoltatorilor de suplimente adresa ta de e-mail, așa că nu te vor putea contacta pentru soluționarea problemei. Consultă <a "
-"href=\"%(support)s\">secțiunea de suport</a> aferentă acestui supliment ca să vezi dacă oferă asistență. Poți încerca și să ceri ajutorul <a href=\"https://discourse.mozilla-community.org/c/add-ons"
-"/add-on-support\">comunității de suplimente</a>. </li><li>Te rugăm să scrii recenzii clare, să eviți limbajul necorespunzător și să nu postezi informații personale. </li></ul><p>Te rugăm să citești "
-"<a href=\"%(guide)s\">Ghidul pentru recenzii</a>pentru mai multe detalii privind recenziile utilizatorilor despre suplimente."
+"href=\"%(support)s\">secțiunea de asistență</a> aferentă acestui supliment ca să vezi dacă oferă asistență. Poți încerca și să ceri ajutorul <a href=\"https://discourse.mozilla-community.org/c/add-"
+"ons/add-on-support\">comunității de suplimente</a>. </li><li>Te rugăm să scrii recenzii clare, să eviți limbajul necorespunzător și să nu postezi informații personale. </li></ul><p>Te rugăm să "
+"citești <a href=\"%(guide)s\">Ghidul pentru recenzii</a>pentru mai multe detalii privind recenziile utilizatorilor despre suplimente."
 
 msgid "Reply to review by {0}"
 msgstr ""
@@ -7731,7 +7731,7 @@ msgid "Choose a category"
 msgstr "Alege o categorie"
 
 msgid "The new website supports mobile and desktop clients"
-msgstr ""
+msgstr "Noul site web are suport pentru clienți dispozitive mobile și calculatoare"
 
 msgid "View the new site"
 msgstr "Vezi noul site"
