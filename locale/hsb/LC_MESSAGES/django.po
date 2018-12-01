@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-30 21:20+0000\n"
+"PO-Revision-Date: 2018-12-01 10:48+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2061,19 +2061,19 @@ msgid "Social Networking"
 msgstr "Socialne syće"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja Firefox, zo byšće swoje dožiwjenje na woblubowanych websydłach syćoweho dźěła, na přikład YouTube, GitHub, Reddit a wjace polěpšił."
 
 msgid "Sports & Games"
 msgstr "Sport a hry"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja Firefox, zo byšće swoje zabawne dožiwjenje z rozšěrjenjemi live stream, sportowymi powěsćemi a wjace polěpšił."
 
 msgid "User Interface"
 msgstr "Wužiwarski powjerch"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Sćehńće rozšěrjenja wužiwarskeho powjercha Firefox, z kotrymiž webstrony změniće, zo byšće móhł je lóšo čitać, pytać, přehladować a wjace."
 
 msgid "Animals"
 msgstr "Zwěrjata"
