@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 12:06+0000\n"
+"PO-Revision-Date: 2018-12-01 12:24+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -7846,9 +7846,8 @@ msgstr ""
 msgid "Addons"
 msgstr ""
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "Acțiuni"
+msgstr "Jurnale de activitate"
 
 msgid "Email must be {email}."
 msgstr ""
@@ -7876,9 +7875,8 @@ msgstr ""
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox pentru Android"
+msgstr "Utilizator Firefox {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
@@ -7946,9 +7944,8 @@ msgstr ""
 msgid "Ban"
 msgstr ""
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Șterge recenzia"
+msgstr "Șterge imaginea"
 
 msgid "Delete User Account"
 msgstr "Șterge contul de utilizator"
