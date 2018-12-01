@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 15:12+0000\n"
+"PO-Revision-Date: 2018-12-01 15:19+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2211,25 +2211,25 @@ msgid "Video"
 msgstr "Video"
 
 msgid "All Rights Reserved"
-msgstr ""
+msgstr "Toate drepturile rezervate"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Necomercială-Partajare similare 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Fără derivate 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Atribuire Creative Commons-Partajare similare 3.0"
 
 msgid "Any"
 msgstr "Oricare"
@@ -3033,7 +3033,7 @@ msgstr ""
 "categoriilor."
 
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -3072,7 +3072,7 @@ msgid "Required Add-ons"
 msgstr "Suplimente necesare"
 
 msgid "Limit 3"
-msgstr ""
+msgstr "Limita 3"
 
 msgid "Add-on Flags"
 msgstr ""
@@ -3084,7 +3084,7 @@ msgid "This add-on requires external software."
 msgstr "Acest supliment necesită programe externe."
 
 msgid "View Source?"
-msgstr ""
+msgstr "Vizualizare sursă?"
 
 msgid "Whether the source of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -3096,7 +3096,7 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr ""
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "Statistici publice?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -3129,7 +3129,7 @@ msgid "The UUID of your add-on is specified in its install manifest and uniquely
 msgstr ""
 
 msgid "Whiteboard"
-msgstr ""
+msgstr "Tablă albă"
 
 msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
@@ -3148,7 +3148,7 @@ msgid "Add-on Media for {0}"
 msgstr ""
 
 msgid "Add-on icon"
-msgstr ""
+msgstr "Pictograma suplimentului"
 
 msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
@@ -3173,7 +3173,7 @@ msgid "Used in add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Încarcă o pictogramă personalizată ..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 msgstr ""
@@ -5099,7 +5099,7 @@ msgstr "WhatsApp pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Accesează WhatsApp din panoul barei de unelte din Firefox și primești notificări în insignă pentru conversații necitite."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
