@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 11:13+0000\n"
+"PO-Revision-Date: 2018-12-01 14:02+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -28,19 +28,19 @@ msgid "Select a file..."
 msgstr "Selectează un fișier..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Suplimentul ar trebui să aibă extensia .zip, .xpi, .crx, .jar sau .xml"
+msgstr "Suplimentul trebuie să aibă extensia .zip, .xpi, .crx, .jar sau .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% complet"
+msgstr "{0}% încărcat"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
 msgstr "{0} din {1}"
 
 msgid "Cancel"
-msgstr "Renunță"
+msgstr "Anulează"
 
 msgid "Uploading {0}"
 msgstr "Se încarcă {0}"
@@ -49,13 +49,13 @@ msgid "Error with {0}"
 msgstr "Eroare cu {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "Am activat un nou analizor de cod pentru procesarea suplimentului. Asigură-te că raportezi orice probleme pe GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
-msgstr[0] "Suplimentul tău a eșuat validarea cu {0} eroare."
-msgstr[1] "Suplimentul tău a eșuat validarea cu {0} erori."
-msgstr[2] "Suplimentul tău a eșuat validarea cu {0} de erori."
+msgstr[0] "Suplimentul nu a trecut validarea cu {0} eroare."
+msgstr[1] "Suplimentul nu a trecut validarea cu {0} erori."
+msgstr[2] "Suplimentul nu a trecut validarea cu {0} de erori."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
@@ -64,19 +64,19 @@ msgstr[1] "&hellip;și încă {0}"
 msgstr[2] "&hellip;și încă {0}"
 
 msgid "See full validation report"
-msgstr "Vezi raportul de validare întreg"
+msgstr "Vezi raportul complet de validare"
 
 msgid "Validating {0}"
 msgstr "Se validează {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "Suplimentul tău depășește dimensiunea maximă de {0}."
+msgstr "Suplimentul depășește mărimea maximă de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "S-a primit un răspuns gol de la server; stare: {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Eroare de server neașteptată în timpul validării."
+msgstr "Eroare neașteptată de server la validare."
 
 msgid "Finished validating {0}"
 msgstr "S-a terminat validarea {0}"
@@ -106,22 +106,22 @@ msgid "WebExtension upgrade"
 msgstr "Actualizare WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Acceptăm și încurajăm actualizările, dar procesul este ireversibil. Odată ce utilizatorii au instalat WebExtension, nu vor mai putea instala un supliment obsolet."
+msgstr "Acceptăm și încurajăm actualizările, dar procesul este ireversibil. Odată ce utilizatorii au instalat WebExtension, nu vor mai putea instala un supliment perimat."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portarea unui supliment obsolet Firefox pe MDN"
+msgstr "Se portează pe MDN un supliment Firefox perimat"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Include notițe de versiune detaliate (acest lucru se poate face în următorul pas)."
+msgstr "Include note detaliate despre versiune (se poate face la pasul următor)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către revizor (se poate face în etapa următoare)."
+msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către recenzent (se poate face în etapa următoare)."
 
 msgid "Add-on submission checklist"
 msgstr "Listă de verificare cu propunerile de suplimente"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de revizuire:"
+msgstr "Te rugăm să verifici următoarele puncte înainte de finalizarea propunerii. Acest lucru va minimiza întârzierile sau neînțelegerile în timpul procedurii de recenzie:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -135,7 +135,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Tipul de fișier pe care l-ai încărcat nu e recunoscut."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr "Fișierul tău depășește dimensiunea maximă de {0}."
+msgstr "Fișierul tău depășește mărimea maximă de {0}."
 
 msgid "You cancelled the upload."
 msgstr "Ai anulat încărcarea."
@@ -153,7 +153,7 @@ msgid "Stop Following"
 msgstr "Oprește urmărirea"
 
 msgid "Following"
-msgstr "Abonează"
+msgstr "Se urmărește"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -184,7 +184,7 @@ msgid "Your Theme's Name"
 msgstr "Numele temei tale"
 
 msgid "Flagged for review"
-msgstr "Marcat pentru revizuire"
+msgstr "Semnalat pentru recenzie"
 
 msgid "Your input is required"
 msgstr "Avem nevoie de opinia ta"
@@ -199,10 +199,10 @@ msgid "Category"
 msgstr "Categorie"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "Caută teme după <b>{0}</b>"
+msgstr "Caută teme pentru <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Caută aplicații după <b>{0}</b>"
+msgstr "Caută aplicații pentru <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Caută suplimente pentru <b>{0}</b>"
@@ -317,7 +317,7 @@ msgid "Unknown"
 msgstr "Necunoscut"
 
 msgid "Add-ons Manager"
-msgstr "Manage de suplimente"
+msgstr "Manager de suplimente"
 
 msgid "Add-ons Manager Promo"
 msgstr "Promoție în managerul de suplimente"
@@ -377,7 +377,7 @@ msgid "Version History"
 msgstr "Istoricul versiunilor"
 
 msgid "Sharing"
-msgstr "Distribuire"
+msgstr "Partajare"
 
 msgid "Category Pages"
 msgstr "Pagini de categorii"
@@ -465,7 +465,7 @@ msgstr "Instalări și utilizatori zilnici, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Instalări și utilizatori zilnici din {0} până în {1}"
+msgstr "Instalări și utilizatori zilnici de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -473,7 +473,7 @@ msgstr "Descărcări, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Descărcări din {0} până în {1}"
+msgstr "Descărcări de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -489,7 +489,7 @@ msgstr "Aplicații, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "Aplicații din {0} până în {1}"
+msgstr "Aplicații de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
@@ -497,7 +497,7 @@ msgstr "Platforme, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "Platforme din {0} până în {1}"
+msgstr "Platforme de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
@@ -541,11 +541,11 @@ msgstr "Contribuții din {0} până în {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Indicatorii metrici ai site-ului, ultimele {0} zile"
+msgstr "Metrici site, ultimele {0} zile"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
-msgstr "Indicatori metrici ai site-ului din {0} până în {1}"
+msgstr "Metrici site de la {0} până la {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
@@ -702,7 +702,7 @@ msgid "Works with {app}"
 msgstr "Funcționează cu {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr "Numai cu Firefox — Obține Firefox acum!"
+msgstr "Numai cu Firefox — Descarcă Firefox acum!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ne pare rău, dar ai nevoie de un browser bazat pe Mozilla (cum ar fi Firefox) pentru a instala un plugin de căutare."
@@ -747,7 +747,7 @@ msgid "Your browser does not support the video tag"
 msgstr "Browserul nu suportă etichetarea de videoclipuri"
 
 msgid "Changes Saved"
-msgstr "Modificările au fost salvate"
+msgstr "Modificări salvate"
 
 msgid "Enter a new author's email address"
 msgstr "Introdu adresa de email pentru un nou autor"
@@ -815,7 +815,7 @@ msgid "Version Notes"
 msgstr "Note asupra versiunii"
 
 msgid "Notes for Reviewers"
-msgstr "Note pentru revizori"
+msgstr "Note pentru recenzenți"
 
 msgid "No version notes found"
 msgstr "Nu s-a găsit nicio notă asupra versiunii"
@@ -830,7 +830,7 @@ msgid "Average Reviews"
 msgstr "Număr mediu de recenzii"
 
 msgid "Number of Reviews"
-msgstr "Numărul de recenzii"
+msgstr "Număr de recenzii"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Mărimea maximă de încărcare este {0} - alege o imagine de fundal mai mică."
@@ -842,7 +842,7 @@ msgid "Flagged"
 msgstr "Semnalat"
 
 msgid "Duplicate"
-msgstr "Duplichează"
+msgstr "Duplicat"
 
 msgid "Rejected"
 msgstr "Respins"
@@ -857,13 +857,13 @@ msgid "Theme"
 msgstr "Temă"
 
 msgid "Reviewer"
-msgstr "Revizor"
+msgstr "Recenzent"
 
 msgid "Status"
 msgstr "Stare"
 
 msgid "All tests passed successfully."
-msgstr "Toate testele au fost trecute cu succes."
+msgstr "Toate testele trecute cu succes."
 
 msgid "These tests were not run."
 msgstr "Aceste teste nu au fost efectuate."
@@ -884,7 +884,7 @@ msgid "{0} line {1}"
 msgstr "{0} rândul {1}"
 
 msgid "Add-on failed validation."
-msgstr "Validarea suplimentului a eșuat."
+msgstr "Suplimentul a picat validarea."
 
 msgid "Add-on passed validation."
 msgstr "Suplimentul a trecut validarea."
@@ -908,7 +908,7 @@ msgstr[1] "{0} notificări"
 msgstr[2] "{0} de notificări"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "Sarcina de validare nu a putut fi finalizată sau a fost finalizată cu erori"
+msgstr "Sarcina de validare nu s-a putut finaliza sau a fost finalizată cu erori"
 
 msgid "Internal server error"
 msgstr "Eroare internă server"
