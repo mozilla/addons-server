@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 10:48+0000\n"
+"PO-Revision-Date: 2018-12-01 10:56+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -1991,11 +1991,11 @@ msgstr "Priwatnosć a wěstota"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
-"Sćehńće rozšěrjenja Firefox, zo byšće priwatnje a wěsće přehladował. Tuta kategorija zapřijima rozšěrjenja, kotrež wobćežne wabjenje blokuja, slědowanju zadźěwaja, dalesposrědkowanja rjaduja a "
+"Sćehńće rozšěrjenja Firefox, zo byšće priwatnje a wěsće přehladował. Tuta kategorija rozšěrjenja zapřijima, kotrež wobćežne wabjenje blokuja, slědowanju zadźěwaja, dalesposrědkowanja rjaduja a "
 "wjace."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr "Sćehńće rozšěrjenja Firefox za pytanje a hladanje za informacijemi. Tuta kategorija zapřijima rozšěrjenja, kotrež tekst wuzběhuja a pytaja, za IP-adresami/domenami hladaja a wjace."
+msgstr "Sćehńće rozšěrjenja Firefox za pytanje a hladanje za informacijemi. Tuta kategorija rozšěrjenja zapřijima, kotrež tekst wuzběhuja a pytaja, za IP-adresami/domenami hladaja a wjace."
 
 msgid "Shopping"
 msgstr "Nakupowanje"
@@ -2007,7 +2007,7 @@ msgid "Social & Communication"
 msgstr "Socialne a komunikacija"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr "Sćehńće rozšěrjenja Firefox, zo byšće socialne medije a wuměnu hnydomnych powěsćow polěpšił. Tuta kategorija zapřijima polěpšene rajtarkowe zdźělenki, sćehnjenja widejow a wjace."
+msgstr "Sćehńće rozšěrjenja Firefox, zo byšće socialne medije a wuměnu hnydomnych powěsćow polěpšił. Tuta kategorija polěpšene rajtarkowe zdźělenki, sćehnjenja widejow a wjace zapřijima."
 
 msgid "Tabs"
 msgstr "Rajtarki"
@@ -2019,7 +2019,7 @@ msgid "Web Development"
 msgstr "Webwuwiwanje"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr "Sćehńće rozšěrjenja Firefox, kotrež nastroje webwuwića předstajeja. Tuta kategorija zapřijima rozšěrjenja za GitHub, přeměnjenje wužiwarskeho agenta, rjadowanje plackow a wjace."
+msgstr "Sćehńće rozšěrjenja Firefox, kotrež nastroje webwuwića předstajeja. Tuta kategorija rozšěrjenja za GitHub, přeměnjenje wužiwarskeho agenta, rjadowanje plackow a wjace zapřijima."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Sćehńće rozšěrjenja Firefox, kotrež móža njepředwidźomne a kreatiwne być, ale su wužitne za tute njewšědne nadawki."
@@ -2047,7 +2047,7 @@ msgid "Photos & Media"
 msgstr "Fota a medije"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "Sćehńće rozšěrjenja Firefox, zo byšće fota a medije polěpšił. Tuta kategorija zapřijima rozšěrjenja za nawopačne pytanja za wobrazami, za činjenje cyłostronskich fotow wobrazowki a wjace."
+msgstr "Sćehńće rozšěrjenja Firefox, zo byšće fota a medije polěpšił. Tuta kategorija rozšěrjenja za nawopačne pytanja za wobrazami, za činjenje cyłostronskich fotow wobrazowki a wjace zapřijima."
 
 msgid "Security & Privacy"
 msgstr "Wěstota a priwatnosć"
@@ -2106,7 +2106,7 @@ msgid "Abstract"
 msgstr "Abstraktne"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Sćehńće wuměłske a koncepcionelne drasty Firefox. Tuta kategorija pisane palety a twary, fantazijowe krajiny, hrajkate kóčki, psychedeliske kwětki zapřijima."
 
 msgid "Causes"
 msgstr "Přiležnosće"
