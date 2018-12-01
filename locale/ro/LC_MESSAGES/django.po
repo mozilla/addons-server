@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 11:50+0000\n"
+"PO-Revision-Date: 2018-12-01 12:06+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5593,54 +5593,48 @@ msgid "Learn where any website's server is geographically located. Be an informe
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Repară probleme audio {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Editează înainte de tipărire {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Realizează capturi de ecran {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Urmărește istoricul de prețuri pe Amazon {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Pune stăpânire pe reglajele audio {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Protecția confidențialității {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarcă videoclipuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Acoperă-ți urmele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
@@ -5936,38 +5930,31 @@ msgstr ""
 msgid "Get Started"
 msgstr ""
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Raportează utilizatorul"
+msgstr "Stare raportată"
 
 msgid "Reported Spam"
 msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Raportează utilizatorul"
+msgstr "Ham raportat"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Neevaluat încă"
+msgstr "Neraportat"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Versiune trimisă"
+msgstr "Conținut transmis"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Vezi noul site"
+msgstr "Vezi evaluarea pe site"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Trimite un fișier nou"
+msgstr "Trimite ham la Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Trimite un fișier nou"
+msgstr "Trimite spam la Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -6471,9 +6458,8 @@ msgstr "supliment, revizor sau comentariu"
 msgid "Search by add-on name / author email"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Review"
+msgstr "Necesită recenzia codului de către un administrator"
 
 msgid "yes"
 msgstr ""
@@ -6531,13 +6517,11 @@ msgstr ""
 msgid "Skip for now"
 msgstr ""
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Review"
+msgstr "Necesită recenzia conținutului de către un administrator"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Review"
+msgstr "Necestită recenzia temei statice de către un administrator"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6545,9 +6529,8 @@ msgstr ""
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Developer Information"
+msgstr "Solicitare de informații expirată"
 
 msgid "Sources provided"
 msgstr ""
@@ -6678,17 +6661,14 @@ msgstr "Suplimente obsolete"
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New ({0})"
-msgstr "Suplimente pentru {0}"
+msgstr "Nou ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
-msgstr "Actualizat"
+msgstr "Actualizări ({0})"
 
-#, fuzzy
 msgid "Review Log"
-msgstr "Review"
+msgstr "Jurnal de recenzii"
 
 msgid "Add-on Review Guide"
 msgstr "Ghid de revizuire pentru suplimente"
@@ -6696,16 +6676,14 @@ msgstr "Ghid de revizuire pentru suplimente"
 msgid "Theme Review Guide"
 msgstr "Ghid de revizuire pentru teme"
 
-#, fuzzy
 msgid "Auto-Approved Add-ons"
-msgstr "Ce sunt suplimentele?"
+msgstr "Suplimente aprobate automat"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved Add-ons ({0})"
-msgstr "Suplimente pentru {0}"
+msgstr "Suplimente aprobate automat ({0})"
 
 msgid "Add-on Review Log"
 msgstr ""
@@ -6725,20 +6703,17 @@ msgstr[2] ""
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "New Themes ({0})"
-msgstr "Suplimente pentru {0}"
+msgstr "Teme noi ({0})"
 
-#, fuzzy
 msgid "Themes Updates ({0})"
-msgstr "Actualizat"
+msgstr "Actualizări teme ({0})"
 
 msgid "Flagged Themes ({0})"
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Themes Review Log"
-msgstr "Șterge recenzia"
+msgstr "Jurnal de recenzie pentru teme lejere"
 
 msgid "Deleted Themes Log"
 msgstr ""
@@ -6752,13 +6727,11 @@ msgstr ""
 msgid "Moderated Review Log"
 msgstr ""
 
-#, fuzzy
 msgid "Moderation Guide"
-msgstr "Review"
+msgstr "Ghid de moderare"
 
-#, fuzzy
 msgid "Unlisted Add-ons"
-msgstr "Suplimente %s"
+msgstr "Suplimente nelistate"
 
 msgid "All Unlisted Add-ons"
 msgstr "Toate suplimentele nelistate"
@@ -6769,9 +6742,8 @@ msgstr ""
 msgid "Update message of the day"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Requests ({0})"
-msgstr "Developer Information"
+msgstr "Solicitări de informații expirate ({0})"
 
 msgid "An unknown error occurred"
 msgstr ""
@@ -6788,9 +6760,8 @@ msgstr ""
 msgid "{addon} :: EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Politica de confidențialitate"
+msgstr "{addon} ::Politica de confidențialitate"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -6841,13 +6812,11 @@ msgstr ""
 msgid "Bad User Ratings ({num})"
 msgstr "Recenzii proaste ale utilizatorilor ({num})"
 
-#, fuzzy
 msgid "Theme Images"
-msgstr "Teme"
+msgstr "Imaginile temei"
 
-#, fuzzy
 msgid "Rendered Preview"
-msgstr "Șterge recenzia"
+msgstr "Previzualizare redată"
 
 msgid "More about this add-on"
 msgstr "Mai multe despre acest supliment"
@@ -7079,24 +7048,20 @@ msgstr ""
 msgid "Disable Auto-Approval"
 msgstr ""
 
-#, fuzzy
 msgid "Enable Auto-Approval"
-msgstr "Ultima actualizare"
+msgstr "Activează aprobarea automată"
 
-#, fuzzy
 msgid "Clear information request"
-msgstr "Developer Information"
+msgstr "Șterge cererea de informații"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
 
-#, fuzzy
 msgid "Clear Admin Content Review Flag"
-msgstr "Review"
+msgstr "Șterge semnalarea de recenzie a conținutului de către un administrator"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "Review"
+msgstr "Șterge semnalarea de recenzie a temei statice de către un administrator"
 
 msgid "(admin)"
 msgstr ""
@@ -7311,29 +7276,26 @@ msgstr[0] "Actualizare ({0})"
 msgstr[1] "({0}) de actualizări"
 msgstr[2] "Actualizează ({0})"
 
-#, fuzzy
 msgid "Rating Review ({0})"
 msgid_plural "Rating Reviews ({0})"
-msgstr[0] "Review"
-msgstr[1] "Review"
-msgstr[2] "Review"
+msgstr[0] "Recenzie evaluare ({0})"
+msgstr[1] ""
+msgstr[2] ""
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
 # Sunbird
-#, fuzzy
 msgid "Auto Approved ({0})"
 msgid_plural "Auto Approved ({0})"
-msgstr[0] "Suplimente pentru {0}"
-msgstr[1] "Suplimente pentru {0}"
-msgstr[2] "Suplimente pentru {0}"
+msgstr[0] "Aprobat automat ({0})"
+msgstr[1] "Aprobate automat ({0})"
+msgstr[2] "Aprobate automat ({0})"
 
-#, fuzzy
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
-msgstr[0] "Developer Information"
-msgstr[1] "Developer Information"
-msgstr[2] "Developer Information"
+msgstr[0] "Solicitare de informații expirată ({0})"
+msgstr[1] "Solicitări de informații expirate ({0})"
+msgstr[2] "Solicitări de informații expirate ({0})"
 
 msgid "Flagged"
 msgstr ""
