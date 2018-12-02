@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 21:27+0000\n"
+"PO-Revision-Date: 2018-12-02 20:11+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1945,36 +1945,37 @@ msgstr "Pokaze a aktualizacije"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Ześěgniśo ozšyrjenja Firefox, kótarež wam pomagaju, na běžnem wóstaś, nadawkam slědowaś, eficiencu pólěpšyś. Pytajśo rozšyrjenja, kótarež rejtarki znowego zacytaju, produktiwitu zastoje a wěcej."
 
 msgid "Appearance"
 msgstr "Naglěd"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, kótarež naglěd websedłow a wobglědowak Firefox změnjaju. Toś ta kategorija rozšyrjenja za śamne drastwy, zastojanje rejtarkow a wěcej wopśimujo."
 
 msgid "Bookmarks"
 msgstr "Cytańske znamjenja"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, aby cytańske znamjenja pólěpšył: šćitajśo je z gronidłom, pytajśo za duplikatami, namakajśo njepłaśiwe cytańske znamjenja a wěcej."
 
 msgid "Download Management"
 msgstr "Zastojanje ześěgnjenjow"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, z kótarymiž wopśimjeśe weba, muziki a wideo ześěgnuś. Móžośo teke rozšyrjenje namakaś, aby ześěgnjenja zastojał, dataje źělił a wěcej."
 
 msgid "Feeds, News & Blogging"
 msgstr "Kanale, powěsći a blogowanje"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež mólece wopśimjeśe wótwónoźuju, aby w socialnych medijach na běžnem wóstał, blogi a RSS-kanale cytał, póśěženje wócow reducěrował a wěcej."
 
 msgid "Games & Entertainment"
 msgstr "Graśa a rozdrosćenje"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo rozdrosćeńske dožywjenje pólěpšył. Toś ta kategorija rozšyrjenja wopśimujo, kótarež graśe pólěpšaju, wótgrawanje wideow woźe a wěcej."
 
 msgid "Language Support"
 msgstr "Rěcna pódpora"
