@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-02 19:30+0000\n"
+"PO-Revision-Date: 2018-12-02 19:40+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -883,7 +883,7 @@ msgid "Collections"
 msgstr "Colecții"
 
 msgid "Collections I've Made"
-msgstr "Colecții pe care le-am făcut"
+msgstr "Colecții pe care le-am creat"
 
 msgid "My Favorite Add-ons"
 msgstr "Suplimentele mele favorite"
@@ -1212,7 +1212,7 @@ msgstr "Adaugă la favorite"
 
 #. {0} is a username.
 msgid "Collections by {0}"
-msgstr "Colecții de către {0}"
+msgstr "Colecții create de {0}"
 
 msgid "No collections found."
 msgstr "Nicio colecție găsită."
@@ -7753,7 +7753,7 @@ msgid "Download Firefox"
 msgstr "Descarcă Firefox"
 
 msgid "Android Browser"
-msgstr ""
+msgstr "Browser pentru Android"
 
 msgid "iOS Browser"
 msgstr "Browser pentru iOS"
