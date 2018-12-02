@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-02 21:10+0000\n"
+"PO-Revision-Date: 2018-12-02 21:21+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2037,24 +2037,28 @@ msgstr "Eksperimentelny"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Ześěgniśo rozšyrjenja Firefox, kótarež se pšawidłownje aktualizěruju a su gótowe za zjawne testowanje. Waša rezonanca informěrujo wuwijarjow wó změnach, kótarež se maju w pśichodnych wersijach "
+"pśewjasć."
 
 msgid "Performance"
 msgstr "Wugbaśe"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, kótarež wugbaśe Firefox pówušaju. Namakajśo rozšyrjenja, kótarež gramne wabjenje blokěruju, aby wam pomagali, wěcej produktiwny a eficientny byś."
 
 msgid "Photos & Media"
 msgstr "Fota a medije"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby fota a medije pólěpšył. Toś ta kategorija rozšyrjenja za nawopacne pytanja za wobrazami, za gótowanje cełobocnych fotow wobrazowki a wěcej wopśimujo."
 
 msgid "Security & Privacy"
 msgstr "Wěstota a priwatnosć"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Ześěgniśo rozšyrjenja Firefox, aby wěsće priwatnje pśeglědował. Wuslěźćo rozšyrjenja, kótarež mógu pśeslědowanje pśez kšajźoske wabjeńske pśeslědowaki zaźaržaś, pśeglědowańsku historiju lažko "
+"proznje a wěcej."
 
 msgid "Social Networking"
 msgstr "Socialne seśi"
