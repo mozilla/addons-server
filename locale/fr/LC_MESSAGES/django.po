@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-30 19:45+0000\n"
+"PO-Revision-Date: 2018-11-19 14:15+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -7459,7 +7459,6 @@ msgstr "Affichage de {0} - {1} sur {2} résultats pour <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Affichage de {0} - {1} sur {2} résultats"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Impossible de trouver le module dont l’identifiant est « {} »."
 
