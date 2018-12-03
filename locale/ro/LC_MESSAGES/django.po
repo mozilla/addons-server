@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 18:00+0000\n"
+"PO-Revision-Date: 2018-12-03 18:33+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -368,7 +368,7 @@ msgstr "Editează"
 #. For datetime formatting, see the table on
 #. http://docs.python.org/library/datetime.html#strftime-and-strptime-behavior
 msgid "by {0} on {1}"
-msgstr "de {0} în {1}"
+msgstr "de {0} la data de {1}"
 
 msgid "Not yet rated"
 msgstr "Neevaluat încă"
@@ -448,7 +448,7 @@ msgstr "Recenzii"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
-msgstr "de %(user)s în %(date)s"
+msgstr "de %(user)s la data de %(date)s"
 
 msgid "Show the developer's reply to this review"
 msgstr "Afișează răspunsul dezvoltatorului la această recenzie"
@@ -487,7 +487,7 @@ msgid "This add-on requires the following add-ons to work properly:"
 msgstr "Acest supliment necesită următoarele suplimente pentru a funcționa cum trebuie:"
 
 msgid "Average"
-msgstr "Media"
+msgstr "Medie"
 
 msgid "Write a review"
 msgstr "Scrie o recenzie"
@@ -933,7 +933,7 @@ msgid "Title"
 msgstr "Titlu"
 
 msgid "Body"
-msgstr "Conținut"
+msgstr "Corp"
 
 msgid "Another Title"
 msgstr "Alt titlu"
@@ -973,7 +973,7 @@ msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk sau slug invalid(ă) „%s” - obiectul nu există."
 
 msgid "Application Versions"
-msgstr "Versiuni de aplicație"
+msgstr "Versiunile aplicației"
 
 msgid "Acceptable versions for all applications on AMO."
 msgstr "Versiuni acceptabile pentru toate aplicațiile de pe AMO."
@@ -1188,7 +1188,7 @@ msgid "Delete {0}"
 msgstr "Șterge {0}"
 
 msgid "Are you sure?"
-msgstr "Sigur vrei asta?"
+msgstr "Ești sigur(ă)?"
 
 msgid "Yes"
 msgstr "Da"
@@ -1524,7 +1524,7 @@ msgid "{addon} description edited."
 msgstr "Descrierea {addon} editată."
 
 msgid "Categories edited for {addon}."
-msgstr "Au fost editate categoriile pentru {addon}."
+msgstr "Categorii editate pentru {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
 msgstr "{0.name} ({1}) adăugat la {addon}."
@@ -1671,10 +1671,10 @@ msgid "{user} deleted {rating} for {addon}."
 msgstr "{user} a șters {rating} pentru {addon}."
 
 msgid "Application max version for {version} updated."
-msgstr ""
+msgstr "Versiune maximă a aplicației pentru {version} actualizată."
 
 msgid "Authors emailed about compatibility of {version}."
-msgstr "Autorilor li s-a trimis un mesaj e-mail despre compatibilitatea {version}."
+msgstr "E-mail trimis autorilor despre compatibilitatea {version}."
 
 msgid "Email sent to Author about add-on compatibility."
 msgstr "S-a trimis un mesaj de e-mail autorului despre compatibilitatea suplimentului."
@@ -1756,10 +1756,10 @@ msgid "Reviewer Reply"
 msgstr "Răspunsul revizorului"
 
 msgid "Approval notes changed for {addon} {version}."
-msgstr ""
+msgstr "Note de aprobare modificate pentru {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Note de aprobare modificate"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr ""
@@ -1768,10 +1768,10 @@ msgid "Source code uploaded"
 msgstr ""
 
 msgid "Auto-Approval confirmed for {addon} {version}."
-msgstr ""
+msgstr "Aprobare automată confirmată pentru {addon} {version}."
 
 msgid "Auto-Approval confirmed"
-msgstr "Auto-aprobare confirmată"
+msgstr "Aprobare automată confirmată"
 
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} reactivat."
@@ -2391,7 +2391,7 @@ msgid "Reject"
 msgstr ""
 
 msgid "Approve"
-msgstr ""
+msgstr "Aprobă"
 
 msgid "Sexual or pornographic content"
 msgstr "Conținut sexual sau pornografic"
@@ -2715,7 +2715,7 @@ msgid "New API key created"
 msgstr ""
 
 msgid "API key revoked"
-msgstr ""
+msgstr "Cheie API revocată"
 
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
@@ -2987,7 +2987,7 @@ msgid "Add-on URL"
 msgstr "URL supliment"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr ""
+msgstr "Alege un slug URL unic scurt pentru suplimentul tău."
 
 msgid "View Listing"
 msgstr ""
@@ -3014,7 +3014,7 @@ msgid "Requires Payment?"
 msgstr "Necesită plată?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
-msgstr ""
+msgstr "Bifează această casetă dacă funcționalitățile principale ale acestui supliment necesită orice formă de plată în avans sau după o perioadă de probă ca să funcționeze."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
 msgstr ""
@@ -3023,7 +3023,7 @@ msgid "This add-on doesn't require any additional payments, paid services or sof
 msgstr ""
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
-msgstr ""
+msgstr "Categoriile sunt modalitatea principală folosită de utilizatori ca să răsfoiască suplimentele. Alege una în care se încadrează funcționalitatea suplimentului tău pentru cea mai mare expunere."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
@@ -3208,13 +3208,13 @@ msgid "Continue"
 msgstr "Continuă"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Permiți altora să îți distribuie suplimentul, cu condiția să ți-l atribuie?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Permiți altora să utilizeze în scopuri comerciale suplimentul tău?"
 
 msgid "Can others create derivative works from your Add-on?"
-msgstr ""
+msgstr "Permiți altora să creeze lucrări derivate din suplimentul tău?"
 
 msgid "Yes, as long as they share alike"
 msgstr ""
@@ -3324,7 +3324,7 @@ msgid "View Statistics"
 msgstr "Vezi statisticile"
 
 msgid "Change the owner of this theme."
-msgstr ""
+msgstr "Modifică proprietarul acestei teme."
 
 msgid "Transfer Ownership"
 msgstr ""
@@ -3384,6 +3384,8 @@ msgstr ""
 
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
+"Bifează această opțiune dacă suplimentul tău este experimental sau altminteri încă nu gata pentru uz general.  Suplimentul va fi listat, dar va avea vizibilitate redusă.  Poți modifica această "
+"setare mai târziu."
 
 msgid "Select a category for this add-on:"
 msgstr "Selectează o categorie pentru acest supliment:"
@@ -3520,7 +3522,7 @@ msgid "Web template engines, both for HTML and CSS"
 msgstr ""
 
 msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
-msgstr ""
+msgstr "Orice altă unealtă care ia cod sau fișiere, aplică procesarea și generează un cod sau fișier(e) de inclus în supliment"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
 msgstr ""
@@ -3633,7 +3635,7 @@ msgid "Browser preview"
 msgstr "Previzualizare în browser"
 
 msgid "Back"
-msgstr ""
+msgstr "Înapoi"
 
 msgid "Uploading Theme"
 msgstr ""
@@ -3642,7 +3644,7 @@ msgid "Finish Theme"
 msgstr "Finalizează tema"
 
 msgid "API Credentials"
-msgstr ""
+msgstr "Acreditări API"
 
 #, python-format
 msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API documentation</a>."
@@ -3996,13 +3998,13 @@ msgid "A command line tool to build, run, and test extensions."
 msgstr "O unealtă cu linie de comandă pentru creat, rulat și testat extensii."
 
 msgid "Automated code tests for your add-on."
-msgstr ""
+msgstr "Teste automate de cod pentru suplimentul tău."
 
 msgid "Compatibility Test"
 msgstr ""
 
 msgid "Check to see if your extension is compatible with Firefox."
-msgstr ""
+msgstr "Vezi dacă extensia ta este compatibilă cu Firefox."
 
 msgid "Live Testing"
 msgstr ""
@@ -4034,7 +4036,7 @@ msgid "Theme License"
 msgstr ""
 
 msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
+msgstr "Permiți altora să îți distribuie tema, cu condiția să ți-o atribuie?"
 
 msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
 msgstr ""
@@ -4043,10 +4045,10 @@ msgid "The licensor permits others to copy, distribute, display, and perform the
 msgstr ""
 
 msgid "Can others make commercial use of your Theme?"
-msgstr ""
+msgstr "Permiți altora să utilizeze în scopuri comerciale tema ta?"
 
 msgid "Can others create derivative works from your Theme?"
-msgstr ""
+msgstr "Permiți altora să creeze lucrări derivate din tema ta?"
 
 msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
 msgstr ""
@@ -4091,7 +4093,7 @@ msgid "This is the color of the tab text."
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Fundal"
 
 msgid "This is the color of the tabs."
 msgstr ""
@@ -4108,7 +4110,7 @@ msgstr ""
 
 #, python-format
 msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
+msgstr "Temele de fundal își permit personalizarea ușoară a aspectului Firefox. Trimite-ne designuri proprii mai jos sau <a href=\"%(submit_url)s\">află cum poți crea una</a>!"
 
 msgid "Give your Theme a name."
 msgstr ""
@@ -4175,7 +4177,7 @@ msgid ""
 msgstr ""
 
 msgid "Approval Status"
-msgstr ""
+msgstr "Starea aprobării"
 
 msgid "Notes for Reviewers"
 msgstr "Note pentru revizori"
@@ -4225,7 +4227,7 @@ msgid "Request Review"
 msgstr "Solicită recenzie"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "Anulează cererea de revizuire"
 
 msgid "Loading Review History..."
 msgstr ""
@@ -4295,7 +4297,7 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr "<strong>Important:</strong> Odată ce o versiune este ștearsă, nu mai poți încărca o versiune nouă cu același număr de versiune."
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "Sigur vrei să ștergi această versiune?"
 
 msgid "Delete Version"
 msgstr ""
@@ -4313,13 +4315,13 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "Sigur vrei să-ți ascunzi suplimentul?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr "Anularea solicitării de recenzie îți va marca suplimentul ca incomplet și vor fi dezactivate orice versiuni aflate în așteptarea recenzării."
+msgstr "Anularea cererii de revizuire îți va marca suplimentul ca incomplet și vor fi dezactivate orice versiuni aflate în așteptarea revizuirii."
 
 msgid "Are you sure you wish to cancel your review request?"
-msgstr ""
+msgstr "Sigur vrei să anulezi cererea ta de revizuire?"
 
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Documentație aferentă suplimentelor :: Centrul dezvoltatorilor"
@@ -4346,7 +4348,7 @@ msgstr "Blochează elementele de urmărire insidioase {start_sub_heading}cu {add
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blochează elementele de urmărire invizibile și reclamele care te spionează și te urmăresc pe web."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4418,7 +4420,7 @@ msgstr "Personalizare de file {start_sub_heading}cu {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "Alege pagina pe care o vezi de fiecare dată când deschizi o filă nouă."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4490,7 +4492,7 @@ msgstr "Accesează banca de cunoștințe {start_sub_heading}cu {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr ""
+msgstr "Adaugă automat date Britannica în rezultatele tale de căutare."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4498,7 +4500,7 @@ msgstr "Elimină reclamele YouTube {start_sub_heading}cu {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Block annoying ads and annotations from appearing on YouTube."
-msgstr ""
+msgstr "Blochează reclamele iritante și adnotările din YouTube."
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4607,7 +4609,7 @@ msgstr "Fă cookie-urile să dispară {start_sub_heading}cu {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Șterge automat cookie-urile după ce închizi o filă."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4671,7 +4673,7 @@ msgstr "Reîmprospătează filele {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals you set."
-msgstr ""
+msgstr "Reîncarcă automat filele în baza intervalelor de timp setate de tine."
 
 #. editorial content for the discovery pane.
 msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4759,7 +4761,7 @@ msgstr "Îmbunătățește Reddit {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Schimbă-ți modul în care navighezi pe Reddit folosind etichete și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4787,7 +4789,7 @@ msgstr "Navighează în anonimat {start_sub_heading}cu {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Navighează pe web cu identitate mascată—poate părea și că ești din altă țară."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
@@ -4815,7 +4817,7 @@ msgstr "Gestionare robustă a descărcărilor {start_sub_heading}cu {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Verifică starea descărcărilor tale prin intermediu unei bare de stare, pagina cu istoricul descărcărilor și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4863,7 +4865,7 @@ msgstr "Blochează pop-up-urile {start_sub_heading}cu {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Blochează implicit toate pop-up-urile, apoi decizi pe care ai vrea să le deschizi."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4871,7 +4873,7 @@ msgstr "Personalizează site-urile web preferate {start_sub_heading}cu {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Modifică aspectul oricărui site web! Comută culori, fundaluri de pagini și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4943,7 +4945,7 @@ msgstr "Vezi imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Readuce butonul „Vizualizează imaginea” la căutările în Google Images."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4951,7 +4953,7 @@ msgstr "Sporește productivitatea {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "Blochează site-urile care-ți consumă inutil timpul ca să te poți concentra pe ce ai de făcut."
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4959,7 +4961,7 @@ msgstr "Reîmprospătează filele {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Reîncarcă automat filele la anumite intervale de timp."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5007,7 +5009,7 @@ msgstr "Schimbă stilul Wikipedia {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Applies a fresh and modern appearance to Wikipedia."
-msgstr ""
+msgstr "Aplică un aspect proaspăt și modern în Wikipedia."
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5143,7 +5145,7 @@ msgstr "Citește mai ușor {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "Verifică-ți toate fluxurile RSS preferate pe o singură pagină."
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5259,7 +5261,7 @@ msgstr "Șterge date {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Golește cache-ul browserului cu un clic sau o tastă."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5423,7 +5425,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Modifică fila nouă {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Modifică-ți fila nouă {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Configure new tab pages to display custom background colors and images."
@@ -5535,7 +5537,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
-msgstr ""
+msgstr "Decupează conținut web, cum ar fi articole, videoclipuri, imagini și multe altele pe care le salvezi și le folosești în proiecte individuale sau în colaborare în echipă în timp real."
 
 #. editorial content for the discovery pane.
 msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5559,7 +5561,7 @@ msgstr "Uită istoricul {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Șterge automat istoricul din browser pentru site-uri web selectate de tine."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5686,7 +5688,7 @@ msgid "This file is a directory."
 msgstr ""
 
 msgid "Cannot diff a version against itself"
-msgstr ""
+msgstr "Nu poți compara o versiune cu ea însăși"
 
 msgid "Access your data for {name}"
 msgstr "Să îți acceseze datele pentru {name}"
@@ -5704,7 +5706,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
 msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
+msgstr "Nu s-a găsit versiunea min/max. Poate că „strict_min_version\" sau „strict_max_version\" conține o versiune fără suport?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5770,7 +5772,7 @@ msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on
 msgstr "<em:type> din fișierul tău install.rdf (%s) nu se potrivește cu tipul suplimentului tău de pe AMO (%s)"
 
 msgid "Back to review"
-msgstr ""
+msgstr "Înapoi la recenzie"
 
 msgid "Back to add-on"
 msgstr "Înapoi la supliment"
@@ -5862,7 +5864,7 @@ msgid "Save on your favorite items from the comfort of your browser."
 msgstr ""
 
 msgid "Build the perfect website"
-msgstr ""
+msgstr "Realizează site-ul web perfect"
 
 msgid "First time with Add-ons?"
 msgstr ""
@@ -5943,7 +5945,7 @@ msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Alegerea lunii din partea Mozilla!"
 
 msgid "Become a Test Pilot"
-msgstr ""
+msgstr "Devino pilot de testare"
 
 msgid "Unlock early access to experimental browser features."
 msgstr ""
@@ -6224,7 +6226,7 @@ msgid "Find Plugin Safety in the addons list."
 msgstr ""
 
 msgid "Click the remove button."
-msgstr ""
+msgstr "Dă clic pe butonul de eliminare."
 
 msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
 msgstr ""
@@ -6271,9 +6273,11 @@ msgid ""
 "At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
 "directly shape the future of Firefox!"
 msgstr ""
+"La Mozilla, ne mândrim că realizăm produse pentru tine, utilizatorul! De aceea avem nevoie de ajutorul tău. Prin participarea la acest studiu, ne vei ajuta să luăm decizii mai bune pentru tine și "
+"vei contribui direct la modelarea viitorului Firefox!"
 
 msgid "Brought to you by:"
-msgstr ""
+msgstr "Oferit de:"
 
 msgid "User"
 msgstr ""
@@ -6373,7 +6377,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "de %(user)s <b>(Developer)</b> la data de %(date)s"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -6521,7 +6525,7 @@ msgid "Operating systems:"
 msgstr "Sisteme de operare:"
 
 msgid "Applications:"
-msgstr ""
+msgstr "Aplicații:"
 
 msgid "Require developer to respond in less than…"
 msgstr ""
@@ -6530,7 +6534,7 @@ msgid "days"
 msgstr "zile"
 
 msgid "Choose a canned response..."
-msgstr ""
+msgstr "Alege un răspuns predefinit..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
@@ -6679,7 +6683,7 @@ msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
 
 msgid "Approve Content"
-msgstr ""
+msgstr "Aprobă conținutul"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
@@ -6845,7 +6849,7 @@ msgid "Abuse Reports ({num})"
 msgstr "Rapoarte de abuzuri ({num})"
 
 msgid "Bad User Ratings ({num})"
-msgstr "Recenzii proaste ale utilizatorilor ({num})"
+msgstr "Recenzii proaste de la utilizatori ({num})"
 
 msgid "Theme Images"
 msgstr "Imaginile temei"
@@ -6932,7 +6936,7 @@ msgid "Your Reviews"
 msgstr ""
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "De {user_name}"
 
 msgid "Total Reviews"
 msgstr ""
@@ -6968,7 +6972,7 @@ msgid "Advanced Search"
 msgstr "Căutare avansată"
 
 msgid "clear search"
-msgstr ""
+msgstr "șterge căutarea"
 
 msgid "Process Reviews"
 msgstr ""
@@ -6978,7 +6982,7 @@ msgstr "Acțiuni de moderare:"
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "de %(user)s la data de %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -7039,7 +7043,7 @@ msgid "Not Auto Approved Because"
 msgstr "Nu a fost auto-aprobat pentru că"
 
 msgid "Auto-Approval script has not run yet on this version."
-msgstr ""
+msgstr "Scriptul de aprobare automată nu a fost rulat încă pe această versiune."
 
 msgid "This version has not been reviewed."
 msgstr ""
@@ -7090,7 +7094,7 @@ msgid "Clear information request"
 msgstr "Șterge cererea de informații"
 
 msgid "Clear Admin Code Review Flag"
-msgstr ""
+msgstr "Șterge semnalarea de revizuire a codului de către un administrator"
 
 msgid "Clear Admin Content Review Flag"
 msgstr "Șterge semnalarea de recenzie a conținutului de către un administrator"
@@ -7214,7 +7218,7 @@ msgid "Review Options"
 msgstr ""
 
 msgid "Auto-advance after review"
-msgstr ""
+msgstr "Trecere automată mai departe după recenzie"
 
 msgid "Enable keyboard shortcuts"
 msgstr ""
@@ -7244,7 +7248,7 @@ msgid "There are currently no Themes to review."
 msgstr ""
 
 msgid "Clear Search"
-msgstr ""
+msgstr "Șterge căutarea"
 
 msgid "Release My Theme Locks"
 msgstr ""
@@ -7278,7 +7282,7 @@ msgid "Flagged: {0}"
 msgstr ""
 
 msgid "Approve Theme"
-msgstr ""
+msgstr "Aprobă tema"
 
 msgid "Field required"
 msgstr ""
@@ -7293,7 +7297,7 @@ msgid "Describe your reason for rejection"
 msgstr ""
 
 msgid "Ask a question to the artist"
-msgstr ""
+msgstr "Adresează o întrebare artistului"
 
 msgid "Describe your reason for flagging"
 msgstr ""
@@ -7514,7 +7518,7 @@ msgid "User Signups"
 msgstr ""
 
 msgid "Archived Data"
-msgstr ""
+msgstr "Date arhivate"
 
 msgid "Custom Date Range"
 msgstr "Interval de perioadă personalizat"
@@ -7600,7 +7604,7 @@ msgid "This dashboard is currently <b>private</b>."
 msgstr "Acest tablou de bord este în prezent <b>privat</b>."
 
 msgid "Change settings."
-msgstr ""
+msgstr "Modifică setările."
 
 msgid "Add-ons Created by Date"
 msgstr "Suplimente create după dată"
@@ -7615,7 +7619,7 @@ msgid "Add-ons Updated by Date"
 msgstr "Suplimente actualizate după dată"
 
 msgid "Application usage by Date"
-msgstr "Utilizarea aplicației în funcție de dată"
+msgstr "Utilizarea aplicației după dată"
 
 msgid "Collections Created by Date"
 msgstr "Colecții create în funcție de dată"
@@ -7825,7 +7829,7 @@ msgid "Welcome to {0} Add-ons."
 msgstr ""
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr ""
+msgstr "Alege din mii de funcționalități și stiluri suplimentare ca să faci Firefox pe stilul tău."
 
 #, python-format
 msgid "Add extra features and styles to make %(app)s your own."
@@ -7835,7 +7839,7 @@ msgid "On the go?"
 msgstr ""
 
 msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
+msgstr "Vezi <a class=\"mobile-link\" href=\"#\">site-ul nostru de suplimente pentru dispozitive mobile</a>."
 
 msgid "Android Add-ons"
 msgstr "Suplimente pentru Android"
@@ -7867,7 +7871,7 @@ msgstr ""
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
-msgstr ""
+msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea nu poate fi inversată."
 
 msgid "Delete Locale"
 msgstr ""
@@ -7885,7 +7889,7 @@ msgid "The users \"%(users)s\" have been banned."
 msgstr ""
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "Pune o interdicție utilizatorilor selectați"
 
 msgid "Profile Photo"
 msgstr ""
@@ -7989,7 +7993,7 @@ msgid "new"
 msgstr ""
 
 msgid "Ban"
-msgstr ""
+msgstr "Interdicție"
 
 msgid "Delete picture"
 msgstr "Șterge imaginea"
@@ -8004,7 +8008,7 @@ msgid ""
 msgstr ""
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
+msgstr "Prin clic pe „șterge”, contul va fi <strong>șters definitiv</strong>. Ceea ce înseamnă că:"
 
 #, python-format
 msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
@@ -8056,7 +8060,7 @@ msgid "This URL will only be visible if you are a developer."
 msgstr ""
 
 msgid "Choose Photo&hellip;"
-msgstr ""
+msgstr "Alege foto &hellip;"
 
 msgid "Delete current photo"
 msgstr ""
