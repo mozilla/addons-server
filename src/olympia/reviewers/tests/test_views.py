@@ -1001,6 +1001,13 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[7].attrib['target'] == '_blank'
         assert doc('.dashboard a')[7].attrib['rel'] == 'noopener noreferrer'
 
+    def test_view_mobile_site_link_hidden(self):
+        self.grant_permission(self.user, 'ReviewerTools:View')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('a.mobile-link')
+
 
 class QueueTest(ReviewerTest):
     fixtures = ['base/users']
