@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-02 11:45+0000\n"
+"PO-Revision-Date: 2018-12-03 20:18+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2112,7 +2112,7 @@ msgid "Causes"
 msgstr "Přiležnosće"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr "Sćehńće drasty Firefox za nišowe zajimy a temy. Tuta kategorija sportowe drasty, dowol a ferije, filantropiske winy, narodnosće a wjele wjace zapřijima."
+msgstr "Sćehńće drasty Firefox za nišowe zajimy a temy. Tuta kategorija sportowe drasty, swjatki, filantropiske winy, narodnosće a wjele wjace zapřijima."
 
 msgid "Fashion"
 msgstr "Moda"
@@ -2127,7 +2127,7 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr "Sćehńće drasty Firefox z filmami a telewiziju. Tuta kategorija animeje kaž Uchiha Madara, filmy kaž The Matrix, show (Game of Thrones) a wjace zapřijima."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr "Sćehńće drasty Firefox z drastu wobhladowaka Firefox. Tuta kategorija pisane, wšelake zwobraznjenja loga Firefox zapřijima, inkluziwnje dalšne powšitkowne lišče drasty."
+msgstr "Sćehńće drasty Firefox z drastu wobhladowaka Firefox. Tuta kategorija pisane, wšelake zwobraznjenja loga Firefox zapřijima, inkluziwnje dalše powšitkowne lišče drasty."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
