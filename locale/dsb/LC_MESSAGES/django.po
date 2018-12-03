@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 21:01+0000\n"
+"PO-Revision-Date: 2018-12-03 22:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2148,25 +2148,25 @@ msgid "Music"
 msgstr "Muzika"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Ześěgniśo drastwy za muzikowe zajmy a wuměłce. Toś ta kategorija woblubowane band ako Nirvana a BTS, instrumenty, muzikowe wideo a wjele wěcej wopśimujo."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox ze zwěrjetami a pśirodnymi krajinami. Toś ta kategorija kwětki, schowanja słyńca, liški, lětne case, planety, kócki, ptaški a wěcej wopśimujo."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež su zajmne, kreatiwne a jadnorazne."
 
 msgid "Scenery"
 msgstr "Krajina"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež wokolinu a pśirodny swět pśedstajaju. Toś ta kategorija schowanja słyńca, pśibrjogi, ilustracije, siluety městow a wěcej wopśimujo."
 
 msgid "Seasonal"
 msgstr "Lětne case"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox za wšykne styri lětne case - nazymu, zymu, nalěśe a lěśe. Nazymski list, zasněgowane wjeraški górow, słyńcne lěśojske dny a nalětne kwětki."
 
 msgid "Solid"
 msgstr "Solidne"
