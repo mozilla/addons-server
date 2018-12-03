@@ -1546,8 +1546,8 @@ class TestAutoApprovalSummary(TestCase):
         self.file_validation.update(validation=json.dumps(validation_data))
         summary = AutoApprovalSummary(version=self.version)
         weight_info = summary.calculate_weight()
-        assert summary.weight == 200
-        assert weight_info['uses_coinminer'] == 200
+        assert summary.weight == 2000
+        assert weight_info['uses_coinminer'] == 2000
 
     def test_check_has_auto_approval_disabled(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(

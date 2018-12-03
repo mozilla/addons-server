@@ -892,9 +892,9 @@ class AutoApprovalSummary(ModelBase):
                 # Size of code changes: 5kB is one point, up to a max of 100.
                 'size_of_code_changes': min(
                     self.calculate_size_of_code_changes() / 5000, 100),
-                # Seems to be using a coinminer: 200
+                # Seems to be using a coinminer: 2000
                 'uses_coinminer': (
-                    200 if self.count_uses_uses_coinminer(self.version)
+                    2000 if self.count_uses_uses_coinminer(self.version)
                     else 0),
             }
         except AutoApprovalNoValidationResultError:
