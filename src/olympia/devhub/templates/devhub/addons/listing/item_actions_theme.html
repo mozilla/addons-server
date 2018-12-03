@@ -3,7 +3,7 @@
   {% if check_addon_ownership(request, addon, dev=True) %}
     <li>
       <a href="{{ addon.get_dev_url() }}" class="tooltip"
-         title="{{ _("Edit details on this theme's product page.") }}">
+         title="{{ _("Edit details on this theme's product page") }}">
         {{ _('Edit Product Page') }}</a>
     </li>
   {% endif %}
@@ -13,19 +13,19 @@
   </li>
   <li>
     <a href="{{ url('stats.usage', addon.slug) }}" class="tooltip"
-       title="{{ _("View the popularity of this theme over time.") }}">
+       title="{{ _("View the popularity of this theme over time") }}">
       {{ _('View Statistics') }}</a>
   </li>
   {% if check_addon_ownership(request, addon) %}
     <li>
       <a href="{{ addon.get_dev_url() }}#ownership" class="tooltip"
-         title="{{ _("Change the owner of this theme.") }}">
+         title="{{ _("Change the owner of this theme") }}">
         {{ _('Transfer Ownership') }}</a>
     </li>
     {% if addon.can_be_deleted() %}
       <li>
         <a href="#" class="delete-addon tooltip"
-           title="{{ _('Delete this theme.') }}">{{ _('Delete') }}</a>
+           title="{{ _('Delete this theme') }}">{{ _('Delete') }}</a>
         <div class="modal-delete modal hidden">
           {% include "devhub/addons/listing/delete_form.html" %}
         </div>

@@ -2,6 +2,6 @@
 {% set error_url = url('devhub.ajax.compat.error', addon.slug) %}
 <a class="tooltip {% if addon.incompatible_latest_apps() %}compat-error{% else %}compat-update{% endif %}"
    data-updateurl="{{ update_url }}" data-errorurl="{{ error_url }}" href="#"
-   title="{{ _('View and update application compatibility ranges.') }}">
+   title="{{ _('View and update application compatibility ranges') }}">
 {{ _('Compatibility') }}</a>
 
