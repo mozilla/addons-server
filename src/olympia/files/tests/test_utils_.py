@@ -530,7 +530,7 @@ class TestManifestJSONExtractor(TestCase):
         assert manifest['is_webextension'] is True
         assert manifest.get('name') == 'My Extension'
 
-    def test_apps_contains_wrong_versions(self):
+    def test_invalid_app_versions_are_ignored(self):
         """Use the min and max versions if provided."""
         self.create_webext_default_versions()
         data = {
@@ -542,10 +542,7 @@ class TestManifestJSONExtractor(TestCase):
             }
         }
 
-        with pytest.raises(forms.ValidationError) as exc:
-            self.parse(data)['apps']
-
-        assert exc.value.message.startswith('Cannot find min/max version.')
+        self.parse(data)['apps']
 
     def test_manifest_version_3_requires_128_passes(self):
         self.create_webext_default_versions()
@@ -707,10 +704,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
             }
         }
 
-        with pytest.raises(forms.ValidationError) as exc:
-            self.parse(data)['apps']
-
-        assert exc.value.message.startswith('Cannot find min/max version.')
+        self.parse(data)['apps']
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.

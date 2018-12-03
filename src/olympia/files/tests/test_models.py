@@ -512,16 +512,14 @@ class TestParseXpi(TestCase):
             AppVersion.objects.get(version='3.6.*'))]
         assert self.parse()['apps'] == expected
 
-    def test_parse_apps_error_webextension(self):
+    def test_no_parse_apps_error_webextension(self):
         AppVersion.objects.all().delete()
-        with self.assertRaises(forms.ValidationError) as e:
-            assert self.parse(filename='webextension_with_apps_targets.xpi')
+        assert self.parse(filename='webextension_with_apps_targets.xpi')
         assert e.exception.messages[0].startswith('Lowest supported "strict_min_version"')
 
-        with self.assertRaises(forms.ValidationError) as e:
-            assert self.parse(
-                filename='webextension_with_apps_targets.xpi',
-                minimal=False)
+        assert self.parse(
+            filename='webextension_with_apps_targets.xpi',
+            minimal=False)
         assert e.exception.messages[0].startswith('Lowest supported "strict_min_version"')
 
         # When minimal=True is passed, we don't do validation...
