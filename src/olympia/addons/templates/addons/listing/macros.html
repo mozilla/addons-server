@@ -1,7 +1,7 @@
 {% macro heading(addon, amo, collection) %}
   <h3>
     {% if collection %}
-      {% set collection_path = "?src=collection&collection_id=" + collection.uuid %}
+      {% set collection_path = "?src=collection&collection_id=" + collection.uuid.hex %}
     {% else %}
       {% set collection_path = "" %}
     {% endif %}
