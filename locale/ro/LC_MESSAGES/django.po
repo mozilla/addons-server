@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 15:44+0000\n"
+"PO-Revision-Date: 2018-12-03 17:22+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -167,7 +167,7 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezumat și o descriere în limba respectivă. Îți lipsește %s."
 
 msgid "A license must be selected."
-msgstr "O licență trebuie să fie selectată."
+msgstr "Trebuie selectată o licență."
 
 msgid "Give Your Theme a Name."
 msgstr "Dă-i un nume temei tale."
@@ -191,7 +191,7 @@ msgid "Abuse reported."
 msgstr "Abuzul a fost raportat."
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii."
+msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii"
 
 msgid "No compatible versions"
 msgstr "Nicio versiune compatibilă"
@@ -374,7 +374,7 @@ msgid "Not yet rated"
 msgstr "Neevaluat încă"
 
 msgid "<b>{0}</b> users"
-msgstr "<b>{0}</b> utilizatori"
+msgstr "<b>{0}</b> (de) utilizatori"
 
 #. {0} is the number of users.
 msgid "{0} Daily User"
@@ -475,7 +475,7 @@ msgstr "Descarcă oricum"
 
 # {0} is a number
 msgid "[Warning]"
-msgstr "[Avertizare]"
+msgstr "[Avertisment]"
 
 msgid "Permissions"
 msgstr "Permisiuni"
@@ -501,16 +501,16 @@ msgstr "Face parte din aceste colecții"
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
-msgstr[0] "Alte suplimente de la %(author)s"
+msgstr[0] "Alt supliment de la acești autori"
 msgstr[1] "Alte suplimente de la acești autori"
 msgstr[2] "Alte suplimente de la acești autori"
 
 #, python-format
 msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
 msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recenzie a utilizatorilor"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenzii ale utilizatorilor"
-msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> de recenzii ale utilizatorilor"
+msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recenzie de la utilizatori"
+msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> recenzii de la utilizatori"
+msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> de recenzii de la utilizatori"
 
 msgid "View statistics"
 msgstr "Afișează statisticile"
@@ -970,7 +970,7 @@ msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "pk sau slug invalid(ă) „%s” - obiectul nu există."
+msgstr "Pk sau slug invalid(ă) „%s” - obiectul nu există."
 
 msgid "Application Versions"
 msgstr "Versiuni de aplicație"
@@ -1465,7 +1465,7 @@ msgstr[1] "Afișează toate %(cnt)s extensiile în %(name)s &raquo;"
 msgstr[2] "Afișează toate %(cnt)s extensiile în %(name)s &raquo;"
 
 msgid "{0} Themes"
-msgstr "Teme {0}"
+msgstr "{0} teme"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
@@ -1518,33 +1518,33 @@ msgid "{addon} was created."
 msgstr "{addon} a fost creat."
 
 msgid "{addon} properties edited."
-msgstr "Proprietățile {addon} au fost editate."
+msgstr "Proprietăți {addon} editate."
 
 msgid "{addon} description edited."
-msgstr "Descrierea {addon} a fost editată."
+msgstr "Descrierea {addon} editată."
 
 msgid "Categories edited for {addon}."
 msgstr "Au fost editate categoriile pentru {addon}."
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) a fost adăugat în {addon}."
+msgstr "{0.name} ({1}) adăugat la {addon}."
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) a fost eliminat din {addon}."
+msgstr "{0.name} ({1}) eliminat din {addon}."
 
 msgid "Contributions for {addon}."
 msgstr "Contribuții pentru {addon}."
 
 msgid "{addon} disabled."
-msgstr "{addon} a fost dezactivat."
+msgstr "{addon} dezactivat."
 
 msgid "{addon} enabled."
-msgstr "{addon} a fost activat."
+msgstr "{addon} activat."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr "Starea {addon} a fost modificată în {status}."
+msgstr "Stare {addon} modificată în {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} a fost adăugată la {addon}."
@@ -1563,16 +1563,16 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "Fișierul {0} a fost șters din {version} de {addon}."
 
 msgid "{addon} {version} approved."
-msgstr "{addon} {version} a fost aprobată."
+msgstr "{addon} {version} aprobat."
 
 msgid "{addon} {version} given preliminary review."
-msgstr "Revizuire preliminară efectuată pentru {addon} {version}."
+msgstr "{addon} {version} are revizuire preliminară."
 
 msgid "Preliminarily approved"
 msgstr "Aprobat preliminar"
 
 msgid "{addon} {version} rejected."
-msgstr "{addon} {version} a fost respins."
+msgstr "{addon} {version} respins."
 
 msgid "{addon} {version} retained."
 msgstr "S-a păstrat {addon} {version}."
@@ -1581,25 +1581,25 @@ msgid "Retained"
 msgstr "Păstrat"
 
 msgid "{addon} {version} escalated."
-msgstr "{addon} {version} a fost escaladat."
+msgstr "{addon} {version} escaladat."
 
 msgid "Super review requested"
 msgstr "S-a solicitat o suprarevizuire"
 
 msgid "{addon} {version} review requested."
-msgstr "S-a solicitat revizuire pentru {addon} {version}."
+msgstr "Revizuire pentru {addon} {version} solicitată."
 
 msgid "Review requested"
 msgstr "Revizuire solicitată"
 
 msgid "{addon} {version} more information requested."
-msgstr "S-au solicitat informații suplimentare pentru {addon} {version}."
+msgstr "Informații suplimentare pentru {addon} {version} solicitate."
 
 msgid "More information requested"
 msgstr "S-au solicitat informații suplimentare"
 
 msgid "{addon} {version} super review requested."
-msgstr "S-a solicitat o suprarevizuire pentru {addon}{version}."
+msgstr "Suprarevizuire pentru {addon}{version} solicitată."
 
 msgid "The addon has been flagged for Admin Review.  It's still in our review queue, but it will need to be checked by one of our admin reviewers. The review might take longer than usual."
 msgstr ""
@@ -1653,10 +1653,10 @@ msgid "{addon} is now licensed under {0}."
 msgstr "{addon} este acum disponibil sub licența {0}."
 
 msgid "{addon} policy changed."
-msgstr "Politica {addon} a fost modificată."
+msgstr "Politică {addon} modificată."
 
 msgid "{addon} icon changed."
-msgstr "Pictograma {addon} a fost modificată."
+msgstr "Pictograma {addon} modificată."
 
 msgid "{rating} for {addon} approved."
 msgstr "{rating} pentru {addon} aprobată."
@@ -1668,7 +1668,7 @@ msgid "Review {rating} for {addon} deleted."
 msgstr ""
 
 msgid "{user} deleted {rating} for {addon}."
-msgstr ""
+msgstr "{user} a șters {rating} pentru {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -1683,7 +1683,7 @@ msgid "Password changed."
 msgstr "Parola a fost modificată."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr "{addon} {version} a fost aprobat, dar așteaptă publicarea."
+msgstr "{addon} {version} aprobat, dar așteaptă publicarea."
 
 msgid "Approved but waiting"
 msgstr "Aprobat, însă în așteptare"
@@ -1713,7 +1713,7 @@ msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
 msgid "{rating} for {addon} updated."
-msgstr ""
+msgstr "{rating} pentru {addon} actualizată."
 
 msgid "{addon} reviewed."
 msgstr "{addon} revizuit."
@@ -1731,17 +1731,17 @@ msgid "User {0.name} removed from {group}."
 msgstr ""
 
 msgid "{addon} unlisted."
-msgstr ""
+msgstr "{addon} nelistat."
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} a fost semnat."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
 msgid "{addon} migrated from preliminary."
-msgstr ""
+msgstr "{addon} migrat din preliminare."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
@@ -1774,25 +1774,25 @@ msgid "Auto-Approval confirmed"
 msgstr "Auto-aprobare confirmată"
 
 msgid "{addon} {version} re-enabled."
-msgstr ""
+msgstr "{addon} {version} reactivat."
 
 msgid "{addon} {version} disabled."
-msgstr ""
+msgstr "{addon} {version} dezactivat."
 
 msgid "{addon} {version} content approved."
-msgstr ""
+msgstr "Conținut {addon} {version} aprobat."
 
 msgid "Content approved"
 msgstr "Conținut aprobat"
 
 msgid "{addon} {version} content rejected."
-msgstr ""
+msgstr "Conținut {addon} {version} respins."
 
 msgid "Content rejected"
 msgstr ""
 
 msgid "{addon} information request altered or removed by admin."
-msgstr "{addon} solicitare de informații modificată sau eliminată de administrator."
+msgstr "Solicitare de informații despre {addon} modificată sau eliminată de administrator."
 
 msgid "Information request altered"
 msgstr "Solicitare de informații modificată"
@@ -1804,25 +1804,25 @@ msgid "Information request removed"
 msgstr "Solicitare de informații eliminată"
 
 msgid "{addon} {version} admin add-on-review requested."
-msgstr "S-a solicitat o revizuire a suplimentului de către administrator pentru {addon}{version}."
+msgstr "Revizuire a suplimentului de către administrator pentru {addon}{version} solicitată."
 
 msgid "Admin add-on-review requested"
 msgstr "S-a solicitat o revizuire a suplimentului de către administrator"
 
 msgid "{addon} {version} admin content-review requested."
-msgstr "S-a solicitat o revizuire a conținutului de către administrator pentru {addon}{version}."
+msgstr "Revizuire a conținutului de către administrator pentru {addon}{version} solicitată."
 
 msgid "Admin content-review requested"
 msgstr "S-a solicitat o revizuire a conținutului de către administrator"
 
 msgid "{addon} {version} admin theme-review requested."
-msgstr ""
+msgstr "Revizuirea temei de către administrator pentru {addon} {version} solicitată."
 
 msgid "Admin theme-review requested"
 msgstr "S-a solicitat o revizuire a temei de către administrator"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr ""
+msgstr "{addon} a migrat de la o temă ușoară."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2547,7 +2547,7 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr ""
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
+msgstr "[{field}] Textul din câmpul \"{field}\" a fost semnalat ca spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2751,7 +2751,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Hubul dezvoltatorilor de <small>suplimente</small>"
+msgstr "Centrul dezvoltatorilor <small>suplimente</small>"
 
 msgid "more add-ons..."
 msgstr "mai multe suplimente..."
@@ -2843,6 +2843,8 @@ msgstr ""
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualizează compatibilitatea</a> <a href=\"%(version_url)s\" class=\"button\">Încarcă versiune nouă</a> sau <a "
+"href=\"#\" class=\"close\">Ignoră</a>"
 
 msgid "View and update application compatibility ranges."
 msgstr "Afișează și actualizează domeniile de compatibilitate ale aplicației."
@@ -2874,7 +2876,7 @@ msgstr "Activitate recentă"
 
 #, python-format
 msgid "%(ago)s by %(user)s"
-msgstr "%(ago)s de %(user)s"
+msgstr "%(ago)s de către %(user)s"
 
 msgid "Older activity for My Add-ons"
 msgstr "Activitate veche pentru suplimentele mele"
@@ -2914,6 +2916,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
+"<p>Suplimentele pot avea oricâți autori, cu 2 roluri posibile:</p> <ul> <li><b>Proprietar:</b> Poate gestiona toate aspectele legate de listarea suplimentelor, inclusiv adăugarea și eliminarea altor"
+" autori</li> <li><b>Dezvoltator:</b> Poate gestiona toate aspectele legate de listarea suplimentelor, în afară de adăugarea și eliminarea altor autori</li> </ul>"
 
 msgid "Additional Details"
 msgstr "Detalii suplimentare"
@@ -3162,14 +3166,14 @@ msgstr ""
 
 #. The size of the icon
 msgid "32x32px"
-msgstr ""
+msgstr "32x32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
 msgstr "Folosit în listele de suplimente, precum rezultate la căutare și suplimente promovate."
 
 #. The size of the icon
 msgid "64x64px"
-msgstr ""
+msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
 msgstr ""
@@ -3343,14 +3347,14 @@ msgstr "Dezactivat"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
-msgstr ""
+msgstr "<b>Poziție în coadă:</b> %(pos)s din %(total)s"
 
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "<strong>{0}</strong> utilizator activ"
+msgstr[1] "<strong>{0}</strong> utilizatori activi"
+msgstr[2] "<strong>{0}</strong> de utilizatori activi"
 
 msgid "Submit a New Version"
 msgstr "Trimite o versiune nouă"
@@ -3533,7 +3537,7 @@ msgid "Step-by-step build instructions to create an exact copy of the add-on cod
 msgstr ""
 
 msgid "A build script that executes all necessary technical steps."
-msgstr ""
+msgstr "Un script de versiune care execută toți pașii tehnici necesari."
 
 msgid "Operating system and build environment requirements."
 msgstr ""
@@ -3545,6 +3549,8 @@ msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
+"<span class=\"instruction-emphasis\">Obs.:</span> Fișierele-sursă (în afara bibliotecilor cu sursă deschisă de la terți) nu pot fi transcompilate, obfuscate, minificate sau generate altminteri cu "
+"mașini."
 
 msgid "How to Submit:"
 msgstr ""
@@ -3607,7 +3613,7 @@ msgid "Recommended height: 200 pixels"
 msgstr ""
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6,9MB max"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr ""
@@ -3722,7 +3728,7 @@ msgstr ""
 
 #, python-format
 msgid "%(position)s of %(total)s"
-msgstr ""
+msgstr "%(position)s din %(total)s"
 
 msgid "Signed for self-distribution. Updates are handled by you."
 msgstr ""
@@ -3846,7 +3852,7 @@ msgid "Get Your Add-on Featured"
 msgstr "Obține includerea suplimentului printre cele promovate"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "Buton „Descarcă suplimentul”"
 
 msgid "Legal"
 msgstr ""
@@ -3952,7 +3958,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(register)s\">Register</a> or <a href=\"%(login)s\">Sign In</a>"
-msgstr "<a href=\"%(register)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">autentifică-te</a>"
+msgstr "<a href=\"%(register)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">Autentifică-te</a>"
 
 msgid "Customize Firefox"
 msgstr ""
@@ -3986,7 +3992,7 @@ msgid "Web-Ext"
 msgstr ""
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr ""
+msgstr "O unealtă cu linie de comandă pentru creat, rulat și testat extensii."
 
 msgid "Automated code tests for your add-on."
 msgstr ""
@@ -4020,6 +4026,8 @@ msgstr ""
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 msgstr ""
+"O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listările rezultatelor la căutare și listările de navigare, precum și în partea de sus a paginii de detalii a temei "
+"tale."
 
 msgid "Theme License"
 msgstr ""
@@ -4138,10 +4146,10 @@ msgid "Select a header image for your Theme."
 msgstr ""
 
 msgid "3000 &times; 200 pixels"
-msgstr ""
+msgstr "3000 de ori; 200 de pixeli"
 
 msgid "300 KB max"
-msgstr ""
+msgstr "300 KB max"
 
 msgid "PNG or JPG"
 msgstr ""
@@ -4198,7 +4206,7 @@ msgid "Edit this version"
 msgstr ""
 
 msgid "0 files"
-msgstr ""
+msgstr "0 fișiere"
 
 msgid "Re-enable Version"
 msgstr ""
@@ -4237,11 +4245,12 @@ msgid "Listing visibility"
 msgstr ""
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Vizibil:{label_close} Vizibil oricui de pe {site_url} și inclus în rezultatele căutărilor și pe paginile de produse."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
+"{label_open}Invizibil:{label_close} Nu va fi inclus în rezultatele căutărilor și pagina lui de produs va indica cum că l-ai dezactivat. În această stare nu se vor accepta depuneri de versiuni noi."
 
 msgid "Listed versions"
 msgstr "Versiunile listate"
@@ -4282,7 +4291,7 @@ msgid "Deleting this version will permanently delete:"
 msgstr ""
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
-msgstr ""
+msgstr "<strong>Important:</strong> Odată ce o versiune este ștearsă, nu mai poți încărca o versiune nouă cu același număr de versiune."
 
 msgid "Are you sure you wish to delete this version?"
 msgstr ""
@@ -4448,7 +4457,7 @@ msgstr "Blochează reclamele {start_sub_heading}cu {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
-msgstr ""
+msgstr "Un supliment mic și eficient de blocare a reclamelor. uBlock Origin aplică mii de filtre de conținut fără să mănânce prea multă memorie."
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5165,7 +5174,7 @@ msgstr "Selectează ușor locațiile marcajelor {start_sub_heading}cu {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "Un mod mai bun de a salva marcaje dacă folosești mai multe dosare de marcaje."
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5757,7 +5766,7 @@ msgstr ""
 
 #, python-format
 msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "<em:type> din fișierul tău install.rdf (%s) nu se potrivește cu tipul suplimentului tău de pe AMO (%s)"
 
 msgid "Back to review"
 msgstr ""
@@ -5867,7 +5876,7 @@ msgid "Easily connect to your social networks, and share or comment on the page 
 msgstr ""
 
 msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
+msgstr "O vedere rapidă de comparat prețuri când faci cumpărături online sau cauți zboruri."
 
 msgid "St. Patrick&rsquo;s Day Themes"
 msgstr ""
@@ -5970,12 +5979,12 @@ msgstr "Trimite spam la Akismet"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s rapoarte ham depuse ca spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s rapoarte spam depuse ca ham"
 
 msgid "About Mozilla Add-ons"
 msgstr ""
@@ -6024,7 +6033,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Creează-ți propriul supliment</a>. Oferim găzduire gratuită și servicii de actualizare și te putem ajuta să ajungi la un număr mare de utilizatori."
 
 #, python-format
 msgid ""
@@ -6056,7 +6065,7 @@ msgstr ""
 
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
-msgstr ""
+msgstr "Un loc bun de început este <a href=\"%(sumo_url)s\">Support</a> Mozilla. Dacă nu găsești acolo un răspuns, poți <a href=\"%(forum_url)s\"> posta o întrebare pe forumurile noastre</a>."
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
@@ -6185,7 +6194,7 @@ msgid "What will happen next"
 msgstr ""
 
 msgid "<strong>If you agree</strong> to participate:"
-msgstr ""
+msgstr "<strong>Dacă ești de acord</strong> să participi:"
 
 msgid "We may add security and plugin control features to Firefox to help with online security and performance."
 msgstr ""
@@ -6282,7 +6291,7 @@ msgid "Rated %d out of 5 stars"
 msgstr "Evaluată cu %d din 5 stele"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
-msgstr ""
+msgstr "Trebuie să se dea o explicație scurtă la selectarea „Altele” ca motiv de semnalare."
 
 msgid "Spam or otherwise non-review content"
 msgstr "Spam sau alt conținut care nu e o recenzie"
@@ -6340,7 +6349,7 @@ msgstr ""
 "rugăm să nu postezi aici rapoarte de defecțiuni. Nu punem la dispoziția dezvoltatorilor de suplimente adresa ta de e-mail, așa că nu te vor putea contacta pentru soluționarea problemei. Consultă <a "
 "href=\"%(support)s\">secțiunea de asistență</a> aferentă acestui supliment ca să vezi dacă oferă asistență. Poți încerca și să ceri ajutorul <a href=\"https://discourse.mozilla-community.org/c/add-"
 "ons/add-on-support\">comunității de suplimente</a>. </li><li>Te rugăm să scrii recenzii clare, să eviți limbajul necorespunzător și să nu postezi informații personale. </li></ul><p>Te rugăm să "
-"citești <a href=\"%(guide)s\">Ghidul pentru recenzii</a>pentru mai multe detalii privind recenziile utilizatorilor despre suplimente."
+"citești <a href=\"%(guide)s\">Ghidul pentru recenzii</a>pentru mai multe detalii privind recenziile utilizatorilor despre suplimente.</p>"
 
 msgid "Reply to review by {0}"
 msgstr ""
@@ -6401,7 +6410,7 @@ msgstr "Șterge recenzia"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: Recenzii"
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -6429,7 +6438,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
-msgstr ""
+msgstr "<strong>Medie</strong> (%(total)s)"
 
 msgid "Write a New Review"
 msgstr ""
@@ -6439,9 +6448,9 @@ msgstr "Fii primul care scrie o recenzie."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{num} recenzie"
+msgstr[1] "{num} recenzii"
+msgstr[2] "{num} de recenzii"
 
 msgid "Rated {0} out of 5 stars"
 msgstr "Evaluată cu {0} din 5 stele"
@@ -6574,13 +6583,13 @@ msgid "Thanks for submitting your Theme"
 msgstr ""
 
 msgid "A problem with your Theme submission"
-msgstr ""
+msgstr "O problemă cu depunerea temei tale"
 
 msgid "Theme submission flagged for review"
 msgstr "Temă depusă semnalată pentru recenzie"
 
 msgid "A question about your Theme submission"
-msgstr ""
+msgstr "O întrebare despre depunerea temei tale"
 
 msgid "Type"
 msgstr ""
@@ -6597,16 +6606,16 @@ msgstr "momente în urmă"
 #. L10n: first argument is number of minutes
 msgid "{0} minute"
 msgid_plural "{0} minutes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} minut"
+msgstr[1] "{0} minute"
+msgstr[2] "{0} de minute"
 
 #. L10n: first argument is number of hours
 msgid "{0} hour"
 msgid_plural "{0} hours"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} oră"
+msgstr[1] "{0} ore"
+msgstr[2] "{0} de ore"
 
 #. L10n: first argument is number of days
 msgid "{0} day"
@@ -6781,22 +6790,22 @@ msgid "Review lock limit reached"
 msgstr ""
 
 msgid "{addon} :: EULA"
-msgstr ""
+msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
-msgstr "{addon} ::Politica de confidențialitate"
+msgstr "{addon} :: Politică de confidențialitate"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} recenzie de temă procesată cu succes (+{1} puncte, {2} total)."
+msgstr[1] "{0} recenzii de teme procesate cu succes (+{1} puncte, {2} total)."
+msgstr[2] "{0} de recenzii de teme procesate cu succes (+{1} puncte, {2} total)."
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
 
 msgid "{addon} :: Abuse Reports"
-msgstr ""
+msgstr "{addon} :: Raportări de abuzuri"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
@@ -6890,7 +6899,7 @@ msgstr "Autor recenzie"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
 msgstr ""
@@ -6970,7 +6979,7 @@ msgstr ""
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
-msgstr ""
+msgstr "<strong>%(reason)s</strong> <span class=\"light\">Semnalat de %(user)s la data de %(date)s</span>"
 
 msgid "All reviews have been moderated. Good work!"
 msgstr ""
@@ -7006,7 +7015,7 @@ msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %
 msgstr ""
 
 msgid "(Confirmed)"
-msgstr ""
+msgstr "(Confirmat)"
 
 msgid "Compatibility:"
 msgstr ""
@@ -7045,7 +7054,7 @@ msgid "Tested on:"
 msgstr ""
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
-msgstr ""
+msgstr "<strong>Avertisment!</strong> Alt utilizator a vizualizat această pagină înaintea ta."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
 msgstr ""
@@ -7087,7 +7096,7 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr "Șterge semnalarea de recenzie a temei statice de către un administrator"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(admin)"
 
 msgid "Admin Page"
 msgstr ""
@@ -7118,7 +7127,7 @@ msgstr ""
 
 #, python-format
 msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr ""
+msgstr "%(user)s [%(ip_address)s] a raportat %(object)s la data de %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr ""
@@ -7137,7 +7146,7 @@ msgstr "Permisiuni:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>De către %(user)s la data de %(date)s</div>"
 
 msgid "Older"
 msgstr ""
@@ -7166,7 +7175,7 @@ msgstr ""
 
 #, python-format
 msgid "%(user)s on %(date)s [%(ip_address)s]"
-msgstr ""
+msgstr "%(user)s la data de %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
 msgstr ""
@@ -7226,7 +7235,7 @@ msgid "Commit Reviews"
 msgstr ""
 
 msgid "{0} out of {1} reviewed"
-msgstr ""
+msgstr "{0} din {1} revizuite"
 
 msgid "There are currently no Themes to review."
 msgstr ""
@@ -7250,7 +7259,7 @@ msgid "Edit Listing"
 msgstr ""
 
 msgid "(Probable Duplicate Submission)"
-msgstr ""
+msgstr "(Probabil depunere în duplicat)"
 
 msgid "Submitted"
 msgstr ""
@@ -7291,7 +7300,7 @@ msgstr ""
 
 #, python-format
 msgid "[status:%s]"
-msgstr ""
+msgstr "[status:%s]"
 
 msgid "Update ({0})"
 msgid_plural "Updates ({0})"
@@ -7379,7 +7388,7 @@ msgstr ""
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
-msgstr ""
+msgstr "{0} :: Căutare"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
@@ -7387,7 +7396,7 @@ msgstr ""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
-msgstr ""
+msgstr "{0} :: Etichetă"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
@@ -7618,6 +7627,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
+"<h2>Cum se numără descărcările?</h2> <p> Numărătoarea descărcărilor este actualizată în fiecare seară și include numai descărcările suplimentului inițial, nu și cele ale actualizărilor. Descărcările"
+" pot fi defalcate după sursa specifică aferentă descărcării. </p>"
 
 msgid "User languages by Date"
 msgstr "Limbile utilizatorilor în funcție de dată"
@@ -7626,13 +7637,13 @@ msgid "Platform usage by Date"
 msgstr "Utilizarea de platforme în funcție de dată"
 
 msgid "<b>{0}</b> Downloads"
-msgstr "<b>{0}</b> descărcări"
+msgstr "<b>{0}</b> (de) descărcări"
 
 msgid "Loading..."
 msgstr ""
 
 msgid "<b>{0}</b> Average Daily Users"
-msgstr "<b>{0}</b> utilizatori zilnici în medie"
+msgstr "<b>{0}</b> (de) utilizatori zilnici în medie"
 
 msgid "Top Applications"
 msgstr "Aplicații de top"
@@ -7662,7 +7673,7 @@ msgid "Download sources by Date"
 msgstr "Surse de descărcare în funcție de dată"
 
 msgid "About tracking external sources..."
-msgstr "În ceea ce privește urmărirea surselor externe"
+msgstr "Despre urmărirea surselor externe..."
 
 #, python-format
 msgid ""
@@ -7672,6 +7683,12 @@ msgid ""
 "blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
 "\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
+"<h2>Urmărirea surselor externe</h2> <p> Dacă faci un link pe un site extern, cum ar fi pe blogul sau pe site-ul tău, către pagina cu detaliile suplimentului sau direct către fișierul suplimentului, "
+"poți atașa un parametru care să fie urmărit ca sursă suplimentară de descărcări pe această pagină. De exemplu, următoarele linkuri ar apărea ca avându-și sursa pe blogul tău: <dl> <dt>Add-on Details"
+" Page</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b"
+">external-blog</b></dd> </dl> <p> Vor fi monitorizați numai parametrii src care încep cu „external-\", cu până la 61 de caractere suplimentare. Orice text care vine după „external-\" poate fi "
+"utilizat ca descriere a sursei, cum ar fi „external-blog\", „external-sidebar\", „external-campaign225\" etc. Sunt permise următoarele caractere, care prezintă siguranță URL: <code>a-z A-Z - . _ ~ "
+"%% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Starea suplimentului în funcție de dată"
@@ -7689,11 +7706,15 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
+"<h2>Ce înseamnă utilizatori zilnici?</h2> <p> Temele instalate de pe acest site verifică pentru actualizări o dată pe zi. Numărul total al acestor pinguri de actualizare poartă denumirea de "
+"„utilizatori zilnici” sau numărul total de persoane care îți folosesc tema pe zi. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
+"<h2>Ce înseamnă utilizatori zilnici?</h2> <p> Suplimentele descărcate de pe acest site verifică pentru actualizări o dată pe zi. Numărul total al acestor pinguri de actualizare poartă denumirea de "
+"„utilizatori zilnici”. Utilizatorii zilnici pot fi defalcați după versiunea suplimentului, sistemul de operare, starea suplimentului, aplicație și limbă. </p>"
 
 msgid "User Signups by Date"
 msgstr "Înscrieri ale utilizatorilor în funcție de dată"
@@ -7777,10 +7798,10 @@ msgid "Return to the {0} Add-ons homepage"
 msgstr "Înapoi la pagina de start a suplimentelor {0}"
 
 msgid "<img alt=\"Firefox\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"Firefox\" src=\"{0}\"> Suplimente"
 
 msgid "<img alt=\"\" src=\"{0}\"> Add-ons"
-msgstr ""
+msgstr "<img alt=\"\" src=\"{0}\"> Suplimente"
 
 msgid "My Account"
 msgstr "Contul meu"
@@ -7790,7 +7811,7 @@ msgstr ""
 
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
-msgstr "<a href=\"%(reg)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">autentifică-te</a>"
+msgstr "<a href=\"%(reg)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">Autentifică-te</a>"
 
 #, python-format
 msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
@@ -7826,7 +7847,7 @@ msgstr ""
 
 #, python-format
 msgid "%(title)s <em>&middot; %(lang)s</em>"
-msgstr ""
+msgstr "%(title)s <em>&middot; %(lang)s</em>"
 
 msgid "Existing Locales"
 msgstr ""
@@ -8185,7 +8206,7 @@ msgid "Number of add-ons developed"
 msgstr "Numărul de suplimente dezvoltate"
 
 msgid "{0} add-ons"
-msgstr "{0} suplimente"
+msgstr "Suplimente pentru {0}"
 
 #, python-format
 msgid "%(num)s theme"
@@ -8210,7 +8231,7 @@ msgstr ""
 
 #, python-format
 msgid "%s Version History"
-msgstr ""
+msgstr "Istoric versiuni %s"
 
 msgid "Version History with Changelogs"
 msgstr "Istoricul versiunilor cu jurnale de modificări"
