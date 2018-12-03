@@ -82,7 +82,7 @@ the respective docker image, use the following command::
 
 Now, to run the selenium based tests outside of the docker container use the following command::
 
-    docker-compose exec --user root selenium-firefox tox -e ui-tests
+    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec --user root selenium-firefox tox -e ui-tests
 
 WARNING: This will WIPE the database as the test will create specific data for itself to look for.
 If you have anything you don't want to be deleted, please do not run these tests.

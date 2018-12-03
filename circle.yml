@@ -106,11 +106,11 @@ jobs:
             # Delete any existing uitest users within restmail. TEMP FIX: https://github.com/mozilla/addons-server/issues/8980
             wget --method=DELETE http://restmail.net/mail/uitest
             # mod user in firefox container
-            docker-compose exec selenium-firefox sudo usermod -u 1001 seluser
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox sudo usermod -u 1001 seluser
             # proper chown
             sudo chown -R $USER .
             # Start Test in Firefox docker container
-            docker-compose exec selenium-firefox tox -e ui-tests
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
       - store_artifacts:
           path: ui-test.html
       - save_cache:
