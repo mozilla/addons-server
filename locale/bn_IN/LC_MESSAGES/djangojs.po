@@ -1,24 +1,24 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2017-10-19 19:03+0000\n"
+"PO-Revision-Date: 2018-12-03 14:35+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
 "Language: bn_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Generated-By: Babel 2.2.0\n"
 "X-Generator: Pontoon\n"
 
 msgid "{0} star"
 msgid_plural "{0} stars"
-msgstr[0] "{0} তারা"
-msgstr[1] "{0} তারাগুলি"
+msgstr[0] "{0} স্টারসমূহ"
+msgstr[1] ""
 
 msgid "There was a problem contacting the server."
 msgstr "সার্ভারের সঙ্গে সংযোগে একটি সমস্যা পাওয়া গেছে।"
@@ -110,7 +110,9 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "বিস্তারিত সংস্করণের নোট প্রবেশ করান (পরবর্তী ধাপে এটা করা যায়)।"
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে পারে)।"
+msgstr ""
+"যদি আপনার অ্যাড-অনের কোনো অ্যাকাউন্ট লাগে কোনো ওয়েবসাইটে সম্পূর্ণভাবে পরীক্ষা করবার জন্য, একটি টেস্ট ব্যবহারকারীনাম এবং পাসওয়ার্ড দিন পর্যালোচকের কাছে রিভিউ করবার জন্য় (এটা পরবর্তী ধাপে করা যেতে "
+"পারে)।"
 
 msgid "Add-on submission checklist"
 msgstr "অ্যাড-অন জমা দেবার তালিকা"
@@ -130,7 +132,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "আপনার ফাইলটি সর্বচ্চ আয়তন{০} ছাড়িয়ে গেছে।"
 
 msgid "You cancelled the upload."
 msgstr "আপনি আপলোডটি বাতিল করেছেন।"
@@ -297,13 +299,13 @@ msgid "User Signups"
 msgstr "ব্যবহারকারীর সাইনআপ"
 
 msgid "Subscribers"
-msgstr ""
+msgstr "গ্রাহকসমূহ"
 
 msgid "Ratings"
 msgstr "রেটিংস"
 
 msgid "Sales"
-msgstr ""
+msgstr "বিক্রি"
 
 msgid "Installs"
 msgstr "ইনস্টলসমূহ"
@@ -315,22 +317,22 @@ msgid "Add-ons Manager"
 msgstr "Add-ons ম্যানেজার"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "এড-অনস ম্যানেজার প্রমো"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "এড-অনস ম্যানেজার ফিচারসমূহ"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "এড-অনস ম্যানেজার সম্বন্ধে আরো জানুন"
 
 msgid "Search Suggestions"
 msgstr "প্রস্তাবগুলি সন্ধান করুন"
 
 msgid "Search Results"
-msgstr ""
+msgstr "ফলাফলসমূহ খুঁজুন"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "হোমপেজ প্রেমো"
 
 msgid "Homepage Featured"
 msgstr "হোমপেজ বৈশিষ্ট্যযুক্ত করা হয়েছে"
@@ -342,7 +344,7 @@ msgid "Homepage Most Popular"
 msgstr "হোমপেজ সবথেকে বেশি জনপ্রিয়"
 
 msgid "Detail Page"
-msgstr ""
+msgstr "পেজ এর বিস্তারিত"
 
 msgid "Detail Page (bottom)"
 msgstr "বিস্তৃত পেজ (নীচ)"
@@ -357,13 +359,13 @@ msgid "Others By Author"
 msgstr "বাকিগুলো লেখকের দ্বারা"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "নির্ভরশীলতা"
 
 msgid "Upsell"
-msgstr ""
+msgstr "আপসেল"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "ডেভেলপারের সাথে পরিচিত হোন"
 
 msgid "User Profile"
 msgstr "ব্যবহারকারীর প্রোফাইল"
@@ -375,10 +377,10 @@ msgid "Sharing"
 msgstr "অংশীদারি"
 
 msgid "Category Pages"
-msgstr ""
+msgstr "ক্যাটেগরি পেজ"
 
 msgid "Collections"
-msgstr ""
+msgstr "সংগ্রহসমূহ"
 
 msgid "Category Landing Featured Carousel"
 msgstr "বিভাগ ল্যান্ডিং বৈশিষ্ট্যযুক্ত ক্যারাউজেল"
@@ -408,7 +410,7 @@ msgid "Browse Listing Name Sort"
 msgstr "ব্রাউজ তালিকা নামের হিসেবে সাজানো"
 
 msgid "Browse Listing Popular Sort"
-msgstr ""
+msgstr "জনপ্রিয় সাজানোর তালিকা ব্রাউজ করুন"
 
 msgid "Browse Listing Updated Sort"
 msgstr ""
