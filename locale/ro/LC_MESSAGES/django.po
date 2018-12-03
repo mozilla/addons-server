@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 15:32+0000\n"
+"PO-Revision-Date: 2018-12-03 15:44+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1074,7 +1074,7 @@ msgstr "Creează o colecție nouă"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
+msgstr "Așa cum este indicat în <a href=\"%(legal)s\">Mențiunile legale</a>, aranjamentele pentru colecții individuale sunt guvernate de licența de Atribuire Creative Commons Partajare-similare"
 
 msgid "Create Collection"
 msgstr "Creează colecția"
@@ -1408,7 +1408,7 @@ msgstr "Descoperă și mai multe motoare de căutare la <a href=\"http://mycroft
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sCreează-ți propria%(amo_mdn_link_close)s unealtă de căutare"
 
 msgid "Most Popular Extensions"
 msgstr "Cele mai populare extensii"
@@ -1509,7 +1509,7 @@ msgid "Up & Coming Themes"
 msgstr "Teme în curs de apariție"
 
 msgid "View All Up & Coming"
-msgstr ""
+msgstr "Vezi tot ce e în curs de apariție"
 
 msgid "No themes found"
 msgstr "Nicio temă găsită"
@@ -1566,7 +1566,7 @@ msgid "{addon} {version} approved."
 msgstr "{addon} {version} a fost aprobată."
 
 msgid "{addon} {version} given preliminary review."
-msgstr ""
+msgstr "Revizuire preliminară efectuată pentru {addon} {version}."
 
 msgid "Preliminarily approved"
 msgstr "Aprobat preliminar"
@@ -1575,28 +1575,28 @@ msgid "{addon} {version} rejected."
 msgstr "{addon} {version} a fost respins."
 
 msgid "{addon} {version} retained."
-msgstr ""
+msgstr "S-a păstrat {addon} {version}."
 
 msgid "Retained"
-msgstr ""
+msgstr "Păstrat"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "{addon} {version} a fost escaladat."
 
 msgid "Super review requested"
 msgstr "S-a solicitat o suprarevizuire"
 
 msgid "{addon} {version} review requested."
-msgstr ""
+msgstr "S-a solicitat revizuire pentru {addon} {version}."
 
 msgid "Review requested"
 msgstr "Revizuire solicitată"
 
 msgid "{addon} {version} more information requested."
-msgstr ""
+msgstr "S-au solicitat informații suplimentare pentru {addon} {version}."
 
 msgid "More information requested"
-msgstr ""
+msgstr "S-au solicitat informații suplimentare"
 
 msgid "{addon} {version} super review requested."
 msgstr "S-a solicitat o suprarevizuire pentru {addon}{version}."
@@ -1607,25 +1607,25 @@ msgstr ""
 "administrare. Revizuirea poate dura mai mult decât de obicei."
 
 msgid "Comment on {addon} {version}."
-msgstr "Comentariu despre {addon} {version}."
+msgstr "Comentariu la {addon} {version}."
 
 msgid "Commented"
-msgstr ""
+msgstr "Cu comentarii"
 
 msgid "{tag} added to {addon}."
-msgstr ""
+msgstr "{tag} adăugată la {addon}."
 
 msgid "{tag} removed from {addon}."
-msgstr ""
+msgstr "{tag} eliminată de pe {addon}."
 
 msgid "{addon} added to {collection}."
-msgstr ""
+msgstr "{addon} adăugat la {collection}."
 
 msgid "{addon} removed from {collection}."
-msgstr ""
+msgstr "{addon} eliminat din {collection}."
 
 msgid "{rating} for {addon} written."
-msgstr ""
+msgstr "{rating} pentru {addon} scrisă."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1643,26 +1643,26 @@ msgstr "{addon} nu mai este promovat."
 
 #. L10n: {0} is the application, {1} is the version of the app
 msgid "{0} {1} added."
-msgstr ""
+msgstr "{0} {1} adăugat."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr ""
+msgstr "Rolul lui {0.name} a fost modificat în {1} pentru {addon}."
 
 msgid "{addon} is now licensed under {0}."
-msgstr ""
+msgstr "{addon} este acum disponibil sub licența {0}."
 
 msgid "{addon} policy changed."
-msgstr ""
+msgstr "Politica {addon} a fost modificată."
 
 msgid "{addon} icon changed."
-msgstr ""
+msgstr "Pictograma {addon} a fost modificată."
 
 msgid "{rating} for {addon} approved."
-msgstr ""
+msgstr "{rating} pentru {addon} aprobată."
 
 msgid "{user} approved {rating} for {addon}."
-msgstr ""
+msgstr "{user} a aprobat {rating} pentru {addon}."
 
 msgid "Review {rating} for {addon} deleted."
 msgstr ""
