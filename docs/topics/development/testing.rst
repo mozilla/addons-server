@@ -75,7 +75,12 @@ If you wish to re-run only the tests failed from the previous run::
 
 Selenium Integration Tests
 --------------------------
-To run the selenium based tests outside of the docker container use the following command::
+The selenium based tests require a separate docker-compose configuration, so to start
+the respective docker image, use the following command::
+
+    docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
+
+Now, to run the selenium based tests outside of the docker container use the following command::
 
     docker-compose exec --user root selenium-firefox tox -e ui-tests
 

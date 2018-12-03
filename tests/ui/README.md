@@ -19,11 +19,13 @@ Follow the instructions found [here][addons-server-docs].
 
 *IMPORTANT* : Run the script in ```scripts/ui-test-hostname-setup.sh``` before running the test to setup the hostnames within the docker container.
 
-Included in the docker-compose file is an image containing Firefox Nightly. [tox][Tox]
+The selenium tests are included in a separate ``tests/ui/docker-compose.selenium.yml`` file. This image contains Firefox Nightly. [tox][Tox]
 is our test environment manager and [pytest][pytest] is the test runner.
 
-To run the tests, execute the command below:
+To run the tests, execute the commands below:
 ```sh
+# Make sure all required containers are running.
+docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
 docker-compose exec --user root selenium-firefox tox -e ui-tests
 ```
 WARNING: This will WIPE the database as the test will create specific data for itself to look for.
@@ -56,7 +58,7 @@ docker-compose ps
 ```
 If not start them detached:
 ```sh
-docker-compose up -d
+docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
 ```
 
 2. Copy the port that is forwarded for the ```selenium-firefox``` image:
