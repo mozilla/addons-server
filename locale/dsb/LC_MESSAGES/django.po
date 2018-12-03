@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 16:34+0000\n"
+"PO-Revision-Date: 2018-12-03 20:13+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2130,7 +2130,7 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr "Ześěgniśo drastwy Firefox z filmami a telewiziju. Toś ta kategorija animeje ako Uchiha Madara, filmy ako The Matrix, show (Game of Thrones) a wěcej wopśimujo."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z drastwu wobglědowaka Firefox. Toś ta kategorija barwjane, wšake ilustracije loga Firefox wopśimujo, inkluziwnje dalšne powšykne lišcyne drastwy."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
