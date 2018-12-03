@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 12:23+0000\n"
+"PO-Revision-Date: 2018-12-03 15:10+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2114,25 +2114,25 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, იაპონური Firefox-ისთვის. ეს ჯგუფი მოიცავს გაფორმებებს, საყვარელი Foxkeh-ის გამოსახულებებით, სხვადასხვა ხედების ფონზე."
 
 msgid "Holiday"
 msgstr "დღესასწაული"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, შვებულებებისთვის. ეს ჯგუფი მოიცავს გაფორმებებს შობის, მადლიერების დღის, ჰელოუინის, წმ. პატრიკის დღის, აღდგომის, ოთხი ივლისისთვის და ა.შ."
 
 msgid "Music"
 msgstr "მუსიკა"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, მუსიკალური მისწრაფებებსა და ხელოვანებთან დაკავშირებით. ეს ჯგუფი მოიცავს ცნობილ ჯგუფებს, როგორიცაა ნირვანა და BTS, ინსტრუმენტებს, მუსიკალურ ვიდეოებს და ა.შ."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ცხოველების სურათებითა და ბუნების ხედებით. ეს ჯგუფი მოიცავს ყვავილებს, მზის ჩასვლის ხედებს, წელიწადის დროებს, პლანეტებს, კნუტებს, ფრინველებს და ა.შ."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, რომლებიც მეტად საინტერესო, ორიგინალური და გამორჩეულია."
 
 msgid "Scenery"
 msgstr "ხედები"
