@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 15:10+0000\n"
+"PO-Revision-Date: 2018-12-03 15:22+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2138,28 +2138,28 @@ msgid "Scenery"
 msgstr "ხედები"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები დაკავშირებული გარემოსა და ბუნებასთან. ეს ჯგუფი მოიცავს მზის ჩასვლის ხედებს, სანაპიროებს, ქალაქის სილუეტებს და ა.შ."
 
 msgid "Seasonal"
 msgstr "სეზონური"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, წელიწადის ყველა დროისთვის — შემოდგომის, ზამთრის, გაზაფხულისა და ზაფხულის. ფოთოლცვენა, თოვლიანი მთის მწვერვალები, ზაფხულის მზიანი დღეები, გაზაფხულის ყვავილები."
 
 msgid "Solid"
 msgstr "მთლიანი"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ერთიანი და გარდამავალი ფერებით, თქვენი ბრაუზერის მოსარგებად. ეს ჯგუფი მოიცავს მუქ წითელს, რბილ ნაცრისფერს, პასტელურ ფერებს და ა.შ."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემებს სპორტის სხვადასხვა სახეობასთან დაკავშირებით. ეს ჯგუფი მოიცავს ქვეყნის დროშებს, გუნდებს, ფეხბურთს, ჰოკეის და ა.შ."
 
 msgid "Websites"
 msgstr "ვებგვერდები"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, რომლებიც გამოხატავს ინტერნეტის შინაარსს — მომხიბლავი, უჩვეულო, გამორჩეული."
 
 msgid "General"
 msgstr "ზოგადი"
@@ -2487,7 +2487,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "წყაროს ფაილი ატვირთულია, თუმცა მითითებული გაქვთ, რომ წყარო საჭირო არ იყო."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "დარწმუნდით, რომ სახელი და შეჯამება ერთიანად არ აჭარბებს 70 სიმბოლოს (ახლა არის{0})."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "3-ზე მეტი აუცილებელი დამატების მითითება შეუძლებელია."
@@ -2622,13 +2622,11 @@ msgstr "სურათის მოცულობა არ უნდა ა�
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "სურათი უნდა იყოს ზუსტად {0} პიქსელის სიგრძის და {1} პიქსელის სიმაღლის."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "სურათი უნდა იყოს ზუსტად {0} პიქსელის სიგრძის და {1} პიქსელის სიმაღლის."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "სურათი უნდა იყოს PNG ან JPG ფორმატში."
+msgstr "სურათი ზომების შეფარდება უნდა იყოს 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "წინასწარი ვერსიის ატვირთვისას მოხდა შეცდომა."
@@ -2953,9 +2951,8 @@ msgstr "დამატების აღწერა"
 msgid "Describe {0}"
 msgstr "{0} – აღწერა"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "შეჯამება"
+msgstr "სახელი და შეჯამება"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
