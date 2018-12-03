@@ -1,5 +1,8 @@
 version: "2.3"
 
+# If you're changing the &env mapping
+# please make sure to update tests/ui/docker-compose.selenium.yml
+# accordingly.
 x-env-mapping: &env
   environment:
     - CELERY_BROKER_URL=amqp://olympia:olympia@rabbitmq/olympia
@@ -77,20 +80,6 @@ services:
 
   autograph:
     image: mozilla/autograph:2.3.0
-
-  selenium-firefox:
-    <<: *env
-    image: b4handjr/selenium-firefox
-    volumes:
-      - .:/code
-    expose:
-      - "4444"
-    ports:
-      - "5900"
-    shm_size: 2g
-    links:
-      - "addons-frontend:olympia-frontend.test"
-      - "nginx:olympia.test"
 
   addons-frontend:
     <<: *env
