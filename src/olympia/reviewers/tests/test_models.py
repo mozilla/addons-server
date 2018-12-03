@@ -929,6 +929,7 @@ class TestAutoApprovalSummary(TestCase):
             'uses_remote_scripts': 0,
             'uses_unknown_minified_code': 0,
             'violates_mozilla_conditions': 0,
+            'uses_coinminer': 0,
         }
         assert weight_info == expected_result
 
@@ -1492,6 +1493,7 @@ class TestAutoApprovalSummary(TestCase):
             'uses_remote_scripts': 0,
             'uses_unknown_minified_code': 0,
             'violates_mozilla_conditions': 0,
+            'uses_coinminer': 0,
         }
         assert weight_info == expected_result
 
@@ -1534,6 +1536,18 @@ class TestAutoApprovalSummary(TestCase):
         del self.file.webext_permissions_list
         assert (
             AutoApprovalSummary.check_uses_native_messaging(self.version) == 1)
+
+    def test_calculate_weight_uses_coinminer(self):
+        validation_data = {
+            'messages': [{
+                'id': ['COINMINER_USAGE_DETECTED'],
+            }]
+        }
+        self.file_validation.update(validation=json.dumps(validation_data))
+        summary = AutoApprovalSummary(version=self.version)
+        weight_info = summary.calculate_weight()
+        assert summary.weight == 200
+        assert weight_info['uses_coinminer'] == 200
 
     def test_check_has_auto_approval_disabled(self):
         assert AutoApprovalSummary.check_has_auto_approval_disabled(

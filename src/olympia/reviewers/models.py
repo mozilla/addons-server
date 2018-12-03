@@ -891,7 +891,11 @@ class AutoApprovalSummary(ModelBase):
                     if unknown_minified_code_count else 0),
                 # Size of code changes: 5kB is one point, up to a max of 100.
                 'size_of_code_changes': min(
-                    self.calculate_size_of_code_changes() / 5000, 100)
+                    self.calculate_size_of_code_changes() / 5000, 100),
+                # Seems to be using a coinminer: 200
+                'uses_coinminer': (
+                    200 if self.count_uses_uses_coinminer(self.version)
+                    else 0),
             }
         except AutoApprovalNoValidationResultError:
             # We should have a FileValidationResult... since we don't and
@@ -1035,6 +1039,10 @@ class AutoApprovalSummary(ModelBase):
     @classmethod
     def count_uses_custom_csp(cls, version):
         return cls._count_linter_flag(version, 'MANIFEST_CSP')
+
+    @classmethod
+    def count_uses_uses_coinminer(cls, version):
+        return cls._count_linter_flag(version, 'COINMINER_USAGE_DETECTED')
 
     @classmethod
     def check_uses_native_messaging(cls, version):
