@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-02 21:21+0000\n"
+"PO-Revision-Date: 2018-12-03 16:33+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2064,19 +2064,19 @@ msgid "Social Networking"
 msgstr "Socialne seśi"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo dožywjenje na woblubowanych websedłach seśowego źěła, na pśikład YouTube, GitHub, Reddit a wěcej pólěpšył."
 
 msgid "Sports & Games"
 msgstr "Sport a graśa"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo rozdrosćeńke dožywjenje z rozšyrjenjami live stream, sportowymi powěsćami a wěcej pólěpšył."
 
 msgid "User Interface"
 msgstr "Wužywarski pówjerch"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja wužywarskego pówjercha Firefox, z kótarymiž webboki změnijośo, aby mógał je lažčej cytaś, pytaś, pśeglědowaś a wěcej."
 
 msgid "Animals"
 msgstr "Zwěrjeta"
@@ -2109,19 +2109,19 @@ msgid "Abstract"
 msgstr "Abstraktne"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Ześěgniśo wuměłske a koncepcionelne drastwy Firefox. Toś ta kategorija barjwane palety a formy, fantazijowe krajiny, grajkate kócki, psychedeliske kwětki wopśimujo."
 
 msgid "Causes"
 msgstr "Góźby"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox za nišowe zajmy a temy. Toś ta kategorija sportowe drastwy, swěte dny, filantropiske zawiny, narodnosći a wjele wěcej wopśimujo."
 
 msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež stil wšych formow - mustry, kwětkowe wobraze, tekstury, modele a wěcej swěśe."
 
 msgid "Film and TV"
 msgstr "Film a telewizija"
