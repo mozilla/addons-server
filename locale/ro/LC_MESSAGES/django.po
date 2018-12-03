@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 11:13+0000\n"
+"PO-Revision-Date: 2018-12-03 15:32+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -106,11 +106,11 @@ msgid "Add to {0}"
 msgstr "Adaugă la {0}"
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "Slugul nu poate fi „%(slug)s”. Te rugăm să alegi altul."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -672,7 +672,7 @@ msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Această temă este în așteptare. Este invizibilă tuturor în afară de tine."
 
 msgid "Collector's Note"
-msgstr ""
+msgstr "Nota colecționarului"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -858,6 +858,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Te rugăm să introduci <strong>toate cuvintele</strong> mai jos, <strong>separate de spații, dacă este necesar</strong>. </p> <p> Dacă este greu de citit, poți <a href=\"#\" "
+"id=\"recaptcha_different\">încerca cuvinte diferite</a> sau <a href=\"#\" id=\"recaptcha_audio\">un alt tip de provocare</a> în schimb. </p>"
 
 msgid "Top Rated"
 msgstr "Cele mai apreciate"
@@ -903,7 +905,7 @@ msgstr "Instrumente pentru căutare"
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Pagina <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
 msgstr "Sari la prima pagină"
@@ -968,7 +970,7 @@ msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr ""
+msgstr "pk sau slug invalid(ă) „%s” - obiectul nu există."
 
 msgid "Application Versions"
 msgstr "Versiuni de aplicație"
