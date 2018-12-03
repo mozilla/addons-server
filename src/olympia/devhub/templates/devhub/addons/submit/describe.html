@@ -235,13 +235,13 @@
       </div>
     {% endif %}
     <div class="submission-buttons addon-submission-field">
-      <button class="delete-button" type="submit" formnovalidate
-              formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
-          {{ _('Cancel and Disable Version') }}
+      <button type="submit">
+        {{ _('Continue') }}
       </button>
       &nbsp;
-      <button type="submit">
-        {{ _('Submit Version') }}
+      <button class="delete-button" formnovalidate  type="submit"
+              formaction="{{ url('devhub.addons.cancel', addon.slug) }}">
+          {{ _('Cancel and Disable Version') }}
       </button>
     </div>
   </form>
