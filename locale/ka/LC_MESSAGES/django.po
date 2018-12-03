@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 12:10+0000\n"
+"PO-Revision-Date: 2018-12-03 12:23+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2098,16 +2098,17 @@ msgid "Fashion"
 msgstr "მოდა"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ყველანაირი სახის მოხატულობის — უჯრედებიანი, ყვავილებიანი, მოცულობითი, ნიმუშებიანი და ა.შ."
 
 msgid "Film and TV"
 msgstr "ფილმები და ტელევიზია"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის თემები, სატელევიზიო ფილმებისა და სერიალების, ამ ჯგუფში იხილავთ ანიმეებს, მათ შორის „უჩიჰა მადარას“, ფილმებს როგორიცაა „მატრიცა“, სერიალებს („სამეფო კარის თამაშები“) და ა.შ."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, Firefox-ის ბრაუზერის გაფორმებით. ეს ჯგუფი მოიცავს ფერად, სხვადასხვაგვარ გამოსახულებებს Firefox-ის ლოგოებისა და ხატულების, ასევე ზოგადად მელაკუდას თემებს."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
