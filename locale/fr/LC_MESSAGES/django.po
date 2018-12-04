@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-19 14:15+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2018-12-04 18:08+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1961,18 +1961,19 @@ msgstr "Flux, nouvelles et blogs"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Téléchargez les extensions Firefox qui suppriment le fouillis pour pouvoir rester à jour sur les réseaux sociaux, rattraper son retard sur les blogs, les flux RSS, réduire la fatigue oculaire, etc."
 
 msgid "Games & Entertainment"
 msgstr "Jeux et divertissements"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Téléchargez des extensions Firefox pour améliorer votre expérience de divertissement. Cette catégorie comprend des extensions qui peuvent améliorer les jeux, contrôler la lecture vidéo, etc."
 
 msgid "Language Support"
 msgstr "Outils linguistiques"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Téléchargez des extensions Firefox offrant une prise en charge linguistique comme la vérification grammaticale, les mots recherchés, la traduction de texte, la synthèse vocale, etc."
 
 msgid "Photos, Music & Videos"
 msgstr "Photos, musique et vidéos"
