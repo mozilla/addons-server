@@ -188,11 +188,6 @@ class Collection(ModelBase):
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
 
-    @property
-    def url_slug(self):
-        """uuid or nickname if chosen"""
-        return self.nickname or self.uuid.hex
-
     def set_addons(self, addon_ids, comments=None):
         """Replace the current add-ons with a new list of add-on ids."""
         if comments is None:
