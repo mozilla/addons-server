@@ -80,9 +80,9 @@ zope.component==4.5 \
 zope.deferredimport==4.3 \
     --hash=sha256:2ddef5a7ecfff132a2dd796253366ecf9748a446e30f1a0b3a636aec9d9c05c5 \
     --hash=sha256:4aae9cbacb2146cca58e62be0a914f0cec034d3b2d41135ea212ca8a96f4b5ec
-zope.deprecation==4.3.0 \
-    --hash=sha256:7d52e134bbaaa0d72e1e2bc90f0587f1adc116c4bdf15912afaf2f1e8856b224 \
-    --hash=sha256:c83cfef3085d10dcb07de5a59a2d95713865befa46e0e88784c5648610fba789
+zope.deprecation==4.4.0 \
+    --hash=sha256:f1480b74995958b24ce37b0ef04d3663d2683e5d6debc96726eff18acf4ea113 \
+    --hash=sha256:0d453338f04bacf91bbfba545d8bcdf529aa829e67b705eac8c1a7fdce66e2df
 zope.hookable==4.2.0 \
     --hash=sha256:22886e421234e7e8cedc21202e1d0ab59960e40a47dd7240e9659a2d82c51370 \
     --hash=sha256:39912f446e45b4e1f1951b5ffa2d5c8b074d25727ec51855ae9eab5408f105ab \

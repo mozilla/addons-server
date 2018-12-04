@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 21:27+0000\n"
+"PO-Revision-Date: 2018-12-03 22:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1945,132 +1945,138 @@ msgstr "Pokaze a aktualizacije"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Ześěgniśo ozšyrjenja Firefox, kótarež wam pomagaju, na běžnem wóstaś, nadawkam slědowaś, eficiencu pólěpšyś. Pytajśo rozšyrjenja, kótarež rejtarki znowego zacytaju, produktiwitu zastoje a wěcej."
 
 msgid "Appearance"
 msgstr "Naglěd"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, kótarež naglěd websedłow a wobglědowak Firefox změnjaju. Toś ta kategorija rozšyrjenja za śamne drastwy, zastojanje rejtarkow a wěcej wopśimujo."
 
 msgid "Bookmarks"
 msgstr "Cytańske znamjenja"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, aby cytańske znamjenja pólěpšył: šćitajśo je z gronidłom, pytajśo za duplikatami, namakajśo njepłaśiwe cytańske znamjenja a wěcej."
 
 msgid "Download Management"
 msgstr "Zastojanje ześěgnjenjow"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, z kótarymiž wopśimjeśe weba, muziki a wideo ześěgnuś. Móžośo teke rozšyrjenje namakaś, aby ześěgnjenja zastojał, dataje źělił a wěcej."
 
 msgid "Feeds, News & Blogging"
 msgstr "Kanale, powěsći a blogowanje"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež mólece wopśimjeśe wótwónoźuju, aby w socialnych medijach na běžnem wóstał, blogi a RSS-kanale cytał, póśěženje wócow reducěrował a wěcej."
 
 msgid "Games & Entertainment"
 msgstr "Graśa a rozdrosćenje"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo rozdrosćeńske dožywjenje pólěpšył. Toś ta kategorija rozšyrjenja wopśimujo, kótarež graśe pólěpšaju, wótgrawanje wideow woźe a wěcej."
 
 msgid "Language Support"
 msgstr "Rěcna pódpora"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež rěcnu pódpěru kaž gramatikowu kontrolu, glědanje za słowami, pśełožowanje teksta, rěcne wudaśe a wěcej bituju."
 
 msgid "Photos, Music & Videos"
 msgstr "Fota, muzika a wideo"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež fotowe, muzikowe a wideowe dožywjenja pólěpšaju. Rozšyrjenja w toś tej kategoriji awdio a wideo, nawopacne wobrazowe pytanje a wěcej změnjaju."
 
 msgid "Privacy & Security"
 msgstr "Priwatnosć a wěstota"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Ześěgniśo rozšyrjenja Firefox, aby priwatnje a wěsće pśeglědował. Toś ta kategorija rozšyrjenja wopśimujo, kótarež gramne wabjenje blokěruju, slědowanjeju zajźuju, dalejpósrědnjenja zastoje a wěcej."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox za pytanje a glědanje za informacijami. Toś ta kategorija rozšyrjenja wopśimujo, kótarež tekst wuzwiguju a pytaju, za IP-adresami/domenami glědaju a wěcej."
 
 msgid "Shopping"
 msgstr "Nakupowanje"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež waše nakupowańske dožywjenje online z namakakami bonow a pórucenjow, pógódnośeńskimi analyzami a wěcej pólěpšaju."
 
 msgid "Social & Communication"
 msgstr "Socialne a komunikacija"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby socialne medije a wuměnu naměstnych powěsćow pólěpšył. Toś ta kategorija pólěpšone rejtarkowe powěźeńki, ześěgnjenja wideo a wěcej wopśimujo."
 
 msgid "Tabs"
 msgstr "Rejtarki"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenje Firefox, aby bok nowego rejtarka pśiměrił. Wuslěźćo rozšyrjenja, kótarež rejtarki woźe, wašnju změniś, na kótaruž z nimi interagěrujośo a wěcej."
 
 msgid "Web Development"
 msgstr "Webwuwiśe"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež rědy webwuwiśa pśedstajaju. Toś ta kategorija rozšyrjenja za GitHub, pśeměnjenje wužywarskego agenta, zastojanje cookiejow a wěcej wopśimujo."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež mógu kreatiwne byś a njedaju se pśepowěźeś, ale su wužytne za toś te njewšedne nadawki."
 
 msgid "Device Features & Location"
 msgstr "Rědowe funkcije a městno"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, aby Firefox za Android pólěpšył. Pśewjeźćo malsne pytanja, dajśo systemowe resurse liche, gótujśo se notice a wěcej."
 
 msgid "Experimental"
 msgstr "Eksperimentelny"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Ześěgniśo rozšyrjenja Firefox, kótarež se pšawidłownje aktualizěruju a su gótowe za zjawne testowanje. Waša rezonanca informěrujo wuwijarjow wó změnach, kótarež se maju w pśichodnych wersijach "
+"pśewjasć."
 
 msgid "Performance"
 msgstr "Wugbaśe"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja, kótarež wugbaśe Firefox pówušaju. Namakajśo rozšyrjenja, kótarež gramne wabjenje blokěruju, aby wam pomagali, wěcej produktiwny a eficientny byś."
 
 msgid "Photos & Media"
 msgstr "Fota a medije"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby fota a medije pólěpšył. Toś ta kategorija rozšyrjenja za nawopacne pytanja za wobrazami, za gótowanje cełobocnych fotow wobrazowki a wěcej wopśimujo."
 
 msgid "Security & Privacy"
 msgstr "Wěstota a priwatnosć"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Ześěgniśo rozšyrjenja Firefox, aby wěsće priwatnje pśeglědował. Wuslěźćo rozšyrjenja, kótarež mógu pśeslědowanje pśez kšajźoske wabjeńske pśeslědowaki zaźaržaś, pśeglědowańsku historiju lažko "
+"proznje a wěcej."
 
 msgid "Social Networking"
 msgstr "Socialne seśi"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo dožywjenje na woblubowanych websedłach seśowego źěła, na pśikład YouTube, GitHub, Reddit a wěcej pólěpšył."
 
 msgid "Sports & Games"
 msgstr "Sport a graśa"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo rozdrosćeńke dožywjenje z rozšyrjenjami live stream, sportowymi powěsćami a wěcej pólěpšył."
 
 msgid "User Interface"
 msgstr "Wužywarski pówjerch"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja wužywarskego pówjercha Firefox, z kótarymiž webboki změnijośo, aby mógał je lažčej cytaś, pytaś, pśeglědowaś a wěcej."
 
 msgid "Animals"
 msgstr "Zwěrjeta"
@@ -2103,64 +2109,64 @@ msgid "Abstract"
 msgstr "Abstraktne"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Ześěgniśo wuměłske a koncepcionelne drastwy Firefox. Toś ta kategorija barjwane palety a formy, fantazijowe krajiny, grajkate kócki, psychedeliske kwětki wopśimujo."
 
 msgid "Causes"
 msgstr "Góźby"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox za nišowe zajmy a temy. Toś ta kategorija sportowe drastwy, swěte dny, filantropiske zawiny, narodnosći a wjele wěcej wopśimujo."
 
 msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež stil wšych formow - mustry, kwětkowe wobraze, tekstury, modele a wěcej swěśe."
 
 msgid "Film and TV"
 msgstr "Film a telewizija"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z filmami a telewiziju. Toś ta kategorija animeje ako Uchiha Madara, filmy ako The Matrix, show (Game of Thrones) a wěcej wopśimujo."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z drastwu wobglědowaka Firefox. Toś ta kategorija barwjane, wšake ilustracije loga Firefox wopśimujo, inkluziwnje dalšne powšykne lišcyne drastwy."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z japańskim Firefox. Toś ta kategorija drastwy wopśimujo, kótarež wukludnu maskotku Foxkeh w rozdźělnych pozach we wšakich krajinach."
 
 msgid "Holiday"
 msgstr "Dowol"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox ze swětnymi dnjami. Toś ta kategorija gódy, halloween, žnjowny swěźeń, St. Patrick's Day, jatšy, 4. julija a wěcej wopśimujo."
 
 msgid "Music"
 msgstr "Muzika"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Ześěgniśo drastwy za muzikowe zajmy a wuměłce. Toś ta kategorija woblubowane band ako Nirvana a BTS, instrumenty, muzikowe wideo a wjele wěcej wopśimujo."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox ze zwěrjetami a pśirodnymi krajinami. Toś ta kategorija kwětki, schowanja słyńca, liški, lětne case, planety, kócki, ptaški a wěcej wopśimujo."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež su zajmne, kreatiwne a jadnorazne."
 
 msgid "Scenery"
 msgstr "Krajina"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež wokolinu a pśirodny swět pśedstajaju. Toś ta kategorija schowanja słyńca, pśibrjogi, ilustracije, siluety městow a wěcej wopśimujo."
 
 msgid "Seasonal"
 msgstr "Lětne case"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox za wšykne styri lětne case - nazymu, zymu, nalěśe a lěśe. Nazymski list, zasněgowane wjeraški górow, słyńcne lěśojske dny a nalětne kwětki."
 
 msgid "Solid"
 msgstr "Solidne"
