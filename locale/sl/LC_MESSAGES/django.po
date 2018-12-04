@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 17:06+0000\n"
+"PO-Revision-Date: 2018-12-04 19:13+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -1961,19 +1961,19 @@ msgid "Appearance"
 msgstr "Videz"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Prenesite razširitve, ki spremenijo videz spletnih mest in brskalnika Firefox. Ta kategorija vključuje razširitve za temne teme, upravljanje z zavihki in drugo."
 
 msgid "Bookmarks"
 msgstr "Zaznamki"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Prenesite razširitve, ki zaznamke zaščitijo z geslom, iščejo dvojnike, nedelujoče zaznamke in še več."
 
 msgid "Download Management"
 msgstr "Upravljanje prenosov"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Prenesite razširitve za Firefox, ki vam pomagajo prenašati spletno, glasbeno in video vsebino. Najdete lahko tudi razširitve za upravljanje prenosov, skupno rabo datotek in drugo."
 
 msgid "Feeds, News & Blogging"
 msgstr "Viri RSS, novice, bloganje "
