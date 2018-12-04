@@ -23,7 +23,7 @@ class DevHub(Base):
     _addons_item_locator = (By.CLASS_NAME, 'DevHub-MyAddons-item')
     _continue_sub_btn_locator = (
         By.CSS_SELECTOR,
-        '.addon-submission-field > button:nth-child(0)',
+        '.addon-submission-field > button:nth-child(1)',
     )
     _override_validation_locator = (
         By.CSS_SELECTOR,
