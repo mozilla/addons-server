@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-02 21:21+0000\n"
+"PO-Revision-Date: 2018-12-03 22:32+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2064,19 +2064,19 @@ msgid "Social Networking"
 msgstr "Socialne seśi"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo dožywjenje na woblubowanych websedłach seśowego źěła, na pśikład YouTube, GitHub, Reddit a wěcej pólěpšył."
 
 msgid "Sports & Games"
 msgstr "Sport a graśa"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja Firefox, aby swójo rozdrosćeńke dožywjenje z rozšyrjenjami live stream, sportowymi powěsćami a wěcej pólěpšył."
 
 msgid "User Interface"
 msgstr "Wužywarski pówjerch"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Ześěgniśo rozšyrjenja wužywarskego pówjercha Firefox, z kótarymiž webboki změnijośo, aby mógał je lažčej cytaś, pytaś, pśeglědowaś a wěcej."
 
 msgid "Animals"
 msgstr "Zwěrjeta"
@@ -2109,64 +2109,64 @@ msgid "Abstract"
 msgstr "Abstraktne"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Ześěgniśo wuměłske a koncepcionelne drastwy Firefox. Toś ta kategorija barjwane palety a formy, fantazijowe krajiny, grajkate kócki, psychedeliske kwětki wopśimujo."
 
 msgid "Causes"
 msgstr "Góźby"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox za nišowe zajmy a temy. Toś ta kategorija sportowe drastwy, swěte dny, filantropiske zawiny, narodnosći a wjele wěcej wopśimujo."
 
 msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež stil wšych formow - mustry, kwětkowe wobraze, tekstury, modele a wěcej swěśe."
 
 msgid "Film and TV"
 msgstr "Film a telewizija"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z filmami a telewiziju. Toś ta kategorija animeje ako Uchiha Madara, filmy ako The Matrix, show (Game of Thrones) a wěcej wopśimujo."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z drastwu wobglědowaka Firefox. Toś ta kategorija barwjane, wšake ilustracije loga Firefox wopśimujo, inkluziwnje dalšne powšykne lišcyne drastwy."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox z japańskim Firefox. Toś ta kategorija drastwy wopśimujo, kótarež wukludnu maskotku Foxkeh w rozdźělnych pozach we wšakich krajinach."
 
 msgid "Holiday"
 msgstr "Dowol"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox ze swětnymi dnjami. Toś ta kategorija gódy, halloween, žnjowny swěźeń, St. Patrick's Day, jatšy, 4. julija a wěcej wopśimujo."
 
 msgid "Music"
 msgstr "Muzika"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Ześěgniśo drastwy za muzikowe zajmy a wuměłce. Toś ta kategorija woblubowane band ako Nirvana a BTS, instrumenty, muzikowe wideo a wjele wěcej wopśimujo."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox ze zwěrjetami a pśirodnymi krajinami. Toś ta kategorija kwětki, schowanja słyńca, liški, lětne case, planety, kócki, ptaški a wěcej wopśimujo."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež su zajmne, kreatiwne a jadnorazne."
 
 msgid "Scenery"
 msgstr "Krajina"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox, kótarež wokolinu a pśirodny swět pśedstajaju. Toś ta kategorija schowanja słyńca, pśibrjogi, ilustracije, siluety městow a wěcej wopśimujo."
 
 msgid "Seasonal"
 msgstr "Lětne case"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Ześěgniśo drastwy Firefox za wšykne styri lětne case - nazymu, zymu, nalěśe a lěśe. Nazymski list, zasněgowane wjeraški górow, słyńcne lěśojske dny a nalětne kwětki."
 
 msgid "Solid"
 msgstr "Solidne"
