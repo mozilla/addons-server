@@ -1,4 +1,3 @@
-pip wheel setuptools tox==3.2.1 tox-travis==0.10
 pip==18.1 \
     --hash=sha256:7909d0a0932e88ea53a7014dfd14522ffef91a464daaaf5c573343852ef98550 \
     --hash=sha256:c0a292bd977ef590379a3f05d7b7f65135487b67470f6281289a94e015650ea1
