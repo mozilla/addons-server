@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 12:10+0000\n"
+"PO-Revision-Date: 2018-12-03 16:40+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -2098,67 +2098,68 @@ msgid "Fashion"
 msgstr "მოდა"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ყველანაირი სახის მოხატულობის — უჯრედებიანი, ყვავილებიანი, მოცულობითი, ნიმუშებიანი და ა.შ."
 
 msgid "Film and TV"
 msgstr "ფილმები და ტელევიზია"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
+"ჩამოტვირთეთ Firefox-ის თემები, სატელევიზიო ფილმებისა და სერიალების, ამ ჯგუფში იხილავთ ანიმეებს, მათ შორის „უჩიჰა მადარას“, ფილმებს როგორიცაა „მატრიცა“, სერიალებს („სამეფო კარის თამაშები“) და ა.შ."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, Firefox-ის ბრაუზერის გაფორმებით. ეს ჯგუფი მოიცავს ფერად, სხვადასხვაგვარ გამოსახულებებს Firefox-ის ლოგოებისა და ხატულების, ასევე ზოგადად მელაკუდას თემებს."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, იაპონური Firefox-ისთვის. ეს ჯგუფი მოიცავს გაფორმებებს, საყვარელი Foxkeh-ის გამოსახულებებით, სხვადასხვა ხედების ფონზე."
 
 msgid "Holiday"
 msgstr "დღესასწაული"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, შვებულებებისთვის. ეს ჯგუფი მოიცავს გაფორმებებს შობის, მადლიერების დღის, ჰელოუინის, წმ. პატრიკის დღის, აღდგომის, ოთხი ივლისისთვის და ა.შ."
 
 msgid "Music"
 msgstr "მუსიკა"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, მუსიკალური მისწრაფებებსა და ხელოვანებთან დაკავშირებით. ეს ჯგუფი მოიცავს ცნობილ ჯგუფებს, როგორიცაა ნირვანა და BTS, ინსტრუმენტებს, მუსიკალურ ვიდეოებს და ა.შ."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ცხოველების სურათებითა და ბუნების ხედებით. ეს ჯგუფი მოიცავს ყვავილებს, მზის ჩასვლის ხედებს, წელიწადის დროებს, პლანეტებს, კნუტებს, ფრინველებს და ა.შ."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, რომლებიც მეტად საინტერესო, ორიგინალური და გამორჩეულია."
 
 msgid "Scenery"
 msgstr "ხედები"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები დაკავშირებული გარემოსა და ბუნებასთან. ეს ჯგუფი მოიცავს მზის ჩასვლის ხედებს, სანაპიროებს, ქალაქის სილუეტებს და ა.შ."
 
 msgid "Seasonal"
 msgstr "სეზონური"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, წელიწადის ყველა დროისთვის — შემოდგომის, ზამთრის, გაზაფხულისა და ზაფხულის. ფოთოლცვენა, თოვლიანი მთის მწვერვალები, ზაფხულის მზიანი დღეები, გაზაფხულის ყვავილები."
 
 msgid "Solid"
 msgstr "მთლიანი"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, ერთიანი და გარდამავალი ფერებით, თქვენი ბრაუზერის მოსარგებად. ეს ჯგუფი მოიცავს მუქ წითელს, რბილ ნაცრისფერს, პასტელურ ფერებს და ა.შ."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემებს სპორტის სხვადასხვა სახეობასთან დაკავშირებით. ეს ჯგუფი მოიცავს ქვეყნის დროშებს, გუნდებს, ფეხბურთს, ჰოკეის და ა.შ."
 
 msgid "Websites"
 msgstr "ვებგვერდები"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "ჩამოტვირთეთ Firefox-ის თემები, რომლებიც გამოხატავს ინტერნეტის შინაარსს — მომხიბლავი, უჩვეულო, გამორჩეული."
 
 msgid "General"
 msgstr "ზოგადი"
@@ -2486,7 +2487,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "წყაროს ფაილი ატვირთულია, თუმცა მითითებული გაქვთ, რომ წყარო საჭირო არ იყო."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "დარწმუნდით, რომ სახელი და შეჯამება ერთიანად არ აჭარბებს 70 სიმბოლოს (ახლა არის{0})."
 
 msgid "There cannot be more than 3 required add-ons."
 msgstr "3-ზე მეტი აუცილებელი დამატების მითითება შეუძლებელია."
@@ -2621,13 +2622,11 @@ msgstr "სურათის მოცულობა არ უნდა ა�
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "სურათი უნდა იყოს ზუსტად {0} პიქსელის სიგრძის და {1} პიქსელის სიმაღლის."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "სურათი უნდა იყოს ზუსტად {0} პიქსელის სიგრძის და {1} პიქსელის სიმაღლის."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "სურათი უნდა იყოს PNG ან JPG ფორმატში."
+msgstr "სურათი ზომების შეფარდება უნდა იყოს 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "წინასწარი ვერსიის ატვირთვისას მოხდა შეცდომა."
@@ -2952,14 +2951,15 @@ msgstr "დამატების აღწერა"
 msgid "Describe {0}"
 msgstr "{0} – აღწერა"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "შეჯამება"
+msgstr "სახელი და შეჯამება"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"შეჯამება უნდა გადმოსცემდეს, თუ რას აკეთებს თქვენი დამატება, ნათლად და გარკვევით. ორივე, სახელიც და შეჯამებაც გამოჩნდება თქვენი ნამუშევრის გვერდზე და ძიების შედეგებში. ერთიანად ჯამში მათი სიგრძე არ "
+"უნდა აღემატებოდეს 70 სიმბოლოს და თითოეული უნდა შედგებოდეს სულ მცირე 2 სიმბოლოსგან."
 
 msgid "Summary"
 msgstr "შეჯამება"
@@ -2973,9 +2973,8 @@ msgstr "შეარჩიეთ მოკლე, უნიკალური UR
 msgid "View Listing"
 msgstr "იხილეთ საიტზე"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "პროდუქტის გვერდის ჩასწორება"
+msgstr "ნამუშევრის გვერდის ნახვა"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "ეს შეჯამება ნათლად აჩვენებს თქვენი დამატების რაობას. იგი გამოჩნდება საიტსა და ძიებებში, მიმომხილველები კი გამოიყენებენ თქვენი დამატების გამოცდის დროს."
@@ -3343,9 +3342,8 @@ msgstr[1] "<strong>{0}</strong> მოქმედი მომხმარე�
 msgid "Submit a New Version"
 msgstr "ახალი ვერსიის წარდგენა"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "შეჯამება:"
+msgstr "სახელი და შეჯამება:"
 
 msgid "required"
 msgstr "აუცილებელია"
@@ -3893,7 +3891,7 @@ msgstr "შედით ანგარიშზე, თქვენი და�
 msgid "Resources for a successful launch"
 msgstr "სასარგებლო მასალები, წარმატებული გაშვებისთვის"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
@@ -4245,14 +4243,12 @@ msgstr "პასუხი"
 msgid "Listing visibility"
 msgstr "დამატებების ხილულობა"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}ხილული:{label_close} ხილული ყველასთვის {site_url} საიტზე, მათ შორის ძიების შედეგებსა და ცალკეულ გვერდებზე."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "{label_open}უხილავი:{label_close} არ გამოჩნდება არც ძიების შედეგებში, ხოლო მის გვერდზე მითითებული იქნება რომ გამორთულია. ამ პირობებში, ახალი წარდგენილი ვერსიები გამოსაქვეყნებლად, არ მიიღება."
+msgstr "{label_open}უხილავი:{label_close} არ გამოჩნდება ძიების შედეგებში, ხოლო მის გვერდზე მითითებული იქნება რომ მიუწვდომელია. ამ პირობებში, ახალი წარდგენილი ვერსიები გამოსაქვეყნებლად, არ მიიღება."
 
 msgid "Listed versions"
 msgstr "გამოქვეყნებული ვერსიები"
@@ -6289,13 +6285,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "წარმდგენი:"
 
-#, fuzzy
 msgid "User"
-msgstr "მომხმარებლის სახელი"
+msgstr "მომხმარებელი"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "ელფოსტის მისამართი"
+msgstr "IP-მისამართი"
 
 #, python-format
 msgid "Reviews for %s"

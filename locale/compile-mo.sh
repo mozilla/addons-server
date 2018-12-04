@@ -44,12 +44,11 @@ for pofile in `find $1 -type f -name "djangojs.po"`; do
     if [ $lang != 'dbr' ] && [ $lang != 'dbl' ]
     then
         # lint the .po file
-        dennis-cmd lint --quiet --errorsonly "$pofile"
+        dennis-cmd lint --errorsonly "$pofile"
     fi
     if [ $? -ne 0 ]
     then
-        echo "Skipping $pofile, errors detected. Run the following to list errors:"
-        echo "dennis-cmd lint --errorsonly $pofile"
+        exit 1
     else
         msgfmt -o ${dir}/${stem}.mo $pofile
     fi

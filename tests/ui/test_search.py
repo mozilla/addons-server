@@ -32,13 +32,14 @@ def test_legacy_extensions_do_not_load(base_url, selenium):
         assert term not in item.name
 
 
+@pytest.mark.xfail(strict=False)
 @pytest.mark.parametrize('category, sort_attr', [
     ['Most Users', 'users'],
     ['Top Rated', 'rating']])
 def test_sorting_by(base_url, selenium, category, sort_attr):
     """Test searching for an addon and sorting."""
     Home(selenium, base_url).open()
-    addon_name = 'Ui-addon'
+    addon_name = 'Ui-Addon'
     selenium.get('{}/search/?&q={}&sort={}'.format(
         base_url, addon_name, sort_attr)
     )
