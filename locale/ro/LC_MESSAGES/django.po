@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-04 07:13+0000\n"
+"PO-Revision-Date: 2018-12-04 07:31+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2018,7 +2018,7 @@ msgid "Tabs"
 msgstr "File"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Descarcă extensii Firefox pentru personalizarea filelor și a paginii de filă nouă. Descoperă extensiile care pot controla filele, modifică modul în care interacționezi cu ele și multe altele."
 
 msgid "Web Development"
 msgstr "Dezvoltare web"
@@ -2027,7 +2027,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr "Descarcă extensii Firefox care includ unelte de dezvoltare web. Această categorie include extensii pentru GitHub, comutarea agentului utilizator, gestionarea cookie-urilor și multe altele."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Descarcă extensii Firefox care pot fi imprevizibile și creative, dar utile pentru sarcini neobișnuite."
 
 msgid "Device Features & Location"
 msgstr "Funcționalități și poziție dispozitive"
@@ -2075,13 +2075,13 @@ msgid "Sports & Games"
 msgstr "Jocuri și sport"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Descarcă extensii Firefox care îți amplifică experiența de divertisment cu unelte de optimizare a fluxurilor live, actualizări din sport și multe altele."
 
 msgid "User Interface"
 msgstr "Interfață utilizator"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Descarcă extensii pentru interfața utilizatorului din Firefox ca citești, să cauți și să navighezi mai ușor și multe altele."
 
 msgid "Animals"
 msgstr "Animale"
@@ -2114,28 +2114,28 @@ msgid "Abstract"
 msgstr "Rezumat"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Descarcă teme artistice și conceptuale pentru Firefox. Această categorie include palete de culori și forme colorate, peisaje fantastice, pisici jucăușe, flori psihedelice."
 
 msgid "Causes"
 msgstr "Cauze"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Descarcă teme Firefox pentru interese și subiecte de nișă. Această categorie include teme sportive, sărbători, cauze filantropice, naționalități și multe altele."
 
 msgid "Fashion"
 msgstr "Modă"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Descarcă teme Firefox care sărbătoresc stilul tuturor formelor—motive, florale, texturi, modele și multe altele."
 
 msgid "Film and TV"
 msgstr "Film și TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Descarcă teme pentru Firefox cu filme artistice și seriale TV. Această categorie include anime-uri precum Uchiha Madara, filme precum Matrix, seriale (Urzeala tronurilor) și multe altele."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Descarcă teme pentru Firefox cu tema browserului Firefox. Această categorie include reprezentări colorate și diverse ale logo-ului Firefox, inclusiv teme mai generale ale „vulpii”."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -2839,7 +2839,7 @@ msgid "No results found."
 msgstr "Niciun rezultat găsit."
 
 msgid "Refine Activity"
-msgstr ""
+msgstr "Rafinează activitatea"
 
 msgid "Activity"
 msgstr "Activitate"
@@ -2852,6 +2852,8 @@ msgid ""
 "This add-on is incompatible with <b>%(app_name)s %(app_version)s</b>, the latest release of %(app_name)s. Please consider updating your add-on's compatibility info, or uploading a newer version of "
 "this add-on."
 msgstr ""
+"Acest supliment este incompatibil cu <b>%(app_name)s %(app_version)s</b>, ultima versiune de %(app_name)s. Te rugăm să iei în calcul actualizarea informațiilor despre compatibilitatea suplimentului "
+"tău sau încărcarea unei versiuni mai noi a acestui supliment."
 
 #, python-format
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
@@ -2941,7 +2943,7 @@ msgid "Additional Details for {0}"
 msgstr "Detalii suplimentare pentru {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
-msgstr ""
+msgstr "Etichetele ajută utilizatorii să îți găsească suplimentului și trebuie să fie scurte descrieri, precum file, bară de unelte sau twitter. Poți avea maxim {0} etichete."
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
@@ -2950,7 +2952,7 @@ msgstr[1] "Separate prin virgulă, minim {0} caractere."
 msgstr[2] "Separate prin virgulă, minim {0} de caractere."
 
 msgid "Example: dark, cinema, noir. Limit 20."
-msgstr ""
+msgstr "Exemplu: macabru, cinema, noir. Limită de 20."
 
 msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
@@ -2962,13 +2964,13 @@ msgid "Contributions URL"
 msgstr "Contribuții URL"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
-msgstr ""
+msgstr "Dacă dorești să soliciți contribuții financiare de la utilizatori, setează o pagină unde să poată contribui."
 
 msgid "Default Locale"
 msgstr "Limba implicită"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
-msgstr ""
+msgstr "Informațiile despre suplimentul tău sunt afișate în această limbă dacă nu o înlocuiești cu o traducere specifică limbii respective. Are relevanță numai pentru suplimentele listate."
 
 msgid "Homepage"
 msgstr "Pagină de start"
@@ -3117,7 +3119,7 @@ msgid "Public Stats?"
 msgstr "Statistici publice?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
-msgstr "Dacă statisticile de descărcare și de utilizare aferente suplimentului tău pot fi afișate în vizualizatorul nostru online. Este un aspect relevant numai pentru suplimentele listate."
+msgstr "Dacă statisticile de descărcare și de utilizare aferente suplimentului tău pot fi afișate în vizualizatorul nostru online. Are relevanță numai pentru suplimentele listate."
 
 msgid "This add-on's stats are publicly viewable."
 msgstr ""
