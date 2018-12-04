@@ -149,7 +149,7 @@ class Command(BaseCommand):
 
         send_mail(subject,
                   content,
-                  from_email='nobody@mzilla.org',
+                  from_email='nobody@mozilla.org',
                   recipient_list=[recipient],
                   html_message=content,
                   reply_to=[recipient])
