@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-04 07:31+0000\n"
+"PO-Revision-Date: 2018-12-04 07:48+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2141,13 +2141,13 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Descarcă teme pentru Firefox cu Firefox-ul japonez. Această categorie include teme cu mascota drăguță Foxkeh în posturi variate pe fundaluri diverse."
 
 msgid "Holiday"
 msgstr "Vacanțe și sărbători"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Descarcă teme pentru Firefox cu sărbători. Această categorie include Crăciun, Halloween, Ziua Recunoștinței, Sf. Patrick, Paște, 4 iulie și multe altele."
 
 msgid "Music"
 msgstr "Muzică"
@@ -2397,7 +2397,7 @@ msgid "Duplicate"
 msgstr ""
 
 msgid "Reject"
-msgstr ""
+msgstr "Respinge"
 
 msgid "Approve"
 msgstr "Aprobă"
@@ -2482,7 +2482,7 @@ msgid "Invalid or broken archive."
 msgstr "Arhivă invalidă sau coruptă."
 
 msgid "View current"
-msgstr ""
+msgstr "Afișează versiunea curentă"
 
 msgid "Invalid version range."
 msgstr "Domeniu de versiune invalid."
@@ -2578,14 +2578,14 @@ msgstr "Conexiunea cu „%s” a expirat."
 
 #, python-format
 msgid "Could not contact host at \"%s\"."
-msgstr ""
+msgstr "Nu s-a reușit contactarea gazdei de la „%s”."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
-msgstr ""
+msgstr "Notificare de securitate Mozilla: Acreditările tale AMO API au fost revocate"
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr ""
+msgstr "Validarea a generat prea multe erori/avertismente, așa că %s (de) mesaje au fost trunchiate. După corectarea mesajelor vizibile, vei putea să le vezi și pe celelalte."
 
 msgid "All My Add-ons"
 msgstr "Toate suplimentele mele"
@@ -2621,10 +2621,10 @@ msgid "Add-on deleted."
 msgstr "Supliment șters."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr ""
+msgstr "Denumirea URL era incorectă. Tema nu a fost ștearsă."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr ""
+msgstr "Denumirea URL era incorectă. Suplimentul nu a fost șters."
 
 msgid "An author has been added to your add-on"
 msgstr "A fost adăugat un autor la suplimentul tău"
@@ -2663,15 +2663,15 @@ msgstr "A apărut o eroare la încărcarea previzualizării tale."
 
 #, python-format
 msgid "Version %s disabled."
-msgstr ""
+msgstr "Versiune %s dezactivată."
 
 #, python-format
 msgid "Version %s deleted."
-msgstr ""
+msgstr "Versiune %s ștearsă."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Versiune %s reactivată."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr "Această încărcare nu a trecut validarea și se poate să nu aibă rezultate complete de validare. Te rugăm să dai dovadă de maximă precauție la recenzie."
@@ -2725,7 +2725,7 @@ msgid "Your old credentials were revoked and are no longer valid."
 msgstr "Acreditările tale anterioare au fost revocate și nu mai sunt valabile."
 
 msgid "New API key created"
-msgstr ""
+msgstr "Cheie API nouă creată"
 
 msgid "API key revoked"
 msgstr "Cheie API revocată"
@@ -2979,6 +2979,8 @@ msgid ""
 "If your add-on has another homepage, enter its address here. If your website is localized into other languages multiple translations of this field can be added. It is only relevant for listed add-"
 "ons."
 msgstr ""
+"Dacă suplimentul tău are altă pagină de start, introdu aici adresa ei. Dacă site-ul tău web este localizat în alte limbi, se pot adăuga traduceri multiple ale acestui câmp. Are relevanță numai "
+"pentru suplimentele listate."
 
 msgid "Describe Add-on"
 msgstr "Descrie supliment"
@@ -2988,15 +2990,17 @@ msgid "Describe {0}"
 msgstr "Descrie {0}"
 
 msgid "Name and Summary"
-msgstr ""
+msgstr "Denumire și rezumat"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Rezumatul trebuie să explice clar și concis ce face suplimentul. Atât denumirea, cât și rezumatul vor apărea pe pagina produsului tău și în rezultatele de căutare. Au o lungime combinată maximă de "
+"70 de caractere și o lungime minimă de 2 caractere fiecare."
 
 msgid "Summary"
-msgstr ""
+msgstr "Rezumat"
 
 msgid "Add-on URL"
 msgstr "URL supliment"
@@ -3005,7 +3009,7 @@ msgid "Choose a short, unique URL slug for your add-on."
 msgstr "Alege un slug URL unic scurt pentru suplimentul tău."
 
 msgid "View Listing"
-msgstr ""
+msgstr "Afișează listarea"
 
 msgid "View Product Page"
 msgstr "Afișează pagina produsului"
@@ -3017,7 +3021,7 @@ msgid "Experimental?"
 msgstr "Experimental?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
-msgstr ""
+msgstr "Dacă suplimentul este experimental sau nu este altminteri gata pentru uz general.  Suplimentul va fi listat, dar va avea o vizibilitate redusă. "
 
 msgid "This add-on is experimental."
 msgstr "Acest supliment este experimental."
@@ -3032,10 +3036,10 @@ msgid "Check this box if this add-on's core features require some form of paymen
 msgstr "Bifează această casetă dacă funcționalitățile principale ale acestui supliment necesită orice formă de plată în avans sau după o perioadă de probă ca să funcționeze."
 
 msgid "This add-on requires payment, non-free services or software, or additional hardware."
-msgstr ""
+msgstr "Acest supliment necesită plăți, servicii sau programe informatice cu plată sau echipamente fizice suplimentare."
 
 msgid "This add-on doesn't require any additional payments, paid services or software, or additional hardware."
-msgstr ""
+msgstr "Acest supliment nu necesită plăți suplimentare, servicii sau programe informatice cu plată sau echipamente fizice suplimentare."
 
 msgid "Categories are the primary way users browse through add-ons. Choose any that fit your add-on's functionality for the most exposure."
 msgstr "Categoriile sunt modalitatea principală folosită de utilizatori ca să răsfoiască suplimentele. Alege una în care se încadrează funcționalitatea suplimentului tău pentru cea mai mare expunere."
@@ -3059,6 +3063,8 @@ msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
 " for listed add-ons."
 msgstr ""
+"Dacă dorești să afișezi o adresă de e-mail pentru solicitări de asistență, introdu adresa aici. Dacă ai adrese diferite pentru fiecare limbă, se pot adăuga traduceri multiple ale acestui câmp. Are "
+"relevanță numai pentru suplimentele listate."
 
 msgid "Website"
 msgstr "Site web"
@@ -3067,6 +3073,8 @@ msgid ""
 "If your add-on has a support website or forum, enter its address here. If your website is localized into other languages, multiple translations of this field can be added. It is only relevant for "
 "listed add-ons."
 msgstr ""
+"Dacă suplimentul are un site web sau un forum de asistență, introdu adresa aici. Dacă site-ul web este localizat în alte limbi, se pot adăuga traduceri multiple ale acestui câmp. Are relevanță numai"
+" pentru suplimentele listate."
 
 msgid "Images"
 msgstr "Imagini"
@@ -3110,10 +3118,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr "Dacă sursa suplimentului poate fi afișată în vizualizatorul nostru online. Este un aspect relevant numai pentru suplimentele listate."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr ""
+msgstr "Codul-sursă al acestui supliment este vizibil publicului."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr ""
+msgstr "Nu, codul-sursă al acestui supliment nu este vizibil publicului."
 
 msgid "Public Stats?"
 msgstr "Statistici publice?"
@@ -3122,10 +3130,10 @@ msgid "Whether the download and usage stats of your add-on can be displayed in o
 msgstr "Dacă statisticile de descărcare și de utilizare aferente suplimentului tău pot fi afișate în vizualizatorul nostru online. Are relevanță numai pentru suplimentele listate."
 
 msgid "This add-on's stats are publicly viewable."
-msgstr ""
+msgstr "Statisticile acestui supliment sunt vizibile publicului."
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "Nu, statisticile acestui supliment nu sunt vizibile publicului."
 
 msgid "Upgrade SDK?"
 msgstr ""
@@ -3140,13 +3148,13 @@ msgid "No, this add-on will be upgraded manually."
 msgstr ""
 
 msgid "Universally unique identifier"
-msgstr ""
+msgstr "Identificator unic universal"
 
 msgid "UUID"
-msgstr ""
+msgstr "UUID"
 
 msgid "The UUID of your add-on is specified in its install manifest and uniquely identifies it. You cannot change your UUID once it has been submitted."
-msgstr ""
+msgstr "UUID-ul suplimentului tău este specificat în manifestul de instalare și îl identifică în mod unic. Nu poți modifica UUID-ul odată ce a fost trimis."
 
 msgid "Whiteboard"
 msgstr "Tablă albă"
@@ -3159,10 +3167,10 @@ msgstr ""
 "adiționale utile. Poate fi editată și de revizori."
 
 msgid "Remove this dependent add-on"
-msgstr ""
+msgstr "Elimină acest supliment dependent"
 
 msgid "Enter the name of an add-on"
-msgstr ""
+msgstr "Introdu denumirea unui supliment"
 
 msgid "Add-on Media for {0}"
 msgstr "Multimedia supliment pentru {0}"
@@ -3174,9 +3182,11 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
+"Încarcă o pictogramă pentru suplimentul tău sau alege una dintre ale noastre. Pictograma este afișată aproape peste tot pe unde apare suplimentul tău. Imaginile încărcate trebuie să fie de tipul: "
+".png, .jpg. Are relevanță numai pentru suplimentele listate."
 
 msgid "Select an icon for your add-on:"
-msgstr ""
+msgstr "Selectează o pictogramă pentru suplimentul tău:"
 
 #. The size of the icon
 msgid "32x32px"
@@ -3190,13 +3200,13 @@ msgid "64x64px"
 msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "Folosită în paginile de detalii ale suplimentelor."
 
 msgid "Upload a Custom Icon..."
 msgstr "Încarcă o pictogramă personalizată ..."
 
 msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ""
+msgstr "Se acceptă PNG și JPG. Pictograme redimensionate la 64x64 pixeli dacă sunt mai mari de atât."
 
 msgid "Screenshots"
 msgstr ""
