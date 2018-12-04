@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -132,7 +132,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "আপনার আপলোড করা ফাইলটির ফাইলটাইপটি স্বীকৃত নয়।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr "আপনার ফাইলটি সর্বচ্চ আয়তন{০} ছাড়িয়ে গেছে।"
+msgstr "আপনার ফাইলটি সর্বচ্চ আয়তন{0} ছাড়িয়ে গেছে।"
 
 msgid "You cancelled the upload."
 msgstr "আপনি আপলোডটি বাতিল করেছেন।"
