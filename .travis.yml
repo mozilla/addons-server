@@ -71,7 +71,7 @@ install:
   - nvm deactivate
   - nvm install 8
   - nvm use 8
-  - pip install --upgrade pip wheel setuptools tox==3.2.1 tox-travis==0.10
+  - pip install --no-deps -r requirements/travis_base.txt
   - ./scripts/travis-install-libgit2.sh
 
 before_script:
