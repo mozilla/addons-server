@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 18:05+0000\n"
+"PO-Revision-Date: 2018-12-05 18:35+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -4148,7 +4148,7 @@ msgid "Give your Theme a name."
 msgstr "Donnez un nom à votre thème."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Une courte explication des fonctionnalités de base de votre thème, qui sera affichée dans les listes et résultats de recherche ainsi qu’en haut de la page de détails."
+msgstr "Une courte explication des fonctionnalités de base de votre thème, qui sera affichée dans les listes et résultats de recherche ainsi qu’en haut de la page de détails"
 
 #, python-format
 msgid ""
