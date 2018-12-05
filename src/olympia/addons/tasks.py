@@ -35,7 +35,6 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
-from olympia.files.tasks import extract_file_obj_to_git
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
@@ -801,6 +800,9 @@ def migrate_legacy_dictionary_to_webextension(addon):
 # 6000 add-ons per hour which is fine.
 @task(rate_limit='1/m')
 def migrate_webextensions_to_git_storage(ids, **kw):
+    # recursive imports...
+    from olympia.versions.tasks import extract_version_to_git
+
     log.info(
         'Migrating add-ons to git storage %d-%d [%d].',
         ids[0], ids[-1], len(ids))
@@ -840,12 +842,11 @@ def migrate_webextensions_to_git_storage(ids, **kw):
             # correctly in-order instead.
             try:
                 file_id = version.all_files[0].pk
-                channel = version.channel
 
                 log.info('Extracting file {file_id} to git storage'.format(
                     file_id=file_id))
 
-                extract_file_obj_to_git(file_id, channel)
+                extract_version_to_git(version.pk)
 
                 log.info(
                     'Extraction of file {file_id} into git storage succeeded'

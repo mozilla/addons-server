@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-29 17:06+0000\n"
-"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
+"PO-Revision-Date: 2018-12-05 06:43+0000\n"
+"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1956,24 +1956,26 @@ msgstr "Opozorila in posodobitve"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Prenesite razširitve za Firefox, ki vam pomagajo ostati na tekočem, slediti nalogam in izboljšati učinkovitost. Poiščite razširitve, ki ponovno nalagajo zavihke, povečujejo produktivnost in počnejo "
+"druge stvari."
 
 msgid "Appearance"
 msgstr "Videz"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Prenesite razširitve, ki spremenijo videz spletnih mest in brskalnika Firefox. Ta kategorija vključuje razširitve za temne teme, upravljanje z zavihki in drugo."
 
 msgid "Bookmarks"
 msgstr "Zaznamki"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Prenesite razširitve, ki zaznamke zaščitijo z geslom, iščejo dvojnike, nedelujoče zaznamke in še več."
 
 msgid "Download Management"
 msgstr "Upravljanje prenosov"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Prenesite razširitve za Firefox, ki vam pomagajo prenašati spletno, glasbeno in video vsebino. Najdete lahko tudi razširitve za upravljanje prenosov, skupno rabo datotek in drugo."
 
 msgid "Feeds, News & Blogging"
 msgstr "Viri RSS, novice, bloganje "
@@ -2063,7 +2065,7 @@ msgid "Security & Privacy"
 msgstr "Varnost in zasebnost"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Prenesite razširitve za Firefox, za varno in zasebno brskanje. Odkrijte razširitve, ki lahko onemogočijo sledilne oglase, zlahka izbrišejo zgodovino brskanja in drugo."
 
 msgid "Social Networking"
 msgstr "Družabnost na spletu"
@@ -2159,7 +2161,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Prenesite teme za Firefox, ki so zanimive, ustvarjalne in edinstvene."
 
 msgid "Scenery"
 msgstr "Naravne lepote"
