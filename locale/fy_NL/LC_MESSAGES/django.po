@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -474,9 +474,6 @@ msgstr "Tastimmingen"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Dizze add-on is troch de ûntwikkelers derfan markearre as eksperiminteel"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Foar dizze add-on moatte de folgjende add-ons goed wurkje:"
 
 msgid "Average"
 msgstr "Gemiddeld"
@@ -2481,9 +2478,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Der meie net mear as 3 fereaske add-ons wêze."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2624,6 +2618,13 @@ msgstr "Ofbyldingen moatte eksakt {0} piksels breed en {1} piksels heech wêze."
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Ofbyldingen moatte eksakt {0} piksels breed en {1} piksels heech wêze."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Der is in flater bard by it opladen fan jo foarbyld."
@@ -2831,7 +2832,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibiliteit bywurkje</a> <a href=\"%(version_url)s\" class=\"button\">Nije ferzje oplade</a> of <a href=\"#\" "
 "class=\"close\">Negearje</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Tapassingskompatibiliteitsberik besjen en bywurkje."
 
 msgid "Compatibility"
@@ -3063,21 +3065,6 @@ msgstr ""
 "Alle ynformaasje dêr't brûkers mooglik yn ynteressearre binne dy't net needsaaklikerwize fan tapassing is op de gearfetting of beskriuwing fan de add-on. Wurdt faaks brûkt foar in list mei bekende "
 "bugs, ynformaasje oer hoe't bugs meld wurde kinne, de ferwachte publikaasjedatum fan in nije ferzje, ensfh. Allinnich relevant foar fermelde add-ons."
 
-msgid "Required Add-ons"
-msgstr "Fereaske add-ons"
-
-msgid "Limit 3"
-msgstr "Maksimaal 3"
-
-msgid "Add-on Flags"
-msgstr "Add-onmarkearingen"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Dizze labels wurde brûkt om add-ons te klassifisearjen. Allinnich relevant foar fermelde add-ons."
-
-msgid "This add-on requires external software."
-msgstr "Dizze add-on hat eksterne software nedich."
-
 msgid "View Source?"
 msgstr "Boarne besjen?"
 
@@ -3102,18 +3089,6 @@ msgstr "De statistiken fan dizze add-on binne iepenbier yn te sjen."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Nee, de statistiken fan dizze add-on binne net iepenbier yn te sjen."
 
-msgid "Upgrade SDK?"
-msgstr "SDK fernije?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Wannear selektearre probearje wy jo add-on automatysk te fernijen as in nije ferzje fan de SDK publisearre wurdt. Allinnich relevant foar fermelde add-ons."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Dizze add-on wurdt automatysk fernijd nei nije ferzjes fan de add-on-SDK."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Nee, dizze add-on wurdt hânmjittich bywurke."
-
 msgid "Universally unique identifier"
 msgstr "Universeel unike identifikaasje"
 
@@ -3132,12 +3107,6 @@ msgid ""
 msgstr ""
 "It notysjeboerd is in plak wêr't jo relevante ynformaasje oer jo add-on oan de editor ferstrekke kinne, likefolle de ferzje. Gebrûk it boerd om manieren om de add-on te testen op te jaan, neist "
 "oare behelpsume ynformaasje. It notysjeboerd kin troch editors bewurke wurde."
-
-msgid "Remove this dependent add-on"
-msgstr "Dizze ôfhinklike add-on fuortsmite"
-
-msgid "Enter the name of an add-on"
-msgstr "Fier de namme fan in add-on yn"
 
 msgid "Add-on Media for {0}"
 msgstr "Add-onmedia foar {0}"
@@ -3169,10 +3138,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Brûkt op de add-on-detailsiden."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Brûkt op de add-on-detailsiden."
+
 msgid "Upload a Custom Icon..."
 msgstr "Oanpaste piktogram oplade…"
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG en JPG wurde stipe. Piktogrammen wurde ferlytse oant 64x64 pixels as se grutter binne."
 
 msgid "Screenshots"
@@ -3275,7 +3259,8 @@ msgstr "Fertel ús wêrom jo jo add-on fuortsmite:"
 msgid "Actions"
 msgstr "Aksjes"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Fierder gean mei it yntsjinningsproses foar dizze add-on."
 
 msgid "Resume"
@@ -3288,16 +3273,18 @@ msgid "Delete"
 msgstr "Fuortsmite"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Details fan dit tema bewurkje."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "In nije ferzje fan dizze add-on oplade."
 
 msgid "New Version"
 msgstr "Nije ferzje"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Deistige statistiken oer downloads en brûkers."
 
 msgid "Statistics"
@@ -3310,22 +3297,25 @@ msgid "View Recent Changes"
 msgstr "Resinte wizigingen besjen"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Details fan dit tema bewurkje."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "It populariteitsferrin fan dit tema besjen."
 
 msgid "View Statistics"
 msgstr "Statistiken besjen"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "De eigener fan dit tema wizigje."
 
 msgid "Transfer Ownership"
 msgstr "Eigendom oerdraagje"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Dit tema fuortmsite."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3359,6 +3349,12 @@ msgstr "Gearfetting:"
 
 msgid "required"
 msgstr "fereaske"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "Add-on-URL:"
@@ -3420,11 +3416,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dizze opmerkingen binne allinnich sichtber foar jo en beoardielers."
 
-msgid "Cancel and Disable Version"
-msgstr "Annulearje en ferzje útskeakelje"
-
 msgid "Submit Version"
 msgstr "Ferzje yntsjinje"
+
+msgid "Cancel and Disable Version"
+msgstr "Annulearje en ferzje útskeakelje"
 
 msgid "Describe Version"
 msgstr "Ferzje beskriuwe"
@@ -3629,14 +3625,14 @@ msgstr "opsjoneel"
 msgid "Browser preview"
 msgstr "Browserfoarbyld"
 
-msgid "Back"
-msgstr "Tebek"
-
 msgid "Uploading Theme"
 msgstr "Tema oplade"
 
 msgid "Finish Theme"
 msgstr "Tema foltôgje"
+
+msgid "Back"
+msgstr "Tebek"
 
 msgid "API Credentials"
 msgstr "API-referinsjes"
@@ -3702,22 +3698,26 @@ msgstr "Makke:"
 msgid "Add-on Multi Process Status:"
 msgstr "Multiprocess-steat fan add-on:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "De kompatibiliteit fan jo add-on mei Multiproses-Firefox (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
 
 msgid "Listed Version:"
 msgstr "Fermelde ferzje:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Dit is de ferzje fan jo add-on dy't ynstallearre wurdt as ien op de knop Ynstallearje klikt op addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Folgjende fermelde ferzje:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Dit is de nijste oplade ferzje, mar dizze is op de website noch net live."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3736,7 +3736,8 @@ msgstr "Undertekene foar eigen distribúsje. Fernijingen wurde troch jo fersoarg
 msgid "Latest Version:"
 msgstr "Nijste ferzje:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Dit is de nijste opladen net-fermelde ferzje."
 
 msgid "Upload New Version"
@@ -3931,6 +3932,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "Mear ynfo"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Fermeld op dizze website nei suksesfolle koadebeoardieling. Automatyske fernijingen wurde troch dizze website fersoarge."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Alle ynstjoeringen besjen"
@@ -4092,13 +4096,15 @@ msgstr "Selektearje kleuren foar jo tema."
 msgid "Foreground Text"
 msgstr "Foargrûntekst"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Dit is de kleur fan de ljepblêdtekst."
 
 msgid "Background"
 msgstr "Eftergrûn"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Dit is de kleur fan de ljepblêden."
 
 msgid "Your Theme's Name"
@@ -4118,6 +4124,10 @@ msgstr ""
 
 msgid "Give your Theme a name."
 msgstr "Jou jo tema in namme."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "In koarte útlis fan de basisfunksjes fan jo tema dy't werjûn wurdt yn syk- en navigaasjelisten, lykas boppe oan de detailside fan jo tema."
 
 #, python-format
 msgid ""
@@ -6822,6 +6832,13 @@ msgstr "{addon}:: Misbrûkmeldingen"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Misbrûkmeldingen foar {addon} en de ûntwikkelers derfan ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Add-on"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
