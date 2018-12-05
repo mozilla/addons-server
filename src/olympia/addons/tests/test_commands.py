@@ -581,8 +581,8 @@ class TestMigrateLegacyDictionariesToWebextension(TestCase):
 class TestExtractWebextensionsToGitStorage(TestCase):
     @mock.patch('olympia.addons.tasks.index_addons.delay', autospec=True)
     @mock.patch(
-        'olympia.addons.tasks.extract_file_obj_to_git', autospec=True)
-    def test_basic(self, extract_file_obj_to_git_mock, index_addons_mock):
+        'olympia.versions.tasks.extract_version_to_git', autospec=True)
+    def test_basic(self, extract_version_to_git_mock, index_addons_mock):
         addon_factory(file_kw={'is_webextension': True})
         addon_factory(file_kw={'is_webextension': True})
         addon_factory(
@@ -601,7 +601,7 @@ class TestExtractWebextensionsToGitStorage(TestCase):
 
         call_command('process_addons',
                      task='extract_webextensions_to_git_storage')
-        assert extract_file_obj_to_git_mock.call_count == 6
+        assert extract_version_to_git_mock.call_count == 6
 
 
 class TestDisableLegacyAddons(TestCase):
