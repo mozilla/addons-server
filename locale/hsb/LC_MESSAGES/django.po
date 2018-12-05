@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 18:33+0000\n"
+"PO-Revision-Date: 2018-12-05 18:34+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -3727,9 +3727,8 @@ msgstr "To je wersija wašeho přidatka, kotraž budźe so instalować, hdyž n�
 msgid "Next Listed Version:"
 msgstr "Přichodna nalistowana wersija:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "To je najnowša nahrata wersija, ale hišće njeje widźomny na websydle."
+msgstr "To je najnowša nahrata wersija, ale hišće njeje widźomny na websydle"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Čakanske rynki so striktnje po porjedźe njepřepruwuja"
@@ -3747,9 +3746,8 @@ msgstr "Za samorozdźělenje signowany. Aktualizacije so wot was rjaduja."
 msgid "Latest Version:"
 msgstr "Najnowša wersija:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "To je najnowša nahrata njenalistowana wersija."
+msgstr "To je najnowša nahrata njenalistowana wersija"
 
 msgid "Upload New Version"
 msgstr "Najnowšu wersiju nahrać"
@@ -4104,16 +4102,14 @@ msgstr "Wubjerće barby za swoju drastu."
 msgid "Foreground Text"
 msgstr "Prědkowy tekst"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "To je barba rajtarkoweho teksta."
+msgstr "To je barba rajtarkoweho teksta"
 
 msgid "Background"
 msgstr "Pozadk"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "To je barba rajtarkow."
+msgstr "To je barba rajtarkow"
 
 msgid "Your Theme's Name"
 msgstr "Mjeno wašeje drasty"
@@ -4132,9 +4128,8 @@ msgstr "Pozadkowe drasty wam zmóžnjeja, napohlad wašeho Firefox personalizowa
 msgid "Give your Theme a name."
 msgstr "Pomjenujće swoju drastu."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na stronje podrobnosćow wašeje drasty pokazuje."
+msgstr "Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na stronje podrobnosćow wašeje drasty pokazuje"
 
 #, python-format
 msgid ""
@@ -6854,9 +6849,8 @@ msgstr "{addon} :: Znjewužiwanske rozprawy"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Přidatk"
+msgstr "ID přidatka"
 
 msgid "Internal AMO ID"
 msgstr "Nutřkowny ID AMO"
