@@ -1,4 +1,5 @@
 import random
+import uuid
 
 import mock
 
@@ -50,15 +51,15 @@ class TestCollections(TestCase):
         listed_count = Collection.objects.listed().count()
         # Make a private collection.
         Collection.objects.create(
-            name="Hello", uuid="4e2a1acc-39ae-47ec-956f-46e080ac7f69",
+            name='Hello', uuid='4e2a1acc39ae47ec956f46e080ac7f69',
             listed=False, author=self.user)
 
         assert Collection.objects.listed().count() == listed_count
 
     def test_auto_uuid(self):
         c = Collection.objects.create(author=self.user)
-        assert c.uuid != ''
-        assert isinstance(c.uuid, basestring)
+        assert c.uuid
+        assert isinstance(c.uuid, uuid.UUID)
 
     def test_set_addons(self):
         addons = list(Addon.objects.values_list('id', flat=True))

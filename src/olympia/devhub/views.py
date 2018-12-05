@@ -257,8 +257,8 @@ def _get_items(action, addons):
 
 
 def _get_rss_feed(request):
-    key, __ = RssKey.objects.get_or_create(user=request.user)
-    return urlparams(reverse('devhub.feed_all'), privaterss=key.key)
+    key, _ = RssKey.objects.get_or_create(user=request.user)
+    return urlparams(reverse('devhub.feed_all'), privaterss=key.key.hex)
 
 
 def feed(request, addon_id=None):
@@ -283,7 +283,7 @@ def feed(request, addon_id=None):
             addon_selected = addon.id
 
             rssurl = urlparams(reverse('devhub.feed', args=[addon_id]),
-                               privaterss=key.key)
+                               privaterss=key.key.hex)
 
             if not acl.check_addon_ownership(request, addons, dev=True,
                                              ignore_disabled=True):

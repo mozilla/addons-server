@@ -120,7 +120,7 @@ class TestCollectionSerializer(BaseTestCase):
     def test_basic(self):
         data = self.serialize()
         assert data['id'] == self.collection.id
-        assert data['uuid'] == self.collection.uuid
+        assert data['uuid'] == self.collection.uuid.hex
         assert data['name'] == {'en-US': self.collection.name}
         assert data['description'] == {'en-US': self.collection.description}
         assert data['url'] == self.collection.get_abs_url()

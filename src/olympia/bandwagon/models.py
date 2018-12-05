@@ -83,9 +83,7 @@ class Collection(ModelBase):
     id = PositiveAutoField(primary_key=True)
     TYPE_CHOICES = amo.COLLECTION_CHOICES.items()
 
-    # TODO: Use models.UUIDField but it uses max_length=32 hex (no hyphen)
-    # uuids so needs some migration.
-    uuid = models.CharField(max_length=36, blank=True, unique=True)
+    uuid = models.UUIDField(blank=True, unique=True, null=True)
     name = TranslatedField(require_locale=False)
     # nickname is deprecated.  Use slug.
     nickname = models.CharField(max_length=30, blank=True, unique=True,
@@ -130,9 +128,11 @@ class Collection(ModelBase):
 
     def save(self, **kw):
         if not self.uuid:
-            self.uuid = unicode(uuid.uuid4())
+            self.uuid = uuid.uuid4()
         if not self.slug:
-            self.slug = self.uuid[:30]
+            # Work with both, strings (if passed manually on .create()
+            # and UUID instances)
+            self.slug = str(self.uuid).replace('-', '')[:30]
         self.clean_slug()
 
         super(Collection, self).save(**kw)
@@ -187,11 +187,6 @@ class Collection(ModelBase):
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')
-
-    @property
-    def url_slug(self):
-        """uuid or nickname if chosen"""
-        return self.nickname or self.uuid
 
     def set_addons(self, addon_ids, comments=None):
         """Replace the current add-ons with a new list of add-on ids."""
