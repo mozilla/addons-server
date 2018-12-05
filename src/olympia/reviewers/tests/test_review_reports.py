@@ -146,7 +146,7 @@ class TestReviewReports(TestCase):
         assert 'Volunteer Content C' in html
         assert 'Staff Content D' in html
 
-        to = 'addon-content-reviewers@mozilla.org'
+        to = 'addon-content-reviewers@mozilla.com'
         subject = '%s %s-%s' % (
                   'Weekly Add-on Content Reviews Report',
                   self.last_week_begin, self.last_week_end)

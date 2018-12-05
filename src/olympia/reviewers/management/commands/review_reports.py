@@ -62,7 +62,7 @@ class Command(BaseCommand):
         content_report_subject = '%s %s-%s' % (
             'Weekly Add-on Content Reviews Report',
             self.week_begin, self.week_end)
-        self.mail_report('addon-content-reviewers@mozilla.org',
+        self.mail_report('addon-content-reviewers@mozilla.com',
                          content_report_subject,
                          content_report_html)
 
@@ -149,7 +149,7 @@ class Command(BaseCommand):
 
         send_mail(subject,
                   content,
-                  from_email='nobody@mzilla.org',
+                  from_email='nobody@mozilla.org',
                   recipient_list=[recipient],
                   html_message=content,
                   reply_to=[recipient])
