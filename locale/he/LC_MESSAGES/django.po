@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 16:54+0000\n"
+"PO-Revision-Date: 2018-12-05 17:04+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -3910,13 +3910,13 @@ msgstr "התחברות לעריכה ועדכון התוספת שלך"
 msgid "Resources for a successful launch"
 msgstr "משאבים להשקה מוצלחת"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"בנית את ההרחבה שלך וסיימת להתכונן לפרסומה. מה עכשיו? כדאי לעיין בעצות שלנו ליצירת עמוד רשומה מושך, קידום ההרחבה שלך ב־%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, איתור תשובות לשאלות "
-"בנושאי פיתוח וקבלת עדכונים על אירועים שמיועדים למפתחי הרחבות."
+"בנית את ההרחבה שלך וסיימת להתכונן לפרסומה. מה עכשיו? כדאי לעיין בעצות שלנו ליצירת דף מוצר מושך, קידום ההרחבה שלך ב־%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, איתור תשובות לשאלות בנושאי "
+"פיתוח, וקבלת עדכונים על אירועים שמיועדים למפתחי הרחבות."
 
 #, fuzzy
 msgid "View Resources for Publishers"
@@ -4129,9 +4129,8 @@ msgstr "ערכות נושא רקע מאפשרות לך להתאים בקלות �
 msgid "Give your Theme a name."
 msgstr "תנו שם לערכת הנושא שלכם."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש עמוד הפירוט של ערכת הנושא שלך."
+msgstr "הסבר קצר על התכונות הבסיסיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשומות, כמו גם בראש דף המוצר של ערכת הנושא שלך"
 
 #, python-format
 msgid ""
@@ -4268,14 +4267,12 @@ msgstr "תגובה"
 msgid "Listing visibility"
 msgstr "הצגת הרשומה"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}גלויה:{label_close} גלויה לעיני כל באתר {site_url} ונכללת בתוצאות החיפוש ובעמודי הרשומות."
+msgstr "{label_open}גלויה:{label_close} גלויה לעיני כל באתר {site_url} ונכללת בתוצאות החיפוש ובדפי המוצר."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "{label_open}מוסתרת:{label_close} לא תופיע בתוצאות החיפוש ועמוד הרשומה שלך יציין שהיא הושבתה. הגשות לגרסאות חדשות לא תתקבלה במצב זה."
+msgstr "{label_open}מוסתרת:{label_close} לא תופיע בתוצאות החיפוש ודף המוצר שלך יציין שהיא הושבתה. הגשות לגרסאות חדשות למוצר לא תתקבלנה במצב זה."
 
 msgid "Listed versions"
 msgstr "גרסאות שמוצגות"
@@ -6372,13 +6369,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "מוגש בחסות:"
 
-#, fuzzy
 msgid "User"
-msgstr "שם משתמש"
+msgstr "משתמש"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "כתובת דוא״ל"
+msgstr "כתובת IP"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6912,9 +6907,8 @@ msgstr "{addon} :: דיווחים על שימוש לרעה"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "דיווחים על שימוש לרעה עבור התוספת {addon} והמפתחים שלה ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "תוספת"
+msgstr "מזהה תוספת"
 
 msgid "Internal AMO ID"
 msgstr "מזהה AMO פנימי"
