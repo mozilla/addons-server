@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 18:52+0000\n"
+"PO-Revision-Date: 2018-12-05 18:53+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -2593,7 +2593,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Icon must be at least {0} pixels wide and tall."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Icon must be square (same width and height)."
 
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
@@ -3096,7 +3096,7 @@ msgstr "Used in add-on detail pages."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "Will be the standard in future add-on detail pages."
@@ -3105,10 +3105,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Upload a Custom Icon..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG and JPG supported."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Icons must be square and a minimum size of 128x128 pixels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Icons will be resized to 128x128 pixels if larger."
@@ -3300,6 +3300,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
 
 msgid "Add-on URL:"
 msgstr "Add-on URL:"
@@ -4053,9 +4055,8 @@ msgstr "Background themes let you easily personalize the look of your Firefox. S
 msgid "Give your Theme a name."
 msgstr "Give your Theme a name."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "A short explanation of your theme’s basic functionality that is displayed in search and browse listings, as well as at the top of your theme’s details page."
+msgstr "A short explanation of your theme’s basic functionality that is displayed in search and browse listings, as well as at the top of your theme’s details page"
 
 #, python-format
 msgid ""
@@ -6745,12 +6746,11 @@ msgstr "{addon} :: Abuse Reports"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Abuse Reports for {addon} and its developers ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Add-on"
+msgstr "Add-on ID"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Internal AMO ID"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
