@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 00:11+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2018-12-05 18:05+0000\n"
+"Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -3335,9 +3335,8 @@ msgstr "Changer le propriétaire de ce thème."
 msgid "Transfer Ownership"
 msgstr "Transférer la propriété"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Supprimer ce thème."
+msgstr "Supprimer ce thème"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Il manque certaines informations requises à ce module pour qu’il puisse être soumis à la publication."
@@ -4122,16 +4121,14 @@ msgstr "Sélectionnez les couleurs de votre thème."
 msgid "Foreground Text"
 msgstr "Texte d’avant plan"
 
-#, fuzzy
 msgid "This is the color of the tab text"
 msgstr "Ceci est la couleur du texte de l’onglet."
 
 msgid "Background"
 msgstr "Arrière-plan"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Ceci est la couleur des onglets."
+msgstr "Ceci est la couleur des onglets"
 
 msgid "Your Theme's Name"
 msgstr "Nom de votre thème"
@@ -4150,7 +4147,6 @@ msgstr "Les thèmes d’arrière-plan vous permettent de facilement personnalise
 msgid "Give your Theme a name."
 msgstr "Donnez un nom à votre thème."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Une courte explication des fonctionnalités de base de votre thème, qui sera affichée dans les listes et résultats de recherche ainsi qu’en haut de la page de détails."
 
@@ -4290,7 +4286,6 @@ msgstr "Répondre"
 msgid "Listing visibility"
 msgstr "Visibilité du module"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Visible :{label_close} visible pour tous les utilisateurs du site {site_url} et inclus dans les résultats de recherche et les pages de détails."
 
