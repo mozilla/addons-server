@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 22:20+0000\n"
+"PO-Revision-Date: 2018-12-05 22:41+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -3151,9 +3151,8 @@ msgstr "A PNG és a JPG támogatott."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Az ikonok négyzet alakúak, és legalább 128×128 képpont méretűek."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG és JPG képek támogatottak. Amennyiben az ikon nagyobb, abban esetben 64x64 képpontra lesz átméretezve."
+msgstr "Az ikonok át lesznek méretezve 128×128 képpontosra, ha annál nagyobbak."
 
 msgid "Screenshots"
 msgstr "Képernyőképek"
@@ -3255,7 +3254,6 @@ msgstr "Mondja el, miért törli a kiegészítőjét:"
 msgid "Actions"
 msgstr "Műveletek"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
 msgstr "A kiegészítő benyújtási folyamatának folytatása"
 
@@ -3268,20 +3266,17 @@ msgstr "Kiegészítő törlése-"
 msgid "Delete"
 msgstr "Törlés"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "A kiegészítő termékoldalának részleteinek szerkesztése."
+msgstr "A kiegészítő termékoldalának részleteinek szerkesztése"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Kiegészítő újabb verziójának feltöltése."
+msgstr "Kiegészítő újabb verziójának feltöltése"
 
 msgid "New Version"
 msgstr "Új verzió"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Napi statisztikák a letöltésekről és felhasználókról."
+msgstr "Napi statisztikák a letöltésekről és felhasználókról"
 
 msgid "Statistics"
 msgstr "Statisztika"
@@ -3292,27 +3287,23 @@ msgstr "Állapot és verziók kezelése"
 msgid "View Recent Changes"
 msgstr "Legutóbbi változtatások megtekintése"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "A téma termékoldalának részleteinek szerkesztése."
+msgstr "A téma termékoldalának részleteinek szerkesztése"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "A téma népszerűségének megjelenítése az idő függvényében."
+msgstr "A téma népszerűségének megjelenítése az idő függvényében"
 
 msgid "View Statistics"
 msgstr "Statisztika megtekintése"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "A téma tulajdonosának megváltoztatása."
+msgstr "A téma tulajdonosának megváltoztatása"
 
 msgid "Transfer Ownership"
 msgstr "Tulajdonjog átadása"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Téma törlése."
+msgstr "Téma törlése"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Ehhez a kiegészítőhöz további információk szükségesek, mielőtt benyújtható lesz közzétételre. "
@@ -3699,27 +3690,23 @@ msgstr "Létrehozva:"
 msgid "Add-on Multi Process Status:"
 msgstr "Kiegészítő több folyamatos állapota:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)."
+msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
+msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli"
 
 msgid "Listed Version:"
 msgstr "Listázott verzió:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "A kiegészítő ezen verziója fog telepítésre kerülni, ha valaki rákattint a telepítési gombra az addons.mozilla.org oldalon."
+msgstr "A kiegészítő ezen verziója fog telepítésre kerülni, ha valaki rákattint a telepítési gombra az addons.mozilla.org oldalon"
 
 msgid "Next Listed Version:"
 msgstr "Következő listázott verzió:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon."
+msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "A sorok nem feltétlen szigorú sorrendben értékeltek"
@@ -3737,9 +3724,8 @@ msgstr "Saját terjesztésre aláírva. A frissítéseket Ön kezeli."
 msgid "Latest Version:"
 msgstr "Legújabb verzió:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Ez a legújabb feltöltött, nem listázott változat."
+msgstr "Ez a legújabb feltöltött, nem listázott változat"
 
 msgid "Upload New Version"
 msgstr "Új verzió feltöltése"
@@ -4098,16 +4084,14 @@ msgstr "Válasszon színeket a témájához."
 msgid "Foreground Text"
 msgstr "Előtér felirat"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Ez a lapfelirat színe."
+msgstr "Ez a lapfelirat színe"
 
 msgid "Background"
 msgstr "Háttér"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Ez a lapok színe."
+msgstr "Ez a lapok színe"
 
 msgid "Your Theme's Name"
 msgstr "Téma neve"
@@ -4126,9 +4110,8 @@ msgstr "A háttértémák egyszerűen testre szabhatóvá teszik a Firefox kiné
 msgid "Give your Theme a name."
 msgstr "Adjon egy nevet a témának."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a keresésekben és a böngészi listázásokban, valamint a témája részletező oldalának tetején."
+msgstr "Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a keresésekben és a böngészi listázásokban, valamint a témája részletező oldalának tetején"
 
 #, python-format
 msgid ""
@@ -6831,9 +6814,8 @@ msgstr "{addon} :: Visszaélési jelentések"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz és a fejlesztőknek ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Kiegészítő"
+msgstr "Kiegészítő-azonosító"
 
 msgid "Internal AMO ID"
 msgstr "Belső AMO azonosító"
