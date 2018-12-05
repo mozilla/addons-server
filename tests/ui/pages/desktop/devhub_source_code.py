@@ -8,7 +8,7 @@ class DevHubSource(Base):
     _no_souce_code_locator = (By.ID, "id_has_source_1")
     _submit_source_locator = (By.ID, 'submit-source')
     _submission_button_locator = (
-        By.CSS_SELECTOR, ".submission-buttons > button:nth-child(2)"
+        By.CSS_SELECTOR, ".submission-buttons > button:nth-child(1)"
     )
 
     def wait_for_page_to_load(self):
