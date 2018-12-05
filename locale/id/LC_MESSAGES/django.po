@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-27 13:17+0000\n"
+"PO-Revision-Date: 2018-12-05 11:12+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2601,9 +2601,8 @@ msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Gambar harus dalam bentuk PNG atau JPG."
+msgstr "Dimensi gambar harus dalam rasio 4:3."
 
 msgid "There was an error uploading your preview."
 msgstr "Terjadi kesalahan menggunggah pratinjau anda."
@@ -2935,9 +2934,8 @@ msgstr "Menjelaskan Pengaya"
 msgid "Describe {0}"
 msgstr "Jelaskan {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Звіт"
+msgstr "Nama dan Rangkuman"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -3348,9 +3346,8 @@ msgstr[0] "<strong>{0}</strong> pengguna aktif"
 msgid "Submit a New Version"
 msgstr "Mengajukan Versi Baru"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Rangkuman:"
+msgstr "Nama dan Rangkuman:"
 
 msgid "required"
 msgstr "wajib diisi"
