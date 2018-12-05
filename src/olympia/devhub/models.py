@@ -17,12 +17,9 @@ log = olympia.core.logger.getLogger('devhub')
 
 class RssKey(models.Model):
     id = PositiveAutoField(primary_key=True)
-    # TODO: Convert to `models.UUIDField` but apparently we have a max_length
-    # of 36 defined in the database and maybe store things with a hyphen
-    # or maybe not...
-    key = models.CharField(
-        db_column='rsskey', max_length=36,
-        default=lambda: uuid.uuid4().hex, unique=True)
+    key = models.UUIDField(
+        db_column='rsskey', unique=True, null=True,
+        default=uuid.uuid4)
     addon = models.ForeignKey(Addon, null=True, unique=True)
     user = models.ForeignKey(UserProfile, null=True, unique=True)
     created = models.DateField(default=datetime.now)

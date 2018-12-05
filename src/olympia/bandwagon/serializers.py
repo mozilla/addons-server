@@ -57,6 +57,7 @@ class CollectionSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
     author = BaseUserSerializer(default=serializers.CurrentUserDefault())
     public = serializers.BooleanField(source='listed', default=True)
+    uuid = serializers.UUIDField(format='hex', required=False)
 
     class Meta:
         model = Collection

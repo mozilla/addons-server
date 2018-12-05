@@ -178,8 +178,7 @@ class TestActivity(HubTest):
         r = self.get_response()
         key = RssKey.objects.get()
 
-        # Make sure we generate none-verbose uuid key by default.
-        assert '-' not in key.key
+        assert isinstance(key.key, uuid.UUID)
 
         r = self.get_response(privaterss=key.key)
         assert r['content-type'] == 'application/rss+xml; charset=utf-8'
@@ -189,7 +188,7 @@ class TestActivity(HubTest):
         self.log_creates(5)
         r = self.get_response()
         key = RssKey.objects.get()
-        r = self.get_response(privaterss=str(uuid.UUID(key.key)))
+        r = self.get_response(privaterss=str(key.key))
         assert r['content-type'] == 'application/rss+xml; charset=utf-8'
         assert '<title>Recent Changes for My Add-ons</title>' in r.content
 

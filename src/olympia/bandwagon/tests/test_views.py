@@ -935,9 +935,9 @@ class TestCollectionViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         # should be b a c because 1, 3, 6 days ago.
-        assert response.data['results'][0]['uuid'] == col_b.uuid
-        assert response.data['results'][1]['uuid'] == col_a.uuid
-        assert response.data['results'][2]['uuid'] == col_c.uuid
+        assert response.data['results'][0]['uuid'] == col_b.uuid.hex
+        assert response.data['results'][1]['uuid'] == col_a.uuid.hex
+        assert response.data['results'][2]['uuid'] == col_c.uuid.hex
 
     def test_with_addons_is_ignored(self):
         collection_factory(author=self.user)
