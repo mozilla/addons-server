@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 17:13+0000\n"
+"PO-Revision-Date: 2018-12-05 21:26+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1943,18 +1943,21 @@ msgstr "Hírcsatornák, hírek és blogolás"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyek eltávolítják a zavaró elemeket, így naprakész lehet a közösségi médiával, a blogokkal, az RSS-hírcsatornákkal, csökkentheti a szemei terhelését, és így "
+"tovább."
 
 msgid "Games & Entertainment"
 msgstr "Játékok és szórakozás"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyek javítják a szórakozásélményét. Ez a kategória olyan kiterjesztéseket tartalmaz, melyek jobbá teszik a játékokat, a videolejátszás vezérlését, és így tovább."
 
 msgid "Language Support"
 msgstr "Nyelvi támogatás"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Töltsön le Firefox kiegészítőket, melyek nyelvi támogatást nyújtanak, például helyesírás-ellenőrzést biztosítanak, szavakat keresnek, szöveget fordítanak le, felolvasnak, és így tovább."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotók, zenék és videók"
