@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -467,9 +467,6 @@ msgstr "Taq ya'oj q'ij"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Re tz'aqat re' xya' retal achi'el tojtob'enel kuma ri b'anonela'"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Re tz'aqat re' yerajo' re taq tz'aqat re' richin ütz nisamäj:"
 
 msgid "Average"
 msgstr "Tunamilil"
@@ -2472,9 +2469,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Man tikirel ta nik'o chi re ri 3 rajowaxik taq tz'aqat."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2612,6 +2606,13 @@ msgstr "Ri wachib'äl k'o chi {0} piksel ruwa chuqa' {1} taq piksel rujotolem."
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Ri wachib'äl k'o chi {0} piksel ruwa chuqa' {1} taq piksel rujotolem."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Xk'ulwachitäj jun sachoj toq nijotob'äx ri nab'ey rutzub'al."
@@ -2819,7 +2820,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Tik'ex ri K'amonem</a> <a href=\"%(version_url)s\" class=\"button\">Tijotob'äx K'ak'a' Ruwäch</a> o <a href=\"#\" "
 "class=\"close\">Tirepüx kan</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Ketz'et chuqa' kek'ex ri kajilab'al kik'amonik chokoy."
 
 msgid "Compatibility"
@@ -3049,21 +3051,6 @@ msgstr ""
 "Xab'achike etamab'äl nikajo' niketamaj ri okisanela' xa xe chi man k'o ta pa ruch'utitzijol o rutzijoxkil tz'aqat. Ri relik ta okisanem ja ri kicholb'al etaman taq sachoj, etamab'äl pa ruwi' "
 "rub'eyal ye'atäq sachoj, kiq'ijul k'ak'a' taq ruwäch, ch'aqa' chik. Okel xa xe pa cholajin taq tz'aqat."
 
-msgid "Required Add-ons"
-msgstr "K'atzinel taq Tz'aqat"
-
-msgid "Limit 3"
-msgstr "Ruchi' 3"
-
-msgid "Add-on Flags"
-msgstr "Kik'utunel Tz'aqat"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Re etal re' nokisäx richin yetzob'ajïx ri taq tz'aqat. Okel xa xe pa cholajin taq tz'aqat."
-
-msgid "This add-on requires external software."
-msgstr "Re tz'aqat re' nrajo' rij kema'"
-
 msgid "View Source?"
 msgstr "¿La Nitz'et Ruxe'el?"
 
@@ -3088,18 +3075,6 @@ msgstr "Ri taq rumolob'a' re tz'aqat re' xab'achike nitz'eto."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Manäq, ri taq rumolob'a' re tz'aqat re' man xab'achike ta nitz'eto."
 
-msgid "Upgrade SDK?"
-msgstr "¿La nik'ex SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "We nicha', xtiqatojtob'ej pa ruyonil xtiqak'ëx ri atz'aqat toq xtipe jun k'ak'a' ruwäch richin SDK. Okel xa xe pa cholajin taq tz'aqat."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Re tz'aqat re' pa ruyonil xtik'extäj rik'in ri k'ak'a' ruwäch richin ri Tz'aqat SDK."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Manäq, re tz'aqat re' xtik'ex chi q'ab'aj."
-
 msgid "Universally unique identifier"
 msgstr "Ojer yonil k'utunel"
 
@@ -3118,12 +3093,6 @@ msgid ""
 msgstr ""
 "Pa tz'alamtz'ib'ab'äl yatikïr naya' nïm etamab'äl chi re ri nuk'unel pa ruwi' ri atz'aqat, xab'achike ruwäch. Tawokisaj richin naya' rutzijol ri ütz rub'anikil richin nitojtob'ëx ri tz'aqat, chuqa' "
 "tatz'aqatisaj etamab'äl, ri nito'on. Ri nuk'unela' chuqa' yetikïr nikinük' ri tz'alamtz'ib'ab'äl."
-
-msgid "Remove this dependent add-on"
-msgstr "Tiyuj re tzeqelel tz'aqat re'"
-
-msgid "Enter the name of an add-on"
-msgstr "Titz'ib'äx rub'i' jun tz'aqat"
 
 msgid "Add-on Media for {0}"
 msgstr "Tz'aqat Ruk'oxom {0}"
@@ -3155,10 +3124,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Okisan pa ruxaq kib'anikil chokoy."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Okisan pa ruxaq kib'anikil chokoy."
+
 msgid "Upload a Custom Icon..."
 msgstr "Tijotob'äx jun Ichinan Wachib'äl..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG chuqa' JPG yek'ul. Xke'etäx ri taq wachib'äl pa 64x64 taq piksel we e nïm."
 
 msgid "Screenshots"
@@ -3261,7 +3245,8 @@ msgstr "Taya' jun ch'utitzijol chi qe achike ruma nayüj el ri atz'aqat:"
 msgid "Actions"
 msgstr "Taq b'anoj"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Tisamajïx chik el ri rub'eyal nitaq re tz'aqat re'."
 
 msgid "Resume"
@@ -3274,16 +3259,18 @@ msgid "Delete"
 msgstr "Tiyuj"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Kenuk' kib'anikil re rucholajil wachinel re'."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Tijotob'äx jun k'ak'a' ruwäch re tz'aqat re'."
 
 msgid "New Version"
 msgstr "K'ak'a' Ruwäch"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Chi q'ij kimolob'a' qasanïk chuqa' okisanel."
 
 msgid "Statistics"
@@ -3296,22 +3283,25 @@ msgid "View Recent Changes"
 msgstr "Ketz'et K'ak'a' taq Jaloj"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Kenuk' kib'anikil re rucholajil wachinel re'."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Titz'et k'ïy ruwinaqil re wachinel re chijun ri q'ijul."
 
 msgid "View Statistics"
 msgstr "Kek'ut pe ri taq Molob'a'"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Tijal ri rajaw re wachinel re'."
 
 msgid "Transfer Ownership"
 msgstr "Tijal Ichinil"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Tiyuj re wachinel re'."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3345,6 +3335,12 @@ msgstr "Ch'utitzijol:"
 
 msgid "required"
 msgstr "ajowan"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "Tz'aqat URL:"
@@ -3405,11 +3401,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Re taq ch'utitzijol re' xa xe rat chuqa' ri qanik'onela' xketikïr xketz'eto."
 
-msgid "Cancel and Disable Version"
-msgstr "Tiq'at chuqa' Tichup Ruwäch"
-
 msgid "Submit Version"
 msgstr "Titaq Ruwäch"
+
+msgid "Cancel and Disable Version"
+msgstr "Tiq'at chuqa' Tichup Ruwäch"
 
 msgid "Describe Version"
 msgstr "Titz'ijöx rij Ruwäch"
@@ -3614,14 +3610,14 @@ msgstr "cha'el"
 msgid "Browser preview"
 msgstr "Nab'ey rutzub'al okik'amaya'l"
 
-msgid "Back"
-msgstr "Chi rij"
-
 msgid "Uploading Theme"
 msgstr "Nijotob'äx Wachinel"
 
 msgid "Finish Theme"
 msgstr "Tik'is Wachinel"
+
+msgid "Back"
+msgstr "Chi rij"
 
 msgid "API Credentials"
 msgstr "API Taq Wujil"
@@ -3685,22 +3681,26 @@ msgstr "Xtz'uk:"
 msgid "Add-on Multi Process Status:"
 msgstr "Rub'anikil K'ïy Rutajinik Tz'aqat:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Ri nuk'äm ri' atz'aqat rik'in ri K'ïy Rutajinik Firefox (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
 
 msgid "Listed Version:"
 msgstr "Cholajin Ruwäch:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Ja ruwäch atz'aqat re', ri xtiyak we k'o xtipitz'on pa ri rupitz'b'al yakoj pa addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Jun chik Cholajin Ruwäch:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ja ruk'isib'äl ruwäch re', xa xe chi k'a man wachel ta pa ri ruxaq."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3719,7 +3719,8 @@ msgstr "Juxun richin ichin-jachoj. Ja rat ye'asamajij ri taq k'exoj."
 msgid "Latest Version:"
 msgstr "Ruk'isib'äl Ruwäch:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Ja ruk'isib'äl ruwäch re' k'o, ri man cholajin ta."
 
 msgid "Upload New Version"
@@ -3910,6 +3911,9 @@ msgstr "¿La nawajo' chi tiya' rutzijol ri ak'amal pa %(amo_link_open)saddons.mo
 msgid "Learn More"
 msgstr "Tetamäx Ch'aqa' Chik"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Ketz'eto Ronojel ri Etaqon"
@@ -4069,13 +4073,15 @@ msgstr "Ke'acha' taq rub'onil Awachinel."
 msgid "Foreground Text"
 msgstr "Rutz'ib'anik Nab'ey B'ey"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Ja rub'onil re' ri rutz'ib'anik ruwi'."
 
 msgid "Background"
 msgstr "Rupam"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Ja rub'onil re' ri ruwi'."
 
 msgid "Your Theme's Name"
@@ -4094,6 +4100,10 @@ msgstr "Ri taq ruwachinel rupam nuya' q'ij chawe richin chanin nab'än runuk'ule
 
 msgid "Give your Theme a name."
 msgstr "Taya' jun Rub'i' ri Awachinel."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Jun ko'öl rusolik ri rusamaj wachinel cholajin pa kanob'äl chuqa' okem pa k'amaya'l chuqa' pa jotöl chi re ri ruxaq rub'anikil wachinel."
 
 #, python-format
 msgid ""
@@ -6791,6 +6801,13 @@ msgstr "{addon} :: Kitzijol Tz'ilanem"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Rutz'ijol Tz'ilanem ruma {addon} chuqa' rub'anonela' ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Tz'aqat"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
