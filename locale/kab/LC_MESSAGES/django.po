@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-16 17:18+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -465,9 +465,6 @@ msgstr "Tisirag"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Azegrir-agi yettwacreḍ d armitan sɣuṛ ineflayen ines"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Azegrir-agi yesra izegrar-agi akken ad yeddu akken iwata:"
 
 msgid "Average"
 msgstr "Talemmast"
@@ -2465,9 +2462,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Ur izmir ara ad ylili ugar n 3 n izegrar ilaqen."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2605,6 +2599,13 @@ msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen d
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Yessefk tugna ad tili s {0} n ipiksilen di tehri akked {1} n ipiksilen di teɣzi."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Taḍra-d tuccḍa di tuzzna n teskant inek."
@@ -2810,7 +2811,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Leqqem amṣada</a> <a href=\"%(version_url)s\" class=\"button\">Azen lqem amaynut</a> ou <a href=\"#\" class=\"close"
 "\">Anef</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Wali sakin leqqem izilalen n umṣada n yesnasen."
 
 msgid "Compatibility"
@@ -3042,21 +3044,6 @@ msgstr ""
 "Aseqdac aneggaru n telɣut-agi yessefk ad yizmir ad yissin d akken ur ttwasnasent ara ɣef ugzul neq aglam n uzegrir. Nettmuddu-d yakan talɣut n tebdart n yibugen yettwassnen, talɣut ɣef tarrayt n "
 "tuzna n wuguren, akked uɣawas n usuffeɣ i yileqman i d-iteddun. Ayagi ur yettwasnas ara ɣef izgrar yettwabedren."
 
-msgid "Required Add-ons"
-msgstr "Izegrar ilaqen"
-
-msgid "Limit 3"
-msgstr "Talast 3"
-
-msgid "Add-on Flags"
-msgstr "Anayen n uzegrir"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Inamalen-agi n taggayin ttwaseqdacen i useggem n izegrar. A yagi yelha kan i yezgrar yettwakelsen."
-
-msgid "This add-on requires external software."
-msgstr "Azegrir-agi yesra aseɣẓan azɣaray."
-
 msgid "View Source?"
 msgstr "Sken aɣbalu?"
 
@@ -3081,18 +3068,6 @@ msgstr "Tidaddanin n uzegrir-agi ttwaskanent s wudem azayez."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Ala, tiidaddanin n uzegrir-agi ur ttwaskanent ara s wudem azayez."
 
-msgid "Upgrade SDK?"
-msgstr "Sali aswir n SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Ma yettwafren, ad neɛreḍ ad nleqqem s wudem awurman azegrir ticki lqem amaynut n SDK yella, ad yettwsnes kan ɣef izegrar yettwabedren."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Azegrir-agi ad yettwalqem s wudem awurman s ileqman imaynuten n SDK n uzegrir."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Ala, azegrir-agi ad yettwalqem s ufus."
-
 msgid "Universally unique identifier"
 msgstr "Asulay asuf amaḍlan"
 
@@ -3111,12 +3086,6 @@ msgid ""
 msgstr ""
 "Tafelwit d amḍiq ara yeǧǧen ad d-nmudd talɣut icudden ar uzegrir-ik, akken yebɣu yella lqem, i yimceggiren. Aseqdec-is ad d-imudd tarrayin n usekyed n uzegrir, akked yal talɣut-nniḍen izemren ad "
 "tmudd afus. Tafelwit-a ad izmiren ad ttbeddlen imceggiren."
-
-msgid "Remove this dependent add-on"
-msgstr "Kkes azegrir-agi ugil"
-
-msgid "Enter the name of an add-on"
-msgstr "Sekcem isem n uzegrir"
 
 msgid "Add-on Media for {0}"
 msgstr "Allal n teγwal n uzegrir i {0}"
@@ -3148,10 +3117,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
+
 msgid "Upload a Custom Icon..."
 msgstr "Sali tignit tudmawant..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG akked  JPG ttusefraken. Ignitin ad uɣalent ar 64x64 ipiksilen ticki kkant-d nig waya."
 
 msgid "Screenshots"
@@ -3254,7 +3238,8 @@ msgstr "Ma ulac aɣilif, iniya-ɣ-d acuɣeṛ ad tekksed azegrir inek:"
 msgid "Actions"
 msgstr "Tigawin"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Kemmel akala n tuzna n uzegrir-agi."
 
 msgid "Resume"
@@ -3267,16 +3252,18 @@ msgid "Delete"
 msgstr "Kkes"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Ẓreg talqayt n tebdart n usentel-agi."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Sali lqem amaynut n uzegrir-agi."
 
 msgid "New Version"
 msgstr "Lqem amaynut"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Tidaddanin n yal ass ɣef usider akked iseqdacen."
 
 msgid "Statistics"
@@ -3289,22 +3276,25 @@ msgid "View Recent Changes"
 msgstr "Sken asnifel n melmi kan"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Ẓreg talqayt n tebdart n usentel-agi."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Wali amek yettwassen usentel-agi deg akud."
 
 msgid "View Statistics"
 msgstr "Wali tidaddanin"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Beddel bab n usentel-agi."
 
 msgid "Transfer Ownership"
 msgstr "Beddel imawlan n uzegrir"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Kkes asentel-agi"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3338,6 +3328,12 @@ msgstr "Agzul:"
 
 msgid "required"
 msgstr "yettwasra"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "Tansa URL n uzegrir:"
@@ -3399,11 +3395,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tizmilin-agi ad d-ttwaseknent kan i kečč akked imceggiren-nneɣ."
 
-msgid "Cancel and Disable Version"
-msgstr "Sefsex sakin sens lqem"
-
 msgid "Submit Version"
 msgstr "Azen lqem"
+
+msgid "Cancel and Disable Version"
+msgstr "Sefsex sakin sens lqem"
 
 msgid "Describe Version"
 msgstr "Seglem lqem"
@@ -3612,14 +3608,14 @@ msgstr "afrayan"
 msgid "Browser preview"
 msgstr "Taskant n yiminig"
 
-msgid "Back"
-msgstr "Uɣal"
-
 msgid "Uploading Theme"
 msgstr "Asali n usentel"
 
 msgid "Finish Theme"
 msgstr "Fak asentel"
+
+msgid "Back"
+msgstr "Uɣal"
 
 msgid "API Credentials"
 msgstr "Talγut n usesteb i API"
@@ -3683,22 +3679,26 @@ msgstr "Yettwarna:"
 msgid "Add-on Multi Process Status:"
 msgstr "Addad n agetsekker n izegrar:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Amṣada-inek n izegrar akked Firefox agetsekkeran (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
 
 msgid "Listed Version:"
 msgstr "Lqem yettwabedren:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "D lqem n uzegrir ara yebedden ticki yiwen isenned ɣef tqeffalt Sebedd di addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Lqem yettwabedren d-iteddun:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Wagi d lqem amaynut i yettwaznen, dacu mazal ur yelli ara deg usmel."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3717,7 +3717,8 @@ msgstr "Yettwasezmel i uzuzer udmawan. Ad tesferkeḍ ileqman."
 msgid "Latest Version:"
 msgstr "Lqem aneggaru:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Wagi d lqem aneggaru i d-yulin, mazal ur yettwabder ara."
 
 msgid "Upload New Version"
@@ -3908,6 +3909,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "Issin ugar"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Ad d-banen ɣef usmel-a deffir n ucegger n tengalt. Ileqman iwurmanen ttwasefraken deg usmel-agi."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Wali akk tuzniwin"
@@ -4067,13 +4071,15 @@ msgstr "Fren initeni usentel inek."
 msgid "Foreground Text"
 msgstr "Aḍris n zdat"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Wagi d ini n uḍris n yiccer."
 
 msgid "Background"
 msgstr "Agilal"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Wagi d ini i yiccaren."
 
 msgid "Your Theme's Name"
@@ -4092,6 +4098,10 @@ msgstr "Isental n ugilal ak-eǧǧen ad tmuddeɣ udem i Firefox inek. Azen ayla-k
 
 msgid "Give your Theme a name."
 msgstr "Mudd isem i usentel inek."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Asegzi awezlan n timahilin timezwura n usentel-ik, ayen ara d-yettwaseknen deg tebdart akked igmaḍ n unadi akked idis n ufella n usebter n telqayt."
 
 #, python-format
 msgid ""
@@ -6936,6 +6946,13 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Aneqqis n yir aseqdec"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Azegrir"
+
+msgid "Internal AMO ID"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0

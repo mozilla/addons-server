@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -453,9 +453,6 @@ msgstr "Keizinan"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Add-on ini telah ditanda sebagai eksperimen oleh pembangunnya"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Add-on ini memerlukan add-ons berikut supaya dapat berfungsi dengan sempurna:"
 
 msgid "Average"
 msgstr "Purata"
@@ -2441,9 +2438,6 @@ msgstr "Fail sumber dimuat naik tapi anda menyatakan tiada sumber diperlukan."
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Tidak boleh lebih daripada 3 add-ons yang diperlukan."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2580,6 +2574,13 @@ msgstr "Imej mesti tepat {0} piksel lebar dan {1} piksel tinggi."
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Imej mesti dalam PNG atau JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Imej mesti tepat {0} piksel lebar dan {1} piksel tinggi."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Ada ralat semasa memuat naik previu anda."
@@ -2786,7 +2787,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kemaskini Keserasian</a> <a href=\"%(version_url)s\" class=\"button\">Muat naik Versi Baru</a> atau <a href=\"#\" "
 "class=\"close\">Abaikan</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Tinjau dan kemaskini julat keserasian aplikasi."
 
 msgid "Compatibility"
@@ -3008,21 +3010,6 @@ msgstr ""
 "Maklumat yang mungkin ingin diketahui oleh pengguna akhir dan tidak semestinya berkaitan ringkasan dan keterangan add-on. Biasanya digunakan untuk menyenaraikan pepijat utama yang ketahui, maklumat "
 "perihal cara melaporkan pepijat, tarikh keluaran versi baru, dsb. Ini hanya berkenaan add-on yang tersenarai."
 
-msgid "Required Add-ons"
-msgstr "Add-ons Diperlukan"
-
-msgid "Limit 3"
-msgstr "Had 3"
-
-msgid "Add-on Flags"
-msgstr "Tanda Add-ons"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Tanda berikut digunakan untuk mengiklan add-ons. Ini hanya berkenaan add-on yang tersenarai."
-
-msgid "This add-on requires external software."
-msgstr "Add-on ini perlukan perisian luar."
-
 msgid "View Source?"
 msgstr "Tinjau Sumber?"
 
@@ -3047,18 +3034,6 @@ msgstr "Statistik add-on ini dipamer kepada umum."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Tidak, statistik add-on ini tidak boleh dipamer kepada umum."
 
-msgid "Upgrade SDK?"
-msgstr "Kemaskini SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Jika dipilih, kami akan cuba mengemaskini add-on anda secara automatik apabila ada versi baru SDK dikeluarkan. Ini hanya berkenaan add-on yang tersenarai."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Add-on ini akan dikemaskini secara automatik ke versi baru SDK Add-on."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Tidak, add-on ini akan dikemaskini secara manual."
-
 msgid "Universally unique identifier"
 msgstr "Pengecam unik universal"
 
@@ -3077,12 +3052,6 @@ msgid ""
 msgstr ""
 "Papan putih ialah tempat untuk menyediakan maklumat berkaitan add-on anda, apa saja versi, kepada editor. Gunakannya untuk menyediakan cara menguji add-on dan maklumat tambahan yang membantu. Papan "
 "putih juga boleh diedit oleh editor."
-
-msgid "Remove this dependent add-on"
-msgstr "Buang add-on bergantung ini"
-
-msgid "Enter the name of an add-on"
-msgstr "Masukkan nama add-on"
 
 msgid "Add-on Media for {0}"
 msgstr "Media Add-on untuk {0}"
@@ -3114,10 +3083,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Digunakan dalam halaman butiran add-on."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Digunakan dalam halaman butiran add-on."
+
 msgid "Upload a Custom Icon..."
 msgstr "Muat naik Ikon Lazim..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG dan JPG disokong. Saiz ikon diubah ke 64x64 piksel, jika terlebih besar."
 
 msgid "Screenshots"
@@ -3220,7 +3204,8 @@ msgstr "Sila maklumkan kami kenapa anda buang add-on anda:"
 msgid "Actions"
 msgstr "Tindakan"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Sambung proses serahan add-on ini."
 
 msgid "Resume"
@@ -3232,16 +3217,19 @@ msgstr "Buang add-on ini."
 msgid "Delete"
 msgstr "Buang"
 
-msgid "Edit details on this add-on's product page."
+#, fuzzy
+msgid "Edit details on this add-on's product page"
 msgstr "Edit butiran halaman produk add-on ini."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Muat naik versi baru add-on ini."
 
 msgid "New Version"
 msgstr "Versi Baru"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Statistik harian muat turun dan pengguna."
 
 msgid "Statistics"
@@ -3253,22 +3241,26 @@ msgstr "Urus Status & Versi"
 msgid "View Recent Changes"
 msgstr "Papar Perubahan Terbaru"
 
-msgid "Edit details on this theme's product page."
+#, fuzzy
+msgid "Edit details on this theme's product page"
 msgstr "Edit butiran halaman produk tema ini."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Lihat populariti tema ini sepanjang tempoh."
 
 msgid "View Statistics"
 msgstr "Lihat Statistik"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Tukar pemilik tema ini."
 
 msgid "Transfer Ownership"
 msgstr "Pindah Pemilikan"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Buang tema ini."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3301,6 +3293,12 @@ msgstr "Ringkasan:"
 
 msgid "required"
 msgstr "diperlukan"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL Add-on:"
@@ -3362,11 +3360,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Nota ini hanya tampak kepada anda dan penyemak kami."
 
-msgid "Cancel and Disable Version"
-msgstr "Batal dan Nyahdaya Versi"
-
 msgid "Submit Version"
 msgstr "Hantar Versi"
+
+msgid "Cancel and Disable Version"
+msgstr "Batal dan Nyahdaya Versi"
 
 msgid "Describe Version"
 msgstr "Huraikan Versi"
@@ -3572,14 +3570,14 @@ msgstr "pilihan"
 msgid "Browser preview"
 msgstr "Previu pelayar"
 
-msgid "Back"
-msgstr "Undur"
-
 msgid "Uploading Theme"
 msgstr "Memuat naik Tema"
 
 msgid "Finish Theme"
 msgstr "Tema Siap"
+
+msgid "Back"
+msgstr "Undur"
 
 msgid "API Credentials"
 msgstr "Kelayakan API"
@@ -3644,22 +3642,26 @@ msgstr "Dicipta:"
 msgid "Add-on Multi Process Status:"
 msgstr "Status Multi Proses Add-on:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Keserasian add-on dengan Multi Process Firefox (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Disenaraikan dalam laman ini setelah lulus semakan kod. Kemaskini automatik diuruskan oleh laman ini."
 
 msgid "Listed Version:"
 msgstr "Versi Disenaraikan:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Inilah versi add-on anda yang akan dipasang jika seseorang klik butang Pasang dalam addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Versi Berikut Disenaraikan:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Inilah versi terbaru yang dimuat naik, tapi masih belum disiarkan lagi dalam laman."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3678,7 +3680,8 @@ msgstr "Ditandatangani untuk mengedarkan-sendiri. Kemaskini diuruskan oleh anda.
 msgid "Latest Version:"
 msgstr "Versi Terbaru:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Ini ialah muat naik terbaru versi yang tidak disenaraikan."
 
 msgid "Upload New Version"
@@ -3869,6 +3872,9 @@ msgstr "Anda mahu ekstensi anda dipaparkan di %(amo_link_open)saddons.mozilla.or
 msgid "Learn More"
 msgstr "Ketahui Selanjutnya"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Disenaraikan dalam laman ini setelah lulus semakan kod. Kemaskini automatik diuruskan oleh laman ini."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Tinjau Semua Serahan"
@@ -4029,13 +4035,15 @@ msgstr "Pilih warna untuk Tema anda."
 msgid "Foreground Text"
 msgstr "Teks Latardepan"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Ini warna untuk teks tab."
 
 msgid "Background"
 msgstr "Latar belakang"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Ini warna untuk tab."
 
 msgid "Your Theme's Name"
@@ -4054,6 +4062,10 @@ msgstr "Tema latar belakang membolehkan anda memperibadikan rupa Firefox dengan 
 
 msgid "Give your Theme a name."
 msgstr "Berikan nama untuk Tema anda."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Penjelasan ringkas fungsi asas tema anda yang dipamerkan dalam senarai carian dan pelayaran, serta pada bahagian atas halaman butiran tema anda."
 
 #, python-format
 msgid ""
@@ -6745,6 +6757,13 @@ msgstr "{addon} :: Laporan Penyalahgunaan"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Laporan Penyalahgunaan untuk {addon} dan pembangunnya ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Add-on"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

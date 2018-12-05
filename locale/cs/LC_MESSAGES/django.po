@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-09-20 19:53+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -488,9 +488,6 @@ msgstr "Oprávnění"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Tento doplněk byl vývojářem označen jako experimentální"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Aby doplněk fungoval korektně, vyžaduje následující doplňky:"
 
 msgid "Average"
 msgstr "Průměrně"
@@ -2502,9 +2499,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Nemůžete mít více než 3 vyžadované doplňky."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2646,6 +2640,13 @@ msgstr "Obrázek musí být přesně {0} pixelů široký a {1} pixelů vysoký.
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Obrázek musí být přesně {0} pixelů široký a {1} pixelů vysoký."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
@@ -2853,7 +2854,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovat kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Nahrát novou verzi</a> nebo <a href=\"#\" "
 "class=\"close\">Ignorovat</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Zobrazení a aktualizace rozsahů kompatibility s aplikacemi."
 
 msgid "Compatibility"
@@ -3087,21 +3089,6 @@ msgstr ""
 "Jakékoli informace, které by uživatelé mohli chtít vědět a které nezapadají do souhrnu ani do popisu doplňku. Běžně se používá ke zveřejnění seznamu známých chyb, popisu postupu jejich hlášení, "
 "předpokládaného data vydání příští verze atd. Relevantní pouze pro zveřejněné doplňky."
 
-msgid "Required Add-ons"
-msgstr "Vyžadované doplňky"
-
-msgid "Limit 3"
-msgstr "Maximálně 3"
-
-msgid "Add-on Flags"
-msgstr "Příznaky doplňku"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Tyto příznaky jsou použity k zařazení doplňku. Relevantní pouze pro zveřejněné doplňky."
-
-msgid "This add-on requires external software."
-msgstr "Tento doplněk vyžaduje externí software."
-
 msgid "View Source?"
 msgstr "Zobrazit zdrojový kód?"
 
@@ -3126,18 +3113,6 @@ msgstr "Statistiky tohoto doplňku jsou veřejně dostupné."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Statistiky k tomuto doplňku nejsou veřejně přístupné."
 
-msgid "Upgrade SDK?"
-msgstr "Aktualizovat SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Je-li vybráno, pokusíme se automaticky aktualizovat jakmile budou vydány novější verze SDK. Relevantní pouze pro zveřejněné doplňky."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Tento doplněk bude automaticky aktualizován na novější verze Add-on SDK."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Ne, tento doplněk bude aktualizován ručně."
-
 msgid "Universally unique identifier"
 msgstr "Universally unique identifier"
 
@@ -3156,12 +3131,6 @@ msgid ""
 msgstr ""
 "Poznámka pro redaktora je místo, kde můžete pro redaktora napsat informace relevantní pro váš doplněk a jeho verzi. Používejte jej pro informace, jak otestovat doplněk, a jakékoliv další informace, "
 "které mohou pomoci. Poznámka je upravitelná redaktory."
-
-msgid "Remove this dependent add-on"
-msgstr "Odebrat závislý doplněk"
-
-msgid "Enter the name of an add-on"
-msgstr "Vložte název doplňku"
 
 msgid "Add-on Media for {0}"
 msgstr "Média doplňku {0}"
@@ -3193,10 +3162,25 @@ msgstr "64 x 64px"
 msgid "Used in add-on detail pages."
 msgstr "Použita na stránkách doplňku."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Použita na stránkách doplňku."
+
 msgid "Upload a Custom Icon..."
 msgstr "Nahrání vlastní ikonky..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Podporovány jsou formáty PNG a JPG. Velké ikony budou automaticky zmenšeny na 64x64 pixelů."
 
 msgid "Screenshots"
@@ -3299,7 +3283,8 @@ msgstr "Řekněte nám prosím, proč mažete svůj doplněk:"
 msgid "Actions"
 msgstr "Akce"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Pokračovat v procesu odeslání tohoto doplňku."
 
 msgid "Resume"
@@ -3312,16 +3297,18 @@ msgid "Delete"
 msgstr "Smazat"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Úprava detailů o stránce tohoto motivu vzhledu."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Nahrát novou verzi tohoto doplňku."
 
 msgid "New Version"
 msgstr "Nová verze"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Denní statistiky o počtech stažení a uživatelích."
 
 msgid "Statistics"
@@ -3334,22 +3321,25 @@ msgid "View Recent Changes"
 msgstr "Zobrazit poslední změny"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Úprava detailů o stránce tohoto motivu vzhledu."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Zobrazit popularitu tohoto motivu vzhledu v čase."
 
 msgid "View Statistics"
 msgstr "Zobrazit statistiky"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Změna vlastníka tohoto motivu vzhledu."
 
 msgid "Transfer Ownership"
 msgstr "Přesun vlastnictví"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Smazání tohoto motivu vzhledu."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3384,6 +3374,12 @@ msgstr "Souhrn:"
 
 msgid "required"
 msgstr "vyžadováno"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL doplňku:"
@@ -3444,11 +3440,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
 
-msgid "Cancel and Disable Version"
-msgstr "Zrušit a zakázat verzi"
-
 msgid "Submit Version"
 msgstr "Odeslat verzi"
+
+msgid "Cancel and Disable Version"
+msgstr "Zrušit a zakázat verzi"
 
 msgid "Describe Version"
 msgstr "Popište verzi"
@@ -3654,14 +3650,14 @@ msgstr "volitelné"
 msgid "Browser preview"
 msgstr "Náhled v prohlížeči"
 
-msgid "Back"
-msgstr "Zpět"
-
 msgid "Uploading Theme"
 msgstr "Nahrávání motivu vzhledu"
 
 msgid "Finish Theme"
 msgstr "Dokončit motiv vzhledu"
+
+msgid "Back"
+msgstr "Zpět"
 
 msgid "API Credentials"
 msgstr "Přihlašovací údaje k API"
@@ -3725,22 +3721,26 @@ msgstr "Vytvořeno:"
 msgid "Add-on Multi Process Status:"
 msgstr "Stav kompatibility doplňku s multiprocesovou architekturou:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Kompatibilita vašeho doplňku s multiprocesovým Firefoxem (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Zveřejněno na této stránce, jakmile úspěšně projde kontrolou. O aktualizace se automaticky stará tato stránka."
 
 msgid "Listed Version:"
 msgstr "Veřejná verze:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Toto je verze doplňku, která bude nainstalována, když někdo klikne na tlačítko Nainstalovat na stránkách addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Příští veřejná verze:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Toto je nejnovější nahraná veze, nicméně zatím nebyla na stránkách uveřejněna."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3759,7 +3759,8 @@ msgstr "Podepsáno pro samostatnou distribuci. O aktualizace se staráte sami."
 msgid "Latest Version:"
 msgstr "Poslední verze:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Toto je nejnovější nezveřejněná nahraná veze."
 
 msgid "Upload New Version"
@@ -3952,6 +3953,9 @@ msgstr "Chcete své rozšíření nechat doporučit uživatelům na %(amo_link_o
 msgid "Learn More"
 msgstr "Dozvědět se více"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Zveřejněno na této stránce, jakmile úspěšně projde kontrolou. O aktualizace se automaticky stará tato stránka."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Zobrazit všechny příspěvky"
@@ -4114,13 +4118,15 @@ msgstr "Zvolte barvy pro váš vzhledu."
 msgid "Foreground Text"
 msgstr "Text na popředí"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Jedná se o barvu textu na panelech."
 
 msgid "Background"
 msgstr "Pozadí"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Jedná se o barvu panelů."
 
 msgid "Your Theme's Name"
@@ -4139,6 +4145,10 @@ msgstr "Motivy vám dávají možnost si snadno přizpůsobit vzhled svého Fire
 
 msgid "Give your Theme a name."
 msgstr "Dejte vašemu vzhledu jméno."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Krátký popis vašeho motivu vzhledu, který je zobrazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu."
 
 #, python-format
 msgid ""
@@ -6851,6 +6861,13 @@ msgstr "{addon} :: Nahlášená zneužití"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Nahlášená zneužití doplňku {addon} ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Doplněk"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-06 13:56+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -483,9 +483,6 @@ msgstr "İzinler"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Bu eklenti, geliştiricileri tarafından deneysel olarak işaretlendi"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Bu eklenti düzgün çalışmak için şu eklentilere ihtiyaç duyuyor:"
 
 msgid "Average"
 msgstr "Ortalama"
@@ -2559,9 +2556,6 @@ msgstr "Kaynak dosya yüklendi fakat hiçbir kaynağın gerekmediğini belirttin
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "3'ten fazla gerekli eklenti olamaz."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2696,6 +2690,13 @@ msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Resimler PNG veya JPG olmalıdır."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Resim tam olarak {0} piksel eninde ve {1} piksel boyunda olmalıdır."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Ön izlemenizi yüklerken bir hata oluştu."
@@ -2907,7 +2908,8 @@ msgid ""
 "\"close\">Ignore</a>"
 msgstr ""
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Uygulama uygunluğu sınırlarına bak ve güncelle."
 
 msgid "Compatibility"
@@ -3144,21 +3146,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "Gerekli eklentiler"
-
-msgid "Limit 3"
-msgstr "Sınır 3"
-
-msgid "Add-on Flags"
-msgstr "Eklenti İşaretleri"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on requires external software."
-msgstr "Bu eklenti için harici bir yazılım gerekiyor."
-
 msgid "View Source?"
 msgstr "Kaynak görüntülensin mi?"
 
@@ -3183,18 +3170,6 @@ msgstr "Bu eklentinin ististikleri herkese açık olarak görüntülenebilir."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Hayır, bu eklentinin istatistikleri herkese açık olarak görüntülenemez."
 
-msgid "Upgrade SDK?"
-msgstr "SDK yükseltilsin mi?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Seçilirse, SDK'nın yeni bir sürümü çıktığında eklentinizi otomatik olarak yeni yükseltmeye çalışacağız. Yalnızca listelenen eklentiler için geçerlidir."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Bu eklenti, Eklenti SDK'sının yeni sürümlerine otomatik olarak yükseltilecektir."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Hayır, bu eklenti el ile yükseltilecektir."
-
 msgid "Universally unique identifier"
 msgstr "Evrensel eşsiz tanımlayıcı"
 
@@ -3211,12 +3186,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr "Bu bağımlı eklentiyi kaldır"
-
-msgid "Enter the name of an add-on"
-msgstr "Bir eklentinin adını girin"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -3249,10 +3218,25 @@ msgstr "64x64 piksel"
 msgid "Used in add-on detail pages."
 msgstr "Eklenti ayrıntı sayfalarında kullanılır."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Eklenti ayrıntı sayfalarında kullanılır."
+
 msgid "Upload a Custom Icon..."
 msgstr "Özel simge yükle..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG ve JPG desteklenir. Simgeler daha büyükse 64x64 piksele yeniden boyutlandırılır."
 
 msgid "Screenshots"
@@ -3356,7 +3340,8 @@ msgstr "Eklentinizi neden sildiğinizi lütfen bize söyleyin:"
 msgid "Actions"
 msgstr "Eylemler"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Bu eklentinin başvuru sürecine devam et."
 
 msgid "Resume"
@@ -3369,16 +3354,18 @@ msgid "Delete"
 msgstr "Sil"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Temanın listelenmesiyle ilgili ayrıntıları düzenle."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Bu eklentinin yeni bir sürümünü yükle."
 
 msgid "New Version"
 msgstr "Yeni sürüm"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "İndirme ve kullanıcılarla ilgili günlük istatistikler."
 
 msgid "Statistics"
@@ -3391,22 +3378,25 @@ msgid "View Recent Changes"
 msgstr "Son Değişikliklere Bak"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Temanın listelenmesiyle ilgili ayrıntıları düzenle."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Bu temanın zaman içindeki popülerliğine bak."
 
 msgid "View Statistics"
 msgstr "İstatistikleri Göster"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Bu temanın sahibini değiştir."
 
 msgid "Transfer Ownership"
 msgstr "Sahiplik Aktarımı"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Bu temayı sil."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3440,6 +3430,12 @@ msgstr "Özet:"
 
 msgid "required"
 msgstr "gerekli"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "Eklenti URL'si:"
@@ -3499,11 +3495,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-msgid "Cancel and Disable Version"
-msgstr "İptal et ve sürümü devre dışı bırak"
-
 msgid "Submit Version"
 msgstr "Sürümü gönder"
+
+msgid "Cancel and Disable Version"
+msgstr "İptal et ve sürümü devre dışı bırak"
 
 msgid "Describe Version"
 msgstr "Sürümü tanımlayın"
@@ -3715,14 +3711,14 @@ msgstr "tercihe bağlı"
 msgid "Browser preview"
 msgstr "Tarayıcı ön izlemesi"
 
-msgid "Back"
-msgstr "Geri"
-
 msgid "Uploading Theme"
 msgstr "Tema yükleniyor"
 
 msgid "Finish Theme"
 msgstr "Temayı bitir"
+
+msgid "Back"
+msgstr "Geri"
 
 msgid "API Credentials"
 msgstr "API Kimlik Bilgileri"
@@ -3784,22 +3780,25 @@ msgstr "Oluşturma:"
 msgid "Add-on Multi Process Status:"
 msgstr "Eklenti Çoklu İşlem Durumu:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Çok İşlemli Firefox (e10s) ile eklenti uyumluluğu."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
 
 msgid "Listed Version:"
 msgstr "Listelenen sürüm:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Bu, birisi eklentinizin addons.mozilla.org'daki Yükle düğmesini tıklarsa yüklenecek olan sürümüdür."
 
 msgid "Next Listed Version:"
 msgstr ""
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
@@ -3818,7 +3817,7 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "Son sürüm:"
 
-msgid "This is the newest uploaded unlisted version."
+msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
@@ -4016,6 +4015,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "Daha fazla bilgi"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Tüm gönderileri göster"
@@ -4178,13 +4180,15 @@ msgstr "Temanızın renklerini seçin."
 msgid "Foreground Text"
 msgstr "Ön plan metni"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Bu renk, sekme metninin rengidir."
 
 msgid "Background"
 msgstr "Arka plan"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Bu renk, sekmelerin rengidir."
 
 msgid "Your Theme's Name"
@@ -4203,6 +4207,9 @@ msgstr ""
 
 msgid "Give your Theme a name."
 msgstr "Temanıza bir ad verin."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -6934,6 +6941,13 @@ msgstr "{addon} :: Suistimal Raporları"
 #, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr " {addon} suistimal raporları ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Eklenti"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

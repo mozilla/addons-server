@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -516,9 +516,6 @@ msgstr "Leaganacha"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Deir na forbróirí gur breiseán turgnamhach é seo"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Teastaíonn ón mbreiseán seo na breiseáin seo a leanas:"
 
 msgid "Average"
 msgstr "Meán"
@@ -2604,9 +2601,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Ní cheadaítear níos mó ná 3 bhreiseán riachtanach."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2739,6 +2733,12 @@ msgstr ""
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Ní mór d'íomhánna a bheith PNG nó JPG."
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr ""
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Tharla earráid agus do réamhamharc á uaslódáil."
@@ -2946,7 +2946,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Nuashonraigh Comhoiriúnacht</a> <a href=\"%(version_url)s\" class=\"button\">Uaslódáil Leagan Nua</a> nó <a href=\"#\" "
 "class=\"close\">Ná Bac Leis</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Scrúdaigh agus nuashonraigh raonta comhoiriúnachta."
 
 msgid "Compatibility"
@@ -3178,21 +3179,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "Breiseáin Riachtanacha"
-
-msgid "Limit 3"
-msgstr "3 ar a mhéad"
-
-msgid "Add-on Flags"
-msgstr "Bratacha an Bhreiseáin"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on requires external software."
-msgstr ""
-
 msgid "View Source?"
 msgstr "Féach ar an gcód foinseach?"
 
@@ -3217,18 +3203,6 @@ msgstr ""
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
-msgid "Upgrade SDK?"
-msgstr "Nuashonraigh an SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
-
-msgid "No, this add-on will be upgraded manually."
-msgstr ""
-
 msgid "Universally unique identifier"
 msgstr "Aitheantóir uathúil"
 
@@ -3245,12 +3219,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr ""
-
-msgid "Enter the name of an add-on"
-msgstr "Cuir ainm an bhreiseáin isteach"
 
 msgid "Add-on Media for {0}"
 msgstr "Meáin Bhreiseáin le haghaidh {0}"
@@ -3280,10 +3248,25 @@ msgstr "64×64pct"
 msgid "Used in add-on detail pages."
 msgstr "Úsáidtear é seo ar leathanach mionsonraí an bhreiseáin."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Úsáidtear é seo ar leathanach mionsonraí an bhreiseáin."
+
 msgid "Upload a Custom Icon..."
 msgstr "Uaslódáil Deilbhín Saincheaptha..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Tacaítear le PNG agus JPG. Athrófar méid an deilbhín go 64×64 má tá sé níos mó."
 
 msgid "Screenshots"
@@ -3384,7 +3367,8 @@ msgstr "Inis dúinn cén fáth a bhfuil tú ag scriosadh do bhreiseáin:"
 msgid "Actions"
 msgstr "Gníomhartha"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Téigh ar aghaidh leis an bpróiseas "
 
 msgid "Resume"
@@ -3396,16 +3380,18 @@ msgstr "Scrios an breiseán seo."
 msgid "Delete"
 msgstr "Scrios"
 
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr ""
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Uaslódáil leagan nua den bhreiseán seo."
 
 msgid "New Version"
 msgstr "Leagan Nua"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Staitisticí laethúla ar líon íoslódálacha agus úsáideoirí."
 
 msgid "Statistics"
@@ -3417,23 +3403,24 @@ msgstr "Bainistigh Stádas agus Leaganacha"
 msgid "View Recent Changes"
 msgstr "Féach ar na hAthruithe is Déanaí"
 
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr ""
 
-msgid "View the popularity of this theme over time."
+msgid "View the popularity of this theme over time"
 msgstr ""
 
 msgid "View Statistics"
 msgstr "Amharc ar Staitisticí"
 
-msgid "Change the owner of this theme."
+msgid "Change the owner of this theme"
 msgstr ""
 
 msgid "Transfer Ownership"
 msgstr ""
 
-msgid "Delete this theme."
-msgstr ""
+#, fuzzy
+msgid "Delete this theme"
+msgstr "Scrios an Téama"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3470,6 +3457,12 @@ msgstr "Achoimre:"
 
 msgid "required"
 msgstr "riachtanach"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL an Bhreiseáin:"
@@ -3532,12 +3525,12 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
 #, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "Cuir an Scrúdú Ar Ceal"
-
-#, fuzzy
 msgid "Submit Version"
 msgstr "Seol Leagan Nua"
+
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Cuir an Scrúdú Ar Ceal"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3759,9 +3752,6 @@ msgstr "(roghnach)"
 msgid "Browser preview"
 msgstr "Léirmheasanna ó Úsáideoirí"
 
-msgid "Back"
-msgstr ""
-
 #, fuzzy
 msgid "Uploading Theme"
 msgstr "Téamaí Ag Teacht Chun Cinn"
@@ -3769,6 +3759,9 @@ msgstr "Téamaí Ag Teacht Chun Cinn"
 #, fuzzy
 msgid "Finish Theme"
 msgstr "Téamaí: %s"
+
+msgid "Back"
+msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -3831,24 +3824,24 @@ msgstr ""
 msgid "Add-on Multi Process Status:"
 msgstr "Stádas an Bhreiseáin"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr ""
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 #, fuzzy
 msgid "Listed Version:"
 msgstr "Leagan Is Déanaí:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
 #, fuzzy
 msgid "Next Listed Version:"
 msgstr "Leagan Is Déanaí:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
@@ -3867,7 +3860,7 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "Leagan Is Déanaí:"
 
-msgid "This is the newest uploaded unlisted version."
+msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
@@ -4070,6 +4063,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "Tuilleadh Eolais"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
@@ -4235,13 +4231,15 @@ msgstr ""
 msgid "Foreground Text"
 msgstr "Téacs sa Tulra"
 
-msgid "This is the color of the tab text."
-msgstr ""
+#, fuzzy
+msgid "This is the color of the tab text"
+msgstr "Seo é dath na gcluaisíní."
 
 msgid "Background"
 msgstr "Cúlra"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Seo é dath na gcluaisíní."
 
 msgid "Your Theme's Name"
@@ -4259,6 +4257,9 @@ msgid "Background themes let you easily personalize the look of your Firefox. Su
 msgstr ""
 
 msgid "Give your Theme a name."
+msgstr ""
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 #, python-format
@@ -7018,6 +7019,13 @@ msgid "{addon} :: Abuse Reports"
 msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Breiseán"
+
+msgid "Internal AMO ID"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0

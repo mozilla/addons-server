@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-05 13:13+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew\n"
@@ -481,9 +481,6 @@ msgstr "הרשאות"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "תוספת זו סומנה כניסיונית ע״י המפתחים שלה"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "תוספת זו תלויה בתוספות הבאות לצורך עבודה תקינה:"
 
 msgid "Average"
 msgstr "ממוצע"
@@ -2524,9 +2521,6 @@ msgstr "הועלה קובץ מקור אבל ציינת שאין צורך במק�
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "לא יכולות להיות למעלה מ־3 תוספות נדרשות."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2664,6 +2658,13 @@ msgstr "התמונה חייבת להיות ברוחב של {0} פיקסלים ו
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "תמונות חייבות להיות בתבנית PNG או JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "התמונה חייבת להיות ברוחב של {0} פיקסלים ובגובה של {1} פיקסלים בדיוק."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "אירעה שגיאה בהעלאת התצוגה המקדימה שלך."
@@ -2871,7 +2872,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">עדכון תאימות</a> <a href=\"%(version_url)s\" class=\"button\">העלאת גרסה חדשה</a> או <a href=\"#\" class=\"close"
 "\">התעלמות</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "צפייה ועדכון טווחי תאימות יישום."
 
 msgid "Compatibility"
@@ -3095,21 +3097,6 @@ msgstr ""
 "כל מידע שיתכן שמשתמשי הקצה ירצו לדעת שאינו בהכרח שייך לתקציר או התיאור על התוספת. שימושים נפוצים כוללים תיעוד של באגים ידועים, מידע על אופן דיווח באגים, מועדי הוצאה לאור של גרסאות חדשות וכו׳. תקף "
 "רק לתוספות מוצגות."
 
-msgid "Required Add-ons"
-msgstr "תוספות נדרשות"
-
-msgid "Limit 3"
-msgstr "הגבלה ל־3"
-
-msgid "Add-on Flags"
-msgstr "דגלי תוספות"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "הדגלים האלה משמשים לסיווג תוספות. תקף רק לתוספות מוצגות."
-
-msgid "This add-on requires external software."
-msgstr "תוספת זו דורשת תוכנה חיצונית."
-
 msgid "View Source?"
 msgstr "הצגת המקור?"
 
@@ -3134,18 +3121,6 @@ msgstr "הסטטיסטיקה של התוספת הזאת מוצגת לציבור.
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "לא, הסטטיסטיקה של התוספת הזאת לא מוצגת לציבור."
 
-msgid "Upgrade SDK?"
-msgstr "לשדרג את ה־SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "אם אפשרות זו נבחרה, אנו ננסה לשדרג את התוספת שלך אוטומטית כאשר מופצת גרסה חדשה של ה־SDK. תקף רק לתוספות מוצגות."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "תוספת זו תשודרג אוטומטית לגרסה חדשה של ה־SDK של התוספת."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "לא, תוספת זו תשודרג ידנית."
-
 msgid "Universally unique identifier"
 msgstr "מזהה ייחודי אוניברסלי"
 
@@ -3164,12 +3139,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr "הסרת התוספת התלויה הזו"
-
-msgid "Enter the name of an add-on"
-msgstr "נא להקליד שם של תוספת"
 
 msgid "Add-on Media for {0}"
 msgstr "מדיית תוספת עבור {0}"
@@ -3199,10 +3168,25 @@ msgstr "64×64 פיקסלים"
 msgid "Used in add-on detail pages."
 msgstr "נעשה שימוש בעמודי הפירוט על תוספות."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "נעשה שימוש בעמודי הפירוט על תוספות."
+
 msgid "Upload a Custom Icon..."
 msgstr "העלאת צלמית מותאמת אישית..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "קיימת תמיכה ב־PNG וב־JPG. גודל הסמלים ישתנה ל־64x64 פיקסלים אם התמונה גדולה יותר."
 
 msgid "Screenshots"
@@ -3303,7 +3287,8 @@ msgstr "נא לספר לנו מדוע בחרת למחוק את התוספת של
 msgid "Actions"
 msgstr "פעולות"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "המשך תהליך ההגשה לתוספת זו."
 
 msgid "Resume"
@@ -3315,16 +3300,19 @@ msgstr "מחיקת תוספת זו."
 msgid "Delete"
 msgstr "מחיקה"
 
-msgid "Edit details on this add-on's product page."
+#, fuzzy
+msgid "Edit details on this add-on's product page"
 msgstr "עריכת פרטים בעמוד המוצר של תוספת זו."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "העלאת גרסה חדשה לתוספת זו."
 
 msgid "New Version"
 msgstr "גרסה חדשה"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "סטטיסטיקות יומיות על הורדות ומשתמשים."
 
 msgid "Statistics"
@@ -3336,22 +3324,26 @@ msgstr "ניהול סטטוס וגרסאות"
 msgid "View Recent Changes"
 msgstr "הצגת שינויים אחרונים"
 
-msgid "Edit details on this theme's product page."
+#, fuzzy
+msgid "Edit details on this theme's product page"
 msgstr "עריכת פרטים בעמוד המוצר של ערכת נושא זו."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "צפייה בפופולריות של ערכת נושא זו לאורך זמן."
 
 msgid "View Statistics"
 msgstr "צפייה בסטטיסטיקות"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "שינוי הבעלים של ערכת נושא זו."
 
 msgid "Transfer Ownership"
 msgstr "העברת בעלות"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "מחיקת ערכת נושא זו."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3385,6 +3377,12 @@ msgstr "תקציר:"
 
 msgid "required"
 msgstr "נדרש"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "כתובת התוספת:"
@@ -3443,11 +3441,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ההערות הללו תהיינה גלויות לך ולסוקרים שלנו בלבד."
 
-msgid "Cancel and Disable Version"
-msgstr "ביטול והשבתת הגרסה"
-
 msgid "Submit Version"
 msgstr "הגשת גרסה"
+
+msgid "Cancel and Disable Version"
+msgstr "ביטול והשבתת הגרסה"
 
 # 75%
 # 100%
@@ -3659,14 +3657,14 @@ msgstr "אופציונלי"
 msgid "Browser preview"
 msgstr "תצוגה מקדימה בדפדפן"
 
-msgid "Back"
-msgstr "חזרה"
-
 msgid "Uploading Theme"
 msgstr "ערכת נושא בהעלאה"
 
 msgid "Finish Theme"
 msgstr "סיום ערכת נושא"
+
+msgid "Back"
+msgstr "חזרה"
 
 msgid "API Credentials"
 msgstr "פרטי גישה ל־API"
@@ -3728,10 +3726,12 @@ msgstr "מועד היצירה:"
 msgid "Add-on Multi Process Status:"
 msgstr "מצב ריבוי תהליכים של תוספת:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "תאימות התוספת שלך ל־Firefox עם תמיכה בריבוי תהליכים (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "מופיע באתר לאחר סקירת קוד מוצלחת. עדכונים אוטומטיים מנוהלים על ידי אתר זה."
 
 # 75%
@@ -3739,13 +3739,15 @@ msgstr "מופיע באתר לאחר סקירת קוד מוצלחת. עדכונ�
 msgid "Listed Version:"
 msgstr "גרסה מוצגת:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "זוהי גרסת התוספת שלך שתותקן לאחר לחיצה על כפתור ההתקנה תחת addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "הגרסה הבאה המוצגת:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "זוהי הגרסה העדכנית ביותר שהוגשה, עם זאת, אינה זמינה באתר עדיין."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3764,7 +3766,8 @@ msgstr "עם חתימה להפצה עצמית. העדכונים מנוהלים �
 msgid "Latest Version:"
 msgstr "גרסה עדכנית:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "זו הגרסה העדכנית ביותר שהועלתה ואינה מוצגת."
 
 msgid "Upload New Version"
@@ -3963,6 +3966,9 @@ msgstr "רוצה שההרחבה שלך תופיע במומלצים ב־%(amo_lin
 msgid "Learn More"
 msgstr "מידע נוסף"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "מופיע באתר לאחר סקירת קוד מוצלחת. עדכונים אוטומטיים מנוהלים על ידי אתר זה."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "צפייה בכל ההגשות"
@@ -4125,13 +4131,15 @@ msgstr "בחרו צבעים עבור ערכת הנושא שלכם."
 msgid "Foreground Text"
 msgstr "טקסט בחזית"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "זהו צבע הטקסט של הלשוניות."
 
 msgid "Background"
 msgstr "רקע"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "זהו הצבע של הלשוניות."
 
 msgid "Your Theme's Name"
@@ -4150,6 +4158,10 @@ msgstr "ערכות נושא רקע מאפשרות לך להתאים בקלות �
 
 msgid "Give your Theme a name."
 msgstr "תנו שם לערכת הנושא שלכם."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש עמוד הפירוט של ערכת הנושא שלך."
 
 #, python-format
 msgid ""
@@ -6930,6 +6942,13 @@ msgstr "{addon} :: דיווחים על שימוש לרעה"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "דיווחים על שימוש לרעה עבור התוספת {addon} והמפתחים שלה ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "תוספת"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

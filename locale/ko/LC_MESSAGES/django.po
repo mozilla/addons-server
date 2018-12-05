@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -462,9 +462,6 @@ msgstr "권한"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "이 부가 기능은 제작자에 의해 실험적인 부가기능으로 표시되었습니다"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "이 부가 기능이 제대로 작동하려면 다음의 부가 기능을 설치해야 합니다:"
 
 msgid "Average"
 msgstr "평균"
@@ -2448,9 +2445,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "설치가 필요한 부가 기능은 3개 이상 지정할 수 없습니다."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2584,6 +2578,13 @@ msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "이미지 크기는 가로 {0} 픽셀 세로 {1} 픽셀로 정확히 맞춰야 합니다."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "미리보기 업로드 도중 오류가 있었습니다."
@@ -2790,7 +2791,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">호환성 업데이트</a> <a href=\"%(version_url)s\" class=\"button\">새 버전 업로드</a> or <a href=\"#\" class=\"close\">무"
 "시</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "호환 가능 범위 내의 애플리케이션을 보고 업데이트를 하세요."
 
 msgid "Compatibility"
@@ -3011,21 +3013,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "설치되어 있어야 하는 부가 기능"
-
-msgid "Limit 3"
-msgstr "3개로 제한"
-
-msgid "Add-on Flags"
-msgstr "부가 기능 상징"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on requires external software."
-msgstr "이 부가 기능은 외부 소프트웨어를 필요로 합니다."
-
 msgid "View Source?"
 msgstr "소스를 볼까요?"
 
@@ -3050,18 +3037,6 @@ msgstr "이 부가 기능의 통계를 공개적으로 볼 수 있게 합니다.
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "아니오, 이 부가 기능의 통계를 공개적으로 볼 수 없게 합니다."
 
-msgid "Upgrade SDK?"
-msgstr "SDK를 업그레이드 하시겠습니까?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "이 부가 기능은 최신 부가 기능 SDK가 올라오면 자동으로 업그레이드 됩니다."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "아니오, 이 부가 기능은 수동으로 업그레이드 하겠습니다."
-
 msgid "Universally unique identifier"
 msgstr "일반 고유 식별자"
 
@@ -3078,12 +3053,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr "이 의존 부가 기능 삭제"
-
-msgid "Enter the name of an add-on"
-msgstr "부가 기능 이름 입력"
 
 msgid "Add-on Media for {0}"
 msgstr "{0}의 부가 기능 미디어"
@@ -3113,10 +3082,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "부가 기능 상세 정보 페이지에 쓰입니다."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "부가 기능 상세 정보 페이지에 쓰입니다."
+
 msgid "Upload a Custom Icon..."
 msgstr "사용자 정의 아이콘 업로드..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG와 JPG 형식을 지원합니다. 64x64 픽셀보다 큰 아이콘은 크기가 재조정 됩니다."
 
 msgid "Screenshots"
@@ -3228,7 +3212,8 @@ msgstr "부가 기능을 삭제하려는 이유를 설명해 주세요:"
 msgid "Actions"
 msgstr "활동"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "부가 기능 등록 과정을 계속 진행합니다."
 
 msgid "Resume"
@@ -3241,16 +3226,18 @@ msgid "Delete"
 msgstr "삭제"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "이 테마의 목록에 대한 상세 편집"
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "이 부가 기능의 새 버전을 업로드 합니다."
 
 msgid "New Version"
 msgstr "새 버전"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "다운로드 횟수 및 사용자 수에 대한 일일 통계입니다."
 
 msgid "Statistics"
@@ -3263,22 +3250,25 @@ msgid "View Recent Changes"
 msgstr "최근 변경 사항 보기"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "이 테마의 목록에 대한 상세 편집"
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "이 테마의 전체 시간에 대비 인기도를 봅니다."
 
 msgid "View Statistics"
 msgstr "통계 보기"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "이 테마의 소유자를 변경합니다."
 
 msgid "Transfer Ownership"
 msgstr "소유권 이전"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "이 테마 삭제하기."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3311,6 +3301,12 @@ msgstr "요약:"
 
 msgid "required"
 msgstr "필수 입력"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "부가 기능 URL:"
@@ -3370,11 +3366,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "이 노트는 귀하와 저희 검토자들에게만 보여집니다."
 
-msgid "Cancel and Disable Version"
-msgstr "버전을 취소하고 비활성화"
-
 msgid "Submit Version"
 msgstr "버전 제출"
+
+msgid "Cancel and Disable Version"
+msgstr "버전을 취소하고 비활성화"
 
 msgid "Describe Version"
 msgstr "버전 설명"
@@ -3587,14 +3583,14 @@ msgstr "선택 사항"
 msgid "Browser preview"
 msgstr "미리보기 보기"
 
-msgid "Back"
-msgstr ""
-
 msgid "Uploading Theme"
 msgstr "테마 업로드"
 
 msgid "Finish Theme"
 msgstr "테마 완료"
+
+msgid "Back"
+msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -3656,24 +3652,25 @@ msgstr "제작일:"
 msgid "Add-on Multi Process Status:"
 msgstr "부가 기능 멀티 프로세스 상태:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr ""
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 #, fuzzy
 msgid "Listed Version:"
 msgstr "최신 버전:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
 #, fuzzy
 msgid "Next Listed Version:"
 msgstr "다음 버전:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "이 버전이 최신이지만 아직 사이트 상에 올라가지는 않았습니다."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3692,7 +3689,8 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "최신 버전:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "이 버전은 아직 사이트 상에 올라가지 않은 최신 버전입니다."
 
 msgid "Upload New Version"
@@ -3888,6 +3886,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "더 알아보기"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
@@ -4063,13 +4064,15 @@ msgstr "테마에 사용할 색을 설정하세요."
 msgid "Foreground Text"
 msgstr "글자 전경색"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "탭 부분의 글자색입니다."
 
 msgid "Background"
 msgstr "바탕색"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "탭의 색상입니다."
 
 msgid "Your Theme's Name"
@@ -4088,6 +4091,10 @@ msgstr "배경 테마는 Firefox 외형을 쉽게 개인화해 줍니다. 직접
 
 msgid "Give your Theme a name."
 msgstr "테마 이름 짓기"
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "테마의 기본적인 기능에 대해 짧은 설명을 적어주세요. 검색 또는 테마 목록, 테마 세부 정보 페이지 상단에 노출됩니다."
 
 #, python-format
 msgid ""
@@ -6802,6 +6809,13 @@ msgstr "{addon} :: 정책 위반 신고"
 #, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} ({num})에 대한 정책 위반 신고"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "부가 기능"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

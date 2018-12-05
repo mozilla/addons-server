@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -484,9 +484,6 @@ msgstr "Versions"
 #, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "This add-on has been removed by its author."
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "This add-on requires the following add-ons to work properly:"
 
 msgid "Average"
 msgstr "Average"
@@ -2584,9 +2581,6 @@ msgstr "Source file uploaded but you indicated no source was needed."
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr "Ensure name and summary combined are at most 70 characters (they have {0})."
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "There cannot be more than 3 required add-ons."
-
 #, fuzzy
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2730,6 +2724,13 @@ msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Images must be either PNG or JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Image must be exactly {0} pixels wide and {1} pixels tall."
+
+msgid "Icon must be square (same width and height)."
+msgstr "Icon must be square (same width and height)."
 
 msgid "There was an error uploading your preview."
 msgstr "There was an error uploading your preview."
@@ -2951,7 +2952,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
 "\"close\">Ignore</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "View and update application compatibility ranges."
 
 msgid "Compatibility"
@@ -3196,21 +3198,6 @@ msgstr ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 
-msgid "Required Add-ons"
-msgstr "Required Add-ons"
-
-msgid "Limit 3"
-msgstr "Limit 3"
-
-msgid "Add-on Flags"
-msgstr "Add-on Flags"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-
-msgid "This add-on requires external software."
-msgstr "This add-on requires external software."
-
 msgid "View Source?"
 msgstr "View Source?"
 
@@ -3235,18 +3222,6 @@ msgstr "This add-on's stats are publicly viewable."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "No, this add-on's stats are not publicly viewable."
 
-msgid "Upgrade SDK?"
-msgstr "Upgrade SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "No, this add-on will be upgraded manually."
-
 msgid "Universally unique identifier"
 msgstr "Universally unique identifier"
 
@@ -3266,12 +3241,6 @@ msgid ""
 msgstr ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the editor. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by editors."
-
-msgid "Remove this dependent add-on"
-msgstr "Remove this dependent add-on"
-
-msgid "Enter the name of an add-on"
-msgstr "Enter the name of an add-on"
 
 msgid "Add-on Media for {0}"
 msgstr "Add-on Media for {0}"
@@ -3303,10 +3272,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Used in add-on detail pages."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "128x128px"
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Used in add-on detail pages."
+
 msgid "Upload a Custom Icon..."
 msgstr "Upload a Custom Icon..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr "PNG and JPG supported."
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr "Icons must be square and a minimum size of 128x128 pixels."
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
 
 msgid "Screenshots"
@@ -3415,7 +3399,8 @@ msgstr "Please tell us why you are deleting your add-on:"
 msgid "Actions"
 msgstr "Actions"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Resume the submission process for this add-on."
 
 msgid "Resume"
@@ -3428,16 +3413,18 @@ msgid "Delete"
 msgstr "Delete"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Edit details about this theme's listing."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Upload a new version of this add-on."
 
 msgid "New Version"
 msgstr "New Version"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Daily statistics on downloads and users."
 
 msgid "Statistics"
@@ -3450,22 +3437,25 @@ msgid "View Recent Changes"
 msgstr "View Recent Changes"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Edit details about this theme's listing."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "View the popularity of this theme over time."
 
 msgid "View Statistics"
 msgstr "View Statistics"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Change the owner of this theme."
 
 msgid "Transfer Ownership"
 msgstr "Transfer Ownership"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Delete this theme."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3501,6 +3491,14 @@ msgstr "Summary"
 
 msgid "required"
 msgstr "required"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
 
 #, fuzzy
 msgid "Add-on URL:"
@@ -3574,12 +3572,12 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "This URL will only be visible if you are a developer."
 
 #, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "Re-enable Version"
-
-#, fuzzy
 msgid "Submit Version"
 msgstr "Submit a New Add-on"
+
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "Re-enable Version"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3820,9 +3818,6 @@ msgstr "(optional)"
 msgid "Browser preview"
 msgstr "Hover to Preview"
 
-msgid "Back"
-msgstr "Back"
-
 #, fuzzy
 msgid "Uploading Theme"
 msgstr "Up & Coming Themes"
@@ -3830,6 +3825,9 @@ msgstr "Up & Coming Themes"
 #, fuzzy
 msgid "Finish Theme"
 msgstr "%s Themes"
+
+msgid "Back"
+msgstr "Back"
 
 msgid "API Credentials"
 msgstr "API Credentials"
@@ -3894,10 +3892,12 @@ msgstr "Created:"
 msgid "Add-on Multi Process Status:"
 msgstr "Multi Process Status:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Your add-on compatibility with Multi Process Firefox (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listed on this site after passing code review. Automatic updates are handled by this site."
 
 #, fuzzy
@@ -3905,14 +3905,15 @@ msgid "Listed Version:"
 msgstr "Latest Version:"
 
 #, fuzzy
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org. It is only relevant for listed add-ons."
 
 #, fuzzy
 msgid "Next Listed Version:"
 msgstr "Next Version:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "This is the newest uploaded version, however it isn’t live on the site yet."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3932,7 +3933,7 @@ msgid "Latest Version:"
 msgstr "Latest Version:"
 
 #, fuzzy
-msgid "This is the newest uploaded unlisted version."
+msgid "This is the newest uploaded unlisted version"
 msgstr "This is the newest uploaded version, however it isn’t live on the site yet."
 
 msgid "Upload New Version"
@@ -4144,6 +4145,9 @@ msgstr "Want your extension to be featured on %(amo_link_open)saddons.mozilla.or
 msgid "Learn More"
 msgstr "Learn More"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Listed on this site after passing code review. Automatic updates are handled by this site."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
@@ -4321,13 +4325,15 @@ msgstr "Select colors for your Theme."
 msgid "Foreground Text"
 msgstr "Foreground Text"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "This is the color of the tab text."
 
 msgid "Background"
 msgstr "Background"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "This is the color of the tabs."
 
 msgid "Your Theme's Name"
@@ -4346,6 +4352,10 @@ msgstr "Background themes let you easily personalize the look of your Firefox. S
 
 msgid "Give your Theme a name."
 msgstr "Give your Theme a name."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
 
 #, fuzzy, python-format
 msgid ""
@@ -7298,6 +7308,13 @@ msgstr "{addon} :: Abuse Reports"
 #, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Abuse Reports for {addon} ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Add-on"
+
+msgid "Internal AMO ID"
+msgstr "Internal AMO ID"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

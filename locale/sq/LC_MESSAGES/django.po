@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-11 14:52+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -475,9 +475,6 @@ msgstr "Leje"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Kësaj shtese i është vënë shenjë si eksperimentale nga autorët e saj"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Kjo shtesë lyp shtesat vijuese që të punojë si duhet:"
 
 msgid "Average"
 msgstr "Mesatarja"
@@ -2485,9 +2482,6 @@ msgstr "Kartela burim u ngarkua, por keni përcaktuar se s’lypset burim."
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "S’lejohen më tepër se 3 shtesa të domosdoshme."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2629,6 +2623,13 @@ msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela 
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Figurat duhet të jenë ose PNG, ose JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
@@ -2836,7 +2837,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhshmëri Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#"
 "\" class=\"close\">Shpërfilleni</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Shihni dhe përditësoni intervalet e përputhshmërisë së aplikacionit."
 
 msgid "Compatibility"
@@ -3066,21 +3068,6 @@ msgstr ""
 "Çfarëdo të dhënash që përdoruesit e zakonshëm do të donin të dinin, që jo domosdoshmërisht hyn te përmbledhja ose përshkrimi i shtesës. Si të tilla gjenden rëndom paraqitje të metash të rëndësishme "
 "të njohura, të dhëna se si të raportohen të meta, datë e përafërt e hedhjes në qarkullim e një versioni të ri, etj. Kjo vlen vetëm për shtesa të paraqitura."
 
-msgid "Required Add-ons"
-msgstr "Shtesa të Domosdoshme"
-
-msgid "Limit 3"
-msgstr "Kufiri 3"
-
-msgid "Add-on Flags"
-msgstr "Flamurka Shtese"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Këto shenja përdoren për të klasifikuar shtesat. Kjo vlen vetëm për shtesa të pranishme në lista."
-
-msgid "This add-on requires external software."
-msgstr "Kjo shtesë lyp software të jashtëm."
-
 msgid "View Source?"
 msgstr "Të shihet Burimi?"
 
@@ -3105,18 +3092,6 @@ msgstr "Statistikat mbi këtë shtesë mund të shihen publikisht."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Jo, statistikat mbi këtë shtesë s’mund të shihen publikisht."
 
-msgid "Upgrade SDK?"
-msgstr "Të përmirësohet SDK-ja?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Në u përzgjedhtë, do të përpiqemi ta përmirësojmë vetvetiu shtesën tuaj, kur të ketë një version të ri të SDK-së. Kjo vlen vetëm për shtesa të paraqitura."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Kjo shtesë do të përmirësohet vetvetiu sipas versionesh të rinj SDK-je Shtesash."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Jo, kjo shtesë do të përmirësohet dorazi."
-
 msgid "Universally unique identifier"
 msgstr "Identifikues universalisht unik"
 
@@ -3135,12 +3110,6 @@ msgid ""
 msgstr ""
 "Tabela është vendi për t’u dhënë shqyrtuesve të dhëna që lidhen me shtesën tuaj, cilido qoftë versioni. Përdoreni për të ofruar rrugë për testimin e shtesës, dhe çfarëdo të dhënash shtesë që mund "
 "të hyjnë në punë. Tabelën mund ta përpunojnë gjithashtu edhe shqyrtuesit."
-
-msgid "Remove this dependent add-on"
-msgstr "Hiqe këtë shtesë të varur"
-
-msgid "Enter the name of an add-on"
-msgstr "Jepni emrin e një shtese"
 
 msgid "Add-on Media for {0}"
 msgstr "Media Shtese për {0}"
@@ -3172,10 +3141,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "E përdorur te faqja e hollësive të shtesës."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "E përdorur te faqja e hollësive të shtesës."
+
 msgid "Upload a Custom Icon..."
 msgstr "Ngarkoni një Ikonë të Personalizuar…"
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Mbulohen PNG-të dhe JPG-të. Ikonat ripërmasohen në 64x64 piksel, po qenë më të mëdha."
 
 msgid "Screenshots"
@@ -3278,7 +3262,8 @@ msgstr "Ju lutemi, na tregoni përse po e fshini shtesën tuaj:"
 msgid "Actions"
 msgstr "Veprime"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Rimerr procesin e parashtrimit për këtë shtesë."
 
 msgid "Resume"
@@ -3291,16 +3276,18 @@ msgid "Delete"
 msgstr "Fshije"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Përpunoni hollësitë e paraqitjes së kësaj teme."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Ngarkoni një version të ri të kësaj shtese."
 
 msgid "New Version"
 msgstr "Version i Ri"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Statistika të përditshme mbi shkarkimet dhe përdoruesit."
 
 msgid "Statistics"
@@ -3313,22 +3300,25 @@ msgid "View Recent Changes"
 msgstr "Shihni Ndryshimet Së Fundi"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Përpunoni hollësitë e paraqitjes së kësaj teme."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Shihni popullaritetin e kësaj teme përgjatë kohës."
 
 msgid "View Statistics"
 msgstr "Shihni Statistika"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Ndryshoni pronarin e kësaj teme."
 
 msgid "Transfer Ownership"
 msgstr "Transferoni Pronësinë"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Fshije këtë temë."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3362,6 +3352,12 @@ msgstr "Përmbledhje:"
 
 msgid "required"
 msgstr "e domosdoshme"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL Shtese:"
@@ -3422,11 +3418,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Këto shënime do të jenë të dukshme vetëm për ju dhe shqyrtuesit tanë."
 
-msgid "Cancel and Disable Version"
-msgstr "Anuloje dhe Çaktivizoje Versionin"
-
 msgid "Submit Version"
 msgstr "Parashtrojeni Versionin"
+
+msgid "Cancel and Disable Version"
+msgstr "Anuloje dhe Çaktivizoje Versionin"
 
 msgid "Describe Version"
 msgstr "Përshkruajeni Versionin"
@@ -3634,14 +3630,14 @@ msgstr "opsionale"
 msgid "Browser preview"
 msgstr "Paraparje shfletuesi"
 
-msgid "Back"
-msgstr "Mbrapsht"
-
 msgid "Uploading Theme"
 msgstr "Ngarkim Teme"
 
 msgid "Finish Theme"
 msgstr "Përfundojeni Temën"
+
+msgid "Back"
+msgstr "Mbrapsht"
 
 msgid "API Credentials"
 msgstr "Kredenciale API"
@@ -3705,22 +3701,26 @@ msgstr "Krijuar:"
 msgid "Add-on Multi Process Status:"
 msgstr "Gjendje Multiprocesi e Shtesës:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Përputhshmëria e shtesës tuaj me Multi Process Firefox (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
 
 msgid "Listed Version:"
 msgstr "Version Publik:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Ky është versioni i shtesës suaj që do të instalohet nëse dikush klikon butonin e instalimit te addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Versioni Pasues Publik:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ky është versioni më i ri i ngarkuar, por ende nuk është efektiv te sajti."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3739,7 +3739,8 @@ msgstr "Nënshkruar për vetëshpërndarje. Për përditësimet kujdeseni ju."
 msgid "Latest Version:"
 msgstr "Version Më i Ri:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Ky është versioni më i ri i ngarkuar, i patreguar te sajti."
 
 msgid "Upload New Version"
@@ -3935,6 +3936,9 @@ msgstr "Dëshironi që zgjerimi juaj të shfaqet te %(amo_link_open)saddons.mozi
 msgid "Learn More"
 msgstr "Mësoni Më Tepër"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Shihni Tërë Parashtrimet"
@@ -4096,13 +4100,15 @@ msgstr "Përzgjidhni ngjyra për Temën tuaj."
 msgid "Foreground Text"
 msgstr "Tekst i Përparmë"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Kjo është ngjyra e tekstit të skedave."
 
 msgid "Background"
 msgstr "Sfond"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Kjo është ngjyra e skedave."
 
 msgid "Your Theme's Name"
@@ -4121,6 +4127,10 @@ msgstr "Temat e sfondit ju lejojnë të personalizoni lehtësisht pamjen e Firef
 
 msgid "Give your Theme a name."
 msgstr "Vërini Temës suaj një emër."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Një shpjegim i shkurtër i funksioneve bazë të temës suaj e që shfaqet në lista kërkimi dhe shfletimi, si edhe në krye të faqes së hollësive mbi temën suaj."
 
 #, python-format
 msgid ""
@@ -6833,6 +6843,13 @@ msgstr "{addon} :: Njoftime Abuzimesh"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Raporte Abuzimesh për {addon} dhe zhvilluesit e saj ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Shtesë"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

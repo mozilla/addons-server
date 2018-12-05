@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -463,9 +463,6 @@ msgstr "suoıssıɯɹǝԀ"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "sɹǝdoʅǝʌǝp sʇı ʎq ʅɐʇuǝɯıɹǝdxǝ sɐ pǝʞɹɐɯ uǝǝq sɐɥ uo-ppɐ sıɥ⊥"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr ":ʎʅɹǝdoɹd ʞɹoʍ oʇ suo-ppɐ ƃuıʍoʅʅoɟ ǝɥʇ sǝɹınbǝɹ uo-ppɐ sıɥ⊥"
 
 msgid "Average"
 msgstr "ǝƃɐɹǝʌ∀"
@@ -2458,9 +2455,6 @@ msgstr ".pǝpǝǝu sɐʍ ǝɔɹnos ou pǝʇɐɔıpuı noʎ ʇnq pǝpɐoʅdn ǝʅ
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ".({0} ǝʌɐɥ ʎǝɥʇ) sɹǝʇɔɐɹɐɥɔ 07 ʇsoɯ ʇɐ ǝɹɐ pǝuıqɯoɔ ʎɹɐɯɯns puɐ ǝɯɐu ǝɹnsuƎ"
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr ".suo-ppɐ pǝɹınbǝɹ 3 uɐɥʇ ǝɹoɯ ǝq ʇouuɐɔ ǝɹǝɥ⊥"
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2595,6 +2589,12 @@ msgstr ".ʅʅɐʇ sʅǝxıd {1} puɐ ǝpıʍ sʅǝxıd {0} ʇsɐǝʅ ʇɐ ǝq ʇ
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr ".3:4 oıʇɐɹ ǝɥʇ uı ǝq ʇsnɯ suoısuǝɯıp ǝƃɐɯI"
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr ".ʅʅɐʇ puɐ ǝpıʍ sʅǝxıd {0} ʇsɐǝʅ ʇɐ ǝq ʇsnɯ uoɔI"
+
+msgid "Icon must be square (same width and height)."
+msgstr ".(ʇɥƃıǝɥ puɐ ɥʇpıʍ ǝɯɐs) ǝɹɐnbs ǝq ʇsnɯ uoɔI"
 
 msgid "There was an error uploading your preview."
 msgstr ".ʍǝıʌǝɹd ɹnoʎ ƃuıpɐoʅdn ɹoɹɹǝ uɐ sɐʍ ǝɹǝɥ⊥"
@@ -2801,8 +2801,8 @@ msgstr ""
 "<a href=\"#\" class=\"close\">ǝɹouƃI</a> ɹo <a href=\"%(version_url)s\" class=\"button\">uoısɹǝɅ ʍǝN pɐoʅd∩</a> <a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s"
 "\">ʎʇıʅıqıʇɐdɯoↃ ǝʇɐpd∩</a>"
 
-msgid "View and update application compatibility ranges."
-msgstr ".sǝƃuɐɹ ʎʇıʅıqıʇɐdɯoɔ uoıʇɐɔıʅddɐ ǝʇɐpdn puɐ ʍǝıɅ"
+msgid "View and update application compatibility ranges"
+msgstr "sǝƃuɐɹ ʎʇıʅıqıʇɐdɯoɔ uoıʇɐɔıʅddɐ ǝʇɐpdn puɐ ʍǝıɅ"
 
 msgid "Compatibility"
 msgstr "ʎʇıʅıqıʇɐdɯoↃ"
@@ -3028,21 +3028,6 @@ msgstr ""
 ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .ɔʇǝ ´uoısɹǝʌ ʍǝu ɐ ɟo ǝʇɐp ǝsɐǝʅǝɹ pǝʇɐdıɔıʇuɐ ´sƃnq ʇɹodǝɹ oʇ ʍoɥ uo uoıʇɐɯɹoɟuı ´sƃnq ɹoɾɐɯ uʍouʞ ƃuıʇsıʅ ǝpnʅɔuı sǝsn uoɯɯoↃ .uoıʇdıɹɔsǝp ɹo ʎɹɐɯɯns uo-"
 "ppɐ ǝɥʇ oʇ ǝʅqɐɔıʅddɐ ʎʅıɹɐssǝɔǝu ʇ,usı ʇɐɥʇ ʍouʞ oʇ ʇuɐʍ ʎɐɯ sɹǝsn puǝ uoıʇɐɯɹoɟuı ʎu∀"
 
-msgid "Required Add-ons"
-msgstr "suo-pp∀ pǝɹınbǝᴚ"
-
-msgid "Limit 3"
-msgstr "3 ʇıɯı⅂"
-
-msgid "Add-on Flags"
-msgstr "sƃɐʅℲ uo-pp∀"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .suo-ppɐ ʎɟıssɐʅɔ oʇ pǝsn ǝɹɐ sƃɐʅɟ ǝsǝɥ⊥"
-
-msgid "This add-on requires external software."
-msgstr ".ǝɹɐʍʇɟos ʅɐuɹǝʇxǝ sǝɹınbǝɹ uo-ppɐ sıɥ⊥"
-
 msgid "View Source?"
 msgstr "¿ǝɔɹnoS ʍǝıɅ"
 
@@ -3067,18 +3052,6 @@ msgstr ".ǝʅqɐʍǝıʌ ʎʅɔıʅqnd ǝɹɐ sʇɐʇs s,uo-ppɐ sıɥ⊥"
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr ".ǝʅqɐʍǝıʌ ʎʅɔıʅqnd ʇou ǝɹɐ sʇɐʇs s,uo-ppɐ sıɥʇ ´oN"
 
-msgid "Upgrade SDK?"
-msgstr "¿ӼᗡS ǝpɐɹƃd∩"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ".suo-ppɐ pǝʇsıʅ ɹoɟ ʇuɐʌǝʅǝɹ ʎʅuo sı ʇI .pǝsɐǝʅǝɹ sı ӼᗡS ǝɥʇ ɟo uoısɹǝʌ ʍǝu ɐ uǝɥʍ uo-ppɐ ɹnoʎ ǝpɐɹƃdn ʎʅʅɐɔıʇɐɯoʇnɐ oʇ ʎɹʇ ʅʅıʍ ǝʍ ´pǝʇɔǝʅǝs ɟI"
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ".ӼᗡS uo-pp∀ ǝɥʇ ɟo suoısɹǝʌ ʍǝu oʇ pǝpɐɹƃdn ʎʅʅɐɔıʇɐɯoʇnɐ ǝq ʅʅıʍ uo-ppɐ sıɥ⊥"
-
-msgid "No, this add-on will be upgraded manually."
-msgstr ".ʎʅʅɐnuɐɯ pǝpɐɹƃdn ǝq ʅʅıʍ uo-ppɐ sıɥʇ ´oN"
-
 msgid "Universally unique identifier"
 msgstr "ɹǝıɟıʇuǝpı ǝnbıun ʎʅʅɐsɹǝʌıu∩"
 
@@ -3097,12 +3070,6 @@ msgid ""
 msgstr ""
 ".sɹǝʍǝıʌǝɹ ʎq ǝʅqɐʇıpǝ osʅɐ sı pɹɐoqǝʇıɥʍ sıɥ⊥ .dʅǝɥ ʎɐɯ ʇɐɥʇ uoıʇɐɯɹoɟuı ʅɐuoıʇıppɐ ʎuɐ puɐ ´uoppɐ ǝɥʇ ʇsǝʇ oʇ sʎɐʍ ǝpıʌoɹd oʇ ʇı ǝs∩ .sɹǝʍǝıʌǝɹ ǝɥʇ oʇ ´uoısɹǝʌ ǝɥʇ ɹǝʌǝʇɐɥʍ ´uoppɐ ɹnoʎ oʇ "
 "ʇuɐʌǝʅǝɹ uoıʇɐɯɹoɟuı ǝpıʌoɹd oʇ ǝɔɐʅd ǝɥʇ sı pɹɐoqǝʇıɥʍ ǝɥ⊥"
-
-msgid "Remove this dependent add-on"
-msgstr "uo-ppɐ ʇuǝpuǝdǝp sıɥʇ ǝʌoɯǝᴚ"
-
-msgid "Enter the name of an add-on"
-msgstr "uo-ppɐ uɐ ɟo ǝɯɐu ǝɥʇ ɹǝʇuƎ"
 
 msgid "Add-on Media for {0}"
 msgstr "{0} ɹoɟ ɐıpǝW uo-pp∀"
@@ -3134,11 +3101,24 @@ msgstr "xd46x46"
 msgid "Used in add-on detail pages."
 msgstr ".sǝƃɐd ʅıɐʇǝp uo-ppɐ uı pǝs∩"
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "xd821x821"
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr ".sǝƃɐd ʅıɐʇǝp uo-ppɐ ǝɹnʇnɟ uı pɹɐpuɐʇs ǝɥʇ ǝq ʅʅıＭ"
+
 msgid "Upload a Custom Icon..."
 msgstr "...uoɔI ɯoʇsnↃ ɐ pɐoʅd∩"
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr ".ɹǝƃɹɐʅ ɟı sʅǝxıd 46x46 oʇ pǝzısǝɹ suoɔI .pǝʇɹoddns ⅁Ԁſ puɐ ⅁NԀ"
+msgid "PNG and JPG supported."
+msgstr ".pǝʇɹoddns ⅁Ԁſ puɐ ⅁NԀ"
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ".sʅǝxıd 821x821 ɟo ǝzıs ɯnɯıuıɯ ɐ puɐ ǝɹɐnbs ǝq ʇsnɯ suoɔI"
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr ".ɹǝƃɹɐʅ ɟı sʅǝxıd 821x821 oʇ pǝzısǝɹ ǝq ʅʅıʍ suoɔI"
 
 msgid "Screenshots"
 msgstr "sʇoɥsuǝǝɹɔS"
@@ -3240,8 +3220,8 @@ msgstr ":uo-ppɐ ɹnoʎ ƃuıʇǝʅǝp ǝɹɐ noʎ ʎɥʍ sn ʅʅǝʇ ǝsɐǝʅ�
 msgid "Actions"
 msgstr "suoıʇɔ∀"
 
-msgid "Resume the submission process for this add-on."
-msgstr ".uo-ppɐ sıɥʇ ɹoɟ ssǝɔoɹd uoıssıɯqns ǝɥʇ ǝɯnsǝᴚ"
+msgid "Resume the submission process for this add-on"
+msgstr "uo-ppɐ sıɥʇ ɹoɟ ssǝɔoɹd uoıssıɯqns ǝɥʇ ǝɯnsǝᴚ"
 
 msgid "Resume"
 msgstr "ǝɯnsǝᴚ"
@@ -3252,17 +3232,17 @@ msgstr ".uo-ppɐ sıɥʇ ǝʇǝʅǝᗡ"
 msgid "Delete"
 msgstr "ǝʇǝʅǝᗡ"
 
-msgid "Edit details on this add-on's product page."
-msgstr ".ǝƃɐd ʇɔnpoɹd s,uo-ppɐ sıɥʇ uo sʅıɐʇǝp ʇıpƎ"
+msgid "Edit details on this add-on's product page"
+msgstr "ǝƃɐd ʇɔnpoɹd s,uo-ppɐ sıɥʇ uo sʅıɐʇǝp ʇıpƎ"
 
-msgid "Upload a new version of this add-on."
-msgstr ".uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ʍǝu ɐ pɐoʅd∩"
+msgid "Upload a new version of this add-on"
+msgstr "uo-ppɐ sıɥʇ ɟo uoısɹǝʌ ʍǝu ɐ pɐoʅd∩"
 
 msgid "New Version"
 msgstr "uoısɹǝɅ ʍǝN"
 
-msgid "Daily statistics on downloads and users."
-msgstr ".sɹǝsn puɐ spɐoʅuʍop uo sɔıʇsıʇɐʇs ʎʅıɐᗡ"
+msgid "Daily statistics on downloads and users"
+msgstr "sɹǝsn puɐ spɐoʅuʍop uo sɔıʇsıʇɐʇs ʎʅıɐᗡ"
 
 msgid "Statistics"
 msgstr "sɔıʇsıʇɐʇS"
@@ -3273,23 +3253,23 @@ msgstr "suoısɹǝɅ ⅋ snʇɐʇS ǝƃɐuɐW"
 msgid "View Recent Changes"
 msgstr "sǝƃuɐɥↃ ʇuǝɔǝᴚ ʍǝıɅ"
 
-msgid "Edit details on this theme's product page."
-msgstr ".ǝƃɐd ʇɔnpoɹd s,ǝɯǝɥʇ sıɥʇ uo sʅıɐʇǝp ʇıpƎ"
+msgid "Edit details on this theme's product page"
+msgstr "ǝƃɐd ʇɔnpoɹd s,ǝɯǝɥʇ sıɥʇ uo sʅıɐʇǝp ʇıpƎ"
 
-msgid "View the popularity of this theme over time."
-msgstr ".ǝɯıʇ ɹǝʌo ǝɯǝɥʇ sıɥʇ ɟo ʎʇıɹɐʅndod ǝɥʇ ʍǝıɅ"
+msgid "View the popularity of this theme over time"
+msgstr "ǝɯıʇ ɹǝʌo ǝɯǝɥʇ sıɥʇ ɟo ʎʇıɹɐʅndod ǝɥʇ ʍǝıɅ"
 
 msgid "View Statistics"
 msgstr "sɔıʇsıʇɐʇS ʍǝıɅ"
 
-msgid "Change the owner of this theme."
-msgstr ".ǝɯǝɥʇ sıɥʇ ɟo ɹǝuʍo ǝɥʇ ǝƃuɐɥↃ"
+msgid "Change the owner of this theme"
+msgstr "ǝɯǝɥʇ sıɥʇ ɟo ɹǝuʍo ǝɥʇ ǝƃuɐɥↃ"
 
 msgid "Transfer Ownership"
 msgstr "dıɥsɹǝuʍO ɹǝɟsuɐɹ⊥"
 
-msgid "Delete this theme."
-msgstr ".ǝɯǝɥʇ sıɥʇ ǝʇǝʅǝᗡ"
+msgid "Delete this theme"
+msgstr "ǝɯǝɥʇ sıɥʇ ǝʇǝʅǝᗡ"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ".uoıʇɐɔıʅqnd ɹoɟ pǝʇʇıɯqns ǝq uɐɔ ʇı ǝɹoɟǝq uoıʇɐɯɹoɟuı pǝɹınbǝɹ ǝɯos ƃuıssıɯ sı uo-ppɐ sıɥ⊥"
@@ -3321,6 +3301,14 @@ msgstr ":ʎɹɐɯɯnS puɐ ǝɯɐN"
 
 msgid "required"
 msgstr "pǝɹınbǝɹ"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
+".ǝʇǝʅdɯoɔ sı ssǝɔoɹd uoıssıɯqns ǝɥʇ ɹǝʇɟɐ ǝƃɐԀ ʇɔnpoɹԀ ʇıpƎ oʇ oƃ ǝsǝɥʇ ʇıpǝ o⊥  .sɹǝʇɔɐɹɐɥɔ %(max_length)s ɟo ʇıɯıʅ ǝɥʇ ɹǝpun ʇıɟ oʇ pǝddoɹɔ ʎʅʅɐɔıʇɐɯoʇnɐ ǝq ʅʅıʍ ʇɐɥʇ sǝʅɐɔoʅ ɹǝɥʇo uı sǝnʅɐʌ "
+"ʎɹɐɯɯns/ǝɯɐu ǝʌɐɥ noʎ :ƃuıuɹɐＭ"
 
 msgid "Add-on URL:"
 msgstr ":⅂ᴚ∩ uo-pp∀"
@@ -3381,11 +3369,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ".sɹǝʍǝıʌǝɹ ɹno puɐ noʎ oʇ ǝʅqısıʌ ǝq ʎʅuo ʅʅıʍ sǝʇou ǝsǝɥ⊥"
 
-msgid "Cancel and Disable Version"
-msgstr "uoısɹǝɅ ǝʅqɐsıᗡ puɐ ʅǝɔuɐↃ"
-
 msgid "Submit Version"
 msgstr "uoısɹǝɅ ʇıɯqnS"
+
+msgid "Cancel and Disable Version"
+msgstr "uoısɹǝɅ ǝʅqɐsıᗡ puɐ ʅǝɔuɐↃ"
 
 msgid "Describe Version"
 msgstr "uoısɹǝɅ ǝqıɹɔsǝᗡ"
@@ -3591,14 +3579,14 @@ msgstr "ʅɐuoıʇdo"
 msgid "Browser preview"
 msgstr "ʍǝıʌǝɹd ɹǝsʍoɹԐ"
 
-msgid "Back"
-msgstr "ʞɔɐԐ"
-
 msgid "Uploading Theme"
 msgstr "ǝɯǝɥ⊥ ƃuıpɐoʅd∩"
 
 msgid "Finish Theme"
 msgstr "ǝɯǝɥ⊥ ɥsıuıℲ"
+
+msgid "Back"
+msgstr "ʞɔɐԐ"
 
 msgid "API Credentials"
 msgstr "sʅɐıʇuǝpǝɹↃ IԀ∀"
@@ -3662,23 +3650,23 @@ msgstr ":pǝʇɐǝɹↃ"
 msgid "Add-on Multi Process Status:"
 msgstr ":snʇɐʇS ssǝɔoɹԀ ıʇʅnW uo-pp∀"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr ".(s01ǝ) xoɟǝɹıℲ ssǝɔoɹԀ ıʇʅnW ɥʇıʍ ʎʇıʅıqıʇɐdɯoɔ uo-ppɐ ɹno⅄"
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
+msgstr "(s01ǝ) xoɟǝɹıℲ ssǝɔoɹԀ ıʇʅnW ɥʇıʍ ʎʇıʅıqıʇɐdɯoɔ uo-ppɐ ɹno⅄"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ".ǝʇıs sıɥʇ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpdn ɔıʇɐɯoʇn∀ .ʍǝıʌǝɹ ǝpoɔ ƃuıssɐd ɹǝʇɟɐ ǝʇıs sıɥʇ uo pǝʇsı⅂"
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr "ǝʇıs sıɥʇ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpdn ɔıʇɐɯoʇn∀ .ʍǝıʌǝɹ ǝpoɔ ƃuıssɐd ɹǝʇɟɐ ǝʇıs sıɥʇ uo pǝʇsı⅂"
 
 msgid "Listed Version:"
 msgstr ":uoısɹǝɅ pǝʇsı⅂"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr ".ƃɹo.ɐʅʅızoɯ.suoppɐ uo uoʇʇnq ʅʅɐʇsuI ǝɥʇ sʞɔıʅɔ ǝuoǝɯos ɟı pǝʅʅɐʇsuı ǝq ʅʅıʍ ʇɐɥʇ uo-ppɐ ɹnoʎ ɟo uoısɹǝʌ ǝɥʇ sı sıɥ⊥"
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr "ƃɹo.ɐʅʅızoɯ.suoppɐ uo uoʇʇnq ʅʅɐʇsuI ǝɥʇ sʞɔıʅɔ ǝuoǝɯos ɟı pǝʅʅɐʇsuı ǝq ʅʅıʍ ʇɐɥʇ uo-ppɐ ɹnoʎ ɟo uoısɹǝʌ ǝɥʇ sı sıɥ⊥"
 
 msgid "Next Listed Version:"
 msgstr ":uoısɹǝɅ pǝʇsı⅂ ʇxǝN"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ".ʇǝʎ ǝʇıs ǝɥʇ uo ǝʌıʅ ʇ’usı ʇı ɹǝʌǝʍoɥ ´uoısɹǝʌ pǝpɐoʅdn ʇsǝʍǝu ǝɥʇ sı sıɥ⊥"
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr "ʇǝʎ ǝʇıs ǝɥʇ uo ǝʌıʅ ʇ’usı ʇı ɹǝʌǝʍoɥ ´uoısɹǝʌ pǝpɐoʅdn ʇsǝʍǝu ǝɥʇ sı sıɥ⊥"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "ɹǝpɹo uı ʎʅʇɔıɹʇs pǝʍǝıʌǝɹ ʇou ǝɹɐ sǝnǝnÒ"
@@ -3696,8 +3684,8 @@ msgstr ".noʎ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpd∩ .uoıʇnqıɹʇsıp-ɟʅǝs ɹ
 msgid "Latest Version:"
 msgstr ":uoısɹǝɅ ʇsǝʇɐ⅂"
 
-msgid "This is the newest uploaded unlisted version."
-msgstr ".uoısɹǝʌ pǝʇsıʅun pǝpɐoʅdn ʇsǝʍǝu ǝɥʇ sı sıɥ⊥"
+msgid "This is the newest uploaded unlisted version"
+msgstr "uoısɹǝʌ pǝʇsıʅun pǝpɐoʅdn ʇsǝʍǝu ǝɥʇ sı sıɥ⊥"
 
 msgid "Upload New Version"
 msgstr "uoısɹǝɅ ʍǝN pɐoʅd∩"
@@ -3886,6 +3874,9 @@ msgstr ".ʍouʞ oʇ pǝǝu noʎ ʇɐɥʍ noʎ ʅʅǝʇ ʅʅıʍ sǝıɔıʅod su
 msgid "Learn More"
 msgstr "ǝɹoW uɹɐǝ⅂"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ".ǝʇıs sıɥʇ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpdn ɔıʇɐɯoʇn∀ .ʍǝıʌǝɹ ǝpoɔ ƃuıssɐd ɹǝʇɟɐ ǝʇıs sıɥʇ uo pǝʇsı⅂"
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "suoıssıɯqnS ʅʅ∀ ʍǝıɅ"
@@ -4045,14 +4036,14 @@ msgstr ".ǝɯǝɥ⊥ ɹnoʎ ɹoɟ sɹoʅoɔ ʇɔǝʅǝS"
 msgid "Foreground Text"
 msgstr "ʇxǝ⊥ punoɹƃǝɹoℲ"
 
-msgid "This is the color of the tab text."
-msgstr ".ʇxǝʇ qɐʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥʇ sı sıɥ⊥"
+msgid "This is the color of the tab text"
+msgstr "ʇxǝʇ qɐʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥʇ sı sıɥ⊥"
 
 msgid "Background"
 msgstr "punoɹƃʞɔɐԐ"
 
-msgid "This is the color of the tabs."
-msgstr ".sqɐʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥʇ sı sıɥ⊥"
+msgid "This is the color of the tabs"
+msgstr "sqɐʇ ǝɥʇ ɟo ɹoʅoɔ ǝɥʇ sı sıɥ⊥"
 
 msgid "Your Theme's Name"
 msgstr "ǝɯɐN s,ǝɯǝɥ⊥ ɹno⅄"
@@ -4070,6 +4061,9 @@ msgstr "¡<a href=\"%(submit_url)s\">ǝuo ǝʇɐǝɹɔ oʇ ʍoɥ uɹɐǝʅ</a> �
 
 msgid "Give your Theme a name."
 msgstr ".ǝɯɐu ɐ ǝɯǝɥ⊥ ɹnoʎ ǝʌı⅁"
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "ǝƃɐd sʅıɐʇǝp s,ǝɯǝɥʇ ɹnoʎ ɟo doʇ ǝɥʇ ʇɐ sɐ ʅʅǝʍ sɐ ´sƃuıʇsıʅ ǝsʍoɹq puɐ ɥɔɹɐǝs uı pǝʎɐʅdsıp sı ʇɐɥʇ ʎʇıʅɐuoıʇɔunɟ ɔısɐq s,ǝɯǝɥʇ ɹnoʎ ɟo uoıʇɐuɐʅdxǝ ʇɹoɥs ∀"
 
 #, python-format
 msgid ""
@@ -6759,6 +6753,12 @@ msgstr "sʇɹodǝᴚ ǝsnq∀ :: {addon}"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "({num}) sɹǝdoʅǝʌǝp sʇı puɐ {addon} ɹoɟ sʇɹodǝᴚ ǝsnq∀"
+
+msgid "Add-on ID"
+msgstr "ᗡI uo-pp∀"
+
+msgid "Internal AMO ID"
+msgstr "ᗡI OW∀ ʅɐuɹǝʇuI"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

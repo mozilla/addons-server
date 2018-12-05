@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-10-30 11:12+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -484,9 +484,6 @@ msgstr "Дозволи"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Цей додаток був позначений розробниками як експериментальний"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Для належної роботи цього додатка необхідні наступні додатки:"
 
 msgid "Average"
 msgstr "Середнє"
@@ -2492,9 +2489,6 @@ msgstr "Вихідний файл вивантажено, але ви зазна
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Кількість необхідних додатків не може перевищувати 3."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2634,6 +2628,13 @@ msgstr "Зображення повинно бути точно {0} піксел
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Зображення повинні бути у форматі PNG чи JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Зображення повинно бути точно {0} пікселів завширшки та {1} пікселів заввишки."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "При вивантаженні вашого попереднього перегляду сталася помилка."
@@ -2840,7 +2841,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Оновити сумісність</a> <a href=\"%(version_url)s\" class=\"button\">Завантажити нову версію</a> або <a href=\"#\" "
 "class=\"close\">Ігнорувати</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Переглянути та оновити діапазони сумісності додатків."
 
 msgid "Compatibility"
@@ -3073,23 +3075,6 @@ msgstr ""
 "Будь-яка інформація, яку можливо захочуть дізнатися кінцеві користувачі, але якій не місце в зведенні або описі додатка. Зазвичай використовується для відомостей про серйозні помилки, про те як "
 "повідомляти про помилки, передбачувану дату випуску нової версії і т.д. Це стосується тільки додатків, що знаходяться в списку."
 
-msgid "Required Add-ons"
-msgstr "Необхідні додатки"
-
-msgid "Limit 3"
-msgstr "Обмеження 3"
-
-msgid "Add-on Flags"
-msgstr "Прапорці додатка"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Ці прапорці використовуються для класифікації додатків.\n"
-"                        Це стосується лише опублікованих додатків."
-
-msgid "This add-on requires external software."
-msgstr "Цей додаток потребує сторонню програму."
-
 msgid "View Source?"
 msgstr "Переглянути програмний код?"
 
@@ -3119,18 +3104,6 @@ msgstr "Статистика цього додатка є загальнодос
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Статистика цього додатка не є загальнодоступною."
 
-msgid "Upgrade SDK?"
-msgstr "Оновити SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Якщо вибрано, ми постараємося автоматично оновити ваш додаток, коли буде випущена нова версія SDK. Це стосується тільки додатків, що знаходяться в списку."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Цей додаток буде автоматично оновлений до нових версій SDK додатка."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Оновлення цього додатка буде проводитись вручну."
-
 msgid "Universally unique identifier"
 msgstr "Універсальний унікальний ідентифікатор"
 
@@ -3149,12 +3122,6 @@ msgid ""
 msgstr ""
 "Панель огляду є місцем для надання редактору інформації стосовно вашого додатка, незалежно від версії. Використовуйте її, щоб вказати способи тестування додатка, а також для розміщення будь-якої "
 "додаткової інформації, яка може допомогти. Ця панель також доступна для змін рецензентам."
-
-msgid "Remove this dependent add-on"
-msgstr "Видалити цей залежний додаток"
-
-msgid "Enter the name of an add-on"
-msgstr "Введіть назву додатка"
 
 msgid "Add-on Media for {0}"
 msgstr "Медіа додаток для {0}"
@@ -3188,10 +3155,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Використовується на сторінках опису додатка."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Використовується на сторінках опису додатка."
+
 msgid "Upload a Custom Icon..."
 msgstr "Вивантажити власну іконку..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Підтримуються формати PNG та JPG. Великі зображення будуть зменшені до розміру 64х64 пікселів."
 
 msgid "Screenshots"
@@ -3294,7 +3276,8 @@ msgstr "Будь ласка, розкажіть нам, чому ви видал
 msgid "Actions"
 msgstr "Дії"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Відновити процес подання для цього додатка."
 
 msgid "Resume"
@@ -3307,16 +3290,18 @@ msgid "Delete"
 msgstr "Вилучити"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Редагувати інформацію про сторінку цієї теми."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Вивантажити нову версію цього додатка."
 
 msgid "New Version"
 msgstr "Нова версія"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Щоденна статистика завантажень та користувачів."
 
 msgid "Statistics"
@@ -3329,22 +3314,25 @@ msgid "View Recent Changes"
 msgstr "Переглянути нещодавні зміни"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Редагувати інформацію про сторінку цієї теми."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Переглянути популярність цієї теми протягом часу."
 
 msgid "View Statistics"
 msgstr "Переглянути статистику"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Змінити власника цієї теми."
 
 msgid "Transfer Ownership"
 msgstr "Передача власності"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Видалити цю тему."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3379,6 +3367,12 @@ msgstr "Стисло:"
 
 msgid "required"
 msgstr "потрібно"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL додатка:"
@@ -3441,11 +3435,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ці примітки зможуть бачити лише ви і наші редактори."
 
-msgid "Cancel and Disable Version"
-msgstr "Скасувати та вимкнути версію"
-
 msgid "Submit Version"
 msgstr "Надіслати версію"
+
+msgid "Cancel and Disable Version"
+msgstr "Скасувати та вимкнути версію"
 
 msgid "Describe Version"
 msgstr "Описати версію"
@@ -3653,14 +3647,14 @@ msgstr "необов’язково"
 msgid "Browser preview"
 msgstr "Перегляд в браузері"
 
-msgid "Back"
-msgstr "Назад"
-
 msgid "Uploading Theme"
 msgstr "Вивантаження теми"
 
 msgid "Finish Theme"
 msgstr "Завершити тему"
+
+msgid "Back"
+msgstr "Назад"
 
 msgid "API Credentials"
 msgstr "Облікові дані API"
@@ -3726,22 +3720,26 @@ msgstr "Створено:"
 msgid "Add-on Multi Process Status:"
 msgstr "Багатопроцесовість додатка:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Сумісність вашого додатка з багатопроцесовим Firefox (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Опубліковано на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом."
 
 msgid "Listed Version:"
 msgstr "Опублікована версія:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Це версія вашого додатка, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Наступна опублікована версія:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Це найновіша завантажена версія, проте її ще немає на сайті."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3760,7 +3758,8 @@ msgstr "Підписано для власного розповсюдження.
 msgid "Latest Version:"
 msgstr "Остання версія:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Це найновіша завантажена неопублікована версія."
 
 msgid "Upload New Version"
@@ -3956,6 +3955,9 @@ msgstr "Хочете, щоб ваше розширення потрапило д
 msgid "Learn More"
 msgstr "Дізнатись більше"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Опубліковано на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Переглянути всі подання"
@@ -4116,13 +4118,15 @@ msgstr "Оберіть кольори для вашої теми."
 msgid "Foreground Text"
 msgstr "Текст переднього тла"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Це колір тексту вкладки."
 
 msgid "Background"
 msgstr "Тло"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Це колір вкладок."
 
 msgid "Your Theme's Name"
@@ -4141,6 +4145,10 @@ msgstr "Фонові теми дозволяють легко персоналі
 
 msgid "Give your Theme a name."
 msgstr "Дайте назву своїй темі."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Коротке пояснення основних функцій вашої теми, які відображаються в списках пошуку та перегляду, а також у верхній частині сторінки вашої теми."
 
 #, python-format
 msgid ""
@@ -6846,6 +6854,13 @@ msgstr "{addon} :: Скарги про зловживання"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Звіти про зловживання для {addon} і його розробників ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Додаток"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

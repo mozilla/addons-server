@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-12-04 16:47+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -461,9 +461,6 @@ msgstr "అనుమతులు"
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "ఈ పొడగింతను దాని డెవలపర్లు ప్రయోగాత్మకమైనదిగా గుర్తించారు"
 
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "ఈ పొడగింత సక్రమంగా పనిచేయడానికి ఈ క్రింది పొడగింతలు కావాలి:"
-
 msgid "Average"
 msgstr "సగటు"
 
@@ -559,8 +556,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr ""
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 
 #. This is a header of a list of things the add-on can do.
@@ -764,8 +761,8 @@ msgstr "కనబడలేదు"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
@@ -948,8 +945,8 @@ msgstr "వెర్షన్లు"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
 msgid "Only I can view this collection."
@@ -1105,8 +1102,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 
 msgid "My favorite add-ons"
@@ -1287,8 +1284,8 @@ msgstr "భాష ప్యాక్ను స్థాపించండి"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 
 msgid "Available in your locale"
@@ -1431,9 +1428,7 @@ msgstr "అన్ని అగ్ర రేటింగ్లను వీక్
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"మీ విహారిణిని వ్యక్తిగతీకరించుకోడానికి 300,000 పైగా డిజైన్లు! వీటిని ప్రయత్నించి చూడడానికి మీ మౌస్‌ని ఒక నేపధ్య అలంకారంపైకి జరపండి. <a href=\"%(url)s\" class=\"more-info\">అన్వేషించడం "
-"ప్రారంభించండి</a>"
+msgstr "మీ విహారిణిని వ్యక్తిగతీకరించుకోడానికి 300,000 పైగా డిజైన్లు! వీటిని ప్రయత్నించి చూడడానికి మీ మౌస్‌ని ఒక నేపధ్య అలంకారంపైకి జరపండి. <a href=\"%(url)s\" class=\"more-info\">అన్వేషించడం ప్రారంభించండి</a>"
 
 msgid "Want more personalization?"
 msgstr "మరింత వ్యక్తిగతీకరణ కావాలి?"
@@ -2437,15 +2432,13 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "3 కంటే ఎక్కువ పొడగింతలు అవసరం ఉండవు."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
@@ -2573,6 +2566,13 @@ msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
 
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, {1} పిక్సెళ్ళ పొడవు ఉండాలి."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
+
 msgid "There was an error uploading your preview."
 msgstr "మీ మునుజూపును ఎక్కించడంలో పొరపాటు జరిగింది."
 
@@ -2646,8 +2646,8 @@ msgid "API key revoked"
 msgstr "API కీ ఉపసంహరించబడింది"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 
 msgid "Firefox Add-on Distribution Agreement"
@@ -2767,10 +2767,12 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 
-msgid "View and update application compatibility ranges."
+msgid "View and update application compatibility ranges"
 msgstr ""
 
 msgid "Compatibility"
@@ -2942,7 +2944,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr ""
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 
 #, python-format
@@ -2953,8 +2956,8 @@ msgid "Email"
 msgstr "ఇమెయిల్"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 
 msgid "Website"
@@ -2983,21 +2986,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "అవసరమైన పొడిగింత"
-
-msgid "Limit 3"
-msgstr "పరిమితి 3"
-
-msgid "Add-on Flags"
-msgstr ""
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on requires external software."
-msgstr "ఈ పొడగింతకు బయటి సాఫ్ట్‌వేరు కావాలి."
-
 msgid "View Source?"
 msgstr "మూలాన్ని వీక్షించండి?"
 
@@ -3022,18 +3010,6 @@ msgstr "ఈ పొడగింత గణాంకాలు బహిరంగం
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "లేదు, ఈ పొడగింత గణాంకాలు బహిరంగంగా చూడలేము."
 
-msgid "Upgrade SDK?"
-msgstr "SDKను నవీకరించాలా?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
-
-msgid "No, this add-on will be upgraded manually."
-msgstr ""
-
 msgid "Universally unique identifier"
 msgstr ""
 
@@ -3050,12 +3026,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr ""
-
-msgid "Enter the name of an add-on"
-msgstr "పొడగింత పేరును ఇవ్వండి"
 
 msgid "Add-on Media for {0}"
 msgstr ""
@@ -3085,10 +3055,23 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr ""
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr ""
+
 msgid "Upload a Custom Icon..."
 msgstr ""
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
@@ -3189,7 +3172,7 @@ msgstr ""
 msgid "Actions"
 msgstr "చర్యలు"
 
-msgid "Resume the submission process for this add-on."
+msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
@@ -3202,17 +3185,19 @@ msgid "Delete"
 msgstr "తొలగించు"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "ఈ అలంకారాని యొక్క జాబితా గురించి వివరాలను సవరించండి."
 
-msgid "Upload a new version of this add-on."
-msgstr ""
+#, fuzzy
+msgid "Upload a new version of this add-on"
+msgstr "ఈ పొడిగింత యొక్క అన్ని సమీక్షలను చూడండి"
 
 msgid "New Version"
 msgstr "కొత్త వెర్షన్"
 
-msgid "Daily statistics on downloads and users."
-msgstr ""
+#, fuzzy
+msgid "Daily statistics on downloads and users"
+msgstr "వినియోగదారుల గణాంకాలను వీక్షించండి"
 
 msgid "Statistics"
 msgstr "గణాంకాలు"
@@ -3224,22 +3209,25 @@ msgid "View Recent Changes"
 msgstr "ఇటీవలి నవీకరణలను దర్శించు"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "ఈ అలంకారాని యొక్క జాబితా గురించి వివరాలను సవరించండి."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "కాలక్రమేణా ఈ అలంకారానికి యొక్క జనాదరణను వీక్షించండి."
 
 msgid "View Statistics"
 msgstr "గణాంకాలు వీక్షించు"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "ఈ అంలంకారపు యజమానిని మార్చండి."
 
 msgid "Transfer Ownership"
 msgstr "యాజమాన్యాన్ని బదిలీ చేయండి"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "ఈ అలంకారాన్ని తొలగించు."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3272,6 +3260,12 @@ msgstr "పేరు, సారాంశం:"
 
 msgid "required"
 msgstr "కావలసినవి"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "పొడిగింత URL:"
@@ -3330,11 +3324,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "ఈ గమనికలు మీకు, మా సమీక్షకులకు మాత్రమే కనిపిస్తాయి."
 
-msgid "Cancel and Disable Version"
-msgstr "రద్దుచేసి వెర్షనును అచేతనించు"
-
 msgid "Submit Version"
 msgstr "వెర్షనును సమర్పించు"
+
+msgid "Cancel and Disable Version"
+msgstr "రద్దుచేసి వెర్షనును అచేతనించు"
 
 msgid "Describe Version"
 msgstr "వెర్షనుని వివరించండి"
@@ -3450,8 +3444,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -3539,14 +3533,14 @@ msgstr "ఐచ్ఛికం"
 msgid "Browser preview"
 msgstr "విహారిణి మునుజూపు"
 
-msgid "Back"
-msgstr "వెనుకకు"
-
 msgid "Uploading Theme"
 msgstr "అలంకారాన్ని ఎక్కిస్తున్నాం"
 
 msgid "Finish Theme"
 msgstr "అలంకారాన్ని ముగించు"
+
+msgid "Back"
+msgstr "వెనుకకు"
 
 msgid "API Credentials"
 msgstr ""
@@ -3566,8 +3560,8 @@ msgstr "JWT రహస్యము"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 
 msgid "You don't have any API credentials."
@@ -3608,22 +3602,22 @@ msgstr "సృష్టించబడింది:"
 msgid "Add-on Multi Process Status:"
 msgstr ""
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr ""
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 msgid "Listed Version:"
 msgstr "జాబితా చేసిన వెర్షను:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
 msgid "Next Listed Version:"
 msgstr "తదుపరి జాబితా చేసిన వెర్షను:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
@@ -3642,7 +3636,7 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "సరికొత్త వెర్షను:"
 
-msgid "This is the newest uploaded unlisted version."
+msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
@@ -3805,8 +3799,8 @@ msgstr ""
 
 #, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
 
 msgid "View Resources for Publishers"
@@ -3827,6 +3821,9 @@ msgstr ""
 
 msgid "Learn More"
 msgstr "ఇంకా తెలుసుకోండి"
+
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3865,8 +3862,8 @@ msgstr "Firefox‌ను తీర్చిదిద్దుకోండి"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 
 msgid "Learn How to Make an Add-on"
@@ -3984,13 +3981,15 @@ msgstr "మీ అలంకారానికి రంగులను ఎంచ
 msgid "Foreground Text"
 msgstr "మునుతలపు పాఠ్యం"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "ఇది ట్యాబు పాఠ్యపు రంగు."
 
 msgid "Background"
 msgstr "వెనుతలం"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "ఇది ట్యాబ్ల రంగు."
 
 msgid "Your Theme's Name"
@@ -4010,10 +4009,13 @@ msgstr ""
 msgid "Give your Theme a name."
 msgstr "మీ అలంకారానికి ఒక పేరు ఇవ్వండి."
 
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr ""
+
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 
 msgid "Submit Theme"
@@ -5937,7 +5939,8 @@ msgid ""
 msgstr ""
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
@@ -5980,8 +5983,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "సమీక్షల గురించి తరచూ అడిగే ప్రశ్నలు"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 
 msgid "Do:"
@@ -6226,10 +6229,10 @@ msgstr "{0} కోసం సమీక్షను చేర్చండి"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 
 msgid "Reply to review by {0}"
@@ -6671,6 +6674,13 @@ msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: దుర్వినియోగ నివేదికలు"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "పొడగింత"
+
+msgid "Internal AMO ID"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
@@ -7522,11 +7532,11 @@ msgstr ""
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 
 msgid "Add-on Status by Date"

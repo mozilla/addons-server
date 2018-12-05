@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-08-25 19:09+0000\n"
 "Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -465,9 +465,6 @@ msgstr "अनुमति‌"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "इस ऐड-ऑन को इसके डेवलपर्स द्वारा प्रयोगात्मक के रूप में चिह्नित किया गया है"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "इस ऐड-ऑन को ठीक से काम करने हेतु निम्नलिखित ऐड-ऑन की आवश्यकता है:"
 
 msgid "Average"
 msgstr "औसत"
@@ -2455,9 +2452,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr ""
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2590,6 +2584,12 @@ msgstr ""
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "चित्र या तो PNG या JPG होनी चाहिए।"
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr ""
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr ""
@@ -2791,7 +2791,8 @@ msgid ""
 "\"close\">Ignore</a>"
 msgstr ""
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "अनुप्रयोग संगतता विस्तार देखें और अद्यतन करें।"
 
 msgid "Compatibility"
@@ -3010,21 +3011,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "आवश्यक ऐड-ऑन्स"
-
-msgid "Limit 3"
-msgstr "सीमा 3"
-
-msgid "Add-on Flags"
-msgstr "ऐड-ऑन ध्वज"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on requires external software."
-msgstr "इस ऐड-ऑन को बाहरी सॉफ़्टवेयर की आवश्यकता है।"
-
 msgid "View Source?"
 msgstr "स्रोत देखें?"
 
@@ -3049,18 +3035,6 @@ msgstr ""
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr ""
 
-msgid "Upgrade SDK?"
-msgstr ""
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
-
-msgid "No, this add-on will be upgraded manually."
-msgstr ""
-
 msgid "Universally unique identifier"
 msgstr "सार्वभौमिक अद्वितीय पहचानकर्ता"
 
@@ -3077,12 +3051,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr "इस आश्रित ऐड-ऑन को हटा दें"
-
-msgid "Enter the name of an add-on"
-msgstr "ऐड-ऑन का नाम दर्ज करें"
 
 msgid "Add-on Media for {0}"
 msgstr "{0} के लिए ऐड-ऑन मीडिया"
@@ -3112,10 +3080,23 @@ msgstr ""
 msgid "Used in add-on detail pages."
 msgstr ""
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr ""
+
 msgid "Upload a Custom Icon..."
 msgstr ""
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
 
 msgid "Screenshots"
@@ -3216,7 +3197,7 @@ msgstr ""
 msgid "Actions"
 msgstr ""
 
-msgid "Resume the submission process for this add-on."
+msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
@@ -3228,16 +3209,17 @@ msgstr ""
 msgid "Delete"
 msgstr "हटाएँ"
 
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr ""
 
-msgid "Upload a new version of this add-on."
-msgstr ""
+#, fuzzy
+msgid "Upload a new version of this add-on"
+msgstr "इस ऐड-ऑन की सभी समीक्षाएं देखें"
 
 msgid "New Version"
 msgstr "नया संस्करण"
 
-msgid "Daily statistics on downloads and users."
+msgid "Daily statistics on downloads and users"
 msgstr ""
 
 msgid "Statistics"
@@ -3249,22 +3231,23 @@ msgstr ""
 msgid "View Recent Changes"
 msgstr "हालिया परिवर्तन देखें"
 
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr ""
 
-msgid "View the popularity of this theme over time."
+msgid "View the popularity of this theme over time"
 msgstr ""
 
 msgid "View Statistics"
 msgstr ""
 
-msgid "Change the owner of this theme."
+msgid "Change the owner of this theme"
 msgstr ""
 
 msgid "Transfer Ownership"
 msgstr "स्वामित्व स्थानांतरित करें"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "इस थीम को मिटाएँ।"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3298,6 +3281,12 @@ msgstr "सारांश:"
 
 msgid "required"
 msgstr "जरूरी"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr ""
@@ -3357,10 +3346,10 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-msgid "Cancel and Disable Version"
+msgid "Submit Version"
 msgstr ""
 
-msgid "Submit Version"
+msgid "Cancel and Disable Version"
 msgstr ""
 
 msgid "Describe Version"
@@ -3565,13 +3554,13 @@ msgstr "वैकल्पिक"
 msgid "Browser preview"
 msgstr ""
 
-msgid "Back"
-msgstr ""
-
 msgid "Uploading Theme"
 msgstr ""
 
 msgid "Finish Theme"
+msgstr ""
+
+msgid "Back"
 msgstr ""
 
 msgid "API Credentials"
@@ -3634,22 +3623,22 @@ msgstr ""
 msgid "Add-on Multi Process Status:"
 msgstr ""
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr ""
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 msgid "Listed Version:"
 msgstr ""
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
 msgid "Next Listed Version:"
 msgstr ""
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
@@ -3668,7 +3657,7 @@ msgstr ""
 msgid "Latest Version:"
 msgstr ""
 
-msgid "This is the newest uploaded unlisted version."
+msgid "This is the newest uploaded unlisted version"
 msgstr ""
 
 msgid "Upload New Version"
@@ -3854,6 +3843,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "अधिक जानें"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr ""
@@ -4011,13 +4003,13 @@ msgstr ""
 msgid "Foreground Text"
 msgstr ""
 
-msgid "This is the color of the tab text."
+msgid "This is the color of the tab text"
 msgstr ""
 
 msgid "Background"
 msgstr ""
 
-msgid "This is the color of the tabs."
+msgid "This is the color of the tabs"
 msgstr ""
 
 msgid "Your Theme's Name"
@@ -4035,6 +4027,9 @@ msgid "Background themes let you easily personalize the look of your Firefox. Su
 msgstr ""
 
 msgid "Give your Theme a name."
+msgstr ""
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 #, python-format
@@ -6699,6 +6694,13 @@ msgid "{addon} :: Abuse Reports"
 msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "ऐड-ऑन"
+
+msgid "Internal AMO ID"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0

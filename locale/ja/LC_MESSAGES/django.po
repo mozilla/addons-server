@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-11-02 12:41+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -465,9 +465,6 @@ msgstr "許可設定"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "このアドオンは作者によって実験的とされています"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "このアドオンを正しく動作させるには、次のアドオンが必要です:"
 
 msgid "Average"
 msgstr "平均評価"
@@ -2461,9 +2458,6 @@ msgstr "ソースファイルがアップロードされましたが、あなた
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "依存アドオンを 3 つ以上指定することはできません。"
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2601,6 +2595,13 @@ msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければな
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "画像は PNG か JPG 形式でなければなりません。"
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "画像は幅 {0}ピクセル、高さ {1} ピクセルでなければなりません。"
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "プレビューのアップロード中に問題が発生しました。"
@@ -2804,7 +2805,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">互換性情報を更新</a> <a href=\"%(version_url)s\" class=\"button\">新バージョンをアップロード</a> または <a href=\"#\" "
 "class=\"close\">無視</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "対応アプリケーションのバージョン範囲を表示または更新します。"
 
 msgid "Compatibility"
@@ -3028,21 +3030,6 @@ msgstr ""
 "アドオンの要約や説明には必ずしも当てはまらないものの、エンドユーザーが知りたいと思われる何らかの情報。例えば、既知の主要なバグ一覧、バグ報告方法の説明、新バージョンの予定公開日などを記入できます。当"
 "該アドオンにのみ関係します。"
 
-msgid "Required Add-ons"
-msgstr "必要なアドオン"
-
-msgid "Limit 3"
-msgstr "最大 3 個"
-
-msgid "Add-on Flags"
-msgstr "アドオンのフラグ"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "これらのフラグはアドオンを分類するために使われます。当該アドオンにのみ関係します。"
-
-msgid "This add-on requires external software."
-msgstr "このアドオンは外部ソフトウェアを必要とします。"
-
 msgid "View Source?"
 msgstr "ソースコードを表示"
 
@@ -3067,18 +3054,6 @@ msgstr "このアドオンの統計情報を一般に公開します。"
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "いいえ、このアドオンの統計情報を一般には公開しません。"
 
-msgid "Upgrade SDK?"
-msgstr "SDK をアップグレードしますか？"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "これが選択された場合、SDK の新バージョンが公開された際に、私たちの方でこのアドオンを自動的にアップグレードしようと試みます。当該アドオンにのみ関係します。"
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "このアドオンを Add-on SDK の新バージョンへ自動的に更新します。"
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "いいえ、このアドオンは自分で更新します。"
-
 msgid "Universally unique identifier"
 msgstr "Universally Unique IDentifier"
 
@@ -3097,12 +3072,6 @@ msgid ""
 msgstr ""
 "ホワイトボードはあなたのアドオンについての情報をバージョンに関わらず審査担当者へ提供する場所です。アドオンのテスト方法や、有用な追加情報を提供するために使用してください。このホワイトボードは審査担当"
 "者も編集可能です。"
-
-msgid "Remove this dependent add-on"
-msgstr "この依存するアドオンを削除"
-
-msgid "Enter the name of an add-on"
-msgstr "アドオンの名前を入力してください"
 
 msgid "Add-on Media for {0}"
 msgstr "{0}のアドオンメディア"
@@ -3134,10 +3103,25 @@ msgstr "64 × 64px"
 msgid "Used in add-on detail pages."
 msgstr "アドオンの詳細ページに表示されます。"
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "アドオンの詳細ページに表示されます。"
+
 msgid "Upload a Custom Icon..."
 msgstr "独自のアイコンをアップロード..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "対応形式は PNG と JPG です。アイコンが 64 × 64 ピクセルよりも大きい場合は縮小されます。"
 
 msgid "Screenshots"
@@ -3240,7 +3224,8 @@ msgstr "このアドオンを削除する理由を教えてください:"
 msgid "Actions"
 msgstr "アクション"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "このアドオンの登録手続きを再開します。"
 
 msgid "Resume"
@@ -3253,16 +3238,18 @@ msgid "Delete"
 msgstr "削除"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "このテーマの公開情報を編集します。"
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "このアドオンの新バージョンをアップロードします。"
 
 msgid "New Version"
 msgstr "新バージョン"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "ダウンロード数とユーザー数に関する日別統計です。"
 
 msgid "Statistics"
@@ -3275,22 +3262,25 @@ msgid "View Recent Changes"
 msgstr "最近の変更を表示"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "このテーマの公開情報を編集します。"
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "このテーマの人気度を時系列で表示します。"
 
 msgid "View Statistics"
 msgstr "統計情報を表示"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "このテーマのオーナーを変更します。"
 
 msgid "Transfer Ownership"
 msgstr "オーナーを変更"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "このテーマを削除します。"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3323,6 +3313,12 @@ msgstr "概要:"
 
 msgid "required"
 msgstr "必須"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "アドオンの URL:"
@@ -3384,11 +3380,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "このメモはあなたと審査担当者のみが参照できます。"
 
-msgid "Cancel and Disable Version"
-msgstr "キャンセルしてバージョンを無効化"
-
 msgid "Submit Version"
 msgstr "バージョンを登録"
+
+msgid "Cancel and Disable Version"
+msgstr "キャンセルしてバージョンを無効化"
 
 msgid "Describe Version"
 msgstr "バージョンの説明を記入"
@@ -3594,14 +3590,14 @@ msgstr "任意"
 msgid "Browser preview"
 msgstr "ブラウザープレビュー"
 
-msgid "Back"
-msgstr "戻る"
-
 msgid "Uploading Theme"
 msgstr "テーマをアップロード中"
 
 msgid "Finish Theme"
 msgstr "テーマの作成を完了"
+
+msgid "Back"
+msgstr "戻る"
 
 msgid "API Credentials"
 msgstr "API 認証情報"
@@ -3665,22 +3661,26 @@ msgstr "作成日:"
 msgid "Add-on Multi Process Status:"
 msgstr "アドオンのマルチプロセス対応状況:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "あなたのアドオンは、マルチプロセスで動作する Firefox (e10s) と互換性があります。"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
 
 msgid "Listed Version:"
 msgstr "公開バージョン:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "これは、addons.mozilla.org でインストールボタンをクリックした時にインストールされるアドオンのバージョンです。"
 
 msgid "Next Listed Version:"
 msgstr "次の公開バージョン:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "これはアップロードされた最新バージョンですが、まだサイト上で公開されていません。"
 
 msgid "Queues are not reviewed strictly in order"
@@ -3699,7 +3699,8 @@ msgstr "署名され自主配布可能となりました。更新はあなた自
 msgid "Latest Version:"
 msgstr "最新版:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "これはアップロードされた最新の未公開バージョンです。"
 
 msgid "Upload New Version"
@@ -3892,6 +3893,9 @@ msgstr "拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s �
 msgid "Learn More"
 msgstr "詳細"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "すべての登録アイテムを表示"
@@ -4052,13 +4056,15 @@ msgstr "テーマの配色を選択してください。"
 msgid "Foreground Text"
 msgstr "前景テキスト"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "これはタブ上の文字色です。"
 
 msgid "Background"
 msgstr "背景"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "これはタブの背景色です。"
 
 msgid "Your Theme's Name"
@@ -4077,6 +4083,10 @@ msgstr "背景テーマで Firefox の外観を簡単にパーソナライズで
 
 msgid "Give your Theme a name."
 msgstr "テーマに名前を付けてください。"
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "検索結果やカテゴリーなどのリスト、そしてテーマの詳細ページ最上部に表示される、このテーマの基本機能についての短い説明文。"
 
 #, python-format
 msgid ""
@@ -6763,6 +6773,13 @@ msgstr "{addon} :: 不正報告"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} とその開発者に関する不正報告 ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "アドオン"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
