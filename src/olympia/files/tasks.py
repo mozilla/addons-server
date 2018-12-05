@@ -16,7 +16,6 @@ from olympia.files.models import (
 from olympia.files.utils import parse_xpi
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
-from olympia.lib.git import AddonGitRepository
 
 
 log = olympia.core.logger.getLogger('z.files.task')
@@ -105,17 +104,3 @@ def update_webext_descriptions(url, locale='en-US', create=True, **kw):
                     except WebextPermissionDescription.DoesNotExist:
                         log.warning('No "%s" permission found to update with '
                                     '[%s] locale' % (perm, locale))
-
-
-@task
-def extract_file_obj_to_git(file_id, channel):
-    """Extract a `File` into our git storage backend."""
-    file_obj = File.objects.get(pk=file_id)
-
-    log.info('Extracting {file_id} into git backend'.format(file_id=file_id))
-
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj, channel)
-
-    log.info('Extracted {file_id} into {git_path}'.format(
-        file_id=file_id, git_path=repo.git_repository_path))

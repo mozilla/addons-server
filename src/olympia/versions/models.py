@@ -124,6 +124,7 @@ class Version(OnChangeMixin, ModelBase):
                                   default=amo.RELEASE_CHANNEL_LISTED)
 
     git_hash = models.CharField(max_length=40, blank=True)
+    source_git_hash = models.CharField(max_length=40, blank=True)
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
@@ -254,10 +255,8 @@ class Version(OnChangeMixin, ModelBase):
 
         if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
             # Extract into git repository
-            AddonGitRepository.extract_and_commit_from_file_obj(
-                file_obj=version.all_files[0],
-                channel=channel,
-                author=upload.user)
+            AddonGitRepository.extract_and_commit_from_version(
+                version=version, author=upload.user)
 
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and

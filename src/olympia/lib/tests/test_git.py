@@ -1,10 +1,13 @@
 import os
 import subprocess
+import zipfile
 
 import pytest
 import mock
 
 from django.conf import settings
+from django.core.files import temp
+from django.core.files.base import File as DjangoFile
 
 from olympia import amo
 from olympia.amo.tests import addon_factory, version_factory, user_factory
@@ -66,12 +69,11 @@ def test_git_repo_init_opens_existing_repo():
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_file_obj():
+def test_extract_and_commit_from_version():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        addon.current_version.all_files[0],
-        amo.RELEASE_CHANNEL_LISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
 
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
@@ -86,9 +88,9 @@ def test_extract_and_commit_from_file_obj():
     assert 'unlisted' not in output
 
     # Test that a new "unlisted" branch is created only if needed
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj=addon.current_version.all_files[0],
-        channel=amo.RELEASE_CHANNEL_UNLISTED)
+    addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version)
     output = subprocess.check_output('git branch', shell=True, env=env)
     assert 'listed' in output
     assert 'unlisted' in output
@@ -101,28 +103,26 @@ def test_extract_and_commit_from_file_obj():
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_file_obj_set_git_hash():
+def test_extract_and_commit_from_version_set_git_hash():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     assert addon.current_version.git_hash == ''
 
-    AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj=addon.current_version.all_files[0],
-        channel=amo.RELEASE_CHANNEL_LISTED)
+    AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version)
 
     addon.current_version.refresh_from_db()
     assert len(addon.current_version.git_hash) == 40
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_file_obj_multiple_versions():
+def test_extract_and_commit_from_version_multiple_versions():
     addon = addon_factory(
         file_kw={'filename': 'webextension_no_id.xpi'},
         version_kw={'version': '0.1'})
 
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        addon.current_version.all_files[0],
-        amo.RELEASE_CHANNEL_LISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
 
     assert repo.git_repository_path == os.path.join(
         settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
@@ -145,16 +145,12 @@ def test_extract_and_commit_from_file_obj_multiple_versions():
     version = version_factory(
         addon=addon, file_kw={'filename': 'webextension_no_id.xpi'},
         version='0.2')
-    AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj=version.all_files[0],
-        channel=amo.RELEASE_CHANNEL_LISTED)
+    AddonGitRepository.extract_and_commit_from_version(version=version)
 
     version = version_factory(
         addon=addon, file_kw={'filename': 'webextension_no_id.xpi'},
         version='0.3')
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj=version.all_files[0],
-        channel=amo.RELEASE_CHANNEL_LISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(version=version)
 
     output = subprocess.check_output('git log listed', shell=True, env=env)
     assert output.count('Create new version') == 3
@@ -172,14 +168,13 @@ def test_extract_and_commit_from_file_obj_multiple_versions():
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_file_obj_use_applied_author():
+def test_extract_and_commit_from_version_use_applied_author():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
     user = user_factory(
         email='fancyuser@foo.bar', display_name='Fancy Test User')
 
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj=addon.current_version.all_files[0],
-        channel=amo.RELEASE_CHANNEL_LISTED,
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version,
         author=user)
 
     env = {'GIT_DIR': repo.git_repository.path}
@@ -194,11 +189,10 @@ def test_extract_and_commit_from_file_obj_use_applied_author():
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_file_obj_use_addons_robot_default():
+def test_extract_and_commit_from_version_use_addons_robot_default():
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-    repo = AddonGitRepository.extract_and_commit_from_file_obj(
-        file_obj=addon.current_version.all_files[0],
-        channel=amo.RELEASE_CHANNEL_LISTED)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version)
 
     env = {'GIT_DIR': repo.git_repository.path}
 
@@ -220,13 +214,12 @@ def test_extract_and_commit_from_file_obj_use_addons_robot_default():
     'webextension_no_id.zip',
     'search.xml',
 ])
-def test_extract_and_commit_from_file_obj_valid_extensions(filename):
+def test_extract_and_commit_from_version_valid_extensions(filename):
     addon = addon_factory(file_kw={'filename': filename})
 
     with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
-        repo = AddonGitRepository.extract_and_commit_from_file_obj(
-            addon.current_version.all_files[0],
-            amo.RELEASE_CHANNEL_LISTED)
+        repo = AddonGitRepository.extract_and_commit_from_version(
+            addon.current_version)
 
         # Make sure we are always calling fsync after extraction
         assert fsync_mock.called
@@ -247,4 +240,38 @@ def test_extract_and_commit_from_file_obj_valid_extensions(filename):
     expected = 'Create new version {} ({}) for {} from {}'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
+    assert expected in output
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_source_from_version():
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'},
+        version_kw={'version': '0.1'})
+
+    # Generate source file
+    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
+    with zipfile.ZipFile(source, 'w') as zip_file:
+        zip_file.writestr('manifest.json', '{}')
+    source.seek(0)
+    addon.current_version.source = DjangoFile(source)
+    addon.current_version.save()
+
+    repo = AddonGitRepository.extract_and_commit_source_from_version(
+        addon.current_version)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    env = {'GIT_DIR': repo.git_repository.path}
+
+    output = subprocess.check_output('git branch', shell=True, env=env)
+    assert 'listed' in output
+
+    output = subprocess.check_output('git log listed', shell=True, env=env)
+    expected = 'Create new version {} ({}) for {} from source file'.format(
+        repr(addon.current_version), addon.current_version.id, repr(addon))
     assert expected in output
