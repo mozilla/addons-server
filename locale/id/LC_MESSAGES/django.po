@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-05 11:12+0000\n"
+"PO-Revision-Date: 2018-12-05 11:17+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2597,9 +2597,8 @@ msgstr "Gambar tidak bisa lebih besar daripada %dKB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Gambar harus tepat selebar {0} pixel dan tinggi {1} pixel."
+msgstr "Resolusi minimum gambar adalah selebar {0} piksel dan setinggi {1} piksel."
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Dimensi gambar harus dalam rasio 4:3."
@@ -3281,9 +3280,8 @@ msgstr "Hapus pengaya ini."
 msgid "Delete"
 msgstr "Hapus"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page."
-msgstr "Sunting rincian mengenai daftar tema ini."
+msgstr "Sunting detailnya pada laman produk pengaya ini."
 
 msgid "Upload a new version of this add-on."
 msgstr "Unggah versi baru pengaya ini."
@@ -3303,9 +3301,8 @@ msgstr "Kelola Status & Versi"
 msgid "View Recent Changes"
 msgstr "Lihat Perubahan Baru-baru ini"
 
-#, fuzzy
 msgid "Edit details on this theme's product page."
-msgstr "Sunting rincian mengenai daftar tema ini."
+msgstr "Sunting detailnya pada laman produk tema ini."
 
 msgid "View the popularity of this theme over time."
 msgstr "Lihat popularitas tema ini dari waktu ke waktu."
@@ -3912,9 +3909,8 @@ msgstr "Tampilkan Sumber Daya bagi Para Penerbit"
 msgid "Welcome Back"
 msgstr "Selamat Datang Kembali"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Bantu pengguna menemukan ekstensi Anda dengan membuat daftar yang menarik."
+msgstr "Bantu pengguna menemukan ekstensi Anda dengan membuat laman produk yang menarik."
 
 msgid "Learn How"
 msgstr "Pelajari Caranya"
