@@ -50,12 +50,11 @@ class TestAddonIndexer(TestCase):
         # exist on the model, or it has a different name, or the value we need
         # to store in ES differs from the one in the db.
         complex_fields = [
-            'app', 'boost', 'category',
-            'current_version', 'description', 'featured_for',
-            'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'is_featured', 'latest_unlisted_version',
-            'listed_authors', 'name', 'platforms', 'previews',
-            'public_stats', 'ratings', 'summary', 'tags',
+            'app', 'boost', 'category', 'current_version', 'description',
+            'featured_for', 'has_eula', 'has_privacy_policy',
+            'has_theme_rereview', 'is_featured', 'listed_authors', 'name',
+            'platforms', 'previews', 'public_stats', 'ratings', 'summary',
+            'tags',
         ]
 
         # Fields that need to be present in the mapping, but might be skipped
@@ -179,7 +178,6 @@ class TestAddonIndexer(TestCase):
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
         assert extracted['has_theme_rereview'] is None
-        assert extracted['latest_unlisted_version'] is None
         assert extracted['listed_authors'] == [
             {'name': u'55021 التطب', 'id': 55021, 'username': '55021',
              'is_public': True}]
@@ -303,39 +301,6 @@ class TestAddonIndexer(TestCase):
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])
-
-        version = unlisted_version
-        assert extracted['latest_unlisted_version']
-        assert extracted['latest_unlisted_version']['id'] == version.pk
-        # Because strict_compatibility is False, the max version we record in
-        # the index is an arbitrary super high version.
-        assert extracted['latest_unlisted_version']['compatible_apps'] == {
-            FIREFOX.id: {
-                'min': 4009900200100,
-                'max': 9999000000200100,
-                'max_human': '5.0.99',
-                'min_human': '4.0.99',
-            }
-        }
-        assert (
-            extracted['latest_unlisted_version']['version'] == version.version)
-        for idx, file_ in enumerate(version.all_files):
-            extracted_file = extracted['latest_unlisted_version']['files'][idx]
-            assert extracted_file['id'] == file_.pk
-            assert extracted_file['created'] == file_.created
-            assert extracted_file['filename'] == file_.filename
-            assert extracted_file['hash'] == file_.hash
-            assert extracted_file['is_webextension'] == file_.is_webextension
-            assert extracted_file['is_mozilla_signed_extension'] == (
-                file_.is_mozilla_signed_extension)
-            assert extracted_file['is_restart_required'] == (
-                file_.is_restart_required)
-            assert extracted_file['platform'] == file_.platform
-            assert extracted_file['size'] == file_.size
-            assert extracted_file['status'] == file_.status
-            assert (extracted_file['webext_permissions_list'] ==
-                    file_.webext_permissions_list ==
-                    ['bookmarks', 'random permission'])
 
     def test_version_compatibility_with_strict_compatibility_enabled(self):
         version = self.addon.current_version
