@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 21:26+0000\n"
+"PO-Revision-Date: 2018-12-05 22:09+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1964,12 +1964,16 @@ msgstr "Fotók, zenék és videók"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyek javítják a fényképekkel, zenével és videókkal kapcsolatos élményeit. Az ebben a kategóriában lévő kiegészítők módosítják a hangot és videót, fordított "
+"képkeresést kínálnak, és még sok mást."
 
 msgid "Privacy & Security"
 msgstr "Adatvédelem és biztonság"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyekkel bizalmasan és biztonságosan böngészhet. Ez a kategória olyan kiegészítőket tartalmaz, amelyek blokkolják a bosszantó hirdetéseket, megakadályozzák a "
+"nyomkövetést, kezelik az átirányításokat, és így tovább."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -2623,7 +2627,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Az ikonnak legalább {0} képpont szélesnek és magasnak kell lennie."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Az ikonnak négyzetesnek kell lennie (azonos szélességű és magasságú)."
 
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
@@ -2959,6 +2963,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Az összefoglalónak egyértelműen és tömören el kell magyaráznia, hogy mit csinál a kiegészítője. Mind a név, mind az összefoglaló megjelenik a termékoldalon és a keresési eredmények között. Összesen "
+"legfeljebb 70 karakter, de egyenként legalább 2 karakter hosszúságúak kell legyenek."
 
 msgid "Summary"
 msgstr "Összefoglalás"
@@ -3131,7 +3137,7 @@ msgstr "A kiegészítő részletes lapján lesz látható."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128×128px"
 
 #, fuzzy
 msgid "Will be the standard in future add-on detail pages."
@@ -3141,10 +3147,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Egyéni ikon feltöltése…"
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "A PNG és a JPG támogatott."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Az ikonok négyzet alakúak, és legalább 128×128 képpont méretűek."
 
 #, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
@@ -3345,6 +3351,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Figyelmeztetés: olyan nevet / összefoglaló értékeket használ más területi beállítások esetén, melyek automatikusan levágásra kerülnek, hogy beleférjenek a %(max_length)s karakteres korlátba. Ezek "
+"szerkesztéséhez menjen a Termékoldal szerkesztése oldalra a benyújtási folyamat befejezése után."
 
 msgid "Add-on URL:"
 msgstr "Kiegészítő URL:"
@@ -6829,7 +6837,7 @@ msgid "Add-on ID"
 msgstr "Kiegészítő"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Belső AMO azonosító"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
