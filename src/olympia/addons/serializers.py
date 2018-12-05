@@ -619,13 +619,9 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
         # Attach related models (also faking them). `current_version` is a
         # property we can't write to, so we use the underlying field which
-        # begins with an underscore. `latest_unlisted_version` is writeable
-        # cached_property so we can directly write to them.
+        # begins with an underscore.
         obj._current_version = self.fake_version_object(
             obj, data.get('current_version'), amo.RELEASE_CHANNEL_LISTED)
-        obj.latest_unlisted_version = self.fake_version_object(
-            obj, data.get('latest_unlisted_version'),
-            amo.RELEASE_CHANNEL_UNLISTED)
 
         data_authors = data.get('listed_authors', [])
         obj.listed_authors = [

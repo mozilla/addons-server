@@ -127,7 +127,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'is_experimental': {'type': 'boolean'},
                     'is_featured': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
-                    'latest_unlisted_version': version_mapping,
                     'listed_authors': {
                         'type': 'object',
                         'properties': {
@@ -346,9 +345,6 @@ class AddonIndexer(BaseSearchIndexer):
 
         data['has_eula'] = bool(obj.eula)
         data['has_privacy_policy'] = bool(obj.privacy_policy)
-
-        data['latest_unlisted_version'] = cls.extract_version(
-            obj, obj.latest_unlisted_version)
 
         data['previews'] = [{'id': preview.id, 'modified': preview.modified,
                              'sizes': preview.sizes}
