@@ -591,8 +591,11 @@ class TestExtractWebextensionsToGitStorage(TestCase):
             file_kw={'is_webextension': True}, status=amo.STATUS_DISABLED)
         addon_factory(type=amo.ADDON_LPAPP, file_kw={'is_webextension': True})
         addon_factory(type=amo.ADDON_DICT, file_kw={'is_webextension': True})
+        addon_factory(
+            type=amo.ADDON_SEARCH, file_kw={'is_webextension': False})
 
         # Not supported, we focus entirely on WebExtensions
+        # (except for search plugins)
         addon_factory(type=amo.ADDON_THEME)
         addon_factory()
         addon_factory()
@@ -601,7 +604,8 @@ class TestExtractWebextensionsToGitStorage(TestCase):
 
         call_command('process_addons',
                      task='extract_webextensions_to_git_storage')
-        assert extract_version_to_git_mock.call_count == 6
+
+        assert extract_version_to_git_mock.call_count == 7
 
 
 class TestDisableLegacyAddons(TestCase):
