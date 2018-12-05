@@ -44,16 +44,6 @@
                 json = JSON.parse(response);
             } catch(err) {
                 errors = [gettext("There was a problem contacting the server.")];
-                try {
-                    Raven.captureMessage('Error parsing upload status JSON.', {
-                        extra: {
-                            status_code: statusCode,
-                            content: response,
-                        },
-                    });
-                } catch (e) {
-                    console.log(e);
-                }
             }
             if (!errors.length) {
                 errors = settings.getErrors(json);

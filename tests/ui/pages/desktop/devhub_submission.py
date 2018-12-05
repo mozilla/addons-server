@@ -13,7 +13,7 @@ class DevhubSubmission(Base):
     _summary_locator = (By.ID, 'id_summary_0')
     _license_btn_locator = (By.ID, 'id_license-builtin_0')
     _submit_btn_locator = (
-        By.CSS_SELECTOR, '.submission-buttons > button:nth-child(2)'
+        By.CSS_SELECTOR, '.submission-buttons > button:nth-child(1)'
     )
     _appearance_categories_locator = (By.ID, 'id_form-0-categories_0')
     _bookmarks_categories_locator = (By.ID, 'id_form-0-categories_1')

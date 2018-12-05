@@ -46,6 +46,7 @@ from olympia.devhub.utils import (
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
+from olympia.lib.git import AddonGitRepository
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
@@ -1044,6 +1045,16 @@ def version_edit(request, addon_id, addon, version_id):
                     version_form.cleaned_data['source']):
                 AddonReviewerFlags.objects.update_or_create(
                     addon=addon, defaults={'needs_admin_code_review': True})
+
+                commit_to_git = waffle.switch_is_active(
+                    'enable-uploads-commit-to-git-storage')
+
+                if commit_to_git:
+                    # Extract into git repository
+                    AddonGitRepository.extract_and_commit_source_from_version(
+                        version=data['version_form'].instance,
+                        author=request.user)
+
                 if had_pending_info_request:
                     log_and_notify(amo.LOG.SOURCE_CODE_UPLOADED, None,
                                    request.user, version)
@@ -1427,6 +1438,7 @@ def _submit_source(request, addon, version, next_view):
         if form.cleaned_data.get('source'):
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True})
+
             activity_log = ActivityLog.objects.create(
                 action=amo.LOG.SOURCE_CODE_UPLOADED.id,
                 user=request.user,
@@ -1437,6 +1449,14 @@ def _submit_source(request, addon, version, next_view):
             VersionLog.objects.create(
                 version_id=latest_version.id, activity_log=activity_log)
             form.save()
+
+            # We can extract the actual source file only after the form
+            # has been saved because the file behind it may not have been
+            # written to disk yet (e.g for in-memory uploads)
+            if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
+                AddonGitRepository.extract_and_commit_source_from_version(
+                    version=form.instance, author=request.user)
+
         return redirect(next_view, *redirect_args)
     context = {
         'form': form,
