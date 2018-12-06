@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 00:31+0000\n"
+"PO-Revision-Date: 2018-12-06 00:51+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nn_NO\n"
@@ -1737,20 +1737,17 @@ msgstr "{addon} {version} innhald avvist."
 msgid "Content rejected"
 msgstr "Innhald avvist"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Det er bedt om meir informasjon"
+msgstr "{addon} informasjonsførspurnad endra eller teken vekk av admin."
 
 msgid "Information request altered"
 msgstr "Informasjonsførespurnad endra"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "Svar frå utviklar på {addon} {version}."
+msgstr "Informasjonsførespurnad teken vekk av utviklaren for {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Det er bedt om meir informasjon"
+msgstr "Informasjonsførespurnad fjerna"
 
 #, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
@@ -2927,13 +2924,11 @@ msgid "Describe Add-on"
 msgstr "Beskriv utvidinga"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Beskriv utvidinga"
+msgstr "Skildre {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Samandrag"
+msgstr "Namn og samandrag"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2952,9 +2947,8 @@ msgstr "Vel ein kort, unik URL-slugg for utvidinga di."
 msgid "View Listing"
 msgstr "Vis listning"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Vis profil"
+msgstr "Vis produktside"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3273,9 +3267,8 @@ msgstr "Endre eigar for dette temaet."
 msgid "Transfer Ownership"
 msgstr "Overfør eigarskap"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Slett dette temaet."
+msgstr "Slett dette temaet"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3302,9 +3295,8 @@ msgstr[1] "<strong>{0}</strong> aktive brukarar"
 msgid "Submit a New Version"
 msgstr "Send inn ein ny versjon"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Samandrag:"
+msgstr "Namn og samandrag:"
 
 msgid "required"
 msgstr "påkravd"
@@ -3402,9 +3394,8 @@ msgstr "Innsendinga fullført"
 msgid "Version Submitted for Review"
 msgstr "Versjon sendt inn for vurdering"
 
-#, fuzzy
 msgid "Preview of the version submitted"
-msgstr "Versjonen sendt inn"
+msgstr "Førehandsvising av innsendt versjon"
 
 msgid "You’re done! This version will be available after it passes review. You will be notified when it is reviewed."
 msgstr "Du er klar! Denne versjonen vert tilgjengeleg etter at han har gått gjennom ei vurdering. Du får ei melding når vurderinga er gjennomført."
@@ -3445,9 +3436,8 @@ msgstr "Last ned {0}"
 msgid "Go to My Submissions"
 msgstr "Gå til bidraga mine"
 
-#, fuzzy
 msgid "Source Code Upload"
-msgstr "Kjeldekode lasta opp"
+msgstr "Kjeldekodeopplasting"
 
 msgid "Do You Need to Submit Source Code?"
 msgstr ""
@@ -3963,9 +3953,8 @@ msgstr "Kompatibilitetstest"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Kontroller om utvidinga di er kompatibel med Firefox."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Vis listning"
+msgstr "Live-testing"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -6073,39 +6062,31 @@ msgstr ""
 msgid "Get Started"
 msgstr "Kom i gang"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Nettstadstatus"
+msgstr "Rapportert status"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Rapporttype"
+msgstr "Spam rapportert"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Rapporter ein feil"
+msgstr "Ham rapportert"
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Ikkje vurdert enno"
+msgstr "Ikkje rapportert"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Versjonen sendt inn"
+msgstr "Innsendt innhald"
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Vis den nye nettstaden"
+msgstr "Vis vurdering på nettsida"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Send inn ei ny fil"
+msgstr "Send inn ham til Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Send inn ei ny fil"
+msgstr "Send inn spam til Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -6393,13 +6374,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Presentert av:"
 
-#, fuzzy
 msgid "User"
-msgstr "Brukarnamn"
+msgstr "Brukar"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "E-postadresse"
+msgstr "IP-adresse"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6894,13 +6873,11 @@ msgstr "Vurdering behandla."
 msgid "Review lock limit reached"
 msgstr "Grensa for granskingslås er nådd"
 
-#, fuzzy
 msgid "{addon} :: EULA"
-msgstr "{addon} :: misbruksrapportar"
+msgstr "{addon} :: EULA"
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "Denne utvidinga har ein personvernpraksis"
+msgstr "{addon} :: Personvernpraksis"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -6916,9 +6893,8 @@ msgstr "{addon} :: misbruksrapportar"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Utviding"
+msgstr "Tilleggs-ID"
 
 msgid "Internal AMO ID"
 msgstr ""
