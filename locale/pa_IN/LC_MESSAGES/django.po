@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 20:11+0000\n"
-"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
+"PO-Revision-Date: 2018-12-06 13:08+0000\n"
+"Last-Translator: goelsanskriti28 <goelsanskriti28@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -2601,16 +2601,14 @@ msgstr "ਤਸਵੀਰ %dKB ਤੋਂ ਵੱਡੀ ਨਹੀਂ ਹੋ ਸਕ�
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "ਤਸਵੀਰ ਬਿਲਕੁਲ {0} ਪਿਕਸਲ ਚੌੜੀ ਅਤੇ {1} ਪਿਕਸਲ ਲੰਬੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "ਤਸਵੀਰ ਬਿਲਕੁਲ {0} ਪਿਕਸਲ ਚੌੜੀ ਅਤੇ {1} ਪਿਕਸਲ ਲੰਬੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
+msgstr "ਚਿੱਤਰ ਘੱਟੋ ਘੱਟ {0} ਪਿਕਸਲ ਚੌੜਾ ਅਤੇ {1} ਲੰਬਾ ਪਿਕਸਲ ਲੰਬਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈੈ।"
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "ਚਿੱਤਰ ਦੇ ਮਾਪ ਅਨੁਪਾਤ 4:3 ਵਿੱਚ ਹੋਣੇ ਚਾਹੀਦੇ ਹਨ।"
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "ਤਸਵੀਰ ਬਿਲਕੁਲ {0} ਪਿਕਸਲ ਚੌੜੀ ਅਤੇ {1} ਪਿਕਸਲ ਲੰਬੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
+msgstr "ਆਈਕਾਨ ਘੱਟੋ ਘੱਟ {0} ਪਿਕਸਲ ਚੌੜਾ ਅਤੇ ਲੰਬਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈੈ।"
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -3118,9 +3116,8 @@ msgstr "ਐਡ-ਆਨ ਵੇਰਵੇ ਸਫ਼ਿਆਂ ਵਿੱਚ ਵਰਤਿ�
 msgid "128x128px"
 msgstr ""
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "ਐਡ-ਆਨ ਵੇਰਵੇ ਸਫ਼ਿਆਂ ਵਿੱਚ ਵਰਤਿਆ।"
+msgstr "ਭਵਿੱਖ ਦੇ ਐਡਆਨ ਵਿਸਥਾਰ ਸਫ਼ੇ ਤੇ ਮਿਆਰੀ ਹੋਵੇਗਾ।"
 
 msgid "Upload a Custom Icon..."
 msgstr "ਇੱਕ ਸੋਧ ਆਈਕਾਨ ਅੱਪਲੋਡ ਕਰੋ..."
