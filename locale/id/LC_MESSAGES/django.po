@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 07:40+0000\n"
+"PO-Revision-Date: 2018-12-06 08:27+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -26,7 +26,7 @@ msgid "This display name cannot be used."
 msgstr "Nama tampilan ini tidak dapat digunakan."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Bidang beranda hanya bisa ditautkan ke situs web eksternal."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Nama pengguna tidak bisa hanya berisi digit."
@@ -1955,7 +1955,7 @@ msgid "Shopping"
 msgstr "Belanja"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox yang dapat meningkatkan pengalaman belanja daring Anda dengan pencari kupon, pencari tawaran, penelaah ulasan, dan banyak lagi."
 
 msgid "Social & Communication"
 msgstr "Pertemanan dan Komunikasi"
@@ -2942,6 +2942,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Rangkuman harus menerangkan apa fungsi pengaya Anda secara jelas dan ringkas. Nama dan ringkasan akan muncul pada laman produk Anda dan hasil pencarian. Panjang gabungan masing-masing adalah "
+"maksimum 70 karakter dan minimum 2 karakter."
 
 msgid "Summary"
 msgstr "Звіт"
@@ -4897,7 +4899,7 @@ msgstr "Mengubahsuaikan tab baru Anda {start_sub_heading}dengan {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Sunting laman tab baru untuk menampilkan jumlah ubin yang Anda kehendaki, gambar latar, dan banyak lagi."
 
 #. editorial content for the discovery pane.
 msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
