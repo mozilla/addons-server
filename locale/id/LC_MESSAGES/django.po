@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 18:08+0000\n"
+"PO-Revision-Date: 2018-12-06 03:48+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2499,7 +2499,7 @@ msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users
 msgstr "Anda tidak dapat memperbarui WebExtensions pengaya dengan pengaya peninggalan. Pengguna Anda tidak akan dapat menggunakan versi baru Anda karena Firefox tidak mendukung jenis pembaruan."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
+msgstr "[{field}] Teks dalam bidang \"{field}\" telah ditandai sebagai spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kunci API pengembang Anda ditemukan dalam berkas terkirim. Untuk melindungi akun Anda, kunci itu akan dicabut."
@@ -2602,7 +2602,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Resolusi minimum gambar adalah selebar {0} piksel dan setinggi {1} piksel."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikon harus persegi (sama lebar dan tingginya)."
 
 msgid "There was an error uploading your preview."
 msgstr "Terjadi kesalahan menggunggah pratinjau anda."
@@ -3128,7 +3128,7 @@ msgstr "Digunakan di laman rincian pengaya."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 #, fuzzy
 msgid "Will be the standard in future add-on detail pages."
@@ -3141,7 +3141,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG dan JPG didukung."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikon harus persegi dengan ukuran minimum 128x128 piksel."
 
 #, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
@@ -3160,10 +3160,10 @@ msgid "Add a Screenshot..."
 msgstr "Tambahkan Tangkapan layar..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG dan JPG didukung, PNG direkomendasikan. Ukuran cuplikan layar maksimum dan direkomendasikan adalah 2400x1800 piksel."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Ukuran minimumnya adalah 1000x750, dan rasionya harus 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
