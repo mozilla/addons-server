@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 06:39+0000\n"
+"PO-Revision-Date: 2018-12-06 10:33+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3505,7 +3505,7 @@ msgid "Manage Listing"
 msgstr "Gestionează listarea"
 
 msgid "You can also edit this version to add version notes, or source code if your submission includes minified, obfuscated or compiled code."
-msgstr "Poți edita această versiune și pentru a adăuga note asupra versiunii sau cod-sursă, dacă propunerea ta include cod minificat, obfuscat sau compilat."
+msgstr "Poți edita această versiune și pentru a adăuga note privind versiunea sau cod-sursă, dacă propunerea ta include cod minificat, obfuscat sau compilat."
 
 msgid "Edit version {0}"
 msgstr "Editează versiunea {0}"
@@ -4210,7 +4210,7 @@ msgid "Files"
 msgstr "Fișiere"
 
 msgid "Version Notes"
-msgstr "Note asupra versiunii"
+msgstr "Note privind versiunea"
 
 msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
@@ -4227,13 +4227,13 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr "Introdu opțional orice informații care ar putea fi utile revizorului acestui supliment, cum ar fi datele contului de testare."
 
 msgid "Source code"
-msgstr ""
+msgstr "Cod sursă"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
 msgstr "Dacă suplimentul tău conține cod binar sau obfuscat, pune sursa la dispoziția revizorilor aici."
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Fișier {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -4247,22 +4247,22 @@ msgid "Status & Versions"
 msgstr "Stare și versiuni"
 
 msgid "Edit this version"
-msgstr ""
+msgstr "Editează această versiune"
 
 msgid "0 files"
 msgstr "0 fișiere"
 
 msgid "Re-enable Version"
-msgstr ""
+msgstr "Reactivează versiunea"
 
 msgid "Close Review History"
 msgstr "Închide istoricul recenziilor"
 
 msgid "Not validated."
-msgstr ""
+msgstr "Nevalidată."
 
 msgid "Validate now."
-msgstr ""
+msgstr "Validează acum."
 
 msgid "Request Review"
 msgstr "Solicită recenzie"
@@ -4280,13 +4280,13 @@ msgid "Load older..."
 msgstr ""
 
 msgid "Leave a reply"
-msgstr ""
+msgstr "Lasă un răspuns"
 
 msgid "Reply"
-msgstr ""
+msgstr "Răspunde"
 
 msgid "Listing visibility"
-msgstr ""
+msgstr "Vizibilitate la listare"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Vizibil:{label_close} Vizibil oricui de pe {site_url} și inclus în rezultatele căutărilor și pe paginile de produse."
@@ -4300,17 +4300,17 @@ msgid "Listed versions"
 msgstr "Versiunile listate"
 
 msgid "Currently on AMO"
-msgstr ""
+msgstr "În prezent pe AMO"
 
 # Header for a column in a table
 msgid "Validation"
 msgstr "Validare"
 
 msgid "Delete/Disable"
-msgstr ""
+msgstr "Șterge/Dezactivează"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "Versiunea următoare a acestui supliment"
 
 msgid "Other versions"
 msgstr "Alte versiuni"
@@ -4325,7 +4325,7 @@ msgid "Version"
 msgstr "Versiune"
 
 msgid "Delete Version {version}"
-msgstr ""
+msgstr "Șterge versiunea {version}"
 
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
@@ -4341,13 +4341,13 @@ msgid "Are you sure you wish to delete this version?"
 msgstr "Sigur vrei să ștergi această versiune?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "Șterge versiunea"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "Dezactivează versiunea"
 
 msgid "Hide Add-on"
-msgstr ""
+msgstr "Ascunde suplimentul"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
 msgstr ""
@@ -4613,7 +4613,7 @@ msgstr "Optimizează videoclipuri {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
-msgstr ""
+msgstr "Întunecă pagina în jurul playerelor video pentru o experiență de vizualizare focalizată."
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4730,7 +4730,7 @@ msgstr "Blochează elementele de urmărire {start_sub_heading}cu {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Obține un strat suplimentar de protecție împotriva urmăririi în timp ce navighezi pe web."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5066,7 +5066,7 @@ msgstr "Aplică o mască pe pagina {start_sub_heading}cu {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Ascunde porțiuni din site-ul web pe care îl vizualizezi."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
