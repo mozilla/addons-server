@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 03:48+0000\n"
+"PO-Revision-Date: 2018-12-06 04:04+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -3166,7 +3166,7 @@ msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Ukuran minimumnya adalah 1000x750, dan rasionya harus 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Adanya cuplikan layar pada laman produk Anda dapat sangat meningkatkan kesempatannya untuk dipasang dan diunggulkan di beranda."
 
 msgid "Continue"
 msgstr "Lanjut"
@@ -4404,7 +4404,7 @@ msgstr "Menggagas ulang tab {start_sub_heading}dengan {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Punya banyak tab terbuka? Kelola semuanya di bilah samping yang rapi."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
