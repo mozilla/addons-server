@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 10:33+0000\n"
+"PO-Revision-Date: 2018-12-06 10:49+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2654,9 +2654,8 @@ msgstr "Imaginea trebuie să fie de cel puțin {0} pixeli lățime și {1} pixel
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Imaginile trebuie să fie la un raport de 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Imaginea trebuie să fie de cel puțin {0} pixeli lățime și {1} pixeli înălțime."
+msgstr "Pictograma trebuie să fie de cel puțin {0} pixeli lățime și înălțime."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -2864,9 +2863,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualizează compatibilitatea</a> <a href=\"%(version_url)s\" class=\"button\">Încarcă versiune nouă</a> sau <a "
 "href=\"#\" class=\"close\">Ignoră</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Afișează și actualizează domeniile de compatibilitate ale aplicației."
+msgstr "Afișezi și actualizezi domeniile de compatibilitate ale aplicației."
 
 msgid "Compatibility"
 msgstr "Compatibilitate"
@@ -3177,9 +3175,8 @@ msgstr "Folosită în paginile de detalii ale suplimentelor."
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Folosită în paginile de detalii ale suplimentelor."
+msgstr "Va fi standard în paginile viitoare de detalii ale suplimentelor."
 
 msgid "Upload a Custom Icon..."
 msgstr "Încarcă o pictogramă personalizată ..."
@@ -3190,9 +3187,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Se acceptă PNG și JPG. Pictograme redimensionate la 64x64 pixeli dacă sunt mai mari de atât."
+msgstr "Pictogramele vor fi redimensionate la128x128 de pixeli dacă sunt mai mari."
 
 msgid "Screenshots"
 msgstr "Capturi de ecran"
@@ -3309,9 +3305,8 @@ msgstr "Șterge"
 msgid "Edit details on this add-on's product page"
 msgstr "Editează detaliile de pe pagina de produs a acestui supliment"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Încarcă o versiune nouă a acestui supliment."
+msgstr "Încarcă o versiune nouă a acestui supliment"
 
 msgid "New Version"
 msgstr "Versiune nouă"
@@ -3337,16 +3332,14 @@ msgstr "Afișează popularitatea în timp a acestei teme"
 msgid "View Statistics"
 msgstr "Vezi statisticile"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Modifică proprietarul acestei teme."
+msgstr "Modifică proprietarul acestei teme"
 
 msgid "Transfer Ownership"
 msgstr "Transferă drepturile de proprietate"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Șterge imaginea"
+msgstr "Șterge această temă"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Acestui supliment îi lipsesc câteva informații obligatorii înainte de a putea fi trimis spre publicare."
@@ -3730,9 +3723,8 @@ msgstr "Creat:"
 msgid "Add-on Multi Process Status:"
 msgstr "Stare multiproces supliment:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Compatibilitatea suplimentului tău cu Firefox multiproces (e10s)."
+msgstr "Compatibilitatea suplimentului tău cu Firefox multiproces (e10s)"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Actualizările automate sunt gestionate de acest site"
@@ -4063,9 +4055,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "Adaugă câteva etichete care să-ți descrie tema."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
-"O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listările rezultatelor la căutare și listările de navigare, precum și în partea de sus a paginii de detalii a temei "
-"tale."
+msgstr "O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listele de căutare și de navigare, precum și în partea de sus a paginii de detalii a temei tale."
 
 msgid "Theme License"
 msgstr "Licența temei"
@@ -4150,11 +4140,8 @@ msgstr "Temele de fundal își permit personalizarea ușoară a aspectului Firef
 msgid "Give your Theme a name."
 msgstr "Denumește-ți tema."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
-"O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listările rezultatelor la căutare și listările de navigare, precum și în partea de sus a paginii de detalii a temei "
-"tale."
+msgstr "O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listele de căutare și de navigare, precum și în partea de sus a paginii de detalii a temei tale"
 
 #, python-format
 msgid ""
@@ -4581,7 +4568,7 @@ msgstr "Vezi ora peste tot în lume {start_sub_heading}cu {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "Afișează ora exactă din orice țară în bara de stare din Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4589,7 +4576,7 @@ msgstr "Traduceri ușoare {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
-msgstr ""
+msgstr "Evidențiază text pe orice pagină web—sau selectează toată pagina—pentru traducere instantanee."
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4597,7 +4584,7 @@ msgstr "Acces la înțelepciunea academică {start_sub_heading}cu {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Bucură-te de acces gratuit la peste 10 milioane de lucrări de cercetare."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4605,7 +4592,7 @@ msgstr "Personalizează gesturile din mouse {start_sub_heading}cu {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Descoperă un nou mod de navigare cu peste 50 de gesturi utile din mouse."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4630,7 +4617,7 @@ msgstr "Caută conținut web lipsă  {start_sub_heading}cu {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr ""
+msgstr "Pagina pe care o cauți este indisponibilă? Caută o versiune arhivată/în cache."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4642,7 +4629,7 @@ msgstr "Mărește imaginile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Pur și simplu treci cu mouse-ul peste o imagine pentru mărire."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4666,7 +4653,7 @@ msgstr "Blochează elementele de urmărire invizibile {start_sub_heading}cu {add
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Oprești instant elementele de urmărire și afli mai multe despre ele."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6860,9 +6847,8 @@ msgstr "{addon} :: Raportări de abuzuri"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Rapoarte de abuzuri pentru {addon} și dezvoltatorii acestuia ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Supliment"
+msgstr "ID supliment"
 
 msgid "Internal AMO ID"
 msgstr ""
