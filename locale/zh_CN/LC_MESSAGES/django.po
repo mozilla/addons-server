@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 00:22+0000\n"
+"PO-Revision-Date: 2018-12-06 01:11+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2757,9 +2757,8 @@ msgstr "此附加组件与 <b>%(app_name)s %(app_version)s</b>，最新的 %(app
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">更新兼容性</a> <a href=\"%(version_url)s\" class=\"button\">上传新版本</a> or <a href=\"#\" class=\"close\">忽略</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "查看并更新应用程序兼容性范围。"
+msgstr "查看并更新应用程序兼容性范围"
 
 msgid "Compatibility"
 msgstr "兼容性"
@@ -3041,9 +3040,8 @@ msgstr "用于附加组件详细信息页面。"
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "用于附加组件详细信息页面。"
+msgstr ""
 
 msgid "Upload a Custom Icon..."
 msgstr "上传一个自定义图标..."
@@ -3155,9 +3153,8 @@ msgstr "请告诉我们您删除此附加组件的原因："
 msgid "Actions"
 msgstr "动作"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "恢复这个附加组件的提交流程。"
+msgstr "恢复这个附加组件的提交流程"
 
 msgid "Resume"
 msgstr "恢复"
@@ -3168,9 +3165,8 @@ msgstr "删除这个附加组件。"
 msgid "Delete"
 msgstr "删除"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "前往此附加组件的产品页面编辑详细信息。"
+msgstr "前往此附加组件的产品页面编辑详细信息"
 
 msgid "Upload a new version of this add-on"
 msgstr "上传这个附加组件的新版本"
@@ -3178,9 +3174,8 @@ msgstr "上传这个附加组件的新版本"
 msgid "New Version"
 msgstr "新版本"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "下载量与用户量的每日统计数据。"
+msgstr "下载量与用户量的每日统计数据"
 
 msgid "Statistics"
 msgstr "统计数据"
@@ -3191,13 +3186,11 @@ msgstr "管理状态和版本"
 msgid "View Recent Changes"
 msgstr "查看最近更改"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "前往此主题的产品页面编辑详细信息。"
+msgstr "前往此主题的产品页面编辑详细信息"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "查看这款主题随时间推移的传播情况。"
+msgstr "查看这款主题随时间推移的传播情况"
 
 msgid "View Statistics"
 msgstr "查看统计数据"
@@ -3581,27 +3574,23 @@ msgstr "创建于："
 msgid "Add-on Multi Process Status:"
 msgstr "附加组件多进程状态："
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "您的附加组件与多进程 Firefox (e10s) 的兼容情况。"
+msgstr "您的附加组件与多进程 Firefox (e10s) 的兼容情况"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理。"
+msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理"
 
 msgid "Listed Version:"
 msgstr "上架版本："
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本。"
+msgstr "这是其他人点击网站 (addons.mozilla.org) 上的“安装”按钮时将安装的您的附加组件的版本"
 
 msgid "Next Listed Version:"
 msgstr "下一个上架版本："
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "这是新上传的版本，但它还没有正式在网站上架。"
+msgstr "这是新上传的版本，但它还没有正式在网站上架"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "审核时并不会严格按照进入队列的先后顺序进行"
@@ -3991,9 +3980,8 @@ msgstr "你可以借助背景主题很容易地个性化你的 Firefox 外观。
 msgid "Give your Theme a name."
 msgstr "给主题取个名字。"
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "对您的主题的基本功能的简短说明，显示在搜索和浏览列表页面，同样也显示在主题详情页面的顶端。"
+msgstr "对您的主题的基本功能的简短说明，显示在搜索和浏览列表页面，同样也显示在主题详情页面的顶端"
 
 #, python-format
 msgid ""
