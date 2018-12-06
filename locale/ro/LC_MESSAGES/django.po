@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 15:51+0000\n"
+"PO-Revision-Date: 2018-12-06 15:58+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4343,10 +4343,10 @@ msgid "Hide Add-on"
 msgstr "Ascunde suplimentul"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Ascunderea suplimentului va împiedica apariția acestuia oriunde în galeria noastră și va opri primirea de actualizări automate de către utilizatori."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
-msgstr ""
+msgstr "Fișierele în așteptarea revizuirii vor fi dezactivate și va trebui să încarci versiuni noi."
 
 msgid "Are you sure you wish to hide your add-on?"
 msgstr "Sigur vrei să-ți ascunzi suplimentul?"
@@ -4390,7 +4390,7 @@ msgstr "Personalizează paginile din filele noi {start_sub_heading}cu {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr ""
+msgstr "Bucură-te de o pagină nouă frumoasă, cu fundaluri personalizate, informații meteo locale și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4406,7 +4406,7 @@ msgstr "Caută imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr ""
+msgstr "Efectuezi căutări inverse de imagini dintr-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
 msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4422,7 +4422,7 @@ msgstr "Reinventează file {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Ai o mulțime de file deschise? Organizează-le într-o bară laterală ordonată."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4438,7 +4438,7 @@ msgstr "Simplifică căutările {start_sub_heading}cu {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Just highlight text on any web page to search the phrase from an array of engines."
-msgstr ""
+msgstr "Doar evidențiezi text pe orice pagină web pentru a căuta expresia într-o gamă de motoare de căutare."
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4446,7 +4446,7 @@ msgstr "Actualizare meteo instant {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
-msgstr ""
+msgstr "Obții instant informații meteo globale direct în Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4550,7 +4550,7 @@ msgstr "Codează filele pe culori {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Organizează-ți filele grupându-le pe culori în baza modelelor URL."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4566,7 +4566,7 @@ msgstr "Verificare gramaticală automată {start_sub_heading}cu {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Obții ajutor gramatical oriunde scrii pe web—rețele de socializare, e-mail, documente și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4683,7 +4683,7 @@ msgstr "Blochează reclamele din e-mail {start_sub_heading}cu {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Fă-ți spațiu pe ecran eliminând reclamele din căsuța poștală web."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4787,7 +4787,7 @@ msgstr "Traduceri din mers {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Translate highlighted text or the entire webpage"
-msgstr ""
+msgstr "Traduci texte evidențiate sau toată pagina web"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4803,7 +4803,7 @@ msgstr "Fă capturi pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Fă capturi de ecran cu pagini web, editează--le și partajează-le."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
