@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 06:33+0000\n"
+"PO-Revision-Date: 2018-12-06 12:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3057,9 +3057,8 @@ msgstr "於附加元件詳細資訊頁面中使用。"
 msgid "128x128px"
 msgstr ""
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "於附加元件詳細資訊頁面中使用。"
+msgstr "未來將成為附加元件詳細資訊頁面的標準。"
 
 msgid "Upload a Custom Icon..."
 msgstr "上傳自定圖示..."
@@ -3070,9 +3069,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "支援 PNG 與 JPG 檔案格式。圖示必須縮放至 64x64 像素。"
+msgstr "圖示若超過 128x128 畫素，將縮小至該尺寸。"
 
 msgid "Screenshots"
 msgstr "擷圖"
@@ -3176,9 +3174,8 @@ msgstr "請告訴我們為什麼您要刪除您的附加元件:"
 msgid "Actions"
 msgstr "動作"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "重新開始這個附加元件的審查送件。"
+msgstr "恢復這個附加元件的審查送件流程"
 
 msgid "Resume"
 msgstr "重新開始"
@@ -3189,20 +3186,17 @@ msgstr "刪除這個附加元件。"
 msgid "Delete"
 msgstr "刪除"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "到此附加元件的產品頁面編輯詳細資訊。"
+msgstr "到此附加元件的產品頁面編輯詳細資訊"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "上傳新版本的附加元件。"
+msgstr "上傳新版本的附加元件"
 
 msgid "New Version"
 msgstr "新版本"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "下載數與使用者的每日統計資訊。"
+msgstr "下載數與使用者的每日統計資訊"
 
 msgid "Statistics"
 msgstr "統計資訊"
@@ -3213,20 +3207,17 @@ msgstr "管理狀態與版本"
 msgid "View Recent Changes"
 msgstr "檢視近期更新"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "到此佈景主題的產品頁面編輯詳細資訊。"
+msgstr "到此佈景主題的產品頁面編輯詳細資訊"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
 msgstr "檢視這個佈景主題到目前為止的熱門度"
 
 msgid "View Statistics"
 msgstr "檢視統計資訊"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "變更這個佈景主題的擁有者。"
+msgstr "變更這個佈景主題的擁有者"
 
 msgid "Transfer Ownership"
 msgstr "轉讓所有權"
@@ -3610,23 +3601,20 @@ msgstr "附加元件多程序狀態:"
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "您的附加元件相容於多程序 (e10s) 的 Firefox"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
+msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理"
 
 msgid "Listed Version:"
 msgstr "上架版本:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本。"
+msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本"
 
 msgid "Next Listed Version:"
 msgstr "下個上架版本:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈。"
+msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "我們並不完全按照等待審核區之先後順序來審核"
@@ -4023,9 +4011,8 @@ msgstr "背景圖片讓您輕易自訂 Firefox 瀏覽器的外觀。您可以在
 msgid "Give your Theme a name."
 msgstr "主題的名稱為"
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "關於您的佈景主題的基本功能的簡短描述，會顯示在搜尋與瀏覽清單，以及佈景主題的詳細資訊頁面頂端。"
+msgstr "關於您的佈景主題的基本功能的簡短描述，會顯示在搜尋與瀏覽清單，以及佈景主題的詳細資訊頁面頂端"
 
 #, python-format
 msgid ""
@@ -6687,7 +6674,7 @@ msgid "Add-on ID"
 msgstr "附加元件 ID"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "AMO 內部 ID"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
