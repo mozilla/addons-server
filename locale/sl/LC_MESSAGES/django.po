@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 17:00+0000\n"
-"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
+"PO-Revision-Date: 2018-12-06 08:51+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2650,9 +2650,8 @@ msgstr "Slika mora biti široka vsaj {0} pik in visoka vsaj {1} pik."
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Dimenzije slik morajo biti v razmerju 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Slika mora biti široka vsaj {0} pik in visoka vsaj {1} pik."
+msgstr "Ikona mora biti široka in visoka vsaj {0} pik."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -3163,9 +3162,8 @@ msgstr "Uporablja se v podrobnih straneh o dodatku."
 msgid "128x128px"
 msgstr ""
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Uporablja se v podrobnih straneh o dodatku."
+msgstr "Bodo standard na prihodnjih straneh s podrobnostmi dodatkov."
 
 msgid "Upload a Custom Icon..."
 msgstr "Nalaganje lastne sličice ..."
@@ -3176,9 +3174,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Podprta sta PNG in JPG. Sličico se bo pomanjšalo na 64 x 64 pik, če bo prevelika."
+msgstr "Ikone bodo pomanjšane na 128 × 128 pik, če bodo prevelike."
 
 msgid "Screenshots"
 msgstr "Posnetki zaslona"
@@ -3284,9 +3281,8 @@ msgstr "Povejte nam, zakaj brišete svoj dodatek:"
 msgid "Actions"
 msgstr "Ukrepi"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Nadaljuj s z oddajnim postopkom za ta dodatek."
+msgstr "Nadaljuj s postopkom predložitve za ta dodatek"
 
 msgid "Resume"
 msgstr "Nadaljuj"
@@ -3297,9 +3293,8 @@ msgstr "Izbriši ta dodatek"
 msgid "Delete"
 msgstr "Izbriši"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Urejanje podrobnosti na strani tega dodatka."
+msgstr "Urejanje podrobnosti na strani tega dodatka"
 
 msgid "Upload a new version of this add-on"
 msgstr "Naloži novo različico tega dodatka"
@@ -3319,9 +3314,8 @@ msgstr "Uredi stanje in različice"
 msgid "View Recent Changes"
 msgstr "Prikaži zadnje spremembe"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Urejanje podrobnosti na strani te teme."
+msgstr "Urejanje podrobnosti na strani te teme"
 
 msgid "View the popularity of this theme over time"
 msgstr "Oglejte si priljubljenost te teme skozi čas"
@@ -3726,13 +3720,11 @@ msgstr "Ustvarjeno:"
 msgid "Add-on Multi Process Status:"
 msgstr "Dodatek in večprocesni način:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Združljivost vašega dodatka s Firefoxom Multi Process (e10s)."
+msgstr "Združljivost vašega dodatka z večprocesnim Firefoxom (e10s)"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Po opravljenem pregledu kode gostovan na tej strani. Za samodejne posodobitve skrbi ta stran."
+msgstr "Po opravljenem pregledu kode gostovan na tej strani. Za samodejne posodobitve skrbi ta stran"
 
 msgid "Listed Version:"
 msgstr "Navedena različica:"
@@ -3743,9 +3735,8 @@ msgstr "To je različica dodatka, ki se bo namestila, ko uporabnik klikne gumb N
 msgid "Next Listed Version:"
 msgstr "Naslednja navedena različica:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "To je najnovejša naložena različica, ki pa še ni na voljo na strani za prenos."
+msgstr "To je najnovejša naložena različica, ki pa še ni na voljo na strani za prenos"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Čakalne vrste niso pregledane natanko po vrsti"
