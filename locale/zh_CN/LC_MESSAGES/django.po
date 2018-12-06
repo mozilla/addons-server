@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-05 16:46+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"PO-Revision-Date: 2018-12-06 00:22+0000\n"
+"Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2554,9 +2554,8 @@ msgstr "图片宽度必须至少为 {0} 像素且高度为 {1} 像素。"
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "图片比例必须为 4:3。"
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "图片宽度必须至少为 {0} 像素且高度为 {1} 像素。"
+msgstr "图标宽度和高度至少达到 {0} 像素。"
 
 msgid "Icon must be square (same width and height)."
 msgstr "图标必须为正方形（宽度和高度相同）。"
@@ -3055,9 +3054,8 @@ msgstr "支持 PNG 和 JPG。"
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "图标必须为正方形，且最小为 128x128 像素。"
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "支持 PNG 和 JPG。如果图标尺寸较大，将被缩小到 64x64。"
+msgstr "图标将调整为128x128像素。"
 
 msgid "Screenshots"
 msgstr "屏幕截图"
@@ -3174,9 +3172,8 @@ msgstr "删除"
 msgid "Edit details on this add-on's product page"
 msgstr "前往此附加组件的产品页面编辑详细信息。"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "上传这个附加组件的新版本。"
+msgstr "上传这个附加组件的新版本"
 
 msgid "New Version"
 msgstr "新版本"
@@ -3205,16 +3202,14 @@ msgstr "查看这款主题随时间推移的传播情况。"
 msgid "View Statistics"
 msgstr "查看统计数据"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "更改这个主题的所有者。"
+msgstr "更改这个主题的所有者"
 
 msgid "Transfer Ownership"
 msgstr "改变所有权"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "删除这个主题。"
+msgstr "删除这个主题"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "此附加组件缺少一些提交发布的必要信息。"
@@ -3624,9 +3619,8 @@ msgstr "已签名为自行分发。更新将由您来处理。"
 msgid "Latest Version:"
 msgstr "最新版本："
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "这是新上传的未上架版本。"
+msgstr "这是新上传的未上架版本"
 
 msgid "Upload New Version"
 msgstr "上传新版本"
@@ -3971,16 +3965,14 @@ msgstr "选择主题的颜色。"
 msgid "Foreground Text"
 msgstr "文字前景色"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "这是标签文字的颜色。"
+msgstr "这是标签页文字的颜色"
 
 msgid "Background"
 msgstr "背景色"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "这是标签的颜色。"
+msgstr "这是标签页的颜色"
 
 msgid "Your Theme's Name"
 msgstr "您的主题名"
@@ -6656,9 +6648,8 @@ msgstr "{addon} :: 滥用报告"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "对 {addon} 及其开发者的滥用报告 ({num} 项)"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "附加组件"
+msgstr "附加组件 ID"
 
 msgid "Internal AMO ID"
 msgstr "AMO 内部 ID"
