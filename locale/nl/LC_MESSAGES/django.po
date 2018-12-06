@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 12:31+0000\n"
+"PO-Revision-Date: 2018-12-06 12:39+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -3695,23 +3695,20 @@ msgstr "Multiprocess-status van add-on:"
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "De compatibiliteit van uw add-on met Multiproces-Firefox (e10s)"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Vermeld op deze website na succesvolle codebeoordeling. Automatische updates worden door deze website verzorgd."
+msgstr "Vermeld op deze website na succesvolle codebeoordeling. Automatische updates worden door deze website verzorgd"
 
 msgid "Listed Version:"
 msgstr "Vermelde versie:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Dit is de versie van uw add-on die wordt geïnstalleerd als iemand op de knop Installeren klikt op addons.mozilla.org."
+msgstr "Dit is de versie van uw add-on die wordt geïnstalleerd als iemand op de knop Installeren klikt op addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Volgende vermelde versie:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Dit is de nieuwste geüploade versie, echter deze is op de website nog niet live."
+msgstr "Dit is de nieuwste geüploade versie, echter deze is op de website nog niet live"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Wachtrijen worden niet op strikte volgorde beoordeeld"
@@ -3729,9 +3726,8 @@ msgstr "Ondertekend voor eigen distributie. Updates worden door u verzorgd."
 msgid "Latest Version:"
 msgstr "Nieuwste versie:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Dit is de nieuwste geüploade niet-vermelde versie."
+msgstr "Dit is de nieuwste geüploade niet-vermelde versie"
 
 msgid "Upload New Version"
 msgstr "Nieuwe versie uploaden"
@@ -4088,16 +4084,14 @@ msgstr "Selecteer kleuren voor uw thema."
 msgid "Foreground Text"
 msgstr "Voorgrondtekst"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Dit is de kleur van de tabbladtekst."
+msgstr "Dit is de kleur van de tabbladtekst"
 
 msgid "Background"
 msgstr "Achtergrond"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Dit is de kleur van de tabbladen."
+msgstr "Dit is de kleur van de tabbladen"
 
 msgid "Your Theme's Name"
 msgstr "Naam van uw thema"
@@ -4116,9 +4110,8 @@ msgstr "Met achtergrondthema’s kunt u eenvoudig de uitstraling van uw Firefox 
 msgid "Give your Theme a name."
 msgstr "Geef uw thema een naam."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema."
+msgstr "Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema"
 
 #, python-format
 msgid ""
@@ -6821,9 +6814,8 @@ msgstr "{addon}:: Misbruikmeldingen"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Misbruikmeldingen voor {addon} en de ontwikkelaars ervan ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Add-on"
+msgstr "Add-on-ID"
 
 msgid "Internal AMO ID"
 msgstr "Interne AMO-ID"
