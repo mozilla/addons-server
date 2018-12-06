@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 10:49+0000\n"
+"PO-Revision-Date: 2018-12-01 10:54+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3486,7 +3486,7 @@ msgstr "Ai terminat! Această versiune va fi în scurt timp disponibilă pe site
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
-"Ai terminat! Această versiune a fost trimisă spre revizuire. Vei fi anunțat(ă) la finalizarea revizuirii sau dacă revizorii noștri au să-ți adreseze orice întrebări legate de propunerea depusă."
+"Ai terminat! Această versiune a fost trimisă spre revizuire. Vei fi notificat(ă) la finalizarea revizuirii sau dacă revizorii noștri au să-ți adreseze orice întrebări legate de propunerea depusă."
 
 msgid "Your listing will be more successful by adding a detailed description. Get your listing ready for publication:"
 msgstr "Listarea ta va avea un succes mai mare dacă adaugi o descriere detaliată. Pregătește-ți listarea pentru publicare:"
