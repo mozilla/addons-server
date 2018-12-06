@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 00:13+0000\n"
+"PO-Revision-Date: 2018-12-06 00:14+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -3697,11 +3697,8 @@ msgstr "Detta är den version av ditt tillägg som kommer att installeras om n�
 msgid "Next Listed Version:"
 msgstr "Nästa listade version:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
-"Detta är den senaste uppladdade versionen, men\n"
-"                                           den är inte uppladdad på webbplatsen ännu."
+msgstr "Detta är den senaste uppladdade versionen, men den är inte uppladdad på webbplatsen ännu"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Köerna granskas inte i strikt ordning"
@@ -3719,9 +3716,8 @@ msgstr "Signerad för självdistribution. Uppdateringar hanteras av dig."
 msgid "Latest Version:"
 msgstr "Senaste version:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Detta är den senaste uppladdade olistade versionen."
+msgstr "Detta är den senaste uppladdade olistade versionen"
 
 msgid "Upload New Version"
 msgstr "Ladda upp ny version"
@@ -4081,16 +4077,14 @@ msgstr "Välj färger för ditt tema."
 msgid "Foreground Text"
 msgstr "Förgrundstext"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Detta är textfärgen på fliken."
+msgstr "Detta är textfärgen på fliken"
 
 msgid "Background"
 msgstr "Bakgrund"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Detta är färgen på flikarna."
+msgstr "Detta är färgen på flikarna"
 
 msgid "Your Theme's Name"
 msgstr "Ditt temas namn"
@@ -4109,13 +4103,8 @@ msgstr "Med bakgrundsteman kan du enkelt anpassa utseendet på Firefox. Skicka i
 msgid "Give your Theme a name."
 msgstr "Ge ditt tema ett namn."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
-"En kort förklaring av ditt temas\n"
-"                                grundläggande funktionalitet som visas i\n"
-"                                sök- och bläddringslistor, liksom överst i\n"
-"                                ditt temas detaljsida."
+msgstr "En kort förklaring av ditt temas  grundläggande funktionalitet som visas sök- och bläddringslistor, liksom överst i ditt temas detaljsida"
 
 #, python-format
 msgid ""
