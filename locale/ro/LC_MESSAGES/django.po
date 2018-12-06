@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-01 10:54+0000\n"
+"PO-Revision-Date: 2018-12-06 15:51+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2537,13 +2537,13 @@ msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Extensiile obsolete nu mai sunt suportate în Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
+msgstr "Începând cu Firefox 53, noile suplimente de pe acest site pot fi numai WebExtensions."
 
 msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
 msgstr "Extensiile obsolote nu sunt compatibile cu Firefox 57 sau cu versiunile mai recente. Folosește un maxVersion de 56.* sau o valoare mai mică."
 
 msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgstr "Pachetele lingvistice anterioare pentru Firefox nu mai sunt suportate. Este necesar un manifest de instalare WebExtensions. Vezi {mdn_link} pentru detalii suplimentare."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -2562,7 +2562,7 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru a-ți proteja contul, cheia va fi revocată."
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
+msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținând unui coautor. Pentru a-ți proteja suplimentul, cheia va fi revocată."
 
 #, python-format
 msgid "%s responded with %s (%s)."
@@ -2658,7 +2658,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Pictograma trebuie să fie de cel puțin {0} pixeli lățime și înălțime."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Pictograma trebuie să fie pătrată (aceeași lățime și înălțime)."
 
 msgid "There was an error uploading your preview."
 msgstr "A apărut o eroare la încărcarea previzualizării tale."
@@ -3182,10 +3182,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Încarcă o pictogramă personalizată ..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG și JPG suportate."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Pictogramele trebuie să fie pătrate și să aibă o mărime minimă de 128x128 pixeli."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Pictogramele vor fi redimensionate la128x128 de pixeli dacă sunt mai mari."
@@ -3194,22 +3194,22 @@ msgid "Screenshots"
 msgstr "Capturi de ecran"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Te rugăm să furnizezi cel puțin o captură de ecran cu suplimentul tău:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr ""
+msgstr "Te rugăm să furnizezi o legendă pentru această captură de ecran:"
 
 msgid "Add a Screenshot..."
 msgstr "Adaugă o captură de ecran..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG și JPG suportate, PNG recomandat. Mărimea maximă și recomandată pentru capturile de ecran este de 2400x1800 pixeli."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Mărimea minimă este de 1000x750 și este necesar un raport de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Capturile de ecran pe pagina de produs îi sporesc considerabil șansele de a fi instalat și promovat pe pagina de start."
 
 msgid "Continue"
 msgstr "Continuă"
@@ -3224,7 +3224,7 @@ msgid "Can others create derivative works from your Add-on?"
 msgstr "Permiți altora să creeze lucrări derivate din suplimentul tău?"
 
 msgid "Yes, as long as they share alike"
-msgstr ""
+msgstr "Da, atât timp cât sunt partajate în același mod"
 
 msgid "The licensor permits others to distribute derivativeworks only under the same license or one compatible with the one that governs the licensor's work."
 msgstr "Deținătorul licenței permite altora să distribuie lucrări derivate numai sub aceeași licență sau sub una compatibilă cu cea care guvernează lucrarea deținătorului licenței."
@@ -4148,6 +4148,8 @@ msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
+"Agreez %(agreement_link_open)sAcordul de distribuție pentru suplimente Firefox%(link_close)s și sunt de acord ca informațiile mele să fie gestionate conform descrierii din "
+"%(privacy_notice_link_open)sPolitica de confidențialitate pentru site-uri web, comunicații și cookie-uri%(link_close)s."
 
 msgid "Submit Theme"
 msgstr "Trimite tema"
@@ -4203,6 +4205,8 @@ msgid ""
 "Information about changes in this release, new features, known bugs, and other useful information specific to this release/version. This information is also shown in the Add-ons Manager when "
 "updating."
 msgstr ""
+"Informații despre schimbările din versiunea curentă, funcționalități noi, defecte cunoscute și alte informații utile specifice acestei versiuni. Aceste informații vin afișate și în Managerul de "
+"suplimente la actualizare."
 
 msgid "Approval Status"
 msgstr "Starea aprobării"
@@ -4224,11 +4228,11 @@ msgstr "Fișier {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "Creat la data de %(created)s și modificat pe %(status)s la data de %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "Creat la data de %(created)s și modificat pe %(status)s"
 
 msgid "Status & Versions"
 msgstr "Stare și versiuni"
@@ -4264,7 +4268,7 @@ msgid "We had a problem retrieving review notes"
 msgstr "Am întâmpinat o problemă la recuperarea notelor de revizuire"
 
 msgid "Load older..."
-msgstr ""
+msgstr "Încarcă mai vechi..."
 
 msgid "Leave a reply"
 msgstr "Lasă un răspuns"
@@ -4317,9 +4321,11 @@ msgstr "Șterge versiunea {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Ești pe cale să ștergi versiunea curentă a suplimentului tău. Aceasta poate produce modificarea stării suplimentului sau pierderea vizibilității publice, dacă aceasta este singura versiune publică a"
+" suplimentului."
 
 msgid "Deleting this version will permanently delete:"
-msgstr ""
+msgstr "Ștergerea acestei versiuni va șterge definitiv:"
 
 msgid "<strong>Important:</strong> Once a version has been deleted, you may not upload a new version with the same version number."
 msgstr "<strong>Important:</strong> Odată ce o versiune este ștearsă, nu mai poți încărca o versiune nouă cu același număr de versiune."
