@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 10:56+0000\n"
+"PO-Revision-Date: 2018-12-06 12:22+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1976,7 +1976,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr "Unduh ekstensi Firefox yang menampilkan perangkat pengembangan web. Kategori ini termasuk ekstensi untuk GitHub, peralihan agen pengguna, pengelolaan kuki, dan banyak lagi."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Unduh ekstensi Firefox yang kreatif dan tak terduga, tetapi berguna untuk tugas-tugas yang tak biasa."
 
 msgid "Device Features & Location"
 msgstr "Fitur Perangkat dan Lokasi"
