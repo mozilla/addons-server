@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 08:51+0000\n"
+"PO-Revision-Date: 2018-12-06 08:55+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -2654,7 +2654,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikona mora biti široka in visoka vsaj {0} pik."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikona mora biti kvadratna (enake širine in višine)."
 
 msgid "There was an error uploading your preview."
 msgstr "Med nalaganjem predogleda je prišlo do napake."
@@ -3169,10 +3169,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Nalaganje lastne sličice ..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Podprti obliki sta PNG in JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikone morajo biti kvadratne in velike najmanj 128 × 128 pik."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Ikone bodo pomanjšane na 128 × 128 pik, če bodo prevelike."
@@ -6877,7 +6877,7 @@ msgid "Add-on ID"
 msgstr "ID dodatka"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Notranji ID AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
