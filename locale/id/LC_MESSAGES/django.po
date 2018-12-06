@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 13:06+0000\n"
+"PO-Revision-Date: 2018-12-06 13:29+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -1916,7 +1916,7 @@ msgid "Download Management"
 msgstr "Kelola Unduhan"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox yang dapat membantu mengunduh konten web, musik, dan video. Anda juga dapat menelusuri ekstensi untuk mengelola unduhan, berbagi berkas, dan banyak lagi."
 
 msgid "Feeds, News & Blogging"
 msgstr "Blog, Feed, dan Berita"
@@ -1996,13 +1996,13 @@ msgid "Performance"
 msgstr "Kinerja"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Unduh ekstensi yang mendorong kinerja Firefox. Temukan ekstensi yang membantu Anda lebih produktif dan efisien dengan memblokir iklan yang menjengkelkan dan banyak lagi."
 
 msgid "Photos & Media"
 msgstr "Foto & Media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox untuk memperbagus foto dan media. Kategori ini termasuk ekstensi untuk membalik penelusuran gambar, mencuplik layar penuh laman, dan banyak lagi."
 
 msgid "Security & Privacy"
 msgstr "Privasi dan Keamanan"
@@ -2014,7 +2014,7 @@ msgid "Social Networking"
 msgstr "Jejaring Sosial"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox untuk meningkatkan pengalaman situs web jejaring sosial populer Anda seperti YouTube, GitHub, Reddit, dan yang lainnya."
 
 msgid "Sports & Games"
 msgstr "Olahraga dan Gim"
@@ -2059,7 +2059,7 @@ msgid "Abstract"
 msgstr "Abstrak"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Unduh tema artistik dan konseptual Firefox. Kategori ini termasuk palet dan rupa yang kaya warna, lanskap khayalan, kucing yang asyik, dan bunga-bunga psikedelik."
 
 msgid "Causes"
 msgstr "Gerakan"
