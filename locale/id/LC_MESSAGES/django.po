@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 16:32+0000\n"
+"PO-Revision-Date: 2018-12-06 17:12+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2422,9 +2422,8 @@ msgstr "Tentukan Kebijakan Privasi pengaya Anda:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Tipe file tidak didukung, silakan mengunggah file arsip {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Arsip tidak sah."
+msgstr "Arsip rusak atau tidak valid."
 
 msgid "View current"
 msgstr "Lihat yang terbaru"
@@ -2808,9 +2807,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitas Diperbarui</a> <a href=\"%(version_url)s\" class=\"button\">Mengunggah Versi Baru</a> atau <a href=\"#\""
 " class=\"close\">Abaikan</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Lihat dan perbarui rentang kompatibilitas aplikasi."
+msgstr "Lihat dan perbarui rentang kompatibilitas aplikasi"
 
 msgid "Compatibility"
 msgstr "Kompatibilitas"
@@ -3681,9 +3679,8 @@ msgstr "Dibuat:"
 msgid "Add-on Multi Process Status:"
 msgstr "Status Multi Proses Pengaya:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)."
+msgstr "Kompatibilitas pengaya Anda dengan Multi Proses Firefox (e 10 s)"
 
 #, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -3692,9 +3689,8 @@ msgstr "Akan tercantum di situs ini setelah melewati peninjauan kode. Pembaruan 
 msgid "Listed Version:"
 msgstr "Versi Terdaftar:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Ini adalah versi pengaya Anda yang akan dipasang jika seseorang mengklik tombol pasang di addons.mozilla.org."
+msgstr "Ini adalah versi pengaya Anda yang akan dipasang jika seseorang mengeklik tombol pasang di addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Versi Terdaftar Berikutnya:"
@@ -5179,7 +5175,7 @@ msgstr "Simpan untuk lain kali {start_sub_heading}dengan {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Simpan laman web untuk diakses melalui berbagai peranti."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5255,7 +5251,7 @@ msgstr "Menuliskan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create general and website-specific notes to review later."
-msgstr ""
+msgstr "Buat catatan umum dan spesifik-situs untuk ditinjau kemudian."
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5271,7 +5267,7 @@ msgstr "Hapus data {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
+msgstr "Bersihkan tembolok peramban Anda dengan sekali klik atau ketukan tombol."
 
 #. editorial content for the discovery pane.
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5343,7 +5339,7 @@ msgstr "Mengelola kata sandi secara aman {start_sub_heading}dengan {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
-msgstr ""
+msgstr "Simpan sandi dengan aman dan masuk secara otomatis ke situs yang dikenal."
 
 #. editorial content for the discovery pane.
 msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5383,7 +5379,7 @@ msgstr "Akses Wikipedia lebih mudah {start_sub_heading}dengan {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
-msgstr ""
+msgstr "Lakukan pencarian Wikipedia dengan cukup menyorot teks pada laman dan mengeklik kanan."
 
 #. editorial content for the discovery pane.
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
