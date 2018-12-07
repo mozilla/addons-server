@@ -6,9 +6,9 @@ FoxPuppet==1.0.2 \
 fxapom==1.10.2 \
     --hash=sha256:56fdff0a0f0ea58831337e3a859971f98c59fd028ebc14baa8e37ae08a40efa0 \
     --hash=sha256:5fb902afaaa9d9b82b5d1d54b9e19f1f4c9be128deb3b0e0ac82a9303f76000f
-PyJWT==1.7.0 \
-    --hash=sha256:00414bfef802aaecd8cc0d5258b6cb87bd8f553c2986c2c5f29b19dd5633aeb7 \
-    --hash=sha256:ddec8409c57e9d371c6006e388f91daf3b0b43bdf9fcbf99451fb7cf5ce0a86d
+PyJWT==1.7.1 \
+    --hash=sha256:5c6eca3c2940464d106b99ba83b00c6add741c9becaec087fb7ccdefea71350e \
+    --hash=sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96
 PyPOM==2.2.0 \
     --hash=sha256:4bdd57fceb72d7e6a3645cf6c9322f490d9cfb5d777eac2c851a3b658b813939 \
     --hash=sha256:6772ec99f0a21a5bdc8c092007a8c813ed18359e67ed70258bbb233df5e28829
