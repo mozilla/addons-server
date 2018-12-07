@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 17:25+0000\n"
+"PO-Revision-Date: 2018-12-07 10:50+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -139,7 +139,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Semua tag panjangnya paling sedikit harus {0} karakter."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Teks yang dimasukkan telah ditandai sebagai spam."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
@@ -4967,7 +4967,7 @@ msgstr "Memuat ulang Tab {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "Muat ulang tab secara otomatis berdasarkan interval waktu."
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5079,7 +5079,7 @@ msgstr "Ubah privasi Anda {start_sub_heading}dengan {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Easily customize the built-in privacy settings in Firefox."
-msgstr ""
+msgstr "Ubah suaikan setelan privasi bawaan di Firefox dengan mudah."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5095,7 +5095,7 @@ msgstr "Dapatkan terjemahan seketika {start_sub_heading}dengan {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr ""
+msgstr "Akses terjemahan seketika dengan menyorot teks dan mengeklik tombol yang menyembul."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
