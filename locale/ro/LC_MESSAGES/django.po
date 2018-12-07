@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 15:58+0000\n"
+"PO-Revision-Date: 2018-12-07 07:21+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2150,40 +2150,40 @@ msgid "Music"
 msgstr "Muzică"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Descarcă teme Firefox pentru interese muzicale și artiști. Această categorie include trupe populare precum Nirvana și BTS, instrumente, videoclipuri muzicale și multe altele."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Descarcă teme Firefox cu animale și peisaje naturale. Această categorie include flori, apusuri de soare, vulpi, anotimpuri, planete, pisici, păsări și multe altele."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Descarcă teme Firefox interesante, creative și unice."
 
 msgid "Scenery"
 msgstr "Peisaj"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Descarcă teme Firefox inspirate din mediul înconjurător și natură. Această categorie include apusuri de soare, plaje, ilustrații, panorame de orașe și multe altele."
 
 msgid "Seasonal"
 msgstr "De sezon"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Descarcă teme Firefox pentru toate cele patru anotimpuri—toamnă, iarnă, primăvară și vară. Frunze de toamnă, vârfuri de munte înzăpezite, zile de vară însorite și flori de primăvară."
 
 msgid "Solid"
 msgstr "Solid"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Descarcă teme Firefox în culori uni și degradeuri pentru a-ți personaliza browserul. Această categorie include nuanțe îndrăznețe de roșu, pasteluri, tonuri estompate de gri și multe altele."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Descarcă teme Firefox inspirate dintr-o varietate de sporturi. Această categorie include steaguri naționale, echipe sportive, fotbal european, hochei și multe altele."
 
 msgid "Websites"
 msgstr "Site-uri web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Descarcă teme Firefox care redau esența webului—captivante, neobișnuite și distincte."
 
 msgid "General"
 msgstr "General"
