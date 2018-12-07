@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-07 10:50+0000\n"
+"PO-Revision-Date: 2018-12-07 10:58+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5127,7 +5127,7 @@ msgstr "Terjemahkan ke/dari bahasa Jerman {start_sub_heading}dengan {addon_name}
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Dapatkan terjemahan bahasa Jerman ahli untuk bahasa Inggris, Perancis, Spanyol, dan bahasa lain."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5203,7 +5203,7 @@ msgstr "Mengurai tautan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Tampilkan seluruh tautan dengan seketika dari laman web di tab baru."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5722,7 +5722,7 @@ msgid "Could not parse uploaded file."
 msgstr "Tidak dapat mengurai berkas yang diunggah."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Jenis arsip tidak didukung."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6814,7 +6814,7 @@ msgid "Add-on ID"
 msgstr "ID Pengaya"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "ID AMO Internal"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
