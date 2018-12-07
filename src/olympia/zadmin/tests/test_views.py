@@ -361,7 +361,7 @@ class TestFeatures(TestCase):
         assert response.status_code == 200
         data = response.json()
         assert data == [{
-            u'url': u'/en-US/firefox/collections/clouserw/lolwut/',
+            u'url': u'/en-US/firefox/collections/10482/lolwut/',
             u'id': 80,
             u'slug': u'lolwut',
             u'name': u'WebDev',
@@ -377,7 +377,7 @@ class TestFeatures(TestCase):
         assert response.status_code == 200
         data = response.json()
         assert data == [{
-            u'url': u'/en-US/firefox/collections/clouserw/lolwut/',
+            u'url': u'/en-US/firefox/collections/10482/lolwut/',
             u'id': 80,
             u'slug': u'lolwut',
             u'name': u'WebDev',

@@ -80,15 +80,15 @@ class TestPromos(TestCase):
         self.addon2 = addon_factory()
         self.addon3 = addon_factory(name='That & This', summary='This & That')
         # Create a user for the collection.
-        user = UserProfile.objects.create(username='mozilla')
-        games_collection = collection_factory(author=user, slug='games')
+        self.user = UserProfile.objects.create(username='mozilla')
+        games_collection = collection_factory(author=self.user, slug='games')
         games_collection.set_addons(
             [self.addon1.pk, self.addon2.pk, self.addon3.pk])
         DiscoveryModule.objects.create(
             app=amo.FIREFOX.id, ordering=1, module='Games!')
 
         musthave_collection = collection_factory(
-            author=user, slug='must-have-media')
+            author=self.user, slug='must-have-media')
         musthave_collection.set_addons(
             [self.addon1.pk, self.addon2.pk, self.addon3.pk])
         DiscoveryModule.objects.create(
@@ -161,7 +161,7 @@ class TestPromos(TestCase):
         doc = pq(response.content)
         h2_link = doc('h2 a').eq(0)
         expected_url = '%s%s' % (
-            reverse('collections.detail', args=['mozilla', 'games']),
+            reverse('collections.detail', args=[self.user.id, 'games']),
             '?src=hp-dl-promo')
         assert h2_link.attr('href') == expected_url
 
@@ -172,7 +172,8 @@ class TestPromos(TestCase):
         doc = pq(response.content)
         h2_link = doc('h2 a').eq(1)
         expected_url = '%s%s' % (
-            reverse('collections.detail', args=['mozilla', 'must-have-media']),
+            reverse('collections.detail', args=[
+                self.user.id, 'must-have-media']),
             '?src=hp-dl-promo')
         assert h2_link.attr('href') == expected_url
 

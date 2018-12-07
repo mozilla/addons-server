@@ -44,4 +44,4 @@ class AllowContentCurators(BasePermission):
         )
 
     def has_object_permission(self, request, view, obj):
-        return obj and obj.author.username == 'mozilla'
+        return obj and obj.author_id == settings.TASK_USER_ID

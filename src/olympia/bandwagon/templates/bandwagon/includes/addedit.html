@@ -9,8 +9,8 @@
     <p id="collection-form-slug">
       {{ form.slug.errors }}
       <label>{{ form.slug.label }}</label>
-      {% set username = collection.author_username if collection else user.username %}
-      {% set slug_base = url('collections.user', username)|absolutify %}
+      {% set pk = collection.author_id if collection else user.id %}
+      {% set slug_base = url('collections.user', pk)|absolutify %}
       <span id="slug_edit" class="edit_with_prefix edit_initially_hidden">
         <span>{{ slug_base }}</span>{{ form.slug }}
       </span>
