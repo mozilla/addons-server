@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-07 10:58+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"PO-Revision-Date: 2018-12-07 12:15+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -414,7 +414,7 @@ msgstr "Mengajukan tinjauan"
 
 msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
 msgstr ""
-"Mohon tidak mengirimkan laporan kutu di sini. Kami tidak akan menampilkan alamat surel Anda kepada pengembang pengaya, sehingga mereka tidak dapat menghubungi Anda untuk memecahkan masalah Anda."
+"Mohon tidak mengirimkan laporan bug di sini. Kami tidak akan menampilkan alamat surel Anda kepada pengembang pengaya, sehingga mereka tidak dapat menghubungi Anda untuk memecahkan masalah Anda."
 
 #, python-format
 msgid ""
@@ -762,7 +762,7 @@ msgstr "Beranda Pengaya"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Jika Anda mengikuti tautan dari suatu tempat, harap%(open_bug_link)skirimkan masalah%(close_bug_link)s. Beritahu kami dari mana Anda berasal dan apa yang Anda cari, kami akan melakukan yang terbaik "
+"Jika Anda mengikuti tautan dari suatu tempat, harap%(open_bug_link)kirimkan masalah%(close_bug_link)s. Beritahu kami dari mana Anda berasal dan apa yang Anda cari, kami akan melakukan yang terbaik "
 "untuk memperbaikinya."
 
 msgid "Not Found"
