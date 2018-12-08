@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-08 19:49+0000\n"
+"PO-Revision-Date: 2018-12-08 20:11+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4564,7 +4564,7 @@ msgstr "Împiedică forarea de criptomonede {start_sub_heading}cu {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Oprește site-urile web rău intenționate să-ți utilizeze resursele calculatorului ca să mineze după criptomonede."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4621,7 +4621,7 @@ msgstr "Caută cu conștiința împăcată {start_sub_heading}cu {addon_name}{en
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia investește 80% din profiturile sale ca să finanțeze programe de plantat copaci peste tot în lume. Include Ecosia printre motoarele de căutare din Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4681,7 +4681,7 @@ msgstr "Salvează text pentru mai târziu {start_sub_heading}cu {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "Nu mai scrie același lucru iar și iar și iar! Dacă utilizezi frecvent aceleași fraze pentru lucru sau în alte comunicări, salvează-le în Clippings și lipește-le ușor când ai nevoie de ele."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4697,7 +4697,7 @@ msgstr "Găsește filele {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Gestionează-ți filele deschise într-o bară laterală ordonată."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4705,7 +4705,7 @@ msgstr "Evită elementele de urmărire insidioase și restricțiile {start_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Ascunde-ți activitatea de navigare prin mascarea identității browserului și a sistemului de operare."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
