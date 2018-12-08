@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-08 20:34+0000\n"
+"PO-Revision-Date: 2018-12-08 20:40+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5161,7 +5161,7 @@ msgstr "Tradu în/din germană {start_sub_heading}cu {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Get expert German translations between English, French, Spanish, and other languages."
-msgstr ""
+msgstr "Obții traduceri experte în germană din engleză, franceză, spaniolă și alte limbi."
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5169,7 +5169,7 @@ msgstr "Creează o listă de site-uri web blocate {start_sub_heading}cu {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Restricționează accesul Firefox la site-uri web definite de tine."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5177,7 +5177,7 @@ msgstr "Lucrează mai inteligent {start_sub_heading}cu {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "Gestionează-ți productivitatea lucrând în intervale de timp definite."
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5193,7 +5193,7 @@ msgstr "Redu efortul ocular {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Activează modul de noapte pentru o mai bună experiență vizuală."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5209,7 +5209,7 @@ msgstr "Salvează pentru mai târziu {start_sub_heading}cu {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Store web pages to access across devices."
-msgstr ""
+msgstr "Stochează pagini web ca să le accesezi de pe toate dispozitivele tale."
 
 #. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5225,11 +5225,11 @@ msgstr "Formatare zero {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away unnecessary formatting and copy just the plain text."
-msgstr ""
+msgstr "Elimină formatările inutile și copiază numai textul simplu."
 
 #. editorial content for the discovery pane.
 msgid "Convert an entire webpage to your preferred language—with the click of a button."
-msgstr ""
+msgstr "Convertește o întreagă pagină web în limba ta preferată—cu un simplu clic pe un buton."
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5237,7 +5237,7 @@ msgstr "Extrage linkuri {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
+msgstr "Afișează instant în file noi toate linkurile de pe o pagină web."
 
 #. editorial content for the discovery pane.
 msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5719,13 +5719,13 @@ msgid "File size is over the limit of {0}."
 msgstr ""
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "Probleme la decodarea {0}."
 
 msgid "This file is not viewable online. Please download the file to view the contents."
-msgstr ""
+msgstr "Acest fișier nu este vizibil online. Te rugăm să descarci fișierul ca să îi vezi conținutul."
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Acest fișier este un director."
 
 msgid "Cannot diff a version against itself"
 msgstr "Nu poți compara o versiune cu ea însăși"
