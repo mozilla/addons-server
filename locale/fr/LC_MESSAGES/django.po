@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-07 07:53+0000\n"
+"PO-Revision-Date: 2018-12-08 19:43+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3278,9 +3278,8 @@ msgstr "Merci de nous indiquer pourquoi vous supprimez votre module :"
 msgid "Actions"
 msgstr "Actions"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Reprendre le processus d’envoi pour ce module."
+msgstr "Reprendre le processus d’envoi pour ce module"
 
 msgid "Resume"
 msgstr "Reprendre"
@@ -3315,9 +3314,8 @@ msgstr "Gérer l’état et les versions"
 msgid "View Recent Changes"
 msgstr "Voir les changements récents"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Modifiez les détails de la page produit de ce thème."
+msgstr "Modifiez les détails de la page produit de ce thème"
 
 #, fuzzy
 msgid "View the popularity of this theme over time"
