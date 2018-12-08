@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-06 23:27+0000\n"
+"PO-Revision-Date: 2018-12-07 07:53+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2643,9 +2643,8 @@ msgstr "L’image doit mesurer exactement {0} pixels en largeur et {1} pixels 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Les dimensions de l’image doivent être dans le rapport 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "L’image doit mesurer exactement {0} pixels en largeur et {1} pixels en hauteur."
+msgstr "L’icône doit mesurer au moins {0} pixels en largeur et en hauteur."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -2853,9 +2852,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Mettre à jour la compatibilité</a> <a href=\"%(version_url)s\" class=\"button\">Envoyer une nouvelle version</a> ou <a "
 "href=\"#\" class=\"close\">Ignorer</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Voir et mettre à jour les intervalles de compatibilité des applications."
+msgstr "Voir et mettre à jour les intervalles de compatibilité des applications"
 
 msgid "Compatibility"
 msgstr "Compatibilité"
