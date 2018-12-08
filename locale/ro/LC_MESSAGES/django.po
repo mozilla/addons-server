@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-12-07 07:21+0000\n"
+"PO-Revision-Date: 2018-12-08 19:49+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -3566,6 +3566,8 @@ msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
 "emphasis\">npm</span> version used)."
 msgstr ""
+"Detaliile (inclusiv versiunea necesară și instrucțiuni de instalare) oricăror programe utilizate în procesul de compilare (de exemplu: <span class=\"tech-emphasis\">nod</span> și versiunea <span "
+"class=\"tech-emphasis\">npm</span> utilizată)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
@@ -3670,7 +3672,7 @@ msgid "For detailed instructions, consult the <a href=\"%(docs_url)s\">API docum
 msgstr "Pentru instrucțiuni detaliate, consultă <a href=\"%(docs_url)s\">documentația API</a>."
 
 msgid "Keep your API keys secret and <strong>never share them with anyone</strong>, including Mozilla contributors."
-msgstr ""
+msgstr "Ține-ți cheile API secrete și <strong>nu le împărtăși nimănui niciodată</strong>, inclusiv colaboratorii Mozilla."
 
 msgid "JWT issuer"
 msgstr "Emitent JWT"
@@ -3683,6 +3685,8 @@ msgid ""
 "To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
 "href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
+"Pentru cereri API, trimite un <a href=\"%(jwt_url)s\">jeton web JSON (JWT)</a> ca antet al autorizației. Va trebui să generezi un JWT pentru fiecare cerere, conform explicațiilor din <a "
+"href=\"%(docs_url)s\">documentația API</a>."
 
 msgid "You don't have any API credentials."
 msgstr "Nu ai nicio acreditare API."
@@ -4008,6 +4012,8 @@ msgstr "Portează o extensie Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Firefox suportă API-uri WebExtension, care, în cele mai multe cazuri, sunt compatibile cu API-urile de extensii suportate de Chrome, Opera și Edge, așa că extensiile tale vor rula în Firefox cu doar"
+" câteva modificări."
 
 msgid "Publish Your Add-on"
 msgstr "Publică-ți suplimentul"
@@ -4046,7 +4052,7 @@ msgid "Theme Details"
 msgstr "Detaliile temei"
 
 msgid "Supply a pretty URL for your detail page."
-msgstr ""
+msgstr "Furnizează un URL simplificat pentru pagina ta de detalii."
 
 msgid "Select the category that best describes your Theme."
 msgstr "Selectează categoria care descrie cel mai bine tema ta."
@@ -4462,7 +4468,7 @@ msgstr "Căutare inversă imagini {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
-msgstr ""
+msgstr "Vezi o imagine interesantă pe web și vrei să afli mai multe despre ea? Încearcă această unealtă de căutat imagini."
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4486,7 +4492,7 @@ msgstr "Gestionează parolele {start_sub_heading}cu {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
-msgstr ""
+msgstr "Simplifică-ți și sincronizează-ți pe dispozitive toate autentificările pe variate site-uri web cu o singură parolă care să le guverneze pe toate."
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4502,7 +4508,7 @@ msgstr "Îmbunătățește videoclipurile {start_sub_heading}cu {addon_name}{end
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr ""
+msgstr "Bucură-te de o suită de funcționalități YouTube noi, precum modul cinema, blocarea reclamelor, comanda de redare automată și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4510,7 +4516,7 @@ msgstr "Găsește ușor imagini {start_sub_heading}cu {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Evidențiază orice text și dă clic dreapta ca să efectuezi rapid o căutare de imagini."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4542,7 +4548,7 @@ msgstr "Citește oriunde {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Trimite articole de știri, istorisiri, postări pe bloguri și multe altele pe dispozitivul tău Kindle."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
