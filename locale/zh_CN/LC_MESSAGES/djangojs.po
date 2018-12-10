@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-05 15:45+0000\n"
-"PO-Revision-Date: 2018-10-19 14:41+0000\n"
-"Last-Translator: 新垣结衣松冈茉优长泽雅美门胁麦上野树里石原里美 <eloli@foxmail.com>\n"
+"PO-Revision-Date: 2018-12-10 08:49+0000\n"
+"Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -116,7 +116,7 @@ msgstr "请在完成您的提交前确认以下几点，以便尽可能缩短审
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
-msgstr "编译后的二进制文件，以及压缩或混淆后的脚本（不含知名库）需要单独提供它们的源代码以供审核。请确保您使用了源代码上传栏位上传了相关文件，以避免被退回。"
+msgstr "编译后的二进制文件，以及压缩或混淆后的脚本（不含知名库）需要单独提供它们的源代码以供审核。请确保您使用了源代码上传栏上传了相关文件，以避免被退回。"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "在验证过程中发现下列问题可导致被退回："
