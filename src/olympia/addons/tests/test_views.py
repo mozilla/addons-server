@@ -21,7 +21,7 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, AddonUser, Category,
+    Addon, AddonUser, Category,
     CompatOverride, CompatOverrideRange, Persona, ReplacementAddon,
     AddonCategory)
 from olympia.addons.utils import generate_addon_guid
@@ -2150,41 +2150,6 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
         response = self.client.get(
             self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
-
-
-class TestAddonViewSetFeatureCompatibility(TestCase):
-    client_class = APITestClient
-
-    def setUp(self):
-        super(TestAddonViewSetFeatureCompatibility, self).setUp()
-        self.addon = addon_factory(
-            guid=generate_addon_guid(), name=u'My Addôn', slug='my-addon')
-        self.url = reverse_ns(
-            'addon-feature-compatibility', kwargs={'pk': self.addon.pk})
-
-    def test_url(self):
-        self.detail_url = reverse_ns(
-            'addon-detail', kwargs={'pk': self.addon.pk})
-        assert self.url == '%s%s' % (self.detail_url, 'feature_compatibility/')
-
-    def test_disabled_anonymous(self):
-        self.addon.update(disabled_by_user=True)
-        response = self.client.get(self.url)
-        assert response.status_code == 401
-
-    def test_feature_compatibility_unknown(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert data['e10s'] == 'unknown'
-
-    def test_feature_compatibility_compatible(self):
-        AddonFeatureCompatibility.objects.create(
-            addon=self.addon, e10s=amo.E10S_COMPATIBLE)
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        data = json.loads(response.content)
-        assert data['e10s'] == 'compatible'
 
 
 class TestAddonViewSetEulaPolicy(TestCase):

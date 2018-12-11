@@ -44,13 +44,6 @@
       {{ addon.last_updated|date }}
   </li>
 {% endif %}
-{% if addon.type == amo.ADDON_EXTENSION and amo.FIREFOX in addon.compatible_apps %}
-<li class="e10s-compatibility e10s-{{ addon.feature_compatibility.get_e10s_classname() }}">
-  <strong>{{ _('Add-on Multi Process Status:') }}</strong>
-  <b>{{ addon.feature_compatibility.get_e10s_display() }}</b>
-  <span class="tip tooltip" title="{{ _('Your add-on compatibility with Multi Process Firefox (e10s)') }}">?</span>
-</li>
-{% endif %}
 
 {% if addon.has_listed_versions() %}
     {% if addon.has_unlisted_versions() %}

@@ -200,14 +200,6 @@ class Version(OnChangeMixin, ModelBase):
         log.info(
             'New version: %r (%s) from %r' % (version, version.id, upload))
         activity.log_create(amo.LOG.ADD_VERSION, version, addon)
-        # Update the add-on e10s compatibility since we're creating a new
-        # version that may change that.
-        e10s_compatibility = parsed_data.get('e10s_compatibility')
-        if e10s_compatibility is not None:
-            feature_compatibility = (
-                AddonFeatureCompatibility.objects.get_or_create(addon=addon)[0]
-            )
-            feature_compatibility.update(e10s=e10s_compatibility)
 
         if addon.type == amo.ADDON_STATICTHEME:
             # We don't let developers select apps for static themes

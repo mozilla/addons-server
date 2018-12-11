@@ -14,7 +14,7 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonFeatureCompatibility, AddonReviewerFlags, CompatOverride,
+    Addon, AddonReviewerFlags, CompatOverride,
     CompatOverrideRange)
 from olympia.amo.tests import (
     TestCase, addon_factory, version_factory, user_factory)
@@ -816,48 +816,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             fuzz = 2000  # 2 seconds
             assert (actual_delta >= (rough_delta - fuzz) and
                     actual_delta <= (rough_delta + fuzz))
-
-    def test_new_version_is_10s_compatible_no_feature_compat_previously(self):
-        assert not self.addon.feature_compatibility.pk
-        self.upload = self.get_upload('multiprocess_compatible_extension.xpi')
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        assert version.pk
-        assert self.addon.feature_compatibility.pk
-        assert self.addon.feature_compatibility.e10s == amo.E10S_COMPATIBLE
-
-    def test_new_version_is_10s_compatible(self):
-        AddonFeatureCompatibility.objects.create(addon=self.addon)
-        assert self.addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
-        self.upload = self.get_upload('multiprocess_compatible_extension.xpi')
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        assert version.pk
-        assert self.addon.feature_compatibility.pk
-        self.addon.feature_compatibility.reload()
-        assert self.addon.feature_compatibility.e10s == amo.E10S_COMPATIBLE
-
-    def test_new_version_is_webextension(self):
-        self.addon.update(guid='@webextension-guid')
-        AddonFeatureCompatibility.objects.create(addon=self.addon)
-        assert self.addon.feature_compatibility.e10s == amo.E10S_UNKNOWN
-        self.upload = self.get_upload('webextension.xpi')
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        assert version.pk
-        assert self.addon.feature_compatibility.pk
-        self.addon.feature_compatibility.reload()
-        assert self.addon.feature_compatibility.e10s == (
-            amo.E10S_COMPATIBLE_WEBEXTENSION)
 
     def test_nomination_inherited_for_updates(self):
         assert self.addon.status == amo.STATUS_PUBLIC

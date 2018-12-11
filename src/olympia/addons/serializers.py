@@ -23,17 +23,8 @@ from olympia.versions.models import (
     ApplicationsVersions, License, Version, VersionPreview)
 
 from .models import (
-    Addon, AddonFeatureCompatibility, CompatOverride, Persona, Preview,
+    Addon, CompatOverride, Persona, Preview,
     ReplacementAddon, attach_tags)
-
-
-class AddonFeatureCompatibilitySerializer(serializers.ModelSerializer):
-    e10s = ReverseChoiceField(
-        choices=amo.E10S_COMPATIBILITY_CHOICES_API.items())
-
-    class Meta:
-        model = AddonFeatureCompatibility
-        fields = ('e10s', )
 
 
 class FileSerializer(serializers.ModelSerializer):

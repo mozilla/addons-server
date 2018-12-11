@@ -258,13 +258,6 @@ class RDFExtractor(object):
 
             # `experiment` is detected in in `find_type`.
             data['is_experiment'] = self.is_experiment
-            multiprocess_compatible = self.find('multiprocessCompatible')
-            if multiprocess_compatible == 'true':
-                data['e10s_compatibility'] = amo.E10S_COMPATIBLE
-            elif multiprocess_compatible == 'false':
-                data['e10s_compatibility'] = amo.E10S_INCOMPATIBLE
-            else:
-                data['e10s_compatibility'] = amo.E10S_UNKNOWN
         return data
 
     def find_type(self):
@@ -590,9 +583,10 @@ class ManifestJSONExtractor(object):
                 'summary': self.get('description'),
                 'is_restart_required': self.get('legacy') is not None,
                 'apps': list(self.apps()),
-                'e10s_compatibility': amo.E10S_COMPATIBLE_WEBEXTENSION,
+                # Langpacks have strict compatibility enabled, rest of
+                # webextensions don't.
                 'strict_compatibility': strict_compatibility,
-                'default_locale': self.get('default_locale'),
+                'is_experiment': self.is_experiment,
             })
             if self.type == amo.ADDON_EXTENSION:
                 # Only extensions have permissions and content scripts
