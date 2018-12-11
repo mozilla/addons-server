@@ -388,34 +388,6 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json string version: The version number string for the version.
 
 
-----------------------------
-Add-on Feature Compatibility
-----------------------------
-
-.. _v3-addon-feature-compatibility:
-
-This endpoint allows you to fetch feature compatibility information for a
-a specific add-on by id, slug or guid.
-
-.. http:get:: /api/v3/addons/addon/(int:id|string:slug|string:guid)/feature_compatibility/
-
-    .. note::
-        Non-public add-ons and add-ons with only unlisted versions require both:
-
-            * authentication
-            * reviewer permissions or an account listed as a developer of the add-on
-
-    :>json int e10s: The add-on e10s compatibility. Can be one of the following:
-
-    =======================  ==========================================================
-                      Value  Description
-    =======================  ==========================================================
-                 compatible  multiprocessCompatible marked as true in the install.rdf.
-    compatible-webextension  A WebExtension, so compatible.
-               incompatible  multiprocessCompatible marked as false in the install.rdf.
-                    unknown  multiprocessCompatible has not been set.
-    =======================  ==========================================================
-
 ------------------------------
 Add-on EULA and Privacy Policy
 ------------------------------

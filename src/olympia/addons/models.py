@@ -1409,17 +1409,6 @@ class Addon(OnChangeMixin, ModelBase):
                                          dev=(not require_owner),
                                          ignore_disabled=ignore_disabled)
 
-    @property
-    def feature_compatibility(self):
-        try:
-            feature_compatibility = self.addonfeaturecompatibility
-        except AddonFeatureCompatibility.DoesNotExist:
-            # If it does not exist, return a blank one, no need to create. It's
-            # the caller responsibility to create when needed to avoid
-            # unexpected database writes.
-            feature_compatibility = AddonFeatureCompatibility()
-        return feature_compatibility
-
     def should_show_permissions(self, version=None):
         version = version or self.current_version
         return (self.type == amo.ADDON_EXTENSION and
@@ -1806,19 +1795,6 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     instance.user.update_is_public()
     # Update ES because authors is included.
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
-
-
-class AddonFeatureCompatibility(ModelBase):
-    addon = models.OneToOneField(
-        Addon, primary_key=True, on_delete=models.CASCADE)
-    e10s = models.PositiveSmallIntegerField(
-        choices=amo.E10S_COMPATIBILITY_CHOICES, default=amo.E10S_UNKNOWN)
-
-    def __unicode__(self):
-        return unicode(self.addon) if self.pk else u""
-
-    def get_e10s_classname(self):
-        return amo.E10S_COMPATIBILITY_CHOICES_API[self.e10s]
 
 
 class AddonApprovalsCounter(ModelBase):

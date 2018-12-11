@@ -53,7 +53,7 @@ from .indexers import AddonIndexer
 from .models import (
     Addon, CompatOverride, FrozenAddon, Persona, ReplacementAddon)
 from .serializers import (
-    AddonEulaPolicySerializer, AddonFeatureCompatibilitySerializer,
+    AddonEulaPolicySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
     ESAddonAutoCompleteSerializer, ESAddonSerializer, LanguageToolsSerializer,
     ReplacementAddonSerializer, StaticCategorySerializer, VersionSerializer)
@@ -499,14 +499,6 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
                 'is_disabled_by_mozilla': obj.status == amo.STATUS_DISABLED,
             }
             raise exc
-
-    @action(detail=True)
-    def feature_compatibility(self, request, pk=None):
-        obj = self.get_object()
-        serializer = AddonFeatureCompatibilitySerializer(
-            obj.feature_compatibility,
-            context=self.get_serializer_context())
-        return Response(serializer.data)
 
     @action(detail=True)
     def eula_policy(self, request, pk=None):

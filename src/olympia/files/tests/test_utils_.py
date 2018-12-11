@@ -286,10 +286,6 @@ class TestManifestJSONExtractor(TestCase):
 
         assert self.parse({'theme': {}})['type'] == amo.ADDON_STATICTHEME
 
-    def test_is_e10s_compatible(self):
-        data = self.parse({})
-        assert data['e10s_compatibility'] == amo.E10S_COMPATIBLE_WEBEXTENSION
-
     def test_langpack(self):
         self.create_webext_default_versions()
         self.create_appversion('firefox', '60.0')

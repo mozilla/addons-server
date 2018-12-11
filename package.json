@@ -9,16 +9,20 @@
     "potools": "potools"
   },
   "dependencies": {
+    "@claviska/jquery-minicolors": "2.3.2",
     "addons-linter": "1.4.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.0.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
     "clean-css": "4.1.9",
     "clean-css-cli": "4.1.11",
     "jqmodal": "1.4.2",
     "jquery": "3.3.1",
-    "jquery.browser": "0.1.0",
-    "jquery.cookie": "1.4.1",
-    "@claviska/jquery-minicolors": "2.3.2",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
+    "jquery.browser": "0.1.0",
+    "jquery.cookie": "1.4.1",
     "jszip": "3.1.4",
     "less": "3.9.0",
     "source-map": "0.7.3",
@@ -27,6 +31,12 @@
     "underscore": "1.9.1"
   },
   "devDependencies": {
+    "ajv": "^6.6.1",
+    "eslint": "^5.10.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1",
     "potools": "0.3.0"
   }
 }
