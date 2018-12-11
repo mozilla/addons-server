@@ -159,30 +159,26 @@ class Collection(ModelBase):
 
     def get_url_path(self):
         return reverse('collections.detail',
-                       args=[self.author_username, self.slug])
+                       args=[self.author_id, self.slug])
 
     def get_abs_url(self):
         return absolutify(self.get_url_path())
 
     def edit_url(self):
         return reverse('collections.edit',
-                       args=[self.author_username, self.slug])
+                       args=[self.author_id, self.slug])
 
     def delete_url(self):
         return reverse('collections.delete',
-                       args=[self.author_username, self.slug])
+                       args=[self.author_id, self.slug])
 
     def share_url(self):
         return reverse('collections.share',
-                       args=[self.author_username, self.slug])
+                       args=[self.author_id, self.slug])
 
     def stats_url(self):
         return reverse('collections.stats',
-                       args=[self.author_username, self.slug])
-
-    @property
-    def author_username(self):
-        return self.author.username if self.author else 'anonymous'
+                       args=[self.author_id, self.slug])
 
     @classmethod
     def get_fallback(cls):
