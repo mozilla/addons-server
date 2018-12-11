@@ -335,9 +335,9 @@ redis==3.0.1 \
     --hash=sha256:8e0bdd2de02e829b6225b25646f9fb9daffea99a252610d040409a6738541f0a \
     --hash=sha256:2100750629beff143b6a200a2ea8e719fcf26420adabb81402895e144c5083cf
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
-requests==2.20.1 \
-    --hash=sha256:65b3a120e4329e33c9889db89c80976c5272f56ea92d3e74da8a463992e3ff54 \
-    --hash=sha256:ea881206e59f41dbd0bd445437d792e43906703fff75ca8ff43ccdb11f33f263
+requests==2.21.0 \
+    --hash=sha256:7bf2a778576d825600030a110f3c0e3e8edc51dfaafe1c146e39a2027784957b \
+    --hash=sha256:502a824f31acdacb3a35b6690b5fbf0bc41d63a24a45c4004352b0242707598e
 s3transfer==0.1.13 \
     --hash=sha256:c7a9ec356982d5e9ab2d4b46391a7d6a950e2b04c472419f5fdec70cc0ada72f \
     --hash=sha256:90dc18e028989c609146e241ea153250be451e05ecc0c2832565231dacdf59c1
