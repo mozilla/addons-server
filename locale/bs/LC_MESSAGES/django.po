@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -472,9 +472,6 @@ msgid "Permissions"
 msgstr ""
 
 msgid "This add-on has been marked as experimental by its developers"
-msgstr ""
-
-msgid "This add-on requires the following add-ons to work properly:"
 msgstr ""
 
 msgid "Average"
@@ -2469,9 +2466,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Ne može biti više od 3 tražena dodatka."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2607,6 +2601,13 @@ msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
 
 msgid "Image dimensions must be in the ratio 4:3."
+msgstr ""
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Slike moraju biti tačno {0} piksela široke i {1} piksela visoke."
+
+msgid "Icon must be square (same width and height)."
 msgstr ""
 
 msgid "There was an error uploading your preview."
@@ -2815,7 +2816,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Ažurirajte kompatibilnosti</a> <a href=\"%(version_url)s\" class=\"button\">Učitajte noviju verziju</a> ili <a href=\"#"
 "\" class=\"close\">Ignorišite</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Pregledajte i ažurirajte opsege kompatibilnosti aplikacije."
 
 msgid "Compatibility"
@@ -3043,21 +3045,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "Potrebni dodaci"
-
-msgid "Limit 3"
-msgstr ""
-
-msgid "Add-on Flags"
-msgstr "Zastavice dodatka"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Ove zastavice su korištene za klasifikaciju dodataka. Ovo je relevantno samo za navedene dodatke."
-
-msgid "This add-on requires external software."
-msgstr "Ovaj dodatak zahtijeva eksterne softvere."
-
 msgid "View Source?"
 msgstr "Prikazati izvor?"
 
@@ -3082,18 +3069,6 @@ msgstr "Ova statistika dodatka je javno vidljiva."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Ne, ova statistika dodatka nije javno vidljiva."
 
-msgid "Upgrade SDK?"
-msgstr ""
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Ako je odabrano, možemo pokušati automatski nadograditi vaš dodatak kada se objavi nova SDK verzija. Ovo je relevantno samo za navedene dodatke."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Ovaj dodatak će biti automatski nadograđen na novu verziju SDK dodatka."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Ne, ovaj dodatak će biti nadograđen ručno."
-
 msgid "Universally unique identifier"
 msgstr "Univerzalni jedinstveni identifikator"
 
@@ -3112,12 +3087,6 @@ msgid ""
 msgstr ""
 "Bijela tabla je mjesto za pružanje informacija relevantnih za vaš dodatak, bez obzira na verziju, recenzentima. Koristite je za pružanje načina za testiranje dodatka i bilo koju dodatnu informaciju "
 "koja može pomoći. Ovu ploču mogu uređivati i recenzenti."
-
-msgid "Remove this dependent add-on"
-msgstr "Uklonite ovaj zavisni dodatak"
-
-msgid "Enter the name of an add-on"
-msgstr "Unesite ime dodatka"
 
 msgid "Add-on Media for {0}"
 msgstr ""
@@ -3149,10 +3118,25 @@ msgstr ""
 msgid "Used in add-on detail pages."
 msgstr "Koristi se na detaljnim stranicama dodatka."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Koristi se na detaljnim stranicama dodatka."
+
 msgid "Upload a Custom Icon..."
 msgstr "Učitajte prilagođenu ikonu..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG i JPG su podržani. Ikone se smanjuju na 64x64 piksela ako je veća."
 
 msgid "Screenshots"
@@ -3255,7 +3239,8 @@ msgstr "Molimo recite nam zašto brišete vaš dodatak:"
 msgid "Actions"
 msgstr "Akcije"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Nastavite sa podnošenjem procesa za ovaj dodatak."
 
 msgid "Resume"
@@ -3268,16 +3253,18 @@ msgid "Delete"
 msgstr "Izbriši"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Uredi detalje o ovom oglasu teme."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Učitajte novu verziju ovog dodatka."
 
 msgid "New Version"
 msgstr ""
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Dnevna statistika o preuzimanjima i korisnicima."
 
 msgid "Statistics"
@@ -3290,22 +3277,25 @@ msgid "View Recent Changes"
 msgstr "Prikaži nedavne promjene"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Uredi detalje o ovom oglasu teme."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Prikaži popularnost ove teme tokom vremena."
 
 msgid "View Statistics"
 msgstr "Prikaži statistiku"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Promijeni vlasnika ove teme."
 
 msgid "Transfer Ownership"
 msgstr "Prijenos vlasništva"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Izbriši ovu temu."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3338,6 +3328,12 @@ msgid "Name and Summary:"
 msgstr ""
 
 msgid "required"
+msgstr ""
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
 msgstr ""
 
 msgid "Add-on URL:"
@@ -3399,11 +3395,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ove napomene će biti vidljive samo vama i našim recenzentima."
 
-msgid "Cancel and Disable Version"
-msgstr "Otkažite i onemogućite verziju"
-
 msgid "Submit Version"
 msgstr "Pošaljite verziju"
+
+msgid "Cancel and Disable Version"
+msgstr "Otkažite i onemogućite verziju"
 
 msgid "Describe Version"
 msgstr "Opišite verziju"
@@ -3611,13 +3607,13 @@ msgstr "opcionalno"
 msgid "Browser preview"
 msgstr "Pregled browsera"
 
-msgid "Back"
-msgstr ""
-
 msgid "Uploading Theme"
 msgstr ""
 
 msgid "Finish Theme"
+msgstr ""
+
+msgid "Back"
 msgstr ""
 
 msgid "API Credentials"
@@ -3682,22 +3678,26 @@ msgstr ""
 msgid "Add-on Multi Process Status:"
 msgstr "Višeprocesni status dodatka:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Kompatibilnost vašeg dodatka sa višeprocesnim Firefoxom (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Prikazan na ovoj stranici nakon prolaska pregleda koda. Automatska ažuriranja su podržana od ove stranice."
 
 msgid "Listed Version:"
 msgstr "Objavljena verzija:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Ovo je verzija vašeg dodatka koja će biti instalirana ako neko klikne na dugme instalacije na addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Sljedeća objavljena verzija:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Ovo je najnovija verzija, koja još nije dostupna na stranici za preuzimanje."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3716,7 +3716,8 @@ msgstr "Potpisan za samodistribuciju. Vi brinete o ažuriranju."
 msgid "Latest Version:"
 msgstr "Najnovija verzija:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Ovo je najnovija postavljena neotkrivena verzija."
 
 msgid "Upload New Version"
@@ -3904,6 +3905,9 @@ msgstr ""
 msgid "Learn More"
 msgstr ""
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Prikazan na ovoj stranici nakon prolaska pregleda koda. Automatska ažuriranja su podržana od ove stranice."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr ""
@@ -4064,13 +4068,15 @@ msgstr "Odaberite boje za vašu temu."
 msgid "Foreground Text"
 msgstr "Prednji tekst"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Ovo je boja teksta taba."
 
 msgid "Background"
 msgstr "Pozadina"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Ovo je boja tabova."
 
 msgid "Your Theme's Name"
@@ -4089,6 +4095,10 @@ msgstr "Pozadinske teme vam dopuštaju da jednostavno prilagodite izgled vašeg 
 
 msgid "Give your Theme a name."
 msgstr "Dajte vašoj temi naziv."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Kratko objašnjenje osnovnih funkcija vaše teme prikazanih u listama za pretragu, kao i na vrhu stranice s detaljima vaše teme."
 
 #, python-format
 msgid ""
@@ -6931,6 +6941,13 @@ msgid "{addon} :: Abuse Reports"
 msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "URL dodatka:"
+
+msgid "Internal AMO ID"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0

@@ -42,7 +42,7 @@
         {% if c.type == amo.COLLECTION_FAVORITES and c.owned_by(user) %}
           <ul id="collection-favorites-opts">
             <li>
-              <form method="post" action="{{ url('collections.edit_privacy', c.author_username, c.slug) }}">
+              <form method="post" action="{{ url('collections.edit_privacy', c.author_id, c.slug) }}">
                 {% csrf_token %}
                 <button type="submit">
                   {% if c.listed %}

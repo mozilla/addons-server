@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-09-20 11:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -473,9 +473,6 @@ msgstr "Права"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Добавката е отбелязана като изпитателна от разработчиците ѝ"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Тази добавка се нуждае от следните добавки, за да работи правилно:"
 
 msgid "Average"
 msgstr "Средно"
@@ -2503,9 +2500,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Не може да има повече от 3 задължителни добавки."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2645,6 +2639,13 @@ msgstr "Изображенията трябва да са точно {0} пик�
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Картинките трябва да са PNG или JPG."
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Изображенията трябва да са точно {0} пиксела широки и {1} пиксела високи."
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "Стана грешка при качването на рецензията ви."
@@ -2852,7 +2853,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Обнови съвместимостта</a>, <a href=\"%(version_url)s\" class=\"button\">Качи нова версия</a> или <a href=\"#\" class="
 "\"close\">Игнорирай</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Покажи и обнови диапазона на съвместимост на приложеинето."
 
 msgid "Compatibility"
@@ -3080,21 +3082,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
 
-msgid "Required Add-ons"
-msgstr "Нужни добавки"
-
-msgid "Limit 3"
-msgstr "Лимит 3"
-
-msgid "Add-on Flags"
-msgstr "Сигнали на добавката"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on requires external software."
-msgstr "Тази добавка има нужда от външен софтуер."
-
 msgid "View Source?"
 msgstr "Виж изходния код?"
 
@@ -3119,18 +3106,6 @@ msgstr "Статистиките на тази добавка са публич�
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Не, статистиките на тази добавка не са публични."
 
-msgid "Upgrade SDK?"
-msgstr "Обнови SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr ""
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Не, тази добавка ще се обновява ръчно."
-
 msgid "Universally unique identifier"
 msgstr "Универсално уникален идентификатор"
 
@@ -3147,12 +3122,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-
-msgid "Remove this dependent add-on"
-msgstr "Премахни тази зависима добавка"
-
-msgid "Enter the name of an add-on"
-msgstr "Въведете името на добавка"
 
 # 77%
 # 100%
@@ -3184,10 +3153,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Използва се в страницата с детайли на добавката."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Използва се в страницата с детайли на добавката."
+
 msgid "Upload a Custom Icon..."
 msgstr "Избиране на пиктограма…"
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Поддържаните изображения са PNG и JPG. Ако изображението е по-голямо от 64x64, пиктограмата ще бъде смалена до този размер."
 
 msgid "Screenshots"
@@ -3293,8 +3277,9 @@ msgstr ""
 msgid "Actions"
 msgstr "Действия"
 
-msgid "Resume the submission process for this add-on."
-msgstr ""
+#, fuzzy
+msgid "Resume the submission process for this add-on"
+msgstr "Следващо издание на добавката"
 
 msgid "Resume"
 msgstr "Продължаване"
@@ -3306,16 +3291,18 @@ msgid "Delete"
 msgstr "Изтриване"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "Редактиране на информацията за темата."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Качване на ново издание на добавката."
 
 msgid "New Version"
 msgstr "Ново издание"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Дневна статистика за изтегляния и потребители."
 
 msgid "Statistics"
@@ -3328,22 +3315,24 @@ msgid "View Recent Changes"
 msgstr "Последни промени"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "Редактиране на информацията за темата."
 
-msgid "View the popularity of this theme over time."
+msgid "View the popularity of this theme over time"
 msgstr ""
 
 msgid "View Statistics"
 msgstr "Виж статистики"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Променя собственика на тази тема."
 
 msgid "Transfer Ownership"
 msgstr "Прехвърляне на собственост"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Изтриване на темата."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3377,6 +3366,12 @@ msgstr "Обобщение:"
 
 msgid "required"
 msgstr "задължително"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "Адрес на добавката:"
@@ -3437,11 +3432,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr ""
 
-msgid "Cancel and Disable Version"
-msgstr "Отказ и изключване на изданието"
-
 msgid "Submit Version"
 msgstr "Изпращане"
+
+msgid "Cancel and Disable Version"
+msgstr "Отказ и изключване на изданието"
 
 msgid "Describe Version"
 msgstr "Опишете изданието"
@@ -3659,9 +3654,6 @@ msgstr "(незадължително)"
 msgid "Browser preview"
 msgstr "Сложи мишката отгоре за преглед"
 
-msgid "Back"
-msgstr ""
-
 #, fuzzy
 msgid "Uploading Theme"
 msgstr "Обещаващи теми"
@@ -3669,6 +3661,9 @@ msgstr "Обещаващи теми"
 #, fuzzy
 msgid "Finish Theme"
 msgstr "%s Теми"
+
+msgid "Back"
+msgstr ""
 
 msgid "API Credentials"
 msgstr "Удостоверителни данни за ППИ"
@@ -3730,22 +3725,23 @@ msgstr ""
 msgid "Add-on Multi Process Status:"
 msgstr "Многопроцесност:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr ""
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 msgid "Listed Version:"
 msgstr "Публикувана версия:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr ""
 
 msgid "Next Listed Version:"
 msgstr "Следваща версия:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Това е последното качено издание, което обаче все още не се вижда на сайта."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3764,7 +3760,8 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "Последно издание:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Това е последното непоказано издание."
 
 # 90%
@@ -3954,6 +3951,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "Научете повече"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Всички публикувани"
@@ -4117,13 +4117,15 @@ msgstr ""
 msgid "Foreground Text"
 msgstr "Цвят на текста"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Това е цветът на текста в раздела."
 
 msgid "Background"
 msgstr ""
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Това е цветът на разделите."
 
 msgid "Your Theme's Name"
@@ -4142,6 +4144,9 @@ msgstr ""
 
 msgid "Give your Theme a name."
 msgstr "Дайте име на темата."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -6863,6 +6868,13 @@ msgid "{addon} :: Abuse Reports"
 msgstr ""
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
+msgstr ""
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Добавка"
+
+msgid "Internal AMO ID"
 msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0

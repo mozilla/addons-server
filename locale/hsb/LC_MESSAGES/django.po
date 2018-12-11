@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 22:33+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-05 21:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -489,9 +489,6 @@ msgstr "Prawa"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Tutón přidatk je so wot swojich wuwiwarjow jako eksperimentelny markěrował"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Tutón přidatk sej slědowace přidatki wužaduje, zo by korektnje fungował:"
 
 msgid "Average"
 msgstr "Přerězk"
@@ -2510,9 +2507,6 @@ msgstr "Žórłowa dataja je so nahrała, ale sće podał, zo žórło trěbne n
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr "Zawěsćće, zo mjeno a zjeće hormadźe matej maksimalnje 70 znamješkow (matej {0})."
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Wjace hač 3 trěbnych přidatkow móžno njeje."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2645,6 +2639,12 @@ msgstr "Wobraz dyrbi znajmjeńša {0} pikselow šěroki a {1} pikselow wysoki by
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Wobrazowe wotměry dyrbja w poměrje 4:3 być."
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Symbol dyrbi znajmjeńša {0} pikselow šěroki a wysoki być."
+
+msgid "Icon must be square (same width and height)."
+msgstr "Symbol dyrbi kwadratiski być (jenaka šěrokosć a wysokosć)."
 
 msgid "There was an error uploading your preview."
 msgstr "Při nahrawanju wašeho přehlada je zmylk wustupił."
@@ -2849,8 +2849,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizować</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nahrać</a> abo <a href=\"#\" "
 "class=\"close\">Ignorować</a>"
 
-msgid "View and update application compatibility ranges."
-msgstr "Kompatibelnosć z nałoženjemi pokazać a aktualizować."
+msgid "View and update application compatibility ranges"
+msgstr "Wobłuki kompatibelnosće z nałoženjemi pokazać a aktualizować"
 
 msgid "Compatibility"
 msgstr "Kompatibelnosć"
@@ -2984,7 +2984,7 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
-"Zjeće měło skrótka a jasnje wujasnić, što waš přidatk čini. Mjeno kaž tež zjeće so na wašej produktowej stronje a w pytanskich wuslědkach zjewitej. Hromadźe maja maksimalnu dołhosć 70 znamješkow a "
+"Zjeće měło skrótka a jasnje wujasnić, što waš přidatk čini. Mjeno kaž tež zjeće so na wašej produktowej stronje a w pytanskich wuslědkach zjewitej. Hromadźe matej maksimalnu dołhosć 70 znamješkow a "
 "minimalnu dołhosć po 2 znamješkomaj."
 
 msgid "Summary"
@@ -3084,21 +3084,6 @@ msgstr ""
 "Kónčni wužiwarjo chcedźa snano informacije wědźeć, kotrež do zjeća abo wopisanja přidatka runjewon njesłušeja. Typiske wužiwanja su znate programowe zmylki, informacije wo wozjewjenju programowych "
 "zmylkow, wočakowany datum wuńdźenja atd. To je jenož za nalistowane přidatki relewantne."
 
-msgid "Required Add-ons"
-msgstr "Trěbne přidatki"
-
-msgid "Limit 3"
-msgstr "Maksimalnje 3"
-
-msgid "Add-on Flags"
-msgstr "Přidatkowe markěrowanja"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Tute markěrowanja so wužiwaja, zo bychu přidatki klasifikowali. To je jenož za nalistowane přidatki relewantne."
-
-msgid "This add-on requires external software."
-msgstr "Přidatk sej eksternu softwaru wužaduje."
-
 msgid "View Source?"
 msgstr "Žórłowy kod pokazać?"
 
@@ -3123,18 +3108,6 @@ msgstr "Statistika tutoho přidatka je zjawnje widźomna."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Ně, statistika tutoho přidatka zjawnje widźomna njeje."
 
-msgid "Upgrade SDK?"
-msgstr "SDK aktualizować?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Jeli to je wubrane, pospytujemy waš přidatk awtomatisce aktualizować, hdyž nowa wersija SDK je wušła. To je jenož za nalistowane přidatki relewantne."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Tutón přidatk budźe so awtomatisce na nowe wersije přidatkoweho SDK aktualizować."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Ně, tutón přidatk budźe so manuelnje aktualizować."
-
 msgid "Universally unique identifier"
 msgstr "Uniwerselny jónkróćny identifikator"
 
@@ -3153,12 +3126,6 @@ msgid ""
 msgstr ""
 "Informaciska tafla je městno, hdźež móžeće přepruwowarjam informacije podać, kotrež su za waš přidatk relewantne, njedźiwajo na wersiju. Wužiwajće ju, zo byšće móžnosće za testowanje přidatka a "
 "dalše informacije podał, kotrež móhli pomhać. Tuta Informaciska tafla da so tež wot přepruwowarjow wobdźěłać."
-
-msgid "Remove this dependent add-on"
-msgstr "Tutón wotwisny přidatk wotstronić"
-
-msgid "Enter the name of an add-on"
-msgstr "Zapodajće mjeno přidatka"
 
 msgid "Add-on Media for {0}"
 msgstr "Přidatkowe medije za {0}"
@@ -3190,11 +3157,24 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Wužiwa so na stronach podrobnosćow přidatka."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "128x128px"
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Budźe standard na stronach podrobnosćow přichodneho přidatka."
+
 msgid "Upload a Custom Icon..."
 msgstr "Swójski symbol nahrać..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG a JPG so podpěrujetej. Wjetše symbole so na 64x64 pikselow přiměrjeja."
+msgid "PNG and JPG supported."
+msgstr "PNG a JPG so podpěrujetej."
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr "Symbole dyrbja kwadratiske być a minimalnu wulkosć 128x128 pikselow měć."
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr "Symbole so na 128x128 pikselow přiměrjeja, jeli su wjetše."
 
 msgid "Screenshots"
 msgstr "Fota wobrazowki"
@@ -3296,8 +3276,8 @@ msgstr "Prošu nam zdźělće, čehodla swój přidatk hašeće:"
 msgid "Actions"
 msgstr "Akcije"
 
-msgid "Resume the submission process for this add-on."
-msgstr "Ze zapodawanskim procesom za tutón přidatk pokročować."
+msgid "Resume the submission process for this add-on"
+msgstr "Ze zapodawanskim procesom za tutón přidatk pokročować"
 
 msgid "Resume"
 msgstr "Pokročować"
@@ -3308,17 +3288,17 @@ msgstr "Tutón přidatk zhašeć."
 msgid "Delete"
 msgstr "Zhašeć"
 
-msgid "Edit details on this add-on's product page."
-msgstr "Podrobnosće na produktowej stronje přidatka wobdźěłać."
+msgid "Edit details on this add-on's product page"
+msgstr "Podrobnosće na produktowej stronje přidatka wobdźěłać"
 
-msgid "Upload a new version of this add-on."
-msgstr "Nowu wersiju tutoho nałoženja nahrać."
+msgid "Upload a new version of this add-on"
+msgstr "Nowu wersiju tutoho přidatka nahrać"
 
 msgid "New Version"
 msgstr "Nowa wersija"
 
-msgid "Daily statistics on downloads and users."
-msgstr "Wšědna statistika wo sćehnjenjach a wužiwarjach."
+msgid "Daily statistics on downloads and users"
+msgstr "Wšědna statistika wo sćehnjenjach a wužiwarjach"
 
 msgid "Statistics"
 msgstr "Statistika"
@@ -3329,23 +3309,23 @@ msgstr "Status a wersije rjadować"
 msgid "View Recent Changes"
 msgstr "Najnowše změny pokazać"
 
-msgid "Edit details on this theme's product page."
-msgstr "Podrobnosće na produktowej stronje drasty wobdźěłać."
+msgid "Edit details on this theme's product page"
+msgstr "Podrobnosće na produktowej stronje drasty wobdźěłać"
 
-msgid "View the popularity of this theme over time."
-msgstr "Woblubowanosć tuteje drasty po času pokazać."
+msgid "View the popularity of this theme over time"
+msgstr "Woblubowanosć tuteje drasty po času pokazać"
 
 msgid "View Statistics"
 msgstr "Statistiku pokazać"
 
-msgid "Change the owner of this theme."
-msgstr "Wobsedźerja tuteje drasty změnić."
+msgid "Change the owner of this theme"
+msgstr "Wobsedźerja tuteje drasty změnić"
 
 msgid "Transfer Ownership"
 msgstr "Wobsedźenstwo přenošować"
 
-msgid "Delete this theme."
-msgstr "Tutu drastu zhašeć."
+msgid "Delete this theme"
+msgstr "Tutu drastu zhašeć"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Tutón přidatk sej někotre trěbne informacije wužaduje, prjedy hač da so za wozjewjenje wotpósłać."
@@ -3379,6 +3359,14 @@ msgstr "Mjeno a zjeće:"
 
 msgid "required"
 msgstr "trěbny"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
+"Warnowanje: Maće hódnoty mjeno/zjeće w druhich lokalach, kotrež so awtomatisce přitřihuja, zo bychu do limita %(max_length)s znamješkow hodźeli. Zo byšće te wobdźěłowali, dźiće k Produktowu stronu "
+"wobdźěłać, po tym zo wotpósłanski proces je dokónčeny."
 
 msgid "Add-on URL:"
 msgstr "URL přidatka:"
@@ -3441,11 +3429,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tute přispomnjenki su jenož za was a našich přepruwowarjow widźomne."
 
-msgid "Cancel and Disable Version"
-msgstr "Přetorhnyć a wersiju znjemóžnić"
-
 msgid "Submit Version"
 msgstr "Wersiju zapodać"
+
+msgid "Cancel and Disable Version"
+msgstr "Přetorhnyć a wersiju znjemóžnić"
 
 msgid "Describe Version"
 msgstr "Wersiju wopisać"
@@ -3653,14 +3641,14 @@ msgstr "opcionalny"
 msgid "Browser preview"
 msgstr "Přehlad we wobhladowaku"
 
-msgid "Back"
-msgstr "Wróćo"
-
 msgid "Uploading Theme"
 msgstr "Drasta so nahrawa"
 
 msgid "Finish Theme"
 msgstr "Drastu dokónčić"
+
+msgid "Back"
+msgstr "Wróćo"
 
 msgid "API Credentials"
 msgstr "API-daty"
@@ -3724,23 +3712,23 @@ msgstr "Wutworjeny:"
 msgid "Add-on Multi Process Status:"
 msgstr "Multiprocesowy status přidatka:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Waša přidatkowa kompatibelnosć z multiprocesowym Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
+msgstr "Waša přidatkowa kompatibelnosć z multiprocesowym Firefox (e10s)"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Nalistuje so po wobstatym přepruwowanju žórłoweho koda na sydle. Awtomatiske aktualizacije so přez tute sydło rjaduja."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr "Nalistuje so po wobstatym přepruwowanju žórłoweho koda na sydle. Awtomatiske aktualizacije so přez tute sydło rjaduja"
 
 msgid "Listed Version:"
 msgstr "Nalistowana wersija:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "To je wersija wašeho přidatka, kotraž budźe so instalować, hdyž něchtó na instalowanske tłóčatko na addons.mozilla.org kliknje."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr "To je wersija wašeho přidatka, kotraž budźe so instalować, hdyž něchtó na instalowanske tłóčatko na addons.mozilla.org kliknje"
 
 msgid "Next Listed Version:"
 msgstr "Přichodna nalistowana wersija:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr "To je najnowša nahrata wersija, ale hišće njeje widźomny na websydle."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr "To je najnowša nahrata wersija, ale hišće njeje widźomny na websydle"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Čakanske rynki so striktnje po porjedźe njepřepruwuja"
@@ -3758,8 +3746,8 @@ msgstr "Za samorozdźělenje signowany. Aktualizacije so wot was rjaduja."
 msgid "Latest Version:"
 msgstr "Najnowša wersija:"
 
-msgid "This is the newest uploaded unlisted version."
-msgstr "To je najnowša nahrata njenalistowana wersija."
+msgid "This is the newest uploaded unlisted version"
+msgstr "To je najnowša nahrata njenalistowana wersija"
 
 msgid "Upload New Version"
 msgstr "Najnowšu wersiju nahrać"
@@ -3951,6 +3939,9 @@ msgstr "Chceće, zo so waše rozšěrjenje na %(amo_link_open)saddons.mozilla.or
 msgid "Learn More"
 msgstr "Dalše informacije"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Nalistuje so po wobstatym přepruwowanju žórłoweho koda na sydle. Awtomatiske aktualizacije so přez tute sydło rjaduja."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Wšě zapodaća pokazać"
@@ -4111,14 +4102,14 @@ msgstr "Wubjerće barby za swoju drastu."
 msgid "Foreground Text"
 msgstr "Prědkowy tekst"
 
-msgid "This is the color of the tab text."
-msgstr "To je barba rajtarkoweho teksta."
+msgid "This is the color of the tab text"
+msgstr "To je barba rajtarkoweho teksta"
 
 msgid "Background"
 msgstr "Pozadk"
 
-msgid "This is the color of the tabs."
-msgstr "To je barba rajtarkow."
+msgid "This is the color of the tabs"
+msgstr "To je barba rajtarkow"
 
 msgid "Your Theme's Name"
 msgstr "Mjeno wašeje drasty"
@@ -4136,6 +4127,9 @@ msgstr "Pozadkowe drasty wam zmóžnjeja, napohlad wašeho Firefox personalizowa
 
 msgid "Give your Theme a name."
 msgstr "Pomjenujće swoju drastu."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na stronje podrobnosćow wašeje drasty pokazuje"
 
 #, python-format
 msgid ""
@@ -6854,6 +6848,12 @@ msgstr "{addon} :: Znjewužiwanske rozprawy"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Znjewužiwanske rozprawy za {addon} a jeho wuwiwarjow ({num})"
+
+msgid "Add-on ID"
+msgstr "ID přidatka"
+
+msgid "Internal AMO ID"
+msgstr "Nutřkowny ID AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

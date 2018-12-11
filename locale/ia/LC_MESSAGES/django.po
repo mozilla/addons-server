@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-26 21:58+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-10 08:34+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -465,9 +465,6 @@ msgstr "Permissiones"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Iste additivo ha essite marcate como experimental per su disveloppatores"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Iste additivo necessita le sequente additivos pro laborar propriemente:"
 
 msgid "Average"
 msgstr "Media"
@@ -2475,10 +2472,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File fonte cargate, ma tu indicava que nulle fonte era necessari."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
-
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Il non pote ser plus de 3 additivos requirite."
+msgstr "Cura que nomine e summario combinate non supera 70 characteres total (il ha {0})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2616,6 +2610,12 @@ msgstr "Le imagine debe ser al minus large {0} pixels e alte {1} pixels."
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Le dimensiones del imagines debe ser il le ration 4:3."
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Le imagine debe ser large e alte al minus {0} pixels."
+
+msgid "Icon must be square (same width and height)."
+msgstr "Le icone debe ser quadrate (altessa equal al largessa)."
 
 msgid "There was an error uploading your preview."
 msgstr "Error durante le cargamento de tu vista preliminar."
@@ -2820,7 +2820,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualisar Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Cargar nove version</a> o <a href=\"#\" "
 "class=\"close\">Ignorar</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "Vide e actualisa le intervallos de compatibilitate del application."
 
 msgid "Compatibility"
@@ -3047,21 +3048,6 @@ msgstr ""
 "Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos note,"
 " informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
 
-msgid "Required Add-ons"
-msgstr "Additivos requirite"
-
-msgid "Limit 3"
-msgstr "Limite 3"
-
-msgid "Add-on Flags"
-msgstr "Flags de additivo"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Iste flags es usate pro classificar le additivos. Illo es pertinente solo pro le additivos listate."
-
-msgid "This add-on requires external software."
-msgstr "Iste additivo necessita software externe."
-
 msgid "View Source?"
 msgstr "Vider le fonte?"
 
@@ -3086,18 +3072,6 @@ msgstr "Le statistica de iste additivo es publicamente visibile."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "No, le statistica de iste additivo non es publicamente visibile."
 
-msgid "Upgrade SDK?"
-msgstr "Promover SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Si seligite, nos provara a promover automaticamente tu additivo quando un nove version del SDK es publicate. Illo es pertinente solo al additivos listate."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Iste additivo sera promovite automaticamente al nove versiones del SDK del additivo."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "No, iste additivo sera promovite manualmente."
-
 msgid "Universally unique identifier"
 msgstr "Identificator unic universal - UUID"
 
@@ -3116,12 +3090,6 @@ msgid ""
 msgstr ""
 "Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que pote"
 " adjutar. Iste tabula blanc es alsi modificabile per le revisores."
-
-msgid "Remove this dependent add-on"
-msgstr "Remover iste additivo dependente"
-
-msgid "Enter the name of an add-on"
-msgstr "Insere le nomine de un additivo"
 
 msgid "Add-on Media for {0}"
 msgstr "Medios de additivo pro {0}"
@@ -3153,10 +3121,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Usate in paginas de detalios del additivo."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "128x128 pixels"
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Usate in paginas de detalios del additivo."
+
 msgid "Upload a Custom Icon..."
 msgstr "Cargar un icone personalisate..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr "PNG e JPG supportate."
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr "Le icone debe ser quadrate al minus dimensiones de 128x128 pixels."
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG e JPG supportate. Icones redimensionate a 64x64 pixels si plus grande."
 
 msgid "Screenshots"
@@ -3259,7 +3242,8 @@ msgstr "Per favor conta nos perque tu dele tu additivo:"
 msgid "Actions"
 msgstr "Actiones"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "Resumer le processo de submission pro iste additivo."
 
 msgid "Resume"
@@ -3271,16 +3255,19 @@ msgstr "Deler iste additivo."
 msgid "Delete"
 msgstr "Deler"
 
-msgid "Edit details on this add-on's product page."
+#, fuzzy
+msgid "Edit details on this add-on's product page"
 msgstr "Editar detalios sur iste pagina de producto del additivo."
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "Cargar un nove version de iste additivo."
 
 msgid "New Version"
 msgstr "Nove version"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "Statistica quotidian sur discargamentos e usatores."
 
 msgid "Statistics"
@@ -3292,22 +3279,26 @@ msgstr "Gerer stato e versiones"
 msgid "View Recent Changes"
 msgstr "Vider recente cambiamentos"
 
-msgid "Edit details on this theme's product page."
+#, fuzzy
+msgid "Edit details on this theme's product page"
 msgstr "Editar detalios sur iste pagina de producto del thema."
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "Vider le popularitate de iste thema in le tempore."
 
 msgid "View Statistics"
 msgstr "Vider statistica"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "Cambiar le proprietario de iste thema."
 
 msgid "Transfer Ownership"
 msgstr "Transferer le proprietate"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "Deler iste thema."
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3340,6 +3331,12 @@ msgstr "Nomine e summario:"
 
 msgid "required"
 msgstr "necessari"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -3401,11 +3398,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Iste notas essera visibile solo a te e a nostre revisores."
 
-msgid "Cancel and Disable Version"
-msgstr "Cancellar e disactivar le version"
-
 msgid "Submit Version"
 msgstr "Inviar version"
+
+msgid "Cancel and Disable Version"
+msgstr "Cancellar e disactivar le version"
 
 msgid "Describe Version"
 msgstr "Describer le version"
@@ -3613,14 +3610,14 @@ msgstr "optional"
 msgid "Browser preview"
 msgstr "Vista preliminar del navigator"
 
-msgid "Back"
-msgstr "Retro"
-
 msgid "Uploading Theme"
 msgstr "Cargamento de thema"
 
 msgid "Finish Theme"
 msgstr "Finir le thema"
+
+msgid "Back"
+msgstr "Retro"
 
 msgid "API Credentials"
 msgstr "Credentiales de API"
@@ -3686,22 +3683,26 @@ msgstr "Create:"
 msgid "Add-on Multi Process Status:"
 msgstr "Stato Multi Process del additivo:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+#, fuzzy
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr "Compatibilitate de tu additivo con Firefox Multi Process (e10s)."
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+#, fuzzy
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listate sur iste sito post passate le revision del codice. Le actualisationes automatic es tractate per iste sito."
 
 msgid "Listed Version:"
 msgstr "Version in le lista de presentation:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+#, fuzzy
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "Isto es le version de tu additivo que sera installate si alcuno clicca le button Installar sur addons.mozilla.org."
 
 msgid "Next Listed Version:"
 msgstr "Version successive in le lista de presentation:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "Isto es le version ultime cargate, totevia illo non es ancora al vivo sur le sito."
 
 msgid "Queues are not reviewed strictly in order"
@@ -3720,7 +3721,8 @@ msgstr "Signate pro auto-distribution. Le actualisationes es tractate per te."
 msgid "Latest Version:"
 msgstr "Ultime version:"
 
-msgid "This is the newest uploaded unlisted version."
+#, fuzzy
+msgid "This is the newest uploaded unlisted version"
 msgstr "Isto es le version plus recente cargate e non listate."
 
 msgid "Upload New Version"
@@ -3913,6 +3915,9 @@ msgstr "Desira tu que tu extension es consiliate sur %(amo_link_open)saddons.moz
 msgid "Learn More"
 msgstr "Saper plus"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Listate sur iste sito post passate le revision del codice. Le actualisationes automatic es tractate per iste sito."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Vide tote le submissiones"
@@ -4073,13 +4078,15 @@ msgstr "Elige le colores pro tu thema."
 msgid "Foreground Text"
 msgstr "Texto in prime plano"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "Iste es le color del texto del schedas."
 
 msgid "Background"
 msgstr "Fundo"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "Isto es le color del schedas."
 
 msgid "Your Theme's Name"
@@ -4098,6 +4105,10 @@ msgstr "Le themas de fundo te lassa personalisar facilemente le vista de tu Fire
 
 msgid "Give your Theme a name."
 msgstr "Da un nomine a tu thema."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Un breve explanation del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema."
 
 #, python-format
 msgid ""
@@ -4234,16 +4245,14 @@ msgstr "Replicar"
 msgid "Listing visibility"
 msgstr "Visibilitate del lista de presentation"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e includite in le paginas de resultatos del recerca e del lista de presentation."
+msgstr "{label_open}Visibile:{label_close} Visibile a totes sur {site_url} e includite in le paginas de resultatos del recerca e del paginas del producto."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina del lista de presentation indicara que tu disactivava illo. Le submission de nove versiones pro le"
-" lista de presentation non essera acceptate in iste stato."
+"{label_open}Invisibile:{label_close} Non essera includite in le resultatos del recerca, e su pagina de producto indicara que tu disactivava illo. Le submission de nove versiones pro le lista de "
+"presentation non essera acceptate in iste stato."
 
 msgid "Listed versions"
 msgstr "Versiones in le lista de presentation"
@@ -6799,6 +6808,13 @@ msgstr "{addon} :: Reportos de abuso"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Reportos de abuso pro {addon} e su disveloppatores ({num})"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "Additivo"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

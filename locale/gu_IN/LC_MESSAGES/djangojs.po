@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2018-10-27 08:57+0000\n"
 "Last-Translator: Mohammad Yahya <mohmmadyahyam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો "
-"ઉપયોગ કરો છો તેની ખાતરી કરો."
+"સંકલિત દ્વિસંગીઓ, તેમજ minified અથવા obfuscated સ્ક્રિપ્ટો(જાણીતા લાઈબ્રેરીઓ સિવાય) તેમના સ્રોતો સમીક્ષા માટે અલગ સબમિટ કરવાની જરૂર છે. તમારી રજૂઆત નકારવાથી ટાળવા માટે તમે સ્ત્રોત કોડ અપલોડ ફીલ્ડનો ઉપયોગ કરો છો તેની "
+"ખાતરી કરો."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "માન્યતા પ્રક્રિયાએ આ મુદ્દાઓ શોધી કાઢ્યાં છે જે અસ્વીકાર તરફ દોરી શકે છે:"

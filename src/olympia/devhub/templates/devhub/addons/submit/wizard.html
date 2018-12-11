@@ -99,15 +99,6 @@
       <ul class="errorlist validator">
       </ul>
       <div class="submission-buttons addon-submission-field">
-        <button class="delete-button" type="submit"
-            {% if addon %}
-                formaction="{{ url('devhub.submit.version.upload', addon.slug, channel_param) }}"
-            {% else %}
-                formaction="{{ url('devhub.submit.upload', channel_param) }}"
-            {% endif %}
-            >{{ _('Back') }}
-        </button>
-        &nbsp;
         <button class="button upload"
             {% if addon %}
                 formaction="{{ url('devhub.upload_for_version', addon.slug, channel_param) }}"
@@ -117,6 +108,15 @@
                                    else 'devhub.upload') }}"
             {% endif %}
             data-uploading-text="{{ _('Uploading Theme') }}">{{ _('Finish Theme') }}</button>
+        &nbsp;
+        <button class="delete-button" type="submit"
+            {% if addon %}
+                formaction="{{ url('devhub.submit.version.upload', addon.slug, channel_param) }}"
+            {% else %}
+                formaction="{{ url('devhub.submit.upload', channel_param) }}"
+            {% endif %}
+            >{{ _('Back') }}
+        </button>
       </div>
     </form>
   </div>

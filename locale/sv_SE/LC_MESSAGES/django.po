@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-26 16:28+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-06 00:14+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -464,9 +464,6 @@ msgstr "Rättigheter"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Detta tillägg har markerats som experimentell av dess utvecklare"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Detta tillägg kräver följande tillägg för att fungera korrekt:"
 
 msgid "Average"
 msgstr "Genomsnitt"
@@ -2463,9 +2460,6 @@ msgstr "Källfilen laddades upp men du angav att ingen källa behövdes."
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr "Kontrollera att namnet och sammanfattningen är sammanlagt högst 70 tecken (de har {0})."
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Det kan inte finnas fler än 3 tillägg som krävs."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2600,6 +2594,12 @@ msgstr "Bilden måste vara minst {0} pixlar bred och {1} pixlar hög."
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Bildens mått måste vara i förhållandet 4:3."
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Ikonen måste vara minst {0} pixlar bred och lång."
+
+msgid "Icon must be square (same width and height)."
+msgstr "Ikonen måste vara fyrkantig (samma bredd och höjd)."
 
 msgid "There was an error uploading your preview."
 msgstr "Ett fel uppstod med uppladdning av förhandsvisning."
@@ -2804,8 +2804,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Uppdatera kompatibilitet</a> <a href=\"%(version_url)s\" class=\"button\">Ladda upp ny version</a> or <a href=\"#\" "
 "class=\"close\">Ignorera</a>"
 
-msgid "View and update application compatibility ranges."
-msgstr "Visa och uppdatera applikationskompatibilitetsområden"
+msgid "View and update application compatibility ranges"
+msgstr "Visa och uppdatera programkompatibilitetsområden"
 
 msgid "Compatibility"
 msgstr "Kompatibilitet"
@@ -3044,23 +3044,6 @@ msgstr ""
 "                          hur man rapporterar buggar, planerat datum för en ny utgåva,\n"
 "                          etc. Detta är endast relevant för listade tillägg."
 
-msgid "Required Add-ons"
-msgstr "Obligatoriska tillägg"
-
-msgid "Limit 3"
-msgstr "Gräns 3"
-
-msgid "Add-on Flags"
-msgstr "Flaggor för tillägg"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr ""
-"Dessa flaggor används för att klassificera tillägg. Det är endast\n"
-"                        relevant för listade tillägg."
-
-msgid "This add-on requires external software."
-msgstr "Detta tillägg kräver extern programvara."
-
 msgid "View Source?"
 msgstr "Visa källkod?"
 
@@ -3090,21 +3073,6 @@ msgstr "Detta tilläggs statistik är offentlig."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Nej, detta tilläggs statistik är inte offentligt."
 
-msgid "Upgrade SDK?"
-msgstr "Uppgradera SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr ""
-"Om vald, kommer vi att försöka att automatiskt uppgradera ditt\n"
-"                        tillägg när en ny version av SDK släpps.\n"
-"                        Detta är endast relevant för listade tillägg."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Detta tillägg kommer automatiskt uppgraderas till nya versioner av SDK för tillägg."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Nej, detta tillägg kommer uppgraderas manuellt."
-
 msgid "Universally unique identifier"
 msgstr "Unikt ID-nummer"
 
@@ -3123,12 +3091,6 @@ msgid ""
 msgstr ""
 "Anslagstavlan är en plats att tillhandahålla information som är relevant för ditt tillägg, oavsett version, till granskarna. Använd den för att ge olika sätt att testa ditt tillägg och eventuellt "
 "ytterligare information som kan hjälpa till. Denna anslagstavla är också redigerbar av granskare."
-
-msgid "Remove this dependent add-on"
-msgstr "Ta bort detta beroende tillägg"
-
-msgid "Enter the name of an add-on"
-msgstr "Ange namnet på ett tillägg"
 
 msgid "Add-on Media for {0}"
 msgstr "Tilläggsmedia för {0}"
@@ -3164,11 +3126,24 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Används i detaljsidor för tillägg."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "128x128 pixlar"
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Kommer att vara standard i framtida sidor för tilläggsdetaljer."
+
 msgid "Upload a Custom Icon..."
 msgstr "Ladda upp en anpassad ikon..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG och JPG stöds. Ikoner ändrar storlek till 64x64 pixlar, om de är större."
+msgid "PNG and JPG supported."
+msgstr "PNG och JPG stöds."
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr "Ikoner måste vara kvadratiska och en minsta storlek på 128x128 pixlar."
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr "Ikoner kommer att ändras till 128x128 pixlar om de är större."
 
 msgid "Screenshots"
 msgstr "Skärmdumpar"
@@ -3270,8 +3245,8 @@ msgstr "Berätta varför du tar bort ditt tillägg:"
 msgid "Actions"
 msgstr "Åtgärder"
 
-msgid "Resume the submission process for this add-on."
-msgstr "Återuppta inskickningsprocessen för detta tillägg."
+msgid "Resume the submission process for this add-on"
+msgstr "Återuppta inskickningsprocessen för detta tillägg"
 
 msgid "Resume"
 msgstr "Återuppta"
@@ -3282,17 +3257,17 @@ msgstr "Ta bort detta tillägg."
 msgid "Delete"
 msgstr "Ta bort"
 
-msgid "Edit details on this add-on's product page."
-msgstr "Redigera detaljer på det här tilläggets produktsida."
+msgid "Edit details on this add-on's product page"
+msgstr "Redigera detaljer på det här tilläggets produktsida"
 
-msgid "Upload a new version of this add-on."
-msgstr "Ladda upp en ny version av detta tillägg."
+msgid "Upload a new version of this add-on"
+msgstr "Ladda upp en ny version av detta tillägg"
 
 msgid "New Version"
 msgstr "Ny version"
 
-msgid "Daily statistics on downloads and users."
-msgstr "Statistik per dag över hämtningar och användare."
+msgid "Daily statistics on downloads and users"
+msgstr "Daglig statistik över nedladdningar och användare"
 
 msgid "Statistics"
 msgstr "Statistik"
@@ -3303,23 +3278,23 @@ msgstr "Hantera status & versioner"
 msgid "View Recent Changes"
 msgstr "Visa senaste ändringar"
 
-msgid "Edit details on this theme's product page."
-msgstr "Redigera detaljer på det här temats produktsida."
+msgid "Edit details on this theme's product page"
+msgstr "Redigera detaljer på det här temats produktsida"
 
-msgid "View the popularity of this theme over time."
-msgstr "Visa populariteten för detta tema över tiden."
+msgid "View the popularity of this theme over time"
+msgstr "Visa populariteten för detta tema över tiden"
 
 msgid "View Statistics"
 msgstr "Visa statistik"
 
-msgid "Change the owner of this theme."
-msgstr "Ändra ägare av detta tema."
+msgid "Change the owner of this theme"
+msgstr "Ändra ägare av detta tema"
 
 msgid "Transfer Ownership"
 msgstr "Överför ägarskap"
 
-msgid "Delete this theme."
-msgstr "Ta bort detta tema."
+msgid "Delete this theme"
+msgstr "Ta bort detta tema"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Detta tillägg saknar någon information som krävs innan det kan skickas in för publicering."
@@ -3351,6 +3326,14 @@ msgstr "Namn och sammanfattning:"
 
 msgid "required"
 msgstr "obligatorisk"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
+"Varning: du har värden i namn/sammanfattning i andra språk som automatiskt beskärs för att passa under gränsen för %(max_length)s tecken. För att redigera dessa, gå till Redigera produktsida efter "
+"att inskickningsprocessen är klar."
 
 msgid "Add-on URL:"
 msgstr "URL för tillägg:"
@@ -3413,11 +3396,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Dessa anteckningar visas endast för dig och våra granskare."
 
-msgid "Cancel and Disable Version"
-msgstr "Avbryt och inaktivera versionen"
-
 msgid "Submit Version"
 msgstr "Skicka in version"
+
+msgid "Cancel and Disable Version"
+msgstr "Avbryt och inaktivera versionen"
 
 msgid "Describe Version"
 msgstr "Beskriv version"
@@ -3623,14 +3606,14 @@ msgstr "valfri"
 msgid "Browser preview"
 msgstr "Webbläsarens förhandsgranskning"
 
-msgid "Back"
-msgstr "Tillbaka"
-
 msgid "Uploading Theme"
 msgstr "Laddar upp tema"
 
 msgid "Finish Theme"
 msgstr "Avsluta tema"
+
+msgid "Back"
+msgstr "Tillbaka"
 
 msgid "API Credentials"
 msgstr "API-inloggningsuppgifter"
@@ -3699,25 +3682,23 @@ msgstr "Skapad:"
 msgid "Add-on Multi Process Status:"
 msgstr "Multi-processtatus för tillägg:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Ditt tillägg kompatibilitet med multi-process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
+msgstr "Ditt tilläggs kompatibilitet med multi-process Firefox (e10s)"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen"
 
 msgid "Listed Version:"
 msgstr "Listad version:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "Detta är den version av ditt tillägg som kommer att installeras om någon klickar på knappen Installera på addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr "Detta är den version av ditt tillägg som kommer att installeras om någon klickar på knappen Installera på addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Nästa listade version:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
-"Detta är den senaste uppladdade versionen, men\n"
-"                                           den är inte uppladdad på webbplatsen ännu."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr "Detta är den senaste uppladdade versionen, men den är inte uppladdad på webbplatsen ännu"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Köerna granskas inte i strikt ordning"
@@ -3735,8 +3716,8 @@ msgstr "Signerad för självdistribution. Uppdateringar hanteras av dig."
 msgid "Latest Version:"
 msgstr "Senaste version:"
 
-msgid "This is the newest uploaded unlisted version."
-msgstr "Detta är den senaste uppladdade olistade versionen."
+msgid "This is the newest uploaded unlisted version"
+msgstr "Detta är den senaste uppladdade olistade versionen"
 
 msgid "Upload New Version"
 msgstr "Ladda upp ny version"
@@ -3929,6 +3910,9 @@ msgstr "Vill du att din utökning ska visas på %(amo_link_open)saddons.mozilla.
 msgid "Learn More"
 msgstr "Läs mer"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Visa alla bidrag"
@@ -4093,14 +4077,14 @@ msgstr "Välj färger för ditt tema."
 msgid "Foreground Text"
 msgstr "Förgrundstext"
 
-msgid "This is the color of the tab text."
-msgstr "Detta är textfärgen på fliken."
+msgid "This is the color of the tab text"
+msgstr "Detta är textfärgen på fliken"
 
 msgid "Background"
 msgstr "Bakgrund"
 
-msgid "This is the color of the tabs."
-msgstr "Detta är färgen på flikarna."
+msgid "This is the color of the tabs"
+msgstr "Detta är färgen på flikarna"
 
 msgid "Your Theme's Name"
 msgstr "Ditt temas namn"
@@ -4118,6 +4102,9 @@ msgstr "Med bakgrundsteman kan du enkelt anpassa utseendet på Firefox. Skicka i
 
 msgid "Give your Theme a name."
 msgstr "Ge ditt tema ett namn."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "En kort förklaring av ditt temas  grundläggande funktionalitet som visas sök- och bläddringslistor, liksom överst i ditt temas detaljsida"
 
 #, python-format
 msgid ""
@@ -6810,6 +6797,12 @@ msgstr "{addon} :: missbruksrapporter"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Missbruksrapporter för {addon} och dess utvecklare ({num})"
+
+msgid "Add-on ID"
+msgstr "Tilläggs-ID"
+
+msgid "Internal AMO ID"
+msgstr "Internt AMO-ID"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

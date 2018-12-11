@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-04 12:14+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-05 22:41+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -478,9 +478,6 @@ msgstr "Engedélyek"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "A kiegészítőt a készítői kísérletiként jelölték meg"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "A kiegészítő megfelelő működéséhez az alábbi kiegészítők szükségesek:"
 
 msgid "Average"
 msgstr "Átlag"
@@ -1946,30 +1943,37 @@ msgstr "Hírcsatornák, hírek és blogolás"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyek eltávolítják a zavaró elemeket, így naprakész lehet a közösségi médiával, a blogokkal, az RSS-hírcsatornákkal, csökkentheti a szemei terhelését, és így "
+"tovább."
 
 msgid "Games & Entertainment"
 msgstr "Játékok és szórakozás"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyek javítják a szórakozásélményét. Ez a kategória olyan kiterjesztéseket tartalmaz, melyek jobbá teszik a játékokat, a videolejátszás vezérlését, és így tovább."
 
 msgid "Language Support"
 msgstr "Nyelvi támogatás"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Töltsön le Firefox kiegészítőket, melyek nyelvi támogatást nyújtanak, például helyesírás-ellenőrzést biztosítanak, szavakat keresnek, szöveget fordítanak le, felolvasnak, és így tovább."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotók, zenék és videók"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyek javítják a fényképekkel, zenével és videókkal kapcsolatos élményeit. Az ebben a kategóriában lévő kiegészítők módosítják a hangot és videót, fordított "
+"képkeresést kínálnak, és még sok mást."
 
 msgid "Privacy & Security"
 msgstr "Adatvédelem és biztonság"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Töltsön le Firefox kiegészítőket, melyekkel bizalmasan és biztonságosan böngészhet. Ez a kategória olyan kiegészítőket tartalmaz, amelyek blokkolják a bosszantó hirdetéseket, megakadályozzák a "
+"nyomkövetést, kezelik az átirányításokat, és így tovább."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -2482,9 +2486,6 @@ msgstr "A forrásfájl feltöltésre került, de azt jelezte, hogy nincs szüks�
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Nem lehet 3-nál több szükséges kiegészítő."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2621,6 +2622,12 @@ msgstr "A képnek legalább {0} képpont szélesnek és {1} képpont magasnak ke
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "A kép méretarányának 4:3-asnak kell lennie."
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Az ikonnak legalább {0} képpont szélesnek és magasnak kell lennie."
+
+msgid "Icon must be square (same width and height)."
+msgstr "Az ikonnak négyzetesnek kell lennie (azonos szélességű és magasságú)."
 
 msgid "There was an error uploading your preview."
 msgstr "Hiba történt az előnézet feltöltésekor."
@@ -2825,8 +2832,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibilitás frissítése</a> <a href=\"%(version_url)s\" class=\"button\">Új verzió feltöltése</a> or <a href=\"#\" "
 "class=\"close\">Kihagyás</a>"
 
-msgid "View and update application compatibility ranges."
-msgstr "Alkalmazás kompatibilitási tartományának áttekintése és frissítése."
+msgid "View and update application compatibility ranges"
+msgstr "Alkalmazás kompatibilitási tartományának áttekintése és frissítése"
 
 msgid "Compatibility"
 msgstr "Kompatibilitás"
@@ -2956,6 +2963,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Az összefoglalónak egyértelműen és tömören el kell magyaráznia, hogy mit csinál a kiegészítője. Mind a név, mind az összefoglaló megjelenik a termékoldalon és a keresési eredmények között. Összesen "
+"legfeljebb 70 karakter, de egyenként legalább 2 karakter hosszúságúak kell legyenek."
 
 msgid "Summary"
 msgstr "Összefoglalás"
@@ -3053,21 +3062,6 @@ msgstr ""
 "Bármely információ, amit a végfelhasználók tudni akarhatnak, és nem feltétlenül vonatkozik a kiegészítő összefoglalójához vagy leírásához. Általában itt a nagyobb hibákat, hibabejelentés "
 "lehetőségét, új verziók lehetséges megjelenési dátumát stb. szokták listázni. Csak listázott kiegészítőkre vonatkozik."
 
-msgid "Required Add-ons"
-msgstr "Szükséges kiegészítők"
-
-msgid "Limit 3"
-msgstr "Korlátozás 3-ra"
-
-msgid "Add-on Flags"
-msgstr "Kiegészítő jelzői"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Ezek a jelzők a kiegészítők besorolásához használatosak. Ez csak listázott kiegészítőkre vonatkozik."
-
-msgid "This add-on requires external software."
-msgstr "Ez a kiegészítő külső szoftvert igényel."
-
 msgid "View Source?"
 msgstr "Megtekinti a forrást?"
 
@@ -3092,18 +3086,6 @@ msgstr "A kiegészítő statisztikája nyilvános."
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Nem, a kiegészítő statisztikája nem nyilvános."
 
-msgid "Upgrade SDK?"
-msgstr "Frissíti az SDK-t?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Ha kiválasztja, megpróbáljuk kiegészítőjét automatikusan frissíteni új SDK verzió kiadásakor. Csak listázott kiegészítőkre érvényes."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Ez a kiegészítő automatikusan frissítésre kerül a Kiegészítő SDK új verziójára."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Nem, ez a kiegészítő kézzel kerül frissítésre."
-
 msgid "Universally unique identifier"
 msgstr "Univerzálisan egyedi azonosító"
 
@@ -3122,12 +3104,6 @@ msgid ""
 msgstr ""
 "A faliújság a szerkesztőnek szánt, kiegészítőre vonatkozó információk helye, verziótól függetlenül. Használja a kiegészítő tesztelhetőségnek leírására vagy hasznos kiegészítő információk megadására."
 " Ezt a faliújságot a szerkesztők is alakíthatják."
-
-msgid "Remove this dependent add-on"
-msgstr "Függőségi kiegészítő eltávolítása"
-
-msgid "Enter the name of an add-on"
-msgstr "Adja meg a kiegészítő nevét"
 
 msgid "Add-on Media for {0}"
 msgstr "Média hozzáadása a(z) {0} kiegészítőhöz"
@@ -3159,11 +3135,24 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "A kiegészítő részletes lapján lesz látható."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "128×128px"
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Ez lesz a szabvány a jövőbeni kiegészítő részletező lapokon."
+
 msgid "Upload a Custom Icon..."
 msgstr "Egyéni ikon feltöltése…"
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "PNG és JPG képek támogatottak. Amennyiben az ikon nagyobb, abban esetben 64x64 képpontra lesz átméretezve."
+msgid "PNG and JPG supported."
+msgstr "A PNG és a JPG támogatott."
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr "Az ikonok négyzet alakúak, és legalább 128×128 képpont méretűek."
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr "Az ikonok át lesznek méretezve 128×128 képpontosra, ha annál nagyobbak."
 
 msgid "Screenshots"
 msgstr "Képernyőképek"
@@ -3265,7 +3254,7 @@ msgstr "Mondja el, miért törli a kiegészítőjét:"
 msgid "Actions"
 msgstr "Műveletek"
 
-msgid "Resume the submission process for this add-on."
+msgid "Resume the submission process for this add-on"
 msgstr "A kiegészítő benyújtási folyamatának folytatása"
 
 msgid "Resume"
@@ -3277,17 +3266,17 @@ msgstr "Kiegészítő törlése-"
 msgid "Delete"
 msgstr "Törlés"
 
-msgid "Edit details on this add-on's product page."
-msgstr "A kiegészítő termékoldalának részleteinek szerkesztése."
+msgid "Edit details on this add-on's product page"
+msgstr "A kiegészítő termékoldalának részleteinek szerkesztése"
 
-msgid "Upload a new version of this add-on."
-msgstr "Kiegészítő újabb verziójának feltöltése."
+msgid "Upload a new version of this add-on"
+msgstr "Kiegészítő újabb verziójának feltöltése"
 
 msgid "New Version"
 msgstr "Új verzió"
 
-msgid "Daily statistics on downloads and users."
-msgstr "Napi statisztikák a letöltésekről és felhasználókról."
+msgid "Daily statistics on downloads and users"
+msgstr "Napi statisztikák a letöltésekről és felhasználókról"
 
 msgid "Statistics"
 msgstr "Statisztika"
@@ -3298,23 +3287,23 @@ msgstr "Állapot és verziók kezelése"
 msgid "View Recent Changes"
 msgstr "Legutóbbi változtatások megtekintése"
 
-msgid "Edit details on this theme's product page."
-msgstr "A téma termékoldalának részleteinek szerkesztése."
+msgid "Edit details on this theme's product page"
+msgstr "A téma termékoldalának részleteinek szerkesztése"
 
-msgid "View the popularity of this theme over time."
-msgstr "A téma népszerűségének megjelenítése az idő függvényében."
+msgid "View the popularity of this theme over time"
+msgstr "A téma népszerűségének megjelenítése az idő függvényében"
 
 msgid "View Statistics"
 msgstr "Statisztika megtekintése"
 
-msgid "Change the owner of this theme."
-msgstr "A téma tulajdonosának megváltoztatása."
+msgid "Change the owner of this theme"
+msgstr "A téma tulajdonosának megváltoztatása"
 
 msgid "Transfer Ownership"
 msgstr "Tulajdonjog átadása"
 
-msgid "Delete this theme."
-msgstr "Téma törlése."
+msgid "Delete this theme"
+msgstr "Téma törlése"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Ehhez a kiegészítőhöz további információk szükségesek, mielőtt benyújtható lesz közzétételre. "
@@ -3346,6 +3335,14 @@ msgstr "Név és összegzés:"
 
 msgid "required"
 msgstr "szükséges"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
+"Figyelmeztetés: olyan nevet / összefoglaló értékeket használ más területi beállítások esetén, melyek automatikusan levágásra kerülnek, hogy beleférjenek a %(max_length)s karakteres korlátba. Ezek "
+"szerkesztéséhez menjen a Termékoldal szerkesztése oldalra a benyújtási folyamat befejezése után."
 
 msgid "Add-on URL:"
 msgstr "Kiegészítő URL:"
@@ -3408,11 +3405,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Ezeket a megjegyzéseket csak Ön és az értékelőink láthatják."
 
-msgid "Cancel and Disable Version"
-msgstr "Megszakítás és a verzió letiltása"
-
 msgid "Submit Version"
 msgstr "Új verzió beküldése"
+
+msgid "Cancel and Disable Version"
+msgstr "Megszakítás és a verzió letiltása"
 
 msgid "Describe Version"
 msgstr "Verzió leírása"
@@ -3622,14 +3619,14 @@ msgstr "nem kötelező"
 msgid "Browser preview"
 msgstr "Böngésző előnézete"
 
-msgid "Back"
-msgstr "Vissza"
-
 msgid "Uploading Theme"
 msgstr "Téma feltöltése"
 
 msgid "Finish Theme"
 msgstr "Téma befejezése"
+
+msgid "Back"
+msgstr "Vissza"
 
 msgid "API Credentials"
 msgstr "API hitelesítési adatok"
@@ -3693,23 +3690,23 @@ msgstr "Létrehozva:"
 msgid "Add-on Multi Process Status:"
 msgstr "Kiegészítő több folyamatos állapota:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
+msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli"
 
 msgid "Listed Version:"
 msgstr "Listázott verzió:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "A kiegészítő ezen verziója fog telepítésre kerülni, ha valaki rákattint a telepítési gombra az addons.mozilla.org oldalon."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr "A kiegészítő ezen verziója fog telepítésre kerülni, ha valaki rákattint a telepítési gombra az addons.mozilla.org oldalon"
 
 msgid "Next Listed Version:"
 msgstr "Következő listázott verzió:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr "Ez a legújabb feltöltött változat, azonban még nem él az oldalon"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "A sorok nem feltétlen szigorú sorrendben értékeltek"
@@ -3727,8 +3724,8 @@ msgstr "Saját terjesztésre aláírva. A frissítéseket Ön kezeli."
 msgid "Latest Version:"
 msgstr "Legújabb verzió:"
 
-msgid "This is the newest uploaded unlisted version."
-msgstr "Ez a legújabb feltöltött, nem listázott változat."
+msgid "This is the newest uploaded unlisted version"
+msgstr "Ez a legújabb feltöltött, nem listázott változat"
 
 msgid "Upload New Version"
 msgstr "Új verzió feltöltése"
@@ -3923,6 +3920,9 @@ msgstr "Szeretné kiemelni a kiegészítőjét az %(amo_link_open)saddons.mozill
 msgid "Learn More"
 msgstr "További infó"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Összes beküldés megtekintése"
@@ -4084,14 +4084,14 @@ msgstr "Válasszon színeket a témájához."
 msgid "Foreground Text"
 msgstr "Előtér felirat"
 
-msgid "This is the color of the tab text."
-msgstr "Ez a lapfelirat színe."
+msgid "This is the color of the tab text"
+msgstr "Ez a lapfelirat színe"
 
 msgid "Background"
 msgstr "Háttér"
 
-msgid "This is the color of the tabs."
-msgstr "Ez a lapok színe."
+msgid "This is the color of the tabs"
+msgstr "Ez a lapok színe"
 
 msgid "Your Theme's Name"
 msgstr "Téma neve"
@@ -4109,6 +4109,9 @@ msgstr "A háttértémák egyszerűen testre szabhatóvá teszik a Firefox kiné
 
 msgid "Give your Theme a name."
 msgstr "Adjon egy nevet a témának."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a keresésekben és a böngészi listázásokban, valamint a témája részletező oldalának tetején"
 
 #, python-format
 msgid ""
@@ -6810,6 +6813,12 @@ msgstr "{addon} :: Visszaélési jelentések"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Visszaélési jelentések a(z) {addon} kiegészítőhöz és a fejlesztőknek ({num})"
+
+msgid "Add-on ID"
+msgstr "Kiegészítő-azonosító"
+
+msgid "Internal AMO ID"
+msgstr "Belső AMO azonosító"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

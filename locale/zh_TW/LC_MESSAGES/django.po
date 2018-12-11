@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-11-26 15:21+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-06 12:34+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -454,9 +454,6 @@ msgstr "權限"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "開發者將此附加元件標示為實驗中。"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "這個附加元件需要以下的附加元件才能正常運作:"
 
 msgid "Average"
 msgstr "平均評分"
@@ -2441,9 +2438,6 @@ msgstr "上傳了原始碼檔案，但您標明無須原始碼。"
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr "名稱與描述加總不得超過 70 個字元（目前有 {0} 個字）。"
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "不能超過三套必須先安裝的附加元件。"
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2574,6 +2568,12 @@ msgstr "圖檔尺寸必須為至少寬 {0} 像素、高 {1} 像素。"
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "圖片比例必須為 4:3。"
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "圖檔長寬尺寸為必須至少 {0} 像素。"
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "上傳擷圖的過程中發生錯誤。"
@@ -2772,8 +2772,8 @@ msgstr "此附加元件與 <b>%(app_name)s %(app_version)s</b>，最新的 %(app
 msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">相容性更新</a> <a href=\"%(version_url)s\" class=\"button\">上傳新版本</a> or <a href=\"#\" class=\"close\">略過</a>"
 
-msgid "View and update application compatibility ranges."
-msgstr "檢視並更新應用程式相容性範圍。"
+msgid "View and update application compatibility ranges"
+msgstr "檢視並更新應用程式相容性範圍"
 
 msgid "Compatibility"
 msgstr "相容性"
@@ -2982,21 +2982,6 @@ msgid ""
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr "任何使用者可能會想要知道但與附加元件概要、描述無關的內容可填於此處。一般來說可填入已知的重大 bug、如何回報 bug 的方式，或是預計下次發行新版本的時間等等。此欄位僅與公開上架的附加元件有關。"
 
-msgid "Required Add-ons"
-msgstr "必須先安裝的附加元件"
-
-msgid "Limit 3"
-msgstr "不超過 3 套"
-
-msgid "Add-on Flags"
-msgstr "附加元件標記"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "這些旗標用來分類附加元件。此欄位僅與公開上架的附加元件有關。"
-
-msgid "This add-on requires external software."
-msgstr "這個附加元件需要外部軟體。"
-
 msgid "View Source?"
 msgstr "檢視原始碼？"
 
@@ -3021,18 +3006,6 @@ msgstr "公開此附加元件的統計資訊。"
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "不，這個附加元件的統計數據不是公開的。"
 
-msgid "Upgrade SDK?"
-msgstr "要升級 SDK 嗎?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "若選擇此選項，我們將在有新版的 SDK 發布時嘗試自動升級您的附加元件。此欄位僅與公開上架的附加元件有關。"
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "此附加元件將自動升級到新版的 Add-on SDK。"
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "不，此附加元件會手動升級。"
-
 msgid "Universally unique identifier"
 msgstr "通用唯一識別碼"
 
@@ -3051,12 +3024,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr "這個「白板」是用來提供您的附加元件與版本無關的資訊給審核者的地方。您可以留下附加元件的測試方式，或是任何其他資訊。審核者也可修改白板中的內容。"
-
-msgid "Remove this dependent add-on"
-msgstr "移除這個相依的附加元件"
-
-msgid "Enter the name of an add-on"
-msgstr "輸入附加元件名稱"
 
 msgid "Add-on Media for {0}"
 msgstr "{0} 的附加元件媒體"
@@ -3086,11 +3053,24 @@ msgstr "64x64 像素"
 msgid "Used in add-on detail pages."
 msgstr "於附加元件詳細資訊頁面中使用。"
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr "未來將成為附加元件詳細資訊頁面的標準。"
+
 msgid "Upload a Custom Icon..."
 msgstr "上傳自定圖示..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "支援 PNG 與 JPG 檔案格式。圖示必須縮放至 64x64 像素。"
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr "圖示若超過 128x128 畫素，將縮小至該尺寸。"
 
 msgid "Screenshots"
 msgstr "擷圖"
@@ -3194,8 +3174,8 @@ msgstr "請告訴我們為什麼您要刪除您的附加元件:"
 msgid "Actions"
 msgstr "動作"
 
-msgid "Resume the submission process for this add-on."
-msgstr "重新開始這個附加元件的審查送件。"
+msgid "Resume the submission process for this add-on"
+msgstr "恢復這個附加元件的審查送件流程"
 
 msgid "Resume"
 msgstr "重新開始"
@@ -3206,17 +3186,17 @@ msgstr "刪除這個附加元件。"
 msgid "Delete"
 msgstr "刪除"
 
-msgid "Edit details on this add-on's product page."
-msgstr "到此附加元件的產品頁面編輯詳細資訊。"
+msgid "Edit details on this add-on's product page"
+msgstr "到此附加元件的產品頁面編輯詳細資訊"
 
-msgid "Upload a new version of this add-on."
-msgstr "上傳新版本的附加元件。"
+msgid "Upload a new version of this add-on"
+msgstr "上傳新版本的附加元件"
 
 msgid "New Version"
 msgstr "新版本"
 
-msgid "Daily statistics on downloads and users."
-msgstr "下載數與使用者的每日統計資訊。"
+msgid "Daily statistics on downloads and users"
+msgstr "下載數與使用者的每日統計資訊"
 
 msgid "Statistics"
 msgstr "統計資訊"
@@ -3227,22 +3207,22 @@ msgstr "管理狀態與版本"
 msgid "View Recent Changes"
 msgstr "檢視近期更新"
 
-msgid "Edit details on this theme's product page."
-msgstr "到此佈景主題的產品頁面編輯詳細資訊。"
+msgid "Edit details on this theme's product page"
+msgstr "到此佈景主題的產品頁面編輯詳細資訊"
 
-msgid "View the popularity of this theme over time."
+msgid "View the popularity of this theme over time"
 msgstr "檢視這個佈景主題到目前為止的熱門度"
 
 msgid "View Statistics"
 msgstr "檢視統計資訊"
 
-msgid "Change the owner of this theme."
-msgstr "變更這個佈景主題的擁有者。"
+msgid "Change the owner of this theme"
+msgstr "變更這個佈景主題的擁有者"
 
 msgid "Transfer Ownership"
 msgstr "轉讓所有權"
 
-msgid "Delete this theme."
+msgid "Delete this theme"
 msgstr "刪除此佈景主題"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3274,6 +3254,12 @@ msgstr "名稱與摘要:"
 
 msgid "required"
 msgstr "必填"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "附加元件網址："
@@ -3332,11 +3318,11 @@ msgstr "根據%(policy_requirements_open)s政策要求%(policy_requirements_clos
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "這些留言註記只有您與審核者看得到。"
 
-msgid "Cancel and Disable Version"
-msgstr "取消並停用此版本"
-
 msgid "Submit Version"
 msgstr "送出版本"
+
+msgid "Cancel and Disable Version"
+msgstr "取消並停用此版本"
 
 msgid "Describe Version"
 msgstr "描述此版本"
@@ -3543,14 +3529,14 @@ msgstr "選填"
 msgid "Browser preview"
 msgstr "瀏覽器預覽"
 
-msgid "Back"
-msgstr "返回"
-
 msgid "Uploading Theme"
 msgstr "正在上傳佈景主題"
 
 msgid "Finish Theme"
 msgstr "完成佈景主題"
+
+msgid "Back"
+msgstr "返回"
 
 msgid "API Credentials"
 msgstr "API 帳號密碼"
@@ -3612,23 +3598,23 @@ msgstr "建立於:"
 msgid "Add-on Multi Process Status:"
 msgstr "附加元件多程序狀態:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "您的附加元件相容於多程序 (e10s) 的 Firefox。"
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
+msgstr "您的附加元件相容於多程序 (e10s) 的 Firefox"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理"
 
 msgid "Listed Version:"
 msgstr "上架版本:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本。"
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr "這就是當使用者在 addons.mozilla.org 上點擊安裝您的附加元件後，會下載安裝的版本"
 
 msgid "Next Listed Version:"
 msgstr "下個上架版本:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈。"
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr "這是最新上傳的版本，但還沒有在網站上公開發佈"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "我們並不完全按照等待審核區之先後順序來審核"
@@ -3646,8 +3632,8 @@ msgstr "簽署後讓您自行發布，您需自行處理自動更新事宜。"
 msgid "Latest Version:"
 msgstr "最新版本："
 
-msgid "This is the newest uploaded unlisted version."
-msgstr "這是最新的未上架版本。"
+msgid "This is the newest uploaded unlisted version"
+msgstr "這是最新的未上架版本"
 
 msgid "Upload New Version"
 msgstr "上傳新版本"
@@ -3834,6 +3820,9 @@ msgstr "想讓您的擴充套件成為 %(amo_link_open)saddons.mozilla.org%(amo_
 msgid "Learn More"
 msgstr "更多資訊"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "檢視所有上架的項目"
@@ -3996,14 +3985,14 @@ msgstr "選擇佈景主題的顏色。"
 msgid "Foreground Text"
 msgstr "前景文字"
 
-msgid "This is the color of the tab text."
-msgstr "這是分頁文字的顏色。"
+msgid "This is the color of the tab text"
+msgstr "這是分頁文字的顏色"
 
 msgid "Background"
 msgstr "背景"
 
-msgid "This is the color of the tabs."
-msgstr "這是分頁的顏色。"
+msgid "This is the color of the tabs"
+msgstr "這是分頁的顏色"
 
 msgid "Your Theme's Name"
 msgstr "您的佈景主題名稱"
@@ -4021,6 +4010,9 @@ msgstr "背景圖片讓您輕易自訂 Firefox 瀏覽器的外觀。您可以在
 
 msgid "Give your Theme a name."
 msgstr "主題的名稱為"
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "關於您的佈景主題的基本功能的簡短描述，會顯示在搜尋與瀏覽清單，以及佈景主題的詳細資訊頁面頂端"
 
 #, python-format
 msgid ""
@@ -6677,6 +6669,12 @@ msgstr "{addon} :: 濫用回報"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} 及其開發者的濫用回報 ({num})"
+
+msgid "Add-on ID"
+msgstr "附加元件 ID"
+
+msgid "Internal AMO ID"
+msgstr "AMO 內部 ID"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

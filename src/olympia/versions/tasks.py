@@ -4,6 +4,8 @@ from itertools import izip_longest
 
 from django.template import loader
 
+import olympia.core.logger
+
 from olympia import amo
 from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
@@ -13,10 +15,14 @@ from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.versions.models import Version, VersionPreview
+from olympia.lib.git import AddonGitRepository
 
 from .utils import (
     AdditionalBackground, process_color_value,
     encode_header, write_svg_to_png)
+
+
+log = olympia.core.logger.getLogger('z.versions.task')
 
 
 def _build_static_theme_preview_context(theme_manifest, file_):
@@ -88,3 +94,24 @@ def generate_static_theme_preview(theme_manifest, version_pk):
 def delete_preview_files(pk, **kw):
     VersionPreview.delete_preview_files(
         sender=None, instance=VersionPreview.objects.get(pk=pk))
+
+
+@task
+def extract_version_to_git(version_id):
+    """Extract a `File` into our git storage backend."""
+    version = Version.objects.get(pk=version_id)
+
+    log.info('Extracting {version_id} into git backend'.format(
+        version_id=version_id))
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version=version)
+
+    log.info('Extracted {version} into {git_path}'.format(
+        version=version_id, git_path=repo.git_repository_path))
+
+    if version.source:
+        repo = AddonGitRepository.extract_and_commit_source_from_version(
+            version=version)
+
+    log.info('Extracted source files from {version} into {git_path}'.format(
+        version=version_id, git_path=repo.git_repository_path))

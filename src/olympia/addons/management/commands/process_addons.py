@@ -89,8 +89,10 @@ tasks = {
         'qs': [
             Q(_current_version__files__is_webextension=True,
               type__in=(
+                  # Ignoring legacy add-ons and lightweight themes
                   amo.ADDON_EXTENSION, amo.ADDON_STATICTHEME,
-                  amo.ADDON_DICT, amo.ADDON_LPAPP)),
+                  amo.ADDON_DICT, amo.ADDON_LPAPP)) |
+            Q(type=amo.ADDON_SEARCH)
         ]
     },
     'disable_legacy_files': {

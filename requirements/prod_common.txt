@@ -130,15 +130,15 @@ billiard==3.5.0.5 \
 bleach==3.0.2 \
     --hash=sha256:73d26f018af5d5adcdabf5c1c974add4361a9c76af215fe32fdec8a6fc5fb9b9 \
     --hash=sha256:48d39675b80a75f6d1c3bdbffec791cf0bbbab665cf01e20da701c77de278718
-boto3==1.9.58 \
-    --hash=sha256:1c616cdb943bf0479f7556695a929be14388ce0e2391360b5dc351b815f45906 \
-    --hash=sha256:308a1029a1c6a79e28bfba54315a83c875c5ac970b7dbf2d8242faaac16836b7
+boto3==1.9.59 \
+    --hash=sha256:730c585f7f8031993bd6e3a4d8d0ba62a59efdff2fe38ee073349223f9d6a4b7 \
+    --hash=sha256:1bb0505de52201ed2f3bafe3b4b1539971a4b08ff048b9d804f6e04f017701fb
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.58 \
-    --hash=sha256:564e2332a2862997ed700dd4ae6824399b5132cc084cc60f51eb692d599e0869 \
-    --hash=sha256:3ecfc578a9268aab38149c29bcc69c74a6e72b38db61f55226acf2b95296ab35
+botocore==1.12.59 \
+    --hash=sha256:1bbcc9273899e1b14ab4d00660ce5c6dc23d699a391e11f421e5dff2d3a7014b \
+    --hash=sha256:bcc4ae773091ed632eaf4a6d5bc46c6409659ce138158ec11904a931b21bd8f8
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -249,9 +249,9 @@ isodate==0.6.0 \
 jmespath==0.9.3 \
     --hash=sha256:f11b4461f425740a1d908e9a3f7365c3d2e569f6ca68a2ff8bc5bcd9676edd63
 # kombu is required by celery
-kombu==4.2.1 \
-    --hash=sha256:b274db3a4eacc4789aeb24e1de3e460586db7c4fc8610f7adcc7a3a1709a60af \
-    --hash=sha256:86adec6c60f63124e2082ea8481bbe4ebe04fde8ebed32c177c7f0cd2c1c9082
+kombu==4.2.2 \
+    --hash=sha256:9bf7d37b93249b76a03afb7bbcf7149a358b6079ca2431e725414b1caa10922c \
+    --hash=sha256:52763f41077e25fe7e2f17b8319d8a7b7ab953a888c49d9e4e0464fceb716896
 # lxml is required by pyquery
 lxml==4.2.5 \
     --hash=sha256:fa39ea60d527fbdd94215b5e5552f1c6a912624521093f1384a491a8ad89ad8b \
@@ -335,9 +335,9 @@ redis==3.0.1 \
     --hash=sha256:8e0bdd2de02e829b6225b25646f9fb9daffea99a252610d040409a6738541f0a \
     --hash=sha256:2100750629beff143b6a200a2ea8e719fcf26420adabb81402895e144c5083cf
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
-requests==2.20.1 \
-    --hash=sha256:65b3a120e4329e33c9889db89c80976c5272f56ea92d3e74da8a463992e3ff54 \
-    --hash=sha256:ea881206e59f41dbd0bd445437d792e43906703fff75ca8ff43ccdb11f33f263
+requests==2.21.0 \
+    --hash=sha256:7bf2a778576d825600030a110f3c0e3e8edc51dfaafe1c146e39a2027784957b \
+    --hash=sha256:502a824f31acdacb3a35b6690b5fbf0bc41d63a24a45c4004352b0242707598e
 s3transfer==0.1.13 \
     --hash=sha256:c7a9ec356982d5e9ab2d4b46391a7d6a950e2b04c472419f5fdec70cc0ada72f \
     --hash=sha256:90dc18e028989c609146e241ea153250be451e05ecc0c2832565231dacdf59c1

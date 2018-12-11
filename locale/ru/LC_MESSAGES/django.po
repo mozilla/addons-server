@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-01 11:22+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-08 22:04+0000\n"
+"Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -489,9 +489,6 @@ msgstr "Разрешения"
 
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "Это дополнение было отмечено разработчиками как экспериментальное"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "Для корректной работы этого дополнения необходимы следующие дополнения:"
 
 msgid "Average"
 msgstr "Среднее"
@@ -2500,9 +2497,6 @@ msgstr "Загружен файл с исходным кодом, но вы со
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr "Имя вместе с описанием не могут содержать более 70 символов (сейчас {0})."
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "Число требуемых дополнений не может превышать 3-х."
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2638,6 +2632,12 @@ msgstr "Изображение должно быть как минимум {0} �
 
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Соотношение сторон изображения должно быть 4:3."
+
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "Значок должен быть как минимум {0} пикселей в ширину и в высоту."
+
+msgid "Icon must be square (same width and height)."
+msgstr "Значок должен быть квадратным (одинаковой ширины и высоты)."
 
 msgid "There was an error uploading your preview."
 msgstr "Ошибка при загрузке вашего предпросмотра."
@@ -2842,8 +2842,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Обновить совместимость</a> <a href=\"%(version_url)s\" class=\"button\">Загрузить новую версию</a> или <a href=\"#\" "
 "class=\"close\">Игнорировать</a>"
 
-msgid "View and update application compatibility ranges."
-msgstr "Просмотреть и обновить диапазоны совместимости приложений."
+msgid "View and update application compatibility ranges"
+msgstr "Просмотреть и обновить диапазоны совместимости приложений"
 
 msgid "Compatibility"
 msgstr "Совместимость"
@@ -3082,21 +3082,6 @@ msgstr ""
 "Любая информация, которую возможно захотят узнать конечные пользователи, но которой не место в сводке или описании дополнения. Обычно используется для сведений о серьёзных ошибках, о том как "
 "сообщать об ошибках, предполагаемой дате выпуска новой версии и т.д. Это относится только к опубликованным дополнениям."
 
-msgid "Required Add-ons"
-msgstr "Требуемые дополнения"
-
-msgid "Limit 3"
-msgstr "Лимит 3"
-
-msgid "Add-on Flags"
-msgstr "Флаги дополнения"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "Эти флаги используются для классификации дополнений. Это относится только к опубликованным дополнениям."
-
-msgid "This add-on requires external software."
-msgstr "Это дополнение требует стороннего программного обеспечения."
-
 msgid "View Source?"
 msgstr "Показывать исходник?"
 
@@ -3121,18 +3106,6 @@ msgstr "Статистика этого дополнения доступна д
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "Нет, статистика этого дополнения не доступна для публичного просмотра."
 
-msgid "Upgrade SDK?"
-msgstr "Обновлять SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "Если выбрано, мы попытаемся автоматически обновить ваше дополнение при выходе новой версии SDK. Это относится только к опубликованным дополнениям."
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "Это дополнение будет автоматически обновлено на новые версии SDL дополнений."
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "Нет, это дополнение будет обновлено вручную."
-
 msgid "Universally unique identifier"
 msgstr "Универсально уникальный идентификатор"
 
@@ -3151,12 +3124,6 @@ msgid ""
 msgstr ""
 "Белая доска является местом для предоставления информации, относящейся к вашему дополнению, независимо от версии, проверяющему. Используйте её, чтобы обеспечить тестирование дополнения, и для "
 "размещения любой дополнительной информации, которая может помочь. Эта доска может также редактироваться проверяющими."
-
-msgid "Remove this dependent add-on"
-msgstr "Удалить это зависимое дополнение"
-
-msgid "Enter the name of an add-on"
-msgstr "Введите имя дополнения"
 
 msgid "Add-on Media for {0}"
 msgstr "Медиа дополнения для {0}"
@@ -3192,11 +3159,24 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "Используется на странице описания дополнения."
 
+#. The size of the icon
+msgid "128x128px"
+msgstr "128x128 пикселей"
+
+msgid "Will be the standard in future add-on detail pages."
+msgstr "Будет стандартом в будущем на страницах дополнений."
+
 msgid "Upload a Custom Icon..."
 msgstr "Загрузить другую иконку..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
-msgstr "Поддерживается PNG и JPG. При необходимости размер значков будет уменьшен до 64x64 пикселей."
+msgid "PNG and JPG supported."
+msgstr "Поддерживаются PNG и JPG."
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr "Значки должны быть квадратными, а их размер не менее 128x128 пикселей."
+
+msgid "Icons will be resized to 128x128 pixels if larger."
+msgstr "Значки будут уменьшены до 128x128 пикселей, если они больше."
 
 msgid "Screenshots"
 msgstr "Скриншоты"
@@ -3298,8 +3278,8 @@ msgstr "Пожалуйста, расскажите нам, почему вы у�
 msgid "Actions"
 msgstr "Действия"
 
-msgid "Resume the submission process for this add-on."
-msgstr "Возобновить процесс отправки для этого дополнения."
+msgid "Resume the submission process for this add-on"
+msgstr "Возобновить процесс отправки для этого дополнения"
 
 msgid "Resume"
 msgstr "Возобновить"
@@ -3310,17 +3290,17 @@ msgstr "Удалить это дополнение."
 msgid "Delete"
 msgstr "Удалить"
 
-msgid "Edit details on this add-on's product page."
-msgstr "Редактировать информацию на странице этого дополнения."
+msgid "Edit details on this add-on's product page"
+msgstr "Редактировать информацию на странице этого дополнения"
 
-msgid "Upload a new version of this add-on."
-msgstr "Загрузить новую версию этого дополнения."
+msgid "Upload a new version of this add-on"
+msgstr "Загрузить новую версию этого дополнения"
 
 msgid "New Version"
 msgstr "Новая версия"
 
-msgid "Daily statistics on downloads and users."
-msgstr "Ежедневная статистика по загрузкам и пользователям."
+msgid "Daily statistics on downloads and users"
+msgstr "Ежедневная статистика по загрузкам и пользователям"
 
 msgid "Statistics"
 msgstr "Статистика"
@@ -3331,23 +3311,23 @@ msgstr "Управление статусом и версиями"
 msgid "View Recent Changes"
 msgstr "Просмотреть последние изменения"
 
-msgid "Edit details on this theme's product page."
-msgstr "Редактировать информацию на странице этой темы."
+msgid "Edit details on this theme's product page"
+msgstr "Редактировать информацию на странице этой темы"
 
-msgid "View the popularity of this theme over time."
-msgstr "Просмотр популярности этой темы с течением времени."
+msgid "View the popularity of this theme over time"
+msgstr "Просмотр популярности этой темы с течением времени"
 
 msgid "View Statistics"
 msgstr "Просмотреть статистику"
 
-msgid "Change the owner of this theme."
-msgstr "Изменить владельца этой темы."
+msgid "Change the owner of this theme"
+msgstr "Изменить владельца этой темы"
 
 msgid "Transfer Ownership"
 msgstr "Передача владения"
 
-msgid "Delete this theme."
-msgstr "Удалить эту тему."
+msgid "Delete this theme"
+msgstr "Удалить эту тему"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "В этом дополнении отсутствует некоторая необходимая информация, из-за чего оно не может быть опубликовано."
@@ -3380,6 +3360,12 @@ msgstr "Имя и описание:"
 
 msgid "required"
 msgstr "требуется"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 msgid "Add-on URL:"
 msgstr "URL дополнения:"
@@ -3442,11 +3428,11 @@ msgstr ""
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Эти замечания будут видны только вам и проверяющим."
 
-msgid "Cancel and Disable Version"
-msgstr "Отменить и отключить версию"
-
 msgid "Submit Version"
 msgstr "Представить версию"
+
+msgid "Cancel and Disable Version"
+msgstr "Отменить и отключить версию"
 
 msgid "Describe Version"
 msgstr "Опишите версию"
@@ -3654,14 +3640,14 @@ msgstr "необязательно"
 msgid "Browser preview"
 msgstr "Предпросмотр в браузере"
 
-msgid "Back"
-msgstr "Назад"
-
 msgid "Uploading Theme"
 msgstr "Загрузка темы"
 
 msgid "Finish Theme"
 msgstr "Завершить тему"
+
+msgid "Back"
+msgstr "Назад"
 
 msgid "API Credentials"
 msgstr "API Credentials"
@@ -3730,25 +3716,23 @@ msgstr "Создано:"
 msgid "Add-on Multi Process Status:"
 msgstr "Мультипроцессность дополнения:"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
-msgstr "Совместимость вашего дополнения с мультипроцессным Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
+msgstr "Совместимость вашего дополнения с мультипроцессным Firefox (e10s)"
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr "Отобразится на этом сайте после прохождения проверки кода. Автоматические обновления будут выполняться этим сайтом."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
+msgstr "Отобразится на этом сайте после прохождения проверки кода. Автоматические обновления будут выполняться этим сайтом"
 
 msgid "Listed Version:"
 msgstr "Опубликованная версия:"
 
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
-msgstr "Это версия вашего дополнения, которая может быть установлена любым, кто нажмёт на кнопку Установить на addons.mozilla,org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
+msgstr "Это версия вашего дополнения, которая может быть установлена любым, кто нажмёт на кнопку Установить на addons.mozilla,org"
 
 msgid "Next Listed Version:"
 msgstr "Следующая опубликованная версия:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
-msgstr ""
-"Это новейшая загруженная версия, однако\n"
-"                                           она ещё не на сайте."
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
+msgstr "Это новейшая загруженная версия, однако она ещё не на сайте"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Очереди не проверяются строго по порядку"
@@ -3766,8 +3750,8 @@ msgstr "Подписано для самостоятельного распро�
 msgid "Latest Version:"
 msgstr "Последняя версия:"
 
-msgid "This is the newest uploaded unlisted version."
-msgstr "Это новейшая загруженная скрытая версия."
+msgid "This is the newest uploaded unlisted version"
+msgstr "Это новейшая загруженная скрытая версия"
 
 msgid "Upload New Version"
 msgstr "Загрузить новую версию"
@@ -3960,6 +3944,9 @@ msgstr "Хотите, чтобы ваше расширение попало в �
 msgid "Learn More"
 msgstr "Подробнее"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr "Отобразится на этом сайте после прохождения проверки кода. Автоматические обновления будут выполняться этим сайтом."
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
 msgstr "Просмотреть все представления"
@@ -4064,7 +4051,7 @@ msgid "Add some tags to describe your Theme."
 msgstr "Добавьте метки для описания вашей темы."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Краткое объяснение основных функций вашей темы, которые отображаются в списках поиска и просмотра, а также в верхней части страницы вашей темы."
+msgstr "Краткое описание основной функциональности вашей темы, которое отображается в поиске и листингах, а также в верхней части страницы вашей темы."
 
 msgid "Theme License"
 msgstr "Лицензия темы"
@@ -4123,14 +4110,14 @@ msgstr "Выберите цвета для вашей темы."
 msgid "Foreground Text"
 msgstr "Текст переднего плана"
 
-msgid "This is the color of the tab text."
-msgstr "Это цвет текста вкладки."
+msgid "This is the color of the tab text"
+msgstr "Это цвет текста вкладки"
 
 msgid "Background"
 msgstr "Фон"
 
-msgid "This is the color of the tabs."
-msgstr "Это цвет вкладок."
+msgid "This is the color of the tabs"
+msgstr "Это цвет вкладок"
 
 msgid "Your Theme's Name"
 msgstr "Имя вашей темы"
@@ -4148,6 +4135,9 @@ msgstr "Фоновые темы позволяют легко персонали
 
 msgid "Give your Theme a name."
 msgstr "Дайте вашей теме имя."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Краткое описание основной функциональности вашей темы, которое отображается в поиске и листингах, а также в верхней части страницы вашей темы"
 
 #, python-format
 msgid ""
@@ -6863,6 +6853,12 @@ msgstr "{addon} :: Жалобы на нарушения"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Отчёты о злоупотреблениях для {addon} и его разработчиков ({num})"
+
+msgid "Add-on ID"
+msgstr "ID дополнения"
+
+msgid "Internal AMO ID"
+msgstr "Внутренний ID AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"

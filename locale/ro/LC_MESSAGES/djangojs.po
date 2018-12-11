@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
-"PO-Revision-Date: 2018-12-03 15:29+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"PO-Revision-Date: 2018-12-06 11:21+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ro\n"
@@ -79,7 +79,7 @@ msgid "Unexpected server error while validating."
 msgstr "Eroare neașteptată de server la validare."
 
 msgid "Finished validating {0}"
-msgstr "S-a terminat validarea {0}"
+msgstr "Validarea s-a terminat {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
 msgstr "Timpul alocat pentru validarea suplimentului a expirat; suplimentul va fi revizuit manual."
@@ -112,7 +112,7 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Se portează pe MDN un supliment Firefox perimat"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Include note detaliate despre versiune (se poate face la pasul următor)."
+msgstr "Include note privind versiunea (se poate face la pasul următor)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr "Dacă suplimentul necesită un cont pe un site web ca să fie testat pe deplin, include un nume de utilizator de testare și o parolă în Notele către revizor (se poate face în etapa următoare)."
@@ -814,13 +814,13 @@ msgid "Loading&hellip;"
 msgstr "Se încarcă&hellip;"
 
 msgid "Version Notes"
-msgstr "Note asupra versiunii"
+msgstr "Note privind versiunea"
 
 msgid "Notes for Reviewers"
 msgstr "Note pentru revizori"
 
 msgid "No version notes found"
-msgstr "Nu s-a găsit nicio notă asupra versiunii"
+msgstr "Nu s-a găsit nicio notă privind versiunea"
 
 msgid "Review Text"
 msgstr "Revizuiește textul"
@@ -910,7 +910,7 @@ msgstr[1] "{0} notificări"
 msgstr[2] "{0} de notificări"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr "Sarcina de validare nu s-a putut finaliza sau a fost finalizată cu erori"
+msgstr "Sarcina de validare nu a putut fi finalizată sau a fost finalizată cu erori"
 
 msgid "Internal server error"
 msgstr "Eroare internă server"

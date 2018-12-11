@@ -71,9 +71,9 @@ def favorites_widget(context, addon, condensed=False):
             ugettext('Remove from favorites'))
 
         add_url = reverse('collections.alter',
-                          args=[request.user.username, 'favorites', 'add'])
+                          args=[request.user.id, 'favorites', 'add'])
         remove_url = reverse('collections.alter',
-                             args=[request.user.username,
+                             args=[request.user.id,
                                    'favorites', 'remove'])
 
         c.update(locals())

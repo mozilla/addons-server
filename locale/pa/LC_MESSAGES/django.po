@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-11-26 13:34+0000\n"
+"POT-Creation-Date: 2018-12-05 15:45+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -469,9 +469,6 @@ msgstr "ਵਰਜਨ"
 #, fuzzy
 msgid "This add-on has been marked as experimental by its developers"
 msgstr "ਇਹ ਐਡ-ਆਨ ਇਸ ਦੇ ਲੇਖਕ ਵੱਲੋਂ ਹਟਾਇਆ ਜਾ ਚੁੱਕਿਆ ਹੈ।"
-
-msgid "This add-on requires the following add-ons to work properly:"
-msgstr "ਇਸ ਐਡ-ਆਨ ਦੇ ਠੀਕ ਤਰ੍ਹਾਂ ਕੰਮ ਲਈ ਅੱਗੇ ਦਿੱਤੇ ਐਡ-ਆਨ ਦੀ ਲੋੜ ਹੈ:"
 
 msgid "Average"
 msgstr "ਔਸਤ"
@@ -2553,9 +2550,6 @@ msgstr ""
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-msgid "There cannot be more than 3 required add-ons."
-msgstr "ਇੱਥੇ 3 ਤੋਂ ਜਿਆਦਾ ਲੋੜੀਂਦੇ ਐਡ-ਆਨ ਨਹੀਂ ਹੋ ਸਕਦੇ।"
-
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
@@ -2690,6 +2684,13 @@ msgstr "ਤਸਵੀਰ ਬਿਲਕੁਲ {0} ਪਿਕਸਲ ਚੌੜੀ ਅ�
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
+
+#, fuzzy
+msgid "Icon must be at least {0} pixels wide and tall."
+msgstr "ਤਸਵੀਰ ਬਿਲਕੁਲ {0} ਪਿਕਸਲ ਚੌੜੀ ਅਤੇ {1} ਪਿਕਸਲ ਲੰਬੀ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
+
+msgid "Icon must be square (same width and height)."
+msgstr ""
 
 msgid "There was an error uploading your preview."
 msgstr "ਤੁਹਾਡੀ ਝਲਕ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਵਿੱਚ ਖਾਮੀ ਆਈ।"
@@ -2897,7 +2898,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">ਅਨੁਕੂਲਤਾ ਅੱਪਡੇਟ</a> <a href=\"%(version_url)s\" class=\"button\">ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ</a> or <a href=\"#\" class=\"close"
 "\">ਅਣਡਿੱਠ ਕਰੋ</a>"
 
-msgid "View and update application compatibility ranges."
+#, fuzzy
+msgid "View and update application compatibility ranges"
 msgstr "ਵੇਖੋ ਅਤੇ ਐਪਲੀਕੇਸ਼ਨ ਅਨੁਕੂਲਤਾ ਹੱਦਾਂ ਅੱਪਡੇਟ ਕਰੋ।"
 
 msgid "Compatibility"
@@ -3129,21 +3131,6 @@ msgstr ""
 "ਅੰਤ ਵਰਤੋਂਕਾਰ ਕੋਈ ਵੀ ਜਾਣਕਾਰੀ ਲੈਣਾ ਚਾਹੁੰਦੇ ਹੋਣ ਜੋ ਜ਼ਰੂਰੀ ਨਹੀਂ ਐਡ-ਆਨ ਦੇ ਸੰਖੇਪ ਵਰਣਨ ਜਾਂ ਵੇਰਵੇ ਤੇ ਲਾਗੂ ਹੋਵੋ। ਆਮ ਵਰਤੋਂ ਵਿੱਚ ਸ਼ਾਮਲ ਮੁੱਖ ਜਾਣੂ ਬੱਗਾਂ ਦੀ ਸੂਚੀ, ਬੱਗਾਂ ਦੀ ਸੂਚਨਾ ਕਿਵੇਂ ਭੇਜੀਏ ਦੀ ਜਾਣਕਾਰੀ, ਨਵੇਂ ਵਰਜਨ ਦੇ ਜਾਰੀ ਹੋਣ ਦੀ ਤਰੀਕ ਦਾ ਅਨੁਮਾਨ, ਆਦਿ। ਇਹ ਕੇਵਲ "
 "ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
-msgid "Required Add-ons"
-msgstr "ਲੌੜੀਂਦੇ ਐਡ-ਆਨ"
-
-msgid "Limit 3"
-msgstr "ਹੱਦ 3"
-
-msgid "Add-on Flags"
-msgstr "ਐਡ-ਆਨ ਫ਼ਲੈਗ"
-
-msgid "These flags are used to classify add-ons. It is only relevant for listed add-ons."
-msgstr "ਇਹ ਝੰਡੇ ਐਡ-ਆਨਾਂ ਦੇ ਵਰਗੀਕਰਨ ਲਈ ਵਰਤੇ ਜਾਂਦੇ ਹਨ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-msgid "This add-on requires external software."
-msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਬਾਹਰੀ ਸਾਫ਼ਟਵੇਅਰ ਦੀ ਲੋੜ ਹੈ।"
-
 msgid "View Source?"
 msgstr "ਸਰੋਤ ਵੇਖੋ?"
 
@@ -3168,18 +3155,6 @@ msgstr "ਇਸ ਐਡ-ਆਨ ਦੇ ਅੰਕੜੇ ਜਨਤਕ ਤੌਰ ਤ�
 msgid "No, this add-on's stats are not publicly viewable."
 msgstr "ਨਹੀਂ, ਇਸ ਐਡ-ਆਨ ਦੇ ਅੰਕੜੇ ਜਨਤਕ ਤੌਰ ਤੇ ਵੇਖਣਯੋਗ ਨਹੀਂ ਹਨ।"
 
-msgid "Upgrade SDK?"
-msgstr "ਅੱਪਗਰੇਡ SDK?"
-
-msgid "If selected, we will try to automatically upgrade your add-on when a new version of the SDK is released. It is only relevant for listed add-ons."
-msgstr "ਜੇਕਰ ਚੁਣਿਆ ਹੋਵੇ, ਅਸੀਂ ਆਪਣੇ ਆਪ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਨੂੰ ਅੱਪਗਰੇਡ ਕਰਨ ਦੀ ਕੋਸ਼ਿਸ ਕਰਾਂਗੇ ਜਦੋਂ SDK ਦਾ ਨਵਾਂ ਵਰਜਨ ਜਾਰੀ ਹੋਵੇ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
-
-msgid "This add-on will be automatically upgraded to new versions of the Add-on SDK."
-msgstr "ਇਹ ਐਡ-ਆਨ ਆਪਣੇ ਆਪ ਹੀ ਐਡ-ਆਨ SDK ਦੇ ਨਵੇਂ ਵਰਜਨ ਲਈ ਅੱਪਗਰੇਡ ਹੋ ਜਾਵੇਗਾ।"
-
-msgid "No, this add-on will be upgraded manually."
-msgstr "ਨਹੀਂ, ਇਸ ਐਡ-ਆਨ ਨੂੰ ਖੁੁਦ ਅੱਪਗਰੇਡ ਕਰਨਾ ਪਵੇਗਾ।"
-
 msgid "Universally unique identifier"
 msgstr "ਵਿਆਪਕ ਵਿਲੱਖਣ ਪਛਾਣਕਰਤਾ"
 
@@ -3197,12 +3172,6 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr "ਵਾਇਟਬੋਰਡ ਸੰਪਾਦਕ ਨੂੰ ਤੁਹਾਡੇ ਐਡ-ਆਨ,ਜਿਹੜਾ ਵੀ ਵਰਜਨ ਹੋਵੇ, ਨਾਲ ਸੰਬੰਧਤ ਜਾਣਕਾਰੀ ਦੇਣ ਦੀ ਥਾਂ ਹੈ। ਐਡ-ਆਨ ਟੈਸਟ ਕਰਨ ਦੇ ਤਰੀਕੇ ਦੇਣ ਲਈ ਇਸ ਦੀ ਵਰਤੋਂ  ਕਰੋ ਅਤੇ ਹੋਰ ਵਾਧੂ ਜਾਣਕਾਰੀ ਜੋ ਮਦਦ ਕਰ ਸਕੇ। ਇਹ ਵਾਇਟਬੋਰਡ ਸੰਪਾਦਕਾਂ ਦੁਆਰਾ ਸੋਧਣਯੋਗ ਵੀ ਹੈ।"
-
-msgid "Remove this dependent add-on"
-msgstr "ਇਸ ਨਿਰਭਰ ਐਡ-ਆਨ ਨੂੰ ਹਟਾਓ"
-
-msgid "Enter the name of an add-on"
-msgstr "ਇੱਕ ਐਡ-ਆਨ ਦਾ ਨਾਂ ਦਰਜ ਕਰੋ"
 
 msgid "Add-on Media for {0}"
 msgstr "{0} ਲਈ ਐਡ-ਆਨ ਮੀਡੀਆ"
@@ -3234,10 +3203,25 @@ msgstr "64x64px"
 msgid "Used in add-on detail pages."
 msgstr "ਐਡ-ਆਨ ਵੇਰਵੇ ਸਫ਼ਿਆਂ ਵਿੱਚ ਵਰਤਿਆ।"
 
+#. The size of the icon
+msgid "128x128px"
+msgstr ""
+
+#, fuzzy
+msgid "Will be the standard in future add-on detail pages."
+msgstr "ਐਡ-ਆਨ ਵੇਰਵੇ ਸਫ਼ਿਆਂ ਵਿੱਚ ਵਰਤਿਆ।"
+
 msgid "Upload a Custom Icon..."
 msgstr "ਇੱਕ ਸੋਧ ਆਈਕਾਨ ਅੱਪਲੋਡ ਕਰੋ..."
 
-msgid "PNG and JPG supported. Icons resized to 64x64 pixels if larger."
+msgid "PNG and JPG supported."
+msgstr ""
+
+msgid "Icons must be square and a minimum size of 128x128 pixels."
+msgstr ""
+
+#, fuzzy
+msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "PNG ਅਤੇ JPG ਨੂੰ ਸਹਿਯੋਗ ਕਰਦਾ, ਆਈਕਾਨ ਦਾ ਅਕਾਰ 64x64 ਪਿਕਸਲ ਕਰੋ ਜੇਕਰ ਵੱਡਾ ਹੋਵੇ। "
 
 msgid "Screenshots"
@@ -3343,7 +3327,8 @@ msgstr "ਕਿਰਪਾ ਕਰਕੇ ਸਾਨੂੰ ਦੱਸੋ ਤੁਸੀ�
 msgid "Actions"
 msgstr "ਕਾਰਵਾਈਆਂ"
 
-msgid "Resume the submission process for this add-on."
+#, fuzzy
+msgid "Resume the submission process for this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਨੂੰ ਦਾਖਲ ਕਰਨ ਦਾ ਕਾਰਜ ਮੁੜ ਸ਼ੁਰੂ ਕਰੋ।"
 
 msgid "Resume"
@@ -3356,16 +3341,18 @@ msgid "Delete"
 msgstr "ਹਟਾਓ"
 
 #, fuzzy
-msgid "Edit details on this add-on's product page."
+msgid "Edit details on this add-on's product page"
 msgstr "ਇਸ ਥੀਮ ਦੀ ਸੂਚੀ ਬਾਰੇ ਵੇਰਵਿਆਂ ਵਿੱਚ ਸੋਧ।"
 
-msgid "Upload a new version of this add-on."
+#, fuzzy
+msgid "Upload a new version of this add-on"
 msgstr "ਇਸ ਐਡ-ਆਨ ਦਾ ਇੱਕ ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ।"
 
 msgid "New Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ"
 
-msgid "Daily statistics on downloads and users."
+#, fuzzy
+msgid "Daily statistics on downloads and users"
 msgstr "ਡਾਊਨਲੋਡਾਂ ਅਤੇ ਉਪਭੋਗੀਆਂ ਉੱਤੇ ਰੋਜ਼ਾਨਾ ਅੰਕੜੇ।"
 
 msgid "Statistics"
@@ -3378,22 +3365,25 @@ msgid "View Recent Changes"
 msgstr "ਤਾਜ਼ਾ ਬਦਲਾਵ ਵੇਖੋ"
 
 #, fuzzy
-msgid "Edit details on this theme's product page."
+msgid "Edit details on this theme's product page"
 msgstr "ਇਸ ਥੀਮ ਦੀ ਸੂਚੀ ਬਾਰੇ ਵੇਰਵਿਆਂ ਵਿੱਚ ਸੋਧ।"
 
-msgid "View the popularity of this theme over time."
+#, fuzzy
+msgid "View the popularity of this theme over time"
 msgstr "ਸਮੇਂ ਦੇ ਨਾਲ ਇਸ ਥੀਮ ਦੀ ਮਸ਼ਹੂਰੀ ਵੇਖੋ।"
 
 msgid "View Statistics"
 msgstr "ਅੰਕੜੇ ਵੇਖੋ"
 
-msgid "Change the owner of this theme."
+#, fuzzy
+msgid "Change the owner of this theme"
 msgstr "ਇਸ ਥੀਮ ਦਾ ਮਾਲਕ ਬਦਲੋ।"
 
 msgid "Transfer Ownership"
 msgstr "ਮਾਲਕੀ ਤਬਾਦਲਾ"
 
-msgid "Delete this theme."
+#, fuzzy
+msgid "Delete this theme"
 msgstr "ਇਸ ਥੀਮ ਨੂੰ ਹਟਾਓ।"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
@@ -3429,6 +3419,12 @@ msgstr "ਸੰਖੇਪ"
 
 msgid "required"
 msgstr "ਜ਼ਰੂਰਤ"
+
+#, python-format
+msgid ""
+"Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
+"submission process is complete."
+msgstr ""
 
 #, fuzzy
 msgid "Add-on URL:"
@@ -3500,12 +3496,12 @@ msgid "These notes will only be visible to you and our reviewers."
 msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਡਿਵੈਲਪਰ ਹੋ।"
 
 #, fuzzy
-msgid "Cancel and Disable Version"
-msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
-
-#, fuzzy
 msgid "Submit Version"
 msgstr "ਇੱਕ ਨਵਾਂ ਐਡ-ਆਨ ਭੇਜੋ"
+
+#, fuzzy
+msgid "Cancel and Disable Version"
+msgstr "ਛਪਣਯੋਗ ਵਰਜਨ"
 
 #, fuzzy
 msgid "Describe Version"
@@ -3737,9 +3733,6 @@ msgstr "(ਵਿਕਲਪਿਕ)"
 msgid "Browser preview"
 msgstr "ਝਲਕ ਵੇਖਣ ਲਈ ਘੁਮਾਓ"
 
-msgid "Back"
-msgstr ""
-
 #, fuzzy
 msgid "Uploading Theme"
 msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਥੀਮ"
@@ -3747,6 +3740,9 @@ msgstr "ਉੱਤੇ ਅਤੇ ਆ ਰਹੇ ਥੀਮ"
 #, fuzzy
 msgid "Finish Theme"
 msgstr "%s ਥੀਮ"
+
+msgid "Back"
+msgstr ""
 
 msgid "API Credentials"
 msgstr ""
@@ -3811,10 +3807,10 @@ msgstr "ਰਚਿਆ:"
 msgid "Add-on Multi Process Status:"
 msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
 
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)."
+msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
 msgstr ""
 
-msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
 #, fuzzy
@@ -3822,14 +3818,15 @@ msgid "Listed Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
 #, fuzzy
-msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org."
+msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦਾ ਇਹ ਵਰਜਨ ਇੰਸਟਾਲ ਕੀਤਾ ਜਾਵੇਗਾ ਜੇਕਰ ਕੋਈ addons.mozilla.org ਤੇ ਇੰਸਟਾਲ ਬਟਨ ਤੇ ਕਲਿੱਕ ਕਰਦਾ। ਇਹ ਕੇਵਲ ਸੂਚੀਬੱਧ ਐਡ-ਆਨਾਂ ਲਈ ਢੁੱਕਵਾਂ ਹੈ।"
 
 #, fuzzy
 msgid "Next Listed Version:"
 msgstr "ਅਗਲਾ ਵਰਜਨ:"
 
-msgid "This is the newest uploaded version, however it isn’t live on the site yet."
+#, fuzzy
+msgid "This is the newest uploaded version, however it isn’t live on the site yet"
 msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰਜਨ ਹੈ, ਹਾਲਾਂਕਿ ਇਹ ਹਾਲੇ ਤੱਕ ਇਸ ਸਾਈਟ ਤੇ ਠਹਿਰਾਓ ਨਹੀਂ।"
 
 msgid "Queues are not reviewed strictly in order"
@@ -3849,7 +3846,7 @@ msgid "Latest Version:"
 msgstr "ਤਾਜ਼ਾ ਵਰਜਨ:"
 
 #, fuzzy
-msgid "This is the newest uploaded unlisted version."
+msgid "This is the newest uploaded unlisted version"
 msgstr "ਇਹ ਬਿਲਕੁਲ ਨਵਾਂ ਅੱਪਲੋਡਿਡ ਵਰਜਨ ਹੈ, ਹਾਲਾਂਕਿ ਇਹ ਹਾਲੇ ਤੱਕ ਇਸ ਸਾਈਟ ਤੇ ਠਹਿਰਾਓ ਨਹੀਂ।"
 
 msgid "Upload New Version"
@@ -4055,6 +4052,9 @@ msgstr ""
 msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
 
+msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
+msgstr ""
+
 #. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "View All Submissions"
@@ -4227,13 +4227,15 @@ msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
 msgid "Foreground Text"
 msgstr "ਫ਼ੌਰਗਰਾਂਊਡ ਟੈਕਸਟ"
 
-msgid "This is the color of the tab text."
+#, fuzzy
+msgid "This is the color of the tab text"
 msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ।"
 
 msgid "Background"
 msgstr "ਬੈਕਗਰਾਂਊਡ"
 
-msgid "This is the color of the tabs."
+#, fuzzy
+msgid "This is the color of the tabs"
 msgstr "ਇਹ ਟੈਬਾਂ ਦਾ ਰੰਗ ਹੈ।"
 
 msgid "Your Theme's Name"
@@ -4252,6 +4254,10 @@ msgstr "ਬੈਕਗਰਾਂਊਡ ਥੀਮ ਤੁਹਾਨੂੰ ਤੁਹਾ
 
 msgid "Give your Theme a name."
 msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਸੂਚੀ ਝਲਕ, ਨਾਲ ਹੀ ਨਾਲ ਤੁਹਾਡੇ ਥੀਮ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਦੇ ਉੱਪਰ ਵਿਖਾਈ ਜਾਏਗੀ।"
 
 #, python-format
 msgid ""
@@ -7006,6 +7012,13 @@ msgstr "{addon} :: ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ"
 #, fuzzy
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} ({num}) ਲਈ ਬਦਸਲੂਕੀ ਰਿਪੋਰਟਾਂ"
+
+#, fuzzy
+msgid "Add-on ID"
+msgstr "ਐਡ-ਆਨ"
+
+msgid "Internal AMO ID"
+msgstr ""
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
