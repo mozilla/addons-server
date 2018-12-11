@@ -937,7 +937,9 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
 
         assert upload.processed_validation['errors'] == 0
         messages = upload.processed_validation['messages']
-        assert len(messages) == 1
+        # 4 messages because the add-on uses some incompatible APIs
+        # but we don't care about that for this test.
+        assert len(messages) == 4
         assert messages[0]['message'] == ('&#34;strict_max_version&#34; '
                                           'not required.')
         assert upload.valid
