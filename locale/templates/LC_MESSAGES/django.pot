@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-05 15:45+0000\n"
+"POT-Creation-Date: 2018-12-11 18:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Generated-By: Babel 2.6.0\n"
 
 #: src/olympia/accounts/serializers.py:98 src/olympia/bandwagon/forms.py:114
-#: src/olympia/bandwagon/serializers.py:101 src/olympia/users/forms.py:226
+#: src/olympia/bandwagon/serializers.py:102 src/olympia/users/forms.py:226
 msgid "No links are allowed."
 msgstr ""
 
@@ -123,16 +123,16 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:144
+#: src/olympia/addons/buttons.py:145
 msgid "Download Now"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:146
+#: src/olympia/addons/buttons.py:147
 #: src/olympia/reviewers/templates/reviewers/review.html:111
 msgid "Download"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:160
+#: src/olympia/addons/buttons.py:161
 #: src/olympia/addons/templates/addons/impala/details.html:115
 #: src/olympia/addons/templates/addons/impala/listing/items.html:14
 #: src/olympia/addons/templatetags/jinja_helpers.py:37
@@ -146,17 +146,17 @@ msgstr ""
 msgid "Featured"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:165
+#: src/olympia/addons/buttons.py:166
 msgctxt "install_button"
 msgid "Not Reviewed"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:172
+#: src/olympia/addons/buttons.py:173
 msgctxt "install_button"
 msgid "Experimental"
 msgstr ""
 
-#: src/olympia/addons/buttons.py:179
+#: src/olympia/addons/buttons.py:180
 msgid "Add to {0}"
 msgstr ""
 
@@ -1238,9 +1238,9 @@ msgstr ""
 #: src/olympia/amo/templates/amo/404-responsive.html:35
 #, python-format
 msgid ""
-"If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were "
-"looking for, and we'll do our best to fix it."
+"If you followed a link from somewhere, please %(open_bug_link)sfile an issue "
+"%(close_bug_link)s. Tell us where you came from and what you were looking "
+"for, and we'll do our best to fix it."
 msgstr ""
 
 #: src/olympia/amo/templates/amo/404.html:3
@@ -1250,20 +1250,19 @@ msgstr ""
 #: src/olympia/amo/templates/amo/404.html:6
 #, python-format
 msgid ""
-"<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page"
-" or file you requested wasn't found on our site. It's possible that you "
+"%%} <h1>We're sorry, but we can't find what you're looking for.</h1> <p> The "
+"page or file you requested wasn't found on our site. It's possible that you "
 "clicked a link that's out of date, or typed in the address incorrectly. </p> "
 "<ul> <li>If you typed in the address, please double check the spelling.</li> "
-"<li> If you followed a link from somewhere, please <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">file an "
-"issue</a>. Tell us where you came from and what you were looking for, and "
-"we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some"
-" of the popular pages on our website.</p> <ul> <li>Are you interested in a <a"
-" href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a "
-"href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li>"
-" <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-"
-"ons front page</a>. </li> </ul>"
+"<li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were "
+"looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just "
+"jump over to some of the popular pages on our website.</p> <ul> <li>Are you "
+"interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> "
+"Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to "
+"the <a href=\"%(search)s\">search page</a> or just use the search field "
+"above. </li> <li> If you prefer to start over, just go to the <a "
+"href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 
 #: src/olympia/amo/templates/amo/500.html:3
@@ -1611,7 +1610,7 @@ msgstr ""
 msgid "Please don't fill out this field, it's used to catch bots"
 msgstr ""
 
-#: src/olympia/bandwagon/forms.py:106 src/olympia/bandwagon/serializers.py:94
+#: src/olympia/bandwagon/forms.py:106 src/olympia/bandwagon/serializers.py:95
 msgid "This name cannot be used."
 msgstr ""
 
@@ -1619,36 +1618,36 @@ msgstr ""
 msgid "This url is already in use by another collection"
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:72
+#: src/olympia/bandwagon/serializers.py:73
 msgid "This custom URL is already in use by another one of your collections."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:91
+#: src/olympia/bandwagon/serializers.py:92
 msgid "Name cannot be empty."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:107
+#: src/olympia/bandwagon/serializers.py:108
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:111
+#: src/olympia/bandwagon/serializers.py:112
 msgid "This custom URL cannot be used."
 msgstr ""
 
-#: src/olympia/bandwagon/serializers.py:140
+#: src/olympia/bandwagon/serializers.py:141
 msgid "This add-on already belongs to the collection"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/includes/addon_selector.html:16
-#: src/olympia/bandwagon/views.py:155
+#: src/olympia/bandwagon/views.py:157
 msgid "Added"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:156
+#: src/olympia/bandwagon/views.py:158
 msgid "Popularity"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:157 src/olympia/browse/views.py:59
+#: src/olympia/bandwagon/views.py:159 src/olympia/browse/views.py:59
 #: src/olympia/browse/views.py:70 src/olympia/browse/views.py:415
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:38
 #: src/olympia/devhub/templates/devhub/addons/edit/describe.html:75
@@ -1660,22 +1659,22 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:241
+#: src/olympia/bandwagon/views.py:245
 msgid "Collection created!"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:242
+#: src/olympia/bandwagon/views.py:246
 #, python-format
 msgid ""
 "Your new collection is shown below. You can <a href=\"%(url)s\">edit "
 "additional settings</a> if you'd like."
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:248
+#: src/olympia/bandwagon/views.py:252
 msgid "Collection updated!"
 msgstr ""
 
-#: src/olympia/bandwagon/views.py:249
+#: src/olympia/bandwagon/views.py:253
 #, python-format
 msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
 msgstr ""
@@ -1908,7 +1907,7 @@ msgstr ""
 msgid "Add to favorites"
 msgstr ""
 
-#. {0} is a username.
+#. {0} is a the user's name.
 #: src/olympia/bandwagon/templates/bandwagon/user_listing.html:4
 msgid "Collections by {0}"
 msgstr ""
