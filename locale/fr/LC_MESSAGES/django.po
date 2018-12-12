@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-11 18:46+0000\n"
-"PO-Revision-Date: 2018-12-11 18:38+0000\n"
+"PO-Revision-Date: 2018-12-08 19:43+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -3179,9 +3179,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG et JPEG sont pris en charge. Les icônes seront redimensionnées à 64x64 pixels si elles sont plus grandes."
+msgstr "Les icônes seront redimensionnées à 128x128 pixels si elles sont plus grandes."
 
 msgid "Screenshots"
 msgstr "Captures d’écran"
@@ -3295,20 +3294,17 @@ msgstr "Supprimer ce module."
 msgid "Delete"
 msgstr "Supprimer"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Modifiez les détails de la page produit de ce module complémentaire."
+msgstr "Modifiez les détails de la page produit de ce module complémentaire"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Envoyer une nouvelle version de ce module."
+msgstr "Publier une nouvelle version de ce module"
 
 msgid "New Version"
 msgstr "Nouvelle version"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Statistiques quotidiennes sur les téléchargements et utilisateurs."
+msgstr "Statistiques quotidiennes sur les téléchargements, les utilisateurs et utilisatrices"
 
 msgid "Statistics"
 msgstr "Statistiques"
