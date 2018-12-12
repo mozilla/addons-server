@@ -487,7 +487,6 @@ class ManifestJSONExtractor(object):
             msg = ugettext('Lowest supported "strict_min_version" is 42.0.')
             raise forms.ValidationError(msg)
 
-        couldnt_find_version = False
         for app, default_min_version in apps:
             if self.guid is None and not self.strict_min_version:
                 strict_min_version = max(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
@@ -516,16 +515,7 @@ class ManifestJSONExtractor(object):
                 yield Extractor.App(
                     appdata=app, id=app.id, min=min_appver, max=max_appver)
             except AppVersion.DoesNotExist:
-                couldnt_find_version = True
-
-        specified_versions = self.strict_min_version or self.strict_max_version
-
-        if couldnt_find_version and specified_versions:
-            msg = ugettext(
-                'Cannot find min/max version. Maybe '
-                '"strict_min_version" or "strict_max_version" '
-                'contains an unsupported version?')
-            raise forms.ValidationError(msg)
+                continue
 
     def target_locale(self):
         """Guess target_locale for a dictionary from manifest contents."""

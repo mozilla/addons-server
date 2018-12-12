@@ -509,33 +509,13 @@ class TestParseXpi(TestCase):
             AppVersion.objects.get(version='3.6.*'))]
         assert self.parse()['apps'] == expected
 
-    def test_parse_apps_error_webextension(self):
+    def test_no_parse_apps_error_webextension(self):
         AppVersion.objects.all().delete()
-        with self.assertRaises(forms.ValidationError) as e:
-            assert self.parse(filename='webextension_with_apps_targets.xpi')
-        assert e.exception.messages[0].startswith('Cannot find min/max vers')
+        assert self.parse(filename='webextension_with_apps_targets.xpi')
 
-        with self.assertRaises(forms.ValidationError) as e:
-            assert self.parse(
-                filename='webextension_with_apps_targets.xpi',
-                minimal=False)
-        assert e.exception.messages[0].startswith('Cannot find min/max vers')
-
-        # When minimal=True is passed, we don't do validation...
-        expected = {
-            'guid': '@webext-with-targets',
-            'type': amo.ADDON_EXTENSION,
-            'version': '1.0',
-            'is_webextension': True,
-            'name': 'Beastify',
-            'summary': None,
-            'default_locale': None,
-            'homepage': None,
-        }
-        parsed = self.parse(
+        assert self.parse(
             filename='webextension_with_apps_targets.xpi',
-            minimal=True)
-        assert parsed == expected
+            minimal=False)
 
     def test_parse_max_star(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='56.*')
