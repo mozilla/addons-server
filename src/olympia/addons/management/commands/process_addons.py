@@ -22,6 +22,7 @@ from olympia.versions.compare import version_int
 
 
 firefox_56_star = version_int('56.*')
+current_autoapprovalsummary = '_current_version__autoapprovalsummary__'
 
 
 tasks = {
@@ -31,7 +32,8 @@ tasks = {
     'recalculate_post_review_weight': {
         'method': recalculate_post_review_weight,
         'qs': [
-            Q(_current_version__autoapprovalsummary__verdict=amo.AUTO_APPROVED)
+            Q(**{current_autoapprovalsummary + 'verdict': amo.AUTO_APPROVED}) &
+            ~Q(**{current_autoapprovalsummary + 'confirmed': True})
         ]},
     'sign_addons': {
         'method': sign_addons,

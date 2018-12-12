@@ -341,7 +341,7 @@ class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
 
 
 class RecalculateWeightTestCase(TestCase):
-    def test_only_affects_auto_approved(self):
+    def test_only_affects_auto_approved_and_unconfirmed(self):
         # Non auto-approved add-on, should not be considered.
         addon_factory()
 
@@ -358,6 +358,13 @@ class RecalculateWeightTestCase(TestCase):
             version=extra_addon.current_version, verdict=amo.AUTO_APPROVED)
         extra_addon.current_version.update(created=self.days_ago(1))
         version_factory(addon=extra_addon)
+
+        # Add-on that was auto-approved but already confirmed, should not be
+        # considered, it's too late.
+        already_confirmed_addon = addon_factory()
+        AutoApprovalSummary.objects.create(
+            version=already_confirmed_addon.current_version,
+            verdict=amo.AUTO_APPROVED, confirmed=True)
 
         # Add-on that should be considered because it's current version is
         # auto-approved.
