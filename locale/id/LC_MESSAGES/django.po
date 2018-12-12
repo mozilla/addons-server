@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-11 18:46+0000\n"
-"PO-Revision-Date: 2018-12-12 03:25+0000\n"
+"PO-Revision-Date: 2018-12-12 04:19+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -2480,7 +2480,7 @@ msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on ad
 msgstr "Pengaya untuk Thunderbird dan SeaMonkey kini terdaftar dan dikelola di addons.thunderbird.net. Anda bisa menggunakan akun yang sama untuk memutakhirkan pengaya Anda di situs baru tersebut."
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Ekstensi lawas tidak didukung lagi di Firefox."
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "Sejak Firefox 53, pengaya baru pada situs ini hanya dapat berupa WebExtensions."
@@ -2847,7 +2847,7 @@ msgid_plural "<b>{0}</b> themes"
 msgstr[0] "<b>{0}</b> tema"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Sunting Laman Produk"
 
 msgid "None"
 msgstr "Tidak ada"
