@@ -1004,7 +1004,7 @@ def version_edit(request, addon_id, addon, version_id):
     is_admin = acl.action_allowed(request,
                                   amo.permissions.REVIEWS_ADMIN)
 
-    if addon.accepts_compatible_apps():
+    if not static_theme and addon.accepts_compatible_apps():
         qs = version.apps.all()
         compat_form = forms.CompatFormSet(
             request.POST or None, queryset=qs,
