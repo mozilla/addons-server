@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-11-08 07:20+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"PO-Revision-Date: 2018-12-12 14:11+0000\n"
+"Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -233,22 +233,19 @@ msgid_plural "{0} reviews"
 msgstr[0] "{0} anmeldelse"
 msgstr[1] "{0} anmeldelser"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} salg"
 msgstr[1] "{0} salg"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} refunderinger"
+msgstr[0] "{0} refundering"
 msgstr[1] "{0} refunderinger"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} installeringer"
+msgstr[0] "{0} installering"
 msgstr[1] "{0} installeringer"
 
 msgid "Downloads"
@@ -763,18 +760,16 @@ msgid "Loading..."
 msgstr "Indlæser..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> tegn tilbage."
-msgstr[1] "<b>{0}</b> tegn tilbage."
+msgstr[0] "<b>{0}</b> tegn"
+msgstr[1] "<b>{0}</b> tegn"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> tegn tilbage."
-msgstr[1] "<b>{0}</b> tegn tilbage."
+msgstr[0] "<b>{0}</b> tegn tilbage"
+msgstr[1] "<b>{0}</b> tegn tilbage"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Denne funktion er midlertidig ude af drift mens vi udfører vedligeholdelse af webstedet. Prøv igen lidt senere."
