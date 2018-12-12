@@ -6,4 +6,3 @@ CREATE TABLE `addons_addonfeaturecompatibility` (
 )
 ;
 ALTER TABLE `addons_addonfeaturecompatibility` ADD CONSTRAINT `addon_id_refs_id_7779cd14` FOREIGN KEY (`addon_id`) REFERENCES `addons` (`id`);
-
