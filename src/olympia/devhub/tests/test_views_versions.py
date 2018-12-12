@@ -850,6 +850,22 @@ class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
         assert not doc('a.add-file')
 
 
+class TestVersionEditStaticTheme(TestVersionEditBase):
+    def setUp(self):
+        super(TestVersionEditStaticTheme, self).setUp()
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+
+    def test_no_compat(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc("#id_form-TOTAL_FORMS")
+
+    def test_no_upload(self):
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert not doc('a.add-file')
+
+
 class TestVersionEditCompat(TestVersionEditBase):
 
     def setUp(self):
@@ -989,3 +1005,8 @@ class TestVersionEditCompat(TestVersionEditBase):
         assert response.status_code == 302
         av = self.version.apps.all()[0]
         assert av.min == av.max
+
+    def test_statictheme_no_compat_edit(self):
+        """static themes don't allow users to overwrite compat data."""
+        addon = self.get_addon()
+        addon.update(type=amo.ADDON_STATICTHEME)
