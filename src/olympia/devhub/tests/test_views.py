@@ -23,7 +23,7 @@ from waffle.testutils import override_switch
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonCategory, AddonFeatureCompatibility, AddonUser)
+    Addon, AddonCategory, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     format_date, url as url_reverse)
@@ -205,30 +205,6 @@ class TestDashboard(HubTest):
 
         appver = self.addon.current_version.apps.all()[0]
         appver.delete()
-        # Addon is not set to be compatible with Firefox, e10s compatibility is
-        # not shown.
-        doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid="%s"]' % self.addon.id)
-        assert not item.find('.e10s-compatibility')
-
-    def test_e10s_compatibility(self):
-        self.addon = addon_factory(name=u'My Addœn')
-        self.addon.addonuser_set.create(user=self.user_profile)
-
-        doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid="%s"]' % self.addon.id)
-        e10s_flag = item.find('.e10s-compatibility.e10s-unknown b')
-        assert e10s_flag
-        assert e10s_flag.text() == 'Unknown'
-
-        AddonFeatureCompatibility.objects.create(
-            addon=self.addon, e10s=amo.E10S_COMPATIBLE)
-        doc = pq(self.client.get(self.url).content)
-        item = doc('.item[data-addonid="%s"]' % self.addon.id)
-        assert not item.find('.e10s-compatibility.e10s-unknown')
-        e10s_flag = item.find('.e10s-compatibility.e10s-compatible b')
-        assert e10s_flag
-        assert e10s_flag.text() == 'Compatible'
 
     def test_dev_news(self):
         for i in xrange(7):

@@ -20,7 +20,7 @@ from olympia.addons import models as addons_models
 from olympia.activity.models import ActivityLog, AddonLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonCategory,
-    AddonFeatureCompatibility, AddonReviewerFlags, AddonUser, AppSupport,
+    AddonReviewerFlags, AddonUser, AppSupport,
     Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
     FrozenAddon, IncompatibleVersions, MigratedLWT, Persona, Preview,
     track_addon_status_change)
@@ -1800,21 +1800,6 @@ class TestAddonDelete(TestCase):
         assert Addon.unfiltered.filter(pk=addon.pk).exists()
 
 
-class TestAddonFeatureCompatibility(TestCase):
-    fixtures = ['base/addon_3615']
-
-    def test_feature_compatibility_not_present(self):
-        addon = Addon.objects.get(pk=3615)
-        assert addon.feature_compatibility
-        assert not addon.feature_compatibility.pk
-
-    def test_feature_compatibility_present(self):
-        addon = Addon.objects.get(pk=3615)
-        AddonFeatureCompatibility.objects.create(addon=addon)
-        assert addon.feature_compatibility
-        assert addon.feature_compatibility.pk
-
-
 class TestUpdateStatus(TestCase):
 
     def test_no_file_ends_with_NULL(self):
@@ -2462,54 +2447,6 @@ class TestAddonFromUpload(UploadTest):
                               parsed_data=parsed_data)
         assert e.exception.messages == ['Duplicate add-on ID found.']
 
-    def test_basic_extension_is_marked_as_e10s_unknown(self):
-        # extension.xpi does not have multiprocessCompatible set to true, so
-        # it's marked as not-compatible.
-        self.upload = self.get_upload('extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-
-        assert addon.guid
-        feature_compatibility = addon.feature_compatibility
-        assert feature_compatibility.pk
-        assert feature_compatibility.e10s == amo.E10S_UNKNOWN
-
-    def test_extension_is_marked_as_e10s_incompatible(self):
-        self.upload = self.get_upload(
-            'multiprocess_incompatible_extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-
-        assert addon.guid
-        feature_compatibility = addon.feature_compatibility
-        assert feature_compatibility.pk
-        assert feature_compatibility.e10s == amo.E10S_INCOMPATIBLE
-
-    def test_multiprocess_extension_is_marked_as_e10s_compatible(self):
-        self.upload = self.get_upload(
-            'multiprocess_compatible_extension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-
-        assert addon.guid
-        feature_compatibility = addon.feature_compatibility
-        assert feature_compatibility.pk
-        assert feature_compatibility.e10s == amo.E10S_COMPATIBLE
-
-    def test_webextension_is_marked_as_e10s_compatible(self):
-        self.upload = self.get_upload('webextension.xpi')
-        parsed_data = parse_addon(self.upload, user=Mock())
-        addon = Addon.from_upload(
-            self.upload, [self.selected_app], parsed_data=parsed_data)
-
-        assert addon.guid
-        feature_compatibility = addon.feature_compatibility
-        assert feature_compatibility.pk
-        assert feature_compatibility.e10s == amo.E10S_COMPATIBLE_WEBEXTENSION
-
     def test_webextension_resolve_translations(self):
         self.upload = self.get_upload('notify-link-clicks-i18n.xpi')
         parsed_data = parse_addon(self.upload, user=Mock())
@@ -2534,7 +2471,6 @@ class TestAddonFromUpload(UploadTest):
         """Make sure we correct invalid `default_locale` values"""
         parsed_data = {
             'default_locale': u'sv',
-            'e10s_compatibility': 2,
             'guid': u'notify-link-clicks-i18n@notzilla.org',
             'name': u'__MSG_extensionName__',
             'is_webextension': True,
@@ -2558,7 +2494,6 @@ class TestAddonFromUpload(UploadTest):
         """
         parsed_data = {
             'default_locale': u'xxx',
-            'e10s_compatibility': 2,
             'guid': u'notify-link-clicks-i18n@notzilla.org',
             'name': u'__MSG_extensionName__',
             'is_webextension': True,

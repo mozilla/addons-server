@@ -434,27 +434,6 @@ DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID = '65.0'
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 
 
-E10S_UNKNOWN = 0
-E10S_COMPATIBLE = 1
-E10S_COMPATIBLE_WEBEXTENSION = 2
-E10S_INCOMPATIBLE = 3
-
-E10S_COMPATIBILITY_CHOICES = (
-    (E10S_UNKNOWN, _('Unknown')),
-    # We don't need to show developers the actual, more granular state, only
-    # that it's compatible or not.
-    (E10S_COMPATIBLE_WEBEXTENSION, _('Compatible')),
-    (E10S_COMPATIBLE, _('Compatible')),
-    (E10S_INCOMPATIBLE, _('Incompatible')),
-)
-
-E10S_COMPATIBILITY_CHOICES_API = {
-    E10S_UNKNOWN: 'unknown',
-    E10S_COMPATIBLE_WEBEXTENSION: 'compatible-webextension',
-    E10S_COMPATIBLE: 'compatible',
-    E10S_INCOMPATIBLE: 'incompatible',
-}
-
 ADDON_GUID_PATTERN = re.compile(
     # Match {uuid} or something@host.tld ("something" being optional)
     # guids. Copied from mozilla-central XPIProvider.jsm.
