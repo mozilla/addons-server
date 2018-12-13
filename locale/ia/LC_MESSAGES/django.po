@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-13 07:51+0000\n"
+"PO-Revision-Date: 2018-12-13 08:01+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -762,7 +762,7 @@ msgstr "Naviga per tote le themas"
 msgid "Add-ons Home Page"
 msgstr "Pagina principal del additivos"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 "Si tu sequeva un ligamine ab alicubi, per favor %(open_bug_link)spropone le problema%(close_bug_link)s. Conta nos ab ubi tu veniva e lo que tu cercava, e nos facer lo nostre melior pro reparar illo."
@@ -770,7 +770,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "Non trovate"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -779,11 +779,11 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Nos lo regretta, ma nos non pote trovar lo que tu recerca.</h1> <p> Le pagina o file que tu requireva non esseva trovate sur nostre sito. Il es possibile que tu cliccava un ligamine que es foras"
-" de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">propone un problema</a>. Conta nos ab ubi tu veniva e lo que tu cercava, e nos facera nostre melio pro reparar illo. </li> </ul> <p>O tu"
-" pote justo saltar super alcun del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a "
-"href=\"%(search)s\">cercar pro additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagine de recerca</a> o o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a "
-"href=\"%(home)s\">pagina de prime plan del additivos</a>. </li> </ul>"
+" de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor "
+"%(open_bug_link)ssignala un problema%(close_bug_link)s. Conta nos ab ubi tu veniva e lo que tu cercava, e nos facera nostre melio pro lo reparar. </li> </ul> <p>O tu pote justo saltar super alcun "
+"del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a href=\"%(search)s\">cercar pro "
+"additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a href=\"%(home)s\">pagina de prime"
+" plan del additivos</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -3688,9 +3688,8 @@ msgstr "Isto es le version de tu additivo que sera installate si alcuno clicca l
 msgid "Next Listed Version:"
 msgstr "Version successive in le lista de presentation:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Isto es le version ultime cargate, totevia illo non es ancora al vivo sur le sito."
+msgstr "Isto es le version ultime cargate, totevia illo non es ancora active sur le sito"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Le caudas de revision non es revidite strictemente in ordine"
@@ -3708,9 +3707,8 @@ msgstr "Signate pro auto-distribution. Le actualisationes es tractate per te."
 msgid "Latest Version:"
 msgstr "Ultime version:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Isto es le version plus recente cargate e non listate."
+msgstr "Isto es le version plus recente cargate e non listate"
 
 msgid "Upload New Version"
 msgstr "Cargar nove version"
@@ -4065,16 +4063,14 @@ msgstr "Elige le colores pro tu thema."
 msgid "Foreground Text"
 msgstr "Texto in prime plano"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Iste es le color del texto del schedas."
+msgstr "Iste es le color del texto del schedas"
 
 msgid "Background"
 msgstr "Fundo"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Isto es le color del schedas."
+msgstr "Isto es le color del schedas"
 
 msgid "Your Theme's Name"
 msgstr "Le nomine del thema"
@@ -4093,9 +4089,8 @@ msgstr "Le themas de fundo te lassa personalisar facilemente le vista de tu Fire
 msgid "Give your Theme a name."
 msgstr "Da un nomine a tu thema."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Un breve explanation del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema."
+msgstr "Un breve explication del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema"
 
 #, python-format
 msgid ""
@@ -6796,9 +6791,8 @@ msgstr "{addon} :: Reportos de abuso"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Reportos de abuso pro {addon} e su disveloppatores ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Additivo"
+msgstr "ID del additivo"
 
 msgid "Internal AMO ID"
 msgstr ""
