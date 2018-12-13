@@ -123,12 +123,13 @@ class Header(Region):
         action.pause(2)
         action.perform()
 
-
     class SearchBox(Region):
 
         _root_locator = (By.CLASS_NAME, 'AutoSearchInput')
-        _search_suggestions_list_locator = (By.CLASS_NAME, 'AutoSearchInput-suggestions-list')
-        _search_suggestions_item_locator = (By.CLASS_NAME, 'AutoSearchInput-suggestions-item')
+        _search_suggestions_list_locator = (
+            By.CLASS_NAME, 'AutoSearchInput-suggestions-list')
+        _search_suggestions_item_locator = (
+            By.CLASS_NAME, 'AutoSearchInput-suggestions-item')
         _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
 
         def search_for(self, term, execute=True):
@@ -145,14 +146,16 @@ class Header(Region):
         @property
         def search_suggestions(self):
             self.wait.until(
-               lambda _: self.is_element_displayed(*self._search_suggestions_list_locator)
+                lambda _: self.is_element_displayed(
+                    *self._search_suggestions_list_locator)
             )
             el_list = self.find_element(*self._search_suggestions_list_locator)
-            items = el_list.find_elements(*self._search_suggestions_item_locator)
+            items = el_list.find_elements(
+                *self._search_suggestions_item_locator)
             return [self.SearchSuggestionItem(self.page, el) for el in items]
 
         class SearchSuggestionItem(Region):
-            
+
             _item_name = (By.CLASS_NAME, 'SearchSuggestion-name')
 
             @property

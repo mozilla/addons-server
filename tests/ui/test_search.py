@@ -58,8 +58,8 @@ def test_sorting_by(base_url, selenium, category, sort_attr):
 def test_incompative_extensions_show_as_incompatible(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon-Android'
-    items = page.search.search_for(term)
-    for item in items.result_list.extensions:
+    results = page.search.search_for(term)
+    for item in results.result_list.extensions:
         if term == item.name:
             detail_page = item.click()
             assert detail_page.is_compatible is False
@@ -69,8 +69,8 @@ def test_incompative_extensions_show_as_incompatible(base_url, selenium):
 def test_search_suggestion_term_is_higher(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon'
-    items = page.search.search_for(term, execute=False)
-    for count, item in enumerate(items):
+    suggestions = page.search.search_for(term, execute=False)
+    for count, item in enumerate(suggestions):
         if item.name == term:
             assert count < 1
 
@@ -79,43 +79,49 @@ def test_search_suggestion_term_is_higher(base_url, selenium):
 def test_search_suggestion_term_loads_correct_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon'
-    items = page.search.search_for(term, execute=False)
-    assert term == items[0].name
+    suggestions = page.search.search_for(term, execute=False)
+    assert term == suggestions[0].name
     term = '-Install'
-    items = page.search.search_for(term, execute=False)
+    suggestions = page.search.search_for(term, execute=False)
     # Sleep to let autocomplete update.
     time.sleep(2)
-    assert term in items[0].name
+    assert term in suggestions[0].name
 
 
 @pytest.mark.nondestructive
 def test_special_chars_dont_break_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon-Install'
-    special_chars = '$%^&*'
-    items = page.search.search_for(term, execute=False)
-    assert term == items[0].name
-    items = page.search.search_for(special_chars, execute=False)
-    assert term in items[0].name
+    special_chars = u'%ç√®å'
+    suggestions = page.search.search_for(term, execute=False)
+    assert term == suggestions[0].name
+    suggestions = page.search.search_for(
+        special_chars.encode('utf-8').decode('utf-8'), execute=False)
+    assert term in suggestions[0].name
 
 
 @pytest.mark.nondestructive
 def test_capitalization_has_same_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon-Install'
-    items = page.search.search_for(term, execute=False)
-    assert term == items[0].name
-    items = page.search.search_for(term.capitalize(), execute=False)
+    suggestions = page.search.search_for(term, execute=False)
+    assert term == suggestions[0].name
+    suggestions = page.search.search_for(term.capitalize(), execute=False)
     # Sleep to let autocomplete update.
     time.sleep(2)
-    assert term == items[0].name
+    assert term == suggestions[0].name
+    page = Home(selenium, base_url).open()
+    suggestions = page.search.search_for(term.lower(), execute=False)
+    # Sleep to let autocomplete update.
+    time.sleep(2)
+    assert term == suggestions[0].name
 
 
 @pytest.mark.nondestructive
 def test_esc_key_closes_suggestion_list(base_url, selenium):
     page = Home(selenium, base_url).open()
     term = 'Ui-Addon-Install'
-    items = page.search.search_for(term, execute=False)
+    page.search.search_for(term, execute=False)
     action = ActionChains(selenium)
     # Send ESC key to browser
     action.send_keys(Keys.ESCAPE).perform()
@@ -127,18 +133,18 @@ def test_esc_key_closes_suggestion_list(base_url, selenium):
 @pytest.mark.nondestructive
 def test_long_terms_dont_break_suggestions(base_url, selenium):
     page = Home(selenium, base_url).open()
-    term = 'Ui-Addon' 
+    term = 'Ui-Addon'
     additional_term = ' 123456789'
     page.search.search_for(term, execute=False)
-    items = page.search.search_for(additional_term, execute=False)
+    suggestions = page.search.search_for(additional_term, execute=False)
     # Sleep to let autocomplete update.
     time.sleep(2)
-    assert term in items[0].name
+    assert term in suggestions[0].name
 
 
 @pytest.mark.nondestructive
 def test_blank_search_loads_results_page(base_url, selenium):
-    page = Home(selenium, base_url).open() 
+    page = Home(selenium, base_url).open()
     results = page.search.search_for('', execute=True)
     assert results.result_list.extensions[0].name == 'Ui-Addon'
     assert results.result_list.themes[0].name == 'Ui-Test Theme'
