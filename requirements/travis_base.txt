@@ -7,9 +7,9 @@ wheel==0.32.3 \
 setuptools==40.6.3 \
     --hash=sha256:e2c1ce9a832f34cf7a31ed010aabcab5008eb65ce8f2aadc04622232c14bdd0b \
     --hash=sha256:3b474dad69c49f0d2d86696b68105f3a6f195f7ab655af12ef9a9c326d2b08f8
-tox==3.5.3 \
-    --hash=sha256:513e32fdf2f9e2d583c2f248f47ba9886428c949f068ac54a0469cac55df5862 \
-    --hash=sha256:75fa30e8329b41b664585f5fb837e23ce1d7e6fa1f7811f2be571c990f9d911b
+tox==3.6.0 \
+    --hash=sha256:21e772c4de94afd9240d1a4b2c009c94bea08d3230377ab23c3153efaea361f7 \
+    --hash=sha256:304177defdcb403d84aeb0400b1625b1e65a7fff19f0441329f9f76ebf67882f
 tox-travis==0.11 \
     --hash=sha256:7e2f0b9db1ff9521da6a32a34aa4bfe292ea1c90ff8eb26001bf52f44ca0dc47
 
