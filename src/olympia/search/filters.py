@@ -1,6 +1,7 @@
 from django.utils import translation
 from django.utils.translation import ugettext
 
+import colorgram
 from elasticsearch_dsl import Q, query
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
@@ -301,6 +302,58 @@ class AddonFeaturedQueryParam(AddonQueryParam):
                 Q('terms', **{'featured_for.locales': [locale, 'ALL']}))
         return [Q('nested', path='featured_for', query=query.Bool(
             filter=clauses))]
+
+
+class AddonColorQueryParam(AddonQueryParam):
+    query_param = 'color'
+
+    def convert_to_hsl(self, hexvalue):
+        # The API is receiving color as a hex string. We store colors in HSL
+        # as colorgram generates it (which is on a 0 to 255 scale for each
+        # component), so some conversion is necessary.
+        if len(hexvalue) == 3:
+            hexvalue = ''.join(2 * c for c in hexvalue)
+        try:
+            rgb = tuple(bytearray.fromhex(hexvalue))
+        except ValueError:
+            rgb = (0, 0, 0)
+        return colorgram.colorgram.hsl(*rgb)
+
+    def get_value(self):
+        color = self.request.GET.get(self.query_param, '')
+        return self.convert_to_hsl(color.upper().lstrip('#'))
+
+    def get_es_query(self):
+        hsl = self.get_value()
+        # If we're given a color with a very low saturation, the user is
+        # searching for a black/white/grey and we need to take saturation and
+        # lightness into consideration, but ignore hue.
+        if hsl[1] <= 5:  # 2.5% saturation or lower.
+            clauses = [
+                Q('range', **{'colors.s': {
+                    'lte': 5,
+                }}),
+                Q('range', **{'colors.l': {
+                    'gte': max(min(hsl[2] - 64, 255), 0),
+                    'lte': max(min(hsl[2] + 64, 255), 0),
+                }})
+            ]
+        else:
+            # Otherwise, we want to do the opposite and just try to match the
+            # hue. The idea is to keep the UI simple, presenting the user with
+            # a limited set of colors that still allows them to find all
+            # themes.
+            clauses = [
+                Q('range', **{'colors.h': {
+                    'gte': (hsl[0] - 26) % 255,  # 10% less hue
+                    'lte': (hsl[0] + 26) % 255,  # 10% more hue
+                }}),
+            ]
+        # In any case, the color we're looking for needs to be present in at
+        # least 20% of the image.
+        clauses.append(Q('range', **{'colors.ratio': {'gte': 0.20}}))
+
+        return [Q('nested', path='colors', query=query.Bool(filter=clauses))]
 
 
 class SearchQueryFilter(BaseFilterBackend):
@@ -632,6 +685,7 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonPlatformQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,
+        AddonColorQueryParam,
     ]
 
     def get_applicable_clauses(self, request):
@@ -649,7 +703,8 @@ class SearchParameterFilter(BaseFilterBackend):
 
     def filter_queryset(self, request, qs, view):
         filters = self.get_applicable_clauses(request)
-        return qs.query(query.Bool(filter=filters)) if filters else qs
+        qs = qs.query(query.Bool(filter=filters)) if filters else qs
+        return qs
 
 
 class ReviewedContentFilter(BaseFilterBackend):

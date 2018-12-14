@@ -35,6 +35,7 @@ from django.utils.encoding import force_bytes, force_text
 from django.utils.http import _urlparse as django_urlparse, quote_etag
 
 import bleach
+import colorgram
 import html5lib
 import jinja2
 import pytz
@@ -1000,6 +1001,20 @@ def utc_millesecs_from_epoch(for_datetime=None):
     seconds += for_datetime.microsecond / 1000000.0
     # Now convert to milliseconds.
     return int(seconds * 1000)
+
+
+def extract_colors_from_image(path):
+    try:
+        image_colors = colorgram.extract(path, 6)
+        colors = [{
+            'h': color.hsl.h,
+            's': color.hsl.s,
+            'l': color.hsl.l,
+            'ratio': color.proportion
+        } for color in image_colors]
+    except IOError:
+        colors = None
+    return colors
 
 
 class AMOJSONEncoder(JSONEncoder):

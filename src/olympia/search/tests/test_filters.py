@@ -784,6 +784,49 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert len(inner) == 1
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
+    def test_search_by_color(self):
+        qs = self._filter(data={'color': 'ff0000'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        inner = filter_[0]['nested']['query']['bool']['filter']
+        assert len(inner) == 2
+        assert inner == [
+            {'range': {'colors.h': {'gte': 229, 'lte': 26}}},
+            {'range': {'colors.ratio': {'gte': 0.2}}},
+        ]
+
+        qs = self._filter(data={'color': '#00ffff'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        inner = filter_[0]['nested']['query']['bool']['filter']
+        assert len(inner) == 2
+        assert inner == [
+            {'range': {'colors.h': {'gte': 101, 'lte': 153}}},
+            {'range': {'colors.ratio': {'gte': 0.2}}},
+        ]
+
+        qs = self._filter(data={'color': '#f6f6f6'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        inner = filter_[0]['nested']['query']['bool']['filter']
+        assert len(inner) == 3
+        assert inner == [
+            {'range': {'colors.s': {'lte': 5}}},
+            {'range': {'colors.l': {'gte': 182, 'lte': 255}}},
+            {'range': {'colors.ratio': {'gte': 0.2}}},
+        ]
+
+        qs = self._filter(data={'color': '333'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        inner = filter_[0]['nested']['query']['bool']['filter']
+        assert len(inner) == 3
+        assert inner == [
+            {'range': {'colors.s': {'lte': 5}}},
+            {'range': {'colors.l': {'gte': 0, 'lte': 115}}},
+            {'range': {'colors.ratio': {'gte': 0.2}}},
+        ]
+
 
 class TestCombinedFilter(FilterTestsBase):
     """

@@ -9,6 +9,7 @@ from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
     disable_legacy_files,
+    extract_colors_from_static_themes,
     delete_addon_not_compatible_with_thunderbird,
     delete_personas,
     output_personas,
@@ -119,6 +120,10 @@ tasks = {
             Q(contributions__icontains=settings.DOMAIN)
         ],
         'pre': lambda values_qs: values_qs.distinct(),
+    },
+    'extract_colors_from_static_themes': {
+        'method': extract_colors_from_static_themes,
+        'qs': [Q(type=amo.ADDON_STATICTHEME)]
     },
     'migrate_addons_that_require_sensitive_data_access': {
         'method': migrate_addons_that_require_sensitive_data_access,
