@@ -196,8 +196,7 @@ def collection_detail(request, user_id, slug):
             request, collection, require_owner=False),
     }
 
-    tags = Tag.objects.filter(
-        id__in=collection.top_tags) if collection.top_tags else []
+    tags = []
     return render_cat(request, 'bandwagon/collection_detail.html',
                       {'collection': collection, 'filter': filter,
                        'addons': addons, 'notes': notes,

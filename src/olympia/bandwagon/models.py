@@ -117,8 +117,6 @@ class Collection(ModelBase):
 
     objects = CollectionManager()
 
-    top_tags = TopTags()
-
     class Meta(ModelBase.Meta):
         db_table = 'collections'
         unique_together = (('author', 'slug'),)
