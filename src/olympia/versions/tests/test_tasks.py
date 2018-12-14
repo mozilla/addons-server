@@ -58,10 +58,12 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
     assert thumb_path == preview_instance.thumbnail_path
     assert thumb_size == theme_size_constant['thumbnail']
     assert png_crush_mock_args[0] == preview_instance.image_path
+    assert preview_instance.colors
 
 
 @pytest.mark.django_db
 @mock.patch('olympia.versions.tasks.index_addons.delay')
+@mock.patch('olympia.versions.tasks.extract_colors_from_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
@@ -81,9 +83,12 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
 )
 def test_generate_static_theme_preview(
         write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
-        index_addons_mock,
+        extract_colors_from_image_mock, index_addons_mock,
         header_url, header_height, preserve_aspect_ratio, mimetype, valid_img):
     write_svg_to_png_mock.return_value = True
+    extract_colors_from_image_mock.return_value = [
+        {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
+    ]
     theme_manifest = {
         "images": {
         },
@@ -164,13 +169,17 @@ def test_generate_static_theme_preview(
 
 @pytest.mark.django_db
 @mock.patch('olympia.versions.tasks.index_addons.delay')
+@mock.patch('olympia.versions.tasks.extract_colors_from_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_static_theme_preview_with_chrome_properties(
         write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
-        index_addons_mock):
+        extract_colors_from_image_mock, index_addons_mock):
     write_svg_to_png_mock.return_value = True
+    extract_colors_from_image_mock.return_value = [
+        {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
+    ]
     theme_manifest = {
         "images": {
             "theme_frame": "transparent.gif"
@@ -274,13 +283,17 @@ def check_render_additional(svg_content, inner_svg_width, colors):
 
 @pytest.mark.django_db
 @mock.patch('olympia.versions.tasks.index_addons.delay')
+@mock.patch('olympia.versions.tasks.extract_colors_from_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
 def test_generate_preview_with_additional_backgrounds(
         write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
-        index_addons_mock):
+        extract_colors_from_image_mock, index_addons_mock):
     write_svg_to_png_mock.return_value = True
+    extract_colors_from_image_mock.return_value = [
+        {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
+    ]
 
     theme_manifest = {
         "images": {

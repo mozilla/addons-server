@@ -2215,7 +2215,7 @@ class TestAddonSearchView(ESTestCase):
         qset = view.get_queryset()
 
         assert set(qset.to_dict()['_source']['excludes']) == set(
-            ('*.raw', 'boost', 'hotness', 'name', 'description',
+            ('*.raw', 'boost', 'colors', 'hotness', 'name', 'description',
              'name_l10n_*', 'description_l10n_*', 'summary', 'summary_l10n_*')
         )
 

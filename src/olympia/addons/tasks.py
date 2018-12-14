@@ -28,7 +28,8 @@ from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, pngcrush_image, StopWatch)
+    ImageCheck, LocalFileStorage, cache_ns_key, extract_colors_from_image,
+    pngcrush_image, StopWatch)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
@@ -903,3 +904,21 @@ def remove_amo_links_in_url_fields(ids, **kw):
                 ).update(localized_string=u'', localized_string_clean=u'')
             if settings.DOMAIN.lower() in addon.contributions.lower():
                 addon.update(contributions=u'')
+
+
+@task
+@use_primary_db
+def extract_colors_from_static_themes(ids, **kw):
+    """Extract and store colors from existing static themes."""
+    log.info('Extracting static themes colors %d-%d [%d].', ids[0], ids[-1],
+             len(ids))
+    addons = Addon.objects.filter(id__in=ids)
+    extracted = []
+    for addon in addons:
+        first_preview = addon.current_previews.first()
+        if first_preview and not first_preview.colors:
+            colors = extract_colors_from_image(first_preview.thumbnail_path)
+            addon.current_previews.update(colors=colors)
+            extracted.append(addon.pk)
+    if extracted:
+        index_addons.delay(extracted)

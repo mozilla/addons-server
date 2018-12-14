@@ -19,7 +19,7 @@ from olympia.amo.tests import (
 from olympia.applications.models import AppVersion
 from olympia.files.models import FileValidation, WebextPermission
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
-from olympia.versions.models import ApplicationsVersions
+from olympia.versions.models import ApplicationsVersions, VersionPreview
 
 
 # Where to monkeypatch "lib.crypto.tasks.sign_addons" so it's correctly mocked.
@@ -751,3 +751,19 @@ class TestRemoveAMOLinksInURLFields(TestCase):
         translation.activate('fr')
         addon.reload()
         assert addon.support_url == u''
+
+
+class TestExtractColorsFromStaticThemes(TestCase):
+    @mock.patch('olympia.addons.tasks.extract_colors_from_image')
+    def test_basic(self, extract_colors_from_image_mock):
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        preview = VersionPreview.objects.create(version=addon.current_version)
+        extract_colors_from_image_mock.return_value = [
+            {'h': 4, 's': 8, 'l': 15, 'ratio': .16}
+        ]
+        call_command(
+            'process_addons', task='extract_colors_from_static_themes')
+        preview.reload()
+        assert preview.colors == [
+            {'h': 4, 's': 8, 'l': 15, 'ratio': .16}
+        ]

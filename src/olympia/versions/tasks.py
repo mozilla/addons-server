@@ -10,7 +10,7 @@ from olympia import amo
 from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import pngcrush_image
+from olympia.amo.utils import extract_colors_from_image, pngcrush_image
 from olympia.devhub.tasks import resize_image
 from olympia.files.models import File
 from olympia.files.utils import get_background_images
@@ -70,6 +70,7 @@ def generate_static_theme_preview(theme_manifest, version_pk):
     sizes = sorted(
         amo.THEME_PREVIEW_SIZES.values(),
         lambda x, y: x['position'] - y['position'])
+    colors = None
     for size in sizes:
         # Create a Preview for this size.
         preview = VersionPreview.objects.create(
@@ -81,10 +82,19 @@ def generate_static_theme_preview(theme_manifest, version_pk):
             resize_image(
                 preview.image_path, preview.thumbnail_path, size['thumbnail'])
             pngcrush_image(preview.image_path)
-            preview_sizes = {}
-            preview_sizes['image'] = size['full']
-            preview_sizes['thumbnail'] = size['thumbnail']
-            preview.update(sizes=preview_sizes)
+            # Extract colors once and store it for all previews.
+            # Use the thumbnail for extra speed, we don't need to be super
+            # accurate.
+            if colors is None:
+                colors = extract_colors_from_image(preview.thumbnail_path)
+            data = {
+                'sizes': {
+                    'image': size['full'],
+                    'thumbnail': size['thumbnail'],
+                },
+                'colors': colors,
+            }
+            preview.update(**data)
     addon_id = Version.objects.values_list(
         'addon_id', flat=True).get(id=version_pk)
     index_addons.delay([addon_id])
