@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 14:06+0000\n"
+"PO-Revision-Date: 2018-12-14 19:04+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -767,14 +767,14 @@ msgstr "Gennemse alle temaer"
 msgid "Add-ons Home Page"
 msgstr "Tilføjelsens hjemmeside"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr "Hvis du fulgte et link fra et sted, så %(open_bug_link)s indberet fejlen%(close_bug_link)s. Fortæl os, hvor du kom fra, og hvad du ledte efter, så vil vi gøre vores bedste for at rette den."
 
 msgid "Not Found"
 msgstr "Ikke fundet"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -783,11 +783,10 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Vi beklager, men vi kan ikke finde det, du leder efter.</h1> <p> Siden eller filen, du har anmodet om blev ikke fundet på vores websted. Det er muligt, at du har klikket på et link, der er "
-"forældet, eller indtastet adressen forkert. </p> <ul> <li>Hvis du skrev i adresselinjen, skal du dobbelttjekke stavningen.</li> <li> Hvis du fulgte et link fra et sted, så <a "
-"href=\"https://github.com/mozilla/addons-server/issues/new/\">indberet fejlen</a>. Fortæl os, hvor du kom fra, og hvad du ledte efter, så vil vi gøre vores bedste for at rette den. </li> </ul> "
-"<p>Eller du kan bare hoppe over til nogle af de populære sider på vores websted.</p> <ul> <li>Er du interesseret i en <a href=\"%(rec)s\">liste med udvalgte tilføjelser</a>?</li> <li> Vil du <a "
-"href=\"%(search)s\">søge efter tilføjelser</a>? Du kan gå til <a href=\"%(search)s\">søgesiden</a> eller bare bruge søgefeltet ovenfor. </li> <li> Hvis du hellere vil starte forfra, kan du bare gå "
-"til <a href=\"%(home)s\">forsiden med tilføjelser</a>. </li> </ul>"
+"forældet, eller indtastet adressen forkert. </p> <ul> <li>Hvis du skrev i adresselinjen, skal du dobbelttjekke stavningen.</li> <li> Hvis du fulgte et link fra et sted, så %(open_bug_link)sindberet "
+"fejlen%(close_bug_link)s. Fortæl os, hvor du kom fra, og hvad du ledte efter, så vil vi gøre vores bedste for at rette den. </li> </ul> <p>Eller du kan bare hoppe over til nogle af de populære sider"
+" på vores websted.</p> <ul> <li>Er du interesseret i en <a href=\"%(rec)s\">liste med udvalgte tilføjelser</a>?</li> <li> Vil du <a href=\"%(search)s\">søge efter tilføjelser</a>? Du kan gå til <a "
+"href=\"%(search)s\">søgesiden</a> eller bare bruge søgefeltet ovenfor. </li> <li> Hvis du hellere vil starte forfra, kan du bare gå til <a href=\"%(home)s\">forsiden med tilføjelser</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Hovsa"
