@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-14 19:04+0000\n"
+"PO-Revision-Date: 2018-12-14 20:39+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark\n"
 "Language: da\n"
@@ -2370,7 +2370,7 @@ msgid "Sexual or pornographic content"
 msgstr "Seksuelt eller pornografisk indhold"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Upassende eller stødende indhold"
 
 msgid "Violence, war, or weaponry images"
 msgstr ""
@@ -2606,17 +2606,15 @@ msgstr "Billeder kan ikke være større end %dKB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Billedet skal være præcist {0} pixels bredt og {1} pixels højt."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Billedet skal være præcist {0} pixels bredt og {1} pixels højt."
+msgstr "Billedet skal være mindst {0} pixels bredt og {1} pixels højt."
 
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Billeder skal være enten PNG eller JPG."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Billedet skal være præcist {0} pixels bredt og {1} pixels højt."
+msgstr "Ikonet skal være mindst {0} pixels bredt og højt."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -3108,7 +3106,7 @@ msgstr ""
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
@@ -3122,9 +3120,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG og JPG er understøttet. Ikoner bliver formindsket til 64x64 pixels hvis de er større."
+msgstr "Ikoner bliver formindsket til 128x128 pixels hvis de er større."
 
 msgid "Screenshots"
 msgstr "Skærmbilleder"
@@ -6025,13 +6022,11 @@ msgid "View Rating on site"
 msgstr "Se det nye websted"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Indsend et nyt tema"
+msgstr "Indsend ikke-spam til Akismet"
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Indsend et nyt tema"
+msgstr "Indsend spam til Akismet"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -6882,9 +6877,8 @@ msgstr "{addon} :: Rapporter om misbrug"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Tilføjelse"
+msgstr "Tilføjelse-ID"
 
 msgid "Internal AMO ID"
 msgstr ""
