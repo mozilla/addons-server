@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-10-16 20:20+0000\n"
+"PO-Revision-Date: 2018-12-15 11:16+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bn_BD\n"
@@ -208,23 +208,20 @@ msgstr "আসল ব্যবহার করুন"
 msgid "Week of {0}"
 msgstr "সপ্তাহের {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " ডাউনলোডস"
-msgstr[1] " ডাউনলোডস"
+msgstr[0] "{0} ডাউনলোড"
+msgstr[1] "{0} ডাউনলোড"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} ব্যবহারকারীরা"
-msgstr[1] "{0} ব্যবহারকারীরা"
+msgstr[0] "{0} ব্যবহারকারী"
+msgstr[1] "{0} ব্যবহারকারী"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} এড-অনস"
-msgstr[1] "{0} এড-অনস"
+msgstr[0] "{0} অ্যাড-অন"
+msgstr[1] "{0} অ্যাড-অন"
 
 #, fuzzy
 msgid "{0} collection"
