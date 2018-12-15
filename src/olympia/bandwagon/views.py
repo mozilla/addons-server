@@ -31,7 +31,6 @@ from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, PreventActionPermission)
 from olympia.legacy_api.utils import addon_to_dict
-from olympia.tags.models import Tag
 from olympia.translations.query import order_by_translation
 from olympia.users.decorators import process_user_id
 from olympia.users.models import UserProfile
@@ -196,11 +195,10 @@ def collection_detail(request, user_id, slug):
             request, collection, require_owner=False),
     }
 
-    tags = []
     return render_cat(request, 'bandwagon/collection_detail.html',
                       {'collection': collection, 'filter': filter,
                        'addons': addons, 'notes': notes,
-                       'tags': tags, 'user_perms': user_perms})
+                       'user_perms': user_perms})
 
 
 @json_view(has_trans=True)

@@ -2,7 +2,6 @@ import uuid
 
 from datetime import datetime
 
-from django.core.cache import cache
 from django.db import connection, models
 
 from olympia import activity, amo
@@ -19,22 +18,6 @@ from olympia.users.models import UserProfile
 
 
 SPECIAL_SLUGS = amo.COLLECTION_SPECIAL_SLUGS
-
-
-class TopTags(object):
-    """Descriptor to manage a collection's top tags in cache."""
-
-    def key(self, obj):
-        return 'top-tags:{id}'.format(id=obj.id)
-
-    def __get__(self, obj, type=None):
-        if obj is None:
-            return self
-        return cache.get(self.key(obj), [])
-
-    def __set__(self, obj, value):
-        two_days = 60 * 60 * 24 * 2
-        cache.set(self.key(obj), value, two_days)
 
 
 class CollectionQuerySet(BaseQuerySet):
