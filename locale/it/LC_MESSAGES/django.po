@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-15 17:05+0000\n"
+"PO-Revision-Date: 2018-12-15 16:52+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -4188,7 +4188,7 @@ msgid "Give your Theme a name."
 msgstr "Scegli un nome per il tuo tema."
 
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
+msgstr "Una breve presentazione del tema, verrà visualizzata nelle pagine elenco e nei risultati di ricerca oltre che in cima alla pagina del tema"
 
 #, python-format
 msgid ""
@@ -6901,7 +6901,7 @@ msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Segnalazioni abusi per {addon} e i suoi sviluppatori ({num})"
 
 msgid "Add-on ID"
-msgstr ""
+msgstr "ID componente aggiuntivo"
 
 msgid "Internal AMO ID"
 msgstr "ID AMO interno"
