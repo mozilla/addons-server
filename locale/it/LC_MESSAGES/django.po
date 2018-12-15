@@ -786,7 +786,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "Non trovato"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -794,12 +794,6 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Siamo spiacenti, ma non è possibile trovare quello che stavi cercando.</h1> <p> La pagina o il file richiesti non sono disponibili su questo sito. È possibile che tu abbia utilizzato un link "
-"scaduto o commesso un errore di digitazione dell’indirizzo.</p> <ul> <li>Se lo hai digitato manualmente, verifica attentamente di averlo fatto nel modo corretto.</li> <li> Se invece hai seguito un "
-"link presente sul sito, <a href=\"https://github.com/mozilla/addons-server/issues/new/\">apri una richiesta su GitHub</a>. Spiegaci il percorso seguito e che cosa stavi cercando, faremo del nostro "
-"meglio per correggere l’errore.</li> </ul> <p>In alternativa, puoi visitare alcune delle pagine più popolari del sito.</p> <ul> <li>Vuoi conoscere <a href=\"%(rec)s\">i componenti aggiuntivi "
-"consigliati da noi</a>?</li> <li> Oppure preferisci <a href=\"%(search)s\">cercarne uno tu stesso</a>? Puoi farlo sia <a href=\"%(search)s\">visitando questa pagina</a>, sia utilizzando il campo di "
-"ricerca qui sopra.</li> <li> Se preferisci ripartire dall’inizio, puoi tornare alla <a href=\"%(home)s\">pagina principale</a>.</li> </ul>"
 
 msgid "Oops"
 msgstr "Oops"
@@ -2669,13 +2663,11 @@ msgstr "L’immagine deve essere larga {0} pixel e alta {1} pixel."
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "L’immagine deve essere larga {0} pixel e alta {1} pixel."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Le immagini devono essere in formato PNG o JPG."
+msgstr ""
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "L’immagine deve essere larga {0} pixel e alta {1} pixel."
+msgstr ""
 
 msgid "Icon must be square (same width and height)."
 msgstr "L’icona deve essere quadrata (stessa larghezza e altezza)."
@@ -2883,9 +2875,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aggiorna compatibilità</a> <a href=\"%(version_url)s\" class=\"button\">Carica una nuova versione</a> or <a href=\"#\" "
 "class=\"close\">Ignora</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Visualizza e aggiorna gli intervalli di compatibilità."
+msgstr ""
 
 msgid "Compatibility"
 msgstr "Compatibilità"
@@ -3202,9 +3193,8 @@ msgstr "Utilizzato nella scheda completa del componente aggiuntivo."
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Utilizzato nella scheda completa del componente aggiuntivo."
+msgstr ""
 
 msgid "Upload a Custom Icon..."
 msgstr "Carica un’icona personalizzata…"
@@ -3215,9 +3205,8 @@ msgstr "I formati supportati sono PNG e JPG."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Le icone devono essere quadrate e di una dimensione minima di 128x128 pixel."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG e JPG supportati. Icone ridimensionate a 64x64 pixel in caso di dimensioni superiori."
+msgstr ""
 
 msgid "Screenshots"
 msgstr "Anteprima"
@@ -3320,7 +3309,7 @@ msgid "Actions"
 msgstr "Azioni"
 
 msgid "Resume the submission process for this add-on"
-msgstr "Riprendi il processo di invio di questo componente aggiuntivo"
+msgstr ""
 
 msgid "Resume"
 msgstr "Riprendi"
@@ -3331,20 +3320,17 @@ msgstr "Elimina questo componente aggiuntivo."
 msgid "Delete"
 msgstr "Elimina"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Modifica le informazioni sulla pagina del componente aggiuntivo."
+msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Carica una nuova versione di questo componente aggiuntivo."
+msgstr ""
 
 msgid "New Version"
 msgstr "Nuova versione"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Statistiche per giorno di download e utenti."
+msgstr ""
 
 msgid "Statistics"
 msgstr "Statistiche"
@@ -3355,27 +3341,23 @@ msgstr "Gestisci stato e versioni"
 msgid "View Recent Changes"
 msgstr "Visualizza modifiche recenti"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Modifica le informazioni sulla pagina del tema."
+msgstr ""
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Visualizza la popolarità di questo tema nel tempo."
+msgstr ""
 
 msgid "View Statistics"
 msgstr "Visualizza statistiche"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Modifica il proprietario di questo tema."
+msgstr ""
 
 msgid "Transfer Ownership"
 msgstr "Trasferisci la proprietà"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Elimina questo tema."
+msgstr ""
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Per completare la pubblicazione del componente aggiuntivo sul sito aggiungi le informazioni richieste."
@@ -3770,9 +3752,8 @@ msgstr "Creato:"
 msgid "Add-on Multi Process Status:"
 msgstr "Stato di compatibilità con tecnologia multiprocesso:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "La compatibilità del componente aggiuntivo con la modalità multiprocesso di Firefox (e10s)."
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Visibile sul sito dopo il superamento della revisione. Gli aggiornamenti verranno gestiti automaticamente dal sito."
@@ -3786,9 +3767,8 @@ msgstr "Questa è la versione del componente aggiuntivo che verrà installata at
 msgid "Next Listed Version:"
 msgstr "Seconda versione proposta agli utenti:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "L’ultima versione caricata, anche se non è quella proposta nella pagina  del componente aggiuntivo."
+msgstr ""
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "L’ordine delle code di revisione non è seguito rigidamente"
@@ -3806,9 +3786,8 @@ msgstr "Firmato digitalmente per la distribuzione su un sito esterno. Gli aggior
 msgid "Latest Version:"
 msgstr "Ultima versione:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "L’ultima versione caricata e non pubblica."
+msgstr ""
 
 msgid "Upload New Version"
 msgstr "Carica nuova versione"
@@ -3975,14 +3954,11 @@ msgstr "Effettua l’accesso per aggiornare il tuo componente aggiuntivo"
 msgid "Resources for a successful launch"
 msgstr "Risorse per un lancio di successo"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"Hai creato la tua estensione e sei pronto a pubblicarla? Qual è il prossimo passo? Controlla i nostri consigli per creare una pagina profilo attraente, portare la tua estensione in primo piano su "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trovare risposte alle tue domande sullo sviluppo e restare aggiornato sulle notizie e gli eventi d’interesse per gli sviluppatori di "
-"estensioni."
 
 msgid "View Resources for Publishers"
 msgstr "Visualizza le risorse per gli sviluppatori"
@@ -4172,16 +4148,14 @@ msgstr "Scegli i colori per il tuo tema."
 msgid "Foreground Text"
 msgstr "Testo in primo piano"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Questo è il colore del testo delle schede."
+msgstr ""
 
 msgid "Background"
 msgstr "Sfondo"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Questo è il colore delle schede."
+msgstr ""
 
 msgid "Your Theme's Name"
 msgstr "Il nome del tema"
@@ -4202,9 +4176,8 @@ msgstr ""
 msgid "Give your Theme a name."
 msgstr "Scegli un nome per il tuo tema."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Una breve presentazione del tema, verrà visualizzata nelle pagine elenco e nei risultati di ricerca oltre che nella pagina del tema su AMO."
+msgstr ""
 
 #, python-format
 msgid ""
@@ -4342,16 +4315,12 @@ msgstr "Rispondi"
 msgid "Listing visibility"
 msgstr "Visibilità del componente aggiuntivo"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Visibile{label_close}: accessibile a chiunque su {site_url}, incluso nei risultati di ricerca e nelle pagine di presentazione."
+msgstr ""
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisibile{label_close}: il componente aggiuntivo non verrà mostrato tra i risultati delle ricerche e nella sua pagina verrà esplicitamente indicato che è stato disattivato. In questa "
-"situazione non sarà possibile caricare nuove versioni del componente aggiuntivo."
 
 msgid "Listed versions"
 msgstr "Versioni visualizzate"
@@ -6920,9 +6889,8 @@ msgstr "{addon} :: Segnalazioni abusi"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Segnalazioni abusi per {addon} e i suoi sviluppatori ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Componente aggiuntivo"
+msgstr ""
 
 msgid "Internal AMO ID"
 msgstr "ID AMO interno"
