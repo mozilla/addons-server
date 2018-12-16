@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-16 15:57+0000\n"
+"PO-Revision-Date: 2018-12-16 18:51+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4472,7 +4472,7 @@ msgstr "Cari gambar dengan mudah {start_sub_heading}dengan {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
-msgstr ""
+msgstr "Sorot teks apa pun dan klik kanan untuk melakukan pencarian sebuah gambar dengan cepat."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4520,7 +4520,7 @@ msgstr "Cegah penambangan mata uang virtual {start_sub_heading}dengan {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Hentikan situs web berbahaya yang berusaha menggunakan daya komputer Anda untuk menambang cryptocurrency."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4621,7 +4621,7 @@ msgstr "Blokir pelacak kasat mata {start_sub_heading}dengan {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
-msgstr ""
+msgstr "Hentikan kegiatan pelacak dan pelajari lebih lanjut tentang mereka."
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4638,6 +4638,8 @@ msgstr "Simpan teks untuk lain kali {start_sub_heading}dengan {addon_name}{end_s
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Berhenti menulis hal yang sama berulang kali! Jika Anda sering menggunakan kembali frasa yang sama dalam pekerjaan Anda atau komunikasi lainnya, simpan dalam Kliping dan tempelkan saat diperlukan "
+"dengan mudah."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4685,7 +4687,7 @@ msgstr "Hentikan pelacak {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Gain an additional layer of tracking protection as you browse the web."
-msgstr ""
+msgstr "Dapatkan lapisan perlindungan tambahan dari pelacakan saat anda menjelajahi web."
 
 #. editorial content for the discovery pane.
 msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4861,7 +4863,7 @@ msgstr "Hentikan pop-up {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Blokir semua sembulan secara baku, lalu putuskan mana yang lebih Anda sukai untuk dibuka."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4917,7 +4919,7 @@ msgstr "Buka beberapa tautan sekaligus {start_sub_heading}dengan {addon_name}{en
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Klik kanan dan seret tautan yang ingin Anda buka di tab baru."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
