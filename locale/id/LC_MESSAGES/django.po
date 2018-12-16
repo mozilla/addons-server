@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-16 18:58+0000\n"
+"PO-Revision-Date: 2018-12-16 19:30+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4935,7 +4935,7 @@ msgstr "Menggugah produktivitas {start_sub_heading}dengan {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr ""
+msgstr "Ubah laman tab baru Anda untuk menampilkan latar belakang yang indah, atur fokus harian Anda, dan banyak lagi."
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4943,7 +4943,7 @@ msgstr "Tampilkan gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
+msgstr "Membawa kembali tombol \"Lihat gambar\" saat pencarian di Gambar Google."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4967,7 +4967,7 @@ msgstr "Perbaiki kesukaan Anda {start_sub_heading}dengan {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "Temukan dan atasi markah yang rusak, berganda, dan lainnya."
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5023,7 +5023,7 @@ msgstr "Samarkan laman {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
-msgstr ""
+msgstr "Sembunyikan sebagian situs web yang Anda lihat."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5055,7 +5055,7 @@ msgstr "Tingkatkan tab baru {start_sub_heading}dengan {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Buka tab baru di sebelah kanan tab saat ini, tidak di akhir deretan."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5127,7 +5127,7 @@ msgstr "Buat daftar blokir situs {start_sub_heading}dengan {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Batasi Firefox agar tak mengkases situs yang Anda jabarkan."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
