@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-16 19:30+0000\n"
+"PO-Revision-Date: 2018-12-16 19:40+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4863,7 +4863,7 @@ msgstr "Hentikan pop-up {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Blokir semua sembulan secara baku, lalu putuskan mana yang lebih Anda sukai untuk dibuka."
+msgstr "Blokir semua pop-up secara baku, lalu putuskan mana yang lebih Anda sukai untuk dibuka."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5087,7 +5087,7 @@ msgstr "Dapatkan terjemahan seketika {start_sub_heading}dengan {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
-msgstr "Akses terjemahan seketika dengan menyorot teks dan mengeklik tombol yang menyembul."
+msgstr "Akses terjemahan seketika dengan menyorot teks dan mengklik tombol yang menyembul."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5151,7 +5151,7 @@ msgstr "Mengurangi ketegangan mata {start_sub_heading}dengan {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Aktifkan mode malam untuk pengalaman melihat yang lebih baik."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5980,7 +5980,7 @@ msgstr "Ajukan Spam ke Akismet"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s Ham melaporkan kiriman sebagai Spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
