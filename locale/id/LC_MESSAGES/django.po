@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-14 14:32+0000\n"
-"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
+"PO-Revision-Date: 2018-12-16 15:57+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -3509,7 +3509,7 @@ msgid "A build script that executes all necessary technical steps."
 msgstr ""
 
 msgid "Operating system and build environment requirements."
-msgstr ""
+msgstr "Sistem operasi dan persyaratan pembangun lingkungan."
 
 msgid ""
 "Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
@@ -3523,10 +3523,10 @@ msgid "How to Submit:"
 msgstr "Cara Mengajukan:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr ""
+msgstr "Sertakan instruksi ke dalam berkas README di dalam sumber kode,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "atau di dalam catatan peninjau di laman selanjutnya (jika berlaku)."
 
 msgid "Upload source code:"
 msgstr "Unggah kode sumber:"
@@ -4344,7 +4344,7 @@ msgstr "Hentikan pelacak {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
-msgstr ""
+msgstr "Blokir pelacak tak terlihat dan iklan pengintai yang mengikuti Anda di seantero web."
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
