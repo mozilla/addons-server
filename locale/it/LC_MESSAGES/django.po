@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-15 16:52+0000\n"
-"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
+"PO-Revision-Date: 2018-12-15 19:54+0000\n"
+"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2675,7 +2675,7 @@ msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Il rapporto di aspetto dell’immagine deve essere 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "L’icona deve avere una dimensione minima di {0} pixel in altezza e larghezza."
 
 msgid "Icon must be square (same width and height)."
 msgstr "L’icona deve essere quadrata (stessa larghezza e altezza)."
@@ -3365,7 +3365,7 @@ msgid "Transfer Ownership"
 msgstr "Trasferisci la proprietà"
 
 msgid "Delete this theme"
-msgstr ""
+msgstr "Elimina tema"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Per completare la pubblicazione del componente aggiuntivo sul sito aggiungi le informazioni richieste."
@@ -3776,7 +3776,7 @@ msgid "Next Listed Version:"
 msgstr "Seconda versione proposta agli utenti:"
 
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
+msgstr "È l’ultima versione caricata e non è ancora scaricabile dal sito"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "L’ordine delle code di revisione non è seguito rigidamente"
@@ -3795,7 +3795,7 @@ msgid "Latest Version:"
 msgstr "Ultima versione:"
 
 msgid "This is the newest uploaded unlisted version"
-msgstr ""
+msgstr "È l’ultima versione caricata e non pubblica"
 
 msgid "Upload New Version"
 msgstr "Carica nuova versione"
@@ -4160,13 +4160,13 @@ msgid "Foreground Text"
 msgstr "Testo in primo piano"
 
 msgid "This is the color of the tab text"
-msgstr ""
+msgstr "È il colore del testo della scheda"
 
 msgid "Background"
 msgstr "Sfondo"
 
 msgid "This is the color of the tabs"
-msgstr ""
+msgstr "È il colore delle schede"
 
 msgid "Your Theme's Name"
 msgstr "Il nome del tema"
@@ -4327,11 +4327,13 @@ msgid "Listing visibility"
 msgstr "Visibilità del componente aggiuntivo"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr ""
+msgstr "{label_open}Visibile:{label_close} accessibile a chiunque su {site_url}, incluso nei risultati di ricerca e nelle pagine di prodotto."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
+"{label_open}Invisibile:{label_close} il componente aggiuntivo non verrà mostrato tra i risultati delle ricerche e nella sua pagina verrà esplicitamente indicato che è stato disattivato. Finché il "
+"componente è impostato su Invisibile non sarà possibile caricare nuove versioni del componente aggiuntivo."
 
 msgid "Listed versions"
 msgstr "Versioni visualizzate"
