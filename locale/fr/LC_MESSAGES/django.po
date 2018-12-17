@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-16 17:01+0000\n"
+"PO-Revision-Date: 2018-12-17 13:40+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2062,7 +2062,7 @@ msgid "Social Networking"
 msgstr "Réseaux sociaux"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Téléchargez des extensions Firefox pour améliorer votre expérience sur les sites de réseaux sociaux populaires tels que YouTube, GitHub, Reddit, etc."
 
 msgid "Sports & Games"
 msgstr "Sports et jeux"
@@ -2074,7 +2074,7 @@ msgid "User Interface"
 msgstr "Interface utilisateur"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Téléchargez des extensions Firefox qui modifient l’interface des pages web pour vous permettre de lire, naviguer et satisfaire votre curiosité plus facilement."
 
 msgid "Animals"
 msgstr "Animaux"
@@ -2657,7 +2657,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "L’icône doit mesurer au moins {0} pixels en largeur et en hauteur."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "L’icône doit être carrée (largeur égale à la hauteur)."
 
 msgid "There was an error uploading your preview."
 msgstr "Une erreur est survenue pendant l’envoi de votre aperçu."
@@ -3169,7 +3169,7 @@ msgstr "Utilisé dans la page de détails du module"
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128 px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "Sera la norme dans les futures pages de détails des modules complémentaires."
@@ -3178,7 +3178,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Envoyer une icône personnalisée…"
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG et JPG pris en charge."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -3757,9 +3757,8 @@ msgstr "Signé pour une distribution personnelle. Vous gérez les mises à jour.
 msgid "Latest Version:"
 msgstr "Dernière version :"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "C’est la dernière version envoyée, cependant elle n’est pas encore publiée sur le site."
+msgstr "Ceci est la dernière version téléchargée non répertoriée"
 
 msgid "Upload New Version"
 msgstr "Envoyer une nouvelle version"
@@ -6852,9 +6851,8 @@ msgstr "{addon} :: Rapport d’abus"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Rapports d’abus pour {addon} et ses développeurs ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Module"
+msgstr "Identifiant du module"
 
 msgid "Internal AMO ID"
 msgstr ""
