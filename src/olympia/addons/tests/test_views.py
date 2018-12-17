@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core import mail
 from django.test.utils import override_settings
 from django.test.client import Client
-from django.utils.http import urlunquote
+from django.utils.http import urlsafe_base64_encode, urlunquote
 
 import mock
 import pytest
@@ -2863,6 +2863,42 @@ class TestAddonSearchView(ESTestCase):
         assert data['count'] == len(data['results']) == 2
         assert data['results'][0]['id'] == addon.pk
         assert data['results'][1]['id'] == addon2.pk
+
+    def test_filter_by_guid_return_to_amo(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon_factory()
+        self.reindex(Addon)
+
+        param = 'rta:%s' % urlsafe_base64_encode(addon.guid)
+
+        data = self.perform_search(self.url, {'guid': param})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+
+        result = data['results'][0]
+        assert result['id'] == addon.pk
+        assert result['slug'] == addon.slug
+
+    def test_filter_by_guid_return_to_amo_wrong_format(self):
+        param = 'rta:%s' % urlsafe_base64_encode('foo@bar')[:-1]
+
+        data = self.perform_search(
+            self.url, {'guid': param}, expected_status=400)
+        assert data == [u'Invalid RTA guid (not base64url?)']
+
+    @override_settings(RETURN_TO_AMO=False)
+    def test_filter_by_guid_return_to_amo_feature_disabled(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon_factory()
+        self.reindex(Addon)
+
+        param = 'rta:%s' % urlsafe_base64_encode(addon.guid)
+
+        data = self.perform_search(
+            self.url, {'guid': param}, expected_status=400)
+        assert data == [u'RTA is currently disabled']
 
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
