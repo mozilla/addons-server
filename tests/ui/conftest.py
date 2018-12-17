@@ -1,5 +1,6 @@
 import os
 
+from django.conf import settings
 import pytest
 
 from pages.desktop.devhub import DevHub
