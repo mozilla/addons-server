@@ -791,7 +791,21 @@ class TestSearchParameterFilter(FilterTestsBase):
         inner = filter_[0]['nested']['query']['bool']['filter']
         assert len(inner) == 2
         assert inner == [
-            {'range': {'colors.h': {'gte': 229, 'lte': 26}}},
+            {'bool': {'should': [
+                {'range': {'colors.h': {'gte': 229}}},
+                {'range': {'colors.h': {'lte': 26}}}]}},
+            {'range': {'colors.ratio': {'gte': 0.2}}},
+        ]
+
+        qs = self._filter(data={'color': '703839'})
+        filter_ = qs['query']['bool']['filter']
+        assert len(filter_) == 1
+        inner = filter_[0]['nested']['query']['bool']['filter']
+        assert len(inner) == 2
+        assert inner == [
+            {'bool': {'should': [
+                {'range': {'colors.h': {'gte': 228}}},
+                {'range': {'colors.h': {'lte': 25}}}]}},
             {'range': {'colors.ratio': {'gte': 0.2}}},
         ]
 
