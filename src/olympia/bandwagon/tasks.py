@@ -5,7 +5,6 @@ import olympia.core.logger
 from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
-from olympia.tags.models import Tag
 
 from .models import Collection, CollectionAddon
 
@@ -23,16 +22,9 @@ def collection_meta(*ids, **kw):
     counts = dict(qs.annotate(Count('id')))
     persona_counts = dict(qs.filter(addon__type=amo.ADDON_PERSONA)
                           .annotate(Count('id')))
-    tags = (Tag.objects.not_denied().values_list('id')
-            .annotate(cnt=Count('id')).filter(cnt__gt=1).order_by('-cnt'))
     for collection in Collection.objects.filter(id__in=ids):
         addon_count = counts.get(collection.id, 0)
         all_personas = addon_count == persona_counts.get(collection.id, None)
-        addons = list(collection.addons.values_list('id', flat=True))
-        # top_tags is a special object that updates directly in cache when you
-        # set it.
-        collection.top_tags = [
-            t for t, _ in tags.filter(addons__in=addons)[:5]]
         # Update addon_count and all_personas, avoiding to hit the post_save
         # signal by using queryset.update().
         Collection.objects.filter(id=collection.id).update(

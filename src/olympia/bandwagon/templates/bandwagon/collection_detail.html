@@ -115,20 +115,6 @@
     {{ _('Explore Collections') }}</a>
 </div>
 
-{% if tags %}
-  <div>
-    <h3>{{ _('Common Tags') }}</h3>
-    <ul class="addon-tags">
-      {% for tag in tags %}
-        <li class="usertag">
-          <a class="tagitem" href="{{ tag.get_url_path() }}">
-            {{ tag.tag_text }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-{% endif %}
-
 </div> {# secondary #}
 
 {% endblock %}
