@@ -1,4 +1,6 @@
+from django.conf import settings
 from django.utils import translation
+from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext
 
 from elasticsearch_dsl import Q, query
@@ -134,7 +136,23 @@ class AddonGuidQueryParam(AddonQueryParam):
     es_field = 'guid'
 
     def get_value(self):
-        value = self.request.GET.get(self.query_param)
+        value = self.request.GET.get(self.query_param, '')
+
+        # Hack for Firefox 'return to AMO' feature (which, sadly, does not use
+        # a specific API but rather encodes the guid and adds a prefix to it,
+        # only in the search API): if the guid param matches this format, and
+        # the feature is enabled through a setting, then we decode it and
+        # proceed. A 400 is returned if the format is recognized but the
+        # feature is disabled through the setting, acting as a kill-switch.
+        if value.startswith('rta:') and '@' not in value:
+            if settings.RETURN_TO_AMO is not True:
+                raise ValueError('RTA is currently disabled')
+            # Any ValueError will trigger a 400.
+            try:
+                value = urlsafe_base64_decode(value[4:])
+            except TypeError:
+                raise ValueError('Invalid RTA guid (not base64url?)')
+
         return value.split(',') if value else []
 
 
