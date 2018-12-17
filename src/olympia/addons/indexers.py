@@ -22,6 +22,7 @@ class AddonIndexer(BaseSearchIndexer):
     hidden_fields = (
         '*.raw',
         'boost',
+        'colors',
         'hotness',
         # Translated content that is used for filtering purposes is stored
         # under 3 different fields:
@@ -99,6 +100,15 @@ class AddonIndexer(BaseSearchIndexer):
                     'bayesian_rating': {'type': 'double'},
                     'boost': {'type': 'float', 'null_value': 1.0},
                     'category': {'type': 'integer'},
+                    'colors': {
+                        'type': 'nested',
+                        'properties': {
+                            'h': {'type': 'integer'},
+                            's': {'type': 'integer'},
+                            'l': {'type': 'integer'},
+                            'ratio': {'type': 'double'},
+                        },
+                    },
                     'contributions': {'type': 'text'},
                     'created': {'type': 'date'},
                     'current_version': version_mapping,
@@ -284,6 +294,7 @@ class AddonIndexer(BaseSearchIndexer):
                  'status', 'type', 'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}
 
+        data['colors'] = None
         if obj.type == amo.ADDON_PERSONA:
             # Personas are compatible with all platforms. They don't have files
             # so we have to fake the info to be consistent with the rest of the
@@ -319,6 +330,12 @@ class AddonIndexer(BaseSearchIndexer):
                 data['platforms'] = [p.id for p in
                                      obj.current_version.supported_platforms]
             data['has_theme_rereview'] = None
+
+            # Extract dominant colors from static themes.
+            if obj.type == amo.ADDON_STATICTHEME:
+                first_preview = obj.current_previews.first()
+                if first_preview:
+                    data['colors'] = first_preview.colors
 
         data['app'] = [app.id for app in obj.compatible_apps.keys()]
         # Boost by the number of users on a logarithmic scale.

@@ -1350,7 +1350,7 @@ class Addon(OnChangeMixin, ModelBase):
         if self.has_per_version_previews:
             if self.current_version:
                 return self.current_version.previews.all()
-            return []
+            return VersionPreview.objects.none()
         else:
             return self._all_previews
 

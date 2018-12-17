@@ -643,6 +643,7 @@ class VersionPreview(BasePreview, ModelBase):
     version = models.ForeignKey(Version, related_name='previews')
     position = models.IntegerField(default=0)
     sizes = JSONField(default={})
+    colors = JSONField(default=None, null=True)
     media_folder = 'version-previews'
 
     class Meta:

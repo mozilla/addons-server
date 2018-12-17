@@ -1,5 +1,6 @@
 import collections
 import datetime
+import os.path
 import tempfile
 
 from django.conf import settings
@@ -15,8 +16,9 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
-    attach_trans_dict, get_locale_from_lang, pngcrush_image,
-    translations_for_field, utc_millesecs_from_epoch, walkfiles)
+    attach_trans_dict, extract_colors_from_image, get_locale_from_lang,
+    pngcrush_image, translations_for_field, utc_millesecs_from_epoch,
+    walkfiles)
 from olympia.versions.models import Version
 
 
@@ -241,3 +243,18 @@ def test_utc_millesecs_from_epoch():
     new_timestamp = utc_millesecs_from_epoch(
         future_now + datetime.timedelta(milliseconds=42))
     assert new_timestamp == timestamp + 42
+
+
+def test_extract_colors_from_image():
+    path = os.path.join(
+        settings.ROOT,
+        'src/olympia/versions/tests/static_themes/weta.png')
+    expected = [
+        {'h': 45, 'l': 158, 'ratio': 0.40547158773994313, 's': 34},
+        {'h': 44, 'l': 94, 'ratio': 0.2812929380875291, 's': 28},
+        {'h': 68, 'l': 99, 'ratio': 0.13200103391513734, 's': 19},
+        {'h': 43, 'l': 177, 'ratio': 0.06251105336906689, 's': 93},
+        {'h': 47, 'l': 115, 'ratio': 0.05938209966397758, 's': 60},
+        {'h': 40, 'l': 201, 'ratio': 0.05934128722434598, 's': 83}
+    ]
+    assert extract_colors_from_image(path) == expected

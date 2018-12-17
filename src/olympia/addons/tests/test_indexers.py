@@ -50,8 +50,8 @@ class TestAddonIndexer(TestCase):
         # exist on the model, or it has a different name, or the value we need
         # to store in ES differs from the one in the db.
         complex_fields = [
-            'app', 'boost', 'category', 'current_version', 'description',
-            'featured_for', 'has_eula', 'has_privacy_policy',
+            'app', 'boost', 'category', 'colors', 'current_version',
+            'description', 'featured_for', 'has_eula', 'has_privacy_policy',
             'has_theme_rereview', 'is_featured', 'listed_authors', 'name',
             'platforms', 'previews', 'public_stats', 'ratings', 'summary',
             'tags',
@@ -191,6 +191,7 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_eula'] is True
         assert extracted['has_privacy_policy'] is True
         assert extracted['is_featured'] is False
+        assert extracted['colors'] is None
 
     def test_extract_is_featured(self):
         collection = collection_factory()
@@ -482,15 +483,36 @@ class TestAddonIndexer(TestCase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         current_preview = VersionPreview.objects.create(
             version=self.addon.current_version,
-            sizes={'thumbnail': [56, 78], 'image': [91, 234]})
+            colors=[{'h': 1, 's': 2, 'l': 3, 'ratio': 0.9}],
+            sizes={'thumbnail': [56, 78], 'image': [91, 234]}, position=1)
+        second_preview = VersionPreview.objects.create(
+            version=self.addon.current_version,
+            sizes={'thumbnail': [12, 34], 'image': [56, 78]}, position=2)
         extracted = self._extract()
         assert extracted['previews']
-        assert len(extracted['previews']) == 1
+        assert len(extracted['previews']) == 2
         assert 'caption_translations' not in extracted['previews'][0]
         assert extracted['previews'][0]['id'] == current_preview.pk
         assert extracted['previews'][0]['modified'] == current_preview.modified
         assert extracted['previews'][0]['sizes'] == current_preview.sizes == {
             'thumbnail': [56, 78], 'image': [91, 234]}
+        assert 'caption_translations' not in extracted['previews'][1]
+        assert extracted['previews'][1]['id'] == second_preview.pk
+        assert extracted['previews'][1]['modified'] == second_preview.modified
+        assert extracted['previews'][1]['sizes'] == second_preview.sizes == {
+            'thumbnail': [12, 34], 'image': [56, 78]}
+
+        # Make sure we extract colors from the first preview.
+        assert extracted['colors'] == [{'h': 1, 's': 2, 'l': 3, 'ratio': 0.9}]
+
+    def test_extract_staticthemes_somehow_no_previews(self):
+        # Extracting a static theme with no previews should not fail.
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+
+        extracted = self._extract()
+        assert extracted['id'] == self.addon.pk
+        assert extracted['previews'] == []
+        assert extracted['colors'] is None
 
 
 class TestAddonIndexerWithES(ESTestCase):
