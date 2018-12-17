@@ -4298,7 +4298,7 @@ class TestReview(ReviewBase):
             doc('.user_ratings').text() ==
             u'%s on %s [10.5.6.7]\n'
             u'Rated 3 out of 5 stars\nLôrem ipsum dolor' % (
-                user.username, created_at
+                user.name, created_at
             )
         )
 
