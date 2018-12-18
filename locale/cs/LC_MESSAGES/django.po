@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-16 18:03+0000\n"
+"PO-Revision-Date: 2018-12-11 19:35+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -787,7 +787,7 @@ msgstr "Procházet všechny vzhledy"
 msgid "Add-ons Home Page"
 msgstr "Doplňky pro Firefox"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 "Pokud jste se sem dostali pomocí některého z odkazů, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my uděláme vše proto, abychom to"
@@ -2767,9 +2767,8 @@ msgstr "Vývoj rozšíření"
 msgid "Lightweight Themes"
 msgstr "Lehké motivy vzhledu"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "Novinky pro vývojáře"
+msgstr ""
 
 msgid "Add-on Validator"
 msgstr "Kontrola doplňku"
@@ -3000,9 +2999,8 @@ msgstr "Zvolte pro svůj doplněk krátkou a unikátní URL."
 msgid "View Listing"
 msgstr "Stránka doplňku"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Zobrazení profilu"
+msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Tento souhrn by měl jasně vysvětlit, k čemu váš doplněk slouží. Bude zobrazen v seznamech a vyhledávání a poslouží kontrolorům při testování vašeho doplňku."
@@ -4030,9 +4028,8 @@ msgstr "Test kompatibility"
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Ověřte, zda je vaše rozšíření kompatibilní s Firefoxem."
 
-#, fuzzy
 msgid "Live Testing"
-msgstr "Stránka doplňku"
+msgstr ""
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -5988,39 +5985,31 @@ msgstr "Objevte experimentální funkce prohlížeče jako první."
 msgid "Get Started"
 msgstr "Začínáme"
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "Stav stránky "
+msgstr ""
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "Typ hlášení"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "Nahlásit chybu"
+msgstr ""
 
-#, fuzzy
 msgid "Not Reported"
-msgstr "Nehodnoceno"
+msgstr ""
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Verze odeslána"
+msgstr ""
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "Zobrazit novou verzi"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "Odeslat nový soubor"
+msgstr ""
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "Odeslat nový soubor"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -6323,13 +6312,11 @@ msgstr "V Mozille si zakládáme na produktech vytvářených na míru vám, už
 msgid "Brought to you by:"
 msgstr "Od:"
 
-#, fuzzy
 msgid "User"
-msgstr "Uživatelské jméno"
+msgstr ""
 
-#, fuzzy
 msgid "IP Address"
-msgstr "E-mailová adresa"
+msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
@@ -6854,9 +6841,8 @@ msgstr "{addon} :: Nahlášená zneužití"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Nahlášená zneužití doplňku {addon} ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Doplněk"
+msgstr ""
 
 msgid "Internal AMO ID"
 msgstr ""
