@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-04-28 12:30+0000\n"
+"PO-Revision-Date: 2018-12-18 20:53+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -217,61 +217,53 @@ msgstr "Použít původní"
 msgid "Week of {0}"
 msgstr "Týden {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " stažení"
-msgstr[1] " stažení"
-msgstr[2] " stažení"
+msgstr[0] "{0} stažení"
+msgstr[1] "{0} stažení"
+msgstr[2] "{0} stažení"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} uživatelů"
-msgstr[1] "{0} uživatelů"
+msgstr[0] "{0} uživatel"
+msgstr[1] "{0} uživatelé"
 msgstr[2] "{0} uživatelů"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} doplňků"
-msgstr[1] "{0} doplňků"
+msgstr[0] "{0} doplněk"
+msgstr[1] "{0} doplňky"
 msgstr[2] "{0} doplňků"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} sbírek"
-msgstr[1] "{0} sbírek"
+msgstr[0] "{0} sbírka"
+msgstr[1] "{0} sbírky"
 msgstr[2] "{0} sbírek"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} recenzí"
-msgstr[1] "{0} recenzí"
+msgstr[0] "{0} recenze"
+msgstr[1] "{0} recenze"
 msgstr[2] "{0} recenzí"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} prodejů"
-msgstr[1] "{0} prodejů"
-msgstr[2] "{0} prodejů"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} vrácení plateb"
 msgstr[1] "{0} vrácení plateb"
 msgstr[2] "{0} vrácení plateb"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalací"
-msgstr[1] "{0} instalací"
-msgstr[2] "{0} instalací"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Downloads"
 msgstr "Stažení"
@@ -789,20 +781,18 @@ msgid "Loading..."
 msgstr "Probíhá načítání..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "Zbývá <b>{0}</b> znak."
-msgstr[1] "Zbývají <b>{0}</b> znaky."
-msgstr[2] "Zbývá <b>{0}</b> znaků."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "Zbývá <b>{0}</b> znak."
-msgstr[1] "Zbývají <b>{0}</b> znaky."
-msgstr[2] "Zbývá <b>{0}</b> znaků."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Tato funkce je dočasně zakázána, protože provádíme údržbu webu. Zkuste to prosím o chvíli později."
