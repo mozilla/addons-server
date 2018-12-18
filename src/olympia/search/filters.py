@@ -358,15 +358,30 @@ class AddonColorQueryParam(AddonQueryParam):
             ]
         else:
             # Otherwise, we want to do the opposite and just try to match the
-            # hue. The idea is to keep the UI simple, presenting the user with
-            # a limited set of colors that still allows them to find all
-            # themes.
-            clauses = [
-                Q('range', **{'colors.h': {
-                    'gte': (hsl[0] - 26) % 255,  # 10% less hue
-                    'lte': (hsl[0] + 26) % 255,  # 10% more hue
-                }}),
-            ]
+            # hue with +/- 10%. The idea is to keep the UI simple, presenting
+            # the user with a limited set of colors that still allows them to
+            # find all themes.
+            if hsl[0] - 26 < 0 or hsl[0] + 26 > 255:
+                # If the hue minus 10% is below 0 or above 255, we need to wrap
+                # the value to match the other end of the spectrum (since hue
+                # is an angular dimension on a cylinder). However we can't do a
+                # single range query with both lte & gte with a modulo, we'd
+                # end up with a range that's impossible to match. Instead we
+                # need to split into 2 queries and match either with a |.
+                clauses = [
+                    Q('range', **{'colors.h': {'gte': (hsl[0] - 26) % 255}}) |
+                    Q('range', **{'colors.h': {'lte': (hsl[0] + 26) % 255}})
+                ]
+            else:
+                # If we don't have to wrap around then it's simpler, just need
+                # a single range query between 2 values.
+                clauses = [
+                    Q('range', **{'colors.h': {
+                        'gte': hsl[0] - 26,
+                        'lte': hsl[0] + 26,
+                    }}),
+                ]
+
         # In any case, the color we're looking for needs to be present in at
         # least 20% of the image.
         clauses.append(Q('range', **{'colors.ratio': {'gte': 0.20}}))
