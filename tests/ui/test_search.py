@@ -71,9 +71,6 @@ def test_search_suggestion_term_is_higher(base_url, selenium):
     term = 'Ui-Addon'
     suggestions = page.search.search_for(term, execute=False)
     assert suggestions[0].name == term
-    #for count, item in enumerate(suggestions):
-    #    if item.name == term:
-    #        assert count < 1
 
 
 @pytest.mark.nondestructive
