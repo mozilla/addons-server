@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-17 13:40+0000\n"
-"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
+"PO-Revision-Date: 2018-12-17 14:44+0000\n"
+"Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2116,12 +2116,14 @@ msgstr "Causes"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
 msgstr ""
+"Téléchargez des thèmes pour Firefox qui correspondent à votre goût personnel. Cette catégorie inclut les thèmes sportifs, ceux qui sont liés aux vacances, aux causes humanitaires, aux diverses "
+"nationalités, etc."
 
 msgid "Fashion"
 msgstr "Mode"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox qui célèbrent votre style préféré sous toutes ses formes : couleurs, formes, motifs, etc."
 
 msgid "Film and TV"
 msgstr "Films et télévision"
@@ -2131,12 +2133,15 @@ msgstr ""
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
+"Téléchargez des thèmes pour Firefox prenant pour thème le navigateur Firefox. Cette catégorie comprend des représentations variées et colorées du logo Firefox et inclut des thèmes plus généraux sur "
+"le renard ou le panda roux."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
+"Téléchargez des thèmes pour Firefox inspirés du Firefox japonais. Cette catégorie comprend des thèmes qui représentent l’adorable mascotte Foxkeh dans diverses poses et dans des paysages variés."
 
 msgid "Holiday"
 msgstr "Vacances et jours fériés"
@@ -2149,12 +2154,14 @@ msgstr "Musique"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
+"Téléchargez des thèmes pour Firefox qui correspondent à vos goûts musicaux et vos artistes préférés. Vous y trouverez les groupes, les instruments de musique et les vidéos musicales que vous aimez, "
+"etc."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox sur les animaux et la nature. Vous y trouverez des fleurs, des couchers de soleils, des renards, les saisons, les planètes, des chatons, des oiseaux, etc."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox intéressants, créatifs et incomparables."
 
 msgid "Scenery"
 msgstr "Paysage"
