@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-16 19:40+0000\n"
-"Last-Translator: alamanda <dian.ina@gmail.com>\n"
+"PO-Revision-Date: 2018-12-18 15:38+0000\n"
+"Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -1910,7 +1910,7 @@ msgid "Bookmarks"
 msgstr "Markah"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Unduh ekstensi yang memperbagus markah dengan melindunginya menggunakan sandi, mencari duplikat, menemukan markah rusak, dan banyak lagi."
 
 msgid "Download Management"
 msgstr "Kelola Unduhan"
@@ -1947,6 +1947,7 @@ msgstr "Keamanan dan Privasi"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Unduh ekstensi Firefox untuk menjelajah secara pribadi dan aman. Kategori ini mencakup ekstensi untuk memblokir iklan yang mengganggu, mencegah pelacakan, mengelola pengalihan, dan banyak lagi."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr ""
@@ -2117,6 +2118,8 @@ msgstr "Musim"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
+"Unduh tema Firefox untuk empat musim — musim gugur, musim dingin, musim semi, dan musim panas. Dedaunan musim gugur, puncak gunung bersalju, hari-hari musim panas yang cerah, dan bunga-bunga musim "
+"semi."
 
 msgid "Solid"
 msgstr "Polos"
@@ -4975,7 +4978,7 @@ msgstr "Stress berkurang {start_sub_heading}dengan {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Get things done with a helpful to-do list that syncs across devices."
-msgstr ""
+msgstr "Selesaikan semua urusan dengan daftar tugas berguna yang disinkronkan di berbagai perangkat."
 
 #. editorial content for the discovery pane.
 msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5575,7 +5578,7 @@ msgstr "Cegah kebocoran alamat IP {start_sub_heading}dengan {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Apakah Anda menggunakan VPN? Alamat IP Anda mungkin bocor. Hentikan dengan menonaktifkan WebRTC."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
