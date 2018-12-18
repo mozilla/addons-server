@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-17 14:44+0000\n"
+"PO-Revision-Date: 2018-12-17 15:01+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2182,7 +2182,7 @@ msgid "Download Firefox themes with solid and gradient colors to personalize you
 msgstr ""
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox inspirés par de nombreux sports. Vous trouverez dans cette catégorie des drapeaux de différents pays, des équipes sportives, du football, du hockey, etc."
 
 msgid "Websites"
 msgstr "Sites web"
