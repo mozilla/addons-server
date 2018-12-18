@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-18 19:14+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"PO-Revision-Date: 2018-12-18 22:49+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2130,6 +2130,7 @@ msgstr "Films et télévision"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
+"Téléchargez des thèmes pour Firefox inspirés de films et de la télévision. Cette catégorie comprend des dessins animés comme Uchiha Madara, des films comme Matrix, des séries (Game of Thrones), etc."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
@@ -2147,7 +2148,7 @@ msgid "Holiday"
 msgstr "Vacances et jours fériés"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox sur les vacances. Cette catégorie comprend les thèmes inspirés par Noël, Halloween, St Patrick, Pâques, le jour de l’an, etc."
 
 msgid "Music"
 msgstr "Musique"
@@ -2168,18 +2169,21 @@ msgstr "Paysage"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr ""
+"Téléchargez des thèmes pour Firefox qui montrent l’environnement et le monde naturel. Vous trouverez dans cette catégorie des couchers de soleil, des plages, des dessins, des lignes d’horizon de "
+"ville, etc."
 
 msgid "Seasonal"
 msgstr "Saisonnier"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
+"Téléchargez des thèmes pour Firefox sur les quatre saisons — automne, hiver, printemps et été. Des feuilles d’automne, des pics enneigés, des jours d’été ensoleillés et des fleurs printanières."
 
 msgid "Solid"
 msgstr "Uni"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox avec des couleurs unies ou dégradées pour personnaliser votre navigateur. Cette catégorie comprend des rouges vifs, des tons pastel, des gris clairs, etc."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
 msgstr "Téléchargez des thèmes pour Firefox inspirés par de nombreux sports. Vous trouverez dans cette catégorie des drapeaux de différents pays, des équipes sportives, du football, du hockey, etc."
@@ -2188,7 +2192,7 @@ msgid "Websites"
 msgstr "Sites web"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Téléchargez des thèmes pour Firefox qui saisissent l’essence du Web : passionnants, insolites et particuliers."
 
 msgid "General"
 msgstr "Général"
@@ -2516,7 +2520,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Vous avez indiqué que le fichier source n’était pas nécessaire, cependant un fichier source a été soumis."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "Assurez-vous que le nom et le résumé combinés comportent au maximum 70 caractères (ils en ont {0})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2999,6 +3003,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Le résumé doit expliquer ce que fait votre extension, de manière claire et concise. Le nom et le résumé apparaîtront sur la page de votre produit et dans les résultats de recherche. Ils ont une "
+"longueur maximale combinée de 70 caractères et une longueur minimale de 2 caractères chacun."
 
 msgid "Summary"
 msgstr "Résumé"
@@ -3188,7 +3194,7 @@ msgid "PNG and JPG supported."
 msgstr "PNG et JPG pris en charge."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Les icônes doivent être carrées et avoir une taille minimale de 128×128 pixels."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Les icônes seront redimensionnées à 128x128 pixels si elles sont plus grandes."
@@ -3206,13 +3212,13 @@ msgid "Add a Screenshot..."
 msgstr "Ajouter une capture d’écran…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Les formats PNG et JPG sont pris en charge, le PNG est recommandé. La taille maximale recommandée pour les captures d’écran est de 2400×1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "La taille minimale est de 1000×750 et un ratio de 4:3 est requis."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Présenter des captures d’écran dans la page de votre produit augmente considérablement ses chances d’être installé et placé en page d’accueil."
 
 msgid "Continue"
 msgstr "Continuer"
