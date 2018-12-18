@@ -342,25 +342,52 @@ class AddonColorQueryParam(AddonQueryParam):
         return self.convert_to_hsl(color.upper().lstrip('#'))
 
     def get_es_query(self):
+        # Thresholds for saturation & luminosity that dictate which query to
+        # use to determine matching colors.
+        LOW_SATURATION = 255 * 2.5 / 100.
+        LOW_LUMINOSITY = 255 * 5 / 100.
+        HIGH_LUMINOSITY = 255 * 98 / 100.
+
         hsl = self.get_value()
-        # If we're given a color with a very low saturation, the user is
-        # searching for a black/white/grey and we need to take saturation and
-        # lightness into consideration, but ignore hue.
-        if hsl[1] <= 5:  # 2.5% saturation or lower.
+        if hsl[1] <= LOW_SATURATION:
+            # If we're given a color with a very low saturation, the user is
+            # searching for a black/white/grey and we need to take saturation
+            # and lightness into consideration, but ignore hue.
             clauses = [
                 Q('range', **{'colors.s': {
-                    'lte': 5,
+                    'lte': LOW_SATURATION,
                 }}),
                 Q('range', **{'colors.l': {
                     'gte': max(min(hsl[2] - 64, 255), 0),
                     'lte': max(min(hsl[2] + 64, 255), 0),
                 }})
             ]
+        elif hsl[2] <= LOW_LUMINOSITY:
+            # If we're given a color with a very low luminosity, we're
+            # essentially looking for pure black. We can ignore hue and
+            # saturation, they don't have enough impact to matter here.
+            clauses = [
+                Q('range', **{'colors.l': {'lte': LOW_LUMINOSITY}})
+            ]
+        elif hsl[2] >= HIGH_LUMINOSITY:
+            # Same deal for very high luminosity, this is essentially white.
+            clauses = [
+                Q('range', **{'colors.l': {'gte': HIGH_LUMINOSITY}})
+            ]
         else:
             # Otherwise, we want to do the opposite and just try to match the
             # hue with +/- 10%. The idea is to keep the UI simple, presenting
             # the user with a limited set of colors that still allows them to
             # find all themes.
+            # Start by excluding low saturation and low/high luminosity that
+            # are handled above.
+            clauses = [
+                Q('range', **{'colors.s': {'gt': LOW_SATURATION}}),
+                Q('range', **{'colors.l': {
+                    'gt': LOW_LUMINOSITY,
+                    'lt': HIGH_LUMINOSITY
+                }}),
+            ]
             if hsl[0] - 26 < 0 or hsl[0] + 26 > 255:
                 # If the hue minus 10% is below 0 or above 255, we need to wrap
                 # the value to match the other end of the spectrum (since hue
@@ -368,23 +395,23 @@ class AddonColorQueryParam(AddonQueryParam):
                 # single range query with both lte & gte with a modulo, we'd
                 # end up with a range that's impossible to match. Instead we
                 # need to split into 2 queries and match either with a |.
-                clauses = [
+                clauses.append(
                     Q('range', **{'colors.h': {'gte': (hsl[0] - 26) % 255}}) |
                     Q('range', **{'colors.h': {'lte': (hsl[0] + 26) % 255}})
-                ]
+                )
             else:
                 # If we don't have to wrap around then it's simpler, just need
                 # a single range query between 2 values.
-                clauses = [
+                clauses.append(
                     Q('range', **{'colors.h': {
                         'gte': hsl[0] - 26,
                         'lte': hsl[0] + 26,
                     }}),
-                ]
+                )
 
         # In any case, the color we're looking for needs to be present in at
-        # least 20% of the image.
-        clauses.append(Q('range', **{'colors.ratio': {'gte': 0.20}}))
+        # least 25% of the image.
+        clauses.append(Q('range', **{'colors.ratio': {'gte': 0.25}}))
 
         return [Q('nested', path='colors', query=query.Bool(filter=clauses))]
 
