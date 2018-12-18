@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-13 18:17+0000\n"
+"PO-Revision-Date: 2018-12-18 11:02+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
@@ -799,10 +799,10 @@ msgstr "Prebrskaj vse teme"
 msgid "Add-ons Home Page"
 msgstr "Domača stran Dodatkov"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Če ste sledili povezavi na tem spletnem mestu, %(open_bug_link)sizpolnite poročilo o težavi%(close_bug_link)s. Povejte nam, od kod ste prišli in kaj ste iskali, mi pa se bomo potrudili, da težavo "
+"Če ste sledili povezavi na tem spletnem mestu, %(open_bug_link)sizpolnite poročilo o težavi %(close_bug_link)s. Povejte nam, od kod ste prišli in kaj ste iskali, mi pa se bomo potrudili, da težavo "
 "odpravimo."
 
 msgid "Not Found"
