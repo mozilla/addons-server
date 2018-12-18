@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-17 15:01+0000\n"
+"PO-Revision-Date: 2018-12-18 19:14+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -2068,7 +2068,7 @@ msgid "Sports & Games"
 msgstr "Sports et jeux"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Téléchargez des extensions Firefox qui donnent plus de relief à vos loisirs préférés, depuis les films en streaming jusqu’aux retransmissions de matches, etc."
 
 msgid "User Interface"
 msgstr "Interface utilisateur"
@@ -5761,7 +5761,7 @@ msgid "Could not parse uploaded file."
 msgstr "Impossible de lire le fichier envoyé."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Type d’archive non pris en charge."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6862,7 +6862,7 @@ msgid "Add-on ID"
 msgstr "Identifiant du module"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Identifiant interne AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
