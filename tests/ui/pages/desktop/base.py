@@ -1,6 +1,7 @@
 from pypom import Page, Region
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 class Base(Page):
@@ -30,8 +31,9 @@ class Base(Page):
         """Returns True if a user is logged in"""
         return self.is_element_displayed(*self.header._user_locator)
 
-    def search_for(self, term):
-        return self.header.search_for(term)
+    @property
+    def search(self):
+        return self.header.SearchBox(self)
 
     def login(self, email, password):
         login_page = self.header.click_login()
@@ -64,7 +66,6 @@ class Header(Region):
     _user_locator = (
         By.CSS_SELECTOR,
         '.Header-user-and-external-links .DropdownMenu-button-text')
-    _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
 
     def click_explore(self):
         self.find_element(*self._firefox_logo_locator).click()
@@ -122,14 +123,50 @@ class Header(Region):
         action.pause(2)
         action.perform()
 
-    def search_for(self, term):
-        textbox = self.find_element(*self._search_textbox_locator)
-        textbox.click()
-        textbox.send_keys(term)
-        # Send 'enter' since the mobile page does not have a submit button
-        textbox.send_keys(u'\ue007')
-        from pages.desktop.search import Search
-        return Search(self.selenium, self.page).wait_for_page_to_load()
+    class SearchBox(Region):
+
+        _root_locator = (By.CLASS_NAME, 'AutoSearchInput')
+        _search_suggestions_list_locator = (
+            By.CLASS_NAME, 'AutoSearchInput-suggestions-list')
+        _search_suggestions_item_locator = (
+            By.CLASS_NAME, 'AutoSearchInput-suggestions-item')
+        _search_textbox_locator = (By.CLASS_NAME, 'AutoSearchInput-query')
+
+        def search_for(self, term, execute=True):
+            textbox = self.find_element(*self._search_textbox_locator)
+            textbox.click()
+            textbox.send_keys(term)
+            # Send 'enter' since the mobile page does not have a submit button
+            if execute:
+                textbox.send_keys(Keys.ENTER)
+                from pages.desktop.search import Search
+                return Search(self.selenium, self.page).wait_for_page_to_load()
+            return self.search_suggestions
+
+        @property
+        def search_suggestions(self):
+            self.wait.until(
+                lambda _: self.is_element_displayed(
+                    *self._search_suggestions_list_locator)
+            )
+            el_list = self.find_element(*self._search_suggestions_list_locator)
+            items = el_list.find_elements(
+                *self._search_suggestions_item_locator)
+            return [self.SearchSuggestionItem(self.page, el) for el in items]
+
+        class SearchSuggestionItem(Region):
+
+            _item_name = (By.CLASS_NAME, 'SearchSuggestion-name')
+
+            @property
+            def name(self):
+                return self.find_element(*self._item_name).text
+
+            @property
+            def select(self):
+                self.root.click()
+                from pages.desktop.details import Detail
+                return Detail(self.selenium, self.page).wait_for_page_to_load()
 
 
 class Footer(Region):
