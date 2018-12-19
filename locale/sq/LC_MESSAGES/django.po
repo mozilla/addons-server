@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-19 15:53+0000\n"
+"PO-Revision-Date: 2018-12-19 17:03+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -779,7 +779,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "S’u Gjet"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -788,11 +788,11 @@ msgid ""
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Na ndjeni, por s’e gjejmë dot çfarë po kërkonit.</h1> <p> Faqja ose kartela që kërkuat s’u gjet te sajti ynë. Mundet që klikuat në një lidhje të vjetruar, ose e shkruat pasaktësisht. </p> <ul> "
-"<li>Nëse e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, <a href=\"https://github.com/mozilla/addons-server/issues/new/\">na e"
-" bëni të ditur</a>. Na tregoni aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim. </li> </ul> <p>Ose mundeni të hidheni te disa faqe popullore te "
-"sajti ynë.</p> <ul> <li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a "
-"href=\"%(search)s\">faqja e kërkimeve</a> ose thjesht përdorni kutinë e kërkimeve më sipër. </li> <li> Nëse parapëlqeni t’ia nisni nga e para, thjesht shkoni te <a href=\"%(home)s\">faqja hyrëse e "
-"shtesave</a>. </ul>"
+"<li>Nëse adresën e shkruat ju, ju lutemi, kontrolloni sërish drejtshkrimin.</li> <li> Nëse ndoqët një lidhje nga diku gjetkë, ju lutemi, %(open_bug_link)sna e bëni të ditur%(close_bug_link)s. "
+"Tregonani aty se prej nga mbërritët dhe se për çfarë po kërkonit, dhe do të bëjmë ç’është e mundur ta ndreqim. </li> </ul> <p>Ose mundeni të hidheni te disa faqe popullore te sajti ynë.</p> <ul> "
+"<li>Ju intereson një <a href=\"%(rec)s\">listë shtesash të zgjedhura</a>?</li> <li> Doni të <a href=\"%(search)s\">kërkoni për shtesa</a>? Mund të hidheni te <a href=\"%(search)s\">faqja e "
+"kërkimeve</a> ose just use ose thjesht përdorni kutinë e kërkimeve më sipër. </li> <li> Nëse parapëlqeni t’ia nisni nga e para, thjesht shkoni te <a href=\"%(home)s\">faqja hyrëse e shtesave</a>. "
+"</li> </ul>"
 
 msgid "Oops"
 msgstr "Oh"
@@ -933,7 +933,7 @@ msgid "Error decoding signature."
 msgstr "Gabim në çkodimin e nënshkrimit."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Lloj i ngarkuar për një ose më tepër kyçe te ngarkesa"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT i pavlefshëm."
@@ -1918,133 +1918,135 @@ msgid "Alerts & Updates"
 msgstr "Sinjalizime & Përditësime"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që ju ndihmojnë të jini i përditësuar, të ndiqni punë, të përmirësoni efikasitetin. Gjeni zgjerime që bëjnë ringarkim skedash, administrim produktiviteti, etj."
 
 msgid "Appearance"
 msgstr "Dukje"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime që ndryshojnë dukjen e sajteve dhe të shfletuesit Firefox. Kjo kategori përfshin zgjerime për tema të errëta, administrim skedash, etj."
 
 msgid "Bookmarks"
 msgstr "Faqerojtësa"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime që thellojnë punën e faqerojtësve, duke i mbrojtur ata me fjalëkalim, duke kërkuar për përsëdytje, duke gjetur ata që s’funksionojnë më, etj."
 
 msgid "Download Management"
 msgstr "Administrim Shkarkimesh"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që ju ndihmojnë të shkarkoni lëndë web, muzikë dhe video. Mund të gjeni edhe zgjerime për administrim shkarkimesh, ndarje kartelash me të tjerët, etj."
 
 msgid "Feeds, News & Blogging"
 msgstr "Prurje, Lajme & Blogim"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që i bëjnë gjërat më pak të ngatërruara, që të jini i përditësuar rreth gjërash në media shoqërore, blogje, prurje RSS, të zvogëloni lodhjen e syve, etj."
 
 msgid "Games & Entertainment"
 msgstr "Lojëra % Zbavitje"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për të shpënë një hap më tej dëfrimin tuaj. Kjo kategori përfshin zgjerime që thellojnë lojërat tuaj, luajtjen e videove, etj."
 
 msgid "Language Support"
 msgstr "Mbulim Gjuhësh"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që ofrojnë ndihmë për gjuhë, të tilla si kontrolle drejtshkrimi, kërkim fjalësh, përkthim tekstesh, funksione tekst-në-të-folur, etj."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto, Muzikë & Video"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që përmirësojnë punën tuaj me fotot, muzikën dhe videon. Zgjerimet në këtë kategori modifikojnë audio dhe video, kërkim së prapthi për figura, etj."
 
 msgid "Privacy & Security"
 msgstr "Privatësi & Siguri"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për shfletim privatisht dhe të parrezik. Kjo kategori përfshin zgjerime për bllokim reklamash bezdisëse, për parandalim gjurmimi, administrim ridrejtimesh, etj."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për kërkime. Kjo kategori përfshin zgjerime që theksojnë tekst të kërkuar, kërkojnë për adresa IP/përkatësi, etj."
 
 msgid "Shopping"
 msgstr "Blerje"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që mund të thellojnë punën tuaj me blerjet në internet, përmes gjetjesh kuponash, ulje çmimesh, analizues shqyrtimesh, etj."
 
 msgid "Social & Communication"
 msgstr "Shoqërore & Komunikim"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
+"Shkarkoni zgjerime Firefox-i për thellim të punës në media shoqërore dhe të shkëmbimit të atypëratyshëm të mesazheve. Kjo kategori përfshin njoftime më të mira rreth skedash, shkarkues videosh, etj."
 
 msgid "Tabs"
 msgstr "Skeda"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për përshtatje skedash dhe të faqes skedë e re. Zbuloni zgjerime që mund të mbajnë nën kontroll skedat, të ndryshojnë mënyrën se si ndërveproni me to, etj."
 
 msgid "Web Development"
 msgstr "Zhvillim Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që merren me mjete zhvillimi web. Kjo kategori përfshin zgjerime për punën në GitHub, këmbyes agjenti përdoruesi, administrim cookie-sh, etj."
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që mund të jenë të paparashikueshme dhe me frymë krijuese, por ende të dobishme për këto punë të dikurshme."
 
 msgid "Device Features & Location"
 msgstr "Veçori & Vend Pajisjeje"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime për thellim të Firefox-it për Android. Bëni kërkime të shpejta, lironi burime sistemi, mbani shënime, etj."
 
 msgid "Experimental"
 msgstr "Eksperimentale"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që përditësohen rregullisht dhe janë gati për testim nga publiku. Mendimet tuaja ndihmojnë zhvilluesit të vendosin për ndryshimet në versione të ardhshëm."
 
 msgid "Performance"
 msgstr "Performancë"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i që e ngrenë funksionimin në një shkallë të re. Gjeni zgjerime që ju ndihmojnë të jeni më prodhimtar dhe efikas, përmes bllokimit të reklamave bezdisëse, etj."
 
 msgid "Photos & Media"
 msgstr "Foto & Media"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për t’u marrë më thellë me foto dhe media. Kjo kategori përfshin zgjerime për kërkim figurash së prapthi, për të bërë foto ekrani të plota, etj."
 
 msgid "Security & Privacy"
 msgstr "Siguri & Privatësi"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Shkarkoni zgjerime Firefox-i për të shfletuar pa rrezik dhe privatisht. Zbuloni zgjerime që mund të ndalin gjurmues të bezdisur reklamash, të pastrojnë lehtësisht historikun e shfletimit, etj."
 
 msgid "Social Networking"
 msgstr "Rrjetëzim Shoqëror"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për të thelluar përdorimin që u bëni sajteve popullorë të mediave shoqërore, si YouTube, GitHub, Reddit, etj."
 
 msgid "Sports & Games"
 msgstr "Sport & Lojëra"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për ta ngritur një shkallë më lart dëfrimin tuaj, përmes përmirësuesish të punës me transmetime të drejtpërdrejta, lajme sportive, etj."
 
 msgid "User Interface"
 msgstr "Ndërfaqe Përdoruesi"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Shkarkoni zgjerime Firefox-i për ndërfaqen e përdoruesit, për ndryshim faqesh web për lexim, kërkim dhe shfletim më të lehtë të tyre, etj."
 
 msgid "Animals"
 msgstr "Kafshë"
@@ -2077,79 +2079,80 @@ msgid "Abstract"
 msgstr "Abstrakte"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Shkarkoni tema artistike dhe konceptuale për Firefox-in. Kjo kategori përfshin paleta dhe forma plot ngjyra, peizazhe fantazi, mace lojcake, lule psikedelike."
 
 msgid "Causes"
 msgstr "Kauza"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i për interesa dhe subjekte të veçantë. Kjo kategori përfshin tema sportive, pushime, kauza bamirësie, kombe, etj."
 
 msgid "Fashion"
 msgstr "Modë"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që kremtojnë stilin në të gjitha format — mostra, florale, tekstura, modele, etj."
 
 msgid "Film and TV"
 msgstr "Filma dhe TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që lidhen me filmat dhe televizionin. Në këtë kategori përfshihen <em>anime</em> si Uchiha Madara, filma si <em>The Matrix</em>, shfaqje (Game of Thrones), etj."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
+"Shkarkoni tema Firefox-i me motivin e shfletuesit Firefox. Në këtë kategori përfshihen logo plot ngjyra dhe të larmishme të Firefox-it, si dhe të tjera tema me kunadhen Firefox në përgjithësi."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i me Firefox-in japonez. Në këtë kategori përfshihen tema që paraqesin simbolin e lezetshëm Foxkeh në poza të ndryshme në peizazhe të ndryshme."
 
 msgid "Holiday"
 msgstr "Pushime"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që lidhen me festa. Në këtë kategori përfshihen tema me Krishtlindjet, Halloween-in, Thanksgiving, Ditën e Shën Patrikut, Pashkët, 4 Korrikun, etj."
 
 msgid "Music"
 msgstr "Muzikë"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që lidhen me interesa muzikore dhe muzikantë. Në këtë kategori përfshihen grupe të tillë popullorë si Nirvana dhe BTS, instrumente, video muzikore, etj."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i me kafshë dhe peizazhe natyrore. Në këtë kategori përfshihen lule, perëndime dielli, kunadhe, stinë, planete, kotele, zoçka, etj."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që janë interesante, me fantazi dhe unike."
 
 msgid "Scenery"
 msgstr "Peizazhe"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që lidhen me mjedisin dhe natyrën. Në këtë kategori përfshihen perëndime dielli, plazhe, ilustrime, relieve qytetesh, etj."
 
 msgid "Seasonal"
 msgstr "Sesonale"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i për të katër stinët — vjeshtë, dimër, pranverë, dhe verë. Gjethe vjeshte, maja malesh të veshur me dëborë, ditë vere plot diell, dhe lule pranvere."
 
 msgid "Solid"
 msgstr "Solide"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i me ngjyra të plota dhe me gradientë për personalizimin e shfletuesit tuaj. Në këtë kategori përfshihen të kuqe të forta, pastele, gri të buta dhe plotë të tjera."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që përmbajnë një larmi sportesh. Në këtë kategori përfshihen flamuj vendesh, ekipe sportive, futboll, hokej, etj."
 
 msgid "Websites"
 msgstr "Sajte"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Shkarkoni tema Firefox-i që përqendrojnë thelbin e web-it — tërheqëse, të pazakonta, dhe të që bien në sy."
 
 msgid "General"
 msgstr "Të përgjithshme"
@@ -2440,9 +2443,8 @@ msgstr "Ju lutemi, përcaktoni Rregullat e Privatësi për shtesën tuaj:"
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Arkiv i pavlefshëm."
+msgstr "Arkiv i pavlefshëm ose i dëmtuar."
 
 msgid "View current"
 msgstr "Shihni të tanishmen"
@@ -2478,7 +2480,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kartela burim u ngarkua, por keni përcaktuar se s’lypset burim."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "Garantoni që emri dhe përmbledhja tok të jenë e shumta 70 shenja (janë {0})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2519,9 +2521,8 @@ msgstr ""
 "S’mund të përditësoni një shtesë WebExtensions me një shtesë nga të dikurshmet. Përdoruesit tuaj nuk do të jenë në gjendje të përdorin versionin tuaj të ri, ngaqë Firefox-i nuk e mbulon këtë lloj "
 "përditësimesh."
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Tekstit të dhënë i është vënë shenjë si mesazh i padëshiruar."
+msgstr "[{field}] Tekstit te fusha \"{field}\" i është vënë shenjë si mesazh i padëshiruar."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kyçi juaj API zhvilluesish u gjet te kartela e parashtruar. Që të mbrohet llogaria juaj, kyçi do të shfuqizohet."
@@ -2613,20 +2614,17 @@ msgstr "Figurat s’ mund të jenë më të mëdha se %dKB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
+msgstr "Figura duhet të jetë të paktën {0} piksela e gjerë dhe {1} piksela e lartë."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Figurat duhet të jenë ose PNG, ose JPG."
+msgstr "Përmasat e figurës duhet të jenë nën përpjestimin 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Figura duhet të jetë saktësisht {0} piksela e gjerë dhe {1} piksela e lartë."
+msgstr "Ikona duhet të jetë të paktën {0} piksela e gjerë dhe e lartë."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikona duhet të jetë katrore (e njëjta gjerësi dhe lartësi)."
 
 msgid "There was an error uploading your preview."
 msgstr "Pati një gabim gjatë ngarkimit të paraparjes suaj."
@@ -2832,9 +2830,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Përputhshmëri Përditësimi</a> <a href=\"%(version_url)s\" class=\"button\">Ngarkoni Version të Ri</a> ose <a href=\"#\""
 " class=\"close\">Shpërfilleni</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Shihni dhe përditësoni intervalet e përputhshmërisë së aplikacionit."
+msgstr "Shihni dhe përditësoni intervalet e përputhshmërisë së aplikacionit"
 
 msgid "Compatibility"
 msgstr "Përputhshmëri"
@@ -2955,9 +2952,8 @@ msgstr "Përshkruani Shtesën"
 msgid "Describe {0}"
 msgstr "Përshkruani {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Përmbledhje"
+msgstr "Emër dhe Përmbledhje"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2978,9 +2974,8 @@ msgstr "Zgjidhni një përshkrim të shkurtër, unik, për URL-në e shtesës su
 msgid "View Listing"
 msgstr "Shihni Listën"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Shihni Profilin"
+msgstr "Shihni Faqe Produkti"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Kjo përmbledhje do të duhej të shpjegonte qartë se ç’kryen shtesa juaj. Ajo do të shfaqet në lista dhe kërkime, dhe do të përdoret nga shqyrtues për të testuar shtesën tuaj."
@@ -3141,22 +3136,20 @@ msgstr "E përdorur te faqja e hollësive të shtesës."
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "E përdorur te faqja e hollësive të shtesës."
+msgstr "Do të jetë standard në faqe të ardhshme hollësish shtesash."
 
 msgid "Upload a Custom Icon..."
 msgstr "Ngarkoni një Ikonë të Personalizuar…"
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Mbulohen PNG-të dhe JPG-të."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikonat duhet të jetë katrore dhe në një madhësi minimum prej 128x128 piksel."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Mbulohen PNG-të dhe JPG-të. Ikonat ripërmasohen në 64x64 piksel, po qenë më të mëdha."
+msgstr "Ikonat ripërmasohen në 128x128 piksel, po qenë më të mëdha."
 
 msgid "Screenshots"
 msgstr "Foto ekrani"
@@ -3171,13 +3164,13 @@ msgid "Add a Screenshot..."
 msgstr "Shtoni një Foto Ekrani…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Mbulohen PNG dhe JPG, këshillohet PNG. Madhësia maksimum dhe e këshilluar për foto ekrani është 2400x1800 piksel."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Madhësia minimum është 1000x750, dhe përpjestimi 4:3 është i domosdoshëm."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Pasja e fotove të ekranit në faqen e produktit tuaj i rrit shumë shanset që atë ta instalojnë dhe të shfaqet si e zgjedhur te kreu."
 
 msgid "Continue"
 msgstr "Vazhdo"
@@ -3258,9 +3251,8 @@ msgstr "Ju lutemi, na tregoni përse po e fshini shtesën tuaj:"
 msgid "Actions"
 msgstr "Veprime"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Rimerr procesin e parashtrimit për këtë shtesë."
+msgstr "Rimerr procesin e parashtrimit për këtë shtesë"
 
 msgid "Resume"
 msgstr "Rimerre"
@@ -3271,20 +3263,17 @@ msgstr "Fshije këtë shtesë."
 msgid "Delete"
 msgstr "Fshije"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Përpunoni hollësitë e paraqitjes së kësaj teme."
+msgstr "Përpunoni hollësitë e paraqitjes së kësaj teme"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Ngarkoni një version të ri të kësaj shtese."
+msgstr "Ngarkoni një version të ri të kësaj shtese"
 
 msgid "New Version"
 msgstr "Version i Ri"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Statistika të përditshme mbi shkarkimet dhe përdoruesit."
+msgstr "Statistika të përditshme mbi shkarkimet dhe përdoruesit"
 
 msgid "Statistics"
 msgstr "Statistika"
@@ -3295,27 +3284,23 @@ msgstr "Administroni Gjendje & Versione"
 msgid "View Recent Changes"
 msgstr "Shihni Ndryshimet Së Fundi"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Përpunoni hollësitë e paraqitjes së kësaj teme."
+msgstr "Përpunoni hollësitë e paraqitjes së kësaj teme"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Shihni popullaritetin e kësaj teme përgjatë kohës."
+msgstr "Shihni popullaritetin e kësaj teme përgjatë kohës"
 
 msgid "View Statistics"
 msgstr "Shihni Statistika"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Ndryshoni pronarin e kësaj teme."
+msgstr "Ndryshoni pronarin e kësaj teme"
 
 msgid "Transfer Ownership"
 msgstr "Transferoni Pronësinë"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Fshije këtë temë."
+msgstr "Fshije këtë temë"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Përpara se të mund të parashtrohet për botim, kësaj shtese i mungojnë disa të dhëna të domosdoshme."
@@ -3342,9 +3327,8 @@ msgstr[1] "<strong>{0}</strong> përdorues aktivë"
 msgid "Submit a New Version"
 msgstr "Parashtroni një Version të Ri"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Përmbledhje:"
+msgstr "Emër dhe Përmbledhje:"
 
 msgid "required"
 msgstr "e domosdoshme"
@@ -3354,6 +3338,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Kujdes: keni vlera emër/përmbledhje në gjuhë të tjera që do të qethen automatikisht që të hyjnë brenda kufirit prej %(max_length)s shenjash.  Që të përpunoni këto, shkoni te Përpunoni Faqe Produkti,"
+" pasi të jetë plotësuar procesi i parashtrimeve."
 
 msgid "Add-on URL:"
 msgstr "URL Shtese:"
@@ -3410,6 +3396,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Nëse parashtruat kod burim, pro nuk përfshitë udhëzime, duhet t’i jepni ato këto. Jepni udhëzime montimi hap pas hapi, për krijimin e një kopje të përpiktë të kodit të shtesës, sipas "
+"%(policy_requirements_open)skërkesave të rregullave përkatës%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Këto shënime do të jenë të dukshme vetëm për ju dhe shqyrtuesit tanë."
@@ -3697,27 +3685,23 @@ msgstr "Krijuar:"
 msgid "Add-on Multi Process Status:"
 msgstr "Gjendje Multiprocesi e Shtesës:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Përputhshmëria e shtesës tuaj me Multi Process Firefox (e10s)."
+msgstr "Përputhshmëria e shtesës tuaj me Multi Process Firefox (e10s)"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
+msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt"
 
 msgid "Listed Version:"
 msgstr "Version Publik:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Ky është versioni i shtesës suaj që do të instalohet nëse dikush klikon butonin e instalimit te addons.mozilla.org."
+msgstr "Ky është versioni i shtesës suaj që do të instalohet nëse dikush klikon butonin e instalimit te addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Versioni Pasues Publik:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Ky është versioni më i ri i ngarkuar, por ende nuk është efektiv te sajti."
+msgstr "Ky është versioni më i ri i ngarkuar, por ende nuk është efektiv te sajti"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Në shqyrtime radha s’ruhet në mënyrë strikte"
@@ -3735,9 +3719,8 @@ msgstr "Nënshkruar për vetëshpërndarje. Për përditësimet kujdeseni ju."
 msgid "Latest Version:"
 msgstr "Version Më i Ri:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Ky është versioni më i ri i ngarkuar, i patreguar te sajti."
+msgstr "Ky është versioni më i ri i ngarkuar, i patreguar te sajti"
 
 msgid "Upload New Version"
 msgstr "Ngarkoni Version të Ri"
@@ -3902,7 +3885,7 @@ msgstr "Që të Përpunoni dhe Përditësoni Shtesën Tuaj, Bëni Hyrjen"
 msgid "Resources for a successful launch"
 msgstr "Burime për një fillim të suksesshëm"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
@@ -3918,7 +3901,6 @@ msgstr "Shihni Burime për Botues"
 msgid "Welcome Back"
 msgstr "Mirë Se u Kthyet"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
 msgstr "Ndihmojini përdoruesit të zbulojnë zgjerimin tuaj duke krijuar një paraqitje tërheqëse."
 
@@ -4096,16 +4078,14 @@ msgstr "Përzgjidhni ngjyra për Temën tuaj."
 msgid "Foreground Text"
 msgstr "Tekst i Përparmë"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Kjo është ngjyra e tekstit të skedave."
+msgstr "Kjo është ngjyra e tekstit të skedave"
 
 msgid "Background"
 msgstr "Sfond"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Kjo është ngjyra e skedave."
+msgstr "Kjo është ngjyra e skedave"
 
 msgid "Your Theme's Name"
 msgstr "Emri i Temës Suaj"
@@ -4124,9 +4104,8 @@ msgstr "Temat e sfondit ju lejojnë të personalizoni lehtësisht pamjen e Firef
 msgid "Give your Theme a name."
 msgstr "Vërini Temës suaj një emër."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Një shpjegim i shkurtër i funksioneve bazë të temës suaj e që shfaqet në lista kërkimi dhe shfletimi, si edhe në krye të faqes së hollësive mbi temën suaj."
+msgstr "Një shpjegim i shkurtër i funksioneve bazë të temës suaj, që shfaqet në lista kërkimi dhe shfletimi, si edhe në krye të faqes së hollësive mbi temën suaj"
 
 #, python-format
 msgid ""
@@ -4266,11 +4245,9 @@ msgstr "Përgjigjjuni"
 msgid "Listing visibility"
 msgstr "Dukshmëri shtese"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}E dukshme:{label_close} E dukshme për këdo te {site_url} dhe e përfshirë në përfundime kërkimesh dhe faqe listë."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
@@ -5417,7 +5394,7 @@ msgstr "Theksoni tekst prej cilitdo saj dhe djathtasklikoni mbi të që të kër
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Ndiqni Historik Çmimesh Në Amazon {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5740,7 +5717,7 @@ msgid "Could not parse uploaded file."
 msgstr "S’u përtyp dot kartela e ngarkuar."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Lloj arkivi i pambuluar."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6314,13 +6291,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Sjellë për ju nga:"
 
-#, fuzzy
 msgid "User"
-msgstr "Emër përdoruesi"
+msgstr "Përdorues"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Adresë Email"
+msgstr "Adresë IP"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6839,12 +6814,11 @@ msgstr "{addon} :: Njoftime Abuzimesh"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Raporte Abuzimesh për {addon} dhe zhvilluesit e saj ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Shtesë"
+msgstr "ID Shtese"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "ID e brendshme në AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -7457,9 +7431,8 @@ msgstr "Po shfaqen përfundimet {0} - {1} nga {2} gjithsej për <strong>{3}</str
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Po shfaqen përfundimet {0} - {1} nga {2} gjithsej"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "S’u gjet dot shtesë me id-në \"{}\"."
+msgstr "S’u gjet dot shtesë me guid \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Nuk jeni pronar i kësaj shtese."
