@@ -151,8 +151,10 @@ class AddonGuidQueryParam(AddonQueryParam):
             # Any ValueError will trigger a 400.
             try:
                 value = urlsafe_base64_decode(value[4:])
-            except TypeError:
-                raise ValueError('Invalid RTA guid (not base64url?)')
+                if not amo.ADDON_GUID_PATTERN.match(value):
+                    raise ValueError()
+            except (TypeError, ValueError):
+                raise ValueError('Invalid RTA guid (not in base64url format?)')
 
         return value.split(',') if value else []
 

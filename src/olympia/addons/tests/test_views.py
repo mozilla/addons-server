@@ -2885,7 +2885,21 @@ class TestAddonSearchView(ESTestCase):
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
-        assert data == [u'Invalid RTA guid (not base64url?)']
+        assert data == [u'Invalid RTA guid (not in base64url format?)']
+
+    def test_filter_by_guid_return_to_amo_garbage(self):
+        # 'garbage' does decode using base64, but would lead to an
+        # UnicodeDecodeError - invalid start byte.
+        param = 'rta:garbage'
+        data = self.perform_search(
+            self.url, {'guid': param}, expected_status=400)
+        assert data == [u'Invalid RTA guid (not in base64url format?)']
+
+        # Empty param is just as bad.
+        param = 'rta:'
+        data = self.perform_search(
+            self.url, {'guid': param}, expected_status=400)
+        assert data == [u'Invalid RTA guid (not in base64url format?)']
 
     @override_settings(RETURN_TO_AMO=False)
     def test_filter_by_guid_return_to_amo_feature_disabled(self):
