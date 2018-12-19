@@ -249,9 +249,9 @@ msgstr[2] "{0} recenzí"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{0} prodej"
+msgstr[1] "{0} prodeje"
+msgstr[2] "{0} prodejů"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
@@ -261,7 +261,7 @@ msgstr[2] "{0} vrácení plateb"
 
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] ""
+msgstr[0] "{0} instalace"
 msgstr[1] ""
 msgstr[2] ""
 
