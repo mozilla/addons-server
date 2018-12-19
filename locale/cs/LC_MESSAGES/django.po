@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-19 11:31+0000\n"
+"PO-Revision-Date: 2018-12-19 11:42+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -765,6 +765,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Tato zpráva se zobrazuje, protože váš prohlížeč v požadavku nezaslal CSRF cookie. Cookie je na této stránce vyžadována z bezpečnostních důvodů - aby bylo zajištěno, že váš prohlížeč není zneužit "
+"třetími stranami."
 
 msgid "Page Not Found"
 msgstr "Stránka nebyla nalezena"
@@ -3142,7 +3144,7 @@ msgstr "Použita na stránkách doplňku."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
@@ -3395,7 +3397,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Je tu něco, na co by redaktoři měli při kontrole doplňku myslet?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Pamatujte"
 
 #, python-format
 msgid ""
@@ -4379,7 +4381,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr ""
+msgstr "Máte spousty otevřených panelů? Mějte o nich přehled v úhledné postranní liště."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4523,7 +4525,7 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} automaticky zkontroluje
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Nechte si při psaní pomoci s gramatikou. Na sociálních sítích, při psaní e-mailů, dokumentů i jinde."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4748,7 +4750,7 @@ msgstr "Nechte si přeložit vybraný text nebo celou stránku"
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vylepšete Reddit {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
@@ -4792,7 +4794,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr ""
+msgstr "Nastavte si vlastní stránku v novém panelu."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4860,7 +4862,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Přizpůsobte si své oblíbené webové stránky {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
@@ -4932,7 +4934,7 @@ msgstr "Nastavte si pozadí nového panelu, nechte si zobrazit své denní cíle
 
 #. editorial content for the discovery pane.
 msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Prohlížejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Brings back the \"View image\" button while searching on Google Images."
@@ -5044,7 +5046,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vylepšete nové panely {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
@@ -5707,7 +5709,7 @@ msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Nepodporovaný typ archivu."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -5961,7 +5963,7 @@ msgid "Content Submitted"
 msgstr ""
 
 msgid "View Rating on site"
-msgstr ""
+msgstr "Zobrazit hodnocení na webu"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
@@ -6272,10 +6274,10 @@ msgid "Brought to you by:"
 msgstr "Od:"
 
 msgid "User"
-msgstr ""
+msgstr "Uživatel"
 
 msgid "IP Address"
-msgstr ""
+msgstr "IP adresa"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6801,10 +6803,10 @@ msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Nahlášená zneužití doplňku {addon} ({num})"
 
 msgid "Add-on ID"
-msgstr ""
+msgstr "ID doplňku"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Interní ID na AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
