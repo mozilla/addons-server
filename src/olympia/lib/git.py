@@ -38,7 +38,7 @@ class TemporaryWorktree(object):
         self.obj = self.git_repository.add_worktree(self.name, self.path)
         self.repo = pygit2.Repository(self.obj.path)
 
-        # Clean the workdir
+        # Clean the workdir (of the newly created worktree)
         for entry in self.repo[self.repo.head.target].tree:
             path = os.path.join(self.path, entry.name)
 
@@ -240,12 +240,16 @@ class AddonGitRepository(object):
         """
         with TemporaryWorktree(self.git_repository) as worktree:
             # Now extract the extension to the workdir
-            extract_extension_to_dest(path, force_fsync=True)
+            extract_extension_to_dest(
+                source=path,
+                dest=worktree.path,
+                force_fsync=True)
+
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
             # state.
 
-            # Add all changes to the index (git add ...)
+            # Add all changes to the index (git add --all ...)
             worktree.repo.index.add_all()
             worktree.repo.index.write()
 
