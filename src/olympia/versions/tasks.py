@@ -123,5 +123,6 @@ def extract_version_to_git(version_id):
         repo = AddonGitRepository.extract_and_commit_source_from_version(
             version=version)
 
-    log.info('Extracted source files from {version} into {git_path}'.format(
-        version=version_id, git_path=repo.git_repository_path))
+        log.info(
+            'Extracted source files from {version} into {git_path}'.format(
+                version=version_id, git_path=repo.git_repository_path))
