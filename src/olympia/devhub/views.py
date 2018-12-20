@@ -1517,11 +1517,20 @@ def _submit_details(request, addon, version):
         cat_form_class = (addon_forms.CategoryFormSet if not static_theme
                           else forms.SingleCategoryForm)
         cat_form = cat_form_class(post_data, addon=addon, request=request)
+        policy_form = forms.PolicyForm(post_data, addon=addon)
         license_form = forms.LicenseForm(
             post_data, version=latest_version, prefix='license')
         context.update(license_form.get_context())
-        context.update(form=describe_form, cat_form=cat_form)
-        forms_list.extend([describe_form, cat_form, context['license_form']])
+        context.update(
+            form=describe_form,
+            cat_form=cat_form,
+            policy_form=policy_form)
+        forms_list.extend([
+            describe_form,
+            cat_form,
+            policy_form,
+            context['license_form']
+        ])
     if not static_theme:
         # Static themes don't need this form
         reviewer_form = forms.VersionForm(
@@ -1534,6 +1543,7 @@ def _submit_details(request, addon, version):
         if show_all_fields:
             addon = describe_form.save()
             cat_form.save()
+            policy_form.save()
             license_form.save(log=False)
             if not static_theme:
                 reviewer_form.save()

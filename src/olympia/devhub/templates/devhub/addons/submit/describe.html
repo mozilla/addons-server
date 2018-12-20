@@ -196,20 +196,20 @@
       </div>
     {% endif %}
     {% if addon.type != amo.ADDON_STATICTHEME %}
-      {% set values = form.data if form.is_bound else form.initial %}
+      {% set policy_form_data = policy_form.data if policy_form.is_bound else policy_form.initial %}
       <div class="optional-terms">
         <div class="addon-submission-field">
-          {{ form.has_priv }}
-          {{ form.has_priv.label_tag() }}
+          {{ policy_form.has_priv }}
+          {{ policy_form.has_priv.label_tag() }}
           <span class="tip tooltip"
             title="{{ _("If your add-on transmits any data from the user's computer, "
                         "a privacy policy is required that explains what data is sent "
                         "and how it is used.")
                   }}">?</span>
-          <div class="priv {{ 'hidden' if not values.has_priv }}">
-            {{ form.privacy_policy.errors }}
-            {{ form.privacy_policy.label_tag() }}
-            {{ form.privacy_policy }}
+          <div class="priv {{ 'hidden' if not policy_form_data.has_priv }}">
+            {{ policy_form.privacy_policy.errors }}
+            {{ policy_form.privacy_policy.label_tag() }}
+            {{ policy_form.privacy_policy }}
           </div>
         </div>
       </div>
