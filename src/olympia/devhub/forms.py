@@ -298,7 +298,7 @@ class WithSourceMixin(object):
                     # testzip() returns None if there are no broken CRCs.
                     if zip_file.zip_file.testzip() is not None:
                         raise zipfile.BadZipfile()
-                elif source.name.endswith(('.tar.gz', '.tar.bz2')):
+                elif source.name.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
                     # For tar files we need to do a little more work.
                     # Fortunately tarfile.open() already handles compression
                     # formats for us automatically.
