@@ -275,3 +275,32 @@ def test_extract_and_commit_source_from_version():
     expected = 'Create new version {} ({}) for {} from source file'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon))
     assert expected in output
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize('filename, expected', [
+    ('webextension_no_id.xpi', {'README.md', 'manifest.json'}),
+    ('webextension_no_id.zip', {'README.md', 'manifest.json'}),
+    ('search.xml', {'search.xml'}),
+    ('notify-link-clicks-i18n.xpi', {
+        'README.md', '_locales/de/messages.json', '_locales/en/messages.json',
+        '_locales/ja/messages.json', '_locales/nb_NO/messages.json',
+        '_locales/nl/messages.json', '_locales/ru/messages.json',
+        '_locales/sv/messages.json', 'background-script.js',
+        'content-script.js', 'icons/LICENSE', 'icons/link-48.png',
+        'manifest.json'})
+])
+def test_extract_and_commit_from_version_commits_files(filename, expected):
+    addon = addon_factory(file_kw={'filename': filename})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    env = {'GIT_DIR': repo.git_repository.path}
+
+    output = subprocess.check_output(
+        'git ls-tree -r --name-only listed', shell=True, env=env)
+
+    assert set(output.split()) == expected
