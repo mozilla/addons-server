@@ -615,24 +615,15 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
     requires_payment = forms.BooleanField(required=False)
     support_url = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
     support_email = TransField.adapt(forms.EmailField)(required=False)
-    has_priv = forms.BooleanField(
-        required=False, label=_(u'This add-on has a Privacy Policy'),
-        label_suffix='')
-    privacy_policy = TransField(
-        widget=TransTextarea(), required=False,
-        label=_(u'Please specify your add-on\'s Privacy Policy:'))
 
     fields_to_akismet_comment_check = ['name', 'summary', 'description']
 
     class Meta:
         model = Addon
         fields = ('name', 'slug', 'summary', 'description', 'is_experimental',
-                  'support_url', 'support_email', 'privacy_policy',
-                  'requires_payment')
+                  'support_url', 'support_email', 'requires_payment')
 
     def __init__(self, *args, **kw):
-        kw['initial'] = {
-            'has_priv': self._has_field('privacy_policy', kw['instance'])}
         super(DescribeForm, self).__init__(*args, **kw)
         content_waffle = waffle.switch_is_active('content-optimization')
         if not content_waffle or self.instance.type != amo.ADDON_EXTENSION:
@@ -643,18 +634,6 @@ class DescribeForm(AkismetSpamCheckFormMixin, AddonFormBase):
                 validator for validator in description.validators
                 if not isinstance(validator, MinLengthValidator)]
             description.required = False
-
-    def _has_field(self, name, instance=None):
-        # If there's a policy in any language, this addon has a policy.
-        n = getattr(instance or self.instance, u'%s_id' % name)
-        return any(map(bool, Translation.objects.filter(id=n)))
-
-    def save(self, commit=True):
-        obj = super(DescribeForm, self).save(commit)
-        if not self.cleaned_data['has_priv']:
-            delete_translation(self.instance, 'privacy_policy')
-
-        return obj
 
 
 class CombinedNameSummaryCleanMixin(object):
