@@ -27,8 +27,6 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
-from olympia.zadmin.forms import SiteEventForm
-from olympia.zadmin.models import SiteEvent
 
 from . import tasks
 from .decorators import admin_required
@@ -335,29 +333,3 @@ def recalc_hash(request, file_id):
     messages.success(request,
                      'File hash and size recalculated for file %d.' % file.id)
     return {'success': 1}
-
-
-@admin.site.admin_view
-def site_events(request, event_id=None):
-    event = get_object_or_404(SiteEvent, pk=event_id) if event_id else None
-    data = request.POST or None
-
-    if event:
-        form = SiteEventForm(data, instance=event)
-    else:
-        form = SiteEventForm(data)
-
-    if request.method == 'POST' and form.is_valid():
-        form.save()
-        return redirect('zadmin.site_events')
-    pager = amo.utils.paginate(request, SiteEvent.objects.all(), 30)
-    events = pager.object_list
-    return render(request, 'zadmin/site_events.html', {
-        'form': form, 'events': events})
-
-
-@admin.site.admin_view
-def delete_site_event(request, event_id):
-    event = get_object_or_404(SiteEvent, pk=event_id)
-    event.delete()
-    return redirect('zadmin.site_events')

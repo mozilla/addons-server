@@ -29,7 +29,6 @@ from olympia.amo.decorators import allow_cross_site_request, json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
 from olympia.stats.forms import DateForm
-from olympia.zadmin.models import SiteEvent
 
 from .models import DownloadCount, ThemeUserCount, UpdateCount
 
@@ -378,43 +377,6 @@ def get_daterange_or_404(start, end):
         dates.cleaned_data['start'],
         dates.cleaned_data['end']
     )
-
-
-@json_view
-@non_atomic_requests
-def site_events(request, start, end):
-    """Return site events in the given timeframe."""
-    start, end = get_daterange_or_404(start, end)
-    qs = SiteEvent.objects.filter(
-        Q(start__gte=start, start__lte=end) |
-        Q(end__gte=start, end__lte=end))
-
-    events = list(site_event_format(request, qs))
-
-    type_pretty = unicode(amo.SITE_EVENT_CHOICES[amo.SITE_EVENT_RELEASE])
-
-    releases = product_details.firefox_history_major_releases
-
-    for version, date_ in releases.items():
-        events.append({
-            'start': date_,
-            'type_pretty': type_pretty,
-            'type': amo.SITE_EVENT_RELEASE,
-            'description': 'Firefox %s released' % version,
-        })
-    return events
-
-
-def site_event_format(request, events):
-    for e in events:
-        yield {
-            'start': e.start.isoformat(),
-            'end': e.end.isoformat() if e.end else None,
-            'type_pretty': unicode(amo.SITE_EVENT_CHOICES[e.event_type]),
-            'type': e.event_type,
-            'description': e.description,
-            'url': e.more_info_url,
-        }
 
 
 def daterange(start_date, end_date):

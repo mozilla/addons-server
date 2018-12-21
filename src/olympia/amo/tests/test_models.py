@@ -10,7 +10,7 @@ from olympia.addons.models import Addon
 from olympia.amo import models as amo_models
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
-from olympia.zadmin.models import SiteEvent
+from olympia.zadmin.models import Config
 
 
 pytestmark = pytest.mark.django_db
@@ -197,22 +197,20 @@ class BasePreviewMixin(object):
 
 class BaseQuerysetTestCase(TestCase):
     def test_queryset_transform(self):
-        # We test with the SiteEvent model because it's a simple model
+        # We test with the Config model because it's a simple model
         # with no translated fields, no caching or other fancy features.
-        SiteEvent.objects.create(start=datetime.now(), description='Zero')
-        first = SiteEvent.objects.create(start=datetime.now(),
-                                         description='First')
-        second = SiteEvent.objects.create(start=datetime.now(),
-                                          description='Second')
-        SiteEvent.objects.create(start=datetime.now(), description='Third')
-        SiteEvent.objects.create(start=datetime.now(), description='')
+        Config.objects.create(key='a', value='Zero')
+        first = Config.objects.create(key='b', value='First')
+        second = Config.objects.create(key='c', value='Second')
+        Config.objects.create(key='d', value='Third')
+        Config.objects.create(key='e', value='')
 
         seen_by_first_transform = []
         seen_by_second_transform = []
         with self.assertNumQueries(0):
             # No database hit yet, everything is still lazy.
-            qs = amo_models.BaseQuerySet(SiteEvent)
-            qs = qs.exclude(description='').order_by('id')[1:3]
+            qs = amo_models.BaseQuerySet(Config)
+            qs = qs.exclude(value='').order_by('key')[1:3]
             qs = qs.transform(
                 lambda items: seen_by_first_transform.extend(list(items)))
             qs = qs.transform(
