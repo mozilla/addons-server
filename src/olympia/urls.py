@@ -9,7 +9,6 @@ from django.views.static import serve as serve_static
 from olympia.addons import views as addons_views
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
-from olympia.stats import views as stats_views
 from olympia.versions import views as version_views
 from olympia.versions.urls import download_patterns
 

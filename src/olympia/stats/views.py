@@ -12,7 +12,6 @@ from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
 from django.db import connection
-from django.db.models import Q
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 
@@ -25,7 +24,7 @@ from olympia import amo
 from olympia.access import acl
 from olympia.stats.decorators import addon_view_stats
 from olympia.lib.cache import memoize
-from olympia.amo.decorators import allow_cross_site_request, json_view
+from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
 from olympia.stats.forms import DateForm
