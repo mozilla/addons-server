@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 11:34+0000\n"
+"PO-Revision-Date: 2018-12-21 11:51+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2042,13 +2042,13 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr ""
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "下载 Firefox 主题，Firefox 品牌篇。此分类包括丰富多彩的 Firefox 徽标、更包括许许多多的狐狸内容的主题。"
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "下载 Firefox 主题，日系篇。此分类包括可爱的吉祥物 Foxkeh 在各种场景的各种萌态等内容的的主题。"
 
 msgid "Holiday"
 msgstr "假日"
@@ -2084,10 +2084,10 @@ msgid "Solid"
 msgstr "纯色"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "下载 Firefox 主题，纯色和渐变色篇，个性化您的浏览器。此分类包括亮红色、淡色、柔和的灰色等内容的主题。"
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "下载 Firefox 主题，体育运动篇。此分类包括国旗、运动队、足球、曲棍球等内容的主题。"
 
 msgid "Websites"
 msgstr "网站"
