@@ -12,7 +12,7 @@ def file_viewer_class(value, key):
         result.append('directory closed')
     else:
         result.append('file')
-    if value['short'] == key:
+    if value['filename'] == key:
         result.append('selected')
     if value.get('diff'):
         result.append('diff')

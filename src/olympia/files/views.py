@@ -14,7 +14,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
-from olympia.files.file_viewer import extract_file
 
 from . import forms
 
@@ -93,23 +92,22 @@ def browse(request, viewer, key=None, type='file'):
         return response
 
     data = setup_viewer(request, viewer.file)
-    data['viewer'] = viewer
-    data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
-    data['form'] = form
+    viewer.select(key)
+    key = viewer.get_selected_file(key)
+    files = viewer.get_files()
+    if key not in files:
+        raise http.Http404
 
-    if not viewer.is_extracted():
-        extract_file(viewer)
+    data.update({
+        'viewer': viewer,
+        'poll_url': reverse('files.poll', args=[viewer.file.id]),
+        'form': form,
+        'status': True,
+        'files': files,
+        'key': key})
 
-    if viewer.is_extracted():
-        data.update({'status': True, 'files': viewer.get_files()})
-        key = viewer.get_default(key)
-        if key not in data['files']:
-            raise http.Http404
-
-        viewer.select(key)
-        data['key'] = key
-        if (not viewer.is_directory() and not viewer.is_binary()):
-            data['content'] = viewer.read_file()
+    if (not viewer.is_directory() and not viewer.is_binary()):
+        data['content'] = viewer.read_file()
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
@@ -148,22 +146,17 @@ def compare(request, diff, key=None, type='file'):
                                      diff.right.file.id])
     data['form'] = form
 
-    if not diff.is_extracted():
-        extract_file(diff.left)
-        extract_file(diff.right)
+    data.update({'status': True,
+                 'files': diff.get_files(),
+                 'files_deleted': diff.get_deleted_files()})
+    key = diff.left.get_selected_file(key)
+    if key not in data['files'] and key not in data['files_deleted']:
+        raise http.Http404
 
-    if diff.is_extracted():
-        data.update({'status': True,
-                     'files': diff.get_files(),
-                     'files_deleted': diff.get_deleted_files()})
-        key = diff.left.get_default(key)
-        if key not in data['files'] and key not in data['files_deleted']:
-            raise http.Http404
-
-        diff.select(key)
-        data['key'] = key
-        if diff.is_diffable():
-            data['left'], data['right'] = diff.read_file()
+    diff.select(key)
+    data['key'] = key
+    if diff.is_diffable():
+        data['left'], data['right'] = diff.read_file()
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)

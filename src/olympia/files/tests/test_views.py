@@ -666,7 +666,7 @@ class TestDiffViewer(FilesBase, TestCase):
         doc = pq(res.content)
 
         install_js_link = doc(
-            '#files-tree li a.file[data-short="install.js"]'
+            '#files-tree li a.file[data-filename="install.js"]'
         )[0].get('href')
 
         expected = reverse(
