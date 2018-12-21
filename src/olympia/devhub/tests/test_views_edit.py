@@ -771,6 +771,20 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         doc = pq(response.content)
         assert doc('#trans-description textarea').attr('minlength') == '10'
 
+    def test_edit_description_does_not_affect_privacy_policy(self):
+        # Regression test for #10229
+        addon = self.get_addon()
+        addon.privacy_policy = u'My polïcy!'
+        addon.save()
+        data = self.get_dict(description=u'Sométhing descriptive.')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        addon = Addon.objects.get(pk=addon.pk)
+        assert addon.privacy_policy_id
+        assert addon.privacy_policy == u'My polïcy!'
+        assert addon.description_id
+        assert addon.description == u'Sométhing descriptive.'
+
 
 class TestEditDescribeUnlisted(BaseTestEditDescribe, L10nTestsMixin):
     listed = False
