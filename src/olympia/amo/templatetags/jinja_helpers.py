@@ -431,11 +431,6 @@ def loc(s):
 
 
 @library.global_function
-def site_event_type(type):
-    return amo.SITE_EVENT_CHOICES[type]
-
-
-@library.global_function
 @jinja2.contextfunction
 def remora_url(context, url, lang=None, app=None, prefix=''):
     """Wrapper for urlresolvers.remora_url"""

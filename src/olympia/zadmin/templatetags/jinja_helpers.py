@@ -26,7 +26,6 @@ def admin_site_links():
             ('View site settings', reverse('zadmin.settings')),
             ('View request environment', reverse('zadmin.env')),
             ('Django admin pages', reverse('zadmin.home')),
-            ('Site Events', reverse('zadmin.site_events')),
         ],
         'tools': [
             ('Manage elasticsearch', reverse('zadmin.elastic')),

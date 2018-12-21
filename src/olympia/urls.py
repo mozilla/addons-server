@@ -9,7 +9,6 @@ from django.views.static import serve as serve_static
 from olympia.addons import views as addons_views
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
-from olympia.stats import views as stats_views
 from olympia.versions import views as version_views
 from olympia.versions.urls import download_patterns
 
@@ -84,10 +83,6 @@ urlpatterns = [
 
     # API v3+.
     url(r'^api/', include('olympia.api.urls')),
-
-    # Site events data.
-    url(r'^statistics/events-(?P<start>\d{8})-(?P<end>\d{8})\.json$',
-        stats_views.site_events, name='amo.site_events'),
 
     # Site statistics that we are going to catch, the rest will fall through.
     url(r'^statistics/', include('olympia.stats.urls')),

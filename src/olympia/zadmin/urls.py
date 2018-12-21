@@ -54,12 +54,6 @@ urlpatterns = [
     url(r'^email-devs$', views.email_devs, name='zadmin.email_devs'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),
 
-    # Site Event admin.
-    url(r'^events/(?P<event_id>\d+)?$', views.site_events,
-        name='zadmin.site_events'),
-    url(r'^events/(?P<event_id>\d+)/delete$', views.delete_site_event,
-        name='zadmin.site_events.delete'),
-
     # The Django admin.
     url(r'^models/',
         include((admin.site.get_urls(), 'admin'), namespace=admin.site.name)),
