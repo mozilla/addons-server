@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 03:23+0000\n"
+"PO-Revision-Date: 2018-12-21 11:34+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2054,16 +2054,16 @@ msgid "Holiday"
 msgstr "假日"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "下载 Firefox 主题，假日篇。此分类包括圣诞节、万圣节、感恩节、圣帕特里克节、复活节、美国独立日等内容的主题。"
 
 msgid "Music"
 msgstr "音乐"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "下载 Firefox 主题，音乐兴趣和艺术家篇。此分类包括 Nirvana 和 BTS 等流行乐队、乐器、音乐视频等内容的主题。"
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "下载 Firefox 主题，动物和自然景观篇。此分类包括鲜花、日落、狐狸、季节、行星、小猫、鸟类等内容的主题。"
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "下载 Firefox 主题，妙趣横生，异想天开，独一无二。"
@@ -2072,7 +2072,7 @@ msgid "Scenery"
 msgstr "风景"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr "下载 Firefox 主题，感受环境和自然世界。此分类包括日落、海滩、插图、城市天际线等内容的主题。"
+msgstr "下载 Firefox 主题，环境和自然世界篇。此分类包括日落、海滩、插图、城市天际线等内容的主题。"
 
 msgid "Seasonal"
 msgstr "季节"
@@ -2093,7 +2093,7 @@ msgid "Websites"
 msgstr "网站"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr "下载 Firefox 主题，捕捉网络的精髓—引人入胜，与众不同，百家争鸣。"
+msgstr "下载 Firefox 主题，捕捉网络的精髓 - 引人入胜，与众不同，百家争鸣。"
 
 msgid "General"
 msgstr "一般"
