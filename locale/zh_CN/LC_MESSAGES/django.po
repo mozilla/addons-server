@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-17 09:27+0000\n"
+"PO-Revision-Date: 2018-12-21 02:59+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1862,13 +1862,13 @@ msgid "Alerts & Updates"
 msgstr "提醒和更新"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，助您紧跟潮流，日理万机，事半功倍。寻找重载标签页、生产力管理等更多扩展。"
 
 msgid "Appearance"
 msgstr "外观"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，修改网站或浏览器的外观。此分类包括暗色主题、标签页管理等功能的扩展。"
 
 msgid "Bookmarks"
 msgstr "书签"
@@ -1880,58 +1880,58 @@ msgid "Download Management"
 msgstr "下载管理"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，帮助您下载网页、音乐和视频内容。您还可以找到下载管理、文件分享等功能的扩展。"
 
 msgid "Feeds, News & Blogging"
 msgstr "收取点、新闻和博客"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，化繁为简，让您在社交媒体、博客、RSS 源上时刻保持最新，并减轻眼睛疲劳。"
 
 msgid "Games & Entertainment"
 msgstr "游戏和娱乐"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，增强您的娱乐体验。此分类包括可以增强游戏体验、控制视频播放等功能的扩展。"
 
 msgid "Language Support"
 msgstr "语言工具"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，提供语法检查、单词查找、文本翻译、文字转语音等语言支持。"
 
 msgid "Photos, Music & Videos"
 msgstr "照片、音乐和视频"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，增强照片、音乐和视频体验。此分类包括修改音频与视频、以图搜图等功能的扩展。"
 
 msgid "Privacy & Security"
 msgstr "隐私和安全"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，安全私密地进行浏览。此分类包括拦截恼人广告、阻止跟踪、管理重定向等功能的扩展。"
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，用于搜索和查找。此分类包括高亮和搜索文本、查找 IP 地址/域名等功能的扩展。"
 
 msgid "Shopping"
 msgstr "购物"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "下载 Firefox 扩展，通过优惠信息查找工具、优惠券查找工具、评价分析工具等，增强您的网购体验。"
 
 msgid "Social & Communication"
 msgstr "社交和通信"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，增强社交媒体和即时通讯。此分类包括标签页通知增强、视频下载器等功能的扩展。"
 
 msgid "Tabs"
 msgstr "标签页"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，定制标签页与新标签页。探索可以控制标签页、更改与其交互等功能的扩展。"
 
 msgid "Web Development"
 msgstr "网页开发"
@@ -1964,7 +1964,7 @@ msgid "Photos & Media"
 msgstr "照片和媒体"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr "下载 Firefox 扩展，增强图片和媒体体验。此分类包括以图搜图、截取整个页面等扩展。"
+msgstr "下载 Firefox 扩展，增强图片和媒体体验。此分类包括以图搜图、截取整个页面等功能的扩展。"
 
 msgid "Security & Privacy"
 msgstr "安全和隐私"
