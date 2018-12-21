@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 16:50+0000\n"
+"PO-Revision-Date: 2018-04-17 20:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -515,7 +515,6 @@ msgstr "ניהול"
 msgid "Add-on Review"
 msgstr "סקירת תוספת"
 
-#, fuzzy
 msgid "Admin Manage"
 msgstr "הגדרות ניהול"
 
@@ -6878,7 +6877,7 @@ msgid "An unknown error occurred"
 msgstr "אירעה שגיאה בלתי ידועה"
 
 msgid "Self-reviews are not allowed."
-msgstr "סקירות עצמיות אסורות."
+msgstr "סקירות עצמיות אינן מותרות."
 
 msgid "Review successfully processed."
 msgstr "הסקירה עברה עיבוד בהצלחה."
@@ -7203,9 +7202,8 @@ msgstr ""
 msgid "Clear Admin Content Review Flag"
 msgstr "ניקוי סימון דרישת סקירת תוכן של מנהל"
 
-#, fuzzy
 msgid "Clear Admin Static Theme Review Flag"
-msgstr "מחיקת סימון דרישת סריקת תוכן של מנהל"
+msgstr "ניקוי סימון דרישת סקירת ערכת נושא קבועה של מנהל"
 
 msgid "(admin)"
 msgstr "(מנהל)"
