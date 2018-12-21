@@ -13,7 +13,6 @@ from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
 from olympia.files.models import File
-from olympia.zadmin.models import SiteEvent
 
 
 LOGGER_NAME = 'z.zadmin'
@@ -125,10 +124,3 @@ class FileStatusForm(ModelForm):
 
 FileFormSet = modelformset_factory(File, form=FileStatusForm,
                                    formset=BaseModelFormSet, extra=0)
-
-
-class SiteEventForm(ModelForm):
-    class Meta:
-        model = SiteEvent
-        fields = ('start', 'end', 'event_type', 'description',
-                  'more_info_url')

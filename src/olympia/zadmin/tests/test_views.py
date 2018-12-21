@@ -104,52 +104,6 @@ class TestHomeAndIndex(TestCase):
         assert response.status_code == 200
 
 
-class TestSiteEvents(TestCase):
-    fixtures = ['base/users', 'zadmin/tests/siteevents']
-
-    def setUp(self):
-        super(TestSiteEvents, self).setUp()
-        self.client.login(email='admin@mozilla.com')
-
-    def test_get(self):
-        url = reverse('zadmin.site_events')
-        response = self.client.get(url)
-        assert response.status_code == 200
-        events = response.context['events']
-        assert len(events) == 1
-
-    def test_add(self):
-        url = reverse('zadmin.site_events')
-        new_event = {
-            'event_type': 2,
-            'start': '2012-01-01',
-            'description': 'foo',
-        }
-        response = self.client.post(url, new_event, follow=True)
-        assert response.status_code == 200
-        events = response.context['events']
-        assert len(events) == 2
-
-    def test_edit(self):
-        url = reverse('zadmin.site_events', args=[1])
-        modified_event = {
-            'event_type': 2,
-            'start': '2012-01-01',
-            'description': 'bar',
-        }
-        response = self.client.post(url, modified_event, follow=True)
-        assert response.status_code == 200
-        events = response.context['events']
-        assert events[0].description == 'bar'
-
-    def test_delete(self):
-        url = reverse('zadmin.site_events.delete', args=[1])
-        response = self.client.get(url, follow=True)
-        assert response.status_code == 200
-        events = response.context['events']
-        assert len(events) == 0
-
-
 class TestEmailPreview(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
