@@ -549,7 +549,7 @@ class UserNotification(ModelBase):
         return (
             u'{user}, {notification}, enabled={enabled}'
             .format(
-                user=self.user.display_name or self.user.email,
+                user=self.user.name,
                 notification=self.notification.short,
                 enabled=self.enabled))
 

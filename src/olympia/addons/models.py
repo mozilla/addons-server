@@ -449,9 +449,9 @@ class Addon(OnChangeMixin, ModelBase):
             'slug': self.slug,
             'total_downloads': self.total_downloads,
             'url': jinja_helpers.absolutify(self.get_url_path()),
-            'user_str': ("%s, %s (%s)" % (user.display_name or
-                                          user.username, user.email,
-                                          user.id) if user else "Unknown"),
+            'user_str': (
+                "%s, %s (%s)" % (user.name, user.email, user.id) if user
+                else "Unknown"),
         }
 
         email_msg = u"""

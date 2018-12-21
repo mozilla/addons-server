@@ -26,7 +26,7 @@
               <td>
                 {{ ACTION_DICT.get(item.details.action) }}
               </td>
-              <td>{{ item.user.display_name }}</td>
+              <td>{{ item.user.name }}</td>
               <td>
                 {% if item.details.comment or item.details.reject_reason %}
                   <a class="comments show" href="#">{{ _('Show Comments') }}</a>
