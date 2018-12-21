@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from collections import namedtuple
 import uuid
 import os
 import shutil
@@ -23,6 +24,10 @@ BRANCHES = {
     amo.RELEASE_CHANNEL_LISTED: 'listed',
     amo.RELEASE_CHANNEL_UNLISTED: 'unlisted'
 }
+
+
+# A mixture of Blob and TreeEntry
+TreeEntryWrapper = namedtuple('Entry', 'tree_entry, path')
 
 
 class TemporaryWorktree(object):
@@ -280,3 +285,23 @@ class AddonGitRepository(object):
             branch.set_target(commit.hex)
 
         return commit
+
+    def iter_tree(self, tree):
+        """Recursively iterate through a tree.
+
+        This includes the directories.
+        """
+        for tree_entry in tree:
+            obj = self.git_repository[tree_entry.oid]
+            if isinstance(obj, pygit2.Tree):
+                yield TreeEntryWrapper(
+                    tree_entry=tree_entry,
+                    path=tree_entry.name)
+                for child in self.iter_tree(obj):
+                    yield TreeEntryWrapper(
+                        tree_entry=child.tree_entry,
+                        path=os.path.join(tree_entry.name, child.path))
+            else:
+                yield TreeEntryWrapper(
+                    tree_entry=tree_entry,
+                    path=tree_entry.name)
