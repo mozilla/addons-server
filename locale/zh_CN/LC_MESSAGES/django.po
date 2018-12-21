@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 02:59+0000\n"
+"PO-Revision-Date: 2018-12-21 03:23+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1874,7 +1874,7 @@ msgid "Bookmarks"
 msgstr "书签"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，通过密码保护书签，寻找重复书签，查找损坏的书签等，增强书签。"
 
 msgid "Download Management"
 msgstr "下载管理"
@@ -1940,7 +1940,7 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "下载 Firefox 扩展，天马行空，独辟蹊径，但对于部分奇怪的任务非常有用。"
 
 msgid "Device Features & Location"
 msgstr "设备特性和位置"
@@ -1988,7 +1988,7 @@ msgid "User Interface"
 msgstr "用户界面"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，更改用户界面。修改网页使之更易于阅读、搜索和浏览等。"
 
 msgid "Animals"
 msgstr "动物"
@@ -2066,13 +2066,13 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "下载 Firefox 主题，妙趣横生，异想天开，独一无二。"
 
 msgid "Scenery"
 msgstr "风景"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "下载 Firefox 主题，感受环境和自然世界。此分类包括日落、海滩、插图、城市天际线等内容的主题。"
 
 msgid "Seasonal"
 msgstr "季节"
@@ -2093,7 +2093,7 @@ msgid "Websites"
 msgstr "网站"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "下载 Firefox 主题，捕捉网络的精髓—引人入胜，与众不同，百家争鸣。"
 
 msgid "General"
 msgstr "一般"
