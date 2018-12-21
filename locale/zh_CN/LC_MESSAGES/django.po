@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 11:51+0000\n"
+"PO-Revision-Date: 2018-12-21 12:10+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1946,7 +1946,7 @@ msgid "Device Features & Location"
 msgstr "设备特性和位置"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "下载 Firefox 扩展，增强 Android 版。执行快速搜索、释放系统资源、作笔记等。"
 
 msgid "Experimental"
 msgstr "实验性"
@@ -2021,7 +2021,7 @@ msgid "Abstract"
 msgstr "抽象"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "下载 Firefox 主题，艺术和概念篇。此分类包括色彩缤纷的调色板和形状、幻想风景、顽皮的猫、迷幻的花朵等内容的主题。"
 
 msgid "Causes"
 msgstr "理念"
@@ -2033,13 +2033,13 @@ msgid "Fashion"
 msgstr "时尚"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "下载 Firefox 主题，庆祝篇 - 图案、花卉、纹理、模型等。"
 
 msgid "Film and TV"
 msgstr "电影和电视"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "下载 Firefox 主题，影视篇。此分类包括像火影忍者这样的动画，像黑客帝国的电影，电视剧（权力的游戏）等内容的主题。"
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr "下载 Firefox 主题，Firefox 品牌篇。此分类包括丰富多彩的 Firefox 徽标、更包括许许多多的狐狸内容的主题。"
