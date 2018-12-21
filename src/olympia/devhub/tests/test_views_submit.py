@@ -675,6 +675,18 @@ class TestAddonSubmitSource(TestSubmitBase):
             oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
+    def test_submit_source_tgz(self):
+        response = self.post(
+            has_source=True, source=self.generate_source_compressed_tar(
+                suffix='.tgz'))
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert self.get_version().source
+        assert self.addon.needs_admin_code_review
+        mode = (
+            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+        assert mode == '0100644'
+
     def test_submit_source_tarbz2(self):
         response = self.post(
             has_source=True, source=self.generate_source_compressed_tar(

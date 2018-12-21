@@ -848,7 +848,7 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
         if source.endswith(('.zip', '.xpi')):
             zip_file = SafeZip(source, force_fsync=force_fsync)
             zip_file.extract_to_dest(target)
-        elif source.endswith(('.tar.gz', '.tar.bz2')):
+        elif source.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
             tarfile_class = (
                 tarfile.TarFile
                 if not force_fsync else FSyncedTarFile)
