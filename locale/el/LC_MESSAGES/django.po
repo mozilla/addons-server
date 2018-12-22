@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-22 19:10+0000\n"
+"PO-Revision-Date: 2018-12-22 23:49+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2640,7 +2640,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Το εικονίδιο πρέπει να είναι τετράγωνο (ίδιο πλάτος και ύψος)."
 
 msgid "There was an error uploading your preview."
 msgstr "Παρουσιάστηκε σφάλμα κατά την αποστολή εικόνας προεπισκόπησης."
@@ -3805,7 +3805,7 @@ msgid "Please include instructions on how to reproduce the final add-on file, ei
 msgstr ""
 
 msgid "Read more about the source code review policy."
-msgstr ""
+msgstr "Διαβάστε περισσότερα σχετικά με τη πολιτική κριτικής πηγαίου κώδικα."
 
 msgid "Latest News"
 msgstr "Τελευταίες ειδήσεις"
