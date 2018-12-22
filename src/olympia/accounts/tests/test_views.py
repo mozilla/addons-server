@@ -1120,6 +1120,21 @@ class TestAccountViewSetUpdate(TestCase):
             'username': [u'Enter a valid username consisting of letters, '
                          u'numbers, underscores or hyphens.']}
 
+    def test_display_name_valid(self):
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'display_name': 'a'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': ['Ensure this field has at least 2 characters.']}
+
+        response = self.patch(
+            data={'display_name': 'a' * 51})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': [
+                'Ensure this field has no more than 50 characters.']}
+
     def test_picture_upload(self):
         # Make sure the picture doesn't exist already or we get a false-postive
         assert not path.exists(self.user.picture_path)

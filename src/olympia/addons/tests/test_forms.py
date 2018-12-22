@@ -230,7 +230,7 @@ class TestThemeForm(TestCase):
         # Bug 1181751.
         user = UserProfile.objects.create(email='foo@bar.com',
                                           username='a' * 255,
-                                          display_name='b' * 255)
+                                          display_name='b' * 50)
         request = RequestFactory()
         request.user = user
         cat = Category.objects.create(type=amo.ADDON_PERSONA)

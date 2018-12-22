@@ -92,6 +92,26 @@ class TestUserEditForm(UserFormBase):
         self.assertFormError(response, 'form', 'display_name', msg)
         assert self.user.reload().display_name != 'IE6Fan'
 
+    def test_display_name_length(self):
+        data = {'username': 'new-username',
+                'display_name': 'a' * 51,
+                'email': 'jbalogh@mozilla.com'}
+        response = self.client.post(self.url, data)
+        msg = 'Ensure this value has at most 50 characters (it has 51).'
+        self.assertFormError(response, 'form', 'display_name', msg)
+        assert self.user.reload().display_name != 'a' * 51
+
+        data['display_name'] = 'a'
+        response = self.client.post(self.url, data)
+        msg = 'Ensure this value has at least 2 characters (it has 1).'
+        self.assertFormError(response, 'form', 'display_name', msg)
+        assert self.user.reload().display_name != 'a'
+
+        data['display_name'] = ''
+        response = self.client.post(self.url, data)
+        self.assertNoFormErrors(response)
+        assert self.user.reload().display_name == ''
+
     def test_no_username_anonymous_does_not_change(self):
         """Test that username isn't required with auto-generated usernames and
         the auto-generated value does not change."""

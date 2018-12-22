@@ -68,6 +68,7 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 
 
 class UserProfileSerializer(PublicUserProfileSerializer):
+    display_name = serializers.CharField(min_length=2, max_length=50)
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
