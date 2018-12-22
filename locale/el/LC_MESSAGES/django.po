@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-22 18:50+0000\n"
+"PO-Revision-Date: 2018-12-22 19:10+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -22,7 +22,7 @@ msgid "This display name cannot be used."
 msgstr "Αυτό το όνομα προβολής δεν μπορεί να χρησιμοποιηθεί."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Το πεδίο αρχικής σελίδας μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικές ιστοσελίδες."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Τα ονόματα χρήστη δεν μπορούν να περιέχουν μόνο ψηφία."
@@ -141,7 +141,7 @@ msgstr[0] "Όλες οι ετικέτες θα πρέπει να έχουν το
 msgstr[1] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρες."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Το εισηγμένο κείμενο έχει αναφερθεί ως ανεπιθύμητο."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή."
@@ -714,7 +714,7 @@ msgstr "Θετικός ακέραιος"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Αυτό το πεδίο μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικές ιστοσελίδες. Δεν επιτρέπονται URLs στο %(domain)s."
 
 msgid "Incorrect, please try again."
 msgstr "Λάθος, παρακαλούμε δοκιμάστε ξανά."
@@ -3293,9 +3293,8 @@ msgstr "Ανεβάστε μια νέα έκδοση του πρόσθετου."
 msgid "New Version"
 msgstr "Νέα έκδοση"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Ημερήσια στατιστικά λήψεων και χρηστών."
+msgstr "Ημερήσια στατιστικά λήψεων και χρηστών"
 
 msgid "Statistics"
 msgstr "Στατιστικά"
@@ -3317,9 +3316,8 @@ msgstr "Προβολή της δημοτικότητας αυτού του θέ�
 msgid "View Statistics"
 msgstr "Εμφάνιση στατιστικών"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Αλλαγή του ιδιοκτήτητη αυτού του θέματος."
+msgstr "Αλλαγή του ιδιοκτήτη αυτού του θέματος"
 
 msgid "Transfer Ownership"
 msgstr "Μεταφορά Ιδιοκτησίας"
