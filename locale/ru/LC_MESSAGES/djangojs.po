@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-10-19 17:38+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"PO-Revision-Date: 2018-12-22 13:28+0000\n"
+"Last-Translator: Dmitry <d3dx12.xx@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Имя файла дополнения должно заканчиват
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% завершено"
+msgstr "{0}% выполнено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -67,7 +67,7 @@ msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
 msgid "Validating {0}"
-msgstr "Валидация {0}"
+msgstr "Проверка {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Размер вашего дополнения превышает максимально допустимый размер {0}."
@@ -128,8 +128,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что "
-"вы используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
+"Исходные коды скомпилированных бинарников, а также минифицированных или обфусцированных скриптов (за исключением известных библиотек) необходимо представлять для проверки отдельно. Убедитесь, что вы"
+" используете поле загрузки исходного кода, чтобы избежать отклонения вашей заявки."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Процесс валидации нашёл следующие проблемы, которые могут привести к отклонению:"
@@ -153,7 +153,7 @@ msgid "Follow this Collection"
 msgstr "Следовать за этой подборкой"
 
 msgid "Stop Following"
-msgstr "Перестать следовать"
+msgstr "Отписаться"
 
 msgid "Following"
 msgstr "Следовать"
