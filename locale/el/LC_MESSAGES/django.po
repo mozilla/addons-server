@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-22 18:22+0000\n"
+"PO-Revision-Date: 2018-12-22 18:50+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -8010,7 +8010,7 @@ msgid "Logging in with this email address into %(site)s again will create a new 
 msgstr ""
 
 msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
+msgstr "Οι κριτικές και οι βαθμολογίες σας δεν θα διαγραφούν, αλλά δεν θα σχετίζονται με εσάς πλέον."
 
 msgid "Confirm account deletion"
 msgstr "Επιβεβαίωση διαγραφής λογαριασμού"
