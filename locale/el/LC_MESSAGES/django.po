@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-22 23:49+0000\n"
+"PO-Revision-Date: 2018-12-23 13:52+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2627,17 +2627,14 @@ msgstr "Οι εικόνες δεν μπορούν να είναι μεγαλύτ
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
+msgstr "Η εικόνα πρέπει να έχει τουλάχιστον {0} pixels πλάτος και {1} pixels ύψος."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
+msgstr "Οι διαστάσεις της εικόνας πρέπει να είναι σε αναλογία 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Η εικόνα θα πρέπει να έχει {0} pixels πλάτος και {1} pixels ύψος ακριβώς."
+msgstr "Το εικονίδιο πρέπει να έχει τουλάχιστον {0} pixels πλάτος και ύψος."
 
 msgid "Icon must be square (same width and height)."
 msgstr "Το εικονίδιο πρέπει να είναι τετράγωνο (ίδιο πλάτος και ύψος)."
@@ -2845,9 +2842,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Αναβάθμιση συμβατότητας</a> <a href=\"%(version_url)s\" class=\"button\">Αποστολή νέας έκδοσης</a> ή <a href=\"#\" "
 "class=\"close\">αγνόηση</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Προβολή και ενημέρωση εύρους συμβατότητας με εφαρμογή."
+msgstr "Προβολή και ενημέρωση εύρους συμβατότητας εφαρμογής"
 
 msgid "Compatibility"
 msgstr "Συμβατότητα"
@@ -3152,9 +3148,8 @@ msgstr "Χρησιμοποιείται στις σελίδες λεπτομερ�
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Χρησιμοποιείται στις σελίδες λεπτομερειών του πρόσθετου."
+msgstr "Θα είναι το πρότυπο στις μελλοντικές σελίδες λεπτομερειών πρόσθετου."
 
 msgid "Upload a Custom Icon..."
 msgstr "Αποστολή προσαρμοσμένου εικονιδίου..."
@@ -3165,9 +3160,8 @@ msgstr "Υποστηρίζονται PNG και JPG."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Υποστηρίζονται μορφές PNG και JPG. Το μέγεθος των εικονιδίων μετατρέπεται σε 64x64 pixel αν είναι μεγαλύτερο."
+msgstr "Το εικονίδιο θα αλλάξει μέγεθος σε 128x128 pixels αν είναι μεγαλύτερο."
 
 msgid "Screenshots"
 msgstr "Στιγμιότυπα"
@@ -3305,13 +3299,11 @@ msgstr "Διαχείριση κατάστασης & έκδοσης"
 msgid "View Recent Changes"
 msgstr "Προβολή πρόσφατων αλλαγών"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Επεξεργασία λεπτομερειών σχετικά με την καταχώριση του θέματος."
+msgstr "Επεξεργασία λεπτομερειών στη σελίδα προϊόντος αυτού του θέματος"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Προβολή της δημοτικότητας αυτού του θέματος στο χρόνο."
+msgstr "Προβολή της δημοτικότητας αυτού του θέματος σταδιακά"
 
 msgid "View Statistics"
 msgstr "Εμφάνιση στατιστικών"
@@ -3704,9 +3696,8 @@ msgstr "Δημιουργήθηκε:"
 msgid "Add-on Multi Process Status:"
 msgstr "Κατάσταση πολυδιεργασίας προσθέτου:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Η συμβατότητα του προσθέτου σας με την πολυδιεργασία του Firefox (e10s)."
+msgstr "Η συμβατότητα του προσθέτου σας με την πολυδιεργασία του Firefox (e10s)"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
@@ -4254,16 +4245,14 @@ msgstr "Απάντηση"
 msgid "Listing visibility"
 msgstr "Ορατότητα στη λίστα"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες καταχώρησης."
+msgstr "{label_open}Ορατό:{label_close} Ορατό σε όλους στο {site_url} και συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και τις σελίδες προϊόντων."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Αόρατο:{label_close} Δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα καταχώρησης θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για καταχώρηση "
-"δεν θα γίνονται αποδεκτές σε αυτή την κατάσταση,"
+"{label_open}Αόρατο:{label_close} Δεν θα συμπεριλαμβάνεται στα αποτελέσματα αναζήτησης και η σελίδα προϊόντος θα υποδεικνύει ότι το έχετε απενεργοποιήσει. Οι υποβολές νέων εκδόσεων για το προϊόν δεν "
+"θα γίνονται αποδεκτές σε αυτή την κατάσταση."
 
 msgid "Listed versions"
 msgstr "Καταχωρημένες εκδόσεις"
