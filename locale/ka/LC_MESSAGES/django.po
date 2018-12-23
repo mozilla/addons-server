@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-23 04:41+0000\n"
+"PO-Revision-Date: 2018-12-23 18:40+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1507,7 +1507,7 @@ msgstr "{addon} ჩართულია."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
-msgstr "{addon} მდგომარეობა გახდა {status}."
+msgstr "{addon} მდგომარეობად მიეთითა {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} დაემატა {addon}-ს."
