@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 21:50+0000\n"
+"PO-Revision-Date: 2018-12-23 04:41+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1040,7 +1040,7 @@ msgstr "ახალი კრებულის შექმნა"
 
 #, python-format
 msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "ჩვენი <a href=\"%(legal)s\">სამართლებრივი შენიშვნების</a> თანახმად, ცალკეული კრებულების შეთანხმებები რეგულირდება Creative Commons Attribution Share Alike ლიცენზიით"
+msgstr "ჩვენი <a href=\"%(legal)s\">სამართლებრივი შენიშვნების</a> თანახმად, ცალკეული კრებულების შეთანხმებები ექვემდებარება Creative Commons Attribution Share Alike ლიცენზიას"
 
 msgid "Create Collection"
 msgstr "კრებულის შექმნა"
