@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-23 13:52+0000\n"
+"PO-Revision-Date: 2018-12-23 15:09+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5262,9 +5262,8 @@ msgid "Clear your browser cache with a click or keystroke."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Μην ξεχάστε ποτέ ξανά {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Create and manage a to-do list in your browser."
@@ -5283,9 +5282,8 @@ msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{en
 msgstr "Απολαύστε μουσική απ' όλο τον κόσμο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr "Πρόσβαση σε 20,000+ ραδιοφωνικούς σταθμούς από όλο τον κόσμο."
+msgstr "Πρόσβαση σε 30.000+ ραδιοφωνικούς σταθμούς από όλο τον κόσμο."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5651,9 +5649,8 @@ msgid "Make knowledgeable decisions by tracking and receiving alerts for the pri
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κυριαρχήστε τον ήχο {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Adjust browser audio settings with extreme clarity."
@@ -5668,9 +5665,8 @@ msgid "Defend yourself against the sneakiest trackers."
 msgstr "Αμυνθείτε από τους πιο ύπουλους ιχνηλάτες."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Καλύψτε τα ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
