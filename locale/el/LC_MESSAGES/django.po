@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-24 20:42+0000\n"
+"PO-Revision-Date: 2018-12-24 21:00+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -787,7 +787,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "Δεν βρέθηκε"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -795,12 +795,12 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Είναι πιθανό να έχετε κάνει κλικ σε κάποιο παλιό σύνδεσμο, ή"
-" να πληκτρολογήσατε εσφαλμένα τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε τη για ορθογραφικά λάθη.</li> <li> Αν ακολουθήσατε κάποιο σύνδεσμο από κάπου, "
-"παρακαλούμε <a href=\"https://github.com/mozilla/addons-server/issues/new/\">αναφέρετε το ζήτημα</a>. Πείτε μας από που ήλθατε και τι ψάχνατε και θα κάνουμε ό,τι μπορούμε για να το διορθώσουμε. "
-"</li> </ul> <p>Ή μπορείτε απλά να μεταβείτε σε μερικές άλλες δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με προβεβλημένα πρόσθετα</a>;</li> <li>"
-" Θέλετε να κάνετε <a href=\"%(search)s\">αναζήτηση για πρόσθετα</a>; Μπορείτε να μεταβείτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή να χρησιμοποιήσετε απλά το παραπάνω πεδίο αναζήτησης. "
-"</li> <li> Αν προτιμάτε να ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα των προσθέτων</a>. </li> </ul>"
+"<h1>Λυπούμαστε, αλλά δεν μπορούμε να βρούμε αυτό που ψάχνετε.</h1> <p> Η σελίδα ή το αρχείο που ζητήσατε δεν βρέθηκε στην ιστοσελίδα μας. Πιθανώς, κάνατε κλικ σε ένα σύνδεσμο που είναι παρωχημένος, "
+"ή πληκτρολογήσατε λάθος τη διεύθυνση. </p> <ul> <li>Αν πληκτρολογήσατε τη διεύθυνση, παρακαλούμε ελέγξτε την ξανά για λάθη.</li> <li> Αν ακολουθήσατε ένα σύνδεσμο από κάπου, παρακαλούμε "
+"%(open_bug_link)sαναφέρετε ένα ζήτημα%(close_bug_link)s. Πείτε μας από πού ήρθατε και τι ψάχνετε και θα κάνουμε ό,τι καλύτερο μπορούμε για να το διορθώσουμε. </li> </ul> <p>Ή μπορείτε απλά να "
+"μεταβείτε σε μερικές από τις πιο δημοφιλείς σελίδες στην ιστοσελίδα μας.</p> <ul> <li>Σάς ενδιαφέρει μια <a href=\"%(rec)s\">λίστα με τα προτεινόμενα πρόσθετα</a>;</li> <li> Θέλετε να <a "
+"href=\"%(search)s\">αναζητήσετε πρόσθετα</a>; Μπορείτε να πάτε στη <a href=\"%(search)s\">σελίδα αναζήτησης</a> ή απλά χρησιμοποιήστε το πεδίο αναζήτησης παραπάνω. </li> <li> Αν προτιμάτε να "
+"ξεκινήσετε από την αρχή, απλά μεταβείτε στην <a href=\"%(home)s\">αρχική σελίδα προσθέτων</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ωχ"
@@ -5370,9 +5370,8 @@ msgid "Perform a Wikipedia search by simply highlighting text from any webpage a
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα βίντεο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ανακαλύψτε περιεχόμενο για κάθε ιστοσελίδα {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find what you're looking for within a specific domain."
@@ -5387,9 +5386,8 @@ msgid "Highlight text from any website and right-click to search YouTube for rel
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Βελτιώστε τα emoji σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Αποκτήστε πλεονέκτημα στο Amazon {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -5511,9 +5509,8 @@ msgid "A simple ad blocker focused on displaying just the content you want."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Παρακολούθηση ιστορικού τιμών Amazon {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
@@ -5633,9 +5630,8 @@ msgid "Make extraordinary visual changes—remove ads or unsavory content—to a
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Κάντε λήψη στιγμιότυπων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Παρακολούθηση ιστορικού τιμών Amazon {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
