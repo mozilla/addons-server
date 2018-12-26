@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-26 12:32+0000\n"
+"PO-Revision-Date: 2018-12-26 12:37+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -5353,9 +5353,8 @@ msgid "Jump into private browsing mode with a click."
 msgstr "Μετάβαση στη λειτουργία ιδιωτικής περιήγησης με ένα κλικ."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Εξατομίκευση καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Σταματήστε την κατάληψη καρτελών {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
@@ -5462,9 +5461,8 @@ msgid "Uncover the software that supports whatever website you're visiting."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Διαγράψτε τα ψηφιακά ίχνη σας {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Εμποδίστε τις ανακατευθύνσεις & την καταγραφή {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop redirects so you can access the site you want—faster."
@@ -5575,9 +5573,8 @@ msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabli
 msgstr "Χρησιμοποιείτε VPN; Η διεύθυνση IP σας ενδέχεται να διαρρεύσει. Σταματήστε το απενεργοποιώντας το WebRTC."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Αποκλεισμός διαφημίσεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Κλείσιμο ενοχλητικών επικαλύψεων {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
