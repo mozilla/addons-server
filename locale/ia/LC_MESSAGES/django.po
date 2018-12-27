@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 17:53+0000\n"
+"PO-Revision-Date: 2018-12-27 17:01+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -107,11 +107,11 @@ msgid "Add to {0}"
 msgstr "Adder a {0}"
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Iste limace es ja in uso. Per favor elige un altero."
+msgstr "Iste supernomine es ja in uso. Per favor elige un altero."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Le limace non pote ser \"%(slug)s\". Per favor elige un altero."
+msgstr "Le supernomine non pote ser \"%(slug)s\". Per favor elige un altero."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -939,7 +939,7 @@ msgstr "Tu debe fornir un objecto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "\"%s\" non es un pk o limace valide - le objecto non existe."
+msgstr "\"%s\" non es un pk o supernomine valide - le objecto non existe."
 
 msgid "Application Versions"
 msgstr "Versiones del application"
@@ -2406,7 +2406,7 @@ msgid "An author can only be listed once."
 msgstr "Un autor pote ser listate solo un vice."
 
 msgid "Slug incorrect."
-msgstr "Limace incorrecte."
+msgstr "Supernomine non correcte."
 
 msgid "Details"
 msgstr "Detalios"
@@ -2957,7 +2957,7 @@ msgid "Add-on URL"
 msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Elige un URL (slug - limace) breve, unic pro tu additivo."
+msgstr "Elige un supernomine breve del URL, unic pro tu additivo."
 
 msgid "View Listing"
 msgstr "Vide le lista"
