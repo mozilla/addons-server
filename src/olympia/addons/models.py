@@ -854,6 +854,24 @@ class Addon(OnChangeMixin, ModelBase):
         log.info('Incrementing d2c-versions namespace for add-on [%s]: %s' % (
                  self.id, key))
 
+    def latest_compatible_version(self, request, app):
+        if request is not None:
+            user_agent = request.META.get('HTTP_USER_AGENT')
+            version_match = re.search(r'Thunderbird/(\d+\.\d+(a\d+)?)', user_agent)
+            if version_match is not None:
+                version = version_int(version_match.group(1))
+                latest = True
+                for v in self.versions.all():
+                    if not v.is_public():
+                        continue
+                    compat = v.compatible_apps.get(app)
+                    if compat is None or compat.min.version > version_match.group(1):
+                        latest = False
+                        continue
+                    if v.is_compatible_by_default or compat.max.version_int >= version:
+                        return v, latest
+        return self.current_version, True
+
     @property
     def current_version(self):
         """Return the latest public listed version of an addon

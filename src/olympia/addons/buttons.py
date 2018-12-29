@@ -29,7 +29,8 @@ def install_button(context, addon, version=None,
         addon, app, lang, version=version,
         show_warning=show_warning, src=src, collection=collection, size=size,
         detailed=detailed, impala=impala,
-        show_download_anyway=show_download_anyway)
+        show_download_anyway=show_download_anyway,
+        request=request)
     installed = (request.user.is_authenticated() and
                  addon.id in request.user.mobile_addons)
     context = {
@@ -77,12 +78,13 @@ class InstallButton(object):
 
     def __init__(self, addon, app, lang, version=None,
                  show_warning=True, src='', collection=None, size='',
-                 detailed=False, impala=False, show_download_anyway=False):
+                 detailed=False, impala=False, show_download_anyway=False,
+                 request=None):
         self.addon, self.app, self.lang = addon, app, lang
         self.latest = version is None
         self.version = version
         if not self.version:
-            self.version = addon.current_version
+            (self.version, self.latest) = addon.latest_compatible_version(request, app)
         self.src = src
         self.collection = collection
         self.size = size
