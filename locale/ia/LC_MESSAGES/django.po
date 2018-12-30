@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-27 17:01+0000\n"
+"PO-Revision-Date: 2018-12-30 13:51+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -3155,7 +3155,7 @@ msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size 
 msgstr ""
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
 msgstr ""
