@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-30 13:51+0000\n"
+"PO-Revision-Date: 2018-12-30 20:53+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2538,7 +2538,7 @@ msgstr "Aviso de securitate de Mozilla: Tu credentiales API de AMO ha essite rev
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Le validation generava trop errores//warnings assi %s le messages esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
+msgstr "Le validation generava trop errores//avisos assi le messages de %s esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
 
 msgid "All My Add-ons"
 msgstr "Tote mi additivos"
@@ -2949,6 +2949,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Le summario debe explicar lo que le additivos face, clarmente e concisemente. Ambe le nomine e le summario apparera su le pagina e le resultatos de recerca de tu producto. Illos ha un longor maxime "
+"combinate de 70 characteres e un longor minime de 2 characteres cata uno."
 
 msgid "Summary"
 msgstr "Summario"
@@ -3152,13 +3154,13 @@ msgid "Add a Screenshot..."
 msgstr "Adder un instantaneo de schermo..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime e recommendate es 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Haber instantaneos de schermo in le pagina de tu producto, accresce grandemente su probabilitates de ser installate e evidentiate in le pagina principal."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -3326,6 +3328,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Attention: tu ha nomine/summario in altere localisationes que sera automaticamente secate pro plenar sub le limite de %(max_length)s characteres.  Pro lo rediger va al pagina de redaction del "
+"producto post que le invio es complete."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
