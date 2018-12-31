@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-31 18:46+0000\n"
+"PO-Revision-Date: 2018-12-31 19:19+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3281,9 +3281,8 @@ msgstr "Вивантажити нову версію цього додатка"
 msgid "New Version"
 msgstr "Нова версія"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Щоденна статистика завантажень та користувачів."
+msgstr "Щоденна статистика завантажень і користувачів"
 
 msgid "Statistics"
 msgstr "Статистика"
@@ -3294,27 +3293,23 @@ msgstr "Керування статусом і версіями"
 msgid "View Recent Changes"
 msgstr "Переглянути нещодавні зміни"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Редагувати інформацію про сторінку цієї теми."
+msgstr "Редагувати інформацію на сторінці цієї теми"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Переглянути популярність цієї теми протягом часу."
+msgstr "Переглянути популярність цієї теми протягом часу"
 
 msgid "View Statistics"
 msgstr "Переглянути статистику"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Змінити власника цієї теми."
+msgstr "Змінити власника цієї теми"
 
 msgid "Transfer Ownership"
 msgstr "Передача власності"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Видалити цю тему."
+msgstr "Видалити цю тему"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Для цього додатка відсутня деяка обов'язкова інформація, необхідна для подання на публікацію."
@@ -3342,9 +3337,8 @@ msgstr[2] "<strong>{0}</strong> активних користувачів"
 msgid "Submit a New Version"
 msgstr "Відправити нову версію"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Стисло:"
+msgstr "Назва та опис:"
 
 msgid "required"
 msgstr "потрібно"
@@ -3701,27 +3695,23 @@ msgstr "Створено:"
 msgid "Add-on Multi Process Status:"
 msgstr "Багатопроцесовість додатка:"
 
-#, fuzzy
 msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Сумісність вашого додатка з багатопроцесовим Firefox (e10s)."
+msgstr "Сумісність вашого додатка з багатопроцесовим Firefox (e10s)"
 
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Опубліковано на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом."
+msgstr "Оприлюднено на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом"
 
 msgid "Listed Version:"
 msgstr "Опублікована версія:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Це версія вашого додатка, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org."
+msgstr "Це версія вашого додатка, яка буде встановлена, якщо хтось натисне на кнопку Встановити на addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Наступна опублікована версія:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Це найновіша завантажена версія, проте її ще немає на сайті."
+msgstr "Це найновіша вивантажена версія, проте вона поки що недоступна на сайті"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Черги не перевіряються чітко за порядком"
@@ -3739,9 +3729,8 @@ msgstr "Підписано для власного розповсюдження.
 msgid "Latest Version:"
 msgstr "Остання версія:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Це найновіша завантажена неопублікована версія."
+msgstr "Це найновіша вивантажена неоприлюднена версія"
 
 msgid "Upload New Version"
 msgstr "Вивантажити нову версію"
@@ -3908,7 +3897,7 @@ msgstr "Увійдіть, щоб змінювати й оновлювати св
 msgid "Resources for a successful launch"
 msgstr "Ресурси для успішного запуску"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
 "%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
@@ -3922,9 +3911,8 @@ msgstr "Перегляд ресурсів для тих, хто розміщує
 msgid "Welcome Back"
 msgstr "З поверненням"
 
-#, fuzzy
 msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Допоможіть користувачам дізнатися про ваше розширення, створивши гарний опис."
+msgstr "Допоможіть користувачам дізнатися про ваше розширення, створивши гарну сторінку."
 
 msgid "Learn How"
 msgstr "Дізнайтеся як"
@@ -4099,16 +4087,14 @@ msgstr "Оберіть кольори для вашої теми."
 msgid "Foreground Text"
 msgstr "Текст переднього тла"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Це колір тексту вкладки."
+msgstr "Це колір тексту вкладки"
 
 msgid "Background"
 msgstr "Тло"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Це колір вкладок."
+msgstr "Це колір вкладок"
 
 msgid "Your Theme's Name"
 msgstr "Назва вашої теми"
@@ -4127,9 +4113,8 @@ msgstr "Фонові теми дозволяють легко персоналі
 msgid "Give your Theme a name."
 msgstr "Дайте назву своїй темі."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Коротке пояснення основних функцій вашої теми, які відображаються в списках пошуку та перегляду, а також у верхній частині сторінки вашої теми."
+msgstr "Коротке пояснення основних функцій вашої теми, які відображаються в списках пошуку та перегляду, а також у верхній частині сторінки вашої теми"
 
 #, python-format
 msgid ""
@@ -4265,14 +4250,12 @@ msgstr "Відповісти"
 msgid "Listing visibility"
 msgstr "Видимість додатка"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Видимий:{label_close} Видимий для всіх на {site_url}, а також включений в результати пошуку та опубліковані сторінки."
+msgstr "{label_open}Видимий:{label_close} Видимий для всіх на {site_url}, а також включений в результати пошуку та сторінки продуктів."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
-msgstr "{label_open}Невидимий:{label_close} Не буде включено в результати пошуку, а його сторінка буде вказувати, що ви його вимкнули. В такому стані відправлення нових версій не буде схвалюватись."
+msgstr "{label_open}Невидимий:{label_close} Не буде включено в результати пошуку, а його сторінка буде вказувати, що ви його вимкнули. В такому стані подання нових версій не буде схвалюватись."
 
 msgid "Listed versions"
 msgstr "Опубліковані версії"
@@ -6304,13 +6287,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr "Надано:"
 
-#, fuzzy
 msgid "User"
-msgstr "Ім'я користувача"
+msgstr "Користувач"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Адреса електронної пошти"
+msgstr "IP-адреса"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6835,9 +6816,8 @@ msgstr "{addon} :: Скарги про зловживання"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Звіти про зловживання для {addon} і його розробників ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Додаток"
+msgstr "ID додатка"
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -7451,9 +7431,8 @@ msgstr "Показ результатів {0} - {1} з {2} для <strong>{3}</s
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Показ результатів {0} - {1} з {2}"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Не вдалося знайти додаток з ID \"{}\"."
+msgstr "Не вдалося знайти додаток з guid \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Ви не володієте цим додатком."
