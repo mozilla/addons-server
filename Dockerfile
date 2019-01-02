@@ -1,4 +1,4 @@
-FROM python:2.7.14-slim-stretch
+FROM python:2.7.15-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -31,7 +31,6 @@ RUN apt-get update && apt-get install -y \
         python-dev \
         python-pip \
         nodejs \
-        npm \
         # Git, because we're using git-checkout dependencies
         git \
         # Dependencies for mysql-python
