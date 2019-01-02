@@ -121,8 +121,9 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
     username = models.CharField(max_length=255, default='', unique=True)
-    display_name = models.CharField(max_length=255, default='', null=True,
-                                    blank=True)
+    display_name = models.CharField(
+        max_length=50, default='', null=True, blank=True,
+        validators=[validators.MinLengthValidator(2)])
 
     email = models.EmailField(unique=True, null=True, max_length=75)
 
