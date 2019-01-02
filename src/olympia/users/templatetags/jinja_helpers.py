@@ -74,13 +74,14 @@ def _user_link(user, max_text_length=None):
     if isinstance(user, basestring):
         return user
 
-    username = user.name
     if max_text_length and len(user.name) > max_text_length:
-        username = user.name[:max_text_length].strip() + '...'
+        name = user.name[:max_text_length].strip() + '...'
+    else:
+        name = user.name
 
     return u'<a href="%s" title="%s">%s</a>' % (
         user.get_url_path(), jinja2.escape(user.name),
-        jinja2.escape(force_text(username)))
+        jinja2.escape(force_text(name)))
 
 
 @library.filter

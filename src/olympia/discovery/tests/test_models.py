@@ -12,7 +12,7 @@ class TestDiscoveryItem(TestCase):
         addon = addon_factory(slug=u'somé-slug', name=u'Sôme Name')
         user1 = user_factory(display_name=u'Bàr')
         addon.addonuser_set.create(user=user1, position=1)
-        user2 = user_factory(username=u'Fôo')
+        user2 = user_factory(username=u'Fôo', id=345)
         addon.addonuser_set.create(user=user2, position=2)
         user3 = user_factory(username=u'Nôpe')
         addon.addonuser_set.create(user=user3, listed=False)
@@ -25,7 +25,7 @@ class TestDiscoveryItem(TestCase):
             u'Fancy Héading <span>with '
             u'<a href="http://testserver/en-US/firefox/addon/som%C3%A9-slug/'
             u'?{}">'
-            u'Sôme Name by Bàr, Fôo</a></span>').format(
+            u'Sôme Name by Bàr, Firefox user 345</a></span>').format(
                 item.build_querystring())
 
     def test_heading_custom(self):

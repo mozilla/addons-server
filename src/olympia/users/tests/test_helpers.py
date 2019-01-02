@@ -97,15 +97,16 @@ def test_users_list_truncate_display_name():
 
 def test_user_link_unicode():
     """make sure helper won't choke on unicode input"""
-    u = UserProfile(username=u'jmüller', display_name=u'Jürgen Müller', pk=1)
+    u = UserProfile.objects.create(
+        username=u'jmüller', display_name=u'Jürgen Müller')
     assert user_link(u) == (
         u'<a href="%s" title="%s">Jürgen Müller</a>' % (
             u.get_url_path(), u.name))
 
-    u = UserProfile(username='\xe5\xaf\x92\xe6\x98\x9f', pk=1)
+    u = UserProfile.objects.create(display_name=u'\xe5\xaf\x92\xe6\x98\x9f')
     assert user_link(u) == (
         u'<a href="%s" title="%s">%s</a>' % (u.get_url_path(), u.name,
-                                             u.username))
+                                             u.display_name))
 
 
 class TestAddonUsersList(TestPersonas, TestCase):

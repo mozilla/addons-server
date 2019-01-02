@@ -367,13 +367,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def name(self):
         if self.display_name:
             return force_text(self.display_name)
-        elif self.has_anonymous_username:
-            # L10n: {id} will be something like "13ad6a", just a random number
-            # to differentiate this user from other anonymous users.
-            return ugettext('Firefox user {id}').format(
-                id=self._anonymous_username_id())
         else:
-            return force_text(self.username)
+            return ugettext('Firefox user {id}').format(id=self.id)
 
     welcome_name = name
 
@@ -381,11 +376,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.name
 
     def get_short_name(self):
-        return self.username
-
-    def _anonymous_username_id(self):
-        if self.has_anonymous_username:
-            return self.username.split('-')[1][:6]
+        return self.name
 
     def anonymize_username(self):
         """Set an anonymous username."""
@@ -402,7 +393,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def has_anonymous_display_name(self):
-        return not self.display_name and self.has_anonymous_username
+        return not self.display_name
 
     @cached_property
     def ratings(self):
