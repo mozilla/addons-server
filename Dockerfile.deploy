@@ -36,7 +36,6 @@ RUN apt-get update && apt-get install -y \
         python-dev                       \
         python-pip                       \
         nodejs                           \
-        npm                              \
         uuid-dev                         \
         uwsgi                            \
         uwsgi-plugin-python              \
