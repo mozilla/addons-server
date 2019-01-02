@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2018-10-14 17:20+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -1136,9 +1136,6 @@ msgstr "Las colecciones son grupos de complementos relacionados que cualquiera p
 msgid "Explore Collections"
 msgstr "Explorar colecciones"
 
-msgid "Common Tags"
-msgstr "Etiquetas comunes"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1904,25 +1901,6 @@ msgstr "Plugins"
 msgid "Themes (Static)"
 msgstr "Temas (estáticos)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Otro"
-
-msgid "Exception"
-msgstr "Excepción"
-
-msgid "Release"
-msgstr "Lanzamiento"
-
-msgid "Change"
-msgstr "Cambio"
-
-msgid "Compatible"
-msgstr "Compatible"
-
-msgid "Incompatible"
-msgstr "Incompatible"
-
 msgid "Alerts & Updates"
 msgstr "Alertas y actualizaciones"
 
@@ -2003,6 +1981,10 @@ msgstr "Desarrollo web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Otro"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3607,6 +3589,9 @@ msgstr "Subir complemento"
 msgid "Where to Host Version"
 msgstr "Dónde alojar la versión"
 
+msgid "Change"
+msgstr "Cambio"
+
 msgid "Upload Version"
 msgstr "Subir versión"
 
@@ -3743,13 +3728,6 @@ msgid "Created:"
 msgstr "Creado:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Estado del multiproceso del complemento:"
-
-#, fuzzy
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "La compatibilidad de tu complemento con Multiproceso de Firefox (e10s)."
-
 #, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Aparecen en esta página tras pasar la revisión de código. Es la propia página la que gestiona las actualizaciones automáticas."
@@ -4180,8 +4158,8 @@ msgstr "Este es el color de las pestañas."
 msgid "Your Theme's Name"
 msgstr "Nombre de tu tema"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "por <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
@@ -5803,9 +5781,6 @@ msgstr "Se necesita GUID para Firefox 47 y versiones superiores."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "La \"strict_min_version\" admitida más antigua es la 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "No se pudo encontrar la versión min/max. Puede que \"strict_min_version\" o \"strict_max_version\" contengan una versión no válida."
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -8028,8 +8003,6 @@ msgstr "Para ocultarte en el anonimato, aduce una razón para el cambio pero no 
 msgid "No user with that email."
 msgstr "No se ha encontrado un usuario con ese correo electrónico."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Usuario de Firefox {id}"
 
