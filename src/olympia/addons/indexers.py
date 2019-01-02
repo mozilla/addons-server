@@ -87,6 +87,17 @@ class AddonIndexer(BaseSearchIndexer):
                             'type': 'keyword', 'index': False},
                     }
                 },
+                'license': {
+                    'type': 'object',
+                    'properties': {
+                        'id': {'type': 'long', 'index': False},
+                        'builtin': {'type': 'boolean', 'index': False},
+                        'name_translations': cls.get_translations_definition(),
+                        'url': {'type': 'text', 'index': False}
+                    },
+                },
+                'release_notes_translations':
+                    cls.get_translations_definition(),
                 'version': {'type': 'keyword', 'index': False},
             }
         }
@@ -155,7 +166,7 @@ class AddonIndexer(BaseSearchIndexer):
                         'analyzer': 'standard_with_word_split',
                         'fields': {
                             # Raw field for exact matches and sorting.
-                            'raw': cls.raw_field_definition(),
+                            'raw': cls.get_raw_field_definition(),
                             # Trigrams for partial matches.
                             'trigrams': {
                                 'type': 'text',
@@ -179,6 +190,8 @@ class AddonIndexer(BaseSearchIndexer):
                         'type': 'object',
                         'properties': {
                             'id': {'type': 'long', 'index': False},
+                            'caption_translations':
+                                cls.get_translations_definition(),
                             'modified': {'type': 'date', 'index': False},
                             'sizes': {
                                 'type': 'object',
@@ -228,7 +241,9 @@ class AddonIndexer(BaseSearchIndexer):
 
     @classmethod
     def extract_version(cls, obj, version_obj):
-        return {
+        from olympia.versions.models import License, Version
+
+        data = {
             'id': version_obj.pk,
             'compatible_apps': cls.extract_compatibility_info(
                 obj, version_obj),
@@ -250,6 +265,20 @@ class AddonIndexer(BaseSearchIndexer):
             'reviewed': version_obj.reviewed,
             'version': version_obj.version,
         } if version_obj else None
+        if data and version_obj:
+            attach_trans_dict(Version, [version_obj])
+            data.update(cls.extract_field_api_translations(
+                version_obj, 'release_notes', db_field='releasenotes_id'))
+            if version_obj.license:
+                data['license'] = {
+                    'id': version_obj.license.id,
+                    'builtin': version_obj.license.builtin,
+                    'url': version_obj.license.url,
+                }
+                attach_trans_dict(License, [version_obj.license])
+                data['license'].update(cls.extract_field_api_translations(
+                    version_obj.license, 'name'))
+        return data
 
     @classmethod
     def extract_compatibility_info(cls, obj, version_obj):

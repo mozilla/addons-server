@@ -877,11 +877,6 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             'username': author.username,
         }
 
-    def _test_version_license_and_release_notes(self, version, data):
-        """Override because the ES serializer doesn't include those fields."""
-        assert 'license' not in data
-        assert 'release_notes' not in data
-
     def test_score(self):
         self.request.version = 'v4'
         self.addon = addon_factory()

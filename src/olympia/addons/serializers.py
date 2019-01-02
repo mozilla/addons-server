@@ -8,7 +8,9 @@ from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.api.fields import ReverseChoiceField, TranslationSerializerField
+from olympia.api.fields import (
+    ESTranslationSerializerField, ReverseChoiceField,
+    TranslationSerializerField)
 from olympia.api.serializers import BaseESSerializer
 from olympia.api.utils import is_gate_active
 from olympia.applications.models import AppVersion
@@ -193,17 +195,6 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
         return absolutify(obj.get_url_path())
 
 
-class SimpleESVersionSerializer(SimpleVersionSerializer):
-    class Meta:
-        model = Version
-        # In ES, we don't have license and release notes info, so instead of
-        # returning null, which is not necessarily true, we omit those fields
-        # entirely.
-        fields = ('id', 'compatibility', 'edit_url', 'files',
-                  'is_strict_compatibility_enabled', 'reviewed', 'url',
-                  'version')
-
-
 class VersionSerializer(SimpleVersionSerializer):
     channel = ReverseChoiceField(choices=amo.CHANNEL_CHOICES_API.items())
     license = LicenseSerializer()
@@ -251,6 +242,32 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
         version_qs = Version.objects.latest_public_compatible_with(
             application, appversions).filter(addon=addon)
         return version_qs.first() or addon.current_version
+
+
+class ESCompactLicenseSerializer(BaseESSerializer, CompactLicenseSerializer):
+    translated_fields = ('name', )
+
+    def __init__(self, *args, **kwargs):
+        super(ESCompactLicenseSerializer, self).__init__(*args, **kwargs)
+        self.db_name = ESTranslationSerializerField()
+        self.db_name.bind('name', self)
+
+    def fake_object(self, data):
+        # We just pass the data as the fake object will have been created
+        # before by ESAddonSerializer.fake_version_object()
+        return data
+
+
+class ESCurrentVersionSerializer(BaseESSerializer, CurrentVersionSerializer):
+    license = ESCompactLicenseSerializer()
+
+    datetime_fields = ('reviewed',)
+    translated_fields = ('release_notes',)
+
+    def fake_object(self, data):
+        # We just pass the data as the fake object will have been created
+        # before by ESAddonSerializer.fake_version_object()
+        return data
 
 
 class AddonEulaPolicySerializer(serializers.ModelSerializer):
@@ -497,7 +514,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     # data the same way than the regular serializer does (usually because we
     # some of the data is not indexed in ES).
     authors = BaseUserSerializer(many=True, source='listed_authors')
-    current_version = SimpleESVersionSerializer()
+    current_version = ESCurrentVersionSerializer()
     previews = ESPreviewSerializer(many=True, source='current_previews')
     _score = serializers.SerializerMethodField()
 
@@ -561,6 +578,23 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     min=AppVersion(version=compat_dict.get('min_human', '')),
                     max=AppVersion(version=compat_dict.get('max_human', '')))
             version._compatible_apps = compatible_apps
+            version_serializer = self.fields['current_version']
+            # Can't use version_serializer._attach_translations() directly
+            # because release_notes source field name is different.
+            version_serializer.fields['release_notes'].attach_translations(
+                version, data, 'release_notes', target_name='releasenotes')
+            if 'license' in data:
+                license_serializer = version_serializer.fields['license']
+                version.license = License(id=data['license']['id'])
+                license_serializer._attach_fields(
+                    version.license, data['license'], ('builtin', 'url'))
+                # Can't use license_serializer._attach_translations() directly
+                # because 'name' is a SerializerMethodField, not an
+                # ESTranslatedField.
+                license_serializer.db_name.attach_translations(
+                    version.license, data['license'], 'name')
+            else:
+                version.license = None
         else:
             version = None
         return version
