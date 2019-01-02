@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1127,9 +1127,6 @@ msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱ�
 msgid "Explore Collections"
 msgstr "ਸੰਗ੍ਰਹਿਾਂ ਦੀ ਪੜਚੋਲ"
 
-msgid "Common Tags"
-msgstr "ਆਮ ਟੈਗ"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1927,26 +1924,6 @@ msgstr "ਪਲੱਗਇਨ"
 msgid "Themes (Static)"
 msgstr "ਥੀਮ ਕਲਾਕਾਰ"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "ਦੂਜੇ"
-
-msgid "Exception"
-msgstr "ਅਪਵਾਦ"
-
-msgid "Release"
-msgstr "ਰਿਲੀਜ਼"
-
-msgid "Change"
-msgstr "ਬਦਲੋ"
-
-msgid "Compatible"
-msgstr ""
-
-#, fuzzy
-msgid "Incompatible"
-msgstr "ਅਧੂਰਾ"
-
 #, fuzzy
 msgid "Alerts & Updates"
 msgstr "ਲੌੜੀਦੀਂਆਂ ਅੱਪਡੇਟਾਂ"
@@ -2033,6 +2010,10 @@ msgstr "ਐਕਸਟੇਸ਼ਨ ਵਿਕਾਸ"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "ਦੂਜੇ"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3660,6 +3641,9 @@ msgstr "ਆਪਣਾ ਐਡ-ਆਨ ਅੱਪਲੋਡ ਕਰੋ"
 msgid "Where to Host Version"
 msgstr "ਟੀਚਾ ਵਰਜਨ"
 
+msgid "Change"
+msgstr "ਬਦਲੋ"
+
 #, fuzzy
 msgid "Upload Version"
 msgstr "ਨਵਾਂ ਵਰਜਨ ਅੱਪਲੋਡ ਕਰੋ"
@@ -3803,13 +3787,6 @@ msgid "Created:"
 msgstr "ਰਚਿਆ:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
-msgid "Add-on Multi Process Status:"
-msgstr "ਐਡ-ਆਨ ਸਮੀਖਿਆ ਕਾਰਜ"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr ""
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -4241,9 +4218,9 @@ msgstr "ਇਹ ਟੈਬਾਂ ਦਾ ਰੰਗ ਹੈ।"
 msgid "Your Theme's Name"
 msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "<a href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
 
 msgid "Create a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
@@ -5855,9 +5832,6 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
 #, fuzzy, python-format
@@ -8140,8 +8114,6 @@ msgstr "ਅਣਪਛਾਤਾ ਰੱਖਣ ਲਈ, ਬਦਲਾਅ ਲਈ ਇੱ
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "ਐਨਡਰੋਇਡ ਲਈ ਫ਼ਾਇਰਫ਼ਾਕਸ"
