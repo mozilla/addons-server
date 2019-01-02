@@ -252,9 +252,9 @@ isodate==0.6.0 \
 jmespath==0.9.3 \
     --hash=sha256:f11b4461f425740a1d908e9a3f7365c3d2e569f6ca68a2ff8bc5bcd9676edd63
 # kombu is required by celery
-kombu==4.2.2 \
-    --hash=sha256:9bf7d37b93249b76a03afb7bbcf7149a358b6079ca2431e725414b1caa10922c \
-    --hash=sha256:52763f41077e25fe7e2f17b8319d8a7b7ab953a888c49d9e4e0464fceb716896
+kombu==4.2.2.post1 \
+    --hash=sha256:1ef049243aa05f29e988ab33444ec7f514375540eaa8e0b2e1f5255e81c5e56d \
+    --hash=sha256:3c9dca2338c5d893f30c151f5d29bfb81196748ab426d33c362ab51f1e8dbf78
 # lxml is required by pyquery
 lxml==4.2.5 \
     --hash=sha256:fa39ea60d527fbdd94215b5e5552f1c6a912624521093f1384a491a8ad89ad8b \
