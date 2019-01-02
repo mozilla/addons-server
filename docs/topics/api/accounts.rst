@@ -33,14 +33,14 @@ A developer is defined as a user who is listed as a developer or owner of one or
     :>json float average_addon_rating: The average rating for addons the developer has listed on the website.
     :>json string|null biography: More details about the user.
     :>json string created: The date when this user first logged in and created this account.
-    :>json boolean has_anonymous_display_name: The user has chosen neither a name nor a username.
+    :>json boolean has_anonymous_display_name: The user hasn't chosen a name.
     :>json boolean has_anonymous_username: The user hasn't chosen a username.
     :>json string|null homepage: The user's website.
     :>json int id: The numeric user id.
     :>json boolean is_addon_developer: The user has developed and listed add-ons on this website.
     :>json boolean is_artist: The user has developed and listed themes on this website.
     :>json string|null location: The location of the user.
-    :>json string name: The name chosen by the user, or the username if not set.
+    :>json string name: The name chosen by the user, or the "Firefox user {id}" if not set.
     :>json int num_addons_listed: The number of addons the developer has listed on the website.
     :>json string|null occupation: The occupation of the user.
     :>json string|null picture_type: the image type (only 'image/png' is supported) if a user photo has been uploaded, or null otherwise.
