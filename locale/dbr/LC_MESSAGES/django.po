@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1111,9 +1111,6 @@ msgstr ".ǝɹɐɥs puɐ ǝʇɐǝɹɔ uɐɔ ǝuoʎuɐ ʇɐɥʇ suo-ppɐ pǝʇɐʅ
 msgid "Explore Collections"
 msgstr "suoıʇɔǝʅʅoↃ ǝɹoʅdxƎ"
 
-msgid "Common Tags"
-msgstr "sƃɐ⊥ uoɯɯoↃ"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1870,25 +1867,6 @@ msgstr "suıƃnʅԀ"
 msgid "Themes (Static)"
 msgstr "(ɔıʇɐʇS) sǝɯǝɥ⊥"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "ɹǝɥʇO"
-
-msgid "Exception"
-msgstr "uoıʇdǝɔxƎ"
-
-msgid "Release"
-msgstr "ǝsɐǝʅǝᴚ"
-
-msgid "Change"
-msgstr "ǝƃuɐɥↃ"
-
-msgid "Compatible"
-msgstr "ǝʅqıʇɐdɯoↃ"
-
-msgid "Incompatible"
-msgstr "ǝʅqıʇɐdɯoɔuI"
-
 msgid "Alerts & Updates"
 msgstr "sǝʇɐpd∩ ⅋ sʇɹǝʅ∀"
 
@@ -1969,6 +1947,10 @@ msgstr "ʇuǝɯdoʅǝʌǝᗡ qǝＭ"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ".ǝɹoɯ puɐ ´ʇuǝɯǝƃɐuɐɯ ǝıʞooɔ ´ƃuıɥɔʇıʍs ʇuǝƃɐ ɹǝsn ´qnHʇı⅁ ɹoɟ suoısuǝʇxǝ sǝpnʅɔuı ʎɹoƃǝʇɐɔ sıɥ⊥ .sʅooʇ ʇuǝɯdoʅǝʌǝp qǝʍ ǝɹnʇɐǝɟ ʇɐɥʇ suoısuǝʇxǝ xoɟǝɹıℲ pɐoʅuʍoᗡ"
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "ɹǝɥʇO"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ".sʞsɐʇ ppo ǝsoɥʇ ɹoɟ ʅnɟǝsn ʇǝʎ ´ǝʌıʇɐǝɹɔ puɐ ǝʅqɐʇɔıpǝɹdun ǝq uɐɔ ʇɐɥʇ suoısuǝʇxǝ xoɟǝɹıℲ pɐoʅuʍoᗡ"
@@ -3518,6 +3500,9 @@ msgstr "uo-pp∀ pɐoʅd∩"
 msgid "Where to Host Version"
 msgstr "uoısɹǝɅ ʇsoH oʇ ǝɹǝɥＭ"
 
+msgid "Change"
+msgstr "ǝƃuɐɥↃ"
+
 msgid "Upload Version"
 msgstr "uoısɹǝɅ pɐoʅd∩"
 
@@ -3646,12 +3631,6 @@ msgid "Created:"
 msgstr ":pǝʇɐǝɹↃ"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr ":snʇɐʇS ssǝɔoɹԀ ıʇʅnW uo-pp∀"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "(s01ǝ) xoɟǝɹıℲ ssǝɔoɹԀ ıʇʅnW ɥʇıʍ ʎʇıʅıqıʇɐdɯoɔ uo-ppɐ ɹno⅄"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "ǝʇıs sıɥʇ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpdn ɔıʇɐɯoʇn∀ .ʍǝıʌǝɹ ǝpoɔ ƃuıssɐd ɹǝʇɟɐ ǝʇıs sıɥʇ uo pǝʇsı⅂"
 
@@ -4048,8 +4027,8 @@ msgid "Your Theme's Name"
 msgstr "ǝɯɐN s,ǝɯǝɥ⊥ ɹno⅄"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "<a href=\"%(profile_url)s\">%(user)s</a> ʎq"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "<a href=\"%(profile_url)s\">%(user_name)s</a> ʎq"
 
 msgid "Create a New Theme"
 msgstr "ǝɯǝɥ⊥ ʍǝN ɐ ǝʇɐǝɹↃ"
@@ -5652,9 +5631,6 @@ msgstr ".ʍoʅǝq puɐ 74 xoɟǝɹıℲ ɹoɟ pǝɹınbǝɹ sı ᗡI∩⅁"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ".0.24 sı „uoısɹǝʌ_uıɯ_ʇɔıɹʇs„ pǝʇɹoddns ʇsǝʍo⅂"
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "¿uoısɹǝʌ pǝʇɹoddnsun uɐ suıɐʇuoɔ „uoısɹǝʌ_xɐɯ_ʇɔıɹʇs„ ɹo „uoısɹǝʌ_uıɯ_ʇɔıɹʇs„ ǝqʎɐW .uoısɹǝʌ xɐɯ/uıɯ puıɟ ʇouuɐↃ"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7848,8 +7824,6 @@ msgstr ".pʅǝıɟ ɹǝɥʇo ʎuɐ ǝƃuɐɥɔ ʇou op ʇnq ǝƃuɐɥɔ ǝɥʇ �
 msgid "No user with that email."
 msgstr ".ʅıɐɯǝ ʇɐɥʇ ɥʇıʍ ɹǝsn oN"
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "{id} ɹǝsn xoɟǝɹıℲ"
 

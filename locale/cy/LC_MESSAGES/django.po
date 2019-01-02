@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2018-06-29 16:27+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1189,9 +1189,6 @@ msgstr ""
 msgid "Explore Collections"
 msgstr ""
 
-msgid "Common Tags"
-msgstr ""
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1967,25 +1964,6 @@ msgstr ""
 msgid "Themes (Static)"
 msgstr ""
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Other"
-
-msgid "Exception"
-msgstr ""
-
-msgid "Release"
-msgstr ""
-
-msgid "Change"
-msgstr ""
-
-msgid "Compatible"
-msgstr ""
-
-msgid "Incompatible"
-msgstr ""
-
 msgid "Alerts & Updates"
 msgstr ""
 
@@ -2069,6 +2047,10 @@ msgstr "Developer"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Other"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3647,6 +3629,9 @@ msgstr "Fy Ychwanegion"
 msgid "Where to Host Version"
 msgstr ""
 
+msgid "Change"
+msgstr ""
+
 #, fuzzy
 msgid "Upload Version"
 msgstr "Application Versions"
@@ -3779,12 +3764,6 @@ msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr ""
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr ""
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -4189,7 +4168,7 @@ msgid "Your Theme's Name"
 msgstr ""
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr ""
 
 msgid "Create a New Theme"
@@ -5802,9 +5781,6 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
 #, python-format
@@ -8086,8 +8062,6 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr ""
 

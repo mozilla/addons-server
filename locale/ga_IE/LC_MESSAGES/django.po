@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -1185,9 +1185,6 @@ msgstr "Is éard atá i mBailiúchán ná grúpa de bhreiseáin cosúil le chéi
 msgid "Explore Collections"
 msgstr "Brabhsáil Bailiúcháin"
 
-msgid "Common Tags"
-msgstr "Clibeanna Coitianta"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1996,25 +1993,6 @@ msgstr "Forlíontáin"
 msgid "Themes (Static)"
 msgstr "Mionsonraí an Téama"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Eile"
-
-msgid "Exception"
-msgstr "Eisceacht"
-
-msgid "Release"
-msgstr "Leagan"
-
-msgid "Change"
-msgstr "Athraigh"
-
-msgid "Compatible"
-msgstr "Comhoiriúnach"
-
-msgid "Incompatible"
-msgstr "Neamh-chomhoiriúnach"
-
 msgid "Alerts & Updates"
 msgstr "Foláirimh agus Nuashonruithe"
 
@@ -2095,6 +2073,10 @@ msgstr "Forbairt Ghréasáin"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Eile"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3684,6 +3666,9 @@ msgstr "Uaslódáil Breiseán"
 msgid "Where to Host Version"
 msgstr "Spriocleagan"
 
+msgid "Change"
+msgstr "Athraigh"
+
 msgid "Upload Version"
 msgstr "Uaslódáil Leagan"
 
@@ -3820,13 +3805,6 @@ msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
-msgid "Add-on Multi Process Status:"
-msgstr "Stádas an Bhreiseáin"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr ""
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -4245,9 +4223,9 @@ msgstr "Seo é dath na gcluaisíní."
 msgid "Your Theme's Name"
 msgstr "Ainm do Théama"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "Ceadúnas: <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Create a New Theme"
 msgstr ""
@@ -5860,9 +5838,6 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
 #, python-format
@@ -8162,8 +8137,6 @@ msgstr ""
 msgid "No user with that email."
 msgstr "Níl aon úsáideoir leis an seoladh ríomhphoist sin."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox ar Android"

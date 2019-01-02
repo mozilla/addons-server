@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1273,9 +1273,6 @@ msgstr "Kolekcije su grupe srodnih dodataka koje svako može da kreira i deli."
 msgid "Explore Collections"
 msgstr "Istraži kolekcije"
 
-msgid "Common Tags"
-msgstr "Česte oznake"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature "
 "appear below. This collection is currently <b>public</b>, which means "
@@ -2125,26 +2122,6 @@ msgstr "Priključci"
 msgid "Themes (Static)"
 msgstr "Umetnik za teme"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Drugo"
-
-msgid "Exception"
-msgstr "Izuzetak"
-
-msgid "Release"
-msgstr "Izdanje"
-
-msgid "Change"
-msgstr "Izmena"
-
-msgid "Compatible"
-msgstr ""
-
-#, fuzzy
-msgid "Incompatible"
-msgstr "Nedovršeno"
-
 #, fuzzy
 msgid "Alerts & Updates"
 msgstr "Zahtevane nadogradnje"
@@ -2272,6 +2249,10 @@ msgid ""
 "category includes extensions for GitHub, user agent switching, cookie "
 "management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Drugo"
 
 msgid ""
 "Download Firefox extensions that can be unpredictable and creative, yet "
@@ -4141,6 +4122,9 @@ msgstr "Postavite Vaš dodatak"
 msgid "Where to Host Version"
 msgstr "Ciljana verzija"
 
+msgid "Change"
+msgstr "Izmena"
+
 #, fuzzy
 msgid "Upload Version"
 msgstr "Otpremi novu verziju"
@@ -4311,13 +4295,6 @@ msgid "Created:"
 msgstr "Napravljeno:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
-msgid "Add-on Multi Process Status:"
-msgstr "Proces pregleda dodatka"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr ""
-
 msgid ""
 "Listed on this site after passing code review. Automatic updates are handled "
 "by this site"
@@ -4813,9 +4790,9 @@ msgstr "Ovo je boja jezičaka."
 msgid "Your Theme's Name"
 msgstr "Ime teme"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "Objavljen pod <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Napravi novu temu"
@@ -6751,11 +6728,6 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
-
-msgid ""
-"Cannot find min/max version. Maybe \"strict_min_version\" or "
-"\"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
 #, fuzzy, python-format
@@ -9326,8 +9298,6 @@ msgstr ""
 msgid "No user with that email."
 msgstr "Nema korisnika sa tom adresom e-pošte."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox za Android"

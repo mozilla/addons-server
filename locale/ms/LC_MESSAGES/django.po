@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1097,9 +1097,6 @@ msgstr "Koleksi ialah sekumpulan add-ons berkaitan yang boleh dicipta dan dikong
 msgid "Explore Collections"
 msgstr "Teroka Koleksi"
 
-msgid "Common Tags"
-msgstr "Tag Lazim"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1853,25 +1850,6 @@ msgstr "Plugins"
 msgid "Themes (Static)"
 msgstr "Tema (Statik)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Lain-lain"
-
-msgid "Exception"
-msgstr "Pengecualian"
-
-msgid "Release"
-msgstr "Keluaran"
-
-msgid "Change"
-msgstr "Tukar"
-
-msgid "Compatible"
-msgstr "Serasi"
-
-msgid "Incompatible"
-msgstr "Tidak-serasi"
-
 msgid "Alerts & Updates"
 msgstr "Makluman & Kemaskini"
 
@@ -1952,6 +1930,10 @@ msgstr "Pembangunan Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Muat turun ekstensi Firefox yang memaparkan alat pembangunan web. Kategori ini termasuk ekstensi untuk GitHub, pertukaran ejen pengguna, pengurusan kuki dan banyak lagi."
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Lain-lain"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Muat turun ekstensi Firefox yang tidak dapat diramal dan kreatif, namun berguna untuk tugasan yang sukar."
@@ -3510,6 +3492,9 @@ msgstr "Muat naik Add-on"
 msgid "Where to Host Version"
 msgstr "Di mana untuk Host Versi"
 
+msgid "Change"
+msgstr "Tukar"
+
 msgid "Upload Version"
 msgstr "Muat naik Versi"
 
@@ -3639,13 +3624,6 @@ msgid "Created:"
 msgstr "Dicipta:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Status Multi Proses Add-on:"
-
-#, fuzzy
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Keserasian add-on dengan Multi Process Firefox (e10s)."
-
 #, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Disenaraikan dalam laman ini setelah lulus semakan kod. Kemaskini automatik diuruskan oleh laman ini."
@@ -4049,8 +4027,8 @@ msgstr "Ini warna untuk tab."
 msgid "Your Theme's Name"
 msgstr "Nama Tema Anda"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "oleh <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
@@ -5657,9 +5635,6 @@ msgstr "GUID diperlukan untuk Firefox 47 dan ke bawah."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Versi paling rendah yang disokong \"strict_min_version\" ialah 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Tidak dapat menemukan versi min/max. Mungkin \"strict_min_version\" atau \"strict_max_version\" mengandungi versi yang tidak disokong?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7849,8 +7824,6 @@ msgstr "Untuk menjadi anonimus, masukkan alasan untuk mengubahnya tapi jangan ub
 msgid "No user with that email."
 msgstr "Tiada pengguna dengan e-mel berkenaan."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Pengguna Firefox {id}"
 
