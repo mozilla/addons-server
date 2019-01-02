@@ -46,5 +46,5 @@ isort==4.3.4 \
 # meld3 is required by supervisor
 meld3==1.0.2 \
     --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
-supervisor==3.3.4 \
-    --hash=sha256:212201a3fd1d35c150ef0c35bf0676fd1a6c195fb60bf0f2147fe7dbd317e672
+supervisor==3.3.5 \
+    --hash=sha256:1b4d6d2e551dcb49e928cfffea857b8cca6b64a4a8fb755dcf86addf62866af0
