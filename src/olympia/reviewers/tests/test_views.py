@@ -2890,8 +2890,8 @@ class TestReview(ReviewBase):
                 'public': 'Approved',
                 'reply': 'Reviewer Reply'}[action]
             reviewer_name = td.find('td a').text()
-            assert ((reviewer_name == self.reviewer.display_name) or
-                    (reviewer_name == self.other_reviewer.display_name))
+            assert ((reviewer_name == self.reviewer.name) or
+                    (reviewer_name == self.other_reviewer.name))
 
     def test_item_history_with_unlisted_versions_too(self):
         # Throw in an unlisted version to be ignored.
@@ -3630,7 +3630,7 @@ class TestReview(ReviewBase):
         r = self.client.post(reverse('reviewers.queue_viewing'),
                              {'addon_ids': self.addon.id})
         data = json.loads(r.content)
-        assert data[str(self.addon.id)] == self.reviewer.display_name
+        assert data[str(self.addon.id)] == self.reviewer.name
 
     def test_display_same_files_only_once(self):
         """

@@ -281,9 +281,9 @@
               <span class="title" id="persona-preview-name">
                 {{ _("Your Theme's Name") }}</span>
               <span class="author">
-                {% trans user=user.username,
+                {% trans user_name=user.name,
                          profile_url=url('users.profile', user.id) %}
-                  by <a href="{{ profile_url }}">{{ user }}</a>
+                  by <a href="{{ profile_url }}">{{ user_name }}</a>
                 {% endtrans %}
               </span>
             </div>
