@@ -27,7 +27,7 @@
             {% if is_user: %}
               {{ _('Your Reviews') }}
             {% else: %}
-              {{ _('By {user_name}')|format_html(user_name=current_user.display_name) }}
+              {{ _('By {user_name}')|format_html(user_name=current_user.name) }}
             {% endif %}
           </th>
           <th>{{ _('Total Reviews') }}</th>

@@ -20,6 +20,7 @@ from olympia.reviewers import forms
 from olympia.reviewers.models import (
     RereviewQueueTheme, ReviewerScore, ThemeLock)
 from olympia.reviewers.views import base_context as context
+from olympia.users.models import UserProfile
 
 from .decorators import personas_reviewer_required
 
@@ -440,16 +441,18 @@ def deleted_themes(request):
 
 
 @personas_reviewer_required
-def themes_history(request, username):
-    if not username:
-        username = request.user.username
+def themes_history(request, user_id):
+    if not user_id:
+        user = request.user
+    else:
+        user = get_object_or_404(UserProfile, pk=user_id)
 
     return render(request, 'reviewers/themes/history.html', context(
         **{'theme_reviews':
             paginate(request, ActivityLog.objects.filter(
-                action=amo.LOG.THEME_REVIEW.id, user__username=username), 20),
+                action=amo.LOG.THEME_REVIEW.id, user_id=user.id), 20),
            'user_history': True,
-           'username': username,
+           'user_name': user.name,
            'reject_reasons': amo.THEME_REJECT_REASONS,
            'action_dict': amo.REVIEW_ACTIONS}))
 
