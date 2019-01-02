@@ -52,18 +52,26 @@ class BaseSearchIndexer(object):
 
         for field_name in field_names:
             # _translations is the suffix in TranslationSerializer.
-            mapping[doc_name]['properties'].update({
-                '%s_translations' % field_name: {
-                    'type': 'object',
-                    'properties': {
-                        'lang': {'type': 'text', 'index': False},
-                        'string': {'type': 'text', 'index': False}
-                    }
-                }
-            })
+            mapping[doc_name]['properties']['%s_translations' % field_name] = (
+                cls.get_translations_definition())
 
     @classmethod
-    def raw_field_definition(cls):
+    def get_translations_definition(cls):
+        """
+        Return the mapping to use for raw translations (to be returned directly
+        by the API, not used for analysis).
+        See attach_translation_mappings() for more information.
+        """
+        return {
+            'type': 'object',
+            'properties': {
+                'lang': {'type': 'text', 'index': False},
+                'string': {'type': 'text', 'index': False}
+            }
+        }
+
+    @classmethod
+    def get_raw_field_definition(cls):
         """
         Return the mapping to use for the "raw" version of a field. Meant to be
         used as part of a 'fields': {'raw': ... } definition in the mapping of
@@ -116,7 +124,7 @@ class BaseSearchIndexer(object):
                     'type': 'text',
                     'analyzer': analyzer,
                     'fields': {
-                        'raw': cls.raw_field_definition(),
+                        'raw': cls.get_raw_field_definition(),
                     }
                 }
 
