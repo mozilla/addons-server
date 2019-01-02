@@ -14,9 +14,8 @@ tox-travis==0.11 \
     --hash=sha256:7e2f0b9db1ff9521da6a32a34aa4bfe292ea1c90ff8eb26001bf52f44ca0dc47
 
 # Dependencies of Tox
-virtualenv==16.1.0 \
-    --hash=sha256:686176c23a538ecc56d27ed9d5217abd34644823d6391cbeb232f42bf722baad \
-    --hash=sha256:f899fafcd92e1150f40c8215328be38ff24b519cd95357fa6e78e006c7638208
+virtualenv==16.2.0 \
+    --hash=sha256:34b9ae3742abed2f95d3970acf4d80533261d6061b51160b197f84e5b4c98b4c
 six==1.12.0 \
     --hash=sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c \
     --hash=sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73
