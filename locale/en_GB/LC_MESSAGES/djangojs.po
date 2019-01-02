@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-01-01 16:26+0000\n"
+"PO-Revision-Date: 2019-01-02 01:10+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -210,52 +210,44 @@ msgstr "Use original"
 msgid "Week of {0}"
 msgstr "Week of {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " downloads"
-msgstr[1] " downloads"
+msgstr[0] "{0} download"
+msgstr[1] "{0} downloads"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} users"
+msgstr[0] "{0} user"
 msgstr[1] "{0} users"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} add-ons"
+msgstr[0] "{0} add-on"
 msgstr[1] "{0} add-ons"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} collections"
+msgstr[0] "{0} collection"
 msgstr[1] "{0} collections"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} reviews"
+msgstr[0] "{0} review"
 msgstr[1] "{0} reviews"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} sales"
+msgstr[0] "{0} sale"
 msgstr[1] "{0} sales"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} refunds"
+msgstr[0] "{0} refund"
 msgstr[1] "{0} refunds"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} installs"
+msgstr[0] "{0} install"
 msgstr[1] "{0} installs"
 
 msgid "Downloads"
@@ -770,18 +762,16 @@ msgid "Loading..."
 msgstr "Loading..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> character left."
-msgstr[1] "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> character"
+msgstr[1] "<b>{0}</b> characters"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> character left."
-msgstr[1] "<b>{0}</b> characters left."
+msgstr[0] "<b>{0}</b> character left"
+msgstr[1] "<b>{0}</b> characters left"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "This feature is temporarily disabled while we perform web site maintenance. Please check back a little later."
@@ -826,7 +816,7 @@ msgid "Number of Reviews"
 msgstr "Number of Reviews"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Maximum upload size is {0} - choose a smaller background image."
 
 msgid "Requested Info"
 msgstr "Requested Info"
