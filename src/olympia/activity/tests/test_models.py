@@ -84,7 +84,8 @@ class TestActivityLog(TestCase):
 
     def setUp(self):
         super(TestActivityLog, self).setUp()
-        self.user = UserProfile.objects.create(username='yolo')
+        self.user = UserProfile.objects.create(
+            username='yolo', display_name='Yolo')
         self.request = Mock()
         self.request.user = self.user
         core.set_user(self.user)
@@ -259,7 +260,7 @@ class TestActivityLog(TestCase):
                            au.get_role_display(), addon)
         log = ActivityLog.objects.get()
 
-        log_expected = ('yolo role changed to Owner for <a href="/en-US/'
+        log_expected = ('Yolo role changed to Owner for <a href="/en-US/'
                         'firefox/addon/a3615/">Delicious &lt;script src='
                         '&#34;x.js&#34;&gt;Bookmarks</a>.')
         assert log.to_string() == log_expected
