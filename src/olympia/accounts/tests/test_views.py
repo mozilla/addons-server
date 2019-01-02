@@ -1120,7 +1120,7 @@ class TestAccountViewSetUpdate(TestCase):
             'username': [u'Enter a valid username consisting of letters, '
                          u'numbers, underscores or hyphens.']}
 
-    def test_display_name_valid(self):
+    def test_display_name_validation(self):
         self.client.login_api(self.user)
         response = self.patch(
             data={'display_name': 'a'})
@@ -1134,6 +1134,10 @@ class TestAccountViewSetUpdate(TestCase):
         assert json.loads(response.content) == {
             'display_name': [
                 'Ensure this field has no more than 50 characters.']}
+
+        response = self.patch(
+            data={'display_name': 'a' * 50})
+        assert response.status_code == 200
 
     def test_picture_upload(self):
         # Make sure the picture doesn't exist already or we get a false-postive
