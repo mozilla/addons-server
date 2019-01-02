@@ -300,9 +300,8 @@ class WithSourceMixin(object):
                         raise zipfile.BadZipfile()
                 elif source.name.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
                     # For tar files we need to do a little more work.
-                    # Fortunately tarfile.open() already handles compression
-                    # formats for us automatically.
-                    with tarfile.open(fileobj=source) as archive:
+                    mode = 'r:bz2' if source.name.endswith('bz2') else 'r:gz'
+                    with tarfile.open(mode=mode, fileobj=source) as archive:
                         archive_members = archive.getmembers()
                         for member in archive_members:
                             archive_member_validator(archive, member)

@@ -115,11 +115,12 @@ class TestSubmitBase(TestCase):
         source.seek(0)
         return source
 
-    def generate_source_compressed_tar(
-            self, suffix='.tar.gz', data='t' * (2 ** 21)):
+    def generate_source_tar(
+            self, suffix='.tar.gz', data='t' * (2 ** 21), mode=None):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
-        mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
+        if mode is None:
+            mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
             tar_info = tarfile.TarInfo('foo')
             tar_info.size = len(data)
@@ -666,7 +667,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_submit_source_targz(self):
         response = self.post(
-            has_source=True, source=self.generate_source_compressed_tar())
+            has_source=True, source=self.generate_source_tar())
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
@@ -677,7 +678,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_submit_source_tgz(self):
         response = self.post(
-            has_source=True, source=self.generate_source_compressed_tar(
+            has_source=True, source=self.generate_source_tar(
                 suffix='.tgz'))
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
@@ -689,7 +690,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_submit_source_tarbz2(self):
         response = self.post(
-            has_source=True, source=self.generate_source_compressed_tar(
+            has_source=True, source=self.generate_source_tar(
                 suffix='.tar.bz2'))
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
@@ -739,7 +740,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
     def test_submit_source_in_memory_upload_with_targz(self):
-        source = self.generate_source_compressed_tar()
+        source = self.generate_source_tar()
         source_size = os.stat(source.name)[stat.ST_SIZE]
         assert source_size < settings.FILE_UPLOAD_MAX_MEMORY_SIZE
         response = self.post(has_source=True, source=source)
@@ -759,6 +760,18 @@ class TestAddonSubmitSource(TestSubmitBase):
             'source': [
                 u'Unsupported file type, please upload an archive file '
                 u'(.zip, .tar.gz, .tar.bz2).'],
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_non_compressed_tar(self):
+        response = self.post(
+            # Generate a .tar.gz which is actually not compressed.
+            has_source=True, source=self.generate_source_tar(mode='w'),
+            expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': [u'Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -795,7 +808,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
-        source = self.generate_source_compressed_tar()
+        source = self.generate_source_tar()
         with open(source.name, "r+b") as fobj:
             fobj.truncate(512)
         # Still looks like a tar at first glance.
