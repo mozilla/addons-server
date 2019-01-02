@@ -1,4 +1,6 @@
 from datetime import date, timedelta
+
+import pytest
 from freezegun import freeze_time
 
 from django.core import mail
@@ -82,6 +84,7 @@ class TestReviewReports(TestCase):
                                              review_action[2],
                                              review_action[3])
 
+    @pytest.mark.xfail(reason='Temporarily hidden, #10286')
     def test_report_addon_reviewer(self):
         self.generate_review_data()
         command = Command()
@@ -122,6 +125,7 @@ class TestReviewReports(TestCase):
         assert to in email.to
         assert subject in email.subject
 
+    @pytest.mark.xfail(reason='Temporarily hidden, #10286')
     def test_report_content_reviewer(self):
         self.generate_review_data()
         command = Command()
