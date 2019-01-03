@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-11-27 22:41+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2019-01-03 16:35+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid "Select a file..."
 msgstr "Selecionar um ficheiro..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "O seu extra deve terminar com .zip, .xpi, .crx, .jar ou .xml"
+msgstr "O seu extra deverá terminar com .zip, .xpi, .crx, .jar ou .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -42,13 +42,13 @@ msgid "Cancel"
 msgstr "Cancelar"
 
 msgid "Uploading {0}"
-msgstr "A carregar {0}"
+msgstr "A enviar {0}"
 
 msgid "Error with {0}"
 msgstr "Erro com {0}"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Ativámos um novo linter para processar o seu extra. Por favor, reporte quaisquer problemas no GitHub"
+msgstr "Nós ativámos um novo linter para processar o seu Extra. Por favor, comunique quaisquer problemas no GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -101,11 +101,10 @@ msgid "WebExtension upgrade"
 msgstr "Atualização WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Nós permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, estes não poderão instalar um extra anterior."
+msgstr "Nós permitimos e encorajamos uma atualização mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, estes não poderão instalar um extra legado."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portar um extra de legado do Firefox na MDN"
+msgstr "Portabilidade de um extra legado do Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
@@ -137,7 +136,7 @@ msgid "Your file exceeds the maximum size of {0}."
 msgstr "O seu ficheiro excede o tamanho máximo de {0}."
 
 msgid "You cancelled the upload."
-msgstr "Você cancelou o carregamento."
+msgstr "Cancelou o envio."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem de ser PNG ou JPG."
