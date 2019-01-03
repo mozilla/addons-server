@@ -135,8 +135,8 @@
         "fields": {
             "license": 1377,
             "created": "2010-12-17 13:04:57",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2010-12-17 13:04:57",
             "version": "20101217",
             "addon": 235891

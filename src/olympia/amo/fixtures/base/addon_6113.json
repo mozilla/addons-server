@@ -48,9 +48,9 @@
         "fields": {
             "license": null,
             "created": "2010-02-03 17:53:51",
-            "releasenotes": null,
+            "release_notes": null,
             "modified": "2010-03-22 20:04:14",
-            "approvalnotes": "Bumped firefox em:maxVersion to 3.6.*",
+            "approval_notes": "Bumped firefox em:maxVersion to 3.6.*",
             "version": "0.4.0.6",
             "addon": 6113
         }

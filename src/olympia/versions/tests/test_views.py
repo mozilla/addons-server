@@ -171,7 +171,7 @@ class TestViews(TestCase):
         assert not compat_info
 
     def test_version_update_info(self):
-        self.version.releasenotes = {
+        self.version.release_notes = {
             'en-US': u'Fix for an important bug',
             'fr': u'Quelque chose en français.\n\nQuelque chose d\'autre.'
         }

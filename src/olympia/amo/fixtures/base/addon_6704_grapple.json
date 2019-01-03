@@ -58,9 +58,9 @@
         "fields": {
             "license": 5,
             "created": "2010-02-02 08:49:13",
-            "releasenotes": null,
+            "release_notes": null,
             "modified": "2010-02-02 08:49:13",
-            "approvalnotes": null,
+            "approval_notes": null,
             "version": "3.0.1",
             "addon": 6704
         }

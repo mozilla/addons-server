@@ -621,12 +621,12 @@ class TestVersionEditDetails(TestVersionEditBase):
         assert not doc('#id_files-0-platform')
 
     def test_edit_notes(self):
-        data = self.formset(releasenotes='xx', approvalnotes='yy')
+        data = self.formset(release_notes='xx', approval_notes='yy')
         response = self.client.post(self.url, data)
         assert response.status_code == 302
         version = self.get_version()
-        assert unicode(version.releasenotes) == 'xx'
-        assert unicode(version.approvalnotes) == 'yy'
+        assert unicode(version.release_notes) == 'xx'
+        assert unicode(version.approval_notes) == 'yy'
 
     def test_version_number_redirect(self):
         url = self.url.replace(str(self.version.id), self.version.version)
@@ -638,7 +638,7 @@ class TestVersionEditDetails(TestVersionEditBase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-        data = self.formset(releasenotes='xx', approvalnotes='yy')
+        data = self.formset(release_notes='xx', approval_notes='yy')
         response = self.client.post(self.url, data)
         assert response.status_code == 404
 
@@ -830,14 +830,14 @@ class TestVersionEditSearchEngine(TestVersionEditMixin, TestCase):
                            args=['a4594', 42352])
 
     def test_search_engine_edit(self):
-        dd = self.formset(prefix="files", releasenotes='xx',
-                          approvalnotes='yy')
+        dd = self.formset(prefix="files", release_notes='xx',
+                          approval_notes='yy')
 
         response = self.client.post(self.url, dd)
         assert response.status_code == 302
         version = Addon.objects.get(id=4594).current_version
-        assert unicode(version.releasenotes) == 'xx'
-        assert unicode(version.approvalnotes) == 'yy'
+        assert unicode(version.release_notes) == 'xx'
+        assert unicode(version.approval_notes) == 'yy'
 
     def test_no_compat(self):
         response = self.client.get(self.url)

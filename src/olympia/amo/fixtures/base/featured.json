@@ -329,8 +329,8 @@
         "fields": {
             "license": 345,
             "created": "2010-01-14 11:39:40",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2010-01-14 11:40:45",
             "version": "4.5.16",
             "addon": 3481
@@ -342,8 +342,8 @@
         "fields": {
             "license": 13,
             "created": "2010-01-12 20:50:20",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2010-01-13 08:21:43",
             "version": "2.17",
             "addon": 2464
@@ -365,8 +365,8 @@
         "fields": {
             "license": 60,
             "created": "2009-12-24 18:30:07",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2009-12-24 18:31:25",
             "version": "2.0.3",
             "addon": 7661
@@ -388,8 +388,8 @@
         "fields": {
             "license": 6,
             "created": "2009-05-08 05:26:21",
-            "releasenotes": null,
-            "approvalnotes": null,
+            "release_notes": null,
+            "approval_notes": null,
             "modified": "2009-05-08 05:26:21",
             "version": "0.5.3",
             "addon": 11870

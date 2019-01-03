@@ -112,9 +112,9 @@
         "fields": {
             "license": null,
             "created": "2009-01-19 15:28:14",
-            "releasenotes": null,
+            "release_notes": null,
             "modified": "2009-01-19 15:28:14",
-            "approvalnotes": null,
+            "approval_notes": null,
             "version": "20090119",
             "addon": 10423
         }

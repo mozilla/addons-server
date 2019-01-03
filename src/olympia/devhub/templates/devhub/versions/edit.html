@@ -61,9 +61,9 @@
           {% endif %}
           {% if version_form %}
           <tr>
-          {% with field = version_form.releasenotes %}
+          {% with field = version_form.release_notes %}
             <th>
-              <label data-for="releasenotes">{{ _("Version Notes") }}
+              <label data-for="release_notes">{{ _("Version Notes") }}
               {{ tip(None, _("Information about changes in this release, new features, "
                              "known bugs, and other useful information specific to this "
                              "release/version. This information is also shown in the "
@@ -103,7 +103,7 @@
           </tr>
           {% if version_form %}
           <tr>
-          {% with field = version_form.approvalnotes %}
+          {% with field = version_form.approval_notes %}
             <th>
               <label for="{{ field.auto_id }}">{{ _("Notes for Reviewers") }}</label>
               {{ tip(None, _("Optionally, enter any information that may be useful "

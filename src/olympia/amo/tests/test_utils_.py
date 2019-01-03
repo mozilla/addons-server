@@ -101,14 +101,14 @@ class TestAttachTransDict(TestCase):
         version = Version.objects.create(addon=Addon.objects.create())
 
         # No translations.
-        assert translations_for_field(version.releasenotes) == {}
+        assert translations_for_field(version.release_notes) == {}
 
         # With translations.
         initial = {'en-us': 'release notes', 'fr': 'notes de version'}
-        version.releasenotes = initial
+        version.release_notes = initial
         version.save()
 
-        translations = translations_for_field(version.releasenotes)
+        translations = translations_for_field(version.release_notes)
         assert translations == initial
 
 

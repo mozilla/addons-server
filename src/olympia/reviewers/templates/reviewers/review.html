@@ -119,22 +119,22 @@
           </td>
           <td>
             <table class="activity">
-              {% if version.releasenotes %}
+              {% if version.release_notes %}
               <tr>
                 <th>{{ _('Version Notes') }}</th>
                 <td class="activity_version">
                   <div class="history-notes">
-                    {{ version.releasenotes|nl2br }}
+                    {{ version.release_notes|nl2br }}
                   </div>
                 </td>
               </tr>
               {% endif %}
-              {% if version.approvalnotes %}
+              {% if version.approval_notes %}
               <tr>
                 <th>{{ _('Notes for Reviewers') }}</th>
                 <td class="activity_approval">
                   <div class="history-notes">
-                    {{ version.approvalnotes|urlize(100)|nl2br }}
+                    {{ version.approval_notes|urlize(100)|nl2br }}
                   </div>
                 </td>
               </tr>
@@ -160,7 +160,7 @@
                   </td>
                 </tr>
               {% endif %}
-              {% if not version.releasenotes and not version.approvalnotes and not records %}
+              {% if not version.release_notes and not version.approval_notes and not records %}
               <tr>
                 <td class="no-activity">
                   {{ _('This version has not been reviewed.') }}

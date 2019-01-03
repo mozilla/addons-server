@@ -8,15 +8,15 @@
   <form method="post" id="submit-describe" class="item">
     {% csrf_token %}
     <div class="addon-submission-field">
-      <label for="{{ reviewer_form.approvalnotes.auto_id }}">
+      <label for="{{ reviewer_form.approval_notes.auto_id }}">
       {{ _('Release Notes:') }}
       </label>
       <p>{{ _("Let your users know what's new and what's changed in this version.") }}</p>
-      {{ reviewer_form.releasenotes }}
+      {{ reviewer_form.release_notes }}
       <p>{{ _('These notes will appear on the detail page.') }}</p>
     </div>
     <div class="addon-submission-field">
-      <label for="{{ reviewer_form.approvalnotes.auto_id }}">
+      <label for="{{ reviewer_form.approval_notes.auto_id }}">
       {{ _('Notes to Reviewer:') }}
       </label>
       <div class="source-submission-note">
@@ -32,7 +32,7 @@
           </p>
         {% endif %}
       </div>
-      {{ reviewer_form.approvalnotes }}
+      {{ reviewer_form.approval_notes }}
       <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
     </div>
     {% include "devhub/includes/clear_pending_info_request.html" %}
