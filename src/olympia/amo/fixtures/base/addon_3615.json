@@ -189,9 +189,9 @@
         "fields": {
             "license": 93,
             "created": "2009-10-21 09:58:52",
-            "releasenotes": 650353,
+            "release_notes": 650353,
             "modified": "2009-10-21 10:02:38",
-            "approvalnotes": "",
+            "approval_notes": "",
             "version": "2.1.072",
             "addon": 3615
         }

@@ -84,7 +84,7 @@ class VersionsRss(BaseFeed):
 
     def item_description(self, version):
         """Description for particular version (<item><description>)"""
-        return version.releasenotes
+        return version.release_notes
 
     def item_guid(self, version):
         """Guid for a particuar version  (<item><guid>)"""

@@ -159,7 +159,7 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
     edit_url = serializers.SerializerMethodField()
     is_strict_compatibility_enabled = serializers.SerializerMethodField()
     license = CompactLicenseSerializer()
-    release_notes = TranslationSerializerField(source='releasenotes')
+    release_notes = TranslationSerializerField()
     url = serializers.SerializerMethodField()
 
     class Meta:
@@ -579,10 +579,8 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
                     max=AppVersion(version=compat_dict.get('max_human', '')))
             version._compatible_apps = compatible_apps
             version_serializer = self.fields['current_version']
-            # Can't use version_serializer._attach_translations() directly
-            # because release_notes source field name is different.
-            version_serializer.fields['release_notes'].attach_translations(
-                version, data, 'release_notes', target_name='releasenotes')
+            version_serializer._attach_translations(
+                version, data, version_serializer.translated_fields)
             if 'license' in data:
                 license_serializer = version_serializer.fields['license']
                 version.license = License(id=data['license']['id'])

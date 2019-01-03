@@ -268,7 +268,7 @@ class AddonIndexer(BaseSearchIndexer):
         if data and version_obj:
             attach_trans_dict(Version, [version_obj])
             data.update(cls.extract_field_api_translations(
-                version_obj, 'release_notes', db_field='releasenotes_id'))
+                version_obj, 'release_notes', db_field='release_notes_id'))
             if version_obj.license:
                 data['license'] = {
                     'id': version_obj.license.id,

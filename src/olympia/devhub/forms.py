@@ -338,17 +338,17 @@ class SourceFileInput(forms.widgets.ClearableFileInput):
 
 
 class VersionForm(WithSourceMixin, forms.ModelForm):
-    releasenotes = TransField(
+    release_notes = TransField(
         widget=TransTextarea(), required=False)
-    approvalnotes = forms.CharField(
+    approval_notes = forms.CharField(
         widget=TranslationTextarea(attrs={'rows': 4}), required=False)
     source = forms.FileField(required=False, widget=SourceFileInput)
     clear_pending_info_request = forms.BooleanField(required=False)
 
     class Meta:
         model = Version
-        fields = ('releasenotes', 'clear_pending_info_request',
-                  'approvalnotes', 'source',)
+        fields = ('release_notes', 'clear_pending_info_request',
+                  'approval_notes', 'source',)
 
     def __init__(self, *args, **kwargs):
         self.request = kwargs.pop('request')

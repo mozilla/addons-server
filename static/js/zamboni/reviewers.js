@@ -385,14 +385,14 @@ function initQueue() {
             $.get(pop.attr('data-version-url') + addon_id, function(data) {
                 pop.html('');
                 var empty = true;
-                if(data.releasenotes) {
+                if(data.release_notes) {
                     pop.append($('<strong>', {'text': gettext('Version Notes')}));
-                    pop.append($('<div>', {'class': 'version-notes', 'text': data.releasenotes}));
+                    pop.append($('<div>', {'class': 'version-notes', 'text': data.release_notes}));
                     empty = false;
                 }
-                if(data.approvalnotes) {
+                if(data.approval_notes) {
                     pop.append($('<strong>', {'text': gettext('Notes for Reviewers')}));
-                    pop.append($('<div>', {'class': 'version-notes', 'text': data.approvalnotes}));
+                    pop.append($('<div>', {'class': 'version-notes', 'text': data.approval_notes}));
                     empty = false;
                 }
                 if(empty) {

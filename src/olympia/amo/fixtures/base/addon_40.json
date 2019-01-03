@@ -50,9 +50,9 @@
         "fields": {
             "license": null,
             "created": "2004-06-12 02:52:33",
-            "releasenotes": null,
+            "release_notes": null,
             "modified": "2004-06-13 20:25:13",
-            "approvalnotes": "",
+            "approval_notes": "",
             "version": "1.0.7",
             "addon": 40
         }

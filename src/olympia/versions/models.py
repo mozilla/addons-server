@@ -107,8 +107,9 @@ class Version(OnChangeMixin, ModelBase):
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE)
     license = models.ForeignKey('License', null=True)
-    releasenotes = PurifiedField()
-    approvalnotes = models.TextField(default='', null=True)
+    release_notes = PurifiedField(db_column='releasenotes')
+    approval_notes = models.TextField(
+        db_column='approvalnotes', default='', null=True)
     version = models.CharField(max_length=255, default='0.1')
     version_int = models.BigIntegerField(null=True, editable=False)
 
@@ -184,13 +185,13 @@ class Version(OnChangeMixin, ModelBase):
                 channel=channel, exclude=())
             if previous_version and previous_version.license_id:
                 license_id = previous_version.license_id
-        approvalnotes = None
+        approval_notes = None
         if parsed_data.get('is_mozilla_signed_extension'):
-            approvalnotes = (u'This version has been signed with '
-                             u'Mozilla internal certificate.')
+            approval_notes = (u'This version has been signed with '
+                              u'Mozilla internal certificate.')
         version = cls.objects.create(
             addon=addon,
-            approvalnotes=approvalnotes,
+            approval_notes=approval_notes,
             version=parsed_data['version'],
             license_id=license_id,
             channel=channel,

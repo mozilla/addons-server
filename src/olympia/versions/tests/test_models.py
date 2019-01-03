@@ -622,8 +622,8 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             self.upload, self.addon, [self.selected_app],
             amo.RELEASE_CHANNEL_LISTED, parsed_data=self.dummy_parsed_data)
         assert version.is_mozilla_signed
-        assert version.approvalnotes == (u'This version has been signed with '
-                                         u'Mozilla internal certificate.')
+        assert version.approval_notes == (u'This version has been signed with '
+                                          u'Mozilla internal certificate.')
 
     def test_carry_over_license_no_version(self):
         self.addon.versions.all().delete()

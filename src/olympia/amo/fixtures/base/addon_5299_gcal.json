@@ -64,7 +64,7 @@
             "license": 13,
             "created": "2008-07-06 13:53:30",
             "modified": "2010-03-12 07:45:56",
-            "approvalnotes": "",
+            "approval_notes": "",
             "version": "0.3",
             "addon": 5299
         }
@@ -75,9 +75,9 @@
         "fields": {
             "license": 13,
             "created": "2009-07-06 13:53:30",
-            "releasenotes": null,
+            "release_notes": null,
             "modified": "2010-03-12 07:45:56",
-            "approvalnotes": "",
+            "approval_notes": "",
             "version": "0.4b",
             "addon": 5299
         }

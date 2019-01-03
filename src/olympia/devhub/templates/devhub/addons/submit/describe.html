@@ -214,7 +214,7 @@
         </div>
       </div>
       <div class="addon-submission-field">
-        <label for="{{ reviewer_form.approvalnotes.auto_id }}">
+        <label for="{{ reviewer_form.approval_notes.auto_id }}">
           {{ _('Notes to Reviewer:') }}
         </label>
         <div class="source-submission-note">
@@ -230,7 +230,7 @@
             </p>
           {% endif %}
         </div>
-        {{ reviewer_form.approvalnotes }}
+        {{ reviewer_form.approval_notes }}
         <p>{{ _('These notes will only be visible to you and our reviewers.') }}</p>
       </div>
     {% endif %}
