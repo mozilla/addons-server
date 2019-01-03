@@ -3000,8 +3000,8 @@ class TestReview(ReviewBase):
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
-        version.releasenotes = 'hi'
-        version.approvalnotes = 'secret hi'
+        version.release_notes = 'hi'
+        version.approval_notes = 'secret hi'
         version.save()
 
         response = self.client.get(self.url)

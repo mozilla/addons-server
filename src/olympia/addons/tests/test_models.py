@@ -2540,7 +2540,7 @@ class TestRemoveLocale(TestCase):
     def test_remove_version_locale(self):
         addon = Addon.objects.create(type=amo.ADDON_THEME)
         version = Version.objects.create(addon=addon)
-        version.releasenotes = {'fr': 'oui'}
+        version.release_notes = {'fr': 'oui'}
         version.save()
         addon.remove_locale('fr')
         assert not (Translation.objects.filter(localized_string__isnull=False)

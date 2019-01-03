@@ -163,8 +163,8 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:43",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.0",
             "version_int": 1000000200100,
@@ -189,8 +189,8 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:44",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.1",
             "version_int": 1010000200100,
@@ -215,8 +215,8 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:45",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.2",
             "version_int": 1020000200100,
@@ -241,8 +241,8 @@
         "fields": {
             "license": null,
             "created": "2011-12-05 14:46:46",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2011-12-05 14:46:43",
             "version": "1.3",
             "version_int": 1030000200100,

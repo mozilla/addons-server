@@ -1164,7 +1164,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         license_form = {'license-builtin': 3}
         policy_form = {} if minimal else {
             'has_priv': True, 'privacy_policy': 'Ur data belongs to us now.'}
-        reviewer_form = {} if minimal else {'approvalnotes': 'approove plz'}
+        reviewer_form = {} if minimal else {'approval_notes': 'approove plz'}
         result.update(describe_form)
         result.update(cat_form)
         result.update(license_form)
@@ -1218,7 +1218,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert addon.support_url == 'http://stackoverflow.com'
         assert addon.support_email == 'black@hole.org'
         assert addon.privacy_policy == 'Ur data belongs to us now.'
-        assert addon.current_version.approvalnotes == 'approove plz'
+        assert addon.current_version.approval_notes == 'approove plz'
 
     @override_switch('content-optimization', active=True)
     def test_submit_success_required_with_content_optimization(self):
@@ -1266,7 +1266,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert addon.support_url == 'http://stackoverflow.com'
         assert addon.support_email == 'black@hole.org'
         assert addon.privacy_policy == 'Ur data belongs to us now.'
-        assert addon.current_version.approvalnotes == 'approove plz'
+        assert addon.current_version.approval_notes == 'approove plz'
 
     def test_submit_categories_required(self):
         del self.cat_initial['categories']
@@ -2240,8 +2240,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
             response, reverse('devhub.submit.version.finish',
                               args=[self.addon.slug, self.version.pk]))
 
-        assert not self.version.approvalnotes
-        assert not self.version.releasenotes
+        assert not self.version.approval_notes
+        assert not self.version.release_notes
 
     def test_submit_success(self):
         assert all(self.get_addon().get_required_metadata())
@@ -2250,8 +2250,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
 
         # Post and be redirected - trying to sneak in a field that shouldn't
         # be modified when this is not the first listed version.
-        data = {'approvalnotes': 'approove plz',
-                'releasenotes': 'loadsa stuff', 'name': 'foo'}
+        data = {'approval_notes': 'approove plz',
+                'release_notes': 'loadsa stuff', 'name': 'foo'}
         response = self.client.post(self.url, data)
         self.assert3xx(
             response, reverse('devhub.submit.version.finish',
@@ -2261,8 +2261,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
         assert self.get_addon().name != 'foo'
 
         self.version.reload()
-        assert self.version.approvalnotes == 'approove plz'
-        assert self.version.releasenotes == 'loadsa stuff'
+        assert self.version.approval_notes == 'approove plz'
+        assert self.version.release_notes == 'loadsa stuff'
 
     def test_submit_details_unlisted_should_redirect(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

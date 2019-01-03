@@ -108,7 +108,7 @@
         "fields": {
             "license": 5,
             "created": "2009-12-06 03:06:48",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-12-06 06:43:48",
             "version": "1.32",
             "addon": 8680

@@ -161,7 +161,7 @@ This endpoint allows you to fetch a specific add-on by id, slug or guid.
     :>json array categories[app_name]: Array holding the :ref:`category slugs <category-list>` the add-on belongs to for a given :ref:`add-on application <addon-detail-application>`. (Combine with the add-on ``type`` to determine the name of the category).
     :>json string contributions_url: URL to the (external) webpage where the addon's authors collect monetary contributions, if set. Can be an empty value.
     :>json string created: The date the add-on was created.
-    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from the detail endpoint. In addition, ``license`` and ``release_notes`` are omitted entirely from the search endpoint.
+    :>json object current_version: Object holding the current :ref:`version <version-detail-object>` of the add-on. For performance reasons the ``license`` field omits the ``text`` property from both the search and detail endpoints.
     :>json string default_locale: The add-on default locale for translations.
     :>json string|object|null description: The add-on description (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null developer comments: Additional information about the add-on provided by the developer. (See :ref:`translated fields <api-overview-translations>`).
@@ -384,12 +384,12 @@ This endpoint allows you to fetch a single version belonging to a specific add-o
     :>json int files[].size: The size for a file, in bytes.
     :>json int files[].status: The :ref:`status <addon-detail-status>` for a file.
     :>json string files[].url: The (absolute) URL to download a file. Clients using this API can append an optional ``src`` query parameter to the url which would indicate the source of the request (See :ref:`download sources <download-sources>`).
-    :>json object license: Object holding information about the license for the version. For performance reasons this field is omitted from add-on search endpoint.
+    :>json object license: Object holding information about the license for the version.
     :>json boolean license.is_custom: Whether the license text has been provided by the developer, or not.  (When ``false`` the license is one of the common, predefined, licenses).
     :>json string|object|null license.name: The name of the license (See :ref:`translated fields <api-overview-translations>`).
     :>json string|object|null license.text: The text of the license (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on detail endpoint.
     :>json string|null license.url: The URL of the full text of license.
-    :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`). For performance reasons this field is omitted from add-on search endpoint.
+    :>json string|object|null release_notes: The release notes for this version (See :ref:`translated fields <api-overview-translations>`).
     :>json string reviewed: The date the version was reviewed at.
     :>json boolean is_strict_compatibility_enabled: Whether or not this version has `strictCompatibility <https://developer.mozilla.org/en-US/Add-ons/Install_Manifests#strictCompatibility>`_. set.
     :>json string version: The version number string for the version.

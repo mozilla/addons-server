@@ -5,8 +5,8 @@
         "fields": {
             "license": null,
             "created": "2010-09-12 07:17:04",
-            "releasenotes": null,
-            "approvalnotes": null,
+            "release_notes": null,
+            "approval_notes": null,
             "modified": "2010-09-12 07:17:04",
             "version": "1.0",
             "addon": 228106
