@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-14 13:03+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-03 17:30+0000\n"
+"Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -107,11 +107,11 @@ msgid "Add to {0}"
 msgstr "Adder a {0}"
 
 msgid "This slug is already in use. Please choose another."
-msgstr "Iste limace es ja in uso. Per favor elige un altero."
+msgstr "Iste supernomine es ja in uso. Per favor elige un altero."
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Le limace non pote ser \"%(slug)s\". Per favor elige un altero."
+msgstr "Le supernomine non pote ser \"%(slug)s\". Per favor elige un altero."
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -939,7 +939,7 @@ msgstr "Tu debe fornir un objecto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
-msgstr "\"%s\" non es un pk o limace valide - le objecto non existe."
+msgstr "\"%s\" non es un pk o supernomine valide - le objecto non existe."
 
 msgid "Application Versions"
 msgstr "Versiones del application"
@@ -1115,9 +1115,6 @@ msgstr "Le collectiones es gruppos de additivos correlate que quicunque pote cre
 
 msgid "Explore Collections"
 msgstr "Explorar le collectiones"
-
-msgid "Common Tags"
-msgstr "Tags commun"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1879,25 +1876,6 @@ msgstr "Plugins"
 msgid "Themes (Static)"
 msgstr "Themas (Static)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Altero"
-
-msgid "Exception"
-msgstr "Exception"
-
-msgid "Release"
-msgstr "Version"
-
-msgid "Change"
-msgstr "Cambiar"
-
-msgid "Compatible"
-msgstr "Compatibile"
-
-msgid "Incompatible"
-msgstr "Incompatibile"
-
 msgid "Alerts & Updates"
 msgstr "Alertas & actualisationes"
 
@@ -1986,6 +1964,10 @@ msgid "Download Firefox extensions that feature web development tools. This cate
 msgstr ""
 "Discarga extensiones de Firefox que ha functionalitates de utensiles de disveloppator del web. Iste categoria include extensiones pro GitHub, commutation del agente usator, gestion de cookies e "
 "altero ancora."
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Altero"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Discarga extensiones de Firefox que pote ser non previdibile e creative, totevia utile pro ille labores curiose."
@@ -2406,7 +2388,7 @@ msgid "An author can only be listed once."
 msgstr "Un autor pote ser listate solo un vice."
 
 msgid "Slug incorrect."
-msgstr "Limace incorrecte."
+msgstr "Supernomine non correcte."
 
 msgid "Details"
 msgstr "Detalios"
@@ -2538,7 +2520,7 @@ msgstr "Aviso de securitate de Mozilla: Tu credentiales API de AMO ha essite rev
 
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
-msgstr "Le validation generava trop errores//warnings assi %s le messages esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
+msgstr "Le validation generava trop errores//avisos assi le messages de %s esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
 
 msgid "All My Add-ons"
 msgstr "Tote mi additivos"
@@ -2949,6 +2931,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Le summario debe explicar lo que le additivos face, clarmente e concisemente. Ambe le nomine e le summario apparera su le pagina e le resultatos de recerca de tu producto. Illos ha un longor maxime "
+"combinate de 70 characteres e un longor minime de 2 characteres cata uno."
 
 msgid "Summary"
 msgstr "Summario"
@@ -2957,7 +2941,7 @@ msgid "Add-on URL"
 msgstr "URL de additivo"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Elige un URL (slug - limace) breve, unic pro tu additivo."
+msgstr "Elige un supernomine breve del URL, unic pro tu additivo."
 
 msgid "View Listing"
 msgstr "Vide le lista"
@@ -3124,9 +3108,8 @@ msgstr "Usate in paginas de detalios del additivo."
 msgid "128x128px"
 msgstr "128x128 pixels"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Usate in paginas de detalios del additivo."
+msgstr "Sera la standard in le futur paginas de detalios del additivos."
 
 msgid "Upload a Custom Icon..."
 msgstr "Cargar un icone personalisate..."
@@ -3153,13 +3136,13 @@ msgid "Add a Screenshot..."
 msgstr "Adder un instantaneo de schermo..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Le formatos PNG e JPG es supportate, PNG recommendate. Le formato maxime e recommendate es 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Le dimensiones minime es 1000x750, e un ration es necesse un ration de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Haber instantaneos de schermo in le pagina de tu producto, accresce grandemente su probabilitates de ser installate e evidentiate in le pagina principal."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -3327,6 +3310,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Attention: tu ha nomine/summario in altere localisationes que sera automaticamente secate pro plenar sub le limite de %(max_length)s characteres.  Pro lo rediger va al pagina de redaction del "
+"producto post que le invio es complete."
 
 msgid "Add-on URL:"
 msgstr "URL del additivo:"
@@ -3540,6 +3525,9 @@ msgstr "Cargar le additivo"
 msgid "Where to Host Version"
 msgstr "Le servitor hospite del version"
 
+msgid "Change"
+msgstr "Cambiar"
+
 msgid "Upload Version"
 msgstr "Cargar version"
 
@@ -3670,12 +3658,6 @@ msgid "Created:"
 msgstr "Create:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Stato Multi Process del additivo:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Compatibilitate de tu additivo con Firefox Multi Process (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listate sur iste sito post passate le revision del codice. Le actualisationes automatic es tractate per iste sito"
 
@@ -4076,8 +4058,8 @@ msgid "Your Theme's Name"
 msgstr "Le nomine del thema"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "per <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "per <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Crear un nove thema"
@@ -5686,9 +5668,6 @@ msgstr "Un GUID es obligatori pro le versiones 47 e precedente de Firefox."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Le version compatibile minus recente, “strict_min_version”, es le 42.0."
 
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Impossibile trovar la version min/max. Forsan \"strict_min_version\" o \"strict_max_version\" contine un version non tractate?"
-
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Impossibile tractar le file cargate, elemento <%s> mancante o vacue"
@@ -6891,7 +6870,7 @@ msgid "Add-on Title"
 msgstr "Titulo del additivo"
 
 msgid "Review Text"
-msgstr "Testo del revision"
+msgstr "Texto del revision"
 
 msgid "Review was flagged prior to deletion."
 msgstr "Le revision esseva signalate ante le deletion."
@@ -7889,8 +7868,6 @@ msgstr "Pro render lo anonyme, insere un ration pro le cambio, sin cambiar ulle 
 msgid "No user with that email."
 msgstr "Nulle usator con ille email."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Usator de Firefox {id}"
 

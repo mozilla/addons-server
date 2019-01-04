@@ -117,7 +117,7 @@
         "fields": {
             "license": null,
             "created": "2006-10-23 12:57:41",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2006-10-23 19:22:18",
             "version": "1.0.43",
             "addon": 1
@@ -154,7 +154,7 @@
         "fields": {
             "license": null,
             "created": "2006-10-23 12:57:41",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2006-10-23 19:22:18",
             "version": "1.0.43",
             "addon": 2

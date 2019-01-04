@@ -671,9 +671,9 @@ def _get_comments_for_hard_deleted_versions(addon):
             self.all_activity = []
 
         all_files = ()
-        approvalnotes = None
+        approval_notes = None
         compatible_apps_ordered = ()
-        releasenotes = None
+        release_notes = None
         status = 'Deleted'
         deleted = True
         channel = amo.RELEASE_CHANNEL_LISTED
@@ -1019,9 +1019,8 @@ def queue_viewing(request):
         key = get_reviewing_cache_key(addon_id)
         currently_viewing = cache.get(key)
         if currently_viewing and currently_viewing != user_id:
-            viewing[addon_id] = (UserProfile.objects
-                                            .get(id=currently_viewing)
-                                            .display_name)
+            viewing[addon_id] = UserProfile.objects.get(
+                id=currently_viewing).name
 
     return viewing
 
@@ -1031,8 +1030,8 @@ def queue_viewing(request):
 def queue_version_notes(request, addon_id):
     addon = get_object_or_404(Addon.objects, pk=addon_id)
     version = addon.latest_version
-    return {'releasenotes': unicode(version.releasenotes),
-            'approvalnotes': version.approvalnotes}
+    return {'release_notes': unicode(version.release_notes),
+            'approval_notes': version.approval_notes}
 
 
 @json_view

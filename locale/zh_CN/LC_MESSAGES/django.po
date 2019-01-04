@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-21 12:27+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 14:48+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -1086,9 +1086,6 @@ msgstr "收藏集是相关附加组件的集合，任何人都可以创建与分
 msgid "Explore Collections"
 msgstr "探索收藏集"
 
-msgid "Common Tags"
-msgstr "常用标签"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1839,25 +1836,6 @@ msgstr "插件"
 msgid "Themes (Static)"
 msgstr "主题 (静态)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "其他"
-
-msgid "Exception"
-msgstr "例外"
-
-msgid "Release"
-msgstr "发布"
-
-msgid "Change"
-msgstr "更改"
-
-msgid "Compatible"
-msgstr "兼容"
-
-msgid "Incompatible"
-msgstr "不兼容"
-
 msgid "Alerts & Updates"
 msgstr "提醒和更新"
 
@@ -1938,6 +1916,10 @@ msgstr "网页开发"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "下载 Firefox 扩展，Web 开发工具篇。此分类包括 GitHub 增强、用户代理（UA）切换、Cookie 管理等功能的扩展。"
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "其他"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "下载 Firefox 扩展，天马行空，独辟蹊径，但对于部分奇怪的任务非常有用。"
@@ -3445,6 +3427,9 @@ msgstr "上传附加组件"
 msgid "Where to Host Version"
 msgstr "版本托管位置"
 
+msgid "Change"
+msgstr "更改"
+
 msgid "Upload Version"
 msgstr "上传版本"
 
@@ -3571,12 +3556,6 @@ msgid "Created:"
 msgstr "创建于："
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "附加组件多进程状态："
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "您的附加组件与多进程 Firefox (e10s) 的兼容情况"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "在通过代码审查后在此网站上列出。自动更新由此网站处理"
 
@@ -3967,8 +3946,8 @@ msgid "Your Theme's Name"
 msgstr "您的主题名"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "由 <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "来自 <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "创建新主题"
@@ -5567,9 +5546,6 @@ msgstr "Firefox 47 及以下版本需要 GUID。"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "支持的最低 \"strict_min_version\" 为 42.0。"
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "无法找到 min/max 版本。也许 \"strict_min_version\" 或 \"strict_max_version\" 包含不支持的版本号？"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7725,8 +7701,6 @@ msgstr "如果您要匿名，请输入更改的原因，但不要更改其他字
 msgid "No user with that email."
 msgstr "那个邮件地址没有用户。"
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox 用户 {id}"
 

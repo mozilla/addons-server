@@ -1684,7 +1684,7 @@ class TestRemoveLocale(TestCase):
 
     def test_remove_version_locale(self):
         version = self.addon.versions.all()[0]
-        version.releasenotes = {'fr': 'oui'}
+        version.release_notes = {'fr': 'oui'}
         version.save()
 
         self.client.post(self.url, {'locale': 'fr'})

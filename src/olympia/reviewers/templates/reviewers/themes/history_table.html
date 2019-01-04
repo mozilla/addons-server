@@ -17,7 +17,7 @@
         <tr>
           <td>{{ theme_review.created|date('Y-m-d') }}</td>
           {% if not user_history %}
-            <td>{{ theme_review.user.display_name }}</td>
+            <td>{{ theme_review.user.name }}</td>
           {% else %}
             <td>
              {% if theme_review.arguments %}

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-08 22:04+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2018-12-26 13:28+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -788,15 +788,15 @@ msgstr "Обзор всех тем"
 msgid "Add-ons Home Page"
 msgstr "Домашняя страница дополнений"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Если вы перешли по ссылке с другого места, пожалуйста, %(open_bug_link)sсообщите об ошибке%(close_bug_link)s. Расскажите нам откуда вы перешли и что пытались найти, и мы попробуем исправить это."
+"Если вы перешли по ссылке с другого места, пожалуйста, %(open_bug_link)sсообщите об ошибке %(close_bug_link)s. Расскажите нам откуда вы перешли и что пытались найти, и мы попробуем исправить это."
 
 msgid "Not Found"
 msgstr "Не найдено"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
@@ -805,11 +805,11 @@ msgid ""
 "\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Извините, но мы не можем найти то, что вы ищете.</h1> <p>Страница или файл, который вы запросили, не найдены на нашем сайте. Вполне возможно, что вы щёлкнули по ссылке, которая устарела, или "
-"неправильно набрали адрес.</p><ul><li> Если вы набрали адрес, пожалуйста, проверьте правильность его написания.</li> <li> Если вы откуда-либо проследовали по ссылке, пожалуйста, <a href=\"https://"
-"github.com/mozilla/addons-server/issues/new/\">сообщите о проблеме</a>. Сообщите нам, откуда вы пришли и что вы ищете, и мы сделаем все возможное, чтобы это исправить.</li></ul> <p> Или же вы "
-"можете просто перейти на некоторые из популярных страниц нашего сайта.</p> <ul> <li> Возможно вы заинтересованы в <a href=\"%(rec)s\">списке избранных дополнений</a>?</li> <li> Или вы хотите <a "
-"href=\"%(search)s\">найти дополнение</a>? Вы можете перейти к <a href=\"%(search)s\">странице поиска</a> или просто использовать поле поиска, расположенное выше.</li> <li> Если вы хотите начать "
-"сначала, просто перейдите на <a href=\"%(home)s\">главную страницу дополнений</a>.</li> </ul>"
+"неправильно набрали адрес.</p><ul><li> Если вы набрали адрес, пожалуйста, проверьте правильность его написания.</li> <li> Если вы откуда-либо проследовали по ссылке, пожалуйста, "
+"%(open_bug_link)sсообщите об ошибке%(close_bug_link)s. Сообщите нам, откуда вы пришли и что вы ищете, и мы сделаем все возможное, чтобы это исправить.</li></ul> <p> Или же вы можете просто перейти "
+"на некоторые из популярных страниц нашего сайта.</p> <ul> <li> Возможно вы заинтересованы в <a href=\"%(rec)s\">списке избранных дополнений</a>?</li> <li> Или вы хотите <a href=\"%(search)s\">найти "
+"дополнение</a>? Вы можете перейти к <a href=\"%(search)s\">странице поиска</a> или просто использовать поле поиска, расположенное выше.</li> <li> Если вы хотите начать сначала, просто перейдите на "
+"<a href=\"%(home)s\">главную страницу дополнений</a>.</li> </ul>"
 
 msgid "Oops"
 msgstr "Ой"
@@ -1145,9 +1145,6 @@ msgstr "Подборки представляют собой группы свя
 
 msgid "Explore Collections"
 msgstr "Просмотреть подборки"
-
-msgid "Common Tags"
-msgstr "Типичные метки"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1914,30 +1911,13 @@ msgstr "Плагины"
 msgid "Themes (Static)"
 msgstr "Темы (статические)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Другое"
-
-msgid "Exception"
-msgstr "Исключение"
-
-msgid "Release"
-msgstr "Выпуск"
-
-msgid "Change"
-msgstr "Изменить"
-
-msgid "Compatible"
-msgstr "Совместимое"
-
-msgid "Incompatible"
-msgstr "Несовместимое"
-
 msgid "Alerts & Updates"
 msgstr "Оповещения и обновления"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
 msgstr ""
+"Установите расширения Firefox, которые помогут вам быть в курсе всего нового, отслеживать задачи, повышать производительность. Найдите расширения, которые перезагружают вкладки, управляют "
+"продуктивностью и многое другое."
 
 msgid "Appearance"
 msgstr "Внешний вид"
@@ -1961,7 +1941,7 @@ msgid "Feeds, News & Blogging"
 msgstr "Ленты новостей и блоги"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Загрузите расширения Firefox, которые устранят беспорядок, чтобы вы могли быть в курсе событий в социальных сетях, следить за блогами, RSS-каналами, снижать нагрузку на глаза и многое другое."
 
 msgid "Games & Entertainment"
 msgstr "Игры и развлечения"
@@ -2014,14 +1994,18 @@ msgstr "Веб-разработка"
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
 
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Другое"
+
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Загрузите расширения Firefox, которые могут быть непредсказуемыми и креативными, но полезными для необычных задач."
 
 msgid "Device Features & Location"
 msgstr "Возможности устройства и местоположение"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Загрузите расширения для улучшения Firefox для Android. Выполняйте быстрый поиск, освобождайте системные ресурсы, делайте заметки и многое другое."
 
 msgid "Experimental"
 msgstr "Экспериментальные"
@@ -2051,7 +2035,7 @@ msgid "Social Networking"
 msgstr "Социальные сети"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Загрузите расширения для Firefox, чтобы расширить свои возможности на популярных сайтах социальных сетей, таких как YouTube, GitHub, Reddit и многих других."
 
 msgid "Sports & Games"
 msgstr "Спорт и игры"
@@ -2063,7 +2047,7 @@ msgid "User Interface"
 msgstr "Интерфейс пользователя"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Загрузите расширения пользовательского интерфейса Firefox для изменения веб-страниц, упрощения чтения, поиска, просмотра и многого другого."
 
 msgid "Animals"
 msgstr "Животные"
@@ -2108,7 +2092,7 @@ msgid "Fashion"
 msgstr "Мода"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Загрузите темы Firefox, которые предоставляют любые стили: узоры, цветы, текстуры, модели и многое другое."
 
 msgid "Film and TV"
 msgstr "Кино и телевидение"
@@ -2141,7 +2125,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Загрузите интересные, креативные и уникальные темы для Firefox."
 
 msgid "Scenery"
 msgstr "Пейзажи"
@@ -2153,7 +2137,7 @@ msgid "Seasonal"
 msgstr "Времена года"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Загрузите темы Firefox для всех времён года - осени, зимы, весны и лета. Осенние листья, снежные горные вершины, солнечные летние дни и весенние цветы."
 
 msgid "Solid"
 msgstr "Заливка"
@@ -2168,7 +2152,7 @@ msgid "Websites"
 msgstr "Веб-сайты"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Загрузите темы Firefox, которые отражают суть Интернета — увлекательные, необычные и отличительные."
 
 msgid "General"
 msgstr "Общее"
@@ -3585,6 +3569,9 @@ msgstr "Загрузить дополнение"
 msgid "Where to Host Version"
 msgstr "Где разместить версию"
 
+msgid "Change"
+msgstr "Изменить"
+
 msgid "Upload Version"
 msgstr "Загрузить версию"
 
@@ -3718,12 +3705,6 @@ msgid "Created:"
 msgstr "Создано:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Мультипроцессность дополнения:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Совместимость вашего дополнения с мультипроцессным Firefox (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Отобразится на этом сайте после прохождения проверки кода. Автоматические обновления будут выполняться этим сайтом"
 
@@ -4127,8 +4108,8 @@ msgstr "Это цвет вкладок"
 msgid "Your Theme's Name"
 msgstr "Имя вашей темы"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "от <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
@@ -5740,9 +5721,6 @@ msgstr "Для Firefox 47 и ниже требуется GUID."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Минимальная поддерживаемая \"strict_min_version\" - 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Не удалось найти минимальную/максимальную версию. Быть может \"strict_min_version\" или \"strict_max_version\" содержат неподдерживаемую версию?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7969,8 +7947,6 @@ msgstr "Для анонимизации, введите причину изме�
 msgid "No user with that email."
 msgstr "Нет пользователя с таким почтовым адресом."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Пользователь Firefox {id}"
 

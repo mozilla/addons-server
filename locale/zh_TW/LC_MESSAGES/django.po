@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 14:16+0000\n"
-"Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 14:22+0000\n"
+"Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -1085,10 +1085,6 @@ msgstr "收藏集是將相關的附加元件集結起來，任何人都可以建
 msgid "Explore Collections"
 msgstr "探索收藏集"
 
-# 常用還是共通? 請小心翻譯
-msgid "Common Tags"
-msgstr "熱門標籤"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1848,25 +1844,6 @@ msgstr "外掛程式"
 msgid "Themes (Static)"
 msgstr "主題（靜態）"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "其它"
-
-msgid "Exception"
-msgstr "例外"
-
-msgid "Release"
-msgstr "釋出"
-
-msgid "Change"
-msgstr "修改"
-
-msgid "Compatible"
-msgstr "相容"
-
-msgid "Incompatible"
-msgstr "不相容"
-
 msgid "Alerts & Updates"
 msgstr "警示與更新"
 
@@ -1947,6 +1924,10 @@ msgstr "網頁開發"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "其它"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3468,6 +3449,9 @@ msgstr "上傳附加元件"
 msgid "Where to Host Version"
 msgstr "於何處代管此版本？"
 
+msgid "Change"
+msgstr "修改"
+
 msgid "Upload Version"
 msgstr "上傳版本"
 
@@ -3595,12 +3579,6 @@ msgid "Created:"
 msgstr "建立於:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "附加元件多程序狀態:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "您的附加元件相容於多程序 (e10s) 的 Firefox"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理"
 
@@ -3998,8 +3976,8 @@ msgid "Your Theme's Name"
 msgstr "您的佈景主題名稱"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "由 <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "來自 <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "建立一個新的主題"
@@ -4848,7 +4826,7 @@ msgstr "{addon_name} {start_sub_heading}增加生產力{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "封鎖浪費時間的網站以讓您能聚焦於手邊的工作。"
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4864,7 +4842,7 @@ msgstr "{addon_name} {start_sub_heading}固定您的最愛{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
-msgstr ""
+msgstr "找尋並解決掉損壞、重複等書籤。"
 
 #. editorial content for the discovery pane.
 msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4888,7 +4866,7 @@ msgstr "{addon_name} {start_sub_heading}讓 YouTube 有您的風格{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr ""
+msgstr "在彈出式視窗中播放影片，只看得到已訂閱頻道的廣告、和截取影片的螢幕截圖以及更多。"
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4952,7 +4930,7 @@ msgstr "{addon_name} {start_sub_heading}改善新分頁{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "在您目前分頁的右方開啟新分頁而非分頁列尾端。"
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5032,7 +5010,7 @@ msgstr "{addon_name} {start_sub_heading}更聰明工作{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your productivity by working in set time intervals."
-msgstr ""
+msgstr "透過設定時間間隔提升您的工作效率。"
 
 #. editorial content for the discovery pane.
 msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5599,9 +5577,6 @@ msgstr "Firefox 47 版之前需要 GUID"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "最低支援的「strict_min_version」是 42.0。"
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "找不到最小/最大相容版本。可能「strict_min_version」或「strict_max_version」裡面有未支援的版本？"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7761,8 +7736,6 @@ msgstr "如果您要匿名化，請輸入更改的原因，但請勿更改其他
 msgid "No user with that email."
 msgstr "無使用者使用此信箱。"
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox 使用者 {id}"
 

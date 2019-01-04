@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 09:01+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 15:00+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -1131,9 +1131,6 @@ msgstr "Collecties zijn groepen verwante add-ons die iedereen kan aanmaken en de
 msgid "Explore Collections"
 msgstr "Collecties verkennen"
 
-msgid "Common Tags"
-msgstr "Veelgebruikte labels"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1899,25 +1896,6 @@ msgstr "Plug-ins"
 msgid "Themes (Static)"
 msgstr "Thema’s (statisch)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Overig"
-
-msgid "Exception"
-msgstr "Uitzondering"
-
-msgid "Release"
-msgstr "Uitgave"
-
-msgid "Change"
-msgstr "Wijzigen"
-
-msgid "Compatible"
-msgstr "Compatibel"
-
-msgid "Incompatible"
-msgstr "Incompatibel"
-
 msgid "Alerts & Updates"
 msgstr "Waarschuwingen en updates"
 
@@ -1998,6 +1976,10 @@ msgstr "Webontwikkeling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Download Firefox-extensies met webontwikkelhulpmiddelen. Deze categorie omvat extensies voor GitHub, wisselen van user agent, cookiebeheer, en meer."
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Overig"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Download Firefox-extensies die onvoorspelbaar en creatief kunnen zijn, maar wel handig zijn voor dat soort ongebruikelijke taken."
@@ -3559,6 +3541,9 @@ msgstr "Add-on uploaden"
 msgid "Where to Host Version"
 msgstr "Waar de versie wordt gehost"
 
+msgid "Change"
+msgstr "Wijzigen"
+
 msgid "Upload Version"
 msgstr "Versie uploaden"
 
@@ -3689,12 +3674,6 @@ msgid "Created:"
 msgstr "Gemaakt:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Multiprocess-status van add-on:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "De compatibiliteit van uw add-on met Multiproces-Firefox (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Vermeld op deze website na succesvolle codebeoordeling. Automatische updates worden door deze website verzorgd"
 
@@ -4097,8 +4076,8 @@ msgid "Your Theme's Name"
 msgstr "Naam van uw thema"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "door <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "door <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Een nieuw thema maken"
@@ -5707,9 +5686,6 @@ msgstr "Voor Firefox 47 en lager is een GUID vereist."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Laagste ondersteunde ‘strict_min_version’ is 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Kan min/max versie niet vinden. Misschien bevat ‘strict_min_version’ of ‘strict_max_version’  een niet-ondersteunde versie?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7925,8 +7901,6 @@ msgstr "Voer een reden voor de wijziging in om te anonimiseren, maar wijzig geen
 msgid "No user with that email."
 msgstr "Er is geen gebruiker met dat e-mailadres."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox-gebruiker {id}"
 

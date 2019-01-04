@@ -115,11 +115,12 @@ class TestSubmitBase(TestCase):
         source.seek(0)
         return source
 
-    def generate_source_compressed_tar(
-            self, suffix='.tar.gz', data='t' * (2 ** 21)):
+    def generate_source_tar(
+            self, suffix='.tar.gz', data='t' * (2 ** 21), mode=None):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
-        mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
+        if mode is None:
+            mode = 'w:bz2' if suffix.endswith('.tar.bz2') else 'w:gz'
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
             tar_info = tarfile.TarInfo('foo')
             tar_info.size = len(data)
@@ -666,7 +667,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_submit_source_targz(self):
         response = self.post(
-            has_source=True, source=self.generate_source_compressed_tar())
+            has_source=True, source=self.generate_source_tar())
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
         assert self.get_version().source
@@ -677,7 +678,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_submit_source_tgz(self):
         response = self.post(
-            has_source=True, source=self.generate_source_compressed_tar(
+            has_source=True, source=self.generate_source_tar(
                 suffix='.tgz'))
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
@@ -689,7 +690,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     def test_submit_source_tarbz2(self):
         response = self.post(
-            has_source=True, source=self.generate_source_compressed_tar(
+            has_source=True, source=self.generate_source_tar(
                 suffix='.tar.bz2'))
         self.assert3xx(response, self.next_url)
         self.addon = self.addon.reload()
@@ -739,7 +740,7 @@ class TestAddonSubmitSource(TestSubmitBase):
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
     def test_submit_source_in_memory_upload_with_targz(self):
-        source = self.generate_source_compressed_tar()
+        source = self.generate_source_tar()
         source_size = os.stat(source.name)[stat.ST_SIZE]
         assert source_size < settings.FILE_UPLOAD_MAX_MEMORY_SIZE
         response = self.post(has_source=True, source=source)
@@ -759,6 +760,18 @@ class TestAddonSubmitSource(TestSubmitBase):
             'source': [
                 u'Unsupported file type, please upload an archive file '
                 u'(.zip, .tar.gz, .tar.bz2).'],
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_with_non_compressed_tar(self):
+        response = self.post(
+            # Generate a .tar.gz which is actually not compressed.
+            has_source=True, source=self.generate_source_tar(mode='w'),
+            expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': [u'Invalid or broken archive.'],
         }
         self.addon = self.addon.reload()
         assert not self.get_version().source
@@ -795,7 +808,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert not self.addon.needs_admin_code_review
 
     def test_with_bad_source_broken_archive_compressed_tar(self):
-        source = self.generate_source_compressed_tar()
+        source = self.generate_source_tar()
         with open(source.name, "r+b") as fobj:
             fobj.truncate(512)
         # Still looks like a tar at first glance.
@@ -1151,7 +1164,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         license_form = {'license-builtin': 3}
         policy_form = {} if minimal else {
             'has_priv': True, 'privacy_policy': 'Ur data belongs to us now.'}
-        reviewer_form = {} if minimal else {'approvalnotes': 'approove plz'}
+        reviewer_form = {} if minimal else {'approval_notes': 'approove plz'}
         result.update(describe_form)
         result.update(cat_form)
         result.update(license_form)
@@ -1205,7 +1218,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert addon.support_url == 'http://stackoverflow.com'
         assert addon.support_email == 'black@hole.org'
         assert addon.privacy_policy == 'Ur data belongs to us now.'
-        assert addon.current_version.approvalnotes == 'approove plz'
+        assert addon.current_version.approval_notes == 'approove plz'
 
     @override_switch('content-optimization', active=True)
     def test_submit_success_required_with_content_optimization(self):
@@ -1253,7 +1266,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         assert addon.support_url == 'http://stackoverflow.com'
         assert addon.support_email == 'black@hole.org'
         assert addon.privacy_policy == 'Ur data belongs to us now.'
-        assert addon.current_version.approvalnotes == 'approove plz'
+        assert addon.current_version.approval_notes == 'approove plz'
 
     def test_submit_categories_required(self):
         del self.cat_initial['categories']
@@ -2227,8 +2240,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
             response, reverse('devhub.submit.version.finish',
                               args=[self.addon.slug, self.version.pk]))
 
-        assert not self.version.approvalnotes
-        assert not self.version.releasenotes
+        assert not self.version.approval_notes
+        assert not self.version.release_notes
 
     def test_submit_success(self):
         assert all(self.get_addon().get_required_metadata())
@@ -2237,8 +2250,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
 
         # Post and be redirected - trying to sneak in a field that shouldn't
         # be modified when this is not the first listed version.
-        data = {'approvalnotes': 'approove plz',
-                'releasenotes': 'loadsa stuff', 'name': 'foo'}
+        data = {'approval_notes': 'approove plz',
+                'release_notes': 'loadsa stuff', 'name': 'foo'}
         response = self.client.post(self.url, data)
         self.assert3xx(
             response, reverse('devhub.submit.version.finish',
@@ -2248,8 +2261,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
         assert self.get_addon().name != 'foo'
 
         self.version.reload()
-        assert self.version.approvalnotes == 'approove plz'
-        assert self.version.releasenotes == 'loadsa stuff'
+        assert self.version.approval_notes == 'approove plz'
+        assert self.version.release_notes == 'loadsa stuff'
 
     def test_submit_details_unlisted_should_redirect(self):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)

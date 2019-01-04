@@ -99,8 +99,8 @@
         "fields": {
             "license": 5,
             "created": "2010-04-30 01:01:33",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2010-05-14 09:30:56",
             "version": "1.2",
             "addon": 1865
@@ -112,8 +112,8 @@
         "fields": {
             "license": 5,
             "created": "2010-01-07 00:16:35",
-            "releasenotes": null,
-            "approvalnotes": "",
+            "release_notes": null,
+            "approval_notes": "",
             "modified": "2010-04-08 11:12:53",
             "version": "1.1.3",
             "addon": 1865

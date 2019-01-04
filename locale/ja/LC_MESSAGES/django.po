@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-11-02 12:41+0000\n"
-"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2018-12-24 10:43+0000\n"
+"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -1111,9 +1111,6 @@ msgstr "コレクションとは、誰でも作成、共有できる、関連す
 msgid "Explore Collections"
 msgstr "コレクションを探す"
 
-msgid "Common Tags"
-msgstr "よく使われているタグ"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1873,25 +1870,6 @@ msgstr "プラグイン"
 msgid "Themes (Static)"
 msgstr "テーマ (静的)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "その他"
-
-msgid "Exception"
-msgstr "例外"
-
-msgid "Release"
-msgstr "リリース"
-
-msgid "Change"
-msgstr "変更"
-
-msgid "Compatible"
-msgstr "互換"
-
-msgid "Incompatible"
-msgstr "非互換"
-
 msgid "Alerts & Updates"
 msgstr "アラート／ステータス"
 
@@ -1972,6 +1950,10 @@ msgstr "ウェブ開発"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "その他"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3530,6 +3512,9 @@ msgstr "アドオンをアップロード"
 msgid "Where to Host Version"
 msgstr "バージョンの配布場所"
 
+msgid "Change"
+msgstr "変更"
+
 msgid "Upload Version"
 msgstr "バージョンをアップロード"
 
@@ -3658,13 +3643,6 @@ msgid "Created:"
 msgstr "作成日:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "アドオンのマルチプロセス対応状況:"
-
-#, fuzzy
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "あなたのアドオンは、マルチプロセスで動作する Firefox (e10s) と互換性があります。"
-
 #, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
@@ -4070,8 +4048,8 @@ msgstr "これはタブの背景色です。"
 msgid "Your Theme's Name"
 msgstr "テーマの名前"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "作者: <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
@@ -4366,7 +4344,7 @@ msgstr "開いているタブが多すぎて困っていませんか？サイド
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{end_sub_heading}で{start_sub_heading}Facebookトラッキングを停止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook のトラッキングを停止"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -5678,9 +5656,6 @@ msgstr "Firefox 47 以前では GUID が必要です。"
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "対応下限「strict_min_version」は 42.0 です。"
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "min/max バージョンの指定が見つかりません。\"strict_min_version\" または \"strict_max_version\" に未対応のバージョンが含まれている可能性があります。"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7874,8 +7849,6 @@ msgstr "匿名化するには、他の項目は変更せずに、変更の理由
 msgid "No user with that email."
 msgstr "このメールアドレスを持つユーザーは存在しません。"
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox ユーザー {id}"
 

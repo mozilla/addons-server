@@ -145,7 +145,7 @@ class AddonSerializerOutputTestMixin(object):
             text_ratings_count=555,
             version_kw={
                 'license': license,
-                'releasenotes': {
+                'release_notes': {
                     'en-US': u'Release notes in english',
                     'fr': u'Notes de version en français',
                 },
@@ -877,11 +877,6 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
             'username': author.username,
         }
 
-    def _test_version_license_and_release_notes(self, version, data):
-        """Override because the ES serializer doesn't include those fields."""
-        assert 'license' not in data
-        assert 'release_notes' not in data
-
     def test_score(self):
         self.request.version = 'v4'
         self.addon = addon_factory()
@@ -929,7 +924,7 @@ class TestVersionSerializerOutput(TestCase):
                 'license': license,
                 'min_app_version': '50.0',
                 'max_app_version': '*',
-                'releasenotes': {
+                'release_notes': {
                     'en-US': u'Release notes in english',
                     'fr': u'Notes de version en français',
                 },

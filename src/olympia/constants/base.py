@@ -390,19 +390,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
 
 VERSION_SEARCH = re.compile(r'\.(\d+)$')
 
-# Types of SiteEvent
-SITE_EVENT_OTHER = 1
-SITE_EVENT_EXCEPTION = 2
-SITE_EVENT_RELEASE = 3
-SITE_EVENT_CHANGE = 4
-
-SITE_EVENT_CHOICES = {
-    SITE_EVENT_OTHER: _('Other'),
-    SITE_EVENT_EXCEPTION: _('Exception'),
-    SITE_EVENT_RELEASE: _('Release'),
-    SITE_EVENT_CHANGE: _('Change'),
-}
-
 # For use in urls.
 ADDON_ID = r"""(?P<addon_id>[^/<>"']+)"""
 ADDON_UUID = r'(?P<uuid>[\w]{8}-[\w]{4}-[\w]{4}-[\w]{4}-[\w]{12})'

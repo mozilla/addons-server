@@ -285,7 +285,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2008-12-07 02:58:13",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-10-14 07:30:32",
             "version": "0.8.3",
             "addon": 3439
@@ -296,7 +296,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-10-02 02:01:07",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-10-02 02:03:17",
             "version": "4.0.0",
             "addon": 3497
@@ -307,7 +307,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-08-29 13:56:36",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-10-10 10:21:46",
             "version": "1.0.7",
             "addon": 6526
@@ -318,7 +318,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-07-08 15:54:34",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-11-11 00:39:44",
             "version": "2.1.5",
             "addon": 9192
@@ -329,7 +329,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-06-21 11:16:45",
-            "approvalnotes": "Updated for Firefox 3.5.",
+            "approval_notes": "Updated for Firefox 3.5.",
             "modified": "2009-07-01 13:11:18",
             "version": "3.5",
             "addon": 3790
@@ -340,7 +340,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-12-25 12:52:11",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-12-25 12:52:11",
             "version": "3.0.0",
             "addon": 4443
@@ -351,7 +351,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-06-28 16:34:35",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-06-28 16:35:36",
             "version": "3.5.0.2",
             "addon": 9702
@@ -362,7 +362,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-12-19 05:49:49",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-12-19 05:51:21",
             "version": "3.0.1",
             "addon": 9730
@@ -373,7 +373,7 @@
         "model": "versions.version",
         "fields": {
             "created": "2009-12-13 09:44:59",
-            "approvalnotes": "",
+            "approval_notes": "",
             "modified": "2009-12-13 09:44:59",
             "version": "3.5.0.20091213.8",
             "addon": 49897

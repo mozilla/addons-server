@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 15:16+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 19:23+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -1132,9 +1132,6 @@ msgstr "Sammlungen sind Gruppen von ähnlichen Add-ons, die jeder anlegen und ve
 msgid "Explore Collections"
 msgstr "Sammlungen erkunden"
 
-msgid "Common Tags"
-msgstr "Übliche Tags"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1902,25 +1899,6 @@ msgstr "Plugins"
 msgid "Themes (Static)"
 msgstr "Themes (Statisch)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Sonstiges"
-
-msgid "Exception"
-msgstr "Ausnahme"
-
-msgid "Release"
-msgstr "Veröffentlichung"
-
-msgid "Change"
-msgstr "Änderung"
-
-msgid "Compatible"
-msgstr "Kompatibel"
-
-msgid "Incompatible"
-msgstr "Inkompatibel"
-
 msgid "Alerts & Updates"
 msgstr "Hinweise und Benachrichtigungen"
 
@@ -2012,6 +1990,10 @@ msgstr "Webentwicklung"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Laden Sie Firefox-Erweiterungen mit Web-Entwicklungswerkzeugen herunter. Diese Kategorie enthält Erweiterungen für GitHub, User-Agent-Wechsel, Cookie-Verwaltung und mehr."
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Sonstiges"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Laden Sie Firefox-Erweiterungen herunter, die unvorhersehbar und kreativ sein können, aber für diese ungewöhnlichen Aufgaben nützlich sind."
@@ -3580,6 +3562,9 @@ msgstr "Add-on hochladen"
 msgid "Where to Host Version"
 msgstr "Wo die Version gehostet wird"
 
+msgid "Change"
+msgstr "Änderung"
+
 msgid "Upload Version"
 msgstr "Version hochladen"
 
@@ -3711,12 +3696,6 @@ msgid "Created:"
 msgstr "Erstellt:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Status bei Add-on-Multiprozess:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Kompatibilität Ihres Add-ons mit Firefox-Multiprozessen (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Wird nach bestandener Quelltextüberprüfung auf dieser Website gelistet. Automatische Updates werden von dieser Website verwaltet"
 
@@ -4119,8 +4098,8 @@ msgid "Your Theme's Name"
 msgstr "Name Ihres Themes"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "von <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "von <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Erstellen Sie ein neues Theme"
@@ -5729,9 +5708,6 @@ msgstr "GUID wird für Firefox 47 und höher benötigt."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Niedrigste unterstützte „strict_min_version“ ist 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Min-/Max-Version wurde nicht gefunden. Enthält „strict_min_version“ oder „strict_max_version“ womöglich eine nicht unterstützte Version?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7944,8 +7920,6 @@ msgstr "Zur Anonymisierung geben Sie einen Grund für die Änderung ein, aber ä
 msgid "No user with that email."
 msgstr "Kein Benutzer mit dieser E-Mail-Adresse."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox-Benutzer {id}"
 

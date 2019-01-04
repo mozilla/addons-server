@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-13 22:17+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-03 22:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1124,9 +1124,6 @@ msgstr "A gyűjtemények bárki által létrehozott és megosztott kiegészítő
 msgid "Explore Collections"
 msgstr "Gyűjtemények felfedezése"
 
-msgid "Common Tags"
-msgstr "Általános címkék"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1890,25 +1887,6 @@ msgstr "Bővítmények"
 msgid "Themes (Static)"
 msgstr "Témák (statikus)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Egyéb"
-
-msgid "Exception"
-msgstr "Kivétel"
-
-msgid "Release"
-msgstr "Kiadás"
-
-msgid "Change"
-msgstr "Módosítás"
-
-msgid "Compatible"
-msgstr "Kompatibilis"
-
-msgid "Incompatible"
-msgstr "Nem kompatibilis"
-
 msgid "Alerts & Updates"
 msgstr "Riasztások és frissítések"
 
@@ -2000,6 +1978,10 @@ msgstr "Webfejlesztés"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Egyéb"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3558,6 +3540,9 @@ msgstr "Kiegészítő feltöltése"
 msgid "Where to Host Version"
 msgstr "Hol terjeszti a verziót"
 
+msgid "Change"
+msgstr "Módosítás"
+
 msgid "Upload Version"
 msgstr "Verzió feltöltése"
 
@@ -3686,12 +3671,6 @@ msgid "Created:"
 msgstr "Létrehozva:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Kiegészítő több folyamatos állapota:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "A kiegészítő kompatibilitás a több folyamatos Firefoxszal (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli"
 
@@ -4096,8 +4075,8 @@ msgid "Your Theme's Name"
 msgstr "Téma neve"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "készítette: <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "készítette: <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Új téma létrehozása"
@@ -5706,9 +5685,6 @@ msgstr "Firefox 47 és korábbi verziókhoz GUID szükséges."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "A legkisebb támogatott „strict_min_version” érték: 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Nem található a legkisebb/legnagyobb verzió. Lehet, hogy a „strict_min_version” vagy a „strict_max_version” nem támogatott verziót tartalmaz?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7920,8 +7896,6 @@ msgstr "Az anonimizáláshoz adja meg a változás okát, de ne változtasson me
 msgid "No user with that email."
 msgstr "Nincs ilyen felhasználó ilyen e-mail címmel."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox felhasználó {id}"
 

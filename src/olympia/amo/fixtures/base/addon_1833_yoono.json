@@ -68,7 +68,7 @@
             "license": 180,
             "created": "2010-03-25 14:25:14",
             "modified": "2010-03-25 14:26:53",
-            "approvalnotes": "Uncompressed version and diff file emailed to Jorge Villalobos separately.  Email tpringle@yoono.com if needed for these files or more info.",
+            "approval_notes": "Uncompressed version and diff file emailed to Jorge Villalobos separately.  Email tpringle@yoono.com if needed for these files or more info.",
             "version": "7.1.6",
             "addon": 1833
         }

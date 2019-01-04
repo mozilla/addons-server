@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-04-17 20:07+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 16:10+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -26,7 +26,7 @@ msgid "This display name cannot be used."
 msgstr "לא ניתן להשתמש בשם תצוגה זה."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "ניתן להשתמש בשדה דף הבית כדי לקשר לאתרים חיצוניים בלבד."
 
 msgid "Usernames cannot contain only digits."
 msgstr "שמות משתמשים לא יכולים להכיל רק ספרות."
@@ -718,7 +718,7 @@ msgstr "מספר שלם חיובי"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "ניתן להשתמש בשדה זה כדי לקשר לאתרים חיצוניים בלבד. אין לציין כתובות תחת %(domain)s."
 
 msgid "Incorrect, please try again."
 msgstr "שגוי, נא לנסות שוב."
@@ -1147,9 +1147,6 @@ msgstr "אוספים הם קבוצות של תוספות הקשורות זו ל�
 
 msgid "Explore Collections"
 msgstr "חקירת אוספים"
-
-msgid "Common Tags"
-msgstr "תגים נפוצים"
 
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
@@ -1932,25 +1929,6 @@ msgstr "תוספים חיצוניים"
 msgid "Themes (Static)"
 msgstr "ערכות נושא (סטטיות)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "אחר"
-
-msgid "Exception"
-msgstr "חריגה"
-
-msgid "Release"
-msgstr ""
-
-msgid "Change"
-msgstr "שינוי"
-
-msgid "Compatible"
-msgstr "נתמך"
-
-msgid "Incompatible"
-msgstr "לא נתמך"
-
 msgid "Alerts & Updates"
 msgstr "התראות ועדכונים"
 
@@ -2031,6 +2009,10 @@ msgstr "פיתוח הרשת"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "אחר"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3570,6 +3552,9 @@ msgstr "העלאת תוספת"
 msgid "Where to Host Version"
 msgstr "איפה לארח את הגרסה"
 
+msgid "Change"
+msgstr "שינוי"
+
 # 75%
 # 100%
 msgid "Upload Version"
@@ -3698,12 +3683,6 @@ msgid "Created:"
 msgstr "מועד היצירה:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "מצב ריבוי תהליכים של תוספת:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "תאימות התוספת שלך ל־Firefox מרובה תהליכים (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "מופיע באתר לאחר סקירת קוד מוצלחת. עדכונים אוטומטיים מנוהלים על־ידי אתר זה"
 
@@ -4114,8 +4093,8 @@ msgid "Your Theme's Name"
 msgstr "שם ערכת הנושא שלך"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "מאת <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "מאת <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "יצירת ערכת נושא חדשה"
@@ -5793,9 +5772,6 @@ msgstr "‏GUID נדרש עבור Firefox 47 ומטה."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "ה־״strict_min_version״ הנמוך ביותר הנתמך הוא 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "לא ניתן למצוא גרסה עדכנית/מיושנת ביותר. אולי הערכים „strict_min_version” או „strict_max_version” מכילים גרסה בלתי נתמכת?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -8017,8 +7993,6 @@ msgstr "כדי להישאר בעילום שם, יש להקליד את סיבת �
 msgid "No user with that email."
 msgstr "אין משתמש עם כתובת דוא״ל זו."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "משתמש Firefox‏ {id}"
 

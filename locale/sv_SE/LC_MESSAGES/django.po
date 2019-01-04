@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 16:34+0000\n"
-"Last-Translator: Andreas Pettersson <az@kth.se>\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 15:58+0000\n"
+"Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
 "MIME-Version: 1.0\n"
@@ -1114,9 +1114,6 @@ msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela."
 msgid "Explore Collections"
 msgstr "Utforska samlingar"
 
-msgid "Common Tags"
-msgstr "Vanliga taggar"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1875,25 +1872,6 @@ msgstr "Insticksmoduler"
 msgid "Themes (Static)"
 msgstr "Teman (Statisk)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Annat"
-
-msgid "Exception"
-msgstr "Undantag"
-
-msgid "Release"
-msgstr "Utgåva"
-
-msgid "Change"
-msgstr "Ändra"
-
-msgid "Compatible"
-msgstr "Kompatibel"
-
-msgid "Incompatible"
-msgstr "Inkompatibel"
-
 msgid "Alerts & Updates"
 msgstr "Varningar & uppdateringar"
 
@@ -1975,6 +1953,10 @@ msgstr "Webbutveckling"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Hämta utökningar för Firefox som innehåller webbutvecklingsverktyg. Denna kategori innehåller utökningar för GitHub, byte av användaragent, kakhantering och mer."
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Annat"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Hämta utökningar för Firefox som kan vara oförutsägbara och kreativa, men ändå användbara för de udda uppgifterna."
@@ -3546,6 +3528,9 @@ msgstr "Ladda upp tillägg"
 msgid "Where to Host Version"
 msgstr "Var ska versionen hysas"
 
+msgid "Change"
+msgstr "Ändra"
+
 msgid "Upload Version"
 msgstr "Ladda upp version"
 
@@ -3679,12 +3664,6 @@ msgid "Created:"
 msgstr "Skapad:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Multi-processtatus för tillägg:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Ditt tilläggs kompatibilitet med multi-process Firefox (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen"
 
@@ -4090,8 +4069,8 @@ msgid "Your Theme's Name"
 msgstr "Ditt temas namn"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "av <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "av <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Skapa ett nytt tema"
@@ -5696,9 +5675,6 @@ msgstr "GUID krävs för Firefox 47 och lägre."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Lägsta \"strict_min_version\" som stöds är 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Kan inte hitta min/max version. \"strict_min_version\" eller \"strict_max_version\" kanske innehåller en version som inte stöds?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7893,8 +7869,6 @@ msgstr "För att anonymisera, ange en orsak till förändringen men ändra inte 
 msgid "No user with that email."
 msgstr "Ingen användare med den e-postadressen."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox-användare {id}"
 

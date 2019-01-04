@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-12-12 20:02+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2019-01-02 15:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -1151,9 +1151,6 @@ msgstr "Zběrki su kupki pśiswójźbnych dodankow, kótarež móžo kuždy wuwi
 msgid "Explore Collections"
 msgstr "Zběrki wuslěźiś"
 
-msgid "Common Tags"
-msgstr "Zwucone wobznamjenja"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1918,25 +1915,6 @@ msgstr "Tykace"
 msgid "Themes (Static)"
 msgstr "Drastwy (statiske)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Druge"
-
-msgid "Exception"
-msgstr "Wuwześe"
-
-msgid "Release"
-msgstr "Wersija"
-
-msgid "Change"
-msgstr "Změna"
-
-msgid "Compatible"
-msgstr "Kompatibelny"
-
-msgid "Incompatible"
-msgstr "Inkompatibelny"
-
 msgid "Alerts & Updates"
 msgstr "Pokaze a aktualizacije"
 
@@ -2019,6 +1997,10 @@ msgstr "Webwuwiśe"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež rědy webwuwiśa pśedstajaju. Toś ta kategorija rozšyrjenja za GitHub, pśeměnjenje wužywarskego agenta, zastojanje cookiejow a wěcej wopśimujo."
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Druge"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr "Ześěgniśo rozšyrjenja Firefox, kótarež mógu kreatiwne byś a njedaju se pśepowěźeś, ale su wužytne za toś te njewšedne nadawki."
@@ -3583,6 +3565,9 @@ msgstr "Dodank nagraś"
 msgid "Where to Host Version"
 msgstr "Źož se wersija góspodujo"
 
+msgid "Change"
+msgstr "Změna"
+
 msgid "Upload Version"
 msgstr "Wersiju nagraś"
 
@@ -3711,12 +3696,6 @@ msgid "Created:"
 msgstr "Napórany:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Multiprocesowy status dodanka:"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Waša dodankowa kompatibelnosć z multiprocesowym Firefox (e10s)"
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Nalicyjo se pó wobstatem pśeglědowanju žrědłowego koda na sedle. Awtomatiske aktualizacije zastoje se pśez toś to sedło"
 
@@ -4117,8 +4096,8 @@ msgid "Your Theme's Name"
 msgstr "Mě wašeje drastwy"
 
 #, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr "wót <a href=\"%(profile_url)s\">%(user)s</a>"
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "wót <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Napórajśo nowu drastwu"
@@ -5727,9 +5706,6 @@ msgstr "GUID jo trěbny za Firefox 47 a starše."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Nejniša pódpěrana wersija \"strict_min_version\" jo 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Wersija min/max njejo se namakała. Wopśimujo „strict_min_version“ abo „strict_max_version“ njepódpěranu wersiju?"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7954,8 +7930,6 @@ msgstr "Aby anonymizěrował, zapódajśo pśicynu za změnu, ale njezměńśo d
 msgid "No user with that email."
 msgstr "Žeden wužywaŕ z toś teju e-mailoweju adresu."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Wužywaŕ Firefox {id}"
 

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1117,9 +1117,6 @@ msgstr "Ri taq mol e rumolaj taq tz'aqat kiximon ki', ri xab'achike nitikïr yer
 msgid "Explore Collections"
 msgstr "Kekanöx taq Mol"
 
-msgid "Common Tags"
-msgstr "Relik taq Etal"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1881,25 +1878,6 @@ msgstr "Taq nak'ab'äl"
 msgid "Themes (Static)"
 msgstr "Taq Wachinel (Molob'a')"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Juley chik"
-
-msgid "Exception"
-msgstr "Man relik ta"
-
-msgid "Release"
-msgstr "Elesanem"
-
-msgid "Change"
-msgstr "Tijalwachïx"
-
-msgid "Compatible"
-msgstr "K'amonel"
-
-msgid "Incompatible"
-msgstr "Man k'amonel ta"
-
 msgid "Alerts & Updates"
 msgstr "Kitzijol K'ayewal & Taq K'exoj"
 
@@ -1982,6 +1960,10 @@ msgstr "Ajk'amaya'l Nuk'unem"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Juley chik"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3549,6 +3531,9 @@ msgstr "Tijotob'äx Tz'aqat"
 msgid "Where to Host Version"
 msgstr "Akuchi' Nojqanëx Ruwäch"
 
+msgid "Change"
+msgstr "Tijalwachïx"
+
 msgid "Upload Version"
 msgstr "Tijotob'äx Ruwäch"
 
@@ -3678,13 +3663,6 @@ msgid "Created:"
 msgstr "Xtz'uk:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Rub'anikil K'ïy Rutajinik Tz'aqat:"
-
-#, fuzzy
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Ri nuk'äm ri' atz'aqat rik'in ri K'ïy Rutajinik Firefox (e10s)."
-
 #, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
@@ -4087,8 +4065,8 @@ msgstr "Ja rub'onil re' ri ruwi'."
 msgid "Your Theme's Name"
 msgstr "Rub'i' Awachinel"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "ruma <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
@@ -5694,9 +5672,6 @@ msgstr "GUID k'atzinel pa Firefox 47 chuqa' ch'aqa' chik nima'q ruwäch."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Ri \"strict_min_version\" ojer nik'ul ja ri 42.0."
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr "Man nilitäj ta ri min/max ruwäch. Rik'in jub'a' ri  \"strict_min_version\" o \"strict_max_version\" k'o jun man okel ta ruwäch."
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -7894,8 +7869,6 @@ msgstr "Richin yak'oje' pan ewanïk, tatz'ib'aj jun aruma richin ri jaloj po maj
 msgid "No user with that email."
 msgstr "Majun okisanel rik'in ri taqoya'l ri' xilitäj."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Firefox okisanel {id}"
 

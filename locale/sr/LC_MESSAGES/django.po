@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -1138,9 +1138,6 @@ msgstr "Колекције су групе сродних додатака ко�
 msgid "Explore Collections"
 msgstr "Истражи колекције"
 
-msgid "Common Tags"
-msgstr "Честе ознаке"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1941,26 +1938,6 @@ msgstr "Прикључци"
 msgid "Themes (Static)"
 msgstr "Уметник за теме"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Друго"
-
-msgid "Exception"
-msgstr "Изузетак"
-
-msgid "Release"
-msgstr "Издање"
-
-msgid "Change"
-msgstr "Измена"
-
-msgid "Compatible"
-msgstr ""
-
-#, fuzzy
-msgid "Incompatible"
-msgstr "Недовршено"
-
 #, fuzzy
 msgid "Alerts & Updates"
 msgstr "Захтеване надоградње"
@@ -2050,6 +2027,10 @@ msgstr "Развој екстензија"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Друго"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -3676,6 +3657,9 @@ msgstr "Поставите Ваш додатак"
 msgid "Where to Host Version"
 msgstr "Циљана верзија"
 
+msgid "Change"
+msgstr "Измена"
+
 #, fuzzy
 msgid "Upload Version"
 msgstr "Отпреми нову верзију"
@@ -3820,13 +3804,6 @@ msgid "Created:"
 msgstr "Направљено:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
-msgid "Add-on Multi Process Status:"
-msgstr "Процес прегледа додатка"
-
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr ""
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -4257,9 +4234,9 @@ msgstr "Ово је боја језичака."
 msgid "Your Theme's Name"
 msgstr "Име теме"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
-msgstr ""
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
+msgstr "Објављен под <a href=\"%(url)s\">%(name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Направи нову тему"
@@ -5875,9 +5852,6 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
-
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
 msgstr ""
 
 #, fuzzy, python-format
@@ -8164,8 +8138,6 @@ msgstr "На анонимном, унесите разлог за промену
 msgid "No user with that email."
 msgstr "Нема корисника са том адресом е-поште."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 #, fuzzy
 msgid "Firefox user {id}"
 msgstr "Firefox за Android"

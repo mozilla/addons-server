@@ -46,8 +46,8 @@
         "fields": {
             "license": 5,
             "created": "2009-12-13 23:10:16",
-            "releasenotes": null,
-            "approvalnotes": null,
+            "release_notes": null,
+            "approval_notes": null,
             "modified": "2009-12-13 23:11:17",
             "version": "0",
             "addon": 2795
@@ -59,8 +59,8 @@
         "fields": {
             "license": 5,
             "created": "2009-12-13 23:10:16",
-            "releasenotes": null,
-            "approvalnotes": null,
+            "release_notes": null,
+            "approval_notes": null,
             "modified": "2009-12-14 17:43:48",
             "version": "0",
             "addon": 2795

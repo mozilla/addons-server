@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-10-19 17:38+0000\n"
-"Last-Translator: Victor Bychek <a@bychek.ru>\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2018-12-22 13:28+0000\n"
+"Last-Translator: Dmitry <d3dx12.xx@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -33,7 +33,7 @@ msgstr "Имя файла дополнения должно заканчиват
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
 msgid "{0}% complete"
-msgstr "{0}% завершено"
+msgstr "{0}% выполнено"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
@@ -67,7 +67,7 @@ msgid "See full validation report"
 msgstr "Прочесть весь отчёт о валидации"
 
 msgid "Validating {0}"
-msgstr "Валидация {0}"
+msgstr "Проверка {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Размер вашего дополнения превышает максимально допустимый размер {0}."
@@ -153,7 +153,7 @@ msgid "Follow this Collection"
 msgstr "Следовать за этой подборкой"
 
 msgid "Stop Following"
-msgstr "Перестать следовать"
+msgstr "Отписаться"
 
 msgid "Following"
 msgstr "Следовать"

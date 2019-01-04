@@ -131,9 +131,9 @@
         "fields": {
             "license": 13,
             "created": "2010-04-25 20:08:37",
-            "releasenotes": 1054175,
+            "release_notes": 1054175,
             "modified": "2010-04-27 14:23:48",
-            "approvalnotes": "",
+            "approval_notes": "",
             "version": "2.9.4",
             "addon": 4664
         }
@@ -245,8 +245,8 @@
         "fields": {
             "license": 13,
             "created": "2010-04-25 20:08:37",
-            "releasenotes": 1054175,
-            "approvalnotes": "",
+            "release_notes": 1054175,
+            "approval_notes": "",
             "modified": "2010-04-27 14:23:48",
             "version": "2.9.4",
             "addon": 4664

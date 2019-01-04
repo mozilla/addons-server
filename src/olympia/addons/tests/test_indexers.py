@@ -7,14 +7,13 @@ from olympia.addons.models import (
     Addon, Preview, attach_tags, attach_translations)
 from olympia.amo.models import SearchMixin
 from olympia.amo.tests import (
-    ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
-    version_factory)
+    ESTestCase, TestCase, addon_factory, collection_factory, file_factory)
 from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
 from olympia.files.models import WebextPermission
-from olympia.versions.models import VersionPreview
+from olympia.versions.models import License, VersionPreview
 
 
 class TestAddonIndexer(TestCase):
@@ -112,7 +111,8 @@ class TestAddonIndexer(TestCase):
         assert mapping_properties['current_version']['properties']
         version_mapping = mapping_properties['current_version']['properties']
         expected_version_keys = (
-            'id', 'compatible_apps', 'files', 'reviewed', 'version')
+            'id', 'compatible_apps', 'files', 'license',
+            'release_notes_translations', 'reviewed', 'version')
         assert set(version_mapping.keys()) == set(expected_version_keys)
 
         # Make sure files mapping is set inside current_version.
@@ -257,17 +257,22 @@ class TestAddonIndexer(TestCase):
 
     def test_extract_version_and_files(self):
         version = self.addon.current_version
-        file_factory(version=version, platform=PLATFORM_MAC.id)
+        # Make the version a webextension and add a bunch of things to it to
+        # test different scenarios.
+        version.all_files[0].update(is_webextension=True)
+        file_factory(
+            version=version, platform=PLATFORM_MAC.id, is_webextension=True)
+        del version.all_files
+        version.license = License.objects.create(
+            name=u'My licensé',
+            url='http://example.com/',
+            builtin=0)
+        [WebextPermission.objects.create(
+            file=file_, permissions=['bookmarks', 'random permission']
+        ) for file_ in version.all_files]
+        version.save()
 
-        unlisted_version = version_factory(
-            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED, file_kw={
-                'is_webextension': True,
-            })
-        # Give one of the versions some webext permissions to test that.
-        WebextPermission.objects.create(
-            file=unlisted_version.all_files[0],
-            permissions=['bookmarks', 'random permission']
-        )
+        # Now we can run the extraction and start testing.
         extracted = self._extract()
 
         assert extracted['current_version']
@@ -282,6 +287,17 @@ class TestAddonIndexer(TestCase):
                 'min_human': '2.0',
             }
         }
+        assert extracted['current_version']['license'] == {
+            'builtin': 0,
+            'id': version.license.pk,
+            'name_translations': [{'lang': u'en-US', 'string': u'My licensé'}],
+            'url': u'http://example.com/'
+        }
+        assert extracted['current_version']['release_notes_translations'] == [
+            {'lang': 'en-US', 'string': u'Fix for an important bug'},
+            {'lang': 'fr', 'string': u"Quelque chose en fran\xe7ais."
+                                     u"\n\nQuelque chose d'autre."},
+        ]
         assert extracted['current_version']['reviewed'] == version.reviewed
         assert extracted['current_version']['version'] == version.version
         for index, file_ in enumerate(version.all_files):
@@ -298,7 +314,8 @@ class TestAddonIndexer(TestCase):
             assert extracted_file['platform'] == file_.platform
             assert extracted_file['size'] == file_.size
             assert extracted_file['status'] == file_.status
-            assert extracted_file['webext_permissions_list'] == []
+            assert extracted_file['webext_permissions_list'] == [
+                'bookmarks', 'random permission']
 
         assert set(extracted['platforms']) == set([PLATFORM_MAC.id,
                                                    PLATFORM_ALL.id])

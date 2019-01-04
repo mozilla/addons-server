@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-12-12 07:50+0000\n"
-"PO-Revision-Date: 2018-11-21 21:07+0000\n"
+"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"PO-Revision-Date: 2018-12-28 21:47+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -1132,9 +1132,6 @@ msgstr "Kolekcie sú skupiny podobných doplnkov vytvárané a zdieľané použ�
 msgid "Explore Collections"
 msgstr "Preskúmať kolekcie"
 
-msgid "Common Tags"
-msgstr "Bežné značky"
-
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
@@ -1898,25 +1895,6 @@ msgstr "Zásuvné moduly"
 msgid "Themes (Static)"
 msgstr "Témy vzhľadu (statické)"
 
-#. Review points sources other than add-ons and themes.
-msgid "Other"
-msgstr "Iné"
-
-msgid "Exception"
-msgstr "Výnimka"
-
-msgid "Release"
-msgstr "Vydanie"
-
-msgid "Change"
-msgstr "Zmeniť"
-
-msgid "Compatible"
-msgstr "Kompatibilný"
-
-msgid "Incompatible"
-msgstr "Nekompatibilný"
-
 msgid "Alerts & Updates"
 msgstr "Upozornenia a aktualizácie"
 
@@ -1997,6 +1975,10 @@ msgstr "Tvorba webu"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+
+#. Review points sources other than add-ons and themes.
+msgid "Other"
+msgstr "Iné"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
 msgstr ""
@@ -2947,9 +2929,8 @@ msgstr "Popíšte doplnok"
 msgid "Describe {0}"
 msgstr "Popíšte {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Súhrn"
+msgstr "Názov a súhrn"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -3139,9 +3120,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "Podporované formáty: PNG a JPG. Ikony budú zmenšené na 64x64 bodov v prípade, že sú väčšie."
+msgstr ""
 
 msgid "Screenshots"
 msgstr "Ukážky"
@@ -3258,14 +3238,12 @@ msgstr "Odstrániť"
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Odoslať novú verziu tohto doplnku"
+msgstr "Nahrať novú verziu tohto doplnku"
 
 msgid "New Version"
 msgstr "Nová verzia"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
 msgstr "Denné štatistiky prevzatí a počtov používateľov"
 
@@ -3281,23 +3259,20 @@ msgstr "Zobraziť posledné zmeny"
 msgid "Edit details on this theme's product page"
 msgstr ""
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Zobraziť popularitu tejto témy vzhľadu v čase."
+msgstr "Zobraziť popularitu tejto témy vzhľadu v čase"
 
 msgid "View Statistics"
 msgstr "Zobraziť štatistiky"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Zmena vlastníka tejto témy vzhľadu."
+msgstr "Zmeniť vlastníka tejto témy vzhľadu"
 
 msgid "Transfer Ownership"
 msgstr "Presun vlastníctva"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Odstrániť túto tému vzhľadu."
+msgstr "Odstrániť túto tému vzhľadu"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3325,9 +3300,8 @@ msgstr[2] "<strong>{0}</strong> aktívnych používateľov"
 msgid "Submit a New Version"
 msgstr "Odoslať novú verziu"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Súhrn:"
+msgstr "Názov a súhrn:"
 
 msgid "required"
 msgstr "vyžadované"
@@ -3543,6 +3517,9 @@ msgstr "Nahrať doplnok"
 msgid "Where to Host Version"
 msgstr ""
 
+msgid "Change"
+msgstr "Zmeniť"
+
 msgid "Upload Version"
 msgstr "Nahrať verziu"
 
@@ -3669,13 +3646,6 @@ msgid "Created:"
 msgstr "Vytvorené:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Add-on Multi Process Status:"
-msgstr "Stav kompatibility doplnku s multiprocesorovou architektúrou:"
-
-#, fuzzy
-msgid "Your add-on compatibility with Multi Process Firefox (e10s)"
-msgstr "Kompatibilita vášho doplnku s multiprocesorovým Firefoxom (e10s)."
-
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -3688,9 +3658,8 @@ msgstr ""
 msgid "Next Listed Version:"
 msgstr ""
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach zverejnená."
+msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach zverejnená"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Fronty nie sú striktne prechádzané podľa poradia"
@@ -4062,22 +4031,20 @@ msgstr "Zvoľte farby vašej témy."
 msgid "Foreground Text"
 msgstr "Text popredia"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Jedná sa o farbu textov na kartách."
+msgstr "Toto je farba textu na kartách"
 
 msgid "Background"
 msgstr "Pozadie"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Toto je farba kariet."
+msgstr "Toto je farba kariet"
 
 msgid "Your Theme's Name"
 msgstr "Názov vašej témy"
 
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user)s</a>"
+#, fuzzy, python-format
+msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
 
 msgid "Create a New Theme"
@@ -4090,9 +4057,8 @@ msgstr "Témy vám dávajú možnosť jednoducho si prispôsobiť vzhľad vášh
 msgid "Give your Theme a name."
 msgstr "Pomenujte vašu tému."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krátky popis vašej témy, ktorý je zobrazený vo vyhľadávaní, prehľade kategórií, alebo priamo na stránke s detailom témy."
+msgstr "Krátky popis vašej témy, ktorý je zobrazený vo vyhľadávaní, prehľade kategórií, alebo priamo na stránke s podrobnosťami témy"
 
 #, python-format
 msgid ""
@@ -5686,9 +5652,6 @@ msgstr "Pre Firefox 47 a nižší je vyžadované GUID."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Najnižšia možná hodnota \"strict_min_version\" je 42.0."
 
-msgid "Cannot find min/max version. Maybe \"strict_min_version\" or \"strict_max_version\" contains an unsupported version?"
-msgstr ""
-
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
@@ -6248,13 +6211,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "Používateľské meno"
+msgstr "Používateľ"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "E-mailová adresa"
+msgstr "Adresa IP"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6780,9 +6741,8 @@ msgstr ""
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Doplnok"
+msgstr "Identifikátor doplnku"
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -7889,8 +7849,6 @@ msgstr "Pre anonymizáciu zadajte dôvod pre zmenu, no nemeňte žiadne iné pol
 msgid "No user with that email."
 msgstr "Používateľ s touto e-mailovou adresou neexistuje."
 
-#. L10n: {id} will be something like "13ad6a", just a random number
-#. to differentiate this user from other anonymous users.
 msgid "Firefox user {id}"
 msgstr "Používateľ Firefoxu - {id}"
 

@@ -82,7 +82,7 @@ urlpatterns = (
         name='reviewers.themes.commit'),
     url(r'^themes/queue/single/(?P<slug>[^ /]+)$', views_themes.themes_single,
         name='reviewers.themes.single'),
-    url(r'^themes/history/(?P<username>[^ /]+)?$',
+    url(r'^themes/history/(?P<user_id>[^ /]+)?$',
         views_themes.themes_history, name='reviewers.themes.history'),
     url(r'^themes/logs$', views_themes.themes_logs,
         name='reviewers.themes.logs'),

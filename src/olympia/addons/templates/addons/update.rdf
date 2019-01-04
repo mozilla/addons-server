@@ -17,7 +17,7 @@
             <em:minVersion>{{ application_version.min }}</em:minVersion>
             <em:maxVersion>{{ application_version.max }}</em:maxVersion>
             <em:updateLink>{{ url }}</em:updateLink>
-{% if version.releasenotes %}
+{% if version.release_notes %}
             <em:updateInfoURL>{{ settings.SITE_URL }}{{ url('versions.views.update_info_redirect', version_id=version.pk) }}%APP_LOCALE%/</em:updateInfoURL>
 {% endif %}
 {% if file.hash %}

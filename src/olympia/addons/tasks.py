@@ -710,9 +710,9 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
     # Incoming ids should already by type=persona only
     lwts = Addon.objects.filter(id__in=ids)
-    pause_all_tasks()
     for lwt in lwts:
         static = None
+        pause_all_tasks()
         try:
             timer = StopWatch('addons.tasks.migrate_lwts_to_static_theme')
             timer.start()
@@ -733,7 +733,8 @@ def migrate_lwts_to_static_themes(ids, **kw):
         except Exception as e:
             # If something went wrong, don't migrate - we need to debug.
             mlog.debug('[Fail] LWT %r:', lwt, exc_info=e)
-    resume_all_tasks()
+        finally:
+            resume_all_tasks()
 
 
 @task
