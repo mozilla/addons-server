@@ -144,6 +144,3 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-stage')
 
 VAMO_URL = 'https://versioncheck.allizom.org'
-
-# Temporarily enabled on stage for QA to test bug 1508777
-MIGRATED_LWT_UPDATES_ENABLED = True
