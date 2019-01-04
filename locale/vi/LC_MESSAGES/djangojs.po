@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-12-01 13:09+0000\n"
+"PO-Revision-Date: 2019-01-04 11:57+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -726,11 +726,11 @@ msgid "Enter a new author's email address"
 msgstr "Nhập địa chỉ email của tác giả mới"
 
 msgid "There was an error uploading your file."
-msgstr "Xảy ra lỗi trong quá trình tải lên tệp tin."
+msgstr "Xảy ra lỗi trong quá trình tải lên tập tin."
 
 msgid "{files} file"
 msgid_plural "{files} files"
-msgstr[0] "{files} tệp"
+msgstr[0] "{files} tập tin"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
