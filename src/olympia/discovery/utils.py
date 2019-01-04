@@ -16,17 +16,30 @@ from olympia import amo
 log = olympia.core.logger.getLogger('z.amo')
 
 
-def call_recommendation_server(id_or_guid, params, server):
-    params = OrderedDict(sorted(params.items(), key=lambda t: t[0]))
-    endpoint = urlparse.urljoin(
-        server,
-        '%s/%s%s' % (id_or_guid, '?' if params else '', urlencode(params)))
+def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
+    """Call taar `server` to get recommendations for a given
+    `client_id_or_guid`.
+
+    `data` is a dict containing either query parameters to be passed in the URL
+    if we're calling the server through GET, or the data we'll pass through
+    POST as json.
+    The HTTP verb to use is either "get" or "post", controlled through `verb`,
+    which defaults to "get"."""
+    request_kwargs = {
+        'timeout': settings.RECOMMENDATION_ENGINE_TIMEOUT
+    }
+    if verb == 'get':
+        params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
+        endpoint = urlparse.urljoin(server, '%s/%s%s' % (
+            client_id_or_guid, '?' if params else '', urlencode(params)))
+
+    else:
+        endpoint = urlparse.urljoin(server, '%s/' % client_id_or_guid)
+        request_kwargs['json'] = data
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:
         with statsd.timer('services.recommendations'):
-            response = requests.get(
-                endpoint,
-                timeout=settings.RECOMMENDATION_ENGINE_TIMEOUT)
+            response = getattr(requests, verb)(endpoint, **request_kwargs)
         if response.status_code != 200:
             raise requests.exceptions.RequestException()
     except requests.exceptions.RequestException as e:
@@ -38,11 +51,22 @@ def call_recommendation_server(id_or_guid, params, server):
     return json.loads(response.content).get('results', None)
 
 
-def get_recommendations(telemetry_id, params):
+def get_disco_recommendations(hashed_client_id, overrides):
     from olympia.addons.models import Addon
     from olympia.discovery.models import DiscoveryItem
+    if overrides:
+        data = {
+            'options': {
+                'promoted': [
+                    [guid, 100 - i] for i, guid in enumerate(overrides)
+                ]
+            }
+        }
+    else:
+        data = None
     guids = call_recommendation_server(
-        telemetry_id, params, settings.RECOMMENDATION_ENGINE_URL) or []
+        settings.RECOMMENDATION_ENGINE_URL, hashed_client_id, data,
+        verb='post')
     qs = Addon.objects.select_related('discoveryitem').public().filter(
         guid__in=guids)
     result = []
