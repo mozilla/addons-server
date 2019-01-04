@@ -3906,7 +3906,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.url = reverse_ns('addon-recommendations')
         patcher = mock.patch(
             'olympia.addons.views.get_addon_recommendations')
-        self.get_recommendations_mock = patcher.start()
+        self.get_addon_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
     def tearDown(self):
@@ -3926,14 +3926,15 @@ class TestAddonRecommendationView(ESTestCase):
         addon2 = addon_factory(id=102, guid='102@mozilla')
         addon3 = addon_factory(id=103, guid='103@mozilla')
         addon4 = addon_factory(id=104, guid='104@mozilla')
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
             'recommended', 'no_reason')
         self.refresh()
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'False'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', False)
+        self.get_addon_recommendations_mock.assert_called_with(
+            'foo@baa', False)
         assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] == 'no_reason'
         assert data['count'] == 4
@@ -3962,7 +3963,7 @@ class TestAddonRecommendationView(ESTestCase):
         addon6 = addon_factory(id=106, guid='106@mozilla')
         addon7 = addon_factory(id=107, guid='107@mozilla')
         addon8 = addon_factory(id=108, guid='108@mozilla')
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
             'recommended', None)
         get_addon_recommendations_invalid.return_value = (
@@ -3972,7 +3973,7 @@ class TestAddonRecommendationView(ESTestCase):
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'True'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        self.get_addon_recommendations_mock.assert_called_with('foo@baa', True)
         assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] is None
         assert data['count'] == 4
@@ -3996,7 +3997,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'True'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        self.get_addon_recommendations_mock.assert_called_with('foo@baa', True)
         assert data['outcome'] == 'failed'
         assert data['fallback_reason'] == 'invalid'
         assert data['count'] == 4
@@ -4016,7 +4017,7 @@ class TestAddonRecommendationView(ESTestCase):
         assert result['guid'] == '108@mozilla'
 
     def test_es_queries_made_no_results(self):
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['@a', '@b'], 'foo', 'baa')
         with patch.object(
                 Elasticsearch, 'search',
@@ -4037,7 +4038,7 @@ class TestAddonRecommendationView(ESTestCase):
         addon_factory(slug='fb', name=u'foo', guid='@d')
         self.refresh()
 
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['@a', '@b', '@c', '@d'], 'recommended', None)
         with patch.object(
                 Elasticsearch, 'search',

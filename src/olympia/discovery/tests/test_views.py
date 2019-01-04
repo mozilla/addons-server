@@ -266,12 +266,12 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
             DiscoveryItem.objects.create(addon=addon, position_china=i)
 
         patcher = mock.patch(
-            'olympia.discovery.views.get_recommendations')
-        self.get_recommendations = patcher.start()
+            'olympia.discovery.views.get_disco_recommendations')
+        self.get_disco_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
-        self.get_recommendations.return_value = []
+        self.get_disco_recommendations_mock.return_value = []
         self.url = reverse_ns('discovery-list', api_version='v4dev')
 
     def test_recommendations(self):
@@ -289,13 +289,12 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
             DiscoveryItem(addon=recommendations[3]),
         ]
         self.addons.extend(recommendations)
-        self.get_recommendations.return_value = replacement_items
+        self.get_disco_recommendations_mock.return_value = replacement_items
 
         response = self.client.get(
             self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
                        'platform': 'WINNT'})
-        self.get_recommendations.assert_called_with(
-            '666', {'locale': 'en-US', 'platform': 'WINNT'})
+        self.get_disco_recommendations_mock.assert_called_with('666', [])
 
         # should still be the same number of results.
         discopane_items = DiscoveryItem.objects.filter(
@@ -315,39 +314,25 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
                 self._check_disco_addon(result, new_discopane_items[i])
                 assert result['is_recommendation'] is True
 
-    def test_extra_params(self):
+    def test_recommendations_with_override(self):
         author = user_factory()
-        recommendations = [
-            addon_factory(id=101, guid='101@mozilla', users=[author]),
-        ]
-        replacement_items = [DiscoveryItem(addon_id=101)]
-        self.addons.extend(recommendations)
-        self.get_recommendations.return_value = replacement_items
+        addon1 = addon_factory(guid='101@mozilla', users=[author])
+        addon2 = addon_factory(guid='102@mozilla', users=[author])
+        addon3 = addon_factory(guid='103@mozilla', users=[author])
+        DiscoveryItem.objects.create(addon=addon1, position_override=4)
+        DiscoveryItem.objects.create(addon=addon2)
+        DiscoveryItem.objects.create(addon=addon3, position_override=1)
 
-        # send known taar parameters
-        known_params = {
-            'lang': 'en-US', 'telemetry-client-id': '666', 'platform': 'WINNT',
-            'branch': 'bob', 'study': 'sally'}
-        response = self.client.get(self.url, known_params)
-        self.get_recommendations.assert_called_with(
-            '666', {'locale': 'en-US', 'platform': 'WINNT', 'branch': 'bob',
-                    'study': 'sally'})
-        assert response.data['results']
+        self.client.get(self.url, {'telemetry-client-id': '666'})
+        self.get_disco_recommendations_mock.assert_called_with(
+            u'666', [u'103@mozilla', u'101@mozilla'])
 
-        # Sense check to make sure we're testing all known params in this test
-        # strip out 'edition' as providing it means no taar.
-        taar_allowed_params = [p for p in amo.DISCO_API_ALLOWED_PARAMETERS
-                               if p != 'edition']
-        assert sorted(known_params.keys()) == sorted(taar_allowed_params)
+    def test_recommendations_with_garbage_telemetry_id(self):
+        self.client.get(self.url, {'telemetry-client-id': u'gærbäge'})
+        assert not self.get_disco_recommendations_mock.called
 
-        # Send some extra unknown parameters to be ignored.
-        with_unknown_params = {
-            'lang': 'en-US', 'telemetry-client-id': '666', 'platform': 'WINNT',
-            'extra': 'stuff', 'this': 'too'}
-        response = self.client.get(self.url, with_unknown_params)
-        self.get_recommendations.assert_called_with(
-            '666', {'locale': 'en-US', 'platform': 'WINNT'})
-        assert response.data['results']
+        self.client.get(self.url, {'telemetry-client-id': u''})
+        assert not self.get_disco_recommendations_mock.called
 
     def test_no_recommendations_for_china_edition(self):
         author = user_factory()
@@ -356,12 +341,12 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         ]
         replacement_items = [DiscoveryItem(addon_id=101)]
         self.addons.extend(recommendations)
-        self.get_recommendations.return_value = replacement_items
+        self.get_disco_recommendations_mock.return_value = replacement_items
 
         response = self.client.get(
             self.url, {'lang': 'en-US', 'telemetry-client-id': '666',
                        'platform': 'WINNT', 'edition': 'china'})
-        self.get_recommendations.assert_not_called()
+        self.get_disco_recommendations_mock.assert_not_called()
 
         # should be normal results
         discopane_items_china = DiscoveryItem.objects.all().filter(

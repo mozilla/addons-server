@@ -1,3 +1,5 @@
+import re
+
 from django.db.transaction import non_atomic_requests
 from django.utils.decorators import classonlymethod
 
@@ -6,11 +8,16 @@ from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from waffle import switch_is_active
 
-from olympia import amo
 from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.serializers import (
     DiscoveryEditorialContentSerializer, DiscoverySerializer)
-from olympia.discovery.utils import get_recommendations, replace_extensions
+from olympia.discovery.utils import (
+    get_disco_recommendations, replace_extensions)
+
+
+# Permissive regexp for client IDs passed to the API, just to avoid sending
+# garbage to TAAR.
+VALID_CLIENT_ID = re.compile('^[a-zA-Z0-9-]+$')
 
 
 class DiscoveryViewSet(ListModelMixin, GenericViewSet):
@@ -18,27 +25,16 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = DiscoverySerializer
 
-    def get_params(self):
-        params = dict(self.kwargs)
-        params.update(self.request.GET.iteritems())
-        params = {param: value for (param, value) in params.iteritems()
-                  if param in amo.DISCO_API_ALLOWED_PARAMETERS}
-        lang = params.pop('lang', None)
-        if lang:
-            # Need to change key to what taar expects
-            params['locale'] = lang
-        return params
-
     def get_queryset(self):
-        params = self.get_params()
-        edition = params.pop('edition', 'default')
+        edition = self.request.GET.get('edition', 'default')
         position_field = 'position_china' if edition == 'china' else 'position'
 
         # Base queryset for editorial content.
-        qs = (DiscoveryItem.objects
-                           .prefetch_related('addon')
-                           .filter(**{position_field + '__gt': 0})
-                           .order_by(position_field))
+        qs = (
+            DiscoveryItem.objects
+                         .prefetch_related('addon')
+                         .filter(**{position_field + '__gt': 0})
+                         .order_by(position_field))
 
         # Recommendations stuff, potentially replacing some/all items in
         # the queryset with recommendations if applicable.
@@ -46,10 +42,16 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
             # No TAAR for China Edition.
             telemetry_id = None
         else:
-            telemetry_id = params.pop('telemetry-client-id', None)
-        if switch_is_active('disco-recommendations') and telemetry_id:
-            recommendations = get_recommendations(
-                telemetry_id, params)
+            telemetry_id = self.request.GET.get('telemetry-client-id', None)
+        if switch_is_active('disco-recommendations') and (
+                telemetry_id and VALID_CLIENT_ID.match(telemetry_id)):
+            overrides = list(
+                DiscoveryItem.objects
+                             .values_list('addon__guid', flat=True)
+                             .filter(position_override__gt=0)
+                             .order_by('position_override'))
+            recommendations = get_disco_recommendations(
+                telemetry_id, overrides)
             if recommendations:
                 # if we got some recommendations then replace the
                 # extensions in the queryset with them.

@@ -45,18 +45,11 @@ E.g. a standard discovery pane will display 7 items, 4 extensions and 3 themes.
 Up to 4 extensions will be replaced with recommendations; the 3 themes will not
 be replaced. The API will still return a total of 7 items.
 
-.. note::
-    Specifying an ``edition`` parameter disables recommendations - the ``telemetry-client-id``
-    is ignored and standard discovery response returned.
-
-
  .. http:get:: /api/v4/discovery/?telemetry-client-id=12345678-90ab-cdef-1234-567890abcdef
 
-    :query string telemetry-client-id: The telemetry client ID to be passed to the TAAR service.
-    :query string lang: In addition to activating translations (see :ref:`Discovery Content <disco-content>`), this will be passed as `locale` to TAAR.
-    :query string platform: The platform identifier to be passed to TAAR.
-    :query string branch: Additional parameter passed along to TAAR.
-    :query string study: Additional parameter passed along to TAAR.
+    :query string telemetry-client-id: The telemetry client ID to be passed to the TAAR service. Must be matching ``^[a-zA-Z0-9-]+$`` regular expression, otherwise it will be ignored.
+    :query string edition: Return content for a specific edition of Firefox. If the value is ``china`` then recommendations are disabled entirely, the endpoint will then return editorial content regardless of whether the ``telemetry-client-id`` parameter is passed.
+    :query string lang: Activate translations in the specific language for that query. (See :ref:`translated fields <api-overview-translations>`)
 
 -----------------
 Editorial Content

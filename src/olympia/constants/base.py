@@ -469,9 +469,6 @@ MOZILLA_TRADEMARK_SYMBOLS = (
 ALLOWED_TRADEMARK_SUBMITTING_EMAILS = (
     '@mozilla.com', '@mozilla.org')
 
-DISCO_API_ALLOWED_PARAMETERS = (
-    'telemetry-client-id', 'lang', 'platform', 'branch', 'study', 'edition')
-
 # If you add/remove any sources, update the docs: /api/download_sources.html
 # Note there are some additional sources here for historical/backwards compat.
 DOWNLOAD_SOURCES_FULL = (
