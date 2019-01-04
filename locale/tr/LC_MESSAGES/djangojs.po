@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2015-11-03 11:51+0000\n"
+"PO-Revision-Date: 2019-01-04 17:45+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -122,8 +122,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri "
-"çevrilmesini önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
+"Derlenmiş ikililer, ayrıca küçültülmüş veya karartılmış betikler (bilinen kitaplıklar hariç) incelenecekse, bunların kendi kaynaklarının ayrı olarak bulunması gerekir. Başvurunuzun geri çevrilmesini"
+" önlemek adına, kaynak kodu gönderme sahasını kullandığınızdan emin olun."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "Doğrulama işlemleri sırasında başvurunun reddine yol açabilecek sorunlar bulundu:"
@@ -210,49 +210,41 @@ msgstr "Orijinalini kullan"
 msgid "Week of {0}"
 msgstr "{0} haftası"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " indirme"
-msgstr[1] " indirme"
+msgstr[0] "{0} indirme"
+msgstr[1] "{0} indirme"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} kullanıcı"
 msgstr[1] "{0} kullanıcı"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} eklenti"
 msgstr[1] "{0} eklenti"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} koleksiyon"
 msgstr[1] "{0} koleksiyon"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} inceleme"
 msgstr[1] "{0} inceleme"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} satış"
 msgstr[1] "{0} satış"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} iade"
 msgstr[1] "{0} iade"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} kurulum"
@@ -770,11 +762,10 @@ msgid "Loading..."
 msgstr "Yükleniyor..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> karakter kaldı."
-msgstr[1] "<b>{0}</b> karakter kaldı."
+msgstr[0] "<b>{0}</b> karakter"
+msgstr[1] "<b>{0}</b> karakter"
 
 #. L10n: {0} is the number of characters left.
 #, fuzzy
@@ -826,7 +817,7 @@ msgid "Number of Reviews"
 msgstr "İncelemelerin Sayısı"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "Maksimum yükleme boyutu {0}. Daha küçük bir arka plan resmi seçin."
 
 msgid "Requested Info"
 msgstr "İstenen Bilgi"
