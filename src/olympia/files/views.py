@@ -1,32 +1,25 @@
-import os
-import mimetypes
-
-from collections import OrderedDict
-
 from django import http, shortcuts
 from django.db.transaction import non_atomic_requests
 from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import condition
-from django.utils.functional import cached_property
-from rest_framework import serializers
+from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.viewsets import GenericViewSet
 
 import olympia.core.logger
 
-from olympia import amo
 from olympia.access import acl
 from olympia.lib.cache import Message, Token
-from olympia.lib.git import AddonGitRepository
 from olympia.amo.decorators import json_view
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
+from olympia.api.permissions import (
+    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
 from olympia.files.decorators import (
     compare_file_view, etag, file_view, file_view_token, last_modified)
-from olympia.files.file_viewer import extract_file
 from olympia.files.models import File
-from olympia.addons.serializers import VersionSerializer
-from olympia.api.fields import ReverseChoiceField
+from olympia.files.serializers import AddonFileBrowseSerializer
 
 from . import forms
 
@@ -95,7 +88,7 @@ def check_compare_form(request, form):
 @csrf_exempt
 @file_view
 @non_atomic_requests
-@condition(etag_func=etag, last_modified_func=last_modified)
+# @condition(etag_func=etag, last_modified_func=last_modified)
 def browse(request, viewer, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
                                  initial={'left': viewer.file},
@@ -105,23 +98,22 @@ def browse(request, viewer, key=None, type='file'):
         return response
 
     data = setup_viewer(request, viewer.file)
-    data['viewer'] = viewer
-    data['poll_url'] = reverse('files.poll', args=[viewer.file.id])
-    data['form'] = form
+    viewer.select(key)
+    key = viewer.get_selected_file(key)
+    files = viewer.get_files()
+    if key not in files:
+        raise http.Http404
 
-    if not viewer.is_extracted():
-        extract_file(viewer)
+    data.update({
+        'viewer': viewer,
+        'poll_url': reverse('files.poll', args=[viewer.file.id]),
+        'form': form,
+        'status': True,
+        'files': files,
+        'key': key})
 
-    if viewer.is_extracted():
-        data.update({'status': True, 'files': viewer.get_files()})
-        key = viewer.get_default(key)
-        if key not in data['files']:
-            raise http.Http404
-
-        viewer.select(key)
-        data['key'] = key
-        if (not viewer.is_directory() and not viewer.is_binary()):
-            data['content'] = viewer.read_file()
+    if (not viewer.is_directory() and not viewer.is_binary()):
+        data['content'] = viewer.read_file()
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
@@ -142,7 +134,7 @@ def compare_poll(request, diff):
 
 @csrf_exempt
 @compare_file_view
-@condition(etag_func=etag, last_modified_func=last_modified)
+# @condition(etag_func=etag, last_modified_func=last_modified)
 @non_atomic_requests
 def compare(request, diff, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=diff.addon,
@@ -160,22 +152,17 @@ def compare(request, diff, key=None, type='file'):
                                      diff.right.file.id])
     data['form'] = form
 
-    if not diff.is_extracted():
-        extract_file(diff.left)
-        extract_file(diff.right)
+    data.update({'status': True,
+                 'files': diff.get_files(),
+                 'files_deleted': diff.get_deleted_files()})
+    key = diff.left.get_selected_file(key)
+    if key not in data['files'] and key not in data['files_deleted']:
+        raise http.Http404
 
-    if diff.is_extracted():
-        data.update({'status': True,
-                     'files': diff.get_files(),
-                     'files_deleted': diff.get_deleted_files()})
-        key = diff.left.get_default(key)
-        if key not in data['files'] and key not in data['files_deleted']:
-            raise http.Http404
-
-        diff.select(key)
-        data['key'] = key
-        if diff.is_diffable():
-            data['left'], data['right'] = diff.read_file()
+    diff.select(key)
+    data['key'] = key
+    if diff.is_diffable():
+        data['left'], data['right'] = diff.read_file()
 
     tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
     return render(request, tmpl, data)
@@ -208,155 +195,24 @@ def serve(request, viewer, key):
                                 content_type=obj['mimetype'])
 
 
-class AddonFileBrowseSerializer(serializers.ModelSerializer):
-    url = serializers.SerializerMethodField()
-    platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
-    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
-    permissions = serializers.ListField(
-        source='webext_permissions_list',
-        child=serializers.CharField())
-    is_restart_required = serializers.BooleanField()
-    # TODO: Do we need the add-on serialized as well?
-    version = VersionSerializer()
-    validation_url_json = serializers.SerializerMethodField()
-    validation_url = serializers.SerializerMethodField()
-    has_been_validated = serializers.SerializerMethodField()
-    content = serializers.SerializerMethodField()
-    files = serializers.SerializerMethodField()
-    git_hex = serializers.SerializerMethodField()
-    git_message = serializers.SerializerMethodField()
-    git_author = serializers.SerializerMethodField()
+class BrowseViewSet(RetrieveModelMixin, GenericViewSet):
+    permission_classes = [AnyOf(
+        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
+    )]
+    permission_classes = []
 
-    class Meta:
-        model = File
-        fields = ('id', 'created', 'hash', 'is_restart_required',
-                  'is_webextension', 'is_mozilla_signed_extension',
-                  'platform', 'size', 'status', 'url', 'permissions',
-                  'automated_signing', 'has_been_validated')
+    serializer_class = AddonFileBrowseSerializer
 
-    @cached_property
-    def repo(self):
-        return AddonGitRepository(self.instance.version.addon)
+    def get_queryset(self):
+        """Return queryset to be used for the view."""
+        # Permission classes disallow access to non-public/unlisted add-ons
+        # unless logged in as a reviewer/addon owner/admin, so we don't have to
+        # filter the base queryset here.
+        return File.objects.all()
 
-    @property
-    def git_repo(self):
-        return self.repo.git_repository
-
-    def _get_commit(self, file_obj):
-        """Return the pygit2 repository instance, preselect correct channel."""
-        return self.git_repo.revparse_single(file_obj.version.git_hash)
-
-    def get_url(self, obj):
-        # File.get_url_path() is a little different, it's already absolute, but
-        # needs a src parameter that is appended as a query string.
-        return obj.get_url_path(src='')
-
-    def get_validation_url_json(self, obj):
-        return reverse('devhub.json_file_validation', args=[
-            obj.version.addon.slug, obj.id
-        ])
-
-    def get_validation_url(self, obj):
-        return reverse('devhub.file_validation', args=[
-            obj.version.addon.slug, obj.id
-        ])
-
-    def get_files(self, obj):
-        commit = self._get_commit(obj)
-        result = OrderedDict()
-
-        for wrapper in self.repo.iter_tree(commit.tree):
-            entry = wrapper.tree_entry
-            path = wrapper.path
-
-            mime, encoding = mimetypes.guess_type(entry.name)
-
-            result[entry.path] = {
-                'id': self.file.id,
-                'binary': self._is_binary(mime, path),
-                'depth': path.count(os.sep),
-                'directory': entry.type == 'tree',
-                'filename': entry.name,
-                # 'sha256': get_sha256(path) if not directory else '',
-                'mimetype': mime or 'application/octet-stream',
-                'syntax': self.get_syntax(entry.name),
-                # 'modified': os.stat(path)[stat.ST_MTIME],
-                'short': entry.path,
-                # 'size': os.stat(path)[stat.ST_SIZE],
-                # 'truncated': self.truncate(filename),
-                'version': self.file.version.version,
-            }
-
-        return result
-
-    # if viewer.is_extracted():
-    #     data.update({'status': True, 'files': viewer.get_files()})
-    #     key = viewer.get_default(key)
-    #     if key not in data['files']:
-    #         raise http.Http404
-
-    #     viewer.select(key)
-    #     data['key'] = key
-    #     if (not viewer.is_directory() and not viewer.is_binary()):
-    #         data['content'] = viewer.read_file()
-
-    # tmpl = 'files/content.html' if type == 'fragment' else 'files/viewer.html'
-    # return render(request, tmpl, data)
-
-
-
-
-
-
-
-# class BrowseViewSet(RetrieveModelMixin, GenericViewSet):
-#     permission_classes = [AnyOf(
-#         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
-#     )]
-
-#     serializer_class = AddonFileBrowseSerializer
-
-#     def get_queryset(self):
-#         """Return queryset to be used for the view."""
-#         # Special case: admins - and only admins - can see deleted add-ons.
-#         # This is handled outside a permission class because that condition
-#         # would pollute all other classes otherwise.
-#         if (self.request.user.is_authenticated and
-#                 acl.action_allowed(self.request,
-#                                    amo.permissions.ADDONS_VIEW_DELETED)):
-#             return Addon.unfiltered.all()
-#         # Permission classes disallow access to non-public/unlisted add-ons
-#         # unless logged in as a reviewer/addon owner/admin, so we don't have to
-#         # filter the base queryset here.
-#         return Addon.objects.all()
-
-#     def get_serializer_class(self):
-#         # Override serializer to use serializer_class_with_unlisted_data if
-#         # we are allowed to access unlisted data.
-#         obj = getattr(self, 'instance')
-#         request = self.request
-#         if (acl.check_unlisted_addons_reviewer(request) or
-#                 (obj and request.user.is_authenticated and
-#                  obj.authors.filter(pk=request.user.pk).exists())):
-#             return self.serializer_class_with_unlisted_data
-#         return self.serializer_class
-
-#     def get_lookup_field(self, identifier):
-#         lookup_field = 'pk'
-#         if identifier and not identifier.isdigit():
-#             # If the identifier contains anything other than a digit, it's
-#             # either a slug or a guid. guids need to contain either {} or @,
-#             # which are invalid in a slug.
-#             if amo.ADDON_GUID_PATTERN.match(identifier):
-#                 lookup_field = 'guid'
-#             else:
-#                 lookup_field = 'slug'
-#         return lookup_field
-
-#     def get_object(self):
-#         identifier = self.kwargs.get('pk')
-#         self.lookup_field = self.get_lookup_field(identifier)
-#         self.kwargs[self.lookup_field] = identifier
-#         self.instance = super(AddonViewSet, self).get_object()
-#         return self.instance
-
+    def get_serializer_context(self):
+        context = super(BrowseViewSet, self).get_serializer_context()
+        context.update({
+            'requested_file': self.kwargs.get('file', None)
+        })
+        return context

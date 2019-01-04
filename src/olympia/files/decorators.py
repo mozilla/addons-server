@@ -46,7 +46,7 @@ def allowed(request, file):
 
 def _get_value(obj, key, value, cast=None):
     obj = getattr(obj, 'left', obj)
-    key = obj.get_default(key)
+    key = obj.get_selected_file(key)
     obj.select(key)
     if obj.selected:
         value = obj.selected.get(value)

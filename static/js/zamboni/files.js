@@ -391,7 +391,7 @@ function bind_viewer(nodes) {
         };
         this.compute_messages = function(node) {
             var $diff = node.find('#diff'),
-                path = this.nodes.$files.find('a.file.selected').attr('data-short'),
+                path = this.nodes.$files.find('a.file.selected').attr('data-path'),
                 messages = [],
                 self = this;
 
@@ -552,7 +552,7 @@ function bind_viewer(nodes) {
                 this.nodes.$files.find('.file').each(function() {
                     var $self = $(this);
 
-                    var known = viewer.known_files[$self.attr('data-short')];
+                    var known = viewer.known_files[$self.attr('data-path')];
                     if (known) {
                         var msg = ['Identified:'];
                         if ('library' in known) {
@@ -567,7 +567,7 @@ function bind_viewer(nodes) {
                              .addClass('tooltip');
                     }
 
-                    var messages = self.messages[$self.attr('data-short')];
+                    var messages = self.messages[$self.attr('data-path')];
                     if (messages) {
                         var classes = _.uniq(_.flatten(messages.map(function(msg) {
                             return viewer.message_classes(msg);
@@ -786,7 +786,7 @@ function bind_viewer(nodes) {
                 if (this == selected) {
                     list = [selected];
                 } else if (($file.is('.notice, .warning, .error') ||
-                            config.needreview_pattern.test($file.attr('data-short'))) &&
+                            config.needreview_pattern.test($file.attr('data-path'))) &&
                            $file.is(filter)) {
                     list.push(this);
                 }

@@ -242,27 +242,27 @@ class TestFileViewer(TestCase):
 
     def test_default(self):
         self.viewer.extract()
-        assert self.viewer.get_default(None) == 'install.rdf'
+        assert self.viewer.get_selected_file(None) == 'install.rdf'
 
     def test_default_webextension(self):
         viewer = FileViewer(make_file(2, get_file('webextension.xpi')))
         viewer.extract()
-        assert viewer.get_default(None) == 'manifest.json'
+        assert viewer.get_selected_file(None) == 'manifest.json'
 
     def test_default_webextension_zip(self):
         viewer = FileViewer(make_file(2, get_file('webextension_no_id.zip')))
         viewer.extract()
-        assert viewer.get_default(None) == 'manifest.json'
+        assert viewer.get_selected_file(None) == 'manifest.json'
 
     def test_default_webextension_crx(self):
         viewer = FileViewer(make_file(2, get_file('webextension.crx')))
         viewer.extract()
-        assert viewer.get_default(None) == 'manifest.json'
+        assert viewer.get_selected_file(None) == 'manifest.json'
 
     def test_default_package_json(self):
         viewer = FileViewer(make_file(3, get_file('new-format-0.0.1.xpi')))
         viewer.extract()
-        assert viewer.get_default(None) == 'package.json'
+        assert viewer.get_selected_file(None) == 'package.json'
 
     def test_delete_mid_read(self):
         self.viewer.extract()
@@ -332,12 +332,12 @@ class TestSearchEngineHelper(TestCase):
 
     def test_default(self):
         self.viewer.extract()
-        assert self.viewer.get_default(None) == 'a9.xml'
+        assert self.viewer.get_selected_file(None) == 'a9.xml'
 
     def test_default_no_files(self):
         self.viewer.extract()
         os.remove(os.path.join(self.viewer.dest, 'a9.xml'))
-        assert self.viewer.get_default(None) is None
+        assert self.viewer.get_selected_file(None) is None
 
 
 class TestDiffSearchEngine(TestCase):

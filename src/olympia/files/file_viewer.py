@@ -1,26 +1,18 @@
-import codecs
-import mimetypes
 import os
-import stat
-import shutil
 
 from collections import OrderedDict
-from datetime import datetime
 
 from django.conf import settings
-from django.core.files.storage import default_storage as storage
 from django.template.defaultfilters import filesizeformat
-from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import rm_local_tmp_dir
 from olympia.lib.cache import cache_get_or_set, Message
-from olympia.files.utils import (
-    atomic_lock, extract_xpi, get_all_files, get_sha256)
+from olympia.lib.git import AddonGitRepository, ExtractionAlreadyInProgress
+
 
 task_log = olympia.core.logger.getLogger('z.task')
 
@@ -39,8 +31,6 @@ denied_magic_numbers = (
     (0x43, 0x57, 0x53),  # ZLIB compressed SWF
 )
 
-LOCKED_LIFETIME = 60 * 5
-
 SYNTAX_HIGHLIGHTER_ALIAS_MAPPING = {
     'xul': 'xml',
     'rdf': 'xml',
@@ -57,50 +47,18 @@ SYNTAX_HIGHLIGHTER_SUPPORTED_LANGUAGES = frozenset([
 ])
 
 
-def extract_file(viewer, **kw):
-    # This message is for end users so they'll see a nice error.
-    msg = Message('file-viewer:%s' % viewer)
-    msg.delete()
-    task_log.debug('Unzipping %s for file viewer.' % viewer)
-
-    try:
-        lock_attained = viewer.extract()
-
-        if not lock_attained:
-            info_msg = ugettext(
-                'File viewer is locked, extraction for %s could be '
-                'in progress. Please try again in approximately 5 minutes.'
-                % viewer)
-            msg.save(info_msg)
-    except Exception as exc:
-        error_msg = ugettext('There was an error accessing file %s.') % viewer
-
-        if settings.DEBUG:
-            msg.save(error_msg + ' ' + exc)
-        else:
-            msg.save(error_msg)
-        task_log.error('Error unzipping: %s' % exc)
-
-    return msg
-
-
 class FileViewer(object):
     """
-    Provide access to a storage-managed file by copying it locally and
-    extracting info from it. `src` is a storage-managed path and `dest` is a
-    local temp path.
+    Helper around git-storage managed files. Primarily used to keep our
+    old file-viewer alive while we're working on something new, rest-api based.
     """
 
     def __init__(self, file_obj):
         self.file = file_obj
         self.addon = self.file.version.addon
         self.src = file_obj.current_file_path
-        self.base_tmp_path = os.path.join(settings.TMP_PATH, 'file_viewer')
-        self.dest = os.path.join(
-            self.base_tmp_path,
-            datetime.now().strftime('%m%d'),
-            str(file_obj.pk))
         self._files, self.selected = None, None
+        self.repository = AddonGitRepository(self.addon.pk)
 
     def __str__(self):
         return str(self.file.id)
@@ -108,83 +66,21 @@ class FileViewer(object):
     def _cache_key(self):
         return 'file-viewer:{0}'.format(self.file.id)
 
-    def extract(self):
-        """
-        Will make all the directories and extract the files.
-        Raises error on nasty files.
-
-        :returns: `True` if successfully extracted,
-                  `False` in case of an existing lock.
-        """
-        lock = atomic_lock(
-            settings.TMP_PATH, 'file-viewer-%s' % self.file.pk,
-            lifetime=LOCKED_LIFETIME)
-
-        with lock as lock_attained:
-            if lock_attained:
-                if self.is_extracted():
-                    # Be vigilent with existing files. It's better to delete
-                    # and re-extract than to trust whatever we have
-                    # lying around.
-                    task_log.warning(
-                        'cleaning up %s as there were files lying around'
-                        % self.dest)
-                    self.cleanup()
-
-                try:
-                    os.makedirs(self.dest)
-                except OSError as err:
-                    task_log.error(
-                        'Error (%s) creating directories %s'
-                        % (err, self.dest))
-                    raise
-
-                if self.is_search_engine() and self.src.endswith('.xml'):
-                    shutil.copyfileobj(
-                        storage.open(self.src),
-                        open(os.path.join(self.dest, self.file.filename), 'w'))
-                else:
-                    try:
-                        extracted_files = extract_xpi(self.src, self.dest)
-                        self._verify_files(extracted_files)
-                    except Exception as err:
-                        task_log.error(
-                            'Error (%s) extracting %s' % (err, self.src))
-                        raise
-
-        return lock_attained
-
-    def cleanup(self):
-        if os.path.exists(self.dest):
-            rm_local_tmp_dir(self.dest)
-
     def is_search_engine(self):
         """Is our file for a search engine?"""
         return self.file.version.addon.type == amo.ADDON_SEARCH
 
     def is_extracted(self):
         """If the file has been extracted or not."""
-        return os.path.exists(self.dest)
+        return self.repository.is_extracted
 
-    def _is_binary(self, mimetype, path):
-        """Uses the filename to see if the file can be shown in HTML or not."""
-        # Re-use the denied data from amo-validator to spot binaries.
-        ext = os.path.splitext(path)[1][1:]
-        if ext in denied_extensions:
-            return True
-
-        if os.path.exists(path) and not os.path.isdir(path):
-            with storage.open(path, 'r') as rfile:
-                bytes = tuple(map(ord, rfile.read(4)))
-            if any(bytes[:len(x)] == x for x in denied_magic_numbers):
-                return True
-
-        if mimetype:
-            major, minor = mimetype.split('/')
-            if major == 'image':
-                return 'image'  # Mark that the file is binary, but an image.
-
-        return False
+    def get_serializer(self):
+        from olympia.files.serializers import AddonFileBrowseSerializer
+        return AddonFileBrowseSerializer(
+            context={
+                'file': self.selected['path'] if self.selected else None},
+            instance=self.file
+        )
 
     def read_file(self, allow_empty=False):
         """
@@ -192,12 +88,8 @@ class FileViewer(object):
         UTF-8 and UTF-16 files appropriately. Return file contents and
         a list of error messages.
         """
-        try:
-            file_data = self._read_file(allow_empty)
-            return file_data
-        except (IOError, OSError):
-            self.selected['msg'] = ugettext('That file no longer exists.')
-            return ''
+        file_data = self._read_file(allow_empty)
+        return file_data
 
     def _read_file(self, allow_empty=False):
         if not self.selected and allow_empty:
@@ -210,17 +102,7 @@ class FileViewer(object):
             self.selected['msg'] = msg
             return ''
 
-        with storage.open(self.selected['full'], 'r') as opened:
-            cont = opened.read()
-            codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
-            try:
-                return cont.decode(codec)
-            except UnicodeDecodeError:
-                cont = cont.decode(codec, 'ignore')
-                # L10n: {0} is the filename.
-                self.selected['msg'] = (
-                    ugettext('Problems decoding {0}.').format(codec))
-                return cont
+        return self.get_serializer().get_content(self.file)
 
     def select(self, file_):
         self.selected = self.get_files().get(file_)
@@ -240,17 +122,6 @@ class FileViewer(object):
                 self.selected['msg'] = ugettext('This file is a directory.')
             return self.selected['directory']
 
-    def get_default(self, key=None):
-        """Gets the default file and copes with search engines."""
-        if key:
-            return key
-
-        files = self.get_files()
-        for manifest in ('install.rdf', 'manifest.json', 'package.json'):
-            if manifest in files:
-                return manifest
-        return files.keys()[0] if files else None  # Eg: it's a search engine.
-
     def get_files(self):
         """
         Returns an OrderedDict, ordered by the filename of all the files in the
@@ -261,9 +132,32 @@ class FileViewer(object):
             return self._files
 
         if not self.is_extracted():
-            extract_file(self)
+            msg = Message('file-viewer:%s' % self)
+            msg.delete()
 
-        self._files = cache_get_or_set(self._cache_key(), self._get_files)
+            task_log.debug('Unzipping %s for file viewer.' % self)
+
+            try:
+                self.repository.extract_and_commit_from_version(
+                    self.file.version)
+            except ExtractionAlreadyInProgress:
+                info_msg = ugettext(
+                    'File viewer is locked, extraction for %s could be '
+                    'in progress. Please try again in approximately 5 minutes.'
+                    % self)
+                msg.save(info_msg)
+            except Exception as exc:
+                error_msg = (
+                    ugettext('There was an error accessing file %s.')
+                    % self)
+
+                if settings.DEBUG:
+                    msg.save(error_msg + ' ' + exc)
+                else:
+                    msg.save(error_msg)
+                task_log.error('Error unzipping: %s' % exc)
+
+        self._files = self._get_files()
         return self._files
 
     def truncate(self, filename, pre_length=15,
@@ -297,96 +191,25 @@ class FileViewer(object):
                 return short
         return 'plain'
 
-    def _verify_files(self, expected_files, raise_on_verify=False):
-        """Verifies that all files are properly extracted.
-
-        TODO: This should probably be extracted into a separate helper
-        once we can verify that it works as expected.
-        """
-        difference = self._check_dest_for_complete_listing(expected_files)
-
-        if difference:
-            if raise_on_verify:
-                error_msg = (
-                    'Error verifying extraction of %s. Difference: %s' % (
-                        self.src, ', '.join(list(difference))))
-                task_log.error(error_msg)
-                raise ValueError(error_msg)
-            else:
-                task_log.warning(
-                    'Calling fsync, files from %s extraction aren\'t'
-                    ' completely available.' % self.src)
-
-                self._fsync_dest_to_complete_listing(
-                    self._normalize_file_list(expected_files))
-
-                self._verify_files(expected_files, raise_on_verify=True)
+    def get_selected_file(self, key=None):
+        """Gets the default file and copes with search engines."""
+        # We are caching `files` here in the file-viewer instance for now,
+        # use that and forward to the serializer.
+        files = self.get_files()
+        return self.get_serializer().get_selected_file()
 
     def _get_files(self, locale=None):
-        result = OrderedDict()
+        files = self.get_serializer().get_files(self.file)
 
-        for path in get_all_files(self.dest):
-            filename = force_text(os.path.basename(path), errors='replace')
-            short = force_text(path[len(self.dest) + 1:], errors='replace')
-            mime, encoding = mimetypes.guess_type(filename)
-            directory = os.path.isdir(path)
+        for file_data in files.values():
+            # Inject file-viewer specific data that is required in
+            # the templates.
+            file_data.update({
+                'syntax': self.get_syntax(file_data['filename']),
+                'truncated': self.truncate(file_data['filename']),
+            })
 
-            result[short] = {
-                'id': self.file.id,
-                'binary': self._is_binary(mime, path),
-                'depth': short.count(os.sep),
-                'directory': directory,
-                'filename': filename,
-                'full': path,
-                'sha256': get_sha256(path) if not directory else '',
-                'mimetype': mime or 'application/octet-stream',
-                'syntax': self.get_syntax(filename),
-                'modified': os.stat(path)[stat.ST_MTIME],
-                'short': short,
-                'size': os.stat(path)[stat.ST_SIZE],
-                'truncated': self.truncate(filename),
-                'version': self.file.version.version,
-            }
-
-        return result
-
-    def _check_dest_for_complete_listing(self, expected_files):
-        """Check that all files we expect are in `self.dest`."""
-        dest_len = len(self.dest)
-
-        files_to_verify = get_all_files(self.dest)
-
-        difference = (
-            set([name[dest_len:].strip('/') for name in files_to_verify]) -
-            set(self._normalize_file_list(expected_files)))
-
-        return difference
-
-    def _normalize_file_list(self, expected_files):
-        """Normalize file names, strip /tmp/xxxx/ prefix."""
-        prefix_len = settings.TMP_PATH.count('/')
-
-        normalized_files = filter(None, (
-            fname.strip('/').split('/')[prefix_len + 1:]
-            for fname in expected_files
-            if fname.startswith(settings.TMP_PATH)))
-
-        normalized_files = [os.path.join(*fname) for fname in normalized_files]
-
-        return normalized_files
-
-    def _fsync_dest_to_complete_listing(self, files):
-        # Now call fsync for every single file. This might block for a
-        # few milliseconds but it's still way faster than doing any
-        # kind of sleeps to wait for writes to happen.
-        for fname in files:
-            fpath = os.path.join(self.base_tmp_path, fname)
-            descriptor = os.open(fpath, os.O_RDONLY)
-            os.fsync(descriptor)
-
-        # Then make sure to call fsync on the top-level directory
-        top_descriptor = os.open(self.dest, os.O_RDONLY)
-        os.fsync(top_descriptor)
+        return files
 
 
 class DiffHelper(object):
@@ -409,10 +232,10 @@ class DiffHelper(object):
     def is_extracted(self):
         return self.left.is_extracted() and self.right.is_extracted()
 
-    def get_url(self, short):
+    def get_url(self, filename):
         return reverse('files.compare',
                        args=[self.left.file.id, self.right.file.id,
-                             'file', short])
+                             'file', filename])
 
     def get_files(self):
         """
@@ -424,7 +247,7 @@ class DiffHelper(object):
         right_files = self.right.get_files()
         different = []
         for key, file in left_files.items():
-            file['url'] = self.get_url(file['short'])
+            file['url'] = self.get_url(file['path'])
             diff = file['sha256'] != right_files.get(key, {}).get('sha256')
             file['diff'] = diff
             if diff:
@@ -433,7 +256,7 @@ class DiffHelper(object):
         # Now mark every directory above each different file as different.
         for diff in different:
             for depth in range(diff['depth']):
-                key = '/'.join(diff['short'].split('/')[:depth + 1])
+                key = '/'.join(diff['path'].split('/')[:depth + 1])
                 if key in left_files:
                     left_files[key]['diff'] = True
 
@@ -452,7 +275,9 @@ class DiffHelper(object):
         def keep(path):
             if path not in different:
                 copy = dict(right_files[path])
-                copy.update({'url': self.get_url(file['short']), 'diff': True})
+                copy.update({
+                    'url': self.get_url(file['path']),
+                    'diff': True})
                 different[path] = copy
 
         left_files = self.left.get_files()
@@ -484,7 +309,7 @@ class DiffHelper(object):
         self.left.select(key)
         if key and self.right.is_search_engine():
             # There's only one file in a search engine.
-            key = self.right.get_default()
+            key = self.right.get_selected_file()
 
         self.right.select(key)
         return self.left.selected and self.right.selected

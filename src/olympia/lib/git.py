@@ -14,11 +14,13 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import id_to_path, extract_extension_to_dest
+from olympia.files.utils import (
+    id_to_path, extract_extension_to_dest, atomic_lock)
 
 
 log = olympia.core.logger.getLogger('z.git_storage')
 
+LOCKED_LIFETIME = 60 * 5
 
 BRANCHES = {
     amo.RELEASE_CHANNEL_LISTED: 'listed',
@@ -27,7 +29,11 @@ BRANCHES = {
 
 
 # A mixture of Blob and TreeEntry
-TreeEntryWrapper = namedtuple('Entry', 'tree_entry, path')
+TreeEntryWrapper = namedtuple('Entry', 'tree_entry, path, blob')
+
+
+class ExtractionAlreadyInProgress(Exception):
+    pass
 
 
 class TemporaryWorktree(object):
@@ -68,17 +74,27 @@ class TemporaryWorktree(object):
 
 class AddonGitRepository(object):
 
-    def __init__(self, addon_id, package_type='package'):
+    def __init__(self, addon_or_id, package_type='package'):
+        from olympia.addons.models import Addon
         assert package_type in ('package', 'source')
+
+        addon_id = (
+            addon_or_id.pk
+            if isinstance(addon_or_id, Addon)
+            else addon_or_id)
 
         self.git_repository_path = os.path.join(
             settings.GIT_FILE_STORAGE_PATH,
             id_to_path(addon_id),
             package_type)
 
+    @property
+    def is_extracted(self):
+        return os.path.exists(self.git_repository_path)
+
     @cached_property
     def git_repository(self):
-        if not os.path.exists(self.git_repository_path):
+        if not self.is_extracted:
             os.makedirs(self.git_repository_path)
             git_repository = pygit2.init_repository(
                 path=self.git_repository_path,
@@ -161,25 +177,33 @@ class AddonGitRepository(object):
 
         .. _`git worktree`: https://git-scm.com/docs/git-worktree
         """
+
         # Make sure we're always using the en-US locale by default
         translation.activate('en-US')
 
         repo = cls(version.addon.id)
         file_obj = version.all_files[0]
-
         branch = repo.find_or_create_branch(BRANCHES[version.channel])
 
-        commit = repo._commit_through_worktree(
-            path=file_obj.current_file_path,
-            message=(
-                'Create new version {version} ({version_id}) for '
-                '{addon} from {file_obj}'.format(
-                    version=repr(version),
-                    version_id=version.id,
-                    addon=repr(version.addon),
-                    file_obj=repr(file_obj))),
-            author=author,
-            branch=branch)
+        lock = atomic_lock(
+            settings.TMP_PATH, 'git-storage-%s' % file_obj.pk,
+            lifetime=LOCKED_LIFETIME)
+
+        with lock as lock_attained:
+            if lock_attained:
+                commit = repo._commit_through_worktree(
+                    path=file_obj.current_file_path,
+                    message=(
+                        'Create new version {version} ({version_id}) for '
+                        '{addon} from {file_obj}'.format(
+                            version=repr(version),
+                            version_id=version.id,
+                            addon=repr(version.addon),
+                            file_obj=repr(file_obj))),
+                    author=author,
+                    branch=branch)
+            else:
+                raise ExtractionAlreadyInProgress()
 
         # Set the latest git hash on the related version.
         version.update(git_hash=commit.hex)
@@ -292,16 +316,20 @@ class AddonGitRepository(object):
         This includes the directories.
         """
         for tree_entry in tree:
-            obj = self.git_repository[tree_entry.oid]
-            if isinstance(obj, pygit2.Tree):
+            tree_or_blob = self.git_repository[tree_entry.oid]
+
+            if isinstance(tree_or_blob, pygit2.Tree):
                 yield TreeEntryWrapper(
+                    blob=None,
                     tree_entry=tree_entry,
                     path=tree_entry.name)
-                for child in self.iter_tree(obj):
+                for child in self.iter_tree(tree_or_blob):
                     yield TreeEntryWrapper(
+                        blob=child.blob,
                         tree_entry=child.tree_entry,
                         path=os.path.join(tree_entry.name, child.path))
             else:
                 yield TreeEntryWrapper(
+                    blob=tree_or_blob,
                     tree_entry=tree_entry,
                     path=tree_entry.name)

@@ -22,6 +22,7 @@ v4_api_urls = [
     url(r'^', include('olympia.discovery.api_urls')),
     url(r'^ratings/', include(ratings_v4.urls)),
     url(r'^reviewers/', include('olympia.reviewers.api_urls')),
+    url(r'^files/', include('olympia.files.api_urls')),
     url(r'^', include('olympia.signing.urls')),
     url(r'^activity/', include('olympia.activity.urls')),
     url(r'^github/', include('olympia.github.urls')),

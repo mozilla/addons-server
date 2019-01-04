@@ -4,6 +4,7 @@ import errno
 import hashlib
 import json
 import os
+import io
 import re
 import shutil
 import stat
@@ -1083,20 +1084,13 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     return parsed
 
 
-def _get_hash(filename, block_size=2 ** 20, hash=hashlib.sha256):
-    """Returns an sha256 hash for a filename."""
-    f = open(filename, 'rb')
-    hash_ = hash()
-    while True:
-        data = f.read(block_size)
-        if not data:
-            break
-        hash_.update(data)
+def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
+    hash_ = hashlib.sha256()
+
+    for chunk in iter(lambda: file_obj.read(block_size), b''):
+        hash_.update(chunk)
+
     return hash_.hexdigest()
-
-
-def get_sha256(filename, **kw):
-    return _get_hash(filename, hash=hashlib.sha256, **kw)
 
 
 def zip_folder_content(folder, filename):
