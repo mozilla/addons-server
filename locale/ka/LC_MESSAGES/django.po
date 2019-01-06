@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2019-01-06 13:02+0000\n"
+"PO-Revision-Date: 2019-01-06 19:00+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -6042,7 +6042,7 @@ msgstr ""
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "თუ ნამდვილად გესაჭიროებათ Mozilla-ს გუნდის რომელიმე წევრთან დაკავშირება, გთხოვთ გაეცნოთ ჩვენს <a href=\"%(url)s\">საკონტაქტო მონაცემებს</a>."
+msgstr "თუ ნამდვილად გესაჭიროებათ Mozilla-ს გუნდის რომელიმე წევრთან გასაუბრება, გთხოვთ გაეცნოთ ჩვენს <a href=\"%(url)s\">მონაცემებს დასაკავშირებლად</a>."
 
 msgid "Who works on this website?"
 msgstr "ვინ მუშაობს ამ ვებსაიტზე?"
