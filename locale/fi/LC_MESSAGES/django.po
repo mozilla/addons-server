@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-12-11 17:45+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-05 14:55+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -3354,9 +3354,8 @@ msgstr "Vaihda tämän teeman omistajaa."
 msgid "Transfer Ownership"
 msgstr "Siirrä omistajuus"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Poista tämä teema."
+msgstr "Poista tämä teema"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
@@ -3973,26 +3972,19 @@ msgstr "Lisää lisäosia"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Kirjaudu sisään muokataksesi ja päivittääksesi lisäosaasi"
 
-msgid "Resources for a successful launch"
+msgid "Write one code base for many browsers"
 msgstr ""
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
 
-msgid "View Resources for Publishers"
+msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
 msgid "Welcome Back"
 msgstr "Tervetuloa takaisin"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
-
-msgid "Learn How"
-msgstr "Lue lisää"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -4000,6 +3992,12 @@ msgstr "Haluatko, että laajennustasi suositellaan %(amo_link_open)saddons.mozil
 
 msgid "Learn More"
 msgstr "Lue lisää"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -4064,6 +4062,9 @@ msgstr "Suositut laajennukset"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+
+msgid "Learn How"
+msgstr "Lue lisää"
 
 msgid "Publish Your Add-on"
 msgstr "Julkaise lisäosasi"
@@ -6365,13 +6366,11 @@ msgstr ""
 msgid "Brought to you by:"
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "Käyttäjätunnus"
+msgstr "Käyttäjä"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Sähköpostiosoite"
+msgstr "IP-osoite"
 
 #, python-format
 msgid "Reviews for %s"

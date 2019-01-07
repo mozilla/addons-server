@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-12-06 12:25+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-04 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
 "Language: tr\n"
@@ -24,9 +24,8 @@ msgstr "Bağlantılara izin verilmez."
 msgid "This display name cannot be used."
 msgstr "Bu görünen ad kullanılamaz."
 
-#, fuzzy
 msgid "The homepage field can only be used to link to external websites."
-msgstr "Bu alan sadece harici web sitelerine bağlantı için kullanılabilir. %(domain)s üzerindeki adreslere izin verilmez."
+msgstr "Ana sayfa alanı sadece harici web sitelerine bağlantı vermek için kullanılabilir."
 
 msgid "Usernames cannot contain only digits."
 msgstr "Kullanıcı adları sadece rakamlardan oluşamaz."
@@ -593,7 +592,7 @@ msgid "Some add-ons ask for permission to perform certain functions. Since you�
 msgstr "Bazı eklentiler belirli işlevleri gerçekleştirmek için izin ister. Firefox’un kontrolü tamamen sizde olduğu için bu istekleri kabul veya reddetme kararı size aittir."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Lütfen bu eklentinin izninizi istemeden tüm tarayıcı işlevlerine ve verilerine erişmesini sağlayan eski teknolojiyi kullandığını unutmayın."
 
 msgid "This add-on has been removed by its author."
 msgstr "Bu eklenti, geliştiricisi tarafından kaldırılmıştır."
@@ -738,13 +737,11 @@ msgstr "Web sitemizde bakım çalışması yapıldığından bazı özellikler g
 msgid "Not allowed"
 msgstr "İzin verilmiyor"
 
-#, fuzzy
 msgid "Oops! Not allowed."
 msgstr "İzin verilmiyor"
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>İzin verilmedi.</h1> <p>İzniniz olmayan bir şey yapmaya çalıştınız.</p>"
+msgstr "İzniniz olmayan bir şey yapmaya çalıştınız."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -786,7 +783,7 @@ msgstr "Tüm temalara göz atın"
 msgid "Add-ons Home Page"
 msgstr "Eklentiler Ana Sayfası"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
 "Bir yerdeki bir bağlantıya tıkladıysanız lütfen %(open_bug_link)sbu sorunu bildirin%(close_bug_link)s. Nereden geldiğinizi ve neyi aradığınızı yazarsanız sorunu düzeltmek için elimizden geleni "
@@ -853,6 +850,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> Lütfen <strong>tüm kelimeleri</strong> aşağıya girin ve <strong>gerekirse kelimeleri boşlukla ayırın</strong>. </p> <p> Eğer kelimeyi okumak zorsa <a href=\"#\" id=\"recaptcha_different"
+"\">farklı kelimeler deneyebilir</a> veya onun yerine <a href=\"#\" id=\"recaptcha_audio\">farklı bir doğrulama türünü deneyebilirsiniz</a>. </p>"
 
 msgid "Top Rated"
 msgstr "Yüksek Puanlılar"
@@ -948,7 +947,7 @@ msgid "Error decoding signature."
 msgstr "İmza çözümleme hatası."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Yükte bir veya daha fazla anahtar için yanlış tür"
 
 msgid "Invalid JWT Token."
 msgstr "Geçersiz JWT jetonu."
@@ -2091,9 +2090,8 @@ msgstr ""
 msgid "Animals"
 msgstr "Hayvanlar"
 
-#, fuzzy
 msgid "Compact"
-msgstr "Karşılaştır"
+msgstr ""
 
 msgid "Large"
 msgstr "Büyük"
@@ -2165,7 +2163,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "İlginç, yaratıcı ve benzersiz Firefox temalarını indirin."
 
 msgid "Scenery"
 msgstr "Manzara"
@@ -2536,7 +2534,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kaynak dosya yüklendi fakat hiçbir kaynağın gerekmediğini belirttiniz."
 
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
-msgstr ""
+msgstr "İsim ve özetin toplamda en fazla 70 karakter olduğundan emin olun (şu an {0})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2717,14 +2715,14 @@ msgid "The background color for the navigation bar, the bookmarks bar, and the s
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "Araç çubuğu alanı metni ve simgeleri"
 
 #, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
 msgstr "Bu renk, sekme metninin rengidir."
 
 msgid "Toolbar field area background"
-msgstr ""
+msgstr "Araç çubuğu alanı arka planı"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
 msgstr ""
@@ -2765,7 +2763,7 @@ msgid "Review Policies and Rules"
 msgstr "İnceleme İlkeleri ve Kuralları"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
-msgstr ""
+msgstr "Bu sözleşmedeki kuralları ve politikaları okudum ve kabul ediyorum"
 
 msgid "Accept"
 msgstr "Kabul et"
@@ -3627,7 +3625,7 @@ msgid "Upload Add-on"
 msgstr "Eklenti yükle"
 
 msgid "Where to Host Version"
-msgstr ""
+msgstr "Sürümün barındırılacağı yer"
 
 msgid "Change"
 msgstr "Değiştir"
@@ -3965,27 +3963,19 @@ msgstr "Eklentinizi yönetin"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Eklentinizi düzenlemek ve güncellemek için giriş yapın"
 
-msgid "Resources for a successful launch"
-msgstr "Başarılı bir başlangıç için kaynaklar"
-
-#, python-format
-msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgid "Write one code base for many browsers"
 msgstr ""
 
-#, fuzzy
-msgid "View Resources for Publishers"
-msgstr "Kullanıcı istatistiklerini göster"
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "Yeniden hoş geldiniz"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
-
-msgid "Learn How"
-msgstr "Nasıl yapılacağını öğrenin"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3993,6 +3983,12 @@ msgstr ""
 
 msgid "Learn More"
 msgstr "Daha fazla bilgi"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Kod incelemesinden geçerek bu sitede listelenmiştir. Otomatik güncellemeler bu site tarafından ele alınmaktadır."
@@ -4049,6 +4045,9 @@ msgid ""
 msgstr ""
 "Firefox, çoğu durumda Chrome, Opera ve Edge tarafından desteklenen uzantı API'larıyla uyumlu olan WebExtension API'larını destekler; bu nedenle Firefox'ta uzantılarınız yalnızca birkaç değişiklikle "
 "çalışacaktır."
+
+msgid "Learn How"
+msgstr "Nasıl yapılacağını öğrenin"
 
 msgid "Publish Your Add-on"
 msgstr "Eklentinizi yayımlayın"
@@ -4581,7 +4580,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
-msgstr ""
+msgstr "Haberleri, makaleleri, blog yazılarını ve her türlü metni Kindle'ınıza gönderin."
 
 #. editorial content for the discovery pane.
 msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4589,7 +4588,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Organize your tabs by color grouping them based on URL patterns."
-msgstr ""
+msgstr "Sekmelerinizi, URL kalıplarına göre gruplandırarak renklere göre düzenleyin."
 
 #. editorial content for the discovery pane.
 msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4597,7 +4596,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Kötü amaçlı web sitelerinin kripto para madenciliği için bilgisayarınızı kullanmasını engelleyin."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4605,7 +4604,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
-msgstr ""
+msgstr "Sosyal medyada, e-postalarda, belgelerde ve web'de yazı yazdığınız her yerde dil bilgisi önerileri alın."
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4706,7 +4705,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
-msgstr ""
+msgstr "Seçtiğiniz siteler için Firefox'un çerezler ve yerel depolama gibi web sitesi verilerini unutmasını sağlayın."
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4778,7 +4777,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Videoları varsayılan olarak en yüksek kalitede oynatın, ek açıklamaları ve daha fazlasını kapatın."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5114,7 +5113,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
+msgstr "Takipçileri atlatmak ve gizliliğinizi korumak için konumunuzu gizleyin."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5278,7 +5277,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access PDFs using your preferred PDF application."
-msgstr ""
+msgstr "PDF'leri tercih ettiğiniz PDF uygulamasıyla açın."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6285,7 +6284,7 @@ msgid "We will ask you to fill out a quick optional survey to tell us about your
 msgstr ""
 
 msgid "Leaving the study"
-msgstr ""
+msgstr "Çalışmadan ayrılmak"
 
 msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
 msgstr ""
@@ -6319,7 +6318,7 @@ msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collec
 msgstr ""
 
 msgid "This particular Study"
-msgstr ""
+msgstr "Bu araştırma"
 
 msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
 msgstr ""
@@ -7127,9 +7126,8 @@ msgstr "İnceleme:"
 msgid "Review {0}"
 msgstr "{0} eklentisini incele"
 
-#, fuzzy
 msgid "Add-on user change history"
-msgstr "{addon} durumu {0} olarak değiştirildi."
+msgstr "Eklenti kullanıcısı değişiklik geçmişi"
 
 msgid "Add-on History"
 msgstr "Eklenti geçmişi"
@@ -8347,7 +8345,7 @@ msgstr "Aboneliğinizi iptal edemedik"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Maalesef aboneliğinizi iptal edemedik. Tıkladığınız bağlantı geçersiz. Ancak <a href=\"%(edit_url)s\">profil sayfanızı düzenleyerek</a> aboneliğinizi iptal edebilirsiniz."
 
 msgid "Developer Information"
 msgstr "Geliştirici Bilgileri"

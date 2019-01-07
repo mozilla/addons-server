@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,46 +13,46 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.6.0\n"
 
-#: src/olympia/accounts/serializers.py:98 src/olympia/bandwagon/forms.py:114
+#: src/olympia/accounts/serializers.py:99 src/olympia/bandwagon/forms.py:114
 #: src/olympia/bandwagon/serializers.py:102 src/olympia/users/forms.py:226
 msgid "No links are allowed."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:104 src/olympia/users/forms.py:192
+#: src/olympia/accounts/serializers.py:105 src/olympia/users/forms.py:192
 msgid "This display name cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:110
+#: src/olympia/accounts/serializers.py:111
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:120 src/olympia/users/forms.py:168
+#: src/olympia/accounts/serializers.py:121 src/olympia/users/forms.py:168
 msgid "Usernames cannot contain only digits."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:124 src/olympia/users/forms.py:172
+#: src/olympia/accounts/serializers.py:125 src/olympia/users/forms.py:172
 msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:128 src/olympia/users/forms.py:177
+#: src/olympia/accounts/serializers.py:129 src/olympia/users/forms.py:177
 msgid "This username cannot be used."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:135 src/olympia/users/forms.py:184
+#: src/olympia/accounts/serializers.py:136 src/olympia/users/forms.py:184
 msgid "This username is already in use."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:145 src/olympia/devhub/views.py:903
+#: src/olympia/accounts/serializers.py:146 src/olympia/devhub/views.py:903
 #: src/olympia/users/forms.py:209
 msgid "Images must be either PNG or JPG."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:149 src/olympia/devhub/views.py:909
+#: src/olympia/accounts/serializers.py:150 src/olympia/devhub/views.py:909
 #: src/olympia/users/forms.py:212
 msgid "Images cannot be animated."
 msgstr ""
 
-#: src/olympia/accounts/serializers.py:154 src/olympia/devhub/views.py:921
+#: src/olympia/accounts/serializers.py:155 src/olympia/devhub/views.py:921
 #: src/olympia/users/forms.py:215
 #, python-format
 msgid "Please use images smaller than %dMB."
@@ -1413,7 +1413,7 @@ msgstr ""
 #: src/olympia/amo/templates/amo/site_nav.html:67
 #: src/olympia/bandwagon/templates/bandwagon/impala/collection_sidebar.html:10
 #: src/olympia/bandwagon/templates/bandwagon/includes/collection_sidebar.html:9
-#: src/olympia/users/models.py:505
+#: src/olympia/users/models.py:506
 msgid "My Favorite Add-ons"
 msgstr ""
 
@@ -1843,7 +1843,7 @@ msgid "Are you sure?"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html:16
-#: src/olympia/devhub/forms.py:581
+#: src/olympia/devhub/forms.py:580
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:7
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:22
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:37
@@ -1855,7 +1855,7 @@ msgid "Yes"
 msgstr ""
 
 #: src/olympia/bandwagon/templates/bandwagon/delete.html:17
-#: src/olympia/devhub/forms.py:581
+#: src/olympia/devhub/forms.py:580
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:13
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:28
 #: src/olympia/devhub/templates/devhub/addons/includes/cc_license_chooser.html:52
@@ -3702,63 +3702,63 @@ msgstr ""
 msgid "Please specify your add-on's Privacy Policy:"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:315
+#: src/olympia/devhub/forms.py:314
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:319 src/olympia/files/utils.py:865
+#: src/olympia/devhub/forms.py:318 src/olympia/files/utils.py:865
 msgid "Invalid or broken archive."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:329
+#: src/olympia/devhub/forms.py:328
 msgid "View current"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:427
+#: src/olympia/devhub/forms.py:426
 msgid "Invalid version range."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:483
+#: src/olympia/devhub/forms.py:482
 msgid "Need at least one compatible application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:512 src/olympia/devhub/forms.py:542
+#: src/olympia/devhub/forms.py:511 src/olympia/devhub/forms.py:541
 msgid "There was an error with your upload. Please try again."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:517
+#: src/olympia/devhub/forms.py:516
 msgid "Override failed validation"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:527
+#: src/olympia/devhub/forms.py:526
 msgid "Need to select at least one application."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:559
+#: src/olympia/devhub/forms.py:558
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:566 src/olympia/devhub/forms.py:571
+#: src/olympia/devhub/forms.py:565 src/olympia/devhub/forms.py:570
 msgid "Version {version} already exists."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:568
+#: src/olympia/devhub/forms.py:567
 msgid "Continue with existing upload instead?"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:597
+#: src/olympia/devhub/forms.py:596
 msgid "You have not uploaded a source file."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:600
+#: src/olympia/devhub/forms.py:599
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:655
+#: src/olympia/devhub/forms.py:654
 msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:762
+#: src/olympia/devhub/forms.py:761
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this"
 " site and the Firefox Add-ons Manager for millions of users, after it passes "
@@ -3767,14 +3767,14 @@ msgid ""
 "the reviewed files is also possible.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:770
+#: src/olympia/devhub/forms.py:769
 msgid ""
 "On your own. <span class=\"helptext\">Your submission will be immediately "
 "signed for self-distribution. Updates should be handled by you via an "
 "updateURL or external application updates.</span>"
 msgstr ""
 
-#: src/olympia/devhub/forms.py:834
+#: src/olympia/devhub/forms.py:833
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
@@ -5872,21 +5872,19 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html:9
-msgid "Resources for a successful launch"
+msgid "Write one code base for many browsers"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html:11
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? "
-"Check out our tips for creating an appealing product page, getting your "
-"extension featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s, "
-"finding answers to development questions, and staying up-to-date with news "
-"and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on "
+"Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more "
+"about the differences in extension development between the four major "
+"browsers and how you can make your extension cross-browser compatible."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html:20
-msgid "View Resources for Publishers"
+#: src/olympia/devhub/templates/devhub/new-landing/components/manage_your_addon.html:19
+msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:24
@@ -5894,15 +5892,6 @@ msgid "Welcome Back"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:28
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:33
-#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html:13
-msgid "Learn How"
-msgstr ""
-
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:38
 #, python-format
 msgid ""
 "Want your extension to be featured on "
@@ -5910,9 +5899,19 @@ msgid ""
 "extensions policies will tell you what you need to know."
 msgstr ""
 
-#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:44
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:34
 #: src/olympia/legacy_discovery/templates/legacy_discovery/modules/monthly.html:17
 msgid "Learn More"
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:39
+msgid ""
+"You can help users gain confidence and trust in your extension by following "
+"our best practices for onboarding users."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:44
+msgid "See Best Practices"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/my-addons.html:78
@@ -5997,6 +5996,10 @@ msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with "
 "the extension APIs supported by Chrome, Opera and Edge, so your extensions "
 "will run in Firefox with just a few changes."
+msgstr ""
+
+#: src/olympia/devhub/templates/devhub/new-landing/components/port_chrome_ext.html:13
+msgid "Learn How"
 msgstr ""
 
 #: src/olympia/devhub/templates/devhub/new-landing/components/publish_your_addon.html:11
@@ -10675,7 +10678,7 @@ msgid "Rejected or Unreviewed"
 msgstr ""
 
 #: src/olympia/reviewers/templatetags/jinja_helpers.py:44
-#: src/olympia/versions/models.py:443
+#: src/olympia/versions/models.py:444
 #, python-format
 msgid "[status:%s]"
 msgstr ""
@@ -11492,11 +11495,11 @@ msgstr ""
 msgid "No user with that email."
 msgstr ""
 
-#: src/olympia/users/models.py:371
+#: src/olympia/users/models.py:372
 msgid "Firefox user {id}"
 msgstr ""
 
-#: src/olympia/users/models.py:499
+#: src/olympia/users/models.py:500
 msgid "My Mobile Add-ons"
 msgstr ""
 
@@ -11933,7 +11936,7 @@ msgstr ""
 msgid "Version History with Changelogs"
 msgstr ""
 
-#: src/olympia/versions/models.py:828
+#: src/olympia/versions/models.py:829
 msgid "{app} {min} and later"
 msgstr ""
 

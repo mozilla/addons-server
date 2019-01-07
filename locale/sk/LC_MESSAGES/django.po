@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-12-28 21:47+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-04 22:24+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -2590,17 +2590,14 @@ msgstr "Obrázky nemôžu byť väčšie ako %d kb."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "Obrázok musí mať rozmery {0}x{1} bodov."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "Obrázok musí mať rozmery {0}x{1} bodov."
+msgstr ""
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Obrázky musia byť vo formáte PNG alebo JPG."
+msgstr ""
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "Obrázok musí mať rozmery {0}x{1} bodov."
+msgstr ""
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -2807,9 +2804,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovať kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Odoslať novú verziu</a> alebo <a href=\"#"
 "\" class=\"close\">Ignorovať</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Zobraziť a aktualizovať rozsahy kompatibility aplikácií."
+msgstr ""
 
 msgid "Compatibility"
 msgstr "Kompatibilita"
@@ -2949,9 +2945,8 @@ msgstr "Zvoľte krátku, unikátnu adresu URL pre svoj doplnok."
 msgid "View Listing"
 msgstr "Zobraziť doplnok"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Zobraziť profil"
+msgstr ""
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3107,9 +3102,8 @@ msgstr "Použitá na stránke podrobností o doplnku."
 msgid "128x128px"
 msgstr ""
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Použitá na stránke podrobností o doplnku."
+msgstr ""
 
 msgid "Upload a Custom Icon..."
 msgstr "Odoslať vlastnú ikonu..."
@@ -3222,9 +3216,8 @@ msgstr "Povedzte nám, prečo odstraňujete váš doplnok:"
 msgid "Actions"
 msgstr "Akcie"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Pokračovať v procese odosielania pre tento doplnok."
+msgstr ""
 
 msgid "Resume"
 msgstr "Pokračovať"
@@ -3677,9 +3670,8 @@ msgstr ""
 msgid "Latest Version:"
 msgstr "Posledná verzia:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Toto je najnovšia nahraná verzia, no napriek tomu ešte nebola na stránkach zverejnená."
+msgstr ""
 
 msgid "Upload New Version"
 msgstr "Odoslať novú verziu"
@@ -3840,26 +3832,19 @@ msgstr ""
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Resources for a successful launch"
+msgid "Write one code base for many browsers"
 msgstr ""
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
 
-msgid "View Resources for Publishers"
+msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
 msgid "Welcome Back"
 msgstr ""
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
-
-msgid "Learn How"
-msgstr "Ďalšie informácie"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3867,6 +3852,12 @@ msgstr ""
 
 msgid "Learn More"
 msgstr "Ďalšie informácie"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3923,6 +3914,9 @@ msgstr ""
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+
+msgid "Learn How"
+msgstr "Ďalšie informácie"
 
 msgid "Publish Your Add-on"
 msgstr ""
@@ -4043,9 +4037,9 @@ msgstr "Toto je farba kariet"
 msgid "Your Theme's Name"
 msgstr "Názov vašej témy"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr "autor: <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Vytvorenie novej témy"

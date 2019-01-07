@@ -59,9 +59,9 @@ MarkupSafe==1.1.0 \
     --hash=sha256:7d263e5770efddf465a9e31b78362d84d015cc894ca2c131901a4445eaa61ee1 \
     --hash=sha256:4e97332c9ce444b0c2c38dd22ddc61c743eb208d916e4265a2a3b575bdccb1d3
 # pytz is required by Babel, celery
-pytz==2018.7 \
-    --hash=sha256:8e0f8568c118d3077b46be7d654cc8167fa916092e28320cde048e54bfc9f1e6 \
-    --hash=sha256:31cb35c89bd7d333cd32c5f278fca91b523b0834369e757f4c5641ea252236ca
+pytz==2018.9 \
+    --hash=sha256:32b0891edff07e28efe91284ed9c31e123d84bea3fd98e1f72be2508f43ef8d9 \
+    --hash=sha256:d5f05e487007e29e03409f9398d074e158d920d36eb82eaf66fb1136b0c5374c
 # requests is required by Sphinx
 requests==2.21.0 \
     --hash=sha256:7bf2a778576d825600030a110f3c0e3e8edc51dfaafe1c146e39a2027784957b \

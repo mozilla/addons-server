@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-12-09 15:09+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-05 21:32+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -759,7 +759,7 @@ msgstr "ਸਾਰੇ ਥੀਮਾੰ ਦੀ ਝਲਕ ਵੇਖੋ"
 msgid "Add-ons Home Page"
 msgstr "ਐਡ-ਆਨ ਮੁੱਖ ਸਫ਼ਾ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr "ਜੇ ਤੁਸੀਂ ਕਿਸੇ ਹੋਰ ਸਥਾਨ ਤੋਂ ਕਿਸੇ ਲਿੰਕ ਦਾ ਅਨੁਸਰਣ ਕਰਦੇ ਹੋ, ਤਾਂ ਕਿਰਪਾ ਕਰਕੇ %(open_bug_link)s ਇੱਕ ਸਮੱਸਿਆ%(close_bug_link)s ਕਰੋ। ਸਾਨੂੰ ਦੱਸੋ ਕਿ ਤੁਸੀਂ ਕਿੱਥੋਂ ਆਏ ਸੀ ਅਤੇ ਜੋ ਤੁਸੀਂ ਲੱਭ ਰਹੇ ਸੀ, ਅਤੇ ਅਸੀਂ ਇਸ ਨੂੰ ਠੀਕ ਕਰਨ ਲਈ ਪੂਰੀ ਕੋਸ਼ਿਸ਼ ਕਰਾਂਗੇ।"
 
@@ -2467,9 +2467,8 @@ msgstr "ਅਸੀਂ ਅਪਗ੍ਰੇਜ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿ�
 msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr "ਤੁਸੀਂ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਨਾਲ WebExtensions ਐਡ-ਓਨ ਨੂੰ ਅਪਡੇਟ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਤੁਹਾਡੇ ਯੂਜ਼ਰ ਤੁਹਾਡੇ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਵਰਤਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ ਕਿਉਂਕਿ ਫਾਇਰਫਾਕਸ ਇਸ ਕਿਸਮ ਦੇ ਅਪਡੇਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।"
 
-#, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "ਦਰਜ ਕੀਤੀ ਗਈ ਟੈਕਸਟ ਨੂੰ ਸਪੈਮ ਦੇ ਰੂਪ ਵਿੱਚ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।"
+msgstr "[{field}] ਦਰਜ ਕੀਤੀ ਗਈ ਟੈਕਸਟ \"{field}\" ਫੀਲਡ ਵਿਚ ਨੂੰ ਸਪੈਮ ਦੇ ਰੂਪ ਵਿੱਚ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਦਰਜ ਕੀਤੀ ਗਈ ਫਾਇਲ ਵਿੱਚ ਮਿਲੀ ਸੀ। ਆਪਣੇ ਖਾਤੇ ਦੀ ਰੱਖਿਆ ਕਰਨ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
@@ -3801,28 +3800,19 @@ msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਦਾ ਸਾਂਭ-ਸੰਭਾਲ੍ਹ ਕ
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "ਆਪਣੇ ਐਡ-ਆਨ ਨੂੰ ਸੋਧਣ ਅਤੇ ਅਪਡੇਟ ਕਰਨ ਲਈ ਸਾਈਨ ਇਨ ਕਰੋ"
 
-msgid "Resources for a successful launch"
-msgstr "ਇੱਕ ਸਫਲ ਲਾਂਚ ਲਈ ਸਰੋਤ"
-
-#, python-format
-msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgid "Write one code base for many browsers"
 msgstr ""
-"ਤੁਸੀਂ ਆਪਣਾ ਐਕਸਟੈਂਸ਼ਨ ਬਣਾਇਆ ਹੈ ਅਤੇ ਇਸਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰਨ ਲਈ ਤਿਆਰ ਹੋ। ਅਗਲਾ ਕੀ ਹੋਵੇਗਾ? ਅਪੀਲਦਾਰ ਬਣਾਉਣ ਵਾਲੇ ਉਤਪਾਦ ਪੰਨੇ ਨੂੰ ਬਣਾਉਣ ਲਈ ਸਾਡੇ ਸੁਝਾਵਾਂ ਨੂੰ ਵੇਖੋ, ਆਪਣੀ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ %(amo_link_open)saddons.mozilla.org%(amo_link_close)sਤੇ, ਵਿਕਾਸ "
-"ਦੇ ਸਵਾਲਾਂ ਦੇ ਜਵਾਬ ਲੱਭਣ ਅਤੇ ਖ਼ਬਰਾਂ ਅਤੇ ਸੰਬੰਧਿਤ ਸਮਾਗਮਾਂ ਦੇ ਨਾਲ ਅਪ-ਟੂ-ਡੇਟ ਰਹਿਣ ਤੇ ਦੇਖੋ ਐਕਸਟੈਂਸ਼ਨ ਵਿਸਤਾਰ।"
 
-msgid "View Resources for Publishers"
-msgstr "ਪ੍ਰਕਾਸ਼ਕ ਲਈ ਸਰੋਤ ਦੇਖੋ"
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "ਜੀ ਆਇਆ ਨੂੰ"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "ਅਪੀਲ ਕਰਨ ਵਾਲੇ ਉਤਪਾਦ ਪੰਨੇ ਨੂੰ ਬਣਾਉਣ ਦੁਆਰਾ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਤੁਹਾਡੀ ਐਕਸਟੈਨਸ਼ਨ ਨੂੰ ਲੱਭਣ ਵਿੱਚ ਸਹਾਇਤਾ ਕਰੋ।"
-
-msgid "Learn How"
-msgstr "ਸਿੱਖੋ ਕਿ ਕਿਵੇਂ"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3830,6 +3820,12 @@ msgstr "%(amo_link_open)saddons.mozilla.org%(amo_link_close)sਤੇ ਤੁਹਾ
 
 msgid "Learn More"
 msgstr "ਹੋਰ ਜਾਣੋ"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "ਕੋਡ ਰਿਵਿਊ ਪਾਸ ਕਰਨ ਤੋਂ ਬਾਅਦ ਇਸ ਸਾਈਟ ਤੇ ਸੂਚੀਬੱਧ। ਇਸ ਸਾਈਟ ਦੁਆਰਾ ਆਟੋਮੈਟਿਕ ਅਪਡੇਟਾਂ ਦਾ ਪ੍ਰਬੰਧਨ ਕੀਤਾ ਜਾਂਦਾ ਹੈ।"
@@ -3886,6 +3882,9 @@ msgstr "Chrome ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਪੋਰਟ ਕਰੋ"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr "ਫਾਇਰਫਾਕਸ ਵੈੱਬ ਐਕਸਟੇਂਸ਼ਨ API ਨੂੰ ਸਹਿਯੋਗ ਦਿੰਦਾ ਹੈ, ਜੋ ਕਿ ਬਹੁਤੇ ਕੇਸਾਂ ਵਿੱਚ ਕਰੋਮ, ਓਪੇਰਾ ਅਤੇ ਐਜ ਦੁਆਰਾ ਸਹਿਯੋਗੀ ਐਕਸਟੈਂਸ਼ਨ API ਦੇ ਅਨੁਕੂਲ ਹਨ, ਤਾਂ ਕਿ ਤੁਹਾਡੇ ਐਕਸਟੈਨਸ਼ਨ ਫਾਇਰਫਾਕਸ ਵਿੱਚ ਕੇਵਲ ਕੁਝ ਬਦਲਾਅ ਹੀ ਚੱਲੇ।"
+
+msgid "Learn How"
+msgstr "ਸਿੱਖੋ ਕਿ ਕਿਵੇਂ"
 
 msgid "Publish Your Add-on"
 msgstr "ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਪ੍ਰਕਾਸ਼ਿਤ ਕਰੋ"
@@ -4004,9 +4003,9 @@ msgstr "ਇਹ ਟੈਬਾਂ ਦਾ ਰੰਗ ਹੈ"
 msgid "Your Theme's Name"
 msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "ਦੁਆਰਾ <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr "ਦੁਆਰਾ <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3758,25 +3758,18 @@ msgstr ""
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Resources for a successful launch"
+msgid "Write one code base for many browsers"
 msgstr ""
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
 
-msgid "View Resources for Publishers"
+msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
 msgid "Welcome Back"
-msgstr ""
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
-
-msgid "Learn How"
 msgstr ""
 
 #, python-format
@@ -3784,6 +3777,12 @@ msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org
 msgstr ""
 
 msgid "Learn More"
+msgstr ""
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
 msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
@@ -3838,6 +3837,9 @@ msgstr ""
 
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
+msgstr ""
+
+msgid "Learn How"
 msgstr ""
 
 msgid "Publish Your Add-on"
