@@ -34,11 +34,6 @@ data-default-locale="{{ request.LANG|lower }}"
             {%- endtrans %}
           </p>
           <ul class="formfields">
-            <li{% if form.username.errors %} class="error"{% endif %}>
-              <label for="id_username">{{ _('Username') }}</label>
-              {{ form.username }}
-              {{ form.username.errors }}
-            </li>
             <li>
               <label for="id_email">
                 {{ _('Email Address') }}
