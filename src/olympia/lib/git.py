@@ -66,6 +66,16 @@ class AddonGitRepository(object):
     def __init__(self, addon_id, package_type='package'):
         assert package_type in ('package', 'source')
 
+        # Always enforce the search path being set to the configured
+        # HOME environment variable. We are setting this here to avoid
+        # creating a unnecessary global state but since this is overwriting
+        # a global value in pygit2 it affects all pygit2 calls.
+
+        # https://github.com/libgit2/pygit2/issues/339
+        # https://github.com/libgit2/libgit2/issues/2122
+        home = os.path.expanduser('~')
+        pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = home
+
         self.git_repository_path = os.path.join(
             settings.GIT_FILE_STORAGE_PATH,
             id_to_path(addon_id),
