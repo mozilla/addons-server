@@ -40,7 +40,7 @@ def test_temporary_worktree():
 
 
 @pytest.fixture
-def setup_pygit2_paths():
+def restore_pygit2_paths():
     # https://github.com/mozilla/addons-server/issues/10320
     orig_spath = pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL]
     orig_home_path = os.environ['HOME']
@@ -51,7 +51,7 @@ def setup_pygit2_paths():
     os.environ['HOME'] = orig_home_path
 
 
-def test_enforce_pygit_global_search_path_to_home(setup_pygit2_paths):
+def test_enforce_pygit_global_search_path_to_home(restore_pygit2_paths):
     pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = '/root'
 
     assert (
