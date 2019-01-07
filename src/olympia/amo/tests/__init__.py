@@ -8,8 +8,9 @@ from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
+from six.moves.urllib_parse import parse_qs, urlparse
 from tempfile import NamedTemporaryFile
-from urlparse import parse_qs, urlparse
+
 
 from django import forms, test
 from django.conf import settings

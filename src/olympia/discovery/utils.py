@@ -1,6 +1,6 @@
 import json
-import urlparse
 from collections import OrderedDict
+from six.moves.urllib_parse import urljoin
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -18,7 +18,7 @@ log = olympia.core.logger.getLogger('z.amo')
 
 def call_recommendation_server(id_or_guid, params, server):
     params = OrderedDict(sorted(params.items(), key=lambda t: t[0]))
-    endpoint = urlparse.urljoin(
+    endpoint = urljoin(
         server,
         '%s/%s%s' % (id_or_guid, '?' if params else '', urlencode(params)))
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))

@@ -1,7 +1,7 @@
 import os
 
 from datetime import datetime
-from urlparse import urlsplit
+from six.moves.urllib_parse import urlsplit
 
 from django import forms
 from django.conf import settings

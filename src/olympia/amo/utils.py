@@ -13,10 +13,11 @@ import shutil
 import time
 import unicodedata
 import urllib
-import urlparse
 import string
 import subprocess
 import scandir
+
+from six.moves.urllib_parse import parse_qsl, ParseResult
 
 import django.core.mail
 
@@ -85,14 +86,14 @@ def urlparams(url_, hash=None, **query):
 
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
-    query_dict = dict(urlparse.parse_qsl(force_bytes(q))) if q else {}
+    query_dict = dict(parse_qsl(force_bytes(q))) if q else {}
     query_dict.update(
         (k, force_bytes(v) if v is not None else v) for k, v in query.items())
     query_string = urlencode(
         [(k, urllib.unquote(v)) for k, v in query_dict.items()
          if v is not None])
-    new = urlparse.ParseResult(url.scheme, url.netloc, url.path, url.params,
-                               query_string, fragment)
+    new = ParseResult(url.scheme, url.netloc, url.path, url.params,
+                      query_string, fragment)
     return new.geturl()
 
 
