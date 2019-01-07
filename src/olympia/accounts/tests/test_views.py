@@ -1136,6 +1136,13 @@ class TestAccountViewSetUpdate(TestCase):
                 'Ensure this field has no more than 50 characters.']}
 
         response = self.patch(
+            data={'display_name': u'\x7F\u20DF'})
+        assert response.status_code == 400
+        assert json.loads(response.content) == {
+            'display_name': [
+                'Must contain at least one printable character.']}
+
+        response = self.patch(
             data={'display_name': 'a' * 50})
         assert response.status_code == 200
 
