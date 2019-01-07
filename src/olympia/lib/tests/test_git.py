@@ -39,8 +39,19 @@ def test_temporary_worktree():
     assert worktree.name not in output
 
 
-def test_enforce_pygit_global_search_path_to_home():
+@pytest.fixture
+def setup_pygit2_paths():
     # https://github.com/mozilla/addons-server/issues/10320
+    orig_spath = pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL]
+    orig_home_path = os.environ['HOME']
+
+    yield
+
+    pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = orig_spath
+    os.environ['HOME'] = orig_home_path
+
+
+def test_enforce_pygit_global_search_path_to_home(setup_pygit2_paths):
     pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = '/root'
 
     assert (
