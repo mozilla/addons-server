@@ -48,7 +48,9 @@ def test_enforce_pygit_global_search_path_to_home():
         '/root')
 
     os.environ['HOME'] = settings.GIT_FILE_STORAGE_PATH
-    repo = AddonGitRepository(1)
+
+    # Now initialize, which will overwrite the global setting.
+    AddonGitRepository(1)
 
     assert (
         pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] ==

@@ -70,6 +70,8 @@ class AddonGitRepository(object):
         # HOME environment variable. We are setting this here to avoid
         # creating a unnecessary global state but since this is overwriting
         # a global value in pygit2 it affects all pygit2 calls.
+        # Given that we're setting it to whatever `~` expands to
+        # the actual value changes more or less only on process-restart.
 
         # https://github.com/libgit2/pygit2/issues/339
         # https://github.com/libgit2/libgit2/issues/2122
