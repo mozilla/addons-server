@@ -389,9 +389,9 @@ requests-hawk==1.0.0 \
 mohawk==0.3.4 \
     --hash=sha256:b3f85ffa93a5c7d2f9cc591246ef9f8ac4a9fa716bfd5bae0377699a2d89d78c \
     --hash=sha256:e98b331d9fa9ece7b8be26094cbe2d57613ae882133cc755167268a984bc0ab3
-basket-client==0.3.12 \
-    --hash=sha256:2dd953cd03b3068d0e596aa32224488c486b1170e46387c5bc14f20737d6a2d8 \
-    --hash=sha256:d7aa5e6208eeeabb8f1387a7cbb2d0f2b35dfa889c1f034c86a88b4968db3bfe
+basket-client==1.0.0 \
+    --hash=sha256:fee512c8deabde53aa33b08fa34a992de3085e781be192c4120adb086d0d20c1 \
+    --hash=sha256:f9f9ff4870cc1d171ff9f00a8d968336d0e74178f5ac1612bc85be39a3f0cc2c
 typing==3.6.6 \
     --hash=sha256:a4c8473ce11a65999c8f59cb093e70686b6c84c98df58c1dae9b3b196089858a \
     --hash=sha256:57dcf675a99b74d64dacf6fba08fb17cf7e3d5fdff53d4a30ea2a5e7e52543d4 \
