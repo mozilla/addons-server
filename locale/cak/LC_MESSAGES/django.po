@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3858,29 +3858,19 @@ msgstr "Tanuk'samajij Atz'aqat"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Tatikirisaj Molojri'ïl richin Nanük' chuqa' Nak'ëx ri Atz'aqat"
 
-msgid "Resources for a successful launch"
-msgstr "Taq tob'äl richin jun ütz rutaluxik"
-
-#, fuzzy, python-format
-msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgid "Write one code base for many browsers"
 msgstr ""
-"Xatz'ük ri ak'amal chuqa' ütz chik richin nitalüx. ¿Achike nipe wakami? Tatz'eta' ri taq qapixa' richin natz'ük jun jeb'ël ruxaq cholajin, nab'än chi ri ak'amal niwachin pa %(amo_link_open)saddsons."
-"mozilla.org%(amo_link_close)s, nawïl tzolin taq kitzij taq ruk'utunik nimirisanem, chuqa' awetaman ronojel q'ij ri nima'q taq rutzijol chuqa' taq nimaq'ij kichin kib'anonela' taq k'amal."
 
-msgid "View Resources for Publishers"
-msgstr "Ketz'et Tob'äl kichin Eltzijonela'"
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "Ütz Apetik"
-
-#, fuzzy
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Tatz'uku' jun jeb'ël cholajem richin ye'ato' ri okisanela' neketamaj ruwäch ri ak'amal."
-
-msgid "Learn How"
-msgstr "Tetamäx Achike Rub'eyal"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3888,6 +3878,12 @@ msgstr "¿La nawajo' chi tiya' rutzijol ri ak'amal pa %(amo_link_open)saddons.mo
 
 msgid "Learn More"
 msgstr "Tetamäx Ch'aqa' Chik"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Yetz'etetäj pa re ruxaq k'amaya'l re' toq xkik'owisaj runik'oxik b'itz'ib'. Ja ri ruxaq yerusamajij ri yonil taq k'exoj."
@@ -3944,6 +3940,9 @@ msgstr "Tik'wäx jun Ruk'amal Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr "Firefox yeruk'ül ri WebExtension, k'ïy mul nikik'äm ki' kik'in ri taq k'amal APIs yekik'ül Google, Chrome chuqa' Opera. Ruma ri', ri taq k'amal xkesamäj pa Firefox rik'in ko'öl taq jaloj. "
+
+msgid "Learn How"
+msgstr "Tetamäx Achike Rub'eyal"
 
 msgid "Publish Your Add-on"
 msgstr "Tataluj Atz'aqat"
