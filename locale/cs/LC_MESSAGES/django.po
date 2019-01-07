@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
 "PO-Revision-Date: 2018-12-19 11:42+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -3866,28 +3866,19 @@ msgstr "Spravujte svůj doplněk"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Přihlaste se pro editaci a aktualizaci svého doplňku"
 
-msgid "Resources for a successful launch"
-msgstr "Zdroje pro úspěšné vydání doplňku"
-
-#, python-format
-msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgid "Write one code base for many browsers"
 msgstr ""
-"Připravili jste své rozšíření a můžete ho publikovat. Co dál? Podívejte se na naše tipy, jak připravit co nejlepší stránku, aby ji uživatelé na serveru %(amo_link_open)saddons.mozilla.org"
-"%(amo_link_close)s snadno našli. Mezi tipy najdete i další informace pro vývojáře a aktuality o vývoji doplňků."
 
-msgid "View Resources for Publishers"
-msgstr "Zdroje pro autory"
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "Vítejte zpátky"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Usnadněte uživatelům najít vaše rozšíření vytvořením atraktivní stránky."
-
-msgid "Learn How"
-msgstr "Zjistit více"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3895,6 +3886,12 @@ msgstr "Chcete své rozšíření nechat doporučit uživatelům na %(amo_link_o
 
 msgid "Learn More"
 msgstr "Dozvědět se více"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Zveřejněno na této stránce, jakmile úspěšně projde kontrolou. O aktualizace se automaticky stará tato stránka."
@@ -3954,6 +3951,9 @@ msgstr "Převod rozšíření pro Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr "Firefox podporuje sadu API WebExtension, která je ve většině případů kompatibilní s API podporovanými Chromem, Operou a Edgem, takže stačí pár změn, a vaše rozšíření poběží i ve Firefoxu."
+
+msgid "Learn How"
+msgstr "Zjistit více"
 
 msgid "Publish Your Add-on"
 msgstr "Publikujte svůj doplněk"
