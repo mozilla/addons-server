@@ -9,7 +9,7 @@ from threading import local
 from django import urls
 from django.conf import settings
 from django.utils.encoding import force_bytes
-from django.utils.http import _urlparse as urlparse
+from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import bleach
@@ -172,7 +172,9 @@ def get_outgoing_url(url):
     if not settings.REDIRECT_URL:
         return url
 
-    parsed_url = urlparse(url)
+    # django.utils.http._urlparse is a copy of python's urlparse()
+    # "but uses fixed urlsplit() function".
+    parsed_url = django_urlparse(url)
     url_netloc = parsed_url.netloc
 
     # This prevents a link like javascript://addons.mozilla.org...
@@ -182,7 +184,7 @@ def get_outgoing_url(url):
         return '/'
 
     # No double-escaping, and some domain names are excluded.
-    if (url_netloc == urlparse(settings.REDIRECT_URL).netloc or
+    if (url_netloc == django_urlparse(settings.REDIRECT_URL).netloc or
             url_netloc in settings.REDIRECT_URL_ALLOW_LIST):
         return url
 

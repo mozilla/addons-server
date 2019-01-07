@@ -1,7 +1,7 @@
 import json
 
 from datetime import datetime, timedelta
-from urlparse import urlparse
+from six.moves.urllib_parse import urlparse
 
 from django.conf import settings
 from django.core import mail

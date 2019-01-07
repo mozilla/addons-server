@@ -3,7 +3,7 @@ import mimetypes
 import os
 
 from datetime import datetime, timedelta
-from urlparse import urljoin
+from six.moves.urllib_parse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile

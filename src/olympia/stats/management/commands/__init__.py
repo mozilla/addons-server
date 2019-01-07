@@ -1,7 +1,7 @@
 import boto3
 import codecs
 from io import StringIO
-from urlparse import urlparse
+from six.moves.urllib_parse import urlparse
 
 from django.core.files.storage import get_storage_class
 

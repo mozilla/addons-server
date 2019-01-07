@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import base64
 import json
-import urlparse
+import mock
 
 from os import path
+from six.moves.urllib_parse import parse_qs, urlparse
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
@@ -11,8 +12,6 @@ from django.contrib.messages import get_messages
 from django.urls import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
-
-import mock
 
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.settings import api_settings
@@ -93,11 +92,11 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
                         lambda: 'arandomstring'):
             response = self.client.get(self.url)
         assert response.status_code == 302
-        url = urlparse.urlparse(response['location'])
+        url = urlparse(response['location'])
         redirect = '{scheme}://{netloc}{path}'.format(
             scheme=url.scheme, netloc=url.netloc, path=url.path)
         assert redirect == 'https://accounts.firefox.com/v1/authorization'
-        assert urlparse.parse_qs(url.query) == {
+        assert parse_qs(url.query) == {
             'action': ['signin'],
             'client_id': ['amodefault'],
             'redirect_url': ['https://addons.mozilla.org/fxa-authenticate'],
@@ -120,8 +119,8 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
                         lambda: state):
             response = self.client.get(self.url, data={'to': path})
         assert self.client.session['fxa_state'] == state
-        url = urlparse.urlparse(response['location'])
-        query = urlparse.parse_qs(url.query)
+        url = urlparse(response['location'])
+        query = parse_qs(url.query)
         state_parts = query['state'][0].split(':')
         assert len(state_parts) == 2
         assert state_parts[0] == state
@@ -133,8 +132,8 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         self.initialize_session({})
         response = self.client.get(
             '{url}?to={path}'.format(path=path, url=self.url))
-        url = urlparse.urlparse(response['location'])
-        query = urlparse.parse_qs(url.query)
+        url = urlparse(response['location'])
+        query = parse_qs(url.query)
         assert ':' not in query['state'][0]
 
 
@@ -599,14 +598,14 @@ class TestWithUser(TestCase):
         # Query params should be kept on the redirect to FxA, with
         # acr_values=AAL2 added to force two-factor auth on FxA side.
         assert response.status_code == 302
-        url = urlparse.urlparse(response['Location'])
+        url = urlparse(response['Location'])
         base = '{scheme}://{netloc}{path}'.format(
             scheme=url.scheme, netloc=url.netloc, path=url.path)
         fxa_config = settings.FXA_CONFIG[settings.DEFAULT_FXA_CONFIG_NAME]
         assert base == '{host}{path}'.format(
             host=fxa_config['oauth_host'],
             path='/authorization')
-        query = urlparse.parse_qs(url.query)
+        query = parse_qs(url.query)
         next_path = base64.urlsafe_b64encode('/a/path/?').rstrip('=')
         assert query == {
             'acr_values': ['AAL2'],

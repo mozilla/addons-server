@@ -5,7 +5,7 @@ won't be tracked in git).
 
 """
 import os
-from urlparse import urlparse
+from six.moves.urllib_parse import urlparse
 
 from olympia.lib.settings_base import *  # noqa
 
