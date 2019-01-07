@@ -25,16 +25,6 @@
       </div>
       <div>
         <p>
-          {% trans %}
-          Help users discover your extension by creating an appealing product page.
-          {% endtrans %}
-        </p>
-        <a href="https://developer.mozilla.org/Add-ons/Listing" class="Button">
-          {{ _('Learn How') }}
-        </a>
-      </div>
-      <div>
-        <p>
           {% trans amo_link_open='<a href="https://addons.mozilla.org/">'|safe, amo_link_close='</a>'|safe %}
           Want your extension to be featured on {{ amo_link_open }}addons.mozilla.org{{ amo_link_close }}?
           Our featured extensions policies will tell you what you need to know.
@@ -42,6 +32,16 @@
         </p>
         <a href="https://developer.mozilla.org/Add-ons/AMO/Policy/Featured" class="Button">
           {{ _('Learn More') }}
+        </a>
+      </div>
+      <div>
+        <p>
+          {% trans %}
+          You can help users gain confidence and trust in your extension by following our best practices for onboarding users.
+          {% endtrans %}
+        </p>
+        <a href="https://developer.mozilla.org/docs/Mozilla/Add-ons/WebExtensions/onboarding_upboarding_offboarding_best_practices" class="Button">
+          {{ _('See Best Practices') }}
         </a>
       </div>
     </div>
