@@ -1143,6 +1143,10 @@ class TestAccountViewSetUpdate(TestCase):
                 'Must contain at least one printable character.']}
 
         response = self.patch(
+            data={'display_name': u'a\x7F'})
+        assert response.status_code == 200
+
+        response = self.patch(
             data={'display_name': 'a' * 50})
         assert response.status_code == 200
 
