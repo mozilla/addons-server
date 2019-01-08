@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import json
-import urllib
 
 from django.conf import settings
 from django.db import connection
@@ -9,6 +8,7 @@ from django.test.utils import override_settings
 import mock
 import six
 from six import StringIO
+from six.moves.urllib_parse import urlencode
 
 from services import theme_update
 
@@ -231,7 +231,7 @@ class TestMigratedUpdate(TestCase):
         response = json.loads(update.get_json())
         url = '{0}{1}/{2}?{3}'.format(
             user_media_url('addons'), str(stheme.id), 'foo.xpi',
-            urllib.urlencode({'filehash': 'brown'}))
+            urlencode({'filehash': 'brown'}))
         assert update.data == {
             'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
         assert response == {

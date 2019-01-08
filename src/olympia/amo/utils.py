@@ -411,9 +411,10 @@ def chunked(seq, n):
 def urlencode(items):
     """A Unicode-safe URLencoder."""
     try:
-        return urllib.urlencode(items)
+        return six.moves.urllib_parse.urlencode(items)
     except UnicodeEncodeError:
-        return urllib.urlencode([(k, force_bytes(v)) for k, v in items])
+        return six.moves.urllib_parse.urlencode(
+            [(k, force_bytes(v)) for k, v in items])
 
 
 def randslice(qs, limit, exclude=None):

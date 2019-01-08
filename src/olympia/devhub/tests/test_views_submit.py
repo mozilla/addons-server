@@ -3,7 +3,6 @@ import json
 import os
 import stat
 import tarfile
-import urllib
 import zipfile
 
 from datetime import datetime, timedelta
@@ -19,6 +18,7 @@ import six
 
 from pyquery import PyQuery as pq
 from six import text_type
+from six.moves.urllib_parse import urlencode
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -250,7 +250,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         doc = pq(response.content)
         assert doc('.g-recaptcha')
 
-        verify_data = urllib.urlencode({
+        verify_data = urlencode({
             'secret': '',
             'remoteip': '127.0.0.1',
             'response': 'test',
