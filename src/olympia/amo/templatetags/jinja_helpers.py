@@ -266,7 +266,7 @@ def license_link(license):
     """Link to a code license, including icon where applicable."""
     # If passed in an integer, try to look up the License.
     from olympia.versions.models import License
-    if isinstance(license, (long, int)):
+    if isinstance(license, six.integer_types):
         if license in PERSONA_LICENSES_IDS:
             # Grab built-in license.
             license = PERSONA_LICENSES_IDS[license]
