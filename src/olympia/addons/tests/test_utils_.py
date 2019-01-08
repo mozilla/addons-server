@@ -215,6 +215,8 @@ class TestGetAddonRecommendations(TestCase):
         assert recommendations == self.recommendation_guids
         assert outcome == TAAR_LITE_OUTCOME_REAL_SUCCESS
         assert reason is None
+        self.recommendation_server_mock.assert_called_with(
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {})
 
     def test_recommended_no_results(self):
         self.recommendation_server_mock.return_value = []
@@ -223,6 +225,8 @@ class TestGetAddonRecommendations(TestCase):
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason is TAAR_LITE_FALLBACK_REASON_EMPTY
+        self.recommendation_server_mock.assert_called_with(
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {})
 
     def test_recommended_timeout(self):
         self.recommendation_server_mock.return_value = None
@@ -231,6 +235,8 @@ class TestGetAddonRecommendations(TestCase):
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason is TAAR_LITE_FALLBACK_REASON_TIMEOUT
+        self.recommendation_server_mock.assert_called_with(
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, 'a@b', {})
 
     def test_not_recommended(self):
         recommendations, outcome, reason = get_addon_recommendations(
@@ -242,6 +248,7 @@ class TestGetAddonRecommendations(TestCase):
 
     def test_invalid_fallback(self):
         recommendations, outcome, reason = get_addon_recommendations_invalid()
+        assert not self.recommendation_server_mock.called
         assert recommendations == TAAR_LITE_FALLBACKS
         assert outcome == TAAR_LITE_OUTCOME_REAL_FAIL
         assert reason == TAAR_LITE_FALLBACK_REASON_INVALID
@@ -250,6 +257,7 @@ class TestGetAddonRecommendations(TestCase):
         assert is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_SUCCESS)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_REAL_FAIL)
         assert not is_outcome_recommended(TAAR_LITE_OUTCOME_CURATED)
+        assert not self.recommendation_server_mock.called
 
 
 class TestBuildStaticThemeXpiFromLwt(TestCase):
