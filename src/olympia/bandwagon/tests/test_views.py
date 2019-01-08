@@ -1123,12 +1123,12 @@ class TestCollectionViewSetDetail(TestCase):
         assert response.data['id'] == self.collection.id
         addon_data = response.data['addons'][0]['addon']
         assert addon_data['id'] == addon.id
-        assert isinstance(addon_data['name']['en-US'], basestring)
+        assert isinstance(addon_data['name']['en-US'], six.string_types)
         assert addon_data['name'] == {'en-US': six.text_type(addon.name)}
-        assert isinstance(addon_data['homepage']['en-US'], basestring)
+        assert isinstance(addon_data['homepage']['en-US'], six.string_types)
         assert addon_data['homepage'] == {
             'en-US': get_outgoing_url(six.text_type(addon.homepage))}
-        assert isinstance(addon_data['support_url']['en-US'], basestring)
+        assert isinstance(addon_data['support_url']['en-US'], six.string_types)
         assert addon_data['support_url'] == {
             'en-US': get_outgoing_url(six.text_type(addon.support_url))}
 
@@ -1141,12 +1141,12 @@ class TestCollectionViewSetDetail(TestCase):
             assert response.data['id'] == self.collection.id
             addon_data = response.data['addons'][0]['addon']
             assert addon_data['id'] == addon.id
-            assert isinstance(addon_data['name'], basestring)
+            assert isinstance(addon_data['name'], six.string_types)
             assert addon_data['name'] == six.text_type(addon.name)
-            assert isinstance(addon_data['homepage'], basestring)
+            assert isinstance(addon_data['homepage'], six.string_types)
             assert addon_data['homepage'] == get_outgoing_url(
                 six.text_type(addon.homepage))
-            assert isinstance(addon_data['support_url'], basestring)
+            assert isinstance(addon_data['support_url'], six.string_types)
             assert addon_data['support_url'] == get_outgoing_url(
                 six.text_type(addon.support_url))
 

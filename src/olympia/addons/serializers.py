@@ -392,7 +392,7 @@ class AddonSerializer(serializers.ModelSerializer):
 
     def outgoingify(self, data):
         if data:
-            if isinstance(data, basestring):
+            if isinstance(data, six.string_types):
                 return get_outgoing_url(data)
             elif isinstance(data, dict):
                 return {key: get_outgoing_url(value) if value else None
@@ -800,7 +800,7 @@ class ReplacementAddonSerializer(serializers.ModelSerializer):
     def _get_collection_guids(self, user_id, collection_slug):
         try:
             get_args = {'slug': collection_slug, 'listed': True}
-            if isinstance(user_id, basestring) and not user_id.isdigit():
+            if isinstance(user_id, six.string_types) and not user_id.isdigit():
                 get_args.update(**{'author__username': user_id})
             else:
                 get_args.update(**{'author': user_id})

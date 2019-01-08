@@ -341,7 +341,7 @@ class ActivityLog(ModelBase):
         serialize_me = []
 
         for arg in args:
-            if isinstance(arg, basestring):
+            if isinstance(arg, six.string_types):
                 serialize_me.append({'str': arg})
             elif isinstance(arg, (int, long)):
                 serialize_me.append({'int': arg})

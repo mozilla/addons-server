@@ -126,7 +126,7 @@ class TranslationSerializerField(fields.Field):
         return val
 
     def to_internal_value(self, data):
-        if isinstance(data, basestring):
+        if isinstance(data, six.string_types):
             self.validate(data)
             return data.strip()
         elif isinstance(data, dict):
@@ -143,7 +143,7 @@ class TranslationSerializerField(fields.Field):
             )
         value_too_short = True
 
-        if isinstance(value, basestring):
+        if isinstance(value, six.string_types):
             if len(value.strip()) >= self.min_length:
                 value_too_short = False
         else:

@@ -154,7 +154,7 @@ def clean_slug(instance, slug_field='slug'):
 class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
-        if isinstance(val, basestring) and not val.isdigit():
+        if isinstance(val, six.string_types) and not val.isdigit():
             return self.filter(slug=val)
         return self.filter(id=val)
 

@@ -190,7 +190,7 @@ def check_links(expected, elements, selected=None, verify=True):
         if isinstance(item, tuple):
             text, link = item
         # Or list item could be `link`.
-        elif isinstance(item, basestring):
+        elif isinstance(item, six.string_types):
             text, link = None, item
 
         e = elements.eq(idx)
@@ -469,7 +469,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
         """
 
         # Try parsing the string if it's not a datetime.
-        if isinstance(dt, basestring):
+        if isinstance(dt, six.string_types):
             try:
                 dt = dateutil_parser(dt)
             except ValueError as e:
