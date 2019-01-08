@@ -1,5 +1,4 @@
 import csv
-import itertools
 import json
 import time
 
@@ -182,7 +181,7 @@ def zip_overview(downloads, updates):
                 yield 0
             next_date = next_date - timedelta(days=1)
 
-    series = itertools.izip_longest(iterator(downloads), iterator(updates))
+    series = six.moves.zip_longest(iterator(downloads), iterator(updates))
     for idx, (dl_count, up_count) in enumerate(series):
         yield {'date': start_date - timedelta(days=idx),
                'data': {'downloads': dl_count, 'updates': up_count}}
