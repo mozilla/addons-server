@@ -102,7 +102,7 @@ def setup_es_test_data(es):
             list(e.args[1:]))
         raise
 
-    aliases_and_indexes = set(settings.ES_INDEXES.values() +
+    aliases_and_indexes = set(list(settings.ES_INDEXES.values()) +
                               es.indices.get_alias().keys())
 
     for key in aliases_and_indexes:
@@ -438,7 +438,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
             # There are multiple contexts so iter all of them.
             tpl = response.context
         for ctx in tpl:
-            for k, v in ctx.iteritems():
+            for k, v in six.iteritems(ctx):
                 if isinstance(v, (forms.BaseForm, forms.formsets.BaseFormSet)):
                     if isinstance(v, forms.formsets.BaseFormSet):
                         # Concatenate errors from each form in the formset.

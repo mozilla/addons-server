@@ -448,7 +448,7 @@ class APITest(TestCase):
         for needle in needles:
             self.assertContains(response, needle)
 
-        for tag, needle in url_needles.iteritems():
+        for tag, needle in six.iteritems(url_needles):
             url = doc(tag).text()
             self.assertUrlEqual(url, needle)
 
@@ -737,7 +737,7 @@ class TestGuidSearch(TestCase):
         super(TestGuidSearch, self).setUp()
         addon = Addon.objects.get(id=3615)
         c = CompatOverride.objects.create(guid=addon.guid)
-        app = addon.compatible_apps.keys()[0]
+        app = list(addon.compatible_apps.keys())[0]
         CompatOverrideRange.objects.create(compat=c, app=app.id)
 
     def test_success(self):
@@ -922,7 +922,7 @@ class SearchTest(ESTestCase):
                 'TwitterBar',
         }
 
-        for url, text in expect.iteritems():
+        for url, text in six.iteritems(expect):
             if not url.startswith('/'):
                 url = '/en-US/firefox/api/1.2/search/' + url
 

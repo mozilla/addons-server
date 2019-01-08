@@ -458,7 +458,7 @@ class TestVersion(TestCase):
             ViewPendingQueue: amo.STATUS_PUBLIC
         }
 
-        for queue, status in queue_to_status.iteritems():  # Listed queues.
+        for queue, status in six.iteritems(queue_to_status):  # Listed queues.
             self.version.addon.update(status=status)
             assert self.version.current_queue == queue
 

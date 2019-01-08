@@ -10,6 +10,7 @@ from django.test.utils import override_settings
 
 import mock
 import pytest
+import six
 
 
 def sample_cron_job(*args):
@@ -42,7 +43,7 @@ def test_cron_command_invalid_job():
 
 
 def test_cron_jobs_setting():
-    for name, path in settings.CRON_JOBS.iteritems():
+    for name, path in six.iteritems(settings.CRON_JOBS):
         module = import_module(path)
         getattr(module, name)
 

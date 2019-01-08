@@ -10,6 +10,8 @@ from django.forms.models import (
     BaseModelFormSet, ModelMultipleChoiceField, modelformset_factory)
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
+import six
+
 import olympia.core.logger
 
 from olympia import amo, ratings
@@ -366,7 +368,7 @@ class ReviewForm(forms.Form):
         responses = CannedResponse.objects.filter(type=canned_type)
 
         # Loop through the actions (public, etc).
-        for k, action in self.helper.actions.iteritems():
+        for k, action in six.iteritems(self.helper.actions):
             action_choices = [[c.response, c.name] for c in responses
                               if c.sort_group and k in c.sort_group.split(',')]
 
@@ -412,7 +414,7 @@ class ThemeReviewForm(forms.Form):
     )
     # Duplicate is the same as rejecting but has its own flow.
     reject_reason = forms.TypedChoiceField(
-        choices=amo.THEME_REJECT_REASONS.items() + [('duplicate', '')],
+        choices=list(amo.THEME_REJECT_REASONS.items()) + [('duplicate', '')],
         widget=forms.HiddenInput(attrs={'class': 'reject-reason'}),
         required=False, coerce=int, empty_value=None)
     comment = forms.CharField(

@@ -370,17 +370,14 @@ class ActivityLog(ModelBase):
         # that each particular log has, in the correct order.
         for activity in activities:
             objs = []
-            # We preloaded that property earlier
-            for item in activity.arguments_data:
-                # As above, each 'item' should have one key and one value only.
-                name, pk = list(item.items())[0]
-                if name in ('str', 'int', 'null'):
-                    # It's not actually a model reference, just return the
-                    # value directly.
-                    objs.append(pk)
-                elif pk:
-                    # Fetch the instance from the cache we built.
-                    objs.append(instances[name].get(int(pk)))
+        for item in d:
+            # item has only one element.
+            model_name, pk = list(item.items())[0]
+            if model_name in ('str', 'int', 'null'):
+                objs.append(pk)
+            elif pk:
+                # Fetch the instance from the cache we built.
+                objs.append(instances[name].get(int(pk)))
             # Override the arguments cached_property with what we got.
             activity.arguments = objs
 

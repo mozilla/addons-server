@@ -474,7 +474,7 @@ class BaseCompatFormSet(BaseModelFormSet):
             # hidden delete fields in the data attribute, cause that's used to
             # populate initial data for all forms, and would therefore make
             # those delete fields active again.
-            self.data = {k: v for k, v in self.data.iteritems()
+            self.data = {k: v for k, v in six.iteritems(self.data)
                          if not k.endswith('-DELETE')}
             for form in self.forms:
                 form.data = self.data
@@ -655,7 +655,7 @@ class CombinedNameSummaryCleanMixin(object):
                     'characters (they have {0}).')
         super(CombinedNameSummaryCleanMixin, self).clean()
         name_summary_locales = set(
-            self.cleaned_data.get('name', {}).keys() +
+            list(self.cleaned_data.get('name', {}).keys()) +
             self.cleaned_data.get('summary', {}).keys())
         default_locale = self.instance.default_locale.lower()
         name_values = self.cleaned_data.get('name') or {}

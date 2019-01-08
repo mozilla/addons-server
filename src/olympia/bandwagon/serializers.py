@@ -88,7 +88,7 @@ class CollectionSerializer(serializers.ModelSerializer):
         # if we have a localised dict of values validate them all.
         if isinstance(value, dict):
             return {locale: self.validate_name(sub_value)
-                    for locale, sub_value in value.iteritems()}
+                    for locale, sub_value in six.iteritems(value)}
         if value.strip() == u'':
             raise serializers.ValidationError(
                 ugettext(u'Name cannot be empty.'))

@@ -109,7 +109,7 @@ def extension_detail(request, addon):
     comp_apps = addon.compatible_apps
     if comp_apps and request.APP not in comp_apps:
         prefixer = get_url_prefix()
-        prefixer.app = comp_apps.keys()[0].short
+        prefixer.app = list(comp_apps.keys())[0].short
         return redirect('addons.detail', addon.slug, permanent=True)
 
     # Popular collections this addon is part of.

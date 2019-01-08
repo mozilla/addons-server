@@ -795,7 +795,7 @@ def escape_all(value):
         for i, lv in enumerate(value):
             value[i] = escape_all(lv)
     elif isinstance(value, dict):
-        for k, lv in value.iteritems():
+        for k, lv in six.iteritems(value):
             value[k] = escape_all(lv)
     elif isinstance(value, Translation):
         value = jinja2.escape(force_text(value))

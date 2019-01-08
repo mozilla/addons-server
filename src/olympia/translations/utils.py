@@ -3,6 +3,7 @@ from django.utils.encoding import force_text
 
 import html5lib
 import jinja2
+import six
 
 
 def truncate_text(text, limit, killwords=False, end='...'):
@@ -94,8 +95,8 @@ def transfield_changed(field, initial, data):
                                                          'en-us': 'x',
                                                          'en-br': 'y'}
     """
-    initial = [(k, v.localized_string) for k, v in initial.iteritems()
+    initial = [(k, v.localized_string) for k, v in six.iteritems(initial)
                if '%s_' % field in k and v is not None]
-    data = [('%s_%s' % (field, k), v) for k, v in data[field].iteritems()
+    data = [('%s_%s' % (field, k), v) for k, v in six.iteritems(data[field])
             if k != 'init']
     return set(initial) != set(data)

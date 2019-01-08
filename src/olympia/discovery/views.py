@@ -3,6 +3,8 @@ import re
 from django.db.transaction import non_atomic_requests
 from django.utils.decorators import classonlymethod
 
+import six
+
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -24,6 +26,17 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
     pagination_class = None
     permission_classes = []
     serializer_class = DiscoverySerializer
+
+    def get_params(self):
+        params = dict(self.kwargs)
+        params.update(six.iteritems(self.request.GET))
+        params = {param: value for (param, value) in six.iteritems(params)
+                  if param in amo.DISCO_API_ALLOWED_PARAMETERS}
+        lang = params.pop('lang', None)
+        if lang:
+            # Need to change key to what taar expects
+            params['locale'] = lang
+        return params
 
     def get_queryset(self):
         edition = self.request.GET.get('edition', 'default')

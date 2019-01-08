@@ -4,6 +4,8 @@ from datetime import datetime
 
 from django.db import connection, models
 
+import six
+
 from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
@@ -205,7 +207,7 @@ class Collection(ModelBase):
             (CollectionAddon.objects.filter(collection=self.id, addon=addon)
              .update(ordering=ordering, modified=now))
 
-        for addon, comment in comments.iteritems():
+        for addon, comment in six.iteritems(comments):
             try:
                 c = (CollectionAddon.objects.using('default')
                      .get(collection=self.id, addon=addon))

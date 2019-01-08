@@ -60,7 +60,7 @@ def test_summarize_validation():
 
 def test_log_action_class():
     v = Mock()
-    for k, v in amo.LOG_BY_ID.iteritems():
+    for k, v in six.iteritems(amo.LOG_BY_ID):
         if v.action_class is not None:
             cls = 'action-' + v.action_class
         else:
