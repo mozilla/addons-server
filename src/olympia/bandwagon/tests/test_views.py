@@ -34,29 +34,30 @@ pytestmark = pytest.mark.django_db
 
 
 def test_addons_form():
-    f = forms.AddonsForm(MultiValueDict({'addon': [''],
-                                         'addon_comment': ['comment']}))
-    assert f.is_valid()
+    form = forms.AddonsForm(
+        MultiValueDict({'addon': [''], 'addon_comment': ['comment']}))
+    assert form.is_valid()
 
 
 def test_collections_form_bad_slug():
-    f = forms.CollectionForm(dict(slug=' ', listed=True, name='  '))
-    assert 'slug' in f.errors
-    assert 'name' in f.errors
+    form = forms.CollectionForm({'slug': ' ', 'listed': True, 'name': '  '})
+    assert 'slug' in form.errors
+    assert 'name' in form.errors
 
 
 def test_collections_form_long_description():
-    f = forms.CollectionForm(dict(description='&*' * 200))
-    assert 'description' in f.errors
+    form = forms.CollectionForm(dict(description='&*' * 200))
+    assert 'description' in form.errors
 
 
 def test_collections_form_unicode_slug():
-    u = Mock()
-    u.collections.filter.return_value.count.return_value = False
-    f = forms.CollectionForm(dict(slug=u'Ελλην', listed=True, name='  '),
-                             initial=dict(author=u))
-    assert 'name' in f.errors
-    assert 'slug' not in f.errors
+    user = Mock()
+    user.collections.filter.return_value.count.return_value = False
+    form = forms.CollectionForm(
+        {'slug': u'Ελλην', 'listed': True, 'name': '  '},
+        initial={'author': 'user'})
+    assert 'name' in form.errors
+    assert 'slug' not in form.errors
 
 
 class TestViews(TestCase):
@@ -196,11 +197,8 @@ class TestPrivacy(TestCase):
 
     def test_owner(self):
         self.client.login(email='jbalogh@mozilla.com')
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        # TODO(cvan): Uncomment when bug 719512 gets fixed.
-        # assert pq(r.content)('.meta .view-stats').length == 1, (
-        #    'Add-on authors should be able to view stats')
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
     def test_private(self):
         self.client.logout()
@@ -212,9 +210,9 @@ class TestPrivacy(TestCase):
         self.assertLoginRedirects(self.client.get(self.url), self.url)
         self.c.listed = True
         self.c.save()
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        assert pq(r.content)('.meta .view-stats').length == 0, (
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert pq(response.content)('.meta .view-stats').length == 0, (
             'Only add-on authors can view stats')
 
     def test_contributer(self):
@@ -294,17 +292,17 @@ class TestCRUD(TestCase):
                 'description': '',
                 'listed': 'True'}
 
-        r = self.client.post(self.add_url, data, follow=True)
-        assert pq(r.content)('.errorlist li')[0].text == (
+        response = self.client.post(self.add_url, data, follow=True)
+        assert pq(response.content)('.errorlist li')[0].text == (
             'This field is required.')
-        self.assertContains(r, 'Delicious')
+        self.assertContains(response, 'Delicious')
 
     def test_default_locale(self):
-        r = self.client.post('/he/firefox/collections/add',
-                             self.data, follow=True)
-        assert r.status_code == 200
-        c = Collection.objects.get(slug=self.slug)
-        assert c.default_locale == 'he'
+        response = self.client.post(
+            '/he/firefox/collections/add', self.data, follow=True)
+        assert response.status_code == 200
+        collection = Collection.objects.get(slug=self.slug)
+        assert collection.default_locale == 'he'
 
     def test_fix_slug(self):
         self.data['slug'] = 'some slug'
@@ -313,43 +311,42 @@ class TestCRUD(TestCase):
 
     def test_showform(self):
         """Shows form if logged in."""
-        r = self.client.get(self.add_url)
-        assert r.status_code == 200
+        response = self.client.get(self.add_url)
+        assert response.status_code == 200
 
     def test_submit(self):
         """Test submission of addons."""
-        # TODO(davedash): Test file uploads, test multiple addons.
-        r = self.client.post(self.add_url, self.data, follow=True)
-        assert r.request['PATH_INFO'].decode('utf-8') == (
+        response = self.client.post(self.add_url, self.data, follow=True)
+        assert response.request['PATH_INFO'].decode('utf-8') == (
             '/en-US/firefox/collections/4043307/%s/' % self.slug)
-        c = Collection.objects.get(slug=self.slug)
-        assert six.text_type(c.name) == self.data['name']
-        assert c.description == ''
-        assert c.addons.all()[0].id == 3615
+        collection = Collection.objects.get(slug=self.slug)
+        assert six.text_type(collection.name) == self.data['name']
+        assert collection.description == ''
+        assert collection.addons.all()[0].id == 3615
 
     def test_duplicate_slug(self):
         """Try the same thing twice.  AND FAIL"""
         self.client.post(self.add_url, self.data, follow=True)
-        r = self.client.post(self.add_url, self.data, follow=True)
-        assert r.context['form'].errors['slug'][0] == (
+        response = self.client.post(self.add_url, self.data, follow=True)
+        assert response.context['form'].errors['slug'][0] == (
             'This url is already in use by another collection')
 
     def test_edit(self):
         self.create_collection()
         url = reverse('collections.edit', args=['admin', self.slug])
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 200
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 200
 
     def test_edit_post(self):
         """Test edit of collection."""
         self.create_collection()
         url = reverse('collections.edit', args=['4043307', self.slug])
 
-        r = self.client.post(url, {'name': 'HALP', 'slug': 'halp',
-                                   'listed': True}, follow=True)
-        assert r.status_code == 200
-        c = Collection.objects.get(slug='halp')
-        assert six.text_type(c.name) == 'HALP'
+        response = self.client.post(
+            url, {'name': 'HALP', 'slug': 'halp', 'listed': True}, follow=True)
+        assert response.status_code == 200
+        collection = Collection.objects.get(slug='halp')
+        assert six.text_type(collection.name) == 'HALP'
 
     def test_edit_description(self):
         self.create_collection()
@@ -357,10 +354,10 @@ class TestCRUD(TestCase):
         url = reverse('collections.edit', args=['4043307', self.slug])
         self.data['description'] = 'abc'
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
-        r = self.client.post(url, self.data)
-        self.assert3xx(r, edit_url, 302)
-        assert six.text_type(Collection.objects.get(slug=self.slug).description) == (
-            'abc')
+        response = self.client.post(url, self.data)
+        self.assert3xx(response, edit_url, 302)
+        assert six.text_type(
+            Collection.objects.get(slug=self.slug).description) == ('abc')
 
     def test_edit_no_description(self):
         self.create_collection(description='abc')
@@ -369,22 +366,22 @@ class TestCRUD(TestCase):
         url = reverse('collections.edit', args=['4043307', self.slug])
         self.data['description'] = ''
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
-        r = self.client.post(url, self.data)
-        self.assert3xx(r, edit_url, 302)
-        assert six.text_type(Collection.objects.get(slug=self.slug).description) == (
-            '')
+        response = self.client.post(url, self.data)
+        self.assert3xx(response, edit_url, 302)
+        assert six.text_type(
+            Collection.objects.get(slug=self.slug).description) == ('')
 
     def test_edit_spaces(self):
         """Let's put lots of spaces and see if they show up."""
         self.create_collection()
         url = reverse('collections.edit', args=['4043307', self.slug])
 
-        r = self.client.post(url,
-                             {'name': '  H A L  P ', 'slug': '  halp  ',
-                              'listed': True}, follow=True)
-        assert r.status_code == 200
-        c = Collection.objects.get(slug='halp')
-        assert six.text_type(c.name) == 'H A L  P'
+        response = self.client.post(
+            url, {'name': '  H A L  P ', 'slug': '  halp  ', 'listed': True},
+            follow=True)
+        assert response.status_code == 200
+        collection = Collection.objects.get(slug='halp')
+        assert six.text_type(collection.name) == 'H A L  P'
 
     def test_forbidden_edit(self):
         self.create_collection()
@@ -394,48 +391,48 @@ class TestCRUD(TestCase):
         username_url_args = ['admin', self.slug]
 
         url = reverse('collections.edit', args=id_url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url)
+        assert response.status_code == 403
         url = reverse('collections.edit', args=username_url_args)
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 403
-        r = self.client.post(url, follow=True)
-        assert r.status_code == 403
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(url, follow=True)
+        assert response.status_code == 403
 
         url = reverse('collections.edit_addons', args=id_url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url)
+        assert response.status_code == 403
         url = reverse('collections.edit_addons', args=username_url_args)
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 403
-        r = self.client.post(url, follow=True)
-        assert r.status_code == 403
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(url, follow=True)
+        assert response.status_code == 403
 
         url = reverse('collections.edit_privacy', args=id_url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url)
+        assert response.status_code == 403
         url = reverse('collections.edit_privacy', args=username_url_args)
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 403
-        r = self.client.post(url, follow=True)
-        assert r.status_code == 403
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(url, follow=True)
+        assert response.status_code == 403
 
         url = reverse('collections.delete', args=id_url_args)
-        r = self.client.get(url)
-        assert r.status_code == 403
-        r = self.client.post(url)
-        assert r.status_code == 403
+        response = self.client.get(url)
+        assert response.status_code == 403
+        response = self.client.post(url)
+        assert response.status_code == 403
         url = reverse('collections.delete', args=username_url_args)
-        r = self.client.get(url, follow=True)
-        assert r.status_code == 403
-        r = self.client.post(url, follow=True)
-        assert r.status_code == 403
+        response = self.client.get(url, follow=True)
+        assert response.status_code == 403
+        response = self.client.post(url, follow=True)
+        assert response.status_code == 403
 
     def test_acl_contributor(self):
         collection = self.create_collection().context['collection']
@@ -446,30 +443,30 @@ class TestCRUD(TestCase):
             url_args = ['4043307', self.slug]
 
             url = reverse('collections.edit', args=url_args)
-            r = self.client.get(url)
-            assert r.status_code == 200
-            assert r.context['form'] is None
-            r = self.client.post(url)
-            assert r.status_code == 403
+            response = self.client.get(url)
+            assert response.status_code == 200
+            assert response.context['form'] is None
+            response = self.client.post(url)
+            assert response.status_code == 403
 
             url = reverse('collections.edit_addons', args=url_args)
-            r = self.client.get(url)
+            response = self.client.get(url)
             # Passed acl check, but this view needs a POST.
-            assert r.status_code == 405
-            r = self.client.post(url, {'addon': 3615}, follow=True)
-            assert r.status_code == 200
+            assert response.status_code == 405
+            response = self.client.post(url, {'addon': 3615}, follow=True)
+            assert response.status_code == 200
 
             url = reverse('collections.edit_privacy', args=url_args)
-            r = self.client.get(url)
-            assert r.status_code == 403
-            r = self.client.post(url)
-            assert r.status_code == 403
+            response = self.client.get(url)
+            assert response.status_code == 403
+            response = self.client.post(url)
+            assert response.status_code == 403
 
             url = reverse('collections.delete', args=url_args)
-            r = self.client.get(url)
-            assert r.status_code == 403
-            r = self.client.post(url)
-            assert r.status_code == 403
+            response = self.client.get(url)
+            assert response.status_code == 403
+            response = self.client.post(url)
+            assert response.status_code == 403
 
     def test_acl_admin_curation(self):
         # Test that even with 'Admin:Curation' you can't edit anyone's
@@ -650,12 +647,12 @@ class TestChangeAddon(TestCase):
         self.assertLoginRedirects(self.client.post(self.add), to=self.add)
 
     def test_post_required(self):
-        r = self.client.get(self.add)
-        assert r.status_code == 405
+        response = self.client.get(self.add)
+        assert response.status_code == 405
 
     def test_ownership(self):
-        r = self.client.post(self.flig_add)
-        assert r.status_code == 403
+        response = self.client.post(self.flig_add)
+        assert response.status_code == 403
 
     def test_contributer(self):
         with override_settings(COLLECTION_FEATURED_THEMES_ID=self.flig.id):
@@ -666,15 +663,16 @@ class TestChangeAddon(TestCase):
             self.check_redirect(response)
 
     def test_no_addon(self):
-        r = self.client.post(self.add)
-        assert r.status_code == 400
+        response = self.client.post(self.add)
+        assert response.status_code == 400
 
     def test_add_success(self):
-        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
-        self.check_redirect(r)
-        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        assert self.addon in c.addons.all()
-        assert c.addons.count() == 1
+        response = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
+        self.check_redirect(response)
+        collection = Collection.objects.get(
+            author__username='jbalogh', slug='mobile')
+        assert self.addon in collection.addons.all()
+        assert collection.addons.count() == 1
 
     def test_add_secretly(self):
         """
@@ -685,10 +683,10 @@ class TestChangeAddon(TestCase):
         assert len(ActivityLog.objects.for_addons(self.addon)) == 0
 
     def test_add_existing(self):
-        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
-        self.check_redirect(r)
-        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
-        self.check_redirect(r)
+        response = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
+        self.check_redirect(response)
+        response = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
+        self.check_redirect(response)
         c = Collection.objects.get(author__username='jbalogh', slug='mobile')
         assert self.addon in c.addons.all()
         assert c.addons.count() == 1
@@ -704,26 +702,31 @@ class TestChangeAddon(TestCase):
         assert len(ActivityLog.objects.for_addons(self.addon)) == 0
 
     def test_remove_success(self):
-        r = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
-        self.check_redirect(r)
+        response = self.client.post_ajax(self.add, {'addon_id': self.addon.id})
+        self.check_redirect(response)
 
-        r = self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
-        self.check_redirect(r)
+        response = self.client.post_ajax(
+            self.remove, {'addon_id': self.addon.id})
+        self.check_redirect(response)
 
-        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        assert c.addons.count() == 0
+        collection = Collection.objects.get(
+            author__username='jbalogh', slug='mobile')
+        assert collection.addons.count() == 0
 
     def test_remove_nonexistent(self):
-        r = self.client.post_ajax(self.remove, {'addon_id': self.addon.id})
-        self.check_redirect(r)
-        c = Collection.objects.get(author__username='jbalogh', slug='mobile')
-        assert c.addons.count() == 0
+        response = self.client.post_ajax(
+            self.remove, {'addon_id': self.addon.id})
+        self.check_redirect(response)
+        collection = Collection.objects.get(
+            author__username='jbalogh', slug='mobile')
+        assert collection.addons.count() == 0
 
     def test_no_ajax_response(self):
-        r = self.client.post(self.add, {'addon_id': self.addon.id},
-                             follow=True)
-        self.assert3xx(r, reverse('collections.detail',
-                                  args=['4043307', 'mobile']))
+        response = self.client.post(
+            self.add, {'addon_id': self.addon.id}, follow=True)
+        self.assert3xx(
+            response,
+            reverse('collections.detail', args=['4043307', 'mobile']))
 
 
 class AjaxTest(TestCase):
@@ -737,25 +740,28 @@ class AjaxTest(TestCase):
         self.other = UserProfile.objects.exclude(id=self.user.id)[0]
 
     def test_list_collections(self):
-        r = self.client.get(
+        response = self.client.get(
             reverse('collections.ajax_list') + '?addon_id=3615')
-        doc = pq(r.content)
+        doc = pq(response.content)
         assert doc('li.selected').attr('data-id') == '80'
 
     def test_add_collection(self):
-        r = self.client.post_ajax(reverse('collections.ajax_add'),
-                                  {'addon_id': 3615, 'id': 80}, follow=True)
-        doc = pq(r.content)
+        response = self.client.post_ajax(
+            reverse('collections.ajax_add'),
+            {'addon_id': 3615, 'id': 80}, follow=True)
+        doc = pq(response.content)
         assert doc('li.selected').attr('data-id') == '80'
 
     def test_bad_collection(self):
-        r = self.client.post(reverse('collections.ajax_add'), {'id': 'adfa'})
-        assert r.status_code == 400
+        response = self.client.post(
+            reverse('collections.ajax_add'), {'id': 'adfa'})
+        assert response.status_code == 400
 
     def test_remove_collection(self):
-        r = self.client.post(reverse('collections.ajax_remove'),
-                             {'addon_id': 1843, 'id': 80}, follow=True)
-        doc = pq(r.content)
+        response = self.client.post(
+            reverse('collections.ajax_remove'),
+            {'addon_id': 1843, 'id': 80}, follow=True)
+        doc = pq(response.content)
         assert len(doc('li.selected')) == 0
 
     def test_new_collection(self):
@@ -772,21 +778,23 @@ class AjaxTest(TestCase):
 
     def test_add_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
-        c = Collection(author=self.other)
-        c.save()
+        collection = Collection(author=self.other)
+        collection.save()
 
-        r = self.client.post(reverse('collections.ajax_add'),
-                             {'addon_id': 3615, 'id': c.id}, follow=True)
-        assert r.status_code == 403
+        response = self.client.post(
+            reverse('collections.ajax_add'),
+            {'addon_id': 3615, 'id': collection.id}, follow=True)
+        assert response.status_code == 403
 
     def test_remove_other_collection(self):
         "403 when you try to add to a collection that isn't yours."
-        c = Collection(author=self.other)
-        c.save()
+        collection = Collection(author=self.other)
+        collection.save()
 
-        r = self.client.post(reverse('collections.ajax_remove'),
-                             {'addon_id': 3615, 'id': c.id}, follow=True)
-        assert r.status_code == 403
+        response = self.client.post(
+            reverse('collections.ajax_remove'),
+            {'addon_id': 3615, 'id': collection.id}, follow=True)
+        assert response.status_code == 403
 
     def test_ajax_list_no_addon_id(self):
         assert self.client.get(

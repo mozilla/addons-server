@@ -165,7 +165,7 @@ class Command(BaseCommand):
 
                 # Old versions of Firefox don't provide the update type.
                 # All the following are "empty-like" values.
-                if update_type in ['0', 'NULL', 'None', '', '\N',
+                if update_type in ['0', 'NULL', 'None', '', '\\N',
                                    '%UPDATE_TYPE%']:
                     update_type = None
 

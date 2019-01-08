@@ -222,7 +222,8 @@ class RatingSerializer(BaseRatingSerializer):
     def save(self, **kwargs):
         # Take a copy of the body before the save because we pass it to
         # maybe_check_with_akismet to confirm it changed.
-        pre_save_body = six.text_type(self.instance.body) if self.instance else None
+        pre_save_body = six.text_type(
+            self.instance.body) if self.instance else None
 
         instance = super(RatingSerializer, self).save(**kwargs)
 

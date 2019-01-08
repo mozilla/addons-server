@@ -66,7 +66,8 @@ def extract_update_count(update, all_apps=None):
 
             if platform is not None:
                 os[platform.name] += count
-                doc['os'] = es_dict((six.text_type(k), v) for k, v in os.items())
+                doc['os'] = es_dict((six.text_type(k), v)
+                                    for k, v in os.items())
 
     # Case-normalize locales.
     if update.locales:

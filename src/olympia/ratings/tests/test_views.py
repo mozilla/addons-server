@@ -1923,7 +1923,8 @@ class TestRatingViewSetEdit(TestCase):
         assert response.status_code == 200
         self.rating.reload()
         assert response.data['id'] == self.rating.pk
-        assert response.data['body'] == six.text_type(self.rating.body) == u'løl!'
+        assert response.data['body'] == six.text_type(
+            self.rating.body) == u'løl!'
         assert response.data['score'] == self.rating.rating == 2
         assert response.data['version'] == {
             'id': self.rating.version.id,
@@ -1970,7 +1971,8 @@ class TestRatingViewSetEdit(TestCase):
         assert response.status_code == 200
         self.rating.reload()
         assert response.data['id'] == self.rating.pk
-        assert response.data['body'] == six.text_type(self.rating.body) == u'løl!'
+        assert response.data['body'] == six.text_type(
+            self.rating.body) == u'løl!'
         assert response.data['version'] == {
             'id': self.rating.version.id,
             'version': self.rating.version.version,
@@ -2100,7 +2102,8 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
-        assert six.text_type(review.body) == response.data['body'] == u'test bodyé'
+        assert six.text_type(
+            review.body) == response.data['body'] == u'test bodyé'
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -2135,7 +2138,8 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
-        assert six.text_type(review.body) == response.data['body'] == cleaned_body
+        assert six.text_type(
+            review.body) == response.data['body'] == cleaned_body
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -2190,7 +2194,8 @@ class TestRatingViewSetPost(TestCase):
         assert response.status_code == 201
         review = Rating.objects.latest('pk')
         assert review.pk == response.data['id']
-        assert six.text_type(review.body) == response.data['body'] == u'test bodyé'
+        assert six.text_type(
+            review.body) == response.data['body'] == u'test bodyé'
         assert review.rating == response.data['score'] == 5
         assert review.user == self.user
         assert review.reply_to is None
@@ -2424,7 +2429,8 @@ class TestRatingViewSetPost(TestCase):
             report_abuse_url = reverse_ns(self.abuse_report_url_name)
             response = self.client.post(
                 report_abuse_url,
-                data={'addon': six.text_type(self.addon.pk), 'message': 'lol!'},
+                data={'addon': six.text_type(
+                    self.addon.pk), 'message': 'lol!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201
 
@@ -2445,7 +2451,8 @@ class TestRatingViewSetPost(TestCase):
             # We can still report abuse, it's a different throttle.
             response = self.client.post(
                 report_abuse_url,
-                data={'addon': six.text_type(self.addon.pk), 'message': 'again!'},
+                data={'addon': six.text_type(
+                    self.addon.pk), 'message': 'again!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201
 
@@ -2761,7 +2768,8 @@ class TestRatingViewSetReply(TestCase):
         data = json.loads(response.content)
         assert Rating.objects.count() == 2
         existing_reply.reload()
-        assert six.text_type(existing_reply.body) == data['body'] == u'My réply...'
+        assert six.text_type(
+            existing_reply.body) == data['body'] == u'My réply...'
 
     def test_reply_if_an_existing_reply_was_deleted_updates_existing(self):
         self.addon_author = user_factory()
@@ -2781,7 +2789,8 @@ class TestRatingViewSetReply(TestCase):
         assert Rating.objects.count() == 2  # No longer deleted.
         assert Rating.unfiltered.count() == 2
         existing_reply.reload()
-        assert six.text_type(existing_reply.body) == data['body'] == u'My réply...'
+        assert six.text_type(
+            existing_reply.body) == data['body'] == u'My réply...'
         assert existing_reply.deleted is False
 
     def test_reply_disabled_addon(self):

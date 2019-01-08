@@ -20,7 +20,8 @@ class SlugOrPkChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField that supports entering slugs instead of PKs for
     convenience."""
     def clean(self, value):
-        if value and isinstance(value, six.string_types) and not value.isdigit():
+        if (value and isinstance(value, six.string_types) and
+                not value.isdigit()):
             try:
                 value = self.queryset.values_list(
                     'pk', flat=True).get(slug=value)

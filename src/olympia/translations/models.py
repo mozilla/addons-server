@@ -49,20 +49,24 @@ class Translation(ModelBase):
         unique_together = ('id', 'locale')
 
     def __unicode__(self):
-        return self.localized_string and six.text_type(self.localized_string) or ''
+        return (
+            six.text_type(self.localized_string) if self.localized_string
+            else '')
 
     def __nonzero__(self):
-        # __nonzero__ is called to evaluate an object in a boolean context.  We
-        # want Translations to be falsy if their string is empty.
+        # __nonzero__ is called to evaluate an object in a boolean context.
+        # We want Translations to be falsy if their string is empty.
         return (bool(self.localized_string) and
                 bool(self.localized_string.strip()))
 
     def __eq__(self, other):
-        # Django implements an __eq__ that only checks pks.  We need to check
+        # Django implements an __eq__ that only checks pks. We need to check
         # the strings if we're dealing with existing vs. unsaved Translations.
         return self.__cmp__(other) == 0
 
     def __cmp__(self, other):
+        def cmp(a, b):
+            return (a > b) - (a < b)
         if hasattr(other, 'localized_string'):
             return cmp(self.localized_string, other.localized_string)
         else:

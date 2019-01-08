@@ -141,7 +141,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Change add-on using the slug.
         response = self.client.post(
-            self.detail_url, {'addon': six.text_type(addon2.slug)}, follow=True)
+            self.detail_url,
+            {'addon': six.text_type(addon2.slug)}, follow=True)
         assert response.status_code == 200
         item.reload()
         assert DiscoveryItem.objects.count() == 1
@@ -178,7 +179,8 @@ class TestDiscoveryAdmin(TestCase):
 
         # Try changing using an unknown id.
         response = self.client.post(
-            self.detail_url, {'addon': six.text_type(addon2.pk + 666)}, follow=True)
+            self.detail_url,
+            {'addon': six.text_type(addon2.pk + 666)}, follow=True)
         assert response.status_code == 200
         assert not response.context_data['adminform'].form.is_valid()
         assert 'addon' in response.context_data['adminform'].form.errors

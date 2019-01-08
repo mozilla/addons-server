@@ -40,7 +40,8 @@ class TestCollections(TestCase):
             description='<a href="http://example.com">example.com</a> '
                         'http://example.com <b>foo</b> some text')
         # All markup escaped, links are stripped.
-        assert six.text_type(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
+        assert six.text_type(
+            c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""

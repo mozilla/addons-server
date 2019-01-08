@@ -370,7 +370,7 @@ class File(OnChangeMixin, ModelBase):
 
         try:
             manifest = zip.read('chrome.manifest')
-        except KeyError as e:
+        except KeyError:
             log.info('No file named: chrome.manifest in file: %s' % self.pk)
             return ''
 

@@ -52,7 +52,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
 
     try:
         api_key = get_api_key(key=token_data['iss'])
-    except ObjectDoesNotExist as exc:
+    except ObjectDoesNotExist:
         log.info('No API key for JWT issuer: {}'.format(token_data['iss']))
         raise exceptions.AuthenticationFailed(
             detail='Unknown JWT iss (issuer).')

@@ -1,5 +1,6 @@
-import uuid
 import requests
+import six
+import uuid
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
@@ -34,7 +35,7 @@ class Command(BaseCommand):
             help='only consider this specific add-on type'
         )
         parser.add_argument(
-            '--query', metavar='type', type=unicode,
+            '--query', metavar='type', type=six.text_type,
             help='only consider add-ons matching this query'
         )
 

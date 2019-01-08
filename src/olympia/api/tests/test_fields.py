@@ -62,10 +62,12 @@ class TestTranslationSerializerField(TestCase):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': six.text_type(Translation.objects.get(id=self.addon.name.id,
-                                                     locale='en-US')),
-            'es': six.text_type(Translation.objects.get(id=self.addon.name.id,
-                                                  locale='es')),
+            'en-US': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='en-US')),
+            'es': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='es')),
         }
         assert result == expected
 
@@ -169,10 +171,12 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class(source='mymock.mymocked_field')
         result = field.to_internal_value(field.get_attribute(self.addon))
         expected = {
-            'en-US': six.text_type(Translation.objects.get(id=self.addon.name.id,
-                                                     locale='en-US')),
-            'es': six.text_type(Translation.objects.get(id=self.addon.name.id,
-                                                  locale='es')),
+            'en-US': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='en-US')),
+            'es': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='es')),
         }
         assert result == expected
 
@@ -348,7 +352,8 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': six.text_type(self.addon.description_translations['en-US'])
+            'en-US': six.text_type(
+                self.addon.description_translations['en-US'])
         }
         assert result == expected
 
