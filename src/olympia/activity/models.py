@@ -348,9 +348,11 @@ class ActivityLog(ModelBase):
             elif isinstance(arg, tuple):
                 # Instead of passing an addon instance you can pass a tuple:
                 # (Addon, 3) for Addon with pk=3
-                serialize_me.append(dict(((six.text_type(arg[0]._meta), arg[1]),)))
+                serialize_me.append(
+                    dict(((six.text_type(arg[0]._meta), arg[1]),)))
             else:
-                serialize_me.append(dict(((six.text_type(arg._meta), arg.pk),)))
+                serialize_me.append(
+                    dict(((six.text_type(arg._meta), arg.pk),)))
 
         self._arguments = json.dumps(serialize_me)
 

@@ -809,7 +809,8 @@ class ReviewBase(object):
         log.info(
             u'Making %s versions %s disabled' % (
                 self.addon,
-                u', '.join(six.text_type(v.pk) for v in self.data['versions'])))
+                u', '.join(
+                    six.text_type(v.pk) for v in self.data['versions'])))
         log.info(u'Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.

@@ -371,58 +371,59 @@ class TestESSearch(SearchBase):
         assert self.check_appver_filters('*', '*')
 
     def test_non_pjax_results(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
-        assert r.context['is_pjax'] is None
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert response.context['is_pjax'] is None
 
         # These context variables should exist for normal requests.
         for var in ('categories', 'platforms', 'versions', 'tags'):
-            assert var in r.context, '%r missing context var in view' % var
+            assert var in response.context, '%r context var is missing' % var
 
-        doc = pq(r.content)
+        doc = pq(response.content)
         assert doc('html').length == 1
         assert doc('#pjax-results').length == 1
         assert doc('#search-facets .facets.pjax-trigger').length == 1
         assert doc('#sorter.pjax-trigger').length == 1
 
     def test_pjax_results(self):
-        r = self.client.get(self.url, HTTP_X_PJAX=True)
-        assert r.status_code == 200
-        assert r.context['is_pjax']
+        response = self.client.get(self.url, HTTP_X_PJAX=True)
+        assert response.status_code == 200
+        assert response.context['is_pjax']
 
-        doc = pq(r.content)
+        doc = pq(response.content)
         assert doc('html').length == 0
         assert doc('#pjax-results').length == 0
         assert doc('#search-facets .facets.pjax-trigger').length == 0
         assert doc('#sorter.pjax-trigger').length == 1
 
     def test_facet_data_params_default(self):
-        r = self.client.get(self.url)
-        a = pq(r.content)('#search-facets a[data-params]:first')
-        assert json.loads(a.attr('data-params')) == {
+        response = self.client.get(self.url)
+        alink = pq(response.content)('#search-facets a[data-params]:first')
+        assert json.loads(alink.attr('data-params')) == {
             'atype': None, 'cat': None, 'page': None}
 
     def test_facet_data_params_filtered(self):
-        r = self.client.get(self.url + '?appver=3.6&platform=mac&page=3')
-        a = pq(r.content)('#search-facets a[data-params]:first')
-        assert json.loads(a.attr('data-params')) == {
+        response = self.client.get(
+            self.url + '?appver=3.6&platform=mac&page=3')
+        alink = pq(response.content)('#search-facets a[data-params]:first')
+        assert json.loads(alink.attr('data-params')) == {
             'atype': None, 'cat': None, 'page': None}
 
     def check_cat_filters(self, params=None, selected='All Add-ons'):
         if not params:
             params = {}
 
-        r = self.client.get(urlparams(self.url, **params))
+        response = self.client.get(urlparams(self.url, **params))
         assert sorted(a.id for a in self.addons) == (
-            sorted(a.id for a in r.context['pager'].object_list))
+            sorted(a.id for a in response.context['pager'].object_list))
 
         cat = self.addons[0].all_categories[0]
-        links = pq(r.content)('#category-facets li a')
+        links = pq(response.content)('#category-facets li a')
         expected = [
             ('All Add-ons', self.url),
             ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
-            (six.text_type(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
-                                          cat=cat.id)),
+            (six.text_type(cat.name), urlparams(
+                self.url, atype=amo.ADDON_EXTENSION, cat=cat.id)),
         ]
         amo.tests.check_links(expected, links, selected, verify=False)
 
@@ -462,17 +463,17 @@ class TestESSearch(SearchBase):
         # Save to reindex with new categories.
         self.reindex(Addon)
 
-        r = self.client.get(self.url)
+        response = self.client.get(self.url)
         amo.tests.check_links([('All Add-ons', self.url)],
-                              pq(r.content)('#category-facets li a'),
+                              pq(response.content)('#category-facets li a'),
                               verify=False)
 
     def test_unknown_tag_filter(self):
-        r = self.client.get(urlparams(self.url, tag='xxx'))
-        a = pq(r.content)('#tag-facets li.selected a')
-        assert a.length == 1
-        assert a.text() == 'xxx'
-        assert list(r.context['pager'].object_list) == []
+        response = self.client.get(urlparams(self.url, tag='xxx'))
+        alink = pq(response.content)('#tag-facets li.selected a')
+        assert alink.length == 1
+        assert alink.text() == 'xxx'
+        assert list(response.context['pager'].object_list) == []
 
     def test_tag_filters_on_search_page(self):
         Tag(tag_text='sky').save_tag(self.addons[0])
@@ -513,9 +514,9 @@ class TestESSearch(SearchBase):
         }
 
     def test_no_tag_filters_on_tags_page(self):
-        r = self.client.get(reverse('tags.detail', args=['sky']))
-        assert r.status_code == 200
-        assert pq(r.content)('#tag-facets').length == 0
+        response = self.client.get(reverse('tags.detail', args=['sky']))
+        assert response.status_code == 200
+        assert pq(response.content)('#tag-facets').length == 0
 
     def get_results(self, response, sort=True):
         """Return pks of add-ons shown on search results page."""
@@ -575,39 +576,41 @@ class TestESSearch(SearchBase):
 
     def test_results_platform_filter_all(self):
         for platform in ('', 'all'):
-            r = self.client.get(self.url, {'platform': platform})
-            assert self.get_results(r) == (
+            response = self.client.get(self.url, {'platform': platform})
+            assert self.get_results(response) == (
                 sorted(self.addons.values_list('id', flat=True)))
 
     def test_slug_indexed_but_not_searched(self):
-        a = self.addons[0]
+        addon = self.addons[0]
 
-        r = self.client.get(self.url, {'q': 'omgyes'})
-        assert self.get_results(r) == []
+        response = self.client.get(self.url, {'q': 'omgyes'})
+        assert self.get_results(response) == []
 
-        a.update(slug='omgyes')
+        addon.update(slug='omgyes')
         self.refresh()
-        r = self.client.get(self.url, {'q': 'omgyes'})
-        assert self.get_results(r) == []
+        response = self.client.get(self.url, {'q': 'omgyes'})
+        assert self.get_results(response) == []
 
     def test_authors_indexed_but_not_searched(self):
-        a = self.addons[0]
+        addon = self.addons[0]
 
-        r = self.client.get(self.url, {'q': 'boop'})
-        assert self.get_results(r) == []
+        response = self.client.get(self.url, {'q': 'boop'})
+        assert self.get_results(response) == []
 
         AddonUser.objects.create(
-            addon=a, user=UserProfile.objects.create(username='boop'))
+            addon=addon, user=UserProfile.objects.create(username='boop'))
         AddonUser.objects.create(
-            addon=a, user=UserProfile.objects.create(username='ponypet'))
-        a.save()
+            addon=addon, user=UserProfile.objects.create(username='ponypet'))
+        addon.save()
         self.refresh()
-        r = self.client.get(self.url, {'q': 'garbage'})
-        assert self.get_results(r) == []
-        r = self.client.get(self.url, {'q': 'boop'})
-        assert self.get_results(r) == []
-        r = self.client.get(self.url, {'q': ''})
-        assert self.get_results(r) == [addon.id for addon in self.addons]
+        response = self.client.get(self.url, {'q': 'garbage'})
+        assert self.get_results(response) == []
+        response = self.client.get(self.url, {'q': 'boop'})
+        assert self.get_results(response) == []
+        response = self.client.get(self.url, {'q': ''})
+        del addon
+        assert self.get_results(response) == [
+            addon.id for addon in self.addons]
 
     def test_search_doesnt_return_unlisted_addons(self):
         addon = self.addons[0]
@@ -1015,8 +1018,8 @@ class TestSearchSuggestions(TestAjaxSearch):
             assert got['cls'] == 'app ' + expected.short
 
     def test_get(self):
-        r = self.client.get(self.url)
-        assert r.status_code == 200
+        response = self.client.get(self.url)
+        assert response.status_code == 200
 
     def test_addons(self):
         addons = (Addon.objects.public()

@@ -1817,7 +1817,8 @@ class AddonApprovalsCounter(ModelBase):
     last_content_review = models.DateTimeField(null=True)
 
     def __unicode__(self):
-        return u'%s: %d' % (six.text_type(self.pk), self.counter) if self.pk else u''
+        return u'%s: %d' % (
+            six.text_type(self.pk), self.counter) if self.pk else u''
 
     @classmethod
     def increment_for_addon(cls, addon):

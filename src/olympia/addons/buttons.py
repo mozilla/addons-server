@@ -178,8 +178,12 @@ class PersonaInstallButton(InstallButton):
     install_class = ['persona']
 
     def links(self):
-        return [Link(ugettext(u'Add to {0}').format(six.text_type(self.app.pretty)),
-                     reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID]))]
+        return [
+            Link(
+                ugettext(u'Add to {0}').format(six.text_type(self.app.pretty)),
+                reverse('addons.detail', args=[amo.PERSONAS_ADDON_ID])
+            )
+        ]
 
     def attrs(self):
         rv = super(PersonaInstallButton, self).attrs()

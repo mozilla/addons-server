@@ -11,7 +11,6 @@ from django.core.files.storage import default_storage as storage
 
 import flufl.lock
 import pytest
-import six
 
 from freezegun import freeze_time
 from mock import Mock, patch
@@ -156,7 +155,7 @@ class TestFileViewer(TestCase):
         truncate = self.viewer.truncate
         for x, y in (['foo.rdf', 'foo.rdf'],
                      ['somelongfilename.rdf', 'somelongfilenam...rdf'],
-                     [u'unicode삮.txt', u'six.text_type\uc0ae.txt'],
+                     [u'unicode삮.txt', u'unicode\uc0ae.txt'],
                      [u'unicodesomelong삮.txt', u'unicodesomelong...txt'],
                      ['somelongfilename.somelongextension',
                       'somelongfilenam...somelonge..'],):

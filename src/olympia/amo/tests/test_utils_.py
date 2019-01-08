@@ -29,7 +29,7 @@ pytestmark = pytest.mark.django_db
 class TestAttachTransDict(TestCase):
     """
     Tests for attach_trans_dict. For convenience, we re-use Addon model instead
-    of mocking one from scratch and we rely on internal Translation six.text_type
+    of mocking one from scratch and we rely on internal Translation unicode
     implementation, because mocking django models and fields is just painful.
     """
 
@@ -70,8 +70,10 @@ class TestAttachTransDict(TestCase):
             addon.summary_id: [('en-us', six.text_type(addon.summary))],
             addon.homepage_id: [('en-us', six.text_type(addon.homepage))],
             addon.name_id: [('en-us', six.text_type(addon.name))],
-            addon.support_email_id: [('en-us', six.text_type(addon.support_email))],
-            addon.support_url_id: [('en-us', six.text_type(addon.support_url))]
+            addon.support_email_id: [
+                ('en-us', six.text_type(addon.support_email))],
+            addon.support_url_id: [
+                ('en-us', six.text_type(addon.support_url))]
         }
         assert translations == expected_translations
 

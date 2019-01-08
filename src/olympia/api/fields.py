@@ -100,7 +100,9 @@ class TranslationSerializerField(fields.Field):
                 for trans in translations} if translations else None
 
     def fetch_single_translation(self, obj, source, field, requested_language):
-        return {to_language(field.locale): six.text_type(field)} if field else None
+        return (
+            {to_language(field.locale): six.text_type(field)} if field
+            else None)
 
     def get_attribute(self, obj):
         source = self.source or self.field_name

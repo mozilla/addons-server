@@ -276,8 +276,9 @@ class TestReviewNotesViewSetCreate(TestCase):
         reply = logs[0]
         rdata = response.data
         assert reply.pk == rdata['id']
-        assert (six.text_type(reply.details['comments']) == rdata['comments'] ==
-                u'comménty McCómm€nt')
+        assert (
+            six.text_type(reply.details['comments']) == rdata['comments'] ==
+            u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
         assert reply.action == amo.LOG.DEVELOPER_REPLY_VERSION.id
@@ -301,8 +302,9 @@ class TestReviewNotesViewSetCreate(TestCase):
         reply = logs[0]
         rdata = response.data
         assert reply.pk == rdata['id']
-        assert (six.text_type(reply.details['comments']) == rdata['comments'] ==
-                u'comménty McCómm€nt')
+        assert (
+            six.text_type(reply.details['comments']) == rdata['comments'] ==
+            u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
         assert reply.action == amo.LOG.REVIEWER_REPLY_VERSION.id

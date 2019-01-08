@@ -89,7 +89,8 @@ class Command(BaseCommand):
             set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
         try:
             log.info('Processing %s version %s...',
-                     six.text_type(version.addon.name), six.text_type(version.version))
+                     six.text_type(version.addon.name),
+                     six.text_type(version.version))
             summary, info = AutoApprovalSummary.create_summary_for_version(
                 version, dry_run=self.dry_run)
             log.info('Auto Approval for %s version %s: %s',

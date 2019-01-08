@@ -26,7 +26,7 @@ from olympia.users.models import UserProfile
 
 
 files_fixtures = 'src/olympia/files/fixtures/files/'
-unicode_filenames = 'src/olympia/files/fixtures/files/six.text_type-filenames.xpi'
+unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
 not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
 

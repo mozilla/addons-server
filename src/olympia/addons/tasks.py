@@ -507,7 +507,8 @@ def extract_strict_compatibility_value_for_addon(addon):
         # existing, etc. In any case, that means the add-on is in a weird
         # state and should be ignored (this is a one off task).
         log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.', addon.pk, six.text_type(exc))
+                      u'received %s when extracting.',
+                      addon.pk, six.text_type(exc))
     return strict_compatibility
 
 

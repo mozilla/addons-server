@@ -424,7 +424,8 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_type_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'type': six.text_type(amo.ADDON_EXTENSION + 666)})
+            self._filter(
+                data={'type': six.text_type(amo.ADDON_EXTENSION + 666)})
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'type': 'nosuchtype'})
@@ -529,21 +530,24 @@ class TestSearchParameterFilter(FilterTestsBase):
 
     def test_search_by_platform_invalid(self):
         with self.assertRaises(serializers.ValidationError) as context:
-            self._filter(data={'platform': six.text_type(amo.PLATFORM_WIN.id + 42)})
+            self._filter(
+                data={'platform': six.text_type(amo.PLATFORM_WIN.id + 42)})
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'platform': 'nosuchplatform'})
         assert context.exception.detail == ['Invalid "platform" parameter.']
 
     def test_search_by_platform_id(self):
-        qs = self._filter(data={'platform': six.text_type(amo.PLATFORM_WIN.id)})
+        qs = self._filter(
+            data={'platform': six.text_type(amo.PLATFORM_WIN.id)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']
         assert {'terms': {'platforms': [
             amo.PLATFORM_WIN.id, amo.PLATFORM_ALL.id]}} in filter_
 
-        qs = self._filter(data={'platform': six.text_type(amo.PLATFORM_LINUX.id)})
+        qs = self._filter(
+            data={'platform': six.text_type(amo.PLATFORM_LINUX.id)})
         assert 'must' not in qs['query']['bool']
         assert 'must_not' not in qs['query']['bool']
         filter_ = qs['query']['bool']['filter']

@@ -226,7 +226,8 @@ class UserAbuseViewSetTestBase(object):
         for x in range(20):
             response = self.client.post(
                 self.url,
-                data={'user': six.text_type(user.username), 'message': 'abuse!'},
+                data={'user': six.text_type(
+                    user.username), 'message': 'abuse!'},
                 REMOTE_ADDR='123.45.67.89')
             assert response.status_code == 201, x
 

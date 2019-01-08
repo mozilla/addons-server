@@ -124,7 +124,9 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert six.text_type(addon.slug) == data['slug']
 
         if self.listed:
-            assert [six.text_type(t) for t in addon.tags.all()] == sorted(self.tags)
+            assert (
+                [six.text_type(t) for t in addon.tags.all()] ==
+                sorted(self.tags))
 
     def test_edit_slug_invalid(self):
         old_edit = self.describe_edit_url
@@ -179,7 +181,9 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert six.text_type(addon.slug) == data['slug']
 
         if self.listed:
-            assert [six.text_type(t) for t in addon.tags.all()] == sorted(self.tags)
+            assert (
+                [six.text_type(t) for t in addon.tags.all()] ==
+                sorted(self.tags))
 
     def test_edit_name_required(self):
         data = self.get_dict(name='', slug='test_addon')
@@ -375,7 +379,8 @@ class BaseTestEditDescribe(BaseTestEdit):
         addon = self.get_addon()
         assert six.text_type(addon.name) == six.text_type(old_name)
         assert six.text_type(addon.summary) == six.text_type(old_summary)
-        assert six.text_type(addon.description) == six.text_type(old_description)
+        assert six.text_type(
+            addon.description) == six.text_type(old_description)
 
     def test_edit_xss(self):
         """
@@ -1532,9 +1537,11 @@ class TestEditTechnical(BaseTestEdit):
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
-                assert six.text_type(getattr(addon, k)) == six.text_type(data[k])
+                assert six.text_type(
+                    getattr(addon, k)) == six.text_type(data[k])
             elif k == 'whiteboard-public':
-                assert six.text_type(addon.whiteboard.public) == six.text_type(data[k])
+                assert six.text_type(
+                    addon.whiteboard.public) == six.text_type(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 
@@ -1556,7 +1563,8 @@ class TestEditTechnical(BaseTestEdit):
         addon = self.get_addon()
         for k in data:
             if k == 'developer_comments':
-                assert six.text_type(getattr(addon, k)) == six.text_type(data[k])
+                assert six.text_type(
+                    getattr(addon, k)) == six.text_type(data[k])
             else:
                 assert getattr(addon, k) == (data[k] == 'on')
 

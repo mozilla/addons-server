@@ -658,7 +658,7 @@ def test_translated_field_default_null():
     obj = TranslatedModelWithDefaultNull.objects.create(name='english name')
 
     def get_model():
-        return TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
+        return TranslatedModelWithDefaultNull.objects.get(pk=obj.pk)
 
     assert Translation.objects.count() == 1
 
@@ -681,8 +681,8 @@ def test_translated_field_default_null():
     assert german.name.locale == 'de'
 
     # ids should be the same, autoids are different.
-    assert o.name.id == german.name.id
-    assert o.name.autoid != german.name.autoid
+    assert obj.name.id == german.name.id
+    assert obj.name.autoid != german.name.autoid
 
     # Check that de finds the right translation.
     fresh_german = get_model()
@@ -690,30 +690,30 @@ def test_translated_field_default_null():
 
     # Update!
     translation.activate('en-us')
-    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
-    translation_id = o.name.autoid
+    obj = TranslatedModelWithDefaultNull.objects.get(pk=obj.pk)
+    translation_id = obj.name.autoid
 
-    o.name = 'new name'
-    o.save()
+    obj.name = 'new name'
+    obj.save()
 
-    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
-    assert o.name == 'new name'
-    assert o.name.locale == 'en-us'
+    obj = TranslatedModelWithDefaultNull.objects.get(pk=obj.pk)
+    assert obj.name == 'new name'
+    assert obj.name.locale == 'en-us'
     # Make sure it was an update, not an insert.
-    assert o.name.autoid == translation_id
+    assert obj.name.autoid == translation_id
 
     # Set translations with a dict.
     strings = {'en-us': 'right language', 'de': 'wrong language'}
-    o = TranslatedModelWithDefaultNull.objects.create(name=strings)
+    obj = TranslatedModelWithDefaultNull.objects.create(name=strings)
 
     # Make sure we get the English text since we're in en-US.
-    assert o.name == 'right language'
+    assert obj.name == 'right language'
 
     # Check that de was set.
     translation.activate('de')
-    o = TranslatedModelWithDefaultNull.objects.get(pk=o.pk)
-    assert o.name == 'wrong language'
-    assert o.name.locale == 'de'
+    obj = TranslatedModelWithDefaultNull.objects.get(pk=obj.pk)
+    assert obj.name == 'wrong language'
+    assert obj.name.locale == 'de'
 
 
 def test_translated_field_fk_lookups():

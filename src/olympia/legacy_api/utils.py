@@ -43,7 +43,8 @@ def addon_to_dict(addon, disco=False, src='api'):
                      'link': absolutify(a.get_url_path(src=src))}
                     for a in addon.listed_authors],
         'summary': (
-            strip_tags(six.text_type(addon.summary)) if addon.summary else None),
+            strip_tags(six.text_type(addon.summary)) if addon.summary
+            else None),
         'description': strip_tags(six.text_type(addon.description)),
         'icon': addon.get_icon_url(32),
         'learnmore': learnmore,
@@ -54,7 +55,8 @@ def addon_to_dict(addon, disco=False, src='api'):
         'created': epoch(addon.created),
         'last_updated': epoch(addon.last_updated),
         'homepage': six.text_type(addon.homepage) if addon.homepage else None,
-        'support': six.text_type(addon.support_url) if addon.support_url else None,
+        'support': (
+            six.text_type(addon.support_url) if addon.support_url else None),
     }
     if addon.is_persona():
         d['theme'] = addon.persona.theme_data
@@ -66,7 +68,9 @@ def addon_to_dict(addon, disco=False, src='api'):
             six.text_type(amo.APP_IDS[appver.application].pretty): {
                 'min': six.text_type(appver.min) if appver else (
                     amo.D2C_MIN_VERSIONS.get(app.id, '1.0')),
-                'max': six.text_type(appver.max) if appver else amo.FAKE_MAX_VERSION,
+                'max': (
+                    six.text_type(appver.max) if appver
+                    else amo.FAKE_MAX_VERSION),
             }} for app, appver in v.compatible_apps.items() if appver]
     if addon.eula:
         d['eula'] = six.text_type(addon.eula)

@@ -266,7 +266,8 @@ class TestReviewHelper(TestCase):
             helper = self.get_helper()
             actions = helper.actions
             for k, v in actions.items():
-                assert six.text_type(v['details']), "Missing details for: %s" % k
+                assert six.text_type(
+                    v['details']), "Missing details for: %s" % k
 
     def get_review_actions(
             self, addon_status, file_status, content_review_only=False):
