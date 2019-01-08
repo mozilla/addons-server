@@ -33,6 +33,7 @@ pickleshare==0.7.5 \
     --hash=sha256:87683d47965c1da65cdacaf31c8441d12b8044cdec9aca500cd78fc2c683afca
 prompt_toolkit==1.0.15 \
     --hash=sha256:3f473ae040ddaa52b52f97f6b4a493cfa9f5920c255a12dc56a7d34397a398a4 \
+    --hash=sha256:1df952620eccb399c53ebb359cc7d9a8d3a9538cb34c5a1344bdbeb29fbcc381 \
     --hash=sha256:858588f1983ca497f1cf4ffde01d978a3ea02b01c8a26a8bbc5cd2e66d816917 # pyup: <2.0.0
 wcwidth==0.1.7 \
     --hash=sha256:f4ebe71925af7b40a864553f761ed559b43544f8f71746c2d756c7fe788ade7c \
@@ -46,5 +47,6 @@ isort==4.3.4 \
 # meld3 is required by supervisor
 meld3==1.0.2 \
     --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
-supervisor==3.3.5 \
-    --hash=sha256:1b4d6d2e551dcb49e928cfffea857b8cca6b64a4a8fb755dcf86addf62866af0
+# temporarily switched to supervisor master to get python3 support. see dev_without_hash.txt
+# supervisor==3.3.5 \
+#    --hash=sha256:1b4d6d2e551dcb49e928cfffea857b8cca6b64a4a8fb755dcf86addf62866af0
