@@ -2,10 +2,10 @@
 import json
 import os
 import time
-import urlparse
 
 from collections import OrderedDict
 from datetime import datetime, timedelta
+from six.moves.urllib_parse import parse_qs
 
 from django.conf import settings
 from django.core import mail
@@ -1232,7 +1232,7 @@ class TestQueueBasics(QueueTest):
             # Update expected GET parameters with sort type.
             params.update(sort=[sort])
             # Parse querystring of link to make sure `sort` type is correct.
-            assert urlparse.parse_qs(a.attr('href').split('?')[1]) == params
+            assert parse_qs(a.attr('href').split('?')[1]) == params
 
     def test_no_results(self):
         response = self.client.get(self.url)

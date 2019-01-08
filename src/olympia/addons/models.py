@@ -6,11 +6,11 @@ import os
 import posixpath
 import re
 import time
-import urlparse
 import uuid
 
 from datetime import datetime
 from operator import attrgetter
+from six.moves.urllib_parse import urlsplit
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
@@ -2172,7 +2172,7 @@ class ReplacementAddon(ModelBase):
 
     @staticmethod
     def path_is_external(path):
-        return urlparse.urlsplit(path).scheme in ['http', 'https']
+        return urlsplit(path).scheme in ['http', 'https']
 
     def has_external_url(self):
         return self.path_is_external(self.path)

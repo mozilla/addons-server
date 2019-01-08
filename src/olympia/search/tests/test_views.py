@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-import urlparse
+from six.moves.urllib_parse import parse_qs, parse_qsl, urlparse
 
 from django.http import QueryDict
 from django.test.client import RequestFactory
@@ -196,10 +196,10 @@ class TestESSearch(SearchBase):
         assert response.status_code == 302
         expected_params = 'q=f%C3%B4o&atype=1'
         redirected = response.url
-        parsed = urlparse.urlparse(redirected)
+        parsed = urlparse(redirected)
         params = parsed.query
         assert parsed.path == self.url
-        assert urlparse.parse_qs(params) == urlparse.parse_qs(expected_params)
+        assert parse_qs(params) == parse_qs(expected_params)
 
     def test_legacy_redirects(self):
         response = self.client.get(self.url + '?sort=averagerating')
@@ -212,23 +212,23 @@ class TestESSearch(SearchBase):
                  '&tag=dearbhair&cat=4%2C84')
         to = ('?sort=updated&advancedsearch=1&appver=1.0'
               '&tag=dearbhair&cat=4%2C84')
-        r = self.client.get(url + from_)
-        assert r.status_code == 301
-        redirected = r.url
-        parsed = urlparse.urlparse(redirected)
+        response = self.client.get(url + from_)
+        assert response.status_code == 301
+        redirected = response.url
+        parsed = urlparse(redirected)
         params = parsed.query
         assert parsed.path == url
-        assert urlparse.parse_qs(params) == urlparse.parse_qs(to[1:])
+        assert parse_qs(params) == parse_qs(to[1:])
 
     def check_platform_filters(self, platform, expected=None):
-        r = self.client.get('%s?platform=%s' % (self.url, platform),
-                            follow=True)
-        plats = r.context['platforms']
-        for idx, plat in enumerate(plats):
+        response = self.client.get('%s?platform=%s' % (self.url, platform),
+                                   follow=True)
+        platforms = response.context['platforms']
+        for idx, platform in enumerate(platforms):
             name, selected = expected[idx]
-            label = unicode(plat.text)
+            label = unicode(platform.text)
             assert label == name
-            assert plat.selected == selected
+            assert platform.selected == selected
 
     def test_platform_default(self):
         expected = [
@@ -868,7 +868,7 @@ class TestPersonaSearch(SearchBase):
 ])
 def test_search_redirects(test_input, expected):
     assert views.fix_search_query(QueryDict(test_input)) == (
-        dict(urlparse.parse_qsl(expected)))
+        dict(parse_qsl(expected)))
 
 
 @pytest.mark.parametrize("test_input", [
