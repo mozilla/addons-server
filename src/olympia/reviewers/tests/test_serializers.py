@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
+import os
+import mimetypes
+
 import mock
+
+from django.conf import settings
 
 from olympia import amo
 from olympia.reviewers.serializers import AddonFileBrowseSerializer
@@ -184,3 +189,37 @@ class TestAddonFileBrowseSerializer(BaseTestCase):
 
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
+
+    def test_is_binary(self):
+        serializer = AddonFileBrowseSerializer()
+
+        for fname in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
+                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul', 'foo.sh',
+                  'foo.properties', 'foo.json', 'foo.src', 'CHANGELOG']:
+            mime, encoding = mimetypes.guess_type(fname)
+            assert (
+                not serializer._is_binary(fname, mime, ''),
+                '%s should not be binary' % fname)
+
+        for f in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
+            mime, encoding = mimetypes.guess_type(fname)
+            assert (
+                not serializer._is_binary(fname, mime, ''),
+                '%s should be binary' % fname)
+
+        filename = os.path.join(settings.TMP_PATH, 'test_isbinary')
+        for txt in ['#!/usr/bin/python', '#python', u'\0x2']:
+            open(filename, 'w').write(txt)
+            mime, encoding = mimetypes.guess_type(fname)
+            assert (
+                not serializer._is_binary(fname, mime, ''),
+                '%s should not be binary' % fname)
+
+        for txt in ['MZ']:
+            open(filename, 'w').write(txt)
+            mime, encoding = mimetypes.guess_type(fname)
+            assert (
+                not serializer._is_binary(fname, mime, ''),
+                '%s should be binary' % fname)
+
+        os.remove(filename)

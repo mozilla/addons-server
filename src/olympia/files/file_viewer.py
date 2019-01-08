@@ -56,7 +56,6 @@ class FileViewer(object):
     def __init__(self, file_obj):
         self.file = file_obj
         self.addon = self.file.version.addon
-        self.src = file_obj.current_file_path
         self._files, self.selected = None, None
         self.repository = AddonGitRepository(self.addon.pk)
 
@@ -122,6 +121,35 @@ class FileViewer(object):
                 self.selected['msg'] = ugettext('This file is a directory.')
             return self.selected['directory']
 
+    def extract(self):
+        msg = Message('file-viewer:%s' % self)
+        msg.delete()
+
+        task_log.debug('Unzipping %s for file viewer.' % self)
+
+        try:
+            self.repository.extract_and_commit_from_version(
+                self.file.version)
+        except ExtractionAlreadyInProgress:
+            info_msg = ugettext(
+                'File viewer is locked, extraction for %s could be '
+                'in progress. Please try again in approximately 5 minutes.'
+                % self)
+            msg.save(info_msg)
+            return False
+        except Exception as exc:
+            error_msg = (
+                ugettext('There was an error accessing file %s.')
+                % self)
+
+            if settings.DEBUG:
+                msg.save(error_msg + ' ' + exc)
+            else:
+                msg.save(error_msg)
+            task_log.error('Error unzipping: %s' % exc)
+            return False
+        return True
+
     def get_files(self):
         """
         Returns an OrderedDict, ordered by the filename of all the files in the
@@ -132,30 +160,7 @@ class FileViewer(object):
             return self._files
 
         if not self.is_extracted():
-            msg = Message('file-viewer:%s' % self)
-            msg.delete()
-
-            task_log.debug('Unzipping %s for file viewer.' % self)
-
-            try:
-                self.repository.extract_and_commit_from_version(
-                    self.file.version)
-            except ExtractionAlreadyInProgress:
-                info_msg = ugettext(
-                    'File viewer is locked, extraction for %s could be '
-                    'in progress. Please try again in approximately 5 minutes.'
-                    % self)
-                msg.save(info_msg)
-            except Exception as exc:
-                error_msg = (
-                    ugettext('There was an error accessing file %s.')
-                    % self)
-
-                if settings.DEBUG:
-                    msg.save(error_msg + ' ' + exc)
-                else:
-                    msg.save(error_msg)
-                task_log.error('Error unzipping: %s' % exc)
+            self.extract()
 
         self._files = self._get_files()
         return self._files
@@ -191,14 +196,14 @@ class FileViewer(object):
                 return short
         return 'plain'
 
-    def get_selected_file(self, key=None):
-        """Gets the default file and copes with search engines."""
+    def get_selected_file(self):
+        """Gets the selected or default file and copes with search engines."""
         # We are caching `files` here in the file-viewer instance for now,
         # use that and forward to the serializer.
         files = self.get_files()
         return self.get_serializer().get_selected_file(files=files)
 
-    def _get_files(self, locale=None):
+    def _get_files(self):
         files = self.get_serializer().get_files(self.file)
 
         for file_data in files.values():
