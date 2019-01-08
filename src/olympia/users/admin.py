@@ -1,4 +1,4 @@
-from functools import update_wrapper
+import functools
 
 from django.conf.urls import url
 from django.contrib import admin, messages
@@ -74,7 +74,7 @@ class UserAdmin(admin.ModelAdmin):
         def wrap(view):
             def wrapper(*args, **kwargs):
                 return self.admin_site.admin_view(view)(*args, **kwargs)
-            return update_wrapper(wrapper, view)
+            return functools.update_wrapper(wrapper, view)
 
         urlpatterns = super(UserAdmin, self).get_urls()
         custom_urlpatterns = [
@@ -246,7 +246,8 @@ class UserAdmin(admin.ModelAdmin):
                 or_queries = [models.Q(**{orm_lookup: bit})
                               for orm_lookup in orm_lookups]
 
-                q_for_this_term = models.Q(reduce(operator.or_, or_queries))
+                q_for_this_term = models.Q(
+                    functools.reduce(operator.or_, or_queries))
                 filters.append(q_for_this_term)
 
             if not use_distinct:
@@ -257,7 +258,8 @@ class UserAdmin(admin.ModelAdmin):
                         break
 
         if filters:
-            queryset = queryset.filter(reduce(joining_operator, filters))
+            queryset = queryset.filter(
+                functools.reduce(joining_operator, filters))
         return queryset, use_distinct
 
 
