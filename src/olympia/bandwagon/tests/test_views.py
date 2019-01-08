@@ -55,7 +55,7 @@ def test_collections_form_unicode_slug():
     user.collections.filter.return_value.count.return_value = False
     form = forms.CollectionForm(
         {'slug': u'Ελλην', 'listed': True, 'name': '  '},
-        initial={'author': 'user'})
+        initial={'author': user})
     assert 'name' in form.errors
     assert 'slug' not in form.errors
 
