@@ -167,8 +167,7 @@ def get_addon_recommendations(guid_param, taar_enable):
     fail_reason = None
     if taar_enable:
         guids = call_recommendation_server(
-            guid_param, {},
-            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL)
+            settings.TAAR_LITE_RECOMMENDATION_ENGINE_URL, guid_param, {})
         outcome = (TAAR_LITE_OUTCOME_REAL_SUCCESS if guids
                    else TAAR_LITE_OUTCOME_REAL_FAIL)
         if not guids:
