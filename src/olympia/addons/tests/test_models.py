@@ -2310,7 +2310,7 @@ class TestAddonFromUpload(UploadTest):
         version = addon.versions.get()
         assert version.version == '0.1'
         assert len(version.compatible_apps.keys()) == 1
-        assert version.compatible_apps.keys()[0].id == self.selected_app
+        assert list(version.compatible_apps.keys())[0].id == self.selected_app
         assert version.files.get().platform == amo.PLATFORM_ALL.id
         assert version.files.get().status == amo.STATUS_AWAITING_REVIEW
 

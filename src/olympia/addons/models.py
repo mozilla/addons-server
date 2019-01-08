@@ -828,7 +828,7 @@ class Addon(OnChangeMixin, ModelBase):
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = {k: v for k, v in updated.iteritems() if v != ignore}
+            updated = {k: v for k, v in six.iteritems(updated) if v != ignore}
 
         if updated:
             diff = [self._current_version, new_current_version]

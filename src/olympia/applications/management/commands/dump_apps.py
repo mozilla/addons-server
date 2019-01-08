@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.core.management.base import BaseCommand
 
+import six
+
 import olympia.core.logger
 
 from olympia import amo
@@ -25,7 +27,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kw):
         apps = {}
-        for id, app in amo.APP_IDS.iteritems():
+        for id, app in six.iteritems(amo.APP_IDS):
             apps[id] = dict(guid=app.guid, versions=[],
                             name=amo.APPS_ALL[id].short)
         versions = (AppVersion.objects.values_list('application', 'version')

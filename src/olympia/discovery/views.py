@@ -1,6 +1,8 @@
 from django.db.transaction import non_atomic_requests
 from django.utils.decorators import classonlymethod
 
+import six
+
 from rest_framework.mixins import ListModelMixin
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -20,8 +22,8 @@ class DiscoveryViewSet(ListModelMixin, GenericViewSet):
 
     def get_params(self):
         params = dict(self.kwargs)
-        params.update(self.request.GET.iteritems())
-        params = {param: value for (param, value) in params.iteritems()
+        params.update(six.iteritems(self.request.GET))
+        params = {param: value for (param, value) in six.iteritems(params)
                   if param in amo.DISCO_API_ALLOWED_PARAMETERS}
         lang = params.pop('lang', None)
         if lang:

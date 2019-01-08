@@ -9,6 +9,7 @@ from django.http import HttpResponseRedirect
 from django.utils.http import is_safe_url
 
 import boto3
+import six
 
 from olympia.accounts.tasks import primary_email_change_event
 from olympia.core.logger import getLogger
@@ -16,7 +17,7 @@ from olympia.core.logger import getLogger
 
 def fxa_config(request):
     config = {camel_case(key): value
-              for key, value in settings.FXA_CONFIG['default'].iteritems()
+              for key, value in six.iteritems(settings.FXA_CONFIG['default'])
               if key != 'client_secret'}
     if request.user.is_authenticated:
         config['email'] = request.user.email

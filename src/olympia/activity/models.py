@@ -312,7 +312,7 @@ class ActivityLog(ModelBase):
         objs = []
         for item in d:
             # item has only one element.
-            model_name, pk = item.items()[0]
+            model_name, pk = list(item.items())[0]
             if model_name in ('str', 'int', 'null'):
                 objs.append(pk)
             else:

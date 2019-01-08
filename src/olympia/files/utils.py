@@ -513,7 +513,7 @@ class ManifestJSONExtractor(object):
         """Guess target_locale for a dictionary from manifest contents."""
         try:
             dictionaries = self.get('dictionaries', {})
-            key = force_text(dictionaries.keys()[0])
+            key = force_text(list(dictionaries.keys())[0])
             return key[:255]
         except (IndexError, UnicodeDecodeError):
             # This shouldn't happen: the linter should prevent it, but

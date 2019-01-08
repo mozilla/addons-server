@@ -1059,7 +1059,7 @@ class QueueTest(ReviewerTest):
         results = OrderedDict()
         channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
-        for name, attrs in files.iteritems():
+        for name, attrs in six.iteritems(files):
             if not subset or name in subset:
                 version_kw = attrs.get('version_kw', {})
                 version_kw.update(
@@ -1227,7 +1227,7 @@ class TestQueueBasics(QueueTest):
             2: '-addon_type_id',    # Type.
             3: 'waiting_time_min',  # Waiting Time.
         }
-        for idx, sort in sorts.iteritems():
+        for idx, sort in six.iteritems(sorts):
             # Get column link.
             a = tr('th').eq(idx).find('a')
             # Update expected GET parameters with sort type.
@@ -2409,7 +2409,7 @@ class BaseTestQueueSearch(SearchTest):
         results = {}
         channel = (amo.RELEASE_CHANNEL_LISTED if self.listed else
                    amo.RELEASE_CHANNEL_UNLISTED)
-        for name, attrs in files.iteritems():
+        for name, attrs in six.iteritems(files):
             if not subset or name in subset:
                 version_kw = attrs.get('version_kw', {})
                 version_kw.update(

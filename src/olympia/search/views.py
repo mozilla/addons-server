@@ -134,7 +134,7 @@ class BaseAjaxSearch(object):
 
     def _build_fields(self, item, fields):
         data = {}
-        for key, prop in fields.iteritems():
+        for key, prop in six.iteritems(fields):
             if isinstance(prop, dict):
                 data[key] = self._build_fields(item, prop)
             else:

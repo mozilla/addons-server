@@ -558,7 +558,7 @@ def queue_counts(admin_reviewer, extension_reviews, theme_reviews):
                 admin_reviewer=admin_reviewer).count),
         'expired_info_requests': expired.count,
     }
-    return {queue: count() for (queue, count) in counts.iteritems()}
+    return {queue: count() for (queue, count) in six.iteritems(counts)}
 
 
 @legacy_addons_or_themes_reviewer_required

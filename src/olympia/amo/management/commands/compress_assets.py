@@ -1,14 +1,15 @@
 import hashlib
 import os
 import re
+import subprocess
 import time
 import uuid
-
-import subprocess
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.staticfiles.finders import find as find_static_path
+
+import six
 
 from olympia.lib.jingo_minify_helpers import ensure_path_exists
 
@@ -70,8 +71,8 @@ class Command(BaseCommand):
         # - Concat all files into one
         # - Cache bust all images in CSS files
         # - Minify the concatted files
-        for ftype, bundle in settings.MINIFY_BUNDLES.iteritems():
-            for name, files in bundle.iteritems():
+        for ftype, bundle in six.iteritems(settings.MINIFY_BUNDLES):
+            for name, files in six.iteritems(bundle):
                 # Set the paths to the files.
                 concatted_file = os.path.join(
                     settings.ROOT, 'static',

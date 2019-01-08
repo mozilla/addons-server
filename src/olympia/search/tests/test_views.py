@@ -280,7 +280,7 @@ class TestESSearch(SearchBase):
     def test_platform_legacy_params(self):
         ALL = (amo.PLATFORM_ALL, amo.PLATFORM_ANY)
         listed = ALL + (amo.PLATFORM_LINUX, amo.PLATFORM_MAC, amo.PLATFORM_WIN)
-        for idx, platform in amo.PLATFORMS.iteritems():
+        for idx, platform in six.iteritems(amo.PLATFORMS):
             expected = [
                 ('All Systems', platform in ALL),
                 ('Linux', platform == amo.PLATFORM_LINUX),

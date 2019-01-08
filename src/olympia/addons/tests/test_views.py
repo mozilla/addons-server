@@ -150,7 +150,7 @@ class TestHomepageFeatures(TestCase):
             '#featured-themes': browse_personas,
             '#featured-collections': browse_collections + '?sort=featured',
         }
-        for id_, url in sections.iteritems():
+        for id_, url in six.iteritems(sections):
             # Check that the "See All" link points to the correct page.
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
@@ -431,7 +431,7 @@ class TestDetailPage(TestCase):
         For add-ons incompatible with the current app, redirect to one
         that's supported.
         """
-        comp_app = self.addon.compatible_apps.keys()[0]
+        comp_app = list(self.addon.compatible_apps.keys())[0]
         not_comp_app = [a for a in amo.APP_USAGE
                         if a not in self.addon.compatible_apps.keys()][0]
 

@@ -1186,7 +1186,7 @@ class CollectionViewSetDataMixin(object):
         return self._user
 
     def check_data(self, collection, data, json):
-        for prop, value in data.iteritems():
+        for prop, value in six.iteritems(data):
             assert json[prop] == value
 
         with self.activate('fr'):

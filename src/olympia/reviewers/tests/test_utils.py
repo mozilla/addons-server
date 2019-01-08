@@ -400,7 +400,7 @@ class TestReviewHelper(TestCase):
 
         self.helper.set_data(self.get_data())
         context_data = self.helper.handler.get_context_data()
-        for template, context_key in expected.iteritems():
+        for template, context_key in six.iteritems(expected):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
