@@ -133,7 +133,7 @@ but not listed below are not editable and will be ignored in the patch request.
     .. _account-edit-request:
 
     :<json string|null biography: More details about the user.  No links are allowed.
-    :<json string|null display_name: The name chosen by the user.  Minimum length is 2, maximum length is 50 characters.
+    :<json string|null display_name: The name chosen by the user.  Minimum length is 2, maximum length is 50 characters, and must contain at least 1 displayable character.
     :<json string|null homepage: The user's website.
     :<json string|null location: The location of the user.
     :<json string|null occupation: The occupation of the user.
