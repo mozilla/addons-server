@@ -12,15 +12,17 @@ from django.db.models import Q
 from django.forms import ValidationError
 from django.utils.translation import ugettext
 
+import six
 import waffle
+
 from django_statsd.clients import statsd
 from six import text_type
 
 from olympia import amo
-from olympia.lib.cache import memoize, memoize_key
 from olympia.amo.utils import normalize_string, to_language
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.discovery.utils import call_recommendation_server
+from olympia.lib.cache import memoize, memoize_key
 from olympia.translations.fields import LocaleErrorMessage
 
 
@@ -204,7 +206,7 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     lwt_header = MULTIPLE_STOPS_REGEX.sub(u'.', text_type(lwt.persona.header))
     manifest = {
         "manifest_version": 2,
-        "name": unicode(lwt.name or lwt.slug),
+        "name": six.text_type(lwt.name or lwt.slug),
         "version": '1.0',
         "theme": {
             "images": {
@@ -217,7 +219,7 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
         }
     }
     if lwt.description:
-        manifest['description'] = unicode(lwt.description)
+        manifest['description'] = six.text_type(lwt.description)
 
     # build zip with manifest and background file
     with zipfile.ZipFile(upload_zip, 'w', zipfile.ZIP_DEFLATED) as dest:
@@ -291,7 +293,7 @@ def build_webext_dictionary_from_legacy(addon, destination):
 
         manifest = {
             'manifest_version': 2,
-            'name': unicode(addon.name),
+            'name': six.text_type(addon.name),
             'browser_specific_settings': {
                 'gecko': {
                     'id': addon.guid,

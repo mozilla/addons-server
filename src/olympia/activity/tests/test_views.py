@@ -5,6 +5,7 @@ import StringIO
 from django.test.utils import override_settings
 
 import mock
+import six
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
@@ -275,7 +276,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         reply = logs[0]
         rdata = response.data
         assert reply.pk == rdata['id']
-        assert (unicode(reply.details['comments']) == rdata['comments'] ==
+        assert (six.text_type(reply.details['comments']) == rdata['comments'] ==
                 u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
@@ -300,7 +301,7 @@ class TestReviewNotesViewSetCreate(TestCase):
         reply = logs[0]
         rdata = response.data
         assert reply.pk == rdata['id']
-        assert (unicode(reply.details['comments']) == rdata['comments'] ==
+        assert (six.text_type(reply.details['comments']) == rdata['comments'] ==
                 u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name

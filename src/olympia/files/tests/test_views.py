@@ -2,7 +2,6 @@
 import json
 import os
 import shutil
-from six.moves.urllib_parse import urlparse
 
 from django.conf import settings
 from django.core.cache import cache
@@ -10,22 +9,24 @@ from django.test.utils import override_settings
 from django.utils.http import http_date, quote_etag
 
 import pytest
+import six
 
 from mock import patch
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import urlparse
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.files.models import File
 from olympia.files.file_viewer import DiffHelper, FileViewer
-from olympia.users.models import UserProfile
+from olympia.files.models import File
 from olympia.lib.cache import Message
+from olympia.users.models import UserProfile
 
 
 files_fixtures = 'src/olympia/files/fixtures/files/'
-unicode_filenames = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
+unicode_filenames = 'src/olympia/files/fixtures/files/six.text_type-filenames.xpi'
 not_binary = 'install.js'
 binary = 'dictionaries/ar.dic'
 
@@ -457,7 +458,7 @@ class TestFileViewer(FilesBase, TestCase):
         assert res.status_code == 200
 
     def test_unicode_fails_with_wrong_configured_basepath(self):
-        with override_settings(TMP_PATH=unicode(settings.TMP_PATH)):
+        with override_settings(TMP_PATH=six.text_type(settings.TMP_PATH)):
             file_viewer = FileViewer(self.file)
             file_viewer.src = unicode_filenames
 

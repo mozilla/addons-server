@@ -11,6 +11,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_bytes
 
 import requests
+import six
 
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
@@ -59,7 +60,7 @@ def call_signing(file_obj):
 
     log.debug(u'File signature contents: {0}'.format(jar.signatures))
 
-    signed_manifest = unicode(jar.signatures)
+    signed_manifest = six.text_type(jar.signatures)
 
     conf = settings.AUTOGRAPH_CONFIG
     log.debug('Calling autograph service: {0}'.format(conf['server_url']))
@@ -143,7 +144,7 @@ def sign_file(file_obj):
         return
 
     # Sign the file. If there's any exception, we skip the rest.
-    cert_serial_num = unicode(call_signing(file_obj))
+    cert_serial_num = six.text_type(call_signing(file_obj))
 
     size = storage.size(file_obj.current_file_path)
 

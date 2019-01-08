@@ -5,6 +5,7 @@ from django.template import loader
 from django.utils import safestring
 
 import jinja2
+import six
 
 from rest_framework.request import Request
 
@@ -51,10 +52,10 @@ def _is_dupe(msg, request):
         return False
 
     try:
-        smsg = unicode(msg)
+        smsg = six.text_type(msg)
         is_dupe = False
         for message in storage:
-            if unicode(message) == smsg:
+            if six.text_type(message) == smsg:
                 # We can't return from here because we need to tell Django not
                 # to consume the messages.
                 is_dupe = True

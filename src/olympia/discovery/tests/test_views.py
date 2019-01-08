@@ -2,8 +2,10 @@
 from django.test.utils import override_settings
 
 import mock
-from waffle.testutils import override_switch
+import six
+
 from waffle import switch_is_active
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -47,9 +49,9 @@ class DiscoveryTestMixin(object):
         addon = item.addon
         assert result['addon']['id'] == item.addon_id == addon.pk
         if flat_name:
-            assert result['addon']['name'] == unicode(addon.name)
+            assert result['addon']['name'] == six.text_type(addon.name)
         else:
-            assert result['addon']['name'] == {'en-US': unicode(addon.name)}
+            assert result['addon']['name'] == {'en-US': six.text_type(addon.name)}
         assert result['addon']['slug'] == addon.slug
         assert result['addon']['icon_url'] == absolutify(
             addon.get_icon_url(64))
@@ -66,9 +68,9 @@ class DiscoveryTestMixin(object):
         addon = item.addon
         assert result['addon']['id'] == item.addon_id == addon.pk
         if flat_name:
-            assert result['addon']['name'] == unicode(addon.name)
+            assert result['addon']['name'] == six.text_type(addon.name)
         else:
-            assert result['addon']['name'] == {'en-US': unicode(addon.name)}
+            assert result['addon']['name'] == {'en-US': six.text_type(addon.name)}
         assert result['addon']['slug'] == addon.slug
         assert result['addon']['theme_data'] == addon.persona.theme_data
 

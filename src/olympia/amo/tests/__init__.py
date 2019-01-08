@@ -2,6 +2,7 @@
 import os
 import random
 import shutil
+import six
 import time
 import uuid
 from contextlib import contextmanager
@@ -209,8 +210,8 @@ def check_links(expected, elements, selected=None, verify=True):
 
 def assert_url_equal(url, expected, compare_host=False):
     """Compare url paths and query strings."""
-    parsed = urlparse(unicode(url))
-    parsed_expected = urlparse(unicode(expected))
+    parsed = urlparse(six.text_type(url))
+    parsed_expected = urlparse(six.text_type(expected))
     compare_url_part(parsed.path, parsed_expected.path)
     compare_url_part(parse_qs(parsed.query), parse_qs(parsed_expected.query))
     if compare_host:
@@ -622,7 +623,7 @@ def addon_factory(
     default_locale = kw.get('default_locale', settings.LANGUAGE_CODE)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
-    name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
+    name = kw.pop('name', u'Addôn %s' % six.text_type(uuid.uuid4()).replace('-', ''))
     slug = kw.pop('slug', None)
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
@@ -647,7 +648,7 @@ def addon_factory(
         kwargs['summary'] = u'Summary for %s' % name
     if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
         # Personas and search engines don't need guids
-        kwargs['guid'] = kw.pop('guid', '{%s}' % unicode(uuid.uuid4()))
+        kwargs['guid'] = kw.pop('guid', '{%s}' % six.text_type(uuid.uuid4()))
     kwargs.update(kw)
 
     # Save 1.

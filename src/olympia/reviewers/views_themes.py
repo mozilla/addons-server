@@ -9,6 +9,8 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.translation import ugettext, ungettext
 
+import six
+
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
@@ -56,7 +58,7 @@ def themes_list(request, flagged=False, rereview=False):
            'pager': pager,
            'rereview': rereview,
            'theme_search_form': search_form,
-           'statuses': dict((k, unicode(v)) for k, v in
+           'statuses': dict((k, six.text_type(v)) for k, v in
                             amo.STATUS_CHOICES_API.items()),
            'tab': ('rereview_themes' if rereview else
                    'flagged_themes' if flagged else 'pending_themes')}))

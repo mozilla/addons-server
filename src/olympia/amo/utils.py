@@ -9,13 +9,14 @@ import operator
 import os
 import random
 import re
+import scandir
 import shutil
+import six
+import string
+import subprocess
 import time
 import unicodedata
 import urllib
-import string
-import subprocess
-import scandir
 
 from six.moves.urllib_parse import parse_qsl, ParseResult
 
@@ -715,7 +716,7 @@ class HttpResponseSendFile(HttpResponse):
         super(HttpResponseSendFile, self).__init__('', status=status,
                                                    content_type=content_type)
         header_path = self.path
-        if isinstance(header_path, unicode):
+        if isinstance(header_path, six.text_type):
             header_path = header_path.encode('utf8')
         if settings.XSENDFILE:
             self[settings.XSENDFILE_HEADER] = header_path
@@ -881,7 +882,7 @@ def attach_trans_dict(model, objs):
         converted_translation = new_class()
         converted_translation.__dict__ = translation.__dict__
         return (converted_translation.locale.lower(),
-                unicode(converted_translation))
+                six.text_type(converted_translation))
 
     # Build and attach translations for each field on each object.
     for obj in objs:

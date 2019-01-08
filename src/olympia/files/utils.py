@@ -12,11 +12,9 @@ import struct
 import tarfile
 import tempfile
 import zipfile
-import scandir
 
 from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
-from six import text_type
 from xml.dom import minidom
 
 from django import forms
@@ -30,8 +28,11 @@ from django.utils.translation import ugettext
 
 import flufl.lock
 import rdflib
+import scandir
+import six
 
 from signing_clients.apps import get_signer_organizational_unit_name
+from six import text_type
 
 import olympia.core.logger
 
@@ -44,7 +45,6 @@ from olympia.lib.safe_xml import lxml
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
-
 from olympia.versions.compare import version_int as vint
 
 
@@ -104,7 +104,7 @@ def id_to_path(pk):
     12 => 2/12/12
     123456 => 6/56/123456
     """
-    pk = unicode(pk)
+    pk = six.text_type(pk)
     path = [pk[-1]]
     if len(pk) >= 2:
         path.append(pk[-2:])
@@ -311,7 +311,7 @@ class RDFExtractor(object):
         match = list(self.rdf.objects(ctx, predicate=self.uri(name)))
         # These come back as rdflib.Literal, which subclasses unicode.
         if match:
-            return unicode(match[0])
+            return six.text_type(match[0])
 
     def apps(self):
         rv = []

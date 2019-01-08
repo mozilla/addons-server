@@ -9,21 +9,21 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-
 from django.utils import translation
 
 import pytest
+import six
+
 from mock import Mock, patch
 
 from olympia import amo, core
-from olympia.addons import models as addons_models
 from olympia.activity.models import ActivityLog, AddonLog
+from olympia.addons import models as addons_models
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonCategory,
-    AddonReviewerFlags, AddonUser, AppSupport,
-    Category, CompatOverride, CompatOverrideRange, DeniedGuid, DeniedSlug,
-    FrozenAddon, IncompatibleVersions, MigratedLWT, Persona, Preview,
-    track_addon_status_change)
+    Addon, AddonApprovalsCounter, AddonCategory, AddonReviewerFlags, AddonUser,
+    AppSupport, Category, CompatOverride, CompatOverrideRange, DeniedGuid,
+    DeniedSlug, FrozenAddon, IncompatibleVersions, MigratedLWT, Persona,
+    Preview, track_addon_status_change)
 from olympia.amo.templatetags.jinja_helpers import absolutify, user_media_url
 from olympia.amo.tests import (
     TestCase, addon_factory, collection_factory, version_factory)
@@ -34,7 +34,7 @@ from olympia.constants.categories import CATEGORIES
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
-from olympia.files.utils import parse_addon, Extractor
+from olympia.files.utils import Extractor, parse_addon
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.translations.models import (
     Translation, TranslationSequence, delete_translation)
@@ -2076,12 +2076,12 @@ class TestPersonaModel(TestCase):
             id_ = str(self.persona.addon.id)
 
             assert data['id'] == id_
-            assert data['name'] == unicode(self.persona.addon.name)
+            assert data['name'] == six.text_type(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
             assert data['category'] == 'Yolo Art'
             assert data['author'] == 'persona_author'
-            assert data['description'] == unicode(self.addon.description)
+            assert data['description'] == six.text_type(self.addon.description)
 
             assert data['headerURL'].startswith(
                 '%s%s/header.png?' % (user_media_url('addons'), id_))
@@ -2113,12 +2113,12 @@ class TestPersonaModel(TestCase):
             id_ = str(self.persona.addon.id)
 
             assert data['id'] == id_
-            assert data['name'] == unicode(self.persona.addon.name)
+            assert data['name'] == six.text_type(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
             assert data['category'] == 'Yolo Art'
             assert data['author'] == 'persona_author'
-            assert data['description'] == unicode(self.addon.description)
+            assert data['description'] == six.text_type(self.addon.description)
 
             assert data['headerURL'].startswith(
                 '%s%s/header.png?' % (user_media_url('addons'), id_))

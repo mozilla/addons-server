@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import json
-from six.moves.urllib_parse import parse_qs, parse_qsl, urlparse
 
 from django.http import QueryDict
 from django.test.client import RequestFactory
 
 import mock
 import pytest
+import six
 
 from elasticsearch import Elasticsearch
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import parse_qs, parse_qsl, urlparse
 
 from olympia import amo
 from olympia.addons.models import (
@@ -82,7 +83,7 @@ class SearchBase(ESTestCaseWithAddons):
         if sort_by:
             results = response.context['pager'].object_list
             if sort_by == 'name':
-                expected = sorted(results, key=lambda x: unicode(x.name))
+                expected = sorted(results, key=lambda x: six.text_type(x.name))
             else:
                 expected = sorted(results, key=lambda x: getattr(x, sort_by),
                                   reverse=reverse)
@@ -226,7 +227,7 @@ class TestESSearch(SearchBase):
         platforms = response.context['platforms']
         for idx, platform in enumerate(platforms):
             name, selected = expected[idx]
-            label = unicode(platform.text)
+            label = six.text_type(platform.text)
             assert label == name
             assert platform.selected == selected
 
@@ -306,7 +307,7 @@ class TestESSearch(SearchBase):
                                    {'appver': floor_version(appver)}, facets)
 
         all_ = versions.pop(0)
-        assert all_.text == 'Any %s' % unicode(request.APP.pretty)
+        assert all_.text == 'Any %s' % six.text_type(request.APP.pretty)
         assert not all_.selected == expected
 
         return [v.__dict__ for v in versions]
@@ -420,7 +421,7 @@ class TestESSearch(SearchBase):
         expected = [
             ('All Add-ons', self.url),
             ('Extensions', urlparams(self.url, atype=amo.ADDON_EXTENSION)),
-            (unicode(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
+            (six.text_type(cat.name), urlparams(self.url, atype=amo.ADDON_EXTENSION,
                                           cat=cat.id)),
         ]
         amo.tests.check_links(expected, links, selected, verify=False)
@@ -443,7 +444,7 @@ class TestESSearch(SearchBase):
         cat = self.addons[0].all_categories[0]
         self.check_cat_filters(
             {'atype': amo.ADDON_EXTENSION, 'cat': cat.id},
-            selected=unicode(cat.name))
+            selected=six.text_type(cat.name))
 
     def test_cat_facet_stale(self):
         AddonCategory.objects.all().delete()
@@ -814,7 +815,7 @@ class TestPersonaSearch(SearchBase):
             assert r.status_code == 200
             results = list(r.context['pager'].object_list)
             first = results[0]
-            assert unicode(first.name) == expected_name, (
+            assert six.text_type(first.name) == expected_name, (
                 'Was not first result for %r. Results: %s' % (sort, results))
             assert first.persona.popularity == expected_popularity, (
                 'Incorrect popularity for %r. Got %r. Expected %r.' % (
@@ -899,7 +900,7 @@ class TestAjaxSearch(ESTestCaseWithAddons):
                 sorted(addons, key=lambda x: x.id)):
             expected.reload()
             assert int(got['id']) == expected.id
-            assert got['name'] == unicode(expected.name)
+            assert got['name'] == six.text_type(expected.name)
             expected_url = expected.get_url_path()
             if src:
                 expected_url += '?src=ss'
@@ -966,7 +967,7 @@ class TestGenericAjaxSearch(TestAjaxSearch):
         )
         self._addons.append(addon)
         self.refresh()
-        self.search_addons('q=' + unicode(addon.name), [addon])
+        self.search_addons('q=' + six.text_type(addon.name), [addon])
 
     def test_ajax_search_by_bad_name(self):
         self.search_addons('q=some+filthy+bad+word', [])
@@ -1009,7 +1010,7 @@ class TestSearchSuggestions(TestAjaxSearch):
         assert len(data) == len(apps)
         for got, expected in zip(data, apps):
             assert int(got['id']) == expected.id
-            assert got['name'] == '%s Add-ons' % unicode(expected.pretty)
+            assert got['name'] == '%s Add-ons' % six.text_type(expected.pretty)
             assert got['url'] == locale_url(expected.short)
             assert got['cls'] == 'app ' + expected.short
 

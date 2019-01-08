@@ -7,12 +7,13 @@ from datetime import datetime
 
 from django.apps import apps
 from django.conf import settings
-from django.urls import reverse
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext
 
 import jinja2
+import six
 
 import olympia.core.logger
 
@@ -347,9 +348,9 @@ class ActivityLog(ModelBase):
             elif isinstance(arg, tuple):
                 # Instead of passing an addon instance you can pass a tuple:
                 # (Addon, 3) for Addon with pk=3
-                serialize_me.append(dict(((unicode(arg[0]._meta), arg[1]),)))
+                serialize_me.append(dict(((six.text_type(arg[0]._meta), arg[1]),)))
             else:
-                serialize_me.append(dict(((unicode(arg._meta), arg.pk),)))
+                serialize_me.append(dict(((six.text_type(arg._meta), arg.pk),)))
 
         self._arguments = json.dumps(serialize_me)
 
