@@ -5,6 +5,8 @@ from django.utils import translation
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 
+import six
+
 from olympia.addons.models import Addon
 from olympia.discovery.models import DiscoveryItem
 
@@ -18,7 +20,7 @@ class SlugOrPkChoiceField(forms.ModelChoiceField):
     """A ModelChoiceField that supports entering slugs instead of PKs for
     convenience."""
     def clean(self, value):
-        if value and isinstance(value, basestring) and not value.isdigit():
+        if value and isinstance(value, six.string_types) and not value.isdigit():
             try:
                 value = self.queryset.values_list(
                     'pk', flat=True).get(slug=value)

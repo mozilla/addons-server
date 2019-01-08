@@ -4,6 +4,7 @@ from django.utils.encoding import force_text
 from django.utils.translation import pgettext
 
 import jinja2
+import six
 
 from django_jinja import library
 
@@ -71,7 +72,7 @@ def addon_users_list(context, addon):
 
 
 def _user_link(user, max_text_length=None):
-    if isinstance(user, basestring):
+    if isinstance(user, six.string_types):
         return user
 
     if max_text_length and len(user.name) > max_text_length:

@@ -188,7 +188,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
     if not recipient_list:
         return True
 
-    if isinstance(recipient_list, basestring):
+    if isinstance(recipient_list, six.string_types):
         raise ValueError('recipient_list should be a list, not a string.')
 
     # Check against user notification settings
@@ -219,8 +219,8 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
         from_email = settings.DEFAULT_FROM_EMAIL
 
     if cc:
-        # If not basestring, assume it is already a list.
-        if isinstance(cc, basestring):
+        # If not six.string_types, assume it is already a list.
+        if isinstance(cc, six.string_types):
             cc = [cc]
 
     if not headers:
@@ -787,7 +787,7 @@ def escape_all(value):
     Only linkify full urls, including a scheme, if "linkify_only_full" is True.
 
     """
-    if isinstance(value, basestring):
+    if isinstance(value, six.string_types):
         value = jinja2.escape(force_text(value))
         value = linkify_with_outgoing(value)
         return value
