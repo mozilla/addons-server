@@ -193,7 +193,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
 
     # Check against user notification settings
     if perm_setting:
-        if isinstance(perm_setting, str):
+        if isinstance(perm_setting, six.string_types):
             perm_setting = notifications.NOTIFICATIONS_BY_SHORT[perm_setting]
         perms = dict(UserNotification.objects
                                      .filter(user__email__in=recipient_list,

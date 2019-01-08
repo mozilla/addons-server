@@ -7,8 +7,8 @@ on module-level, they should instead be added to hooks or fixtures directly.
 import os
 import uuid
 
-import responses
 import pytest
+import responses
 
 
 @pytest.fixture(autouse=True)
