@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 import re
-from six.moves.urllib_parse import parse_qs, urlparse
 
 import mock
 import pytest
+import six
 
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import parse_qs, urlparse
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -21,7 +22,7 @@ pytestmark = pytest.mark.django_db
 
 def test_emaillink():
     email = 'me@example.com'
-    obfuscated = unicode(emaillink(email))
+    obfuscated = six.text_type(emaillink(email))
 
     # remove junk
     m = re.match(r'<a href="#"><span class="emaillink">(.*?)'
@@ -33,7 +34,7 @@ def test_emaillink():
     assert email == obfuscated
 
     title = 'E-mail your question'
-    obfuscated = unicode(emaillink(email, title))
+    obfuscated = six.text_type(emaillink(email, title))
     m = re.match(r'<a href="#">(.*)</a>'
                  r'<span class="emaillink js-hidden">(.*?)'
                  r'<span class="i">null</span>(.*)</span>', obfuscated)

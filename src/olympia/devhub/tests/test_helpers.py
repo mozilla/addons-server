@@ -4,6 +4,7 @@ import urllib
 from django.utils import translation
 
 import pytest
+import six
 
 from mock import Mock
 
@@ -80,7 +81,7 @@ class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def test_unicode(self):
         url = urllib.quote(self.raw_url.encode('utf8'))
-        url = unicode(url, 'utf8')
+        url = six.text_type(url, 'utf8')
         assert render('{{ url|display_url }}', {'url': url}) == (
             self.raw_url)
 
@@ -98,7 +99,7 @@ class TestDevFilesStatus(TestCase):
     def expect(self, expected):
         cnt, msg = jinja_helpers.dev_files_status([self.file])[0]
         assert cnt == 1
-        assert msg == unicode(expected)
+        assert msg == six.text_type(expected)
 
     def test_unreviewed_public(self):
         self.addon.status = amo.STATUS_PUBLIC

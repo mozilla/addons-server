@@ -1,5 +1,7 @@
 from django.conf import settings
 
+import six
+
 import olympia.core.logger
 
 from olympia.constants.search import SEARCH_ANALYZER_MAP
@@ -139,7 +141,7 @@ class BaseSearchIndexer(object):
 
         extend_with_me = {
             '%s_translations' % field: [
-                {'lang': to_language(lang), 'string': unicode(string)}
+                {'lang': to_language(lang), 'string': six.text_type(string)}
                 for lang, string in obj.translations[getattr(obj, db_field)]
                 if string
             ]
@@ -161,7 +163,7 @@ class BaseSearchIndexer(object):
         value = translations.get(default_locale, getattr(obj, field))
 
         return {
-            field: unicode(value) if value else ''
+            field: six.text_type(value) if value else ''
         }
 
     @classmethod
@@ -179,7 +181,7 @@ class BaseSearchIndexer(object):
         # index with analyzer if the string's locale matches.
         for analyzer, languages in SEARCH_ANALYZER_MAP.iteritems():
             extend_with_me['%s_l10n_%s' % (field, analyzer)] = list(
-                set(unicode(string) for locale, string
+                set(six.text_type(string) for locale, string
                     in obj.translations[getattr(obj, db_field)]
                     if locale.lower() in languages and string))
 

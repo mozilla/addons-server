@@ -4,6 +4,8 @@ from django.http import QueryDict
 from django.utils.html import conditional_escape, format_html
 from django.utils.translation import ugettext
 
+import six
+
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
@@ -34,24 +36,17 @@ class DiscoveryItem(ModelBase):
                               'translated.')
     position = models.PositiveSmallIntegerField(
         default=0, blank=True, db_index=True,
-        help_text='Position in the discovery pane when telemetry-aware '
-                  'recommendations are off (editorial fallback). '
-                  'The lower the number, the higher the item will appear in '
-                  'the page. If left blank or if the value is 0, the item '
-                  'will not appear unless part of telemetry-aware '
-                  'recommendations.')
+        help_text='Position in the discovery pane, the lower the number, the '
+                  'higher the item will appear in the page. If left blank or '
+                  'if the value is 0, the item will not appear unless part of '
+                  'telemetry-aware recommendations.')
     position_china = models.PositiveSmallIntegerField(
         default=0, blank=True, db_index=True,
         help_text='Position in the discovery pane in China '
                   '(See position field above).')
-    position_override = models.PositiveSmallIntegerField(
-        default=0, blank=True, db_index=True,
-        help_text='Position in the discovery pane when telemetry-aware '
-                  'recommendations are on but we want to override them.'
-                  '(See position field above).')
 
     def __unicode__(self):
-        return unicode(self.addon)
+        return six.text_type(self.addon)
 
     def build_querystring(self):
         qs = QueryDict(mutable=True)
@@ -63,48 +58,48 @@ class DiscoveryItem(ModelBase):
         })
         return qs.urlencode()
 
-    def _build_heading(self, html=False):
-        addon_name = unicode(self.custom_addon_name or self.addon.name)
+    @property
+    def heading(self):
+        """
+        Return item heading (translated, including HTML) ready to be returned
+        by the disco pane API.
+        """
+        addon_name = six.text_type(self.custom_addon_name or self.addon.name)
+        authors = u', '.join(
+            author.name for author in self.addon.listed_authors)
+        url = absolutify(self.addon.get_url_path())
 
-        if html:
-            authors = u', '.join(
-                author.name for author in self.addon.listed_authors)
-            url = absolutify(self.addon.get_url_path())
-            # addons-frontend will add target and rel attributes to the <a>
-            # link. Note: The translated "by" in the middle of both strings is
-            # unfortunate, but the full strings are too opaque/dangerous to be
-            # handled by translators, since they are just HTML and parameters.
-            if self.custom_heading:
-                addon_link = format_html(
-                    # The query string should not be encoded twice, so we add
-                    # it to the template first, via '%'.
-                    u'<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
-                        'query': self.build_querystring()},
-                    url, addon_name, ugettext(u'by'), authors)
+        # addons-frontend will add target and rel attributes to the <a> link.
+        # Note: The translated "by" in the middle of both strings is
+        # unfortunate, but the full strings are too opaque/dangerous to be
+        # handled by translators, since they are just HTML and parameters.
+        if self.custom_heading:
+            addon_link = format_html(
+                # The query string should not be encoded twice, so we add it to
+                # the template first, via '%'.
+                u'<a href="{0}?%(query)s">{1} {2} {3}</a>' % {
+                    'query': self.build_querystring()},
+                url, addon_name, ugettext(u'by'), authors)
 
-                value = conditional_escape(
-                    ugettext(self.custom_heading)).replace(
-                        u'{start_sub_heading}', u'<span>').replace(
-                        u'{end_sub_heading}', u'</span>').replace(
-                        u'{addon_name}', addon_link)
-            else:
-                value = format_html(
-                    # The query string should not be encoded twice, so we add
-                    # it to the template first, via '%'.
-                    u'{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
-                        'query': self.build_querystring()},
-                    addon_name, ugettext(u'by'), url, authors)
+            value = conditional_escape(ugettext(self.custom_heading)).replace(
+                u'{start_sub_heading}', u'<span>').replace(
+                u'{end_sub_heading}', u'</span>').replace(
+                u'{addon_name}', addon_link)
         else:
-            if self.custom_heading:
-                value = self.custom_heading.replace(
-                    '{start_sub_heading}', '').replace(
-                    '{end_sub_heading}', '').replace(
-                    '{addon_name}', addon_name)
-            else:
-                value = addon_name
+            value = format_html(
+                # The query string should not be encoded twice, so we add it to
+                # the template first, via '%'.
+                u'{0} <span>{1} <a href="{2}?%(query)s">{3}</a></span>' % {
+                    'query': self.build_querystring()},
+                addon_name, ugettext(u'by'), url, authors)
         return value
 
-    def _build_description(self, html=False):
+    @property
+    def description(self):
+        """
+        Return item description (translated, including HTML) ready to be
+        returned by the disco pane API.
+        """
         if self.custom_description:
             value = ugettext(self.custom_description)
         else:
@@ -115,44 +110,5 @@ class DiscoveryItem(ModelBase):
                 value = addon.description
             else:
                 value = u''
-        if html:
-            return format_html(
-                u'<blockquote>{}</blockquote>', value) if value else value
-        else:
-            return value
-
-    @property
-    def heading(self):
-        """
-        Return item heading (translated, including HTML) ready to be returned
-        by the disco pane API.
-        """
-        return self._build_heading(html=True)
-
-    @property
-    def heading_text(self):
-        """
-        Return item heading (translated, but not including HTML) ready to be
-        returned by the disco pane API.
-
-        It may differ from the HTML version slightly and contain less
-        information, leaving clients the choice to use extra data returned by
-        the API or not.
-        """
-        return self._build_heading(html=False)
-
-    @property
-    def description(self):
-        """
-        Return item description (translated, including HTML) ready to be
-        returned by the disco pane API.
-        """
-        return self._build_description(html=True)
-
-    @property
-    def description_text(self):
-        """
-        Return item description (translated, but not including HTML) ready to
-        be returned by the disco pane API.
-        """
-        return self._build_description(html=False)
+        return format_html(
+            u'<blockquote>{}</blockquote>', value) if value else value

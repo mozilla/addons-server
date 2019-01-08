@@ -2,6 +2,7 @@ import random
 import uuid
 
 import mock
+import six
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
@@ -39,12 +40,12 @@ class TestCollections(TestCase):
             description='<a href="http://example.com">example.com</a> '
                         'http://example.com <b>foo</b> some text')
         # All markup escaped, links are stripped.
-        assert unicode(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
+        assert six.text_type(c.description) == '&lt;b&gt;foo&lt;/b&gt; some text'
 
     def test_translation_default(self):
         """Make sure we're getting strings from the default locale."""
         c = Collection.objects.get(pk=512)
-        assert unicode(c.name) == 'yay'
+        assert six.text_type(c.name) == 'yay'
 
     def test_listed(self):
         """Make sure the manager's listed() filter works."""

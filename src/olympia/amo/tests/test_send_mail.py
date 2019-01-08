@@ -8,6 +8,7 @@ from django.core.mail import EmailMessage
 from django.utils import translation
 
 import mock
+import six
 
 from celery.exceptions import Retry
 
@@ -212,7 +213,7 @@ class TestSendMail(BaseTestCase):
         assert '<a href' not in message1, 'text-only email contained HTML!'
         assert '<a href' in message2, 'HTML email did not contain HTML!'
 
-        unsubscribe_msg = unicode(notifications.individual_contact.label)
+        unsubscribe_msg = six.text_type(notifications.individual_contact.label)
         assert unsubscribe_msg in message1
         assert unsubscribe_msg in message2
 

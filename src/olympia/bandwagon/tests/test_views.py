@@ -9,6 +9,7 @@ from django.test.utils import override_settings
 from django.utils.datastructures import MultiValueDict
 
 import pytest
+import six
 
 from mock import Mock, patch
 from pyquery import PyQuery as pq
@@ -322,7 +323,7 @@ class TestCRUD(TestCase):
         assert r.request['PATH_INFO'].decode('utf-8') == (
             '/en-US/firefox/collections/4043307/%s/' % self.slug)
         c = Collection.objects.get(slug=self.slug)
-        assert unicode(c.name) == self.data['name']
+        assert six.text_type(c.name) == self.data['name']
         assert c.description == ''
         assert c.addons.all()[0].id == 3615
 
@@ -348,7 +349,7 @@ class TestCRUD(TestCase):
                                    'listed': True}, follow=True)
         assert r.status_code == 200
         c = Collection.objects.get(slug='halp')
-        assert unicode(c.name) == 'HALP'
+        assert six.text_type(c.name) == 'HALP'
 
     def test_edit_description(self):
         self.create_collection()
@@ -358,7 +359,7 @@ class TestCRUD(TestCase):
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
         self.assert3xx(r, edit_url, 302)
-        assert unicode(Collection.objects.get(slug=self.slug).description) == (
+        assert six.text_type(Collection.objects.get(slug=self.slug).description) == (
             'abc')
 
     def test_edit_no_description(self):
@@ -370,7 +371,7 @@ class TestCRUD(TestCase):
         edit_url = Collection.objects.get(slug=self.slug).edit_url()
         r = self.client.post(url, self.data)
         self.assert3xx(r, edit_url, 302)
-        assert unicode(Collection.objects.get(slug=self.slug).description) == (
+        assert six.text_type(Collection.objects.get(slug=self.slug).description) == (
             '')
 
     def test_edit_spaces(self):
@@ -383,7 +384,7 @@ class TestCRUD(TestCase):
                               'listed': True}, follow=True)
         assert r.status_code == 200
         c = Collection.objects.get(slug='halp')
-        assert unicode(c.name) == 'H A L  P'
+        assert six.text_type(c.name) == 'H A L  P'
 
     def test_forbidden_edit(self):
         self.create_collection()
@@ -534,7 +535,7 @@ class TestCRUD(TestCase):
         assert r.status_code == 302
 
         c = Collection.objects.get(id=fav.id)
-        assert unicode(c.name) == 'xxx'
+        assert six.text_type(c.name) == 'xxx'
 
     def test_edit_addons_get(self):
         self.create_collection()
@@ -621,7 +622,7 @@ class TestCRUD(TestCase):
         assert response.status_code == 200
 
         collection.reload()
-        assert unicode(collection.name) == 'new name'
+        assert six.text_type(collection.name) == 'new name'
 
 
 class TestChangeAddon(TestCase):
@@ -1097,7 +1098,7 @@ class TestCollectionViewSetDetail(TestCase):
         addon_data = response.data['addons'][0]['addon']
         assert addon_data['id'] == addon.id
         assert isinstance(addon_data['name'], dict)
-        assert addon_data['name'] == {'en-US': unicode(addon.name)}
+        assert addon_data['name'] == {'en-US': six.text_type(addon.name)}
 
         # Now test the limit of addons returned
         self.collection.add_addon(addon_factory())
@@ -1123,13 +1124,13 @@ class TestCollectionViewSetDetail(TestCase):
         addon_data = response.data['addons'][0]['addon']
         assert addon_data['id'] == addon.id
         assert isinstance(addon_data['name']['en-US'], basestring)
-        assert addon_data['name'] == {'en-US': unicode(addon.name)}
+        assert addon_data['name'] == {'en-US': six.text_type(addon.name)}
         assert isinstance(addon_data['homepage']['en-US'], basestring)
         assert addon_data['homepage'] == {
-            'en-US': get_outgoing_url(unicode(addon.homepage))}
+            'en-US': get_outgoing_url(six.text_type(addon.homepage))}
         assert isinstance(addon_data['support_url']['en-US'], basestring)
         assert addon_data['support_url'] == {
-            'en-US': get_outgoing_url(unicode(addon.support_url))}
+            'en-US': get_outgoing_url(six.text_type(addon.support_url))}
 
         overridden_api_gates = {
             'v4dev': ('l10n_flat_input_output',)}
@@ -1141,13 +1142,13 @@ class TestCollectionViewSetDetail(TestCase):
             addon_data = response.data['addons'][0]['addon']
             assert addon_data['id'] == addon.id
             assert isinstance(addon_data['name'], basestring)
-            assert addon_data['name'] == unicode(addon.name)
+            assert addon_data['name'] == six.text_type(addon.name)
             assert isinstance(addon_data['homepage'], basestring)
             assert addon_data['homepage'] == get_outgoing_url(
-                unicode(addon.homepage))
+                six.text_type(addon.homepage))
             assert isinstance(addon_data['support_url'], basestring)
             assert addon_data['support_url'] == get_outgoing_url(
-                unicode(addon.support_url))
+                six.text_type(addon.support_url))
 
 
 class CollectionViewSetDataMixin(object):

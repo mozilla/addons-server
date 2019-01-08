@@ -1,20 +1,21 @@
 import json
 
 from datetime import datetime, timedelta
-from six.moves.urllib_parse import urlparse
 
 from django.conf import settings
 from django.core import mail
 from django.forms.models import model_to_dict
 from django.utils.encoding import force_text
 
+import six
+
 from dateutil.parser import parse
 from lxml.html import HTMLParser, fromstring
 from mock import Mock, patch
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import urlparse
 
-from olympia import amo
-from olympia import core
+from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -134,13 +135,13 @@ class TestEdit(UserViewBase):
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
         self.assertContains(r, data['biography'])
-        assert unicode(self.get_profile().biography) == data['biography']
+        assert six.text_type(self.get_profile().biography) == data['biography']
 
         data['biography'] = 'yyy unst unst'
         r = self.client.post(self.url, data, follow=True)
         self.assert3xx(r, self.url)
         self.assertContains(r, data['biography'])
-        assert unicode(self.get_profile().biography) == data['biography']
+        assert six.text_type(self.get_profile().biography) == data['biography']
 
     def test_bio_no_links(self):
         self.data.update(biography='<a href="https://google.com">google</a>')
@@ -764,7 +765,7 @@ class TestProfileSections(TestCase):
 
         a = li.find('a')
         assert a.attr('href') == coll.get_url_path()
-        assert a.text() == unicode(coll.name)
+        assert a.text() == six.text_type(coll.name)
 
     def test_no_my_collections(self):
         Collection.objects.filter(author=self.user).delete()
@@ -840,7 +841,7 @@ class TestThemesProfile(TestCase):
         results = doc('.personas-grid .persona.hovercard')
         assert results.length == 1
         assert force_text(
-            results.find('h3').html()) == unicode(self.theme.name)
+            results.find('h3').html()) == six.text_type(self.theme.name)
 
     def test_bad_user(self):
         res = self.client.get(reverse('users.themes', args=['yolo']))

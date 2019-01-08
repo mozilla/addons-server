@@ -6,15 +6,17 @@ from django.conf import settings
 from django.contrib.auth import login, logout
 from django.contrib.auth.signals import user_logged_in
 from django.core import signing
-from django.urls import reverse
 from django.db.models import Q
 from django.http import Http404, HttpResponseRedirect
+from django.urls import reverse
 from django.utils.encoding import force_bytes
 from django.utils.html import format_html
 from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import six
 import waffle
+
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
@@ -494,7 +496,7 @@ class ProfileView(APIView):
         account_viewset = AccountViewSet(
             request=request,
             permission_classes=self.permission_classes,
-            kwargs={'pk': unicode(self.request.user.pk)})
+            kwargs={'pk': six.text_type(self.request.user.pk)})
         account_viewset.format_kwarg = self.format_kwarg
         return account_viewset.retrieve(request)
 

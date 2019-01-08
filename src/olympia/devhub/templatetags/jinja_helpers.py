@@ -6,6 +6,7 @@ from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext, ungettext
 
 import jinja2
+import six
 
 from django_jinja import library
 
@@ -71,7 +72,7 @@ def dev_files_status(files):
     for file in files:
         status_count[file.status] += 1
 
-    return [(count, unicode(choices[status])) for
+    return [(count, six.text_type(choices[status])) for
             (status, count) in status_count.items()]
 
 

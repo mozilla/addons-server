@@ -7,6 +7,8 @@ from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
 
+import six
+
 from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
 
@@ -77,7 +79,7 @@ def handler404(request):
     if request.is_api:
         # It's a v3+ api request
         return JsonResponse(
-            {'detail': unicode(NotFound.default_detail)}, status=404)
+            {'detail': six.text_type(NotFound.default_detail)}, status=404)
     elif request.is_legacy_api:
         # It's a legacy api request - pass over to legacy api handler404.
         return legacy_api.views.handler404(request)

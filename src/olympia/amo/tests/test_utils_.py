@@ -9,6 +9,7 @@ from django.utils.functional import cached_property
 import freezegun
 import mock
 import pytest
+import six
 
 from babel import Locale
 
@@ -28,7 +29,7 @@ pytestmark = pytest.mark.django_db
 class TestAttachTransDict(TestCase):
     """
     Tests for attach_trans_dict. For convenience, we re-use Addon model instead
-    of mocking one from scratch and we rely on internal Translation unicode
+    of mocking one from scratch and we rely on internal Translation six.text_type
     implementation, because mocking django models and fields is just painful.
     """
 
@@ -45,7 +46,7 @@ class TestAttachTransDict(TestCase):
         # it for __unicode__. We depend on this behaviour later in the test.
         assert '<script>' in addon.description.localized_string
         assert '<script>' not in addon.description.localized_string_clean
-        assert '<script>' not in unicode(addon.description)
+        assert '<script>' not in six.text_type(addon.description)
 
         # Attach trans dict.
         attach_trans_dict(Addon, [addon])
@@ -61,16 +62,16 @@ class TestAttachTransDict(TestCase):
 
         # Build expected translations dict.
         expected_translations = {
-            addon.eula_id: [('en-us', unicode(addon.eula))],
+            addon.eula_id: [('en-us', six.text_type(addon.eula))],
             addon.description_id: [
-                ('en-us', unicode(addon.description))],
+                ('en-us', six.text_type(addon.description))],
             addon.developer_comments_id:
-                [('en-us', unicode(addon.developer_comments))],
-            addon.summary_id: [('en-us', unicode(addon.summary))],
-            addon.homepage_id: [('en-us', unicode(addon.homepage))],
-            addon.name_id: [('en-us', unicode(addon.name))],
-            addon.support_email_id: [('en-us', unicode(addon.support_email))],
-            addon.support_url_id: [('en-us', unicode(addon.support_url))]
+                [('en-us', six.text_type(addon.developer_comments))],
+            addon.summary_id: [('en-us', six.text_type(addon.summary))],
+            addon.homepage_id: [('en-us', six.text_type(addon.homepage))],
+            addon.name_id: [('en-us', six.text_type(addon.name))],
+            addon.support_email_id: [('en-us', six.text_type(addon.support_email))],
+            addon.support_url_id: [('en-us', six.text_type(addon.support_url))]
         }
         assert translations == expected_translations
 

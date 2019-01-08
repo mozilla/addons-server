@@ -13,6 +13,7 @@ from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import jinja2
+import six
 import waffle
 
 from olympia import amo
@@ -29,8 +30,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES, CATEGORIES_NO_APP
 from olympia.files.models import FileUpload
-from olympia.files.utils import (
-    archive_member_validator, parse_addon, SafeZip)
+from olympia.files.utils import SafeZip, archive_member_validator, parse_addon
 from olympia.translations.fields import (
     LocaleErrorMessage, TransField, TransTextarea)
 from olympia.translations.forms import TranslationFormMixin
@@ -126,10 +126,10 @@ class LicenseRadioSelect(forms.RadioSelect):
         if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
             context['label'] = mark_safe(
-                unicode(context['label']) + ' ' + details)
+                six.text_type(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
             context['attrs']['data-cc'] = license.icons
-        context['attrs']['data-name'] = unicode(license)
+        context['attrs']['data-name'] = six.text_type(license)
         return context
 
 

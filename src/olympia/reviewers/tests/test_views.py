@@ -5,7 +5,6 @@ import time
 
 from collections import OrderedDict
 from datetime import datetime, timedelta
-from six.moves.urllib_parse import parse_qs
 
 from django.conf import settings
 from django.core import mail
@@ -16,11 +15,13 @@ from django.template import defaultfilters
 from django.test.utils import override_settings
 
 import mock
+import six
 
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
 from mock import Mock, patch
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import parse_qs
 
 from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
@@ -1156,7 +1157,7 @@ class QueueTest(ReviewerTest):
         for idx, addon in enumerate(self.expected_addons):
             latest_version = self.get_addon_latest_version(addon)
             assert latest_version
-            name = '%s %s' % (unicode(addon.name),
+            name = '%s %s' % (six.text_type(addon.name),
                               latest_version.version)
             if self.channel_name == 'listed':
                 # We typically don't include the channel name if it's the
@@ -4792,7 +4793,7 @@ class TestLeaderboard(ReviewerTest):
         assert get_cells() == (
             [users[2].name,
              users[1].name,
-             unicode(amo.REVIEWED_LEVELS[0]['name']),
+             six.text_type(amo.REVIEWED_LEVELS[0]['name']),
              users[0].name])
 
         self._award_points(users[0], 1)
@@ -4801,7 +4802,7 @@ class TestLeaderboard(ReviewerTest):
             [users[2].name,
              users[1].name,
              users[0].name,
-             unicode(amo.REVIEWED_LEVELS[0]['name'])])
+             six.text_type(amo.REVIEWED_LEVELS[0]['name'])])
 
         self._award_points(users[0], -1)
         self._award_points(users[2], (amo.REVIEWED_LEVELS[1]['points'] -
@@ -4809,9 +4810,9 @@ class TestLeaderboard(ReviewerTest):
 
         assert get_cells() == (
             [users[2].name,
-             unicode(amo.REVIEWED_LEVELS[1]['name']),
+             six.text_type(amo.REVIEWED_LEVELS[1]['name']),
              users[1].name,
-             unicode(amo.REVIEWED_LEVELS[0]['name']),
+             six.text_type(amo.REVIEWED_LEVELS[0]['name']),
              users[0].name])
 
 
@@ -4851,7 +4852,7 @@ class TestPolicyView(ReviewerTest):
             '{addon} :: EULA'.format(addon=self.addon.name))
         self.assertContains(response, u'End-User License Agreement')
         self.assertContains(response, u'Eulá!')
-        self.assertContains(response, unicode(self.review_url))
+        self.assertContains(response, six.text_type(self.review_url))
 
     def test_eula_with_channel(self):
         unlisted_review_url = reverse(
@@ -4867,7 +4868,7 @@ class TestPolicyView(ReviewerTest):
         response = self.client.get(self.eula_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, u'Eulá!')
-        self.assertContains(response, unicode(unlisted_review_url))
+        self.assertContains(response, six.text_type(unlisted_review_url))
 
     def test_privacy(self):
         assert not bool(self.addon.privacy_policy)
@@ -4884,7 +4885,7 @@ class TestPolicyView(ReviewerTest):
             '{addon} :: Privacy Policy'.format(addon=self.addon.name))
         self.assertContains(response, 'Privacy Policy')
         self.assertContains(response, u'Prívacy Pólicy?')
-        self.assertContains(response, unicode(self.review_url))
+        self.assertContains(response, six.text_type(self.review_url))
 
     def test_privacy_with_channel(self):
         unlisted_review_url = reverse(
@@ -4900,7 +4901,7 @@ class TestPolicyView(ReviewerTest):
         response = self.client.get(self.privacy_url + '?channel=unlisted')
         assert response.status_code == 200
         self.assertContains(response, u'Prívacy Pólicy?')
-        self.assertContains(response, unicode(unlisted_review_url))
+        self.assertContains(response, six.text_type(unlisted_review_url))
 
 
 class TestAddonReviewerViewSet(TestCase):

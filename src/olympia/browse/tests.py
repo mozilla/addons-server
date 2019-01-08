@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
 
-from six.moves.urllib_parse import urlparse
-
 from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
@@ -11,9 +9,11 @@ from django.utils.translation import trim_whitespace
 
 import mock
 import pytest
+import six
 
 from dateutil.parser import parse as parse_dt
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import urlparse
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -29,9 +29,10 @@ from olympia.browse import feeds
 from olympia.browse.views import (
     MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY, AddonFilter, ThemeFilter,
     locale_display_name)
+from olympia.lib.cache import memoize_key
 from olympia.translations.models import Translation
 from olympia.versions.models import Version
-from olympia.lib.cache import memoize_key
+
 
 pytestmark = pytest.mark.django_db
 
@@ -386,7 +387,7 @@ class TestFeeds(TestCase):
             slug, title = options
             url = '%s?sort=%s' % (self.url, slug)
             assert item.attr('href') == url
-            assert item.text() == unicode(title)
+            assert item.text() == six.text_type(title)
             self._check_feed(url, self.rss_url, slug)
 
     def test_extensions_feed(self):
@@ -776,7 +777,7 @@ class TestSearchToolsPages(BaseSearchToolsTest):
 
     def test_additional_resources(self):
         prefix, app = ('/en-US/firefox', amo.FIREFOX.pretty)
-        app = unicode(app)  # get the proxied unicode obj
+        app = six.text_type(app)  # get the proxied unicode obj
         response = self.client.get('%s/search-tools/' % prefix)
         assert response.status_code == 200
         doc = pq(response.content)

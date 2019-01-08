@@ -2,13 +2,17 @@ import os
 import StringIO
 import subprocess
 import tempfile
+
 from base64 import b64encode
 
 from django.conf import settings
 
+import six
+
 from PIL import Image
 
 import olympia.core.logger
+
 from olympia.lib.safe_xml import lxml
 
 
@@ -125,4 +129,4 @@ def process_color_value(prop, value):
     if isinstance(value, list) and len(value) == 3:
         return prop, u'rgb(%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
-    return prop, unicode(value).replace(' ', '')
+    return prop, six.text_type(value).replace(' ', '')

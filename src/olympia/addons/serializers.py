@@ -2,6 +2,8 @@ import re
 
 from django.conf import settings
 
+import six
+
 from rest_framework import exceptions, serializers
 
 from olympia import amo
@@ -25,8 +27,7 @@ from olympia.versions.models import (
     ApplicationsVersions, License, Version, VersionPreview)
 
 from .models import (
-    Addon, CompatOverride, Persona, Preview,
-    ReplacementAddon, attach_tags)
+    Addon, CompatOverride, Persona, Preview, ReplacementAddon, attach_tags)
 
 
 class FileSerializer(serializers.ModelSerializer):
@@ -125,11 +126,11 @@ class LicenseSerializer(serializers.ModelSerializer):
             request = self.context.get('request', None)
             if request and request.method == 'GET' and 'lang' in request.GET:
                 # A single lang requested so return a flat string
-                return unicode(license_constant.name)
+                return six.text_type(license_constant.name)
             else:
                 # Otherwise mock the dict with the default lang.
                 lang = getattr(request, 'LANG', None) or settings.LANGUAGE_CODE
-                return {lang: unicode(license_constant.name)}
+                return {lang: six.text_type(license_constant.name)}
 
     def to_representation(self, instance):
         data = super(LicenseSerializer, self).to_representation(instance)

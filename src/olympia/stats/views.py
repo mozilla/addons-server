@@ -2,6 +2,7 @@ import cStringIO
 import csv
 import itertools
 import json
+import six
 import time
 
 from collections import OrderedDict
@@ -275,8 +276,8 @@ def flatten_applications(series):
                 app = amo.APP_GUIDS.get(app)
                 if not app:
                     continue
-                # unicode() to decode the gettext proxy.
-                appname = unicode(app.pretty)
+                # six.text_type() to decode the gettext proxy.
+                appname = six.text_type(app.pretty)
                 for ver, count in versions.items():
                     key = ' '.join([appname, ver])
                     new[key] = count
@@ -495,7 +496,7 @@ class UnicodeCSVDictWriter(csv.DictWriter):
         self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
 
     def try_encode(self, obj):
-        return obj.encode('utf-8') if isinstance(obj, unicode) else obj
+        return obj.encode('utf-8') if isinstance(obj, six.text_type) else obj
 
     def writerow(self, rowdict):
         row = self._dict_to_list(rowdict)

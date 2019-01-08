@@ -6,6 +6,7 @@ from django.core import mail
 from django.core.management import call_command
 
 import mock
+import six
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -200,7 +201,7 @@ class TestAutoApproveCommand(TestCase):
         assert msg.to == [self.author.email]
         assert msg.from_email == settings.ADDONS_EMAIL
         assert msg.subject == 'Mozilla Add-ons: %s %s Approved' % (
-            unicode(self.addon.name), self.version.version)
+            six.text_type(self.addon.name), self.version.version)
 
     @mock.patch.object(auto_approve, 'set_reviewing_cache')
     @mock.patch.object(auto_approve, 'clear_reviewing_cache')

@@ -1,6 +1,7 @@
 import datetime
 import os
 import time
+
 from uuid import UUID, uuid4
 
 from django import forms as django_forms, http
@@ -15,6 +16,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
 
+import six
 import waffle
 
 from django_statsd.clients import statsd
@@ -40,9 +42,9 @@ from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, SourceForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
-    add_dynamic_theme_tag, fetch_existing_translations_from_addon,
-    get_addon_akismet_reports, wizard_unsupported_properties,
-    extract_theme_properties)
+    add_dynamic_theme_tag, extract_theme_properties,
+    fetch_existing_translations_from_addon, get_addon_akismet_reports,
+    wizard_unsupported_properties)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
 from olympia.lib.crypto.packaged import sign_file
@@ -1596,8 +1598,8 @@ def _submit_finish(request, addon, version):
         # We can use locale-prefixed URLs because the submitter probably
         # speaks the same language by the time he/she reads the email.
         context = {
-            'addon_name': unicode(addon.name),
-            'app': unicode(request.APP.pretty),
+            'addon_name': six.text_type(addon.name),
+            'app': six.text_type(request.APP.pretty),
             'detail_url': absolutify(addon.get_url_path()),
             'version_url': absolutify(addon.get_dev_url('versions')),
             'edit_url': absolutify(addon.get_dev_url('edit')),
