@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3822,28 +3822,21 @@ msgstr "uo-pp∀ ɹno⅄ ǝƃɐuɐW"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "uo-pp∀ ɹno⅄ ǝʇɐpd∩ puɐ ʇıpƎ oʇ uI uƃıS"
 
-msgid "Resources for a successful launch"
-msgstr "ɥɔunɐʅ ʅnɟssǝɔɔns ɐ ɹoɟ sǝɔɹnosǝᴚ"
+msgid "Write one code base for many browsers"
+msgstr "sɹǝsʍoɹq ʎuɐɯ ɹoɟ ǝsɐq ǝpoɔ ǝuo ǝʇıɹＭ"
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
-".sɹǝdoʅǝʌǝp uoısuǝʇxǝ oʇ ʇuɐʌǝʅǝɹ sʇuǝʌǝ puɐ sʍǝu ɥʇıʍ ǝʇɐp-oʇ-dn ƃuıʎɐʇs puɐ ´suoıʇsǝnb ʇuǝɯdoʅǝʌǝp oʇ sɹǝʍsuɐ ƃuıpuıɟ ´%(amo_link_close)sƃɹo.ɐʅʅızoɯ.suoppɐ%(amo_link_open)s uo pǝɹnʇɐǝɟ uoısuǝʇxǝ "
-"ɹnoʎ ƃuıʇʇǝƃ ´ǝƃɐd ʇɔnpoɹd ƃuıʅɐǝddɐ uɐ ƃuıʇɐǝɹɔ ɹoɟ sdıʇ ɹno ʇno ʞɔǝɥↃ ¿ʇxǝu sǝɯoɔ ʇɐɥＭ .ʇı ɥsıʅqnd oʇ ʎpɐǝɹ ǝɹɐ puɐ uoısuǝʇxǝ ɹnoʎ ʇʅınq ǝʌ,no⅄"
+".ǝʅqıʇɐdɯoɔ ɹǝsʍoɹq-ssoɹɔ uoısuǝʇxǝ ɹnoʎ ǝʞɐɯ uɐɔ noʎ ʍoɥ puɐ sɹǝsʍoɹq ɹoɾɐɯ ɹnoɟ ǝɥʇ uǝǝʍʇǝq ʇuǝɯdoʅǝʌǝp uoısuǝʇxǝ uı sǝɔuǝɹǝɟɟıp ǝɥʇ ʇnoqɐ ǝɹoɯ uɹɐǝ⅂ .sǝƃuɐɥɔ ʅʅɐɯs ʍǝɟ ɐ ʎʅuo ɥʇıʍ ǝƃpƎ puɐ "
+"´ɐɹǝdO ´ǝɯoɹɥↃ ´xoɟǝɹıℲ uo unɹ ʅʅıʍ ʇɐɥʇ suoısuǝʇxǝ ǝʇɐǝɹɔ oʇ ʎsɐǝ s’ʇı ´IԀ∀ suoısuǝʇxƎqǝＭ ǝɥʇ ɥʇıＭ"
 
-msgid "View Resources for Publishers"
-msgstr "sɹǝɥsıʅqnԀ ɹoɟ sǝɔɹnosǝᴚ ʍǝıɅ"
+msgid "View Best Practices for Cross-Browser Development"
+msgstr "ʇuǝɯdoʅǝʌǝᗡ ɹǝsʍoɹԐ-ssoɹↃ ɹoɟ sǝɔıʇɔɐɹԀ ʇsǝԐ ʍǝıɅ"
 
 msgid "Welcome Back"
 msgstr "ʞɔɐԐ ǝɯoɔʅǝＭ"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ".ǝƃɐd ʇɔnpoɹd ƃuıʅɐǝddɐ uɐ ƃuıʇɐǝɹɔ ʎq uoısuǝʇxǝ ɹnoʎ ɹǝʌoɔsıp sɹǝsn dʅǝH"
-
-msgid "Learn How"
-msgstr "ʍoH uɹɐǝ⅂"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3851,6 +3844,12 @@ msgstr ".ʍouʞ oʇ pǝǝu noʎ ʇɐɥʍ noʎ ʅʅǝʇ ʅʅıʍ sǝıɔıʅod su
 
 msgid "Learn More"
 msgstr "ǝɹoW uɹɐǝ⅂"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ".sɹǝsn ƃuıpɹɐoquo ɹoɟ sǝɔıʇɔɐɹd ʇsǝq ɹno ƃuıʍoʅʅoɟ ʎq uoısuǝʇxǝ ɹnoʎ uı ʇsnɹʇ puɐ ǝɔuǝpıɟuoɔ uıɐƃ sɹǝsn dʅǝɥ uɐɔ no⅄"
+
+msgid "See Best Practices"
+msgstr "sǝɔıʇɔɐɹԀ ʇsǝԐ ǝǝS"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ".ǝʇıs sıɥʇ ʎq pǝʅpuɐɥ ǝɹɐ sǝʇɐpdn ɔıʇɐɯoʇn∀ .ʍǝıʌǝɹ ǝpoɔ ƃuıssɐd ɹǝʇɟɐ ǝʇıs sıɥʇ uo pǝʇsı⅂"
@@ -3908,6 +3907,9 @@ msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
 ".sǝƃuɐɥɔ ʍǝɟ ɐ ʇsnɾ ɥʇıʍ xoɟǝɹıℲ uı unɹ ʅʅıʍ suoısuǝʇxǝ ɹnoʎ os ´ǝƃpƎ puɐ ɐɹǝdO ´ǝɯoɹɥↃ ʎq pǝʇɹoddns sIԀ∀ uoısuǝʇxǝ ǝɥʇ ɥʇıʍ ǝʅqıʇɐdɯoɔ ǝɹɐ sǝsɐɔ ʇsoɯ uı ɥɔıɥʍ ´sIԀ∀ uoısuǝʇxƎqǝＭ sʇɹoddns xoɟǝɹıℲ"
+
+msgid "Learn How"
+msgstr "ʍoH uɹɐǝ⅂"
 
 msgid "Publish Your Add-on"
 msgstr "uo-pp∀ ɹno⅄ ɥsıʅqnԀ"

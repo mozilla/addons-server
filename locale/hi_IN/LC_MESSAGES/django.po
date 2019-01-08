@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-08-25 19:09+0000\n"
-"Last-Translator: Shivam Singhal <shivams2799@gmail.com>\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-05 13:42+0000\n"
+"Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hi_IN\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgid "This display name cannot be used."
 msgstr "इस डिस्प्ले नाम का उपयोग नहीं किया जा सकता है।"
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "होमपेज फ़ील्ड का उपयोग केवल बाहरी वेबसाइटों से जोड़ने के लिए किया जा सकता है।"
 
 msgid "Usernames cannot contain only digits."
 msgstr "उपयोक्तानाम में केवल अंक नहीं हो सकते हैं।"
@@ -78,7 +78,7 @@ msgid "Only latest versions of addons can have notes added."
 msgstr "ऐडऑनो के केवल नवीनतम संस्करणों में नोट जोड़ा जा सकता है।"
 
 msgid "Ratings"
-msgstr ""
+msgstr "रेटिंग"
 
 msgid "Status"
 msgstr "स्थिति"
@@ -117,7 +117,7 @@ msgstr "यह स्लग \"%(slug)s\" नहीं हो सकता. क�
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] "अमान्य टैग: {0}"
-msgstr[1] ""
+msgstr[1] "अमान्य टैग: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
@@ -187,7 +187,7 @@ msgid "Abuse reported."
 msgstr "दुर्व्यवहार की रिपोर्ट की गयी।"
 
 msgid "My add-on doesn't fit into any of the categories"
-msgstr "मेरे ऐड-ऑन श्रेणियों में से किसी में फिट नहीं हैं"
+msgstr "मेरे ऐड-ऑन इन श्रेणियों में से किसी में फिट नही होते हैं"
 
 msgid "No compatible versions"
 msgstr "कोई संगत संस्करण नहीं"
@@ -250,7 +250,7 @@ msgid "Featured Collections"
 msgstr "विशेष रुप से प्रदर्शित संग्रह"
 
 msgid "Sort by:"
-msgstr ""
+msgstr "इसके अनुसार:"
 
 #. {0} is a date.
 #. {0} is a date
@@ -403,7 +403,7 @@ msgstr "आप क्या सोचते हैं?"
 
 #, python-format
 msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
+msgstr "समीक्षा जमा करने के लिए कृपया <a href=\"%(login)s\">में लॉग इन</a> करें"
 
 msgid "Review:"
 msgstr "समीक्षा:"
@@ -426,7 +426,7 @@ msgstr ""
 "समुदाय</a> से पूछने का भी प्रयास कर सकते हैं।"
 
 msgid "Review Guidelines"
-msgstr ""
+msgstr "निर्देशों की समीक्षा करें"
 
 msgid "Reviews"
 msgstr "समीक्षाएँ"
@@ -500,7 +500,7 @@ msgid "Add-on Review"
 msgstr "ऐड-ऑन समीक्षा"
 
 msgid "Admin Manage"
-msgstr ""
+msgstr "व्यवस्थापक प्रबंधन"
 
 #. {0} is an add-on name.
 msgid "Icon of {0}"
@@ -688,7 +688,7 @@ msgid "Developer Hub"
 msgstr "डेवलपर हब"
 
 msgid "Manage API Keys"
-msgstr ""
+msgstr "API की कुंजी का प्रबंधन"
 
 msgid "Reviewer Tools"
 msgstr "समीक्षक के उपकरण"
@@ -3794,26 +3794,19 @@ msgstr ""
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr ""
 
-msgid "Resources for a successful launch"
+msgid "Write one code base for many browsers"
 msgstr ""
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
 
-msgid "View Resources for Publishers"
+msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
 msgid "Welcome Back"
 msgstr "आपका फिर से स्वागत है"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr ""
-
-msgid "Learn How"
-msgstr "सीखें कैसे"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3821,6 +3814,12 @@ msgstr ""
 
 msgid "Learn More"
 msgstr "अधिक जानें"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
@@ -3875,6 +3874,9 @@ msgstr ""
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+
+msgid "Learn How"
+msgstr "सीखें कैसे"
 
 msgid "Publish Your Add-on"
 msgstr ""

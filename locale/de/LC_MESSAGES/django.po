@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2019-01-02 19:23+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-07 13:04+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -3890,28 +3890,21 @@ msgstr "Ihr Add-on verwalten"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Melden Sie sich an, um Ihr Add-on zu bearbeiten und zu aktualisieren."
 
-msgid "Resources for a successful launch"
-msgstr "Ressourcen für einen erfolgreichen Start"
+msgid "Write one code base for many browsers"
+msgstr "Schreiben Sie eine Quelltextbasis für viele Browser"
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
-"Wir haben Ihre Erweiterung erstellt und sind bereit, sie zu veröffentlichen. Was kommt als Nächstes? Sehen Sie sich unsere Tipps für eine ansprechende Produktseite an, für eine Vorstellung Ihrer "
-"Erweiterung auf %(amo_link_open)saddons.mozilla.org%(amo_link_close)s, Antworten auf Fragen zur Entwicklung und Benachrichtigungen über Neuigkeiten und Veranstaltungen für Erweiterungsentwickler."
+"Mit der WebExtensions-API ist es einfach, Erweiterungen zu erstellen, die mit nur wenigen Änderungen auf Firefox, Chrome, Opera und Edge ausgeführt werden können. Erfahren Sie mehr über die "
+"Unterschiede in der Erweiterungsentwicklung zwischen den vier wichtigsten Browsern und darüber, wie Sie Ihre Erweiterung browserübergreifend kompatibel machen können."
 
-msgid "View Resources for Publishers"
-msgstr "Ressourcen für Veröffentlicher ansehen"
+msgid "View Best Practices for Cross-Browser Development"
+msgstr "Best Practices für die browserübergreifende Entwicklung anzeigen"
 
 msgid "Welcome Back"
 msgstr "Willkommen zurück"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Helfen Sie Nutzern, Ihre Erweiterung zu entdecken, indem Sie eine ansprechende Produktseite erstellen."
-
-msgid "Learn How"
-msgstr "Erfahren Sie, wie es geht"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3919,6 +3912,12 @@ msgstr "Möchten Sie, dass Ihre Erweiterung auf %(amo_link_open)saddons.mozilla.
 
 msgid "Learn More"
 msgstr "mehr erfahren..."
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr "Sie können Benutzern dabei helfen, Vertrauen in Ihre Erweiterung zu gewinnen, indem Sie unseren Best Practices für das Gewinnen von Benutzern folgen."
+
+msgid "See Best Practices"
+msgstr "Best Practices ansehen"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Wird nach bestandener Quelltextüberprüfung auf dieser Website gelistet. Automatische Updates werden von dieser Website verwaltet."
@@ -3978,6 +3977,9 @@ msgid ""
 msgstr ""
 "Firefox unterstützt die APIs von WebExtension, die in den meisten Fällen mit den von Chrome, Opera und Edge unterstützten Erweiterungs-APIs kompatibel sind, Ihre Erweiterungen laufen daher mit nur "
 "wenigen Änderungen auch in Firefox."
+
+msgid "Learn How"
+msgstr "Erfahren Sie, wie es geht"
 
 msgid "Publish Your Add-on"
 msgstr "Veröffentlichen Sie Ihr Add-on"

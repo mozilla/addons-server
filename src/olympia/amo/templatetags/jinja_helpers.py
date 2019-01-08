@@ -4,7 +4,7 @@ import os
 import random
 
 from operator import attrgetter
-from urlparse import urljoin
+from six.moves.urllib_parse import urljoin
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist

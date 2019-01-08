@@ -1,6 +1,6 @@
 import json
-import urlparse
 from collections import OrderedDict
+from six.moves.urllib_parse import urljoin
 
 from django.conf import settings
 from django.utils.http import urlencode
@@ -30,11 +30,11 @@ def call_recommendation_server(server, client_id_or_guid, data, verb='get'):
     }
     if verb == 'get':
         params = OrderedDict(sorted(data.items(), key=lambda t: t[0]))
-        endpoint = urlparse.urljoin(server, '%s/%s%s' % (
+        endpoint = urljoin(server, '%s/%s%s' % (
             client_id_or_guid, '?' if params else '', urlencode(params)))
 
     else:
-        endpoint = urlparse.urljoin(server, '%s/' % client_id_or_guid)
+        endpoint = urljoin(server, '%s/' % client_id_or_guid)
         request_kwargs['json'] = data
     log.debug(u'Calling recommendation server: {0}'.format(endpoint))
     try:

@@ -4,9 +4,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2019-01-03 17:30+0000\n"
-"Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-08 08:04+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -3851,29 +3851,19 @@ msgstr "Gere tu additivos"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Authentica te pro rediger e actualisar tu additivos"
 
-msgid "Resources for a successful launch"
-msgstr "Ressources pro un lanceamento plen de successo"
-
-#, python-format
-msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgid "Write one code base for many browsers"
 msgstr ""
-"Tu ha compilate tu extension e tu es preste a publicar illo. Que veni pois? Controla nostre suggestiones pro crear un pagina presentation de productode attrahente, render consiliate tu extension sur"
-" %(amo_link_open)saddons.mozilla.org%(amo_link_close)s, trovar responsas pro questiones circa le disveloppamento, e remaner actualisate con novas e eventos pertinente al disveloppatores de "
-"extension."
 
-msgid "View Resources for Publishers"
-msgstr "Vide le ressources pro le editores"
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "Ben-retornate"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Adjuta le usatores a discoperir tu extensiones per un lista de presentation attrahente."
-
-msgid "Learn How"
-msgstr "Apprende como"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3881,6 +3871,12 @@ msgstr "Desira tu que tu extension es consiliate sur %(amo_link_open)saddons.moz
 
 msgid "Learn More"
 msgstr "Saper plus"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr "Vide le melior practicas"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listate sur iste sito post passate le revision del codice. Le actualisationes automatic es tractate per iste sito."
@@ -3939,6 +3935,9 @@ msgid ""
 msgstr ""
 "Firefox supporta le APIs de WebExtension, que in le major parte del casos es compatibile con le APIs de extensiones supportate per Chrome, Opera e Edge, assi tu extensiones fluera in Firefox con "
 "solo poc cambiamentos."
+
+msgid "Learn How"
+msgstr "Apprende como"
 
 msgid "Publish Your Add-on"
 msgstr "Publica tu additivo"

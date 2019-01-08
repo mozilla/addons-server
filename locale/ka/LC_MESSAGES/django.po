@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2018-12-23 18:40+0000\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-06 19:00+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -3859,29 +3859,19 @@ msgstr "დამატებების მართვა"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "შედით ანგარიშზე, თქვენი დამატებების ჩასასწორებლად და გასაახლებლად"
 
-msgid "Resources for a successful launch"
-msgstr "სასარგებლო მასალები, წარმატებული გაშვებისთვის"
-
-#, python-format
-msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on %(amo_link_open)saddons."
-"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+msgid "Write one code base for many browsers"
 msgstr ""
-"გაფართოება უკვე შემუშავებულია და მზადაა გამოსაქვეყნებლად. რა იქნება შემდეგ? გაეცანით ჩვენს რჩევებს, მიმზიდველი გვერდის შექმნის თაობაზე, თქვენი გაფართოების შესაძლებლობების სრულად წარმოსაჩენად "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s საიტზე, მოიძიეთ პასუხები შემუშავებასთან დაკავშირებულ კითხვებზე და მუდმივად მიიღეთ სიახლეები, გაფართოებების შემმუშავებლებთან დაკავშირებული "
-"ღონისძიებების შესახებ."
 
-msgid "View Resources for Publishers"
-msgstr "სასარგებლო მასალები, ნამუშევრის გამოქვეყნებისთვის"
+msgid ""
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
+
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "კეთილი იყოს თქვენი დაბრუნება"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "დაეხმარეთ მომხმარებლებს თქვენი გაფართოების აღმოჩენაში, მიმზიდველი გვერდის შექმნით."
-
-msgid "Learn How"
-msgstr "გაიგეთ, როგორ"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3890,6 +3880,12 @@ msgstr ""
 
 msgid "Learn More"
 msgstr "იხილეთ ვრცლად"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "საიტზე გამოქვეყნდება კოდის მიმოხილვის გავლის შემდეგ. თვითგანახლებები იმართება ამ საიტით."
@@ -3948,6 +3944,9 @@ msgid ""
 msgstr ""
 "Firefox-ში მხარდაჭერილია WebExtension API-ები, რაც უმეტეს შემთხვევაში თავსებადია Chrome-ის, Opera-სა და Edge-ს API-ებთან, ასე რომ, თქვენი გაფართოება, მცირე ხელის შევლების შედეგად, მარტივად გაეშვება "
 "Firefox-შიც."
+
+msgid "Learn How"
+msgstr "გაიგეთ, როგორ"
 
 msgid "Publish Your Add-on"
 msgstr "გამოაქვეყნეთ თქვენი დამატება"
@@ -4066,9 +4065,9 @@ msgstr "ჩანართის ფონის ფერი"
 msgid "Your Theme's Name"
 msgstr "თქვენი თემის სახელი"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "<a href=\"%(profile_url)s\">%(user)s</a>-ისგან"
+msgstr "ავტორი: <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "ახალი თემის შექმნა"
@@ -6047,7 +6046,7 @@ msgstr ""
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr "თუ ნამდვილად გესაჭიროებათ Mozilla-ს გუნდის რომელიმე წევრთან დაკავშირება, გთხოვთ გაეცნოთ ჩვენს <a href=\"%(url)s\">საკონტაქტო მონაცემებს</a>."
+msgstr "თუ ნამდვილად გესაჭიროებათ Mozilla-ს გუნდის რომელიმე წევრთან გასაუბრება, გთხოვთ გაეცნოთ ჩვენს <a href=\"%(url)s\">მონაცემებს დასაკავშირებლად</a>."
 
 msgid "Who works on this website?"
 msgstr "ვინ მუშაობს ამ ვებსაიტზე?"

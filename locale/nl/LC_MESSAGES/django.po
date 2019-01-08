@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2019-01-02 15:00+0000\n"
-"Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-07 15:38+0000\n"
+"Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
@@ -3868,29 +3868,21 @@ msgstr "Uw add-on beheren"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Meld u aan om uw add-on te bewerken en bij te werken"
 
-msgid "Resources for a successful launch"
-msgstr "Bronnen voor een succesvolle lancering"
+msgid "Write one code base for many browsers"
+msgstr "Schrijf één codebasis voor veel browsers"
 
-#, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
-"U hebt uw extensie gebouwd en bent klaar voor publicatie ervan. Wat nu? Bekijk onze tips voor het maken van een aantrekkelijke productpagina, het aanbevolen krijgen van uw extensie op "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, het vinden van antwoorden op ontwikkelvragen, en het up-to-date blijven over nieuws en evenementen die relevant zijn voor "
-"extensieontwikkelaars."
+"Met de WebExtensions-API is het eenvoudig om extensies te maken die met slechts enkele kleine aanpassingen in Firefox, Chrome, Opera en Edge kunnen werken. Lees meer over de verschillen in "
+"extensieontwikkeling tussen de vier grote browsers, en hoe u uw extensie met verschillende browsers compatibel kunt maken."
 
-msgid "View Resources for Publishers"
-msgstr "Hulpbronnen voor uitgevers bekijken"
+msgid "View Best Practices for Cross-Browser Development"
+msgstr "Goede voorbeelden voor cross-browser-ontwikkeling bekijken"
 
 msgid "Welcome Back"
 msgstr "Welkom terug"
-
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "Help gebruikers uw extensie te ontdekken door een aantrekkelijke productpagina te maken."
-
-msgid "Learn How"
-msgstr "Meer info"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3898,6 +3890,12 @@ msgstr "Wilt u dat uw extensie wordt aanbevolen op %(amo_link_open)saddons.mozil
 
 msgid "Learn More"
 msgstr "Meer info"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr "U kunt gebruikers helpen vertrouwen in uw extensie te krijgen door onze goede voorbeelden voor het overtuigen van gebruikers te volgen."
+
+msgid "See Best Practices"
+msgstr "Goede voorbeelden bekijken"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Vermeld op deze website na succesvolle codebeoordeling. Automatische updates worden door deze website verzorgd."
@@ -3957,6 +3955,9 @@ msgid ""
 msgstr ""
 "Firefox ondersteunt WebExtension-API’s, die in de meeste gevallen compatibel zijn met de extensie-API’s die door Chrome, Opera en Edge worden ondersteund, dus uw extensies kunnen met slechts een "
 "paar aanpassingen in Firefox werken."
+
+msgid "Learn How"
+msgstr "Meer info"
 
 msgid "Publish Your Add-on"
 msgstr "Uw add-on publiceren"
