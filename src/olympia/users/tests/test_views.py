@@ -740,7 +740,7 @@ class TestProfileSections(TestCase):
         assert pq(r.content)('#my-addons .paginator').length == 0
 
     def test_my_reviews_pagination(self):
-        for i in xrange(20):
+        for i in range(20):
             AddonUser.objects.create(user=self.user, addon_id=3615)
         assert self.user.num_addons_listed > 10, (
             'This user should have way more than 10 add-ons.')
