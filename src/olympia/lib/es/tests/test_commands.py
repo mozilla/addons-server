@@ -1,10 +1,11 @@
-import StringIO
 import threading
 import time
 
 from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
+
+import six
 
 from olympia.amo.tests import ESTestCase, addon_factory, create_switch
 from olympia.amo.urlresolvers import reverse
@@ -89,7 +90,7 @@ class TestIndexCommand(ESTestCase):
         # This is to start a reindexation in the background.
         class ReindexThread(threading.Thread):
             def __init__(self):
-                self.stdout = StringIO.StringIO()
+                self.stdout = six.StringIO()
                 super(ReindexThread, self).__init__()
 
             def run(self):

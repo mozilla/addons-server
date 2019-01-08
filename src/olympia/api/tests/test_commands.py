@@ -1,9 +1,9 @@
 import os.path
 
-from StringIO import StringIO
-
 from django.conf import settings
 from django.core.management import call_command
+
+from six import StringIO
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.api.models import APIKey

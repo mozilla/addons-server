@@ -1,9 +1,9 @@
 from gzip import GzipFile
-from StringIO import StringIO
 
 from django.conf import settings
 
 import mock
+from six import StringIO
 
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.api.middleware import (

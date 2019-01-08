@@ -2,20 +2,19 @@
 import json
 import urllib
 
-from StringIO import StringIO
-
 from django.conf import settings
 from django.db import connection
 from django.test.utils import override_settings
 
 import mock
+from six import StringIO
 
 from services import theme_update
 
 from olympia import amo
 from olympia.addons.models import Addon, MigratedLWT
 from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.versions.models import Version
 
 

@@ -1,5 +1,4 @@
 import os
-import StringIO
 import subprocess
 import tempfile
 
@@ -54,7 +53,7 @@ def encode_header(header_blob, file_ext):
             height = int(tree.get('height'))
             img_format = 'svg+xml'
         else:
-            with Image.open(StringIO.StringIO(header_blob)) as header_image:
+            with Image.open(six.StringIO(header_blob)) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
         src = 'data:image/%s;base64,%s' % (img_format, b64encode(header_blob))

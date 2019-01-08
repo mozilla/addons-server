@@ -1,11 +1,10 @@
 import json
 import uuid
 
-from StringIO import StringIO
-
 from django.core.management import call_command
 
 from mock import ANY, patch
+from six import StringIO
 
 from olympia.amo.tests import TestCase, user_factory
 from olympia.users.management.commands.createsuperuser import (
