@@ -16,9 +16,6 @@ HOME=/tmp
 50 * * * * %(z_cron)s cleanup_extracted_file
 55 * * * * %(z_cron)s unhide_disabled_files
 
-#every 3 hours
-20 */3 * * * %(z_cron)s compatibility_report
-
 #twice per day
 25 17,5 * * * %(z_cron)s hide_disabled_files
 25 18,6 * * * %(z_cron)s cleanup_image_files
