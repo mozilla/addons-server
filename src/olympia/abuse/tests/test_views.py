@@ -125,7 +125,7 @@ class AddonAbuseViewSetTestBase(object):
 
     def test_throttle(self):
         addon = addon_factory()
-        for x in xrange(20):
+        for x in range(20):
             response = self.client.post(
                 self.url,
                 data={'addon': six.text_type(addon.id), 'message': 'abuse!'},
@@ -223,7 +223,7 @@ class UserAbuseViewSetTestBase(object):
 
     def test_throttle(self):
         user = user_factory()
-        for x in xrange(20):
+        for x in range(20):
             response = self.client.post(
                 self.url,
                 data={'user': six.text_type(user.username), 'message': 'abuse!'},

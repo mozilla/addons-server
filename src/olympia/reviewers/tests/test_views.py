@@ -113,7 +113,7 @@ class TestRatingsModerationLog(ReviewerTest):
         reviews.
         """
         review = self.make_review()
-        for i in xrange(2):
+        for i in range(2):
             ActivityLog.create(amo.LOG.APPROVE_RATING, review, review.addon)
             ActivityLog.create(amo.LOG.DELETE_RATING, review.id, review.addon)
         response = self.client.get(self.url, {'filter': 'deleted'})
@@ -2884,7 +2884,7 @@ class TestReview(ReviewBase):
         comments = rows.siblings('td')
         assert comments.length == 2
 
-        for idx in xrange(comments.length):
+        for idx in range(comments.length):
             td = comments.eq(idx)
             assert td.find('.history-comment').text() == 'something'
             assert td.find('th').text() == {
@@ -2958,7 +2958,7 @@ class TestReview(ReviewBase):
         assert '0.1' in ths.eq(0).text()
         assert '0.2' in ths.eq(1).text()
         assert '0.3' in ths.eq(2).text()
-        for idx in xrange(2):
+        for idx in range(2):
             assert 'Deleted' in ths.eq(idx).text()
 
         bodies = table.children('.listing-body')

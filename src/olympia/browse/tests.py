@@ -38,25 +38,26 @@ pytestmark = pytest.mark.django_db
 
 
 def _test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
-    r = self.client.get(self.url, dict(sort=sort))
-    assert r.status_code == 200
-    sel = pq(r.content)('#sorter ul > li.selected')
+    response = self.client.get(self.url, dict(sort=sort))
+    assert response.status_code == 200
+    sel = pq(response.content)('#sorter ul > li.selected')
     assert sel.find('a').attr('class') == sel_class
-    assert r.context['sorting'] == sort
-    a = list(r.context['addons'].object_list)
+    assert response.context['sorting'] == sort
+    addons = list(response.context['addons'].object_list)
     if key:
-        assert a == sorted(a, key=lambda x: getattr(x, key), reverse=reverse)
-    return a
+        assert addons == sorted(
+            addons, key=lambda x: getattr(x, key), reverse=reverse)
+    return addons
 
 
 def _test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
-    r = self.client.get(self.url)
-    assert r.status_code == 200
-    assert r.context['sorting'] == sort
+    response = self.client.get(self.url)
+    assert response.status_code == 200
+    assert response.context['sorting'] == sort
 
-    r = self.client.get(self.url, dict(sort='xxx'))
-    assert r.status_code == 200
-    assert r.context['sorting'] == sort
+    response = self.client.get(self.url, dict(sort='xxx'))
+    assert response.status_code == 200
+    assert response.context['sorting'] == sort
     _test_listing_sort(self, sort, key, reverse, sel_class)
 
 
@@ -1059,7 +1060,7 @@ class TestPersonas(TestCase):
     def create_personas(self, number, persona_extras=None):
         persona_extras = persona_extras or {}
         addon = Addon.objects.get(id=15679)
-        for i in xrange(number):
+        for i in range(number):
             a = Addon(type=amo.ADDON_PERSONA)
             a.name = 'persona-%s' % i
             a.all_categories = []

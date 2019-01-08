@@ -243,7 +243,7 @@ def strip_controls(s):
     Strips control characters from a string.
     """
     # Translation table of control characters.
-    control_trans = dict((n, None) for n in xrange(32) if n not in [10, 13])
+    control_trans = dict((n, None) for n in range(32) if n not in [10, 13])
     rv = six.text_type(s).translate(control_trans)
     return jinja2.Markup(rv) if isinstance(s, jinja2.Markup) else rv
 
