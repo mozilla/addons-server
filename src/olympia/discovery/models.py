@@ -34,13 +34,20 @@ class DiscoveryItem(ModelBase):
                               'translated.')
     position = models.PositiveSmallIntegerField(
         default=0, blank=True, db_index=True,
-        help_text='Position in the discovery pane, the lower the number, the '
-                  'higher the item will appear in the page. If left blank or '
-                  'if the value is 0, the item will not appear unless part of '
-                  'telemetry-aware recommendations.')
+        help_text='Position in the discovery pane when telemetry-aware '
+                  'recommendations are off (editorial fallback). '
+                  'The lower the number, the higher the item will appear in '
+                  'the page. If left blank or if the value is 0, the item '
+                  'will not appear unless part of telemetry-aware '
+                  'recommendations.')
     position_china = models.PositiveSmallIntegerField(
         default=0, blank=True, db_index=True,
         help_text='Position in the discovery pane in China '
+                  '(See position field above).')
+    position_override = models.PositiveSmallIntegerField(
+        default=0, blank=True, db_index=True,
+        help_text='Position in the discovery pane when telemetry-aware '
+                  'recommendations are on but we want to override them.'
                   '(See position field above).')
 
     def __unicode__(self):
