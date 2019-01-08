@@ -14,6 +14,7 @@ from olympia.amo.utils import (
     clean_nl, has_links, ImageCheck, slug_validator,
     subscribe_newsletter, unsubscribe_newsletter, urlparams)
 from olympia.api.utils import is_gate_active
+from olympia.api.validators import OneOrMorePrintableCharacterValidator
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
 from olympia.users import notifications
@@ -68,7 +69,9 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 
 
 class UserProfileSerializer(PublicUserProfileSerializer):
-    display_name = serializers.CharField(min_length=2, max_length=50)
+    display_name = serializers.CharField(
+        min_length=2, max_length=50,
+        validators=[OneOrMorePrintableCharacterValidator()])
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
