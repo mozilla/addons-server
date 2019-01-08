@@ -19,7 +19,7 @@ class Command(BaseCommand):
         parser.add_argument('addon_guid', nargs='+')
 
     def handle(self, *args, **options):
-        confirm = raw_input(
+        confirm = input(
             u'Are you sure you want to bulk approve and sign all those {0} '
             u'addons? (yes/no)'.format(len(args)))
         if confirm != 'yes':
