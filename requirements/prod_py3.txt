@@ -1,4 +1,6 @@
 -r prod_common.txt
-
+# atpublic is required by flufl.lock
+atpublic==1.0 \
+    --hash=sha256:7dca670499e9a9d3aae5a8914bc799475fe24be3bcd29c8129642dda665f7a44
 flufl.lock==3.2 \
     --hash=sha256:a8d66accc9ab41f09961cd8f8db39f9c28e97e2769659a3567c63930a869ff5b
