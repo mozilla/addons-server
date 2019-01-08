@@ -1,8 +1,7 @@
 import uuid
 
-from urllib import urlencode
-
 import six
+from six.moves.urllib_parse import urlencode
 
 from pyquery import PyQuery as pq
 

@@ -2,7 +2,6 @@ import json
 import os
 
 from base64 import urlsafe_b64encode
-from urllib import urlencode
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -10,6 +9,7 @@ from django.utils.http import is_safe_url
 
 import boto3
 import six
+from six.moves.urllib_parse import urlencode
 
 from olympia.accounts.tasks import primary_email_change_event
 from olympia.core.logger import getLogger

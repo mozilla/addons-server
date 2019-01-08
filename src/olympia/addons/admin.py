@@ -1,4 +1,4 @@
-from urllib import urlencode
+from six.moves.urllib_parse import urlencode
 
 from django import forms
 from django.conf import settings
