@@ -3,6 +3,7 @@ import subprocess
 import zipfile
 
 import pytest
+import pygit2
 import mock
 
 from django.conf import settings
@@ -36,6 +37,35 @@ def test_temporary_worktree():
     assert not os.path.exists(worktree.temp_directory)
     output = subprocess.check_output('git worktree list', shell=True, env=env)
     assert worktree.name not in output
+
+
+@pytest.fixture
+def restore_pygit2_paths():
+    # https://github.com/mozilla/addons-server/issues/10320
+    orig_spath = pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL]
+    orig_home_path = os.environ['HOME']
+
+    yield
+
+    pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = orig_spath
+    os.environ['HOME'] = orig_home_path
+
+
+def test_enforce_pygit_global_search_path_to_home(restore_pygit2_paths):
+    pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = '/root'
+
+    assert (
+        pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] ==
+        '/root')
+
+    os.environ['HOME'] = settings.GIT_FILE_STORAGE_PATH
+
+    # Now initialize, which will overwrite the global setting.
+    AddonGitRepository(1)
+
+    assert (
+        pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] ==
+        settings.GIT_FILE_STORAGE_PATH)
 
 
 def test_git_repo_init():
