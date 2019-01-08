@@ -278,7 +278,7 @@ class TestSQLModel(BaseTestCase):
     def test_types(self):
         row = Summary.objects.all().order_by('category')[0]
         self.check_type(row.category, six.text_type)
-        self.check_type(row.total, (int, long))
+        self.check_type(row.total, six.integer_types)
         self.check_type(row.latest_product_date, datetime)
 
     def test_values(self):

@@ -15,7 +15,7 @@ class Command(BaseCommand):
         """Handle command arguments."""
         parser.add_argument('token_uuid', nargs='*')
         parser.add_argument(
-            '--version_id', action='store', type=long,
+            '--version_id', action='store', type=int,
             dest='version_id',
             help='Expire all tokens on this version.')
 

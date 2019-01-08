@@ -410,7 +410,7 @@ class ActivityLog(ModelBase):
         for arg in args:
             if isinstance(arg, six.string_types):
                 serialize_me.append({'str': arg})
-            elif isinstance(arg, (int, long)):
+            elif isinstance(arg, six.integer_types):
                 serialize_me.append({'int': arg})
             elif isinstance(arg, tuple):
                 # Instead of passing an addon instance you can pass a tuple:
