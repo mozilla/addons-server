@@ -1,8 +1,6 @@
-import cStringIO
 import csv
 import itertools
 import json
-import six
 import time
 
 from collections import OrderedDict
@@ -16,18 +14,21 @@ from django.db import connection
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 
+import six
+
 from dateutil.parser import parse
 from product_details import product_details
+from six import moves
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.stats.decorators import addon_view_stats
-from olympia.lib.cache import memoize
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
+from olympia.lib.cache import memoize
+from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
 from .models import DownloadCount, ThemeUserCount, UpdateCount
@@ -488,7 +489,7 @@ class UnicodeCSVDictWriter(csv.DictWriter):
     def __init__(self, stream, fields, **kw):
         # We have the csv module write into our buffer as bytes and then we
         # dump the buffer to the real stream as unicode.
-        self.buffer = cStringIO.StringIO()
+        self.buffer = moves.cStringIO()
         csv.DictWriter.__init__(self, self.buffer, fields, **kw)
         self.stream = stream
 

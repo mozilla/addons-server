@@ -2,7 +2,6 @@
 import json
 import os
 import stat
-import StringIO
 import tarfile
 import urllib
 import zipfile
@@ -125,7 +124,7 @@ class TestSubmitBase(TestCase):
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
             tar_info = tarfile.TarInfo('foo')
             tar_info.size = len(data)
-            tar_file.addfile(tar_info, StringIO.StringIO(data))
+            tar_file.addfile(tar_info, six.StringIO(data))
 
         source.seek(0)
         return source

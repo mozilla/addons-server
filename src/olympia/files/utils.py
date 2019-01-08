@@ -7,7 +7,6 @@ import os
 import re
 import shutil
 import stat
-import StringIO
 import struct
 import tarfile
 import tempfile
@@ -766,7 +765,7 @@ class SafeZip(object):
             parts = path.split('!')
             for part in parts[:-1]:
                 jar = self.__class__(
-                    StringIO.StringIO(jar.zip_file.read(part)))
+                    six.StringIO(jar.zip_file.read(part)))
             path = parts[-1]
         return jar.read(path[1:] if path.startswith('/') else path)
 
