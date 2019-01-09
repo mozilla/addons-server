@@ -24,10 +24,16 @@ from olympia.amo.tests import TestCase
 from olympia.amo.tests.test_helpers import get_addon_file
 from olympia.applications.models import AppVersion
 from olympia.files import utils
-from olympia.files.tests.test_file_viewer import get_file
 
 
 pytestmark = pytest.mark.django_db
+
+
+root = os.path.join(settings.ROOT, 'src/olympia/files/fixtures/files')
+
+
+def get_file(filename):
+    return os.path.join(root, filename)
 
 
 def _touch(fname):

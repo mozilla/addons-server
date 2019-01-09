@@ -1906,9 +1906,6 @@ CRON_JOBS = {
 
     'update_blog_posts': 'olympia.devhub.cron',
 
-    'cleanup_extracted_file': 'olympia.files.cron',
-    'cleanup_validation_results': 'olympia.files.cron',
-
     'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
