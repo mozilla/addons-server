@@ -648,7 +648,7 @@ class FileUpload(ModelBase):
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         if is_crx:
-            hash = write_crx_as_xpi(chunks, storage, loc)
+            hash = write_crx_as_xpi(chunks, loc)
         else:
             hash = hashlib.sha256()
             with storage.open(loc, 'wb') as file_destination:

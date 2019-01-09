@@ -177,36 +177,42 @@ class AddonGitRepository(object):
 
         .. _`git worktree`: https://git-scm.com/docs/git-worktree
         """
+        current_language = translation.get_language()
 
-        # Make sure we're always using the en-US locale by default
-        translation.activate('en-US')
+        try:
+            # Make sure we're always using the en-US locale by default
+            # to have unified commit messages and avoid any __str__
+            # to give us wrong results
+            translation.activate('en-US')
 
-        repo = cls(version.addon.id)
-        file_obj = version.all_files[0]
-        branch = repo.find_or_create_branch(BRANCHES[version.channel])
+            repo = cls(version.addon.id)
+            file_obj = version.all_files[0]
+            branch = repo.find_or_create_branch(BRANCHES[version.channel])
 
-        lock = atomic_lock(
-            settings.TMP_PATH, 'git-storage-%s' % file_obj.pk,
-            lifetime=LOCKED_LIFETIME)
+            lock = atomic_lock(
+                settings.TMP_PATH, 'git-storage-%s' % file_obj.pk,
+                lifetime=LOCKED_LIFETIME)
 
-        with lock as lock_attained:
-            if lock_attained:
-                commit = repo._commit_through_worktree(
-                    path=file_obj.current_file_path,
-                    message=(
-                        'Create new version {version} ({version_id}) for '
-                        '{addon} from {file_obj}'.format(
-                            version=repr(version),
-                            version_id=version.id,
-                            addon=repr(version.addon),
-                            file_obj=repr(file_obj))),
-                    author=author,
-                    branch=branch)
-            else:
-                raise ExtractionAlreadyInProgress()
+            with lock as lock_attained:
+                if lock_attained:
+                    commit = repo._commit_through_worktree(
+                        path=file_obj.current_file_path,
+                        message=(
+                            'Create new version {version} ({version_id}) for '
+                            '{addon} from {file_obj}'.format(
+                                version=repr(version),
+                                version_id=version.id,
+                                addon=repr(version.addon),
+                                file_obj=repr(file_obj))),
+                        author=author,
+                        branch=branch)
+                else:
+                    raise ExtractionAlreadyInProgress()
 
-        # Set the latest git hash on the related version.
-        version.update(git_hash=commit.hex)
+            # Set the latest git hash on the related version.
+            version.update(git_hash=commit.hex)
+        finally:
+            translation.activate(current_language)
 
         return repo
 

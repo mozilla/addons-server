@@ -25,33 +25,33 @@ from olympia.versions.tasks import extract_version_to_git
 def make_file(file_path):
     addon = addon_factory(
         name=u'My Addôn', slug='my-addon',
-        file_kw={'filename': 'file_path'})
+        file_kw={'filename': file_path})
 
     return addon.current_version.current_file
 
 
 class TestFileViewer(TestCase):
 
-    def setUp(self):
-        super(TestFileViewer, self).setUp()
-        self.viewer = FileViewer(make_file('dictionary-test.xpi'))
-
-    def test_files_not_extracted(self):
-        assert not self.viewer.is_extracted()
+    def test_files_not_extracted_by_default(self):
+        # Files should be extracted by default via on-upload git-extraction
+        # but the file-viewer doesn't extract anything on initialization.
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        assert not viewer.is_extracted()
 
     def test_files_extracted(self):
-        self.viewer.extract()
-        assert self.viewer.is_extracted()
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        viewer.extract()
+        assert viewer.is_extracted()
 
     def test_recurse_extract(self):
         viewer = FileViewer(make_file('recurse.xpi'))
-        self.viewer.extract()
-        assert self.viewer.is_extracted()
+        viewer.extract()
+        assert viewer.is_extracted()
 
     def test_recurse_contents(self):
         viewer = FileViewer(make_file('recurse.xpi'))
-        self.viewer.extract()
-        files = self.viewer.get_files()
+        viewer.extract()
+        files = viewer.get_files()
         # We do not extract nested .zip or .xpi files anymore
         assert files.keys() == [
             u'recurse',
@@ -64,10 +64,11 @@ class TestFileViewer(TestCase):
 
     def test_locked(self):
         # Lock was successfully attained
-        assert self.viewer.extract()
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        assert viewer.extract()
 
         lock = flufl.lock.Lock(os.path.join(
-            settings.TMP_PATH, 'git-storage-%s.lock' % self.viewer.file.pk
+            settings.TMP_PATH, 'git-storage-%s.lock' % viewer.file.pk
         ))
 
         assert not lock.is_locked
@@ -77,10 +78,10 @@ class TestFileViewer(TestCase):
         assert lock.is_locked
 
         # Not extracting, the viewer is locked, lock could not be attained
-        assert not self.viewer.extract()
+        assert not viewer.extract()
 
     def test_truncate(self):
-        truncate = self.viewer.truncate
+        truncate = FileViewer(make_file('dictionary-test.xpi')).truncate
         for x, y in (['foo.rdf', 'foo.rdf'],
                      ['somelongfilename.rdf', 'somelongfilenam...rdf'],
                      [u'unicode삮.txt', u'unicode\uc0ae.txt'],
@@ -90,16 +91,19 @@ class TestFileViewer(TestCase):
             assert truncate(x) == y
 
     def test_get_files_not_extracted_runs_extraction(self):
-        assert not self.viewer.is_extracted()
-        self.viewer.get_files()
-        assert self.viewer.is_extracted()
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        assert not viewer.is_extracted()
+        viewer.get_files()
+        assert viewer.is_extracted()
 
     def test_get_files_size(self):
-        self.viewer.extract()
-        files = self.viewer.get_files()
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        viewer.extract()
+        files = viewer.get_files()
         assert len(files) == 14
 
     def test_syntax(self):
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
         for filename, syntax in [('foo.rdf', 'xml'),
                                  ('foo.xul', 'xml'),
                                  ('foo.json', 'js'),
@@ -107,32 +111,35 @@ class TestFileViewer(TestCase):
                                  ('foo.htm', 'html'),
                                  ('foo.bar', 'plain'),
                                  ('foo.diff', 'plain')]:
-            assert self.viewer.get_syntax(filename) == syntax
+            assert viewer.get_syntax(filename) == syntax
 
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size(self):
-        self.viewer.extract()
-        self.viewer.get_files()
-        self.viewer.select('install.js')
-        res = self.viewer.read_file()
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        viewer.extract()
+        viewer.get_files()
+        viewer.select('install.js')
+        res = viewer.read_file()
         assert res == ''
-        assert self.viewer.selected['msg'].startswith('File size is')
+        assert viewer.selected['msg'].startswith('File size is')
 
     @pytest.mark.needs_locales_compilation
     @patch.object(settings, 'FILE_VIEWER_SIZE_LIMIT', 5)
     def test_file_size_unicode(self):
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
         with self.activate(locale='he'):
-            self.viewer.extract()
-            self.viewer.get_files()
-            self.viewer.select('install.js')
-            res = self.viewer.read_file()
+            viewer.extract()
+            viewer.get_files()
+            viewer.select('install.js')
+            res = viewer.read_file()
             assert res == ''
             assert (
-                self.viewer.selected['msg'].startswith(u'גודל הקובץ חורג'))
+                viewer.selected['msg'].startswith(u'גודל הקובץ חורג'))
 
     def test_default(self):
-        assert self.viewer.extract()
-        assert self.viewer.get_selected_file() == 'install.rdf'
+        viewer = FileViewer(make_file('dictionary-test.xpi'))
+        assert viewer.extract()
+        assert viewer.get_selected_file() == 'install.rdf'
 
     def test_default_webextension(self):
         viewer = FileViewer(make_file('webextension.xpi'))
@@ -161,14 +168,14 @@ class TestSearchEngineHelper(TestCase):
     def setUp(self):
         super(TestSearchEngineHelper, self).setUp()
         self.left = File.objects.get(pk=25753)
-        self.viewer = FileViewer(self.left)
+        viewer = FileViewer(self.left)
 
     def test_is_search_engine(self):
-        assert self.viewer.is_search_engine()
+        assert viewer.is_search_engine()
 
     def test_default(self):
-        self.viewer.extract()
-        assert self.viewer.get_selected_file() == 'a9.xml'
+        viewer.extract()
+        assert viewer.get_selected_file() == 'a9.xml'
 
 
 class TestDiffSearchEngine(TestCase):

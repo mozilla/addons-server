@@ -4,7 +4,7 @@ from collections import OrderedDict
 
 from django.conf import settings
 from django.template.defaultfilters import filesizeformat
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, get_language
 
 import olympia.core.logger
 

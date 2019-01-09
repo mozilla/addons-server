@@ -846,7 +846,18 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
         target = dest
 
     try:
-        if source.endswith(('.zip', '.xpi')):
+        if source.endswith('.crx'):
+            # Primarily for testing but make sure we are handling CRX
+            # files correctly here too
+            tmp = tempfile.NamedTemporaryFile('rwb+', dir=settings.TMP_PATH)
+
+            with open(source) as fobj:
+                write_crx_as_xpi(fobj, tmp.name)
+
+            # Now handle the converted XPI file as a regular zip
+            zip_file = SafeZip(tmp, force_fsync=force_fsync)
+            zip_file.extract_to_dest(target)
+        elif source.endswith(('.zip', '.xpi')):
             zip_file = SafeZip(source, force_fsync=force_fsync)
             zip_file.extract_to_dest(target)
         elif source.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
@@ -1149,7 +1160,7 @@ def update_version_number(file_obj, new_version_number):
     shutil.move(updated, file_obj.file_path)
 
 
-def write_crx_as_xpi(chunks, storage, target):
+def write_crx_as_xpi(chunks, target):
     """Extract and strip the header from the CRX, convert it to a regular ZIP
     archive, then write it to `target`. Read more about the CRX file format:
     https://developer.chrome.com/extensions/crx
