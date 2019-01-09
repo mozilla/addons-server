@@ -163,19 +163,18 @@ class TestFileViewer(TestCase):
 
 
 class TestSearchEngineHelper(TestCase):
-    fixtures = ['base/addon_4594_a9']
-
     def setUp(self):
         super(TestSearchEngineHelper, self).setUp()
-        self.left = File.objects.get(pk=25753)
-        viewer = FileViewer(self.left)
+        file = make_file('search.xml')
+        file.version.addon.update(type=amo.ADDON_SEARCH)
+        self.viewer = FileViewer(file)
 
     def test_is_search_engine(self):
-        assert viewer.is_search_engine()
+        assert self.viewer.is_search_engine()
 
     def test_default(self):
-        viewer.extract()
-        assert viewer.get_selected_file() == 'a9.xml'
+        self.viewer.extract()
+        assert self.viewer.get_selected_file() == 'search.xml'
 
 
 class TestDiffSearchEngine(TestCase):

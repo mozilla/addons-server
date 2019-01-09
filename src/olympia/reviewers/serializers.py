@@ -162,9 +162,13 @@ class AddonFileBrowseSerializer(serializers.ModelSerializer):
             if files is None:
                 files = self.get_files(self.instance)
 
-            for manifest in ('install.rdf', 'manifest.json', 'package.json'):
+            for manifest in ('manifest.json', 'install.rdf', 'package.json'):
                 if manifest in files:
                     requested_file = manifest
+                    break
+            else:
+                # This could be a search engine
+                requested_file = files.keys()[0]
 
         return requested_file
 
