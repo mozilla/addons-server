@@ -398,27 +398,33 @@ def fxa_login_link(response=None, to=None, request=None):
         action='signin')
 
 
+@contextmanager
+def activate_locale(locale=None, app=None):
+    """Active an app or a locale."""
+    prefixer = old_prefix = get_url_prefix()
+    old_app = old_prefix.app
+    old_locale = translation.get_language()
+    if locale:
+        rf = RequestFactory()
+        prefixer = Prefixer(rf.get('/%s/' % (locale,)))
+        translation.activate(locale)
+    if app:
+        prefixer.app = app
+    set_url_prefix(prefixer)
+    yield
+    old_prefix.app = old_app
+    set_url_prefix(old_prefix)
+    translation.activate(old_locale)
+
+
 class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
 
     @contextmanager
     def activate(self, locale=None, app=None):
-        """Active an app or a locale."""
-        prefixer = old_prefix = get_url_prefix()
-        old_app = old_prefix.app
-        old_locale = translation.get_language()
-        if locale:
-            rf = RequestFactory()
-            prefixer = Prefixer(rf.get('/%s/' % (locale,)))
-            translation.activate(locale)
-        if app:
-            prefixer.app = app
-        set_url_prefix(prefixer)
-        yield
-        old_prefix.app = old_app
-        set_url_prefix(old_prefix)
-        translation.activate(old_locale)
+        with activate_locale(locale, app):
+            yield
 
     def assertNoFormErrors(self, response):
         """Asserts that no form in the context has errors.
