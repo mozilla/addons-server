@@ -4,13 +4,13 @@ from collections import OrderedDict
 
 from django.conf import settings
 from django.template.defaultfilters import filesizeformat
-from django.utils.translation import ugettext, get_language
+from django.utils.translation import ugettext
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.lib.cache import Message
+from olympia.lib.cache import Message, cache_get_or_set
 from olympia.lib.git import AddonGitRepository, ExtractionAlreadyInProgress
 
 
@@ -162,7 +162,7 @@ class FileViewer(object):
         if not self.is_extracted():
             self.extract()
 
-        self._files = self._get_files()
+        self._files = cache_get_or_set(self._cache_key(), self._get_files)
         return self._files
 
     def truncate(self, filename, pre_length=15,

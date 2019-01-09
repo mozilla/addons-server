@@ -1,25 +1,28 @@
 # -*- coding: utf-8 -*-
-import mimetypes
 import os
 import zipfile
 
 from django import forms
 from django.conf import settings
 from django.core.cache import cache
-from django.core.files.storage import default_storage as storage
 
+import pygit2
 import flufl.lock
 import pytest
 
-from freezegun import freeze_time
-from mock import Mock, patch
+from mock import patch
 
 from olympia import amo
 from olympia.amo.tests import TestCase, addon_factory
-from olympia.files.models import File
 from olympia.files.file_viewer import DiffHelper, FileViewer
-from olympia.files.utils import SafeZip, get_all_files
-from olympia.versions.tasks import extract_version_to_git
+from olympia.files.utils import SafeZip
+from olympia.lib.git import BRANCHES
+
+
+EMPTY_PNG = (
+    b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01\x00\x00\x00\x01\x08'
+    b'\x06\x00\x00\x00\x1f\x15\xc4\x89\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00'
+    b'\x05\x00\x01\r\n-\xb4\x00\x00\x00\x00IEND\xaeB`\x82')
 
 
 def make_file(file_path):
@@ -195,8 +198,8 @@ class TestDiffHelper(TestCase):
     def setUp(self):
         super(TestDiffHelper, self).setUp()
         self.helper = DiffHelper(
-            make_file('dictionary-test.xpi'),
-            make_file('dictionary-test.xpi'))
+            make_file('notify-link-clicks-i18n.xpi'),
+            make_file('notify-link-clicks-i18n.xpi'))
 
     def clear_cache(self):
         cache.delete(self.helper.left._cache_key())
@@ -215,7 +218,7 @@ class TestDiffHelper(TestCase):
 
     def test_diffable(self):
         self.helper.extract()
-        self.helper.select('install.js')
+        self.helper.select('README.md')
         assert self.helper.is_diffable()
 
     def test_diffable_allow_empty(self):
@@ -230,48 +233,67 @@ class TestDiffHelper(TestCase):
 
     def test_diffable_one_binary_same(self):
         self.helper.extract()
-        self.helper.select('install.js')
-        self.helper.left.selected['binary'] = True
+        self.helper.select('icons/link-48.png')
         assert self.helper.is_binary()
 
     def test_diffable_one_binary_diff(self):
         self.helper.extract()
-        self.change(self.helper.left.dest, 'asd')
-        self.helper.select('install.js')
-        self.helper.left.selected['binary'] = True
+        self.change(self.helper.left, EMPTY_PNG, 'icons/link-48.png')
+        self.helper.select('icons/link-48.png')
         assert self.helper.is_binary()
 
     def test_diffable_two_binary_diff(self):
         self.helper.extract()
-        self.change(self.helper.left.dest, 'asd')
-        self.change(self.helper.right.dest, 'asd123')
+        self.change(self.helper.left, EMPTY_PNG, 'icons/link-48.png')
+        self.change(self.helper.right, b'\x00\x04', 'icons/link-48.png')
         self.clear_cache()
-        self.helper.select('install.js')
-        self.helper.left.selected['binary'] = True
-        self.helper.right.selected['binary'] = True
+        self.helper.select('icons/link-48.png')
+        files = self.helper.get_files()
+        # Make sure that change got stored properly
+        assert files['icons/link-48.png']['diff']
         assert self.helper.is_binary()
-
-    def test_diffable_one_directory(self):
-        self.helper.extract()
-        self.helper.select('install.js')
-        self.helper.left.selected['directory'] = True
-        assert not self.helper.is_diffable()
-        assert self.helper.left.selected['msg'].startswith('This file')
 
     def test_diffable_parent(self):
         self.helper.extract()
-        self.change(self.helper.left.dest, 'asd',
-                    filename='__MACOSX/._dictionaries')
+        self.change(self.helper.left, '{}', '_locales/de/messages.json')
         self.clear_cache()
         files = self.helper.get_files()
-        assert files['__MACOSX/._dictionaries']['diff']
-        assert files['__MACOSX']['diff']
+        assert files['_locales/de/messages.json']['diff']
+        assert files['_locales/de']['diff']
 
-    def change(self, file, text, filename='install.js'):
-        path = os.path.join(file, filename)
-        data = open(path, 'r').read()
-        data += text
-        open(path, 'w').write(data)
+    def change(self, viewer, contents, path='install.js'):
+        # Apply the requested change to the git repository
+        branch_name = BRANCHES[viewer.file.version.channel]
+        git_repo = viewer.repository.git_repository
+        blob_id = git_repo.create_blob(contents)
+
+        # Initialize the index from the tree structure of the most
+        # recent commit in `branch`
+        tree = git_repo.revparse_single(branch_name).tree
+        index = git_repo.index
+        index.read_tree(tree)
+
+        # Add / update the index
+        entry = pygit2.IndexEntry(path, blob_id, pygit2.GIT_FILEMODE_BLOB)
+        index.add(entry)
+
+        tree = index.write_tree()
+
+        # Now apply a new commit
+        author = pygit2.Signature('test', 'test@foo.bar')
+        committer = pygit2.Signature('test', 'test@foo.bar')
+
+        branch = git_repo.branches.get(branch_name)
+
+        # Create commit and properly update branch and reflog
+        oid = git_repo.create_commit(
+            None, author, committer, '...', tree, [branch.target])
+        commit = git_repo.get(oid)
+        branch.set_target(commit.hex)
+
+        # To make sure the serializer makes use of the new commit we'll have
+        # to update the `git_hash` values on the version object.
+        viewer.file.version.update(git_hash=commit.hex)
 
 
 class TestSafeZipFile(TestCase, amo.tests.AMOPaths):

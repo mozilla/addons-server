@@ -193,33 +193,28 @@ class TestAddonFileBrowseSerializer(BaseTestCase):
     def test_is_binary(self):
         serializer = AddonFileBrowseSerializer()
 
-        for fname in ['foo.rdf', 'foo.xml', 'foo.js', 'foo.py'
-                  'foo.html', 'foo.txt', 'foo.dtd', 'foo.xul', 'foo.sh',
-                  'foo.properties', 'foo.json', 'foo.src', 'CHANGELOG']:
+        files = [
+            'foo.rdf', 'foo.xml', 'foo.js', 'foo.py' 'foo.html', 'foo.txt',
+            'foo.dtd', 'foo.xul', 'foo.sh', 'foo.properties', 'foo.json',
+            'foo.src', 'CHANGELOG']
+
+        for fname in files:
             mime, encoding = mimetypes.guess_type(fname)
-            assert (
-                not serializer._is_binary(fname, mime, ''),
-                '%s should not be binary' % fname)
+            assert not serializer._is_binary(fname, mime, '')
 
         for f in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
             mime, encoding = mimetypes.guess_type(fname)
-            assert (
-                not serializer._is_binary(fname, mime, ''),
-                '%s should be binary' % fname)
+            assert not serializer._is_binary(fname, mime, '')
 
         filename = os.path.join(settings.TMP_PATH, 'test_isbinary')
         for txt in ['#!/usr/bin/python', '#python', u'\0x2']:
             open(filename, 'w').write(txt)
             mime, encoding = mimetypes.guess_type(fname)
-            assert (
-                not serializer._is_binary(fname, mime, ''),
-                '%s should not be binary' % fname)
+            assert not serializer._is_binary(fname, mime, '')
 
         for txt in ['MZ']:
             open(filename, 'w').write(txt)
             mime, encoding = mimetypes.guess_type(fname)
-            assert (
-                not serializer._is_binary(fname, mime, ''),
-                '%s should be binary' % fname)
+            assert not serializer._is_binary(fname, mime, '')
 
         os.remove(filename)
