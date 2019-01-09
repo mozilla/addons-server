@@ -15,8 +15,9 @@ from olympia.accounts.views import fxa_error_message
 from olympia.activity.models import ActivityLog
 from olympia.amo.fields import HttpHttpsOnlyURLField
 from olympia.amo.utils import (
-    ImageCheck, clean_nl, fetch_subscribed_newsletters, has_links,
-    slug_validator, subscribe_newsletter, unsubscribe_newsletter)
+    clean_nl, has_links, ImageCheck,
+    fetch_subscribed_newsletters, subscribe_newsletter,
+    unsubscribe_newsletter)
 from olympia.users import notifications
 
 from . import tasks
@@ -63,7 +64,6 @@ LOGIN_HELP_URL = (
 
 
 class UserEditForm(forms.ModelForm):
-    username = forms.CharField(max_length=50, required=False)
     display_name = forms.CharField(label=_(u'Display Name'), max_length=50,
                                    required=False)
     location = forms.CharField(label=_(u'Location'), max_length=100,
@@ -148,43 +148,10 @@ class UserEditForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = (
-            'username', 'email', 'display_name', 'location', 'occupation',
+            'email', 'display_name', 'location', 'occupation',
             'homepage', 'photo', 'biography', 'display_collections',
             'notifications',
         )
-
-    def clean_username(self):
-        name = self.cleaned_data['username']
-
-        if not name:
-            if self.instance.has_anonymous_username:
-                name = self.instance.username
-            else:
-                name = self.instance.anonymize_username()
-
-        # All-digits usernames are disallowed since they can be
-        # confused for user IDs in URLs. (See bug 862121.)
-        if name.isdigit():
-            raise forms.ValidationError(
-                ugettext('Usernames cannot contain only digits.'))
-
-        slug_validator(
-            name, lower=False,
-            message=ugettext(
-                'Enter a valid username consisting of letters, numbers, '
-                'underscores or hyphens.'))
-        if DeniedName.blocked(name):
-            raise forms.ValidationError(
-                ugettext('This username cannot be used.'))
-
-        # FIXME: Bug 858452. Remove this check when collation of the username
-        # column is changed to case insensitive.
-        if (UserProfile.objects.exclude(id=self.instance.id)
-                       .filter(username__iexact=name).exists()):
-            raise forms.ValidationError(
-                ugettext('This username is already in use.'))
-
-        return name
 
     def clean_display_name(self):
         name = self.cleaned_data['display_name']

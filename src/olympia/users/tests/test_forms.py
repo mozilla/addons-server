@@ -66,26 +66,9 @@ class TestUserEditForm(UserFormBase):
         self.client.login(email='jbalogh@mozilla.com')
         self.url = reverse('users.edit')
 
-    def test_no_username_or_display_name(self):
-        assert not self.user.has_anonymous_username
-        data = {'username': '',
-                'email': 'jbalogh@mozilla.com'}
-        response = self.client.post(self.url, data)
-        self.assertNoFormErrors(response)
-        assert self.user.reload().has_anonymous_username
-
-    def test_change_username(self):
-        assert self.user.username != 'new-username'
-        data = {'username': 'new-username',
-                'email': 'jbalogh@mozilla.com'}
-        response = self.client.post(self.url, data)
-        self.assertNoFormErrors(response)
-        assert self.user.reload().username == 'new-username'
-
     def test_cannot_change_display_name_to_denied_ones(self):
         assert self.user.display_name != 'Mozilla'
-        data = {'username': 'new-username',
-                'display_name': 'IE6Fan',
+        data = {'display_name': 'IE6Fan',
                 'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         msg = "This display name cannot be used."
@@ -93,8 +76,7 @@ class TestUserEditForm(UserFormBase):
         assert self.user.reload().display_name != 'IE6Fan'
 
     def test_display_name_length(self):
-        data = {'username': 'new-username',
-                'display_name': 'a' * 51,
+        data = {'display_name': 'a' * 51,
                 'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         msg = 'Ensure this value has at most 50 characters (it has 51).'
@@ -117,8 +99,7 @@ class TestUserEditForm(UserFormBase):
         the auto-generated value does not change."""
         username = self.user.anonymize_username()
         self.user.save()
-        data = {'username': '',
-                'email': 'jbalogh@mozilla.com'}
+        data = {'email': 'jbalogh@mozilla.com'}
         response = self.client.post(self.url, data)
         self.assertNoFormErrors(response)
         assert self.user.reload().username == username
@@ -139,9 +120,8 @@ class TestUserEditForm(UserFormBase):
         self.assertContains(r, 'Profile Updated')
 
     def test_long_data(self):
-        data = {'username': 'jbalogh',
-                'email': 'jbalogh@mozilla.com'}
-        for field, length in (('username', 50), ('display_name', 50),
+        data = {'email': 'jbalogh@mozilla.com'}
+        for field, length in (('display_name', 50),
                               ('location', 100), ('occupation', 100)):
             data[field] = 'x' * (length + 1)
             r = self.client.post(self.url, data, follow=True)
