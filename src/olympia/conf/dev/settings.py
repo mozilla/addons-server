@@ -147,7 +147,3 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-dev')
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
-
-# Temporarily enabled for https://bugzilla.mozilla.org/show_bug.cgi?id=1508777
-MIGRATED_LWT_UPDATES_ENABLED = True
-
