@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2019-01-09 15:45+0000\n"
+"PO-Revision-Date: 2019-01-09 16:04+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2464,11 +2464,10 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Por favor, especifique a política de privacidade da sua extensão:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Tipo de arquivo não suportado, por favor enviar um arquivo no formato {extensions}."
+msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento no formato {extensions}."
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Arquivo inválido."
+msgstr "Arquivamento inválido ou quebrado."
 
 msgid "View current"
 msgstr "Ver atual"
@@ -4669,7 +4668,7 @@ msgstr "Encontre conteúdos perdidos {start_sub_heading}com {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
-msgstr "A página que procura não está disponível? Procure por uma versão arquivada em cache."
+msgstr "A página que procura não está disponível? Procure uma versão arquivada ou em cache."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5794,21 +5793,21 @@ msgid "Could not parse uploaded file."
 msgstr "Não foi possível interpretar o arquivo enviado."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Tipo de arquivamento não suportado."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
-msgstr "Nome do arquivo inválido. Por favor, tenha certeza que todos os nomes de arquivos usam codificação utf-8 ou latin1."
+msgstr "Nome de arquivo inválido no arquivamento. Garanta que todos os nomes de arquivo usem codificação utf-8 ou latin1."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive: {0}"
-msgstr "Nome de arquivo inválido em: {0}"
+msgstr "Nome de arquivo inválido em arquivamento: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr "Arquivos maiores do que o permitido em: {0}"
+msgstr "Arquivo maior que o limite em arquivamento: {0}"
 
 msgid "Invalid archive."
-msgstr "Arquivo inválido."
+msgstr "Arquivamento inválido."
 
 msgid "Could not parse the manifest file."
 msgstr "Não foi possível analisar o arquivo manifest."
