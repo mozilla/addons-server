@@ -1037,7 +1037,6 @@ class TestAccountViewSetUpdate(TestCase):
         'homepage': 'http://bob-loblaw-law-web.blog',
         'location': 'law office',
         'occupation': 'lawyer',
-        'username': 'bob',
     }
 
     def setUp(self):
@@ -1087,15 +1086,19 @@ class TestAccountViewSetUpdate(TestCase):
 
     def test_read_only_fields(self):
         self.client.login_api(self.user)
+        existing_username = self.user.username
         original = self.client.get(self.url).content
         # Try to patch a field that can't be patched.
-        response = self.patch(data={'last_login_ip': '666.666.666.666'})
+        response = self.patch(data={
+            'last_login_ip': '666.666.666.666', 'username': 'new_username'})
         assert response.status_code == 200
         assert response.content == original
         self.user = self.user.reload()
         # Confirm field hasn't been updated.
         assert json.loads(response.content)['last_login_ip'] == ''
         assert self.user.last_login_ip == ''
+        assert json.loads(response.content)['username'] == existing_username
+        assert self.user.username == existing_username
 
     def test_biography_no_links(self):
         self.client.login_api(self.user)
@@ -1104,21 +1107,6 @@ class TestAccountViewSetUpdate(TestCase):
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'biography': ['No links are allowed.']}
-
-    def test_username_valid(self):
-        self.client.login_api(self.user)
-        response = self.patch(
-            data={'username': '123456'})
-        assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'username': ['Usernames cannot contain only digits.']}
-
-        response = self.patch(
-            data={'username': u'£^@'})
-        assert response.status_code == 400
-        assert json.loads(response.content) == {
-            'username': [u'Enter a valid username consisting of letters, '
-                         u'numbers, underscores or hyphens.']}
 
     def test_display_name_validation(self):
         self.client.login_api(self.user)
