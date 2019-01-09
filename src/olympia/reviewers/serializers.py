@@ -61,9 +61,8 @@ class AddonFileBrowseSerializer(serializers.ModelSerializer):
         fields = ('id', 'created', 'hash', 'is_restart_required',
                   'is_webextension', 'is_mozilla_signed_extension',
                   'platform', 'size', 'status', 'download_url', 'permissions',
-                  'automated_signing', 'has_been_validated',
-                  'validation_url_json', 'validation_url',
-                  'content', 'version', 'files')
+                  'has_been_validated', 'validation_url_json',
+                  'validation_url', 'content', 'version', 'files')
 
     @cached_property
     def repo(self):

@@ -166,7 +166,6 @@ class TestAddonFileBrowseSerializer(BaseTestCase):
         assert '"manifest_version": 2' in data['content']
         assert 'id": "notify-link-clicks-i18n@notzilla.org' in data['content']
         assert data['platform'] == 'all'
-        assert data['automated_signing'] is False
         assert data['has_been_validated'] is False
         assert data['is_mozilla_signed_extension'] is False
 

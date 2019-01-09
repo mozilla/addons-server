@@ -38,7 +38,6 @@ def setup_viewer(request, file_obj):
 
         data['validate_url'] = reverse('devhub.json_file_validation',
                                        args=[addon.slug, file_obj.id])
-        data['automated_signing'] = file_obj.automated_signing
 
         if file_obj.has_been_validated:
             data['validation_data'] = file_obj.validation.processed_validation
