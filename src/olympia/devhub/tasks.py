@@ -3,10 +3,8 @@ import datetime
 import hashlib
 import json
 import os
-import socket
 import subprocess
 import tempfile
-import urllib2
 import shutil
 
 from copy import deepcopy
@@ -945,22 +943,6 @@ def failed_validation(*messages):
         m.append({'type': 'error', 'message': msg, 'tier': 1})
 
     return json.dumps({'errors': 1, 'success': False, 'messages': m})
-
-
-def _fetch_content(url):
-    try:
-        return urllib2.urlopen(url, timeout=15)
-    except urllib2.HTTPError as e:
-        raise Exception(
-            ugettext('%s responded with %s (%s).') % (url, e.code, e.msg))
-    except urllib2.URLError as e:
-        # Unpack the URLError to try and find a useful message.
-        if isinstance(e.reason, socket.timeout):
-            raise Exception(ugettext('Connection to "%s" timed out.') % url)
-        elif isinstance(e.reason, socket.gaierror):
-            raise Exception(ugettext('Could not contact host at "%s".') % url)
-        else:
-            raise Exception(str(e.reason))
 
 
 def check_content_type(response, content_type,

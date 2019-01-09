@@ -1,7 +1,7 @@
 import re
 
 from collections import OrderedDict
-from urllib2 import unquote
+from six.moves.urllib.parse import unquote
 
 from django.utils.translation import ugettext
 
