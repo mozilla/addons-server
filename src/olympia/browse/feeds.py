@@ -1,6 +1,8 @@
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import six
+
 from olympia import amo
 from olympia.addons.models import Addon, Category
 from olympia.amo.feeds import BaseFeed
@@ -25,7 +27,7 @@ class AddonFeedMixin(object):
 
     def item_description(self, addon):
         """Description for particular add-on (<item><description>)"""
-        return unicode(addon.description) or ''
+        return six.text_type(addon.description) or ''
 
     def item_author_name(self, addon):
         """Author for a particular add-on (<item><dc:creator>)"""
@@ -121,7 +123,7 @@ class FeaturedRss(AddonFeedMixin, BaseFeed):
     def get_object(self, request):
         self.request = request
         self.app = request.APP
-        self.appname = unicode(request.APP.pretty)
+        self.appname = six.text_type(request.APP.pretty)
 
     def title(self):
         """Title for the feed"""

@@ -1,6 +1,7 @@
 import uuid
 
-from urllib import urlencode
+import six
+from six.moves.urllib_parse import urlencode
 
 from pyquery import PyQuery as pq
 
@@ -28,34 +29,34 @@ class TestActivity(HubTest):
     def log_creates(self, num, addon=None):
         if not addon:
             addon = self.addon
-        for i in xrange(num):
+        for i in range(num):
             ActivityLog.create(amo.LOG.CREATE_ADDON, addon)
 
     def log_updates(self, num, version_string='1'):
         version = Version.objects.create(version=version_string,
                                          addon=self.addon)
 
-        for i in xrange(num):
+        for i in range(num):
             ActivityLog.create(amo.LOG.ADD_VERSION, self.addon, version)
 
     def log_status(self, num):
-        for i in xrange(num):
+        for i in range(num):
             ActivityLog.create(amo.LOG.USER_DISABLE, self.addon)
 
     def log_collection(self, num, prefix='foo'):
-        for i in xrange(num):
+        for i in range(num):
             collection = Collection.objects.create(name='%s %d' % (prefix, i))
             ActivityLog.create(amo.LOG.ADD_TO_COLLECTION, self.addon,
                                collection)
 
     def log_tag(self, num, prefix='foo'):
-        for i in xrange(num):
+        for i in range(num):
             tag = Tag.objects.create(tag_text='%s %d' % (prefix, i))
             ActivityLog.create(amo.LOG.ADD_TAG, self.addon, tag)
 
     def log_rating(self, num):
         rating = Rating(addon=self.addon)
-        for i in xrange(num):
+        for i in range(num):
             ActivityLog.create(amo.LOG.ADD_RATING, self.addon, rating)
 
     def get_response(self, **kwargs):
@@ -227,8 +228,8 @@ class TestActivity(HubTest):
         self.log_creates(1)
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script>' not in unicode(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
+        assert '<script>' not in six.text_type(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
 
     def test_xss_unlisted_addon(self):
         self.addon.name = ("<script>alert('Buy more Diet Mountain Dew.')"
@@ -238,53 +239,53 @@ class TestActivity(HubTest):
         self.log_creates(1)
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script>' not in unicode(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
+        assert '<script>' not in six.text_type(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
 
     def test_xss_collections(self):
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script>' not in unicode(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
+        assert '<script>' not in six.text_type(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
 
     def test_xss_collections_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
         self.log_collection(1, "<script>alert('v1@gra for u')</script>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script>' not in unicode(doc), 'XSS FTL'
-        assert '&lt;script&gt;' in unicode(doc), 'XSS FTL'
+        assert '<script>' not in six.text_type(doc), 'XSS FTL'
+        assert '&lt;script&gt;' in six.text_type(doc), 'XSS FTL'
 
     def test_xss_tags(self):
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script' not in unicode(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
 
     def test_xss_tags_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
         self.log_tag(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script' not in unicode(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
 
     def test_xss_versions(self):
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 1
-        assert '<script' not in unicode(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
 
     def test_xss_versions_unlisted_addon(self):
         self.make_addon_unlisted(self.addon)
         self.log_updates(1, "<script src='x.js'>")
         doc = self.get_pq()
         assert len(doc('.item')) == 2
-        assert '<script' not in unicode(doc('.item')), 'XSS FTL'
-        assert '&lt;script' in unicode(doc('.item')), 'XSS FTL'
+        assert '<script' not in six.text_type(doc('.item')), 'XSS FTL'
+        assert '&lt;script' in six.text_type(doc('.item')), 'XSS FTL'
 
     def test_hidden(self):
         version = Version.objects.create(addon=self.addon)

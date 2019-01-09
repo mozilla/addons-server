@@ -4,6 +4,7 @@ from django.core.management import call_command
 from django.db import IntegrityError
 
 import mock
+import six
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import url
@@ -63,7 +64,7 @@ class TestCommands(TestCase):
         call_command('dump_apps')
         with open(dump_apps.Command.get_json_path(), 'r') as f:
             apps = json.load(f)
-        for idx, app in amo.APP_IDS.iteritems():
+        for idx, app in six.iteritems(amo.APP_IDS):
             data = apps[str(app.id)]
             versions = sorted([a.version for a in
                                AppVersion.objects.filter(

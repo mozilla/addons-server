@@ -17,8 +17,8 @@ from mock import Mock, patch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
-from olympia.files.models import File
 from olympia.files.file_viewer import DiffHelper, FileViewer, extract_file
+from olympia.files.models import File
 from olympia.files.utils import SafeZip, get_all_files
 
 

@@ -5,6 +5,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import transaction
 
+import six
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -87,12 +89,13 @@ class Command(BaseCommand):
             set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
         try:
             log.info('Processing %s version %s...',
-                     unicode(version.addon.name), unicode(version.version))
+                     six.text_type(version.addon.name),
+                     six.text_type(version.version))
             summary, info = AutoApprovalSummary.create_summary_for_version(
                 version, dry_run=self.dry_run)
             log.info('Auto Approval for %s version %s: %s',
-                     unicode(version.addon.name),
-                     unicode(version.version),
+                     six.text_type(version.addon.name),
+                     six.text_type(version.version),
                      summary.get_verdict_display())
             self.stats.update({k: int(v) for k, v in info.items()})
             if summary.verdict == self.successful_verdict:

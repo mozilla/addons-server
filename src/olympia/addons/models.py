@@ -6,7 +6,6 @@ import os
 import posixpath
 import re
 import time
-import urlparse
 import uuid
 
 from datetime import datetime
@@ -17,13 +16,16 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
-from django.utils.functional import cached_property
 from django.utils import translation
+from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
+
+import six
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
 from jinja2.filters import do_dictsort
+from six.moves.urllib_parse import urlsplit
 
 import olympia.core.logger
 
@@ -39,8 +41,8 @@ from olympia.amo.models import (
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
-    AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
-    send_mail, slugify, sorted_groupby, timer, to_language, StopWatch)
+    AMOJSONEncoder, StopWatch, attach_trans_dict, cache_ns_key, chunked,
+    find_language, send_mail, slugify, sorted_groupby, timer, to_language)
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
@@ -52,7 +54,7 @@ from olympia.translations.fields import (
 from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
-from olympia.versions.models import inherit_nomination, Version, VersionPreview
+from olympia.versions.models import Version, VersionPreview, inherit_nomination
 
 from . import signals
 
@@ -152,7 +154,7 @@ def clean_slug(instance, slug_field='slug'):
 class AddonQuerySet(BaseQuerySet):
     def id_or_slug(self, val):
         """Get add-ons by id or slug."""
-        if isinstance(val, basestring) and not val.isdigit():
+        if isinstance(val, six.string_types) and not val.isdigit():
             return self.filter(slug=val)
         return self.filter(id=val)
 
@@ -519,7 +521,7 @@ class Addon(OnChangeMixin, ModelBase):
             self._ratings.all().delete()
             # The last parameter is needed to automagically create an AddonLog.
             activity.log_create(amo.LOG.DELETE_ADDON, self.pk,
-                                unicode(self.guid), self)
+                                six.text_type(self.guid), self)
             self.update(status=amo.STATUS_DELETED, slug=None,
                         _current_version=None, modified=datetime.now())
             models.signals.post_delete.send(sender=Addon, instance=self)
@@ -826,7 +828,7 @@ class Addon(OnChangeMixin, ModelBase):
         # as File's) when deleting a version. If so, we should avoid putting
         # that version-being-deleted in any fields.
         if ignore is not None:
-            updated = {k: v for k, v in updated.iteritems() if v != ignore}
+            updated = {k: v for k, v in six.iteritems(updated) if v != ignore}
 
         if updated:
             diff = [self._current_version, new_current_version]
@@ -1386,7 +1388,7 @@ class Addon(OnChangeMixin, ModelBase):
             files = (self.current_version.files
                          .filter(platform=amo.PLATFORM_ANDROID.id))
             try:
-                return unicode(files[0].get_localepicker(), 'utf-8')
+                return six.text_type(files[0].get_localepicker(), 'utf-8')
             except IndexError:
                 pass
         return ''
@@ -1586,7 +1588,7 @@ class Persona(models.Model):
         db_table = 'personas'
 
     def __unicode__(self):
-        return unicode(self.addon.name)
+        return six.text_type(self.addon.name)
 
     def is_new(self):
         return self.persona_id == 0
@@ -1695,15 +1697,15 @@ class Persona(models.Model):
 
         addon = self.addon
         return {
-            'id': unicode(self.addon.id),  # Personas dislikes ints
-            'name': unicode(addon.name),
+            'id': six.text_type(self.addon.id),  # Personas dislikes ints
+            'name': six.text_type(addon.name),
             'accentcolor': hexcolor(self.accentcolor),
             'textcolor': hexcolor(self.textcolor),
-            'category': (unicode(addon.all_categories[0].name) if
+            'category': (six.text_type(addon.all_categories[0].name) if
                          addon.all_categories else ''),
             # TODO: Change this to be `addons_users.user.display_name`.
             'author': self.display_username,
-            'description': (unicode(addon.description)
+            'description': (six.text_type(addon.description)
                             if addon.description is not None
                             else addon.description),
             'header': self.header_url,
@@ -1815,7 +1817,8 @@ class AddonApprovalsCounter(ModelBase):
     last_content_review = models.DateTimeField(null=True)
 
     def __unicode__(self):
-        return u'%s: %d' % (unicode(self.pk), self.counter) if self.pk else u''
+        return u'%s: %d' % (
+            six.text_type(self.pk), self.counter) if self.pk else u''
 
     @classmethod
     def increment_for_addon(cls, addon):
@@ -1901,10 +1904,10 @@ class Category(OnChangeMixin, ModelBase):
             # If we can't find the category in the constants dict, fall back
             # to the db field.
             value = self.db_name
-        return unicode(value)
+        return six.text_type(value)
 
     def __unicode__(self):
-        return unicode(self.name)
+        return six.text_type(self.name)
 
     def get_url_path(self):
         try:
@@ -2034,7 +2037,7 @@ class CompatOverride(ModelBase):
 
     def __unicode__(self):
         if self.addon:
-            return unicode(self.addon)
+            return six.text_type(self.addon)
         elif self.name:
             return '%s (%s)' % (self.name, self.guid)
         else:
@@ -2172,7 +2175,7 @@ class ReplacementAddon(ModelBase):
 
     @staticmethod
     def path_is_external(path):
-        return urlparse.urlsplit(path).scheme in ['http', 'https']
+        return urlsplit(path).scheme in ['http', 'https']
 
     def has_external_url(self):
         return self.path_is_external(self.path)

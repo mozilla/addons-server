@@ -77,6 +77,7 @@ jobs:
             - uitest-cache-{{ checksum "requirements/prod_py2.txt" }}
             - uitest-cache-{{ checksum "requirements/tests.txt" }}
             - uitest-cache-{{ checksum "requirements/dev.txt" }}
+            - uitest-cache-{{ checksum "requirements/dev_without_hash.txt" }}
             - uitest-cache-{{ checksum "requirements/uitests.txt" }}
             - uitest-cache-
       - run:
@@ -127,6 +128,10 @@ jobs:
             - .tox
       - save_cache:
           key: uitest-cache-{{ checksum "requirements/dev.txt" }}
+          paths:
+            - .tox
+      - save_cache:
+          key: uitest-cache-{{ checksum "requirements/dev_without_hash.txt" }}
           paths:
             - .tox
       - save_cache:

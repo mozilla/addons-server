@@ -144,11 +144,11 @@ class Command(BaseCommand):
             skip_confirmation = kwargs.get('noinput', False)
             confirm = ''
             if not skip_confirmation:
-                confirm = raw_input('Are you sure you want to wipe all AMO '
-                                    'Elasticsearch indexes? (yes/no): ')
+                confirm = input('Are you sure you want to wipe all AMO '
+                                'Elasticsearch indexes? (yes/no): ')
 
                 while confirm not in ('yes', 'no'):
-                    confirm = raw_input('Please enter either "yes" or "no": ')
+                    confirm = input('Please enter either "yes" or "no": ')
 
             if (confirm == 'yes' or skip_confirmation):
                 unflag_database()

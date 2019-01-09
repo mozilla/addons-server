@@ -249,7 +249,7 @@ class FileViewer(object):
         for manifest in ('install.rdf', 'manifest.json', 'package.json'):
             if manifest in files:
                 return manifest
-        return files.keys()[0] if files else None  # Eg: it's a search engine.
+        return list(files.keys())[0] if files else None
 
     def get_files(self):
         """

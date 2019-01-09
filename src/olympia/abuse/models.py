@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils import translation
 
+import six
+
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
@@ -39,7 +41,8 @@ class AbuseReport(ModelBase):
         name = self.target.name if self.target else self.guid
         msg = u'%s reported abuse for %s (%s).\n\n%s' % (
             user_name, name, target_url, self.message)
-        send_mail(unicode(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
+        send_mail(
+            six.text_type(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
 
     @property
     def target(self):

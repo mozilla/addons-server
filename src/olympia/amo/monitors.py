@@ -1,11 +1,11 @@
 import os
 import socket
-import StringIO
 import traceback
 
 from django.conf import settings
 
 import requests
+import six
 
 from kombu import Connection
 from PIL import Image
@@ -65,7 +65,7 @@ def libraries():
     libraries_results = []
     status = ''
     try:
-        Image.new('RGB', (16, 16)).save(StringIO.StringIO(), 'JPEG')
+        Image.new('RGB', (16, 16)).save(six.StringIO(), 'JPEG')
         libraries_results.append(('PIL+JPEG', True, 'Got it!'))
     except Exception as e:
         msg = "Failed to create a jpeg image: %s" % e
@@ -117,7 +117,7 @@ def path():
         path_perms = os.access(path, perms)
         filepath_status = filepath_status and path_exists and path_perms
 
-        if not isinstance(path, str):
+        if not isinstance(path, bytes):
             notes += ' / should be a bytestring!'
 
         filepath_results.append((path, path_exists, path_perms, notes))
