@@ -1,6 +1,6 @@
 import re
 
-from urllib2 import unquote
+from six.moves.urllib.parse import unquote
 
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _

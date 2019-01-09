@@ -6,12 +6,12 @@ import os
 import socket
 import subprocess
 import tempfile
-import urllib2
 import shutil
 
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
+from six.moves import urllib
 from tempfile import NamedTemporaryFile
 from zipfile import BadZipfile
 
@@ -949,11 +949,11 @@ def failed_validation(*messages):
 
 def _fetch_content(url):
     try:
-        return urllib2.urlopen(url, timeout=15)
-    except urllib2.HTTPError as e:
+        return urllib.requests.urlopen(url, timeout=15)
+    except urllib.error.HTTPError as e:
         raise Exception(
             ugettext('%s responded with %s (%s).') % (url, e.code, e.msg))
-    except urllib2.URLError as e:
+    except urllib.error.URLError as e:
         # Unpack the URLError to try and find a useful message.
         if isinstance(e.reason, socket.timeout):
             raise Exception(ugettext('Connection to "%s" timed out.') % url)
