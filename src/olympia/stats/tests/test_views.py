@@ -701,7 +701,7 @@ class TestSiteQuery(TestCase):
         super(TestSiteQuery, self).setUp()
         self.start = datetime.date(2012, 1, 1)
         self.end = datetime.date(2012, 1, 31)
-        for k in xrange(0, 15):
+        for k in range(0, 15):
             for name in ['addon_count_new', 'version_count_new']:
                 date_ = self.start + datetime.timedelta(days=k)
                 GlobalStat.objects.create(date=date_, name=name, count=k)

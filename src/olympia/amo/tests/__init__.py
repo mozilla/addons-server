@@ -2,14 +2,16 @@
 import os
 import random
 import shutil
+import six
 import time
 import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
 from importlib import import_module
+from six.moves.urllib_parse import parse_qs, urlparse
 from tempfile import NamedTemporaryFile
-from urlparse import parse_qs, urlparse
+
 
 from django import forms, test
 from django.conf import settings
@@ -100,7 +102,7 @@ def setup_es_test_data(es):
             list(e.args[1:]))
         raise
 
-    aliases_and_indexes = set(settings.ES_INDEXES.values() +
+    aliases_and_indexes = set(list(settings.ES_INDEXES.values()) +
                               es.indices.get_alias().keys())
 
     for key in aliases_and_indexes:
@@ -188,7 +190,7 @@ def check_links(expected, elements, selected=None, verify=True):
         if isinstance(item, tuple):
             text, link = item
         # Or list item could be `link`.
-        elif isinstance(item, basestring):
+        elif isinstance(item, six.string_types):
             text, link = None, item
 
         e = elements.eq(idx)
@@ -208,8 +210,8 @@ def check_links(expected, elements, selected=None, verify=True):
 
 def assert_url_equal(url, expected, compare_host=False):
     """Compare url paths and query strings."""
-    parsed = urlparse(unicode(url))
-    parsed_expected = urlparse(unicode(expected))
+    parsed = urlparse(six.text_type(url))
+    parsed_expected = urlparse(six.text_type(expected))
     compare_url_part(parsed.path, parsed_expected.path)
     compare_url_part(parse_qs(parsed.query), parse_qs(parsed_expected.query))
     if compare_host:
@@ -442,7 +444,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
             # There are multiple contexts so iter all of them.
             tpl = response.context
         for ctx in tpl:
-            for k, v in ctx.iteritems():
+            for k, v in six.iteritems(ctx):
                 if isinstance(v, (forms.BaseForm, forms.formsets.BaseFormSet)):
                     if isinstance(v, forms.formsets.BaseFormSet):
                         # Concatenate errors from each form in the formset.
@@ -473,7 +475,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
         """
 
         # Try parsing the string if it's not a datetime.
-        if isinstance(dt, basestring):
+        if isinstance(dt, six.string_types):
             try:
                 dt = dateutil_parser(dt)
             except ValueError as e:
@@ -627,7 +629,8 @@ def addon_factory(
     default_locale = kw.get('default_locale', settings.LANGUAGE_CODE)
 
     # Keep as much unique data as possible in the uuid: '-' aren't important.
-    name = kw.pop('name', u'Addôn %s' % unicode(uuid.uuid4()).replace('-', ''))
+    name = kw.pop('name', u'Addôn %s' %
+                  six.text_type(uuid.uuid4()).replace('-', ''))
     slug = kw.pop('slug', None)
     if slug is None:
         slug = name.replace(' ', '-').lower()[:30]
@@ -652,7 +655,7 @@ def addon_factory(
         kwargs['summary'] = u'Summary for %s' % name
     if type_ not in [amo.ADDON_PERSONA, amo.ADDON_SEARCH]:
         # Personas and search engines don't need guids
-        kwargs['guid'] = kw.pop('guid', '{%s}' % unicode(uuid.uuid4()))
+        kwargs['guid'] = kw.pop('guid', '{%s}' % six.text_type(uuid.uuid4()))
     kwargs.update(kw)
 
     # Save 1.

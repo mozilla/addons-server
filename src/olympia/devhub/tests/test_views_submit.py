@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-import urllib
 import json
 import os
 import stat
-import StringIO
 import tarfile
 import zipfile
 
@@ -16,9 +14,11 @@ from django.test.utils import override_settings
 
 import mock
 import responses
+import six
 
 from pyquery import PyQuery as pq
 from six import text_type
+from six.moves.urllib_parse import urlencode
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -26,8 +26,8 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, AddonReviewerFlags, Category)
 from olympia.amo.tests import (
-    TestCase, addon_factory, formset, initial, version_factory,
-    create_default_webext_appversion)
+    TestCase, addon_factory, create_default_webext_appversion, formset,
+    initial, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.constants.categories import CATEGORIES_BY_ID
@@ -124,7 +124,7 @@ class TestSubmitBase(TestCase):
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
             tar_info = tarfile.TarInfo('foo')
             tar_info.size = len(data)
-            tar_file.addfile(tar_info, StringIO.StringIO(data))
+            tar_file.addfile(tar_info, six.StringIO(data))
 
         source.seek(0)
         return source
@@ -250,7 +250,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         doc = pq(response.content)
         assert doc('.g-recaptcha')
 
-        verify_data = urllib.urlencode({
+        verify_data = urlencode({
             'secret': '',
             'remoteip': '127.0.0.1',
             'response': 'test',
@@ -1523,7 +1523,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.client.get(self.url)
         context = {
             'addon_name': 'Delicious Bookmarks',
-            'app': unicode(amo.FIREFOX.pretty),
+            'app': six.text_type(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
@@ -1540,7 +1540,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.client.get(self.url)
         context = {
             'addon_name': 'Delicious Bookmarks',
-            'app': unicode(amo.FIREFOX.pretty),
+            'app': six.text_type(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
@@ -1560,7 +1560,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         self.client.get(self.url)
         context = {
             'addon_name': 'Delicious Bookmarks',
-            'app': unicode(amo.FIREFOX.pretty),
+            'app': six.text_type(amo.FIREFOX.pretty),
             'detail_url': 'http://b.ro/en-US/firefox/addon/a3615/',
             'version_url': 'http://b.ro/en-US/developers/addon/a3615/versions',
             'edit_url': 'http://b.ro/en-US/developers/addon/a3615/edit',
@@ -1933,7 +1933,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('#theme-wizard').attr('data-version') == '3.0'
         assert doc('input#theme-name').attr('type') == 'hidden'
         assert doc('input#theme-name').attr('value') == (
-            unicode(self.addon.name))
+            six.text_type(self.addon.name))
         # Existing colors should be the default values for the fields
         assert doc('#accentcolor').attr('value') == '#123456'
         assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
@@ -1994,7 +1994,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('#theme-wizard').attr('data-version') == '3.0'
         assert doc('input#theme-name').attr('type') == 'hidden'
         assert doc('input#theme-name').attr('value') == (
-            unicode(self.addon.name))
+            six.text_type(self.addon.name))
         # Existing colors should be the default values for the fields
         assert doc('#accentcolor').attr('value') == '#123456'
         assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
@@ -2361,9 +2361,9 @@ class TestVersionSubmitDetails(TestSubmitBase):
         # metadata is missing, name, slug, summary and category are required to
         # be present.
         data = {
-            'name': unicode(self.addon.name),
+            'name': six.text_type(self.addon.name),
             'slug': self.addon.slug,
-            'summary': unicode(self.addon.summary),
+            'summary': six.text_type(self.addon.summary),
 
             'form-0-categories': [22, 1],
             'form-0-application': 1,

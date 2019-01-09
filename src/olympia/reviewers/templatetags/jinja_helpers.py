@@ -5,6 +5,7 @@ from django.utils.encoding import force_text
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
 import jinja2
+import six
 
 from django_jinja import library
 
@@ -48,7 +49,7 @@ def file_review_status(addon, file):
 def version_status(addon, version):
     if version.deleted:
         return ugettext(u'Deleted')
-    return ','.join(unicode(s) for s in version.status)
+    return ','.join(six.text_type(s) for s in version.status)
 
 
 @library.global_function

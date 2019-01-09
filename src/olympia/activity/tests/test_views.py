@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import json
-import StringIO
 
 from django.test.utils import override_settings
 
 import mock
+import six
 
 from olympia import amo
 from olympia.activity.models import ActivityLog, ActivityLogToken
@@ -275,8 +275,9 @@ class TestReviewNotesViewSetCreate(TestCase):
         reply = logs[0]
         rdata = response.data
         assert reply.pk == rdata['id']
-        assert (unicode(reply.details['comments']) == rdata['comments'] ==
-                u'comménty McCómm€nt')
+        assert (
+            six.text_type(reply.details['comments']) == rdata['comments'] ==
+            u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
         assert reply.action == amo.LOG.DEVELOPER_REPLY_VERSION.id
@@ -300,8 +301,9 @@ class TestReviewNotesViewSetCreate(TestCase):
         reply = logs[0]
         rdata = response.data
         assert reply.pk == rdata['id']
-        assert (unicode(reply.details['comments']) == rdata['comments'] ==
-                u'comménty McCómm€nt')
+        assert (
+            six.text_type(reply.details['comments']) == rdata['comments'] ==
+            u'comménty McCómm€nt')
         assert reply.user == self.user
         assert reply.user.name == rdata['user']['name'] == self.user.name
         assert reply.action == amo.LOG.REVIEWER_REPLY_VERSION.id
@@ -391,7 +393,7 @@ class TestEmailApi(TestCase):
         req.META['REMOTE_ADDR'] = '10.10.10.10'
         req.META['CONTENT_LENGTH'] = len(datastr)
         req.META['CONTENT_TYPE'] = 'application/json'
-        req._stream = StringIO.StringIO(datastr)
+        req._stream = six.StringIO(datastr)
         return req
 
     def get_validation_request(self, data):

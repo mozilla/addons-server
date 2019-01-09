@@ -1,7 +1,5 @@
 import os
-
 from datetime import datetime
-from urlparse import urlsplit
 
 from django import forms
 from django.conf import settings
@@ -9,7 +7,9 @@ from django.core.files.storage import default_storage as storage
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
+import six
 import waffle
+from six.moves.urllib_parse import urlsplit
 
 import olympia.core.logger
 
@@ -608,7 +608,7 @@ class EditThemeForm(AddonFormBase):
             'display_username': self.request.user.name
         }
         changed = False
-        for k, v in persona_data.iteritems():
+        for k, v in six.iteritems(persona_data):
             if v != getattr(persona, k):
                 changed = True
                 setattr(persona, k, v)

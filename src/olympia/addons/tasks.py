@@ -1,6 +1,7 @@
 import hashlib
 import os
 import uuid
+
 from datetime import datetime
 
 from django.conf import settings
@@ -9,13 +10,16 @@ from django.db import transaction
 from django.forms import ValidationError
 from django.utils import translation
 
+import six
 import waffle
+
 from django_statsd.clients import statsd
 from elasticsearch_dsl import Search
 from PIL import Image
 
 import olympia.core
-from olympia import amo, activity
+
+from olympia import activity, amo
 from olympia.addons.indexers import AddonIndexer
 from olympia.addons.models import (
     Addon, AddonCategory, AppSupport, Category, CompatOverride,
@@ -23,20 +27,19 @@ from olympia.addons.models import (
     attach_translations)
 from olympia.addons.utils import (
     build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
-from olympia.amo.celery import task
+from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, cache_ns_key, extract_colors_from_image,
-    pngcrush_image, StopWatch)
+    ImageCheck, LocalFileStorage, StopWatch, cache_ns_key,
+    extract_colors_from_image, pngcrush_image)
 from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import RDFExtractor, get_file, parse_addon, SafeZip
-from olympia.amo.celery import pause_all_tasks, resume_all_tasks
+from olympia.files.utils import RDFExtractor, SafeZip, get_file, parse_addon
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
@@ -504,7 +507,8 @@ def extract_strict_compatibility_value_for_addon(addon):
         # existing, etc. In any case, that means the add-on is in a weird
         # state and should be ignored (this is a one off task).
         log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.', addon.pk, unicode(exc))
+                      u'received %s when extracting.',
+                      addon.pk, six.text_type(exc))
     return strict_compatibility
 
 

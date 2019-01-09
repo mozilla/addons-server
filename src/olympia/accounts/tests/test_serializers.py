@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
 from django.test.utils import override_settings
+
+import six
+
 from rest_framework import serializers
 from rest_framework.test import APIRequestFactory
 
@@ -88,7 +91,7 @@ class TestPublicUserProfileSerializer(TestCase):
     def test_basic(self):
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
-            assert data[prop] == unicode(val), prop
+            assert data[prop] == six.text_type(val), prop
         return data
 
     def test_addons(self):

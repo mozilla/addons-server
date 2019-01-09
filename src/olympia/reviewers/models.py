@@ -1,4 +1,5 @@
 import json
+import six
 
 from collections import OrderedDict
 from datetime import date, datetime, timedelta
@@ -81,7 +82,7 @@ class CannedResponse(ModelBase):
         db_table = 'cannedresponses'
 
     def __unicode__(self):
-        return unicode(self.name)
+        return six.text_type(self.name)
 
 
 def get_flags(addon, version):
@@ -287,7 +288,8 @@ class ViewUnlistedAllList(RawSQLModel):
     @property
     def authors(self):
         ids = self._explode_concat(self._author_ids)
-        usernames = self._explode_concat(self._author_usernames, cast=unicode)
+        usernames = self._explode_concat(
+            self._author_usernames, cast=six.text_type)
         return list(set(zip(ids, usernames)))
 
 
@@ -748,7 +750,7 @@ class ReviewerScore(ModelBase):
             if user_level < 0:
                 level = ''
             else:
-                level = unicode(amo.REVIEWED_LEVELS[user_level]['name'])
+                level = six.text_type(amo.REVIEWED_LEVELS[user_level]['name'])
 
             scores.append({
                 'user_id': user_id,

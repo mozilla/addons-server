@@ -9,11 +9,12 @@ from threading import local
 from django import urls
 from django.conf import settings
 from django.utils.encoding import force_bytes
-from django.utils.http import _urlparse as urlparse
+from django.utils.http import _urlparse as django_urlparse
 from django.utils.translation.trans_real import parse_accept_lang_header
 
 import bleach
 import jinja2
+import six
 
 from olympia import amo
 
@@ -172,7 +173,9 @@ def get_outgoing_url(url):
     if not settings.REDIRECT_URL:
         return url
 
-    parsed_url = urlparse(url)
+    # django.utils.http._urlparse is a copy of python's urlparse()
+    # "but uses fixed urlsplit() function".
+    parsed_url = django_urlparse(url)
     url_netloc = parsed_url.netloc
 
     # This prevents a link like javascript://addons.mozilla.org...
@@ -182,7 +185,7 @@ def get_outgoing_url(url):
         return '/'
 
     # No double-escaping, and some domain names are excluded.
-    if (url_netloc == urlparse(settings.REDIRECT_URL).netloc or
+    if (url_netloc == django_urlparse(settings.REDIRECT_URL).netloc or
             url_netloc in settings.REDIRECT_URL_ALLOW_LIST):
         return url
 
@@ -237,13 +240,13 @@ def linkify_escape(text):
         # Parameters are already escaped.
         return u'<a href="{0}">{0}</a>'.format(match.group(0))
 
-    return URL_RE.sub(linkify, unicode(jinja2.escape(text)))
+    return URL_RE.sub(linkify, six.text_type(jinja2.escape(text)))
 
 
 def linkify_with_outgoing(text):
     """Wrapper around bleach.linkify: uses get_outgoing_url."""
     callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
-    return bleach.linkify(unicode(text), callbacks=callbacks)
+    return bleach.linkify(six.text_type(text), callbacks=callbacks)
 
 
 def lang_from_accept_header(header):

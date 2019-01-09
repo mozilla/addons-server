@@ -1,21 +1,21 @@
 # -*- coding: utf-8 -*-
 import json
-import urllib
-
-from StringIO import StringIO
 
 from django.conf import settings
 from django.db import connection
 from django.test.utils import override_settings
 
 import mock
+import six
+from six import StringIO
+from six.moves.urllib_parse import urlencode
 
 from services import theme_update
 
 from olympia import amo
 from olympia.addons.models import Addon, MigratedLWT
 from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.tests import addon_factory, TestCase
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.versions.models import Version
 
 
@@ -37,7 +37,7 @@ class TestWSGIApplication(TestCase):
                                   MigratedUpdate_mock):
         MigratedUpdate_mock.return_value.is_migrated = False
         # From AMO we consume the ID as the `addon_id`.
-        for path_info, call_args in self.urls.iteritems():
+        for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             LWThemeUpdate_mock.assert_called_with(*call_args)
@@ -46,7 +46,7 @@ class TestWSGIApplication(TestCase):
         # From getpersonas.com we append `?src=gp` so we know to consume
         # the ID as the `persona_id`.
         self.environ['QUERY_STRING'] = 'src=gp'
-        for path_info, call_args in self.urls.iteritems():
+        for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             call_args[2] = 'src=gp'
@@ -61,7 +61,7 @@ class TestWSGIApplication(TestCase):
                                            MigratedUpdate_mock):
         MigratedUpdate_mock.return_value.is_migrated = True
         # From AMO we consume the ID as the `addon_id`.
-        for path_info, call_args in self.urls.iteritems():
+        for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             assert not LWThemeUpdate_mock.called
@@ -71,7 +71,7 @@ class TestWSGIApplication(TestCase):
         # From getpersonas.com we append `?src=gp` so we know to consume
         # the ID as the `persona_id`.
         self.environ['QUERY_STRING'] = 'src=gp'
-        for path_info, call_args in self.urls.iteritems():
+        for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             call_args[2] = 'src=gp'
@@ -103,7 +103,7 @@ class TestWSGIApplication(TestCase):
     def test_404_for_migrated_but_updates_disabled(
             self, LWThemeUpdate_mock, MigratedUpdate_mock):
         MigratedUpdate_mock.return_value.is_migrated = True
-        for path_info, call_args in self.urls.iteritems():
+        for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             theme_update.application(environ, self.start_response)
             assert not LWThemeUpdate_mock.called
@@ -135,7 +135,7 @@ class TestThemeUpdate(TestCase):
         }
 
     def check_good(self, data):
-        for k, v in self.good.iteritems():
+        for k, v in six.iteritems(self.good):
             got = data[k]
             if k.endswith('URL'):
                 if k in ('detailURL', 'updateURL'):
@@ -231,7 +231,7 @@ class TestMigratedUpdate(TestCase):
         response = json.loads(update.get_json())
         url = '{0}{1}/{2}?{3}'.format(
             user_media_url('addons'), str(stheme.id), 'foo.xpi',
-            urllib.urlencode({'filehash': 'brown'}))
+            urlencode({'filehash': 'brown'}))
         assert update.data == {
             'stheme_id': stheme.id, 'filename': 'foo.xpi', 'hash': 'brown'}
         assert response == {

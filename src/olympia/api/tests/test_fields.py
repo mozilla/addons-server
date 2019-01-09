@@ -2,6 +2,8 @@
 from django.core.exceptions import ValidationError
 from django.test.utils import override_settings
 
+import six
+
 from mock import Mock
 from rest_framework import serializers
 from rest_framework.request import Request
@@ -60,10 +62,12 @@ class TestTranslationSerializerField(TestCase):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                     locale='en-US')),
-            'es': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                  locale='es')),
+            'en-US': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='en-US')),
+            'es': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='es')),
         }
         assert result == expected
 
@@ -80,7 +84,7 @@ class TestTranslationSerializerField(TestCase):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(self.addon.name),
+            'en-US': six.text_type(self.addon.name),
         }
         assert result == expected
 
@@ -88,7 +92,7 @@ class TestTranslationSerializerField(TestCase):
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(self.addon.description),
+            'en-US': six.text_type(self.addon.description),
         }
         assert result == expected
 
@@ -167,10 +171,12 @@ class TestTranslationSerializerField(TestCase):
         field = self.field_class(source='mymock.mymocked_field')
         result = field.to_internal_value(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                     locale='en-US')),
-            'es': unicode(Translation.objects.get(id=self.addon.name.id,
-                                                  locale='es')),
+            'en-US': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='en-US')),
+            'es': six.text_type(
+                Translation.objects.get(id=self.addon.name.id,
+                                        locale='es')),
         }
         assert result == expected
 
@@ -241,13 +247,13 @@ class TestTranslationSerializerFieldFlat(TestTranslationSerializerField):
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.name)
+        expected = six.text_type(self.addon.name)
         assert result == expected
 
         field.source = None
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.description)
+        expected = six.text_type(self.addon.description)
         assert result == expected
 
     def test_to_internal_value(self):
@@ -338,7 +344,7 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(self.addon.name_translations['en-US'])
+            'en-US': six.text_type(self.addon.name_translations['en-US'])
         }
         assert result == expected
 
@@ -346,7 +352,8 @@ class TestESTranslationSerializerField(TestTranslationSerializerField):
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
         expected = {
-            'en-US': unicode(self.addon.description_translations['en-US'])
+            'en-US': six.text_type(
+                self.addon.description_translations['en-US'])
         }
         assert result == expected
 
@@ -390,13 +397,13 @@ class TestESTranslationSerializerFieldFlat(TestTranslationSerializerFieldFlat,
     def _test_expected_single_locale(self, field, serializer=None):
         field.bind('name', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.name_translations['en-US'])
+        expected = six.text_type(self.addon.name_translations['en-US'])
         assert result == expected
 
         field.source = None
         field.bind('description', serializer)
         result = field.to_representation(field.get_attribute(self.addon))
-        expected = unicode(self.addon.description_translations['en-US'])
+        expected = six.text_type(self.addon.description_translations['en-US'])
         assert result == expected
 
 

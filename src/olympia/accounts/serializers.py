@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.files.storage import default_storage
 from django.utils.translation import ugettext
 
+import six
+
 from rest_framework import serializers
 
 import olympia.core.logger
@@ -11,12 +13,14 @@ from olympia.access import acl
 from olympia.access.models import Group
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.utils import (
-    clean_nl, has_links, ImageCheck, slug_validator,
+    clean_nl, has_links, ImageCheck,
     subscribe_newsletter, unsubscribe_newsletter, urlparams)
 from olympia.api.utils import is_gate_active
+from olympia.api.validators import OneOrMorePrintableCharacterValidator
+from olympia.users import notifications
 from olympia.users.models import DeniedName, UserProfile
 from olympia.users.tasks import resize_photo
-from olympia.users import notifications
+
 
 log = olympia.core.logger.getLogger('accounts')
 
@@ -68,7 +72,9 @@ class PublicUserProfileSerializer(BaseUserSerializer):
 
 
 class UserProfileSerializer(PublicUserProfileSerializer):
-    display_name = serializers.CharField(min_length=2, max_length=50)
+    display_name = serializers.CharField(
+        min_length=2, max_length=50,
+        validators=[OneOrMorePrintableCharacterValidator()])
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
@@ -77,11 +83,11 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         fields = PublicUserProfileSerializer.Meta.fields + (
             'display_name', 'email', 'deleted', 'last_login', 'picture_upload',
             'last_login_ip', 'read_dev_agreement', 'permissions',
-            'fxa_edit_email_url',
+            'fxa_edit_email_url', 'username',
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',
-            'picture_upload', 'username',
+            'picture_upload',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
 
@@ -93,7 +99,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                          entrypoint='addons')
 
     def validate_biography(self, value):
-        if has_links(clean_nl(unicode(value))):
+        if has_links(clean_nl(six.text_type(value))):
             # There's some links, we don't want them.
             raise serializers.ValidationError(
                 ugettext(u'No links are allowed.'))
@@ -111,30 +117,6 @@ class UserProfileSerializer(PublicUserProfileSerializer):
                 ugettext(u'The homepage field can only be used to link to '
                          u'external websites.')
             )
-        return value
-
-    def validate_username(self, value):
-        # All-digits usernames are disallowed since they can be confused for
-        # user IDs in URLs.
-        if value.isdigit():
-            raise serializers.ValidationError(
-                ugettext(u'Usernames cannot contain only digits.'))
-
-        slug_validator(
-            value, lower=False,
-            message=ugettext(u'Enter a valid username consisting of letters, '
-                             u'numbers, underscores or hyphens.'))
-        if DeniedName.blocked(value):
-            raise serializers.ValidationError(
-                ugettext(u'This username cannot be used.'))
-
-        # Bug 858452. Remove this check when collation of the username
-        # column is changed to case insensitive.
-        if (UserProfile.objects.exclude(id=self.instance.id)
-                       .filter(username__iexact=value).exists()):
-            raise serializers.ValidationError(
-                ugettext(u'This username is already in use.'))
-
         return value
 
     def validate_picture_upload(self, value):

@@ -7,6 +7,7 @@ from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
 import pytest
+import six
 
 from mock import Mock, patch
 from pyquery import PyQuery as pq
@@ -58,7 +59,7 @@ class TestViewPendingQueueTable(TestCase):
     def test_addon_type_id(self):
         row = Mock()
         row.addon_type_id = amo.ADDON_THEME
-        assert unicode(self.table.render_addon_type_id(row)) == (
+        assert six.text_type(self.table.render_addon_type_id(row)) == (
             u'Complete Theme')
 
     def test_waiting_time_in_days(self):
@@ -265,7 +266,8 @@ class TestReviewHelper(TestCase):
             helper = self.get_helper()
             actions = helper.actions
             for k, v in actions.items():
-                assert unicode(v['details']), "Missing details for: %s" % k
+                assert six.text_type(
+                    v['details']), "Missing details for: %s" % k
 
     def get_review_actions(
             self, addon_status, file_status, content_review_only=False):
@@ -398,7 +400,7 @@ class TestReviewHelper(TestCase):
 
         self.helper.set_data(self.get_data())
         context_data = self.helper.handler.get_context_data()
-        for template, context_key in expected.iteritems():
+        for template, context_key in six.iteritems(expected):
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1

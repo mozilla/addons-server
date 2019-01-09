@@ -5,25 +5,25 @@ import re
 
 from django.conf import settings
 from django.core import mail
-from django.test.utils import override_settings
 from django.test.client import Client
+from django.test.utils import override_settings
 from django.utils.http import urlsafe_base64_encode, urlunquote
 
 import mock
 import pytest
+import six
 
 from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
-from waffle.testutils import override_switch
 from rest_framework.test import APIRequestFactory
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.addons.models import (
-    Addon, AddonUser, Category,
-    CompatOverride, CompatOverrideRange, Persona, ReplacementAddon,
-    AddonCategory)
+    Addon, AddonCategory, AddonUser, Category, CompatOverride,
+    CompatOverrideRange, Persona, ReplacementAddon)
 from olympia.addons.utils import generate_addon_guid
 from olympia.addons.views import (
     DEFAULT_FIND_REPLACEMENT_PATH, FIND_REPLACEMENT_SRC,
@@ -75,7 +75,7 @@ def _test_hovercards(self, doc, addons, src=''):
         hc = btn.parents('.addon.hovercard')
         assert hc.find('a').attr('href') == (
             urlparams(addon.get_url_path(), src=src))
-        assert hc.find('h3').text() == unicode(addon.name)
+        assert hc.find('h3').text() == six.text_type(addon.name)
 
 
 class TestHomepage(TestCase):
@@ -150,7 +150,7 @@ class TestHomepageFeatures(TestCase):
             '#featured-themes': browse_personas,
             '#featured-collections': browse_collections + '?sort=featured',
         }
-        for id_, url in sections.iteritems():
+        for id_, url in six.iteritems(sections):
             # Check that the "See All" link points to the correct page.
             assert doc.find('%s .seeall' % id_).attr('href') == url
 
@@ -431,7 +431,7 @@ class TestDetailPage(TestCase):
         For add-ons incompatible with the current app, redirect to one
         that's supported.
         """
-        comp_app = self.addon.compatible_apps.keys()[0]
+        comp_app = list(self.addon.compatible_apps.keys())[0]
         not_comp_app = [a for a in amo.APP_USAGE
                         if a not in self.addon.compatible_apps.keys()][0]
 
@@ -984,7 +984,7 @@ class TestDetailPage(TestCase):
 
     def test_categories(self):
         links = self.get_more_pq()('#related ul:first').find('a')
-        expected = [(unicode(c.name), c.get_url_path())
+        expected = [(six.text_type(c.name), c.get_url_path())
                     for c in self.addon.categories.filter(
                         application=amo.FIREFOX.id)]
         amo.tests.check_links(expected, links)
@@ -2970,7 +2970,7 @@ class TestAddonSearchView(ESTestCase):
         # Exclude addon1 and addon2 by pk.
         data = self.perform_search(
             self.url, {'exclude_addons': u','.join(
-                map(unicode, (addon2.pk, addon1.pk)))})
+                map(six.text_type, (addon2.pk, addon1.pk)))})
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -2979,7 +2979,7 @@ class TestAddonSearchView(ESTestCase):
         # Exclude addon1 by pk and addon3 by slug.
         data = self.perform_search(
             self.url, {'exclude_addons': u','.join(
-                (unicode(addon1.pk), addon3.slug))})
+                (six.text_type(addon1.pk), addon3.slug))})
 
         assert len(data['results']) == 1
         assert data['count'] == 1
@@ -3849,7 +3849,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.url = reverse_ns('addon-recommendations')
         patcher = mock.patch(
             'olympia.addons.views.get_addon_recommendations')
-        self.get_recommendations_mock = patcher.start()
+        self.get_addon_recommendations_mock = patcher.start()
         self.addCleanup(patcher.stop)
 
     def tearDown(self):
@@ -3869,14 +3869,15 @@ class TestAddonRecommendationView(ESTestCase):
         addon2 = addon_factory(id=102, guid='102@mozilla')
         addon3 = addon_factory(id=103, guid='103@mozilla')
         addon4 = addon_factory(id=104, guid='104@mozilla')
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
             'recommended', 'no_reason')
         self.refresh()
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'False'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', False)
+        self.get_addon_recommendations_mock.assert_called_with(
+            'foo@baa', False)
         assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] == 'no_reason'
         assert data['count'] == 4
@@ -3905,7 +3906,7 @@ class TestAddonRecommendationView(ESTestCase):
         addon6 = addon_factory(id=106, guid='106@mozilla')
         addon7 = addon_factory(id=107, guid='107@mozilla')
         addon8 = addon_factory(id=108, guid='108@mozilla')
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'],
             'recommended', None)
         get_addon_recommendations_invalid.return_value = (
@@ -3915,7 +3916,7 @@ class TestAddonRecommendationView(ESTestCase):
 
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'True'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        self.get_addon_recommendations_mock.assert_called_with('foo@baa', True)
         assert data['outcome'] == 'recommended'
         assert data['fallback_reason'] is None
         assert data['count'] == 4
@@ -3939,7 +3940,7 @@ class TestAddonRecommendationView(ESTestCase):
         self.refresh()
         data = self.perform_search(
             self.url, {'guid': 'foo@baa', 'recommended': 'True'})
-        self.get_recommendations_mock.assert_called_with('foo@baa', True)
+        self.get_addon_recommendations_mock.assert_called_with('foo@baa', True)
         assert data['outcome'] == 'failed'
         assert data['fallback_reason'] == 'invalid'
         assert data['count'] == 4
@@ -3959,7 +3960,7 @@ class TestAddonRecommendationView(ESTestCase):
         assert result['guid'] == '108@mozilla'
 
     def test_es_queries_made_no_results(self):
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['@a', '@b'], 'foo', 'baa')
         with patch.object(
                 Elasticsearch, 'search',
@@ -3980,7 +3981,7 @@ class TestAddonRecommendationView(ESTestCase):
         addon_factory(slug='fb', name=u'foo', guid='@d')
         self.refresh()
 
-        self.get_recommendations_mock.return_value = (
+        self.get_addon_recommendations_mock.return_value = (
             ['@a', '@b', '@c', '@d'], 'recommended', None)
         with patch.object(
                 Elasticsearch, 'search',

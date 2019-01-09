@@ -78,6 +78,18 @@ class AddonGitRepository(object):
         from olympia.addons.models import Addon
         assert package_type in ('package', 'source')
 
+        # Always enforce the search path being set to the configured
+        # HOME environment variable. We are setting this here to avoid
+        # creating a unnecessary global state but since this is overwriting
+        # a global value in pygit2 it affects all pygit2 calls.
+        # Given that we're setting it to whatever `~` expands to
+        # the actual value changes more or less only on process-restart.
+
+        # https://github.com/libgit2/pygit2/issues/339
+        # https://github.com/libgit2/libgit2/issues/2122
+        home = os.path.expanduser('~')
+        pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = home
+
         addon_id = (
             addon_or_id.pk
             if isinstance(addon_or_id, Addon)

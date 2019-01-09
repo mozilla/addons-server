@@ -115,6 +115,7 @@ install_python_test_dependencies:
 install_python_dev_dependencies: install_python_test_dependencies
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev_without_hash.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
 	pip install -e .
 

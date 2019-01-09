@@ -1,10 +1,11 @@
-import StringIO
 import threading
 import time
 
 from django.core import management
 from django.db import connection
 from django.test.testcases import TransactionTestCase
+
+import six
 
 from olympia.amo.tests import ESTestCase, addon_factory, create_switch
 from olympia.amo.urlresolvers import reverse
@@ -76,7 +77,7 @@ class TestIndexCommand(ESTestCase):
     def get_indices_aliases(cls):
         """Return the test indices with an alias."""
         indices = cls.es.indices.get_alias()
-        items = [(index, aliases['aliases'].keys()[0])
+        items = [(index, list(aliases['aliases'].keys())[0])
                  for index, aliases in indices.items()
                  if len(aliases['aliases']) > 0 and index.startswith('test_')]
         items.sort()
@@ -89,7 +90,7 @@ class TestIndexCommand(ESTestCase):
         # This is to start a reindexation in the background.
         class ReindexThread(threading.Thread):
             def __init__(self):
-                self.stdout = StringIO.StringIO()
+                self.stdout = six.StringIO()
                 super(ReindexThread, self).__init__()
 
             def run(self):
@@ -169,7 +170,7 @@ class TestIndexCommandClassicAlgorithm(TestIndexCommand):
         # explicitly to ensure that we actually run the test for the index
         # setting instead of using an `if` and failing silently
         amo_addons_settings = self.es.indices.get_settings('test_amo_addons')
-        settings = amo_addons_settings[amo_addons_settings.keys()[0]]
+        settings = amo_addons_settings[list(amo_addons_settings.keys())[0]]
 
         assert settings['settings']['index']['similarity']['default'] == {
             'type': 'classic'

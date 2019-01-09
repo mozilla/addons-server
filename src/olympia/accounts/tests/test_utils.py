@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
 import json
+import mock
 import time
-import urlparse
 
 from base64 import urlsafe_b64decode, urlsafe_b64encode
 from datetime import datetime
+from six.moves.urllib_parse import parse_qs, urlparse
 
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
-
-import mock
 
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
@@ -64,11 +63,11 @@ def test_default_fxa_login_url_with_state():
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.default_fxa_login_url(request)
-    url = urlparse.urlparse(raw_url)
+    url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
-    query = urlparse.parse_qs(url.query)
+    query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path).rstrip('=')
     assert query == {
         'action': ['signin'],
@@ -85,11 +84,11 @@ def test_default_fxa_register_url_with_state():
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.default_fxa_register_url(request)
-    url = urlparse.urlparse(raw_url)
+    url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
-    query = urlparse.parse_qs(url.query)
+    query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path).rstrip('=')
     assert query == {
         'action': ['signup'],
@@ -111,11 +110,11 @@ def test_fxa_login_url_without_requiring_two_factor_auth():
         state=request.session['fxa_state'], next_path=path, action='signin',
         force_two_factor=False)
 
-    url = urlparse.urlparse(raw_url)
+    url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
-    query = urlparse.parse_qs(url.query)
+    query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path).rstrip('=')
     assert query == {
         'action': ['signin'],
@@ -137,11 +136,11 @@ def test_fxa_login_url_requiring_two_factor_auth():
         state=request.session['fxa_state'], next_path=path, action='signin',
         force_two_factor=True)
 
-    url = urlparse.urlparse(raw_url)
+    url = urlparse(raw_url)
     base = '{scheme}://{netloc}{path}'.format(
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
-    query = urlparse.parse_qs(url.query)
+    query = parse_qs(url.query)
     next_path = urlsafe_b64encode(path).rstrip('=')
     assert query == {
         'acr_values': ['AAL2'],
@@ -158,7 +157,7 @@ def test_unicode_next_path():
     request = RequestFactory().get(path)
     request.session = {}
     url = utils.default_fxa_login_url(request)
-    state = urlparse.parse_qs(urlparse.urlparse(url).query)['state'][0]
+    state = parse_qs(urlparse(url).query)['state'][0]
     next_path = urlsafe_b64decode(state.split(':')[1] + '===')
     assert next_path.decode('utf-8') == path
 

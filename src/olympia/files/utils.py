@@ -8,16 +8,13 @@ import io
 import re
 import shutil
 import stat
-import StringIO
 import struct
 import tarfile
 import tempfile
 import zipfile
-import scandir
 
-from cStringIO import StringIO as cStringIO
 from datetime import datetime, timedelta
-from six import text_type
+from six.moves import cStringIO as StringIO
 from xml.dom import minidom
 
 from django import forms
@@ -31,8 +28,11 @@ from django.utils.translation import ugettext
 
 import flufl.lock
 import rdflib
+import scandir
+import six
 
 from signing_clients.apps import get_signer_organizational_unit_name
+from six import text_type
 
 import olympia.core.logger
 
@@ -45,7 +45,6 @@ from olympia.lib.safe_xml import lxml
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
-
 from olympia.versions.compare import version_int as vint
 
 
@@ -85,7 +84,7 @@ def get_filepath(fileorpath):
     This supports various input formats, a path, a django `File` object,
     `olympia.files.File`, a `FileUpload` or just a regular file-like object.
     """
-    if isinstance(fileorpath, basestring):
+    if isinstance(fileorpath, six.string_types):
         return fileorpath
     elif isinstance(fileorpath, DjangoFile):
         return fileorpath
@@ -105,7 +104,7 @@ def id_to_path(pk):
     12 => 2/12/12
     123456 => 6/56/123456
     """
-    pk = unicode(pk)
+    pk = six.text_type(pk)
     path = [pk[-1]]
     if len(pk) >= 2:
         path.append(pk[-2:])
@@ -125,7 +124,7 @@ def get_file(fileorpath):
 
 
 def make_xpi(files):
-    file_obj = cStringIO()
+    file_obj = StringIO()
     zip_file = zipfile.ZipFile(file_obj, 'w')
     for path, data in files.items():
         zip_file.writestr(path, data)
@@ -312,7 +311,7 @@ class RDFExtractor(object):
         match = list(self.rdf.objects(ctx, predicate=self.uri(name)))
         # These come back as rdflib.Literal, which subclasses unicode.
         if match:
-            return unicode(match[0])
+            return six.text_type(match[0])
 
     def apps(self):
         rv = []
@@ -515,7 +514,7 @@ class ManifestJSONExtractor(object):
         """Guess target_locale for a dictionary from manifest contents."""
         try:
             dictionaries = self.get('dictionaries', {})
-            key = force_text(dictionaries.keys()[0])
+            key = force_text(list(dictionaries.keys())[0])
             return key[:255]
         except (IndexError, UnicodeDecodeError):
             # This shouldn't happen: the linter should prevent it, but
@@ -766,8 +765,7 @@ class SafeZip(object):
         if type == 'jar':
             parts = path.split('!')
             for part in parts[:-1]:
-                jar = self.__class__(
-                    StringIO.StringIO(jar.zip_file.read(part)))
+                jar = self.__class__(StringIO(jar.zip_file.read(part)))
             path = parts[-1]
         return jar.read(path[1:] if path.startswith('/') else path)
 
@@ -1287,7 +1285,7 @@ def resolve_i18n_message(message, messages, locale, default_locale=None):
     :param messages: A dictionary of messages, e.g the return value
                      of `extract_translations`.
     """
-    if not message or not isinstance(message, basestring):
+    if not message or not isinstance(message, six.string_types):
         # Don't even attempt to extract invalid data.
         # See https://github.com/mozilla/addons-server/issues/3067
         # for more details
