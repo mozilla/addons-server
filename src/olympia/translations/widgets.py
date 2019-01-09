@@ -1,3 +1,5 @@
+import six
+
 from django import forms
 from django.utils import translation
 from django.utils.encoding import force_text
@@ -21,7 +23,7 @@ class TranslationTextInput(forms.widgets.TextInput):
     """A simple textfield replacement for collecting translated names."""
 
     def _format_value(self, value):
-        if isinstance(value, long):
+        if isinstance(value, six.integer_types):
             return get_string(value)
         return value
 
@@ -29,7 +31,7 @@ class TranslationTextInput(forms.widgets.TextInput):
 class TranslationTextarea(forms.widgets.Textarea):
 
     def render(self, name, value, attrs=None):
-        if isinstance(value, long):
+        if isinstance(value, six.integer_types):
             value = get_string(value)
         return super(TranslationTextarea, self).render(name, value, attrs)
 
@@ -99,7 +101,7 @@ class TransMulti(forms.widgets.MultiWidget):
     def decompress(self, value):
         if not value:
             return []
-        elif isinstance(value, (long, int)):
+        elif isinstance(value, six.integer_types):
             # We got a foreign key to the translation table.
             qs = Translation.objects.filter(id=value)
             return list(qs.filter(localized_string__isnull=False))

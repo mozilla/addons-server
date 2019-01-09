@@ -1,5 +1,6 @@
 from django.db.models import Avg, Count, F
 from django.conf import settings
+import six
 
 import waffle
 
@@ -44,14 +45,14 @@ def update_denorm(*pairs, **kw):
 @task
 @use_primary_db
 def addon_rating_aggregates(addons, **kw):
-    if isinstance(addons, (int, long)):  # Got passed a single addon id.
+    if isinstance(addons, six.integer_types):  # Got passed a single addon id.
         addons = [addons]
     log.info('[%s@%s] Updating total reviews and average ratings.' %
              (len(addons), addon_rating_aggregates.rate_limit))
     addon_objs = list(Addon.objects.filter(pk__in=addons))
     # The following returns something like
-    # [{'rating': 2.0, 'addon': 7L, 'count': 5},
-    #  {'rating': 3.75, 'addon': 6L, 'count': 8}, ...]
+    # [{'rating': 2.0, 'addon': 7, 'count': 5},
+    #  {'rating': 3.75, 'addon': 6, 'count': 8}, ...]
     qs = (Rating.without_replies.all()
           .filter(addon__in=addons, is_latest=True)
           .values('addon')  # Group by addon id.

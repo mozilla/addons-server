@@ -3,6 +3,7 @@ import os
 import json
 
 import pytest
+import six
 
 from django.conf import settings
 
@@ -28,7 +29,7 @@ def test_base_paths_bytestring(key):
 
     See https://github.com/mozilla/addons-server/issues/3579 for context.
     """
-    assert isinstance(getattr(settings, key), str)
+    assert isinstance(getattr(settings, key), six.string_types)
 
 
 def test_raven_release_config():

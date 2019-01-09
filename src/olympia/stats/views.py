@@ -1,6 +1,4 @@
-import cStringIO
 import csv
-import itertools
 import json
 import time
 
@@ -15,18 +13,21 @@ from django.db import connection
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 
+import six
+
 from dateutil.parser import parse
 from product_details import product_details
+from six import moves
 
 import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.stats.decorators import addon_view_stats
-from olympia.lib.cache import memoize
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
+from olympia.lib.cache import memoize
+from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
 from .models import DownloadCount, ThemeUserCount, UpdateCount
@@ -180,7 +181,7 @@ def zip_overview(downloads, updates):
                 yield 0
             next_date = next_date - timedelta(days=1)
 
-    series = itertools.izip_longest(iterator(downloads), iterator(updates))
+    series = six.moves.zip_longest(iterator(downloads), iterator(updates))
     for idx, (dl_count, up_count) in enumerate(series):
         yield {'date': start_date - timedelta(days=idx),
                'data': {'downloads': dl_count, 'updates': up_count}}
@@ -275,8 +276,8 @@ def flatten_applications(series):
                 app = amo.APP_GUIDS.get(app)
                 if not app:
                     continue
-                # unicode() to decode the gettext proxy.
-                appname = unicode(app.pretty)
+                # six.text_type() to decode the gettext proxy.
+                appname = six.text_type(app.pretty)
                 for ver, count in versions.items():
                     key = ' '.join([appname, ver])
                     new[key] = count
@@ -487,7 +488,7 @@ class UnicodeCSVDictWriter(csv.DictWriter):
     def __init__(self, stream, fields, **kw):
         # We have the csv module write into our buffer as bytes and then we
         # dump the buffer to the real stream as unicode.
-        self.buffer = cStringIO.StringIO()
+        self.buffer = moves.cStringIO()
         csv.DictWriter.__init__(self, self.buffer, fields, **kw)
         self.stream = stream
 
@@ -495,7 +496,7 @@ class UnicodeCSVDictWriter(csv.DictWriter):
         self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
 
     def try_encode(self, obj):
-        return obj.encode('utf-8') if isinstance(obj, unicode) else obj
+        return obj.encode('utf-8') if isinstance(obj, six.text_type) else obj
 
     def writerow(self, rowdict):
         row = self._dict_to_list(rowdict)

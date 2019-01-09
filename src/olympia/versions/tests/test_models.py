@@ -9,28 +9,29 @@ from django.core.files.storage import default_storage as storage
 
 import mock
 import pytest
+import six
+
 from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
-    Addon, AddonReviewerFlags, CompatOverride,
-    CompatOverrideRange)
+    Addon, AddonReviewerFlags, CompatOverride, CompatOverrideRange)
 from olympia.amo.tests import (
-    TestCase, addon_factory, version_factory, user_factory)
+    TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
+from olympia.lib.git import AddonGitRepository
 from olympia.reviewers.models import (
     AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
-    ApplicationsVersions, source_upload_path, Version, VersionPreview)
-from olympia.lib.git import AddonGitRepository
+    ApplicationsVersions, Version, VersionPreview, source_upload_path)
 
 
 pytestmark = pytest.mark.django_db
@@ -457,7 +458,7 @@ class TestVersion(TestCase):
             ViewPendingQueue: amo.STATUS_PUBLIC
         }
 
-        for queue, status in queue_to_status.iteritems():  # Listed queues.
+        for queue, status in six.iteritems(queue_to_status):  # Listed queues.
             self.version.addon.update(status=status)
             assert self.version.current_queue == queue
 
@@ -1007,7 +1008,7 @@ class TestApplicationsVersions(TestCase):
         addon = addon_factory(version_kw=dict(min_app_version=u'ك',
                                               max_app_version=u'ك'))
         version = addon.current_version
-        assert unicode(version.apps.all()[0]) == u'Firefox ك - ك'
+        assert six.text_type(version.apps.all()[0]) == u'Firefox ك - ك'
 
 
 class TestVersionPreview(BasePreviewMixin, TestCase):

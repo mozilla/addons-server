@@ -1,6 +1,8 @@
 from django import forms
 from django.utils.translation import ugettext, ugettext_lazy as _
 
+import six
+
 from django_statsd.clients import statsd
 
 import olympia.core.logger
@@ -20,7 +22,7 @@ privacy_choices = (
 
 apps = (('', None),) + tuple((a.id, a.pretty) for a in amo.APP_USAGE)
 collection_types = (
-    (k, v) for k, v in amo.COLLECTION_CHOICES.iteritems()
+    (k, v) for k, v in six.iteritems(amo.COLLECTION_CHOICES)
     if k not in (amo.COLLECTION_ANONYMOUS, amo.COLLECTION_RECOMMENDED))
 
 

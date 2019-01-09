@@ -14,6 +14,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 
 import bleach
 import jinja2
+import six
 
 from olympia import amo
 
@@ -239,13 +240,13 @@ def linkify_escape(text):
         # Parameters are already escaped.
         return u'<a href="{0}">{0}</a>'.format(match.group(0))
 
-    return URL_RE.sub(linkify, unicode(jinja2.escape(text)))
+    return URL_RE.sub(linkify, six.text_type(jinja2.escape(text)))
 
 
 def linkify_with_outgoing(text):
     """Wrapper around bleach.linkify: uses get_outgoing_url."""
     callbacks = [linkify_bounce_url_callback, bleach.callbacks.nofollow]
-    return bleach.linkify(unicode(text), callbacks=callbacks)
+    return bleach.linkify(six.text_type(text), callbacks=callbacks)
 
 
 def lang_from_accept_header(header):

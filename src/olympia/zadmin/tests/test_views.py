@@ -3,7 +3,6 @@ import csv
 import json
 import os
 
-from cStringIO import StringIO
 
 from django.conf import settings
 from django.core import mail
@@ -11,6 +10,7 @@ from django.core import mail
 import mock
 
 from pyquery import PyQuery as pq
+from six.moves import cStringIO as StringIO
 
 import olympia
 
