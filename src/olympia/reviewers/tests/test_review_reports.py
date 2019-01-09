@@ -1,21 +1,37 @@
 from datetime import date, timedelta
 
-import pytest
 from freezegun import freeze_time
+import pytest
 
 from django.core import mail
 
 from olympia import amo
-from olympia.amo.tests import TestCase, user_factory, addon_factory
+from olympia.amo.tests import (user_factory, addon_factory, grant_permission)
 from olympia.reviewers.management.commands.review_reports import Command
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 
 
-class TestReviewReports(TestCase):
-    today = date.today()
-    last_week_begin = today - timedelta(days=today.weekday() + 7)
-    last_week_end = today - timedelta(days=today.weekday() + 1)
-    this_quarter_begin = date(today.year, (today.month - 1) // 3 * 3 + 1, 1)
+@pytest.mark.django_db
+class TestReviewReports(object):
+
+    # Dates are chosen on purpose:
+    # 2019-01-07: part of the reported week is previous quarter (year even)
+    # 2019-01-14: back to reported week being within the quarter
+    @pytest.fixture(autouse=True, params=['2019-01-07', '2019-01-14'])
+    def freeze_date(self, request):
+        freezer = freeze_time(request.param)
+        freezer.start()
+
+        self.today = date.today()
+        self.last_week_begin = self.today - timedelta(
+            days=self.today.weekday() + 7)
+        self.last_week_end = self.today - timedelta(
+            days=self.today.weekday() + 1)
+        self.this_quarter_begin = date(
+            self.today.year, (self.today.month - 1) // 3 * 3 + 1, 1)
+
+        yield
+        freezer.stop()
 
     def create_and_review_addon(self, user, weight, verdict, content_review):
         addon = addon_factory()
@@ -26,14 +42,13 @@ class TestReviewReports(TestCase):
             post_review=True, content_review=content_review)
 
     def generate_review_data(self):
-        super(TestReviewReports, self).setUp()
         with freeze_time(self.last_week_begin):
             reviewer1 = user_factory(display_name='Volunteer A')
             reviewer2 = user_factory(display_name='Staff B')
             reviewer3 = user_factory(display_name='Volunteer Content C')
             reviewer4 = user_factory(display_name='Staff Content D')
-            self.grant_permission(reviewer2, '', name='Staff')
-            self.grant_permission(reviewer4, '', name='No Reviewer Incentives')
+            grant_permission(reviewer2, '', name='Staff')
+            grant_permission(reviewer4, '', name='No Reviewer Incentives')
 
             data = [
                 (reviewer1, 178, amo.AUTO_APPROVED, False),
@@ -84,12 +99,11 @@ class TestReviewReports(TestCase):
                                              review_action[2],
                                              review_action[3])
 
-    @pytest.mark.xfail(reason='Temporarily hidden, #10286')
     def test_report_addon_reviewer(self):
         self.generate_review_data()
         command = Command()
         data = command.fetch_report_data('addon')
-        assert data == [
+        expected = [
             ('Weekly Add-on Reviews, 5 Reviews or More',
              ['Name', 'Staff', 'Total Risk', 'Average Risk', 'Points',
               'Add-ons Reviewed'],
@@ -105,8 +119,17 @@ class TestReviewReports(TestCase):
               (u'medium', u'4', u'3'), (u'low', u'3', u'2'))),
             ('Quarterly contributions',
              ['Name', 'Points', 'Add-ons Reviewed'],
-             ((u'Volunteer A', u'810', u'9'),))
+             # Empty here to cover edge-case, see below.
+             ())
         ]
+        # If 'last_week_begin', which is used to generate the review data
+        # (see `generate_review_data`), doesn't fall into the previous quarter,
+        # fill in quarterly contributions.
+        if not self.last_week_begin < self.this_quarter_begin:
+            expected[3] = ('Quarterly contributions',
+                           ['Name', 'Points', 'Add-ons Reviewed'],
+                           ((u'Volunteer A', u'810', u'9'),))
+        assert data == expected
 
         html = command.generate_report_html('addon', data)
 
@@ -125,13 +148,12 @@ class TestReviewReports(TestCase):
         assert to in email.to
         assert subject in email.subject
 
-    @pytest.mark.xfail(reason='Temporarily hidden, #10286')
     def test_report_content_reviewer(self):
         self.generate_review_data()
         command = Command()
         data = command.fetch_report_data('content')
 
-        assert data == [
+        expected = [
             ('Weekly Content Reviews, 10 Reviews or More',
              ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
              ((u'Volunteer Content C', u'', '120', u'12'),
@@ -141,8 +163,17 @@ class TestReviewReports(TestCase):
              ((u'All Reviewers', u'22'), (u'Volunteers', u'12'))),
             ('Quarterly contributions',
              ['Name', 'Points', 'Add-ons Reviewed'],
-             ((u'Volunteer Content C', u'120', u'12'),))
+             # Empty here to cover edge-case, see below.
+             ())
         ]
+        # If 'last_week_begin', which is used to generate the review data
+        # (see `generate_review_data`), doesn't fall into the previous quarter,
+        # fill in quarterly contributions.
+        if not self.last_week_begin < self.this_quarter_begin:
+            expected[2] = ('Quarterly contributions',
+                           ['Name', 'Points', 'Add-ons Reviewed'],
+                           ((u'Volunteer Content C', u'120', u'12'),))
+        assert data == expected
 
         html = command.generate_report_html('content', data)
 
