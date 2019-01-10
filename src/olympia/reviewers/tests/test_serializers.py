@@ -120,7 +120,7 @@ class TestAddonFileBrowseSerializer(BaseTestCase):
         assert data['is_webextension'] is True
         assert data['created'] == (
             file.created.replace(microsecond=0).isoformat() + 'Z')
-        assert data['download_url'] == (
+        assert data['url'] == (
             'http://testserver/firefox/downloads/file/{}'
             '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
 

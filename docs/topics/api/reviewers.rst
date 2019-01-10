@@ -108,7 +108,7 @@ This endpoint allows you to browse through the contents of an Add-on versions fi
     :>json string platform: The :ref:`platform <addon-detail-platform>` for a file.
     :>json int size: The size of the file, in bytes.
     :>json string status: The :ref:`add-on status <addon-detail-status>`.
-    :>json string download_url: The (absolute) url to download the XPI file.
+    :>json string url: The (absolute) url to download the XPI file.
     :>json array permissions[]: Array of the webextension permissions for this File, as strings. Empty for non-webextensions.
     :>json boolean has_been_validated: Has linting results from addons-linter (for WebExtensions) or amo-validator (for legacy Add-ons).
     :>json string validation_url_json: Link to the validation results (JSON object).

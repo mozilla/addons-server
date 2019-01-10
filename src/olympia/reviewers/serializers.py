@@ -13,7 +13,7 @@ from django.utils.encoding import force_text
 
 from olympia import amo
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.serializers import VersionSerializer
+from olympia.addons.serializers import VersionSerializer, FileSerializer
 from olympia.addons.models import AddonReviewerFlags
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
@@ -42,14 +42,7 @@ class SimplifiedVersionSerializer(VersionSerializer):
                   'release_notes', 'reviewed', 'url', 'version')
 
 
-class AddonFileBrowseSerializer(serializers.ModelSerializer):
-    download_url = serializers.SerializerMethodField()
-    platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
-    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
-    permissions = serializers.ListField(
-        source='webext_permissions_list',
-        child=serializers.CharField())
-    is_restart_required = serializers.BooleanField()
+class AddonFileBrowseSerializer(FileSerializer):
     version = SimplifiedVersionSerializer()
     validation_url_json = serializers.SerializerMethodField()
     validation_url = serializers.SerializerMethodField()
@@ -61,7 +54,7 @@ class AddonFileBrowseSerializer(serializers.ModelSerializer):
         model = File
         fields = ('id', 'created', 'hash', 'is_restart_required',
                   'is_webextension', 'is_mozilla_signed_extension',
-                  'platform', 'size', 'status', 'download_url', 'permissions',
+                  'platform', 'size', 'status', 'url', 'permissions',
                   'has_been_validated', 'validation_url_json',
                   'validation_url', 'content', 'version', 'files')
 
@@ -80,11 +73,6 @@ class AddonFileBrowseSerializer(serializers.ModelSerializer):
         except pygit2.InvalidSpecError:
             raise NotFound(
                 'Couldn\'t find the requested version in git-repository')
-
-    def get_download_url(self, obj):
-        # File.get_url_path() is a little different, it's already absolute, but
-        # needs a src parameter that is appended as a query string.
-        return obj.get_url_path(src='')
 
     def get_validation_url_json(self, obj):
         return reverse('devhub.json_file_validation', args=[
