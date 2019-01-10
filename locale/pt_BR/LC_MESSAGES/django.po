@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2019-01-09 16:04+0000\n"
+"PO-Revision-Date: 2019-01-10 20:31+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1549,7 +1549,7 @@ msgid "{addon} disabled."
 msgstr "{addon} desabilitado."
 
 msgid "{addon} enabled."
-msgstr "{addon} habilitado."
+msgstr "{addon} ativado."
 
 #. L10n: {status} is the status
 msgid "{addon} status changed to {status}."
