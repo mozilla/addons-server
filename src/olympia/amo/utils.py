@@ -50,6 +50,7 @@ from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 
+from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
 from olympia.amo.urlresolvers import linkify_with_outgoing, reverse
@@ -58,7 +59,8 @@ from olympia.users.models import UserNotification
 from olympia.users.utils import UnsubscribeCode
 from olympia.lib import unicodehelper
 
-from . import logger_log as log
+
+log = getLogger('z.amo')
 
 
 def render(request, template, ctx=None, status=None, content_type=None):

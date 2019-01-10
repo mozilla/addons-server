@@ -33,6 +33,7 @@ from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
 from olympia.lib.git import AddonGitRepository
+from olympia.lib.cache import cache_get_or_set
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
@@ -824,6 +825,20 @@ class ApplicationsVersions(models.Model):
 
     def get_application_display(self):
         return six.text_type(amo.APPS_ALL[self.application].pretty)
+
+    def get_latest_application_version(self):
+        def _fetch_version():
+            qs = (
+                AppVersion.objects
+                .filter(
+                    ~models.Q(version__contains='*'),
+                    application=self.application)
+                .order_by('-version_int'))
+            return qs.first()
+
+        cache_key = 'appversion:{}:latest'.format(self.application)
+        return cache_get_or_set(
+            cache_key, _fetch_version, timeout=60 * 60 * 24)
 
     def __unicode__(self):
         if (self.version.is_compatible_by_default and

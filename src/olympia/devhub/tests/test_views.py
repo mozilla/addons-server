@@ -305,13 +305,14 @@ class TestUpdateCompatibility(TestCase):
         assert self.client.login(email='del@icio.us')
         self.url = reverse('devhub.addons')
 
-        self._versions = amo.FIREFOX.latest_version, amo.ANDROID.latest_version
-        amo.FIREFOX.latest_version = amo.ANDROID.latest_version = '3.6.15'
+        # These aren't realistic but work with existing tests and the 3615
+        # addon
+        self.create_appversion('android', '3.7a1pre')
+        self.create_appversion('android', '4.0')
 
-    def tearDown(self):
-        amo.FIREFOX.latest_version = amo.ANDROID.latest_version = (
-            self._versions)
-        super(TestUpdateCompatibility, self).tearDown()
+    def create_appversion(self, name, version):
+        return AppVersion.objects.create(
+            application=amo.APPS[name].id, version=version)
 
     def test_no_compat(self):
         self.client.logout()

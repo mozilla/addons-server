@@ -27,7 +27,6 @@ HOME=/tmp
 0 22 * * * %(z_cron)s gc
 30 6 * * * %(z_cron)s deliver_hotness
 45 7 * * * %(django)s dump_apps
-0 8 * * * %(django)s update_product_details
 
 # Update ADI metrics from S3 once per day
 30 11 * * * %(django)s update_counts_from_file

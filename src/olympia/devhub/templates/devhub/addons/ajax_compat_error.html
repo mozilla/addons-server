@@ -1,10 +1,10 @@
 {% set apps = addon.incompatible_latest_apps() %}
 {% set update_url = url('devhub.ajax.compat.update', addon.slug, addon.current_version.id) %}
 {% if apps %}
-  {% set app = apps[0] %}
+  {% set app, latest_app_version = apps[0] %}
   <div class="{{ app.short }} app">
     <p class="msg">
-      {% trans app_name=app.pretty, app_version=app.latest_version %}
+      {% trans app_name=app.pretty, app_version=latest_app_version %}
         This add-on is incompatible with <b>{{ app_name }}
         {{ app_version }}</b>, the latest release of {{ app_name }}.
         Please consider updating your add-on's compatibility info, or

@@ -9,6 +9,7 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
+from django.core.cache import cache
 from django.utils import translation
 
 import pytest
@@ -391,12 +392,7 @@ class TestAddonModels(TestCase):
     def setUp(self):
         super(TestAddonModels, self).setUp()
         TranslationSequence.objects.create(id=99243)
-        self.old_version = amo.FIREFOX.latest_version
-        amo.FIREFOX.latest_version = '3.6.15'
-
-    def tearDown(self):
-        amo.FIREFOX.latest_version = self.old_version
-        super(TestAddonModels, self).tearDown()
+        cache.delete('appversion:1:latest')
 
     def test_current_version(self):
         """
@@ -690,7 +686,9 @@ class TestAddonModels(TestCase):
         av.save()
 
         a = Addon.objects.get(pk=3615)
-        assert a.incompatible_latest_apps() == [amo.FIREFOX]
+        assert a.incompatible_latest_apps() == [
+            (amo.FIREFOX, AppVersion.objects.get(version_int=4000000200100))
+        ]
 
         # Check a search engine addon.
         a = Addon.objects.get(pk=4594)
