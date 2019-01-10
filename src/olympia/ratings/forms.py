@@ -43,7 +43,8 @@ class RatingForm(RatingReplyForm):
     rating = forms.ChoiceField(
         zip(range(1, 6), range(1, 6)), label=_(u'Rating')
     )
-    # re.L flag has been removed in py3.6 for text_type strings.
+    # re.L flag has been removed in py3.6 as Unicode matching is already
+    # enabled by default for Unicode (str) patterns.
     flags = (re.I | re.L | re.U | re.M) if six.PY2 else (re.I | re.U | re.M)
     # This matches the following three types of patterns:
     # http://... or https://..., generic domain names, and IPv4
