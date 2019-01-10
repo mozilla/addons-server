@@ -67,20 +67,21 @@ def get_disco_recommendations(hashed_client_id, overrides):
     guids = call_recommendation_server(
         settings.RECOMMENDATION_ENGINE_URL, hashed_client_id, data,
         verb='post')
-    qs = Addon.objects.select_related('discoveryitem').public().filter(
-        guid__in=guids)
-    result = []
-    for addon in qs:
-        try:
-            addon.discoveryitem
-        except DiscoveryItem.DoesNotExist:
-            # This just means the add-on isn't "known" as a possible
-            # recommendation, but this is fine: create a dummy instance, and
-            # it will use the add-on name and description to build the data
-            # we need to return in the API.
-            addon.discoveryitem = DiscoveryItem(addon=addon)
-        result.append(addon.discoveryitem)
-    return result
+    results = []
+    if guids:
+        qs = Addon.objects.select_related('discoveryitem').public().filter(
+            guid__in=guids)
+        for addon in qs:
+            try:
+                addon.discoveryitem
+            except DiscoveryItem.DoesNotExist:
+                # This just means the add-on isn't "known" as a possible
+                # recommendation, but this is fine: create a dummy instance,
+                # and it will use the add-on name and description to build the
+                # data we need to return in the API.
+                addon.discoveryitem = DiscoveryItem(addon=addon)
+            results.append(addon.discoveryitem)
+    return results
 
 
 def replace_extensions(source, replacements):
