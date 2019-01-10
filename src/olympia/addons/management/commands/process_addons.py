@@ -14,6 +14,7 @@ from olympia.addons.tasks import (
     migrate_legacy_dictionaries_to_webextension,
     migrate_lwts_to_static_themes,
     migrate_webextensions_to_git_storage,
+    recreate_theme_previews,
     remove_amo_links_in_url_fields)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
@@ -69,6 +70,13 @@ tasks = {
         'method': recreate_previews,
         'qs': [
             ~Q(type=amo.ADDON_PERSONA)
+        ]
+    },
+    'recreate_theme_previews': {
+        'method': recreate_theme_previews,
+        'qs': [
+            Q(type=amo.ADDON_STATICTHEME, status_in=[
+                amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
         ]
     },
     'add_dynamic_theme_tag_for_theme_api': {
