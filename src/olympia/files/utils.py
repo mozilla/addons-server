@@ -4,6 +4,7 @@ import errno
 import hashlib
 import json
 import os
+import io
 import re
 import shutil
 import stat
@@ -14,6 +15,7 @@ import zipfile
 
 from datetime import datetime, timedelta
 from six.moves import cStringIO as StringIO
+from six import text_type
 from xml.dom import minidom
 
 from django import forms
@@ -31,7 +33,6 @@ import scandir
 import six
 
 from signing_clients.apps import get_signer_organizational_unit_name
-from six import text_type
 
 import olympia.core.logger
 
@@ -44,6 +45,7 @@ from olympia.lib.safe_xml import lxml
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
+
 from olympia.versions.compare import version_int as vint
 
 
@@ -1081,20 +1083,13 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     return parsed
 
 
-def _get_hash(filename, block_size=2 ** 20, hash=hashlib.sha256):
-    """Returns an sha256 hash for a filename."""
-    f = open(filename, 'rb')
-    hash_ = hash()
-    while True:
-        data = f.read(block_size)
-        if not data:
-            break
-        hash_.update(data)
+def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
+    hash_ = hashlib.sha256()
+
+    for chunk in iter(lambda: file_obj.read(block_size), b''):
+        hash_.update(chunk)
+
     return hash_.hexdigest()
-
-
-def get_sha256(filename, **kw):
-    return _get_hash(filename, hash=hashlib.sha256, **kw)
 
 
 def zip_folder_content(folder, filename):
@@ -1153,7 +1148,7 @@ def update_version_number(file_obj, new_version_number):
     shutil.move(updated, file_obj.file_path)
 
 
-def write_crx_as_xpi(chunks, storage, target):
+def write_crx_as_xpi(chunks, target):
     """Extract and strip the header from the CRX, convert it to a regular ZIP
     archive, then write it to `target`. Read more about the CRX file format:
     https://developer.chrome.com/extensions/crx

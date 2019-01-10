@@ -42,6 +42,7 @@ from olympia.reviewers.models import (
     ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
+from olympia.versions.tasks import extract_version_to_git
 from olympia.zadmin.models import get_config
 
 
@@ -5159,6 +5160,160 @@ class TestAddonReviewerViewSet(TestCase):
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.ADMIN_ALTER_INFO_REQUEST.id
         assert activity_log.arguments[0] == self.addon
+
+
+class TestBrowseViewSet(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestBrowseViewSet, self).setUp()
+
+        # TODO: Most of the initial setup could be moved to
+        # setUpTestData but unfortunately paths are setup in pytest via a
+        # regular autouse fixture that has function-scope so functions in
+        # setUpTestData don't use proper paths (cgrebs)
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url(self.addon.pk)
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.version.current_file.pk
+        assert result['version']['id'] == self.version.pk
+        assert result['version']['id'] == self.version.pk
+        # part of manifest.json
+        assert '"name": "Beastify"' in result['content']
+
+    def _set_tested_url(self, param):
+        self.url = reverse_ns('reviewers-browse-detail', kwargs={
+            'pk': self.version.current_file.pk})
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=README.md')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['content'] == '# beastify\n'
+
+    def test_version_get_not_found(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.url = reverse_ns('reviewers-browse-detail', kwargs={
+            'pk': self.version.current_file.pk + 42})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_disabled_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_disabled_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_disabled_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_deleted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_deleted_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.delete()
+        self._test_url()
+
+    def test_deleted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.delete()
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_unlisted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_unlisted_version_unlisted_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        self._test_url()
+
+    def test_unlisted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
 
 
 class TestThemeBackgroundImages(ReviewBase):

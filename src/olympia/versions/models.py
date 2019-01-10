@@ -432,8 +432,13 @@ class Version(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_files(self):
-        """Shortcut for list(self.files.all()).  Heavily cached."""
+        """Shortcut for list(self.files.all()). Cached."""
         return list(self.files.all())
+
+    @property
+    def current_file(self):
+        """Shortcut for selecting the first file from self.all_files"""
+        return self.all_files[0]
 
     @cached_property
     def supported_platforms(self):

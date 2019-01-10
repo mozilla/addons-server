@@ -334,3 +334,25 @@ def test_extract_and_commit_from_version_commits_files(filename, expected):
         'git ls-tree -r --name-only listed', shell=True, env=env)
 
     assert set(output.split()) == expected
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_from_version_commit_message():
+    from django.utils.translation import get_language
+
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'},
+        version_kw={'version': '0.1'})
+
+    with activate_locale('fr'):
+        repo = AddonGitRepository.extract_and_commit_from_version(
+            addon.current_version)
+        assert get_language() == 'fr'
+
+    env = {'GIT_DIR': repo.git_repository.path}
+
+    output = subprocess.check_output('git log listed', shell=True, env=env)
+    expected = 'Create new version {} ({}) for {} from {}'.format(
+        repr(addon.current_version), addon.current_version.id, repr(addon),
+        repr(addon.current_version.all_files[0]))
+    assert expected in output
