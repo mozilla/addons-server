@@ -50,7 +50,7 @@ def test_enforce_pygit_global_search_path(settings):
 
     assert (
         pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] ==
-        settings.GIT_FILE_STORAGE_PATH)
+        settings.ROOT)
 
 
 def test_git_repo_init(settings):

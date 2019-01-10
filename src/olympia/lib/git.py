@@ -66,7 +66,7 @@ class AddonGitRepository(object):
     def __init__(self, addon_id, package_type='package'):
         assert package_type in ('package', 'source')
 
-        # Always enforce the search path being set to our GIT_STORAGE_ROOT
+        # Always enforce the search path being set to our ROOT
         # setting. This is sad, libgit tries to fetch the global git
         # config file (~/.gitconfig) and falls over permission errors while
         # doing so in our web-environment.
@@ -76,7 +76,7 @@ class AddonGitRepository(object):
 
         # https://github.com/libgit2/pygit2/issues/339
         # https://github.com/libgit2/libgit2/issues/2122
-        git_home = settings.GIT_FILE_STORAGE_PATH
+        git_home = settings.ROOT
         pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = git_home
 
         self.git_repository_path = os.path.join(
