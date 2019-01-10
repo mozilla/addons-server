@@ -11,7 +11,6 @@ from rest_framework.exceptions import NotFound
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
 
-from olympia import amo
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.serializers import VersionSerializer, FileSerializer
 from olympia.addons.models import AddonReviewerFlags
@@ -19,7 +18,6 @@ from olympia.files.utils import get_sha256
 from olympia.files.models import File
 from olympia.files.file_viewer import denied_extensions, denied_magic_numbers
 from olympia.versions.models import Version
-from olympia.api.fields import ReverseChoiceField
 from olympia.lib.git import AddonGitRepository
 from olympia.lib import unicodehelper
 
