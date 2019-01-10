@@ -1084,6 +1084,11 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
 
 
 def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
+    """Calculate a sha256 hash for `file_obj`.
+
+    `file_obj` must be an open file descriptor. The caller needs to take
+    care of closing it properly.
+    """
     hash_ = hashlib.sha256()
 
     for chunk in iter(lambda: file_obj.read(block_size), b''):
