@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-05 13:42+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,18 +24,6 @@ msgstr "इस डिस्प्ले नाम का उपयोग नह�
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "होमपेज फ़ील्ड का उपयोग केवल बाहरी वेबसाइटों से जोड़ने के लिए किया जा सकता है।"
-
-msgid "Usernames cannot contain only digits."
-msgstr "उपयोक्तानाम में केवल अंक नहीं हो सकते हैं।"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "अक्षरों, संख्याओं, अंडरस्कोर या हाइफ़न युक्त वैध उपयोगकर्ता नाम दर्ज करें।"
-
-msgid "This username cannot be used."
-msgstr "यह उपयोक्तानाम उपयोग नहीं किया जा सकता है।"
-
-msgid "This username is already in use."
-msgstr "यह उपयोक्तानाम पहले से उपयोग में हैं।"
 
 msgid "Images must be either PNG or JPG."
 msgstr "चित्र या तो PNG या JPG होनी चाहिए।"
@@ -936,6 +924,10 @@ msgstr "आपको {lang-code:value} का कोई ऑब्जेक्ट
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "कम से कम एक मालिक होना चाहिए."
 
 msgid "Application Versions"
 msgstr "आवेदन संस्करण"
@@ -2474,18 +2466,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr ""
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -7870,9 +7850,6 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
-
-msgid "Username"
 msgstr ""
 
 msgid "Email Address"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-04 22:24+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -25,18 +25,6 @@ msgstr "Toto zobrazené meno nemôže byť použité."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Meno používateľa nesmie obsahovať iba čísla."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Zadajte platné používateľské meno, ktoré obsahuje znaky abecedy, čísla, podčiarky alebo pomlčky."
-
-msgid "This username cannot be used."
-msgstr "Toto používateľské meno nemôže byť použité."
-
-msgid "This username is already in use."
-msgstr "Toto používateľské meno sa už používa."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musia byť vo formáte PNG alebo JPG."
@@ -955,6 +943,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Musí mať aspoň jedného vlastníka."
 
 msgid "Application Versions"
 msgstr "Verzie aplikácie"
@@ -2505,18 +2497,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s odpovedal: %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Čas pripojenia k \"%s\" vypršal."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Nebolo možné kontaktovať server \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -7959,9 +7939,6 @@ msgstr "Pre dokončenie registrácie, prosím, zadajte svoje zobrazované meno a
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Správa základných informácií o účte, ako napr. používateľské meno a nastavenia účtov Firefox."
-
-msgid "Username"
-msgstr "Používateľské meno"
 
 msgid "Email Address"
 msgstr "E-mailová adresa"

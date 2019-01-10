@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-12-13 07:28+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -23,18 +23,6 @@ msgstr "ఈ పేరును వాడుకోలేరు."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "వాడుకరి పేరులో కేవలం అంకెలు మాత్రమే ఉండకూడదు."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "అక్షరాలు, అంకెలు, అండర్‌స్కోర్లు లేదా హైపన్లు మాత్రమే ఉండేలా సరైన వాడుకరి పేరును ఇవ్వండి."
-
-msgid "This username cannot be used."
-msgstr "ఈ వాడుకరిపేరు ఉపయోగించలేము."
-
-msgid "This username is already in use."
-msgstr "ఈ వాడుకరి పేరు ఇంతకుముందే వాడుకలో ఉంది."
 
 msgid "Images must be either PNG or JPG."
 msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
@@ -920,6 +908,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "కనీసం ఒక యజమాని ఉండాలి."
 
 msgid "Application Versions"
 msgstr "అనువర్తనపు వెర్షన్లు"
@@ -2454,18 +2446,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "\"%s\" అనుసంధానపు కాలం చెల్లింది."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -7849,9 +7829,6 @@ msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
-
-msgid "Username"
-msgstr "వాడుకరి పేరు"
 
 msgid "Email Address"
 msgstr "ఈమెయిల్ చిరునామా"

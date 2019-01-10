@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-07 09:07+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -27,18 +27,6 @@ msgstr "この表示名は使用できません。"
 #, fuzzy
 msgid "The homepage field can only be used to link to external websites."
 msgstr "このフィールドには外部のウェブサイトへのリンクにのみ使用できます。%(domain)s の URL は許可されていません。"
-
-msgid "Usernames cannot contain only digits."
-msgstr "数字のみのユーザー名は使用できません。"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "英数字、アンダーバー、ハイフンを含む適切な形式のユーザー名を入力してください。"
-
-msgid "This username cannot be used."
-msgstr "このユーザー名は使用できません。"
-
-msgid "This username is already in use."
-msgstr "このユーザー名は既に使われています。"
 
 msgid "Images must be either PNG or JPG."
 msgstr "画像は PNG か JPG 形式でなければなりません。"
@@ -936,6 +924,10 @@ msgstr "{lang-code:value} のオブジェクトを提供してください。"
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが存在しません。"
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "オーナーが最低 1 人は必要です。"
 
 msgid "Application Versions"
 msgstr "アプリケーションのバージョン"
@@ -2485,18 +2477,6 @@ msgstr "あなたの開発者 API キーが送信したファイル内に見つ�
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "送信されたファイルに共同作者の開発者 API キーが見つかりました。アドオンを保護するため、このキーは取り消されます。"
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%sが %s (%s) を返しました。"
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "「%s」への接続がタイムアウトしました。"
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "ホスト「%s」へ接続できませんでした。"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla セキュリティ通知: AMO API 認証情報が取り消されました"
@@ -7964,9 +7944,6 @@ msgstr "登録プロセスを完了するには表示名もしくはユーザー
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "ユーザー名や Firefox アカウントの設定など、基本的なアカウント情報を管理します。"
-
-msgid "Username"
-msgstr "ユーザー名"
 
 msgid "Email Address"
 msgstr "メールアドレス"

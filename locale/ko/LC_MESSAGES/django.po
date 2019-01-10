@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-09-13 01:48+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -26,18 +26,6 @@ msgstr "이 표시 이름은 사용할 수 없습니다."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "사용자 이름은 숫자로만 만들 수 없습니다."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "문자, 숫자, 밑줄, 하이픈으로 이루어진 올바른 사용자 이름을 입력하세요."
-
-msgid "This username cannot be used."
-msgstr "이 사용자 이름은 사용할 수 없습니다."
-
-msgid "This username is already in use."
-msgstr "이 사용자 이름은 이미 사용되고 있습니다."
 
 msgid "Images must be either PNG or JPG."
 msgstr "이미지는 PNG나 JPG 형식이어야 합니다."
@@ -926,6 +914,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "적어도 한명의 소유자는 있어야 합니다."
 
 msgid "Application Versions"
 msgstr "애플리케이션 버전"
@@ -2468,18 +2460,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s이(가) %s (%s)에 응답했습니다."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "\"%s\"에 대한 연결 시간이 초과됐습니다."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "\"%s\"에 호스트 접속을 할 수 없습니다."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8039,9 +8019,6 @@ msgstr ""
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "사용자 이름이나 이메일 주소와 같은 기본 계정 정보를 관리합니다."
-
-msgid "Username"
-msgstr "사용자 이름"
 
 msgid "Email Address"
 msgstr "이메일 주소"

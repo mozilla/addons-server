@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-02 14:22+0000\n"
 "Last-Translator: pan93412 <pan93412@gmail.com>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgstr "無法使用此顯示名稱。"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "首頁欄位僅能用於鏈結到外部網站。"
-
-msgid "Usernames cannot contain only digits."
-msgstr "使用者名稱不能只有數字。"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "請輸入有效的使用者名稱，當中只能有字母、數字、底線或連字號。"
-
-msgid "This username cannot be used."
-msgstr "無法使用此使用者名稱。"
-
-msgid "This username is already in use."
-msgstr "這個使用者名稱已經有人使用。"
 
 msgid "Images must be either PNG or JPG."
 msgstr "圖片格式必須為 PNG 或 JPG。"
@@ -919,6 +907,10 @@ msgstr "您必須提供 {lang-code:value} 的物件。"
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "PK 或 slug「%s」無效，物件不存在。"
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "至少需要一位擁有者。"
 
 msgid "Application Versions"
 msgstr "應用程式版本"
@@ -2467,18 +2459,6 @@ msgstr "在您送出的檔案中發現開發者 API 金鑰。為了確保您的�
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "在您送出的檔案中發現其他共同作者的 API 金鑰。為了保護您的附加元件，將註銷該金鑰。"
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s 回應了 %s (%s)。"
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "至「%s」的連線已經逾時。"
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "無法連線至主機「%s」。"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla 安全性通知: 已註銷您的 AMO API"
@@ -7880,9 +7860,6 @@ msgstr "請設定顯示名稱或帳號以完成註冊。"
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "管理基本帳號資訊，像是使用者名稱和 Firefox 帳號設定。"
-
-msgid "Username"
-msgstr "使用者名稱"
 
 msgid "Email Address"
 msgstr "電子郵件地址"

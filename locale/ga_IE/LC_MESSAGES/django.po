@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -27,18 +27,6 @@ msgstr ""
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr ""
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
-
-msgid "This username cannot be used."
-msgstr "Ní féidir an t-ainm seo a úsáid."
-
-msgid "This username is already in use."
-msgstr "Tá an t-ainm úsáideora in úsáid cheana."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ní mór d'íomhánna a bheith PNG nó JPG."
@@ -1002,6 +990,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Ní mór úinéir amháin a bheith ann."
 
 msgid "Application Versions"
 msgstr "Leaganacha Feidhmchláir"
@@ -2624,18 +2616,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Ceangal le \"%s\" thar am."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Níorbh fhéidir dul i dteagmháil le hóstríomhaire \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8256,9 +8236,6 @@ msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
-
-msgid "Username"
-msgstr "Ainm an Úsáideora"
 
 msgid "Email Address"
 msgstr "Seoladh Ríomhphoist"

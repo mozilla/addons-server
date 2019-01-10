@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-10-14 17:20+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -30,18 +30,6 @@ msgstr "No se puede utilizar el nombre mostrado."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Los nombres de usuario no pueden contener solo dígitos."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Escribe un nombre de usuario válido que contenga letras, números, guiones o guiones bajos."
-
-msgid "This username cannot be used."
-msgstr "No se puede usar este nombre de usuario."
-
-msgid "This username is already in use."
-msgstr "Este nombre de usuario/a ya se utiliza."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Las imágenes deben estar en formato PNG o JPG."
@@ -959,6 +947,10 @@ msgstr "Tienes que proporcionar un objeto de {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Debe tener al menos un propietario."
 
 msgid "Application Versions"
 msgstr "Versiones de la aplicación"
@@ -2522,18 +2514,6 @@ msgstr "Se encontró tu llave API de desarrollador en el archivo enviado. Para p
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Se encontró la llave API de desarrollador de un coautor en el archivo enviado. Para proteger el complemento, se anulará la llave."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s ha respondido con %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "La conexión a \"%s\" ha caducado."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "No se ha podido contactar con el servidor en \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Aviso de seguridad de Mozilla: se han anulado tus credenciales API de AMO"
@@ -8118,9 +8098,6 @@ msgstr "Por favor, indique su nombre o usuario para completar el proceso de regi
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Administrar información básica de la cuenta, como el nombre de usuario y la configuración de la cuenta de Firefox."
-
-msgid "Username"
-msgstr "Nombre de usuario"
 
 msgid "Email Address"
 msgstr "Dirección de correo"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-05 14:55+0000\n"
 "Last-Translator: Jarmo <jarmo@juslin.me>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -26,18 +26,6 @@ msgstr "Tätä näyttönimeä ei voi käyttää."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Kotisivu-kenttää voidaan käyttää linkittämään ainoastaan ulkopuoliseen verkkosivustoon."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Käyttäjätunnus ei voi sisältää pelkkiä numeroita."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Syötä kelvollinen käyttäjätunnus, jossa on kirjaimia, numeroita, alaviivoja tai väliviivoja."
-
-msgid "This username cannot be used."
-msgstr "Tätä käyttäjätunnusta ei voida käyttää."
-
-msgid "This username is already in use."
-msgstr "Tämä käyttäjätunnus on jo käytössä."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Kuvien pitää olla joko PNG- tai JPG-muodossa."
@@ -945,6 +933,9 @@ msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
+
+msgid "Must contain at least one printable character."
 msgstr ""
 
 # 76%
@@ -2577,18 +2568,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr ""
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -8201,9 +8180,6 @@ msgstr "Viimeistele rekisteröinti asettamalla näyttönimesi tai käyttäjätun
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Hallitse tunnuksesi perustietoja, kuten käyttäjätunnusta ja sähköpostiosoitetta."
-
-msgid "Username"
-msgstr "Käyttäjätunnus"
 
 msgid "Email Address"
 msgstr "Sähköpostiosoite"

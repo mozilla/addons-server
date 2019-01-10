@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-12-19 17:03+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -26,18 +26,6 @@ msgstr "S’mund të përdoren ky emër ekrani."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Fusha për faqen hyrëse mund të përdoret vetëm për të lidhur sajte të jashtëm."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Emri i përdoruesit s’mundet të përmbajë vetëm shifra."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Jepni një emër të vlefshëm përdoruesi, të përbërë nga shkronja, numra, nënvija ose vija ndarëse."
-
-msgid "This username cannot be used."
-msgstr "Ky emër përdoruesi s’përdoret dot."
-
-msgid "This username is already in use."
-msgstr "Ky emër përdoruesi është tashmë në përdorim."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Figurat duhet të jenë ose PNG, ose JPG."
@@ -950,6 +938,10 @@ msgstr "Duhet të furnizoni një objekt {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ose identifikues i pavlefshëm \"%s\" - objekti nuk ekziston."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Duhet të ketë të paktën një pronar."
 
 msgid "Application Versions"
 msgstr "Versione Aplikacionesh"
@@ -2513,18 +2505,6 @@ msgstr "Kyçi juaj API zhvilluesish u gjet te kartela e parashtruar. Që të mbr
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Kyçi API zhvilluesish i një bashkëautori u gjet te kartela e parashtruar. Që të mbrohet shtesa juaj, kyçi do të shfuqizohet."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s u përgjigj me %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Lidhjes me \"%s\" i mbaroi koha."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "S’u lidh dot me strehën te \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Njoftim Sigurie nga Mozilla: Kredencialet tuaja API AMO janë shfuqizuar"
@@ -8015,9 +7995,6 @@ msgstr "Ju lutemi, caktoni emrin tuaj në ekran ose atë të përdoruesit që t�
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i përdoruesit dhe rregullimet për Llogarinë Firefox."
-
-msgid "Username"
-msgstr "Emër përdoruesi"
 
 msgid "Email Address"
 msgstr "Adresë Email"

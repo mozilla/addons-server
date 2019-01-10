@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgstr "Dette visningsnavnet kan ikke brukes."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Brukernavn kan ikke bestå av bare siffer."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Skriv inn et gyldig brukernavn bestående av bokstaver, tall, understreker eller bindestreker."
-
-msgid "This username cannot be used."
-msgstr "Dette brukernavnet kan ikke brukes."
-
-msgid "This username is already in use."
-msgstr "Dette brukernavnet er allerede i bruk."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder må være enten PNG eller JPG."
@@ -949,6 +937,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Må ha minst én eier."
 
 msgid "Application Versions"
 msgstr "Programversjoner"
@@ -2558,18 +2550,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr ""
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -8082,9 +8062,6 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
-
-msgid "Username"
 msgstr ""
 
 msgid "Email Address"

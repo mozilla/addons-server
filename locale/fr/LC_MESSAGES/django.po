@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-02 18:15+0000\n"
 "Last-Translator: YD <ygda+fx@free.fr>\n"
 "Language-Team: français <>\n"
@@ -30,18 +30,6 @@ msgstr "Ce nom public ne peut pas être utilisé."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Le champ de page d’accueil ne peut être utilisé que pour créer un lien vers des sites web externes."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Les noms d’utilisateur ne peuvent pas contenir que des chiffres."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Entrez un nom d’utilisateur valide, composé de lettres, nombres, soulignements ou traits d’union."
-
-msgid "This username cannot be used."
-msgstr "Ce nom d’utilisateur ne peut pas être utilisé."
-
-msgid "This username is already in use."
-msgstr "Ce nom d’utilisateur est déjà utilisé."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Les images doivent être au format PNG ou JPG."
@@ -963,6 +951,10 @@ msgstr "Vous devez spécifier un objet {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Clé primaire ou identifiant généré « %s » invalide. L’objet n’existe pas."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Au moins un propriétaire est nécessaire."
 
 msgid "Application Versions"
 msgstr "Versions des logiciels"
@@ -2556,18 +2548,6 @@ msgstr "Votre clé d’API de développeur a été trouvée dans le fichier envo
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "La clé d’API de développeur d’un co-auteur a été trouvée dans le fichier envoyé. Pour protéger votre module, cette clé va être révoquée."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s a répondu avec %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Connexion à « %s » expiré."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Impossible de contacter l’hôte « %s »."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Avis de sécurité Mozilla : vos identifiants d’API AMO ont été révoqués"
@@ -8073,9 +8053,6 @@ msgstr "Veuillez indiquer votre nom ou un nom d’utilisateur pour terminer le p
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Gérer des informations de base du compte, comme le nom d’utilisateur et les paramètres des comptes Firefox."
-
-msgid "Username"
-msgstr "Nom d’utilisateur"
 
 msgid "Email Address"
 msgstr "Adresse électronique"

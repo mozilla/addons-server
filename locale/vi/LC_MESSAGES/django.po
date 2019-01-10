@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-12-01 13:12+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgstr "Không thể sử dụng tên hiển thị này."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Tên người dùng không được chứa mỗi chữ số."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Nhập một tên người dùng hợp lệ bao gồm các chữ cái, số, dấu gạch dưới hoặc dấu gạch ngang."
-
-msgid "This username cannot be used."
-msgstr "Không thể sử dụng tên người dùng này."
-
-msgid "This username is already in use."
-msgstr "Tên người dùng này đã được dùng."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Hình ảnh phải là PNG hoặc JPG."
@@ -922,6 +910,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Phải có ít nhất một người sở hữu."
 
 msgid "Application Versions"
 msgstr "Phiên bản Ứng dụng"
@@ -2510,18 +2502,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr ""
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -8057,9 +8037,6 @@ msgstr ""
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Quản lý thông tin tài khoản cơ bản, ví dụ như tên đăng nhập và địa chỉ thư điện tử."
-
-msgid "Username"
-msgstr "Tên đăng nhập"
 
 msgid "Email Address"
 msgstr "Địa chỉ Email"

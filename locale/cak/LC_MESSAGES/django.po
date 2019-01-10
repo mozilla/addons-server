@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,18 +24,6 @@ msgstr "Man tikirel ta nokisäx re b'i'aj xk'ut pe."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Ri tikirib'äl ruxaq nokisäx richin yexim aj juk'an ajk'amaya'l ruxaq."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Man tikire ta xa xe taq ajilab'äl pa kib'i' ri okisanela'."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Tatz'ib'aj jun okel rub'i' okisanel ri ruk'wan taq tz'ib', taq ajilab'äl, ko'öl taq juch' o nïm taq juch'."
-
-msgid "This username cannot be used."
-msgstr "Man tikirel ta nokisäx re rub'i' okisanel re'."
-
-msgid "This username is already in use."
-msgstr "Nokisäx chik re rub'i' okisanel re'."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ri taq wachib'äl k'o chi e PNG o JPG kib'anikil."
@@ -942,6 +930,10 @@ msgstr "K'o chi naya' jun ruwachinaq {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Man okel ta pk o slug \"%s\" - man k'o ta ri wachinäq."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "K'o chi k'o jun rajaw."
 
 msgid "Application Versions"
 msgstr "Taq Ruwäch Chokoy"
@@ -2496,18 +2488,6 @@ msgstr "Xilitäj ri API ewan atzij richin b'anonel pa ri yakb'äl xtaq. Richin n
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Xilitäj ri API ewan rutzij b'anonel richin jun achb'anel pa ri yakb'äl xtaq. Richin nichajïx ri tz'aqat, xtiyuj ri ewan tzij."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s xutzolij tzij rik'in %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Ri okem pa \"%s\" xk'is ruq'ijul."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Man rilon ta ri k'uxasamaj pa \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Rutzijol Rujikomal Mozilla: Xeyuj ri taq AMO API wujil"
@@ -7984,9 +7964,6 @@ msgstr "Tajikib'a' ri ab'i' o awokisanel richin nitz'aqatisäx rub'eyal tz'ib'an
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Tinuk'samajïx retamab'al rub'i' taqoya'l, achi'el rub'i' okisanel chuqa' ri runuk'ulem Rub'i' Taqoya'l richin Firefox."
-
-msgid "Username"
-msgstr "Rub'i' okisanel"
 
 msgid "Email Address"
 msgstr "Rochochib'al taqoya'l"

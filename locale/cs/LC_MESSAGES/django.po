@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-12-19 11:42+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -28,18 +28,6 @@ msgstr "Toto jméno nemůže být použito."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Uživatelské jméno nesmí obsahovat pouze číslice."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Vložte platné uživatelské jméno, které obsahuje znaky abecedy, čísla, podtržítka či pomlčky."
-
-msgid "This username cannot be used."
-msgstr "Toto uživatelské jméno nemůže být použito."
-
-msgid "This username is already in use."
-msgstr "Toto uživatelské jméno je již použito."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
@@ -968,6 +956,10 @@ msgstr "Je nutné poskytnout tento objekt: {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Neplatný primární klíč nebo slug \"%s\" - objekt neexistuje."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Musí být alespoň jeden vlastník."
 
 msgid "Application Versions"
 msgstr "Verze aplikace"
@@ -2524,18 +2516,6 @@ msgstr "Váš vývojářšký API klíč byl nalezen v nahraném souboru. Pro oc
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Vývojářšký API klíč spoluautora byl nalezen v nahraném souboru. Pro ochranu vašeho doplňku bude tento klíč zneplatněn."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s odpověděl(a) %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Při připojování k \"%s\" vypršel čas spojení."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Nepodařilo se kontaktovat host \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Bezpečnostní upozornění Mozilly: Vaše přihlašovací údaje k API server AMO byly zneplatněny"
@@ -8012,9 +7992,6 @@ msgstr "Pro dokončení registrace prosím zadejte své jméno, které se bude z
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Správa základních informací o účtu, jako je uživatelské jméno či nastavení Firefox Accounts."
-
-msgid "Username"
-msgstr "Uživatelské jméno"
 
 msgid "Email Address"
 msgstr "E-mailová adresa"

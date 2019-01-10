@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,18 +24,6 @@ msgstr "Ovo postavljeno ime se ne može koristiti."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Korisnička imena ne mogu sadržavati samo cifre."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Unesite važeće korisničko ime koje se sastoji od slova, brojeva, donjih crtica ili crtica."
-
-msgid "This username cannot be used."
-msgstr "Ovo korisničko ime se ne može koristiti."
-
-msgid "This username is already in use."
-msgstr "Ovo korisničko ime je već u upotrebi."
 
 msgid "Images must be either PNG or JPG."
 msgstr ""
@@ -938,6 +926,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Mora imati barem jednog vlasnika."
 
 msgid "Application Versions"
 msgstr ""
@@ -2493,18 +2485,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s je odgovorio sa %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Povezivanje na \"%s\" je isteklo."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Ne mogu kontaktirati host na \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8123,9 +8103,6 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
-
-msgid "Username"
 msgstr ""
 
 msgid "Email Address"

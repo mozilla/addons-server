@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-10 15:10+0000\n"
 "PO-Revision-Date: 2019-01-03 22:00+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -31,18 +31,6 @@ msgstr "Ez a megjelenítendő név nem használható."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "A honlap mező csak külső weboldalakra hivatkozáshoz használható."
-
-msgid "Usernames cannot contain only digits."
-msgstr "A felhasználónevek nem tartalmazhatnak csak számokat."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Adjon meg egy érvényes felhasználónevet, amely betűkből, számokból, aláhúzásokból vagy kötőjelekből áll."
-
-msgid "This username cannot be used."
-msgstr "Ez a felhasználónév nem használható."
-
-msgid "This username is already in use."
-msgstr "Ez a felhasználónév már használatban van."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Az ikonnak PNG-nek vagy JPG-nek kell lennie."
@@ -949,6 +937,10 @@ msgstr "Meg kell adnia egy {lang-code:value} objektumot."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Érvénytelen pk vagy SEO URL: „%s” – az objektum nem létezik."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Legalább egy tulajdonosnak lennie kell."
 
 msgid "Application Versions"
 msgstr "Alkalmazásverziók"
@@ -2514,18 +2506,6 @@ msgstr "A fejlesztői API kulcsa megtalálható a beküldött fájlban. A fiókj
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Egy társszerző fejlesztői API kulcsa megtalálható a beküldött fájlban. A kiegészítő biztonsága érdekében, a kulcs vissza lesz vonva."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s így válaszolt: %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Időtúllépés miatt a kapcsolat megszakadt ezzel: „%s”."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Nem lehet csatlakozni ehhez a kiszolgálóhoz: \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla biztonsági közlemény: Az AMO API engedélyei vissza lettek vonva"
@@ -8017,9 +7997,6 @@ msgstr "Kérjük, állítsa be a megjelenítendő nevet vagy felhasználónevet 
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Alapvető fiókinformációk kezelése, mint a felhasználóneve és a Firefox fiókok beállítása."
-
-msgid "Username"
-msgstr "Felhasználónév"
 
 msgid "Email Address"
 msgstr "E-mail cím"
