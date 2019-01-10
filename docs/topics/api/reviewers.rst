@@ -92,7 +92,7 @@ This endpoint allows you to browse through the contents of an Add-on versions fi
 
     .. note::
         Requires authentication and the current user to have ``ReviewerTools:View``
-        permission for listed add-ons as well as ``Addons:ReviewUnlisted` for
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
