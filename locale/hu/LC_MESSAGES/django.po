@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2019-01-11 09:17+0000\n"
+"PO-Revision-Date: 2019-01-11 09:52+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -1953,25 +1953,27 @@ msgstr ""
 "nyomkövetést, kezelik az átirányításokat, és így tovább."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Töltsön le Firefox kiegészítőket kereséshez. Ebbe a kategóriába olyan kiegészítők tartoznak, amelyek szöveget keresnek és kiemelik azt, IP-címeket / domain neveket keresnek ki, és így tovább."
 
 msgid "Shopping"
 msgstr "Vásárlás"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Töltsön Firefox kiegészítőket, melyek javítják az online vásárlási élményét kupon- és akciókeresőkkel, értékelés-elemzőkkel és sok mással."
 
 msgid "Social & Communication"
 msgstr "Közösség és kommunikáció"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Töltsön Firefox kiegészítőket, melyek jobbá teszik a közösségi médiát és az azonnali üzenetküldést. Ez a kategória javított lapértesítéseket, videoletöltőket és egyebeket tartalmaz."
 
 msgid "Tabs"
 msgstr "Fülek"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
+"Töltsön Firefox kiegészítőket, melyek tesztreszabják a lapjait és az új lap oldalt. Fedezzen fel kiegészítőket, melyek vezérelhetik a lapokat, megváltoztathatják azt, ahogy interakcióba lép velük, "
+"és így tovább."
 
 msgid "Web Development"
 msgstr "Webfejlesztés"
