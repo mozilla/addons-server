@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,18 +24,6 @@ msgstr "Nama paparan ini tidak boleh digunakan."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Medan laman hanya boleh digunakan untuk membuat pautan ke laman web luar."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Nama pengguna tidak boleh hanya mengandungi nombor."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Masukkan nama pengguna yang sah yang mengandungi huruf, nombor, garis bawah atau tanda sempang."
-
-msgid "This username cannot be used."
-msgstr "Nama pengguna ini tidak boleh digunakan."
-
-msgid "This username is already in use."
-msgstr "Nama pengguna sedang digunakan."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Imej mesti dalam PNG atau JPG."
@@ -923,6 +911,10 @@ msgstr "Anda perlu beri objek kepada {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk atau slug tidak sah \"%s\" - objek tidak wujud."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
 
 msgid "Application Versions"
 msgstr "Versi Aplikasi"
@@ -2464,18 +2456,6 @@ msgstr "Kunci API pembangun anda telah ditemukan di dalam fail yang diserahkan. 
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Kunci API pembangun pengarang bersama anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi add-on anda, kunci akan dijana semula."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s memberi respons dengan %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Sambungan ke \"%s\" tamat tempoh."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Tidak dapat menghubungi hos di\"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Notis Keselamatan Mozilla: Kelayakan AMO API anda telah dibatalkan"
@@ -7940,9 +7920,6 @@ msgstr "Sila tetapkan nama paparan atau nama pengguna anda untuk melengkapkan pr
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Urus maklumat asas akaun, seperti nama pengguna dan tetapan Akaun Firefox anda."
-
-msgid "Username"
-msgstr "Nama pengguna"
 
 msgid "Email Address"
 msgstr "Alamat E-mel"

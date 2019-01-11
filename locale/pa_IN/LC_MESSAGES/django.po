@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2019-01-05 21:32+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜ�
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "ਹੋਮਪੇਜ ਖੇਤਰ ਨੂੰ ਸਿਰਫ਼ ਬਾਹਰੀ ਵੈਬਸਾਈਟਸ ਨਾਲ ਲਿੰਕ ਕਰਨ ਲਈ ਵਰਤਿਆ ਜਾ ਸਕਦਾ ਹੈ।"
-
-msgid "Usernames cannot contain only digits."
-msgstr "ਵਰਤੋਂਕਾਰ ਨਾਂ ਵਿੱਚ ਸਿਰਫ ਅੰਕ ਨਾ ਸ਼ਾਮਲ ਹੋਣ।"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "ਅੱਖਰਾਂ, ਨੰਬਰਾਂ, ਅੰਡਰਸਕੋਰਾਂ ਜਾਂ ਹਾਈਫ਼ਨ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ ਇੱਕ ਸਹੀ ਵਰਤੋਂਕਾਰ ਨਾਂ ਦਰਜ ਕਰੋ।"
-
-msgid "This username cannot be used."
-msgstr "ਇਹ ਵਰਤੋਂਕਾਰ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-
-msgid "This username is already in use."
-msgstr "ਇਹ ਵਰਤੋਂਕਾਰ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਵਰਤੋਂ ਵਿੱਚ ਹੈ।"
 
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
@@ -935,6 +923,10 @@ msgstr "{lang-code:value} ਦੀ ਕੋਈ ਇਕਾਈ ਮੁਹੱਈਆ ਕ�
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "ਗੈਰ-ਪ੍ਰਮਾਣਿਤ pk ਜਾਂ ਸਲੱਗ \"%s\" - ਇਕਾਈ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।"
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
 msgid "Application Versions"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵੰਨਗੀ"
@@ -2475,18 +2467,6 @@ msgstr "ਤੁਹਾਡੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਦਰਜ �
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "ਕੋਆਪਟਰ ਦੀ ਡਿਵੈਲਪਰ API ਕੁੰਜੀ ਜਮ੍ਹਾ ਹੋਈ ਫਾਈਲ ਵਿੱਚ ਲੱਭੀ ਗਈ ਸੀ। ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਸੁਰੱਖਿਆ ਲਈ, ਕੁੰਜੀ ਨੂੰ ਰੱਦ ਕੀਤਾ ਜਾਵੇਗਾ।"
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s ਦਾ ਜਵਾਬ %s (%s) ਦੇ ਨਾਲ ਦਿੱਤਾ।"
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "\"%s\" ਲਈ ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਖਤਮ ਹੋਇਆ।"
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "\"%s\" ਤੇ ਹੋਸਟ ਨਾਲ ਸਪੰਰਕ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "ਮੋਜ਼ੀਲਾ ਸੁਰੱਖਿਆ ਸੂਚਨਾ: ਤੁਹਾਡੇ AMO API ਪ੍ਰਮਾਣ-ਪੱਤਰਾਂ ਨੂੰ ਰੱਦ ਕੀਤਾ ਗਿਆ ਹੈ"
@@ -7903,9 +7883,6 @@ msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਕਾਰਵਾਈ ਨੂੰ ਪੂਰਾ �
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "ਮੂਲ ਖਾਤਾ ਜਾਣਕਾਰੀ ਪ੍ਰਬੰਧਿਤ ਕਰੋ, ਜਿਵੇਂ ਕਿ ਤੁਹਾਡਾ ਯੂਜ਼ਰਨਾਮ ਅਤੇ ਫਾਇਰਫਾਕਸ ਅਕਾਊਂਟ ਸੈਟਿੰਗ।"
-
-msgid "Username"
-msgstr "ਉਪਭੋਗੀ ਨਾਂ"
 
 msgid "Email Address"
 msgstr "ਈਮੇਲ ਪਤਾ"

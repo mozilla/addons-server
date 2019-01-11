@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-12-16 00:41+0000\n"
 "Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
@@ -26,18 +26,6 @@ msgstr "ชื่อที่แสดงนี้ไม่สามารถใ
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "ชื่อผู้ใช้จะมีเฉพาะตัวเลขไม่ได้"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
-
-msgid "This username cannot be used."
-msgstr "ชื่อผู้ใช้นี้ไม่สามารถใช้ได้"
-
-msgid "This username is already in use."
-msgstr "ชื่อผู้ใช้นี้ถูกใช้แล้ว"
 
 msgid "Images must be either PNG or JPG."
 msgstr "รูปภาพจะต้องเป็น PNG หรือ JPG"
@@ -922,6 +910,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "ต้องมีเจ้าของอย่างน้อยหนึ่งคน"
 
 msgid "Application Versions"
 msgstr "รุ่นแอปพลิเคชัน"
@@ -2509,18 +2501,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "หมดเวลาในการเชื่อมต่อไปยัง \"%s\""
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -7996,9 +7976,6 @@ msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
-
-msgid "Username"
-msgstr "ชื่อผู้ใช้"
 
 msgid "Email Address"
 msgstr "ที่อยู่อีเมล"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-11-16 17:18+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,18 +24,6 @@ msgstr "Isem-agi ur yettwaseqdac ara."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Ur issefk ara isem n useqdac ad yegber aweẓlu."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Sekcem isem useqdac ameɣtu isεan iskilen, uṭṭunen, ijeriden."
-
-msgid "This username cannot be used."
-msgstr "Isem-agi n useqdac ur izmir ara ad ittuseqdec."
-
-msgid "This username is already in use."
-msgstr "Isem n useqdac yettuseqdac yakan."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Tugniwin zemrent ad ilint PNG neɣ JPG."
@@ -935,6 +923,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Tasarut tamezwarut neɣ asulay ilulen \"%s\" mačči d ameɣtu. Taɣawsa ulmac-itt."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
 msgid "Application Versions"
 msgstr "Ileqman n usnas"
@@ -2489,18 +2481,6 @@ msgstr "Tasarut-ik API n tneflit tettwaf deg ufaylu yettwaznen. Akken ad tḥerz
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Tasarut-ik API n tneflit numeskar-nniḍen tettwaf deg ufaylu yettwaznen. Akken ad tḥerzeḍ amiḍan-ik, tasarutt ad tattwaḥwi."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s yerra-d awal s %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Tuqqna ar \"%s\" tezri."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Ur izmir ara ad nermes asennetfteɣ di \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Ulqu n tɣellist n Mozilla: Inekcam-ik AMOAPI ttwaḥwin"
@@ -8126,9 +8106,6 @@ msgstr "Ma ulac aɣilif, mudd-d isem-ik neɣ isem n useqdac akken ad tfakeḍ ak
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Sefrek talɣut tatzadurt n umiḍan, am yisem inek n useqdac akked iɣewwaṛen n imiḍanen Firefox."
-
-msgid "Username"
-msgstr "Isem n useqdac"
 
 msgid "Email Address"
 msgstr "Tansa imayl"

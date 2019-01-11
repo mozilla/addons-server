@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2019-01-04 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -26,18 +26,6 @@ msgstr "Bu görünen ad kullanılamaz."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Ana sayfa alanı sadece harici web sitelerine bağlantı vermek için kullanılabilir."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Kullanıcı adları sadece rakamlardan oluşamaz."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Harfler, rakamlar, alt çizgiler veya tirelerden oluşan geçerli bir kullanıcı adı girin."
-
-msgid "This username cannot be used."
-msgstr "Bu kullanıcı adı kullanılamaz."
-
-msgid "This username is already in use."
-msgstr "Bu kullanıcı adını başkası kullanıyor."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Resimler PNG veya JPG olmalıdır."
@@ -964,6 +952,10 @@ msgstr "Bir {lang-code:value} nesnesi sağlamalısınız."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Geçersiz pk veya kısa ad \"%s\" - nesne mevcut değil."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "En az bir sahibi olmalı."
 
 msgid "Application Versions"
 msgstr "Uygulama Sürümleri"
@@ -2578,18 +2570,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s, %s (%s) ile yanıt verdi."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "\"%s\" bağlantısı zaman aşımına uğradı."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "\"%s\" adresindeki ana makineye ulaşılamadı."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8190,9 +8170,6 @@ msgstr "Kayıt işlemini tamamlamak için lütfen görünen adınızı veya kull
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Kullanıcı adı ve Firefox Hesabı ayarları gibi temel hesap bilgilerini yönet."
-
-msgid "Username"
-msgstr "Kullanıcı Adı"
 
 msgid "Email Address"
 msgstr "E-posta Adresi"

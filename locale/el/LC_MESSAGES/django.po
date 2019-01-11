@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2019-01-02 12:13+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgstr "Αυτό το όνομα προβολής δεν μπορεί να χρ�
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Το πεδίο αρχικής σελίδας μπορεί να χρησιμοποιηθεί μόνο για σύνδεση σε εξωτερικές ιστοσελίδες."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Τα ονόματα χρήστη δεν μπορούν να περιέχουν μόνο ψηφία."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Εισάγετε ένα έγκυρο όνομα χρήστη, αποτελούμενο από γράμματα, αριθμούς, κάτω παύλες ή παύλες."
-
-msgid "This username cannot be used."
-msgstr "Αυτό το όνομα χρήστη δεν μπορεί να χρησιμοποιηθεί."
-
-msgid "This username is already in use."
-msgstr "Αυτό το όνομα χρήστη χρησιμοποιείται ήδη."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Οι εικόνες θα πρέπει να είναι σε μορφή αρχείου PNG ή JPG."
@@ -962,6 +950,10 @@ msgstr "Πρέπει να παρέχετε ένα αντικείμενο του 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Άκυρο pk ή slug \"%s\" - το αντικείμενο δεν υπάρχει."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Θα πρέπει να υπάρχει τουλάχιστον ένας ιδιοκτήτης"
 
 msgid "Application Versions"
 msgstr "Εκδόσεις εφαρμογής"
@@ -2526,18 +2518,6 @@ msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Το κλειδί API προγραμματιστή του συνδημιουργού βρέθηκε στο υποβεβλημένο αρχείο. Για να προστατεύσετε το πρόσθετό σας, το κλειδί θα ανακληθεί."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s αποκρίθηκε με %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Λήξη χρόνου σύνδεσης με «%s»."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Αδυναμία επικοινωνίας με «%s»."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Σημείωση ασφαλείας της Mozilla: Τα διαπιστευτήρια του AMO API σας έχουν ανακληθεί"
@@ -7985,9 +7965,6 @@ msgstr "Παρακαλώ ορίστε το όνομα προβολής ή το �
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Διαχειριστείτε βασικές πληροφορίες λογαριασμού, όπως το όνομα χρήστη και οι ρυθμίσεις του Λογαριασμού Firefox."
-
-msgid "Username"
-msgstr "Όνομα χρήστη"
 
 msgid "Email Address"
 msgstr "Διεύθυνση email"

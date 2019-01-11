@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2019-01-02 16:10+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
@@ -27,18 +27,6 @@ msgstr "לא ניתן להשתמש בשם תצוגה זה."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "ניתן להשתמש בשדה דף הבית כדי לקשר לאתרים חיצוניים בלבד."
-
-msgid "Usernames cannot contain only digits."
-msgstr "שמות משתמשים לא יכולים להכיל רק ספרות."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "נא להכניס שם משתמש תקין המורכב מאותיות, מספרים, קווים תחתונים ומקפים."
-
-msgid "This username cannot be used."
-msgstr "לא ניתן להשתמש בשם משתמש זה."
-
-msgid "This username is already in use."
-msgstr "כבר נעשה שימוש בשם משתמש זה."
 
 msgid "Images must be either PNG or JPG."
 msgstr "תמונות חייבות להיות בתבנית PNG או JPG."
@@ -953,6 +941,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "חייב להיות בבעלות של מישהו."
 
 msgid "Application Versions"
 msgstr "גרסאות יישום"
@@ -2544,18 +2536,6 @@ msgstr "מפתח ה־API שלך לצורכי פיתוח נמצא בקובץ שה
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "מפתח ה־API של אחת מעמיתיך לצורכי פיתוח נמצא בקובץ שהוגש. כדי להגן על התוספת שלך, המפתח יישלל."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "‏%s הגיב עם %s (‏%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "החיבור אל „%s” נקטע."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "לא ניתן ליצור קשר עם המארח בכתובת \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "הודעת אבטחה של Mozilla: פרטי הגישה שלך ל־API מול AMO נשללו"
@@ -8123,9 +8103,6 @@ msgstr "נא להגדיר את שם התצוגה שלך או שם משתמש כ�
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "ניהול מידע חשבון בסיסי, כמו שם המשתמש שלך והגדרות Firefox Accounts."
-
-msgid "Username"
-msgstr "שם משתמש"
 
 msgid "Email Address"
 msgstr "כתובת דוא״ל"

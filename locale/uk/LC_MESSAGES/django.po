@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-12-31 19:19+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -30,18 +30,6 @@ msgstr "Це ім'я для показу не можна використати.
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Поле домівки можна використовувати лише для посилань на сторонні веб-сайти."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Імена користувачів не можуть містити лише цифри."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Введіть дійсне ім'я користувача, що складається з літер, цифр, підкреслень або дефісів."
-
-msgid "This username cannot be used."
-msgstr "Це ім'я користувача не може використовуватися."
-
-msgid "This username is already in use."
-msgstr "Це ім’я користувача вже використовується."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Зображення повинні бути у форматі PNG чи JPG."
@@ -962,6 +950,10 @@ msgstr "Ви повинні вказати об'єкт для {lang-code:value}.
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Недійсний pk або slug \"%s\" - об'єкт не існує."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Необхідний хоча б один власник."
 
 msgid "Application Versions"
 msgstr "Версії програми"
@@ -2514,18 +2506,6 @@ msgstr "Ваш API-ключ розробника було знайдено у в
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "API-ключ розробника чи співавтора було знайдено у відправленому файлі. Для захисту вашого додатка ключ буде відкликано."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s відповів з %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Час очікування з'єднання з \"%s\" завершився."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Не вдалося зв'язатись з хостом на \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Застереження безпеки від Mozilla: Ваші облікові дані AMO API було відкликано"
@@ -8014,9 +7994,6 @@ msgstr "Будь ласка, вкажіть ім’я відображення �
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Керувати основною інформацією облікового запису, такою як ім'я користувача і налаштування."
-
-msgid "Username"
-msgstr "Ім'я користувача"
 
 msgid "Email Address"
 msgstr "Адреса електронної пошти"
