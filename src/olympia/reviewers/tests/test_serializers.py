@@ -2,8 +2,6 @@
 import mimetypes
 from datetime import datetime
 
-import mock
-
 from django.core.cache import cache
 
 from olympia import amo
