@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -23,21 +23,6 @@ msgstr "Ime ne može da se koristi."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Korisnička imena ne mogu da sadrže samo brojeve."
-
-msgid ""
-"Enter a valid username consisting of letters, numbers, underscores or "
-"hyphens."
-msgstr ""
-"Unesite ispravno korisničko ime koje sadrži slova, brojeve, crte ili crtice."
-
-msgid "This username cannot be used."
-msgstr "Ovo korisničko ime ne može da se koristi."
-
-msgid "This username is already in use."
-msgstr "Ovo korisničko ime je već u upotrebi."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Slike moraju biti ili PNG ili JPG formata."
@@ -1075,6 +1060,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Mora imati najmanje jednog vlasnika."
 
 msgid "Application Versions"
 msgstr "Verzije aplikacije"
@@ -2903,18 +2892,6 @@ msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s je odgovorio sa %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Konekcija na \"%s\" je istekla."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Nismo mogli kontaktirati host na \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -9445,9 +9422,6 @@ msgid ""
 msgstr ""
 "Upravljajte sa osnovnim informacijama o nalogu, kao što su korisničko ime i "
 "adresa e-pošte."
-
-msgid "Username"
-msgstr "Korisničko ime"
 
 msgid "Email Address"
 msgstr "Adresa e-pošte"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-09-20 11:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -26,18 +26,6 @@ msgstr "Това име не може да бъде използвано."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Потребителското име не може да съдържа само цифри."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Въведете валидно потребителско име, състоящо се то букви, цифри, долни черти или тирета."
-
-msgid "This username cannot be used."
-msgstr "Това потребителско име не може да бъде използвано."
-
-msgid "This username is already in use."
-msgstr "Това потребителско име вече съществува."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Картинките трябва да са PNG или JPG."
@@ -939,6 +927,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Трябва да има поне един собственик."
 
 msgid "Application Versions"
 msgstr "Версии на приложението"
@@ -2529,18 +2521,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s отговори с %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Връзката към \"%s\" бе прекъсната."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Не можах да се свържа с хоста на \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8074,9 +8054,6 @@ msgstr "Моля, изберете име, което да бъде показв
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Управление на основна информация за сметката като потребителско име и настройки на Firefox Account."
-
-msgid "Username"
-msgstr "Потребителско име"
 
 msgid "Email Address"
 msgstr "Имейл адрес"

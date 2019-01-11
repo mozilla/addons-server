@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2019-01-02 15:43+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,18 +24,6 @@ msgstr "Tós to pokazane mě njedajo se wužywaś."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Pólo startowego boka dajo se jano wužywaś, aby z eksternymi websedłami zwězało."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Wužywarske mjenja njesměju jano cyfry wopśimowaś."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Zapódajśio płaśiwe wužywarske mě, kótarež wobstoj z pismikow, licbow, pódsmužkow abo wězawkow."
-
-msgid "This username cannot be used."
-msgstr "Toś to wužywarske mě njedajo se wužywaś."
-
-msgid "This username is already in use."
-msgstr "Toś to wužywarske mě se južo wužywa."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Wobraze muse format PNG abo JPG měś."
@@ -973,6 +961,10 @@ msgstr "Musyśo objekt za {lang-code:value} pódaś."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Njepłaśiwy pk abo njepłaśiwe adresowe mě „%s“ - objekt njeeksistěrujo."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Musy nanejmjenjej jadnogo wobsejźerja měś."
 
 msgid "Application Versions"
 msgstr "Nałožeńske wersije"
@@ -2535,18 +2527,6 @@ msgstr "Waš wuwijarski API-kluc jo so w zapódanej dataji namakał. Aby se waš
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Wuwijarski API-kluc sobuawtora jo se w zapódanej dataji namakał. Aby se waš dodanl šćitał, se kluc wótwołajo."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s jo z %s (%s) wótegronił."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Zwisk z „%s“ jo cas pśekšocył."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Host na „%s“ njedajo se kontaktěrowaś."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Wěstotna powěźeńka Mozilla: Waše pśizjawjeńske daty za API AMO su se wótwołali"
@@ -8051,9 +8031,6 @@ msgstr "Pšosym nastajśo swójo pokazowane mě abo wužywarske mě, aby registr
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Zastojśo zakładne kontowe informacije, na pśikład swóje wužywarske mě a nastajenja Firefox Accounts."
-
-msgid "Username"
-msgstr "Wužywarske mě"
 
 msgid "Email Address"
 msgstr "E-mailowa adresa"

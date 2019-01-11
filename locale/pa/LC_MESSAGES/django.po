@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,18 +20,6 @@ msgstr "ਇਹ ਡਿਸਪਲੇਅ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜ�
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "ਉਪਭੋਗੀ ਨਾਂ ਵਿੱਚ ਕੇਵਲ ਅੰਕ ਨਾ ਸ਼ਾਮਲ ਹੋਣ।"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "ਅੱਖਰਾਂ, ਨੰਬਰਾਂ, ਅੰਡਰਸਕੋਰਾਂ ਜਾਂ ਹਾਈਫ਼ਨ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ ਇੱਕ ਸਹੀ ਉਪਭੋਗੀ ਨਾਂ ਦਰਜ ਕਰੋ।"
-
-msgid "This username cannot be used."
-msgstr "ਇਹ ਉਪਭੋਗੀ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
-
-msgid "This username is already in use."
-msgstr "ਇਹ ਉਪਭੋਗੀ ਨਾਂ ਪਹਿਲਾਂ ਹੀ ਵਰਤੋਂ ਵਿੱਚ ਹੈ।"
 
 msgid "Images must be either PNG or JPG."
 msgstr "ਤਸਵੀਰਾਂ PNG ਜਾਂ JPG ਹੋਣੀਆਂ ਚਾਹੀਦੀਆਂ।"
@@ -949,6 +937,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
 msgid "Application Versions"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
@@ -2573,18 +2565,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s ਦਾ ਜਵਾਬ %s (%s) ਦੇ ਨਾਲ ਦਿੱਤਾ।"
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "\"%s\" ਲਈ ਕੁਨੈਕਸ਼ਨ ਦਾ ਸਮਾਂ ਖਤਮ ਹੋਇਆ।"
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "\"%s\" ਤੇ ਹੋਸਟ ਨਾਲ ਸਪੰਰਕ ਨਹੀਂ ਕਰ ਸਕਿਆ।"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8236,9 +8216,6 @@ msgstr ""
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "ਬੁਨਿਆਦੀ ਖਾਤਾ ਜਾਣਕਾਰੀ ਸੰਭਾਲੋ, ਜਿਵੇਂ ਕਿ ਉਪਭੋਗੀ ਨਾਂ ਅਤੇ ਈਮੇਲ ਪਤਾ।"
-
-msgid "Username"
-msgstr "ਉਪਭੋਗੀ ਨਾਂ"
 
 msgid "Email Address"
 msgstr "ਈਮੇਲ ਪਤਾ"
