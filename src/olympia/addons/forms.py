@@ -26,6 +26,7 @@ from olympia.amo.fields import (
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
+from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
 from olympia.devhub import tasks as devhub_tasks
 from olympia.devhub.utils import (
     fetch_existing_translations_from_addon, get_addon_akismet_reports)
@@ -151,6 +152,10 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
         self.request = kw.pop('request')
         self.version = kw.pop('version', None)
         super(AddonFormBase, self).__init__(*args, **kw)
+        for field in ('name', 'summary'):
+            if field in self.fields:
+                self.fields[field].validators.append(
+                    OneOrMoreLetterOrNumberCharacterValidator())
 
     class Meta:
         models = Addon
