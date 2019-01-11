@@ -200,6 +200,29 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.assertFormError(
             response, 'form', 'name', 'This field is required.')
 
+    def test_edit_name_symbols_only(self):
+        data = self.get_dict(name='()+([#')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'name', error)
+
+        data = self.get_dict(name='±↡∋⌚')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'name', error)
+
+        # 'ø' is not a symbol, it's actually a letter, so it should be valid.
+        data = self.get_dict(name=u'ø')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        assert self.get_addon().name == u'ø'
+
     def test_edit_slugs_unique(self):
         Addon.objects.get(id=5579).update(slug='test_slug')
         data = self.get_dict()
@@ -223,6 +246,29 @@ class BaseTestEditDescribe(BaseTestEdit):
         self.assertFormError(response, 'form', 'name',
                              'Ensure this value has at most 50 '
                              'characters (it has 140).')
+
+    def test_edit_summary_symbols_only(self):
+        data = self.get_dict(summary='()+([#')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'summary', error)
+
+        data = self.get_dict(summary='±↡∋⌚')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'summary', error)
+
+        # 'ø' is not a symbol, it's actually a letter, so it should be valid.
+        data = self.get_dict(summary=u'ø')
+        response = self.client.post(self.describe_edit_url, data)
+        assert response.status_code == 200
+        assert self.get_addon().summary == u'ø'
 
     def test_edit_summary_max_length(self):
         data = self.get_dict(name=self.addon.name, slug=self.addon.slug,
