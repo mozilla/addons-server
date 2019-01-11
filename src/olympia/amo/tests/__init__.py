@@ -419,6 +419,11 @@ def activate_locale(locale=None, app=None):
     translation.activate(old_locale)
 
 
+def grant_permission(user_obj, rules, name):
+    group = Group.objects.create(name=name, rules=rules)
+    GroupUser.objects.create(group=group, user=user_obj)
+
+
 class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
     """Base class for all amo tests."""
     client_class = TestClient
@@ -538,8 +543,7 @@ class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
 
     def grant_permission(self, user_obj, rules, name='Test Group'):
         """Creates group with rule, and adds user to group."""
-        group = Group.objects.create(name=name, rules=rules)
-        GroupUser.objects.create(group=group, user=user_obj)
+        grant_permission(user_obj, rules, name)
 
     def days_ago(self, days):
         return days_ago(days)

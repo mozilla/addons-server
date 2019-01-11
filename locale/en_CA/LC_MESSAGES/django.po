@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2019-01-07 14:34+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"PO-Revision-Date: 2019-01-11 13:47+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_CA\n"
@@ -24,18 +24,6 @@ msgstr "This display name cannot be used."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "The homepage field can only be used to link to external websites."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Usernames cannot contain only digits."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-
-msgid "This username cannot be used."
-msgstr "This username cannot be used."
-
-msgid "This username is already in use."
-msgstr "This username is already in use."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Images must be either PNG or JPG."
@@ -938,6 +926,9 @@ msgstr "You must provide an object of {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Invalid pk or slug “%s” - object does not exist."
+
+msgid "Must contain at least one printable character."
+msgstr "Must contain at least one printable character."
 
 msgid "Application Versions"
 msgstr "Application Versions"
@@ -2480,18 +2471,6 @@ msgstr "Your developer API key was found in the submitted file. To protect your 
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s responded with %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Connection to “%s” timed out."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Could not contact host at “%s”."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -7935,9 +7914,6 @@ msgstr "Please set your display name or username to complete the registration pr
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Manage basic account information, such as your username and Firefox Accounts settings."
-
-msgid "Username"
-msgstr "Username"
 
 msgid "Email Address"
 msgstr "Email Address"

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2018-12-13 01:35+0000\n"
-"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"PO-Revision-Date: 2019-01-11 11:50+0000\n"
+"Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,6 @@ msgstr "Acest nume de afișare nu poate fi utilizat."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Câmpul pentru pagina de start poate fi utilizat numai pentru linkuri către site-uri web externe."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Numele de utilizator nu pot fi alcătuite numai din cifre."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Introdu un nume de utilizator valid, alcătuit din litere, numere, liniuță jos sau cratimă."
-
-msgid "This username cannot be used."
-msgstr "Acest nume te utilizator nu poate fi folosit."
-
-msgid "This username is already in use."
-msgstr "Acest nume de utilizator este deja folosit."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Imaginile trebuie să fie PNG sau JPG."
@@ -709,7 +697,7 @@ msgid "Submit a New Theme"
 msgstr "Trimite o temă nouă"
 
 msgid "Developer Hub"
-msgstr "Hubul dezvoltatorilor"
+msgstr "Centrul dezvoltatorilor"
 
 msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
@@ -968,6 +956,10 @@ msgstr "Trebuie să furnizezi un obiect {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk sau slug invalid(ă) „%s” - obiectul nu există."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Trebuie să aibă cel puțin un proprietar."
 
 msgid "Application Versions"
 msgstr "Versiunile aplicației"
@@ -2370,7 +2362,7 @@ msgid "Request More Info"
 msgstr "Cere mai multe informații"
 
 msgid "Flag"
-msgstr ""
+msgstr "Semnalează"
 
 msgid "Duplicate"
 msgstr "Duplicat"
@@ -2546,18 +2538,6 @@ msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru 
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Am găsit în fișierul trimis cheia API pentru dezvoltatori aparținând unui coautor. Pentru a-ți proteja suplimentul, cheia va fi revocată."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s a răspuns cu %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Conexiunea cu „%s” a expirat."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Nu s-a reușit contactarea gazdei de la „%s”."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Notificare de securitate Mozilla: Acreditările tale AMO API au fost revocate"
@@ -2749,7 +2729,7 @@ msgstr "Revenire la pagina de start DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Hubul dezvoltatorilor de <small>suplimente</small>"
+msgstr "Centrul dezvoltatorilor de <small>suplimente</small>"
 
 msgid "more add-ons..."
 msgstr "mai multe suplimente..."
@@ -3953,7 +3933,7 @@ msgstr "Propune prima ta temă"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
-msgstr "Hubul dezvoltatorilor de suplimente"
+msgstr "Centrul dezvoltatorilor de suplimente"
 
 msgid "Docs"
 msgstr "Documente"
@@ -8065,9 +8045,6 @@ msgid "Please set your display name or username to complete the registration pro
 msgstr "Te rugăm să îți setezi numele de afișat sau numele de utilizator pentru a finaliza procedura de înregistrare."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
-
-msgid "Username"
 msgstr ""
 
 msgid "Email Address"

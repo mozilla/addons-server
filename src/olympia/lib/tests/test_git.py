@@ -6,7 +6,6 @@ import pytest
 import pygit2
 import mock
 
-from django.conf import settings
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 
@@ -17,7 +16,7 @@ from olympia.lib.git import AddonGitRepository, TemporaryWorktree
 from olympia.files.utils import id_to_path
 
 
-def test_temporary_worktree():
+def test_temporary_worktree(settings):
     repo = AddonGitRepository(1)
 
     env = {'GIT_DIR': repo.git_repository.path}
@@ -40,36 +39,22 @@ def test_temporary_worktree():
     assert worktree.name not in output
 
 
-@pytest.fixture
-def restore_pygit2_paths():
-    # https://github.com/mozilla/addons-server/issues/10320
-    orig_spath = pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL]
-    orig_home_path = os.environ['HOME']
-
-    yield
-
-    pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = orig_spath
-    os.environ['HOME'] = orig_home_path
-
-
-def test_enforce_pygit_global_search_path_to_home(restore_pygit2_paths):
+def test_enforce_pygit_global_search_path(settings):
     pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = '/root'
 
     assert (
         pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] ==
         '/root')
 
-    os.environ['HOME'] = settings.GIT_FILE_STORAGE_PATH
-
     # Now initialize, which will overwrite the global setting.
     AddonGitRepository(1)
 
     assert (
         pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] ==
-        settings.GIT_FILE_STORAGE_PATH)
+        settings.ROOT)
 
 
-def test_git_repo_init():
+def test_git_repo_init(settings):
     repo = AddonGitRepository(1)
 
     assert repo.git_repository_path == os.path.join(
@@ -83,7 +68,7 @@ def test_git_repo_init():
         'HEAD', 'logs'])
 
 
-def test_git_repo_init_opens_existing_repo():
+def test_git_repo_init_opens_existing_repo(settings):
     expected_path = os.path.join(
         settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
 
@@ -100,7 +85,7 @@ def test_git_repo_init_opens_existing_repo():
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_version():
+def test_extract_and_commit_from_version(settings):
     addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
 
     repo = AddonGitRepository.extract_and_commit_from_version(
@@ -147,7 +132,7 @@ def test_extract_and_commit_from_version_set_git_hash():
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_from_version_multiple_versions():
+def test_extract_and_commit_from_version_multiple_versions(settings):
     addon = addon_factory(
         file_kw={'filename': 'webextension_no_id.xpi'},
         version_kw={'version': '0.1'})
@@ -245,7 +230,7 @@ def test_extract_and_commit_from_version_use_addons_robot_default():
     'webextension_no_id.zip',
     'search.xml',
 ])
-def test_extract_and_commit_from_version_valid_extensions(filename):
+def test_extract_and_commit_from_version_valid_extensions(settings, filename):
     addon = addon_factory(file_kw={'filename': filename})
 
     with mock.patch('olympia.files.utils.os.fsync') as fsync_mock:
@@ -275,7 +260,7 @@ def test_extract_and_commit_from_version_valid_extensions(filename):
 
 
 @pytest.mark.django_db
-def test_extract_and_commit_source_from_version():
+def test_extract_and_commit_source_from_version(settings):
     addon = addon_factory(
         file_kw={'filename': 'webextension_no_id.xpi'},
         version_kw={'version': '0.1'})
@@ -321,7 +306,8 @@ def test_extract_and_commit_source_from_version():
         'content-script.js', 'icons/LICENSE', 'icons/link-48.png',
         'manifest.json'})
 ])
-def test_extract_and_commit_from_version_commits_files(filename, expected):
+def test_extract_and_commit_from_version_commits_files(
+        settings, filename, expected):
     addon = addon_factory(file_kw={'filename': filename})
 
     repo = AddonGitRepository.extract_and_commit_from_version(

@@ -1,5 +1,6 @@
 import math
 import os
+import shutil
 import tempfile
 
 from django.conf import settings
@@ -23,7 +24,6 @@ def test_write_svg_to_png(filename):
     # settings.DEBUG==True it's not deleted afterwards.
     # Output png files are in shared_storage/uploads/version-previews/full
     # and /thumbs.
-    out = tempfile.mktemp()
     svg_xml = os.path.join(
         settings.ROOT,
         'src/olympia/versions/tests/static_themes/%s.svg' % filename)
@@ -32,13 +32,20 @@ def test_write_svg_to_png(filename):
         'src/olympia/versions/tests/static_themes/%s.png' % filename)
     with storage.open(svg_xml, 'rb') as svgfile:
         svg = svgfile.read()
-    write_svg_to_png(svg, out)
-    assert storage.exists(out)
-    # compare the image content. rms should be 0 but travis renders it
-    # different... 3 is the magic difference.
-    svg_png_img = Image.open(svg_png)
-    svg_out_img = Image.open(out)
-    image_diff = ImageChops.difference(svg_png_img, svg_out_img)
+    try:
+        out_dir = tempfile.mkdtemp()
+        out = os.path.join(out_dir, 'a', 'b.png')
+        write_svg_to_png(svg, out)
+        assert storage.exists(out)
+        # compare the image content. rms should be 0 but travis renders it
+        # different... 3 is the magic difference.
+        svg_png_img = Image.open(svg_png)
+        svg_out_img = Image.open(out)
+        image_diff = ImageChops.difference(svg_png_img, svg_out_img)
+    except Exception as e:
+        raise e
+    finally:
+        shutil.rmtree(out_dir)
     sum_of_squares = sum(
         value * ((idx % 256) ** 2)
         for idx, value in enumerate(image_diff.histogram()))

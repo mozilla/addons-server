@@ -128,6 +128,16 @@ def test_get_disco_recommendations(call_recommendation_server):
 
 
 @mock.patch('olympia.discovery.utils.call_recommendation_server')
+def test_get_disco_recommendations_empty(call_recommendation_server):
+    call_recommendation_server.return_value = None
+    recommendations = get_disco_recommendations('0', [])
+    assert recommendations == []
+    call_recommendation_server.assert_called_with(
+        'https://taar.dev.mozaws.net/api/recommendations/', '0', None,
+        verb='post')
+
+
+@mock.patch('olympia.discovery.utils.call_recommendation_server')
 @pytest.mark.django_db
 def test_get_disco_recommendations_overrides(call_recommendation_server):
     call_recommendation_server.return_value = [

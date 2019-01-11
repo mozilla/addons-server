@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2018-12-19 17:03+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"PO-Revision-Date: 2019-01-10 18:57+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -26,18 +26,6 @@ msgstr "S’mund të përdoren ky emër ekrani."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Fusha për faqen hyrëse mund të përdoret vetëm për të lidhur sajte të jashtëm."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Emri i përdoruesit s’mundet të përmbajë vetëm shifra."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Jepni një emër të vlefshëm përdoruesi, të përbërë nga shkronja, numra, nënvija ose vija ndarëse."
-
-msgid "This username cannot be used."
-msgstr "Ky emër përdoruesi s’përdoret dot."
-
-msgid "This username is already in use."
-msgstr "Ky emër përdoruesi është tashmë në përdorim."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Figurat duhet të jenë ose PNG, ose JPG."
@@ -950,6 +938,10 @@ msgstr "Duhet të furnizoni një objekt {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk ose identifikues i pavlefshëm \"%s\" - objekti nuk ekziston."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Duhet të ketë të paktën një pronar."
 
 msgid "Application Versions"
 msgstr "Versione Aplikacionesh"
@@ -2514,18 +2506,6 @@ msgstr "Kyçi juaj API zhvilluesish u gjet te kartela e parashtruar. Që të mbr
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Kyçi API zhvilluesish i një bashkëautori u gjet te kartela e parashtruar. Që të mbrohet shtesa juaj, kyçi do të shfuqizohet."
 
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s u përgjigj me %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Lidhjes me \"%s\" i mbaroi koha."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "S’u lidh dot me strehën te \"%s\"."
-
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Njoftim Sigurie nga Mozilla: Kredencialet tuaja API AMO janë shfuqizuar"
 
@@ -3867,15 +3847,17 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Që të Përpunoni dhe Përditësoni Shtesën Tuaj, Bëni Hyrjen"
 
 msgid "Write one code base for many browsers"
-msgstr ""
+msgstr "Shkruani një kod bazë për shumë shfletues"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
 "between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
+"Me API-n WebExtensions, është e lehtë të krijohen zgjerime që, ne vetëm pak ndryshime, do të xhirojnë në Firefox, Chrome, Opera, dhe Edge. Mësoni më tepër mbi dallimet në zhvillimin e zgjerimeve "
+"mes katër shfletuesve më të mëdhenj dhe se si mund ta bëni zgjerimin tuaj të kalueshëm për shfletues të ndryshëm."
 
 msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
+msgstr "Shihni Praktikat Më të Mira për Zhvillim Për Shumë Shfletues"
 
 # %s is the user's name
 msgid "Welcome Back"
@@ -3889,10 +3871,10 @@ msgid "Learn More"
 msgstr "Mësoni Më Tepër"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "Duke ndjekur praktikat tona më të mira për tërheqjen e përdoruesve, mund t’i ndihmoni përdoruesit të fitojnë besim për zgjerimin tuaj."
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Shihni Praktikat Më të Mira"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Paraqitur në këtë sajt pas kalimit me sukses të shqyrtimit të kodit. Për përditësimet e vetvetishme kujdeset ky sajt."
@@ -4073,9 +4055,9 @@ msgstr "Kjo është ngjyra e skedave"
 msgid "Your Theme's Name"
 msgstr "Emri i Temës Suaj"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "nga <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr "nga <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Krijoni një Temë të Re"
@@ -8015,9 +7997,6 @@ msgstr "Ju lutemi, caktoni emrin tuaj në ekran ose atë të përdoruesit që t�
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Administroni të dhëna bazë llogarie, të tilla si emri juaj i përdoruesit dhe rregullimet për Llogarinë Firefox."
-
-msgid "Username"
-msgstr "Emër përdoruesi"
 
 msgid "Email Address"
 msgstr "Adresë Email"

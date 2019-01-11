@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2017-03-21 23:23+0000\n"
 "Last-Translator: Ramin.Najarbashi <Ramin.Najarbashi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,18 +23,6 @@ msgstr "نام انتخاب شده قابل استفاده نیست."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "نام‌کاربری نمی‌تواند تنها شامل اعداد باشد."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "یک نام کاربری معتبر که حاوی حروف، اعداد، زیر‌خط و اشکال باشد وارد کنید."
-
-msgid "This username cannot be used."
-msgstr "این نام کاربری قابل استفاده نیست."
-
-msgid "This username is already in use."
-msgstr "این نام کاربری قبلا استفاده شده."
 
 msgid "Images must be either PNG or JPG."
 msgstr "تصاویر باید PNG یا JPG باشند."
@@ -959,6 +947,9 @@ msgstr ""
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
+msgstr ""
+
+msgid "Must contain at least one printable character."
 msgstr ""
 
 msgid "Application Versions"
@@ -2561,18 +2552,6 @@ msgid "Your developer API key was found in the submitted file. To protect your a
 msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
-msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ""
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr ""
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
 msgstr ""
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
@@ -8119,9 +8098,6 @@ msgstr ""
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
-
-msgid "Username"
-msgstr "نام کاربری"
 
 msgid "Email Address"
 msgstr "آدرس پست الکترونیکی"

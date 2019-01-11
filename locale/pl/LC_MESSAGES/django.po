@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -31,18 +31,6 @@ msgstr "Nie można użyć tej nazwy."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Nazwy użytkowników nie mogą zawierać samych cyfr."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Podaj poprawną nazwę użytkownika składającą się z liter, cyfr, podkreślników lub myślników."
-
-msgid "This username cannot be used."
-msgstr "Ta nazwa użytkownika nie może być użyta."
-
-msgid "This username is already in use."
-msgstr "Ta nazwa użytkownika jest już używana."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrazy muszą być w formacie PNG lub JPG."
@@ -969,6 +957,10 @@ msgstr "Należy określić obiekt {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Nieprawidłowy pk lub ciąg słów „%s” — obiekt nie istnieje."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Musi mieć co najmniej jednego właściciela."
 
 msgid "Application Versions"
 msgstr "Wersje programu"
@@ -2537,18 +2529,6 @@ msgstr "W przesłanym pliku znaleziono Twój klucz API. Aby ochronić Twoje kont
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "W przesłanym pliku znaleziono klucz API współautora. Aby ochronić dodatek, klucz zostanie odwołany."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s odpowiada %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Upłynął limit czasu połączenia z „%s”."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Nie można połączyć się z serwerem „%s”."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Powiadomienie Mozilli dotyczące bezpieczeństwa: Twoje poświadczenia API AMO zostały odwołane"
@@ -8084,9 +8064,6 @@ msgstr "Aby ukończyć proces rejestracji, ustaw wyświetlaną nazwę lub nazwę
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Zarządzaj podstawowymi informacjami o koncie, takimi jak nazwa użytkownika i ustawienia konta Firefoksa."
-
-msgid "Username"
-msgstr "Nazwa użytkownika"
 
 msgid "Email Address"
 msgstr "Adres e-mail"

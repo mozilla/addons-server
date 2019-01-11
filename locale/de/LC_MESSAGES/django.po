@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2019-01-07 13:04+0000\n"
-"Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"PO-Revision-Date: 2019-01-11 13:49+0000\n"
+"Last-Translator: paul.trevor <paul.trevor@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -23,18 +23,6 @@ msgstr "Dieser Anzeigename kann nicht verwendet werden."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Das Homepage-Feld kann nur zum Verlinken externer Websites verwendet werden."
-
-msgid "Usernames cannot contain only digits."
-msgstr "Benutzernamen dürfen nicht nur aus Ziffern bestehen."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Geben Sie einen gültigen Benutzernamen ein, der aus Buchstaben, Zahlen, Unterstrichen oder Bindestrichen besteht."
-
-msgid "This username cannot be used."
-msgstr "Dieser Benutzername kann nicht verwendet werden."
-
-msgid "This username is already in use."
-msgstr "Dieser Benutzername wird bereits verwendet."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Bilder müssen entweder im PNG- oder JPG-Format vorliegen."
@@ -955,6 +943,9 @@ msgstr "Sie müssen ein Objekt für {lang-code:value} angeben."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Ungültiger pk oder Adressname „%s“ – Objekt existiert nicht."
+
+msgid "Must contain at least one printable character."
+msgstr "Mindestens ein druckbares Zeichen muss enthalten sein."
 
 msgid "Application Versions"
 msgstr "Anwendungs-Versionen"
@@ -2535,18 +2526,6 @@ msgstr "Ihr Entwickler-API-Schlüssel wurde in der übermittelten Datei gefunden
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Ihr Entwickler-API-Schlüssel eines Mitautors wurde in der übermittelten Datei gefunden. Um Ihr Add-on zu schützen, wird der Schlüssel widerrufen."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s hat mit %s (%s) geantwortet."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Zeitüberschreitung bei der Verbindung mit \"%s\"."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Host unter \"%s\" konnte nicht erreicht werden."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla-Sicherheitshinweis: Ihre AMO-API-Zugangsdaten wurden widerrufen"
@@ -8038,9 +8017,6 @@ msgstr "Bitte legen Sie Ihren Anzeigenamen oder Benutzernamen fest, um den Regis
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Verwalten von grundlegenden Kontoinformationen, wie Benutzername und Einstellungen des Firefox-Kontos."
-
-msgid "Username"
-msgstr "Benutzername"
 
 msgid "Email Address"
 msgstr "E-Mail-Adresse"
