@@ -2,6 +2,7 @@ import io
 import os
 import mimetypes
 from collections import OrderedDict
+from datetime import datetime
 
 import pygit2
 
@@ -10,6 +11,7 @@ from rest_framework.exceptions import NotFound
 
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
+from django.utils.timezone import FixedOffiset
 
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.serializers import VersionSerializer, FileSerializer
@@ -81,8 +83,12 @@ class FileEntriesSerializer(FileSerializer):
                     get_sha256(io.BytesIO(memoryview(blob)))
                     if not is_directory else '')
 
+                commit_tzinfo = FixedOffiset(commit.commit_time_offset)
+                commit_time = datetime.fromtimestamp(
+                    float(commit.commit_time),
+                    commit_tzinfo)
+
                 result[path] = {
-                    'id': obj.id,
                     'binary': is_binary,
                     'depth': path.count(os.sep),
                     'directory': is_directory,
@@ -91,8 +97,7 @@ class FileEntriesSerializer(FileSerializer):
                     'mimetype': mime or 'application/octet-stream',
                     'path': path,
                     'size': blob.size if blob is not None else None,
-                    'version': obj.version.version,
-                    'modified': commit.commit_time,
+                    'modified': commit_time,
                 }
             return result
 

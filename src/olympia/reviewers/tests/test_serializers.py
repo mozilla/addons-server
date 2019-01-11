@@ -57,7 +57,6 @@ class TestFileEntriesSerializer(TestCase):
             'manifest.json'}
 
         assert data['entries']['manifest.json'] == {
-            'id': file.pk,
             'binary': False,
             'depth': 0,
             'directory': False,
@@ -72,7 +71,6 @@ class TestFileEntriesSerializer(TestCase):
             'modified': mock.ANY}
 
         assert data['entries']['_locales/ja'] == {
-            'id': file.pk,
             'binary': False,
             'depth': 1,
             'directory': True,
