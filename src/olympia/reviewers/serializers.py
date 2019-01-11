@@ -11,7 +11,7 @@ from rest_framework.exceptions import NotFound
 
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
-from django.utils.timezone import FixedOffiset
+from django.utils.timezone import FixedOffset
 
 from olympia.amo.urlresolvers import reverse
 from olympia.addons.serializers import VersionSerializer, FileSerializer
@@ -83,7 +83,7 @@ class FileEntriesSerializer(FileSerializer):
                     get_sha256(io.BytesIO(memoryview(blob)))
                     if not is_directory else '')
 
-                commit_tzinfo = FixedOffiset(commit.commit_time_offset)
+                commit_tzinfo = FixedOffset(commit.commit_time_offset)
                 commit_time = datetime.fromtimestamp(
                     float(commit.commit_time),
                     commit_tzinfo)
