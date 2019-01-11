@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import mimetypes
+from datetime import datetime
 
 import mock
 
@@ -56,31 +57,29 @@ class TestFileEntriesSerializer(TestCase):
             'content-script.js', 'icons', 'icons/LICENSE', 'icons/link-48.png',
             'manifest.json'}
 
-        assert data['entries']['manifest.json'] == {
-            'binary': False,
-            'depth': 0,
-            'directory': False,
-            'filename': 'manifest.json',
-            'sha256': (
-                '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d'
-                '6cb4f0'),
-            'mimetype': 'application/json',
-            'path': 'manifest.json',
-            'size': 622,
-            'version': file.version.version,
-            'modified': mock.ANY}
+        manifest_data = data['entries']['manifest.json']
+        assert manifest_data['binary'] is False
+        assert manifest_data['depth'] == 0
+        assert manifest_data['directory'] is False
+        assert manifest_data['filename'] == u'manifest.json'
+        assert manifest_data['sha256'] == (
+            '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
+        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['path'] == u'manifest.json'
+        assert manifest_data['size'] == 622
+        assert isinstance(manifest_data['modified'], datetime)
 
-        assert data['entries']['_locales/ja'] == {
-            'binary': False,
-            'depth': 1,
-            'directory': True,
-            'filename': 'ja',
-            'sha256': '',
-            'mimetype': 'application/octet-stream',
-            'path': '_locales/ja',
-            'size': None,
-            'version': file.version.version,
-            'modified': mock.ANY}
+        ja_locale_data = data['entries']['_locales/ja']
+
+        assert ja_locale_data['binary'] is False
+        assert ja_locale_data['depth'] == 1
+        assert ja_locale_data['directory'] is True
+        assert ja_locale_data['filename'] == 'ja'
+        assert ja_locale_data['sha256'] == ''
+        assert ja_locale_data['mimetype'] == 'application/octet-stream'
+        assert ja_locale_data['path'] == u'_locales/ja'
+        assert ja_locale_data['size'] is None
+        assert isinstance(ja_locale_data['modified'], datetime)
 
         assert '"manifest_version": 2' in data['content']
         assert 'id": "notify-link-clicks-i18n@notzilla.org' in data['content']
