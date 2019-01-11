@@ -44,3 +44,4 @@ docker*.yml
 .cache
 .vscode
 src/olympia/discovery/strings.jinja2
+static/js/i18n/*.js

@@ -75,6 +75,8 @@ urlpatterns = [
 
     # Javascript translations.
     # Should always be called with a cache-busting querystring.
+    # Still served for the moment, but superseded by a fully static version we
+    # generate at deploy-time through our generate_jsi18n_files command.
     url(r'^jsi18n\.js$', cache_page(60 * 60 * 24 * 365)(javascript_catalog),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 

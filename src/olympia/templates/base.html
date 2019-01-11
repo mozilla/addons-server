@@ -160,7 +160,7 @@
       </div>
       {# js #}
       {% block site_js %}
-        <script src="{{ CDN_HOST }}{{ cache_buster(url('jsi18n')) }}"></script>
+        <script src="{{ static('js/i18n/%s.js'|format(LANG)) }}"></script>
         {{ js('common') }}
       {% endblock %}
       {% block js %}{% endblock %}
