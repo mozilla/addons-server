@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-02 13:30+0000\n"
-"PO-Revision-Date: 2019-01-07 09:07+0000\n"
-"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
+"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"PO-Revision-Date: 2019-01-11 11:17+0000\n"
+"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -3777,27 +3777,19 @@ msgstr "自分のアドオンを管理"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "ログインしてアドオンを編集・更新"
 
-msgid "Resources for a successful launch"
-msgstr "開始に役立つリソース"
+msgid "Write one code base for many browsers"
+msgstr ""
 
-#, fuzzy, python-format
 msgid ""
-"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing product page, getting your extension featured on "
-"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
-msgstr "拡張機能を作成し、公開する準備ができました。次の手順は？魅力的な詳細ページを作成したり、拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s でおすすめしてもらったり、開発に関する疑問の答えを見つけたり、拡張機能の開発者に関連する最新の情報とイベントを知ったりするためのコツをご確認ください。"
+"With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
+"between the four major browsers and how you can make your extension cross-browser compatible."
+msgstr ""
 
-msgid "View Resources for Publishers"
-msgstr "公開者向けのリソースを表示"
+msgid "View Best Practices for Cross-Browser Development"
+msgstr ""
 
 msgid "Welcome Back"
 msgstr "お帰りなさい"
-
-#, fuzzy
-msgid "Help users discover your extension by creating an appealing product page."
-msgstr "魅力的な詳細ページを作成して、拡張機能をユーザーによく知ってもらいましょう。"
-
-msgid "Learn How"
-msgstr "手順を見る"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3805,6 +3797,12 @@ msgstr "拡張機能を %(amo_link_open)saddons.mozilla.org%(amo_link_close)s �
 
 msgid "Learn More"
 msgstr "詳細"
+
+msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
+msgstr ""
+
+msgid "See Best Practices"
+msgstr ""
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
@@ -3863,6 +3861,9 @@ msgstr "Chrome 拡張機能を移植"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr "Firefox は、Chrome や Opera、Edge が提供している拡張機能 API と多くの場合互換性がある WebExtension API に対応していますので、あなたの拡張機能は少し変更を加えるだけで Firefox でも動作します。"
+
+msgid "Learn How"
+msgstr "手順を見る"
 
 msgid "Publish Your Add-on"
 msgstr "アドオンを公開"
@@ -4275,7 +4276,7 @@ msgstr "開いているタブが多すぎて困っていませんか？サイド
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook のトラッキングを停止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} Facebook のトラッキングを停止しましょう"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -5532,7 +5533,7 @@ msgstr "ブラウザーのオーディオ設定をとても鮮明に調整。"
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}プライバシーを保護"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading} プライバシーを保護しましょう"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
