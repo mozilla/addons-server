@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-07 09:04+0000\n"
-"PO-Revision-Date: 2019-01-11 11:11+0000\n"
+"PO-Revision-Date: 2019-01-11 11:50+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2079,43 +2079,45 @@ msgid "Causes"
 msgstr "Ügyek"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Töltsön le érdeklődési körökkel és témákkal kapcsolatos Firefox témákat. Ebbe a kategóriába sport témák, ünnepek, jótékonysági célok, nemzetiségek és még sok más tartozik."
 
 msgid "Fashion"
 msgstr "Divat"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Töltse le Firefox témákat, melyek a stílus minden formáját ünneplik – minták, virágminták, textúrák, modellek és így tovább."
 
 msgid "Film and TV"
 msgstr "Film és TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Töltsön le filmekkel és televízióval kapcsolatos Firefox témákat. Ez a kategória animéket tartalmaz mint az Uchiha Madara, filmeket mint a Mátrix, sorozatokat (Trónok harca) és még sok mást."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Töltsön le Firefox témákat Firefox böngészőtémákkal. Ez a kategória a Firefox logó színes, változatos ábrázolásait tartalmazza, köztük általánosabb róka témákkal."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Töltsön le Firefox témákat a japán Firefoxszal. Ez a kategória olyan témákat tartalmaz, amelyek a cuki Foxkeh kabalafigurát ábrázolják különböző pózokban és változatos helyszíneken."
 
 msgid "Holiday"
-msgstr "Szabadság"
+msgstr "Ünnepnap"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Töltsön le ünnepekkel kapcsolatos Firefox témákat. Ebbe a kategóriába karácsonyi, halloweeni, hálaadási, Szent Patrik napi, húsvéti, július negyedikei és egyéb témák tartoznak."
 
 msgid "Music"
 msgstr "Zene"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
+"Töltsön le zenei érdeklődéssel és előadókkal kapcsolatos Firefox témákat. Ez a kategória olyan népszerű együtteseket tartalmaz, mint a Nirvana és a BTS, valamint hangszereket, zenei klipeket és "
+"számos egyebet."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Töltsön le állatokkal és a természeti tájakkal kapcsolatos Firefox témákat. Ez a kategória virágokat, naplementéket, rókákat, évszakokat, bolygókat, cicákat, madarakat és egyebeket tartalmaz."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Töltsön le Firefox témákat, melyek érdekesek, kreatívak és egyediek."
@@ -2130,22 +2132,22 @@ msgid "Seasonal"
 msgstr "Időszakos"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Töltsön le Firefox témákat mind a négy évszakhoz – őszhöz, télhez, tavaszhoz és nyárhoz. Őszi levelek, havas hegycsúcsok, napos nyári napok, és tavaszi virágok."
 
 msgid "Solid"
-msgstr "Kiforrott"
+msgstr "Egyszínű"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Töltsön le egyszínű és színátmenetes Firefox témákat, hogy testreszabja a böngészőjét. Ez a kategória merész vöröseket, pasztellszíneket, lágy szürkéket és még sok mást tartalmaz."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Töltsön le különböző sportokat bemutató Firefox témákat. Ez a kategória országzászlókat, sportcsapatokat, focit, jégkorongot és egyebeket tartalmaz."
 
 msgid "Websites"
 msgstr "Weboldalak"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Töltsön le Firefox témákat, melyek megfogják a web lényegét – lenyűgözőek, szokatlanok és jellegzetesek."
 
 msgid "General"
 msgstr "Általános"
@@ -3877,7 +3879,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Jelentkezzen be, hogy szerkessze és frissítse a kiegészítőjét"
 
 msgid "Write one code base for many browsers"
-msgstr "Írjon be egy kódbázist számos böngészőhöz"
+msgstr "Írjon egyetlen kódbázist számos böngészőhöz"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
@@ -3887,7 +3889,7 @@ msgstr ""
 " fő böngésző közötti kiegészítőfejlesztés különbségeiről, és arról, hogyan lehet a kiegészítője kompatibilis a böngészőkkel."
 
 msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
+msgstr "Legjobb gyakorlatok megtekintése a több böngészőt célzó fejlesztésről"
 
 msgid "Welcome Back"
 msgstr "Üdvözöljük újra"
@@ -3900,10 +3902,10 @@ msgid "Learn More"
 msgstr "További infó"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "Megkönnyítheti, hogy a felhasználók bízzanak és megbízzanak a kiegészítőjében, azáltal hogy követi a legjobb gyakorlatokat az új felhasználók üdvözlésekor."
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Lásd a legjobb gyakorlatokat"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Ezen az oldalon kerül listázásra, a kódértékelésen átjutás után. Az automatikus frissítést ez az oldal kezeli."
