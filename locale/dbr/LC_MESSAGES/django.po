@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,18 +22,6 @@ msgstr ".pǝsn ǝq ʇouuɐɔ ǝɯɐu ʎɐʅdsıp sıɥ⊥"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ".sǝʇısqǝʍ ʅɐuɹǝʇxǝ oʇ ʞuıʅ oʇ pǝsn ǝq ʎʅuo uɐɔ pʅǝıɟ ǝƃɐdǝɯoɥ ǝɥ⊥"
-
-msgid "Usernames cannot contain only digits."
-msgstr ".sʇıƃıp ʎʅuo uıɐʇuoɔ ʇouuɐɔ sǝɯɐuɹǝs∩"
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ".suǝɥdʎɥ ɹo sǝɹoɔsɹǝpun ´sɹǝqɯnu ´sɹǝʇʇǝʅ ɟo ƃuıʇsısuoɔ ǝɯɐuɹǝsn pıʅɐʌ ɐ ɹǝʇuƎ"
-
-msgid "This username cannot be used."
-msgstr ".pǝsn ǝq ʇouuɐɔ ǝɯɐuɹǝsn sıɥ⊥"
-
-msgid "This username is already in use."
-msgstr ".ǝsn uı ʎpɐǝɹʅɐ sı ǝɯɐuɹǝsn sıɥ⊥"
 
 msgid "Images must be either PNG or JPG."
 msgstr ".⅁Ԁſ ɹo ⅁NԀ ɹǝɥʇıǝ ǝq ʇsnɯ sǝƃɐɯI"
@@ -936,6 +924,9 @@ msgstr ".{lang-code:value} ɟo ʇɔǝɾqo uɐ ǝpıʌoɹd ʇsnɯ no⅄"
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ".ʇsıxǝ ʇou sǝop ʇɔǝɾqo - „%s„ ƃnʅs ɹo ʞd pıʅɐʌuI"
+
+msgid "Must contain at least one printable character."
+msgstr ".ɹǝʇɔɐɹɐɥɔ ǝʅqɐʇuıɹd ǝuo ʇsɐǝʅ ʇɐ uıɐʇuoɔ ʇsnW"
 
 msgid "Application Versions"
 msgstr "suoısɹǝɅ uoıʇɐɔıʅdd∀"
@@ -2480,18 +2471,6 @@ msgstr ".pǝʞoʌǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´ʇunoɔɔɐ ɹnoʎ ʇɔǝʇo�
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ".pǝʞoʌǝɹ ǝq ʅʅıʍ ʎǝʞ ǝɥʇ ´uo-ppɐ ɹnoʎ ʇɔǝʇoɹd o⊥ .ǝʅıɟ pǝʇʇıɯqns ǝɥʇ uı punoɟ sɐʍ ɹoɥʇnɐoɔ ɐ ɟo ʎǝʞ IԀ∀ ɹǝdoʅǝʌǝp ǝɥ⊥"
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr ".(%s) %s ɥʇıʍ pǝpuodsǝɹ %s"
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr ".ʇno pǝɯıʇ „%s„ oʇ uoıʇɔǝuuoↃ"
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr ".„%s„ ʇɐ ʇsoɥ ʇɔɐʇuoɔ ʇou pʅnoↃ"
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "pǝʞoʌǝɹ uǝǝq ǝʌɐɥ sʅɐıʇuǝpǝɹɔ IԀ∀ OW∀ ɹno⅄ :ǝɔıʇoN ʎʇıɹnɔǝS ɐʅʅızoW"
@@ -7942,9 +7921,6 @@ msgstr ".ssǝɔoɹd uoıʇɐɹʇsıƃǝɹ ǝɥʇ ǝʇǝʅdɯoɔ oʇ ǝɯɐuɹǝs
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ".sƃuıʇʇǝs sʇunoɔɔ∀ xoɟǝɹıℲ puɐ ǝɯɐuɹǝsn ɹnoʎ sɐ ɥɔns ´uoıʇɐɯɹoɟuı ʇunoɔɔɐ ɔısɐq ǝƃɐuɐW"
-
-msgid "Username"
-msgstr "ǝɯɐuɹǝs∩"
 
 msgid "Email Address"
 msgstr "ssǝɹpp∀ ʅıɐɯƎ"

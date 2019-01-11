@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,18 +20,6 @@ msgstr "Este nome de apresentação não pode ser utilizado."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Os nomes de utilizador não podem conter apenas dígitos."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Digite um nome de utilizador válido constituído por letras, números, traços inferiores ou hífenes."
-
-msgid "This username cannot be used."
-msgstr "Este nome de utilizador não pode ser utilizado."
-
-msgid "This username is already in use."
-msgstr "Este nome de utilizador já está a ser utilizado."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem ser PNG ou JPG."
@@ -951,6 +939,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Tem de ter pelo menos um proprietário."
 
 msgid "Application Versions"
 msgstr "Versões da aplicação"
@@ -2577,18 +2569,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s respondeu com %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "A ligação a \"%s\" expirou."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Não foi possível contactar o servidor em  \"%s\"."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8289,9 +8269,6 @@ msgstr ""
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Faça a gestão da informação da conta, como o nome de utilizador e o endereço de correio."
-
-msgid "Username"
-msgstr "Nome de utilizador"
 
 msgid "Email Address"
 msgstr "Endereço de email"

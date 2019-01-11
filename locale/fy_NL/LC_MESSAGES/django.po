@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,18 +27,6 @@ msgstr "Dizze skermnamme kin net brûkt wurde."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr "Brûkersnammen meie net allinnich getallen befetsje."
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr "Fier in jildige brûkersnamme yn dy't bestiet út letters, sifers, lizzende streepkes of ôfbrektekens."
-
-msgid "This username cannot be used."
-msgstr "Dizze brûkersnamme kin net brûkt wurde."
-
-msgid "This username is already in use."
-msgstr "Dizze brûkersnamme is al yn gebrûk."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Ofbyldingen moatte fan it type PNG of JPG wêze."
@@ -947,6 +935,10 @@ msgstr "Jo moatte in objekt fan {lang-code:value} opjaan."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Unjildige pk of identifikator ‘%s’ - objekt bestiet net."
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Der moat op syn minst ien eigener wêze."
 
 msgid "Application Versions"
 msgstr "Tapassingsferzjes"
@@ -2508,18 +2500,6 @@ msgstr "Yn it yntsjinne bestân is jo ûntwikkelers-API-kaai oantroffen. Om jo a
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr "Yn it yntsjinne bestân is de ûntwikkelers-API-kaai fan in ko-auteur oantroffen. Om jo add-on te beskermjen, sil de kaai ynlutsen wurde."
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s hat antwurde mei %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "Wachttiid foar ferbining mei ‘%s’ foarby."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "Kin gjin ferbining meitsje mei de host op ‘%s’."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr "Mozilla-befeiligingsmelding: jo API-referinsjes foar AMO binne ynlutsen"
@@ -8032,9 +8012,6 @@ msgstr "Stel jo skermnamme of brûkersnamme yn om it registraasjeproses te folt�
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Behear basale accountynformaasje, lykas jo brûkersnamme en ynstellingen fan Firefox Accounts."
-
-msgid "Username"
-msgstr "Brûkersnamme"
 
 msgid "Email Address"
 msgstr "E-mailadres"

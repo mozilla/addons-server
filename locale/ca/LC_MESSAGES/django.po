@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-07 09:04+0000\n"
+"POT-Creation-Date: 2019-01-11 11:37+0000\n"
 "PO-Revision-Date: 2018-06-20 17:05+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -29,18 +29,6 @@ msgid "This display name cannot be used."
 msgstr ""
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
-
-msgid "Usernames cannot contain only digits."
-msgstr ""
-
-msgid "Enter a valid username consisting of letters, numbers, underscores or hyphens."
-msgstr ""
-
-msgid "This username cannot be used."
-msgstr ""
-
-msgid "This username is already in use."
 msgstr ""
 
 msgid "Images must be either PNG or JPG."
@@ -980,6 +968,10 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
+
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Ha de tenir com a mínim un propietari."
 
 msgid "Application Versions"
 msgstr "Versions de l'aplicació"
@@ -2592,18 +2584,6 @@ msgstr ""
 
 msgid "The developer API key of a coauthor was found in the submitted file. To protect your add-on, the key will be revoked."
 msgstr ""
-
-#, python-format
-msgid "%s responded with %s (%s)."
-msgstr "%s ha respòs amb %s (%s)."
-
-#, python-format
-msgid "Connection to \"%s\" timed out."
-msgstr "S'ha esgotat el temps de connexió a «%s»."
-
-#, python-format
-msgid "Could not contact host at \"%s\"."
-msgstr "No s'ha pogut contactar amb el servidor central a «%s»."
 
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
@@ -8232,9 +8212,6 @@ msgstr ""
 #, fuzzy
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr "Gestiona la informació bàsica del compte, com ara el nom d'usuari i l'adreça electrònica."
-
-msgid "Username"
-msgstr "Nom d'usuari"
 
 msgid "Email Address"
 msgstr "Adreça de correu"
