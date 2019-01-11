@@ -41,7 +41,6 @@ from olympia.api.permissions import (
     AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
-from olympia.files.models import File
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.forms import (
     AllAddonSearchForm, MOTDForm, PublicWhiteboardForm, QueueSearchForm,
@@ -53,7 +52,7 @@ from olympia.reviewers.models import (
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
-    AddonReviewerFlagsSerializer, AddonFileBrowseSerializer)
+    AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
@@ -1241,22 +1240,22 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(serializer.data)
 
 
-class BrowseViewSet(RetrieveModelMixin, GenericViewSet):
+class BrowseVersionViewSet(RetrieveModelMixin, GenericViewSet):
     permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
     )]
 
-    serializer_class = AddonFileBrowseSerializer
+    serializer_class = AddonBrowseVersionSerializer
 
     def get_queryset(self):
         """Return queryset to be used for the view."""
         # Permission classes disallow access to non-public/unlisted add-ons
         # unless logged in as a reviewer/addon owner/admin, so we don't have to
         # filter the base queryset here.
-        return File.objects.all()
+        return Version.unfiltered.all()
 
     def get_serializer_context(self):
-        context = super(BrowseViewSet, self).get_serializer_context()
+        context = super(BrowseVersionViewSet, self).get_serializer_context()
         context.update({
             'file': self.request.GET.get('file', None)
         })
@@ -1264,24 +1263,22 @@ class BrowseViewSet(RetrieveModelMixin, GenericViewSet):
 
     def check_object_permissions(self, request, obj):
         """
-        Check if the request should be permitted for a given file.
+        Check if the request should be permitted for a given version.
 
         This calls the DRF implementation but forwards the respective Add-on
         as `obj` since most of our permission classes are based on an Add-on
         being passed around.
         """
-        addon = obj.version.addon
-
         # If the instance is marked as deleted and the client is not allowed to
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         can_see_deleted_addons = (
-            obj.version.deleted and (
-                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
-                has_object_permission(request, self, addon)))
+            GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+            has_object_permission(request, self, obj.addon))
 
-        if not can_see_deleted_addons:
+        if obj.deleted and not can_see_deleted_addons:
             raise http.Http404
 
-        return super(BrowseViewSet, self).check_object_permissions(
-            request, addon)
+        return (
+            super(BrowseVersionViewSet, self)
+            .check_object_permissions(request, obj.addon))

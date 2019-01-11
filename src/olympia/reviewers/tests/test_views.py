@@ -5181,21 +5181,21 @@ class TestBrowseViewSet(TestCase):
         self.version = self.addon.current_version
         self.version.refresh_from_db()
 
-        self._set_tested_url(self.addon.pk)
+        self._set_tested_url()
 
     def _test_url(self):
         response = self.client.get(self.url)
         assert response.status_code == 200
         result = json.loads(response.content)
-        assert result['id'] == self.version.current_file.pk
-        assert result['version']['id'] == self.version.pk
-        assert result['version']['id'] == self.version.pk
-        # part of manifest.json
-        assert '"name": "Beastify"' in result['content']
+        assert result['id'] == self.version.pk
+        assert result['file']['id'] == self.version.current_file.pk
 
-    def _set_tested_url(self, param):
+        # part of manifest.json
+        assert '"name": "Beastify"' in result['file']['content']
+
+    def _set_tested_url(self):
         self.url = reverse_ns('reviewers-browse-detail', kwargs={
-            'pk': self.version.current_file.pk})
+            'pk': self.version.pk})
 
     def test_anonymous(self):
         response = self.client.get(self.url)
@@ -5210,7 +5210,7 @@ class TestBrowseViewSet(TestCase):
         assert response.status_code == 200
         result = json.loads(response.content)
 
-        assert result['content'] == '# beastify\n'
+        assert result['file']['content'] == '# beastify\n'
 
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')
