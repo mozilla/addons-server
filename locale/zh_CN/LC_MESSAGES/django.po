@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2019-01-11 22:47+0000\n"
+"PO-Revision-Date: 2019-01-13 01:03+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5774,17 +5774,17 @@ msgid "Get Started"
 msgstr "入门指南"
 
 msgid "Reported Status"
-msgstr "回报状态"
+msgstr "反馈状态"
 
 msgid "Reported Spam"
-msgstr "已回报为垃圾留言"
+msgstr "已反馈为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
-msgstr "已回报为正常留言"
+msgstr "已反馈为正常留言"
 
 msgid "Not Reported"
-msgstr "尚未回报"
+msgstr "尚未反馈"
 
 msgid "Content Submitted"
 msgstr "提交的内容"
@@ -5794,20 +5794,20 @@ msgstr "查看网站上的评分"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
-msgstr "向 Akismet 回报为正常留言"
+msgstr "向 Akismet 反馈为正常留言"
 
 msgid "Submit Spam to Akismet"
-msgstr "向 Akismet 回报为垃圾留言"
+msgstr "向 Akismet 反馈为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr "已将 %s 正常留言回报提交为垃圾留言"
+msgstr "已将 %s 正常留言反馈提交为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr "已将 %s 垃圾留言回报提交为正常留言"
+msgstr "已将 %s 垃圾留言反馈提交为正常留言"
 
 msgid "About Mozilla Add-ons"
 msgstr "关于 Mozilla 附加组件"
