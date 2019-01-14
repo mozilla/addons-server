@@ -82,3 +82,33 @@ add-on.
     :>json boolean needs_admin_code_review: Boolean indicating whether the add-on needs its code to be reviewed by an admin or not.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
     :>json boolean needs_sensitive_access_review: Boolean indicating whether the add-on needs its content to be reviewed or not. This is related to the `Addon.require_sensitive_data_access` property.
+
+
+------
+Browse
+------
+
+This endpoint allows you to browse through the contents of an Add-on version.
+
+    .. note::
+        Requires authentication and the current user to have ``ReviewerTools:View``
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
+        unlisted add-ons. Additionally the current user can also be the owner
+        of the add-on.
+
+.. http:get:: /api/v4/reviewers/browse/(int:version_id)/
+
+    Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
+
+    :param file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
+    :>json object file: The file attached to this version. See :ref:`version detail -> files[] <version-detail-object>` for more details.
+    :>json string file.content: Raw content of the requested file.
+    :>json boolean/string file.entries[].binary: ``True`` if the file is a binary file (e.g an .exe, dll, java, swf file), ``'image'`` if the file is an image or ``False`` otherwise. If ``False`` or ``'image'`` the file should be presentable to the user.
+    :>json image file.entries[].depth: Level of folder-tree depth, starting with 0.
+    :>json boolean file.entries[].is_directory: Wheather the file is a directory.
+    :>json string file.entries[].filename: The filename of the file.
+    :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
+    :>json string file.entries[].sha256: SHA256 hash.
+    :>json string file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
+    :>json int file.entries[].size: The size in bytes.
+    :>json string file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.

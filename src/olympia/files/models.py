@@ -36,7 +36,7 @@ from olympia.amo.templatetags.jinja_helpers import (
     absolutify, urlparams, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.files.utils import SafeZip, write_crx_as_xpi
+from olympia.files.utils import SafeZip, write_crx_as_xpi, get_sha256
 from olympia.translations.fields import TranslatedField
 
 
@@ -232,11 +232,8 @@ class File(OnChangeMixin, ModelBase):
 
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
-        hash = hashlib.sha256()
-        with open(filename or self.current_file_path, 'rb') as obj:
-            for chunk in iter(lambda: obj.read(1024), ''):
-                hash.update(chunk)
-        return 'sha256:%s' % hash.hexdigest()
+        with open(filename or self.current_file_path, 'rb') as fobj:
+            return 'sha256:{}'.format(get_sha256(fobj))
 
     def generate_filename(self, extension=None):
         """
@@ -652,7 +649,7 @@ class FileUpload(ModelBase):
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         if is_crx:
-            hash = write_crx_as_xpi(chunks, storage, loc)
+            hash = write_crx_as_xpi(chunks, loc)
         else:
             hash = hashlib.sha256()
             with storage.open(loc, 'wb') as file_destination:
