@@ -827,18 +827,13 @@ class ApplicationsVersions(models.Model):
         return six.text_type(amo.APPS_ALL[self.application].pretty)
 
     def get_latest_application_version(self):
-        def _fetch_version():
-            qs = (
-                AppVersion.objects
-                .filter(
-                    ~models.Q(version__contains='*'),
-                    application=self.application)
-                .order_by('-version_int'))
-            return qs.first()
-
-        cache_key = 'appversion:{}:latest'.format(self.application)
-        return cache_get_or_set(
-            cache_key, _fetch_version, timeout=60 * 60 * 24)
+        return (
+            AppVersion.objects
+            .filter(
+                ~models.Q(version__contains='*'),
+                application=self.application)
+            .order_by('-version_int')
+            .first())
 
     def __unicode__(self):
         if (self.version.is_compatible_by_default and

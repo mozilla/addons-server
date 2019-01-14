@@ -392,7 +392,6 @@ class TestAddonModels(TestCase):
     def setUp(self):
         super(TestAddonModels, self).setUp()
         TranslationSequence.objects.create(id=99243)
-        cache.delete('appversion:1:latest')
 
     def test_current_version(self):
         """
