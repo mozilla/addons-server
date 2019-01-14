@@ -39,7 +39,8 @@ from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import File, FileUpload
-from olympia.files.utils import RDFExtractor, SafeZip, get_file, parse_addon
+from olympia.files.utils import (
+    RDFExtractor, SafeZip, get_file, get_filepath, parse_addon)
 from olympia.lib.crypto.packaged import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
@@ -48,7 +49,7 @@ from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
-from olympia.versions.models import License, Version
+from olympia.versions.models import License, Version, VersionPreview
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -927,3 +928,27 @@ def extract_colors_from_static_themes(ids, **kw):
             extracted.append(addon.pk)
     if extracted:
         index_addons.delay(extracted)
+
+
+@task
+@use_primary_db
+def recreate_theme_previews(addon_ids, **kw):
+    from olympia.versions.tasks import generate_static_theme_preview
+
+    log.info('[%s@%s] Recreating previews for themes starting at id: %s...'
+             % (len(addon_ids), recreate_theme_previews.rate_limit,
+                addon_ids[0]))
+    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
+
+    for addon in addons:
+        log.info('Recreating previews for theme: %s' % addon.id)
+        version = addon.current_version
+        if not version:
+            continue
+        try:
+            VersionPreview.objects.filter(version=version).delete()
+            xpi = get_filepath(version.all_files[0])
+            theme_data = parse_addon(xpi, minimal=True).get('theme', {})
+            generate_static_theme_preview(theme_data, version.id)
+        except IOError:
+            pass

@@ -17,8 +17,8 @@ from olympia.addons.models import Addon, AddonCategory, MigratedLWT
 from olympia.addons.tasks import (
     add_static_theme_from_lwt, create_persona_preview_images,
     migrate_legacy_dictionary_to_webextension, migrate_lwts_to_static_themes,
-    save_persona_image,
-    migrate_webextensions_to_git_storage)
+    migrate_webextensions_to_git_storage,
+    recreate_theme_previews, save_persona_image)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
@@ -33,7 +33,7 @@ from olympia.ratings.models import Rating
 from olympia.stats.models import ThemeUpdateCount, UpdateCount
 from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
-from olympia.versions.models import License
+from olympia.versions.models import License, VersionPreview
 from olympia.lib.git import AddonGitRepository
 
 
@@ -403,3 +403,38 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
         assert extract_mock.call_args_list[0][0][0] == oldest_version.pk
         assert extract_mock.call_args_list[1][0][0] == older_version.pk
         assert extract_mock.call_args_list[2][0][0] == most_recent.pk
+
+
+@pytest.mark.django_db
+def test_recreate_theme_previews():
+    xpi_path = os.path.join(
+        settings.ROOT,
+        'src/olympia/devhub/tests/addons/mozilla_static_theme.zip')
+
+    addon_without_previews = addon_factory(type=amo.ADDON_STATICTHEME)
+    copy_stored_file(
+        xpi_path,
+        addon_without_previews.current_version.all_files[0].file_path)
+    addon_with_previews = addon_factory(type=amo.ADDON_STATICTHEME)
+    copy_stored_file(
+        xpi_path,
+        addon_with_previews.current_version.all_files[0].file_path)
+    VersionPreview.objects.create(
+        version=addon_with_previews.current_version,
+        sizes={'image': [123, 456], 'thumbnail': [34, 45]})
+
+    assert addon_without_previews.current_previews.count() == 0
+    assert addon_with_previews.current_previews.count() == 1
+    recreate_theme_previews(
+        [addon_without_previews.id, addon_with_previews.id])
+    assert addon_without_previews.reload().current_previews.count() == 3
+    assert addon_with_previews.reload().current_previews.count() == 3
+    sizes = addon_without_previews.current_previews.values_list(
+        'sizes', flat=True)
+    assert list(sizes) == [
+        {'image': list(amo.THEME_PREVIEW_SIZES['header']['full']),
+         'thumbnail': list(amo.THEME_PREVIEW_SIZES['header']['thumbnail'])},
+        {'image': list(amo.THEME_PREVIEW_SIZES['list']['full']),
+         'thumbnail': list(amo.THEME_PREVIEW_SIZES['list']['thumbnail'])},
+        {'image': list(amo.THEME_PREVIEW_SIZES['single']['full']),
+         'thumbnail': list(amo.THEME_PREVIEW_SIZES['single']['thumbnail'])}]
