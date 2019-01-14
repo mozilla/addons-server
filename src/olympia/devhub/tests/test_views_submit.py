@@ -896,6 +896,29 @@ class DetailsPageMixin(object):
         error = 'Ensure this value has at most 50 characters (it has 51).'
         self.assertFormError(response, 'form', 'name', error)
 
+    def test_submit_name_symbols_only(self):
+        data = self.get_dict(name='()+([#')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'name', error)
+
+        data = self.get_dict(name='±↡∋⌚')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'name', error)
+
+        # 'ø' is not a symbol, it's actually a letter, so it should be valid.
+        data = self.get_dict(name=u'ø')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert self.get_addon().name == u'ø'
+
     def test_submit_slug_invalid(self):
         # Submit an invalid slug.
         data = self.get_dict(slug='slug!!! aksl23%%')
@@ -918,6 +941,29 @@ class DetailsPageMixin(object):
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'summary', 'This field is required.')
+
+    def test_submit_summary_symbols_only(self):
+        data = self.get_dict(summary='()+([#')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'summary', error)
+
+        data = self.get_dict(summary='±↡∋⌚')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 200
+        error = (
+            'Ensure this field contains at least one letter or number'
+            ' character.')
+        self.assertFormError(response, 'form', 'summary', error)
+
+        # 'ø' is not a symbol, it's actually a letter, so it should be valid.
+        data = self.get_dict(summary=u'ø')
+        response = self.client.post(self.url, data)
+        assert response.status_code == 302
+        assert self.get_addon().summary == u'ø'
 
     def test_submit_summary_length(self):
         # Summary is too long.

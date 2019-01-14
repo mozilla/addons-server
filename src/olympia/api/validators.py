@@ -1,20 +1,17 @@
-import unicodedata
+from django.core.exceptions import ValidationError as DjangoValidationError
 
-from django.utils.translation import ugettext
+from olympia.amo.validators import OneOrMorePrintableCharacterValidator
 
 from rest_framework import serializers
 
 
-class OneOrMorePrintableCharacterValidator:
-    def __init__(self, unicode_categories=None):
-        # See http://www.unicode.org/reports/tr4/tr44-6.html#Property_Values
-        # We want either a (L)etter, (N)umber, (P)unctuation, or (S)ymbol
-        # (Not (M)ark, (C)ontrol or (Z)-spaces/separators)
-        self.unicode_categories = unicode_categories or ('L', 'N', 'P', 'S')
-
-    def __call__(self, string):
-        for character in string:
-            if unicodedata.category(character)[0] in self.unicode_categories:
-                return
-        raise serializers.ValidationError(
-            ugettext(u'Must contain at least one printable character.'))
+class OneOrMorePrintableCharacterAPIValidator(
+        OneOrMorePrintableCharacterValidator):
+    """Like OneOrMorePrintableCharacterValidator, but for the API - raises
+    a DRF ValidationError instead of a django one."""
+    def __call__(self, value):
+        try:
+            return super(
+                OneOrMorePrintableCharacterAPIValidator, self).__call__(value)
+        except DjangoValidationError:
+            raise serializers.ValidationError(self.message)
