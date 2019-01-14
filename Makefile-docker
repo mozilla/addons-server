@@ -1,5 +1,10 @@
-# Determine the python version (2 or 3) so we can load the correct requirements
-python_version_major := $(shell python -c 'import sys; print(sys.version_info.major)')
+# Determine the python version (2 or 3) so we can load the correct
+# requirements and python binary. It can be passed through the env variable
+# PYTHON_VERSION_MAJOR so that both version can coexist in the container and
+# be chosen when running docker-compose.
+export PYTHON_VERSION_MAJOR ?= $(shell python -c 'import sys; print(sys.version_info.major)')
+export PIP_COMMAND=pip${PYTHON_VERSION_MAJOR}
+export PYTHON_COMMAND=python${PYTHON_VERSION_MAJOR}
 
 # FXA username and password for ui-tests
 export FXA_EMAIL=uitest-$(shell uuid)@restmail.net
@@ -74,32 +79,32 @@ help_submake:
 
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
-	python manage.py reset_db
-	python manage.py migrate --noinput --run-syncdb
-	python manage.py loaddata initial.json
-	python manage.py import_prod_versions
+	$(PYTHON_COMMAND) manage.py reset_db
+	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
+	$(PYTHON_COMMAND) manage.py loaddata initial.json
+	$(PYTHON_COMMAND) manage.py import_prod_versions
 	schematic --fake src/olympia/migrations/
-	python manage.py createsuperuser
-	python manage.py loaddata zadmin/users
-	python manage.py update_permissions_from_mc
+	$(PYTHON_COMMAND) manage.py createsuperuser
+	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
+	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 populate_data:
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
-	python manage.py reindex --wipe --force --noinput
-	python manage.py generate_addons --app firefox $(NUM_ADDONS)
-	python manage.py generate_addons --app android $(NUM_ADDONS)
-	python manage.py generate_themes $(NUM_THEMES)
+	$(PYTHON_COMMAND) manage.py reindex --wipe --force --noinput
+	$(PYTHON_COMMAND) manage.py generate_addons --app firefox $(NUM_ADDONS)
+	$(PYTHON_COMMAND) manage.py generate_addons --app android $(NUM_ADDONS)
+	$(PYTHON_COMMAND) manage.py generate_themes $(NUM_THEMES)
 	# These add-ons are specifically useful for the addons-frontend
 	# homepage. You may have to re-run this, in case the data there
 	# changes.
-	python manage.py generate_default_addons_for_frontend
+	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
 
 	# Now that addons have been generated, reindex.
-	python manage.py reindex --force --noinput
+	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 	# Also update category counts (denormalized field)
-	python manage.py cron category_totals
-	python manage.py update_permissions_from_mc
+	$(PYTHON_COMMAND) manage.py cron category_totals
+	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 cleanup_python_build_dir:
 	# Work arounds "Multiple .dist-info directories" issue.
@@ -108,16 +113,16 @@ cleanup_python_build_dir:
 install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
-	pip install --no-deps --exists-action=w -r requirements/system.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${python_version_major}.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
+	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${PYTHON_VERSION_MAJOR}.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
 install_python_dev_dependencies: install_python_test_dependencies
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev_without_hash.txt
-	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
-	pip install -e .
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev_without_hash.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
+	$(PIP_COMMAND) install -e .
 
 install_node_dependencies: install_node_js copy_node_js
 
@@ -136,43 +141,43 @@ update_db:
 
 update_assets:
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
-	python manage.py compress_assets
-	python manage.py collectstatic --noinput
+	$(PYTHON_COMMAND) manage.py compress_assets
+	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 
 update: update_deps update_db update_assets
-	python manage.py update_permissions_from_mc
+	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 reindex:
-	python manage.py reindex $(ARGS)
+	$(PYTHON_COMMAND) manage.py reindex $(ARGS)
 
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
-	python manage.py reset_db --noinput
-	python manage.py migrate --noinput --run-syncdb
+	$(PYTHON_COMMAND) manage.py reset_db --noinput
+	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
 	schematic --fake src/olympia/migrations/
 
 	# Let's load some initial data and import mozilla-product versions
-	python manage.py loaddata initial.json
-	python manage.py loaddata zadmin/users
-	python manage.py loaddata src/olympia/access/fixtures/initial.json
+	$(PYTHON_COMMAND) manage.py loaddata initial.json
+	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
+	$(PYTHON_COMMAND) manage.py loaddata src/olympia/access/fixtures/initial.json
 
-	python manage.py import_prod_versions
-	python manage.py update_permissions_from_mc
+	$(PYTHON_COMMAND) manage.py import_prod_versions
+	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 	# Create a proper superuser that can be used to access the API
-	python manage.py waffle_switch super-create-accounts on --create
-	python manage.py waffle_switch activate-autograph-signing on --create
+	$(PYTHON_COMMAND) manage.py waffle_switch super-create-accounts on --create
+	$(PYTHON_COMMAND) manage.py waffle_switch activate-autograph-signing on --create
 
 run-ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
-	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
-	python manage.py generate_default_addons_for_frontend
-	python manage.py reindex --force --noinput --wipe
+	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/uitests.txt
+	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
+	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
 	pytest --driver Firefox tests/ui/
 
 perf-tests: setup-ui-tests
-	pip install --progress-bar=off --no-deps -r requirements/perftests.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/perftests.txt
 	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
 
 initialize: update_deps initialize_db update_assets populate_data

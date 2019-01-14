@@ -29,7 +29,9 @@ RUN apt-get update && apt-get install -y \
         libffi-dev \
         libssl-dev \
         python-dev \
+        python3-dev \
         python-pip \
+        python3-pip \
         nodejs \
         # Git, because we're using git-checkout dependencies
         git \
