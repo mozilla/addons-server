@@ -14,8 +14,8 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         fake_request = HttpRequest()
         for lang in settings.AMO_LANGUAGES:
-            filename = os.path.realpath(os.path.join(
-                settings.STATICFILES_DIRS[0], 'js', 'i18n', '%s.js' % lang))
+            filename = os.path.join(
+                settings.STATICFILES_DIRS[0], 'js', 'i18n', '%s.js' % lang)
             with translation.override(lang):
                 response = javascript_catalog(fake_request)
                 with open(filename, 'w') as f:
