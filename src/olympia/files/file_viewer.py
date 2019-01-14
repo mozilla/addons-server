@@ -331,6 +331,12 @@ class FileViewer(object):
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
 
+            if not directory:
+                with open(path, 'rb') as fobj:
+                    sha256 = get_sha256(fobj)
+            else:
+                sha256 = ''
+
             result[short] = {
                 'id': self.file.id,
                 'binary': self._is_binary(mime, path),
@@ -338,7 +344,7 @@ class FileViewer(object):
                 'directory': directory,
                 'filename': filename,
                 'full': path,
-                'sha256': get_sha256(path) if not directory else '',
+                'sha256': sha256,
                 'mimetype': mime or 'application/octet-stream',
                 'syntax': self.get_syntax(filename),
                 'modified': os.stat(path)[stat.ST_MTIME],

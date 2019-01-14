@@ -265,6 +265,7 @@ The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 v4 API changelog
 ----------------
 
+* 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
 * 2018-05-18: renamed /reviews/ endpoint to /ratings/  https://github.com/mozilla/addons-server/issues/6849
 * 2018-05-25: renamed ``rating.rating`` property to ``rating.score``  https://github.com/mozilla/addons-server/pull/8332
 * 2018-06-05: dropped ``rating.title`` property https://github.com/mozilla/addons-server/issues/8144

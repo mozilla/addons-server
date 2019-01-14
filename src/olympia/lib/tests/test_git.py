@@ -10,7 +10,8 @@ from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 
 from olympia import amo
-from olympia.amo.tests import addon_factory, version_factory, user_factory
+from olympia.amo.tests import (
+    addon_factory, version_factory, user_factory, activate_locale)
 from olympia.lib.git import AddonGitRepository, TemporaryWorktree
 from olympia.files.utils import id_to_path
 
@@ -320,3 +321,69 @@ def test_extract_and_commit_from_version_commits_files(
         'git ls-tree -r --name-only listed', shell=True, env=env)
 
     assert set(output.split()) == expected
+
+
+@pytest.mark.django_db
+def test_extract_and_commit_from_version_reverts_active_locale():
+    from django.utils.translation import get_language
+
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'},
+        version_kw={'version': '0.1'})
+
+    with activate_locale('fr'):
+        repo = AddonGitRepository.extract_and_commit_from_version(
+            addon.current_version)
+        assert get_language() == 'fr'
+
+    env = {'GIT_DIR': repo.git_repository.path}
+
+    output = subprocess.check_output('git log listed', shell=True, env=env)
+    expected = 'Create new version {} ({}) for {} from {}'.format(
+        repr(addon.current_version), addon.current_version.id, repr(addon),
+        repr(addon.current_version.all_files[0]))
+    assert expected in output
+
+
+@pytest.mark.django_db
+def test_iter_tree():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        addon.current_version)
+
+    commit = repo.git_repository.revparse_single('listed')
+
+    tree = list(repo.iter_tree(commit.tree))
+
+    # path, filename mapping
+    expected_files = [
+        ('README.md', 'README.md', 'blob'),
+        ('_locales', '_locales', 'tree'),
+        ('_locales/de', 'de', 'tree'),
+        ('_locales/de/messages.json', 'messages.json', 'blob'),
+        ('_locales/en', 'en', 'tree'),
+        ('_locales/en/messages.json', 'messages.json', 'blob'),
+        ('_locales/ja', 'ja', 'tree'),
+        ('_locales/ja/messages.json', 'messages.json', 'blob'),
+        ('_locales/nb_NO', 'nb_NO', 'tree'),
+        ('_locales/nb_NO/messages.json', 'messages.json', 'blob'),
+        ('_locales/nl', 'nl', 'tree'),
+        ('_locales/nl/messages.json', 'messages.json', 'blob'),
+        ('_locales/ru', 'ru', 'tree'),
+        ('_locales/ru/messages.json', 'messages.json', 'blob'),
+        ('_locales/sv', 'sv', 'tree'),
+        ('_locales/sv/messages.json', 'messages.json', 'blob'),
+        ('background-script.js', 'background-script.js', 'blob'),
+        ('content-script.js', 'content-script.js', 'blob'),
+        ('icons', 'icons', 'tree'),
+        ('icons/LICENSE', 'LICENSE', 'blob'),
+        ('icons/link-48.png', 'link-48.png', 'blob'),
+        ('manifest.json', 'manifest.json', 'blob'),
+    ]
+
+    for idx, entry in enumerate(tree):
+        expected_path, expected_name, expected_type = expected_files[idx]
+        assert entry.path == expected_path
+        assert entry.tree_entry.name == expected_name
+        assert entry.tree_entry.type == expected_type
