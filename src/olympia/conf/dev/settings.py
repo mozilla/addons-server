@@ -96,16 +96,6 @@ ALLOW_SELF_REVIEWS = True
 
 PERSONA_DEFAULT_PAGES = 2
 
-AMO_LANGUAGES = AMO_LANGUAGES + DEBUG_LANGUAGES
-
-LANGUAGES = {
-    locale: value['native']
-    for locale, value in LANGUAGE_MAPPING.items()}
-
-LANGUAGE_URL_MAP = {
-    locale.lower(): locale
-    for locale in AMO_LANGUAGES}
-
 NEWRELIC_ENABLE = env.bool('NEWRELIC_ENABLE', default=False)
 
 if NEWRELIC_ENABLE:
