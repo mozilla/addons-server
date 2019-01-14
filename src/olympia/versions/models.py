@@ -825,6 +825,15 @@ class ApplicationsVersions(models.Model):
     def get_application_display(self):
         return six.text_type(amo.APPS_ALL[self.application].pretty)
 
+    def get_latest_application_version(self):
+        return (
+            AppVersion.objects
+            .filter(
+                ~models.Q(version__contains='*'),
+                application=self.application)
+            .order_by('-version_int')
+            .first())
+
     def __unicode__(self):
         if (self.version.is_compatible_by_default and
                 self.version.is_compatible_app(amo.APP_IDS[self.application])):

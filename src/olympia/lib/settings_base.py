@@ -8,7 +8,6 @@ import socket
 import json
 
 from django.urls import reverse_lazy
-from django.utils.functional import lazy
 
 import raven
 from kombu import Queue
@@ -176,68 +175,9 @@ TIME_ZONE = 'UTC'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Accepted locales.
-AMO_LANGUAGES = (
-    'af',  # Afrikaans
-    'ar',  # Arabic
-    'ast',  # Asturian
-    'az',  # Azerbaijani
-    'bg',  # Bulgarian
-    'bn-BD',  # Bengali (Bangladesh)
-    'bs',  # Bosnian
-    'ca',  # Catalan
-    'cak',  # Kaqchikel
-    'cs',  # Czech
-    'da',  # Danish
-    'de',  # German
-    'dsb',  # Lower Sorbian
-    'el',  # Greek
-    'en-CA',  # English (Canada)
-    'en-GB',  # English (British)
-    'en-US',  # English (US)
-    'es',  # Spanish
-    'eu',  # Basque
-    'fa',  # Persian
-    'fi',  # Finnish
-    'fr',  # French
-    'fy-NL',  # Frisian
-    'ga-IE',  # Irish
-    'gu',  # Gujarati
-    'he',  # Hebrew
-    'hsb',  # Upper Sorbian
-    'hu',  # Hungarian
-    # 'ia',  # Interlingua - doesn't exist in product_details yet.
-    'id',  # Indonesian
-    'it',  # Italian
-    'ja',  # Japanese
-    'ka',  # Georgian
-    'kab',  # Kabyle
-    'ko',  # Korean
-    'mk',  # Macedonian
-    'mn',  # Mongolian
-    'ms',  # Malay
-    'nb-NO',  # Norwegian (Bokmål)
-    'nl',  # Dutch
-    'nn-NO',  # Norwegian (Nynorsk)
-    'pa-IN',  # Punjabi
-    'pl',  # Polish
-    'pt-BR',  # Portuguese (Brazilian)
-    'pt-PT',  # Portuguese (Portugal)
-    'ro',  # Romanian
-    'ru',  # Russian
-    'sk',  # Slovak
-    'sl',  # Slovenian
-    'sq',  # Albanian
-    'sv-SE',  # Swedish
-    'te',  # Telugu
-    'th',  # Thai
-    'tr',  # Turkish
-    'uk',  # Ukrainian
-    'ur',  # Urdu
-    'vi',  # Vietnamese
-    'zh-CN',  # Chinese (Simplified)
-    'zh-TW',  # Chinese (Traditional)
-)
+# Accepted locales / languages.
+from olympia.core.languages import LANGUAGE_MAPPING  # noqa
+AMO_LANGUAGES = LANGUAGE_MAPPING.keys()
 
 # Bidirectional languages.
 # Locales in here *must* be in `AMO_LANGUAGES` too.
@@ -248,38 +188,16 @@ SHORTER_LANGUAGES = {
     'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
 }
 
-
 DEBUG_LANGUAGES = ('dbr', 'dbl')
 
-
-def lazy_langs(languages):
-    from product_details import product_details
-    if not product_details.languages:
-        return {}
-
-    language_mapping = {}
-
-    for lang in languages:
-        if lang == 'dbl':
-            lang_name = product_details.languages['dbg']['native']
-        elif lang == 'dbr':
-            lang_name = product_details.languages['dbg']['native'] + ' (RTL)'
-        else:
-            lang_name = product_details.languages[lang]['native']
-
-        language_mapping[lang.lower()] = lang_name
-
-    return language_mapping
-
-
-# Where product details are stored see django-mozilla-product-details
-PROD_DETAILS_DIR = path('src', 'olympia', 'lib', 'product_json')
-PROD_DETAILS_STORAGE = 'olympia.lib.product_details_backend.NoCachePDFileStorage'  # noqa
-
 # Override Django's built-in with our native names
-LANGUAGES = lazy(lazy_langs, dict)(AMO_LANGUAGES)
+LANGUAGES = {
+    locale.lower(): value['native']
+    for locale, value in LANGUAGE_MAPPING.items()}
 
-LANGUAGE_URL_MAP = dict([(i.lower(), i) for i in AMO_LANGUAGES])
+LANGUAGE_URL_MAP = {
+    locale.lower(): locale
+    for locale in AMO_LANGUAGES}
 
 LOCALE_PATHS = (
     path('locale'),
@@ -573,7 +491,6 @@ INSTALLED_APPS = (
     'olympia.zadmin',
 
     # Third party apps
-    'product_details',
     'csp',
     'aesfield',
     'django_extensions',

@@ -10,7 +10,6 @@ from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import cache_page
 
-from product_details import product_details
 
 from olympia import amo
 from olympia.addons.models import Addon, AddonCategory, Category, FrozenAddon
@@ -19,10 +18,9 @@ from olympia.addons.views import BaseFilter
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
+from olympia.core.languages import LANGUAGE_MAPPING
 
 
-languages = dict((lang.lower(), val)
-                 for lang, val in product_details.languages.items())
 PAGINATE_PERSONAS_BY = 30
 MIN_COUNT_FOR_LANDING = 4
 
@@ -36,9 +34,9 @@ def locale_display_name(locale):
     if not locale:
         raise KeyError
 
-    if locale.lower() in languages:
-        v = languages[locale.lower()]
-        return v['English'], v['native']
+    if locale.lower() in LANGUAGE_MAPPING:
+        v = LANGUAGE_MAPPING[locale.lower()]
+        return v['english'], v['native']
     else:
         # Take out the regional portion and try again.
         hyphen = locale.rfind('-')
@@ -94,7 +92,7 @@ def _get_locales(addons):
             english, native = locale_display_name(locale)
             # Add the locale as a differentiator if we had to strip the
             # regional portion.
-            if locale not in languages:
+            if locale not in LANGUAGE_MAPPING:
                 native = '%s (%s)' % (native, locale)
             addon.locale_display, addon.locale_native = english, native
         except KeyError:
