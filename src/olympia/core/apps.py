@@ -5,7 +5,6 @@ import warnings
 
 from django.apps import AppConfig
 from django.conf import settings
-from django.core.management import call_command
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -23,7 +22,6 @@ class CoreConfig(AppConfig):
         if not settings.DEBUG:
             warnings.simplefilter('ignore')
 
-        self.load_product_details()
         self.set_recursion_limit()
         self.enable_urllib_certificate_checking()
 
@@ -31,15 +29,6 @@ class CoreConfig(AppConfig):
         # From requests's packages/urllib3/contrib/pyopenssl.py
         import urllib3.contrib.pyopenssl
         urllib3.contrib.pyopenssl.inject_into_urllib3()
-
-    def load_product_details(self):
-        """Fetch product details, if we don't already have them."""
-        from product_details import product_details
-
-        if not product_details.last_update:
-            log.info('Product details missing, downloading...')
-            call_command('update_product_details')
-            product_details.__init__()  # reload the product details
 
     def set_recursion_limit(self):
         """Set explicit recursion limit if set in the environment.

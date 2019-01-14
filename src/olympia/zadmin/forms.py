@@ -4,14 +4,13 @@ from django.forms import ModelForm
 from django.forms.models import BaseModelFormSet, modelformset_factory
 from django.utils.translation import ugettext
 
-from product_details import product_details
-
 import olympia.core.logger
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.bandwagon.models import (
     Collection, FeaturedCollection, MonthlyPick)
+from olympia.core.languages import LANGUAGE_MAPPING
 from olympia.files.models import File
 
 
@@ -37,9 +36,9 @@ class DevMailerForm(forms.Form):
 
 class FeaturedCollectionForm(forms.ModelForm):
     LOCALES = (('', u'(Default Locale)'),) + tuple(
-        (i, product_details.languages[i]['native'])
-        for i in settings.AMO_LANGUAGES
-        if i not in ('dbl', 'dbr'))
+        (idx, LANGUAGE_MAPPING[idx]['native'])
+        for idx in settings.LANGUAGE_MAPPING
+        if idx not in ('dbl', 'dbr'))
 
     application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)

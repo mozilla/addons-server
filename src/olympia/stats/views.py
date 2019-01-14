@@ -16,7 +16,6 @@ from django.utils.cache import add_never_cache_headers, patch_cache_control
 import six
 
 from dateutil.parser import parse
-from product_details import product_details
 from six import moves
 
 import olympia.core.logger
@@ -26,6 +25,7 @@ from olympia.access import acl
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
+from olympia.core.languages import LANGUAGE_MAPPING
 from olympia.lib.cache import memoize
 from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
@@ -287,8 +287,10 @@ def flatten_applications(series):
 
 def process_locales(series):
     """Convert locale codes to pretty names, skip any unknown locales."""
-    languages = dict((k.lower(), v['native'])
-                     for k, v in product_details.languages.items())
+    languages = {
+        key.lower(): value['native']
+        for key, value in LANGUAGE_MAPPING.items()}
+
     for row in series:
         if 'data' in row:
             new = {}

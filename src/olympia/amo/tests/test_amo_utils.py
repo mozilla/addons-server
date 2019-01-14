@@ -8,8 +8,6 @@ from django.core.validators import ValidationError
 import mock
 import pytest
 
-from product_details import product_details
-
 from olympia.amo.tests import BaseTestCase
 from olympia.amo.utils import (
     LocalFileStorage, cache_ns_key, escape_all, find_language, from_string,
@@ -118,19 +116,6 @@ def test_to_language(test_input, expected):
 ])
 def test_find_language(test_input, expected):
     assert find_language(test_input) == expected
-
-
-@pytest.mark.skipif(
-    not product_details.last_update,
-    reason="We don't want to download product_details on travis")
-def test_spotcheck():
-    """Check a couple product-details files to make sure they're available."""
-    languages = product_details.languages
-    assert languages['el']['English'] == 'Greek'
-    assert languages['el']['native'] == u'Ελληνικά'
-
-    assert product_details.firefox_history_major_releases['1.0'] == (
-        '2004-11-09')
 
 
 class TestLocalFileStorage(BaseTestCase):
