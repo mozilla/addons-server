@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2019-01-11 20:05+0000\n"
+"PO-Revision-Date: 2019-01-14 18:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -1199,7 +1199,7 @@ msgid "Add-on"
 msgstr "დამატება"
 
 msgid "Comment"
-msgstr "კომენტარი"
+msgstr "შენიშვნა"
 
 msgid "Remove"
 msgstr "ამოშლა"
@@ -1214,7 +1214,7 @@ msgid "Pending"
 msgstr "ლოდინი"
 
 msgid "Add a comment"
-msgstr "კომენტარის დამატება"
+msgstr "შენიშვნის დამატება"
 
 msgid "Remove this add-on from the collection"
 msgstr "ამ დამატების კრებულიდან ამოშლა"
@@ -1556,10 +1556,10 @@ msgid "The addon has been flagged for Admin Review.  It's still in our review qu
 msgstr "თქვენი დამატება მონიშნულია ადმინისტრაციული განხილვისთვის.  ჯერ კიდევ რიგშია, მაგრამ საჭიროა ერთმა ადმინისტრატორმა მაინც შეამოწმოს. რის გამოც, ეს განხილვა, ჩვეულზე მეტხანს შეიძლება გაგრძელდეს."
 
 msgid "Comment on {addon} {version}."
-msgstr "კომენტარი {addon} {version}-ზე."
+msgstr "შენიშვნა {addon} {version}-ზე."
 
 msgid "Commented"
-msgstr "კომენტარი დამატებულია"
+msgstr "შენიშვნა დამატებულია"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} დამატებულია {addon}-ზე."
@@ -6471,7 +6471,7 @@ msgid "Select an application first"
 msgstr "ჯერ მიუთითეთ პროგრამა"
 
 msgid "Comments:"
-msgstr "კომენტარები:"
+msgstr "შენიშვნები:"
 
 msgid "Operating systems:"
 msgstr "საოპერაციო სისტემები:"
@@ -6629,7 +6629,7 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr "თუ გარკვეული მოსაზრებები გაგაჩნიათ ამ დამატების შესახებ, რომელიც გსურთ მიმომხილველმა ადმინისტრატორმა გაითვალისწინოს, დატოვეთ კომენტარი ქვემოთ. შემმუშავებელს არ გაეგზავნება."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr "კომენტარის დატოვება ამ ვერსიაზე. შემმუშავებელი ვერ იხილავს."
+msgstr "შენიშვნის დატოვება ამ ვერსიაზე. შემმუშავებელი ვერ იხილავს."
 
 msgid "Approve Content"
 msgstr "შიგთავსის მიღება"
@@ -7067,10 +7067,10 @@ msgid "Add-on has been deleted."
 msgstr "დამატება წაშლილია."
 
 msgid "Show Comments"
-msgstr "კომენტარების ჩვენება"
+msgstr "შენიშვნების გამოჩენა"
 
 msgid "Hide Comments"
-msgstr "კომენტარების დამალვა"
+msgstr "შენიშვნების დამალვა"
 
 msgid "No reviews found for this period."
 msgstr "დროის ამ მონაკვეთისთვის მიმოხილვები ვერ მოიძებნა."
