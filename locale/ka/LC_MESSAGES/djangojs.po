@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2018-10-21 05:05+0000\n"
-"Last-Translator: Georgianizator <georgianization@outlook.com>\n"
+"PO-Revision-Date: 2019-01-14 18:07+0000\n"
+"Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
 "MIME-Version: 1.0\n"
@@ -99,7 +99,7 @@ msgid "Your submission will be automatically signed."
 msgstr "გადაცემული ფაილი ავტომატურად იქნება ხელმოწერილი."
 
 msgid "WebExtension upgrade"
-msgstr "WebExtensionგანახლება"
+msgstr "WebExtension-განახლება"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "ჩვენ გაძლევთ საშუალებას განახლება. თუმცა, ეს პროცესი არ შეიძლება შეიცვალოს. ისინი, ვინც დაყენებული WebExtension შეგიძლიათ დააყენოთ ნებისმიერი add-on."
