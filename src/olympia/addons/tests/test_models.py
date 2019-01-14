@@ -9,7 +9,6 @@ from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.core import mail
-from django.core.cache import cache
 from django.utils import translation
 
 import pytest
