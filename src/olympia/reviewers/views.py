@@ -1272,11 +1272,9 @@ class BrowseVersionViewSet(RetrieveModelMixin, GenericViewSet):
         # If the instance is marked as deleted and the client is not allowed to
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
-        can_see_deleted_addons = (
-            GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
-            has_object_permission(request, self, obj.addon))
-
-        if obj.deleted and not can_see_deleted_addons:
+        if obj.deleted and not (
+                GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
+                has_object_permission(request, self, obj.addon)):
             raise http.Http404
 
         return (
