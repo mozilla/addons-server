@@ -1834,7 +1834,7 @@ CRON_JOBS = {
 
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.dev.mozaws.net/api/recommendations/')
+    default='https://taar.dev.mozaws.net/v1/api/recommendations/')
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
     default=('https://taar.dev.mozaws.net/taarlite/api/v1/'
