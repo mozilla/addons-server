@@ -952,7 +952,7 @@ def recreate_theme_previews(addon_ids, **kw):
             if only_missing:
                 with_size = (VersionPreview.objects.filter(version=version)
                              .exclude(sizes={}).count())
-                if with_size == 3:
+                if with_size == len(amo.THEME_PREVIEW_SIZES):
                     continue
             log.info('Recreating previews for theme: %s' % addon.id)
             VersionPreview.objects.filter(version=version).delete()
