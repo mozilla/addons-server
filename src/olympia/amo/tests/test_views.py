@@ -321,24 +321,14 @@ class TestOtherStuff(TestCase):
         assert set_remote_addr_mock.call_args_list[0] == (('1.1.1.1',), {})
         assert set_remote_addr_mock.call_args_list[1] == ((None,), {})
 
-    @patch.object(settings, 'CDN_HOST', 'https://cdn.example.com')
-    def test_jsi18n_caching_and_cdn(self):
-        # The jsi18n catalog should be cached for a long time.
-        # Get the url from a real page so it includes the build id.
-        client = test.Client()
-        doc = pq(client.get('/', follow=True).content)
-        js_url = '%s%s' % (settings.CDN_HOST, reverse('jsi18n'))
-        url_with_build = doc('script[src^="%s"]' % js_url).attr('src')
-
-        response = client.get(url_with_build.replace(settings.CDN_HOST, ''),
-                              follow=False)
-        self.assertCloseToNow(response['Expires'],
-                              now=datetime.now() + timedelta(days=365))
-
     @pytest.mark.needs_locales_compilation
     def test_jsi18n(self):
         """Test that the jsi18n library has an actual catalog of translations
         rather than just identity functions."""
+
+        response = self.client.get(reverse('jsi18n'))
+        self.assertCloseToNow(response['Expires'],
+                              now=datetime.now() + timedelta(days=365))
 
         en = self.client.get(reverse('jsi18n')).content
 
