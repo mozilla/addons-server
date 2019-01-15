@@ -22,7 +22,7 @@ from olympia.addons.tasks import (
     migrate_addons_that_require_sensitive_data_access)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
-    addon_factory, TestCase, user_factory, version_factory)
+    addon_factory, collection_factory, TestCase, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import image_size
 from olympia.applications.models import AppVersion
@@ -179,7 +179,7 @@ class TestAddStaticThemeFromLwt(TestCase):
         return mock.DEFAULT
 
     def _check_result(self, static_theme, authors, tags, categories, license_,
-                      ratings):
+                      ratings, collection):
         # metadata is correct
         assert list(static_theme.authors.all()) == authors
         assert list(static_theme.tags.all()) == tags
@@ -203,6 +203,14 @@ class TestAddStaticThemeFromLwt(TestCase):
             arguments = log_entry.arguments
             assert rating in arguments
             assert static_theme in arguments
+        # The collection has the new theme
+        if collection:
+            assert static_theme in list(collection.addons.all())
+            assert collection.addons.filter(
+                type=amo.ADDON_PERSONA).count() == 0
+            assert collection.addons.filter(
+                type=amo.ADDON_STATICTHEME).count() == 1
+            assert collection.addons.count() == 2
         # UpdateCounts were copied.
         assert UpdateCount.objects.filter(
             addon_id=static_theme.id).count() == 2
@@ -237,13 +245,17 @@ class TestAddStaticThemeFromLwt(TestCase):
         # Create a count for an addon that shouldn't be migrated too.
         ThemeUpdateCount.objects.create(
             addon_id=addon_factory().id, date=datetime(2018, 2, 1), count=45)
+        # And add it to a collection
+        collection = collection_factory()
+        collection.add_addon(persona)
+        collection.add_addon(addon_factory())
 
         static_theme = add_static_theme_from_lwt(persona)
 
         self._check_result(
             static_theme, [author], list(persona.tags.all()),
             persona.all_categories, licenses.LICENSE_CC_BY_ND.builtin,
-            [rating])
+            [rating], collection)
 
     def test_add_static_theme_broken_lwt(self):
         """What if no author or license or category?"""
@@ -285,7 +297,7 @@ class TestAddStaticThemeFromLwt(TestCase):
             CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_STATICTHEME]['other'])
         self._check_result(
             static_theme, [default_author], [], [default_category],
-            licenses.LICENSE_COPYRIGHT_AR.builtin, [rating])
+            licenses.LICENSE_COPYRIGHT_AR.builtin, [rating], None)
         # Double check its the exact category we want.
         assert static_theme.all_categories == [default_category]
 
