@@ -27,6 +27,7 @@ from olympia.addons.models import (
     attach_translations)
 from olympia.addons.utils import (
     build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
+from olympia.bandwagon.models import CollectionAddon
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
 from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
@@ -661,6 +662,9 @@ def add_static_theme_from_lwt(lwt):
         text_ratings_count=lwt.text_ratings_count)
     Rating.unfiltered.filter(addon=lwt).update(addon=addon, version=version)
     timer.log_interval('7.move_ratings')
+
+    # Replace the lwt in collections
+    CollectionAddon.objects.filter(addon=lwt).update(addon=addon)
 
     # Modify the activity log entry too.
     rating_activity_log_ids = [
