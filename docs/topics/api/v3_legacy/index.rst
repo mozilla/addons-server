@@ -45,4 +45,3 @@ using the API.
    reviews
    reviewers
    signing
-   github
