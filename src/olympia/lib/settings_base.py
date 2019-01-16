@@ -475,7 +475,6 @@ INSTALLED_APPS = (
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
-    'olympia.github',
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
@@ -1227,10 +1226,6 @@ CELERY_TASK_ROUTES = {
     'olympia.zadmin.tasks.admin_email': {'queue': 'zadmin'},
     'olympia.zadmin.tasks.celery_error': {'queue': 'zadmin'},
 
-    # Github API
-    'olympia.github.tasks.process_results': {'queue': 'devhub'},
-    'olympia.github.tasks.process_webhook': {'queue': 'devhub'},
-
     # Temporary tasks to crush existing images.
     # Go in the addons queue to leave the 'devhub' queue free to process
     # validations etc.
@@ -1835,7 +1830,7 @@ CRON_JOBS = {
 
 RECOMMENDATION_ENGINE_URL = env(
     'RECOMMENDATION_ENGINE_URL',
-    default='https://taar.dev.mozaws.net/api/recommendations/')
+    default='https://taar.dev.mozaws.net/v1/api/recommendations/')
 TAAR_LITE_RECOMMENDATION_ENGINE_URL = env(
     'TAAR_LITE_RECOMMENDATION_ENGINE_URL',
     default=('https://taar.dev.mozaws.net/taarlite/api/v1/'
@@ -1853,10 +1848,6 @@ FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
 AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
-
-# For the Github webhook API.
-GITHUB_API_USER = env('GITHUB_API_USER', default='')
-GITHUB_API_TOKEN = env('GITHUB_API_TOKEN', default='')
 
 MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
 

@@ -17,6 +17,7 @@ from olympia.files.models import File
 from olympia.files.utils import get_background_images
 from olympia.versions.models import Version, VersionPreview
 from olympia.lib.git import AddonGitRepository
+from olympia.users.models import UserProfile
 
 from .utils import (
     AdditionalBackground, process_color_value,
@@ -108,21 +109,27 @@ def delete_preview_files(pk, **kw):
 
 
 @task
-def extract_version_to_git(version_id):
+def extract_version_to_git(version_id, author_id=None):
     """Extract a `File` into our git storage backend."""
     version = Version.objects.get(pk=version_id)
+
+    if author_id is not None:
+        author = UserProfile.objects.get(pk=author_id)
+    else:
+        author = None
 
     log.info('Extracting {version_id} into git backend'.format(
         version_id=version_id))
 
-    repo = AddonGitRepository.extract_and_commit_from_version(version=version)
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=version, author=author)
 
     log.info('Extracted {version} into {git_path}'.format(
         version=version_id, git_path=repo.git_repository_path))
 
     if version.source:
         repo = AddonGitRepository.extract_and_commit_source_from_version(
-            version=version)
+            version=version, author=author)
 
         log.info(
             'Extracted source files from {version} into {git_path}'.format(

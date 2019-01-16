@@ -7,7 +7,9 @@ from celery import chord, group
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
-    add_dynamic_theme_tag, add_firefox57_tag, bump_appver_for_legacy_addons,
+    add_dynamic_theme_tag,
+    add_firefox57_tag,
+    bump_appver_for_legacy_addons,
     disable_legacy_files,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
@@ -75,9 +77,18 @@ tasks = {
     'recreate_theme_previews': {
         'method': recreate_theme_previews,
         'qs': [
-            Q(type=amo.ADDON_STATICTHEME, status_in=[
+            Q(type=amo.ADDON_STATICTHEME, status__in=[
                 amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
-        ]
+        ],
+        'kwargs': {'only_missing': False},
+    },
+    'create_missing_theme_previews': {
+        'method': recreate_theme_previews,
+        'qs': [
+            Q(type=amo.ADDON_STATICTHEME, status__in=[
+                amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
+        ],
+        'kwargs': {'only_missing': True},
     },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,

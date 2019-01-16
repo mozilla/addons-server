@@ -50,7 +50,8 @@ from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
-from olympia.versions.models import License, Version, VersionPreview
+from olympia.versions.models import (
+    generate_static_theme_preview, License, Version, VersionPreview)
 
 
 log = olympia.core.logger.getLogger('z.task')
@@ -937,19 +938,23 @@ def extract_colors_from_static_themes(ids, **kw):
 @task
 @use_primary_db
 def recreate_theme_previews(addon_ids, **kw):
-    from olympia.versions.tasks import generate_static_theme_preview
-
     log.info('[%s@%s] Recreating previews for themes starting at id: %s...'
              % (len(addon_ids), recreate_theme_previews.rate_limit,
                 addon_ids[0]))
     addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
+    only_missing = kw.get('only_missing', False)
 
     for addon in addons:
-        log.info('Recreating previews for theme: %s' % addon.id)
         version = addon.current_version
         if not version:
             continue
         try:
+            if only_missing:
+                with_size = (VersionPreview.objects.filter(version=version)
+                             .exclude(sizes={}).count())
+                if with_size == len(amo.THEME_PREVIEW_SIZES):
+                    continue
+            log.info('Recreating previews for theme: %s' % addon.id)
             VersionPreview.objects.filter(version=version).delete()
             xpi = get_filepath(version.all_files[0])
             theme_data = parse_addon(xpi, minimal=True).get('theme', {})

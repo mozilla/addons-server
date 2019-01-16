@@ -29,7 +29,6 @@ from django.utils.translation import ugettext
 
 import flufl.lock
 import rdflib
-import scandir
 import six
 
 from signing_clients.apps import get_signer_organizational_unit_name
@@ -1095,41 +1094,6 @@ def get_sha256(file_obj, block_size=io.DEFAULT_BUFFER_SIZE):
         hash_.update(chunk)
 
     return hash_.hexdigest()
-
-
-def zip_folder_content(folder, filename):
-    """Compress the _content_ of a folder."""
-    with zipfile.ZipFile(filename, 'w', zipfile.ZIP_DEFLATED) as dest:
-        # Add each file/folder from the folder to the zip file.
-        for root, dirs, files in scandir.walk(folder):
-            relative_dir = os.path.relpath(root, folder)
-            for file_ in files:
-                dest.write(os.path.join(root, file_),
-                           # We want the relative paths for the files.
-                           arcname=os.path.join(relative_dir, file_))
-
-
-@contextlib.contextmanager
-def repack(xpi_path):
-    """Unpack the XPI, yield the temp folder, and repack on exit.
-
-    Usage:
-        with repack('foo.xpi') as temp_folder:
-            # 'foo.xpi' files are extracted to the temp_folder.
-            modify_files(temp_folder)  # Modify the files in the temp_folder.
-        # The 'foo.xpi' extension is now repacked, with the file changes.
-    """
-    # Unpack.
-    tempdir = extract_zip(xpi_path, remove=False)
-    yield tempdir
-    try:
-        # Repack.
-        repacked = u'{0}.repacked'.format(xpi_path)  # Temporary file.
-        zip_folder_content(tempdir, repacked)
-        # Overwrite the initial file with the repacked one.
-        shutil.move(repacked, xpi_path)
-    finally:
-        rm_local_tmp_dir(tempdir)
 
 
 def update_version_number(file_obj, new_version_number):

@@ -482,7 +482,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=False)
-    @responses.activate
     @override_settings(AKISMET_API_KEY=None)
     def test_akismet_reports_created_spam_outcome_logging_only(self):
         akismet_url = settings.AKISMET_API_URL.format(
@@ -506,7 +505,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=True)
-    @responses.activate
     @override_settings(AKISMET_API_KEY=None)
     def test_akismet_reports_created_spam_outcome_action_taken(self):
         akismet_url = settings.AKISMET_API_URL.format(
