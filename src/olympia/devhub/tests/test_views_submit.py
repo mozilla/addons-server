@@ -238,7 +238,6 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
 
         assert 'recaptcha' in response.context['agreement_form'].errors
 
-    @responses.activate
     @override_switch('addon-submission-captcha', active=True)
     def test_read_dev_agreement_captcha_active_success(self):
         self.user.update(read_dev_agreement=None)
