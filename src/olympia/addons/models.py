@@ -1882,12 +1882,7 @@ class DeniedGuid(ModelBase):
 
 class Category(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
-    # Old name translations, we now have constants translated via gettext, but
-    # this is for backwards-compatibility, for categories which have a weird
-    # type/application/slug combo that is not in the constants.
-    db_name = TranslatedField(db_column='name')
-    slug = SlugField(max_length=50,
-                     help_text='Used in Category URLs.')
+    slug = SlugField(max_length=50, help_text='Used in Category URLs.')
     type = models.PositiveIntegerField(db_column='addontype_id',
                                        choices=do_dictsort(amo.ADDON_TYPE))
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
@@ -1909,9 +1904,9 @@ class Category(OnChangeMixin, ModelBase):
         try:
             value = CATEGORIES[self.application][self.type][self.slug].name
         except KeyError:
-            # If we can't find the category in the constants dict, fall back
-            # to the db field.
-            value = self.db_name
+            # We can't find the category in the constants dict. This shouldn't
+            # happen, but just in case handle it by returning an empty string.
+            value = ''
         return six.text_type(value)
 
     def __unicode__(self):
@@ -1937,22 +1932,17 @@ class Category(OnChangeMixin, ModelBase):
         """Return a Category instance created from a StaticCategory.
 
         Does not save it into the database by default. Useful in tests."""
-        # we need to drop description as it's a StaticCategory only property.
-        _dict = dict(static_category.__dict__)
-        # Convert `name` to `db_name`. `Category` uses `db_name` as it's field
-        # name but the database field is actually linked to `name`.
-        _dict['db_name'] = _dict.pop('name', None)
-        del _dict['description']
+        # We need to drop description and name - they are StaticCategory
+        # properties not present in the database.
+        data = dict(static_category.__dict__)
+        del data['name']
+        del data['description']
         if save:
             category, _ = Category.objects.get_or_create(
-                id=static_category.id, defaults=_dict)
+                id=static_category.id, defaults=data)
             return category
         else:
-            return cls(**_dict)
-
-
-dbsignals.pre_save.connect(save_signal, sender=Category,
-                           dispatch_uid='category_translations')
+            return cls(**data)
 
 
 class Preview(BasePreview, ModelBase):

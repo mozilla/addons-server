@@ -35,17 +35,6 @@
         }
     },
     {
-        "pk": 1,
-        "model": "translations.translation",
-        "fields": {
-            "locale": "en-US",
-            "created": "2007-03-05 13:09:26",
-            "id": 1,
-            "modified": "2007-10-12 16:58:05",
-            "localized_string": "Bookmarks"
-        }
-    },
-    {
         "pk": 22,
         "model": "addons.category",
         "fields": {
@@ -55,8 +44,7 @@
             "modified": "2010-01-20 02:03:03",
             "application": 1,
             "type": 1,
-            "slug": "bookmarks",
-            "db_name": 1
+            "slug": "bookmarks"
         }
     },
     {

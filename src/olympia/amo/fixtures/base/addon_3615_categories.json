@@ -9,8 +9,7 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "feeds-news-blogging",
-            "db_name": 3
+            "slug": "feeds-news-blogging"
         }
     },
     {
@@ -23,8 +22,7 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "bookmarks",
-            "db_name": 1
+            "slug": "bookmarks"
         }
     },
     {
@@ -37,44 +35,7 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "social-communication",
-            "db_name": 2
-        }
-    },
-    {
-        "pk": 700381,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-12-20 16:18:56",
-            "locale": "en-us",
-            "modified": "2010-12-20 16:18:56",
-            "id": 1,
-            "localized_string": "Bookmarks"
-        }
-    },
-    {
-        "pk": 700382,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-12-20 16:18:56",
-            "locale": "en-us",
-            "modified": "2010-12-20 16:18:56",
-            "id": 2,
-            "localized_string": "Social"
-        }
-    },
-    {
-        "pk": 700383,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string_clean": null,
-            "created": "2010-12-20 16:18:56",
-            "locale": "en-us",
-            "modified": "2010-12-20 16:18:56",
-            "id": 3,
-            "localized_string": "Feeds"
+            "slug": "social-communication"
         }
     }
 ]

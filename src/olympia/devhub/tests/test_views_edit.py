@@ -644,19 +644,6 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
         assert set(response.context['addon'].all_categories) == set(
             self.addon.all_categories)
 
-    def test_edit_categories_xss(self):
-        category = Category.objects.get(id=22)
-        category.db_name = '<script>alert("test");</script>'
-        category.slug = 'xssattempt'
-        category.save()
-
-        self.cat_initial['categories'] = [22, 71]
-        response = self.client.post(
-            self.describe_edit_url, formset(self.cat_initial, initial_count=1))
-
-        assert '<script>alert' not in response.content
-        assert '&lt;script&gt;alert' in response.content
-
     def test_edit_categories_remove(self):
         category = Category.objects.get(id=1)
         AddonCategory(addon=self.addon, category=category).save()

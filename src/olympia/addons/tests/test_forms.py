@@ -25,9 +25,6 @@ class TestAdditionalDetailsForm(TestCase):
     def setUp(self):
         super(TestAdditionalDetailsForm, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
-        category = Category.objects.get(pk=22)
-        category.db_name = 'test'
-        category.save()
 
         self.data = {
             'default_locale': 'en-US',
