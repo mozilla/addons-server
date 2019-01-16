@@ -48,7 +48,6 @@ class BaseAkismetReportsModelTest(object):
         # check still one call.
         comment_check_mock.assert_called_once()
 
-    @responses.activate
     @override_settings(AKISMET_API_KEY=None)
     def test_comment_check(self):
         report = self._create_report()
@@ -89,7 +88,6 @@ class BaseAkismetReportsModelTest(object):
             assert result == report.result == AkismetReport.UNKNOWN
             incr_mock.assert_called_with(statsd_str + '.fail')
 
-    @responses.activate
     @override_settings(AKISMET_API_KEY=None)
     def test_submit_spam(self):
         report = self._create_report()
@@ -119,7 +117,6 @@ class BaseAkismetReportsModelTest(object):
         report.update(reported=False)
         assert not report.submit_spam()
 
-    @responses.activate
     @override_settings(AKISMET_API_KEY=None)
     def test_submit_ham(self):
         report = self._create_report()
