@@ -32,7 +32,6 @@ from olympia.applications.models import AppVersion
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.files import utils
 from olympia.files.models import File, cleanup_file
-from olympia.lib.git import AddonGitRepository
 from olympia.translations.fields import (
     LinkifiedField, PurifiedField, TranslatedField, save_signal)
 
