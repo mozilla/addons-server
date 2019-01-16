@@ -246,10 +246,8 @@ class Version(OnChangeMixin, ModelBase):
         storage.delete(upload.path)
         version_uploaded.send(sender=version)
 
-        if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
-            # Extract into git repository
-            AddonGitRepository.extract_and_commit_from_version(
-                version=version, author=upload.user)
+        # Extract this version into git repository
+        extract_version_to_git_repository(version, upload)
 
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
@@ -645,6 +643,15 @@ def generate_static_theme_preview(theme_data, version_pk):
     # To avoid a circular import
     from . import tasks
     tasks.generate_static_theme_preview.delay(theme_data, version_pk)
+
+
+def extract_version_to_git_repository(version, upload):
+    """Extract and commit ``version`` into our git-storage backend."""
+    from . import tasks
+    if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
+        tasks.extract_version_to_git.delay(
+            version_id=version.pk,
+            author_id=upload.user.pk if upload.user else None)
 
 
 class VersionPreview(BasePreview, ModelBase):
