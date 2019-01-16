@@ -12,7 +12,6 @@ v3_api_urls = [
     url(r'^reviewers/', include('olympia.reviewers.api_urls')),
     url(r'^', include('olympia.signing.urls')),
     url(r'^activity/', include('olympia.activity.urls')),
-    url(r'^github/', include('olympia.github.urls')),
 ]
 
 v4_api_urls = [
@@ -24,7 +23,6 @@ v4_api_urls = [
     url(r'^reviewers/', include('olympia.reviewers.api_urls')),
     url(r'^', include('olympia.signing.urls')),
     url(r'^activity/', include('olympia.activity.urls')),
-    url(r'^github/', include('olympia.github.urls')),
 ]
 
 urlpatterns = [
