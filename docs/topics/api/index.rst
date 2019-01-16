@@ -43,4 +43,3 @@ using the API.
    ratings
    reviewers
    signing
-   github
