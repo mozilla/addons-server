@@ -612,48 +612,6 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         pass  # Irrelevant for static themes.
 
 
-def test_zip_folder_content():
-    extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
-    temp_filename, temp_folder = None, None
-    try:
-        temp_folder = utils.extract_zip(extension_file)
-        assert sorted(os.listdir(temp_folder)) == [
-            'chrome', 'chrome.manifest', 'install.rdf']
-        temp_filename = amo.tests.get_temp_filename()
-        utils.zip_folder_content(temp_folder, temp_filename)
-        # Make sure the zipped files contain the same files.
-        with zipfile.ZipFile(temp_filename, mode='r') as new:
-            with zipfile.ZipFile(extension_file, mode='r') as orig:
-                assert sorted(new.namelist()) == sorted(orig.namelist())
-    finally:
-        if temp_folder is not None and os.path.exists(temp_folder):
-            amo.utils.rm_local_tmp_dir(temp_folder)
-        if temp_filename is not None and os.path.exists(temp_filename):
-            os.unlink(temp_filename)
-
-
-def test_repack():
-    # Warning: context managers all the way down. Because they're awesome.
-    extension_file = 'src/olympia/files/fixtures/files/extension.xpi'
-    # We don't want to overwrite our fixture, so use a copy.
-    with amo.tests.copy_file_to_temp(extension_file) as temp_filename:
-        # This is where we're really testing the repack helper.
-        with utils.repack(temp_filename) as folder_path:
-            # Temporary folder contains the unzipped XPI.
-            assert sorted(os.listdir(folder_path)) == [
-                'chrome', 'chrome.manifest', 'install.rdf']
-            # Add a file, which should end up in the repacked file.
-            with open(os.path.join(folder_path, 'foo.bar'), 'w') as file_:
-                file_.write('foobar')
-        # Once we're done with the repack, the temporary folder is removed.
-        assert not os.path.exists(folder_path)
-        # And the repacked file has the added file.
-        assert os.path.exists(temp_filename)
-        with zipfile.ZipFile(temp_filename, mode='r') as zf:
-            assert 'foo.bar' in zf.namelist()
-            assert zf.read('foo.bar') == 'foobar'
-
-
 @pytest.mark.parametrize('filename, expected_files', [
     ('webextension_no_id.xpi', [
         'README.md', 'beasts', 'button', 'content_scripts', 'manifest.json',
