@@ -2,7 +2,7 @@ import json
 import sys
 
 from django.utils.encoding import force_bytes
-from email.Utils import formatdate
+from email.utils import formatdate
 from six.moves.urllib.parse import parse_qsl
 from time import time
 

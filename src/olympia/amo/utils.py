@@ -16,9 +16,8 @@ import string
 import subprocess
 import time
 import unicodedata
-import urllib
 
-from six.moves.urllib_parse import parse_qsl, ParseResult
+from six.moves.urllib_parse import parse_qsl, ParseResult, unquote_to_bytes
 
 import django.core.mail
 
@@ -89,12 +88,12 @@ def urlparams(url_, hash=None, **query):
 
     # Use dict(parse_qsl) so we don't get lists of values.
     q = url.query
-    query_dict = dict(parse_qsl(force_bytes(q))) if q else {}
+    query_dict = dict(parse_qsl(force_text(q))) if q else {}
     query_dict.update(
         (k, force_bytes(v) if v is not None else v) for k, v in query.items())
     query_string = urlencode(
-        [(k, urllib.unquote(v)) for k, v in query_dict.items()
-         if v is not None])
+        [(k, unquote_to_bytes(v))
+         for k, v in query_dict.items() if v is not None])
     new = ParseResult(url.scheme, url.netloc, url.path, url.params,
                       query_string, fragment)
     return new.geturl()
@@ -847,7 +846,8 @@ class LocalFileStorage(FileSystemStorage):
 
     def path(self, name):
         """Actual file system path to name without any safety checks."""
-        return os.path.normpath(os.path.join(self.location, force_bytes(name)))
+        return os.path.normpath(
+            os.path.join(force_bytes(self.location), force_bytes(name)))
 
 
 def translations_for_field(field):
@@ -908,8 +908,9 @@ def rm_local_tmp_dir(path):
     certain that your executing code is operating on a local temp dir, not a
     directory managed by the Django Storage API.
     """
-    assert path.startswith(settings.TMP_PATH)
-
+    path = force_text(path)
+    tmp_path = force_text(settings.TMP_PATH)
+    assert path.startswith(tmp_path)
     return shutil.rmtree(path)
 
 

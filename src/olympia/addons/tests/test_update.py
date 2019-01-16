@@ -431,7 +431,7 @@ class TestDefaultToCompat(VersionCheckMixin, TestCase):
             ('FakeHeader', 'FakeHeaderValue')
         ]
 
-        expected_output = '{"fake": "output"}'
+        expected_output = b'{"fake": "output"}'
 
         def start_response_inspector(status, headers):
             self.start_response_call_count += 1

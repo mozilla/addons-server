@@ -120,4 +120,6 @@ def loaded(request):
 @non_atomic_requests
 def version(request):
     path = os.path.join(settings.ROOT, 'version.json')
-    return HttpResponse(open(path, 'rb'), content_type='application/json')
+    with open(path, 'r') as f:
+        contents = f.read()
+    return HttpResponse(contents, content_type='application/json')

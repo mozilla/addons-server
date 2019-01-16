@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import io
 from importlib import import_module
 
 from django.conf import settings
@@ -55,7 +54,7 @@ def test_compress_assets_command_without_git():
 
     # Capture output to avoid it being logged and allow us to validate it
     # later if needed
-    out = io.BytesIO()
+    out = six.StringIO()
     call_command('compress_assets', stdout=out)
 
     build_id_file = os.path.realpath(os.path.join(settings.ROOT, 'build.py'))
@@ -87,7 +86,7 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
 
     # Capture output to avoid it being logged and allow us to validate it
     # later if needed
-    out = io.BytesIO()
+    out = six.StringIO()
 
     # Now run compress and collectstatic
     call_command('compress_assets', force=True, stdout=out)
@@ -99,13 +98,13 @@ def test_compress_assets_correctly_fetches_static_images(settings, tmpdir):
     css_min = os.path.join(
         settings.STATIC_ROOT, 'css', 'zamboni', 'css-min.css')
 
-    with open(css_all, 'rb') as fobj:
+    with open(css_all, 'r') as fobj:
         expected = 'background-image: url(../../img/icons/stars.png'
         assert expected in fobj.read()
 
     # Compressed doesn't have any whitespace between `background-image:` and
     # the url and the path is slightly different
-    with open(css_min, 'rb') as fobj:
+    with open(css_min, 'r') as fobj:
         data = fobj.read()
         assert 'background-image:url(' in data
         assert 'img/icons/stars.png' in data

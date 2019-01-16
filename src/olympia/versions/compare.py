@@ -1,6 +1,6 @@
 import re
 
-from django.utils.encoding import force_bytes
+from django.utils.encoding import force_text
 
 
 MAXVERSION = 2 ** 63 - 1
@@ -55,13 +55,13 @@ def version_dict(version):
             else:
                 d[num] = int(d[num]) if d[num] else None
     else:
-        d = dict((k, None) for k in numbers)
+        d = {k: None for k in numbers}
         d.update((k, None) for k in letters)
     return d
 
 
 def version_int(version):
-    d = version_dict(force_bytes(version))
+    d = version_dict(force_text(version))
     for key in ['alpha_ver', 'major', 'minor1', 'minor2', 'minor3',
                 'pre_ver']:
         if not d[key]:
@@ -70,7 +70,7 @@ def version_int(version):
     d['alpha'] = atrans.get(d['alpha'], 2)
     d['pre'] = 0 if d['pre'] else 1
 
-    v = "%d%02d%02d%02d%d%02d%d%02d" % (
+    v = '%d%02d%02d%02d%d%02d%d%02d' % (
         d['major'], d['minor1'], d['minor2'], d['minor3'], d['alpha'],
         d['alpha_ver'], d['pre'], d['pre_ver'])
     return min(int(v), MAXVERSION)

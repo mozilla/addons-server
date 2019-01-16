@@ -1,3 +1,4 @@
+import binascii
 import json
 import os
 
@@ -29,7 +30,8 @@ def fxa_config(request):
 def fxa_login_url(
         config, state, next_path=None, action=None, force_two_factor=False):
     if next_path and is_safe_url(next_path):
-        state += ':' + urlsafe_b64encode(next_path.encode('utf-8')).rstrip('=')
+        state += b':' + urlsafe_b64encode(
+            next_path.encode('utf-8')).rstrip(b'=')
     query = {
         'client_id': config['client_id'],
         'redirect_url': config['redirect_url'],
@@ -65,7 +67,7 @@ def default_fxa_login_url(request):
 
 
 def generate_fxa_state():
-    return os.urandom(32).encode('hex')
+    return binascii.hexlify(os.urandom(32))
 
 
 def redirect_for_login(request):
