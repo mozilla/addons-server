@@ -4,6 +4,7 @@ from decimal import Decimal
 
 from django.conf import settings
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from olympia import amo
 from olympia.amo.fields import PositiveAutoField
@@ -12,6 +13,7 @@ from olympia.applications.models import AppVersion
 from olympia.files.models import File
 
 
+@python_2_unicode_compatible
 class Config(models.Model):
     """Sitewide settings."""
     key = models.CharField(max_length=255, primary_key=True)
@@ -20,7 +22,7 @@ class Config(models.Model):
     class Meta:
         db_table = u'config'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.key
 
     @property

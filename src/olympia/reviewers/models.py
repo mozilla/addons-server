@@ -1,5 +1,4 @@
 import json
-import six
 
 from collections import OrderedDict
 from datetime import date, datetime, timedelta
@@ -9,7 +8,10 @@ from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
 from django.template import loader
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+import six
 
 import olympia.core.logger
 
@@ -70,6 +72,7 @@ def set_reviewing_cache(addon_id, user_id):
               amo.REVIEWER_VIEWING_INTERVAL * 2)
 
 
+@python_2_unicode_compatible
 class CannedResponse(ModelBase):
     id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255)
@@ -81,7 +84,7 @@ class CannedResponse(ModelBase):
     class Meta:
         db_table = 'cannedresponses'
 
-    def __unicode__(self):
+    def __str__(self):
         return six.text_type(self.name)
 
 
@@ -777,6 +780,7 @@ class AutoApprovalNoValidationResultError(Exception):
     pass
 
 
+@python_2_unicode_compatible
 class AutoApprovalSummary(ModelBase):
     """Model holding the results of an auto-approval attempt on a Version."""
     version = models.OneToOneField(
@@ -792,7 +796,7 @@ class AutoApprovalSummary(ModelBase):
     class Meta:
         db_table = 'editors_autoapprovalsummary'
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s %s' % (self.version.addon.name, self.version)
 
     def calculate_weight(self):
@@ -1147,6 +1151,7 @@ class RereviewQueueThemeManager(ManagerBase):
             return qs.exclude(theme__addon__status=amo.STATUS_DELETED)
 
 
+@python_2_unicode_compatible
 class RereviewQueueTheme(ModelBase):
     id = PositiveAutoField(primary_key=True)
     theme = models.ForeignKey(Persona)
@@ -1203,6 +1208,7 @@ class ThemeLock(ModelBase):
         db_table = 'theme_locks'
 
 
+@python_2_unicode_compatible
 class Whiteboard(ModelBase):
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE, primary_key=True)
@@ -1212,6 +1218,6 @@ class Whiteboard(ModelBase):
     class Meta:
         db_table = 'review_whiteboard'
 
-    def __unicode__(self):
+    def __str__(self):
         return u'[%s] private: |%s| public: |%s|' % (
             self.addon.name, self.private, self.public)

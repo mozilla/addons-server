@@ -9,6 +9,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
@@ -103,6 +104,7 @@ class VersionCreateError(ValueError):
     pass
 
 
+@python_2_unicode_compatible
 class Version(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
@@ -144,7 +146,7 @@ class Version(OnChangeMixin, ModelBase):
         super(Version, self).__init__(*args, **kwargs)
         self.__dict__.update(version_dict(self.version or ''))
 
-    def __unicode__(self):
+    def __str__(self):
         return jinja2.escape(self.version)
 
     def save(self, *args, **kw):
@@ -782,6 +784,7 @@ class LicenseManager(ManagerBase):
             builtin__gt=0, creative_commons=cc).order_by('builtin')
 
 
+@python_2_unicode_compatible
 class License(ModelBase):
     OTHER = 0
 
@@ -805,7 +808,7 @@ class License(ModelBase):
     class Meta:
         db_table = 'licenses'
 
-    def __unicode__(self):
+    def __str__(self):
         license = self._constant or self
         return six.text_type(license.name)
 
@@ -818,6 +821,7 @@ models.signals.pre_save.connect(
     save_signal, sender=License, dispatch_uid='license_translations')
 
 
+@python_2_unicode_compatible
 class ApplicationsVersions(models.Model):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
@@ -845,7 +849,7 @@ class ApplicationsVersions(models.Model):
             .order_by('-version_int')
             .first())
 
-    def __unicode__(self):
+    def __str__(self):
         if (self.version.is_compatible_by_default and
                 self.version.is_compatible_app(amo.APP_IDS[self.application])):
             return ugettext(u'{app} {min} and later').format(

@@ -135,7 +135,7 @@ class _NoChangeInstance(object):
         self.__instance = instance
 
     def __repr__(self):
-        return u'<%s for %r>' % (self.__class__.__name__, self.__instance)
+        return '<%s for %r>' % (self.__class__.__name__, self.__instance)
 
     def __getattr__(self, attr):
         return getattr(self.__instance, attr)

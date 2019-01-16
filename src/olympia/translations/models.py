@@ -2,6 +2,7 @@ from functools import partial
 
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
+from django.utils.encoding import python_2_unicode_compatible
 
 import bleach
 import six
@@ -28,6 +29,7 @@ class TranslationManager(ManagerBase):
         qs.update(localized_string=None, localized_string_clean=None)
 
 
+@python_2_unicode_compatible
 class Translation(ModelBase):
     """
     Translation model.
@@ -48,7 +50,7 @@ class Translation(ModelBase):
         db_table = 'translations'
         unique_together = ('id', 'locale')
 
-    def __unicode__(self):
+    def __str__(self):
         return (
             six.text_type(self.localized_string) if self.localized_string
             else '')
@@ -157,6 +159,7 @@ class Translation(ModelBase):
         return trans
 
 
+@python_2_unicode_compatible
 class PurifiedTranslation(Translation):
     """Run the string through bleach to get a safe version."""
     allowed_tags = [
@@ -182,7 +185,7 @@ class PurifiedTranslation(Translation):
     class Meta:
         proxy = True
 
-    def __unicode__(self):
+    def __str__(self):
         if not self.localized_string_clean:
             self.clean()
         return six.text_type(self.localized_string_clean)

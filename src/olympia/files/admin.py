@@ -16,7 +16,7 @@ class FileAdmin(admin.ModelAdmin):
 
     raw_id_fields = ('version',)
     list_display = (
-        '__unicode__', 'addon_slug', 'addon_guid')
+        '__str__', 'addon_slug', 'addon_guid')
     search_fields = (
         '^version__addon__guid',
         '^version__addon__slug',)
