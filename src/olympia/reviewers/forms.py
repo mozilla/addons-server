@@ -107,7 +107,7 @@ class QueueSearchForm(forms.Form):
     addon_type_ids = forms.MultipleChoiceField(
         required=False,
         label=_(u'Add-on Types'),
-        choices=[(amo.ADDON_ANY, _(u'Any'))] + amo.ADDON_TYPES.items())
+        choices=[(amo.ADDON_ANY, _(u'Any'))] + list(amo.ADDON_TYPES.items()))
 
     def __init__(self, *args, **kw):
         super(QueueSearchForm, self).__init__(*args, **kw)

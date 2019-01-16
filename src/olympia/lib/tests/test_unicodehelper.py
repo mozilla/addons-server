@@ -3,7 +3,7 @@ import os
 from olympia.lib import unicodehelper
 
 
-COMPARISON = 'täst'.decode('utf-8')
+COMPARISON = u'täst'
 
 
 def _do_test(path):

@@ -5,6 +5,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.http import HttpRequest
 from django.utils import translation
+from django.utils.encoding import force_text
 from django.views.i18n import javascript_catalog
 
 
@@ -20,4 +21,4 @@ class Command(BaseCommand):
             with translation.override(lang):
                 response = javascript_catalog(fake_request)
                 with open(filename, 'w') as f:
-                    f.write(response.content)
+                    f.write(force_text(response.content))

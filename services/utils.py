@@ -4,10 +4,11 @@ import os
 import posixpath
 import re
 import sys
-import urllib
 
 import MySQLdb as mysql
 import sqlalchemy.pool as pool
+
+from six.moves.urllib.parse import urlencode
 
 from services.settings import settings
 
@@ -77,7 +78,7 @@ version_re = re.compile(r"""(?P<major>\d+)         # major (x in x.y)
 def get_cdn_url(id, row):
     host = user_media_url('addons')
     url = posixpath.join(host, str(id), row['filename'])
-    params = urllib.urlencode({'filehash': row['hash']})
+    params = urlencode({'filehash': row['hash']})
     return '{0}?{1}'.format(url, params)
 
 
