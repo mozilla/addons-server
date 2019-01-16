@@ -860,6 +860,23 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         repo = AddonGitRepository(addon.pk)
         assert os.path.exists(repo.git_repository_path)
 
+    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_commits_to_git_async(self, extract_mock):
+        addon = addon_factory()
+        upload = self.get_upload('webextension_no_id.xpi')
+        upload.user = user_factory(username='fancyuser')
+        parsed_data = parse_addon(upload, addon, user=upload.user)
+        version = Version.from_upload(
+            upload, addon, [self.selected_app],
+            amo.RELEASE_CHANNEL_LISTED,
+            parsed_data=parsed_data)
+        assert version.pk
+
+        # Only once instead of twice
+        extract_mock.assert_called_once_with(
+            version_id=version.pk, author_id=upload.user.pk)
+
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
     filename = 'search.xml'
