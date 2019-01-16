@@ -43,7 +43,7 @@ class TestAttachTransDict(TestCase):
 
         # Quick sanity checks: is description properly escaped? The underlying
         # implementation should leave localized_string un-escaped but never use
-        # it for __unicode__. We depend on this behaviour later in the test.
+        # it for __str__. We depend on this behaviour later in the test.
         assert '<script>' in addon.description.localized_string
         assert '<script>' not in addon.description.localized_string_clean
         assert '<script>' not in six.text_type(addon.description)

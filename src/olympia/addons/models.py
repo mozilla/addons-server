@@ -17,6 +17,7 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
@@ -274,6 +275,7 @@ class AddonManager(ManagerBase):
         return self.get_queryset().listed(app, *status)
 
 
+@python_2_unicode_compatible
 class Addon(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_ADDON
@@ -387,7 +389,7 @@ class Addon(OnChangeMixin, ModelBase):
             ['type', 'status', 'disabled_by_user'],
         ]
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s: %s' % (self.id, self.name)
 
     def __init__(self, *args, **kw):
@@ -1648,6 +1650,7 @@ class AddonReviewerFlags(ModelBase):
     notified_about_expiring_info_request = models.BooleanField(default=False)
     needs_sensitive_data_access_review = models.BooleanField(default=False)
 
+@python_2_unicode_compatible
 class Persona(models.Model):
     """Personas-specific additions to the add-on model."""
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
@@ -1677,7 +1680,7 @@ class Persona(models.Model):
     class Meta:
         db_table = 'personas'
 
-    def __unicode__(self):
+    def __str__(self):
         return six.text_type(self.addon.name)
 
     def is_new(self):
@@ -1889,6 +1892,7 @@ def watch_addon_user(old_attr=None, new_attr=None, instance=None, sender=None,
     update_search_index(sender=sender, instance=instance.addon, **kwargs)
 
 
+@python_2_unicode_compatible
 class AddonApprovalsCounter(ModelBase):
     """Model holding a counter of the number of times a listed version
     belonging to an add-on has been approved by a human. Reset everytime a
@@ -1906,7 +1910,7 @@ class AddonApprovalsCounter(ModelBase):
     last_human_review = models.DateTimeField(null=True)
     last_content_review = models.DateTimeField(null=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s: %d' % (
             six.text_type(self.pk), self.counter) if self.pk else u''
 
@@ -1950,6 +1954,7 @@ class AddonApprovalsCounter(ModelBase):
         return obj
 
 
+@python_2_unicode_compatible
 class DeniedGuid(ModelBase):
     id = PositiveAutoField(primary_key=True)
     guid = models.CharField(max_length=255, unique=True)
@@ -1958,10 +1963,11 @@ class DeniedGuid(ModelBase):
     class Meta:
         db_table = 'denied_guids'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.guid
 
 
+@python_2_unicode_compatible
 class Category(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     slug = SlugField(max_length=50, help_text='Used in Category URLs.')
@@ -1991,7 +1997,7 @@ class Category(OnChangeMixin, ModelBase):
             value = ''
         return six.text_type(value)
 
-    def __unicode__(self):
+    def __str__(self):
         return six.text_type(self.name)
 
     def get_url_path(self):
@@ -2062,13 +2068,14 @@ class AppSupport(ModelBase):
         unique_together = ('addon', 'app')
 
 
+@python_2_unicode_compatible
 class DeniedSlug(ModelBase):
     name = models.CharField(max_length=255, unique=True, default='')
 
     class Meta:
         db_table = 'addons_denied_slug'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @classmethod
@@ -2076,6 +2083,7 @@ class DeniedSlug(ModelBase):
         return slug.isdigit() or cls.objects.filter(name=slug).exists()
 
 
+@python_2_unicode_compatible
 class FrozenAddon(models.Model):
     """Add-ons in this table never get a hotness score."""
     id = PositiveAutoField(primary_key=True)
@@ -2084,7 +2092,7 @@ class FrozenAddon(models.Model):
     class Meta:
         db_table = 'frozen_addons'
 
-    def __unicode__(self):
+    def __str__(self):
         return 'Frozen: %s' % self.addon_id
 
 
@@ -2095,6 +2103,7 @@ def freezer(sender, instance, **kw):
         Addon.objects.get(id=instance.addon_id).update(hotness=0)
 
 
+@python_2_unicode_compatible
 class CompatOverride(ModelBase):
     """Helps manage compat info for add-ons not hosted on AMO."""
     id = PositiveAutoField(primary_key=True)
@@ -2115,7 +2124,7 @@ class CompatOverride(ModelBase):
                 self.addon = qs[0]
         return super(CompatOverride, self).save(*args, **kw)
 
-    def __unicode__(self):
+    def __str__(self):
         if self.addon:
             return six.text_type(self.addon)
         elif self.name:
@@ -2197,6 +2206,7 @@ class CompatOverrideRange(ModelBase):
         return {0: 'compatible', 1: 'incompatible'}[self.type]
 
 
+@python_2_unicode_compatible
 class IncompatibleVersions(ModelBase):
     """
     Denormalized table to join against for fast compat override filtering.
@@ -2221,7 +2231,7 @@ class IncompatibleVersions(ModelBase):
     class Meta:
         db_table = 'incompatible_versions'
 
-    def __unicode__(self):
+    def __str__(self):
         return u'<IncompatibleVersion V:%s A:%s %s-%s>' % (
             self.version.id, self.app.id, self.min_app_version,
             self.max_app_version)

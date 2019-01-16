@@ -3,7 +3,6 @@ import json
 import os
 import posixpath
 import re
-import six
 import time
 import unicodedata
 import uuid
@@ -15,10 +14,13 @@ from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
 from django.template.defaultfilters import slugify
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import (
+    force_bytes, force_text, python_2_unicode_compatible)
 from django.utils.functional import cached_property
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
+
+import six
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
@@ -27,16 +29,16 @@ from jinja2 import escape as jinja2_escape
 import olympia.core.logger
 
 from olympia import amo
-from olympia.lib.cache import memoize
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ModelBase, OnChangeMixin, ManagerBase
+from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.storage_utils import copy_stored_file, move_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
     absolutify, urlparams, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.files.utils import SafeZip, write_crx_as_xpi, get_sha256
+from olympia.files.utils import SafeZip, get_sha256, write_crx_as_xpi
+from olympia.lib.cache import memoize
 from olympia.translations.fields import TranslatedField
 
 
@@ -46,6 +48,7 @@ log = olympia.core.logger.getLogger('z.files')
 EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 
 
+@python_2_unicode_compatible
 class File(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     STATUS_CHOICES = amo.STATUS_CHOICES_FILE
@@ -103,7 +106,7 @@ class File(OnChangeMixin, ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'files'
 
-    def __unicode__(self):
+    def __str__(self):
         return six.text_type(self.id)
 
     def get_platform_display(self):
@@ -586,6 +589,7 @@ def track_file_status_change(file_):
                     .format(file_.status))
 
 
+@python_2_unicode_compatible
 class FileUpload(ModelBase):
     """Created when a file is uploaded for validation/submission."""
     uuid = models.UUIDField(default=uuid.uuid4, editable=False)
@@ -611,7 +615,7 @@ class FileUpload(ModelBase):
     class Meta(ModelBase.Meta):
         db_table = 'file_uploads'
 
-    def __unicode__(self):
+    def __str__(self):
         return six.text_type(self.uuid.hex)
 
     def save(self, *args, **kw):

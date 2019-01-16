@@ -1,6 +1,7 @@
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 import six
@@ -70,6 +71,7 @@ class WithoutRepliesRatingManager(ManagerBase):
         return qs.filter(reply_to__isnull=True)
 
 
+@python_2_unicode_compatible
 class Rating(ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey('addons.Addon', related_name='_ratings')
@@ -107,7 +109,7 @@ class Rating(ModelBase):
         base_manager_name = 'unfiltered'
         ordering = ('-created',)
 
-    def __unicode__(self):
+    def __str__(self):
         return truncate(six.text_type(self.body), 10)
 
     def __init__(self, *args, **kwargs):

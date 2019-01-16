@@ -33,7 +33,7 @@ class GroupUserInline(admin.TabularInline):
 
 
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('__unicode__', 'email', 'is_public', 'deleted')
+    list_display = ('__str__', 'email', 'is_public', 'deleted')
     search_fields = ('id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'

@@ -10,13 +10,13 @@ from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.signals import user_logged_in
 from django.core import validators
+from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
-from django.utils.encoding import force_text
+from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property, lazy
 from django.utils.translation import ugettext
-from django.core.files.storage import default_storage as storage
 
 import olympia.core.logger
 
@@ -26,9 +26,9 @@ from olympia.amo.decorators import use_primary_db
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
+from olympia.lib.cache import cache_get_or_set
 from olympia.translations.query import order_by_translation
 from olympia.users.notifications import NOTIFICATIONS_BY_ID
-from olympia.lib.cache import cache_get_or_set
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -116,6 +116,7 @@ class UserManager(BaseUserManager, ManagerBase):
         return user
 
 
+@python_2_unicode_compatible
 class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     objects = UserManager()
     USERNAME_FIELD = 'username'
@@ -172,7 +173,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         if self.username:
             self.username = force_text(self.username)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s: %s' % (self.id, self.display_name or self.username)
 
     @property
@@ -534,6 +535,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.collectionwatcher_set.values_list('collection', flat=True)
 
 
+@python_2_unicode_compatible
 class UserNotification(ModelBase):
     user = models.ForeignKey(UserProfile, related_name='notifications')
     notification_id = models.IntegerField()
@@ -555,6 +557,7 @@ class UserNotification(ModelBase):
                 enabled=self.enabled))
 
 
+@python_2_unicode_compatible
 class DeniedName(ModelBase):
     """Denied User usernames and display_names + Collections' names."""
     name = models.CharField(max_length=255, unique=True, default='')
@@ -562,7 +565,7 @@ class DeniedName(ModelBase):
     class Meta:
         db_table = 'users_denied_name'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @classmethod

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.utils import translation
+from django.utils.encoding import python_2_unicode_compatible
 
 import six
 
@@ -11,6 +12,7 @@ from olympia.amo.utils import send_mail
 from olympia.users.models import UserProfile
 
 
+@python_2_unicode_compatible
 class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(UserProfile, null=True,
@@ -55,7 +57,7 @@ class AbuseReport(ModelBase):
                      if self.addon else 'User' if self.user else 'Addon')
         return type_
 
-    def __unicode__(self):
+    def __str__(self):
         name = self.target.name if self.target else self.guid
         return u'[%s] Abuse Report for %s' % (self.type, name)
 

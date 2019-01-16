@@ -2,6 +2,7 @@ import os
 import random
 
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from aesfield.field import AESField
 
@@ -19,6 +20,7 @@ API_KEY_TYPES = [
 ]
 
 
+@python_2_unicode_compatible
 class APIKey(ModelBase):
     """
     A developer's key/secret pair to access the API.
@@ -42,7 +44,7 @@ class APIKey(ModelBase):
         db_table = 'api_key'
         unique_together = (('user', 'is_active'),)
 
-    def __unicode__(self):
+    def __str__(self):
         return (
             u'<{cls} user={user}, type={type}, key={key} secret=...>'
             .format(cls=self.__class__.__name__, key=self.key,

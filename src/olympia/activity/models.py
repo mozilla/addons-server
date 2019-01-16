@@ -12,6 +12,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.functional import cached_property
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext
 
 import jinja2
@@ -290,6 +291,7 @@ class SafeFormatter(string.Formatter):
         return jinja2.escape(obj), used_key
 
 
+@python_2_unicode_compatible
 class ActivityLog(ModelBase):
     TYPES = sorted(
         [(value.id, key)
@@ -532,7 +534,7 @@ class ActivityLog(ModelBase):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.to_string()
 
     def __html__(self):

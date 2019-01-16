@@ -1,10 +1,12 @@
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 
 from olympia import amo
 from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 
 
+@python_2_unicode_compatible
 class DiscoveryModule(ModelBase):
     """
     Keeps the application, ordering, and locale metadata for a module.
@@ -23,5 +25,5 @@ class DiscoveryModule(ModelBase):
         db_table = 'discovery_modules'
         unique_together = ('app', 'module')
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s (%s)' % (self.module, self.get_app_display())

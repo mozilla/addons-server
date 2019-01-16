@@ -246,7 +246,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
-        assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
+        assert six.text_type(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon_pending_version(self, hide_mock):
@@ -273,7 +273,7 @@ class TestVersion(TestCase):
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
         msg = entry.to_string()
-        assert self.addon.name.__unicode__() in msg, ("Unexpected: %r" % msg)
+        assert six.text_type(self.addon.name) in msg, ("Unexpected: %r" % msg)
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disabling_addon_awaiting_review_disables_version(self, hide_mock):
