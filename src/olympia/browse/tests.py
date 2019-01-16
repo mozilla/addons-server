@@ -5,7 +5,7 @@ from django.conf import settings
 from django.core.cache import cache
 from django.test.utils import override_settings
 from django.utils.http import urlquote
-from django.utils.translation import trim_whitespace
+from django.utils import translation
 
 import mock
 import pytest
@@ -30,7 +30,6 @@ from olympia.browse.views import (
     MIN_COUNT_FOR_LANDING, PAGINATE_PERSONAS_BY, AddonFilter, ThemeFilter,
     locale_display_name)
 from olympia.lib.cache import memoize_key
-from olympia.translations.models import Translation
 from olympia.versions.models import Version
 
 
@@ -166,7 +165,7 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).created
             assert item('.updated').text() == (
-                u'Added %s' % trim_whitespace(format_date(ts)))
+                u'Added %s' % translation.trim_whitespace(format_date(ts)))
 
     def test_updated_date(self):
         doc = pq(self.client.get(urlparams(self.url, sort='updated')).content)
@@ -175,7 +174,7 @@ class TestListing(TestCase):
             addon_id = item('.install').attr('data-addon')
             ts = Addon.objects.get(id=addon_id).last_updated
             assert item('.updated').text() == (
-                u'Updated %s' % trim_whitespace(format_date(ts)))
+                u'Updated %s' % translation.trim_whitespace(format_date(ts)))
 
     def test_users_adu_unit(self):
         doc = pq(self.client.get(urlparams(self.url, sort='users')).content)
@@ -767,8 +766,8 @@ class TestSearchToolsPages(BaseSearchToolsTest):
         links = doc('#search-tools-sidebar a')
 
         assert sorted([a.text.strip() for a in links]) == (
-            sorted(['Most Popular', 'Recently Added',  # Search Extensions.
-                    'Bookmarks']))  # Search Providers.
+            sorted(['Bookmarks', 'Dictionaries & Encyclopedias',
+                    'Most Popular', 'Recently Added']))
 
         search_ext_url = urlparse(reverse('browse.extensions',
                                   kwargs=dict(category='search-tools')))
@@ -902,20 +901,16 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
         assert [e.text for e in doc('rss channel item title')] == (
             ['FoxyProxy Standard 2.17'])
 
+    @pytest.mark.needs_locales_compilation
     def test_non_ascii_titles(self):
-        bookmarks = Category.objects.get(slug='bookmarks')
-        bookmarks.db_name = u'Ivan Krstić'
-        bookmarks.slug = 'foobar'
-        bookmarks.save()
-
-        url = reverse('browse.search-tools.rss',
-                      args=('foobar',))
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        url = '/fr/firefox/search-tools/dictionaries-encyclopedias/format:rss'
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         assert doc('rss channel title')[0].text == (
-            u'Ivan Krstić :: Search Tools :: Add-ons for Firefox')
+            u'Dictionnaires et encyclopédies :: Outils de recherche :: '
+            u'Modules pour Firefox')
 
 
 class TestLegacyRedirects(TestCase):
@@ -999,29 +994,24 @@ class TestCategoriesFeed(TestCase):
     def setUp(self):
         super(TestCategoriesFeed, self).setUp()
         self.feed = feeds.CategoriesRss()
-        self.u = u'Ελληνικά'
-        self.wut = Translation(localized_string=self.u, locale='el')
+        self.unicode_string = u'Ελληνικά'
 
         self.feed.request = mock.Mock()
-        self.feed.request.APP.pretty = self.u
+        self.feed.request.APP.pretty = self.unicode_string
 
-        self.category = Category(db_name=self.u)
-
-        self.addon = Addon(name=self.u, id=2, type=1, slug='xx')
-        self.addon._current_version = Version(version='v%s' % self.u)
-
-    def test_title(self):
-        assert self.feed.title(self.category) == (
-            u'%s :: Add-ons for %s' % (self.wut, self.u))
+        self.addon = Addon(name=self.unicode_string, id=2, type=1, slug='xx')
+        self.addon._current_version = Version(
+            version=u'v%s' % self.unicode_string)
 
     def test_item_title(self):
         assert self.feed.item_title(self.addon) == (
-            u'%s v%s' % (self.u, self.u))
+            u'%s v%s' % (self.unicode_string, self.unicode_string))
 
     def test_item_guid(self):
-        t = self.feed.item_guid(self.addon)
-        url = u'/addon/%s/versions/v%s' % (self.addon.slug, urlquote(self.u))
-        assert t.endswith(url), t
+        item = self.feed.item_guid(self.addon)
+        url = u'/addon/%s/versions/v%s' % (
+            self.addon.slug, urlquote(self.unicode_string))
+        assert item.endswith(url)
 
 
 class TestFeaturedFeed(TestCase):

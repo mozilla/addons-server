@@ -289,42 +289,6 @@
         }
     },
     {
-        "pk": 2222,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Bookmarks",
-            "created": "2009-05-11 22:06:47",
-            "modified": "2009-05-11 22:06:47",
-            "locale": "en-US",
-            "id": 2222,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 2323,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Feeds",
-            "created": "2009-05-11 22:06:47",
-            "modified": "2009-05-11 22:06:47",
-            "locale": "en-US",
-            "id": 2323,
-            "localized_string_clean": null
-        }
-    },
-    {
-        "pk": 2424,
-        "model": "translations.translation",
-        "fields": {
-            "localized_string": "Social",
-            "created": "2009-05-11 22:06:47",
-            "modified": "2009-05-11 22:06:47",
-            "locale": "en-US",
-            "id": 2424,
-            "localized_string_clean": null
-        }
-    },
-    {
         "pk": 1,
         "model": "addons.category",
         "fields": {
@@ -334,8 +298,7 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "feeds-news-blogging",
-            "db_name": 2323
+            "slug": "feeds-news-blogging"
         }
     },
     {
@@ -348,8 +311,7 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "bookmarks",
-            "db_name": 2222
+            "slug": "bookmarks"
         }
     },
     {
@@ -362,8 +324,7 @@
             "modified": "2010-02-23 19:17:32",
             "application": 1,
             "type": 1,
-            "slug": "social-communication",
-            "db_name": 2424
+            "slug": "social-communication"
         }
     },
     {

@@ -30,7 +30,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
-from olympia.constants.categories import CATEGORIES
+from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.models import RssKey
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
@@ -1159,8 +1159,7 @@ class TestAddonModels(TestCase):
         # Associate this add-on with a couple more categories, including
         # one that does not exist in the constants.
         unknown_cat = Category.objects.create(
-            application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION,
-            db_name='Sunny D')
+            application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION)
         AddonCategory.objects.create(addon=addon, category=unknown_cat)
         android_static_cat = (
             CATEGORIES[amo.ANDROID.id][amo.ADDON_EXTENSION]['sports-games'])
@@ -1984,14 +1983,14 @@ class TestCategoryModel(TestCase):
         with translation.override('fr'):
             assert category.name == u'Alertes et mises à jour'
 
-    def test_name_fallback_to_db(self):
+    def test_name_fallback_to_empty(self):
         category = Category.objects.create(
             type=amo.ADDON_EXTENSION, application=amo.FIREFOX.id,
-            slug='this-cat-does-not-exist', db_name=u'ALAAAAAAARM')
+            slug='this-cat-does-not-exist')
 
-        assert category.name == u'ALAAAAAAARM'
+        assert category.name == u''
         with translation.override('fr'):
-            assert category.name == u'ALAAAAAAARM'
+            assert category.name == u''
 
 
 class TestPersonaModel(TestCase):
@@ -2061,7 +2060,9 @@ class TestPersonaModel(TestCase):
             assert url_.endswith('/fr/themes/update-check/15663')
 
     def test_json_data(self):
-        self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
+        self.persona.addon.all_categories = [
+            Category.from_static_category(CATEGORIES_BY_ID[100])
+        ]
 
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
@@ -2075,7 +2076,7 @@ class TestPersonaModel(TestCase):
             assert data['name'] == six.text_type(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Yolo Art'
+            assert data['category'] == 'Abstract'
             assert data['author'] == 'persona_author'
             assert data['description'] == six.text_type(self.addon.description)
 
@@ -2098,7 +2099,9 @@ class TestPersonaModel(TestCase):
         self.persona.persona_id = 0  # Make this a "new" theme.
         self.persona.save()
 
-        self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
+        self.persona.addon.all_categories = [
+            Category.from_static_category(CATEGORIES_BY_ID[100])
+        ]
 
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
@@ -2112,7 +2115,7 @@ class TestPersonaModel(TestCase):
             assert data['name'] == six.text_type(self.persona.addon.name)
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
-            assert data['category'] == 'Yolo Art'
+            assert data['category'] == 'Abstract'
             assert data['author'] == 'persona_author'
             assert data['description'] == six.text_type(self.addon.description)
 

@@ -299,7 +299,7 @@ class TestThemeForm(TestCase):
 
     def populate(self):
         self.cat = Category.objects.create(
-            application=amo.FIREFOX.id, type=amo.ADDON_PERSONA, db_name='xxxx')
+            application=amo.FIREFOX.id, type=amo.ADDON_PERSONA)
         License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
@@ -522,8 +522,7 @@ class TestEditThemeForm(TestCase):
             type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
             slug='swag-overload', name='Bands Make Me Dance',
             description='tha description')
-        self.cat = Category.objects.create(
-            type=amo.ADDON_PERSONA, db_name='xxxx')
+        self.cat = Category.objects.create(type=amo.ADDON_PERSONA)
         self.instance.addoncategory_set.create(category=self.cat)
         self.license = amo.LICENSE_CC_BY.id
         self.theme = Persona.objects.create(
