@@ -145,9 +145,9 @@ class TestLocalFileStorage(BaseTestCase):
 
     def test_non_ascii_content(self):
         fn = os.path.join(self.tmp, 'somefile.txt')
-        with self.stor.open(fn, 'w') as fd:
+        with self.stor.open(fn, 'wb') as fd:
             fd.write(u'Ivan Krsti\u0107.txt'.encode('utf8'))
-        with self.stor.open(fn, 'r') as fd:
+        with self.stor.open(fn, 'rb') as fd:
             assert fd.read().decode('utf8') == u'Ivan Krsti\u0107.txt'
 
     def test_make_file_dirs(self):

@@ -148,9 +148,8 @@ def sidebar(app):
         amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
         amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
     }
-    titles = dict(
-        amo.ADDON_TYPES,
-        **{amo.ADDON_DICT: ugettext('Dictionaries & Language Packs')})
+    titles = dict(amo.ADDON_TYPES)
+    titles[amo.ADDON_DICT] = ugettext('Dictionaries & Language Packs')
     for type_, url in shown_types.items():
         if type_ in app.types:
             types.append(Type(type_, titles[type_], url))

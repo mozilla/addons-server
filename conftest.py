@@ -164,7 +164,7 @@ def test_pre_setup(request, tmpdir, settings):
             os.makedirs(path)
         return path
 
-    settings.STORAGE_ROOT = storage_root = _path(tmpdir.mkdir('storage'))
+    settings.STORAGE_ROOT = storage_root = _path(str(tmpdir.mkdir('storage')))
     settings.SHARED_STORAGE = shared_storage = _path(
         storage_root, 'shared_storage')
 

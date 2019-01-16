@@ -8,6 +8,7 @@ import uuid
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.staticfiles.finders import find as find_static_path
+from django.utils.encoding import force_bytes
 
 import six
 
@@ -16,7 +17,8 @@ from olympia.lib.jingo_minify_helpers import ensure_path_exists
 
 def run_command(command):
     """Run a command and correctly poll the output and write that to stdout"""
-    process = subprocess.Popen(command, stdout=subprocess.PIPE, shell=True)
+    process = subprocess.Popen(
+        command, stdout=subprocess.PIPE, shell=True, universal_newlines=True)
     while True:
         output = process.stdout.readline()
         if output == '' and process.poll() is not None:
@@ -184,7 +186,7 @@ class Command(BaseCommand):
             css_out.write(css_parsed)
 
         # Return bundle hash for cachebusting JS/CSS files.
-        file_hash = hashlib.md5(css_parsed).hexdigest()[0:7]
+        file_hash = hashlib.md5(force_bytes(css_parsed)).hexdigest()[0:7]
         self.checked_hash[css_file] = file_hash
 
         if self.missing_files:
@@ -219,7 +221,7 @@ class Command(BaseCommand):
 
         file_hash = ''
         try:
-            with open(url) as f:
+            with open(url, 'rb') as f:
                 file_hash = hashlib.md5(f.read()).hexdigest()[0:7]
         except IOError:
             self.missing_files += 1
