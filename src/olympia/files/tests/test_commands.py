@@ -181,7 +181,6 @@ class TestWebextUpdateDescriptions(TestCase):
         assert not Translation.objects.filter(
             locale='klingon').exists()
 
-    @responses.activate
     def test_add_descriptions(self):
         self._register_uris()
         assert WebextPermissionDescription.objects.count() == 0
@@ -200,7 +199,6 @@ class TestWebextUpdateDescriptions(TestCase):
         assert WebextPermissionDescription.objects.filter(
             name='oldpermission').exists()
 
-    @responses.activate
     def test_clear_then_add_descriptions(self):
         self._register_uris()
         # Add an existing permission that won't be updated and will be cleared.

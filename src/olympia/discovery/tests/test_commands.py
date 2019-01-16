@@ -41,7 +41,6 @@ class TestExtractDiscoStringsCommand(TestCase):
             (settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2')
             in settings.PUENTE['DOMAIN_METHODS']['django'])
 
-    @responses.activate
     def test_basic(self):
         responses.add(
             responses.GET, settings.DISCOVERY_EDITORIAL_CONTENT_API,

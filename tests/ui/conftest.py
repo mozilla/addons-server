@@ -59,7 +59,8 @@ def selenium(selenium, request):
 
     """
     # Skip mobile test with marker 'desktop_only'
-    if request.node.get_marker('desktop_only') and request.param == MOBILE:
+    marker = request.node.get_closest_marker('desktop_only')
+    if marker and request.param == MOBILE:
         pytest.skip('Skipping mobile test')
     selenium.set_window_size(*request.param)
     return selenium
@@ -76,7 +77,7 @@ def fxa_account(request):
         fxa_account.email = os.environ['FXA_EMAIL']
         fxa_account.password = os.environ['FXA_PASSWORD']
     except KeyError:
-        if request.node.get_marker('fxa_login'):
+        if request.node.get_closest_marker('fxa_login'):
             pytest.skip(
                 'Skipping test because no fxa account was found.'
                 ' Are FXA_EMAIL and FXA_PASSWORD environment variables set?')

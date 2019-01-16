@@ -7,7 +7,7 @@ from pages.desktop.devhub import DevHub
 @pytest.mark.fxa_login
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
-@pytest.mark.withoutresponses
+@pytest.mark.allow_external_http_requests
 def test_devhub_home_loads_addons(base_url, selenium, devhub_login):
     """Test devhub home loads correct number of addons listed."""
     devhub = devhub_login
@@ -19,7 +19,7 @@ def test_devhub_home_loads_addons(base_url, selenium, devhub_login):
 @pytest.mark.fxa_login
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
-@pytest.mark.withoutresponses
+@pytest.mark.allow_external_http_requests
 def test_devhub_addon_edit_link_works(base_url, selenium, devhub_login):
     """Test addon edit link returns edit page."""
     devhub = devhub_login
@@ -31,7 +31,7 @@ def test_devhub_addon_edit_link_works(base_url, selenium, devhub_login):
 @pytest.mark.fxa_login
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
-@pytest.mark.withoutresponses
+@pytest.mark.allow_external_http_requests
 def test_devhub_addon_upload(base_url, selenium, devhub_upload):
     """Test uploading an addon via devhub."""
     'ui-test-addon-2' in devhub_upload.addons[-1].name
@@ -40,7 +40,7 @@ def test_devhub_addon_upload(base_url, selenium, devhub_upload):
 @pytest.mark.fxa_login
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
-@pytest.mark.withoutresponses
+@pytest.mark.allow_external_http_requests
 def test_devhub_logout(base_url, selenium, devhub_login):
     """Logging out from devhub."""
     assert devhub_login.logged_in

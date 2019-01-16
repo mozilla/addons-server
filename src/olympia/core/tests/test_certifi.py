@@ -7,7 +7,7 @@ from cryptography.hazmat.backends.openssl.backend import backend
 from olympia.amo.tests import TestCase
 
 
-@pytest.mark.withoutresponses
+@pytest.mark.allow_external_http_requests
 class TestCertifi(TestCase):
 
     def test_openssl_version(self):
