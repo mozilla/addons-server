@@ -1,6 +1,7 @@
 from django import dispatch
 from django.db import models
 from django.db.models import signals
+from django.utils.encoding import python_2_unicode_compatible
 
 import olympia.core.logger
 
@@ -12,6 +13,7 @@ from olympia.amo.models import ModelBase
 log = olympia.core.logger.getLogger('z.users')
 
 
+@python_2_unicode_compatible
 class Group(ModelBase):
     # If `id` is changed from PositiveAutoField, update TestPositiveAutoField.
     id = PositiveAutoField(primary_key=True)
@@ -24,7 +26,7 @@ class Group(ModelBase):
     class Meta:
         db_table = 'groups'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 

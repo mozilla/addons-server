@@ -25,7 +25,7 @@ class AddonAdmin(admin.ModelAdmin):
         js = ('js/admin/l10n.js',)
 
     exclude = ('authors',)
-    list_display = ('__unicode__', 'type', 'guid',
+    list_display = ('__str__', 'type', 'guid',
                     'status_with_admin_manage_link', 'average_rating')
     list_filter = ('type', 'status')
     search_fields = ('id', '^guid', '^slug')

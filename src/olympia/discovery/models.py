@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.http import QueryDict
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.html import conditional_escape, format_html
 from django.utils.translation import ugettext
 
@@ -12,6 +13,7 @@ from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 
 
+@python_2_unicode_compatible
 class DiscoveryItem(ModelBase):
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE,
@@ -52,7 +54,7 @@ class DiscoveryItem(ModelBase):
                   'recommendations are on but we want to override them.'
                   '(See position field above).')
 
-    def __unicode__(self):
+    def __str__(self):
         return six.text_type(self.addon)
 
     def build_querystring(self):
