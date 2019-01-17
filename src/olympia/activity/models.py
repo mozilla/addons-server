@@ -465,7 +465,7 @@ class ActivityLog(ModelBase):
                 'file': file_,
                 'status': status,
             }
-            return self.f(format, *arguments, **kw)
+            return self.f(six.text_type(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'

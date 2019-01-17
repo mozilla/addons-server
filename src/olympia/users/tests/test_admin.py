@@ -166,7 +166,7 @@ class TestUserAdmin(TestCase):
         core.set_user(user)
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
-        assert 'Cannot delete user' not in response.content
+        assert b'Cannot delete user' not in response.content
         response = self.client.post(self.delete_url, {'post': 'yes'},
                                     follow=True)
         assert response.status_code == 200
