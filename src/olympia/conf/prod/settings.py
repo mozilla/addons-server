@@ -67,7 +67,7 @@ ES_URLS = ['http://%s' % h for h in ES_HOSTS]
 ES_INDEXES = dict((k, '%s_%s' % (v, ENV)) for k, v in ES_INDEXES.items())
 
 LANGUAGES = {
-    locale: value['native']
+    locale.lower(): value['native']
     for locale, value in LANGUAGE_MAPPING.items()
     if locale not in DEBUG_LANGUAGES}
 
