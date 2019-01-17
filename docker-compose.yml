@@ -33,6 +33,17 @@ services:
     <<: *worker
     command: supervisord -n -c /code/docker/supervisor.conf
 
+  web3:
+    extends:
+      service: web
+    # This container is only for running unit tests under python3 atm, so give
+    # it a dummy command so that it doesn't exit, but don't let it run
+    # supervisord as normal - we don't want the webserver.
+    command: /usr/bin/tail -f /dev/null
+    environment:
+      - PYTHON_VERSION_MAJOR=3
+
+
   nginx:
     image: addons/addons-nginx
     volumes:
