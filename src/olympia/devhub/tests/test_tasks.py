@@ -27,7 +27,7 @@ from olympia.amo.utils import image_size, utc_millesecs_from_epoch
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
-from olympia.devhub import tasks
+from olympia.devhub import tasks, file_validation_annotations as annotations
 from olympia.files.models import File, FileUpload
 from olympia.versions.models import Version
 
@@ -298,6 +298,21 @@ class TestValidator(ValidatorTestCase):
         self.file = File.objects.get(pk=self.file.pk)
         assert self.file.has_been_validated
 
+    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_validates_search_plugins_inline(self, run_linter, run_validator):
+        addon = addon_factory(file_kw={
+            'filename': 'opensearch/sp_updateurl.xml'})
+        file_ = addon.current_version.current_file
+        tasks.validate(file_, synchronous=True).get()
+
+        file_.refresh_from_db()
+        validation = file_.validation.processed_validation
+
+        assert validation['errors'] == 2
+        assert validation['messages'][0]['message'].startswith(
+            'OpenSearch: &lt;updateURL&gt; elements')
+
 
 class TestMeasureValidationTime(TestValidator):
 
@@ -549,6 +564,13 @@ class TestValidateFilePath(ValidatorTestCase):
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
+
+    def test_returns_skeleton_for_search_plugin(self):
+        result = tasks.validate_file_path(
+            None, get_addon_file('searchgeek-20090701.xml'),
+            hash_=None, listed=True)
+
+        assert result == amo.VALIDATOR_SKELETON_RESULTS
 
 
 class TestWebextensionIncompatibilities(ValidatorTestCase):
@@ -835,7 +857,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data, is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
@@ -857,7 +879,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data, is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
@@ -980,14 +1002,14 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
         assert results['messages'][0]['id'] == [
             'validation', 'messages', 'legacy_addons_max_version']
 
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=False)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
@@ -1014,7 +1036,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=False)
         assert results['errors'] == 0
 
@@ -1033,7 +1055,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 }
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=True)
         assert results['errors'] == 1
         assert len(results['messages']) > 0
@@ -1051,7 +1073,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
                 'is_extension': True,
             }
         }
-        results = tasks.annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             data.copy(), is_new_upload=True)
         assert results['errors'] == 0
 
@@ -1405,3 +1427,96 @@ class TestAPIKeyInSubmission(TestCase):
         # validation task.
         assert upload.processed_validation['errors'] == 1
         assert not upload.valid
+
+
+@pytest.mark.parametrize('fixture, success, message', [
+    ('pass.xml', True, ''),
+    # xmlns attribute is present
+    ('no_xmlns.xml', False, 'Missing XMLNS attribute.'),
+    # an xmlns attribute is an invvalid value
+    ('bad_xmlns.xml', False, 'Bad XMLNS attribute.'),
+    # Broken XML
+    ('bad_xml.xml', False, 'XML Parse Error.'),
+    # Tests that there is no updateURL element in the provider
+    ('sp_updateurl.xml', False,
+     '<updateURL> elements are banned in OpenSearch providers.'),
+    # the provider is indeed OpenSearch
+    ('sp_notos.xml', False, 'Invalid Document Root.'),
+    # the provider has a <ShortName> element
+    ('sp_no_shortname.xml', False, 'Missing <ShortName> elements.'),
+    ('sp_dup_shortname.xml', False, 'Too many <ShortName> elements.'),
+    ('sp_long_shortname.xml', False, '<ShortName> element too long.'),
+    # the provider has a <Description> element.'
+    ('sp_no_description.xml', False,
+     'Invalid number of <Description> elements.'),
+    # the provider has a <Url> element.'
+    ('sp_no_url.xml', False, 'Missing <Url> elements.'),
+    # the provider is passing the proper attributes for its urls.'
+    ('sp_bad_url_atts.xml', False,
+     'Missing <Url> element with \'text/html\' type.'),
+    # Test that there's no traceback for a missing template attribute
+    ('sp_no_template_attr.xml', False,
+     '<Url> element missing template attribute.'),
+    # a search term field is provided for the <Url> element.'
+    ('sp_no_url_template.xml', False,
+     '<Url> element missing template placeholder.'),
+    # a valid inline search term field is provided.'
+    ('sp_inline_template.xml', True, ''),
+    # a valid search term field is provided in a <Param />'
+    ('sp_param_template.xml', True, ''),
+    # necessary attributes are provided in a <Param />'
+    ('sp_bad_param_atts.xml', False,
+     '`<Param>` element missing \'name/value\'.'),
+    # Test malicious XML is detected properly
+    ('lol.xml', False, 'XML Security error.'),
+])
+def test_opensearch_validation(fixture, success, message):
+    """Tests that the OpenSearch validation doesn't find anything worrying."""
+    addon = addon_factory(file_kw={
+        'filename': 'opensearch/{}'.format(fixture)})
+
+    results = {
+        'messages': [],
+        'errors': 0,
+        'metadata': {}
+    }
+
+    annotations.annotate_search_plugin_validation(
+        results, addon.current_version.current_file,
+        amo.RELEASE_CHANNEL_LISTED)
+
+    print(results['messages'])
+    if success:
+        assert not results['errors']
+        assert not results['messages']
+    else:
+        assert results['errors']
+        assert results['messages']
+
+        expected = 'OpenSearch: {}'.format(message)
+        assert any(
+            message['message'] == expected for message in results['messages'])
+
+
+def test_opensearch_validation_rel_self_url():
+    """Tests that rel=self urls are ignored for unlisted addons."""
+    addon = addon_factory(file_kw={
+        'filename': 'opensearch/rel_self_url.xml'})
+
+    results = {
+        'messages': [],
+        'errors': 0,
+        'metadata': {}
+    }
+
+    annotations.annotate_search_plugin_validation(
+        results, addon.current_version.current_file,
+        amo.RELEASE_CHANNEL_UNLISTED)
+
+    assert not results['errors']
+
+    annotations.annotate_search_plugin_validation(
+        results, addon.current_version.current_file,
+        amo.RELEASE_CHANNEL_LISTED)
+
+    assert results['errors']

@@ -16,7 +16,6 @@ import zipfile
 from datetime import datetime, timedelta
 from six.moves import cStringIO as StringIO
 from six import text_type
-from xml.dom import minidom
 
 from django import forms
 from django.conf import settings
@@ -32,6 +31,10 @@ import rdflib
 import six
 
 from signing_clients.apps import get_signer_organizational_unit_name
+from xml.parsers.expat import ExpatError
+
+from defusedxml import minidom
+from defusedxml.common import DefusedXmlException
 
 import olympia.core.logger
 
@@ -580,10 +583,7 @@ class SigningCertificateInformation(object):
 
 
 def extract_search(content):
-    rv = {}
-    dom = minidom.parse(content)
-
-    def text(tag):
+    def _text(tag):
         try:
             return dom.getElementsByTagName(tag)[0].childNodes[0].wholeText
         except (IndexError, AttributeError):
@@ -591,9 +591,20 @@ def extract_search(content):
                 ugettext('Could not parse uploaded file, missing or empty '
                          '<%s> element') % tag)
 
-    rv['name'] = text('ShortName')
-    rv['description'] = text('Description')
-    return rv
+    # Only catch basic errors, most of that validation already happened in
+    # devhub.tasks:annotate_search_plugin_validation
+    try:
+        dom = minidom.parse(content)
+    except DefusedXmlException:
+        raise forms.ValidationError(
+            ugettext('OpenSearch: XML Security error.'))
+    except ExpatError:
+        raise forms.ValidationError(ugettext('OpenSearch: XML Parse Error.'))
+
+    return {
+        'name': _text('ShortName'),
+        'description': _text('Description')
+    }
 
 
 def parse_search(fileorpath, addon=None):
