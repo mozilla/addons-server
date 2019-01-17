@@ -86,7 +86,7 @@
 {% endblock content %}
 
 {% block extrahead %}
-{% for feed in view_all.itervalues() %}
+{% for feed in view_all.values() %}
   <link rel="alternate" type="application/rss+xml" title="{{ feed['text'] }}"
         href="{{ feed['feed'] }}">
 {% endfor %}
