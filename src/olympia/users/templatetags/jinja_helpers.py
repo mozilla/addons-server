@@ -57,7 +57,7 @@ def users_list(users, size=None, max_text_length=None):
     if max_text_length:
         user_list = [_user_link(user, max_text_length) for user in users]
     else:
-        user_list = map(_user_link, users)
+        user_list = list(map(_user_link, users))
 
     return jinja2.Markup(', '.join(user_list + tail))
 

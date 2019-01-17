@@ -93,7 +93,7 @@ def handler404(request):
 
 @non_atomic_requests
 def handler500(request):
-    if request.is_legacy_api:
+    if getattr(request, 'is_legacy_api', False):
         # Pass over to handler500 view in api if api was targeted.
         return legacy_api.views.handler500(request)
     else:

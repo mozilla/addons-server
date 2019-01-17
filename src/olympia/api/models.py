@@ -1,3 +1,4 @@
+import binascii
 import os
 import random
 
@@ -99,4 +100,4 @@ class APIKey(ModelBase):
             raise ValueError(
                 '{} is too short; secrets must be longer than 32 bytes'
                 .format(byte_length))
-        return os.urandom(byte_length).encode('hex')
+        return binascii.b2a_hex(os.urandom(byte_length))

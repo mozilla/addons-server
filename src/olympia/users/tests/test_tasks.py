@@ -21,7 +21,7 @@ def test_delete_photo():
                                dir=settings.TMP_PATH)
     dst = storage.open(dst_path, mode='wb')
     with dst:
-        dst.write('test data\n')
+        dst.write(b'test data\n')
     path = os.path.dirname(dst_path)
     settings.USERPICS_PATH = path
     delete_photo(dst_path)
@@ -32,9 +32,9 @@ def test_delete_photo():
 def test_resize_photo():
     somepic = get_image_path('sunbird-small.png')
 
-    src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+    src = tempfile.NamedTemporaryFile(mode='r+wb', suffix=".png",
                                       delete=False, dir=settings.TMP_PATH)
-    dest = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+    dest = tempfile.NamedTemporaryFile(mode='r+wb', suffix=".png",
                                        dir=settings.TMP_PATH)
 
     shutil.copyfile(somepic, src.name)
@@ -51,7 +51,7 @@ def test_resize_photo():
 def test_resize_photo_poorly():
     """If we attempt to set the src/dst, we do nothing."""
     somepic = get_image_path('mozilla.png')
-    src = tempfile.NamedTemporaryFile(mode='r+w+b', suffix=".png",
+    src = tempfile.NamedTemporaryFile(mode='r+wb', suffix=".png",
                                       delete=False, dir=settings.TMP_PATH)
     shutil.copyfile(somepic, src.name)
     src_image = Image.open(src.name)

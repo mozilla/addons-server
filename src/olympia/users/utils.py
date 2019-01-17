@@ -46,7 +46,7 @@ class UnsubscribeCode(object):
 
     @classmethod
     def make_secret(cls, token):
-        return hmac.new(settings.SECRET_KEY, msg=token,
+        return hmac.new(force_bytes(settings.SECRET_KEY), msg=token,
                         digestmod=hashlib.sha256).hexdigest()
 
 
