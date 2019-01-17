@@ -101,6 +101,9 @@ This endpoint allows you to browse through the contents of an Add-on version.
     Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
 
     :param file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
+    :>json string validation_url_json: The url to the addons-linter validation report, rendered as JSON.
+    :>json string validation_url: The url to the addons-linter validation report, rendered as HTML.
+    :>json boolean has_been_validated: ``True`` if the version has been validated through addons-linter.
     :>json object file: The file attached to this version. See :ref:`version detail -> files[] <version-detail-object>` for more details.
     :>json string file.content: Raw content of the requested file.
     :>json boolean/string file.entries[].binary: ``True`` if the file is a binary file (e.g an .exe, dll, java, swf file), ``'image'`` if the file is an image or ``False`` otherwise. If ``False`` or ``'image'`` the file should be presentable to the user.
