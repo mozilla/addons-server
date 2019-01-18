@@ -43,14 +43,6 @@ LANGUAGE_MAPPING = {
         'english': u'Danish',
         'native': u'Dansk'
     },
-    'dbl': {
-        'english': u'Debug Robot',
-        'native': u'\u1e12\u1e17\u0180\u016d\u0260 \u0158\u01ff\u0180\u01ff\u0167'  # noqa
-    },
-    'dbr': {
-        'english': u'Debug Robot',
-        'native': u'\u1e12\u1e17\u0180\u016d\u0260 \u0158\u01ff\u0180\u01ff\u0167 (RTL)'  # noqa
-    },
     'de': {
         'english': u'German',
         'native': u'Deutsch'
