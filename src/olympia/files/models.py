@@ -637,7 +637,7 @@ class FileUpload(ModelBase):
                     hash.update(chunk)
                     file_destination.write(chunk)
         self.path = loc
-        self.name = filename
+        self.name = force_text(filename)
         self.hash = 'sha256:%s' % hash.hexdigest()
         self.save()
 
