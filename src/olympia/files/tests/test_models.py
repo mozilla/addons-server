@@ -413,20 +413,6 @@ class TestTrackFileStatusChange(TestCase):
             'file_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
         )
 
-    def test_increment_jetpack_sdk_only_status(self):
-        f = self.create_file(
-            status=amo.STATUS_PUBLIC,
-            jetpack_version='1.0',
-            is_restart_required=False,
-            requires_chrome=False,
-        )
-        with patch('olympia.files.models.statsd.incr') as mock_incr:
-            track_file_status_change(f)
-        mock_incr.assert_any_call(
-            'file_status_change.jetpack_sdk_only.status_{}'
-            .format(amo.STATUS_PUBLIC)
-        )
-
 
 class TestParseXpi(TestCase):
 
@@ -1119,20 +1105,6 @@ class TestFileFromUpload(UploadTest):
             'validation': validation_data
         }
         return FileUpload.objects.create(**data)
-
-    def test_jetpack_version(self):
-        upload = self.upload('jetpack')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        file_ = File.objects.get(id=file_.id)
-        assert file_.jetpack_version == '1.0b4'
-
-    def test_jetpack_with_invalid_json(self):
-        upload = self.upload('jetpack_invalid')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        file_ = File.objects.get(id=file_.id)
-        assert file_.jetpack_version is None
 
     def test_filename(self):
         upload = self.upload('jetpack')
