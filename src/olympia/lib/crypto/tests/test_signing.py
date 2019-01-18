@@ -4,6 +4,8 @@ import os
 import shutil
 import tempfile
 import zipfile
+import collections
+import datetime
 
 from django.conf import settings
 from django.core import mail
@@ -13,6 +15,7 @@ from django.test.utils import override_settings
 import mock
 import pytest
 import responses
+import pytz
 
 from signing_clients.apps import SignatureInfo
 
@@ -618,3 +621,113 @@ class TestTasks(TestCase):
 ])
 def test_get_new_version_number(old, new):
     assert tasks.get_new_version_number(old) == new
+
+
+class TestSignatureInfo(object):
+
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        fixture_path = (
+            'src/olympia/lib/crypto/tests/'
+            'mozilla-generated-by-openssl.pkcs7.der')
+
+        with open(fixture_path, 'rb') as fobj:
+            self.pkcs7 = fobj.read()
+
+        self.info = SignatureInfo(self.pkcs7)
+
+    def test_loading_reading_string(self):
+        info = SignatureInfo(self.pkcs7)
+        assert isinstance(info.content, collections.OrderedDict)
+
+    def test_loading_pass_signature_info_instance(self):
+        info = SignatureInfo(self.pkcs7)
+        assert isinstance(info.content, collections.OrderedDict)
+
+        info2 = SignatureInfo(info)
+
+        assert isinstance(info2.content, collections.OrderedDict)
+        assert info2.content == info.content
+
+    def test_signer_serial_number(self):
+        assert self.info.signer_serial_number == 1498181554500
+
+    def test_issuer(self):
+        assert self.info.issuer == collections.OrderedDict([
+            ('country_name', 'US'),
+            ('state_or_province_name', 'CA'),
+            ('locality_name', 'Mountain View'),
+            ('organization_name', 'Addons Test Signing'),
+            ('common_name', 'test.addons.signing.root.ca'),
+            ('email_address', 'opsec+stagerootaddons@mozilla.com')
+        ])
+
+    def test_signer_certificate(self):
+        assert (
+            self.info.signer_certificate['serial_number'] ==
+            self.info.signer_serial_number)
+        assert (
+            self.info.signer_certificate['issuer'] ==
+            self.info.issuer)
+
+        expected = collections.OrderedDict([
+            ('version', 'v3'),
+            ('serial_number', 1498181554500),
+            ('signature', collections.OrderedDict([
+                ('algorithm', 'sha256_rsa'), ('parameters', None)])),
+            ('issuer', collections.OrderedDict([
+                ('country_name', 'US'),
+                ('state_or_province_name', 'CA'),
+                ('locality_name', 'Mountain View'),
+                ('organization_name', 'Addons Test Signing'),
+                ('common_name', 'test.addons.signing.root.ca'),
+                ('email_address', 'opsec+stagerootaddons@mozilla.com')])),
+            ('validity', collections.OrderedDict([
+                ('not_before', datetime.datetime(
+                    2017, 6, 23, 1, 32, 34, tzinfo=pytz.utc)),
+                ('not_after', datetime.datetime(
+                    2027, 6, 21, 1, 32, 34, tzinfo=pytz.utc))])),
+            ('subject', collections.OrderedDict([
+                ('organizational_unit_name', 'Testing'),
+                ('country_name', 'US'),
+                ('locality_name', 'Mountain View'),
+                ('organization_name', 'Addons Testing'),
+                ('state_or_province_name', 'CA'),
+                ('common_name', '{02b860db-e71f-48d2-a5a0-82072a93d33c}')])),
+            ('subject_public_key_info', collections.OrderedDict([
+                ('algorithm', collections.OrderedDict([
+                    ('algorithm', 'rsa'),
+                    ('parameters', None)])),
+                ('public_key', collections.OrderedDict([
+                    ('modulus', int(
+                        '85289209018591781267198931558814435907521407777661'
+                        '50749316736213617395458578680335589192171418852036'
+                        '79278813048882998104120530700223207250951695884439'
+                        '20772452388935409377024686932620042402964287828106'
+                        '51257320080972660594945900464995547687116064792520'
+                        '10385231846333656801523388692257373069803424678966'
+                        '83558316878945090150671487395382420988138292553386'
+                        '65273893489909596214808207811839117255018821125538'
+                        '88010045768747055709235990054867405484806043609964'
+                        '46844151945633093802308152276459710592644539761011'
+                        '95743982561110649516741370965629194907895538590306'
+                        '29899529219665410153860752870947521013079820756069'
+                        '47104737107240593827799410733495909560358275915879'
+                        '55064950558358425436354620230911526069861662920050'
+                        '43124539276872288437450042840027281372269967539939'
+                        '24111213120065958637042429018593980801963496240784'
+                        '12170983502746046961830237201163411151902047596357'
+                        '52875610569157058411595354595985036610666909234931'
+                        '24897289875099542550941258245633054592232417696315'
+                        '40182071794766323211615139265042704991415186206585'
+                        '75885408887756385761663648099801365729955339334103'
+                        '60468108188015261735738849468668895508239573547213'
+                        '28312488126574859733988724870493942605656816541143'
+                        '61628373225003401044258905283594542783785817504173'
+                        '841847040037917474056678747905247')),
+                    ('public_exponent', 65537)]))])),
+            ('issuer_unique_id', None),
+            ('subject_unique_id', None),
+            ('extensions', None)])
+
+        assert self.info.signer_certificate == expected
