@@ -103,7 +103,7 @@ def setup_es_test_data(es):
         raise
 
     aliases_and_indexes = set(list(settings.ES_INDEXES.values()) +
-                              es.indices.get_alias().keys())
+                              list(es.indices.get_alias().keys()))
 
     for key in aliases_and_indexes:
         if key.startswith('test_'):

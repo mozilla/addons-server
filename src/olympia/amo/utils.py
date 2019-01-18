@@ -860,8 +860,10 @@ def attach_trans_dict(model, objs):
     # Get translations in a dict, ids will be the keys. It's important to
     # consume the result of sorted_groupby, which is an iterator.
     qs = Translation.objects.filter(id__in=ids, localized_string__isnull=False)
-    all_translations = dict((k, list(v)) for k, v in
-                            sorted_groupby(qs, lambda trans: trans.id))
+    all_translations = {
+        field_id: sorted(list(translations), key=lambda t: t.locale)
+        for field_id, translations in sorted_groupby(qs, lambda t: t.id)
+    }
 
     def get_locale_and_string(translation, new_class):
         """Convert the translation to new_class (making PurifiedTranslations
