@@ -78,6 +78,10 @@ def call_signing(file_obj):
                 # This means, the pkcs7 sha1 signature is used for backwards
                 # compatibility and cose sha256 will be used for newer
                 # Firefox versions.
+                # The relevant pref in Firefox is
+                # "security.signed_app_signatures.policy"
+                # where it's set to COSEAndPKCS7WithSHA1OrSHA256 to match
+                # these settings.
                 'pkcs7_digest': 'SHA1',
                 'cose_algorithms': ['ES256']
             },
