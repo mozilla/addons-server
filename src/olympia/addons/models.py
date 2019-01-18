@@ -9,7 +9,6 @@ import time
 import uuid
 
 from datetime import datetime
-from operator import attrgetter
 
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist

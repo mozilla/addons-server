@@ -240,7 +240,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
             application = value[0]
             appversions = dict(zip(('min', 'max'), value[1:]))
         except ValueError as exc:
-            raise exceptions.ParseError(exc.message)
+            raise exceptions.ParseError(six.text_type(exc))
 
         version_qs = Version.objects.latest_public_compatible_with(
             application, appversions).filter(addon=addon)
