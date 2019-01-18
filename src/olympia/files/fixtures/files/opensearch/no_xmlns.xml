@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<OpenSearchDescription>
+    <ShortName>shortname</ShortName>
+    <Description>description</Description>
+    <Url type="text/html" method="GET" template="template">
+      <Param name="param" value="{searchTerms}"/>
+    </Url>
+</OpenSearchDescription>

@@ -963,8 +963,10 @@ class TestXMLVulnerabilities(TestCase):
             os.path.dirname(__file__), '..', 'fixtures', 'files',
             'quadratic.xml')
 
-        with pytest.raises(EntitiesForbidden):
+        with pytest.raises(forms.ValidationError) as exc:
             utils.extract_search(quadratic_xml)
+
+        assert exc.value.message == u'OpenSearch: XML Security error.'
 
     def test_general_entity_expansion_is_disabled(self):
         zip_file = utils.SafeZip(os.path.join(

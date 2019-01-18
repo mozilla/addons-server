@@ -318,7 +318,6 @@ COLLECTION_SEARCH_CHOICES = [
 # Validation.
 
 # A skeleton set of passing validation results.
-# TODO: Move to validator, generate dynamically via ErrorBundle instance.
 VALIDATOR_SKELETON_RESULTS = {
     "errors": 0,
     "warnings": 0,

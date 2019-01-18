@@ -23,7 +23,6 @@ from django.template import loader
 from django.utils.translation import ugettext
 
 import celery
-import waffle
 
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
@@ -42,9 +41,8 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.management.commands import dump_apps
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon, SafeZip
-from olympia.lib.akismet.models import AkismetReport
-from olympia.versions.compare import version_int
 from olympia.versions.models import Version
+from olympia.devhub import file_validation_annotations as annotations
 
 
 log = olympia.core.logger.getLogger('z.devhub.task')
@@ -166,7 +164,8 @@ def validation_task(fn):
             data = fn(id_, hash_, *args, **kw)
             result = json.loads(data)
             if akismet_results:
-                annotate_akismet_spam_check(result, akismet_results)
+                annotations.annotate_akismet_spam_check(
+                    result, akismet_results)
             return result
         except Exception as e:
             log.exception('Unhandled error during validation: %r' % e)
@@ -188,6 +187,13 @@ def validate_file_path(path, hash_, listed=True, is_webextension=False, **kw):
     results.
 
     Should only be called directly by Validator."""
+    if path.endswith('.xml'):
+        # search plugins are validated directly by addons-server
+        # so that we don't have to call the linter or validator
+        results = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        results['detected_type'] = 'search'
+        return json.dumps(results)
+
     if is_webextension:
         return run_addons_linter(path, listed=listed)
     return run_validator(path, listed=listed)
@@ -204,6 +210,13 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
     try:
         return file_.validation.validation
     except FileValidation.DoesNotExist:
+        if file_.current_file_path.endswith('.xml'):
+            # search plugins are validated directly by addons-server
+            # so that we don't have to call the linter or validator
+            results = amo.VALIDATOR_SKELETON_RESULTS.copy()
+            results['detected_type'] = 'search'
+            return json.dumps(results)
+
         listed = file_.version.channel == amo.RELEASE_CHANNEL_LISTED
         if is_webextension:
             return run_addons_linter(
@@ -229,10 +242,10 @@ def handle_upload_validation_result(
 
     # Annotate results with potential legacy add-ons restrictions.
     if not is_mozilla_signed:
-        results = annotate_legacy_addon_restrictions(
+        results = annotations.annotate_legacy_addon_restrictions(
             results=results, is_new_upload=is_new_upload)
 
-    annotate_legacy_langpack_restriction(results=results)
+    annotations.annotate_legacy_langpack_restriction(results=results)
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no LWT or search plugin
@@ -243,7 +256,7 @@ def handle_upload_validation_result(
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
-        results = annotate_webext_incompatibilities(
+        results = annotations.annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version, channel=channel)
 
@@ -305,233 +318,14 @@ def handle_file_validation_result(results, file_id, *args):
 
     file_ = File.objects.get(pk=file_id)
 
-    annotate_webext_incompatibilities(
+    annotations.annotate_webext_incompatibilities(
         results=results, file_=file_, addon=file_.version.addon,
         version_string=file_.version.version, channel=file_.version.channel)
 
+    annotations.annotate_search_plugin_validation(
+        results=results, file_=file_, channel=file_.version.channel)
+
     return FileValidation.from_json(file_, results).pk
-
-
-def insert_validation_message(results, type_='error', message='', msg_id='',
-                              compatibility_type=None):
-    messages = results['messages']
-    messages.insert(0, {
-        'tier': 1,
-        'type': type_,
-        'id': ['validation', 'messages', msg_id],
-        'message': message,
-        'description': [],
-        'compatibility_type': compatibility_type,
-    })
-    # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
-    # the type_ to increment the right entry.
-    results['{}s'.format(type_)] += 1
-
-
-def annotate_legacy_addon_restrictions(results, is_new_upload):
-    """
-    Annotate validation results to restrict uploads of legacy
-    (non-webextension) add-ons if specific conditions are met.
-    """
-    metadata = results.get('metadata', {})
-    is_webextension = metadata.get('is_webextension') is True
-
-    if is_webextension:
-        # If we're dealing with a webextension, return early as the whole
-        # function is supposed to only care about legacy extensions.
-        return results
-
-    target_apps = metadata.get('applications', {})
-    max_target_firefox_version = max(
-        version_int(target_apps.get('firefox', {}).get('max', '')),
-        version_int(target_apps.get('android', {}).get('max', ''))
-    )
-
-    is_extension_or_complete_theme = (
-        # Note: annoyingly, `detected_type` is at the root level, not under
-        # `metadata`.
-        results.get('detected_type') in ('theme', 'extension'))
-    is_targeting_firefoxes_only = target_apps and (
-        set(target_apps.keys()).intersection(('firefox', 'android')) ==
-        set(target_apps.keys())
-    )
-    is_targeting_thunderbird_or_seamonkey_only = target_apps and (
-        set(target_apps.keys()).intersection(('thunderbird', 'seamonkey')) ==
-        set(target_apps.keys())
-    )
-    is_targeting_firefox_lower_than_53_only = (
-        metadata.get('strict_compatibility') is True and
-        # version_int('') is actually 200100. If strict compatibility is true,
-        # the validator should have complained about the non-existant max
-        # version, but it doesn't hurt to check that the value is sane anyway.
-        max_target_firefox_version > 200100 and
-        max_target_firefox_version < 53000000000000
-    )
-    is_targeting_firefox_higher_or_equal_than_57 = (
-        max_target_firefox_version >= 57000000000000 and
-        max_target_firefox_version < 99000000000000)
-
-    # Thunderbird/Seamonkey only add-ons are moving to addons.thunderbird.net.
-    if (is_targeting_thunderbird_or_seamonkey_only):
-        msg = ugettext(
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-            u'maintained on addons.thunderbird.net. You can use the same '
-            u'account to update your add-ons on the new site.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='thunderbird_and_seamonkey_migration')
-
-    # Legacy add-ons are no longer supported on AMO (if waffle is enabled).
-    elif (is_extension_or_complete_theme and
-            waffle.switch_is_active('disallow-legacy-submissions')):
-        msg = ugettext(
-            u'Legacy extensions are no longer supported in Firefox.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='legacy_addons_unsupported')
-
-    # New legacy add-ons targeting Firefox only must target Firefox 53 or
-    # lower, strictly. Extensions targeting multiple other apps are exempt from
-    # this.
-    elif (is_new_upload and
-            is_extension_or_complete_theme and
-            is_targeting_firefoxes_only and
-            not is_targeting_firefox_lower_than_53_only):
-
-        msg = ugettext(
-            u'Starting with Firefox 53, new add-ons on this site can '
-            u'only be WebExtensions.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='legacy_addons_restricted')
-
-    # All legacy add-ons (new or upgrades) targeting Firefox must target
-    # Firefox 56.* or lower, even if they target multiple apps.
-    elif (is_extension_or_complete_theme and
-            is_targeting_firefox_higher_or_equal_than_57):
-        # Note: legacy add-ons targeting '*' (which is the default for sdk
-        # add-ons) are excluded from this error, and instead are silently
-        # rewritten as supporting '56.*' in the manifest parsing code.
-        msg = ugettext(
-            u'Legacy add-ons are not compatible with Firefox 57 or higher. '
-            u'Use a maxVersion of 56.* or lower.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='legacy_addons_max_version')
-
-    return results
-
-
-def annotate_legacy_langpack_restriction(results):
-    """
-    Annotate validation results to restrict uploads of legacy langpacks.
-    See https://github.com/mozilla/addons-linter/issues/1985 for more details.
-    """
-    if not waffle.switch_is_active('disallow-legacy-langpacks'):
-        return
-
-    metadata = results.get('metadata', {})
-
-    is_webextension = metadata.get('is_webextension') is True
-    target_apps = metadata.get('applications', {})
-
-    is_langpack = results.get('detected_type') == 'langpack'
-    is_targeting_firefoxes_only = (
-        set(target_apps.keys()).intersection(('firefox', 'android')) ==
-        set(target_apps.keys())
-    )
-
-    if not is_webextension and is_langpack and is_targeting_firefoxes_only:
-        link = (
-            'https://developer.mozilla.org/Add-ons/WebExtensions/'
-            'manifest.json')
-        msg = ugettext(
-            u'Legacy language packs for Firefox are no longer supported. '
-            u'A WebExtensions install manifest is required. See {mdn_link} '
-            u'for more details.')
-
-        insert_validation_message(
-            results, message=msg.format(mdn_link=link),
-            msg_id='legacy_langpacks_disallowed')
-
-    return results
-
-
-def annotate_webext_incompatibilities(results, file_, addon, version_string,
-                                      channel):
-    """Check for WebExtension upgrades or downgrades.
-
-    We avoid developers to downgrade their webextension to a XUL add-on
-    at any cost and warn in case of an upgrade from XUL add-on to a
-    WebExtension.
-
-    Firefox doesn't support a downgrade.
-
-    See https://github.com/mozilla/addons-server/issues/3061 and
-    https://github.com/mozilla/addons-server/issues/3082 for more details.
-    """
-    from .utils import find_previous_version
-
-    previous_version = find_previous_version(
-        addon, file_, version_string, channel)
-
-    if not previous_version:
-        return results
-
-    is_webextension = results['metadata'].get('is_webextension', False)
-    was_webextension = previous_version and previous_version.is_webextension
-
-    if is_webextension and not was_webextension:
-        results['is_upgrade_to_webextension'] = True
-
-        msg = ugettext(
-            'We allow and encourage an upgrade but you cannot reverse '
-            'this process. Once your users have the WebExtension '
-            'installed, they will not be able to install a legacy add-on.')
-
-        messages = results['messages']
-        messages.insert(0, {
-            'tier': 1,
-            'type': 'warning',
-            'id': ['validation', 'messages', 'webext_upgrade'],
-            'message': msg,
-            'description': [],
-            'compatibility_type': None})
-        results['warnings'] += 1
-    elif was_webextension and not is_webextension:
-        msg = ugettext(
-            'You cannot update a WebExtensions add-on with a legacy '
-            'add-on. Your users would not be able to use your new version '
-            'because Firefox does not support this type of update.')
-
-        messages = results['messages']
-        messages.insert(0, {
-            'tier': 1,
-            'type': ('error' if channel == amo.RELEASE_CHANNEL_LISTED
-                     else 'warning'),
-            'id': ['validation', 'messages', 'webext_downgrade'],
-            'message': msg,
-            'description': [],
-            'compatibility_type': None})
-        if channel == amo.RELEASE_CHANNEL_LISTED:
-            results['errors'] += 1
-        else:
-            results['warnings'] += 1
-
-    return results
-
-
-def annotate_akismet_spam_check(results, akismet_results):
-    msg = ugettext(u'[{field}] The text in the "{field}" field has been '
-                   u'flagged as spam.')
-    error_if_spam = waffle.switch_is_active('akismet-addon-action')
-    for (comment_type, report_result) in akismet_results:
-        if error_if_spam and report_result in (
-                AkismetReport.MAYBE_SPAM, AkismetReport.DEFINITE_SPAM):
-            field = comment_type.split('-')[1]  # drop the "product-"
-            insert_validation_message(
-                results, message=msg.format(field=field),
-                msg_id='akismet_is_spam_%s' % field)
 
 
 def check_for_api_keys_in_file(results, upload):
@@ -568,7 +362,7 @@ def check_for_api_keys_in_file(results, upload):
                                            'coauthor was found in the '
                                            'submitted file. To protect your '
                                            'add-on, the key will be revoked.')
-                        insert_validation_message(
+                        annotations.insert_validation_message(
                             results, type_='error',
                             message=msg, msg_id='api_key_detected',
                             compatibility_type=None)
