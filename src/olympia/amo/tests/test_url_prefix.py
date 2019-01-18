@@ -52,7 +52,7 @@ class MiddlewareTest(BaseTestCase):
 
         for path, location in redirections.items():
             response = self.middleware.process_request(self.rf.get(path))
-            assert response.status_code == 301
+            assert response.status_code == 302
             assert response['Location'] == location
 
     def process(self, *args, **kwargs):
