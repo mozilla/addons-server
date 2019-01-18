@@ -1,7 +1,6 @@
-import urllib
-
 from django.shortcuts import get_object_or_404
 from django.utils.translation import ugettext
+from six.moves.urllib.parse import quote
 
 from olympia.addons.models import Addon
 from olympia.amo.feeds import BaseFeed
@@ -58,7 +57,7 @@ class RatingsRss(BaseFeed):
         """Guid for a particuar rating  (<item><guid>)"""
         guid_url = jinja_helpers.absolutify(
             jinja_helpers.url('addons.ratings.list', self.addon.slug))
-        return guid_url + urllib.quote(str(rating.id))
+        return guid_url + quote(str(rating.id))
 
     def item_author_name(self, rating):
         """Author for a particular rating  (<item><dc:creator>)"""
