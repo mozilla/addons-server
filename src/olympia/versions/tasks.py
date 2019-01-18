@@ -1,4 +1,5 @@
 from __future__ import division
+import operator
 import os
 
 from django.template import loader
@@ -70,8 +71,7 @@ def generate_static_theme_preview(theme_manifest, version_pk):
         return
     context = _build_static_theme_preview_context(theme_manifest, file_)
     sizes = sorted(
-        amo.THEME_PREVIEW_SIZES.values(),
-        lambda x, y: x['position'] - y['position'])
+        amo.THEME_PREVIEW_SIZES.values(), key=operator.itemgetter('position'))
     colors = None
     for size in sizes:
         # Create a Preview for this size.

@@ -212,7 +212,8 @@ class RDFExtractor(object):
     def __init__(self, zip_file, certinfo=None):
         self.zip_file = zip_file
         self.certinfo = certinfo
-        self.rdf = rdflib.Graph().parse(data=zip_file.read('install.rdf'))
+        self.rdf = rdflib.Graph().parse(
+            data=force_text(zip_file.read('install.rdf')))
         self.package_type = None
         self.find_root()  # Will set self.package_type
 
@@ -363,7 +364,7 @@ class ManifestJSONExtractor(object):
         self.certinfo = certinfo
 
         if not data:
-            data = zip_file.read('manifest.json')
+            data = force_text(zip_file.read('manifest.json'))
 
         lexer = JsLexer()
 
