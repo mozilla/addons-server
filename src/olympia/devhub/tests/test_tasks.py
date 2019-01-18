@@ -570,7 +570,9 @@ class TestValidateFilePath(ValidatorTestCase):
             None, get_addon_file('searchgeek-20090701.xml'),
             hash_=None, listed=True)
 
-        assert result == amo.VALIDATOR_SKELETON_RESULTS
+        expected = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        expected['detected_type'] = 'search'
+        assert result == expected
 
 
 class TestWebextensionIncompatibilities(ValidatorTestCase):
