@@ -335,8 +335,7 @@ class ReviewHelper(object):
                 )
             ))
         reviewable_because_pending = (
-            self.version and
-            len(self.version.is_unreviewed) > 0)
+            self.version and self.version.is_unreviewed)
         # Note: approval/content confirmation do not care about self.version,
         # only self.addon.current_version. This allows reviewers to approve
         # add-ons even when their latest submitted version is disabled for some
