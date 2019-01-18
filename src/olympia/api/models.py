@@ -3,7 +3,7 @@ import os
 import random
 
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.encoding import force_text, python_2_unicode_compatible
 
 from aesfield.field import AESField
 
@@ -39,7 +39,7 @@ class APIKey(ModelBase):
     key = models.CharField(max_length=255, db_index=True, unique=True)
     # TODO: use RSA public keys instead? If we were to use JWT RSA keys
     # then we'd only need to store the public key.
-    secret = AESField(aes_key='api_key:secret')
+    secret = AESField(aes_key='api_key:secret', aes_prefix=b'aes:')
 
     class Meta:
         db_table = 'api_key'
@@ -68,9 +68,9 @@ class APIKey(ModelBase):
         Returns an instance of APIKey.
         """
         key = cls.get_unique_key('user:{}:'.format(user.pk))
-        return cls.objects.create(key=key, secret=cls.generate_secret(32),
-                                  type=SYMMETRIC_JWT_TYPE, user=user,
-                                  is_active=True)
+        return cls.objects.create(
+            key=key, secret=cls.generate_secret(32),
+            type=SYMMETRIC_JWT_TYPE, user=user, is_active=True)
 
     @classmethod
     def get_unique_key(cls, prefix, try_count=1, max_tries=1000):
@@ -100,4 +100,4 @@ class APIKey(ModelBase):
             raise ValueError(
                 '{} is too short; secrets must be longer than 32 bytes'
                 .format(byte_length))
-        return binascii.b2a_hex(os.urandom(byte_length))
+        return force_text(binascii.b2a_hex(os.urandom(byte_length)))

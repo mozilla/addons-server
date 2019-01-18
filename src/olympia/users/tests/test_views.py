@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 from django.forms.models import model_to_dict
-from django.utils.encoding import force_text
+from django.utils.encoding import force_bytes, force_text
 
 import six
 
@@ -80,7 +80,7 @@ class TestAjax(UserViewBase):
     def test_ajax_success(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'fligtar@gmail.com'},
                             follow=True)
-        data = json.loads(r.content)
+        data = json.loads(force_text(r.content))
         assert data == {
             'status': 1, 'message': '', 'id': 9945,
             'name': u'Justin Scott \u0627\u0644\u062a\u0637\u0628'}
@@ -92,20 +92,20 @@ class TestAjax(UserViewBase):
             'Expected <script> to be in display name')
         r = self.client.get(reverse('users.ajax'),
                             {'q': self.user.email, 'dev': 0})
-        assert '<script>' not in r.content
-        assert '&lt;script&gt;' in r.content
+        assert b'<script>' not in r.content
+        assert b'&lt;script&gt;' in r.content
 
     def test_ajax_failure_incorrect_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': 'incorrect'},
                             follow=True)
-        data = json.loads(r.content)
+        data = json.loads(force_text(r.content))
         assert data == (
             {'status': 0,
              'message': 'A user with that email address does not exist.'})
 
     def test_ajax_failure_no_email(self):
         r = self.client.get(reverse('users.ajax'), {'q': ''}, follow=True)
-        data = json.loads(r.content)
+        data = json.loads(force_text(r.content))
         assert data == (
             {'status': 0,
              'message': 'An email address is required.'})
@@ -193,8 +193,8 @@ class TestEdit(UserViewBase):
         assert doc('.more-all').length == len(email.NOTIFICATION_GROUPS)
 
     def test_edit_notifications_non_dev(self):
-        notifications_not_dev = [
-            l for l in email.NOTIFICATIONS_COMBINED if l.group != 'dev']
+        notifications_not_dev = list(
+            [l for l in email.NOTIFICATIONS_COMBINED if l.group != 'dev'])
         choices_not_dev = [
             (l.id, l.label) for l in notifications_not_dev]
         self.check_default_choices(choices_not_dev)
@@ -205,7 +205,7 @@ class TestEdit(UserViewBase):
 
         assert UserNotification.objects.count() == len(notifications_not_dev)
         assert UserNotification.objects.filter(enabled=True).count() == (
-            len(filter(lambda x: x.mandatory, notifications_not_dev)))
+            len(list(filter(lambda x: x.mandatory, notifications_not_dev))))
         self.check_default_choices(choices_not_dev, checked=False)
 
     def test_edit_notifications_non_dev_error(self):
@@ -291,7 +291,7 @@ class TestEditAdmin(UserViewBase):
         delete_url = reverse('admin:users_userprofile_delete',
                              args=(self.regular.pk,))
         res = self.client.post(delete_url, {'post': 'yes'}, follow=True)
-        assert self.regular.display_name not in res.content
+        assert force_bytes(self.regular.display_name) not in res.content
 
 
 class TestLogin(UserViewBase):
@@ -808,13 +808,13 @@ class TestProfileSections(TestCase):
                       u'<b>acceptably bold</b>')
         assert '<script>' in self.user.biography
         response = self.client.get(self.url)
-        assert '<script>' not in response.content
-        assert 'http://spam.com/' not in response.content
+        assert b'<script>' not in response.content
+        assert b'http://spam.com/' not in response.content
 
-        assert 'alert("xss")' in response.content
-        assert 'line<br/>break' in response.content
-        assert 'linkylink' in response.content
-        assert '<b>acceptably bold</b>' in response.content
+        assert b'alert("xss")' in response.content
+        assert b'line<br/>break' in response.content
+        assert b'linkylink' in response.content
+        assert b'<b>acceptably bold</b>' in response.content
 
 
 class TestThemesProfile(TestCase):

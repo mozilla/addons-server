@@ -431,20 +431,20 @@ def get_addon_file(name):
 class TestAnimatedImages(TestCase):
 
     def test_animated_images(self):
-        img = ImageCheck(open(get_image_path('animated.png')))
+        img = ImageCheck(open(get_image_path('animated.png'), mode='rb'))
         assert img.is_animated()
-        img = ImageCheck(open(get_image_path('non-animated.png')))
+        img = ImageCheck(open(get_image_path('non-animated.png'), mode='rb'))
         assert not img.is_animated()
 
-        img = ImageCheck(open(get_image_path('animated.gif')))
+        img = ImageCheck(open(get_image_path('animated.gif'), mode='rb'))
         assert img.is_animated()
-        img = ImageCheck(open(get_image_path('non-animated.gif')))
+        img = ImageCheck(open(get_image_path('non-animated.gif'), mode='rb'))
         assert not img.is_animated()
 
     def test_junk(self):
         img = ImageCheck(open(__file__, 'rb'))
         assert not img.is_image()
-        img = ImageCheck(open(get_image_path('non-animated.gif')))
+        img = ImageCheck(open(get_image_path('non-animated.gif'), mode='rb'))
         assert img.is_image()
 
 

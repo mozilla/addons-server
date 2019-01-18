@@ -653,13 +653,13 @@ class ImageCheck(object):
 
         if self.img.format == 'PNG':
             self._img.seek(0)
-            data = ''
+            data = b''
             while True:
                 chunk = self._img.read(size)
                 if not chunk:
                     break
                 data += chunk
-                acTL, IDAT = data.find('acTL'), data.find('IDAT')
+                acTL, IDAT = data.find(b'acTL'), data.find(b'IDAT')
                 if acTL > -1 and acTL < IDAT:
                     return True
             return False

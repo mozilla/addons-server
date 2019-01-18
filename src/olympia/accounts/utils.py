@@ -6,6 +6,7 @@ from base64 import urlsafe_b64encode
 
 from django.conf import settings
 from django.http import HttpResponseRedirect
+from django.utils.encoding import force_text
 from django.utils.http import is_safe_url
 
 import boto3
@@ -30,8 +31,8 @@ def fxa_config(request):
 def fxa_login_url(
         config, state, next_path=None, action=None, force_two_factor=False):
     if next_path and is_safe_url(next_path):
-        state += b':' + urlsafe_b64encode(
-            next_path.encode('utf-8')).rstrip(b'=')
+        state += u':' + force_text(
+            urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(u'=')
     query = {
         'client_id': config['client_id'],
         'redirect_url': config['redirect_url'],
@@ -67,7 +68,7 @@ def default_fxa_login_url(request):
 
 
 def generate_fxa_state():
-    return binascii.hexlify(os.urandom(32))
+    return force_text(binascii.hexlify(os.urandom(32)))
 
 
 def redirect_for_login(request):
