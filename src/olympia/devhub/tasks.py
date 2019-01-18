@@ -190,7 +190,9 @@ def validate_file_path(path, hash_, listed=True, is_webextension=False, **kw):
     if path.endswith('.xml'):
         # search plugins are validated directly by addons-server
         # so that we don't have to call the linter or validator
-        return json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
+        results = amo.VALIDATOR_SKELETON_RESULTS.copy()
+        results['detected_type'] = 'search'
+        return json.dumps(results)
 
     if is_webextension:
         return run_addons_linter(path, listed=listed)
@@ -211,7 +213,9 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
         if file_.current_file_path.endswith('.xml'):
             # search plugins are validated directly by addons-server
             # so that we don't have to call the linter or validator
-            return json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
+            results = amo.VALIDATOR_SKELETON_RESULTS.copy()
+            results['detected_type'] = 'search'
+            return json.dumps(results)
 
         listed = file_.version.channel == amo.RELEASE_CHANNEL_LISTED
         if is_webextension:
