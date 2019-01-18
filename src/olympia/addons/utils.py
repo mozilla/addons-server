@@ -16,7 +16,6 @@ import six
 import waffle
 
 from django_statsd.clients import statsd
-from six import text_type
 
 from olympia import amo
 from olympia.amo.utils import normalize_string, to_language
@@ -106,7 +105,7 @@ def get_creatured_ids(category, lang=None):
     per_locale = list(per_locale)
     random.shuffle(others)
     random.shuffle(per_locale)
-    return map(int, filter(None, per_locale + others))
+    return list(map(int, filter(None, per_locale + others)))
 
 
 def verify_mozilla_trademark(name, user, form=None):
@@ -202,10 +201,11 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
                    else amo.THEME_ACCENTCOLOR_DEFAULT)
     textcolor = '#%s' % (lwt.persona.textcolor or '000')
 
-    lwt_header = MULTIPLE_STOPS_REGEX.sub(u'.', text_type(lwt.persona.header))
+    lwt_header = MULTIPLE_STOPS_REGEX.sub(
+        u'.', six.text_type(lwt.persona.header))
     manifest = {
         "manifest_version": 2,
-        "name": six.text_type(lwt.name or lwt.slug),
+        "name": six.text_type(lwt.name) or six.text_type(lwt.slug),
         "version": '1.0',
         "theme": {
             "images": {
