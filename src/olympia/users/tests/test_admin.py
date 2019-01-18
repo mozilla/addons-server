@@ -262,7 +262,7 @@ class TestUserAdmin(TestCase):
         response = self.client.post(ban_url, follow=True)
         assert response.status_code == 200
         assert response.redirect_chain[-1][0].endswith(self.detail_url)
-        assert response.redirect_chain[-1][1] == 301
+        assert response.redirect_chain[-1][1] == 302
         self.user.reload()
         assert self.user.deleted
         assert self.user.email
@@ -294,7 +294,7 @@ class TestUserAdmin(TestCase):
         response = self.client.post(delete_picture_url, follow=True)
         assert response.status_code == 200
         assert response.redirect_chain[-1][0].endswith(self.detail_url)
-        assert response.redirect_chain[-1][1] == 301
+        assert response.redirect_chain[-1][1] == 302
 
         assert delete_picture_mock.call_count == 1
 
