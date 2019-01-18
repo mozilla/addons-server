@@ -27,7 +27,6 @@ ROBOT_NAME="Mozilla Add-ons Robot"
 CLEAN_FLAGS="--no-obsolete --width=200 --no-location"
 MERGE_FLAGS="--update --width=200 --backup=none"
 UNIQ_FLAGS="--width=200"
-DEBUG_LOCALES="dbl dbr"
 
 function init_environment {
     git checkout master
@@ -43,20 +42,6 @@ function extract_locales {
     python manage.py extract
 
     pushd locale > /dev/null
-
-    for debugLocale in $DEBUG_LOCALES; do
-        for domain in django djangojs; do
-            if [ "$debugLocale" == "dbr" ]; then
-                rewrite="mirror"
-            else
-                rewrite="unicode"
-            fi
-
-            echo "generating debug locale '$debugLocale' for '$domain' using '$rewrite'"
-
-            npm run potools debug -- --format "$rewrite" "locale/templates/LC_MESSAGES/$domain.pot" --output "locale/$debugLocale/LC_MESSAGES/$domain.po"
-        done
-    done
 
     echo "Merging any new keys..."
     for i in `find . -name "django.po" | grep -v "en_US"`; do
