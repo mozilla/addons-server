@@ -15,7 +15,8 @@ import six
 
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
-from signing_clients.apps import JarExtractor, get_signer_serial_number
+from signing_clients.apps import JarExtractor
+from asn1crypto import cms
 
 import olympia.core.logger
 
@@ -63,32 +64,34 @@ def call_signing(file_obj):
     signed_manifest = six.text_type(jar.signatures)
 
     conf = settings.AUTOGRAPH_CONFIG
-    log.debug('Calling autograph service: {0}'.format(conf['server_url']))
 
-    # create the signing request
-    signing_request = [{
-        'input': b64encode(signed_manifest),
-        'keyid': conf['signer'],
-        'options': {
-            'id': get_id(file_obj.version.addon),
-        },
-    }]
+    if waffle.sample_is_active('activate-autograph-file-signing'):
+        log.debug('Calling autograph service: {0}'.format(conf['server_url']))
 
-    # post the request
-    with statsd.timer('services.sign.addon.autograph'):
-        response = requests.post(
-            '{server}/sign/data'.format(server=conf['server_url']),
-            json=signing_request,
-            auth=HawkAuth(id=conf['user_id'], key=conf['key']))
+        # create the signing request
+        signing_request = [{
+            'input': b64encode(signed_manifest),
+            'keyid': conf['signer'],
+            'options': {
+                'id': get_id(file_obj.version.addon),
+            },
+        }]
 
-    if response.status_code != requests.codes.CREATED:
-        msg = u'Posting to add-on signing failed: {0} {1}'.format(
-            response.reason, response.text)
-        log.error(msg)
-        raise SigningError(msg)
+        # post the request
+        with statsd.timer('services.sign.addon.autograph'):
+            response = requests.post(
+                '{server}/sign/data'.format(server=conf['server_url']),
+                json=signing_request,
+                auth=HawkAuth(id=conf['user_id'], key=conf['key']))
 
-    # convert the base64 encoded pkcs7 signature back to binary
-    pkcs7 = b64decode(force_bytes(response.json()[0]['signature']))
+        if response.status_code != requests.codes.CREATED:
+            msg = u'Posting to add-on signing failed: {0} {1}'.format(
+                response.reason, response.text)
+            log.error(msg)
+            raise SigningError(msg)
+
+        # convert the base64 encoded pkcs7 signature back to binary
+        pkcs7 = b64decode(force_bytes(response.json()[0]['signature']))
 
     cert_serial_num = get_signer_serial_number(pkcs7)
 
@@ -178,3 +181,54 @@ def is_signed(file_path):
         filenames = set()
     return set([u'META-INF/mozilla.rsa', u'META-INF/mozilla.sf',
                 u'META-INF/manifest.mf']).issubset(filenames)
+
+
+class SignatureInfo(object):
+
+    def __init__(self, pkcs7):
+        if isinstance(pkcs7, SignatureInfo):
+            # Allow passing around SignatureInfo objects to avoid
+            # re-reading the signature every time.
+            self.content = pkcs7.content
+        else:
+            self.content = cms.ContentInfo.load(pkcs7).native['content']
+
+    @property
+    def signer_serial_number(self):
+        return self.signer_info['sid']['serial_number']
+
+    @property
+    def signer_info(self):
+        """There should be only one SignerInfo for add-ons,
+        nss doesn't support multiples
+
+        See ttps://bugzilla.mozilla.org/show_bug.cgi?id=1357815#c4 for a few
+        more details.
+        """
+        return self.content['signer_infos'][0]
+
+    @property
+    def issuer(self):
+        return self.signer_info['sid']['issuer']
+
+    @property
+    def signer_certificate(self):
+        for certificate in self.content['certificates']:
+            info = certificate['tbs_certificate']
+            is_signer_certificate = (
+                info['issuer'] == self.issuer and
+                info['serial_number'] == self.signer_serial_number
+            )
+            if is_signer_certificate:
+                return info
+
+
+def get_signer_serial_number(pkcs7):
+    """Return the signer serial number of the signature."""
+    return SignatureInfo(pkcs7).signer_serial_number
+
+
+def get_signer_organizational_unit_name(pkcs7):
+    """Return the OU of the signer certificate."""
+    cert = SignatureInfo(pkcs7).signer_certificate
+    return cert['subject']['organizational_unit_name']

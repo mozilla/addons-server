@@ -30,7 +30,6 @@ import flufl.lock
 import rdflib
 import six
 
-from signing_clients.apps import get_signer_organizational_unit_name
 from xml.parsers.expat import ExpatError
 
 from defusedxml import minidom
@@ -44,6 +43,7 @@ from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib.safe_xml import lxml
+from olympia.lib.crypto.signing import get_signer_organizational_unit_name
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
