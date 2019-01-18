@@ -401,12 +401,7 @@ class AddonSerializer(serializers.ModelSerializer):
         return data
 
     def get_categories(self, obj):
-        # Return a dict of lists like obj.app_categories does, but exposing
-        # slugs for keys and values instead of objects.
-        return {
-            app.short: [cat.slug for cat in obj.app_categories[app]]
-            for app in obj.app_categories.keys()
-        }
+        return obj.app_categories
 
     def get_has_eula(self, obj):
         return bool(getattr(obj, 'has_eula', obj.eula))

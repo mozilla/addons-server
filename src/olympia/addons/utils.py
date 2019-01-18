@@ -66,7 +66,7 @@ def get_featured_ids(app=None, lang=None, type=None, types=None):
     random.shuffle(ids)
     random.shuffle(other_ids)
     ids += other_ids
-    return map(int, ids)
+    return list(map(int, ids))
 
 
 @memoize('addons:creatured', timeout=60 * 10)

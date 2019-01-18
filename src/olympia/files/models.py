@@ -170,9 +170,6 @@ class File(OnChangeMixin, ModelBase):
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
         file_.size = storage.size(upload.path)
-        data = cls.get_jetpack_metadata(upload.path)
-        if 'sdkVersion' in data and data['sdkVersion']:
-            file_.jetpack_version = data['sdkVersion'][:10]
         file_.is_restart_required = parsed_data.get(
             'is_restart_required', False)
         file_.strict_compatibility = parsed_data.get(
@@ -210,28 +207,6 @@ class File(OnChangeMixin, ModelBase):
             FileValidation.from_json(file_, validation)
 
         return file_
-
-    @classmethod
-    def get_jetpack_metadata(cls, path):
-        data = {'sdkVersion': None}
-        try:
-            zip_ = zipfile.ZipFile(path)
-        except (zipfile.BadZipfile, IOError):
-            # This path is not an XPI. It's probably an app manifest.
-            return data
-        if 'package.json' in zip_.namelist():
-            data['sdkVersion'] = "jpm"
-        else:
-            name = 'harness-options.json'
-            if name in zip_.namelist():
-                try:
-                    opts = json.load(zip_.open(name))
-                except ValueError as exc:
-                    log.info('Could not parse harness-options.json in %r: %s' %
-                             (path, exc))
-                else:
-                    data['sdkVersion'] = opts.get('sdkVersion')
-        return data
 
     def generate_hash(self, filename=None):
         """Generate a hash for a file."""
@@ -364,12 +339,12 @@ class File(OnChangeMixin, ModelBase):
         start = time.time()
 
         try:
-            zip = SafeZip(self.file_path)
+            zip_ = SafeZip(self.file_path)
         except (zipfile.BadZipfile, IOError):
             return ''
 
         try:
-            manifest = zip.read('chrome.manifest')
+            manifest = force_text(zip_.read('chrome.manifest'))
         except KeyError:
             log.info('No file named: chrome.manifest in file: %s' % self.pk)
             return ''
@@ -380,12 +355,13 @@ class File(OnChangeMixin, ModelBase):
             return ''
 
         try:
-            p = res.groups()[1]
-            if 'localepicker.properties' not in p:
-                p = os.path.join(p, 'localepicker.properties')
-            res = zip.extract_from_manifest(p)
+            path = res.groups()[1]
+            if 'localepicker.properties' not in path:
+                path = os.path.join(path, 'localepicker.properties')
+            res = zip_.extract_from_manifest(path)
         except (zipfile.BadZipfile, IOError) as e:
-            log.error('Error unzipping: %s, %s in file: %s' % (p, e, self.pk))
+            log.error('Error unzipping: %s, %s in file: %s' % (
+                path, e, self.pk))
             return ''
         except (ValueError, KeyError) as e:
             log.error('No file named: %s in file: %s' % (e, self.pk))

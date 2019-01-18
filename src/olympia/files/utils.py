@@ -14,7 +14,6 @@ import tempfile
 import zipfile
 
 from datetime import datetime, timedelta
-from six.moves import cStringIO as StringIO
 from six import text_type
 
 from django import forms
@@ -127,7 +126,7 @@ def get_file(fileorpath):
 
 
 def make_xpi(files):
-    file_obj = StringIO()
+    file_obj = six.BytesIO()
     zip_file = zipfile.ZipFile(file_obj, 'w')
     for path, data in files.items():
         zip_file.writestr(path, data)
@@ -776,7 +775,7 @@ class SafeZip(object):
         if type == 'jar':
             parts = path.split('!')
             for part in parts[:-1]:
-                jar = self.__class__(StringIO(jar.zip_file.read(part)))
+                jar = self.__class__(six.BytesIO(jar.zip_file.read(part)))
             path = parts[-1]
         return jar.read(path[1:] if path.startswith('/') else path)
 

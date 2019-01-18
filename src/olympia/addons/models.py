@@ -17,7 +17,7 @@ from django.db import IntegrityError, models, transaction
 from django.db.models import F, Max, Q, signals as dbsignals
 from django.dispatch import receiver
 from django.utils import translation
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import trans_real, ugettext_lazy as _
 
@@ -187,7 +187,8 @@ class AddonQuerySet(BaseQuerySet):
         Filter for all featured add-ons for an application in all locales.
         """
         ids = get_featured_ids(app, lang, type)
-        return manual_order(self.listed(app), ids, 'addons.id')
+        qs = manual_order(self.listed(app), ids, 'addons.id')
+        return qs
 
     def listed(self, app, *status):
         """
@@ -725,7 +726,8 @@ class Addon(OnChangeMixin, ModelBase):
         return Rating.objects.filter(addon=self, reply_to=None)
 
     def get_category(self, app_id):
-        categories = self.app_categories.get(amo.APP_IDS.get(app_id))
+        appname = getattr(amo.APP_IDS.get(app_id), 'short', '')
+        categories = self.app_categories.get(appname)
         return categories[0] if categories else None
 
     def language_ascii(self):
@@ -910,7 +912,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def get_icon_dir(self):
         return os.path.join(jinja_helpers.user_media_path('addon_icons'),
-                            '%s' % (self.id / 1000))
+                            '%s' % (self.id // 1000))
 
     def get_icon_url(self, size, use_default=True):
         """
@@ -1352,8 +1354,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def all_categories(self):
-        return filter(
-            None, [cat.to_static_category() for cat in self.categories.all()])
+        return list(filter(
+            None, [cat.to_static_category() for cat in self.categories.all()]))
 
     @cached_property
     def current_previews(self):
@@ -1379,8 +1381,8 @@ class Addon(OnChangeMixin, ModelBase):
     def app_categories(self):
         app_cats = {}
         categories = sorted_groupby(
-            sorted(self.all_categories, key=attrgetter('weight', 'name')),
-            key=lambda x: amo.APP_IDS.get(x.application))
+            sorted(self.all_categories),
+            key=lambda x: getattr(amo.APP_IDS.get(x.application), 'short', ''))
         for app, cats in categories:
             app_cats[app] = list(cats)
         return app_cats
@@ -1398,7 +1400,7 @@ class Addon(OnChangeMixin, ModelBase):
             files = (self.current_version.files
                          .filter(platform=amo.PLATFORM_ANDROID.id))
             try:
-                return six.text_type(files[0].get_localepicker(), 'utf-8')
+                return force_text(files[0].get_localepicker())
             except IndexError:
                 pass
         return ''

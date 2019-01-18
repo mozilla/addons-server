@@ -43,7 +43,8 @@ class UploadTest(TestCase, amo.tests.AMOPaths):
         return self.file_fixture_path(*args, **kw)
 
     def get_upload(self, filename=None, abspath=None, validation=None):
-        xpi = open(abspath if abspath else self.file_path(filename)).read()
+        with open(abspath if abspath else self.file_path(filename), 'rb') as f:
+            xpi = f.read()
         upload = FileUpload.from_post([xpi], filename=abspath or filename,
                                       size=1234)
         # Simulate what fetch_manifest() does after uploading an app.
