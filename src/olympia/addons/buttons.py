@@ -17,11 +17,13 @@ def install_button(context, addon, version=None,
     """
     If version isn't given, we use the latest version.
     """
+    if not collection:
+        collection = None
     request = context['request']
     app, lang = context['APP'], context['LANG']
     src = src or context.get('src') or request.GET.get('src', '')
-    collection = (
-        (collection.uuid if hasattr(collection, 'uuid') else None) or
+    collection_uuid = (
+        getattr(collection, 'uuid', None) or
         collection or
         context.get('collection') or
         request.GET.get('collection') or
@@ -29,8 +31,8 @@ def install_button(context, addon, version=None,
         request.GET.get('collection_uuid'))
     button = install_button_factory(
         addon, app, lang, version=version,
-        show_warning=show_warning, src=src, collection=collection, size=size,
-        detailed=detailed, impala=impala,
+        show_warning=show_warning, src=src, collection=collection_uuid,
+        size=size, detailed=detailed, impala=impala,
         show_download_anyway=show_download_anyway)
     installed = (request.user.is_authenticated and
                  addon.id in request.user.mobile_addons)
