@@ -24,7 +24,7 @@ from olympia.addons.models import (
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
-from olympia.lib.crypto.packaged import sign_file
+from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList,
     get_flags, get_flags_for_row)

@@ -153,7 +153,7 @@ class TestAddStaticThemeFromLwt(TestCase):
     def setUp(self):
         super(TestAddStaticThemeFromLwt, self).setUp()
         self.call_signing_mock = self.patch(
-            'olympia.lib.crypto.packaged.call_signing')
+            'olympia.lib.crypto.signing.call_signing')
         self.build_mock = self.patch(
             'olympia.addons.tasks.build_static_theme_xpi_from_lwt')
         self.build_mock.side_effect = self._mock_xpi_side_effect
@@ -315,7 +315,7 @@ class TestMigrateLegacyDictionaryToWebextension(TestCase):
             application=amo.FIREFOX.id, version='*')
 
         self.call_signing_mock = self.patch(
-            'olympia.lib.crypto.packaged.call_signing')
+            'olympia.lib.crypto.signing.call_signing')
         self.call_signing_mock.return_value = 'abcdefg1234'
 
         self.build_mock = self.patch(
