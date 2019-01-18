@@ -291,8 +291,8 @@ def icons():
     icons = [('image/jpeg', 'jpeg'), ('image/png', 'png'), ('', 'default')]
     dirs, files = storage.listdir(settings.ADDON_ICONS_DEFAULT_PATH)
     for fname in files:
-        if '32' in fname and 'default' not in fname:
-            icon_name = fname.split('-')[0]
+        if b'32' in fname and b'default' not in fname:
+            icon_name = fname.split(b'-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
     return sorted(icons)
 

@@ -460,7 +460,7 @@ def slugify(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-'):
     return new.lower() if lower else new
 
 
-def normalize_string(value, strip_puncutation=False):
+def normalize_string(value, strip_punctuation=False):
     """Normalizes a unicode string.
 
      * decomposes unicode characters
@@ -470,9 +470,9 @@ def normalize_string(value, strip_puncutation=False):
     value = unicodedata.normalize('NFD', force_text(value))
     value = value.encode('utf-8', 'ignore')
 
-    if strip_puncutation:
-        value = value.translate(None, string.punctuation)
-    return force_text(' '.join(value.split()))
+    if strip_punctuation:
+        value = value.translate(None, force_bytes(string.punctuation))
+    return force_text(b' '.join(value.split()))
 
 
 def slug_validator(s, ok=SLUG_OK, lower=True, spaces=False, delimiter='-',

@@ -115,7 +115,7 @@ def verify_mozilla_trademark(name, user, form=None):
         user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
 
     def _check(name):
-        name = normalize_string(name, strip_puncutation=True).lower()
+        name = normalize_string(name, strip_punctuation=True).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
             if waffle.switch_is_active('content-optimization'):
