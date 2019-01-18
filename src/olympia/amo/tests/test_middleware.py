@@ -76,7 +76,7 @@ def test_redirect_with_unicode_get():
         'addon/5457%3Fadvancedsearch%3D1&lang=ja&utm_source=Google+%E3'
         '%83%90%E3%82%BA&utm_medium=twitter&utm_term=Google+%E3%83%90%'
         'E3%82%BA')
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert 'utm_term=Google+%E3%83%90%E3%82%BA' in response['Location']
 
 
@@ -84,7 +84,7 @@ def test_source_with_wrong_unicode_get():
     # The following url is a string (bytes), not unicode.
     response = test.Client().get('/firefox/collections/mozmj/autumn/'
                                  '?source=firefoxsocialmedia\x14\x85')
-    assert response.status_code == 301
+    assert response.status_code == 302
     assert response['Location'].endswith('?source=firefoxsocialmedia%14')
 
 

@@ -77,13 +77,13 @@ class TestViews(TestCase):
         collection = Collection.objects.get(nickname='wut')
         url = collection.get_url_path()
         tests = [
-            ('/collection/wut?x=y', 301, url + '?x=y'),
-            ('/collection/wut/', 301, url),
-            ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301, url),
-            ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4/', 301, url),
-            ('/collections/view/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 301,
+            ('/collection/wut?x=y', 302, url + '?x=y'),
+            ('/collection/wut/', 302, url),
+            ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 302, url),
+            ('/collection/f94d08c7-794d-3ce4-4634-99caa09f9ef4/', 302, url),
+            ('/collections/view/f94d08c7-794d-3ce4-4634-99caa09f9ef4', 302,
              url),
-            ('/collections/view/wut/', 301, url),
+            ('/collections/view/wut/', 302, url),
             ('/collection/404', 404)]
         for test in tests:
             self.check_response(*test)
@@ -92,18 +92,18 @@ class TestViews(TestCase):
         self.client.login(email='jbalogh@mozilla.com')
         u = UserProfile.objects.get(email='jbalogh@mozilla.com')
         uuid = u.favorites_collection().uuid
-        self.check_response('/collections/edit/%s' % uuid, 301,
+        self.check_response('/collections/edit/%s' % uuid, 302,
                             u.favorites_collection().edit_url())
 
     def test_collection_directory_redirects(self):
         base = reverse('collections.list')
         tests = [
-            ('/collections/editors_picks', 301,
+            ('/collections/editors_picks', 302,
              urlparams(base, sort='featured')),
-            ('/collections/popular/', 301,
+            ('/collections/popular/', 302,
              urlparams(base, sort='popular')),
             # These don't work without a login.
-            ('/collections/favorites/', 301, base),
+            ('/collections/favorites/', 302, base),
         ]
         for test in tests:
             self.check_response(*test)

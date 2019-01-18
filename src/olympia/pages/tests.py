@@ -40,7 +40,7 @@ class TestRedirects(TestCase):
                 assert r['Location'] == new
             else:
                 r = self.client.get(old, follow=True)
-                self.assert3xx(r, new, 301)
+                self.assert3xx(r, new, 302)
 
     def test_app_pages(self):
         self._check({
