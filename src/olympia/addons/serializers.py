@@ -32,8 +32,9 @@ from .models import (
 
 class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
-    platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
-    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
+    platform = ReverseChoiceField(
+        choices=list(amo.PLATFORM_CHOICES_API.items()))
+    status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(
         source='webext_permissions_list',
         child=serializers.CharField())
@@ -197,7 +198,8 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
 
 
 class VersionSerializer(SimpleVersionSerializer):
-    channel = ReverseChoiceField(choices=amo.CHANNEL_CHOICES_API.items())
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
     license = LicenseSerializer()
 
     class Meta:
@@ -312,13 +314,15 @@ class AddonSerializer(serializers.ModelSerializer):
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
-    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
+    status = ReverseChoiceField(
+        choices=list(amo.STATUS_CHOICES_API.items()))
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
     tags = serializers.SerializerMethodField()
     theme_data = serializers.SerializerMethodField()
-    type = ReverseChoiceField(choices=amo.ADDON_TYPE_CHOICES_API.items())
+    type = ReverseChoiceField(
+        choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
     url = serializers.SerializerMethodField()
 
     class Meta:
@@ -401,7 +405,10 @@ class AddonSerializer(serializers.ModelSerializer):
         return data
 
     def get_categories(self, obj):
-        return obj.app_categories
+        return {
+            app_short_name: [cat.slug for cat in categories]
+            for app_short_name, categories in obj.app_categories.items()
+        }
 
     def get_has_eula(self, obj):
         return bool(getattr(obj, 'has_eula', obj.eula))

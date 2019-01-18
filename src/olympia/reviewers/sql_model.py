@@ -343,7 +343,7 @@ class RawSQLManager(object):
 
     def _iter_cursor_results(self):
         col_names = [c[0] for c in self._cursor.description]
-        while 1:
+        while True:
             row = self._cursor.fetchone()
             if row is None:
                 break

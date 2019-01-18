@@ -598,7 +598,7 @@ class TestResponses(ESStatsTest):
 
         expected, actual = iter(expected_data), iter(actual_data)
         next_expected, next_actual = next(expected), next(actual)
-        while 1:
+        while True:
             if next_expected['date'] == next_actual['date']:
                 # If they match it's a date we have data for.
                 self.assertDictEqual(next_expected, next_actual)

@@ -402,7 +402,7 @@ def chunked(seq, n):
     [6, 7]
     """
     seq = iter(seq)
-    while 1:
+    while True:
         rv = list(itertools.islice(seq, 0, n))
         if not rv:
             break
@@ -737,7 +737,7 @@ class HttpResponseSendFile(HttpResponse):
             self['Content-Length'] = os.path.getsize(self.path)
 
             def wrapper():
-                while 1:
+                while True:
                     data = fp.read(chunk)
                     if not data:
                         break

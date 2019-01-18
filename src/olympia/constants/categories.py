@@ -40,7 +40,9 @@ class StaticCategory(object):
             self.__class__.__name__, force_bytes(self), self.application)
 
     def __eq__(self, other):
-        return self.weight == other.weight and self.name == other.name
+        return (
+            self.__class__ == other.__class__ and
+            self.__dict__ == other.__dict__)
 
     def __lt__(self, other):
         return (self.weight, self.name) < (other.weight, other.name)
