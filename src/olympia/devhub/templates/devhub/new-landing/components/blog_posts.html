@@ -1,9 +1,5 @@
 <section class="DevHub-BlogPosts content scheme-dark">
-  <h2>
-    <a title="{{ _('Subscribe to this feed') }}" href="https://blog.mozilla.com/addons/feed/">
-      {{ _('Latest News') }}
-    </a>
-  </h2>
+  <h2>{{ _('Latest News') }}</h2>
   {% if blog_posts.exists() %}
     <ul>
       {% for post in blog_posts %}
