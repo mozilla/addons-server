@@ -12,6 +12,7 @@ from django.utils.encoding import force_bytes
 
 import requests
 import six
+import waffle
 
 from django_statsd.clients import statsd
 from requests_hawk import HawkAuth
@@ -57,18 +58,61 @@ def get_id(addon):
 def call_signing(file_obj):
     """Get the jar signature and send it to the signing server to be signed."""
     # Extract jar signature.
-    jar = JarExtractor(path=storage.open(file_obj.current_file_path))
-
-    log.debug(u'File signature contents: {0}'.format(jar.signatures))
-
-    signed_manifest = six.text_type(jar.signatures)
-
     conf = settings.AUTOGRAPH_CONFIG
+    log.debug('Calling autograph service: {0}'.format(
+        conf['server_url']))
 
     if waffle.sample_is_active('activate-autograph-file-signing'):
-        log.debug('Calling autograph service: {0}'.format(conf['server_url']))
+        with storage.open(file_obj.current_file_path) as fobj:
+            input_data = b64encode(fobj.read())
 
-        # create the signing request
+        signing_request = [{
+            'input': input_data,
+            'keyid': conf['signer'],
+            'options': {
+                'id': get_id(file_obj.version.addon),
+                # "Add-on variant A params (PKCS7 SHA1 and COSE ES256) work in
+                # Fx <57, so we can switch to that without breaking backwards
+                # compatibility"
+                # https://github.com/mozilla/addons-server/issues/9308
+                # This means, the pkcs7 sha1 signature is used for backwards
+                # compatibility and cose sha256 will be used for newer
+                # Firefox versions.
+                'pkcs7_digest': 'SHA1',
+                'cose_algorithms': ['ES256']
+            },
+        }]
+
+        with statsd.timer('services.sign.addon.autograph'):
+            response = requests.post(
+                '{server}/sign/file'.format(server=conf['server_url']),
+                json=signing_request,
+                auth=HawkAuth(id=conf['user_id'], key=conf['key']))
+
+        if response.status_code != requests.codes.CREATED:
+            msg = u'Posting to add-on signing failed: {0} {1}'.format(
+                response.reason, response.text)
+            log.error(msg)
+            raise SigningError(msg)
+
+        # Save the returned file in our storage.
+        with storage.open(file_obj.current_file_path, 'wb') as fobj:
+            fobj.write(b64decode(response.json()[0]['signed_file']))
+
+        # Now fetch the certificates serial number. Future versions of
+        # autograph may return this in the response.
+        # https://github.com/mozilla-services/autograph/issues/214
+        # Now extract the file and fetch the pkcs signature
+        with zipfile.ZipFile(file_obj.current_file_path, mode='r') as zip_fobj:
+            cert_serial_num = get_signer_serial_number(zip_fobj.read(
+                os.path.join('META-INF', 'mozilla.rsa')))
+    else:
+        jar = JarExtractor(path=storage.open(file_obj.current_file_path))
+
+        log.debug(u'File signature contents: {0}'.format(jar.signatures))
+
+        signed_manifest = six.text_type(jar.signatures)
+
         signing_request = [{
             'input': b64encode(signed_manifest),
             'keyid': conf['signer'],
@@ -77,7 +121,6 @@ def call_signing(file_obj):
             },
         }]
 
-        # post the request
         with statsd.timer('services.sign.addon.autograph'):
             response = requests.post(
                 '{server}/sign/data'.format(server=conf['server_url']),
@@ -93,18 +136,19 @@ def call_signing(file_obj):
         # convert the base64 encoded pkcs7 signature back to binary
         pkcs7 = b64decode(force_bytes(response.json()[0]['signature']))
 
-    cert_serial_num = get_signer_serial_number(pkcs7)
+        cert_serial_num = get_signer_serial_number(pkcs7)
 
-    # We only want the (unique) temporary file name.
-    with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as temp_file:
-        temp_filename = temp_file.name
+        # We only want the (unique) temporary file name.
+        with tempfile.NamedTemporaryFile(dir=settings.TMP_PATH) as temp_file:
+            temp_filename = temp_file.name
 
-    jar.make_signed(
-        signed_manifest=signed_manifest,
-        signature=pkcs7,
-        sigpath=u'mozilla',
-        outpath=temp_filename)
-    shutil.move(temp_filename, file_obj.current_file_path)
+        jar.make_signed(
+            signed_manifest=signed_manifest,
+            signature=pkcs7,
+            sigpath=u'mozilla',
+            outpath=temp_filename)
+        shutil.move(temp_filename, file_obj.current_file_path)
+
     return cert_serial_num
 
 

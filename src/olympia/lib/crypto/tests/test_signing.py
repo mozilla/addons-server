@@ -17,7 +17,7 @@ import pytest
 import responses
 import pytz
 
-from signing_clients.apps import SignatureInfo
+from waffle.testutils import override_sample
 
 from olympia import amo
 from olympia.addons.models import AddonUser
@@ -77,7 +77,7 @@ class TestSigning(TestCase):
 
     def _get_signature_details(self):
         with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
-            info = SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
+            info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
             manifest = zobj.read('META-INF/manifest.mf')
             return info, manifest
 
@@ -312,6 +312,94 @@ class TestSigning(TestCase):
             'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n')
+
+
+@override_settings(ENABLE_ADDON_SIGNING=True)
+@override_sample('activate-autograph-file-signing', active=True)
+class TestSigningNewFileEndpoint(TestSigning):
+
+    def test_call_signing(self):
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
+
+    def test_sign_addon_with_unicode_guid(self):
+        self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
+
+        signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+
+        assert (
+            subject_info['common_name'] ==
+            u'NavratnePeniaze@NávratnéPeniaze')
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
+
+    def test_call_signing_too_long_guid_bug_1203365(self):
+        long_guid = 'x' * 65
+        hashed = hashlib.sha256(long_guid).hexdigest()
+        self.addon.update(guid=long_guid)
+        signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == hashed
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
 
 
 class TestTasks(TestCase):
@@ -634,17 +722,17 @@ class TestSignatureInfo(object):
         with open(fixture_path, 'rb') as fobj:
             self.pkcs7 = fobj.read()
 
-        self.info = SignatureInfo(self.pkcs7)
+        self.info = signing.SignatureInfo(self.pkcs7)
 
     def test_loading_reading_string(self):
-        info = SignatureInfo(self.pkcs7)
+        info = signing.SignatureInfo(self.pkcs7)
         assert isinstance(info.content, collections.OrderedDict)
 
     def test_loading_pass_signature_info_instance(self):
-        info = SignatureInfo(self.pkcs7)
+        info = signing.SignatureInfo(self.pkcs7)
         assert isinstance(info.content, collections.OrderedDict)
 
-        info2 = SignatureInfo(info)
+        info2 = signing.SignatureInfo(info)
 
         assert isinstance(info2.content, collections.OrderedDict)
         assert info2.content == info.content
