@@ -297,7 +297,7 @@ class ActivityLog(ModelBase):
     def f(self, *args, **kw):
         """Calls SafeFormatter.format and returns a Markup string."""
         # SafeFormatter escapes everything so this is safe.
-        return six.text_type(jinja2.Markup(self.formatter.format(*args, **kw)))
+        return jinja2.Markup(self.formatter.format(*args, **kw))
 
     @property
     def arguments(self):
@@ -374,11 +374,9 @@ class ActivityLog(ModelBase):
     def to_string(self, type_=None):
         log_type = constants.activity.LOG_BY_ID[self.action]
         if type_ and hasattr(log_type, '%s_format' % type_):
-            format_string = getattr(log_type, '%s_format' % type_)
+            format = getattr(log_type, '%s_format' % type_)
         else:
-            format_string = log_type.format
-        # Make sure the format string is no longer a proxy.
-        format_string = six.text_type(format_string)
+            format = log_type.format
 
         # We need to copy arguments so we can remove elements from it
         # while we loop over self.arguments.
@@ -453,7 +451,7 @@ class ActivityLog(ModelBase):
                     status = arg
                 arguments.remove(arg)
 
-        user = self.f(user_link(self.user))
+        user = user_link(self.user)
 
         try:
             kw = {
@@ -467,7 +465,7 @@ class ActivityLog(ModelBase):
                 'file': file_,
                 'status': status,
             }
-            return self.f(format_string, *arguments, **kw)
+            return self.f(six.text_type(format), *arguments, **kw)
         except (AttributeError, KeyError, IndexError):
             log.warning('%d contains garbage data' % (self.id or 0))
             return 'Something magical happened.'
