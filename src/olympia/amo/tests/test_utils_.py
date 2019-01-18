@@ -19,7 +19,6 @@ from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
     attach_trans_dict, extract_colors_from_image, get_locale_from_lang,
     pngcrush_image, utc_millesecs_from_epoch, walkfiles)
-from olympia.versions.models import Version
 
 
 pytestmark = pytest.mark.django_db
