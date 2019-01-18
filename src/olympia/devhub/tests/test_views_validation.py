@@ -145,7 +145,7 @@ class TestFileValidation(TestCase):
         assert not doc('#site-nav').hasClass('app-nav'), (
             'Expected add-ons devhub nav')
         assert doc('header h2').text() == (
-            u'Validation Results for searchaddon11102010-20101217.xml')
+            u'Validation Results for testaddon-20101217.xpi')
         assert doc('#addon-validator-suite').attr('data-validateurl') == (
             self.json_url)
 

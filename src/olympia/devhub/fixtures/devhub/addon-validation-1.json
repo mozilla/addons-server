@@ -44,7 +44,7 @@
             "locale": "en-us",
             "modified": "2010-12-17 13:05:38",
             "id": 1385334,
-            "localized_string": "searchaddon11102010"
+            "localized_string": "testaddon"
         }
     },
     {
@@ -87,7 +87,7 @@
             "description": null,
             "default_locale": "en-US",
             "target_locale": null,
-            "slug": "searchaddon11102010",
+            "slug": "testaddon",
             "name": 1385334,
             "created": "2010-12-17 13:04:56",
             "type": 4,
@@ -151,7 +151,7 @@
             "hash": "sha256:a300e3943309aee1e1ee47f569f9be36276791b3e66596be4c9cc4ee238b01b6",
             "created": "2010-12-17 13:04:57",
             "modified": "2010-12-17 13:04:57",
-            "filename": "searchaddon11102010-20101217.xml",
+            "filename": "testaddon-20101217.xpi",
             "platform": 1,
             "version": 118898,
             "datestatuschanged": "2010-12-17 13:04:57",

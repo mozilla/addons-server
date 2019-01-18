@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/"
+                       xmlns:moz="http://www.mozilla.org/2006/browser/search/">
+    <Description>description</Description>
+    <Url type="text/html" method="GET" template="template">
+      <Param name="param" value="{searchTerms}"/>
+    </Url>
+</OpenSearchDescription>
