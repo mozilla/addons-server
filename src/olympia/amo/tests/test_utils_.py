@@ -190,11 +190,11 @@ def test_get_locale_from_lang(lang):
     """Make sure all languages in settings.AMO_LANGUAGES can be resolved."""
     locale = get_locale_from_lang(lang)
 
-    debug_or_ignored_languages = ('cak', 'dbg', 'dbr', 'dbl')
+    ignored_languages = ('cak',)
     long_languages = ('ast', 'dsb', 'hsb', 'kab')
     expected_language = (
         lang[:3] if lang in long_languages else (
-            lang[:2] if lang not in debug_or_ignored_languages else 'en'
+            lang[:2] if lang not in ignored_languages else 'en'
         ))
 
     assert isinstance(locale, Locale)
@@ -210,7 +210,7 @@ def test_get_locale_from_lang(lang):
 @pytest.mark.parametrize('lang', settings.LANGUAGES_BIDI)
 def test_bidi_language_in_amo_languages(lang):
     """Make sure all bidi marked locales are in AMO_LANGUAGES too."""
-    assert lang in settings.AMO_LANGUAGES or lang in settings.DEBUG_LANGUAGES
+    assert lang in settings.AMO_LANGUAGES
 
 
 @mock.patch('olympia.amo.utils.subprocess')

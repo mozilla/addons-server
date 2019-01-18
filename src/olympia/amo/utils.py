@@ -704,7 +704,7 @@ def get_locale_from_lang(lang):
     # therefore not supported by Babel - trying to fake the class leads to a
     # rabbit hole of more errors because we need valid locale data on disk, to
     # get decimal formatting, plural rules etc.
-    if not lang or lang in ('cak', 'dbg', 'dbr', 'dbl'):
+    if not lang or lang in ('cak',):
         lang = 'en'
     return Locale.parse(translation.to_locale(lang))
 

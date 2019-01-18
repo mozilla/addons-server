@@ -37,8 +37,7 @@ class DevMailerForm(forms.Form):
 class FeaturedCollectionForm(forms.ModelForm):
     LOCALES = (('', u'(Default Locale)'),) + tuple(
         (idx, LANGUAGE_MAPPING[idx]['native'])
-        for idx in settings.LANGUAGE_MAPPING
-        if idx not in ('dbl', 'dbr'))
+        for idx in settings.LANGUAGE_MAPPING)
 
     application = forms.ChoiceField(amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)
