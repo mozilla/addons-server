@@ -26,7 +26,7 @@ class Command(BaseCommand):
         central_url = settings.WEBEXT_PERM_DESCRIPTIONS_URL
         locales_url = settings.WEBEXT_PERM_DESCRIPTIONS_LOCALISED_URL
         amo_locales = [l for l in settings.AMO_LANGUAGES
-                       if l not in ('en-US', 'dbg', 'dbr', 'dbl')]
+                       if l not in ('en-US',)]
         # Fetch canonical en-US descriptions first; then l10n after.
         update_webext_descriptions_all.apply_async(
             args=[(central_url, 'en-US'),

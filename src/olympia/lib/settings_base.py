@@ -181,14 +181,12 @@ AMO_LANGUAGES = LANGUAGE_MAPPING.keys()
 
 # Bidirectional languages.
 # Locales in here *must* be in `AMO_LANGUAGES` too.
-LANGUAGES_BIDI = ('ar', 'fa', 'he', 'dbr', 'ur')
+LANGUAGES_BIDI = ('ar', 'fa', 'he', 'ur')
 
 # Explicit conversion of a shorter language code into a more specific one.
 SHORTER_LANGUAGES = {
     'en': 'en-US', 'ga': 'ga-IE', 'pt': 'pt-PT', 'sv': 'sv-SE', 'zh': 'zh-CN'
 }
-
-DEBUG_LANGUAGES = ('dbr', 'dbl')
 
 # Override Django's built-in with our native names
 LANGUAGES = {
