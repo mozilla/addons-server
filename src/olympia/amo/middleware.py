@@ -45,10 +45,11 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
     def process_request(self, request):
         # Find locale, app
         prefixer = urlresolvers.Prefixer(request)
-        if settings.DEBUG:
-            redirect_type = HttpResponseRedirect
-        else:
-            redirect_type = HttpResponsePermanentRedirect
+
+        # Always use a 302 redirect to avoid users being stuck in case of
+        # accidental misconfiguration.
+        redirect_type = HttpResponseRedirect
+
         urlresolvers.set_url_prefix(prefixer)
         full_path = prefixer.fix(prefixer.shortened_path)
 

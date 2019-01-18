@@ -219,7 +219,7 @@ class TestViews(TestCase):
                                    follow=True)
         url = reverse('addons.versions.update_info',
                       args=(self.version.addon.slug, self.version.version))
-        self.assert3xx(response, url, 301)
+        self.assert3xx(response, url, 302)
 
     def test_version_update_info_legacy_redirect_deleted(self):
         self.version.delete()
