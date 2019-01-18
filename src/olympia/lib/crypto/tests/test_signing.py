@@ -20,15 +20,15 @@ from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
 from olympia.files.utils import extract_xpi
-from olympia.lib.crypto import packaged, tasks
+from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
-class TestPackaged(TestCase):
+class TestSigning(TestCase):
 
     def setUp(self):
-        super(TestPackaged, self).setUp()
+        super(TestSigning, self).setUp()
 
         # Change addon file name
         self.addon = amo.tests.addon_factory()
@@ -67,10 +67,10 @@ class TestPackaged(TestCase):
             os.unlink(self.file_.file_path)
         if os.path.exists(self.file_.guarded_file_path):
             os.unlink(self.file_.guarded_file_path)
-        super(TestPackaged, self).tearDown()
+        super(TestSigning, self).tearDown()
 
     def _sign_file(self, file_):
-        packaged.sign_file(file_)
+        signing.sign_file(file_)
 
     def _get_signature_details(self):
         with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
@@ -82,13 +82,13 @@ class TestPackaged(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        assert not packaged.is_signed(self.file_.file_path)
+        assert not signing.is_signed(self.file_.file_path)
 
     def assert_signed(self):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
-        assert packaged.is_signed(self.file_.file_path)
+        assert signing.is_signed(self.file_.file_path)
 
     def test_supports_firefox_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
@@ -97,7 +97,7 @@ class TestPackaged(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_android_old_not_default_to_compatible(self):
@@ -108,7 +108,7 @@ class TestPackaged(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_old_default_to_compatible(self):
@@ -118,7 +118,7 @@ class TestPackaged(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_android_old_default_to_compatible(self):
@@ -129,7 +129,7 @@ class TestPackaged(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_recent_default_to_compatible(self):
@@ -139,7 +139,7 @@ class TestPackaged(TestCase):
         max_appversion.update(version='37', version_int=version_int('37'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_android_recent_not_default_to_compatible(self):
@@ -150,12 +150,12 @@ class TestPackaged(TestCase):
                               version='37', version_int=version_int('37'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_sign_file(self):
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
@@ -168,7 +168,7 @@ class TestPackaged(TestCase):
         self.file_.update(filename=u'jétpack.xpi')
         shutil.move(src, self.file_.file_path)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_no_sign_missing_file(self):
@@ -176,26 +176,26 @@ class TestPackaged(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        assert not packaged.is_signed(self.file_.file_path)
+        assert not signing.is_signed(self.file_.file_path)
 
     def test_no_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
         self.file_.update(is_mozilla_signed_extension=True)
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_not_signed()
 
     def test_is_signed(self):
-        assert not packaged.is_signed(self.file_.file_path)
-        packaged.sign_file(self.file_)
-        assert packaged.is_signed(self.file_.file_path)
+        assert not signing.is_signed(self.file_.file_path)
+        signing.sign_file(self.file_)
+        assert signing.is_signed(self.file_.file_path)
 
     def test_size_updated(self):
         unsigned_size = storage.size(self.file_.file_path)
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         signed_size = storage.size(self.file_.file_path)
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
@@ -206,25 +206,25 @@ class TestPackaged(TestCase):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
-            packaged.sign_file(self.file_)
+            signing.sign_file(self.file_)
             self.assert_not_signed()
             # The multi-package itself isn't signed.
-            assert not packaged.is_signed(self.file_.file_path)
+            assert not signing.is_signed(self.file_.file_path)
             # The internal extensions aren't either.
             folder = tempfile.mkdtemp(dir=settings.TMP_PATH)
             try:
                 extract_xpi(self.file_.file_path, folder)
                 # The extension isn't.
-                assert not packaged.is_signed(
+                assert not signing.is_signed(
                     os.path.join(folder, 'random_extension.xpi'))
                 # And the theme isn't either.
-                assert not packaged.is_signed(
+                assert not signing.is_signed(
                     os.path.join(folder, 'random_theme.xpi'))
             finally:
                 amo.utils.rm_local_tmp_dir(folder)
 
     def test_call_signing(self):
-        assert packaged.sign_file(self.file_)
+        assert signing.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -257,7 +257,7 @@ class TestPackaged(TestCase):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
         self.addon.update(guid=long_guid)
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -274,26 +274,26 @@ class TestPackaged(TestCase):
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
-        assert len(packaged.get_id(self.addon)) <= 64
-        assert packaged.get_id(self.addon) == self.addon.guid
+        assert len(signing.get_id(self.addon)) <= 64
+        assert signing.get_id(self.addon) == self.addon.guid
 
     def test_get_id_longest_allowed_guid_bug_1203365(self):
         long_guid = 'x' * 64
         self.addon.update(guid=long_guid)
-        assert packaged.get_id(self.addon) == self.addon.guid
+        assert signing.get_id(self.addon) == self.addon.guid
 
     def test_get_id_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
         self.addon.update(guid=long_guid)
         assert len(self.addon.guid) > 64
-        assert len(packaged.get_id(self.addon)) <= 64
-        assert packaged.get_id(self.addon) == hashed
+        assert len(signing.get_id(self.addon)) <= 64
+        assert signing.get_id(self.addon) == hashed
 
     def test_sign_addon_with_unicode_guid(self):
         self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
 
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -435,7 +435,7 @@ class TestTasks(TestCase):
             assert self.version.version_int == version_int('1.3')
 
             apps_without_signing = [app for app in amo.APPS_ALL.keys()
-                                    if app not in packaged.SIGN_FOR_APPS]
+                                    if app not in signing.SIGN_FOR_APPS]
 
             for app in apps_without_signing:
                 self.max_appversion.update(application=app)

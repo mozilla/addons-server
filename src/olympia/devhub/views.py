@@ -47,7 +47,7 @@ from olympia.devhub.utils import (
     wizard_unsupported_properties)
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import parse_addon
-from olympia.lib.crypto.packaged import sign_file
+from olympia.lib.crypto.signing import sign_file
 from olympia.lib.git import AddonGitRepository
 from olympia.reviewers.forms import PublicWhiteboardForm
 from olympia.reviewers.models import Whiteboard

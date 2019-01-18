@@ -42,7 +42,7 @@ from olympia.constants.licenses import (
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import (
     RDFExtractor, SafeZip, get_file, get_filepath, parse_addon)
-from olympia.lib.crypto.packaged import sign_file
+from olympia.lib.crypto.signing import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import RereviewQueueTheme
