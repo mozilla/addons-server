@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2019-01-19 23:11+0000\n"
+"PO-Revision-Date: 2019-01-19 23:21+0000\n"
 "Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5455,7 +5455,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
+msgstr "Ai o mulțime de file deschise? Scapă de derularea și căutarea printre ele prin intermediul comenzilor rapide de la tastatură."
 
 #. editorial content for the discovery pane.
 msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6284,7 +6284,7 @@ msgstr ""
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "Recenzii pentru %s"
 
 msgid "Review History for this Addon"
 msgstr "Istoricul recenziilor pentru acest supliment"
@@ -6433,12 +6433,12 @@ msgstr ""
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
 msgid_plural "Reviews for %(addon)s by %(user)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Recenzie pentru %(addon)s de %(user)s"
+msgstr[1] "Recenzii pentru %(addon)s de %(user)s"
+msgstr[2] "Recenzii pentru %(addon)s de %(user)s"
 
 msgid "No reviews found."
-msgstr ""
+msgstr "Nicio recenzie găsită."
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
@@ -6467,7 +6467,7 @@ msgid "Approved reviews"
 msgstr "Recenzii aprobate"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "Recenzii șterse"
 
 msgid "View entries between"
 msgstr ""
@@ -6635,7 +6635,7 @@ msgid "Last Update"
 msgstr ""
 
 msgid "No Reviews"
-msgstr ""
+msgstr "Nicio recenzie"
 
 msgid "Weight"
 msgstr "Greutate"
@@ -6936,7 +6936,7 @@ msgid "Range"
 msgstr ""
 
 msgid "Your Reviews"
-msgstr ""
+msgstr "Recenziile tale"
 
 msgid "By {user_name}"
 msgstr "De {user_name}"
@@ -7224,10 +7224,10 @@ msgid "Auto-advance after review"
 msgstr "Trecere automată mai departe după recenzie"
 
 msgid "Enable keyboard shortcuts"
-msgstr "Activează scurtăturile pentru tastatură"
+msgstr "Activează comenzi rapide de la tastatură"
 
 msgid "Keyboard Shortcuts"
-msgstr "Scurtături pentru tastatură"
+msgstr "Comenzi rapide de la tastatură"
 
 msgid "Next Theme"
 msgstr "Tema următoare"
