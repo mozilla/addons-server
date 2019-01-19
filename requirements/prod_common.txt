@@ -39,8 +39,10 @@ MarkupSafe==1.1.0 \
     --hash=sha256:1c25694ca680b6919de53a4bb3bdd0602beafc63ff001fea2f2fc16ec3a11834 \
     --hash=sha256:7d263e5770efddf465a9e31b78362d84d015cc894ca2c131901a4445eaa61ee1 \
     --hash=sha256:4e97332c9ce444b0c2c38dd22ddc61c743eb208d916e4265a2a3b575bdccb1d3
-mysqlclient==1.3.14 \
-    --hash=sha256:3981ae9ce545901a36a8b7aed76ed02960a429f75dc53b7ad77fb2f9ab7cd56b
+mysqlclient==1.4.1 \
+    --hash=sha256:6883a4dd98903bad375c859ead1a480e1245ea3a8d9b038ea2c091c1865ba673 \
+    --hash=sha256:e1b9f3a8928ddb4985ca3e3c9f2aa81b19e831bbf6fabf5681ee356738dbbbb2 \
+    --hash=sha256:a62220410e26ce2d2ff94dd0138c3ecfb91db634464a9afb4c8e6b50f0a67e00
 scandir==1.9.0 \
     --hash=sha256:f5c71e29b4e2af7ccdc03a020c626ede51da471173b4a6ad1e904f2b2e04b4bd \
     --hash=sha256:1b5c314e39f596875e5a95dd81af03730b338c277c54a454226978d5ba95dbb6 \
