@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2019-01-17 11:25+0000\n"
+"PO-Revision-Date: 2019-01-20 11:38+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -4409,7 +4409,7 @@ msgstr "Meliora videos {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
-msgstr "Gaude de un suite de nove functionalitates de YouTube, como modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e altero."
+msgstr "Gaude de un suite de nove functionalitates de YouTube, como: modo cinema, blocada del avisos publicitari, controlo del auto-reproduction, e altero."
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4808,7 +4808,7 @@ msgstr "Bloca le quadros emergente {start_sub_heading}con {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Activa le blocada per tote le quadros emergente, pois decide los que lassar aperir."
+msgstr "Activa le blocada per tote le quadros emergente, pois decide los que lassar aperte."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
