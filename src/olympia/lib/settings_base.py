@@ -123,7 +123,9 @@ def cors_endpoint_overrides(whitelist_endpoints):
 CORS_ENDPOINT_OVERRIDES = []
 
 
-def get_db_config(environ_var, atomic_requests=True):
+def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
+    assert charset in ('utf8', 'utf8mb4')
+
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
@@ -137,12 +139,15 @@ def get_db_config(environ_var, atomic_requests=True):
         'CONN_MAX_AGE': 300,
         'ENGINE': 'olympia.core.db.mysql',
         'OPTIONS': {
+            'charset': charset,
             'sql_mode': 'STRICT_ALL_TABLES',
             'isolation_level': 'read committed'
         },
         'TEST': {
-            'CHARSET': 'utf8',
-            'COLLATION': 'utf8_general_ci'
+            'CHARSET': charset,
+            'COLLATION': (
+                'utf8_general_ci' if charset == 'utf8' else
+                'utf8mb4_general_ci')
         },
     })
 
