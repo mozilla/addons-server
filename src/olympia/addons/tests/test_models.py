@@ -1116,8 +1116,8 @@ class TestAddonModels(TestCase):
         ]
 
         addon = get_addon()
-        assert set(addon.all_categories) == set(expected_firefox_cats)
-        assert addon.app_categories == {amo.FIREFOX: expected_firefox_cats}
+        assert sorted(addon.all_categories) == expected_firefox_cats
+        assert addon.app_categories == {'firefox': expected_firefox_cats}
 
         # Let's add a ANDROID category.
         android_static_cat = (
@@ -1130,14 +1130,11 @@ class TestAddonModels(TestCase):
         addon = get_addon()
 
         # Test that the ANDROID category was added correctly.
-        assert set(addon.all_categories) == set(
+        assert sorted(addon.all_categories) == sorted(
             expected_firefox_cats + [android_static_cat])
-        assert set(addon.app_categories.keys()) == set(
-            [amo.FIREFOX, amo.ANDROID])
-        assert set(addon.app_categories[amo.FIREFOX]) == set(
-            expected_firefox_cats)
-        assert set(addon.app_categories[amo.ANDROID]) == set(
-            [android_static_cat])
+        assert sorted(addon.app_categories.keys()) == ['android', 'firefox']
+        assert addon.app_categories['firefox'] == expected_firefox_cats
+        assert addon.app_categories['android'] == [android_static_cat]
 
     def test_app_categories_ignore_unknown_cats(self):
         def get_addon():
@@ -1153,8 +1150,8 @@ class TestAddonModels(TestCase):
         ]
 
         addon = get_addon()
-        assert set(addon.all_categories) == set(expected_firefox_cats)
-        assert addon.app_categories == {amo.FIREFOX: expected_firefox_cats}
+        assert sorted(addon.all_categories) == sorted(expected_firefox_cats)
+        assert addon.app_categories == {'firefox': expected_firefox_cats}
 
         # Associate this add-on with a couple more categories, including
         # one that does not exist in the constants.
@@ -1172,14 +1169,11 @@ class TestAddonModels(TestCase):
 
         # The sunbird category should not be present since it does not match
         # an existing static category, android one should have been added.
-        assert set(addon.all_categories) == set(
+        assert sorted(addon.all_categories) == sorted(
             expected_firefox_cats + [android_static_cat])
-        assert set(addon.app_categories.keys()) == set(
-            [amo.FIREFOX, amo.ANDROID])
-        assert set(addon.app_categories[amo.FIREFOX]) == set(
-            expected_firefox_cats)
-        assert set(addon.app_categories[amo.ANDROID]) == set(
-            [android_static_cat])
+        assert sorted(addon.app_categories.keys()) == ['android', 'firefox']
+        assert addon.app_categories['firefox'] == expected_firefox_cats
+        assert addon.app_categories['android'] == [android_static_cat]
 
     def test_review_replies(self):
         """

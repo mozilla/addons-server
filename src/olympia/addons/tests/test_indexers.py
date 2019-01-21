@@ -353,15 +353,15 @@ class TestAddonIndexer(TestCase):
         self.addon.description = translations_description
         self.addon.save()
         extracted = self._extract()
-        assert sorted(extracted['name_translations']) == sorted([
+        assert extracted['name_translations'] == [
             {'lang': u'en-US', 'string': translations_name['en-US']},
             {'lang': u'es', 'string': translations_name['es']},
-        ])
-        assert sorted(extracted['description_translations']) == sorted([
+        ]
+        assert extracted['description_translations'] == [
             {'lang': u'en-US', 'string': translations_description['en-US']},
             {'lang': u'es', 'string': translations_description['es']},
             {'lang': u'it', 'string': '&lt;script&gt;alert(42)&lt;/script&gt;'}
-        ])
+        ]
         assert extracted['name_l10n_english'] == [translations_name['en-US']]
         assert extracted['name_l10n_spanish'] == [translations_name['es']]
         assert extracted['name_l10n_italian'] == []
@@ -399,17 +399,17 @@ class TestAddonIndexer(TestCase):
 
         extracted = self._extract()
 
-        assert sorted(extracted['name_translations']) == sorted([
+        assert extracted['name_translations'] == [
             {'lang': u'en-GB', 'string': 'Banana Bonkers'},
             {'lang': u'es', 'string': u'Banana Bonkers espanole'},
-        ])
-        assert sorted(extracted['description_translations']) == sorted([
+        ]
+        assert extracted['description_translations'] == [
             {'lang': u'en-GB', 'string': u'Let your browser eat your bananas'},
             {
                 'lang': u'es',
                 'string': u'Deje que su navegador coma sus plátanos'
             },
-        ])
+        ]
         assert extracted['name_l10n_english'] == ['Banana Bonkers']
         assert extracted['name_l10n_spanish'] == [u'Banana Bonkers espanole']
         assert (extracted['description_l10n_english'] ==

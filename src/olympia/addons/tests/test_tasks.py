@@ -46,9 +46,9 @@ class TestPersonaImageFunctions(TestCase):
         # Given an image, a 680x100 and a 32x32 thumbnails need to be generated
         # and processed with pngcrush.
         expected_dst1 = tempfile.NamedTemporaryFile(
-            mode='r+w+b', suffix=".png", delete=False, dir=settings.TMP_PATH)
+            mode='wb', suffix=".png", delete=False, dir=settings.TMP_PATH)
         expected_dst2 = tempfile.NamedTemporaryFile(
-            mode='r+w+b', suffix=".png", delete=False, dir=settings.TMP_PATH)
+            mode='wb', suffix=".png", delete=False, dir=settings.TMP_PATH)
         create_persona_preview_images(
             src=get_image_path('persona-header.jpg'),
             full_dst=[expected_dst1.name, expected_dst2.name],
@@ -73,7 +73,7 @@ class TestPersonaImageFunctions(TestCase):
         # save_persona_image() simply saves an image as a png to the
         # destination file. The image should be processed with pngcrush.
         expected_dst = tempfile.NamedTemporaryFile(
-            mode='r+w+b', suffix=".png", delete=False, dir=settings.TMP_PATH)
+            mode='wb', suffix=".png", delete=False, dir=settings.TMP_PATH)
         save_persona_image(
             get_image_path('persona-header.jpg'),
             expected_dst.name
@@ -87,7 +87,7 @@ class TestPersonaImageFunctions(TestCase):
         # If the source is not an image, save_persona_image() should just
         # return early without writing the destination or calling pngcrush.
         expected_dst = tempfile.NamedTemporaryFile(
-            mode='r+w+b', suffix=".png", delete=False, dir=settings.TMP_PATH)
+            mode='wb', suffix=".png", delete=False, dir=settings.TMP_PATH)
         save_persona_image(
             get_image_path('non-image.png'),
             expected_dst.name

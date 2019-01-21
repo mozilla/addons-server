@@ -226,7 +226,7 @@ class TestReplacementAddonList(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert '/addon/bar-replacement/' in response.content
+        assert '/addon/bar-replacement/' in response.content.decode('utf-8')
 
     def test_can_not_edit_with_addons_edit_permission(self):
         replacement = ReplacementAddon.objects.create(
@@ -273,7 +273,7 @@ class TestReplacementAddonList(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(self.detail_url, follow=True)
         assert response.status_code == 200
-        assert '/addon/foo-replacement/' in response.content
+        assert '/addon/foo-replacement/' in response.content.decode('utf-8')
 
         response = self.client.post(
             self.detail_url, {'guid': '@bar', 'path': replacement.path},
@@ -306,15 +306,15 @@ class TestReplacementAddonList(TestCase):
         ReplacementAddon.objects.create(guid='@foofoo&foo', path='/addon/bar/')
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert '@foofoo&amp;foo' in response.content
-        assert '/addon/bar/' in response.content
+        assert '@foofoo&amp;foo' in response.content.decode('utf-8')
+        assert '/addon/bar/' in response.content.decode('utf-8')
         test_url = str('<a href="%s">Test</a>' % (
             reverse('addons.find_replacement') + '?guid=%40foofoo%26foo'))
-        assert test_url in response.content, response.content
+        assert test_url in response.content.decode('utf-8')
         # guid is not on AMO so no slug to show
-        assert '- Add-on not on AMO -' in response.content
+        assert '- Add-on not on AMO -' in response.content.decode('utf-8')
         # show the slug when the add-on exists
         addon_factory(guid='@foofoo&foo', slug='slugymcslugface')
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert 'slugymcslugface' in response.content
+        assert 'slugymcslugface' in response.content.decode('utf-8')

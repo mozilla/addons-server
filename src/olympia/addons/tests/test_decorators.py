@@ -1,8 +1,8 @@
-import urllib
-
 from django import http
 
 import mock
+
+from six.moves.urllib_parse import quote
 
 from olympia.addons import decorators as dec
 from olympia.addons.models import Addon
@@ -21,7 +21,7 @@ class TestAddonView(TestCase):
         self.request = mock.Mock()
         self.slug_path = (
             'http://testserver/addon/%s/reviews' %
-            urllib.quote(self.addon.slug.encode('utf-8')))
+            quote(self.addon.slug.encode('utf-8')))
         self.request.path = self.id_path = (
             u'http://testserver/addon/%s/reviews' % self.addon.id)
         self.request.GET = {}
@@ -38,7 +38,7 @@ class TestAddonView(TestCase):
         redirection = (
             u'http://testserver/addon/{slug}/reviews/{id}345/path'.format(
                 id=self.addon.id,
-                slug=urllib.quote(self.addon.slug.encode('utf8'))))
+                slug=quote(self.addon.slug.encode('utf8'))))
         self.assert3xx(res, redirection, 301)
 
     def test_301_with_querystring(self):

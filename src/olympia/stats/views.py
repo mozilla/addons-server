@@ -173,7 +173,7 @@ def zip_overview(downloads, updates):
     def iterator(series):
         item = next(series)
         next_date = start_date
-        while 1:
+        while True:
             if item['date'] == next_date:
                 yield item['count']
                 item = next(series)

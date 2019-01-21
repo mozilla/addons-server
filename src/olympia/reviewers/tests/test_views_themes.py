@@ -7,7 +7,6 @@ from django.utils.encoding import smart_text
 
 import mock
 import pytest
-import six
 
 from pyquery import PyQuery as pq
 
@@ -697,7 +696,7 @@ class TestXssOnThemeName(amo.tests.TestXss):
         super(TestXssOnThemeName, self).setUp()
         self.theme = addon_factory(type=amo.ADDON_PERSONA,
                                    status=amo.STATUS_PENDING,
-                                   name=six.text_type(self.name, 'utf-8'))
+                                   name=self.name)
         persona = self.theme.persona
         persona.persona_id = 0
         persona.header = 'header'

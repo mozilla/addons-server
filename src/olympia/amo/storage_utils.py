@@ -56,13 +56,12 @@ def copy_stored_file(src_path, dest_path, storage=default_storage,
         return
     with storage.open(src_path, 'rb') as src:
         with storage.open(dest_path, 'wb') as dest:
-            done = False
-            while not done:
+            while True:
                 chunk = src.read(chunk_size)
-                if chunk != '':
+                if chunk:
                     dest.write(chunk)
                 else:
-                    done = True
+                    break
 
 
 def move_stored_file(src_path, dest_path, storage=default_storage,
