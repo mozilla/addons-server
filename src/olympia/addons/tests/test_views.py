@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core import mail
 from django.test.client import Client
 from django.test.utils import override_settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_bytes, force_text
 from django.utils.http import urlsafe_base64_encode, urlunquote
 
 import mock
@@ -48,7 +48,7 @@ from olympia.versions.models import (
 def norm(s):
     """Normalize a string so that whitespace is uniform and remove whitespace
     between tags."""
-    s = re.sub(r'\s+', ' ', str(s)).strip()
+    s = re.sub(r'\s+', ' ', six.text_type(s)).strip()
     return re.sub(r'>\s+<', '><', s)
 
 
@@ -64,8 +64,9 @@ def check_cat_sidebar(url, addon):
     for type_ in [amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_SEARCH]:
         addon.update(type=type_)
         response = Client().get(url)
-        assert pq(response.content)('#side-nav').attr('data-addontype') == str(
-            type_)
+        assert (
+            pq(response.content)('#side-nav').attr('data-addontype') ==
+            six.text_type(type_))
 
 
 def _test_hovercards(self, doc, addons, src=''):
@@ -617,7 +618,7 @@ class TestDetailPage(TestCase):
             reverse('addons.privacy', args=[self.addon.slug]))
         doc = pq(response.content)
 
-        policy = str(doc(".policy-statement"))
+        policy = six.text_type(doc(".policy-statement"))
         assert policy.startswith(
             '<div class="policy-statement">&lt;script'), (
                 'Unexpected: %s' % policy[0:50])
@@ -1249,7 +1250,7 @@ class TestEula(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
 
-        policy = str(doc('.policy-statement'))
+        policy = six.text_type(doc('.policy-statement'))
         assert policy.startswith('<div class="policy-statement">&lt;script'), (
             'Unexpected: %s' % policy[:50])
 
@@ -2881,7 +2882,8 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        param = 'rta:%s' % urlsafe_base64_encode(addon.guid)
+        param = 'rta:%s' % force_text(
+            urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(self.url, {'guid': param})
         assert data['count'] == 1
@@ -2892,7 +2894,7 @@ class TestAddonSearchView(ESTestCase):
         assert result['slug'] == addon.slug
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
-        param = 'rta:%s' % urlsafe_base64_encode('foo@bar')[:-1]
+        param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
@@ -2919,7 +2921,8 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
-        param = 'rta:%s' % urlsafe_base64_encode(addon.guid)
+        param = 'rta:%s' % force_text(
+            urlsafe_base64_encode(force_bytes(addon.guid)))
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
@@ -3179,7 +3182,7 @@ class TestAddonFeaturedView(TestCase):
     def test_no_parameters(self):
         response = self.client.get(self.url)
         assert response.status_code == 400
-        assert json.loads(response.content) == {
+        assert json.loads(force_text(response.content)) == {
             'detail': 'Invalid app, category and/or type parameter(s).'}
 
     @patch('olympia.addons.views.get_featured_ids')
@@ -3269,19 +3272,19 @@ class TestAddonFeaturedView(TestCase):
         response = self.client.get(
             self.url, {'app': 'foxeh', 'type': 'extension'})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
+        assert json.loads(force_text(response.content)) == {
             'detail': 'Invalid app, category and/or type parameter(s).'}
 
     def test_invalid_type(self):
         response = self.client.get(self.url, {'app': 'firefox', 'type': 'lol'})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
+        assert json.loads(force_text(response.content)) == {
             'detail': 'Invalid app, category and/or type parameter(s).'}
 
     def test_category_no_app_or_type(self):
         response = self.client.get(self.url, {'category': 'lol'})
         assert response.status_code == 400
-        assert json.loads(response.content) == {
+        assert json.loads(force_text(response.content)) == {
             'detail': 'Invalid app, category and/or type parameter(s).'}
 
     def test_invalid_category(self):
@@ -3289,7 +3292,7 @@ class TestAddonFeaturedView(TestCase):
             'category': 'lol', 'app': 'firefox', 'type': 'extension'
         })
         assert response.status_code == 400
-        assert json.loads(response.content) == {
+        assert json.loads(force_text(response.content)) == {
             'detail': 'Invalid app, category and/or type parameter(s).'}
 
     @patch('olympia.addons.views.get_creatured_ids')
@@ -3676,7 +3679,7 @@ class TestLanguageToolsView(TestCase):
             response = self.client.get(
                 self.url, {'app': 'firefox', 'lang': 'fr'})
         assert response.status_code == 200
-        assert len(json.loads(response.content)['results']) == 3
+        assert len(json.loads(force_text(response.content))['results']) == 3
 
         # Same again, should be cached; no queries.
         with self.assertNumQueries(0):
@@ -3800,7 +3803,7 @@ class TestCompatOverrideView(TestCase):
             data={'guid': u'invalid@thing'})
         # Searching for non-matching guids, it should be an empty 200 response.
         assert response.status_code == 200
-        assert len(json.loads(response.content)['results']) == 0
+        assert len(json.loads(force_text(response.content))['results']) == 0
 
         response = self.client.get(
             reverse_ns('addon-compat-override'), data={'guid': ''})
