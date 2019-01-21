@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2019-01-12 14:47+0000\n"
+"PO-Revision-Date: 2019-01-20 10:18+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -3129,13 +3129,13 @@ msgid "Add a Screenshot..."
 msgstr "Een schermafbeelding toevoegen…"
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr "PNG en JPG worden ondersteund, PNG wordt aanbevolen. De maximale en aanbevolen afmeting voor schermafdrukken is 2400x1800 pixels."
+msgstr "PNG en JPG worden ondersteund, PNG wordt aanbevolen. De maximale en aanbevolen afmeting voor schermafbeeldingen is 2400x1800 pixels."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "De minimale grootte is 1000x750, en een verhouding van 4:3 is vereist."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr "Het opnemen van schermafdrukken op uw productpagina vergroot de kans dat uw deze wordt geïnstalleerd en op de startpagina wordt aanbevolen aanzienlijk."
+msgstr "Het opnemen van schermafbeeldingen op uw productpagina vergroot de kans dat uw add-on wordt geïnstalleerd en op de startpagina wordt aanbevolen aanzienlijk."
 
 msgid "Continue"
 msgstr "Doorgaan"
@@ -4347,7 +4347,7 @@ msgstr "Tabbladen opnieuw uitgevonden {start_sub_heading}met {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Hebt u een enorm aantal openstaande tabbladen? Organiseer ze in een kleine zijbalk."
+msgstr "Hebt u een enorm aantal openstaande tabbladen? Orden ze in een kleine zijbalk."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
