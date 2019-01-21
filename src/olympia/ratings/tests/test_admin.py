@@ -103,11 +103,11 @@ class TestRatingAdmin(TestCase):
 
         response = self.client.get(self.list_url, follow=True)
         assert response.status_code == 200
-        assert 'Delete selected rating' in response.content
+        assert b'Delete selected rating' in response.content
 
         response = self.client.get(self.delete_url, follow=True)
         assert response.status_code == 200
-        assert 'Cannot delete rating' not in response.content
+        assert b'Cannot delete rating' not in response.content
         response = self.client.post(self.delete_url, {'post': 'yes'},
                                     follow=True)
         assert response.status_code == 200
