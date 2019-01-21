@@ -67,15 +67,15 @@ class BaseAuthorFormSet(BaseModelFormSet):
         if any(self.errors):
             return
         # cleaned_data could be None if it's the empty extra form.
-        data = filter(None, [f.cleaned_data for f in self.forms
-                             if not f.cleaned_data.get('DELETE', False)])
+        data = list(filter(None, [f.cleaned_data for f in self.forms
+                                  if not f.cleaned_data.get('DELETE', False)]))
         if not any(d['role'] == amo.AUTHOR_ROLE_OWNER for d in data):
             raise forms.ValidationError(
                 ugettext('Must have at least one owner.'))
         if not any(d['listed'] for d in data):
             raise forms.ValidationError(
                 ugettext('At least one author must be listed.'))
-        users = [d['user'] for d in data]
+        users = [d['user'].id for d in data]
         if sorted(users) != sorted(set(users)):
             raise forms.ValidationError(
                 ugettext('An author can only be listed once.'))
@@ -653,7 +653,7 @@ class CombinedNameSummaryCleanMixin(object):
         super(CombinedNameSummaryCleanMixin, self).clean()
         name_summary_locales = set(
             list(self.cleaned_data.get('name', {}).keys()) +
-            self.cleaned_data.get('summary', {}).keys())
+            list(self.cleaned_data.get('summary', {}).keys()))
         default_locale = self.instance.default_locale.lower()
         name_values = self.cleaned_data.get('name') or {}
         name_default = name_values.get(default_locale) or ''

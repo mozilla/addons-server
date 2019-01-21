@@ -1,5 +1,3 @@
-import urllib
-
 from collections import defaultdict
 
 from django.utils.encoding import force_bytes
@@ -9,6 +7,7 @@ import jinja2
 import six
 
 from django_jinja import library
+from six.moves.urllib.parse import unquote_to_bytes
 
 from olympia import amo
 from olympia.access import acl
@@ -120,7 +119,7 @@ def display_url(url):
     Note: returns a Unicode object, not a valid URL.
     """
     url = force_bytes(url, errors='replace')
-    return urllib.unquote(url).decode('utf-8', errors='replace')
+    return unquote_to_bytes(url).decode('utf-8', errors='replace')
 
 
 @library.global_function

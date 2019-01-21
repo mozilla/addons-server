@@ -211,7 +211,7 @@ def find_previous_version(addon, file, version_string, channel):
     vint = version_int(version_string)
     for file_ in qs.order_by('-id'):
         # Only accept versions which come before the one we're validating.
-        if file_.version.version_int < vint:
+        if (file_.version.version_int or 0) < vint:
             return file_
 
 

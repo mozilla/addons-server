@@ -918,11 +918,11 @@ def ajax_upload_image(request, upload_type, addon_id=None):
             if is_icon:
                 errors.append(
                     ugettext('Please use images smaller than %dMB.')
-                    % (max_size / 1024 / 1024))
+                    % (max_size // 1024 // 1024))
             if is_persona:
                 errors.append(
                     ugettext('Images cannot be larger than %dKB.')
-                    % (max_size / 1024))
+                    % (max_size // 1024))
 
         if image_check.is_image() and is_persona:
             persona, img_type = upload_type.split('_')  # 'header' or 'footer'
@@ -938,9 +938,9 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         if image_check.is_image() and content_waffle and is_preview:
             min_size = amo.ADDON_PREVIEW_SIZES.get('min')
             # * 100 to get a nice integer to compare against rather than 1.3333
-            required_ratio = min_size[0] * 100 / min_size[1]
+            required_ratio = min_size[0] * 100 // min_size[1]
             actual_size = image_check.size
-            actual_ratio = actual_size[0] * 100 / actual_size[1]
+            actual_ratio = actual_size[0] * 100 // actual_size[1]
             if actual_size[0] < min_size[0] or actual_size[1] < min_size[1]:
                 # L10n: {0} is an image width (in pixels), {1} is a height.
                 errors.append(

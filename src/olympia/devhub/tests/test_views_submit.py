@@ -284,7 +284,7 @@ class TestAddonSubmitDistribution(TestCase):
         response = self.client.get(reverse('devhub.submit.distribution'))
         assert response.status_code == 200
         # No error shown for a redirect from previous step.
-        assert 'This field is required' not in response.content
+        assert b'This field is required' not in response.content
 
     def test_submit_notification_warning(self):
         config = Config.objects.create(
@@ -327,14 +327,14 @@ class TestAddonSubmitDistribution(TestCase):
     def test_channel_selection_error_shown(self):
         url = reverse('devhub.submit.distribution')
         # First load should have no error
-        assert 'This field is required' not in self.client.get(url).content
+        assert b'This field is required' not in self.client.get(url).content
 
         # Load with channel preselected (e.g. back from next step) - no error.
-        assert 'This field is required' not in self.client.get(
+        assert b'This field is required' not in self.client.get(
             url, args=['listed']).content
 
         # A post submission without channel selection should be an error
-        assert 'This field is required' in self.client.post(url).content
+        assert b'This field is required' in self.client.post(url).content
 
 
 class TestAddonSubmitUpload(UploadTest, TestCase):
@@ -470,8 +470,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert addon.current_version.supported_platforms == [amo.PLATFORM_ALL]
 
         # And check that compatible apps have a sensible default too
-        apps = addon.current_version.compatible_apps.keys()
-        assert sorted(apps) == sorted([amo.FIREFOX, amo.ANDROID])
+        apps = [app.id for app in addon.current_version.compatible_apps.keys()]
+        assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
 
     @mock.patch('olympia.devhub.views.auto_sign_file')
     def test_one_xpi_for_multiple_apps_unlisted_addon(
@@ -661,7 +661,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert self.get_version().source
         assert self.addon.needs_admin_code_review
         mode = (
-            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+            '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
     def test_submit_source_targz(self):
@@ -672,7 +672,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert self.get_version().source
         assert self.addon.needs_admin_code_review
         mode = (
-            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+            '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
     def test_submit_source_tgz(self):
@@ -684,7 +684,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert self.get_version().source
         assert self.addon.needs_admin_code_review
         mode = (
-            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+            '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
     def test_submit_source_tarbz2(self):
@@ -696,7 +696,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert self.get_version().source
         assert self.addon.needs_admin_code_review
         mode = (
-            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+            '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
@@ -734,7 +734,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert self.get_version().source
         assert self.addon.needs_admin_code_review
         mode = (
-            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+            '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
     @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
@@ -748,7 +748,7 @@ class TestAddonSubmitSource(TestSubmitBase):
         assert self.get_version().source
         assert self.addon.needs_admin_code_review
         mode = (
-            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+            '0%o' % (os.stat(self.get_version().source.path)[stat.ST_MODE]))
         assert mode == '0100644'
 
     def test_with_bad_source_extension(self):
@@ -1052,7 +1052,7 @@ class DetailsPageMixin(object):
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
         assert text_type(self.addon.name) == u'spám'
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
         comment_check_mock.assert_called_once()
 
@@ -1070,7 +1070,7 @@ class DetailsPageMixin(object):
         report = AkismetReport.objects.get()
         assert report.comment_type == 'product-name'
         assert report.comment == u'spám'
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
     @override_switch('akismet-spam-check', active=True)
     @mock.patch('olympia.lib.akismet.tasks.AkismetReport.comment_check')
@@ -1085,8 +1085,8 @@ class DetailsPageMixin(object):
     def test_name_summary_lengths_short(self):
         # check the separate name and summary labels, etc are served
         response = self.client.get(self.url)
-        assert 'Name and Summary' not in response.content
-        assert 'It will be shown in listings and searches' in response.content
+        assert b'Name and Summary' not in response.content
+        assert b'It will be shown in listings and searches' in response.content
 
         data = self.get_dict(name='a', summary='b')
         self.is_success(data)
@@ -1100,7 +1100,7 @@ class DetailsPageMixin(object):
     def test_name_summary_lengths_content_optimization(self):
         # check the combined name and summary label, etc are served
         response = self.client.get(self.url)
-        assert 'Name and Summary' in response.content
+        assert b'Name and Summary' in response.content
 
         # name and summary are too short
         response = self.client.post(
@@ -1709,7 +1709,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         assert links[1].attrib['href'] == reverse('devhub.themes')
 
         # Text is static theme specific.
-        assert "This version will be available after it passes review." in (
+        assert b'This version will be available after it passes review.' in (
             response.content)
         # Show the preview we started generating just after the upload step.
         imgs = content('section.addon-submission-process img')
@@ -1986,7 +1986,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('#theme-header').attr('data-existing-header') == (
             'header.png')
         # No warning about extra properties
-        assert 'are unsupported in this wizard' not in response.content
+        assert b'are unsupported in this wizard' not in response.content
 
         # And then check the upload works.
         path = os.path.join(
@@ -2044,7 +2044,7 @@ class VersionSubmitUploadMixin(object):
         assert doc('#accentcolor').attr('value') == '#123456'
         assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
         # Warning about extra properties this time:
-        assert 'are unsupported in this wizard' in response.content
+        assert b'are unsupported in this wizard' in response.content
         unsupported_list = doc('.notification-box.error ul.note li')
         assert unsupported_list.length == 3
         assert 'tab_line' in unsupported_list.text()
@@ -2289,8 +2289,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
             user=self.user, details={'comments': 'this is an info request'})
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert 'this should not be shown' not in response.content
-        assert 'this is an info request' in response.content
+        assert b'this should not be shown' not in response.content
+        assert b'this is an info request' in response.content
 
     def test_dont_show_request_for_information_if_none_pending(self):
         ActivityLog.create(
@@ -2301,8 +2301,8 @@ class TestVersionSubmitDetails(TestSubmitBase):
             user=self.user, details={'comments': 'this is an info request'})
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert 'this should not be shown' not in response.content
-        assert 'this is an info request' not in response.content
+        assert b'this should not be shown' not in response.content
+        assert b'this is an info request' not in response.content
 
     def test_clear_request_for_information(self):
         AddonReviewerFlags.objects.create(
@@ -2462,7 +2462,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         report = AkismetReport.objects.last()
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
         assert comment_check_mock.call_count == 2
 
@@ -2486,7 +2486,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
         report = AkismetReport.objects.last()
         assert report.comment_type == 'product-summary'
         assert report.comment == u'Delicious Bookmarks is the official'
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
         assert comment_check_mock.call_count == 2
 
@@ -2500,7 +2500,7 @@ class TestVersionSubmitDetailsFirstListed(TestAddonSubmitDetails):
 
         # No changes but both values were spam checked.
         assert AkismetReport.objects.count() == 2
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
         assert comment_check_mock.call_count == 2
 
 
