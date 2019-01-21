@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2019-01-11 11:17+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -699,6 +699,14 @@ msgstr "#000000 のような 16 進数のカラーコードを入力してくだ
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "オーナーが最低 1 人は必要です。"
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "オーナーが最低 1 人は必要です。"
+
 msgid "Not allowed"
 msgstr "許可されていません"
 
@@ -924,10 +932,6 @@ msgstr "{lang-code:value} のオブジェクトを提供してください。"
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "不正な pk もしくはスラグ「%s」です - オブジェクトが存在しません。"
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "オーナーが最低 1 人は必要です。"
 
 msgid "Application Versions"
 msgstr "アプリケーションのバージョン"
@@ -2353,6 +2357,31 @@ msgstr "%sの最近の変更"
 msgid "Recent Changes for My Add-ons"
 msgstr "自分のアドオンの最近の変更"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Firefox の旧式言語パックにはもう対応していません。WebExtensions インストールマニフェストが必要です。詳細は {mdn_link} でご覧ください。"
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr "WebExtensions を旧式のアドオンへ更新することはできません。Firefox はそうした形での更新に対応していないため、ユーザーは新バージョンを使用できなくなります。"
+
+#, fuzzy
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "入力されたテキストはスパムとして扱われています。"
+
 msgid "Must have at least one owner."
 msgstr "オーナーが最低 1 人は必要です。"
 
@@ -2446,31 +2475,6 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "アドオンがおすすめに設定されている間はカテゴリーを変更できません。"
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Firefox の旧式言語パックにはもう対応していません。WebExtensions インストールマニフェストが必要です。詳細は {mdn_link} でご覧ください。"
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "WebExtensions を旧式のアドオンへ更新することはできません。Firefox はそうした形での更新に対応していないため、ユーザーは新バージョンを使用できなくなります。"
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "入力されたテキストはスパムとして扱われています。"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "あなたの開発者 API キーが送信したファイル内に見つかりました。アカウントを保護するため、そのキーは破棄されます。"
@@ -5640,6 +5644,12 @@ msgstr "対応下限「strict_min_version」は 42.0 です。"
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "アップロードされたファイルを解析できませんでした。<%s> 要素が見当たらないか空白です。"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "アップロードされたファイルを解析できませんでした。"
 
@@ -6117,101 +6127,6 @@ msgid ""
 msgstr ""
 "一般的に言えばできません。ただし、レビューが上記のレビューガイドラインに準じていない場合は、「このレビューを報告」をクリックして、審査するようリクエストしてください。アドオンの新しいリリースによって"
 "該当しなくなった苦情がレビューに含まれている場合は、削除を検討する可能性があります。"
-
-msgid "Start Now"
-msgstr "早速始めよう"
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
-"Mozilla は、ユーザーの皆さんがプラグインなど第三者が製作したソフトウェアを使用することを選んだ時の安全性を確保する最善の方法を見つけ出したいと思っています。あなたがこの調査に参加していただければ、そ"
-"の発見の助けとなります！"
-
-msgid "What will happen next"
-msgstr "これから何が起こるか"
-
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "参加することに <strong>同意していただける場合</strong>:"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "オンライン上のセキュリティとパフォーマンスを支援するセキュリティ・プラグイン管理機能を Firefox に追加できるかもしれません。"
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "通常通りに Firefox を使用し続けてください。あなたのウェブの使用の仕方によっては、何の違いも感じられない可能性もあります。"
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "数週間後、この調査は自動的に終了します。あなたの Firefox は普通の状態に戻ります。"
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "あなたの体験について教えていただくための手短な任意のアンケートに回答をお願いします。このアンケートは通常 5 分以内に終わるものです。"
-
-msgid "Leaving the study"
-msgstr "調査への参加を終了するには"
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "この調査は数週間以内に自動的に終了しますが、それよりも早く調査への参加を終えることもできます。そのためには、以下の手順に従ってください。"
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr "アドレスバーに about:addons と入力し、Enter キーを押してください。"
-
-msgid "Find Plugin Safety in the addons list."
-msgstr "アドオンの一覧から Plugin Safety を見つけてください。"
-
-msgid "Click the remove button."
-msgstr "削除ボタンをクリックしてください。"
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
-"予定より早くこの調査への参加を終えたい場合は、アンケートへの記入をお願いすることになります。たとえあなたが調査の全期間に参加したわけではなかったとしても、私たちはあなたの体験についてお聞きすることに"
-"興味があります。"
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr "調査への参加を早く終えたとしても、将来の調査に参加できなくなることはありません。"
-
-msgid "Your privacy"
-msgstr "あなたのプライバシー"
-
-msgid "All Shield Studies"
-msgstr "すべての Shield 調査に関して"
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
-"すべての Shield 調査において、インストール、アンインストール、1 日の使用量、そして調査の終了などの重要な調査上の出来事に関するデータが収集されます。また調査には、任意のアンケートも含まれます。"
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "このデータは <a href=\"%(url)s\">Firefox Telemetry 収集</a> に関連付けられます。"
-
-msgid "This particular Study"
-msgstr "この調査のみに関して"
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr "すべての Shield 調査におけるデータ収集に加えて、Mozilla は以下についての情報を収集します。"
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "あなたが訪問したもののうち、プラグインを使用しようとしたウェブサイトと、そのサイト上のどのコンテンツがプラグインを必要としたか。"
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "それらのサイト上で、プラグインコンテンツに対してあなたがどのような操作を行ったか。これにはあなたがそのプラグインに対し実行許可を出したかどうか、またどのように許可を出したかが含まれます。"
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozilla はこの情報を非公開に保ちます。いかなるデータも、集約または匿名化された形でのみ共有されます。"
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "この調査のためのデータ収集について、<a href=\"%(url)s\">こちらから</a> さらによく知ることができます。"
-
-msgid "You Help Make Firefox Better"
-msgstr "あなたが Firefox をより良くする助けになります"
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr ""
-"Mozilla は、ユーザーの皆さんのための製品を作っていることに誇りを持っています！ ですから、あなたの助けが必要なのです。あなたがこの調査に参加していただければ、私たちがあなたの代役としてよりよい決定を"
-"し、あなたが直接 Firefox の未来を形作る助けになります！"
-
-msgid "Brought to you by:"
-msgstr "開発者:"
 
 #, fuzzy
 msgid "User"

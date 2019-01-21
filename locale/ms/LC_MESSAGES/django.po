@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -687,6 +687,14 @@ msgstr "Mesti kod warna hex yang sah, seperti #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Beberapa ciri dinyahdayakan buat sementara waktu sementara kami melakukan penyelenggaraan laman web. Kami akan kembali ke kapasiti penuh tidak lama lagi."
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
+
 msgid "Not allowed"
 msgstr "Tidak dibenarkan"
 
@@ -911,10 +919,6 @@ msgstr "Anda perlu beri objek kepada {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk atau slug tidak sah \"%s\" - objek tidak wujud."
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
 
 msgid "Application Versions"
 msgstr "Versi Aplikasi"
@@ -2334,6 +2338,30 @@ msgstr "Perubahan Terkini untuk %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Perubahan Terkini untuk Add-ons Saya"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di addons.thunderbird.net. Anda boleh gunakan akaun yang sama untuk mengemaskini add-ons di laman yang baru."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Ekstensi legasi tidak lagi disokong di Firefox."
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Ekstensi legasi tidak serasi dengan Firefox 57 atau ke atas. Gunakan maxVersion 56.* atau ke bawah."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Pek bahasa legasi untuk Firefox tidak lagi disokong. Perlukan manifes pemasangan WebExtensions. Lihat {mdn_link} untuk maklumat lanjut."
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "[{field}] Teks dalam medan \"{field}\" telah ditandakan sebagai spam."
+
 msgid "Must have at least one owner."
 msgstr "Perlu ada sekurang-kurangnya seorang pemilik."
 
@@ -2426,30 +2454,6 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak boleh ditukar semasa add-on anda ini menjadi ciri."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di addons.thunderbird.net. Anda boleh gunakan akaun yang sama untuk mengemaskini add-ons di laman yang baru."
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Ekstensi legasi tidak lagi disokong di Firefox."
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Ekstensi legasi tidak serasi dengan Firefox 57 atau ke atas. Gunakan maxVersion 56.* atau ke bawah."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Pek bahasa legasi untuk Firefox tidak lagi disokong. Perlukan manifes pemasangan WebExtensions. Lihat {mdn_link} untuk maklumat lanjut."
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}] Teks dalam medan \"{field}\" telah ditandakan sebagai spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kunci API pembangun anda telah ditemukan di dalam fail yang diserahkan. Untuk melindungi akaun anda, kunci akan dijana semula."
@@ -5620,6 +5624,12 @@ msgstr "Versi paling rendah yang disokong \"strict_min_version\" ialah 42.0."
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Tidak dapat menghuraikan fail dimuat naik, elemen  <%s> hilang atau kosong"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "Tidak dapat menghuraikan fail yang dimuat naik."
 
@@ -6105,100 +6115,6 @@ msgid ""
 msgstr ""
 "Secara umum, tidak. Tetapi jika ulasan itu tidak mematuhi garis panduan di atas, anda boleh klik \"Lapor ulasan ini\" dan akan dipertimbangkan. Jika ulasan itu memasukkan aduan yang tidak lagi sah "
 "kerana ada add-on keluaran baru, kami akan mempertimbangkan untuk membuangnya."
-
-msgid "Start Now"
-msgstr "Mulakan Sekarang"
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
-"Mozilla mahu mencari cara terbaik untuk memastikan pengguna kami selamat jika mereka pilih untuk menggunakan perisian pihak ketiga, seperti plugin. Penglibatan anda dalam kajian ini akan membantu "
-"kami mengetahuinya!"
-
-msgid "What will happen next"
-msgstr "Apa yang akan terjadi seterusnya"
-
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Jika anda setuju</strong> untuk melibatkan diri:"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "Kita akan tambah ciri kawalan keselamatan dan plugin untuk Firefox bagi membantu keselamatan dan prestasi dalam talian."
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "Terus gunakan Firefox seperti kebiasaan. Bergantung pada cara anda menggunakan Web, anda mungkin tidak perasan perubahannya."
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "Selepas beberapa minggu, kajian ini tamat dengan sendirinya. Firefox akan kembali normal."
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "Kami akan minta anda isikan kaji selidik ringkas untuk memaklumkan pengalaman anda. Kaji selidik ini mengambil tempoh kurang daripada 5 minit untuk disiapkan."
-
-msgid "Leaving the study"
-msgstr "Meninggalkan kajian"
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "Kajian ini akan tamat dengan sendirinya dalam tempoh beberapa minggu. Anda boleh tinggalkan kajian ini lebih awal. Untuk berbuat demikian, ikuti langkah berikut:"
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr "Taip about:addons di dalam bar lokasi, dan tekan masuk."
-
-msgid "Find Plugin Safety in the addons list."
-msgstr "Cari Keselamatan Plugin dalam senarai add-ons."
-
-msgid "Click the remove button."
-msgstr "Klik butang buang."
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
-"Jika anda pilih untuk keluar daripada kajian lebih awal, kami akan minta anda mengisi kaji selidik. Kita berminat untuk mendengarkan pengalaman anda, walaupun anda tidak mengambil bahagian dalam "
-"keseluruhan kajian."
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr "Memilih untuk keluar daripada satu kajian tidak akan menghalang anda daripada mengambil bahagian dalam kajian yang akan datang."
-
-msgid "Your privacy"
-msgstr "Privasi anda"
-
-msgid "All Shield Studies"
-msgstr "Semua Shield Study"
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr "Setiap Shield Study mengumpulkan data acara penting, seperti pemasangan, nyah-pemasangan, penggunaan harian, dan penamatan. Kajian juga disertakan kaji selidik pilihan."
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Data ini dihubungkan dengan <a href=\"%(url)s\">pengumpulan Telemetri Firefox</a>."
-
-msgid "This particular Study"
-msgstr "Dalam Kajian ini"
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr "Sebagai tambahan kepada data yang dikumpulkan oleh semua Shield Study, Mozilla akan mengumpulkan maklumat perihal:"
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "Laman web yang anda lawati yang cuba menggunakan plugin, dan apa kandungan dalam laman web ini yang memerlukan plugin;"
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "Cara anda berinteraksi dengan kandungan plugin dalam laman tersebut, termasuk samada dan bagaimana anda pilih plugin itu untuk dilaksanakan."
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozilla akan pastikan maklumat ini peribadi; apa-apa data hanya akan dikongsi dalam bentuk agregat anonimus."
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "Anda boleh ketahui selanjutnya perihal pengumpulan data untuk kajian ini <a href=\"%(url)s\">di sini</a>."
-
-msgid "You Help Make Firefox Better"
-msgstr "Anda Bantu Firefox Menjadi Lebih Baik"
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr ""
-"Di Mozilla, kami bangga kerana membina produk untuk anda, iaitu pengguna. Inilah sebabnya kami perlukan bantuan anda. Dengan melibatkan diri dalam kajian ini, anda akan membantu kami membuat "
-"pilihan bagi pihak anda dan secara langsung membentuk masa depan Firefox!"
-
-msgid "Brought to you by:"
-msgstr "Dibawakan untuk anda oleh:"
 
 #, fuzzy
 msgid "User"
