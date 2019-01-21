@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2018-10-14 17:20+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -718,6 +718,14 @@ msgstr "Esto debe ser un código de color hexadecimal válido, tal como #000000.
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algunas características están temporalmente deshabilitadas mientras realizamos tareas de mantenimiento en la web. Volveremos a tener plena capacidad muy pronto."
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Debe tener al menos un propietario."
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "Debe tener al menos un propietario."
+
 msgid "Not allowed"
 msgstr "No está permitido"
 
@@ -947,10 +955,6 @@ msgstr "Tienes que proporcionar un objeto de {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Pk o URL \"%s\" inválida - el objeto no existe."
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "Debe tener al menos un propietario."
 
 msgid "Application Versions"
 msgstr "Versiones de la aplicación"
@@ -2387,6 +2391,31 @@ msgstr "Cambios recientes en %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Cambios recientes en Mis complementos"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en addons.thunderbird.net. Puedes utilizar la misma cuenta para actualizarlos en el nuebo sitio web."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "A partir de la versión 53 de Firefox, los nuevos complemento de este sitio solo pueden ser WebExtensions."
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Los complementos heredados no son compatibles con Firefox 57 o superiores. Utiliza una maxVersion de 56.* o inferior."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Ya no se admiten los antiguos paquetes de idiomas para Firefox. Ahora hay que instalar un manifesto de WebExtensions. Para más detalles, consulta {mdn_link}."
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr "No puedes actualizar un complemento de WebExtensions con un complemento de enseñanza. Los usuarios no podrán utilizar la nueva versión porque Firefox no admite este tipo de actualización."
+
+#, fuzzy
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "El texto indicado ha sido marcado como spam."
+
 msgid "Must have at least one owner."
 msgstr "Debe tener al menos un propietario."
 
@@ -2483,31 +2512,6 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Las categorías no pueden cambiarse mientras tu complemento figura como destacado."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en addons.thunderbird.net. Puedes utilizar la misma cuenta para actualizarlos en el nuebo sitio web."
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "A partir de la versión 53 de Firefox, los nuevos complemento de este sitio solo pueden ser WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Los complementos heredados no son compatibles con Firefox 57 o superiores. Utiliza una maxVersion de 56.* o inferior."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Ya no se admiten los antiguos paquetes de idiomas para Firefox. Ahora hay que instalar un manifesto de WebExtensions. Para más detalles, consulta {mdn_link}."
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "No puedes actualizar un complemento de WebExtensions con un complemento de enseñanza. Los usuarios no podrán utilizar la nueva versión porque Firefox no admite este tipo de actualización."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "El texto indicado ha sido marcado como spam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Se encontró tu llave API de desarrollador en el archivo enviado. Para proteger tu cuenta, se anulará la llave."
@@ -5765,6 +5769,12 @@ msgstr "La \"strict_min_version\" admitida más antigua es la 42.0."
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "No se ha podido analizar el archivo cargado, falta el elemento <%s> o está vacío"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "No se ha podido interpretar el archivo subido."
 
@@ -6252,98 +6262,6 @@ msgid ""
 msgstr ""
 "En general, no. Pero si la valoración no cumple con las pautas de revisión definidas anteriormente, puedes hacer clic en \"Informar de esta valoración\" y será moderada. Si una valoración incluye "
 "una queja que ya no es válida por una nueva versión de tu complemento, podemos considerar borrarla."
-
-msgid "Start Now"
-msgstr "Comenzar ahora"
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
-"En Mozilla queremos determinar la mejor manera de proteger a nuestros usuarios si deciden usar programas de terceros como, por ejemplo, los plugins. ¡Tu participación en esta encuesta nos ayudará a "
-"lograrlo!"
-
-msgid "What will happen next"
-msgstr "Qué ocurrirá a continuación"
-
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Si decides</strong> participar:"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "Puede que agreguemos funciones de seguridad y de control de plugins en Firefox para mejorar la seguridad en línea y el rendimiento."
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "Continúa usando Firefox como lo sueles hacer. Quizá no notes ningún cambio: dependerá de cómo uses internet."
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "Pasadas algunas semanas, el estudio finalizará automáticamente y tu Firefox volverá a la normalidad."
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "Te pediremos que respondas una breve encuesta opcional sobre tu experiencia. No te llevará más de 5 minutos."
-
-msgid "Leaving the study"
-msgstr "Abandonar el estudio"
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "Si bien el estudio finalizará automáticamente pasadas algunas semanas, también puedes abandonarlo antes. Para ello, sigue estos pasos:"
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr "Escribe about:addons en la barra de direcciones y pulsa intro."
-
-msgid "Find Plugin Safety in the addons list."
-msgstr "Busca Plugin Safety en la lista de complementos."
-
-msgid "Click the remove button."
-msgstr "Haz clic en el botón de eliminar."
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr "Si abandonas el estudio antes de que finalice, te pediremos que respondas una encuesta. Nos gustaría conocer tu experiencia, incluso si no participaste en el estudio completo."
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr "Abandonar un estudio no impedirá que puedas participar en estudios posteriores."
-
-msgid "Your privacy"
-msgstr "Tu privacidad"
-
-msgid "All Shield Studies"
-msgstr "Todos los estudios de Shield"
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr "Los estudios de Shield recopilan datos sobre eventos relevantes como, por ejemplo, instalaciones, desinstalaciones, uso diario y fin del estudio, y también incluyen una encuesta opcional."
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Estos datos están vinculados con la colección <a href=\"%(url)s\">Firefox Telemetry</a>."
-
-msgid "This particular Study"
-msgstr "Este estudio en concreto"
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr "Además de los datos recopilados por todos los estudios de Shield, Mozilla también recopilará información sobre:"
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "Sitios web que visites y que intenten usar complementos, y qué contenido en concreto solicita ese plugin;"
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "Cómo interactúas con el contenido del plugin en esos sitios y si permites, y cómo, que el complemento se ejecute."
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozilla mantendrá la confidencialidad de esta información, y cualquier dato que comparta lo hará de manera global o anónima."
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "<a href=\"%(url)s\">Aquí</a> encontrarás más información sobre la recopilación de datos para este estudio."
-
-msgid "You Help Make Firefox Better"
-msgstr "Tú ayudas a mejorar Firefox"
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr ""
-"¡En Mozilla, nos enorgullecemos de crear productos para ti! Por eso necesitamos tu ayuda. Al participar en este estudio, nos ayudas a tomar mejores decisiones ¡y contribuyes directamente a definir "
-"el futuro de Firefox!"
-
-msgid "Brought to you by:"
-msgstr "Presentado por:"
 
 #, fuzzy
 msgid "User"
