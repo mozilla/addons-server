@@ -492,8 +492,9 @@ class Version(OnChangeMixin, ModelBase):
 
     @property
     def is_unreviewed(self):
-        return filter(lambda f: f.status in amo.UNREVIEWED_FILE_STATUSES,
-                      self.all_files)
+        return bool(list(filter(
+            lambda f: f.status in amo.UNREVIEWED_FILE_STATUSES, self.all_files
+        )))
 
     @property
     def is_all_unreviewed(self):
@@ -555,7 +556,7 @@ class Version(OnChangeMixin, ModelBase):
 
         def rollup(xs):
             groups = sorted_groupby(xs, 'version_id')
-            return dict((k, list(vs)) for k, vs in groups)
+            return {k: list(vs) for k, vs in groups}
 
         al_dict = rollup(al)
 

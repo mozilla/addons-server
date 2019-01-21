@@ -32,8 +32,9 @@ from .models import (
 
 class FileSerializer(serializers.ModelSerializer):
     url = serializers.SerializerMethodField()
-    platform = ReverseChoiceField(choices=amo.PLATFORM_CHOICES_API.items())
-    status = ReverseChoiceField(choices=amo.STATUS_CHOICES_API.items())
+    platform = ReverseChoiceField(
+        choices=list(amo.PLATFORM_CHOICES_API.items()))
+    status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     permissions = serializers.ListField(
         source='webext_permissions_list',
         child=serializers.CharField())
@@ -197,7 +198,8 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
 
 
 class VersionSerializer(SimpleVersionSerializer):
-    channel = ReverseChoiceField(choices=amo.CHANNEL_CHOICES_API.items())
+    channel = ReverseChoiceField(
+        choices=list(amo.CHANNEL_CHOICES_API.items()))
     license = LicenseSerializer()
 
     class Meta:
@@ -238,7 +240,7 @@ class CurrentVersionSerializer(SimpleVersionSerializer):
             application = value[0]
             appversions = dict(zip(('min', 'max'), value[1:]))
         except ValueError as exc:
-            raise exceptions.ParseError(exc.message)
+            raise exceptions.ParseError(six.text_type(exc))
 
         version_qs = Version.objects.latest_public_compatible_with(
             application, appversions).filter(addon=addon)
@@ -401,11 +403,9 @@ class AddonSerializer(serializers.ModelSerializer):
         return data
 
     def get_categories(self, obj):
-        # Return a dict of lists like obj.app_categories does, but exposing
-        # slugs for keys and values instead of objects.
         return {
-            app.short: [cat.slug for cat in obj.app_categories[app]]
-            for app in obj.app_categories.keys()
+            app_short_name: [cat.slug for cat in categories]
+            for app_short_name, categories in obj.app_categories.items()
         }
 
     def get_has_eula(self, obj):

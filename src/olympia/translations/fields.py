@@ -229,7 +229,7 @@ class _TransField(object):
         self._field_name = field_name
 
     def clean(self, value):
-        value = dict((k, v.strip() if v else v) for (k, v) in value.items())
+        value = {k: v.strip() if v else v for (k, v) in value.items()}
 
         # Raise an exception if the default locale is required and not present
         if self.default_locale.lower() not in value:

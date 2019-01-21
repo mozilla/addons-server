@@ -16,7 +16,6 @@ import six
 import waffle
 
 from django_statsd.clients import statsd
-from six import text_type
 
 from olympia import amo
 from olympia.amo.utils import normalize_string, to_language
@@ -66,7 +65,7 @@ def get_featured_ids(app=None, lang=None, type=None, types=None):
     random.shuffle(ids)
     random.shuffle(other_ids)
     ids += other_ids
-    return map(int, ids)
+    return list(map(int, ids))
 
 
 @memoize('addons:creatured', timeout=60 * 10)
@@ -106,7 +105,7 @@ def get_creatured_ids(category, lang=None):
     per_locale = list(per_locale)
     random.shuffle(others)
     random.shuffle(per_locale)
-    return map(int, filter(None, per_locale + others))
+    return list(map(int, filter(None, per_locale + others)))
 
 
 def verify_mozilla_trademark(name, user, form=None):
@@ -115,7 +114,7 @@ def verify_mozilla_trademark(name, user, form=None):
         user.email.endswith(amo.ALLOWED_TRADEMARK_SUBMITTING_EMAILS))
 
     def _check(name):
-        name = normalize_string(name, strip_puncutation=True).lower()
+        name = normalize_string(name, strip_punctuation=True).lower()
 
         for symbol in amo.MOZILLA_TRADEMARK_SYMBOLS:
             if waffle.switch_is_active('content-optimization'):
@@ -202,10 +201,11 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
                    else amo.THEME_ACCENTCOLOR_DEFAULT)
     textcolor = '#%s' % (lwt.persona.textcolor or '000')
 
-    lwt_header = MULTIPLE_STOPS_REGEX.sub(u'.', text_type(lwt.persona.header))
+    lwt_header = MULTIPLE_STOPS_REGEX.sub(
+        u'.', six.text_type(lwt.persona.header))
     manifest = {
         "manifest_version": 2,
-        "name": six.text_type(lwt.name or lwt.slug),
+        "name": six.text_type(lwt.name) or six.text_type(lwt.slug),
         "version": '1.0',
         "theme": {
             "images": {

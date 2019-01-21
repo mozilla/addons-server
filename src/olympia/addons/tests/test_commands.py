@@ -250,11 +250,6 @@ def test_process_addons_limit_addons():
         assert len(calls) == 1
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
-    with count_subtask_calls(pa.sign_addons) as calls:
-        call_command('process_addons', task='sign_addons', limit='2')
-        assert len(calls) == 1
-        assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
-
 
 class AddFirefox57TagTestCase(TestCase):
     def test_affects_only_public_webextensions(self):

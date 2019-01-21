@@ -18,9 +18,7 @@ from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.utils import (
     attach_trans_dict, extract_colors_from_image, get_locale_from_lang,
-    pngcrush_image, translations_for_field, utc_millesecs_from_epoch,
-    walkfiles)
-from olympia.versions.models import Version
+    pngcrush_image, utc_millesecs_from_epoch, walkfiles)
 
 
 pytestmark = pytest.mark.django_db
@@ -99,20 +97,6 @@ class TestAttachTransDict(TestCase):
             set([('en-us', 'English 2 Name'),
                  ('es', 'Spanish 2 Name'),
                  ('fr', 'French 2 Name')]))
-
-    def test_translations_for_field(self):
-        version = Version.objects.create(addon=Addon.objects.create())
-
-        # No translations.
-        assert translations_for_field(version.release_notes) == {}
-
-        # With translations.
-        initial = {'en-us': 'release notes', 'fr': 'notes de version'}
-        version.release_notes = initial
-        version.save()
-
-        translations = translations_for_field(version.release_notes)
-        assert translations == initial
 
 
 def test_has_links():

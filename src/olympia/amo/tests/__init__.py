@@ -25,7 +25,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.encoding import force_str
+from django.utils.encoding import force_str, force_text
 
 import mock
 import pytest
@@ -938,9 +938,8 @@ class TestXss(TestCase):
     def setUp(self):
         super(TestXss, self).setUp()
         self.addon = Addon.objects.get(id=3615)
-        self.name = "<script>alert('hé')</script>"
-        self.escaped = (
-            "&lt;script&gt;alert(&#39;h\xc3\xa9&#39;)&lt;/script&gt;")
+        self.name = u"<script>alert('hé')</script>"
+        self.escaped = u'&lt;script&gt;alert(&#39;hé&#39;)&lt;/script&gt;'
         self.addon.name = self.name
         self.addon.save()
         u = UserProfile.objects.get(email='del@icio.us')
@@ -950,8 +949,9 @@ class TestXss(TestCase):
 
     def assertNameAndNoXSS(self, url):
         response = self.client.get(url)
-        assert self.name not in response.content
-        assert self.escaped in response.content
+        content = force_text(response.content)
+        assert self.name not in content
+        assert self.escaped in content
 
 
 @contextmanager

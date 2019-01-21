@@ -200,8 +200,8 @@ class TestIconForm(TestCase):
                                     instance=self.addon)
 
         dest = os.path.join(self.icon_path, name)
-        with storage.open(dest, 'w') as f:
-            shutil.copyfileobj(open(get_image_path(name)), f)
+        with storage.open(dest, 'wb') as f:
+            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
         assert form.is_valid()
         form.save(addon=self.addon)
         assert update_mock.called

@@ -48,7 +48,7 @@ class ButtonTest(TestCase):
         v.is_unreviewed = False
 
         self.platforms = amo.PLATFORM_MAC.id, amo.PLATFORM_LINUX.id
-        self.platform_files = map(self.get_file, self.platforms)
+        self.platform_files = list(map(self.get_file, self.platforms))
 
         self.request = Mock()
         self.request.APP = amo.FIREFOX

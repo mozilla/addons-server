@@ -140,12 +140,13 @@ class TransMulti(forms.widgets.MultiWidget):
         # ...But also add a widget that'll be cloned for when we want to add
         # a new translation. Hide it by default, it's only used in devhub, not
         # the admin (which doesn't need to add new translations).
-        init = self.widget().render(self.name + '_',
-                                    Translation(locale='init'),
-                                    {'class': 'trans-init hidden'})
+        init_widget = self.widget().render(
+            self.name + '_',
+            Translation(locale='init', localized_string=''),
+            {'class': 'trans-init hidden'})
         # Wrap it all inside a div that the javascript will look for.
         return '<div id="trans-%s" class="trans" data-name="%s">%s%s</div>' % (
-            self.name, self.name, formatted, init)
+            self.name, self.name, formatted, init_widget)
 
 
 class _TransWidget(object):

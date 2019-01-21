@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.utils import translation
+from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 from django.utils.translation import ugettext
 
@@ -150,7 +151,7 @@ class AddonGuidQueryParam(AddonQueryParam):
                 raise ValueError('RTA is currently disabled')
             # Any ValueError will trigger a 400.
             try:
-                value = urlsafe_base64_decode(value[4:])
+                value = force_text(urlsafe_base64_decode(value[4:]))
                 if not amo.ADDON_GUID_PATTERN.match(value):
                     raise ValueError()
             except (TypeError, ValueError):

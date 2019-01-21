@@ -198,7 +198,7 @@
                   {% if form.disabled %}
                     <p class="addon-app-cats addon-app-cats-inline">
                       <b>{{ form.app.pretty }}:</b>
-                      {% set cats = addon.app_categories.get(form.app, []) %}
+                      {% set cats = addon.app_categories.get(form.app.short, []) %}
                       {{ cats|join(' &middot; ')|safe }}
                     </p>
                     <p>
@@ -230,9 +230,9 @@
                 {% set categories = addon.app_categories %}
                 {% call empty_unless(categories) %}
                   <ul class="addon-app-cats-inline">
-                    {% for app, cats in categories.items() %}
+                    {% for app_short_name, cats in categories.items() %}
                       <li>
-                        <b>{{ app.pretty }}:</b>
+                        <b>{{ amo.APPS[app_short_name].pretty }}:</b>
                         {{ cats|join(' &middot; ')|safe }}
                       </li>
                     {% endfor %}
