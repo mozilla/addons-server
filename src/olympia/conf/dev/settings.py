@@ -47,7 +47,8 @@ INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
 
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL', charset='utf8mb4'),
-    'slave': get_db_config('DATABASES_SLAVE_URL', atomic_requests=False, charset='utf8mb4'),
+    'slave': get_db_config(
+        'DATABASES_SLAVE_URL', atomic_requests=False, charset='utf8mb4'),
 }
 
 SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')

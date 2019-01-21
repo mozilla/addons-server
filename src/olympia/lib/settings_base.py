@@ -125,7 +125,7 @@ CORS_ENDPOINT_OVERRIDES = []
 
 def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
     assert charset in ('utf8', 'utf8mb4')
-    
+
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
