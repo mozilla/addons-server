@@ -4,6 +4,8 @@ import os
 import shutil
 import tempfile
 import zipfile
+import collections
+import datetime
 
 from django.conf import settings
 from django.core import mail
@@ -13,22 +15,23 @@ from django.test.utils import override_settings
 import mock
 import pytest
 import responses
+import pytz
 
-from signing_clients.apps import SignatureInfo
+from waffle.testutils import override_sample
 
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
 from olympia.files.utils import extract_xpi
-from olympia.lib.crypto import packaged, tasks
+from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
-class TestPackaged(TestCase):
+class TestSigning(TestCase):
 
     def setUp(self):
-        super(TestPackaged, self).setUp()
+        super(TestSigning, self).setUp()
 
         # Change addon file name
         self.addon = amo.tests.addon_factory()
@@ -67,14 +70,14 @@ class TestPackaged(TestCase):
             os.unlink(self.file_.file_path)
         if os.path.exists(self.file_.guarded_file_path):
             os.unlink(self.file_.guarded_file_path)
-        super(TestPackaged, self).tearDown()
+        super(TestSigning, self).tearDown()
 
     def _sign_file(self, file_):
-        packaged.sign_file(file_)
+        signing.sign_file(file_)
 
     def _get_signature_details(self):
         with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
-            info = SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
+            info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
             manifest = zobj.read('META-INF/manifest.mf')
             return info, manifest
 
@@ -82,13 +85,13 @@ class TestPackaged(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        assert not packaged.is_signed(self.file_.file_path)
+        assert not signing.is_signed(self.file_.file_path)
 
     def assert_signed(self):
         assert self.file_.is_signed
         assert self.file_.cert_serial_num
         assert self.file_.hash
-        assert packaged.is_signed(self.file_.file_path)
+        assert signing.is_signed(self.file_.file_path)
 
     def test_supports_firefox_old_not_default_to_compatible(self):
         max_appversion = self.version.apps.first().max
@@ -97,7 +100,7 @@ class TestPackaged(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_android_old_not_default_to_compatible(self):
@@ -108,7 +111,7 @@ class TestPackaged(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_old_default_to_compatible(self):
@@ -118,7 +121,7 @@ class TestPackaged(TestCase):
         max_appversion.update(version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_android_old_default_to_compatible(self):
@@ -129,7 +132,7 @@ class TestPackaged(TestCase):
                               version='4', version_int=version_int('4'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_recent_default_to_compatible(self):
@@ -139,7 +142,7 @@ class TestPackaged(TestCase):
         max_appversion.update(version='37', version_int=version_int('37'))
         self.file_.update(binary_components=False, strict_compatibility=False)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_supports_firefox_android_recent_not_default_to_compatible(self):
@@ -150,12 +153,12 @@ class TestPackaged(TestCase):
                               version='37', version_int=version_int('37'))
         self.file_.update(binary_components=True, strict_compatibility=True)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_sign_file(self):
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
         # Make sure there's two newlines at the end of the mozilla.sf file (see
         # bug 1158938).
@@ -168,7 +171,7 @@ class TestPackaged(TestCase):
         self.file_.update(filename=u'jétpack.xpi')
         shutil.move(src, self.file_.file_path)
         self.assert_not_signed()
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_signed()
 
     def test_no_sign_missing_file(self):
@@ -176,26 +179,26 @@ class TestPackaged(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        assert not packaged.is_signed(self.file_.file_path)
+        assert not signing.is_signed(self.file_.file_path)
 
     def test_no_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
         self.file_.update(is_mozilla_signed_extension=True)
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         self.assert_not_signed()
 
     def test_is_signed(self):
-        assert not packaged.is_signed(self.file_.file_path)
-        packaged.sign_file(self.file_)
-        assert packaged.is_signed(self.file_.file_path)
+        assert not signing.is_signed(self.file_.file_path)
+        signing.sign_file(self.file_)
+        assert signing.is_signed(self.file_.file_path)
 
     def test_size_updated(self):
         unsigned_size = storage.size(self.file_.file_path)
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
         signed_size = storage.size(self.file_.file_path)
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
@@ -206,25 +209,25 @@ class TestPackaged(TestCase):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
-            packaged.sign_file(self.file_)
+            signing.sign_file(self.file_)
             self.assert_not_signed()
             # The multi-package itself isn't signed.
-            assert not packaged.is_signed(self.file_.file_path)
+            assert not signing.is_signed(self.file_.file_path)
             # The internal extensions aren't either.
             folder = tempfile.mkdtemp(dir=settings.TMP_PATH)
             try:
                 extract_xpi(self.file_.file_path, folder)
                 # The extension isn't.
-                assert not packaged.is_signed(
+                assert not signing.is_signed(
                     os.path.join(folder, 'random_extension.xpi'))
                 # And the theme isn't either.
-                assert not packaged.is_signed(
+                assert not signing.is_signed(
                     os.path.join(folder, 'random_theme.xpi'))
             finally:
                 amo.utils.rm_local_tmp_dir(folder)
 
     def test_call_signing(self):
-        assert packaged.sign_file(self.file_)
+        assert signing.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -257,7 +260,7 @@ class TestPackaged(TestCase):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
         self.addon.update(guid=long_guid)
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -274,26 +277,26 @@ class TestPackaged(TestCase):
 
     def test_get_id_short_guid(self):
         assert len(self.addon.guid) <= 64
-        assert len(packaged.get_id(self.addon)) <= 64
-        assert packaged.get_id(self.addon) == self.addon.guid
+        assert len(signing.get_id(self.addon)) <= 64
+        assert signing.get_id(self.addon) == self.addon.guid
 
     def test_get_id_longest_allowed_guid_bug_1203365(self):
         long_guid = 'x' * 64
         self.addon.update(guid=long_guid)
-        assert packaged.get_id(self.addon) == self.addon.guid
+        assert signing.get_id(self.addon) == self.addon.guid
 
     def test_get_id_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
         hashed = hashlib.sha256(long_guid).hexdigest()
         self.addon.update(guid=long_guid)
         assert len(self.addon.guid) > 64
-        assert len(packaged.get_id(self.addon)) <= 64
-        assert packaged.get_id(self.addon) == hashed
+        assert len(signing.get_id(self.addon)) <= 64
+        assert signing.get_id(self.addon) == hashed
 
     def test_sign_addon_with_unicode_guid(self):
         self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
 
-        packaged.sign_file(self.file_)
+        signing.sign_file(self.file_)
 
         signature_info, manifest = self._get_signature_details()
 
@@ -309,6 +312,94 @@ class TestPackaged(TestCase):
             'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n')
+
+
+@override_settings(ENABLE_ADDON_SIGNING=True)
+@override_sample('activate-autograph-file-signing', active=True)
+class TestSigningNewFileEndpoint(TestSigning):
+
+    def test_call_signing(self):
+        assert signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == 'xxxxx'
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
+
+    def test_sign_addon_with_unicode_guid(self):
+        self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
+
+        signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+
+        assert (
+            subject_info['common_name'] ==
+            u'NavratnePeniaze@NávratnéPeniaze')
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
+
+    def test_call_signing_too_long_guid_bug_1203365(self):
+        long_guid = 'x' * 65
+        hashed = hashlib.sha256(long_guid).hexdigest()
+        self.addon.update(guid=long_guid)
+        signing.sign_file(self.file_)
+
+        signature_info, manifest = self._get_signature_details()
+
+        subject_info = signature_info.signer_certificate['subject']
+        assert subject_info['common_name'] == hashed
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
+            'Manifest-Version: 1.0\n\n'
+            'Name: install.rdf\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
 
 
 class TestTasks(TestCase):
@@ -435,7 +526,7 @@ class TestTasks(TestCase):
             assert self.version.version_int == version_int('1.3')
 
             apps_without_signing = [app for app in amo.APPS_ALL.keys()
-                                    if app not in packaged.SIGN_FOR_APPS]
+                                    if app not in signing.SIGN_FOR_APPS]
 
             for app in apps_without_signing:
                 self.max_appversion.update(application=app)
@@ -618,3 +709,113 @@ class TestTasks(TestCase):
 ])
 def test_get_new_version_number(old, new):
     assert tasks.get_new_version_number(old) == new
+
+
+class TestSignatureInfo(object):
+
+    @pytest.fixture(autouse=True)
+    def setup(self):
+        fixture_path = (
+            'src/olympia/lib/crypto/tests/'
+            'mozilla-generated-by-openssl.pkcs7.der')
+
+        with open(fixture_path, 'rb') as fobj:
+            self.pkcs7 = fobj.read()
+
+        self.info = signing.SignatureInfo(self.pkcs7)
+
+    def test_loading_reading_string(self):
+        info = signing.SignatureInfo(self.pkcs7)
+        assert isinstance(info.content, collections.OrderedDict)
+
+    def test_loading_pass_signature_info_instance(self):
+        info = signing.SignatureInfo(self.pkcs7)
+        assert isinstance(info.content, collections.OrderedDict)
+
+        info2 = signing.SignatureInfo(info)
+
+        assert isinstance(info2.content, collections.OrderedDict)
+        assert info2.content == info.content
+
+    def test_signer_serial_number(self):
+        assert self.info.signer_serial_number == 1498181554500
+
+    def test_issuer(self):
+        assert self.info.issuer == collections.OrderedDict([
+            ('country_name', 'US'),
+            ('state_or_province_name', 'CA'),
+            ('locality_name', 'Mountain View'),
+            ('organization_name', 'Addons Test Signing'),
+            ('common_name', 'test.addons.signing.root.ca'),
+            ('email_address', 'opsec+stagerootaddons@mozilla.com')
+        ])
+
+    def test_signer_certificate(self):
+        assert (
+            self.info.signer_certificate['serial_number'] ==
+            self.info.signer_serial_number)
+        assert (
+            self.info.signer_certificate['issuer'] ==
+            self.info.issuer)
+
+        expected = collections.OrderedDict([
+            ('version', 'v3'),
+            ('serial_number', 1498181554500),
+            ('signature', collections.OrderedDict([
+                ('algorithm', 'sha256_rsa'), ('parameters', None)])),
+            ('issuer', collections.OrderedDict([
+                ('country_name', 'US'),
+                ('state_or_province_name', 'CA'),
+                ('locality_name', 'Mountain View'),
+                ('organization_name', 'Addons Test Signing'),
+                ('common_name', 'test.addons.signing.root.ca'),
+                ('email_address', 'opsec+stagerootaddons@mozilla.com')])),
+            ('validity', collections.OrderedDict([
+                ('not_before', datetime.datetime(
+                    2017, 6, 23, 1, 32, 34, tzinfo=pytz.utc)),
+                ('not_after', datetime.datetime(
+                    2027, 6, 21, 1, 32, 34, tzinfo=pytz.utc))])),
+            ('subject', collections.OrderedDict([
+                ('organizational_unit_name', 'Testing'),
+                ('country_name', 'US'),
+                ('locality_name', 'Mountain View'),
+                ('organization_name', 'Addons Testing'),
+                ('state_or_province_name', 'CA'),
+                ('common_name', '{02b860db-e71f-48d2-a5a0-82072a93d33c}')])),
+            ('subject_public_key_info', collections.OrderedDict([
+                ('algorithm', collections.OrderedDict([
+                    ('algorithm', 'rsa'),
+                    ('parameters', None)])),
+                ('public_key', collections.OrderedDict([
+                    ('modulus', int(
+                        '85289209018591781267198931558814435907521407777661'
+                        '50749316736213617395458578680335589192171418852036'
+                        '79278813048882998104120530700223207250951695884439'
+                        '20772452388935409377024686932620042402964287828106'
+                        '51257320080972660594945900464995547687116064792520'
+                        '10385231846333656801523388692257373069803424678966'
+                        '83558316878945090150671487395382420988138292553386'
+                        '65273893489909596214808207811839117255018821125538'
+                        '88010045768747055709235990054867405484806043609964'
+                        '46844151945633093802308152276459710592644539761011'
+                        '95743982561110649516741370965629194907895538590306'
+                        '29899529219665410153860752870947521013079820756069'
+                        '47104737107240593827799410733495909560358275915879'
+                        '55064950558358425436354620230911526069861662920050'
+                        '43124539276872288437450042840027281372269967539939'
+                        '24111213120065958637042429018593980801963496240784'
+                        '12170983502746046961830237201163411151902047596357'
+                        '52875610569157058411595354595985036610666909234931'
+                        '24897289875099542550941258245633054592232417696315'
+                        '40182071794766323211615139265042704991415186206585'
+                        '75885408887756385761663648099801365729955339334103'
+                        '60468108188015261735738849468668895508239573547213'
+                        '28312488126574859733988724870493942605656816541143'
+                        '61628373225003401044258905283594542783785817504173'
+                        '841847040037917474056678747905247')),
+                    ('public_exponent', 65537)]))])),
+            ('issuer_unique_id', None),
+            ('subject_unique_id', None),
+            ('extensions', None)])
+
+        assert self.info.signer_certificate == expected
