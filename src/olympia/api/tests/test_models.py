@@ -2,6 +2,8 @@ import mock
 
 from django.db import IntegrityError
 
+from six import text_type
+
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 
@@ -25,10 +27,10 @@ class TestAPIKey(TestCase):
 
     def test_string_representation(self):
         credentials = APIKey.new_jwt_credentials(self.user)
-        str_creds = str(credentials)
+        str_creds = text_type(credentials)
         assert credentials.key in str_creds
         assert credentials.secret not in str_creds
-        assert str(credentials.user) in str_creds
+        assert text_type(credentials.user) in str_creds
 
     def test_cant_have_two_active_keys_for_same_user(self):
         APIKey.new_jwt_credentials(self.user)

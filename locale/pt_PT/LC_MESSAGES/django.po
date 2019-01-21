@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-11 11:37+0000\n"
-"PO-Revision-Date: 2019-01-13 00:39+0000\n"
+"PO-Revision-Date: 2019-01-20 02:28+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -4588,11 +4588,11 @@ msgstr "Desloque sob uma imagem para a ampliar."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Faça as cookies desaparecer {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Faça os cookies desaparecer {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr "Eliminar cookies automaticamente após fechar um separador."
+msgstr "Apaga cookies automaticamente após fechar um separador."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7206,7 +7206,7 @@ msgid "Auto-advance after review"
 msgstr "Avançar automaticamente após revisão"
 
 msgid "Enable keyboard shortcuts"
-msgstr "Ativar atalhos do teclado"
+msgstr "Ativar atalhos de teclado"
 
 msgid "Keyboard Shortcuts"
 msgstr "Atalhos de teclado"
