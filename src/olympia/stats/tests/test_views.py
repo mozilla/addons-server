@@ -5,8 +5,10 @@ import json
 
 from django.http import Http404
 from django.test.client import RequestFactory
+from django.utils.encoding import force_text
 
 import mock
+import six
 
 from pyquery import PyQuery as pq
 
@@ -153,6 +155,26 @@ class TestListedAddons(StatsTest):
         self._check_it(self.public_views_gen(format='json'), 200)
 
 
+if six.PY2:
+    # In Python 2, the csv module deals with bytes all the way. This is
+    # taken from https://docs.python.org/2/library/csv.html#csv-examples to
+    # deal with utf-8, allowing our tests to be a bit saner - they can pass
+    # unicode strings instead of bytes transparently.
+    def utf_8_encoder(unicode_csv_data):
+        for line in unicode_csv_data:
+            yield line.encode('utf-8')
+
+    def CSVDictReaderClass(data, **kwargs):
+        """csv.DictReader that deals with unicode data for Python 2."""
+        csv_reader = csv.DictReader(utf_8_encoder(data), **kwargs)
+        for row in csv_reader:
+            yield {
+                unicode(key, 'utf-8'): unicode(value, 'utf-8')
+                for key, value in row.iteritems()}
+else:
+    CSVDictReaderClass = csv.DictReader
+
+
 class ESStatsTest(StatsTest, amo.tests.ESTestCase):
     """Test class with some ES setup."""
 
@@ -171,13 +193,15 @@ class ESStatsTest(StatsTest, amo.tests.ESTestCase):
         self.refresh('stats')
 
     def csv_eq(self, response, expected):
-        content = csv.DictReader(
+        content = force_text(response.content)
+        content_csv = CSVDictReaderClass(
             # Drop lines that are comments.
-            filter(lambda row: row[0] != '#', response.content.splitlines()))
-        expected = csv.DictReader(
+            filter(lambda row: row[0] != '#', content.splitlines()))
+        expected = force_text(expected)
+        expected_csv = CSVDictReaderClass(
             # Strip any extra spaces from the expected content.
             line.strip() for line in expected.splitlines())
-        assert tuple(content) == tuple(expected)
+        assert tuple(content_csv) == tuple(expected_csv)
 
 
 class TestSeriesSecurity(StatsTest):
@@ -283,9 +307,8 @@ class TestCSVs(ESStatsTest):
         assert response.status_code == 200
         self.csv_eq(
             response,
-            """date,count,English (US) (en-us),"""
-            """\xce\x95\xce\xbb\xce\xbb\xce\xb7\xce\xbd\xce\xb9\xce\xba"""
-            """\xce\xac (el)
+            u"""date,count,English (US) (en-us),"""
+            u"""Ελληνικά (el)
                2009-06-02,1500,300,400
                2009-06-01,1000,300,400""")
 
@@ -321,13 +344,14 @@ class TestCSVs(ESStatsTest):
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='csv')
-
+        assert response.status_code == 200
         assert set(response['cache-control'].split(', ')) == (
             {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'})
 
         self.url_args = {'start': '20200101', 'end': '20200130', 'addon_id': 4}
         response = self.get_view_response('stats.versions_series', head=True,
                                           group='day', format='json')
+        assert response.status_code == 200
         assert set(response['cache-control'].split(', ')) == (
             {'max-age=0', 'no-cache', 'no-store', 'must-revalidate'})
 
@@ -384,10 +408,10 @@ class TestResponses(ESStatsTest):
         for url_args in [self.url_args, self.url_args_theme]:
             self.url_args = url_args
 
-            r = self.get_view_response('stats.usage_series', group='day',
-                                       format='json')
-            assert r.status_code == 200
-            self.assertListEqual(json.loads(r.content), [
+            response = self.get_view_response(
+                'stats.usage_series', group='day', format='json')
+            assert response.status_code == 200
+            self.assertListEqual(json.loads(force_text(response.content)), [
                 {'count': 1500, 'date': '2009-06-02', 'end': '2009-06-02'},
                 {'count': 1000, 'date': '2009-06-01', 'end': '2009-06-01'},
             ])
@@ -396,19 +420,19 @@ class TestResponses(ESStatsTest):
         for url_args in [self.url_args, self.url_args_theme]:
             self.url_args = url_args
 
-            r = self.get_view_response('stats.usage_series', group='day',
-                                       format='csv')
-            assert r.status_code == 200
-            self.csv_eq(r,
+            response = self.get_view_response(
+                'stats.usage_series', group='day', format='csv')
+            assert response.status_code == 200
+            self.csv_eq(response,
                         """date,count
                            2009-06-02,1500
                            2009-06-01,1000""")
 
     def test_usage_by_app_json(self):
-        r = self.get_view_response('stats.apps_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.apps_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {
                 "data": {
                     "{ec8030f7-c20a-464f-9b0e-13a3a9e97384}": {"4.0": 1500}
@@ -428,18 +452,18 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_usage_by_app_csv(self):
-        r = self.get_view_response('stats.apps_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count,Firefox 4.0
-                          2009-06-02,1500,1500
-                          2009-06-01,1000,1000""")
+        response = self.get_view_response(
+            'stats.apps_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count,Firefox 4.0
+                                 2009-06-02,1500,1500
+                                 2009-06-01,1000,1000""")
 
     def test_usage_by_locale_json(self):
-        r = self.get_view_response('stats.locales_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.locales_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {
                 "count": 1500,
                 "date": "2009-06-02",
@@ -461,18 +485,18 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_usage_by_locale_csv(self):
-        r = self.get_view_response('stats.locales_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count,English (US) (en-us),Ελληνικά (el)
-                          2009-06-02,1500,300,400
-                          2009-06-01,1000,300,400""")
+        response = self.get_view_response(
+            'stats.locales_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count,English (US) (en-us),Ελληνικά (el)
+                                 2009-06-02,1500,300,400
+                                 2009-06-01,1000,300,400""")
 
     def test_usage_by_os_json(self):
-        r = self.get_view_response('stats.os_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.os_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {
                 "count": 1500,
                 "date": "2009-06-02",
@@ -494,15 +518,15 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_usage_by_os_csv(self):
-        r = self.get_view_response('stats.os_series', head=True, group='day',
-                                   format='csv')
-        assert r.status_code == 200
+        response = self.get_view_response(
+            'stats.os_series', head=True, group='day', format='csv')
+        assert response.status_code == 200
 
     def test_usage_by_version_json(self):
-        r = self.get_view_response('stats.versions_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.versions_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {
                 "count": 1500,
                 "date": "2009-06-02",
@@ -524,18 +548,18 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_usage_by_version_csv(self):
-        r = self.get_view_response('stats.versions_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count,2.0,1.0
-                          2009-06-02,1500,950,550
-                          2009-06-01,1000,800,200""")
+        response = self.get_view_response(
+            'stats.versions_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count,2.0,1.0
+                                 2009-06-02,1500,950,550
+                                 2009-06-01,1000,800,200""")
 
     def test_usage_by_status_json(self):
-        r = self.get_view_response('stats.statuses_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.statuses_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {
                 "count": 1500,
                 "date": "2009-06-02",
@@ -557,17 +581,17 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_usage_by_status_csv(self):
-        r = self.get_view_response('stats.statuses_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count,userEnabled,userDisabled
-                          2009-06-02,1500,1370,130
-                          2009-06-01,1000,950,50""")
+        response = self.get_view_response(
+            'stats.statuses_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count,userEnabled,userDisabled
+                                 2009-06-02,1500,1370,130
+                                 2009-06-01,1000,950,50""")
 
     def test_overview(self):
-        r = self.get_view_response('stats.overview_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
+        response = self.get_view_response(
+            'stats.overview_series', group='day', format='json')
+        assert response.status_code == 200
         # These are the dates from the fixtures. The return value will have
         # dates in between filled with zeroes.
         expected_data = [
@@ -590,7 +614,7 @@ class TestResponses(ESStatsTest):
             {"date": "2009-06-01",
              "data": {"downloads": 10, "updates": 1000}}
         ]
-        actual_data = json.loads(r.content)
+        actual_data = json.loads(force_text(response.content))
         # Make sure they match up at the front and back.
         assert actual_data[0]['date'] == expected_data[0]['date']
         assert actual_data[-1]['date'] == expected_data[-1]['date']
@@ -612,10 +636,10 @@ class TestResponses(ESStatsTest):
                 next_actual = next(actual)
 
     def test_downloads_json(self):
-        r = self.get_view_response('stats.downloads_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.downloads_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {"count": 10, "date": "2009-09-03", "end": "2009-09-03"},
             {"count": 10, "date": "2009-08-03", "end": "2009-08-03"},
             {"count": 10, "date": "2009-07-03", "end": "2009-07-03"},
@@ -627,24 +651,24 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_downloads_csv(self):
-        r = self.get_view_response('stats.downloads_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count
-                          2009-09-03,10
-                          2009-08-03,10
-                          2009-07-03,10
-                          2009-06-28,10
-                          2009-06-20,10
-                          2009-06-12,10
-                          2009-06-07,10
-                          2009-06-01,10""")
+        response = self.get_view_response(
+            'stats.downloads_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count
+                                 2009-09-03,10
+                                 2009-08-03,10
+                                 2009-07-03,10
+                                 2009-06-28,10
+                                 2009-06-20,10
+                                 2009-06-12,10
+                                 2009-06-07,10
+                                 2009-06-01,10""")
 
     def test_downloads_sources_json(self):
-        r = self.get_view_response('stats.sources_series', group='day',
-                                   format='json')
-        assert r.status_code == 200
-        self.assertListEqual(json.loads(r.content), [
+        response = self.get_view_response(
+            'stats.sources_series', group='day', format='json')
+        assert response.status_code == 200
+        self.assertListEqual(json.loads(force_text(response.content)), [
             {"count": 10,
              "date": "2009-09-03",
              "end": "2009-09-03",
@@ -680,18 +704,18 @@ class TestResponses(ESStatsTest):
         ])
 
     def test_downloads_sources_csv(self):
-        r = self.get_view_response('stats.sources_series', group='day',
-                                   format='csv')
-        assert r.status_code == 200
-        self.csv_eq(r, """date,count,search,api
-                          2009-09-03,10,3,2
-                          2009-08-03,10,3,2
-                          2009-07-03,10,3,2
-                          2009-06-28,10,3,2
-                          2009-06-20,10,3,2
-                          2009-06-12,10,3,2
-                          2009-06-07,10,3,2
-                          2009-06-01,10,3,2""")
+        response = self.get_view_response(
+            'stats.sources_series', group='day', format='csv')
+        assert response.status_code == 200
+        self.csv_eq(response, """date,count,search,api
+                                 2009-09-03,10,3,2
+                                 2009-08-03,10,3,2
+                                 2009-07-03,10,3,2
+                                 2009-06-28,10,3,2
+                                 2009-06-20,10,3,2
+                                 2009-06-12,10,3,2
+                                 2009-06-07,10,3,2
+                                 2009-06-01,10,3,2""")
 
 
 # Test the SQL query by using known dates, for weeks and months etc.
@@ -760,7 +784,7 @@ class TestSite(TestCase):
     def test_json(self, _site_query):
         _site_query.return_value = [[], []]
         res = self.client.get(reverse('stats.site', args=['json', 'date']))
-        assert res._headers['content-type'][1].startswith('text/json')
+        assert res._headers['content-type'][1].startswith('application/json')
 
     def tests_no_date(self, _site_query):
         _site_query.return_value = ['.', '.']

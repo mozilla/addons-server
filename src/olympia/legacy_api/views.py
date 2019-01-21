@@ -2,7 +2,6 @@ import hashlib
 import itertools
 import json
 import random
-import urllib
 
 from datetime import date, timedelta
 
@@ -11,11 +10,13 @@ from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, HttpResponsePermanentRedirect
 from django.template import engines
 from django.utils.decorators import method_decorator
-from django.utils.encoding import force_bytes
+from django.utils.encoding import force_bytes, force_text
 from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import six
 import waffle
+
+from six.moves.urllib_parse import quote, unquote
 
 import olympia.core.logger
 
@@ -372,7 +373,7 @@ class SearchView(APIView):
         if self.version < 1.5:
             # Fix doubly encoded query strings.
             try:
-                query = urllib.unquote(query.encode('ascii'))
+                query = unquote(force_text(query.encode('ascii')))
             except UnicodeEncodeError:
                 # This fails if the string is already UTF-8.
                 pass
@@ -493,7 +494,7 @@ def redirect_view(request, url):
     Redirect all requests that come here to an API call with a view parameter.
     """
     dest = '/api/%.1f/%s' % (legacy_api.CURRENT_VERSION,
-                             urllib.quote(url.encode('utf-8')))
+                             quote(url.encode('utf-8')))
     dest = get_url_prefix().fix(dest)
 
     return HttpResponsePermanentRedirect(dest)

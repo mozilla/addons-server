@@ -12,6 +12,7 @@ from django.core.files.storage import get_storage_class
 from django.db import connection
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
+from django.utils.encoding import force_text
 
 import six
 
@@ -397,6 +398,7 @@ _KEYS = {
     'review_count_new': 'reviews_created',
     'collection_count_new': 'collections_created',
 }
+_ALL_KEYS = list(_KEYS)
 
 _CACHED_KEYS = sorted(_KEYS.values())
 
@@ -415,8 +417,8 @@ def _site_query(period, start, end, field=None, request=None):
                "AND name IN (%s) "
                "GROUP BY %s(date), name "
                "ORDER BY %s(date) DESC;"
-               % (', '.join(['%s' for key in _KEYS.keys()]), period, period))
-        cursor.execute(sql, [start, end] + _KEYS.keys())
+               % (', '.join(['%s' for key in _ALL_KEYS]), period, period))
+        cursor.execute(sql, [start, end] + _ALL_KEYS)
 
         # Process the results into a format that is friendly for render_*.
         default = {k: 0 for k in _CACHED_KEYS}
@@ -429,7 +431,7 @@ def _site_query(period, start, end, field=None, request=None):
                 result[date_]['data'] = {}
             result[date_]['data'][_KEYS[name]] = int(count)
 
-    return result.values(), _CACHED_KEYS
+    return list(result.values()), _CACHED_KEYS
 
 
 @non_atomic_requests
@@ -484,34 +486,38 @@ def fudge_headers(response, stats):
         patch_cache_control(response, max_age=seven_days)
 
 
-class UnicodeCSVDictWriter(csv.DictWriter):
-    """A DictWriter that writes a unicode stream."""
+if six.PY2:
+    class CSVDictWriterClass(csv.DictWriter):
+        """A DictWriter that writes a unicode stream, because the python 2
+        csv module doesn't."""
 
-    def __init__(self, stream, fields, **kw):
-        # We have the csv module write into our buffer as bytes and then we
-        # dump the buffer to the real stream as unicode.
-        self.buffer = moves.cStringIO()
-        csv.DictWriter.__init__(self, self.buffer, fields, **kw)
-        self.stream = stream
+        def __init__(self, stream, fields, **kw):
+            # We have the csv module write into our buffer as bytes and then we
+            # dump the buffer to the real stream as unicode.
+            self.buffer = moves.cStringIO()
+            csv.DictWriter.__init__(self, self.buffer, fields, **kw)
+            self.stream = stream
 
-    def writeheader(self):
-        self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
+        def writeheader(self):
+            self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
 
-    def try_encode(self, obj):
-        return obj.encode('utf-8') if isinstance(obj, six.text_type) else obj
+        def try_encode(self, obj):
+            return obj.encode('utf-8') if isinstance(obj, basestring) else obj
 
-    def writerow(self, rowdict):
-        row = self._dict_to_list(rowdict)
-        # Write to the buffer as ascii.
-        self.writer.writerow(map(self.try_encode, row))
-        # Dump the buffer to the real stream as utf-8.
-        self.stream.write(self.buffer.getvalue().decode('utf-8'))
-        # Clear the buffer.
-        self.buffer.truncate(0)
+        def writerow(self, rowdict):
+            row = self._dict_to_list(rowdict)
+            # Write to the buffer as ascii.
+            self.writer.writerow(map(self.try_encode, row))
+            # Dump the buffer to the real stream as utf-8.
+            self.stream.write(self.buffer.getvalue().decode('utf-8'))
+            # Clear the buffer.
+            self.buffer.truncate(0)
 
-    def writerows(self, rowdicts):
-        for rowdict in rowdicts:
-            self.writerow(rowdict)
+        def writerows(self, rowdicts):
+            for rowdict in rowdicts:
+                self.writerow(rowdict)
+else:
+    CSVDictWriterClass = csv.DictWriter
 
 
 @allow_cross_site_request
@@ -524,9 +530,8 @@ def render_csv(request, addon, stats, fields,
     context = {'addon': addon, 'timestamp': ts, 'title': title,
                'show_disclaimer': show_disclaimer}
     response = render(request, 'stats/csv_header.txt', context)
-
-    writer = UnicodeCSVDictWriter(response, fields, restval=0,
-                                  extrasaction='ignore')
+    writer = CSVDictWriterClass(
+        response, fields, restval=0, extrasaction='ignore')
     writer.writeheader()
     writer.writerows(stats)
 
@@ -539,9 +544,9 @@ def render_csv(request, addon, stats, fields,
 @non_atomic_requests
 def render_json(request, addon, stats):
     """Render a stats series in JSON."""
-    response = http.HttpResponse(content_type='text/json')
+    response = http.HttpResponse(content_type='application/json')
 
     # Django's encoder supports date and datetime.
     json.dump(stats, response, cls=AMOJSONEncoder)
-    fudge_headers(response, response.content != json.dumps([]))
+    fudge_headers(response, force_text(response.content) != json.dumps([]))
     return response

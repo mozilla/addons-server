@@ -6,6 +6,7 @@ from textwrap import dedent
 from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
+from django.utils.encoding import force_text
 
 import jinja2
 import pytest
@@ -289,7 +290,7 @@ class APITest(TestCase):
         addon = Addon.objects.get(id=3615)
         response = self.client.get(
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['name'] == six.text_type(addon.name)
         assert data['type'] == 'extension'
         assert data['guid'] == addon.guid
@@ -322,7 +323,7 @@ class APITest(TestCase):
         Persona.objects.create(persona_id=3, addon=addon)
         response = self.client.get(
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['id'] == 3615
         # `id` should be `addon_id`, not `persona_id`
         assert data['theme']['id'] == '3615'
@@ -606,8 +607,8 @@ class ListTest(TestCase):
 
     def test_json(self):
         """Verify that we get some json."""
-        r = make_call('list/by_adu?format=json', version=1.5)
-        assert json.loads(r.content)
+        response = make_call('list/by_adu?format=json', version=1.5)
+        assert json.loads(force_text(response.content))
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
@@ -935,7 +936,7 @@ class SearchTest(ESTestCase):
         """
         response = self.client.get(
             "/en-US/firefox/api/1.2/search/delicious/all/1")
-        assert response.content.count("<addon id") == 1
+        assert force_text(response.content).count("<addon id") == 1
 
     def test_total_results(self):
         """
@@ -1179,17 +1180,17 @@ class SearchTest(ESTestCase):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
             legacy_api.CURRENT_VERSION)
-        data = json.loads(response.content)['suggestions'][0]
-        a = Addon.objects.get(pk=3615)
-        assert data['id'] == str(a.pk)
-        assert data['name'] == a.name
-        assert data['rating'] == a.average_rating
+        data = json.loads(force_text(response.content))['suggestions'][0]
+        addon = Addon.objects.get(pk=3615)
+        assert data['id'] == str(addon.pk)
+        assert data['name'] == addon.name
+        assert data['rating'] == addon.average_rating
 
     def test_no_category_suggestions(self):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=Feed' %
             legacy_api.CURRENT_VERSION)
-        assert json.loads(response.content)['suggestions'] == []
+        assert json.loads(force_text(response.content))['suggestions'] == []
 
     def test_suggestions_throttle(self):
         self.create_sample('autosuggest-throttle')
