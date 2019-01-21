@@ -1052,6 +1052,8 @@ EMAIL_DENY_LIST = env.list('EMAIL_DENY_LIST', default=('nobody@mozilla.org',))
 VALIDATION_FAQ_URL = ('https://wiki.mozilla.org/Add-ons/Reviewers/Guide/'
                       'AddonReviews#Step_2:_Automatic_validation')
 
+SHIELD_STUDIES_SUPPORT_URL = 'https://support.mozilla.org/kb/shield'
+
 
 # Celery
 CELERY_BROKER_URL = env(
