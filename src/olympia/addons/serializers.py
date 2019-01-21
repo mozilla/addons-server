@@ -314,15 +314,13 @@ class AddonSerializer(serializers.ModelSerializer):
     ratings = serializers.SerializerMethodField()
     ratings_url = serializers.SerializerMethodField()
     review_url = serializers.SerializerMethodField()
-    status = ReverseChoiceField(
-        choices=list(amo.STATUS_CHOICES_API.items()))
+    status = ReverseChoiceField(choices=list(amo.STATUS_CHOICES_API.items()))
     summary = TranslationSerializerField()
     support_email = TranslationSerializerField()
     support_url = TranslationSerializerField()
     tags = serializers.SerializerMethodField()
     theme_data = serializers.SerializerMethodField()
-    type = ReverseChoiceField(
-        choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
+    type = ReverseChoiceField(choices=list(amo.ADDON_TYPE_CHOICES_API.items()))
     url = serializers.SerializerMethodField()
 
     class Meta:

@@ -62,6 +62,10 @@ CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
     ['localhost:3000', 'olympia.test']
 )
 
+DATABASES = {
+    'default': get_db_config('DATABASES_DEFAULT_URL', charset='utf8mb4'),
+}
+
 # FxA config for local development only.
 FXA_CONFIG = {
     'default': {
