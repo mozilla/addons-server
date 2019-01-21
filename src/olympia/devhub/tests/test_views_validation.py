@@ -546,3 +546,20 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(res.content)
         # Again, make sure we don't see a dupe UUID error:
         assert data['validation']['messages'] == []
+
+    def test_opensearch_validation(self):
+        addon_file = open(
+            'src/olympia/files/fixtures/files/opensearch/sp_no_url.xml')
+        response = self.client.post(
+            reverse('devhub.upload'),
+            {'name': 'sp_no_url.xml', 'upload': addon_file})
+
+        uuid = response.url.split('/')[-2]
+
+        upload = FileUpload.objects.get(uuid=uuid)
+        assert upload.processed_validation['errors'] == 2
+        assert upload.processed_validation['messages'][0]['message'] == (
+            'OpenSearch: Missing &lt;Url&gt; element with &#39;text/html&#39; '
+            'type.')
+        assert upload.processed_validation['messages'][1]['message'] == (
+            'OpenSearch: Missing &lt;Url&gt; elements.')
