@@ -16,20 +16,18 @@ jobs:
     - { stage: python2, env: TOXENV=addons }
     - { stage: python2, env: TOXENV=devhub }
     - { stage: python2, env: TOXENV=reviewers-and-zadmin }
-    - { stage: python2, env: TOXENV=users-and-ratings }
+    - { stage: python2, env: TOXENV=accounts-users-and-ratings }
     - { stage: python2, env: TOXENV=amo-locales-and-signing }
-    - { stage: python2, env: TOXENV=accounts }
     - { stage: python2, env: TOXENV=main }
     - { stage: python3working, python: 3.6, env: TOXENV=codestyle}
     - { stage: python3working, python: 3.6, env: TOXENV=docs }
     - { stage: python3working, python: 3.6, env: TOXENV=assets }
     - { stage: python3working, python: 3.6, env: TOXENV=addons }
-    - { stage: python3working, python: 3.6, env: TOXENV=users-and-ratings }
+    - { stage: python3working, python: 3.6, env: TOXENV=accounts-users-and-ratings }
     - { stage: python3, python: 3.6, env: TOXENV=es }
     - { stage: python3, python: 3.6, env: TOXENV=devhub }
     - { stage: python3, python: 3.6, env: TOXENV=reviewers-and-zadmin }
     - { stage: python3, python: 3.6, env: TOXENV=amo-locales-and-signing }
-    - { stage: python3, python: 3.6, env: TOXENV=accounts }
     - { stage: python3, python: 3.6, env: TOXENV=main }
 
 env:
