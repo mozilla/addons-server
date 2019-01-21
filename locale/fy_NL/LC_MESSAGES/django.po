@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -712,6 +712,14 @@ msgstr "Dit moat in jildige hex-kleurkoade wêze, lykas #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Der moat op syn minst ien eigener wêze."
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "Der moat op syn minst ien eigener wêze."
+
 msgid "Not allowed"
 msgstr "Net tastien"
 
@@ -935,10 +943,6 @@ msgstr "Jo moatte in objekt fan {lang-code:value} opjaan."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Unjildige pk of identifikator ‘%s’ - objekt bestiet net."
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "Der moat op syn minst ien eigener wêze."
 
 msgid "Application Versions"
 msgstr "Tapassingsferzjes"
@@ -2372,6 +2376,32 @@ msgstr "Resinte wizigingen foar %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Resinte wizigingen foar myn add-ons"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "Mei yngong fan Firefox 53 kinne nije add-ons op dizze website allinnich WebExtensions wêze."
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Ferâldere add-ons binne net kompatibel mei Firefox 57 of heger. Brûk in maxVersion fan 56.* of leger."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Ferâldere taalpakketten foar Firefox wurde net mear stipe. In WebExtensions-ynstallaasjemanifest is fereaske. Sjoch op {mdn_link} foar mear details."
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+"Wy stean in fernijing ta en riede dit ek oan, mar jo kinne dit proses net ûngedien meitsje. As jo brûkers de WebExtension ien kear ynstallearre hawwe, kinne se gjin ferâldere add-on mear "
+"ynstallearje."
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr "Jo kinne gjin WebExtensions-add-on bywurkje mei in ferâldere add-on. Jo brûkers soenen jo nije ferzje dan net brûke kinne, omdat Firefox dit type fernijing net stipet."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "Der moat op syn minst ien eigener wêze."
 
@@ -2468,32 +2498,6 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategoryen kinne net wizige wurde as jo add-on foarsteld wurdt."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Mei yngong fan Firefox 53 kinne nije add-ons op dizze website allinnich WebExtensions wêze."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Ferâldere add-ons binne net kompatibel mei Firefox 57 of heger. Brûk in maxVersion fan 56.* of leger."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Ferâldere taalpakketten foar Firefox wurde net mear stipe. In WebExtensions-ynstallaasjemanifest is fereaske. Sjoch op {mdn_link} foar mear details."
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Wy stean in fernijing ta en riede dit ek oan, mar jo kinne dit proses net ûngedien meitsje. As jo brûkers de WebExtension ien kear ynstallearre hawwe, kinne se gjin ferâldere add-on mear "
-"ynstallearje."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Jo kinne gjin WebExtensions-add-on bywurkje mei in ferâldere add-on. Jo brûkers soenen jo nije ferzje dan net brûke kinne, omdat Firefox dit type fernijing net stipet."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Yn it yntsjinne bestân is jo ûntwikkelers-API-kaai oantroffen. Om jo account te beskermjen, sil de kaai ynlutsen wurde."
@@ -5687,6 +5691,12 @@ msgstr "Leechste stipe ‘strict_min_version’ is 42.0."
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Koe oplade bestân net útpakke; ûntbrekkend of leech <%s>-elemint"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "Kin opladen bestân net útpakke."
 
@@ -6169,97 +6179,6 @@ msgid ""
 msgstr ""
 "Yn it algemien net. Mar as de beoardieling net oan de beoardielingsrjochtlinen hjirboppe foldocht, kinne jo op ‘Dizze beoardieling rapportearje’ klikke foar in evaluaasje. As de beoardieling in net "
 "langer jildige klacht befettet fanwegen in nije útjefte fan jo add-on, kinne wy oerweagje de beoardieling fuort te smiten."
-
-msgid "Start Now"
-msgstr "No begjinne"
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr "Mozilla wol útsykje wat de bêste manier is om ús brûkers feilich te hâlden as se kieze foar it gebrûk fan software fan tredden, lykas ynstekkers. Dielnimme oan dit ûndersyk helpt ús hjirby!"
-
-msgid "What will happen next"
-msgstr "Wat bart hjirnei"
-
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>As jo ynstimme</strong> om diel te nimmen:"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "Mooglik foegje wy behearfunksjes foar befeiliging en ynstekkers ta oan Firefox foar online-feilichheid en prestaasjes."
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "Brûk Firefox fierder lykas jo dat altyd dogge. Ofhinklik fan hoe't jo it web brûke, merke jo wierskynlik gjin wizigingen."
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "Nei inkelde wiken wurdt it ûndersyk fansels beëinige. Jo Firefox keart dan werom nei de normale tastân."
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "Wy sille jo freegje in flugge opsjonele enkête yn te foljen om jo ûnderfining mei ús te dielen. De enkête nimt minder as 5 minuten."
-
-msgid "Leaving the study"
-msgstr "It ûndersyk ferlitte"
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "It ûndersyk rint nei inkelde wiken fansels ôf. Jo kinne it ûndersyk ier ferlitte. Om dit te dwaan, folgje jo dizze stappen:"
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr "Typ about:addons yn de lokaasjebalke, en druk op Enter."
-
-msgid "Find Plugin Safety in the addons list."
-msgstr "Sykje nei Plugin Safety yn de list mei add-ons."
-
-msgid "Click the remove button."
-msgstr "Klik op de fuortsmytknop."
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr "As jo jo bytiids foar it ûndersyk ôfmelde, freegje wy jo in enkête yn te foljen. Wy binne ynteressearre yn jo ûnderfining, sels as jo net oan it hiele ûndersyk dielnommen hawwe."
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr "Ofmelde foar in ûndersyk foarkomt net dat jo oan takomstige ûndersiken dielnimme kinne."
-
-msgid "Your privacy"
-msgstr "Jo privacy"
-
-msgid "All Shield Studies"
-msgstr "Alle Shield-ûndersiken"
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
-"Elk Shield-ûndersyk sammelet gegevens oer wichtige ûndersyksbarrens, lykas ynstallearjen, de-ynstallearjen, deistich gebrûk, en ein fan it ûndersyk. Undersiken befetsje ek in opsjonele enkête."
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Dizze gegevens binne oan <a href=\"%(url)s\">Firefox Telemetry-saameling</a> keppele."
-
-msgid "This particular Study"
-msgstr "Dit spesifike ûndersyk"
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr "Neist de gegevens dy't troch alle Shield-ûndersiken sammele wurde, sammelet Mozilla gegevens oer:"
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "Websites dy't jo besykje en dy ynstekkers probearje te brûken, en hokker ynhâld op de website de ynstekker fereasket;"
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "Hokker ynteraksje jo mei ynstekker-ynhâld op dy websites hawwe, lykas oft en hoe't jo dy ynstekker útfiere litte."
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozilla hâldt dizze gegevens privee; gegevens wurde allinnich yn gearfoege of anonymisearre foarm dield."
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "Mear ynfo oer de gegevenssamling foar dit ûndersyk kinne jo <a href=\"%(url)s\">hjir</a> fine."
-
-msgid "You Help Make Firefox Better"
-msgstr "Jo helpe Firefox te ferbetterjen"
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr ""
-"By Mozilla binne wy grutsk op it bouwen fan projekten foar jo, de brûker! Dêrom hawwe wy jo help nedich. Troch oan dit ûndersyk diel te nimmen, helpe jo ús út namme fan jo bettere beslissingen te "
-"nimmen en daliks de takomst fan Firefox foarm te jaan!"
-
-msgid "Brought to you by:"
-msgstr "Oanbean troch:"
 
 #, fuzzy
 msgid "User"

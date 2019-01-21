@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -711,6 +711,14 @@ msgstr "ਇਹ ਇੱਕ ਜਾਇਜ ਹੈਕਸ ਕਲਰ ਕੋਡ ਹੋਣ
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
+
 msgid "Not allowed"
 msgstr "ਇਜ਼ਾਜਤ ਨਹੀਂ"
 
@@ -937,10 +945,6 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr ""
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
 msgid "Application Versions"
 msgstr "ਐਪਲੀਕੇਸ਼ਨ ਵਰਜਨ"
@@ -2441,6 +2445,30 @@ msgstr "%s ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 msgid "Recent Changes for My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr ""
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr ""
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr ""
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr ""
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "ਘੱਟੋ-ਘੱਟ ਇੱਕ ਮਾਲਕ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ।"
 
@@ -2535,30 +2563,6 @@ msgstr ""
 #, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "ਵਰਗ ਬਦਲੇ ਨਹੀਂਂ ਜਾ ਸਕਦੇ ਜਦ ਕਿ ਤੁਹਾਡਾ ਐਡਓਨ ਇਸ ਐਪਲੀਕੇਸ਼ਨ ਲਈ ਪੇਸ਼ ਕੀਤਾ ਗਿਆ ਹੈ।"
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -5819,6 +5823,12 @@ msgstr ""
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "ਅੱਪਲੋਡ ਫ਼ਾਈਲ ਨੂੰ ਪਾਰਸ ਨਹੀਂ ਕਰ ਸਕਦਾ।"
 
@@ -6311,96 +6321,6 @@ msgid ""
 msgstr ""
 "ਆਮ ਤੌਰ ਤੇ, ਨਹੀਂ। ਪਰ ਜੇਕਰ ਸਮੀਖਿਆ ਉੱਤੇ ਦਿੱਤੇ ਦਿਸ਼ਾ-ਨਿਰਦੇਸ਼ਾਂ ਤੇ ਖਰੀ ਨਹੀਂ ਉਤਰਦੀ, ਤੁਸੀਂ \"ਇਸ ਸਮੀਖਿਆ ਦੀ ਸੂਚਨਾ\" ਤੇ ਕਲਿੱਕ ਕਰੋ ਅਤੇ ਇਸ ਦੀ ਜਾਂਚ ਕਰਵਾਓ। ਜੇਕਰ ਸਮੀਖਿਆ ਵਿੱਚ ਇੱਕ ਸ਼ਿਕਾਇਤ ਸ਼ਾਮਲ ਹੋਵੇ ਜੋ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੀ ਨਵੀਂ ਰੀਲੀਜ਼ ਕਾਰਨ ਉਚਿਤ ਨਾ ਹੋਵੇ, "
 "ਅਸੀਂ ਸਮੀਖਿਆ ਨੂੰ ਹਟਾਉਣ ਬਾਰੇ ਸੋਚ ਸਕਦੇ ਹਾਂ। ਆਪਣੀ ਬੇਨਤੀ ਵੇਰਵੇ ਨਾਲ amo-editors@mozilla.org ਤੇ ਦਾਖਲ ਕਰੋ।"
-
-msgid "Start Now"
-msgstr ""
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
-
-msgid "What will happen next"
-msgstr ""
-
-#, fuzzy
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>ਔਸਤ</strong> (%(total)s)"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
-
-msgid "Leaving the study"
-msgstr ""
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
-
-msgid "Find Plugin Safety in the addons list."
-msgstr ""
-
-msgid "Click the remove button."
-msgstr ""
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
-
-#, fuzzy
-msgid "Your privacy"
-msgstr "ਪਰਦਾ ਨੀਤੀ:"
-
-msgid "All Shield Studies"
-msgstr ""
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
-
-msgid "This particular Study"
-msgstr ""
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
-
-msgid "You Help Make Firefox Better"
-msgstr ""
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr ""
-
-msgid "Brought to you by:"
-msgstr ""
 
 #, fuzzy
 msgid "User"

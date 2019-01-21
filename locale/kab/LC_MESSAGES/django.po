@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2018-11-16 17:18+0000\n"
 "Last-Translator: Linda DIB <lynda.dib@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -703,6 +703,14 @@ msgstr "Yessef k ad yili n tangalt n yini asedamrawan, am #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
+
 msgid "Not allowed"
 msgstr "Ur yettusireg ara"
 
@@ -923,10 +931,6 @@ msgstr ""
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Tasarut tamezwarut neɣ asulay ilulen \"%s\" mačči d ameɣtu. Taɣawsa ulmac-itt."
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
 msgid "Application Versions"
 msgstr "Ileqman n usnas"
@@ -2355,6 +2359,31 @@ msgstr "Isnifal n melmi kan i %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Isnifal n melmi kan i yizegrar-iw"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Izegrar i Thunderbird akked SeaMonkey llan tura, daɣen ttwaseggmen deg izegrar di  addons.thunderbird.net. Tzemreḍ ad tesqedceḍ yiwen umiḍan i uleqqem n yizegrar-ik deg usmel amaynut."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "Si lqem 53 d asawen n Firefox, izegrar imaynuten n usmel-agi ad ilinkan WebExtensions. "
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Izegrar yettwasersen faten ur mṣadan ara d Firefox 57 neɣ ugar, Seqdec maxVersion n 56.* neɣ ddaw."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Ikemmusen n tutlaty iqbuṛen n Firefox ur ttwasefraken tura. Ameskan n usebded n WebExtensions ilaq. Wali {mdn_link} ɣef ayen-nniḍen."
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar deffir. Ticki iseqdacen sbedden WebExtension, ur ttizmiren ara ad sbedden ileman iqburen."
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr "Ur tezmired ara ad tsemselsiḍ azegrir WebExtensions s uzegrir aqbuṛ. Iseqdacen inek ur ttizmiren ara ad sqedcen lqem amaynut acku Firefox ur isefrak ara anaw-agi n uleqqem."
+
+#, fuzzy
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
+
 msgid "Must have at least one owner."
 msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
@@ -2450,31 +2479,6 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Taggayint ur zmirent ara ad beddlent ticki azegrir-ik d itri."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Izegrar i Thunderbird akked SeaMonkey llan tura, daɣen ttwaseggmen deg izegrar di  addons.thunderbird.net. Tzemreḍ ad tesqedceḍ yiwen umiḍan i uleqqem n yizegrar-ik deg usmel amaynut."
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Si lqem 53 d asawen n Firefox, izegrar imaynuten n usmel-agi ad ilinkan WebExtensions. "
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Izegrar yettwasersen faten ur mṣadan ara d Firefox 57 neɣ ugar, Seqdec maxVersion n 56.* neɣ ddaw."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Ikemmusen n tutlaty iqbuṛen n Firefox ur ttwasefraken tura. Ameskan n usebded n WebExtensions ilaq. Wali {mdn_link} ɣef ayen-nniḍen."
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar deffir. Ticki iseqdacen sbedden WebExtension, ur ttizmiren ara ad sbedden ileman iqburen."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Ur tezmired ara ad tsemselsiḍ azegrir WebExtensions s uzegrir aqbuṛ. Iseqdacen inek ur ttizmiren ara ad sqedcen lqem amaynut acku Firefox ur isefrak ara anaw-agi n uleqqem."
-
-#, fuzzy
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tasarut-ik API n tneflit tettwaf deg ufaylu yettwaznen. Akken ad tḥerzeḍ amiḍan-ik, tasarutt ad tattwaḥwi."
@@ -5814,6 +5818,12 @@ msgstr ""
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Ur izmir ara ad isleḍ afaylu yulin, aferdis <%s>ulac-it neɣ d ilem"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "Ur izmir ara ad isleḍ afaylu yulin."
 
@@ -6296,94 +6306,6 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 "S wwudem amatu, ala. Maca asenqed ur isεi ara tiwtilin n ussawen, tzemreḍ ad tsended ɣef \"Cegger asenqed-a\" sakin qaεed-it. Ma yella asenqed deg-s acetki ur ɣezzifet ara, nezmer ad ten-kkes."
-
-msgid "Start Now"
-msgstr "Bdu tura"
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr ""
-
-msgid "What will happen next"
-msgstr "Acu ara yeḍrun ar zdat"
-
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Ma tqebleḍd</strong> ad tettekiḍ:"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr ""
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr ""
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr ""
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr ""
-
-msgid "Leaving the study"
-msgstr "Ffeɣ si tezrawt"
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr ""
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr ""
-
-msgid "Find Plugin Safety in the addons list."
-msgstr "Nadi Plugin Safety di tebdart n yizegrar."
-
-msgid "Click the remove button."
-msgstr "Sit ɣef tqeffalt Kkes."
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr ""
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr ""
-
-msgid "Your privacy"
-msgstr "Tabaḍnit inek"
-
-msgid "All Shield Studies"
-msgstr "Akk tizrawin Shield"
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr ""
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr ""
-
-msgid "This particular Study"
-msgstr "Tazrawt-agi kan"
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr ""
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr ""
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr ""
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr ""
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr ""
-
-msgid "You Help Make Firefox Better"
-msgstr "Tettɛawaneḍ ad tesnerniḍ Firefox"
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr ""
-
-msgid "Brought to you by:"
-msgstr "Iwwi-yak-tt-id:"
 
 #, fuzzy
 msgid "User"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-11 11:37+0000\n"
+"POT-Creation-Date: 2019-01-21 14:37+0000\n"
 "PO-Revision-Date: 2018-12-19 11:42+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -730,6 +730,14 @@ msgstr "Musí se jednat o platnou barvu v hexa formátu, například #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Některá funkčnost je v průběhu údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
+#, fuzzy
+msgid "Must contain at least one printable character."
+msgstr "Musí být alespoň jeden vlastník."
+
+#, fuzzy
+msgid "Ensure this field contains at least one letter or number character."
+msgstr "Musí být alespoň jeden vlastník."
+
 msgid "Not allowed"
 msgstr "Není povoleno"
 
@@ -956,10 +964,6 @@ msgstr "Je nutné poskytnout tento objekt: {lang-code:value}."
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
 msgstr "Neplatný primární klíč nebo slug \"%s\" - objekt neexistuje."
-
-#, fuzzy
-msgid "Must contain at least one printable character."
-msgstr "Musí být alespoň jeden vlastník."
 
 msgid "Application Versions"
 msgstr "Verze aplikace"
@@ -2389,6 +2393,33 @@ msgstr "Nedávně změna pro %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedávné změny pro mé doplňky"
 
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Doplňky pro Thunderbird a SeaMonkey jsou nyní na samostatném serveru addons.thunderbird.net. Pro aktualizaci svého doplňku na nové stránce můžete použít svůj stávající účet."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
+msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
+msgstr "Počínaje Firefoxem 53, nové doplňky na této stránce mohou být pouze typu WebExtensions."
+
+msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
+msgstr "Zastaralé doplňky nejsou s Firefoxem verze 57 a novější kompatibilní. Nastavte atribut maxVersion na 56.* nebo nižší."
+
+msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgstr "Zastaralé jazykové balíčky pro Firefox již nejsou podporované. Nové balíčky musí obsahovat WebExtensions manifest. Více informací najdete na stránce {mdn_link}."
+
+msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
+msgstr ""
+"Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
+"vašeho doplňku."
+
+msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
+msgstr ""
+"Starý typ doplňku nemůže být použit k aktualizaci doplňku typu WebExtensions. Jelikož nejnovější verze Firefoxu takovou aktualizaci nepodporují, vaši uživatelé by nemohli novou verzi používat."
+
+msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr "Musí být alespoň jeden vlastník."
 
@@ -2483,33 +2514,6 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Dokud je váš doplněk veden jako doporučený, nemůžete měnit jeho umístění v kategoriích."
-
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Doplňky pro Thunderbird a SeaMonkey jsou nyní na samostatném serveru addons.thunderbird.net. Pro aktualizaci svého doplňku na nové stránce můžete použít svůj stávající účet."
-
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Počínaje Firefoxem 53, nové doplňky na této stránce mohou být pouze typu WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Zastaralé doplňky nejsou s Firefoxem verze 57 a novější kompatibilní. Nastavte atribut maxVersion na 56.* nebo nižší."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Zastaralé jazykové balíčky pro Firefox již nejsou podporované. Nové balíčky musí obsahovat WebExtensions manifest. Více informací najdete na stránce {mdn_link}."
-
-msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-"Dovolujeme a doporučujeme povýšení doplňku, ale tento proces již nebudete moci zvrátit. Jakmile budou mít uživatelé nainstalovánu WebExtension verzi, nebudou schopni nainstalovat předchozí verze "
-"vašeho doplňku."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
-"Starý typ doplňku nemůže být použit k aktualizaci doplňku typu WebExtensions. Jelikož nejnovější verze Firefoxu takovou aktualizaci nepodporují, vaši uživatelé by nemohli novou verzi používat."
-
-msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Váš vývojářšký API klíč byl nalezen v nahraném souboru. Pro ochranu vašeho účtu bude tento klíč zneplatněn."
@@ -5667,6 +5671,12 @@ msgstr "Nejnižší možná hodnota \"strict_min_version\" je 42.0."
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Nepodařilo se zpracovat nahrávaný soubor, element <%s> chybí nebo je prázdný"
 
+msgid "OpenSearch: XML Security error."
+msgstr ""
+
+msgid "OpenSearch: XML Parse Error."
+msgstr ""
+
 msgid "Could not parse uploaded file."
 msgstr "Nepodařilo se zpracovat nahrávaný soubor."
 
@@ -6148,94 +6158,6 @@ msgid ""
 msgstr ""
 "V obecném případě ne. Ale pokud recenze nesplňuje pravidla uvedená výše, můžete klepnout na \"Nahlásit recenzi\" pro její moderování. Pokud recenze obsahuje stížnost, která již není relevantní s "
 "ohledem na vydání nové verze doplňku, můžeme zvážit její smazání."
-
-msgid "Start Now"
-msgstr "Začít"
-
-msgid "Mozilla wants to figure out the best way to keep our users safe if they choose to use third-party software such as plugins. Participating in this study will help us find out!"
-msgstr "Mozilla chce najít nejlepší způsob jak zajistit bezpečí uživatelů při používání softwaru třetích stran, jakým jsou zásuvné moduly. Pomoci nám můžete zapojením do této studie."
-
-msgid "What will happen next"
-msgstr "Co se bude dít dál"
-
-msgid "<strong>If you agree</strong> to participate:"
-msgstr "<strong>Pokud souhlasíte</strong> s účastí:"
-
-msgid "We may add security and plugin control features to Firefox to help with online security and performance."
-msgstr "V budoucnu můžeme do Firefoxu přidat funkce pro ovládání zásuvných modulů, jejich online zabezpečení a výkon."
-
-msgid "Continue using Firefox as you normally would. Depending on how you use the Web, you may not notice any changes."
-msgstr "Používejte Firefox běžným způsobem jakoby se nic nedělo. Neměli byste zaznamenat žádnou změnu."
-
-msgid "After a few weeks, the study will end on its own. Your Firefox will go back to normal."
-msgstr "Po několika týdnech se studie sama ukončí a váš Firefox se vrátí do běžného stavu."
-
-msgid "We will ask you to fill out a quick optional survey to tell us about your experience. The survey should take less than 5 minutes to complete."
-msgstr "Požádáme vás o vyplnění krátkého dobrovolného dotazníku o vašich zkušenostech se studií. Vyplnění bude trvat méně než 5 minut."
-
-msgid "Leaving the study"
-msgstr "Opuštění studie"
-
-msgid "The study will expire on its own in a few weeks. You may leave the study early. To do so, follow these steps:"
-msgstr "Studie skončí sama po několika týdnech. Můžete ji ale opustit i dříve. Zde je postup:"
-
-msgid "Type about:addons into the location bar, and press enter."
-msgstr "Do adresního řádku napište about:addons a stiskněte Enter."
-
-msgid "Find Plugin Safety in the addons list."
-msgstr "V seznamu doplňků nejděte Plugin Safety."
-
-msgid "Click the remove button."
-msgstr "Klepněte na tlačítko pro odebrání."
-
-msgid "If you opt out of the study early we will ask you to fill out a survey. We’re interested in hearing about your experience, even if you didn’t participate in the entire study."
-msgstr "Pokud se rozhodnete studii opustit dříve, požádáme vás o vyplnění dotazníku. Rádi bychom se dozvěděli vaše zkušenosti i pokud se nezúčastníte celé studie."
-
-msgid "Opting out of a study does not prevent you from participating in future studies."
-msgstr "Opuštění studie nemá žádný vliv na vaše případné zapojení v dalších studií."
-
-msgid "Your privacy"
-msgstr "Vaše soukromí"
-
-msgid "All Shield Studies"
-msgstr "Všechny studie"
-
-msgid "Every Shield Study collects data about important study events, such as install, uninstall, daily usage, and end of study. Studies also include an optional survey."
-msgstr "Při každé studii dochází ke sběru dat o důležitých událostech, jakými jsou instalace, odinstalace, denní používání a také o konci studie. Studie také obsahují nepovinný dotazník."
-
-#, python-format
-msgid "This data is associated with <a href=\"%(url)s\">Firefox Telemetry collection</a>."
-msgstr "Tato data jsou spojena se <a href=\"%(url)s\">sběrem telemetrie Firefoxu</a>."
-
-msgid "This particular Study"
-msgstr "Tato konkrétní studie"
-
-msgid "In addition to the data collected by all Shield Studies, Mozilla will collect information about:"
-msgstr "Kromě dat sbíraných samotnou studií sbírá Mozilla také informace o:"
-
-msgid "Websites you visit that try to use plugins, and what content on the site requires the plugin;"
-msgstr "Stránkách, které navštívíte, které chtějí používat zásuvné moduly pro svůj obsah;"
-
-msgid "How you interact with plugin content on those sites, including whether and how you choose to allow the plugin to run."
-msgstr "Jak na stránkách obsah modulu používáte, včetně jakým způsobem jste se rozhodli jeho spuštění povolit."
-
-msgid "Mozilla will keep this information private; any data will only be shared in aggregate or anonymized form."
-msgstr "Mozilla udržuje tato data v soukromí - sdíleny budou pouze anonymizovaná a agregovaná shrnutí."
-
-#, python-format
-msgid "You can learn more about the data collection for this study <a href=\"%(url)s\">here</a>."
-msgstr "Další informace a shromažďování dat pro tuto studii můžete najít <a href=\"%(url)s\">zde</a>."
-
-msgid "You Help Make Firefox Better"
-msgstr "Pomáháte vylepšit Firefox"
-
-msgid ""
-"At Mozilla, we pride ourselves on building products for you, the user! That’s why we need your help. By participating in this study, you will help us to make better decisions on your behalf and "
-"directly shape the future of Firefox!"
-msgstr "V Mozille si zakládáme na produktech vytvářených na míru vám, uživatelům. Proto potřebujeme vaši pomoc. Účastí v této studii nám pomůžete lépe rozhodnout o budoucím vývoji Firefoxu."
-
-msgid "Brought to you by:"
-msgstr "Od:"
 
 msgid "User"
 msgstr "Uživatel"
