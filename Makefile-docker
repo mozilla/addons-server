@@ -143,6 +143,7 @@ update_assets:
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	$(PYTHON_COMMAND) manage.py compress_assets
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
+	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 
 update: update_deps update_db update_assets
 	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
