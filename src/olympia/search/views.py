@@ -1,7 +1,6 @@
 from django import http
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
 
@@ -548,7 +547,9 @@ def fix_search_query(query, extra_params=None):
             six.text_type(p.id): p.shortname
             for p in amo.PLATFORMS.values()
         },
-        'atype': {k: six.text_type(v) for k, v in amo.ADDON_SEARCH_SLUGS.items()},
+        'atype': {
+            k: six.text_type(v) for k, v in amo.ADDON_SEARCH_SLUGS.items()
+        },
     }
     if extra_params:
         params.update(extra_params)
