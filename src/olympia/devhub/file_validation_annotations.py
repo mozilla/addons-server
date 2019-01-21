@@ -238,15 +238,15 @@ def annotate_akismet_spam_check(results, akismet_results):
                 msg_id='akismet_is_spam_%s' % field)
 
 
-def annotate_search_plugin_validation(results, file_, channel):
-    if not file_.current_file_path.endswith('.xml'):
+def annotate_search_plugin_validation(results, file_path, channel):
+    if not file_path.endswith('.xml'):
         return
 
     try:
         # Requires bytes because defusedxml fails to detect
         # unicode strings as filenames.
         # https://gist.github.com/EnTeQuAk/25f99701d8b123f7611acd6ce0d5840b
-        dom = minidom.parse(force_bytes(file_.current_file_path))
+        dom = minidom.parse(force_bytes(file_path))
     except DefusedXmlException:
         url = 'https://pypi.python.org/pypi/defusedxml/0.3#attack-vectors'
         insert_validation_message(

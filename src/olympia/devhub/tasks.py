@@ -247,6 +247,9 @@ def handle_upload_validation_result(
 
     annotations.annotate_legacy_langpack_restriction(results=results)
 
+    annotations.annotate_search_plugin_validation(
+        results=results, file_path=upload.path, channel=channel)
+
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no LWT or search plugin
     try:
@@ -323,7 +326,8 @@ def handle_file_validation_result(results, file_id, *args):
         version_string=file_.version.version, channel=file_.version.channel)
 
     annotations.annotate_search_plugin_validation(
-        results=results, file_=file_, channel=file_.version.channel)
+        results=results, file_path=file_.current_file_path,
+        channel=file_.version.channel)
 
     return FileValidation.from_json(file_, results).pk
 

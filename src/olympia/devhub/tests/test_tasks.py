@@ -1474,8 +1474,9 @@ class TestAPIKeyInSubmission(TestCase):
 ])
 def test_opensearch_validation(fixture, success, message):
     """Tests that the OpenSearch validation doesn't find anything worrying."""
-    addon = addon_factory(file_kw={
-        'filename': 'opensearch/{}'.format(fixture)})
+    fixture_path = os.path.join(
+        settings.ROOT, 'src/olympia/files/fixtures/files/opensearch/',
+        fixture)
 
     results = {
         'messages': [],
@@ -1484,10 +1485,8 @@ def test_opensearch_validation(fixture, success, message):
     }
 
     annotations.annotate_search_plugin_validation(
-        results, addon.current_version.current_file,
-        amo.RELEASE_CHANNEL_LISTED)
+        results, fixture_path, amo.RELEASE_CHANNEL_LISTED)
 
-    print(results['messages'])
     if success:
         assert not results['errors']
         assert not results['messages']
@@ -1502,8 +1501,9 @@ def test_opensearch_validation(fixture, success, message):
 
 def test_opensearch_validation_rel_self_url():
     """Tests that rel=self urls are ignored for unlisted addons."""
-    addon = addon_factory(file_kw={
-        'filename': 'opensearch/rel_self_url.xml'})
+    fixture_path = os.path.join(
+        settings.ROOT, 'src/olympia/files/fixtures/files',
+        'opensearch/rel_self_url.xml')
 
     results = {
         'messages': [],
@@ -1512,13 +1512,13 @@ def test_opensearch_validation_rel_self_url():
     }
 
     annotations.annotate_search_plugin_validation(
-        results, addon.current_version.current_file,
+        results, fixture_path,
         amo.RELEASE_CHANNEL_UNLISTED)
 
     assert not results['errors']
 
     annotations.annotate_search_plugin_validation(
-        results, addon.current_version.current_file,
+        results, fixture_path,
         amo.RELEASE_CHANNEL_LISTED)
 
     assert results['errors']
