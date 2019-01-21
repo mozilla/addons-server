@@ -186,8 +186,7 @@ class AddonQuerySet(BaseQuerySet):
         Filter for all featured add-ons for an application in all locales.
         """
         ids = get_featured_ids(app, lang, type)
-        qs = manual_order(self.listed(app), ids, 'addons.id')
-        return qs
+        return manual_order(self.listed(app), ids, 'addons.id')
 
     def listed(self, app, *status):
         """
