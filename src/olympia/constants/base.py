@@ -408,6 +408,9 @@ DEFAULT_WEBEXT_MAX_VERSION = '*'
 # Android only started to support WebExtensions with version 48
 DEFAULT_WEBEXT_MIN_VERSION_ANDROID = '48.0'
 
+# Thunderbird only started to support WebExtensions with version 60
+DEFAULT_WEBEXT_MIN_VERSION_THUNDERBIRD = '60.0'
+
 # The default version of Firefox that supports WebExtensions without an id
 DEFAULT_WEBEXT_MIN_VERSION_NO_ID = '48.0'
 
