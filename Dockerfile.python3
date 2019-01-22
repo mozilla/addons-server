@@ -2,6 +2,8 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
+ENV PYTHON_VERSION_MAJOR 3
+
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
 
@@ -89,5 +91,3 @@ ENV LESS_BIN /deps/node_modules/.bin/lessc
 ENV UGLIFY_BIN /deps/node_modules/.bin/uglifyjs
 ENV ADDONS_LINTER_BIN /deps/node_modules/.bin/addons-linter
 ENV ADDONS_VALIDATOR_BIN /usr/local/bin/addon-validator
-
-ENV PYTHON_VERSION_MAJOR 3
