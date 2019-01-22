@@ -298,8 +298,8 @@ mock==2.0.0 \
 natsort==5.5.0 \
     --hash=sha256:e1ad0618d3aa0cc43dfc3298ffcdbfeb47dfff1d875359dc81c72434ae8c62bf \
     --hash=sha256:e29031f37aa264145d6ad9acdab335479ce3636806fc7aa70b7675a2b2198d09
-newrelic==4.10.0.112 \
-    --hash=sha256:e837010e8052484ba4070f9197d87e077a62f44a12bfa0ab27548d256c3e3882
+newrelic==4.12.0.113 \
+    --hash=sha256:8fdc94350bfe69e4f70dc8a3e7ead6c6a1905e8f161ce24de7ee3de4f69196ad
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5
