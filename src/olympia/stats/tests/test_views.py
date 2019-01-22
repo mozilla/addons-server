@@ -281,24 +281,24 @@ class TestCSVs(ESStatsTest):
                                           group='month', format='csv')
 
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,search,api
-                                 2009-09-03,10,3,2
-                                 2009-08-03,10,3,2
-                                 2009-07-03,10,3,2
-                                 2009-06-28,10,3,2
-                                 2009-06-20,10,3,2
-                                 2009-06-12,10,3,2
-                                 2009-06-07,10,3,2
-                                 2009-06-01,10,3,2""")
+        self.csv_eq(response, """date,count,api,search
+                                 2009-09-03,10,2,3
+                                 2009-08-03,10,2,3
+                                 2009-07-03,10,2,3
+                                 2009-06-28,10,2,3
+                                 2009-06-20,10,2,3
+                                 2009-06-12,10,2,3
+                                 2009-06-07,10,2,3
+                                 2009-06-01,10,2,3""")
 
     def test_os_series(self):
         response = self.get_view_response('stats.os_series',
                                           group='month', format='csv')
 
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,Windows,Linux
-                                 2009-06-02,1500,500,400
-                                 2009-06-01,1000,400,300""")
+        self.csv_eq(response, """date,count,Linux,Windows
+                                 2009-06-02,1500,400,500
+                                 2009-06-01,1000,300,400""")
 
     def test_locales_series(self):
         response = self.get_view_response('stats.locales_series',
@@ -307,8 +307,7 @@ class TestCSVs(ESStatsTest):
         assert response.status_code == 200
         self.csv_eq(
             response,
-            u"""date,count,English (US) (en-us),"""
-            u"""Ελληνικά (el)
+            u"""date,count,English (US) (en-us),Ελληνικά (el)
                2009-06-02,1500,300,400
                2009-06-01,1000,300,400""")
 
@@ -317,18 +316,18 @@ class TestCSVs(ESStatsTest):
                                           group='month', format='csv')
 
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,userEnabled,userDisabled
-                                 2009-06-02,1500,1370,130
-                                 2009-06-01,1000,950,50""")
+        self.csv_eq(response, """date,count,userDisabled,userEnabled
+                                 2009-06-02,1500,130,1370
+                                 2009-06-01,1000,50,950""")
 
     def test_versions_series(self):
         response = self.get_view_response('stats.versions_series',
                                           group='month', format='csv')
 
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,2.0,1.0
-                                 2009-06-02,1500,950,550
-                                 2009-06-01,1000,800,200""")
+        self.csv_eq(response, """date,count,1.0,2.0
+                                 2009-06-02,1500,550,950
+                                 2009-06-01,1000,200,800""")
 
     def test_apps_series(self):
         response = self.get_view_response('stats.apps_series',
@@ -551,9 +550,9 @@ class TestResponses(ESStatsTest):
         response = self.get_view_response(
             'stats.versions_series', group='day', format='csv')
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,2.0,1.0
-                                 2009-06-02,1500,950,550
-                                 2009-06-01,1000,800,200""")
+        self.csv_eq(response, """date,count,1.0,2.0
+                                 2009-06-02,1500,550,950
+                                 2009-06-01,1000,200,800""")
 
     def test_usage_by_status_json(self):
         response = self.get_view_response(
@@ -584,9 +583,9 @@ class TestResponses(ESStatsTest):
         response = self.get_view_response(
             'stats.statuses_series', group='day', format='csv')
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,userEnabled,userDisabled
-                                 2009-06-02,1500,1370,130
-                                 2009-06-01,1000,950,50""")
+        self.csv_eq(response, """date,count,userDisabled,userEnabled
+                                 2009-06-02,1500,130,1370
+                                 2009-06-01,1000,50,950""")
 
     def test_overview(self):
         response = self.get_view_response(
@@ -707,15 +706,15 @@ class TestResponses(ESStatsTest):
         response = self.get_view_response(
             'stats.sources_series', group='day', format='csv')
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,search,api
-                                 2009-09-03,10,3,2
-                                 2009-08-03,10,3,2
-                                 2009-07-03,10,3,2
-                                 2009-06-28,10,3,2
-                                 2009-06-20,10,3,2
-                                 2009-06-12,10,3,2
-                                 2009-06-07,10,3,2
-                                 2009-06-01,10,3,2""")
+        self.csv_eq(response, """date,count,api,search
+                                 2009-09-03,10,2,3
+                                 2009-08-03,10,2,3
+                                 2009-07-03,10,2,3
+                                 2009-06-28,10,2,3
+                                 2009-06-20,10,2,3
+                                 2009-06-12,10,2,3
+                                 2009-06-07,10,2,3
+                                 2009-06-01,10,2,3""")
 
 
 # Test the SQL query by using known dates, for weeks and months etc.

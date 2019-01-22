@@ -76,7 +76,7 @@ def get_series(model, extra_field=None, source=None, **filters):
     for val in qs[:365]:
         # Convert the datetimes to a date.
         date_ = parse(val['date']).date()
-        rv = dict(count=val['count'], date=date_, end=date_)
+        rv = {'count': val['count'], 'date': date_, 'end': date_}
         if source:
             rv['data'] = extract(val[source])
         elif extra_field:
@@ -97,7 +97,9 @@ def csv_fields(series):
         fields.update(row['data'])
         rv.append(row['data'])
         row['data'].update(count=row['count'], date=row['date'])
-    return rv, fields
+    # Sort the fields before returning them - we don't care much about column
+    # ordering, but it helps make the tests stable.
+    return rv, sorted(fields)
 
 
 def extract(dicts):
