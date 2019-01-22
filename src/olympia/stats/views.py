@@ -502,7 +502,8 @@ if six.PY2:
             self.writerow(dict(zip(self.fieldnames, self.fieldnames)))
 
         def try_encode(self, obj):
-            return obj.encode('utf-8') if isinstance(obj, basestring) else obj
+            return obj.encode('utf-8') if isinstance(
+                obj, six.string_types) else obj
 
         def writerow(self, rowdict):
             row = self._dict_to_list(rowdict)

@@ -169,7 +169,7 @@ if six.PY2:
         csv_reader = csv.DictReader(utf_8_encoder(data), **kwargs)
         for row in csv_reader:
             yield {
-                unicode(key, 'utf-8'): unicode(value, 'utf-8')
+                six.text_type(key, 'utf-8'): six.text_type(value, 'utf-8')
                 for key, value in row.iteritems()}
 else:
     CSVDictReaderClass = csv.DictReader
