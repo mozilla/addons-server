@@ -2,7 +2,6 @@ import hashlib
 import itertools
 import json
 import random
-import urllib
 
 from datetime import date, timedelta
 
@@ -16,6 +15,8 @@ from django.utils.translation import get_language, ugettext, ugettext_lazy as _
 
 import six
 import waffle
+
+from six.moves.urllib_parse import quote
 
 import olympia.core.logger
 
@@ -279,6 +280,7 @@ class AddonDetailView(APIView):
 def guid_search(request, api_version, guids):
     lang = request.LANG
     app_id = request.APP.id
+    api_version = float(api_version)
 
     def guid_search_cache_key(guid):
         key = 'guid_search:%s:%s:%s:%s' % (api_version, lang, app_id, guid)
@@ -310,8 +312,8 @@ def guid_search(request, api_version, guids):
                 addons_xml[key] = addon_xml
 
     if dirty_keys:
-        cache.set_many(dict((k, v) for k, v in six.iteritems(addons_xml)
-                            if k in dirty_keys))
+        cache.set_many({k: v for k, v in six.iteritems(addons_xml)
+                        if k in dirty_keys})
 
     compat = (CompatOverride.objects.filter(guid__in=guids)
               .transform(CompatOverride.transformer))
@@ -368,14 +370,6 @@ class SearchView(APIView):
         if 'type' not in filters:
             # Filter by ALL types, which is really all types except for apps.
             filters['type__in'] = list(amo.ADDON_SEARCH_TYPES)
-
-        if self.version < 1.5:
-            # Fix doubly encoded query strings.
-            try:
-                query = urllib.unquote(query.encode('ascii'))
-            except UnicodeEncodeError:
-                # This fails if the string is already UTF-8.
-                pass
 
         qs = (
             Addon.search()
@@ -493,7 +487,7 @@ def redirect_view(request, url):
     Redirect all requests that come here to an API call with a view parameter.
     """
     dest = '/api/%.1f/%s' % (legacy_api.CURRENT_VERSION,
-                             urllib.quote(url.encode('utf-8')))
+                             quote(url.encode('utf-8')))
     dest = get_url_prefix().fix(dest)
 
     return HttpResponsePermanentRedirect(dest)

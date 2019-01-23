@@ -87,8 +87,8 @@ class TestESWithoutMakingQueries(TestCase):
         # Query:
         # {'bool': {'must': [{'term': {'type': 1}},
         #                    {'range': {'status': {'gte': 1}}}, ]}}
-        assert query.keys() == ['bool']
-        assert query['bool'].keys() == ['must']
+        assert list(query.keys()) == ['bool']
+        assert list(query['bool'].keys()) == ['must']
         assert {'term': {'type': 1}} in query['bool']['must']
         assert {'range': {'status': {'gte': 1}}} in query['bool']['must']
 
@@ -99,8 +99,8 @@ class TestESWithoutMakingQueries(TestCase):
         # Query:
         # {'bool': {'must': [{'fuzzy': {'status': fuzz}},
         #                    {'term': {'type': 1}}, ]}})
-        assert query.keys() == ['bool']
-        assert query['bool'].keys() == ['must']
+        assert list(query.keys()) == ['bool']
+        assert list(query['bool'].keys()) == ['must']
         assert {'term': {'type': 1}} in query['bool']['must']
         assert {'fuzzy': {'status': fuzz}} in query['bool']['must']
 
@@ -291,7 +291,7 @@ class TestES(ESTestCaseWithAddons):
 
     def test_empty_values_dict_result(self):
         qs = Addon.search().values_dict()
-        assert qs[0].keys() == ['id']
+        assert list(qs[0].keys()) == ['id']
 
     def test_object_result(self):
         qs = Addon.search().filter(id=self._addons[0].id)[:1]

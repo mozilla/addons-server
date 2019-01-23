@@ -6,6 +6,7 @@ from textwrap import dedent
 from django.conf import settings
 from django.test.client import Client
 from django.utils import translation
+from django.utils.encoding import force_text
 
 import jinja2
 import pytest
@@ -34,7 +35,7 @@ from olympia.tags.models import AddonTag, Tag
 pytestmark = pytest.mark.django_db
 
 
-def api_url(x, app='firefox', lang='en-US', version=1.2):
+def api_url(x, app='firefox', lang='en-US', version=1.5):
     return '/%s/%s/api/%s/%s' % (lang, app, version, x)
 
 
@@ -121,10 +122,10 @@ class ControlCharacterTest(TestCase):
     fixtures = ('base/addon_3615',)
 
     def test(self):
-        a = Addon.objects.get(pk=3615)
+        addon = Addon.objects.get(pk=3615)
         char = chr(12)
-        a.name = "I %sove You" % char
-        a.save()
+        addon.name = "I %sove You" % char
+        addon.save()
         response = make_call('addon/3615')
         self.assertNotContains(response, char)
 
@@ -134,20 +135,20 @@ class StripHTMLTest(TestCase):
 
     def test(self):
         """For API < 1.5 we remove HTML."""
-        a = Addon.objects.get(pk=3615)
-        a.eula = '<i>free</i> stock tips'
-        a.summary = '<i>xxx video</i>s'
-        a.description = 'FFFF<b>UUUU</b>'
-        a.save()
+        addon = Addon.objects.get(pk=3615)
+        addon.eula = '<i>free</i> stock tips'
+        addon.summary = '<i>xxx video</i>s'
+        addon.description = 'FFFF<b>UUUU</b>'
+        addon.save()
 
-        r = make_call('addon/3615', version=1.5)
-        doc = pq(r.content)
+        response = make_call('addon/3615', version=1.5)
+        doc = pq(response.content)
         assert doc('eula').html() == '<i>free</i> stock tips'
         assert doc('summary').html() == '&lt;i&gt;xxx video&lt;/i&gt;s'
         assert doc('description').html() == 'FFFF<b>UUUU</b>'
 
-        r = make_call('addon/3615')
-        doc = pq(r.content)
+        response = make_call('addon/3615', version=1.2)
+        doc = pq(response.content)
         assert doc('eula').html() == 'free stock tips'
         assert doc('summary').html() == 'xxx videos'
         assert doc('description').html() == 'FFFFUUUU'
@@ -289,7 +290,7 @@ class APITest(TestCase):
         addon = Addon.objects.get(id=3615)
         response = self.client.get(
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['name'] == six.text_type(addon.name)
         assert data['type'] == 'extension'
         assert data['guid'] == addon.guid
@@ -322,7 +323,7 @@ class APITest(TestCase):
         Persona.objects.create(persona_id=3, addon=addon)
         response = self.client.get(
             '/en-US/firefox/api/%.1f/addon/3615?format=json' % 1.2)
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['id'] == 3615
         # `id` should be `addon_id`, not `persona_id`
         assert data['theme']['id'] == '3615'
@@ -606,8 +607,8 @@ class ListTest(TestCase):
 
     def test_json(self):
         """Verify that we get some json."""
-        r = make_call('list/by_adu?format=json', version=1.5)
-        assert json.loads(r.content)
+        response = make_call('list/by_adu?format=json', version=1.5)
+        assert json.loads(force_text(response.content))
 
     def test_unicode(self):
         make_call(u'list/featured/all/10/Linux/3.7a2prexec\xb6\u0153\xec\xb2')
@@ -736,13 +737,13 @@ class TestGuidSearch(TestCase):
     def setUp(self):
         super(TestGuidSearch, self).setUp()
         addon = Addon.objects.get(id=3615)
-        c = CompatOverride.objects.create(guid=addon.guid)
+        compat_override = CompatOverride.objects.create(guid=addon.guid)
         app = list(addon.compatible_apps.keys())[0]
-        CompatOverrideRange.objects.create(compat=c, app=app.id)
+        CompatOverrideRange.objects.create(compat=compat_override, app=app.id)
 
     def test_success(self):
-        r = make_call(self.good)
-        dom = pq(r.content)
+        response = make_call(self.good)
+        dom = pq(response.content)
         assert set(['3615', '6113']) == (
             set([a.attrib['id'] for a in dom('addon')]))
 
@@ -765,46 +766,46 @@ class TestGuidSearch(TestCase):
 
     def test_api_caching_app(self):
         response = make_call(self.good)
-        assert 'en-US/firefox/addon/None/reviews/?src=api' in response.content
-        assert 'en-US/android/addon/None/reviews/' not in response.content
+        assert b'en-US/firefox/addon/None/reviews/?src=api' in response.content
+        assert b'en-US/android/addon/None/reviews/' not in response.content
 
         response = make_call(self.good, app='android')
-        assert 'en-US/android/addon/None/reviews/?src=api' in response.content
-        assert 'en-US/firefox/addon/None/reviews/' not in response.content
+        assert b'en-US/android/addon/None/reviews/?src=api' in response.content
+        assert b'en-US/firefox/addon/None/reviews/' not in response.content
 
     def test_xss(self):
         addon_factory(guid='test@xss', name='<script>alert("test");</script>')
-        r = make_call('search/guid:test@xss')
-        assert '<script>alert' not in r.content
-        assert '&lt;script&gt;alert' in r.content
+        response = make_call('search/guid:test@xss')
+        assert b'<script>alert' not in response.content
+        assert b'&lt;script&gt;alert' in response.content
 
     def test_block_inactive(self):
         Addon.objects.filter(id=6113).update(disabled_by_user=True)
-        r = make_call(self.good)
+        response = make_call(self.good)
         assert set(['3615']) == (
-            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+            set([a.attrib['id'] for a in pq(response.content)('addon')]))
 
     def test_block_nonpublic(self):
         Addon.objects.filter(id=6113).update(status=amo.STATUS_NOMINATED)
-        r = make_call(self.good)
+        response = make_call(self.good)
         assert set(['3615']) == (
-            set([a.attrib['id'] for a in pq(r.content)('addon')]))
+            set([a.attrib['id'] for a in pq(response.content)('addon')]))
 
     def test_empty(self):
         """
         Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=607044
         guid:foo, should search for just 'foo' and not empty guids.
         """
-        r = make_call('search/guid:koberger,')
-        doc = pq(r.content)
+        response = make_call('search/guid:koberger,')
+        doc = pq(response.content)
         # No addons should exist with guid koberger and the , should not
         # indicate that we are searching for null guid.
         assert len(doc('addon')) == 0
 
     def test_addon_compatibility(self):
         addon = Addon.objects.get(id=3615)
-        r = make_call('search/guid:%s' % addon.guid)
-        dom = pq(r.content, parser='xml')
+        response = make_call('search/guid:%s' % addon.guid)
+        dom = pq(response.content, parser='xml')
         assert len(dom('addon_compatibility')) == 1
         assert dom('addon_compatibility')[0].attrib['id'] == '3615'
         assert dom('addon_compatibility')[0].attrib['hosted'] == 'true'
@@ -817,22 +818,22 @@ class TestGuidSearch(TestCase):
             amo.FIREFOX.guid)
 
     def test_addon_compatibility_not_hosted(self):
-        c = CompatOverride.objects.create(guid='yeah', name='ok')
-        CompatOverrideRange.objects.create(app=1, compat=c,
+        compat_override = CompatOverride.objects.create(guid='yeah', name='ok')
+        CompatOverrideRange.objects.create(app=1, compat=compat_override,
                                            min_version='1', max_version='2',
                                            min_app_version='3',
                                            max_app_version='4')
 
-        r = make_call('search/guid:%s' % c.guid)
-        dom = pq(r.content, parser='xml')
+        response = make_call('search/guid:%s' % compat_override.guid)
+        dom = pq(response.content, parser='xml')
         assert len(dom('addon_compatibility')) == 1
         assert dom('addon_compatibility')[0].attrib['hosted'] == 'false'
         assert 'id' not in dom('addon_compatibility')[0].attrib
 
-        assert dom('addon_compatibility guid').text() == c.guid
-        assert dom('addon_compatibility > name').text() == c.name
+        assert dom('addon_compatibility guid').text() == compat_override.guid
+        assert dom('addon_compatibility > name').text() == compat_override.name
 
-        cr = c.compat_ranges[0]
+        cr = compat_override.compat_ranges[0]
         assert dom('version_range')[0].attrib['type'] == cr.override_type()
         assert dom('version_range > min_version').text() == cr.min_version
         assert dom('version_range > max_version').text() == cr.max_version
@@ -855,11 +856,11 @@ class SearchTest(ESTestCase):
         super(SearchTest, self).setUp()
         self.addons = Addon.objects.filter(status=amo.STATUS_PUBLIC,
                                            disabled_by_user=False)
-        t = Tag.objects.create(tag_text='ballin')
-        a = Addon.objects.get(pk=3615)
-        AddonTag.objects.create(tag=t, addon=a)
+        tag = Tag.objects.create(tag_text='ballin')
+        addon = Addon.objects.get(pk=3615)
+        AddonTag.objects.create(tag=tag, addon=addon)
 
-        [addon.save() for addon in self.addons]
+        [a.save() for a in self.addons]
         self.refresh()
 
         self.url = ('/en-US/firefox/api/%(api_version)s/search/%(query)s/'
@@ -873,14 +874,6 @@ class SearchTest(ESTestCase):
             'app_version': '4.0',
             'compat_mode': 'strict',
         }
-
-    def test_double_escaping(self):
-        """
-        For API < 1.5 we use double escaping in search.
-        """
-        resp = make_call('search/%25E6%2596%25B0%25E5%2590%258C%25E6%2596%'
-                         '2587%25E5%25A0%2582/all/10/WINNT/3.6', version=1.2)
-        self.assertContains(resp, '<addon id="6113">')
 
     def test_zero_results(self):
         """
@@ -935,7 +928,7 @@ class SearchTest(ESTestCase):
         """
         response = self.client.get(
             "/en-US/firefox/api/1.2/search/delicious/all/1")
-        assert response.content.count("<addon id") == 1
+        assert force_text(response.content).count("<addon id") == 1
 
     def test_total_results(self):
         """
@@ -1179,17 +1172,17 @@ class SearchTest(ESTestCase):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=delicious' %
             legacy_api.CURRENT_VERSION)
-        data = json.loads(response.content)['suggestions'][0]
-        a = Addon.objects.get(pk=3615)
-        assert data['id'] == str(a.pk)
-        assert data['name'] == a.name
-        assert data['rating'] == a.average_rating
+        data = json.loads(force_text(response.content))['suggestions'][0]
+        addon = Addon.objects.get(pk=3615)
+        assert data['id'] == str(addon.pk)
+        assert data['name'] == addon.name
+        assert data['rating'] == addon.average_rating
 
     def test_no_category_suggestions(self):
         response = self.client.get(
             '/en-US/firefox/api/%.1f/search_suggestions/?q=Feed' %
             legacy_api.CURRENT_VERSION)
-        assert json.loads(response.content)['suggestions'] == []
+        assert json.loads(force_text(response.content))['suggestions'] == []
 
     def test_suggestions_throttle(self):
         self.create_sample('autosuggest-throttle')
@@ -1251,10 +1244,10 @@ class LanguagePacksTest(UploadTest):
 
     @patch('olympia.addons.models.Addon.get_localepicker')
     def test_localepicker(self, get_localepicker):
-        get_localepicker.return_value = six.text_type('title=اختر لغة', 'utf8')
+        get_localepicker.return_value = u'title=اختر لغة'
         self.addon.update(type=amo.ADDON_LPAPP, status=amo.STATUS_PUBLIC)
         res = self.client.get(self.url)
-        self.assertContains(res, dedent("""
+        self.assertContains(res, dedent(u"""
                                                 <strings><![CDATA[
                                             title=اختر لغة
                                                 ]]></strings>"""))

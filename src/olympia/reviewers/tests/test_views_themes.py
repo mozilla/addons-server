@@ -3,7 +3,7 @@ import datetime
 import json
 
 from django.conf import settings
-from django.utils.encoding import smart_text
+from django.utils.encoding import force_text
 
 import mock
 import pytest
@@ -640,7 +640,7 @@ class TestDeletedThemeLookup(TestCase):
         response = self.client.get(reverse('reviewers.themes.deleted'))
         assert response.status_code == 200
         assert (self.deleted.name.localized_string in
-                smart_text(response.content))
+                force_text(response.content))
 
     def test_perm(self):
         # Personas:Review allow access to deleted themes as well.
@@ -666,7 +666,8 @@ class TestThemeSearch(amo.tests.ESTestCase):
             reverse('reviewers.themes.search'),
             user=UserProfile.objects.get(username='persona_reviewer'))
         request.GET = get_query
-        return json.loads(themes_search(request).content)['objects']
+        return json.loads(
+            force_text(themes_search(request).content))['objects']
 
     def test_pending(self):
         assert self.search('theme')[0]['id'] == self.addon.id
