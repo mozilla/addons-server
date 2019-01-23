@@ -963,8 +963,7 @@ class TestDescribeForm(TestCase):
         assert form.errors['name'] == [
             u'Ensure name and summary combined are at most 70 characters '
             u'(they have 130).']
-        assert form.errors['summary'] == [
-            u'Ensure this value has at most 68 characters (it has 81).']
+        assert 'summary' not in form.errors
 
         # DescribeForm has a lower limit for name length
         form = forms.DescribeForm(
