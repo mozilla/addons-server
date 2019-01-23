@@ -141,8 +141,9 @@ class FileViewer(object):
 
                 if self.is_search_engine() and self.src.endswith('.xml'):
                     shutil.copyfileobj(
-                        storage.open(self.src),
-                        open(os.path.join(self.dest, self.file.filename), 'w'))
+                        storage.open(self.src, 'rb'),
+                        open(
+                            os.path.join(self.dest, self.file.filename), 'wb'))
                 else:
                     try:
                         extracted_files = extract_xpi(self.src, self.dest)
@@ -174,9 +175,9 @@ class FileViewer(object):
             return True
 
         if os.path.exists(path) and not os.path.isdir(path):
-            with storage.open(path, 'r') as rfile:
-                bytes = tuple(map(ord, rfile.read(4)))
-            if any(bytes[:len(x)] == x for x in denied_magic_numbers):
+            with storage.open(path, 'rb') as rfile:
+                data = tuple(bytearray(rfile.read(4)))
+            if any(data[:len(x)] == x for x in denied_magic_numbers):
                 return True
 
         if mimetype:
@@ -210,7 +211,7 @@ class FileViewer(object):
             self.selected['msg'] = msg
             return ''
 
-        with storage.open(self.selected['full'], 'r') as opened:
+        with storage.open(self.selected['full'], 'rb') as opened:
             cont = opened.read()
             codec = 'utf-16' if cont.startswith(codecs.BOM_UTF16) else 'utf-8'
             try:

@@ -15,9 +15,10 @@ jobs:
     - { stage: python2, env: TOXENV=es }
     - { stage: python2, env: TOXENV=addons }
     - { stage: python2, env: TOXENV=devhub }
+    - { stage: python2, env: TOXENV=files }
     - { stage: python2, env: TOXENV=reviewers-and-zadmin }
     - { stage: python2, env: TOXENV=accounts-users-and-ratings }
-    - { stage: python2, env: TOXENV=amo-locales-and-signing }
+    - { stage: python2, env: TOXENV=amo-lib-locales-and-signing }
     - { stage: python2, env: TOXENV=main }
     - { stage: python3working, python: 3.6, env: TOXENV=codestyle}
     - { stage: python3working, python: 3.6, env: TOXENV=docs }
@@ -25,10 +26,11 @@ jobs:
     - { stage: python3working, python: 3.6, env: TOXENV=es }
     - { stage: python3working, python: 3.6, env: TOXENV=addons }
     - { stage: python3working, python: 3.6, env: TOXENV=accounts-users-and-ratings }
+    - { stage: python3working, python: 3.6, env: TOXENV=main }
     - { stage: python3, python: 3.6, env: TOXENV=devhub }
+    - { stage: python3, python: 3.6, env: TOXENV=files }
     - { stage: python3, python: 3.6, env: TOXENV=reviewers-and-zadmin }
-    - { stage: python3, python: 3.6, env: TOXENV=amo-locales-and-signing }
-    - { stage: python3, python: 3.6, env: TOXENV=main }
+    - { stage: python3, python: 3.6, env: TOXENV=amo-lib-locales-and-signing }
 
 env:
   global:
@@ -84,7 +86,7 @@ before_script:
 script:
   - |
     if [[ $TRAVIS_EVENT_TYPE != "cron" ]]; then
-      if [[ $TOXENV == "amo-locales-and-signing" ]]; then
+      if [[ $TOXENV == "amo-lib-locales-and-signing" ]]; then
          docker run --name autograph -d -p 5500:5500 -v $(pwd)/scripts/:/scripts/ mozilla/autograph:2.7.0 /go/bin/autograph -c /scripts/autograph_travis_test_config.yaml
       fi
       RUNNING_IN_CI=True tox

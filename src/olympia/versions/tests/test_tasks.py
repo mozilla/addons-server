@@ -3,6 +3,7 @@ from base64 import b64encode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.utils.encoding import force_text
 
 import mock
 import pytest
@@ -35,7 +36,7 @@ def check_render(svg_content, header_url, header_height, preserve_aspect_ratio,
         with storage.open(HEADER_ROOT + header_url, 'rb') as header_file:
             header_blob = header_file.read()
             base_64_uri = 'data:%s;base64,%s' % (
-                mimetype, b64encode(header_blob))
+                mimetype, force_text(b64encode(header_blob)))
     else:
         base_64_uri = ''
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content, svg_content
@@ -154,13 +155,13 @@ def test_generate_static_theme_preview(
         (preserve_aspect_ratio, ) * 3
         if not isinstance(preserve_aspect_ratio, tuple)
         else preserve_aspect_ratio)
-    check_render(header_svg, header_url, header_height,
+    check_render(force_text(header_svg), header_url, header_height,
                  preserve_aspect_ratio[0], mimetype, valid_img, colors,
                  680, 92, 680)
-    check_render(list_svg, header_url, header_height,
+    check_render(force_text(list_svg), header_url, header_height,
                  preserve_aspect_ratio[1], mimetype, valid_img, colors,
                  760, 92, 760)
-    check_render(single_svg, header_url, header_height,
+    check_render(force_text(single_svg), header_url, header_height,
                  preserve_aspect_ratio[2], mimetype, valid_img, colors,
                  720, 92, 720)
 
@@ -245,11 +246,11 @@ def test_generate_static_theme_preview_with_chrome_properties(
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render(header_svg, 'transparent.gif', 1,
+    check_render(force_text(header_svg), 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 680, 92, 680)
-    check_render(list_svg, 'transparent.gif', 1,
+    check_render(force_text(list_svg), 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 760, 92, 760)
-    check_render(single_svg, 'transparent.gif', 1,
+    check_render(force_text(single_svg), 'transparent.gif', 1,
                  'xMaxYMin meet', 'image/gif', True, colors, 720, 92, 720)
 
 
@@ -257,7 +258,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
     # check additional background pattern is correct
     image_width = 270
     image_height = 200
-    pattern_x_offset = (inner_svg_width - image_width) / 2
+    pattern_x_offset = (inner_svg_width - image_width) // 2
     pattern_tag = (
         '<pattern id="AdditionalBackground1"\n'
         '                   width="%s" height="%s"\n'
@@ -274,7 +275,8 @@ def check_render_additional(svg_content, inner_svg_width, colors):
     additional = os.path.join(HEADER_ROOT, 'weta_for_tiling.png')
     with storage.open(additional, 'rb') as header_file:
         header_blob = header_file.read()
-    base_64_uri = 'data:%s;base64,%s' % ('image/png', b64encode(header_blob))
+    base_64_uri = 'data:%s;base64,%s' % (
+        'image/png', force_text(b64encode(header_blob)))
     assert 'xlink:href="%s"></image>' % base_64_uri in svg_content
     # check each of our colors was included
     for color in colors:
@@ -367,8 +369,8 @@ def test_generate_preview_with_additional_backgrounds(
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
     single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render_additional(header_svg, 680, colors)
-    check_render_additional(list_svg, 760, colors)
-    check_render_additional(single_svg, 720, colors)
+    check_render_additional(force_text(header_svg), 680, colors)
+    check_render_additional(force_text(list_svg), 760, colors)
+    check_render_additional(force_text(single_svg), 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])

@@ -99,7 +99,7 @@
         </select>
         <button type="submit">{{ _('Go') }}</button>
       </form>
-      {{ addon_listing_items(addons.object_list, notes=notes.next(), src="collection") }}
+      {{ addon_listing_items(addons.object_list, notes=notes, src="collection") }}
     </div>
   {% endif %}
   {{ addons|paginator }}

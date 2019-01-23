@@ -3,8 +3,8 @@
     browser_width is the internal width of the svg, which could be different if
     svg_render_size.height != 92. #}
 
-{% set svg_scale = svg_render_size.height / amo.THEME_PREVIEW_TOOLBAR_HEIGHT %}
-{% set browser_width = (svg_render_size.width / svg_scale)|round|int %}
+{% set svg_scale = svg_render_size.height // amo.THEME_PREVIEW_TOOLBAR_HEIGHT %}
+{% set browser_width = (svg_render_size.width // svg_scale)|round|int %}
 
 {% set additional_backgrounds_height = amo.THEME_PREVIEW_TOOLBAR_HEIGHT %}
 {% set preserve_aspect_ratio = '%s %s' % ('xMaxYMin', 'meet' if header_width|d(1000000) < browser_width else 'slice') %}

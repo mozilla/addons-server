@@ -8,7 +8,7 @@ from base64 import b64decode, b64encode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.utils.encoding import force_bytes
+from django.utils.encoding import force_bytes, force_text
 
 import requests
 import six
@@ -49,10 +49,11 @@ def get_id(addon):
 
     We don't want GUIDs longer than 64 chars: bug 1203365.
     """
-    guid = addon.guid
+    guid = force_bytes(addon.guid)
     if len(guid) <= 64:
-        return guid
-    return hashlib.sha256(guid).hexdigest()
+        # Return guid as original unicode string.
+        return addon.guid
+    return force_text(hashlib.sha256(guid).hexdigest())
 
 
 def autograph_sign_file(file_obj):
@@ -129,7 +130,7 @@ def autograph_sign_data(file_obj):
     signed_manifest = six.text_type(jar.signatures)
 
     signing_request = [{
-        'input': b64encode(signed_manifest),
+        'input': b64encode(force_bytes(signed_manifest)),
         'keyid': conf['signer'],
         'options': {
             'id': get_id(file_obj.version.addon),

@@ -15,6 +15,7 @@ import flufl.lock
 import lxml
 import mock
 import pytest
+import six
 
 from defusedxml.common import EntitiesForbidden, NotSupportedError
 from waffle.testutils import override_switch
@@ -475,7 +476,7 @@ class TestManifestJSONExtractor(TestCase):
         assert apps[1].max.version == amo.DEFAULT_WEBEXT_MAX_VERSION
 
     def test_handle_utf_bom(self):
-        manifest = '\xef\xbb\xbf{"manifest_version": 2, "name": "...", ' + self.addon_guid_string + '}'
+        manifest = b'\xef\xbb\xbf{"manifest_version": 2, "name": "..."}'
         parsed = utils.ManifestJSONExtractor(None, manifest).parse()
         assert parsed['name'] == '...'
 
@@ -981,7 +982,7 @@ def test_parse_search_empty_shortname():
         utils.parse_search(fname)
 
     assert (
-        excinfo.value[0] ==
+        six.text_type(excinfo.value.message) ==
         'Could not parse uploaded file, missing or empty <ShortName> element')
 
 

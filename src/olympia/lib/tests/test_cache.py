@@ -10,13 +10,13 @@ from olympia.lib.cache import (
 
 def test_make_key():
     with translation.override('en-US'):
-        assert make_key(u'é@øel') == 'é@øel:en-us'
+        assert make_key(u'é@øel') == u'é@øel:en-us'
 
     with translation.override('de'):
-        assert make_key(u'é@øel') == 'é@øel:de'
+        assert make_key(u'é@øel') == u'é@øel:de'
 
     with translation.override('de'):
-        assert make_key(u'é@øel', with_locale=False) == 'é@øel'
+        assert make_key(u'é@øel', with_locale=False) == u'é@øel'
 
     with translation.override('en-US'):
         assert (

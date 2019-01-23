@@ -16,7 +16,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import HttpResponseSendFile, render, urlparams
 from olympia.files.models import File
 from olympia.versions.models import Version
-from olympia.lib.cache import cache_get_or_set, make_key
 
 
 # The version detail page redirects to the version within pagination, so we
@@ -52,22 +51,11 @@ def version_list(request, addon):
 @addon_view
 @non_atomic_requests
 def version_detail(request, addon, version_num):
-    # TODO: Does setting this in memcachd even make sense?
-    # This is specific to an add-ons version so the chance of this hitting
-    # the cache and not missing seems quite bad to me (cgrebs)
-    def _fetch():
-        qs = _version_list_qs(addon)
-        return list(qs.values_list('version', flat=True))
-
-    cache_key = make_key(
-        u'version-detail:{}:{}'.format(addon.id, version_num),
-        normalize=True)
-
-    ids = cache_get_or_set(cache_key, _fetch)
+    ids = list(_version_list_qs(addon).values_list('version', flat=True))
 
     url = reverse('addons.versions', args=[addon.slug])
     if version_num in ids:
-        page = 1 + ids.index(version_num) / PER_PAGE
+        page = 1 + ids.index(version_num) // PER_PAGE
         to = urlparams(url, 'version-%s' % version_num, page=page)
         return http.HttpResponseRedirect(to)
     else:

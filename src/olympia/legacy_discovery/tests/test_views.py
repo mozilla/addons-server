@@ -20,12 +20,14 @@ class TestModuleAdmin(TestCase):
 
     def test_sync_db_and_registry(self):
         def check():
-            views._sync_db_and_registry(qs, 1)
-            assert qs.count() == len(registry)
+            views._sync_db_and_registry(qs, amo.FIREFOX.id)
+            registry_len = len(registry)
+            assert registry_len
+            assert qs.count() == registry_len
             modules = qs.values_list('module', flat=True)
             assert set(modules) == set(registry.keys())
 
-        qs = DiscoveryModule.objects.filter(app=1)
+        qs = DiscoveryModule.objects.filter(app=amo.FIREFOX.id)
         assert qs.count() == 0
 
         # All our modules get added.

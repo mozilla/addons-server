@@ -5,6 +5,7 @@ import tempfile
 from base64 import b64encode
 
 from django.conf import settings
+from django.utils.encoding import force_text
 
 import six
 
@@ -53,10 +54,11 @@ def encode_header(header_blob, file_ext):
             height = int(tree.get('height'))
             img_format = 'svg+xml'
         else:
-            with Image.open(six.StringIO(header_blob)) as header_image:
+            with Image.open(six.BytesIO(header_blob)) as header_image:
                 (width, height) = header_image.size
                 img_format = header_image.format.lower()
-        src = 'data:image/%s;base64,%s' % (img_format, b64encode(header_blob))
+        src = 'data:image/%s;base64,%s' % (
+            img_format, force_text(b64encode(header_blob)))
     except (IOError, ValueError, TypeError, lxml.etree.XMLSyntaxError) as err:
         log.debug(err)
         return (None, 0, 0)
@@ -95,13 +97,13 @@ class AdditionalBackground(object):
         if align_x == 'right':
             self.pattern_x = svg_width - self.width
         elif align_x == 'center':
-            self.pattern_x = (svg_width - self.width) / 2
+            self.pattern_x = (svg_width - self.width) // 2
         else:
             self.pattern_x = 0
         if align_y == 'bottom':
             self.pattern_y = svg_height - self.height
         elif align_y == 'center':
-            self.pattern_y = (svg_height - self.height) / 2
+            self.pattern_y = (svg_height - self.height) // 2
         else:
             self.pattern_y = 0
 
