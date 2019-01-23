@@ -680,16 +680,12 @@ class CombinedNameSummaryCleanMixin(object):
                             else self.MAX_LENGTH - len(summary_default))
                         name = name_values[locale][:max_name_length]
                         name_length = len(name)
-                        if 'name' not in self.cleaned_data:
-                            self.cleaned_data['name'] = {}
-                        self.cleaned_data['name'][locale] = name
+                        self.cleaned_data.setdefault('name', {})[locale] = name
                     else:
                         name_length = len(name_default)
                     if locale in summary_values:
                         max_summary_length = self.MAX_LENGTH - name_length
-                        if 'summary' not in self.cleaned_data:
-                            self.cleaned_data['summary'] = {}
-                        self.cleaned_data['summary'][locale] = (
+                        self.cleaned_data.setdefault('summary', {})[locale] = (
                             summary_values[locale][:max_summary_length])
         return self.cleaned_data
 
