@@ -265,8 +265,6 @@ The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 v4 API changelog
 ----------------
 
-* 2019-01-16: Removed /api/{v3,v4,v4dev}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
-* 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
 * 2018-05-18: renamed /reviews/ endpoint to /ratings/  https://github.com/mozilla/addons-server/issues/6849
 * 2018-05-25: renamed ``rating.rating`` property to ``rating.score``  https://github.com/mozilla/addons-server/pull/8332
 * 2018-06-05: dropped ``rating.title`` property https://github.com/mozilla/addons-server/issues/8144
@@ -294,3 +292,5 @@ v4 API changelog
 * 2018-11-22: added ``flags`` to the rating object in the ratings API when ``show_flags_for`` parameter supplied.
 * 2018-11-22: added ``score`` parameter to the ratings API list endpoint.
 * 2019-01-10: added ``release_notes`` and ``license`` (except ``license.text``) to search API results ``current_version`` objects.
+* 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
+* 2019-01-16: Removed /api/{v3,v4,v4dev}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
