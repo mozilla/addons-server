@@ -3,6 +3,7 @@ import json
 
 from django.http import QueryDict
 from django.test.client import RequestFactory
+from django.utils.encoding import force_text
 
 import mock
 import pytest
@@ -207,7 +208,6 @@ class TestESSearch(SearchBase):
         self.assert3xx(response, self.url + '?sort=rating', status_code=301)
 
     def test_legacy_redirects_to_non_ascii(self):
-        # see http://sentry.dmz.phx1.mozilla.com/addons/group/2186/
         url = '/ga-IE/firefox/tag/%E5%95%86%E5%93%81%E6%90%9C%E7%B4%A2'
         from_ = ('?sort=updated&lver=1.0&advancedsearch=1'
                  '&tag=dearbhair&cat=4%2C84')
@@ -895,7 +895,7 @@ class TestAjaxSearch(ESTestCaseWithAddons):
             addons = []
         response = self.client.get(url + '?' + params)
         assert response.status_code == 200
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
 
         assert len(data) == len(addons)
         for got, expected in zip(
@@ -1005,7 +1005,7 @@ class TestSearchSuggestions(TestAjaxSearch):
             apps = []
         response = self.client.get(self.url + '?' + params)
         assert response.status_code == 200
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
 
         data = sorted(data, key=lambda x: x['id'])
         apps = sorted(apps, key=lambda x: x.id)
