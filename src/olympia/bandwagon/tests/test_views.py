@@ -14,6 +14,7 @@ import six
 from mock import Mock, patch
 from pyquery import PyQuery as pq
 from rest_framework.fields import empty
+from six.moves.urllib_parse import unquote_to_bytes
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -172,14 +173,14 @@ class TestViews(TestCase):
         self.assertContains(response, '&lt;b&gt;foo&lt;/b&gt; some text')
 
     def test_no_xss_in_collection_page(self):
-        coll = Collection.objects.get(slug='wut-slug')
+        collection = Collection.objects.get(slug='wut-slug')
         name = '"><script>alert(/XSS/);</script>'
         name_escaped = '&#34;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
-        coll.name = name
-        coll.save()
-        resp = self.client.get(coll.get_url_path())
-        assert name not in resp.content
-        assert name_escaped in resp.content
+        collection.name = name
+        collection.save()
+        response = self.client.get(collection.get_url_path())
+        assert name not in response.content.decode('utf-8')
+        assert name_escaped in response.content.decode('utf-8')
 
 
 class TestPrivacy(TestCase):
@@ -280,7 +281,7 @@ class TestCRUD(TestCase):
             response,
             '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
-        assert name not in response.content
+        assert name not in response.content.decode('utf-8')
 
     def test_add_fail(self):
         """
@@ -317,7 +318,8 @@ class TestCRUD(TestCase):
     def test_submit(self):
         """Test submission of addons."""
         response = self.client.post(self.add_url, self.data, follow=True)
-        assert response.request['PATH_INFO'].decode('utf-8') == (
+        assert (
+            unquote_to_bytes(response.redirect_chain[0][0]).decode('utf-8') ==
             '/en-US/firefox/collections/4043307/%s/' % self.slug)
         collection = Collection.objects.get(slug=self.slug)
         assert six.text_type(collection.name) == self.data['name']
@@ -569,12 +571,12 @@ class TestCRUD(TestCase):
         collection = Collection.objects.get(slug=self.slug)
         assert collection.name == name
         url = reverse('collections.delete', args=['admin', collection.slug, ])
-        r = self.client.get(url, follow=True)
+        response = self.client.get(url, follow=True)
         self.assertContains(
-            r,
+            response,
             '&quot;&gt;&lt;script&gt;alert(/XSS/);&lt;/script&gt;'
         )
-        assert name not in r.content
+        assert name not in response.content.decode('utf-8')
 
     def test_form_uneditable_slug(self):
         """

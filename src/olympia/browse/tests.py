@@ -37,7 +37,7 @@ pytestmark = pytest.mark.django_db
 
 
 def _test_listing_sort(self, sort, key=None, reverse=True, sel_class='opt'):
-    response = self.client.get(self.url, dict(sort=sort))
+    response = self.client.get(self.url, {'sort': sort})
     assert response.status_code == 200
     sel = pq(response.content)('#sorter ul > li.selected')
     assert sel.find('a').attr('class') == sel_class
@@ -54,7 +54,7 @@ def _test_default_sort(self, sort, key=None, reverse=True, sel_class='opt'):
     assert response.status_code == 200
     assert response.context['sorting'] == sort
 
-    response = self.client.get(self.url, dict(sort='xxx'))
+    response = self.client.get(self.url, {'sort': 'xxx'})
     assert response.status_code == 200
     assert response.context['sorting'] == sort
     _test_listing_sort(self, sort, key, reverse, sel_class)
@@ -83,11 +83,11 @@ class TestListing(TestCase):
 
     def test_try_new_frontend_banner_presence(self):
         response = self.client.get(self.url)
-        assert 'AMO is getting a new look.' not in response.content
+        assert b'AMO is getting a new look.' not in response.content
 
         with override_switch('try-new-frontend', active=True):
             response = self.client.get(self.url)
-            assert 'AMO is getting a new look.' in response.content
+            assert b'AMO is getting a new look.' in response.content
 
     def test_default_sort(self):
         r = self.client.get(self.url)
@@ -246,7 +246,7 @@ class TestLanguageTools(TestCase):
         assert len(ca.dicts) == 1
         assert len(ca.packs) == 3
         this_locale = dict(self.this_locale_addons)
-        assert this_locale.keys() == ['en-US']
+        assert list(this_locale.keys()) == ['en-US']
         assert len(this_locale['en-US'].dicts) == 2
         assert len(this_locale['en-US'].packs) == 0
 
@@ -268,7 +268,7 @@ class TestLanguageTools(TestCase):
 
     def test_file_sizes_use_binary_prefixes(self):
         response = self.client.get(self.url, follow=True)
-        assert '223.0 KiB' in response.content
+        assert b'223.0 KiB' in response.content
 
 
 class TestThemes(TestCase):
@@ -355,8 +355,8 @@ class TestFeeds(TestCase):
         assert doc('#subscribe').attr('href') == rss_url
 
         # Ensure that the RSS items match those on the browse listing pages.
-        r = self.client.get(rss_url)
-        rss_doc = pq(r.content)
+        response = self.client.get(rss_url)
+        rss_doc = pq(response.content)
         pg_items = doc('.items .item')
         rss_items = rss_doc('item')
 
@@ -693,10 +693,11 @@ class TestListingByStatus(TestCase):
         self.addon.update_version()
         return Addon.objects.get(id=3615)
 
-    def check(self, exp):
-        r = self.client.get(reverse('browse.extensions') + '?sort=created')
-        addons = list(r.context['addons'].object_list)
-        assert addons == exp
+    def check(self, expected):
+        response = self.client.get(
+            reverse('browse.extensions') + '?sort=created')
+        addons = list(response.context['addons'].object_list)
+        assert addons == expected
 
     def test_public_public_visible(self):
         self.get_addon(amo.STATUS_PUBLIC, amo.STATUS_PUBLIC)
@@ -798,8 +799,8 @@ class TestSearchToolsPages(BaseSearchToolsTest):
 
         for sort_key in ('name', 'updated', 'created', 'popular', 'rating'):
             url = reverse('browse.search-tools') + '?sort=' + sort_key
-            r = self.client.get(url)
-            all_addons = r.context['addons'].object_list
+            response = self.client.get(url)
+            all_addons = response.context['addons'].object_list
             assert len(all_addons)
             for addon in all_addons:
                 assert addon.type == amo.ADDON_SEARCH, (
@@ -809,9 +810,9 @@ class TestSearchToolsPages(BaseSearchToolsTest):
     def test_rss_links_per_page(self):
 
         def get_link(url):
-            r = self.client.get(url)
-            assert r.status_code == 200
-            doc = pq(r.content)
+            response = self.client.get(url)
+            assert response.status_code == 200
+            doc = pq(response.content)
             return doc('head link[type="application/rss+xml"]').attr('href')
 
         assert get_link(reverse('browse.search-tools')) == (
@@ -830,9 +831,9 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
     def test_created_search_tools(self):
         self.setup_tools_and_extensions()
         url = reverse('browse.search-tools.rss') + '?sort=created'
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         assert doc('rss channel title')[0].text == (
             'Search Tools :: Add-ons for Firefox')
@@ -847,9 +848,9 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 
     def test_search_tools_no_sorting(self):
         url = reverse('browse.search-tools.rss')
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         link = doc('rss channel link')[0].text
         rel_link = reverse('browse.search-tools.rss') + '?sort=popular'
@@ -861,9 +862,9 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
                       .update(type=amo.ADDON_SEARCH))
 
         url = reverse('browse.search-tools.rss') + '?sort=name'
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         assert doc('rss channel description')[0].text == 'Search tools'
 
@@ -883,9 +884,9 @@ class TestSearchToolsFeed(BaseSearchToolsTest):
 
         url = reverse('browse.search-tools.rss',
                       args=('bookmarks',)) + '?sort=popular'
-        r = self.client.get(url)
-        assert r.status_code == 200
-        doc = pq(r.content)
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
 
         assert doc('rss channel title')[0].text == (
             'Bookmarks :: Search Tools :: Add-ons for Firefox')
@@ -917,8 +918,9 @@ class TestLegacyRedirects(TestCase):
     fixtures = ['base/category']
 
     def redirects(self, from_, to, status_code=301):
-        r = self.client.get('/en-US/firefox' + from_)
-        self.assert3xx(r, '/en-US/firefox' + to, status_code=status_code)
+        response = self.client.get('/en-US/firefox' + from_)
+        self.assert3xx(
+            response, '/en-US/firefox' + to, status_code=status_code)
 
     def test_types(self):
         self.redirects('/browse/type:1', '/extensions/')
@@ -983,10 +985,10 @@ class TestLegacyRedirects(TestCase):
 
     def test_missing_rss_redirections_749754(self):
         url = '/en-US/firefox/browse/type:{type}/cat:1/format:rss?sort=updated'
-        r = self.client.get(url.format(type=3))  # Language tools.
-        assert r.status_code == 404
-        r = self.client.get(url.format(type=9))  # Themes.
-        assert r.status_code == 404
+        response = self.client.get(url.format(type=3))  # Language tools.
+        assert response.status_code == 404
+        response = self.client.get(url.format(type=9))  # Themes.
+        assert response.status_code == 404
 
 
 class TestCategoriesFeed(TestCase):
@@ -1022,8 +1024,8 @@ class TestFeaturedFeed(TestCase):
 
     def test_feed_elements_present(self):
         url = reverse('browse.featured.rss')
-        r = self.client.get(url, follow=True)
-        doc = pq(r.content)
+        response = self.client.get(url, follow=True)
+        doc = pq(response.content)
         assert doc('rss channel title')[0].text == (
             'Featured Add-ons :: Add-ons for Firefox')
         assert doc('rss channel link')[0].text.endswith('/en-US/firefox/')
@@ -1068,11 +1070,11 @@ class TestPersonas(TestCase):
 
     def test_try_new_frontend_banner_presence(self):
         response = self.client.get(self.landing_url)
-        assert 'AMO is getting a new look.' not in response.content
+        assert b'AMO is getting a new look.' not in response.content
 
         with override_switch('try-new-frontend', active=True):
             response = self.client.get(self.landing_url)
-            assert 'AMO is getting a new look.' in response.content
+            assert b'AMO is getting a new look.' in response.content
 
     def test_does_not_500_in_development(self):
         with self.settings(DEBUG=True):
@@ -1100,8 +1102,8 @@ class TestPersonas(TestCase):
                              persona_extras={'popularity': 100})
         base = Addon.objects.public().filter(type=amo.ADDON_PERSONA)
         assert base.count() == MIN_COUNT_FOR_LANDING + 2
-        r = self.client.get(self.landing_url)
-        self.assertTemplateUsed(r, self.landing_template)
+        response = self.client.get(self.landing_url)
+        self.assertTemplateUsed(response, self.landing_template)
 
         # Whatever the `category.count` is.
         category = Category(
@@ -1117,59 +1119,59 @@ class TestPersonas(TestCase):
             type=amo.ADDON_PERSONA, slug='abc', application=amo.FIREFOX.id)
         category.save()
         category_url = reverse('browse.personas', args=[category.slug])
-        r = self.client.get(category_url + '?sort=created')
-        self.assertTemplateUsed(r, self.grid_template)
+        response = self.client.get(category_url + '?sort=created')
+        self.assertTemplateUsed(response, self.grid_template)
 
         # Whatever the `category.count` is.
         category.update(count=MIN_COUNT_FOR_LANDING + 1)
-        r = self.client.get(category_url + '?sort=created')
-        self.assertTemplateUsed(r, self.grid_template)
+        response = self.client.get(category_url + '?sort=created')
+        self.assertTemplateUsed(response, self.grid_template)
 
     def test_personas_category_landing_frozen(self):
         # Check to make sure add-on is there.
-        r = self.client.get(self.landing_url)
+        response = self.client.get(self.landing_url)
 
-        personas = pq(r.content).find('.persona-preview')
+        personas = pq(response.content).find('.persona-preview')
         assert personas.length == 2
 
         # Freeze the add-on
         FrozenAddon.objects.create(addon_id=15663)
 
         # Make sure it's not there anymore
-        res = self.client.get(self.landing_url)
+        response = self.client.get(self.landing_url)
 
-        personas = pq(res.content).find('.persona-preview')
+        personas = pq(response.content).find('.persona-preview')
         assert personas.length == 1
 
     def test_only_popular_persona_are_shown_in_up_and_coming(self):
-        r = self.client.get(self.upandcoming_url)
-        personas = pq(r.content).find('.persona-preview')
+        response = self.client.get(self.upandcoming_url)
+        personas = pq(response.content).find('.persona-preview')
         assert personas.length == 2
         p = Persona.objects.get(pk=559)
         p.popularity = 99
         p.save()
-        r = self.client.get(self.upandcoming_url)
-        personas = pq(r.content).find('.persona-preview')
+        response = self.client.get(self.upandcoming_url)
+        personas = pq(response.content).find('.persona-preview')
         assert personas.length == 1
 
     @override_settings(PERSONA_DEFAULT_PAGES=2)
     def test_pagination_in_up_and_coming(self):
         # If the number is < MIN_COUNT_FOR_LANDING + 1 we keep
         # the base pagination.
-        r = self.client.get(self.upandcoming_url)
-        assert str(r.context['addons']) == '<Page 1 of 1>'
+        response = self.client.get(self.upandcoming_url)
+        assert str(response.context['addons']) == '<Page 1 of 1>'
         # Otherwise we paginate on 10, hardcoded.
         self.create_personas(PAGINATE_PERSONAS_BY,
                              persona_extras={'popularity': 100})
-        r = self.client.get(self.upandcoming_url)
-        assert str(r.context['addons']) == '<Page 1 of 2>'
+        response = self.client.get(self.upandcoming_url)
+        assert str(response.context['addons']) == '<Page 1 of 2>'
         # Even if the number of retrieved personas is higher than
         # 10 pages we shouldn't have a bump in page numbers.
         self.create_personas(
             PAGINATE_PERSONAS_BY * settings.PERSONA_DEFAULT_PAGES,
             persona_extras={'popularity': 100})
-        r = self.client.get(self.upandcoming_url)
-        assert str(r.context['addons']) == '<Page 1 of 2>'
+        response = self.client.get(self.upandcoming_url)
+        assert str(response.context['addons']) == '<Page 1 of 2>'
 
     def test_pagination_in_created(self):
         r = self.client.get(self.created_url)
@@ -1199,8 +1201,9 @@ class TestStaticThemeRedirects(TestCase):
     fixtures = ['base/category']
 
     def redirects(self, from_, to, status_code=302):
-        r = self.client.get('/en-US/firefox' + from_)
-        self.assert3xx(r, '/en-US/firefox' + to, status_code=status_code)
+        response = self.client.get('/en-US/firefox' + from_)
+        self.assert3xx(
+            response, '/en-US/firefox' + to, status_code=status_code)
 
     def test_redirects(self):
         self.redirects('/static-themes/', '/themes/')

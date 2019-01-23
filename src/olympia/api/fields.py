@@ -143,10 +143,11 @@ class TranslationSerializerField(fields.Field):
             raise ValidationError(
                 self.error_messages['no_dict']
             )
+
         value_too_short = True
 
         if isinstance(value, six.string_types):
-            if len(value.strip()) >= self.min_length:
+            if self.min_length and len(value.strip()) >= self.min_length:
                 value_too_short = False
         else:
             for locale, string in value.items():
@@ -154,7 +155,8 @@ class TranslationSerializerField(fields.Field):
                     raise ValidationError(
                         self.error_messages['unknown_locale'].format(
                             lang_code=repr(locale)))
-                if string and (len(string.strip()) >= self.min_length):
+                if self.min_length and string and (
+                        len(string.strip()) >= self.min_length):
                     value_too_short = False
                     break
 

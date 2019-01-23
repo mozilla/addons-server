@@ -1,9 +1,7 @@
 import functools
-import hashlib
 
 from django import http
 from django.conf import settings
-from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
@@ -121,14 +119,7 @@ def collection_listing(request, base=None):
                   .filter(type=amo.COLLECTION_FEATURED)
                   .exclude(addon_count=0)
     )
-    # Counts are hard to cache automatically, and accuracy for this
-    # one is less important. Remember it for 5 minutes.
-    countkey = hashlib.sha256(str(qs.query) + '_count').hexdigest()
-    count = cache.get(countkey)
-    if count is None:
-        count = qs.count()
-        cache.set(countkey, count, 300)
-    collections = paginate(request, qs, count=count)
+    collections = paginate(request, qs, count=qs.count())
     return render_cat(request, 'bandwagon/impala/collection_listing.html',
                       {'collections': collections, 'src': 'co-hc-sidebar',
                        'dl_src': 'co-dp-sidebar'})

@@ -13,8 +13,8 @@ class TestManagement(TestCase):
     def test_tags_details_view(self):
         """Test that there are some tags being shown on the details page."""
         url = reverse('addons.detail_more', args=['a3615'])
-        r = self.client.get_ajax(url, follow=True)
-        doc = pq(r.content)
+        response = self.client.get_ajax(url, follow=True)
+        doc = pq(response.content)
         assert len(doc('li.tag')) == 4
         assert 'Tags' in [d.text for d in doc('h3')]
 
@@ -36,9 +36,10 @@ class TestXSS(TestCase):
     def test_tags_xss_detail(self):
         """Test xss tag detail."""
         url = reverse('addons.detail_more', args=['a3615'])
-        r = self.client.get_ajax(url, follow=True)
-        assert self.escaped in r.content
-        assert self.xss not in r.content
+        response = self.client.get_ajax(url, follow=True)
+        content = response.content.decode('utf-8')
+        assert self.escaped in content
+        assert self.xss not in content
 
 
 class TestXSSURLFail(TestCase):
@@ -58,9 +59,10 @@ class TestXSSURLFail(TestCase):
     def test_tags_xss(self):
         """Test xss tag detail."""
         url = reverse('addons.detail_more', args=['a3615'])
-        r = self.client.get_ajax(url, follow=True)
-        assert self.escaped in r.content
-        assert self.xss not in r.content
+        response = self.client.get_ajax(url, follow=True)
+        content = response.content.decode('utf-8')
+        assert self.escaped in content
+        assert self.xss not in content
 
     def test_tags_xss_home(self):
         """Test xss tag home."""
@@ -77,6 +79,6 @@ class TestNoTags(TestCase):
     def test_tags_no_details_view(self):
         """Test that there is no tag header tags being shown."""
         url = reverse('addons.detail', args=['a3615'])
-        r = self.client.get(url, follow=True)
-        doc = pq(r.content)
+        response = self.client.get(url, follow=True)
+        doc = pq(response.content)
         assert 'Tags' not in [d.text for d in doc('h3')]

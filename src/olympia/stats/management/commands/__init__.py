@@ -4,6 +4,7 @@ from io import StringIO
 from six.moves.urllib_parse import urlparse
 
 from django.core.files.storage import get_storage_class
+from django.utils.encoding import force_text
 
 
 storage = get_storage_class()()
@@ -42,4 +43,4 @@ def get_object_from_s3(bucket, object_key, range=''):
     client = boto3.client('s3')
     obj = client.get_object(Bucket=bucket, Key=object_key.lstrip('/'),
                             Range=range)
-    return obj['Body'].read().decode('utf-8')
+    return force_text(obj['Body'].read())

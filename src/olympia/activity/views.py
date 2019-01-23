@@ -2,6 +2,7 @@ import json
 
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
 from rest_framework import status
@@ -81,7 +82,7 @@ class EmailCreationPermission(object):
     def has_permission(self, request, view):
         try:
             # request.data isn't available at this point.
-            data = json.loads(request.body)
+            data = json.loads(force_text(request.body))
         except ValueError:
             # Verification checks don't send JSON, but do send the key as POST.
             data = request.POST

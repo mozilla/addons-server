@@ -60,7 +60,7 @@ def module_admin(request):
 
 def _sync_db_and_registry(qs, app_id):
     """Match up the module registry and DiscoveryModule rows in the db."""
-    existing = dict((m.module, m) for m in qs)
+    existing = {m.module: m for m in qs}
     to_add = [m for m in module_registry if m not in existing]
     to_delete = [m for m in existing if m not in module_registry]
     for m in to_add:

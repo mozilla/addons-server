@@ -371,7 +371,7 @@ class File(OnChangeMixin, ModelBase):
         log.info('Extracted localepicker file: %s in %.2fs' %
                  (self.pk, end))
         statsd.timing('files.extract.localepicker', (end * 1000))
-        return res
+        return force_text(res)
 
     @property
     def webext_permissions(self):
@@ -604,9 +604,9 @@ class FileUpload(ModelBase):
         if not self.uuid:
             self.uuid = self._meta.get_field('uuid')._create_uuid()
 
-        filename = force_bytes(u'{0}_{1}'.format(self.uuid.hex, filename))
+        filename = force_text(u'{0}_{1}'.format(self.uuid.hex, filename))
         loc = os.path.join(user_media_path('addons'), 'temp', uuid.uuid4().hex)
-        base, ext = os.path.splitext(force_bytes(filename))
+        base, ext = os.path.splitext(filename)
         is_crx = False
 
         # Change a ZIP to an XPI, to maintain backward compatibility
@@ -629,16 +629,16 @@ class FileUpload(ModelBase):
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
         if is_crx:
-            hash = write_crx_as_xpi(chunks, loc)
+            hash_func = write_crx_as_xpi(chunks, loc)
         else:
-            hash = hashlib.sha256()
+            hash_func = hashlib.sha256()
             with storage.open(loc, 'wb') as file_destination:
                 for chunk in chunks:
-                    hash.update(chunk)
+                    hash_func.update(chunk)
                     file_destination.write(chunk)
         self.path = loc
-        self.name = force_text(filename)
-        self.hash = 'sha256:%s' % hash.hexdigest()
+        self.name = filename
+        self.hash = 'sha256:%s' % hash_func.hexdigest()
         self.save()
 
     @classmethod

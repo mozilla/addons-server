@@ -11,6 +11,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+from django.utils.encoding import force_bytes, force_text
 
 import mock
 import pytest
@@ -78,7 +79,7 @@ class TestSigning(TestCase):
     def _get_signature_details(self):
         with zipfile.ZipFile(self.file_.current_file_path, mode='r') as zobj:
             info = signing.SignatureInfo(zobj.read('META-INF/mozilla.rsa'))
-            manifest = zobj.read('META-INF/manifest.mf')
+            manifest = force_text(zobj.read('META-INF/manifest.mf'))
             return info, manifest
 
     def assert_not_signed(self):
@@ -164,7 +165,7 @@ class TestSigning(TestCase):
         # bug 1158938).
         with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
             with zf.open('META-INF/mozilla.sf', 'r') as mozillasf:
-                assert mozillasf.read().endswith('\n\n')
+                assert mozillasf.read().endswith(b'\n\n')
 
     def test_sign_file_non_ascii_filename(self):
         src = self.file_.file_path
@@ -173,6 +174,9 @@ class TestSigning(TestCase):
         self.assert_not_signed()
         signing.sign_file(self.file_)
         self.assert_signed()
+
+    # FIXME: need to add a test with a unicode filename inside the package
+    # itself, and then check the signature.
 
     def test_no_sign_missing_file(self):
         os.unlink(self.file_.file_path)
@@ -258,7 +262,7 @@ class TestSigning(TestCase):
 
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
-        hashed = hashlib.sha256(long_guid).hexdigest()
+        hashed = hashlib.sha256(force_bytes(long_guid)).hexdigest()
         self.addon.update(guid=long_guid)
         signing.sign_file(self.file_)
 
@@ -286,8 +290,8 @@ class TestSigning(TestCase):
         assert signing.get_id(self.addon) == self.addon.guid
 
     def test_get_id_long_guid_bug_1203365(self):
-        long_guid = 'x' * 65
-        hashed = hashlib.sha256(long_guid).hexdigest()
+        long_guid = u'x' * 65
+        hashed = hashlib.sha256(force_bytes(long_guid)).hexdigest()
         self.addon.update(guid=long_guid)
         assert len(self.addon.guid) > 64
         assert len(signing.get_id(self.addon)) <= 64
@@ -375,7 +379,7 @@ class TestSigningNewFileEndpoint(TestSigning):
 
     def test_call_signing_too_long_guid_bug_1203365(self):
         long_guid = 'x' * 65
-        hashed = hashlib.sha256(long_guid).hexdigest()
+        hashed = hashlib.sha256(force_bytes(long_guid)).hexdigest()
         self.addon.update(guid=long_guid)
         signing.sign_file(self.file_)
 
