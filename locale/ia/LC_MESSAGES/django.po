@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-21 19:12+0000\n"
+"PO-Revision-Date: 2019-01-23 07:36+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -706,9 +706,8 @@ msgstr "Alcun functionalitates es temporarimente disactivate durante que nos exe
 msgid "Must contain at least one printable character."
 msgstr "Debe continer al minus un character stampabile."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Debe continer al minus un character stampabile."
+msgstr "Verifica que iste campo contine al minus un littera o un character numeric."
 
 msgid "Not allowed"
 msgstr "Non consentite"
