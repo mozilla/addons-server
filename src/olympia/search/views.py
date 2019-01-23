@@ -1,7 +1,6 @@
 from django import http
 from django.db.models import Q
 from django.db.transaction import non_atomic_requests
-from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext
 from django.views.decorators.vary import vary_on_headers
 
@@ -491,7 +490,7 @@ def version_sidebar(request, form_data, aggregations):
 
 def platform_sidebar(request, form_data):
     qplatform = form_data.get('platform')
-    app_platforms = request.APP.platforms.values()
+    app_platforms = list(request.APP.platforms.values())
     ALL = app_platforms.pop(0)
 
     # The default is to show "All Systems."
@@ -522,7 +521,7 @@ def tag_sidebar(request, form_data, aggregations):
 
 
 def fix_search_query(query, extra_params=None):
-    rv = {force_bytes(k): v for k, v in query.items()}
+    rv = query.dict()
     changed = False
     # Change old keys to new names.
     keys = {
@@ -545,10 +544,12 @@ def fix_search_query(query, extra_params=None):
             'sortby': 'sort',
         },
         'platform': {
-            str(p.id): p.shortname
+            six.text_type(p.id): p.shortname
             for p in amo.PLATFORMS.values()
         },
-        'atype': {k: str(v) for k, v in amo.ADDON_SEARCH_SLUGS.items()},
+        'atype': {
+            k: six.text_type(v) for k, v in amo.ADDON_SEARCH_SLUGS.items()
+        },
     }
     if extra_params:
         params.update(extra_params)
