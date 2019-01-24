@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-24 09:54+0000\n"
+"PO-Revision-Date: 2019-01-24 11:03+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -2495,7 +2495,7 @@ msgid "There was an error with your upload. Please try again."
 msgstr "A apărut o eroare la încărcare. Te rugăm să încerci din nou."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Înlocuire forțată validare eșuată"
 
 msgid "Need to select at least one application."
 msgstr "Necesită selectarea cel puțin a unei aplicații."
@@ -3887,7 +3887,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Autentifică-te pentru a edita și actualiza suplimentul"
 
 msgid "Write one code base for many browsers"
-msgstr ""
+msgstr "Scrie un cod de bază pentru mai multe browsere"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
@@ -3911,7 +3911,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Vezi cele mai bune practici"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listat pe acest site după ce a trecut cu succes revizuirea codului. Actualizările automate sunt gestionate de acest site."
