@@ -39,7 +39,7 @@ class APIKey(ModelBase):
     key = models.CharField(max_length=255, db_index=True, unique=True)
     # TODO: use RSA public keys instead? If we were to use JWT RSA keys
     # then we'd only need to store the public key.
-    secret = AESField(aes_key='api_key:secret', aes_prefix=b'aes:')
+    secret = AESField(aes_key='api_key:secret')
 
     class Meta:
         db_table = 'api_key'
