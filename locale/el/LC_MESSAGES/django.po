@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-22 20:51+0000\n"
+"PO-Revision-Date: 2019-01-24 03:58+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3872,7 +3872,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Δείτε τις καλύτερες πρακτικές"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr ""
