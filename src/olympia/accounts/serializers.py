@@ -174,7 +174,7 @@ class AccountSuperCreateSerializer(serializers.Serializer):
     username = serializers.CharField(required=False)
     email = serializers.EmailField(required=False)
     fxa_id = serializers.CharField(required=False)
-    group = serializers.ChoiceField(choices=dict(group_rules.items()),
+    group = serializers.ChoiceField(choices=list(group_rules.items()),
                                     required=False)
 
     def validate_email(self, email):
