@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.core.management import call_command
 from django.test import RequestFactory
 from django.test.utils import override_settings
 from django.utils.translation import trim_whitespace
@@ -898,7 +897,7 @@ class TestUpload(BaseUploadTest):
         response = self.client.get(url)
         assert response.status_code == 404
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
@@ -915,8 +914,6 @@ class TestUploadDetail(BaseUploadTest):
         super(TestUploadDetail, self).setUp()
         self.create_appversion('firefox', '*')
         self.create_appversion('firefox', '51.0a1')
-
-        call_command('dump_apps')
 
         assert self.client.login(email='regular@mozilla.com')
 
@@ -961,7 +958,6 @@ class TestUploadDetail(BaseUploadTest):
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
         assert data['full_report_url'] == (
             reverse('devhub.upload_detail', args=[upload.uuid.hex]))
-        assert data['processed_by_addons_linter'] is False
         # We must have tiers
         assert len(data['validation']['messages'])
         msg = data['validation']['messages'][0]
@@ -1059,7 +1055,7 @@ class TestUploadDetail(BaseUploadTest):
         expected = [(u'&#34;/version&#34; is a required property', True)]
         assert message == expected
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch.object(waffle, 'flag_is_active')
     def test_unparsable_xpi(self, flag_is_active, v):
         flag_is_active.return_value = True
@@ -1073,7 +1069,7 @@ class TestUploadDetail(BaseUploadTest):
                    for m in data['validation']['messages']]
         assert message == [(u'Could not parse the manifest file.', True)]
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_experiment_xpi_allowed(self, mock_validator):
         user = UserProfile.objects.get(email='regular@mozilla.com')
         self.grant_permission(user, 'Experiments:submit')
@@ -1086,7 +1082,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_experiment_xpi_not_allowed(self, mock_validator):
         mock_validator.return_value = json.dumps(self.validation_ok())
         self.upload_file(
@@ -1099,7 +1095,7 @@ class TestUploadDetail(BaseUploadTest):
             {u'tier': 1, u'message': u'You cannot submit this type of add-on',
              u'fatal': True, u'type': u'error'}]
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_allowed(self, mock_validator):
         user_factory(email='redpanda@mozilla.com')
         assert self.client.login(email='redpanda@mozilla.com')
@@ -1112,7 +1108,7 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_not_allowed_not_mozilla(self, mock_validator):
         user_factory(email='bluepanda@notzilla.com')
         assert self.client.login(email='bluepanda@notzilla.com')
@@ -1129,7 +1125,7 @@ class TestUploadDetail(BaseUploadTest):
                          u'"@pioneer.mozilla.org" or "@mozilla.com"',
              u'fatal': True, u'type': u'error'}]
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
     def test_mozilla_signed_allowed(self, mock_validator, mock_get_signature):
         user_factory(email='redpanda@mozilla.com')
@@ -1181,7 +1177,7 @@ class TestUploadDetail(BaseUploadTest):
 
         assert data['validation']['messages'] == []
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_update_allowed(self, mock_validator):
         """Updates to system addons are allowed from anyone."""
         user = user_factory(email='pinkpanda@notzilla.com')
@@ -1197,19 +1193,6 @@ class TestUploadDetail(BaseUploadTest):
         data = json.loads(response.content)
         assert data['validation']['messages'] == []
 
-    def test_legacy_langpacks_allowed_by_default(self):
-        self.upload_file(
-            '../../../files/fixtures/files/langpack.xpi')
-        upload = FileUpload.objects.get()
-        response = self.client.get(reverse('devhub.upload_detail',
-                                           args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
-        msgid = [u'validation', u'messages', u'legacy_langpacks_disallowed']
-        assert not any(
-            message['id'] == msgid
-            for message in data['validation']['messages'])
-
-    @override_switch('disallow-legacy-langpacks', active=True)
     def test_legacy_langpacks_disallowed(self):
         self.upload_file(
             '../../../files/fixtures/files/langpack.xpi')
@@ -1218,7 +1201,7 @@ class TestUploadDetail(BaseUploadTest):
                                            args=[upload.uuid.hex, 'json']))
         data = json.loads(response.content)
         assert data['validation']['messages'][0]['id'] == [
-            u'validation', u'messages', u'legacy_langpacks_disallowed'
+            u'validation', u'messages', u'legacy_addons_unsupported'
         ]
 
     def test_no_redirect_for_metadata(self):

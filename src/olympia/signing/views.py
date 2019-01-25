@@ -112,7 +112,7 @@ class VersionView(APIView):
                 ugettext(u'Missing "upload" key in multipart file data.'),
                 status.HTTP_400_BAD_REQUEST)
 
-        # # Parse the file to get and validate package data with the addon.
+        # Parse the file to get and validate package data with the addon.
         parsed_data = parse_addon(filedata, addon, user=request.user)
 
         if addon is not None and addon.status == amo.STATUS_DISABLED:

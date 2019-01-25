@@ -327,36 +327,10 @@ VALIDATOR_SKELETON_RESULTS = {
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [],
     "message_tree": {},
-    "detected_type": "extension",
     "ending_tier": 5,
 }
 
 # A skeleton set of validation results for a system error.
-VALIDATOR_SKELETON_EXCEPTION = {
-    "errors": 1,
-    "warnings": 0,
-    "notices": 0,
-    "success": True,
-    "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {"requires_chrome": False, "listed": True},
-    "messages": [
-        {"id": ["validator", "unexpected_exception"],
-         "message": "Sorry, we couldn't load your add-on.",
-         "description": [
-            "Validation was unable to complete successfully due to an "
-            "unexpected error.",
-            "The error has been logged, but please consider filing an issue "
-            "report here: http://bit.ly/1POrYYU"],
-         "type": "error",
-         "tier": 1,
-         "for_appversions": None,
-         "uid": "35432f419340461897aa8362398339c4"}
-    ],
-    "message_tree": {},
-    "detected_type": "extension",
-    "ending_tier": 5,
-}
-
 VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "errors": 1,
     "warnings": 0,
@@ -383,7 +357,6 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
          "uid": "35432f419340461897aa8362398339c4"}
     ],
     "message_tree": {},
-    "detected_type": "extension",
     "ending_tier": 5,
 }
 

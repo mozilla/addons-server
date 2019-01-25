@@ -698,17 +698,11 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
     validation = upload.processed_validation or ''
 
-    processed_by_linter = (
-        validation and
-        validation.get('metadata', {}).get(
-            'processed_by_addons_linter', False))
-
     return {'upload': upload.uuid.hex,
             'validation': validation,
             'error': None,
             'url': url,
-            'full_report_url': full_report_url,
-            'processed_by_addons_linter': processed_by_linter}
+            'full_report_url': full_report_url}
 
 
 def upload_detail(request, uuid, format='html'):

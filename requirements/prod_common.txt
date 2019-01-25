@@ -111,9 +111,6 @@ PyJWT==1.7.1 \
     --hash=sha256:8d59a976fb773f3e6a39c85636357c4f0e242707394cadadd9814f5cbaa20e96
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
-amo-validator==1.11.2 \
-    --hash=sha256:f82121c472019eeadfa6c5c9ed0538aa7b2a5b0170d1219669eb8d2bde875a58 \
-    --hash=sha256:8fb2377573bf3abee2d4abb417577b6d01c360e1dfb67f023e7534fbc831ba95
 # amqp is required by kombu
 amqp==2.4.0 \
     --hash=sha256:c3d7126bfbc640d076a01f1f4f6e609c0e4348508150c1f61336b0d83c738d2b \
@@ -159,11 +156,6 @@ contextlib2==0.5.5 \
 cssselect==1.0.3 \
     --hash=sha256:3b5103e8789da9e936a68d993b70df732d06b8bb9a337a05ed4eb52c17ef7206 \
     --hash=sha256:066d8bc5229af09617e24b3ca4d52f1f9092d9e061931f4184cd572885c23204
-# cssutils is required by amo-validator
-cssutils==1.0.2 \
-    --hash=sha256:b45a3a66b304a3217fcc187540cad704a847c60d8b785feb732d3671b7adfc03 \
-    --hash=sha256:c74dbe19c92f5052774eadb15136263548dd013250f1ed1027988e7fef125c8d \
-    --hash=sha256:a2fcf06467553038e98fea9cfe36af2bf14063eb147a70958cfcaa8f5786acaf
 # defusedxml is required by amo-validator
 defusedxml==0.5.0 \
     --hash=sha256:702a91ade2968a82beb0db1e0766a6a273f33d4616a6ce8cde475d8e09853b20 \
@@ -230,9 +222,6 @@ elasticsearch-dsl==5.4.0 \
     --hash=sha256:cbef6467085d7debc870bc450d996c7ba5b8822eb86a6033bba09134ffb01ba8 # pyup: <6
 email-reply-parser==0.5.9 \
     --hash=sha256:f92aa6fd7314c2c8833f2928c0fd6d2e26f94c04eb1de409e75c59f1ac42eef8
-# fastchardet is required by amo-validator
-fastchardet==0.2.0 \
-    --hash=sha256:d663a35129bb0342d593aa58128826347cfaf40adffa62ab416b41bcfaf1641a
 feedparser==5.2.1 \
     --hash=sha256:ce875495c90ebd74b179855449040003a1beb40cd13d5f037a0654251e260b02 \
     --hash=sha256:bd030652c2d08532c034c27fcd7c85868e7fa3cb2b17f230a44a6bbc92519bf9 \
@@ -294,10 +283,6 @@ python-memcached==1.59 \
 mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
-# natsort is required by amo-validator
-natsort==5.5.0 \
-    --hash=sha256:e1ad0618d3aa0cc43dfc3298ffcdbfeb47dfff1d875359dc81c72434ae8c62bf \
-    --hash=sha256:e29031f37aa264145d6ad9acdab335479ce3636806fc7aa70b7675a2b2198d09
 newrelic==4.12.0.113 \
     --hash=sha256:8fdc94350bfe69e4f70dc8a3e7ead6c6a1905e8f161ce24de7ee3de4f69196ad
 nobot==0.5 \
@@ -346,33 +331,6 @@ schematic==0.4 \
 signing-clients==1.5.0 \
     --hash=sha256:3411cab13d8a82ea294ed4523649d037ef8a97f5042f2e97b0a8898d617fd2f6 \
     --hash=sha256:dd6a5810b97ec4a1aa8b35bed413750e89b5df0714bce2782bdf734231ca348b
-# simplejson is required by amo-validator
-simplejson==3.16.0 \
-    --hash=sha256:6c3258ffff58712818a233b9737fe4be943d306c40cf63d14ddc82ba563f483a \
-    --hash=sha256:2fc546e6af49fb45b93bbe878dea4c48edc34083729c0abd09981fe55bdf7f91 \
-    --hash=sha256:3b919fc9cf508f13b929a9b274c40786036b31ad28657819b3b9ba44ba651f50 \
-    --hash=sha256:3af610ee72efbe644e19d5eaad575c73fb83026192114e5f6719f4901097fce2 \
-    --hash=sha256:fb2530b53c28f0d4d84990e945c2ebb470edb469d63e389bf02ff409012fe7c5 \
-    --hash=sha256:37e685986cf6f8144607f90340cff72d36acf654f3653a6c47b84c5c38d00df7 \
-    --hash=sha256:ee9625fc8ee164902dfbb0ff932b26df112da9f871c32f0f9c1bcf20c350fe2a \
-    --hash=sha256:354fa32b02885e6dae925f1b5bbf842c333c1e11ea5453ddd67309dc31fdb40a \
-    --hash=sha256:3dd289368bbd064974d9a5961101f080e939cbe051e6689a193c99fb6e9ac89b \
-    --hash=sha256:067a7177ddfa32e1483ba5169ebea1bc2ea27f224853211ca669325648ca5642 \
-    --hash=sha256:75e3f0b12c28945c08f54350d91e624f8dd580ab74fd4f1bbea54bc6b0165610 \
-    --hash=sha256:b1f329139ba647a9548aa05fb95d046b4a677643070dc2afc05fa2e975d09ca5 \
-    --hash=sha256:491de7acc423e871a814500eb2dcea8aa66c4a4b1b4825d18f756cdf58e370cb \
-    --hash=sha256:79b129fe65fdf3765440f7a73edaffc89ae9e7885d4e2adafe6aa37913a00fbb \
-    --hash=sha256:2b8cb601d9ba0381499db719ccc9dfbb2fbd16013f5ff096b1a68a4775576a04 \
-    --hash=sha256:2c139daf167b96f21542248f8e0a06596c9b9a7a41c162cc5c9ee9f3833c93cd \
-    --hash=sha256:495511fe5f10ccf4e3ed4fc0c48318f533654db6c47ecbc970b4ed215c791968 \
-    --hash=sha256:d8e238f20bcf70063ee8691d4a72162bcec1f4c38f83c93e6851e72ad545dabb \
-    --hash=sha256:feadb95170e45f439455354904768608e356c5b174ca30b3d11b0e3f24b5c0df \
-    --hash=sha256:65b41a5cda006cfa7c66eabbcf96aa704a6be2a5856095b9e2fd8c293bad2b46 \
-    --hash=sha256:c206f47cbf9f32b573c9885f0ec813d2622976cf5effcf7e472344bc2e020ac1
-# spidermonkey is required by amo-validator
-spidermonkey==58.0a1.post2 \
-    --hash=sha256:ad85213e8e68b059599460a3f8b69705b8141951fcccc4efa0b5284e04ac8d06 \
-    --hash=sha256:6301903a0cc3f201264aba36ae20cff5bc983f68ae9333c3955430bddb4985af
 # statsd is required by django-statsd-mozilla
 statsd==3.3.0 \
     --hash=sha256:c610fb80347fca0ef62666d241bce64184bd7cc1efe582f9690e045c25535eaa \

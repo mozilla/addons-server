@@ -157,8 +157,7 @@ def fix_addons_linter_output(validation, listed=True):
     metadata = {
         'listed': listed,
         'identified_files': identified_files,
-        'processed_by_addons_linter': True,
-        'is_webextension': True
+        'is_webextension': True,
     }
     # Add metadata already set by the linter.
     metadata.update(validation.get('metadata', {}))
@@ -175,9 +174,6 @@ def fix_addons_linter_output(validation, listed=True):
         'errors': validation['summary']['errors'],
         'messages': list(_merged_messages()),
         'metadata': metadata,
-        # The addons-linter only deals with WebExtensions and no longer
-        # outputs this itself, so we hardcode it.
-        'detected_type': 'extension',
         'ending_tier': 5,
     }
 
@@ -219,8 +215,14 @@ def find_previous_version(addon, file, version_string, channel):
 
 
 class Validator(object):
-    """Class which handles creating or fetching validation results for File
-    and FileUpload instances."""
+    """
+    Class which handles creating or fetching validation results for File
+    and FileUpload instances.
+
+    It forwards the actual validation to `devhub.tasks:validate_file_path`
+    and `devhub.tasks:validate_file` but implements shortcuts for
+    legacy add-ons and search plugins to avoid running the linter.
+    """
 
     def __init__(self, file_, addon=None, listed=None):
         self.addon = addon
@@ -232,24 +234,26 @@ class Validator(object):
             channel = (amo.RELEASE_CHANNEL_LISTED if listed else
                        amo.RELEASE_CHANNEL_UNLISTED)
             save = tasks.handle_upload_validation_result
-            is_webextension = False
             is_mozilla_signed = False
 
             # We're dealing with a bare file upload. Try to extract the
             # metadata that we need to match it against a previous upload
             # from the file itself.
-            try:
-                addon_data = parse_addon(file_, minimal=True)
-                is_webextension = addon_data['is_webextension']
-                is_mozilla_signed = addon_data.get(
-                    'is_mozilla_signed_extension', False)
-            except ValidationError as form_error:
-                log.info('could not parse addon for upload {}: {}'
-                         .format(file_.pk, form_error))
+            # Don't attempt to parse search plugins though.
+            if not file_.path.endswith('.xml'):
                 addon_data = None
             else:
-                file_.update(version=addon_data.get('version'))
-            validate = self.validate_upload(file_, channel, is_webextension)
+                try:
+                    addon_data = parse_addon(file_, minimal=True)
+                    is_mozilla_signed = addon_data.get(
+                        'is_mozilla_signed_extension', False)
+                except ValidationError as form_error:
+                    log.info('could not parse addon for upload {}: {}'
+                             .format(file_.pk, form_error))
+                    addon_data = None
+                else:
+                    file_.update(version=addon_data.get('version'))
+            validate_task = self.validate_upload(file_, channel)
         elif isinstance(file_, File):
             # The listed flag for a File object should always come from
             # the status of its owner Addon. If the caller tries to override
@@ -259,7 +263,7 @@ class Validator(object):
             channel = file_.version.channel
             is_mozilla_signed = file_.is_mozilla_signed_extension
             save = tasks.handle_file_validation_result
-            validate = self.validate_file(file_)
+            validate_task = self.validate_file(file_)
 
             self.file = file_
             self.addon = self.file.version.addon
@@ -271,39 +275,36 @@ class Validator(object):
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
         on_error = save.subtask(
-            [amo.VALIDATOR_SKELETON_EXCEPTION, file_.pk, channel,
+            [amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT, file_.pk, channel,
              is_mozilla_signed],
             immutable=True)
 
         # When the validation jobs complete, pass the results to the
         # appropriate save task for the object type.
-        self.task = chain(validate, save.subtask(
-            [file_.pk, channel, is_mozilla_signed],
-            link_error=on_error))
+        self.task = chain(
+            validate_task,
+            save.subtask(
+                [file_.pk, channel, is_mozilla_signed],
+                link_error=on_error))
 
         # Create a cache key for the task, so multiple requests to
         # validate the same object do not result in duplicate tasks.
         opts = file_._meta
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
             opts.app_label, opts.object_name, file_.pk, listed)
+        print('AAAAAAAAA', self.cache_key)
 
     @staticmethod
     def validate_file(file):
         """Return a subtask to validate a File instance."""
-        kwargs = {
-            'hash_': file.original_hash,
-            'is_webextension': file.is_webextension}
-        return tasks.validate_file.subtask([file.pk], kwargs)
+        return tasks.validate_file.subtask([file.pk])
 
     @staticmethod
-    def validate_upload(upload, channel, is_webextension):
+    def validate_upload(upload, channel):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        kwargs = {
-            'hash_': upload.hash,
-            'listed': (channel == amo.RELEASE_CHANNEL_LISTED),
-            'is_webextension': is_webextension}
+        kwargs = {'listed': (channel == amo.RELEASE_CHANNEL_LISTED)}
         return tasks.validate_file_path.subtask([upload.path], kwargs)
 
 
