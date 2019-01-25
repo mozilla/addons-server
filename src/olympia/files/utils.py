@@ -81,6 +81,12 @@ default = (
 _lock_count = {}
 
 
+# Acceptable extensions.
+# This is being used by `parse_addon` so please make sure we don't have
+# to touch add-ons before removing anything from this list.
+VALID_EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
+
+
 def get_filepath(fileorpath):
     """Resolve the actual file path of `fileorpath`.
 
@@ -134,6 +140,10 @@ def make_xpi(files):
     zip_file.close()
     file_obj.seek(0)
     return file_obj
+
+
+class UnsupportedFileType(forms.ValidationError):
+    pass
 
 
 class Extractor(object):
@@ -1077,8 +1087,15 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
-    else:
+    elif name.endswith(VALID_EXTENSIONS):
         parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
+    else:
+        valid_extensions_string = u'(%s)' % u', '.join(VALID_EXTENSIONS)
+        raise UnsupportedFileType(
+            ugettext(
+                'Unsupported file type, please upload an a supported '
+                'file {extensions}.'.format(
+                    extensions=valid_extensions_string)))
 
     if not minimal:
         if user is None:
@@ -1087,11 +1104,10 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
             raise forms.ValidationError(ugettext('Unexpected error.'))
 
         # FIXME: do the checks depending on user here.
-
         if addon and addon.type != parsed['type']:
             msg = ugettext(
-                "<em:type> in your install.rdf (%s) "
-                "does not match the type of your add-on on AMO (%s)")
+                'The type (%s) does not match the type of your add-on on '
+                'AMO (%s)')
             raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed
 

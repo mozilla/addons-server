@@ -98,7 +98,7 @@ class TestNewUploadForm(TestCase):
         """
         mock_parse.return_value = None
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
-        upload = FileUpload.objects.create(valid=True)
+        upload = FileUpload.objects.create(valid=True, name='foo.xpi')
         addon = Addon.objects.create()
         form = forms.NewUploadForm(
             {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},

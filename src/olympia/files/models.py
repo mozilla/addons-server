@@ -32,14 +32,12 @@ from olympia.amo.templatetags.jinja_helpers import (
     absolutify, urlparams, user_media_path, user_media_url)
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
-from olympia.files.utils import SafeZip, get_sha256, write_crx_as_xpi
+from olympia.files.utils import (
+    SafeZip, get_sha256, write_crx_as_xpi, VALID_EXTENSIONS)
 from olympia.lib.cache import memoize
 
 
 log = olympia.core.logger.getLogger('z.files')
-
-# Acceptable extensions.
-EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
 
 
 @python_2_unicode_compatible
@@ -572,7 +570,7 @@ class FileUpload(ModelBase):
             ext = '.xpi'
             is_crx = True
 
-        if ext in EXTENSIONS:
+        if ext in VALID_EXTENSIONS:
             loc += ext
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))

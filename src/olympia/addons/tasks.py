@@ -608,10 +608,10 @@ def add_static_theme_from_lwt(lwt):
     # Wrap zip in FileUpload for Addon/Version from_upload to consume.
     upload = FileUpload.objects.create(
         user=author, valid=True)
-    destination = os.path.join(
-        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+    filename = uuid.uuid4().hex + '.xpi'
+    destination = os.path.join(user_media_path('addons'), 'temp', filename)
     build_static_theme_xpi_from_lwt(lwt, destination)
-    upload.update(path=destination)
+    upload.update(path=destination, name=filename)
     timer.log_interval('1.build_xpi')
 
     # Create addon + version
@@ -782,13 +782,14 @@ def migrate_legacy_dictionary_to_webextension(addon):
     # Wrap zip in FileUpload for Version.from_upload() to consume.
     upload = FileUpload.objects.create(
         user=user, valid=True)
-    destination = os.path.join(
-        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+
+    filename = uuid.uuid4().hex + '.xpi'
+    destination = os.path.join(user_media_path('addons'), 'temp', filename)
     target_language = build_webext_dictionary_from_legacy(addon, destination)
     if not addon.target_locale:
         addon.update(target_locale=target_language)
 
-    upload.update(path=destination)
+    upload.update(path=destination, name=filename)
 
     parsed_data = parse_addon(upload, addon=addon, user=user)
     # Create version.

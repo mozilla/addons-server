@@ -755,7 +755,7 @@ def license_factory(**kw):
 
 def file_factory(**kw):
     version = kw['version']
-    filename = kw.pop('filename', '%s-%s' % (version.addon_id, version.id))
+    filename = kw.pop('filename', '%s-%s.xpi' % (version.addon_id, version.id))
     status = kw.pop('status', amo.STATUS_PUBLIC)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
 
@@ -803,6 +803,11 @@ def user_factory(**kw):
     if 'username' not in kw:
         user_factory_counter = user.id + 1
     return user
+
+
+def developer_factory(**kw):
+    kw.setdefault('read_dev_agreement', datetime.now())
+    return user_factory(**kw)
 
 
 def create_default_webext_appversion():

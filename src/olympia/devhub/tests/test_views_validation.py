@@ -12,7 +12,6 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase
-from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.devhub.tests.test_tasks import ValidatorTestCase
 from olympia.files.models import File, FileUpload, FileValidation
@@ -29,19 +28,19 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         assert self.client.login(email='regular@mozilla.com')
 
     def test_no_html_in_messages(self):
-        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
         resp = self.client.get(reverse('devhub.upload_detail',
                                        args=[upload.uuid.hex, 'json']))
         assert resp.status_code == 200
         data = json.loads(resp.content)
-        msg = data['validation']['messages'][1]
+        msg = data['validation']['messages'][0]
         assert msg['message'] == 'The value of &lt;em:id&gt; is invalid.'
         assert msg['description'][0] == '&lt;iframe&gt;'
         assert msg['context'] == (
             [u'<em:description>...', u'<foo/>'])
 
     def test_date_on_upload(self):
-        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
         resp = self.client.get(reverse('devhub.upload_detail',
                                        args=[upload.uuid.hex]))
         assert resp.status_code == 200
@@ -50,21 +49,18 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
 
     def test_upload_processed_validation_error(self):
         addon_file = open(
-            'src/olympia/files/fixtures/files/validation-error.xpi')
+            'src/olympia/devhub/tests/addons/invalid_webextension.xpi')
         response = self.client.post(reverse('devhub.upload'),
                                     {'name': 'addon.xpi',
                                      'upload': addon_file})
         uuid = response.url.split('/')[-2]
         upload = FileUpload.objects.get(uuid=uuid)
-        assert upload.processed_validation['errors'] == 2
+        assert upload.processed_validation['errors'] == 1
         assert upload.processed_validation['messages'][0]['id'] == [
-            u'validation', u'messages', u'legacy_addons_restricted']
-        assert upload.processed_validation['messages'][1]['id'] == [
-            u'testcases_content', u'test_packed_packages',
-            u'jar_subpackage_corrupt']
+            u'validator', u'unexpected_exception']
 
     def test_login_required(self):
-        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
         upload.user_id = 999
         upload.save()
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
@@ -74,7 +70,7 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
         assert self.client.head(url).status_code == 302
 
     def test_no_login_required(self):
-        upload = FileUpload.objects.get(name='invalid-id-20101206.xpi')
+        upload = FileUpload.objects.get(name='invalid_webextension.xpi')
         self.client.logout()
 
         url = reverse('devhub.upload_detail', args=[upload.uuid.hex])
@@ -179,7 +175,7 @@ class TestFileValidation(TestCase):
         assert msg['context'] == (
             [u'<em:description>...', u'<foo/>'])
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.validate_file_path')
     def test_json_results_post_not_cached(self, validate):
         validate.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
 
@@ -243,36 +239,48 @@ class TestValidateAddon(TestCase):
         assert doc('#upload-addon').attr('data-upload-url-unlisted') == (
             reverse('devhub.standalone_upload_unlisted'))
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_filename_not_uuidfied(self, validate_mock):
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
         url = reverse('devhub.upload')
-        data = open(get_image_path('animated.png'), 'rb')
-        self.client.post(url, {'upload': data})
+
+        fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
+
+        with open(fpath) as file_:
+            self.client.post(url, {'upload': file_})
+
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=(upload.uuid.hex,)))
-        assert 'Validation Results for animated.png' in response.content
+        assert 'Validation Results for webextension_no_id' in response.content
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_upload_listed_addon(self, validate_mock):
         """Listed addons are not validated as "self-hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
-        self.url = reverse('devhub.upload')
-        data = open(get_image_path('animated.png'), 'rb')
-        self.client.post(self.url, {'upload': data})
+        url = reverse('devhub.upload')
+
+        fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
+
+        with open(fpath) as file_:
+            self.client.post(url, {'upload': file_})
+
         # Make sure it was called with listed=True.
         assert validate_mock.call_args[1]['listed']
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().automated_signing is False
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_upload_unlisted_addon(self, validate_mock):
         """Unlisted addons are validated as "self-hosted" addons."""
         validate_mock.return_value = json.dumps(amo.VALIDATOR_SKELETON_RESULTS)
-        self.url = reverse('devhub.upload_unlisted')
-        data = open(get_image_path('animated.png'), 'rb')
-        self.client.post(self.url, {'upload': data})
+        url = reverse('devhub.upload_unlisted')
+
+        fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
+
+        with open(fpath) as file_:
+            self.client.post(url, {'upload': file_})
+
         # Make sure it was called with listed=False.
         assert not validate_mock.call_args[1]['listed']
         # Automated signing enabled for unlisted add-ons.
@@ -292,8 +300,9 @@ class TestUploadURLs(TestCase):
                                           status=amo.STATUS_PUBLIC)
         AddonUser.objects.create(addon=self.addon, user=user)
 
-        self.run_validator = self.patch('olympia.devhub.tasks.run_validator')
-        self.run_validator.return_value = json.dumps(
+        self.run_addons_linter = self.patch(
+            'olympia.devhub.tasks.run_addons_linter')
+        self.run_addons_linter.return_value = json.dumps(
             amo.VALIDATOR_SKELETON_RESULTS)
         self.parse_addon = self.patch('olympia.devhub.utils.parse_addon')
         self.parse_addon.return_value = {
@@ -308,7 +317,7 @@ class TestUploadURLs(TestCase):
         return patcher.start()
 
     def expect_validation(self, listed, automated_signing):
-        call_keywords = self.run_validator.call_args[1]
+        call_keywords = self.run_addons_linter.call_args[1]
 
         assert call_keywords['listed'] == listed
         assert self.file_upload.automated_signing == automated_signing
@@ -317,9 +326,11 @@ class TestUploadURLs(TestCase):
         """Send an upload request to the given view, and save the FileUpload
         object to self.file_upload."""
         FileUpload.objects.all().delete()
-        self.run_validator.reset_mock()
+        self.run_addons_linter.reset_mock()
 
-        fpath = 'src/olympia/files/fixtures/files/validation-error.xpi'
+        fpath = (
+            'src/olympia/files/fixtures/files/'
+            'webextension_validation_error.zip')
 
         with open(fpath) as file_:
             resp = self.client.post(reverse(view, kwargs=kw),
@@ -375,9 +386,8 @@ class TestValidateFile(BaseUploadTest):
         self.file = File.objects.get(pk=100456)
         # Move the file into place as if it were a real file
         with storage.open(self.file.file_path, 'w') as dest:
-            shutil.copyfileobj(
-                open(self.file_path('invalid-id-20101206.xpi')),
-                dest)
+            fpath = self.file_fixture_path('webextension_validation_error.zip')
+            shutil.copyfileobj(open(fpath), dest)
         self.addon = self.file.version.addon
 
     def tearDown(self):
@@ -392,7 +402,8 @@ class TestValidateFile(BaseUploadTest):
         assert response.status_code == 200
         data = json.loads(response.content)
         msg = data['validation']['messages'][0]
-        assert 'is invalid' in msg['message']
+        assert msg['message'] == (
+            '&#34;/manifest_version&#34; should be &gt;= 2')
 
     def test_time(self):
         response = self.client.post(
@@ -401,7 +412,7 @@ class TestValidateFile(BaseUploadTest):
         doc = pq(response.content)
         assert doc('time').text()
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_validator_sets_binary_flag_for_extensions(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -427,7 +438,7 @@ class TestValidateFile(BaseUploadTest):
         addon = Addon.objects.get(pk=self.addon.id)
         assert addon.binary
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.validate_file_path')
     def test_ending_tier_is_preserved(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -452,7 +463,7 @@ class TestValidateFile(BaseUploadTest):
         assert not data['validation']['errors']
         assert data['validation']['ending_tier'] == 5
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.validate_file_path')
     def test_validator_sets_binary_flag_for_content(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -478,7 +489,7 @@ class TestValidateFile(BaseUploadTest):
         addon = Addon.objects.get(pk=self.addon.id)
         assert addon.binary
 
-    @mock.patch('olympia.devhub.tasks.run_validator')
+    @mock.patch('olympia.devhub.tasks.validate_file_path')
     def test_linkify_validation_messages(self, v):
         v.return_value = json.dumps({
             "errors": 0,
@@ -508,44 +519,6 @@ class TestValidateFile(BaseUploadTest):
         data = json.loads(response.content)
         doc = pq(data['validation']['messages'][0]['description'][0])
         assert doc('a').text() == 'https://bugzilla.mozilla.org/'
-
-    @mock.patch.object(waffle, 'flag_is_active')
-    @mock.patch('olympia.devhub.tasks.run_validator')
-    def test_rdf_parse_errors_are_ignored(self, run_validator,
-                                          flag_is_active):
-        run_validator.return_value = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {}
-        })
-        flag_is_active.return_value = True
-        addon = Addon.objects.get(pk=3615)
-        xpi = self.get_upload('extension.xpi')
-        data = parse_addon(xpi.path, user=self.user)
-        # Set up a duplicate upload:
-        addon.update(guid=data['guid'])
-        res = self.client.get(reverse('devhub.validate_addon'))
-        doc = pq(res.content)
-        upload_url = doc('#upload-addon').attr('data-upload-url')
-        with storage.open(xpi.path, 'rb') as f:
-            # Simulate JS file upload
-            res = self.client.post(upload_url, {'upload': f}, follow=True)
-        data = json.loads(res.content)
-        # Simulate JS result polling:
-        res = self.client.get(data['url'])
-        data = json.loads(res.content)
-        # Make sure we don't see a dupe UUID error:
-        assert data['validation']['messages'] == []
-        # Simulate JS result polling on detail page:
-        res = self.client.get(data['full_report_url'], follow=True)
-        res = self.client.get(res.context['validate_url'], follow=True)
-        data = json.loads(res.content)
-        # Again, make sure we don't see a dupe UUID error:
-        assert data['validation']['messages'] == []
 
     def test_opensearch_validation(self):
         addon_file = open(

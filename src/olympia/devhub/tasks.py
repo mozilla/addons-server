@@ -5,18 +5,15 @@ import json
 import os
 import subprocess
 import tempfile
-import shutil
 
 from copy import deepcopy
 from decimal import Decimal
 from functools import wraps
-from tempfile import NamedTemporaryFile
 from zipfile import BadZipfile
 
 from django.conf import settings
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
-from django.core.management import call_command
 from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
@@ -38,9 +35,8 @@ from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
-from olympia.applications.management.commands import dump_apps
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.utils import parse_addon, SafeZip
+from olympia.files.utils import parse_addon, SafeZip, UnsupportedFileType
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
 
@@ -59,9 +55,11 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
 
     # Import loop.
     from .utils import Validator
+
     validator = Validator(file_, listed=listed)
 
     task_id = cache.get(validator.cache_key)
+
     if not synchronous and task_id:
         return AsyncResult(task_id)
     else:
@@ -89,6 +87,7 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
             result = chain.apply()
         else:
             result = chain.delay()
+
             cache.set(validator.cache_key, result.task_id, 5 * 60)
 
         return result
@@ -155,25 +154,28 @@ def validation_task(fn):
     @task(bind=True, ignore_result=False,  # Required for groups/chains.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
     @wraps(fn)
-    def wrapper(task, akismet_results, id_, hash_, *args, **kw):
+    def wrapper(task, akismet_results, id_or_path, **kwargs):
         # This is necessary to prevent timeout exceptions from being set
         # as our result, and replacing the partial validation results we'd
         # prefer to return.
         task.ignore_result = True
         try:
-            data = fn(id_, hash_, *args, **kw)
-            result = json.loads(data)
+            data = fn(id_or_path, **kwargs)
+            results = json.loads(data)
             if akismet_results:
                 annotations.annotate_akismet_spam_check(
-                    result, akismet_results)
-            return result
-        except Exception as e:
-            log.exception('Unhandled error during validation: %r' % e)
-
-            is_webextension = kw.get('is_webextension', False)
-            if is_webextension:
-                return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
-            return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION)
+                    results, akismet_results)
+            return results
+        except UnsupportedFileType as exc:
+            results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+            annotations.insert_validation_message(
+                results, type_='error',
+                message=exc.message, msg_id='unsupported_filetype',
+                compatibility_type=None)
+            return results
+        except Exception as exc:
+            log.exception('Unhandled error during validation: %r' % exc)
+            return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
         finally:
             # But we do want to return a result after that exception has
             # been handled.
@@ -182,25 +184,44 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_file_path(path, hash_, listed=True, is_webextension=False, **kw):
+def validate_file_path(path, listed=True):
     """Run the validator against a file at the given path, and return the
     results.
 
-    Should only be called directly by Validator."""
+    Should only be called directly by Validator or `validate_file` task.
+
+    Search plugins don't call the linter but get linted by
+    `annotate_search_plugin_validation`.
+
+    All legacy extensions (including dictionaries, themes etc) are disabled
+    via `annotate_legacy_addon_restrictions` except if they're signed by
+    Mozilla.
+    """
     if path.endswith('.xml'):
         # search plugins are validated directly by addons-server
         # so that we don't have to call the linter or validator
-        results = amo.VALIDATOR_SKELETON_RESULTS.copy()
-        results['detected_type'] = 'search'
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        annotations.annotate_search_plugin_validation(
+            results=results, file_path=path, is_listed=listed)
         return json.dumps(results)
 
-    if is_webextension:
-        return run_addons_linter(path, listed=listed)
-    return run_validator(path, listed=listed)
+    # Annotate results with potential legacy add-ons restrictions.
+    data = parse_addon(path, minimal=True)
+    is_webextension = data.get('is_webextension') is True
+    is_mozilla_signed = data.get('is_mozilla_signed_extension', False)
+
+    if not is_webextension:
+        results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
+        annotations.annotate_legacy_addon_restrictions(
+            results=results, parsed_data=data,
+            error=not is_mozilla_signed)
+        return json.dumps(results)
+
+    return run_addons_linter(path, listed=listed)
 
 
 @validation_task
-def validate_file(file_id, hash_, is_webextension=False, **kw):
+def validate_file(file_id):
     """Validate a File instance. If cached validation results exist, return
     those, otherwise run the validator.
 
@@ -210,20 +231,15 @@ def validate_file(file_id, hash_, is_webextension=False, **kw):
     try:
         return file_.validation.validation
     except FileValidation.DoesNotExist:
-        if file_.current_file_path.endswith('.xml'):
-            # search plugins are validated directly by addons-server
-            # so that we don't have to call the linter or validator
-            results = amo.VALIDATOR_SKELETON_RESULTS.copy()
-            results['detected_type'] = 'search'
-            return json.dumps(results)
-
-        listed = file_.version.channel == amo.RELEASE_CHANNEL_LISTED
-        if is_webextension:
-            return run_addons_linter(
-                file_.current_file_path, listed=listed)
-
-        return run_validator(file_.current_file_path,
-                             listed=listed)
+        # Calling `validate_file_path` looks particularly nasty because of
+        # @validation_task wrapping a lot of it's functionalities and
+        # ins particular it's signature. @validation_task also returns the
+        # actual python-object, so we have to dump it as JSON for backwards
+        # compatibility (something we may want to change at a later point)
+        return json.dumps(validate_file_path(
+            akismet_results=[],
+            id_or_path=file_.current_file_path,
+            listed=file_.version.channel == amo.RELEASE_CHANNEL_LISTED))
 
 
 @task
@@ -233,22 +249,6 @@ def handle_upload_validation_result(
     """Annotate a set of validation results and save them to the given
     FileUpload instance."""
     upload = FileUpload.objects.get(pk=upload_pk)
-    # Restrictions applying to new legacy submissions apply if:
-    # - It's the very first upload (there is no addon id yet)
-    # - It's the first upload in that channel
-    is_new_upload = (
-        not upload.addon_id or
-        not upload.addon.find_latest_version(channel=channel, exclude=()))
-
-    # Annotate results with potential legacy add-ons restrictions.
-    if not is_mozilla_signed:
-        results = annotations.annotate_legacy_addon_restrictions(
-            results=results, is_new_upload=is_new_upload)
-
-    annotations.annotate_legacy_langpack_restriction(results=results)
-
-    annotations.annotate_search_plugin_validation(
-        results=results, file_path=upload.path, channel=channel)
 
     # Check for API keys in submissions.
     # Make sure it is extension-like, e.g. no LWT or search plugin
@@ -259,7 +259,7 @@ def handle_upload_validation_result(
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
-        results = annotations.annotate_webext_incompatibilities(
+        annotations.annotate_webext_incompatibilities(
             results=results, file_=None, addon=upload.addon,
             version_string=upload.version, channel=channel)
 
@@ -324,10 +324,6 @@ def handle_file_validation_result(results, file_id, *args):
     annotations.annotate_webext_incompatibilities(
         results=results, file_=file_, addon=file_.version.addon,
         version_string=file_.version.version, channel=file_.version.channel)
-
-    annotations.annotate_search_plugin_validation(
-        results=results, file_path=file_.current_file_path,
-        channel=file_.version.channel)
 
     return FileValidation.from_json(file_, results).pk
 
@@ -406,84 +402,6 @@ def revoke_api_key(key_id):
         pass
 
 
-def run_validator(path, listed=True):
-    """A pre-configured wrapper around the addon validator.
-
-    *path*
-        Path to addon / extension file to validate.
-
-    *listed=True*
-        Validate the XPI as listed or unlisted.
-    """
-    apps = dump_apps.Command.get_json_path()
-
-    if not os.path.exists(apps):
-        call_command('dump_apps')
-
-    suffix = '_' + os.path.basename(path)
-
-    with NamedTemporaryFile(suffix=suffix, dir=settings.TMP_PATH) as temp:
-        if path and not os.path.exists(path) and storage.exists(path):
-            # This file doesn't exist locally. Write it to our
-            # currently-open temp file and switch to that path.
-            shutil.copyfileobj(storage.open(path), temp.file)
-            path = temp.name
-
-        cmd = [
-            settings.ADDONS_VALIDATOR_BIN,
-            '--boring',
-            '--output=json',
-            '--approved_applications=' + apps,
-            '--timeout=' + str(settings.VALIDATOR_TIMEOUT),
-        ]
-
-        if not listed:
-            cmd.append('--selfhosted')
-
-        cmd.append(path)
-
-        stdout, stderr = (
-            tempfile.TemporaryFile(),
-            tempfile.TemporaryFile())
-
-        with statsd.timer('devhub.validator'):
-            process = subprocess.Popen(
-                # Have to use a string instead of a list because of how
-                # `shell=True` resolves paths and working dirs
-                ' '.join(cmd),
-                stdout=stdout,
-                stderr=stderr,
-                # We're explicitly using a shell here because amo-validator
-                # uses subprocess itself to shell out calls to spidermonkey
-                # and it somehow needs to be called with shell=True to make
-                # all that work properly. Not too much investigation went into
-                # the "why" but since `shell=True` isn't much of a security
-                # concern here given that all legacy add-ons we're validating
-                # are uploaded / developed by Mozilla employees at this point
-                # we're kinda safe-ish...
-                shell=True
-            )
-
-            process.wait()
-
-            stdout.seek(0)
-            stderr.seek(0)
-
-            output, error = stdout.read(), stderr.read()
-
-            # Make sure we close all descriptors, otherwise they'll hang around
-            # and could cause a nasty exception.
-            stdout.close()
-            stderr.close()
-
-    if error:
-        raise ValueError(error)
-
-    track_validation_stats(output)
-
-    return output
-
-
 def run_addons_linter(path, listed=True):
     from .utils import fix_addons_linter_output
 
@@ -533,25 +451,24 @@ def run_addons_linter(path, listed=True):
     parsed_data = json.loads(output)
 
     result = json.dumps(fix_addons_linter_output(parsed_data, listed))
-    track_validation_stats(result, addons_linter=True)
+    track_validation_stats(result)
 
     return result
 
 
-def track_validation_stats(json_result, addons_linter=False):
+def track_validation_stats(json_result):
     """
     Given a raw JSON string of validator results, log some stats.
     """
     result = json.loads(json_result)
     result_kind = 'success' if result['errors'] == 0 else 'failure'
-    runner = 'linter' if addons_linter else 'validator'
-    statsd.incr('devhub.{}.results.all.{}'.format(runner, result_kind))
+    statsd.incr('devhub.linter.results.all.{}'.format(result_kind))
 
     listed_tag = 'listed' if result['metadata']['listed'] else 'unlisted'
 
     # Track listed/unlisted success/fail.
-    statsd.incr('devhub.{}.results.{}.{}'
-                .format(runner, listed_tag, result_kind))
+    statsd.incr('devhub.linter.results.{}.{}'
+                .format(listed_tag, result_kind))
 
 
 @task
