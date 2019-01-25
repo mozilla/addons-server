@@ -488,6 +488,5 @@ class TestVersion(TestCase):
         assert res._headers['content-type'] == (
             'Content-Type', 'application/json')
         content = json.loads(force_text(res.content))
-        assert content['python'] == '%s.%s.%s' % (
-            sys.version_info.major, sys.version_info.minor,
-            sys.version_info.micro)
+        assert content['python'] == '%s.%s' % (
+            sys.version_info.major, sys.version_info.minor)

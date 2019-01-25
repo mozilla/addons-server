@@ -124,6 +124,6 @@ def version(request):
     py_info = sys.version_info
     with open(path, 'r') as f:
         contents = json.loads(f.read())
-    contents['python'] = '{major}.{minor}.{micro}'.format(
-        major=py_info.major, minor=py_info.minor, micro=py_info.micro)
+    contents['python'] = '{major}.{minor}'.format(
+        major=py_info.major, minor=py_info.minor)
     return HttpResponse(json.dumps(contents), content_type='application/json')
