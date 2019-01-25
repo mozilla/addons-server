@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-04 11:57+0000\n"
-"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
+"PO-Revision-Date: 2019-01-25 06:30+0000\n"
+"Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -207,7 +207,7 @@ msgstr "Tuần {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] "{0} tải xuống"
+msgstr[0] "{0} tải về"
 
 msgid "{0} user"
 msgid_plural "{0} users"
@@ -267,7 +267,7 @@ msgid "Add-ons Created"
 msgstr "Số Tiện ích được Tạo"
 
 msgid "Add-ons Downloaded"
-msgstr "Số Tiện ích được Tải về"
+msgstr "Tiện ích đã tải xuống"
 
 msgid "Add-ons Updated"
 msgstr "Số Tiện ích được Cập nhật"
@@ -430,11 +430,11 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Số lượt tải về và người dùng hàng ngày, {0} ngày trước"
+msgstr "Số lượt tải xuống và người dùng hàng ngày, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Lần Cài đặt và Người dùng Hàng ngày từ {0} đến {1}"
+msgstr "Số lượt tải xuống và người dùng hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
@@ -446,11 +446,11 @@ msgstr "Lần Cài đặt và Người dùng Hàng ngày từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "Lượt tải về, {0} ngày trước"
+msgstr "Lượt tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "Lượt tải từ {0} đến {1}"
+msgstr "Lượt tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
@@ -502,11 +502,11 @@ msgstr "Trạng thái Tiện ích từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Nguồn Tải về, {0} ngày trước"
+msgstr "Nguồn tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "Nguồn Tải về từ {0} đến {1}"
+msgstr "Nguồn tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -534,11 +534,11 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr ""
+msgstr "Tiện ích đã tải xuống, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr ""
+msgstr "Tiện ích đã tải xuống từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
@@ -656,7 +656,7 @@ msgid "Install for {0} anyway"
 msgstr "Vẫn cứ cài đặt {0}"
 
 msgid "Download for {0} anyway"
-msgstr "Cứ tải về cho {0}"
+msgstr "Vẫn tải xuống cho {0}"
 
 msgid "Not available for your platform"
 msgstr "Không có sẵn cho nền của bạn"
