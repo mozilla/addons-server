@@ -1426,7 +1426,7 @@ class Addon(OnChangeMixin, ModelBase):
         return (self.type == amo.ADDON_EXTENSION and
                 version and version.all_files[0] and
                 (not version.all_files[0].is_webextension or
-                 version.all_files[0].webext_permissions))
+                 version.all_files[0].webext_permissions_list))
 
     @property
     def needs_admin_code_review(self):

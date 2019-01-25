@@ -8,8 +8,6 @@ import unicodedata
 import uuid
 import zipfile
 
-from collections import namedtuple
-
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.dispatch import receiver
@@ -17,14 +15,11 @@ from django.template.defaultfilters import slugify
 from django.utils.encoding import (
     force_bytes, force_text, python_2_unicode_compatible)
 from django.utils.functional import cached_property
-from django.utils.safestring import mark_safe
-from django.utils.translation import ugettext, ugettext_lazy as _
 
 import six
 
 from django_extensions.db.fields.json import JSONField
 from django_statsd.clients import statsd
-from jinja2 import escape as jinja2_escape
 
 import olympia.core.logger
 
@@ -39,7 +34,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.files.utils import SafeZip, get_sha256, write_crx_as_xpi
 from olympia.lib.cache import memoize
-from olympia.translations.fields import TranslatedField
 
 
 log = olympia.core.logger.getLogger('z.files')
@@ -373,52 +367,6 @@ class File(OnChangeMixin, ModelBase):
         statsd.timing('files.extract.localepicker', (end * 1000))
         return res
 
-    @property
-    def webext_permissions(self):
-        """Return permissions that should be displayed, with descriptions, in
-        defined order:
-        1) Either the match all permission, if present (e.g. <all-urls>), or
-           match urls for sites (<all-urls> takes preference over match urls)
-        2) nativeMessaging permission, if present
-        3) other known permissions in alphabetical order
-        """
-        knowns = list(WebextPermissionDescription.objects.filter(
-            name__in=self.webext_permissions_list))
-
-        urls = []
-        match_url = None
-        for name in self.webext_permissions_list:
-            if re.match(WebextPermissionDescription.MATCH_ALL_REGEX, name):
-                match_url = WebextPermissionDescription.ALL_URLS_PERMISSION
-            elif name == WebextPermission.NATIVE_MESSAGING_NAME:
-                # Move nativeMessaging to front of the list
-                for index, perm in enumerate(knowns):
-                    if perm.name == WebextPermission.NATIVE_MESSAGING_NAME:
-                        knowns.pop(index)
-                        knowns.insert(0, perm)
-                        break
-            elif '//' in name:
-                # Filter out match urls so we can group them.
-                urls.append(name)
-            # Other strings are unknown permissions we don't care about
-
-        if match_url is None and len(urls) == 1:
-            match_url = Permission(
-                u'single-match',
-                ugettext(u'Access your data for {name}')
-                .format(name=urls[0]))
-        elif match_url is None and len(urls) > 1:
-            details = (u'<details><summary>{copy}</summary><ul>{sites}</ul>'
-                       u'</details>')
-            copy = ugettext(u'Access your data on the following websites:')
-            sites = ''.join(
-                [u'<li>%s</li>' % jinja2_escape(name) for name in urls])
-            match_url = Permission(
-                u'multiple-match',
-                mark_safe(details.format(copy=copy, sites=sites)))
-
-        return ([match_url] if match_url else []) + knowns
-
     @cached_property
     def webext_permissions_list(self):
         if not self.is_webextension:
@@ -746,24 +694,6 @@ class WebextPermission(ModelBase):
 
     class Meta:
         db_table = 'webext_permissions'
-
-
-Permission = namedtuple('Permission',
-                        'name, description')
-
-
-class WebextPermissionDescription(ModelBase):
-    MATCH_ALL_REGEX = r'^\<all_urls\>|(\*|http|https):\/\/\*\/'
-    ALL_URLS_PERMISSION = Permission(
-        u'all_urls',
-        _(u'Access your data for all websites')
-    )
-    name = models.CharField(max_length=255, unique=True)
-    description = TranslatedField()
-
-    class Meta:
-        db_table = 'webext_permission_descriptions'
-        ordering = ['name']
 
 
 def nfd_str(u):
