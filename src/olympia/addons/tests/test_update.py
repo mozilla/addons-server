@@ -5,6 +5,8 @@ import mock
 from datetime import datetime, timedelta
 from email import utils
 
+import rdflib
+
 from django.db import connection
 
 from services import update
@@ -574,7 +576,16 @@ class TestResponse(VersionCheckMixin, TestCase):
     def test_bad_guid(self):
         self.data['id'] = 'garbage'
         instance = self.get_update_instance(self.data)
+        assert instance.use_json is True
         assert json.loads(instance.get_output()) == instance.get_error_output()
+
+        # Seamonkey should have a rdf version of 'error ouput'.
+        self.data['appID'] = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is False
+        result = instance.get_output()
+        assert result == instance.get_error_output()
+        rdflib.Graph().parse(data=result)
 
     def test_no_platform(self):
         file = File.objects.get(pk=67442)
@@ -619,6 +630,7 @@ class TestResponse(VersionCheckMixin, TestCase):
 
     def test_good_version(self):
         instance = self.get_update_instance(self.data)
+        assert instance.use_json is True
         instance.is_valid()
         instance.get_update()
         assert instance.data['row']['hash'].startswith('sha256:3808b13e')
@@ -714,12 +726,38 @@ class TestResponse(VersionCheckMixin, TestCase):
         data = json.loads(content)
         assert 'update_info_url' not in data['addons'][guid]['updates'][0]
 
+    def test_seamonkey_serve_rdf(self):
+        data = {
+            'id': 'bettergmail2@ginatrapani.org',
+            'version': '1',
+            'appID': '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}',
+            'reqVersion': 1,
+            'appVersion': '1.0',
+        }
+        instance = self.get_update_instance(data)
+        result = instance.get_output()
+        assert instance.data['row']['hash'].startswith('sha256:9d9a389')
+        assert instance.data['row']['min'] == '1.0'
+        assert instance.data['row']['version'] == '0.5.2'
+
+        # Result should be a valid rdf.
+        rdflib.Graph().parse(data=result)
+
     def test_no_updates_at_all(self):
         self.addon_one.versions.all().delete()
         instance = self.get_update_instance(self.data)
+        assert instance.use_json is True
         assert (
             json.loads(instance.get_output()) ==
             instance.get_no_updates_output())
+
+        # Seamonkey should have a rdf version of 'no updates'.
+        self.data['appID'] = '{92650c4d-4b8e-4d2a-b7eb-24ecf4f6b63a}'
+        instance = self.get_update_instance(self.data)
+        assert instance.use_json is False
+        result = instance.get_output()
+        assert result == instance.get_no_updates_output()
+        rdflib.Graph().parse(data=result)
 
     def test_no_updates_my_fx(self):
         data = self.data.copy()
