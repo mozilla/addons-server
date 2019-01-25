@@ -9,7 +9,7 @@ import django.dispatch
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
+from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
@@ -634,7 +634,7 @@ class Version(OnChangeMixin, ModelBase):
             return {}
         file_obj = self.all_files[0]
         return {
-            name: b64encode(background)
+            name: force_text(b64encode(background))
             for name, background in utils.get_background_images(
                 file_obj, theme_data=None, header_only=header_only).items()}
 

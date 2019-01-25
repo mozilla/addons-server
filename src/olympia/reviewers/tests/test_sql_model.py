@@ -205,7 +205,7 @@ class TestSQLModel(BaseTestCase):
         assert [c.category for c in qs] == ['apparel', 'safety']
 
     def test_filter_raw_non_ascii(self):
-        uni = 'フォクすけといっしょ'.decode('utf8')
+        uni = u'フォクすけといっしょ'
         qs = (Summary.objects.all().filter_raw('category =', uni)
               .filter_raw(Q('category =', uni) | Q('category !=', uni)))
         assert [c.category for c in qs] == []
@@ -268,7 +268,7 @@ class TestSQLModel(BaseTestCase):
             pass
         # NOTE: this reaches into MySQLdb's cursor :(
         executed = query._cursor.cursor._executed
-        assert "c.name = '\\'apparel\\'; drop table foo;" in executed, (
+        assert b"c.name = '\\'apparel\\'; drop table foo;" in executed, (
             'Expected query to be escaped: %s' % executed)
 
     def check_type(self, val, types):

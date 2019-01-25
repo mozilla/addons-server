@@ -114,13 +114,13 @@ class TestFileEntriesSerializer(TestCase):
 
         for fname in files:
             mime, encoding = mimetypes.guess_type(fname)
-            assert not serializer.is_binary(fname, mime, '')
+            assert not serializer.is_binary(fname, mime, b'')
 
         for fname in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
             mime, encoding = mimetypes.guess_type(fname)
-            assert serializer.is_binary(fname, mime, '')
+            assert serializer.is_binary(fname, mime, b'')
 
-        for contents in ['#!/usr/bin/python', '#python', '\0x2']:
+        for contents in [b'#!/usr/bin/python', b'#python', b'\0x2']:
             mime, encoding = mimetypes.guess_type(fname)
             assert not serializer.is_binary('random_junk', mime, contents)
 
