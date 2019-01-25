@@ -1,10 +1,10 @@
 -r system.txt
 
 # configparser is required by flake8
-configparser==3.5.1 \
-    --hash=sha256:17fe5463b69cd06aa315bce000b8c8bfa8f064ad3be751e7bea3dadb6700b790 \
-    --hash=sha256:3663a8704c16460715b52b69caeb206bcb396c309973fc0689dc40b55a4a7256 \
-    --hash=sha256:f41e19cb29bebfccb1a78627b3f328ec198cc8f39510c7c55e7dfc0ab58c8c62
+configparser==3.5.2 \
+    --hash=sha256:4ccfcb133044514fc26c4e419f6e9179722c81bfdd58bb5569f8dfe4811af391 \
+    --hash=sha256:c18932d9e6b36de2914e030d75ead1a4b9908c614568a95185b2e02c256e6a1f \
+    --hash=sha256:2d5b692edc5f7dd0bddb974fea0916e5e5c798cfc5c66b05f81fac681e9f29cc
 # enum34 is required by cryptography, flake8, traitlets
 enum34==1.1.6 \
     --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
