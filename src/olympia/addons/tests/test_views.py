@@ -37,6 +37,7 @@ from olympia.amo.urlresolvers import get_outgoing_url, reverse
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import WebextPermission, WebextPermissionDescription
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
@@ -2255,8 +2256,10 @@ class TestAddonSearchView(ESTestCase):
             key.endswith('.raw') for key in source_keys
         )
 
-    def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
+    def perform_search(
+            self, url, data=None, expected_status=200, expected_queries=0,
+            **headers):
+        with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_text(response.content))
@@ -2879,19 +2882,34 @@ class TestAddonSearchView(ESTestCase):
     def test_filter_by_guid_return_to_amo(self):
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
                               guid='random@guid', weekly_downloads=999)
+        DiscoveryItem.objects.create(addon=addon)
         addon_factory()
         self.reindex(Addon)
 
         param = 'rta:%s' % force_text(
             urlsafe_base64_encode(force_bytes(addon.guid)))
 
-        data = self.perform_search(self.url, {'guid': param})
+        data = self.perform_search(
+            self.url, {'guid': param}, expected_queries=1)
         assert data['count'] == 1
         assert len(data['results']) == 1
 
         result = data['results'][0]
         assert result['id'] == addon.pk
         assert result['slug'] == addon.slug
+
+    def test_filter_by_guid_return_to_amo_not_part_of_safe_list(self):
+        addon = addon_factory(slug='my-addon', name=u'My Addôn',
+                              guid='random@guid', weekly_downloads=999)
+        addon_factory()
+        self.reindex(Addon)
+
+        param = 'rta:%s' % force_text(
+            urlsafe_base64_encode(force_bytes(addon.guid)))
+
+        data = self.perform_search(
+            self.url, {'guid': param}, expected_status=400, expected_queries=1)
+        assert data == [u'Invalid RTA guid (not a curated add-on)']
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
         param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
@@ -3052,8 +3070,10 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
+    def perform_search(
+            self, url, data=None, expected_status=200, expected_queries=0,
+            **headers):
+        with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
         data = json.loads(force_text(response.content))
@@ -3871,8 +3891,10 @@ class TestAddonRecommendationView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(self, url, data=None, expected_status=200, **headers):
-        with self.assertNumQueries(0):
+    def perform_search(
+            self, url, data=None, expected_status=200, expected_queries=0,
+            **headers):
+        with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
         data = json.loads(force_text(response.content))
