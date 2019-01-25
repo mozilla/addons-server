@@ -1,5 +1,6 @@
 import json
 import os
+import sys
 
 from django import http
 from django.conf import settings
@@ -120,6 +121,9 @@ def loaded(request):
 @non_atomic_requests
 def version(request):
     path = os.path.join(settings.ROOT, 'version.json')
+    py_info = sys.version_info
     with open(path, 'r') as f:
-        contents = f.read()
-    return HttpResponse(contents, content_type='application/json')
+        contents = json.loads(f.read())
+    contents['python'] = '{major}.{minor}'.format(
+        major=py_info.major, minor=py_info.minor)
+    return HttpResponse(json.dumps(contents), content_type='application/json')
