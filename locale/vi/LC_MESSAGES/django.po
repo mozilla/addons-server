@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-25 06:32+0000\n"
+"PO-Revision-Date: 2019-01-26 15:43+0000\n"
 "Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1470,7 +1470,7 @@ msgid "{addon} disabled."
 msgstr ""
 
 msgid "{addon} enabled."
-msgstr ""
+msgstr "{addon} đã bật."
 
 #. L10n: {status} is the status
 #, fuzzy
@@ -1716,9 +1716,8 @@ msgstr "{review} cho {addon} được viết."
 msgid "Auto-Approval confirmed"
 msgstr "Trạng thái Chấp thuận"
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} bị từ chối."
+msgstr "{addon} {version} đã bật lại."
 
 #, fuzzy
 msgid "{addon} {version} disabled."
@@ -2605,7 +2604,7 @@ msgstr "Phiên bản %s đã được xóa."
 
 #, python-format
 msgid "Version %s re-enabled."
-msgstr ""
+msgstr "Phiên bản %s đã bật lại."
 
 msgid "This upload has failed validation, and may lack complete validation results. Please take due care when reviewing it."
 msgstr ""
