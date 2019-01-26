@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-26 14:20+0000\n"
+"PO-Revision-Date: 2019-01-26 22:22+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -561,7 +561,7 @@ msgid "close"
 msgstr "sulje"
 
 msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
+msgstr "Jotkin lisäosat pyytävät lupaa tiettyjen toimintojen suorittamiseen (esimerkki: välilehtien hallintalisäosa pyytää lupaa käyttää selaimesi välilehtiä)."
 
 msgid ""
 "Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
@@ -1569,7 +1569,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr ""
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "Alustavasti hyväksytty"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} hylättiin."
@@ -2512,16 +2512,16 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "Virheellinen tai rikkinäinen arkisto."
 
 msgid "View current"
-msgstr ""
+msgstr "Näytä nykyinen"
 
 msgid "Invalid version range."
-msgstr ""
+msgstr "Virheellinen versioalue."
 
 msgid "Need at least one compatible application."
-msgstr ""
+msgstr "Tarvitset vähintään yhden yhteensopivan sovelluksen."
 
 msgid "There was an error with your upload. Please try again."
 msgstr ""
@@ -2530,7 +2530,7 @@ msgid "Override failed validation"
 msgstr ""
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "On valittava vähintään yksi sovellus."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
@@ -2643,20 +2643,20 @@ msgstr "Kuvat eivät voi olla suurempia kuin %d kt."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Kuvan on oltava täsmälleen {0} pikseliä leveä ja {1} pikseliä korkea."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr ""
+msgstr "Kuvan on oltava vähintään {0} pikseliä leveä ja {1} pikseliä korkea."
 
 #, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "Kuvien pitää olla joko PNG- tai JPG-muodossa."
 
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr ""
+msgstr "Kuvakkeen on oltava vähintään {0} pikseliä leveä ja korkea."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Kuvakkeen on oltava neliö (sama leveys ja korkeus)."
 
 msgid "There was an error uploading your preview."
 msgstr ""
