@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-27 18:41+0000\n"
-"Last-Translator: Dag7 <dag7@protonmail.com>\n"
+"PO-Revision-Date: 2019-01-27 18:50+0000\n"
+"Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -721,9 +721,8 @@ msgstr "Alcune funzioni sono momentaneamente disattivate per lavori di manutenzi
 msgid "Must contain at least one printable character."
 msgstr "Deve contenere almeno un carattere stampabile."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Deve contenere almeno un carattere stampabile."
+msgstr "Assicurarsi che questo campo contenga almeno una lettera o un numero."
 
 msgid "Not allowed"
 msgstr "Operazione non consentita"
@@ -5754,7 +5753,7 @@ msgid "OpenSearch: XML Security error."
 msgstr "OpenSearch: errore di sicurezza XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: errore analisi XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Impossibile analizzare il file caricato."
