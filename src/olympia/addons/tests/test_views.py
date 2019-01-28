@@ -2256,9 +2256,8 @@ class TestAddonSearchView(ESTestCase):
             key.endswith('.raw') for key in source_keys
         )
 
-    def perform_search(
-            self, url, data=None, expected_status=200, expected_queries=0,
-            **headers):
+    def perform_search(self, url, data=None, expected_status=200,
+                       expected_queries=0, **headers):
         with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
@@ -3070,9 +3069,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(
-            self, url, data=None, expected_status=200, expected_queries=0,
-            **headers):
+    def perform_search(self, url, data=None, expected_status=200,
+                       expected_queries=0, **headers):
         with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status
@@ -3891,9 +3889,8 @@ class TestAddonRecommendationView(ESTestCase):
         self.empty_index('default')
         self.refresh()
 
-    def perform_search(
-            self, url, data=None, expected_status=200, expected_queries=0,
-            **headers):
+    def perform_search(self, url, data=None, expected_status=200,
+                       expected_queries=0, **headers):
         with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
