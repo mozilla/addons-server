@@ -280,7 +280,7 @@
       <a href="#" class="close">{{ _('close') }}</a>
       <h2>{{ _('Permissions') }}</h2>
       {% if addon.current_version.all_files[0].is_webextension %}
-        {% set permissions = addon.current_version.all_files[0].webext_permissions %}
+        {% set permissions = addon.current_version.all_files[0].webext_permissions_list %}
         <div class="prose">
           <p>
           {{ _('Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system).') }}
@@ -294,7 +294,7 @@
             <h3>{{ _('This add-on can:') }}</h3>
             <ul class="webext-permissions-list">
               {% for perm in permissions %}
-                <li class="webext-permissions-list">{{ perm.description|e }}</li>
+                <li class="webext-permissions-list">{{ perm|e }}</li>
               {% endfor %}
             </ul>
           </p>

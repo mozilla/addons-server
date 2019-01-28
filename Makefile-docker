@@ -86,7 +86,6 @@ initialize_db:
 	schematic --fake src/olympia/migrations/
 	$(PYTHON_COMMAND) manage.py createsuperuser
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
-	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 populate_data:
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
@@ -104,7 +103,6 @@ populate_data:
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput
 	# Also update category counts (denormalized field)
 	$(PYTHON_COMMAND) manage.py cron category_totals
-	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 cleanup_python_build_dir:
 	# Work arounds "Multiple .dist-info directories" issue.
@@ -146,7 +144,6 @@ update_assets:
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 
 update: update_deps update_db update_assets
-	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 reindex:
 	$(PYTHON_COMMAND) manage.py reindex $(ARGS)
@@ -164,7 +161,6 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py loaddata src/olympia/access/fixtures/initial.json
 
 	$(PYTHON_COMMAND) manage.py import_prod_versions
-	$(PYTHON_COMMAND) manage.py update_permissions_from_mc
 
 	# Create a proper superuser that can be used to access the API
 	$(PYTHON_COMMAND) manage.py waffle_switch super-create-accounts on --create

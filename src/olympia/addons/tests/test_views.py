@@ -38,7 +38,7 @@ from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.discovery.models import DiscoveryItem
-from olympia.files.models import WebextPermission, WebextPermissionDescription
+from olympia.files.models import WebextPermission
 from olympia.ratings.models import Rating
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import users_list
@@ -480,34 +480,6 @@ class TestDetailPage(TestCase):
         privacy_url = reverse('addons.privacy', args=[self.addon.slug])
         assert doc('.privacy-policy').attr('href').endswith(privacy_url)
 
-    def test_permissions_webext(self):
-        file_ = self.addon.current_version.all_files[0]
-        file_.update(is_webextension=True)
-        WebextPermission.objects.create(file=file_, permissions=[
-            u'http://*/*', u'<all_urls>', u'bookmarks', u'nativeMessaging',
-            u'made up permission'])
-        WebextPermissionDescription.objects.create(
-            name=u'bookmarks', description=u'Read and modify bookmarks')
-        WebextPermissionDescription.objects.create(
-            name=u'nativeMessaging',
-            description=u'Exchange messages with programs other than Firefox')
-
-        response = self.client.get(self.url)
-        doc = pq(response.content)
-        # The link next to the button
-        assert doc('a.webext-permissions').length == 1
-        # And the model dialog
-        assert doc('#webext-permissions').length == 1
-        assert u'perform certain functions (example: a tab management' in (
-            doc('#webext-permissions div.prose').text())
-        assert doc('ul.webext-permissions-list').length == 1
-        assert doc('li.webext-permissions-list').length == 3
-        # See File.webext_permissions for the order logic
-        assert doc('li.webext-permissions-list').text() == (
-            u'Access your data for all websites '
-            u'Exchange messages with programs other than Firefox '
-            u'Read and modify bookmarks')
-
     def test_permissions_webext_no_permissions(self):
         file_ = self.addon.current_version.all_files[0]
         file_.update(is_webextension=True)
@@ -553,7 +525,6 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Access your data for '
             u'<script>alert("//")</script>')
         assert b'<script>alert(' not in response.content
         assert b'&lt;script&gt;alert(' in response.content
@@ -567,8 +538,7 @@ class TestDetailPage(TestCase):
         response = self.client.get(self.url)
         doc = pq(response.content)
         assert doc('li.webext-permissions-list').text() == (
-            u'Access your data on the following websites:\n'
-            u'<script>alert("//")</script>\n'
+            u'<script>alert("//")</script> '
             u'<script>foo("https://")</script>')
         assert b'<script>alert(' not in response.content
         assert b'<script>foo(' not in response.content

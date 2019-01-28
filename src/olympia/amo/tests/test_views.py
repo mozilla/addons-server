@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import json
+import sys
 
 from datetime import datetime, timedelta
 
 from django import test
 from django.conf import settings
 from django.test.utils import override_settings
+from django.utils.encoding import force_text
 
 import mock
 import pytest
@@ -485,3 +487,6 @@ class TestVersion(TestCase):
         assert res.status_code == 200
         assert res._headers['content-type'] == (
             'Content-Type', 'application/json')
+        content = json.loads(force_text(res.content))
+        assert content['python'] == '%s.%s' % (
+            sys.version_info.major, sys.version_info.minor)
