@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-28 14:11+0000\n"
+"PO-Revision-Date: 2019-01-28 14:14+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -710,13 +710,11 @@ msgstr "É necessário um código hexadecimal de cor válido, tal como #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao website. Voltamos dentro de alguns momentos com todas as funcionalidades."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Tem de ter pelo menos um proprietário."
+msgstr "Tem de conter pelo menos um caractere imprimível."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Tem de ter pelo menos um proprietário."
+msgstr "Assegure-se de que este campo tem pelo menos uma letra ou caractere de número."
 
 msgid "Not allowed"
 msgstr "Não permitido"
@@ -2584,9 +2582,8 @@ msgstr "A imagem tem de ter pelo menos {0} pixeis de largura e {1} pixeis de alt
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "As dimensões da imagem têm de estar no rácio 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "A imagem tem de ter exactamente {0} pixéis de largura e {1} pixéis de altura."
+msgstr "O ícone tem de ter pelo menos {0} pixeis de largura e altura."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -2794,9 +2791,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Atualização de compatibilidade</a> <a href=\"%(version_url)s\" class=\"button\">Carregar nova versão</a> ou <a "
 "href=\"#\" class=\"close\">Ignorar</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Ver e atualizar o intervalo de compatibilidade da aplicação."
+msgstr "Ver e atualizar o intervalo de compatibilidade de atualização da aplicação"
 
 msgid "Compatibility"
 msgstr "Compatibilidade"
@@ -3103,9 +3099,8 @@ msgstr "Usado na página de detalhes do extra."
 msgid "128x128px"
 msgstr ""
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Usado na página de detalhes do extra."
+msgstr "Irá ser o padrão nas futuras páginas de detalhes de extras."
 
 msgid "Upload a Custom Icon..."
 msgstr "Carragar um ícone personalizado..."
