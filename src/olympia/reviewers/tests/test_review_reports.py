@@ -47,6 +47,7 @@ class TestReviewReports(object):
             self.reviewer2 = user_factory(display_name='Staff B')
             self.reviewer3 = user_factory(display_name=None)
             self.reviewer4 = user_factory(display_name='Staff Content D')
+            self.reviewer5 = user_factory(display_name='Deleted')
             grant_permission(self.reviewer2, '', name='Staff')
             grant_permission(self.reviewer4, '', name='No Reviewer Incentives')
 
@@ -92,12 +93,25 @@ class TestReviewReports(object):
                 (self.reviewer4, 192, amo.AUTO_APPROVED, True),
                 (self.reviewer4, 444, amo.NOT_AUTO_APPROVED, True),
                 (self.reviewer4, 749, amo.AUTO_APPROVED, True),
+
+                (self.reviewer5, 523, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer5, 126, amo.AUTO_APPROVED, True),
+                (self.reviewer5, 246, amo.AUTO_APPROVED, False),
+                (self.reviewer5, 8740, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer5, 346, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer5, 985, amo.AUTO_APPROVED, False),
+                (self.reviewer5, 123, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer5, 93, amo.AUTO_APPROVED, True),
+                (self.reviewer5, 22, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer5, 165, amo.AUTO_APPROVED, True),
             ]
             for review_action in data:
                 self.create_and_review_addon(review_action[0],
                                              review_action[1],
                                              review_action[2],
                                              review_action[3])
+
+            self.reviewer5.delete()
 
     def test_report_addon_reviewer(self):
         self.generate_review_data()
@@ -136,6 +150,7 @@ class TestReviewReports(object):
         assert 'Weekly Add-on Reviews Report' in html
         assert 'Volunteer A' in html
         assert 'Staff B' in html
+        assert 'Deleted' not in html
 
         to = 'addon-reviewers@mozilla.org'
         subject = '%s %s-%s' % (
@@ -182,6 +197,7 @@ class TestReviewReports(object):
         assert 'Weekly Add-on Content Reviews Report' in html
         assert 'Firefox user {}'.format(self.reviewer3.id) in html
         assert 'Staff Content D' in html
+        assert 'Deleted' not in html
 
         to = 'addon-content-reviewers@mozilla.com'
         subject = '%s %s-%s' % (
@@ -219,6 +235,7 @@ class TestReviewReports(object):
         assert 'Weekly Add-on Reviews Report' in html
         assert 'Volunteer A' not in html
         assert 'Staff B' not in html
+        assert 'Deleted' not in html
 
         to = 'addon-reviewers@mozilla.org'
         subject = '%s %s-%s' % (
@@ -252,6 +269,7 @@ class TestReviewReports(object):
         assert 'Weekly Add-on Content Reviews Report' in html
         assert 'Firefox user' not in html
         assert 'Staff Content D' not in html
+        assert 'Deleted' not in html
 
         to = 'addon-content-reviewers@mozilla.org'
         subject = '%s %s-%s' % (

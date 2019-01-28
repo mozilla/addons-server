@@ -4,7 +4,8 @@ SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
 FROM reviewer_scores rs
 JOIN users u ON u.id = rs.user_id
 WHERE DATE(rs.created) BETWEEN @QUARTER_BEGIN AND @WEEK_END
- /* Filter out internal task user */
+  AND u.deleted = 0
+  /* Filter out internal task user */
   AND user_id <> 4757633
   /* The type of review, see constants/reviewers.py */
   AND rs.note_key IN (101)
