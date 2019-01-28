@@ -24,8 +24,8 @@ from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    EXTENSIONS, File, FileUpload, FileValidation, Permission, WebextPermission,
-    WebextPermissionDescription, nfd_str, track_file_status_change)
+    EXTENSIONS, File, FileUpload, FileValidation, WebextPermission,
+    nfd_str, track_file_status_change)
 from olympia.files.utils import (
     Extractor, check_xpi_info, parse_addon, parse_xpi)
 from olympia.versions.models import Version
@@ -255,68 +255,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def _cmp_permission(self, perm_a, perm_b):
         return (perm_a.name == perm_b.name and
                 perm_a.description == perm_b.description)
-
-    def test_webext_permissions_order(self):
-        perm_list = [u'tabs', u'bookmarks', u'nativeMessaging',
-                     u'made up permission', u'https://google.com/']
-        WebextPermissionDescription.objects.create(
-            name=u'bookmarks', description=u'Read and modify bookmarks')
-        WebextPermissionDescription.objects.create(
-            name=u'tabs', description=u'Access browser tabs')
-        WebextPermissionDescription.objects.create(
-            name=u'nativeMessaging',
-            description=u'Exchange messages with programs other than Firefox')
-
-        result = [
-            # First match urls for specified site(s).
-            Permission('single-match',
-                       'Access your data for https://google.com/'),
-            # Then nativeMessaging, if specified
-            Permission(u'nativeMessaging',
-                       u'Exchange messages with programs other than Firefox'),
-            # Then any other known permission(s).
-            Permission(u'bookmarks',
-                       u'Read and modify bookmarks'),
-            Permission(u'tabs',
-                       u'Access browser tabs'),
-        ]
-
-        file_ = File.objects.get(pk=67442)
-        file_.webext_permissions_list = perm_list
-
-        # Check the order
-        assert len(file_.webext_permissions) == len(result)
-        assert all(map(self._cmp_permission, result,
-                       file_.webext_permissions))
-
-        # Check the order isn't dependent on the order in the manifest
-        file_.webext_permissions_list.reverse()
-        assert all(map(self._cmp_permission, result,
-                       file_.webext_permissions))
-
-        # Unknown permission strings aren't included.
-        assert ((u'made up permission', u'made up permission')
-                not in file_.webext_permissions)
-
-    def test_webext_permissions_match_urls(self):
-        file_ = File.objects.get(pk=67442)
-        # Multiple urls for specified sites should be grouped together
-        file_.webext_permissions_list = [
-            u'https://mozilla.org/', u'https://mozillians.org/']
-
-        assert len(file_.webext_permissions) == 1
-        perm = file_.webext_permissions[0]
-        assert perm.name == u'multiple-match'
-        assert perm.description == (
-            u'<details><summary>Access your data on the following websites:'
-            u'</summary><ul><li>https://mozilla.org/</li>'
-            u'<li>https://mozillians.org/</li></ul></details>')
-
-        file_.webext_permissions_list += [u'http://*/*', u'<all_urls>']
-        # Match-all patterns should override the specific sites
-        assert len(file_.webext_permissions) == 1
-        assert file_.webext_permissions[0] == (
-            WebextPermissionDescription.ALL_URLS_PERMISSION)
 
     def test_webext_permissions_list_string_only(self):
         file_ = File.objects.get(pk=67442)
