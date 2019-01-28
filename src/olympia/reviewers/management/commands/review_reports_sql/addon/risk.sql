@@ -1,6 +1,6 @@
 SELECT risk_category AS `Risk Category`,
-       FORMAT(SUM(n), 0) AS `All Reviewers`,
-       FORMAT(SUM(CASE WHEN `group_category` = 'volunteer' THEN n ELSE 0 END), 0) AS 'Volunteers'
+       IFNULL(FORMAT(SUM(n), 0), 0) AS `All Reviewers`,
+       IFNULL(FORMAT(SUM(CASE WHEN `group_category` = 'volunteer' THEN n ELSE 0 END), 0), 0) AS 'Volunteers'
 FROM
   (SELECT CASE
               WHEN weight > @RISK_HIGHEST THEN 'highest'
