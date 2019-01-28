@@ -15,7 +15,6 @@ def admin_site_links():
              reverse('discovery.module_admin')),
             ('Monthly Pick', reverse('zadmin.monthly_pick')),
             ('Fake mail', reverse('zadmin.mail')),
-            ('Email Add-on Developers', reverse('zadmin.email_devs')),
             ('Replacement Addons', reverse(
                 'admin:addons_replacementaddon_changelist')),
         ],

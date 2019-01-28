@@ -34,8 +34,6 @@ urlpatterns = [
     url(r'^env$', views.env, name='zadmin.env'),
     url(r'^settings', views.show_settings, name='zadmin.settings'),
     url(r'^fix-disabled', views.fix_disabled_file, name='zadmin.fix-disabled'),
-    url(r'^email_preview/(?P<topic>.*)\.csv$',
-        views.email_preview_csv, name='zadmin.email_preview_csv'),
 
     url(r'^file-upload/(?P<uuid>[0-9a-f]{32})/download$',
         views.download_file_upload, name='zadmin.download_file_upload'),
@@ -51,7 +49,6 @@ urlpatterns = [
 
     url(r'^elastic$', views.elastic, name='zadmin.elastic'),
     url(r'^mail$', views.mail, name='zadmin.mail'),
-    url(r'^email-devs$', views.email_devs, name='zadmin.email_devs'),
     url(r'^addon-search$', views.addon_search, name='zadmin.addon-search'),
 
     # The Django admin.

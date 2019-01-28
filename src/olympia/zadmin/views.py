@@ -1,5 +1,3 @@
-import csv
-
 from django import http
 from django.apps import apps
 from django.conf import settings
@@ -15,27 +13,24 @@ import six
 import olympia.core.logger
 
 from olympia import amo
-from olympia.activity.models import ActivityLog, AddonLog
+from olympia.activity.models import ActivityLog
 from olympia.addons.decorators import addon_view_factory
 from olympia.addons.indexers import get_mappings as get_addons_mappings
-from olympia.addons.models import Addon, AddonUser
+from olympia.addons.models import Addon
 from olympia.amo import messages, search
 from olympia.amo.decorators import (
     json_view, permission_required, post_required)
 from olympia.amo.mail import DevEmailBackend
-from olympia.amo.urlresolvers import reverse
-from olympia.amo.utils import HttpResponseSendFile, chunked, render
+from olympia.amo.utils import HttpResponseSendFile, render
 from olympia.bandwagon.models import Collection
 from olympia.files.models import File, FileUpload
 from olympia.stats.search import get_mappings as get_stats_mappings
 from olympia.versions.models import Version
 
-from . import tasks
 from .decorators import admin_required
 from .forms import (
-    AddonStatusForm, DevMailerForm, FeaturedCollectionFormSet, FileFormSet,
+    AddonStatusForm, FeaturedCollectionFormSet, FileFormSet,
     MonthlyPickFormSet)
-from .models import EmailPreviewTopic
 
 
 log = olympia.core.logger.getLogger('z.zadmin')
@@ -68,20 +63,6 @@ def fix_disabled_file(request):
             return redirect('zadmin.fix-disabled')
     return render(request, 'zadmin/fix-disabled.html',
                   {'file': file_, 'file_id': request.POST.get('file', '')})
-
-
-@permission_required(amo.permissions.REVIEWS_ADMIN)
-def email_preview_csv(request, topic):
-    resp = http.HttpResponse()
-    resp['Content-Type'] = 'text/csv; charset=utf-8'
-    resp['Content-Disposition'] = "attachment; filename=%s.csv" % (topic)
-    writer = csv.writer(resp)
-    fields = ['from_email', 'recipient_list', 'subject', 'body']
-    writer.writerow(fields)
-    rs = EmailPreviewTopic(topic=topic).filter().values_list(*fields)
-    for row in rs:
-        writer.writerow([r.encode('utf8') for r in row])
-    return resp
 
 
 @admin_required
@@ -173,57 +154,6 @@ def mail(request):
         backend.clear()
         return redirect('zadmin.mail')
     return render(request, 'zadmin/mail.html', dict(mail=backend.view_all()))
-
-
-@admin.site.admin_view
-def email_devs(request):
-    form = DevMailerForm(request.POST or None)
-    preview = EmailPreviewTopic(topic='email-devs')
-    if preview.filter().count():
-        preview_csv = reverse('zadmin.email_preview_csv',
-                              args=[preview.topic])
-    else:
-        preview_csv = None
-    if request.method == 'POST' and form.is_valid():
-        data = form.cleaned_data
-        qs = (
-            AddonUser.objects.filter(
-                role__in=(amo.AUTHOR_ROLE_DEV, amo.AUTHOR_ROLE_OWNER))
-            .exclude(user__email=None)
-            .filter(addon__status__in=amo.VALID_ADDON_STATUSES))
-
-        if data['recipients'] == 'eula':
-            qs = qs.exclude(addon__eula=None)
-        elif data['recipients'] == 'sdk':
-            qs = qs.exclude(addon__versions__files__jetpack_version=None)
-        elif data['recipients'] == 'all_extensions':
-            qs = qs.filter(addon__type=amo.ADDON_EXTENSION)
-        elif data['recipients'] == 'depreliminary':
-            addon_logs = AddonLog.objects.filter(
-                activity_log__action=amo.LOG.PRELIMINARY_ADDON_MIGRATED.id,
-                activity_log___details__contains='"email": true')
-            addons = addon_logs.values_list('addon', flat=True)
-            qs = qs.filter(addon__in=addons)
-        else:
-            raise NotImplementedError('If you want to support emailing other '
-                                      'types of developers, do it here!')
-        if data['preview_only']:
-            # Clear out the last batch of previewed emails.
-            preview.filter().delete()
-        total = 0
-        for emails in chunked(set(qs.values_list('user__email', flat=True)),
-                              100):
-            total += len(emails)
-            tasks.admin_email.delay(emails, data['subject'], data['message'],
-                                    preview_only=data['preview_only'],
-                                    preview_topic=preview.topic)
-        msg = 'Emails queued for delivery: %s' % total
-        if data['preview_only']:
-            msg = '%s (for preview only, emails not sent!)' % msg
-        messages.success(request, msg)
-        return redirect('zadmin.email_devs')
-    return render(request, 'zadmin/email-devs.html',
-                  dict(form=form, preview_csv=preview_csv))
 
 
 @permission_required(amo.permissions.ANY_ADMIN)
