@@ -18,22 +18,6 @@ LOGGER_NAME = 'z.zadmin'
 log = olympia.core.logger.getLogger(LOGGER_NAME)
 
 
-class DevMailerForm(forms.Form):
-    _choices = [('eula',
-                 'Developers who have set up EULAs for active add-ons'),
-                ('sdk', 'Developers of active SDK add-ons'),
-                ('all_extensions', 'All extension developers'),
-                ('depreliminary',
-                 'Developers who have addons that were preliminary reviewed'),
-                ]
-    recipients = forms.ChoiceField(choices=_choices, required=True)
-    subject = forms.CharField(widget=forms.TextInput(attrs=dict(size='100')),
-                              required=True)
-    preview_only = forms.BooleanField(initial=True, required=False,
-                                      label=u'Log emails instead of sending')
-    message = forms.CharField(widget=forms.Textarea, required=True)
-
-
 class FeaturedCollectionForm(forms.ModelForm):
     LOCALES = (('', u'(Default Locale)'),) + tuple(
         (idx, LANGUAGE_MAPPING[idx]['native'])

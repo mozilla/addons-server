@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
-import csv
 import json
 import os
 
 
 from django.conf import settings
-from django.core import mail
 
 import mock
 
 from pyquery import PyQuery as pq
-from six.moves import cStringIO as StringIO
 
 import olympia
 
@@ -27,8 +24,6 @@ from olympia.bandwagon.models import FeaturedCollection, MonthlyPick
 from olympia.files.models import File, FileUpload
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
-from olympia.zadmin.forms import DevMailerForm
-from olympia.zadmin.models import EmailPreviewTopic
 
 
 SHORT_LIVED_CACHE_PARAMS = settings.CACHES.copy()
@@ -102,28 +97,6 @@ class TestHomeAndIndex(TestCase):
         url = reverse('admin:logout')
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
-
-
-class TestEmailPreview(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestEmailPreview, self).setUp()
-        assert self.client.login(email='admin@mozilla.com')
-        addon = Addon.objects.get(pk=3615)
-        self.topic = EmailPreviewTopic(addon)
-
-    def test_csv(self):
-        self.topic.send_mail('the subject', u'Hello Ivan Krsti\u0107',
-                             from_email='admin@mozilla.org',
-                             recipient_list=['funnyguy@mozilla.org'])
-        r = self.client.get(reverse('zadmin.email_preview_csv',
-                            args=[self.topic.topic]))
-        assert r.status_code == 200
-        rdr = csv.reader(StringIO(r.content))
-        assert next(rdr) == ['from_email', 'recipient_list', 'subject', 'body']
-        assert next(rdr) == ['admin@mozilla.org', 'funnyguy@mozilla.org',
-                             'the subject', 'Hello Ivan Krsti\xc4\x87']
 
 
 class TestMonthlyPick(TestCase):
@@ -540,108 +513,6 @@ class TestElastic(amo.tests.ESTestCase):
         self.client.logout()
         self.assertLoginRedirects(
             self.client.get(self.url), to='/en-US/admin/elastic')
-
-
-class TestEmailDevs(TestCase):
-    fixtures = ['base/addon_3615', 'base/users']
-
-    def setUp(self):
-        super(TestEmailDevs, self).setUp()
-        self.login('admin')
-        self.addon = Addon.objects.get(pk=3615)
-
-    def post(self, recipients='eula', subject='subject', message='msg',
-             preview_only=False):
-        return self.client.post(reverse('zadmin.email_devs'),
-                                dict(recipients=recipients, subject=subject,
-                                     message=message,
-                                     preview_only=preview_only))
-
-    def test_preview(self):
-        res = self.post(preview_only=True)
-        self.assertNoFormErrors(res)
-        preview = EmailPreviewTopic(topic='email-devs')
-        assert [e.recipient_list for e in preview.filter()] == ['del@icio.us']
-        assert len(mail.outbox) == 0
-
-    def test_actual(self):
-        subject = 'about eulas'
-        message = 'message about eulas'
-        res = self.post(subject=subject, message=message)
-        self.assertNoFormErrors(res)
-        self.assert3xx(res, reverse('zadmin.email_devs'))
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].subject == subject
-        assert mail.outbox[0].body == message
-        assert mail.outbox[0].to == ['del@icio.us']
-        assert mail.outbox[0].from_email == settings.DEFAULT_FROM_EMAIL
-
-    def test_only_eulas(self):
-        self.addon.update(eula=None)
-        res = self.post()
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 0
-
-    def test_sdk_devs(self):
-        (File.objects.filter(version__addon=self.addon)
-                     .update(jetpack_version='1.5'))
-        res = self.post(recipients='sdk')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == ['del@icio.us']
-
-    def test_only_sdk_devs(self):
-        res = self.post(recipients='sdk')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 0
-
-    def test_only_extensions(self):
-        self.addon.update(type=amo.ADDON_EXTENSION)
-        res = self.post(recipients='all_extensions')
-        self.assertNoFormErrors(res)
-        assert len(mail.outbox) == 1
-
-    def test_ignore_deleted_always(self):
-        self.addon.update(status=amo.STATUS_DELETED)
-        for name, label in DevMailerForm._choices:
-            res = self.post(recipients=name)
-            self.assertNoFormErrors(res)
-            assert len(mail.outbox) == 0
-
-    def test_exclude_pending_for_addons(self):
-        self.addon.update(status=amo.STATUS_PENDING)
-        for name, label in DevMailerForm._choices:
-            res = self.post(recipients=name)
-            self.assertNoFormErrors(res)
-            assert len(mail.outbox) == 0
-
-    def test_depreliminary_addon_devs(self):
-        # We just need a user for the log(), it would normally be task user.
-        ActivityLog.create(
-            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-            details={'email': True}, user=self.addon.authors.get())
-        res = self.post(recipients='depreliminary')
-        self.assertNoFormErrors(res)
-        self.assert3xx(res, reverse('zadmin.email_devs'))
-        assert len(mail.outbox) == 1
-        assert mail.outbox[0].to == ['del@icio.us']
-        assert mail.outbox[0].from_email == settings.DEFAULT_FROM_EMAIL
-
-    def test_only_depreliminary_addon_devs(self):
-        res = self.post(recipients='depreliminary')
-        self.assertNoFormErrors(res)
-        self.assert3xx(res, reverse('zadmin.email_devs'))
-        assert len(mail.outbox) == 0
-
-    def test_we_only_email_devs_that_need_emailing(self):
-        # Doesn't matter the reason, but this addon doesn't get an email.
-        ActivityLog.create(
-            amo.LOG.PRELIMINARY_ADDON_MIGRATED, self.addon,
-            details={'email': False}, user=self.addon.authors.get())
-        res = self.post(recipients='depreliminary')
-        self.assertNoFormErrors(res)
-        self.assert3xx(res, reverse('zadmin.email_devs'))
-        assert len(mail.outbox) == 0
 
 
 class TestFileDownload(TestCase):
