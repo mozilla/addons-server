@@ -11,6 +11,7 @@ from rest_framework.filters import BaseFilterBackend
 
 from olympia import amo
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
+from olympia.discovery.models import DiscoveryItem
 from olympia.versions.compare import version_int
 
 
@@ -144,18 +145,28 @@ class AddonGuidQueryParam(AddonQueryParam):
         # a specific API but rather encodes the guid and adds a prefix to it,
         # only in the search API): if the guid param matches this format, and
         # the feature is enabled through a setting, then we decode it and
-        # proceed. A 400 is returned if the format is recognized but the
-        # feature is disabled through the setting, acting as a kill-switch.
+        # check it against DiscoItems, which contains the list of add-ons
+        # susceptible to appear in disco pane, acting as a list of "safe"
+        # add-ons we can enable that feature for.
+        # We raise ValueError if anything goes wrong, they are eventually
+        # turned into 400 responses and this acts as a kill-switch for the
+        # feature in Firefox.
         if value.startswith('rta:') and '@' not in value:
             if settings.RETURN_TO_AMO is not True:
                 raise ValueError('RTA is currently disabled')
-            # Any ValueError will trigger a 400.
             try:
                 value = force_text(urlsafe_base64_decode(value[4:]))
                 if not amo.ADDON_GUID_PATTERN.match(value):
                     raise ValueError()
             except (TypeError, ValueError):
                 raise ValueError('Invalid RTA guid (not in base64url format?)')
+
+            # Unfortunately we have to check against the database here. We only
+            # need to check that a DiscoveryItem exists, if somehow the add-on
+            # is not public, it will get filtered out later by
+            # ReviewedContentFilter.
+            if not DiscoveryItem.objects.filter(addon__guid=value).exists():
+                raise ValueError('Invalid RTA guid (not a curated add-on)')
 
         return value.split(',') if value else []
 
