@@ -1,4 +1,4 @@
-SELECT u.display_name AS `Name`,
+SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
        IF(
             (SELECT DISTINCT(user_id)
              FROM groups_users

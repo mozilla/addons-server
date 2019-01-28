@@ -1,4 +1,4 @@
-SELECT u.display_name AS `Name`,
+SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
        IF(
             (SELECT DISTINCT(user_id)
              FROM groups_users
@@ -7,8 +7,8 @@ SELECT u.display_name AS `Name`,
                   FROM groups
                   WHERE name IN ('Staff', 'No Reviewer Incentives'))
                AND user_id = rs.user_id), '*', '') AS `Staff`,
-       FORMAT(SUM(aa.weight), 0) AS `Total Risk`,
-       FORMAT(AVG(aa.weight), 2) AS `Average Risk`,
+       IFNULL(FORMAT(SUM(aa.weight), 0), 0) AS `Total Risk`,
+       IFNULL(FORMAT(AVG(aa.weight), 2), 0) AS `Average Risk`,
        IFNULL(IF(
                    (SELECT DISTINCT(user_id)
                     FROM groups_users

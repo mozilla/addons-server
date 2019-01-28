@@ -1,4 +1,4 @@
-SELECT u.display_name AS `Name`,
+SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
        IFNULL(FORMAT(SUM(rs.score), 0), 0) AS `Points`,
        FORMAT(COUNT(*), 0) AS `Add-ons Reviewed`
 FROM reviewer_scores rs
