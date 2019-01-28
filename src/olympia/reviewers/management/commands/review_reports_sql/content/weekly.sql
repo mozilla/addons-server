@@ -1,4 +1,4 @@
-SELECT u.display_name AS `Name`,
+SELECT IFNULL(u.display_name, CONCAT('Firefox user ', u.id)) AS `Name`,
        IF(
             (SELECT DISTINCT(user_id)
              FROM groups_users
@@ -20,7 +20,8 @@ FROM editors_autoapprovalsummary aa
 JOIN reviewer_scores rs ON rs.version_id = aa.version_id
 JOIN users u ON u.id = rs.user_id
 WHERE DATE(rs.created) BETWEEN @WEEK_BEGIN AND @WEEK_END
- /* Filter out internal task user */
+  AND u.deleted = 0
+  /* Filter out internal task user */
   AND user_id <> 4757633
   /* The type of review, see constants/reviewers.py */
   AND rs.note_key IN (101)

@@ -43,61 +43,75 @@ class TestReviewReports(object):
 
     def generate_review_data(self):
         with freeze_time(self.last_week_begin):
-            reviewer1 = user_factory(display_name='Volunteer A')
-            reviewer2 = user_factory(display_name='Staff B')
-            reviewer3 = user_factory(display_name='Volunteer Content C')
-            reviewer4 = user_factory(display_name='Staff Content D')
-            grant_permission(reviewer2, '', name='Staff')
-            grant_permission(reviewer4, '', name='No Reviewer Incentives')
+            self.reviewer1 = user_factory(display_name='Volunteer A')
+            self.reviewer2 = user_factory(display_name='Staff B')
+            self.reviewer3 = user_factory(display_name=None)
+            self.reviewer4 = user_factory(display_name='Staff Content D')
+            self.reviewer5 = user_factory(display_name='Deleted')
+            grant_permission(self.reviewer2, '', name='Staff')
+            grant_permission(self.reviewer4, '', name='No Reviewer Incentives')
 
             data = [
-                (reviewer1, 178, amo.AUTO_APPROVED, False),
-                (reviewer1, 95, amo.AUTO_APPROVED, False),
-                (reviewer1, 123, amo.NOT_AUTO_APPROVED, False),
-                (reviewer1, 328, amo.AUTO_APPROVED, False),
-                (reviewer1, 450, amo.AUTO_APPROVED, False),
-                (reviewer1, 999, amo.NOT_AUTO_APPROVED, False),
-                (reviewer1, 131, amo.AUTO_APPROVED, False),
-                (reviewer1, 74, amo.NOT_AUTO_APPROVED, False),
-                (reviewer1, 15, amo.AUTO_APPROVED, False),
+                (self.reviewer1, 178, amo.AUTO_APPROVED, False),
+                (self.reviewer1, 95, amo.AUTO_APPROVED, False),
+                (self.reviewer1, 123, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer1, 328, amo.AUTO_APPROVED, False),
+                (self.reviewer1, 450, amo.AUTO_APPROVED, False),
+                (self.reviewer1, 999, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer1, 131, amo.AUTO_APPROVED, False),
+                (self.reviewer1, 74, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer1, 15, amo.AUTO_APPROVED, False),
 
-                (reviewer2, 951, amo.NOT_AUTO_APPROVED, False),
-                (reviewer2, 8421, amo.AUTO_APPROVED, False),
-                (reviewer2, 281, amo.AUTO_APPROVED, False),
-                (reviewer2, 54, amo.NOT_AUTO_APPROVED, False),
-                (reviewer2, 91, amo.NOT_AUTO_APPROVED, False),
-                (reviewer2, 192, amo.AUTO_APPROVED, False),
-                (reviewer2, 222, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer2, 951, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer2, 8421, amo.AUTO_APPROVED, False),
+                (self.reviewer2, 281, amo.AUTO_APPROVED, False),
+                (self.reviewer2, 54, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer2, 91, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer2, 192, amo.AUTO_APPROVED, False),
+                (self.reviewer2, 222, amo.NOT_AUTO_APPROVED, False),
 
-                (reviewer3, 178, amo.AUTO_APPROVED, True),
-                (reviewer3, 95, amo.AUTO_APPROVED, True),
-                (reviewer3, 123, amo.NOT_AUTO_APPROVED, True),
-                (reviewer3, 328, amo.AUTO_APPROVED, True),
-                (reviewer3, 450, amo.AUTO_APPROVED, True),
-                (reviewer3, 999, amo.NOT_AUTO_APPROVED, True),
-                (reviewer3, 131, amo.AUTO_APPROVED, True),
-                (reviewer3, 74, amo.NOT_AUTO_APPROVED, True),
-                (reviewer3, 15, amo.AUTO_APPROVED, True),
-                (reviewer3, 48, amo.AUTO_APPROVED, True),
-                (reviewer3, 87, amo.NOT_AUTO_APPROVED, True),
-                (reviewer3, 265, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 178, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 95, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 123, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer3, 328, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 450, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 999, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer3, 131, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 74, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer3, 15, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 48, amo.AUTO_APPROVED, True),
+                (self.reviewer3, 87, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer3, 265, amo.AUTO_APPROVED, True),
 
-                (reviewer4, 951, amo.NOT_AUTO_APPROVED, True),
-                (reviewer4, 8421, amo.AUTO_APPROVED, True),
-                (reviewer4, 281, amo.AUTO_APPROVED, True),
-                (reviewer4, 54, amo.NOT_AUTO_APPROVED, True),
-                (reviewer4, 91, amo.NOT_AUTO_APPROVED, True),
-                (reviewer4, 192, amo.AUTO_APPROVED, True),
-                (reviewer4, 222, amo.NOT_AUTO_APPROVED, True),
-                (reviewer4, 192, amo.AUTO_APPROVED, True),
-                (reviewer4, 444, amo.NOT_AUTO_APPROVED, True),
-                (reviewer4, 749, amo.AUTO_APPROVED, True),
+                (self.reviewer4, 951, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer4, 8421, amo.AUTO_APPROVED, True),
+                (self.reviewer4, 281, amo.AUTO_APPROVED, True),
+                (self.reviewer4, 54, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer4, 91, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer4, 192, amo.AUTO_APPROVED, True),
+                (self.reviewer4, 222, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer4, 192, amo.AUTO_APPROVED, True),
+                (self.reviewer4, 444, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer4, 749, amo.AUTO_APPROVED, True),
+
+                (self.reviewer5, 523, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer5, 126, amo.AUTO_APPROVED, True),
+                (self.reviewer5, 246, amo.AUTO_APPROVED, False),
+                (self.reviewer5, 8740, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer5, 346, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer5, 985, amo.AUTO_APPROVED, False),
+                (self.reviewer5, 123, amo.NOT_AUTO_APPROVED, True),
+                (self.reviewer5, 93, amo.AUTO_APPROVED, True),
+                (self.reviewer5, 22, amo.NOT_AUTO_APPROVED, False),
+                (self.reviewer5, 165, amo.AUTO_APPROVED, True),
             ]
             for review_action in data:
                 self.create_and_review_addon(review_action[0],
                                              review_action[1],
                                              review_action[2],
                                              review_action[3])
+
+            self.reviewer5.delete()
 
     def test_report_addon_reviewer(self):
         self.generate_review_data()
@@ -136,6 +150,7 @@ class TestReviewReports(object):
         assert 'Weekly Add-on Reviews Report' in html
         assert 'Volunteer A' in html
         assert 'Staff B' in html
+        assert 'Deleted' not in html
 
         to = 'addon-reviewers@mozilla.org'
         subject = '%s %s-%s' % (
@@ -156,7 +171,8 @@ class TestReviewReports(object):
         expected = [
             ('Weekly Content Reviews, 10 Reviews or More',
              ['Name', 'Staff', 'Points', 'Add-ons Reviewed'],
-             ((u'Volunteer Content C', u'', '120', u'12'),
+             ((u'Firefox user {}'.format(self.reviewer3.id),
+               u'', '120', u'12'),
               (u'Staff Content D', u'*', '-', u'10'))),
             ('Weekly Volunteer Contribution Ratio',
              ['Group', 'Add-ons Reviewed'],
@@ -172,14 +188,16 @@ class TestReviewReports(object):
         if not self.last_week_begin < self.this_quarter_begin:
             expected[2] = ('Quarterly contributions',
                            ['Name', 'Points', 'Add-ons Reviewed'],
-                           ((u'Volunteer Content C', u'120', u'12'),))
+                           ((u'Firefox user {}'.format(self.reviewer3.id),
+                             u'120', u'12'),))
         assert data == expected
 
         html = command.generate_report_html('content', data)
 
         assert 'Weekly Add-on Content Reviews Report' in html
-        assert 'Volunteer Content C' in html
+        assert 'Firefox user {}'.format(self.reviewer3.id) in html
         assert 'Staff Content D' in html
+        assert 'Deleted' not in html
 
         to = 'addon-content-reviewers@mozilla.com'
         subject = '%s %s-%s' % (
@@ -217,6 +235,7 @@ class TestReviewReports(object):
         assert 'Weekly Add-on Reviews Report' in html
         assert 'Volunteer A' not in html
         assert 'Staff B' not in html
+        assert 'Deleted' not in html
 
         to = 'addon-reviewers@mozilla.org'
         subject = '%s %s-%s' % (
@@ -248,8 +267,9 @@ class TestReviewReports(object):
         html = command.generate_report_html('content', data)
 
         assert 'Weekly Add-on Content Reviews Report' in html
-        assert 'Volunteer Content C' not in html
+        assert 'Firefox user' not in html
         assert 'Staff Content D' not in html
+        assert 'Deleted' not in html
 
         to = 'addon-content-reviewers@mozilla.org'
         subject = '%s %s-%s' % (
