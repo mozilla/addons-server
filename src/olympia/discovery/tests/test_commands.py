@@ -19,10 +19,10 @@ fake_data = {
         u'custom_description': u'custom description is custom '
     }, {
         u'custom_heading': u'{start_sub_heading}{addon_name}{end_sub_heading}',
-        u'custom_description': ''
+        u'custom_description': u''
     }]}
 
-expected_content = """{# L10n: editorial content for the discovery pane. #}
+expected_content = u"""{# L10n: editorial content for the discovery pane. #}
 {% trans %}sïïïck custom heading{% endtrans %}
 {# L10n: editorial content for the discovery pane. #}
 {% trans %}greât custom description{% endtrans %}
@@ -53,4 +53,4 @@ class TestExtractDiscoStringsCommand(TestCase):
 
             file_.seek(0)
             content = file_.read()
-            assert content == expected_content
+            assert content == expected_content.encode('utf-8')

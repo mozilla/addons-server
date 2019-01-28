@@ -1,4 +1,4 @@
-from functools import partial
+from functools import partial, total_ordering
 
 from django.db import connections, models, router
 from django.db.models.deletion import Collector
@@ -29,6 +29,7 @@ class TranslationManager(ManagerBase):
         qs.update(localized_string=None, localized_string_clean=None)
 
 
+@total_ordering
 @python_2_unicode_compatible
 class Translation(ModelBase):
     """
@@ -55,24 +56,27 @@ class Translation(ModelBase):
             six.text_type(self.localized_string) if self.localized_string
             else '')
 
-    def __nonzero__(self):
-        # __nonzero__ is called to evaluate an object in a boolean context.
+    def __bool__(self):
+        # __bool__ is called to evaluate an object in a boolean context.
         # We want Translations to be falsy if their string is empty.
         return (bool(self.localized_string) and
                 bool(self.localized_string.strip()))
 
+    __nonzero__ = __bool__  # Python 2 compatibility.
+
+    def __lt__(self, other):
+        if hasattr(other, 'localized_string'):
+            return self.localized_string < other.localized_string
+        else:
+            return self.localized_string < other
+
     def __eq__(self, other):
         # Django implements an __eq__ that only checks pks. We need to check
         # the strings if we're dealing with existing vs. unsaved Translations.
-        return self.__cmp__(other) == 0
-
-    def __cmp__(self, other):
-        def cmp(a, b):
-            return (a > b) - (a < b)
         if hasattr(other, 'localized_string'):
-            return cmp(self.localized_string, other.localized_string)
+            return self.localized_string == other.localized_string
         else:
-            return cmp(self.localized_string, other)
+            return self.localized_string == other
 
     def clean(self):
         if self.localized_string:

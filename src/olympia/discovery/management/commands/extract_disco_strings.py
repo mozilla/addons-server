@@ -46,5 +46,5 @@ class Command(BaseCommand):
         log.info('Building Discovery Pane strings file.')
         content = u'\n'.join(
             self.build_output_for_item(item) for item in results)
-        with open(settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'w') as f:
+        with open(settings.DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'wb') as f:
             f.write(content.encode('utf-8'))

@@ -36,14 +36,14 @@ class TestNamespacing(WithDynamicEndpoints, TestCase):
         response = self.client.get(
             'api/v3/foo', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
-        assert response.content == '{"version":"v3"}'
+        assert response.json() == {'version': 'v3'}
         url_ = reverse_ns('foo', api_version='v3')
         assert '/api/v3/' in url_
         # And the common one
         response = self.client.get(
             'api/v3/yay', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
-        assert response.content == '{"version":"v3"}'
+        assert response.json() == {'version': 'v3'}
         url_ = reverse_ns('yay', api_version='v3')
         assert '/api/v3/' in url_
         # But no baa in v3
@@ -58,14 +58,14 @@ class TestNamespacing(WithDynamicEndpoints, TestCase):
         response = self.client.get(
             'api/v4/baa', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
-        assert response.content == '{"version":"v4"}'
+        assert response.json() == {'version': 'v4'}
         url_ = reverse_ns('baa', api_version='v4')
         assert '/api/v4/' in url_
         # And the common one
         response = self.client.get(
             'api/v4/yay', HTTP_ORIGIN='testserver', follow=True)
         assert response.status_code == 200
-        assert response.content == '{"version":"v4"}'
+        assert response.json() == {'version': 'v4'}
         url_ = reverse_ns('yay', api_version='v4')
         assert '/api/v4/' in url_
         # But no foo in v4

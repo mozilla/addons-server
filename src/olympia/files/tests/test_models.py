@@ -12,6 +12,7 @@ from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
+from django.utils.encoding import force_text
 
 import mock
 import pytest
@@ -156,7 +157,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         f = File.objects.get(pk=67442)
         f.status = amo.STATUS_PUBLIC
         with storage.open(f.guarded_file_path, 'wb') as fp:
-            fp.write('some data\n')
+            fp.write(b'some data\n')
         f.unhide_disabled_file()
         assert storage.exists(f.file_path)
         assert storage.open(f.file_path).size
@@ -236,9 +237,9 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
         file_ = File.objects.get(pk=67442)
         with storage.open(file_.file_path, 'wb') as fp:
-            fp.write('some data\n')
+            fp.write(b'some data\n')
         with storage.open(file_.guarded_file_path, 'wb') as fp:
-            fp.write('some data guarded\n')
+            fp.write(b'some data guarded\n')
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
         assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
@@ -369,7 +370,7 @@ class TestParseXpi(TestCase):
         }
         parse_addon_kwargs.update(**kwargs)
 
-        with open(xpi) as fobj:
+        with open(xpi, 'rb') as fobj:
             return parse_addon(fobj, addon, **parse_addon_kwargs)
 
     def test_parse_basics(self):
@@ -587,6 +588,8 @@ class TestParseXpi(TestCase):
 
     def test_bad_zipfile(self):
         with self.assertRaises(forms.ValidationError) as e:
+            # This file doesn't exist, it will raise an IOError that should
+            # be caught and re-raised as a ValidationError.
             parse_addon('baxmldzip.xpi', None)
         assert e.exception.messages == ['Could not parse the manifest file.']
 
@@ -673,7 +676,7 @@ class TestParseAlternateXpi(TestCase, amo.tests.AMOPaths):
         self.user = user_factory()
 
     def parse(self, filename='alt-rdf.xpi'):
-        with open(self.file_fixture_path(filename)) as fobj:
+        with open(self.file_fixture_path(filename), 'rb') as fobj:
             return parse_addon(fobj, user=self.user)
 
     def test_parse_basics(self):
@@ -714,16 +717,16 @@ class TestFileUpload(UploadTest):
 
     def setUp(self):
         super(TestFileUpload, self).setUp()
-        self.data = 'file contents'
+        self.data = b'file contents'
 
     def upload(self, **params):
         # The data should be in chunks.
-        data = [''.join(x) for x in chunked(self.data, 3)]
+        data = [bytes(bytearray(s)) for s in chunked(self.data, 3)]
         return FileUpload.from_post(data, 'filename.xpi',
                                     len(self.data), **params)
 
     def test_from_post_write_file(self):
-        assert storage.open(self.upload().path).read() == self.data
+        assert storage.open(self.upload().path, 'rb').read() == self.data
 
     def test_from_post_filename(self):
         upload = self.upload()
@@ -770,16 +773,16 @@ class TestFileUpload(UploadTest):
         assert not upload.valid
 
     def test_ascii_names(self):
-        upload = FileUpload.from_post('', u'jétpack.xpi', 0)
+        upload = FileUpload.from_post(b'', u'jétpack.xpi', 0)
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post('', u'мозила_србија-0.11-fx.xpi', 0)
+        upload = FileUpload.from_post(b'', u'мозила_србија-0.11-fx.xpi', 0)
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post('', u'フォクすけといっしょ.xpi', 0)
+        upload = FileUpload.from_post(b'', u'フォクすけといっしょ.xpi', 0)
         assert 'xpi' in upload.name
 
-        upload = FileUpload.from_post('', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
+        upload = FileUpload.from_post(b'', u'\u05d0\u05d5\u05e1\u05e3.xpi', 0)
         assert 'xpi' in upload.name
 
     def test_validator_sets_binary_via_extensions(self):
@@ -1037,8 +1040,8 @@ class TestFileFromUpload(UploadTest):
             with storage.open(fname, 'w') as fs:
                 shutil.copyfileobj(open(fname), fs)
         data = {
-            'path': fname,
-            'name': name,
+            'path': force_text(fname),
+            'name': force_text(name),
             'hash': 'sha256:%s' % name,
             'validation': validation_data
         }
@@ -1368,7 +1371,7 @@ def test_parse_xpi():
     """Fire.fm can sometimes give us errors.  Let's prevent that."""
     firefm = os.path.join(settings.ROOT,
                           'src/olympia/files/fixtures/files/firefm.xpi')
-    rdf = parse_xpi(open(firefm))
+    rdf = parse_xpi(firefm)
     assert rdf['name'] == 'Fire.fm'
 
 

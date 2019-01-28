@@ -7,8 +7,8 @@ from contextlib import contextmanager
 
 from django.core.cache.backends.base import DEFAULT_TIMEOUT, BaseCache
 from django.core.cache import cache, caches, _create_cache
-from django.utils import encoding, translation
-from django.utils.encoding import force_bytes
+from django.utils import translation
+from django.utils.encoding import force_bytes, force_text
 
 
 def make_key(key, with_locale=True, normalize=False):
@@ -18,8 +18,8 @@ def make_key(key, with_locale=True, normalize=False):
             key=key, lang=translation.get_language())
 
     if normalize:
-        return hashlib.md5(encoding.smart_bytes(key)).hexdigest()
-    return encoding.smart_bytes(key)
+        return force_text(hashlib.md5(force_bytes(key)).hexdigest())
+    return force_text(key)
 
 
 def cache_get_or_set(key, default, timeout=DEFAULT_TIMEOUT, version=None):

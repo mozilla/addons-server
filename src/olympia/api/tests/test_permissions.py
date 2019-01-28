@@ -46,15 +46,15 @@ class TestGroupPermissionOnView(WithDynamicEndpoints):
 
     def test_user_must_be_in_required_group(self):
         GroupUser.objects.filter(user=self.user).delete()
-        res = self.client.get(self.url)
-        assert res.status_code == 403, res.content
-        assert res.data['detail'] == (
+        response = self.client.get(self.url)
+        assert response.status_code == 403, response.content
+        assert response.data['detail'] == (
             'You do not have permission to perform this action.')
 
     def test_view_is_executed(self):
-        res = self.client.get(self.url)
-        assert res.status_code == 200, res.content
-        assert res.content == '"ok"'
+        response = self.client.get(self.url)
+        assert response.status_code == 200, response.content
+        assert response.content == b'"ok"'
 
 
 class TestGroupPermission(TestCase):

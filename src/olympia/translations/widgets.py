@@ -96,6 +96,7 @@ class TransMulti(forms.widgets.MultiWidget):
             output.append(widget.render(
                 name + '_%s' % i, widget_value, final_attrs
             ))
+
         return mark_safe(self.format_output(output))
 
     def decompress(self, value):
@@ -170,7 +171,8 @@ class _TransWidget(object):
         # want people editing a bleached value.
         if value.__class__ != Translation:
             value = switch(value, Translation)
-        return super(_TransWidget, self).render(name, value, attrs)
+        return super(
+            _TransWidget, self).render(name, six.text_type(value), attrs)
 
 
 # TransInput and TransTextarea are MultiWidgets that know how to set up our

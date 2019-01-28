@@ -15,7 +15,7 @@ from django.http import (
 from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
 from django.utils.deprecation import MiddlewareMixin
-from django.utils.encoding import force_bytes, iri_to_uri
+from django.utils.encoding import force_text, iri_to_uri
 from django.utils.translation import activate, ugettext_lazy as _
 
 from rest_framework import permissions
@@ -64,7 +64,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
             # from query params so we don't have an infinite loop.
             prefixer.locale = ''
             new_path = prefixer.fix(prefixer.shortened_path)
-            query = dict((force_bytes(k), request.GET[k]) for k in request.GET)
+            query = request.GET.dict()
             query.pop('lang')
             return redirect_type(urlparams(new_path, **query))
 
@@ -73,7 +73,7 @@ class LocaleAndAppURLMiddleware(MiddlewareMixin):
             full_path = quote(full_path.encode('utf-8'))
 
             if query_string:
-                query_string = query_string.decode('utf-8', 'ignore')
+                query_string = force_text(query_string, errors='ignore')
                 full_path = u'%s?%s' % (full_path, query_string)
 
             response = redirect_type(full_path)

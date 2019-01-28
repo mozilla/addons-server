@@ -43,6 +43,7 @@ from olympia.amo.utils import decode_json, find_language, rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.lib.safe_xml import lxml
 from olympia.lib.crypto.signing import get_signer_organizational_unit_name
+from olympia.lib import unicodehelper
 from olympia.users.utils import (
     mozilla_signed_extension_submission_allowed,
     system_addon_submission_allowed)
@@ -119,10 +120,10 @@ def id_to_path(pk):
 def get_file(fileorpath):
     """Get a file-like object, whether given a FileUpload object or a path."""
     if hasattr(fileorpath, 'path'):  # FileUpload
-        return storage.open(fileorpath.path)
+        return storage.open(fileorpath.path, 'rb')
     if hasattr(fileorpath, 'name'):
         return fileorpath
-    return storage.open(fileorpath)
+    return storage.open(fileorpath, 'rb')
 
 
 def make_xpi(files):
@@ -272,10 +273,11 @@ class RDFExtractor(object):
             self.is_experiment = self.package_type in self.EXPERIMENT_TYPES
             return self.TYPES[self.package_type]
 
+        name = force_text(self.zip_file.source.name)
+
         # Look for Complete Themes.
         is_complete_theme = (
-            self.zip_file.source.name.endswith('.jar') or
-            self.find('internalName')
+            name.endswith('.jar') or self.find('internalName')
         )
         if is_complete_theme:
             return amo.ADDON_THEME
@@ -364,11 +366,10 @@ class ManifestJSONExtractor(object):
         self.certinfo = certinfo
 
         if not data:
-            data = force_text(zip_file.read('manifest.json'))
+            data = zip_file.read('manifest.json')
 
-        lexer = JsLexer()
-
-        json_string = ''
+        # Remove BOM if present.
+        data = unicodehelper.decode(data)
 
         # Run through the JSON and remove all comments, then try to read
         # the manifest file.
@@ -380,11 +381,13 @@ class ManifestJSONExtractor(object):
         #
         # But block level comments are not allowed. We just flag them elsewhere
         # (in the linter).
+        json_string = ''
+        lexer = JsLexer()
         for name, token in lexer.lex(data):
             if name not in ('blockcomment', 'linecomment'):
                 json_string += token
 
-        self.data = decode_json(json_string)
+        self.data = json.loads(json_string)
 
     def get(self, key, default=None):
         return self.data.get(key, default)
@@ -908,12 +911,12 @@ def get_all_files(folder, strip_prefix='', prefix=None):
     def iterate(path):
         path_dirs, path_files = storage.listdir(path)
         for dirname in sorted(path_dirs):
-            full = os.path.join(path, dirname)
+            full = os.path.join(path, force_text(dirname))
             all_files.append(full)
             iterate(full)
 
         for filename in sorted(path_files):
-            full = os.path.join(path, filename)
+            full = os.path.join(path, force_text(filename))
             all_files.append(full)
 
     iterate(folder)
@@ -958,9 +961,9 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
         raise
     except IOError as e:
         if len(e.args) < 2:
-            err, strerror = None, e[0]
+            err, strerror = None, e.args[0]
         else:
-            err, strerror = e
+            err, strerror = e.args
         log.error('I/O error({0}): {1}'.format(err, strerror))
         raise forms.ValidationError(ugettext(
             'Could not parse the manifest file.'))
