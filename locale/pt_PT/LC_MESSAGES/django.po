@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-21 14:37+0000\n"
-"PO-Revision-Date: 2019-01-27 13:13+0000\n"
+"PO-Revision-Date: 2019-01-28 14:11+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2578,13 +2578,11 @@ msgstr "As imagens não podem ser maiores que %dKB."
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "A imagem tem de ter exactamente {0} pixéis de largura e {1} pixéis de altura."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "A imagem tem de ter exactamente {0} pixéis de largura e {1} pixéis de altura."
+msgstr "A imagem tem de ter pelo menos {0} pixeis de largura e {1} pixeis de altura."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "As imagens devem de ser PNG ou JPG."
+msgstr "As dimensões da imagem têm de estar no rácio 4:3."
 
 #, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
@@ -3118,9 +3116,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG e JPG suportados. Ícones redimensionados para 64x64 pixéis ou maior."
+msgstr "Os ícones irão ser redimensionados para 128x128 pixeis se maiores."
 
 msgid "Screenshots"
 msgstr "Imagens"
@@ -3226,9 +3223,8 @@ msgstr "Por favor, diga-nos porque está a eliminar o seu extra:"
 msgid "Actions"
 msgstr "Ações"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Retomar o processo de submissão para este extra."
+msgstr "Retomar o processo de submissão para este extra"
 
 msgid "Resume"
 msgstr "Retomar"
@@ -3242,16 +3238,14 @@ msgstr "Apagar"
 msgid "Edit details on this add-on's product page"
 msgstr "Editar detalhes na página de produto deste extra"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Carregar uma nova versão deste extra."
+msgstr "Carregar uma nova versão deste extra"
 
 msgid "New Version"
 msgstr "Nova versão"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Estatísticas diárias sobre transferências e utilizadores."
+msgstr "Estatísticas diárias sobre transferências e utilizadores"
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3265,16 +3259,14 @@ msgstr "Ver alterados recentemente"
 msgid "Edit details on this theme's product page"
 msgstr "Editar detalhes na página de produto deste tema"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Ver a popularidade deste tema ao longo do tempo."
+msgstr "Ver a popularidade deste tema ao longo do tempo"
 
 msgid "View Statistics"
 msgstr "Ver estatísticas"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Alterar o proprietário deste tema."
+msgstr "Alterar o proprietário deste tema"
 
 msgid "Transfer Ownership"
 msgstr "Transferir propriedade"
@@ -3664,23 +3656,20 @@ msgid "Created:"
 msgstr "Criado:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Listado neste site após efetuada a revisão do código. As atualizações automáticas são geridas por este site."
+msgstr "Listado neste site após passar a revisão de código. As atualizações automáticas são manuseadas por este site"
 
 msgid "Listed Version:"
 msgstr "Versão listada:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Esta é a versão do seu extra que será instalada se alguém clicar no botão Instalar em addons.mozilla.org."
+msgstr "Esta é a versão do seu extra que irá ser instalada se alguém clicar no botão Instalar em addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Próxima versão listada:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr "Esta é a versão mais recentemente enviada, no entanto ainda não está publicamente ativa no site."
+msgstr "Esta é a versão carregada mais recentemente, no entanto ainda não está publicada no site"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "As filas não são revistas numa ordem rigorosa"
@@ -3698,9 +3687,8 @@ msgstr "Assinado para distribuição própria. As atualizações são geridas po
 msgid "Latest Version:"
 msgstr "Versão mais recente:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Esta é a versão não listada mais recentemente carregada."
+msgstr "Esta é a versão não listada carregada mais recentemente"
 
 # 90%
 msgid "Upload New Version"
@@ -4064,23 +4052,21 @@ msgstr "Selecione as cores para o seu tema."
 msgid "Foreground Text"
 msgstr "Texto de fundo"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Esta é a cor do texto do separador."
+msgstr "Esta é a cor do texto do separador"
 
 msgid "Background"
 msgstr "Fundo"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Esta é a cor dos separadores."
+msgstr "Esta é a cor dos separadores"
 
 msgid "Your Theme's Name"
 msgstr "Nome do seu tema"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "por <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr "por <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Criar um novo tema"
@@ -4092,9 +4078,8 @@ msgstr "Os temas de fundo permitem-lhe personalizar facilmente a aparência do s
 msgid "Give your Theme a name."
 msgstr "Dê um nome ao seu tema."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Uma explicação curta das funcionalidades básicas do seu tema é apresentada nas listagens de pesquisa e de navegação, assim como no início da página de detalhes do seu tema."
+msgstr "Uma explicação curta das funcionalidades básicas do seu tema é apresentada nas listagens de pesquisa e de navegação, assim como no topo da página de detalhes do seu tema"
 
 #, python-format
 msgid ""
@@ -4233,16 +4218,14 @@ msgstr "Responder"
 msgid "Listing visibility"
 msgstr "Visibilidade nas listas"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído nos resultados de pesquisa e nas páginas listadas."
+msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído nos resultados de pesquisa e nas páginas de produtos."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisível:{label_close} Não será incluído nos resultados de pesquisa e a respetiva página listada irá indicar-lhe para desativá-lo. As submissões na nova versão de listagem não serão "
-"aceites neste estado."
+"{label_open}Invisível:{label_close} Não será incluído nos resultados de pesquisa, e a sua página de produto irá indicar-lhe para desativá-lo. As submissões de novas versões para o produto não irão "
+"ser aceites neste estado."
 
 msgid "Listed versions"
 msgstr "Versões listadas"
