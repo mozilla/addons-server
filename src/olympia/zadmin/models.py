@@ -2,7 +2,6 @@ import json
 
 from decimal import Decimal
 
-from django.conf import settings
 from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -137,53 +136,3 @@ class ValidationResult(ModelBase):
         self.warnings = results['warnings'] + compat['warnings']
         self.notices = results['notices'] + compat['notices']
         self.valid = self.errors == 0
-
-
-class EmailPreviewTopic(object):
-    """Store emails in a given topic so an admin can preview before
-    re-sending.
-
-    A topic is a unique string identifier that groups together preview emails.
-    If you pass in an object (a Model instance) you will get a poor man's
-    foreign key as your topic.
-
-    For example, EmailPreviewTopic(addon) will link all preview emails to
-    the ID of that addon object.
-    """
-
-    def __init__(self, object=None, suffix='', topic=None):
-        if not topic:
-            assert object, 'object keyword is required when topic is empty'
-            topic = '%s-%s-%s' % (object.__class__._meta.db_table, object.pk,
-                                  suffix)
-        self.topic = topic
-
-    def filter(self, *args, **kw):
-        kw['topic'] = self.topic
-        return EmailPreview.objects.filter(**kw)
-
-    def send_mail(self, subject, body,
-                  from_email=settings.DEFAULT_FROM_EMAIL,
-                  recipient_list=None):
-        if recipient_list is None:
-            recipient_list = tuple([])
-        return EmailPreview.objects.create(
-            topic=self.topic,
-            subject=subject, body=body,
-            recipient_list=u','.join(recipient_list),
-            from_email=from_email)
-
-
-class EmailPreview(ModelBase):
-    """A log of emails for previewing purposes.
-
-    This is only for development and the data might get deleted at any time.
-    """
-    topic = models.CharField(max_length=255, db_index=True)
-    recipient_list = models.TextField()  # comma separated list of emails
-    from_email = models.EmailField(max_length=75)
-    subject = models.CharField(max_length=255)
-    body = models.TextField()
-
-    class Meta:
-        db_table = 'email_preview'
