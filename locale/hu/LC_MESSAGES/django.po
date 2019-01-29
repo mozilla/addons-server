@@ -12,7 +12,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 15:47+0000\n"
+"PO-Revision-Date: 2019-01-29 15:56+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -5567,9 +5567,8 @@ msgid "Automatically delete unwanted cookies. Offers white and blacklist support
 msgstr "Törölje automatikusan a nem kívánatos sütiket. Fehér- és feketelista támogatást biztosít."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Kürtölje világgá {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
+msgstr "Lássa a nagy képet {start_sub_heading}a(z) {addon_name} kiegészítővel{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
