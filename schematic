@@ -87,7 +87,7 @@ class MissingSettings(SchematicError):
 
 class SettingsError(SchematicError):
     def __init__(self, key):
-        super(MissingSettings, self).__init__(
+        super(SettingsError, self).__init__(
             "Couldn't find value for '%s' in %s.py" % (key, SETTINGS))
 
 
@@ -96,13 +96,13 @@ class DbError(SchematicError):
         msg = '\n'.join(
             ["Had trouble running this: %s", "stdout: %s",
              "stderr: %s", "returncode: %s"])
-        super(MissingSettings, self).__init__(
+        super(DbError, self).__init__(
             msg % (cmd, stdout, stderr, returncode))
 
 
 class MultipleMigrations(SchematicError):
     def __init__(self, num):
-        super(MissingSettings, self).__init__(
+        super(MultipleMigrations, self).__init__(
             'Multiple migrations with number: %d' % num)
 
 
