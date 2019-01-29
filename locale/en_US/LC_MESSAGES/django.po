@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-21 14:37+0000\n"
+"POT-Creation-Date: 2019-01-29 13:14+0000\n"
 "PO-Revision-Date: 2009-02-26 15:08-0800\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -2582,7 +2582,8 @@ msgstr "Could not parse uploaded file."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Source file uploaded but you indicated no source was needed."
 
-msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+#, fuzzy
+msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr "Ensure name and summary combined are at most 70 characters (they have {0})."
 
 #, fuzzy
@@ -5023,15 +5024,6 @@ msgstr "Get the best coupons automatically applied to your shopping cart at chec
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Translate highlighted text or the entire webpage"
-msgstr "Translate highlighted text or the entire webpage"
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -5238,15 +5230,6 @@ msgstr "Modify your new tab page to display a beautiful background, set your dai
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr "Brings back the \"View image\" button while searching on Google Images."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -5346,15 +5329,6 @@ msgstr "Grab images from any website and download them."
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr "Disguise your location to throw off trackers and protect your privacy."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -5391,30 +5365,12 @@ msgstr "Easily customize the built-in privacy settings in Firefox."
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Remove ads and download audio from VK."
-msgstr "Remove ads and download audio from VK."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
 msgstr "Access immediate translation by highlighting text and clicking the button that pops up."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5490,15 +5446,6 @@ msgstr "Reverse image search by leveraging the power of multiple search provider
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Store web pages to access across devices."
-msgstr "Store web pages to access across devices."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -5527,15 +5474,6 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
 msgstr "Instantly display all links from a webpage in new tabs."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Access PDFs using your preferred PDF application."
-msgstr "Access PDFs using your preferred PDF application."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5599,15 +5537,6 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Clear your browser cache with a click or keystroke."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Create and manage a to-do list in your browser."
-msgstr "Create and manage a to-do list in your browser."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5684,15 +5613,6 @@ msgstr "Store passwords securely and sign in to known websites automatically."
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -5756,15 +5676,6 @@ msgstr "When looking at product pages on other online shops, if it's also availa
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Easily broadcast web content to your Twitter following."
-msgstr "Easily broadcast web content to your Twitter following."
-
-#. editorial content for the discovery pane.
-#, fuzzy
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 
@@ -5821,15 +5732,6 @@ msgstr "Easily access your open tabs, bookmarks, and history."
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Uncover the software that supports whatever website you're visiting."
-msgstr "Uncover the software that supports whatever website you're visiting."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -6050,6 +5952,43 @@ msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
 msgstr "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Organize your many open tabs in a vertical sidebar."
+msgstr "Manage your open tabs in a tidy sidebar."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
+msgstr "Automatically delete unwanted cookies. Offers white and blacklist support."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "With a mouse click you can watch videos in full screen glory."
+msgstr "With a mouse click you can watch videos in full screen glory."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr "Stop wasting valuable memory space with inactive tabs."
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -6076,17 +6015,6 @@ msgstr "This file is a directory."
 
 msgid "Cannot diff a version against itself"
 msgstr "Cannot diff a version against itself"
-
-#, fuzzy
-msgid "Access your data for {name}"
-msgstr "Access your data for {name} website"
-
-#, fuzzy
-msgid "Access your data on the following websites:"
-msgstr "Access your data for all websites"
-
-msgid "Access your data for all websites"
-msgstr "Access your data for all websites"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID is required for Firefox 47 and below."
