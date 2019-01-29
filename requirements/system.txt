@@ -118,9 +118,9 @@ pyparsing==2.3.1 \
     --hash=sha256:f6c5ef0d7480ad048c054c37632c67fca55299990fff127850181659eea33fc3 \
     --hash=sha256:66c9268862641abcac4a96ba74506e594c884e3f57690a696d21ad8210ed667a
 # setuptools is required by cryptography, ipdb, ipython, spidermonkey, yolk
-setuptools==40.7.0 \
-    --hash=sha256:5d29d6d5ca47f370959a15f39fddad7ae94a02dadaf0ef5e907f17ef8e518de1 \
-    --hash=sha256:4380932816f38096e43623a7daca5cf34085683bc009feb5058fa78d09375b9d
+setuptools==40.7.1 \
+    --hash=sha256:252520b7969fb4f2fcaf08c014b2891041d56f31180ec0d581297a28597205ff \
+    --hash=sha256:5926bbea397d0fcec2f7946f1691f5820ef0234247b2d5fa83d30cc216d613ec
 # six is required by Sphinx, bleach, cryptography, django-environ, django-extensions, django-tables2, docker-compose, docker-py, docker-pycreds, dockerpty, elasticsearch-dsl, html5lib, mock, nobot, packaging, pathlib2, prompt-toolkit, pyOpenSSL, sphinxcontrib-httpdomain, websocket-client
 six==1.12.0 \
     --hash=sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c \
