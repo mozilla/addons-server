@@ -334,9 +334,9 @@ raven==6.10.0 \
 # rdflib is required by amo-validator
 rdflib==3.4.0 \
     --hash=sha256:78d5f11a7001661d7637f9e61554a5f8971e197f3f6d17ba5e4039b0668116cf # pyup: ==3.4.0
-redis==3.0.1 \
-    --hash=sha256:8e0bdd2de02e829b6225b25646f9fb9daffea99a252610d040409a6738541f0a \
-    --hash=sha256:2100750629beff143b6a200a2ea8e719fcf26420adabb81402895e144c5083cf
+redis==3.1.0 \
+    --hash=sha256:74c892041cba46078ae1ef845241548baa3bd3634f9a6f0f952f006eb1619c71 \
+    --hash=sha256:7ba8612bbfd966dea8c62322543fed0095da2834dbd5a7c124afbc617a156aa7
 # requests is required by PyBrowserID, amo-validator, django-mozilla-product-details, docker-compose, docker-py, nobot, pytest-base-url, pytest-selenium, pyupio, safety
 requests==2.25.0 \
     --hash=sha256:7f1a0b932f4a60a1a65caa4263921bb7d9ee911957e0ae4a23a6dd08185ad5f8 \
