@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 16:13+0000\n"
+"PO-Revision-Date: 2019-01-29 17:17+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2506,9 +2506,8 @@ msgstr "Njejsćo nagrał žrědłowu dataju."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Žrědłowa dataja jo se nagrała, ale sćo pódał, až žrědło njejo trěbne."
 
-#, fuzzy
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr "Zawěsććo, až mě a zespominanje gromaźe matej maksimalnje 70 znamuškow (matej {0})."
+msgstr "Zawěsććo, až mě a zespominanje gromaźe matej maksimalnje {limit_value} znamuškow (matej {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -5562,37 +5561,32 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "Pytajśo z wěcej wěstoty pśez blokěrowanje pśeslědowakow, wěcej inteligentne koděrowanje, priwatne pytanje a druge wažne wěcy."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zjadnoŕśo pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zjadnoŕśo rejtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Zastojśo swóje wócynjone rejtarki w pśeglědnej bocnicy."
+msgstr "Zastojśo swóje wjele wócynjonych rejtarkow we wertikalnej bocnicy."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastojśo cookieje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Rozšyrjone zastojanje cookiejow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr "Njewitane cookieje awtomatiski wulašowaś. Bitujo pódpěru za běłe a carne lisćiny."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Šwikocćo {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Woglědajśo se wjeliki wobraz {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Z kliknjenim myški móžośo se wideo w połnej kšasnosći na wobrazowce woglědaś."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Składujśo tekst na pózdźej {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zažaŕśo skład {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
