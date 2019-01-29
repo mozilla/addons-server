@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-21 14:37+0000\n"
+"POT-Creation-Date: 2019-01-29 13:14+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2437,7 +2437,7 @@ msgstr "Anda masih belum memuat naik fail sumber."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Fail sumber dimuat naik tapi anda menyatakan tiada sumber diperlukan."
 
-msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
 msgid ""
@@ -4663,14 +4663,6 @@ msgid "Get the best coupons automatically applied to your shopping cart at check
 msgstr "Dapatkan kupon secara automatik apabila membuat pengesahan membeli-belah."
 
 #. editorial content for the discovery pane.
-msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Penterjemahan lancar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Translate highlighted text or the entire webpage"
-msgstr "Terjemahkan teks yang diserlahkan atau keseluruhan halaman web"
-
-#. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan Reddit {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -4855,14 +4847,6 @@ msgid "Modify your new tab page to display a beautiful background, set your dail
 msgstr "Ubah halaman tab baru supaya memaparkan latar belakang yang indah, menetapkan tumpuan harian dan banyak lagi."
 
 #. editorial content for the discovery pane.
-msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Papar imej {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr "Kembalikan butang \"Papar imej\" ketika membuat carian di Google Images."
-
-#. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tingkatkan produktiviti {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -4951,14 +4935,6 @@ msgid "Grab images from any website and download them."
 msgstr "Ambil imej dalam laman web dan muat turun."
 
 #. editorial content for the discovery pane.
-msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Samarkan lokasi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr "Samarkan lokasi supaya menyukarkan penjejak dan melindungi privasi anda."
-
-#. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tapis-sendiri {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -4991,28 +4967,12 @@ msgid "Easily customize the built-in privacy settings in Firefox."
 msgstr "Penyesuaian mudah untuk tetapan privasi dalam Firefox."
 
 #. editorial content for the discovery pane.
-msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tingkatkan pengalaman VK {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Remove ads and download audio from VK."
-msgstr "Buang iklan dan muat turun audio di VK."
-
-#. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Terjemahan serta merta {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
 msgstr "Akses terjemahan serta-merta dengan menyerlahkan teks dan klik pada butang yang muncul."
-
-#. editorial content for the discovery pane.
-msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Penyesuaian tab baru {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr "Jadi kreatif dan sesuaikan halaman tab baru supaya memaparkan laman kegemaran dan tema pilihan anda."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5079,14 +5039,6 @@ msgid "Reverse image search by leveraging the power of multiple search providers
 msgstr "Carian imej songsang dengan memanfaatkan kuasa pelbagai penyedia carian."
 
 #. editorial content for the discovery pane.
-msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simpan dahulu {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Store web pages to access across devices."
-msgstr "Simpan halaman web untuk diakses dalam semua peranti."
-
-#. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mudah memilih lokasi tandabuku {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -5113,14 +5065,6 @@ msgstr "Ekstrak pautan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
 msgstr "Paparan serta-merta semua pautan halaman web dalam tab baru."
-
-#. editorial content for the discovery pane.
-msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Papar dokumen {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Access PDFs using your preferred PDF application."
-msgstr "Akses PDF menggunakan aplikasi PDF yang anda gemari."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5177,14 +5121,6 @@ msgstr "Buang data {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Buang cache pelayar dengan satu klik atau kekunci."
-
-#. editorial content for the discovery pane.
-msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Jangan lupa lagi {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Create and manage a to-do list in your browser."
-msgstr "Cipta dan uruskan senarai tugasan dalam pelayar web anda."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5251,14 +5187,6 @@ msgid "Store passwords securely and sign in to known websites automatically."
 msgstr "Simpan kata laluan dengan selamat dan daftar masuk ke laman web yang diketahui secara automatik."
 
 #. editorial content for the discovery pane.
-msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Sekat iklan & penjejakan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr "Lindungi privasi anda dengan menyekat iklan dan penjejak (selain memantaskan pemuatan halaman)."
-
-#. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Isi borang secara automatik {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -5315,14 +5243,6 @@ msgid "When looking at product pages on other online shops, if it's also availab
 msgstr "Apabila anda melihat produk yang sama dan boleh didapatkan di Amazon dalam halaman produk kedai atas talian yang lain, anda hanya perlu klik butang untuk menyemaknya dalam senarai Amazon."
 
 #. editorial content for the discovery pane.
-msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Hantar Tweet {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Easily broadcast web content to your Twitter following."
-msgstr "Mudah untuk menyiarkan kandungan web kepada pengikut Twitter anda."
-
-#. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Kawalan jitu tab {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -5373,14 +5293,6 @@ msgstr "Mudah mengakses tab terbuka, tandabuku dan sejarah."
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr "Banyak tab terbuka? Abaikan menatal dan cari menggunakan pintasan papan kekunci."
-
-#. editorial content for the discovery pane.
-msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Terokai yang disembunyikan {start_sub_heading}dengan {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Uncover the software that supports whatever website you're visiting."
-msgstr "Cari perisian yang menyokong mana-mana laman web yang anda lawati."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5578,6 +5490,43 @@ msgstr "Tutup jejak anda {start_sub_heading}dengan {addon_name}{end_sub_heading}
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
 msgstr "Carian lebih selamat dengan menyekat penjejak, enkripsi yang lebih bijak, carian persendirian dan keperluan lain."
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Memudahkan carian {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Organize your many open tabs in a vertical sidebar."
+msgstr "Urus tab terbuka secara rapi dalam bar sisi."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Urus kuki {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Hantar Tweet {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "With a mouse click you can watch videos in full screen glory."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Simpan teks {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Pemerhati fail dikunci, mengekstrak %s mungkin sedang dilaksanakan. Sila cuba lagi dalam kira-kira 5 minit."
@@ -5604,15 +5553,6 @@ msgstr "Fail ini ialah direktori."
 
 msgid "Cannot diff a version against itself"
 msgstr "Tidak dapat membezakan versi ini dengan versi sendiri"
-
-msgid "Access your data for {name}"
-msgstr "Akses data anda untuk {name}"
-
-msgid "Access your data on the following websites:"
-msgstr "Akses data anda dalam laman web berikut:"
-
-msgid "Access your data for all websites"
-msgstr "Akses data anda untuk semua laman web"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID diperlukan untuk Firefox 47 dan ke bawah."
