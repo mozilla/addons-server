@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-21 14:37+0000\n"
+"POT-Creation-Date: 2019-01-29 13:14+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2470,7 +2470,7 @@ msgstr "Man ajotob'an ta jun ruxe'el yakb'äl."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
-msgid "Ensure name and summary combined are at most 70 characters (they have {0})."
+msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
 msgstr ""
 
 msgid ""
@@ -4699,14 +4699,6 @@ msgid "Get the best coupons automatically applied to your shopping cart at check
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Chanin katzalq'omin {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Translate highlighted text or the entire webpage"
-msgstr "Nutzalq'omij jun cha'on tz'ib'anïk o chi jun ri ajk'amaya'l ruxaq"
-
-#. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tutzilaj Reddit {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
@@ -4891,14 +4883,6 @@ msgid "Modify your new tab page to display a beautiful background, set your dail
 msgstr "Tajala' ri k'ak'a' ruwi' ruxaq richin natz'ët jun jeb'ël rupam, natz'aqatisaj ri nawajo' natz'ët ronojel q'ij chuqa' ch'aqa' chik."
 
 #. editorial content for the discovery pane.
-msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ke'atz'eta' taq wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr "Taya' q'ij richin nokisäx pitz'b'äl \"Titz'et wachib'äl\" toq yakanon pa Google taq Wachib'äl"
-
-#. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tak'iyirisaj asamaj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
@@ -4987,14 +4971,6 @@ msgid "Grab images from any website and download them."
 msgstr "Ke'ayaka' taq ruwachib'al xab'achike ajk'amaya'l ruxaq chuqa' ke'aqasaj."
 
 #. editorial content for the discovery pane.
-msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tawewaj ri ak'ojlib'al {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr "Taya' ruk'oj ri ak'ojlib'al richin ye'aq'öl ri ojqanela' chuqa' nachajij ri awichinanem."
-
-#. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Taq'ata' awokem pa jujun taq rupam {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
@@ -5027,28 +5003,12 @@ msgid "Easily customize the built-in privacy settings in Firefox."
 msgstr "Anin Tawichinaj runuk'ulem richinanem Firefox ri kan k'o wi."
 
 #. editorial content for the discovery pane.
-msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tawutzilaj ri awetamab'al pa VK {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Remove ads and download audio from VK."
-msgstr "Ke'ayuju' taq eltzijol chuqa' taqasaj taq k'oxom pa VK."
-
-#. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Anin ke'ak'ulu' taq tzalq'omanïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
 msgstr "Tak'ulu' jun anin tzalq'omanïk rik'in toq nacha' jun tz'ib'anïk chuqa' napïtz' pa ri pitz'b'äl niwachin pe."
-
-#. editorial content for the discovery pane.
-msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ke'awichinaj ri k'ak'a' taq ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
-msgstr "Katok na'onel chuqa' tawichinaj ri ruxaq ri k'ak'a' ruwi' akuchi' nak'üt ri ajowanel ruxaq chuqa' akuchi' nacha' jun retal wachinel."
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5115,14 +5075,6 @@ msgid "Reverse image search by leveraging the power of multiple search providers
 msgstr "Tak'exa' kikanoxik taq wachib'äl rik'in rutz'etik kuchuq'a' jujun kanob'äl."
 
 #. editorial content for the discovery pane.
-msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Keyak richin pa jun chik mej {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Store web pages to access across devices."
-msgstr "Tiyak ajk'amaya'l ruxaq richin nib'an okem chupam pa juley chik okisab'äl."
-
-#. editorial content for the discovery pane.
 msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Anin tacha' ri kik'ojlib'al taq ayaketal {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
@@ -5149,14 +5101,6 @@ msgstr "Ke'ak'ama' taq ximonel {start_sub_heading}rik'in {addon_name}{end_sub_he
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
 msgstr "Anin ke'ak'utu' ronojel ri taq ruximonel ajk'amaya'l ruxaq pa k'ak'a' taq ruwi'."
-
-#. editorial content for the discovery pane.
-msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ke'atz'eta' taq wuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Access PDFs using your preferred PDF application."
-msgstr "Katok pa PDFs rik'in ri PDF chokoy nawajo'."
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5213,14 +5157,6 @@ msgstr "Tiyuj tzij {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
 msgstr "Tajosq'ij ru kache' awokik'amaya'l rik'in jun pitz'oj o napïtz' pa ruwi' jun pitz'b'äl."
-
-#. editorial content for the discovery pane.
-msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Majun chik tamestaj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Create and manage a to-do list in your browser."
-msgstr "Tatz'uku' chuqa' tanuk'samajij jun rucholb'al samaj pan awokik'amaya'l."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5287,14 +5223,6 @@ msgid "Store passwords securely and sign in to known websites automatically."
 msgstr "Ütz ke'ayaka' ewan taq tzij chuqa' ruyon tutikirisaj molojri'ïl pa ri ajk'amaya'l ruxaq etaman kiwa."
 
 #. editorial content for the discovery pane.
-msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Taq'ata' ri eltzijonel chuqa' ri ojqanem {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
-msgstr "Tachajij ri awichinanem toq ye'aq'ät taq eltzijol chuqa' ojqanela' (aninäq xkerusamajib'ej ri taq ruxaq)."
-
-#. editorial content for the discovery pane.
 msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ruyon Kenojisäx ri taq nojwuj {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
@@ -5351,14 +5279,6 @@ msgid "When looking at product pages on other online shops, if it's also availab
 msgstr "We ri tikojil nakanoj pa xab'achike ajk'amab'ey k'ayij, k'o chuqa' pa Amazon, xa xe yapitz'on qa pa jun pitz'b'äl richin natz'ët pa Amazon."
 
 #. editorial content for the discovery pane.
-msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tawelesaj jun twit {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Easily broadcast web content to your Twitter following."
-msgstr "Anin takomonij ajk'amaya'l na'oj kik'in ri ye'ojqan awichin pa Twitter."
-
-#. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Jeb'ël rusamajixik ruwi' {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
@@ -5409,14 +5329,6 @@ msgstr "Anin katok pa ejaqon taq ruwi', taq yaketal chuqa' natab'äl."
 #. editorial content for the discovery pane.
 msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
 msgstr "¿La k'ïy taq ruwi' e'ajaqon? Tameja' ri q'axanïk chuqa' kakanon rik'in aninäq taq pitz'b'äl."
-
-#. editorial content for the discovery pane.
-msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ke'atz'eta' ri na'ob'äl k'o chi kij ri ajk'amaya'l ruxaq {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Uncover the software that supports whatever website you're visiting."
-msgstr "Ke'awila' ri taq cholkema' e'okisan pa ri ajk'amaya'l taq ruxaq ye'atz'ët."
 
 #. editorial content for the discovery pane.
 msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5614,6 +5526,43 @@ msgstr "Takuchi' ri awetal {start_sub_heading}rik'in {addon_name}{end_sub_headin
 msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
 msgstr "Yalan jikïl kakanon rik'in q'atoj ojqanela', na'owinäq ewan rusik'ixik, ichinan kanoxïk chuqa' ch'aqa' chik k'atzinel taq ch'akulal."
 
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Anin Kanoxïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Organize your many open tabs in a vertical sidebar."
+msgstr "Ke'anuk'samajij ri taq ruwi' ye'ajaqon pa rucholajem pa jun rukajtz'ik ruchi'."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ke'anuk'samajij ri taq kuki {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tawelesaj jun twit {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "With a mouse click you can watch videos in full screen glory."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tayaka' jun tz'ib'anïk richin pa jumej {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
 msgstr "Q'atäl ri tz'etonel yakb'äl, rik'in jub'a' nelesäx %s. Tatojtob'ej chik pa 5 ch'utiramaj."
@@ -5640,15 +5589,6 @@ msgstr "Re yakb'äl re' jun cholb'äl."
 
 msgid "Cannot diff a version against itself"
 msgstr "Man tikirel ta nijunamäx ruwäch rik'in rija'"
-
-msgid "Access your data for {name}"
-msgstr "Katok pa taq atzij richin {name}"
-
-msgid "Access your data on the following websites:"
-msgstr "Katok pa ri taq atzij pa re taq ajk'amaya'l ruxaq re':"
-
-msgid "Access your data for all websites"
-msgstr "Katok pa ri taq atzij pa ronojel ri taq ruxaq k'amaya'l"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID k'atzinel pa Firefox 47 chuqa' ch'aqa' chik nima'q ruwäch."

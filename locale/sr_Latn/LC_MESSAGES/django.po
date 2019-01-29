@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-21 14:37+0000\n"
+"POT-Creation-Date: 2019-01-29 13:14+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -2865,7 +2865,8 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
 
 msgid ""
-"Ensure name and summary combined are at most 70 characters (they have {0})."
+"Ensure name and summary combined are at most {limit_value} characters (they "
+"have {show_value})."
 msgstr ""
 
 msgid ""
@@ -5581,15 +5582,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid ""
-"Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Translate highlighted text or the entire webpage"
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -5815,14 +5807,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Brings back the \"View image\" button while searching on Google Images."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid ""
 "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -5919,15 +5903,6 @@ msgid "Grab images from any website and download them."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid ""
-"Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Disguise your location to throw off trackers and protect your privacy."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -5964,16 +5939,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid ""
-"Enhance your experience on VK {start_sub_heading}with {addon_name}"
-"{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Remove ads and download audio from VK."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
 "Get instant translations {start_sub_heading}with {addon_name}"
 "{end_sub_heading}"
 msgstr ""
@@ -5982,17 +5947,6 @@ msgstr ""
 msgid ""
 "Access immediate translation by highlighting text and clicking the button "
 "that pops up."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Get creative and customize your new tab page by displaying your favorite "
-"sites and selecting a theme."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6072,14 +6026,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Store web pages to access across devices."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid ""
 "Easily select bookmark locations {start_sub_heading}with {addon_name}"
 "{end_sub_heading}"
@@ -6109,14 +6055,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Access PDFs using your preferred PDF application."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6179,15 +6117,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Create and manage a to-do list in your browser."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6267,17 +6196,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid ""
-"Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Protect your privacy by blocking ads and trackers (plus, you'll speed up "
-"page loads)."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
 "Fill forms automatically {start_sub_heading}with {addon_name}"
 "{end_sub_heading}"
 msgstr ""
@@ -6348,14 +6266,6 @@ msgid ""
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Easily broadcast web content to your Twitter following."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid ""
 "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
@@ -6416,15 +6326,6 @@ msgstr ""
 #. editorial content for the discovery pane.
 msgid ""
 "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
-"Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Uncover the software that supports whatever website you're visiting."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -6664,6 +6565,42 @@ msgid ""
 "search, and other essentials."
 msgstr ""
 
+#. editorial content for the discovery pane.
+msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Organize your many open tabs in a vertical sidebar."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Advanced cookie management {start_sub_heading}with {addon_name}"
+"{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Automatically delete unwanted cookies. Offers white and blacklist support."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "With a mouse click you can watch videos in full screen glory."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
 #, python-format
 msgid ""
 "File viewer is locked, extraction for %s could be in progress. Please try "
@@ -6695,15 +6632,6 @@ msgid "This file is a directory."
 msgstr "Ova datoteka je direktorijum."
 
 msgid "Cannot diff a version against itself"
-msgstr ""
-
-msgid "Access your data for {name}"
-msgstr ""
-
-msgid "Access your data on the following websites:"
-msgstr ""
-
-msgid "Access your data for all websites"
 msgstr ""
 
 msgid "GUID is required for Firefox 47 and below."
