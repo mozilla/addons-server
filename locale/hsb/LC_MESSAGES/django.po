@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 16:08+0000\n"
+"PO-Revision-Date: 2019-01-29 17:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -2504,9 +2504,8 @@ msgstr "Njejsće žórłowu dataju nahrał."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Žórłowa dataja je so nahrała, ale sće podał, zo žórło trěbne njeje."
 
-#, fuzzy
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr "Zawěsćće, zo mjeno a zjeće hormadźe matej maksimalnje 70 znamješkow (matej {0})."
+msgstr "Zawěsćće, zo mjeno a zjeće hormadźe matej maksimalnje {limit_value} znamješkow (matej {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -5560,37 +5559,32 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "Pytajće z wjace wěstoty přez blokowanje přesćhěwakow, bóle inteligentne zaklučowanje, priwatne pytanje a druhe wažne wěcy."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zjednorće pytanje {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zjednorće rajtarki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Rjadujće swoje wočinjene rajtarki w přehladnej bóčnicy."
+msgstr "Rjadujće swoje wjele wočinjenych rajtarkow w padorunej bóčnicy."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rjadujće placki {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Rozšěrjene rjadowanje plackow {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr "Njewitane placki awtomatisce zhašeć. Skići podpěru za běłe a čorne lisćiny."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ćikotajće {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Wobhladajće sej wulki wobraz {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Z kliknjenjom myški móžeće sej wideja w połnej pyše na wobrazowce wobhladać."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Składujće tekst na pozdźišo {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Zalutujće skład {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
