@@ -59,6 +59,7 @@ import re
 import six
 import sys
 import time
+
 from subprocess import Popen, PIPE, STDOUT
 
 
@@ -79,41 +80,34 @@ class SchematicError(Exception):
     """Base class for custom errors."""
 
 
-def exception(f):
-    """Decorator to turn a function into an subclass of SchematicError."""
-    class E(SchematicError):
-        def __init__(self, *args, **kwargs):
-            msg = f(self, *args, **kwargs)
-            SchematicError.__init__(self, msg)
-    E.__name__ = f.__name__
-    return E
+class MissingSettings(SchematicError):
+    def __init__(self):
+        super(MissingSettings, self).__init__("Couldn't import settings file")
 
 
-@exception
-def MissingSettings(self):
-    return "Couldn't import settings file"
+class SettingsError(SchematicError):
+    def __init__(self, key):
+        super(MissingSettings, self).__init__(
+            "Couldn't find value for '%s' in %s.py" % (key, SETTINGS))
 
 
-@exception
-def SettingsError(self, k):
-    return "Couldn't find value for '%s' in %s.py" % (k, SETTINGS)
+class DbError(SchematicError):
+    def __init__(self, cmd, stdout, stderr, returncode):
+        msg = '\n'.join(
+            ["Had trouble running this: %s", "stdout: %s",
+             "stderr: %s", "returncode: %s"])
+        super(MissingSettings, self).__init__(
+            msg % (cmd, stdout, stderr, returncode))
 
 
-@exception
-def DbError(self, cmd, stdout, stderr, returncode):
-    msg = '\n'.join(["Had trouble running this: %s", "stdout: %s",
-                     "stderr: %s", "returncode: %s"])
-    return msg % (cmd, stdout, stderr, returncode)
+class MultipleMigrations(SchematicError):
+    def __init__(self, num):
+        super(MissingSettings, self).__init__(
+            'Multiple migrations with number: %d' % num)
 
 
-@exception
-def MultipleMigrations(self, num):
-    return 'Multiple migrations with number: %d' % num
-
-
-@exception
-def ExternalError(self, cmd, stdout, stderr, returncode):
-    return DbError(cmd, stdout, stderr, returncode)
+class ExternalError(DbError):
+    pass
 
 
 def get_settings(schema_dir):
@@ -128,12 +122,12 @@ def get_settings(schema_dir):
         except ImportError:
             raise MissingSettings
 
-    for k in VARIABLES:
+    for key in VARIABLES:
         try:
-            getattr(settings, k)
+            getattr(settings, key)
         except AttributeError:
-            if k not in OPTIONAL_VARIABLES:
-                raise SettingsError(k)
+            if key not in OPTIONAL_VARIABLES:
+                raise SettingsError(key)
 
     return settings
 
@@ -141,24 +135,25 @@ def get_settings(schema_dir):
 def say(db, command):
     """Try talking to the database, bail if there's anything on stderr
     or a bad returncode."""
-    p = Popen(db, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-    stdout, stderr = p.communicate(six.binary_type(command, 'utf-8'))
+    process = Popen(db, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
+    stdout, stderr = process.communicate(six.binary_type(command, 'utf-8'))
 
-    if stderr or p.returncode != 0:
-        raise DbError(command, stdout, stderr, p.returncode)
+    if stderr or process.returncode != 0:
+        raise DbError(command, stdout, stderr, process.returncode)
     else:
         return stdout
 
 
 def ext(command):
     """Run an external command and blow up if theres an error."""
-    p = Popen(command, stdin=PIPE, stdout=PIPE, stderr=STDOUT, shell=True)
-    stdout, stderr = p.communicate()
+    process = Popen(
+        command, stdin=PIPE, stdout=PIPE, stderr=STDOUT, shell=True)
+    stdout, stderr = process.communicate()
 
     # Ignoring stderr because we don't want to break on deprecation warnings
     # if you want to stop the migration, raise an error.
-    if p.returncode != 0:
-        raise ExternalError(command, stdout, stderr, p.returncode)
+    if process.returncode != 0:
+        raise ExternalError(command, stdout, stderr, process.returncode)
     else:
         return stdout
 
@@ -183,15 +178,15 @@ def find_upgrades(schema_dir):
         map(lambda p: os.path.join(schema_dir, p), os.listdir(schema_dir)))
 
     upgrades = {}
-    for f in files:
-        if os.path.splitext(f)[1] in IGNORE_FILES:
+    for file_ in files:
+        if os.path.splitext(file_)[1] in IGNORE_FILES:
             continue
-        m = re.match('^(\d+)', os.path.basename(f))
-        if m:
-            num = int(m.group(0))
+        match = re.match('^(\d+)', os.path.basename(file_))
+        if match:
+            num = int(match.group(0))
             if num in upgrades:
                 raise MultipleMigrations(num)
-            upgrades[num] = f
+            upgrades[num] = file_
     return upgrades
 
 
@@ -263,11 +258,11 @@ def version(schema_dir):
 
 
 if __name__ == '__main__':
-    d = '/path/to/migrations/dir'
-    error = "Expected a directory: %s" % d
+    dir_ = '/path/to/migrations/dir'
+    error = "Expected a directory: %s" % dir_
 
     # No arguments yet, but we'll get there.
-    parser = optparse.OptionParser(usage="Usage: %%prog %s" % d)
+    parser = optparse.OptionParser(usage="Usage: %%prog %s" % dir_)
     parser.add_option('-u', '--update', dest='update', default=False,
                       help='Update schema tracking table to this version '
                            '(without running any migrations)')
@@ -299,6 +294,6 @@ if __name__ == '__main__':
             version(path)
         else:
             main(path, options.max, options.fake)
-    except SchematicError as e:
-        print('Error:', e)
+    except SchematicError as exc:
+        print('Error:', exc)
         sys.exit(1)

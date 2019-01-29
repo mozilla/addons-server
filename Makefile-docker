@@ -83,7 +83,7 @@ initialize_db:
 	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
-	schematic --fake src/olympia/migrations/
+	./schematic --fake src/olympia/migrations/
 	$(PYTHON_COMMAND) manage.py createsuperuser
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
@@ -135,7 +135,7 @@ copy_node_js:
 update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies
 
 update_db:
-	schematic src/olympia/migrations
+	./schematic src/olympia/migrations
 
 update_assets:
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
@@ -153,7 +153,7 @@ setup-ui-tests:
 	# Reset the database and fake database migrations
 	$(PYTHON_COMMAND) manage.py reset_db --noinput
 	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
-	schematic --fake src/olympia/migrations/
+	./schematic --fake src/olympia/migrations/
 
 	# Let's load some initial data and import mozilla-product versions
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
