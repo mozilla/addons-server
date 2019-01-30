@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-30 09:38+0000\n"
+"PO-Revision-Date: 2019-01-30 15:21+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -5553,7 +5553,7 @@ msgstr "Geavanceerd cookiebeheer {start_sub_heading}met {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Verwijder automatisch ongewenste cookies. Biedt ondersteuning voor witte en zwarte lijsten."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5561,7 +5561,7 @@ msgstr "Bekijk het grote geheel {start_sub_heading}met {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "In een muisklik kunt u video’s in hun volle glorie op volledig scherm bekijken."
 
 #. editorial content for the discovery pane.
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5569,7 +5569,7 @@ msgstr "Bespaar geheugen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Stop met verkwisten van waardevolle geheugenruimte aan inactieve tabbladen."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
