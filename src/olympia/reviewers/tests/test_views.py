@@ -2607,7 +2607,7 @@ class TestQueueSearch(BaseTestQueueSearch):
 
         response = self.search(application_id=[amo.ANDROID.id])
         assert response.status_code == 200
-        assert self.named_addons(response) == [
+        assert list(sorted(self.named_addons(response))) == [
             'Bieber For Mobile', 'Multi Application']
 
     def test_clear_search_uses_correct_queue(self):
