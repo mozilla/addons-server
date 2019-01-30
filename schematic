@@ -136,7 +136,7 @@ def say(db, command):
     """Try talking to the database, bail if there's anything on stderr
     or a bad returncode."""
     process = Popen(db, stdin=PIPE, stdout=PIPE, stderr=PIPE, shell=True)
-    stdout, stderr = process.communicate(six.binary_type(command, 'utf-8'))
+    stdout, stderr = process.communicate(command.encode('utf-8'))
 
     if stderr or process.returncode != 0:
         raise DbError(command, stdout, stderr, process.returncode)
