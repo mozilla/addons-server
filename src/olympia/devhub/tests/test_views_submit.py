@@ -106,7 +106,7 @@ class TestSubmitBase(TestCase):
     def get_version(self):
         return self.get_addon().versions.latest()
 
-    def generate_source_zip(self, suffix='.zip', data='z' * (2 ** 21),
+    def generate_source_zip(self, suffix='.zip', data=u'z' * (2 ** 21),
                             compression=zipfile.ZIP_DEFLATED):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
@@ -116,7 +116,7 @@ class TestSubmitBase(TestCase):
         return source
 
     def generate_source_tar(
-            self, suffix='.tar.gz', data='t' * (2 ** 21), mode=None):
+            self, suffix='.tar.gz', data=b't' * (2 ** 21), mode=None):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
         if mode is None:
@@ -124,12 +124,12 @@ class TestSubmitBase(TestCase):
         with tarfile.open(fileobj=source, mode=mode) as tar_file:
             tar_info = tarfile.TarInfo('foo')
             tar_info.size = len(data)
-            tar_file.addfile(tar_info, six.StringIO(data))
+            tar_file.addfile(tar_info, six.BytesIO(data))
 
         source.seek(0)
         return source
 
-    def generate_source_garbage(self, suffix='.zip', data='g' * (2 ** 21)):
+    def generate_source_garbage(self, suffix='.zip', data=b'g' * (2 ** 21)):
         tdir = temp.gettempdir()
         source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
         source.write(data)
@@ -790,7 +790,7 @@ class TestAddonSubmitSource(TestSubmitBase):
     def test_with_bad_source_broken_archive(self):
         source = self.generate_source_zip(
             data='Hello World', compression=zipfile.ZIP_STORED)
-        data = source.read().replace('Hello World', 'dlroW olleH')
+        data = source.read().replace(b'Hello World', b'dlroW olleH')
         source.seek(0)  # First seek to rewrite from the beginning
         source.write(data)
         source.seek(0)  # Second seek to reset like it's fresh.
