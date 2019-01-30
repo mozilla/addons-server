@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-30 15:32+0000\n"
+"PO-Revision-Date: 2019-01-30 15:39+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5401,7 +5401,7 @@ msgstr "Redu distragerea atenției {start_sub_heading}cu {addon_name}{end_sub_he
 
 #. editorial content for the discovery pane.
 msgid "Focus on what you're watching by dimming everything but the video player."
-msgstr ""
+msgstr "Concentrează-te pe ce vizualizezi prin estomparea întregului ecran în afară de fereastra video."
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5409,7 +5409,7 @@ msgstr "Gestionează marcajele {start_sub_heading}cu {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
-msgstr ""
+msgstr "Modifică-ți marcajele dintr-un panou ușor accesibil."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5417,7 +5417,7 @@ msgstr "Ține parolele în siguranță {start_sub_heading}cu {addon_name}{end_su
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Stochează în siguranță parolele și autentifică-te automat pe site-urile cunoscute."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -5429,7 +5429,7 @@ msgstr "Urmărește istoricul de prețuri pe Amazon {start_sub_heading}cu {addon
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Ia decizii informate prin urmărirea prețurilor oferite pentru un produs listat pe Amazon."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5457,7 +5457,7 @@ msgstr "Navighează în siguranță {start_sub_heading}cu {addon_name}{end_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Only allow web content to run from sites you trust."
-msgstr ""
+msgstr "Permite rularea conținutului video numai de pe site-urile în care ai încredere."
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5465,7 +5465,7 @@ msgstr "Gestionează cookie-urile {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
-msgstr ""
+msgstr "Preia complet controlul asupra cookie-urilor acumulate în timpul navigării."
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5489,7 +5489,7 @@ msgstr "Împiedică vizualizarea adresei IP {start_sub_heading}cu {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr ""
+msgstr "Folosești VPN? Adresa ta IP poate fi vizibilă. Evită această situație prin dezactivarea WebRTC."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5497,7 +5497,7 @@ msgstr "Închide suprapunerile iritante {start_sub_heading}cu {addon_name}{end_s
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Pur și simplu dai clic pe un buton și închizi toate suprapunerile de pop-up-uri sâcâitoare."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5505,7 +5505,7 @@ msgstr "Investighează orice imagine {start_sub_heading}cu {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Find an interesting image on the web? Use TinEye to explore its origins."
-msgstr ""
+msgstr "Ai găsit o imagine interesantă pe web? Folosește TinEye ca să descoperi de unde provine."
 
 #. editorial content for the discovery pane.
 msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5513,11 +5513,11 @@ msgstr "Eficientizează lucrurile {start_sub_heading}cu {addon_name}{end_sub_hea
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Pur și simplu tragi text, imagini sau linkuri ca să execuți acțiuni precum copiere, deschidere, căutare și multe altele."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
-msgstr ""
+msgstr "Bucură-te de posibilitatea de a descărca videoclipuri și/sau secvențe audio în diferite formate."
 
 #. editorial content for the discovery pane.
 msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5525,7 +5525,7 @@ msgstr "Determinarea locației {start_sub_heading}cu {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Learn where any website's server is geographically located. Be an informed web traveler."
-msgstr ""
+msgstr "Află unde este localizat geografic serverul oricărui site web. Fii un călător pe web informat."
 
 #. editorial content for the discovery pane.
 msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
