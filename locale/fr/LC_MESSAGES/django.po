@@ -721,9 +721,8 @@ msgstr "Certaines fonctionnalités sont temporairement désactivées pendant que
 msgid "Must contain at least one printable character."
 msgstr "Au moins un caractère imprimable est nécessaire."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Au moins un caractère imprimable est nécessaire."
+msgstr ""
 
 msgid "Not allowed"
 msgstr "Non autorisé"
