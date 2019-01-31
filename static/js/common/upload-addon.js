@@ -190,7 +190,6 @@
                     .attr('target', '_blank')
                     .attr('rel', 'noopener noreferrer')
                     .appendTo(upload_results);
-                }
 
                 var error_message = format(ngettext(
                         "Your add-on failed validation with {0} error.",
