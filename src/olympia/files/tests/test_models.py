@@ -28,7 +28,7 @@ from olympia.files.models import (
     File, FileUpload, FileValidation, WebextPermission,
     nfd_str, track_file_status_change)
 from olympia.files.utils import (
-    VALID_EXTENSIONS, Extractor, check_xpi_info, parse_addon, parse_xpi)
+    Extractor, check_xpi_info, parse_addon, parse_xpi)
 from olympia.versions.models import Version
 
 
@@ -1018,7 +1018,7 @@ class TestFileFromUpload(UploadTest):
 
     def upload(self, name):
         # Add in `.xpi` if the filename doesn't have a valid file extension.
-        if os.path.splitext(name)[-1] not in VALID_EXTENSIONS:
+        if os.path.splitext(name)[-1] not in amo.VALID_ADDON_FILE_EXTENSIONS:
             name = name + '.xpi'
 
         validation_data = json.dumps({

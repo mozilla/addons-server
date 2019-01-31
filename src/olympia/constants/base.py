@@ -272,6 +272,11 @@ VIDEO_TYPES = ('video/webm',)
 # The string concatinating all accepted image MIME-types with '|'
 SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 
+# Acceptable Add-on file extensions.
+# This is being used by `parse_addon` so please make sure we don't have
+# to touch add-ons before removing anything from this list.
+VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
+
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_SEARCH, ADDON_DICT, ADDON_PERSONA)

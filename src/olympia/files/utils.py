@@ -81,12 +81,6 @@ default = (
 _lock_count = {}
 
 
-# Acceptable extensions.
-# This is being used by `parse_addon` so please make sure we don't have
-# to touch add-ons before removing anything from this list.
-VALID_EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
-
-
 def get_filepath(fileorpath):
     """Resolve the actual file path of `fileorpath`.
 
@@ -1087,10 +1081,11 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
-    elif name.endswith(VALID_EXTENSIONS):
+    elif name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
         parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
     else:
-        valid_extensions_string = u'(%s)' % u', '.join(VALID_EXTENSIONS)
+        valid_extensions_string = u'(%s)' % u', '.join(
+            amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
             ugettext(
                 'Unsupported file type, please upload an a supported '
