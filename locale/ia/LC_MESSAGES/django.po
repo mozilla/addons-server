@@ -1,11 +1,11 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 14:18+0000\n"
+"PO-Revision-Date: 2019-01-30 18:50+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -2475,7 +2475,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File fonte cargate, ma tu indicava que nulle fonte era necessari."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr "Cura que nomine e summario combinate non supera 70 characteres total (il ha {0})."
+msgstr "Cura que nomine e summario combinate non supera {limit_value} characteres total (il ha {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -5531,31 +5531,28 @@ msgid "Organize your many open tabs in a vertical sidebar."
 msgstr "Gere tu schedas aperte in un barra lateral ordinate."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gere tu cookies {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Gestion avantiate de cookies {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Dele automaticamente le cookies indesiderate. Offere supporto de lista blanc e nigre."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tweetta lo {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Vide le grande imagine {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Con un clic de mus tu pote observar videos in le splendor de plen schermo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salva texto pro plus tarde {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Salva memoria con {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Cessa de perder preciose spatio de memoria per le schedas inactive."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
