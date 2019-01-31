@@ -172,11 +172,12 @@ def deliver_hotness():
     """
     frozen = set(f.id for f in FrozenAddon.objects.all())
     all_ids = list((Addon.objects.exclude(type=amo.ADDON_PERSONA)
-                   .filter(status__in=amo.VALID_ADDON_STATUSES)
+                   .filter(status__in=amo.REVIEWED_STATUSES)
                    .values_list('id', flat=True)))
     now = datetime.now()
     one_week = now - timedelta(days=7)
     four_weeks = now - timedelta(days=28)
+
     for ids in chunked(all_ids, 300):
         addons = Addon.objects.filter(id__in=ids).no_transforms()
         ids = [a.id for a in addons if a.id not in frozen]
@@ -186,10 +187,17 @@ def deliver_hotness():
         threeweek = dict(qs.filter(date__range=(four_weeks, one_week)))
         for addon in addons:
             this, three = thisweek.get(addon.id, 0), threeweek.get(addon.id, 0)
+
+            # Update the hotness score but only update hotness if necessary.
+            # We don't want to cause unnecessary re-indexes
             if this > 1000 and three > 1:
-                addon.update(hotness=(this - three) / float(three))
+                hotness = (this - three) / float(three)
+                if addon.hotness != hotness:
+                    addon.update(hotness=(this - three) / float(three))
             else:
-                addon.update(hotness=0)
+                if addon.hotness != 0:
+                    addon.update(hotness=0)
+
         # Let the database catch its breath.
         time.sleep(10)
 
