@@ -704,7 +704,7 @@ def _get_comments_for_hard_deleted_versions(addon):
     for c in comments:
         c.version = c.activity_log.details.get('version', c.created)
         comment_versions[c.version].all_activity.append(c)
-    return comment_versions.values()
+    return list(comment_versions.values())
 
 
 def perform_review_permission_checks(

@@ -308,7 +308,7 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
             addon = self.theme_factory()
 
             res = self.client.get(self.queue_url)
-            assert len(res.context['theme_formsets']) == 1
+            assert len(list(res.context['theme_formsets'])) == 1
             # I should be able to review this app. It is not mine.
             assert res.context['theme_formsets'][0][0] == addon.persona
 
@@ -322,7 +322,7 @@ class TestThemeQueue(ThemeReviewTestMixin, TestCase):
 
             res = self.client.get(self.queue_url)
             # I should not be able to review my own app.
-            assert len(res.context['theme_formsets']) == 0
+            assert len(list(res.context['theme_formsets'])) == 0
 
     def test_theme_list(self):
         self.create_and_become_reviewer()

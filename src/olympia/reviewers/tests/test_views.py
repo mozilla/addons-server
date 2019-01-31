@@ -124,7 +124,7 @@ class TestRatingsModerationLog(ReviewerTest):
     def test_no_results(self):
         response = self.client.get(self.url, {'end': '2004-01-01'})
         assert response.status_code == 200
-        assert '"no-results"' in response.content
+        assert b'"no-results"' in response.content
 
     def test_moderation_log_detail(self):
         review = self.make_review()
@@ -2507,7 +2507,7 @@ class BaseTestQueueSearch(SearchTest):
     def test_search_by_addon_in_locale(self):
         name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
-        uni = 'フォクすけといっしょ'.decode('utf8')
+        uni = u'フォクすけといっしょ'
         addon = Addon.objects.get(pk=generated.id)
         addon.name = {'ja': uni}
         addon.save()
@@ -2532,7 +2532,7 @@ class BaseTestQueueSearch(SearchTest):
     def test_search_by_supported_email_in_locale(self):
         name = 'Not Needing Admin Review'
         generated = self.generate_file(name)
-        uni = 'フォクすけといっしょ@site.co.jp'.decode('utf8')
+        uni = u'フォクすけといっしょ@site.co.jp'
         addon = Addon.objects.get(pk=generated.id)
         addon.support_email = {'ja': uni}
         addon.save()
@@ -3674,7 +3674,7 @@ class TestReview(ReviewBase):
         # Only the download/install link
         assert info.find('a').length == 1
         assert info.find('a')[0].text == u'Download'
-        assert 'Compatibility' not in response.content
+        assert b'Compatibility' not in response.content
 
     def test_compare_link(self):
         first_file = self.addon.current_version.files.all()[0]
@@ -3795,7 +3795,8 @@ class TestReview(ReviewBase):
     def test_download_sources_link(self):
         version = self.addon.current_version
         tdir = temp.gettempdir()
-        source_file = temp.NamedTemporaryFile(suffix='.zip', dir=tdir)
+        source_file = temp.NamedTemporaryFile(
+            suffix='.zip', dir=tdir, mode='r+')
         source_file.write('a' * (2 ** 21))
         source_file.seek(0)
         version.source = DjangoFile(source_file)
@@ -3808,14 +3809,14 @@ class TestReview(ReviewBase):
         self.client.login(email=user.email)
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
-        assert 'Download files' in response.content
+        assert b'Download files' in response.content
 
         # Standard reviewer: should know that sources were provided.
         user = UserProfile.objects.get(email='reviewer@mozilla.com')
         self.client.login(email=user.email)
         response = self.client.get(url, follow=True)
         assert response.status_code == 200
-        assert 'The developer has provided source code.' in response.content
+        assert b'The developer has provided source code.' in response.content
 
     @patch('olympia.reviewers.utils.sign_file')
     def test_admin_flagged_addon_actions_as_admin(self, mock_sign_file):
@@ -4474,16 +4475,16 @@ class TestReviewPending(ReviewBase):
 
     def test_display_only_unreviewed_files(self):
         """Only the currently unreviewed files are displayed."""
-        self.file.update(filename='somefilename.xpi')
+        self.file.update(filename=b'somefilename.xpi')
         reviewed = File.objects.create(version=self.version,
                                        status=amo.STATUS_PUBLIC,
-                                       filename='file_reviewed.xpi')
+                                       filename=b'file_reviewed.xpi')
         disabled = File.objects.create(version=self.version,
                                        status=amo.STATUS_DISABLED,
-                                       filename='file_disabled.xpi')
+                                       filename=b'file_disabled.xpi')
         unreviewed = File.objects.create(version=self.version,
                                          status=amo.STATUS_AWAITING_REVIEW,
-                                         filename='file_unreviewed.xpi')
+                                         filename=b'file_unreviewed.xpi')
         response = self.client.get(self.url, self.pending_dict())
         assert response.status_code == 200
         doc = pq(response.content)
