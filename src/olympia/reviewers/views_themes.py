@@ -81,7 +81,7 @@ def _themes_queue(request, flagged=False, rereview=False):
            'reject_reasons': amo.THEME_REJECT_REASONS,
            'rereview': rereview,
            'reviewable': True,
-           'theme_formsets': zip(themes, formset),
+           'theme_formsets': list(zip(themes, formset)),
            'theme_count': len(themes),
            'tab': (
                'flagged' if flagged else
@@ -367,7 +367,7 @@ def themes_single(request, slug):
     return render(request, 'reviewers/themes/single.html', context(
         **{'formset': formset,
            'theme': rereview if rereview else theme,
-           'theme_formsets': zip([rereview if rereview else theme], formset),
+           'theme_formsets': [(rereview if rereview else theme, formset), ],
            'theme_reviews': paginate(request, ActivityLog.objects.filter(
                action=amo.LOG.THEME_REVIEW.id,
                _arguments__contains=theme.addon.id)),

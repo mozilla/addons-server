@@ -128,9 +128,9 @@ class FileEntriesSerializer(FileSerializer):
         if ext in denied_extensions:
             return True
 
-        bytes = tuple(map(ord, memoryview(blob)[:4]))
+        bytes_ = tuple(bytearray(memoryview(blob)[:4]))
 
-        if any(bytes[:len(x)] == x for x in denied_magic_numbers):
+        if any(bytes_[:len(x)] == x for x in denied_magic_numbers):
             return True
 
         if mimetype:

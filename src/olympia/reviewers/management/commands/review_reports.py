@@ -5,6 +5,7 @@ import settings
 
 from django.core.management.base import BaseCommand
 from django.db import connection
+from django.utils.encoding import force_text
 
 import olympia.core.logger
 
@@ -103,7 +104,9 @@ class Command(BaseCommand):
                     for descr in cursor.description:
                         table_header.append(descr[0])
                     table_content = cursor.fetchall()
-
+                    table_content = tuple((
+                        tuple((force_text(item) for item in row))
+                        for row in table_content))
                     report_data.append((header, table_header, table_content))
 
             return report_data

@@ -6,7 +6,7 @@ import pytest
 from django.core import mail
 
 from olympia import amo
-from olympia.amo.tests import (user_factory, addon_factory, grant_permission)
+from olympia.amo.tests import addon_factory, grant_permission, user_factory
 from olympia.reviewers.management.commands.review_reports import Command
 from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 

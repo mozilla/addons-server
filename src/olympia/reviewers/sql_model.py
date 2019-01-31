@@ -7,6 +7,8 @@ from django.db.models import Q
 from django.db.models.sql.query import AND, OR
 from django.utils.tree import Node
 
+from six import add_metaclass
+
 
 ORDER_PATTERN = re.compile(r'^[-+]?[a-zA-Z0-9_]+$')
 FIELD_PATTERN = re.compile(r'^[a-zA-Z0-9_\.]+$')
@@ -369,6 +371,7 @@ class RawSQLModelMeta(type):
         return cls
 
 
+@add_metaclass(RawSQLModelMeta)
 class RawSQLModel(object):
     """Very minimal model-like object based on a SQL query.
 
@@ -378,7 +381,6 @@ class RawSQLModel(object):
     This is for rare cases when you need the speed and optimization of
     building a query with many different types of where clauses.
     """
-    __metaclass__ = RawSQLModelMeta
 
     # django-tables2 looks for this to decide what Columns to add.
     class _meta(object):
