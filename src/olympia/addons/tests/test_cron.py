@@ -368,7 +368,6 @@ class TestCleanupImageFiles(TestCase):
         assert os_unlink_mock.called
 
 
-
 class TestDeliverHotness(TestCase):
     def setUp(self):
         self.persona = addon_factory(type=amo.ADDON_PERSONA)
