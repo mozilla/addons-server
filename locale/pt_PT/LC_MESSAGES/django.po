@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-30 18:30+0000\n"
+"PO-Revision-Date: 2019-01-31 17:09+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2586,7 +2586,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "O ícone tem de ter pelo menos {0} pixeis de largura e altura."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 
 msgid "There was an error uploading your preview."
 msgstr "Houve um erro ao carregar a sua pré-visualização."
@@ -3097,7 +3097,7 @@ msgstr "Usado na página de detalhes do extra."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "Irá ser o padrão nas futuras páginas de detalhes de extras."
@@ -3106,10 +3106,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Carragar um ícone personalizado..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG e JPG suportados."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Os ícones devem ser quadrados e ter um tamanho mínimo de 128x128 pixeis."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Os ícones irão ser redimensionados para 128x128 pixeis se maiores."
@@ -3127,13 +3127,13 @@ msgid "Add a Screenshot..."
 msgstr "Adicionar um Screenshot ..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "PNG e JPG suportados, PNG recomendado. O tamanho máximo e recomendado para capturas de ecrã é de 2400x1800 pixeis."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "O tamanho mínimo é de 1000x750, e é requerido um rácio de 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Ter capturas de ecrã na sua página de produto aumenta em muito as suas chances de ser instalado e destacado na página inicial."
 
 msgid "Continue"
 msgstr "Continuar"
@@ -3849,15 +3849,17 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Iniciar sessão para editar e atualizar o seu extra"
 
 msgid "Write one code base for many browsers"
-msgstr ""
+msgstr "Escreva uma base de código para muitos navegadores"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
 "between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
+"Com a WebExtensions API, é fácil criar extensões que irão executar no Firefox, Chrome, Opera e Edge com apenas algumas pequenas alterações. Saiba mais acerca de diferenças na programação de "
+"extensões entre os quatro maiores navegadores e como pode fazer a sua extensão compatível entre navegadores."
 
 msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
+msgstr "Ver as melhores práticas para programação entre navegadores"
 
 msgid "Welcome Back"
 msgstr "Bem-vindo(a) de volta"
@@ -3870,10 +3872,10 @@ msgid "Learn More"
 msgstr "Saber mais"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "Pode ajudar os utilizadores a ganhar confiança e a confiar na sua extensão ao seguir as nossas melhores práticas para a integração de utilizadores."
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Ver melhores práticas"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listado neste site após efetuada a revisão do código. As atualizações automáticas são geridas por este site."
@@ -5556,7 +5558,7 @@ msgstr "Gestão avançada de cookies {start_sub_heading}com {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Apague cookies indesejados automaticamente. Oferece suporte a lista branca e negra."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5564,7 +5566,7 @@ msgstr "Veja toda a perspetiva {start_sub_heading}com {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Com um clique do rato pode assistir a vídeos em ecrã completo."
 
 #. editorial content for the discovery pane.
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5572,7 +5574,7 @@ msgstr "Poupe memória com {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Pare de desperdiçar espaço de memória valioso com separadores inativos."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5612,10 +5614,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Não foi possível analisar o ficheiro carregado. Existe um elemento <%s> em falta ou vazio."
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: erro de segurança XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: erro de análise XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível analisar o ficheiro carregado."
@@ -6627,7 +6629,7 @@ msgid "Add-on ID"
 msgstr "ID do extra"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "ID interno do AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
