@@ -28,11 +28,12 @@ from . import tasks
 log = olympia.core.logger.getLogger('z.devhub')
 
 
-def process_validation(validation, is_compatibility=False, file_hash=None):
+def process_validation(validation, is_compatibility=False, file_hash=None,
+                       channel=amo.RELEASE_CHANNEL_LISTED):
     """Process validation results into the format expected by the web
     frontend, including transforming certain fields into HTML,  mangling
     compatibility messages, and limiting the number of messages displayed."""
-    validation = fix_addons_linter_output(validation)
+    validation = fix_addons_linter_output(validation, channel=channel)
 
     if is_compatibility:
         mangle_compatibility_messages(validation)
@@ -128,7 +129,7 @@ def htmlify_validation(validation):
                 linkify_escape(text) for text in msg['description']]
 
 
-def fix_addons_linter_output(validation, listed=True):
+def fix_addons_linter_output(validation, channel):
     """Make sure the output from the addons-linter is the same as amo-validator
     for backwards compatibility reasons."""
     if 'messages' in validation:
@@ -155,7 +156,7 @@ def fix_addons_linter_output(validation, listed=True):
 
     # Essential metadata.
     metadata = {
-        'listed': listed,
+        'listed': channel == amo.RELEASE_CHANNEL_LISTED,
         'identified_files': identified_files,
         'is_webextension': True,
     }
@@ -299,7 +300,7 @@ class Validator(object):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        kwargs = {'listed': (channel == amo.RELEASE_CHANNEL_LISTED)}
+        kwargs = {'channel': channel}
         return tasks.validate_file_path.subtask([upload.path], kwargs)
 
 

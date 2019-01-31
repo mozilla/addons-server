@@ -460,7 +460,7 @@ class TestRunAddonsLinter(ValidatorTestCase):
 
     def test_run_linter_path_doesnt_exist(self):
         with pytest.raises(ValueError) as exc:
-            tasks.run_addons_linter('doesntexist')
+            tasks.run_addons_linter('doesntexist', amo.RELEASE_CHANNEL_LISTED)
 
         assert str(exc.value) == (
             'Path "doesntexist" is not a file or directory or '
@@ -475,7 +475,8 @@ class TestRunAddonsLinter(ValidatorTestCase):
             # This is a relatively small add-on but we are making sure that
             # we're using a temporary file for all our linter output.
             result = json.loads(tasks.run_addons_linter(
-                get_addon_file('webextension_containing_binary_files.xpi')
+                get_addon_file('webextension_containing_binary_files.xpi'),
+                amo.RELEASE_CHANNEL_LISTED
             ))
 
             assert tmpf.call_count == 2
@@ -489,7 +490,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_success(self):
         result = tasks.validate_file_path(
             None, get_addon_file('valid_webextension.xpi'),
-            listed=True)
+            channel=amo.RELEASE_CHANNEL_LISTED)
         assert result['success']
         assert not result['errors']
         assert not result['warnings']
@@ -497,7 +498,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_fail_warning(self):
         result = tasks.validate_file_path(
             None, get_addon_file('valid_webextension_warning.xpi'),
-            listed=True)
+            channel=amo.RELEASE_CHANNEL_LISTED)
         assert result['success']
         assert not result['errors']
         assert result['warnings']
@@ -505,7 +506,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_fail_error(self):
         result = tasks.validate_file_path(
             None, get_addon_file('invalid_webextension_invalid_id.xpi'),
-            listed=True)
+            channel=amo.RELEASE_CHANNEL_LISTED)
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
@@ -513,7 +514,7 @@ class TestValidateFilePath(ValidatorTestCase):
     def test_returns_skeleton_for_search_plugin(self):
         result = tasks.validate_file_path(
             None, get_addon_file('searchgeek-20090701.xml'),
-            listed=True)
+            channel=amo.RELEASE_CHANNEL_LISTED)
 
         expected = amo.VALIDATOR_SKELETON_RESULTS
         assert result == expected
@@ -1106,7 +1107,7 @@ def test_opensearch_validation(fixture, success, message):
     }
 
     annotations.annotate_search_plugin_validation(
-        results, fixture_path, is_listed=True)
+        results, fixture_path, channel=amo.RELEASE_CHANNEL_LISTED)
 
     if success:
         assert not results['errors']
@@ -1133,11 +1134,11 @@ def test_opensearch_validation_rel_self_url():
     }
 
     annotations.annotate_search_plugin_validation(
-        results, fixture_path, is_listed=False)
+        results, fixture_path, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
     assert not results['errors']
 
     annotations.annotate_search_plugin_validation(
-        results, fixture_path, is_listed=True)
+        results, fixture_path, channel=amo.RELEASE_CHANNEL_LISTED)
 
     assert results['errors']

@@ -95,7 +95,7 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
 
 def validate_and_submit(addon, file_, channel, pretask=None):
     return validate(
-        file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
+        file_, channel=channel,
         subtask=submit_file.si(addon.pk, file_.pk, channel), pretask=pretask)
 
 
@@ -184,7 +184,7 @@ def validation_task(fn):
 
 
 @validation_task
-def validate_file_path(path, listed=True):
+def validate_file_path(path, channel):
     """Run the validator against a file at the given path, and return the
     results.
 
@@ -202,7 +202,7 @@ def validate_file_path(path, listed=True):
         # so that we don't have to call the linter or validator
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
         annotations.annotate_search_plugin_validation(
-            results=results, file_path=path, is_listed=listed)
+            results=results, file_path=path, channel=channel)
         return json.dumps(results)
 
     # Annotate results with potential legacy add-ons restrictions.
@@ -217,7 +217,7 @@ def validate_file_path(path, listed=True):
             error=not is_mozilla_signed)
         return json.dumps(results)
 
-    return run_addons_linter(path, listed=listed)
+    return run_addons_linter(path, channel=channel)
 
 
 @validation_task
@@ -239,7 +239,7 @@ def validate_file(file_id):
         return json.dumps(validate_file_path(
             akismet_results=[],
             id_or_path=file_.current_file_path,
-            listed=file_.version.channel == amo.RELEASE_CHANNEL_LISTED))
+            channel=file_.version.channel))
 
 
 @task
@@ -402,7 +402,7 @@ def revoke_api_key(key_id):
         pass
 
 
-def run_addons_linter(path, listed=True):
+def run_addons_linter(path, channel):
     from .utils import fix_addons_linter_output
 
     args = [
@@ -412,7 +412,7 @@ def run_addons_linter(path, listed=True):
         '--output=json'
     ]
 
-    if not listed:
+    if channel == amo.RELEASE_CHANNEL_UNLISTED:
         args.append('--self-hosted')
 
     if not os.path.exists(path):
@@ -450,7 +450,7 @@ def run_addons_linter(path, listed=True):
 
     parsed_data = json.loads(output)
 
-    result = json.dumps(fix_addons_linter_output(parsed_data, listed))
+    result = json.dumps(fix_addons_linter_output(parsed_data, channel))
     track_validation_stats(result)
 
     return result

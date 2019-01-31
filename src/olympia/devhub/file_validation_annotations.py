@@ -7,6 +7,7 @@ from xml.parsers.expat import ExpatError
 from django.utils.translation import ugettext
 from django.utils.encoding import force_bytes
 
+from olympia import amo
 from olympia.lib.akismet.models import AkismetReport
 
 
@@ -101,7 +102,7 @@ def annotate_akismet_spam_check(results, akismet_results):
                 msg_id='akismet_is_spam_%s' % field)
 
 
-def annotate_search_plugin_validation(results, file_path, is_listed):
+def annotate_search_plugin_validation(results, file_path, channel):
     if not file_path.endswith('.xml'):
         return
 
@@ -207,7 +208,7 @@ def annotate_search_plugin_validation(results, file_path, is_listed):
             description=['The OpenSearch provider is missing a Url element.'])
 
     ref_self_disallowed = (
-        is_listed and
+        channel == amo.RELEASE_CHANNEL_LISTED and
         any(url.hasAttribute('rel') and url.attributes['rel'].value == 'self'
             for url in urls))
 

@@ -61,15 +61,16 @@ class TestAddonsLinterBase(TestCase):
         # We shouldn't be attempting to validate an existing file.
         assert not self.validate_file.called
 
+        channel = (amo.RELEASE_CHANNEL_LISTED if listed
+                   else amo.RELEASE_CHANNEL_UNLISTED)
+
         # Make sure we run the correct validation task for the upload.
         self.validate_upload.assert_called_once_with(
             [file_upload.path],
-            {'listed': listed})
+            {'channel': channel})
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
-        channel = (amo.RELEASE_CHANNEL_LISTED if listed
-                   else amo.RELEASE_CHANNEL_UNLISTED)
         self.save_upload.assert_has_calls([
             mock.call([mock.ANY, file_upload.pk, channel, False],
                       immutable=True),
