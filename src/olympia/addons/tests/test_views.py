@@ -18,6 +18,7 @@ from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from rest_framework.test import APIRequestFactory
+from waffle import switch_is_active
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -2181,6 +2182,8 @@ class TestAddonSearchView(ESTestCase):
     def setUp(self):
         super(TestAddonSearchView, self).setUp()
         self.url = reverse_ns('addon-search')
+        self.create_switch('return-to-amo', active=True)
+        switch_is_active('return-to-amo')
 
     def tearDown(self):
         super(TestAddonSearchView, self).tearDown()
@@ -2901,8 +2904,9 @@ class TestAddonSearchView(ESTestCase):
             self.url, {'guid': param}, expected_status=400)
         assert data == [u'Invalid RTA guid (not in base64url format?)']
 
-    @override_settings(RETURN_TO_AMO=False)
     def test_filter_by_guid_return_to_amo_feature_disabled(self):
+        self.create_switch('return-to-amo', active=False)
+        assert not switch_is_active('return-to-amo')
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
                               guid='random@guid', weekly_downloads=999)
         addon_factory()

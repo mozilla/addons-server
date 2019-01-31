@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.utils import translation
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -8,6 +7,7 @@ import colorgram
 from elasticsearch_dsl import Q, query
 from rest_framework import serializers
 from rest_framework.filters import BaseFilterBackend
+from waffle import switch_is_active
 
 from olympia import amo
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
@@ -152,7 +152,7 @@ class AddonGuidQueryParam(AddonQueryParam):
         # turned into 400 responses and this acts as a kill-switch for the
         # feature in Firefox.
         if value.startswith('rta:') and '@' not in value:
-            if settings.RETURN_TO_AMO is not True:
+            if not switch_is_active('return-to-amo'):
                 raise ValueError('RTA is currently disabled')
             try:
                 value = force_text(urlsafe_base64_decode(value[4:]))
