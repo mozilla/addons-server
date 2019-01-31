@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 14:40+0000\n"
-"Last-Translator: gneha2324 <gneha2324@gmail.com>\n"
+"PO-Revision-Date: 2019-01-31 12:23+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -5618,7 +5618,7 @@ msgstr "Dites-le sur Twitter {start_sub_heading}avec {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Regardez des vidéos en plein écran d’un simple clic."
 
 #. editorial content for the discovery pane.
 #, fuzzy
