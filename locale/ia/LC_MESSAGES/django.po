@@ -1,4 +1,4 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
@@ -2475,7 +2475,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "File fonte cargate, ma tu indicava que nulle fonte era necessari."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr "Cura que nomine e summario combinate non supera 70 characteres total (il ha {0})."
+msgstr "Cura que nomine e summario combinate non supera {limit_value} characteres total (il ha {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
