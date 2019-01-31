@@ -249,7 +249,8 @@ class TestFixAddonsLinterOutput(TestCase):
             ]
         }
 
-        fixed = utils.fix_addons_linter_output(original_output)
+        fixed = utils.fix_addons_linter_output(
+            original_output, amo.RELEASE_CHANNEL_LISTED)
 
         assert fixed['success']
         assert fixed['warnings'] == 4

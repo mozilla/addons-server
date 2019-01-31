@@ -265,8 +265,9 @@ class TestValidateAddon(TestCase):
         with open(fpath) as file_:
             self.client.post(url, {'upload': file_})
 
-        # Make sure it was called with listed=True.
-        assert validate_mock.call_args[1]['listed']
+        assert (
+            validate_mock.call_args[1]['channel'] ==
+            amo.RELEASE_CHANNEL_LISTED)
         # No automated signing for listed add-ons.
         assert FileUpload.objects.get().automated_signing is False
 
@@ -281,8 +282,9 @@ class TestValidateAddon(TestCase):
         with open(fpath) as file_:
             self.client.post(url, {'upload': file_})
 
-        # Make sure it was called with listed=False.
-        assert not validate_mock.call_args[1]['listed']
+        assert (
+            validate_mock.call_args[1]['channel'] ==
+            amo.RELEASE_CHANNEL_UNLISTED)
         # Automated signing enabled for unlisted add-ons.
         assert FileUpload.objects.get().automated_signing is True
 
@@ -319,7 +321,11 @@ class TestUploadURLs(TestCase):
     def expect_validation(self, listed, automated_signing):
         call_keywords = self.run_addons_linter.call_args[1]
 
-        assert call_keywords['listed'] == listed
+        channel = (
+            amo.RELEASE_CHANNEL_LISTED if listed else
+            amo.RELEASE_CHANNEL_UNLISTED)
+
+        assert call_keywords['channel'] == channel
         assert self.file_upload.automated_signing == automated_signing
 
     def upload(self, view, **kw):
