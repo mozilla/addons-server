@@ -1100,7 +1100,7 @@ class QueueTest(ReviewerTest):
         files = self.generate_files()
         for name in sorted(names):
             if name in files:
-                    expected_addons.append(files[name])
+                expected_addons.append(files[name])
         # Make sure all elements have been added
         assert len(expected_addons) == len(names)
         return expected_addons

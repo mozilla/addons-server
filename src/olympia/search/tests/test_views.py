@@ -111,7 +111,7 @@ class SearchBase(ESTestCaseWithAddons):
     def check_heading(self):
         r = self.client.get(self.url)
         assert r.status_code == 200
-        assert pq(r.content)('.results-count strong').text() is ''
+        assert pq(r.content)('.results-count strong').text() == ''
 
         r = self.client.get(self.url + '&q=ballin')
         assert r.status_code == 200
