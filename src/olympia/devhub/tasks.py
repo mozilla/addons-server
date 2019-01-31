@@ -95,7 +95,7 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
 
 def validate_and_submit(addon, file_, channel, pretask=None):
     return validate(
-        file_, channel=channel,
+        file_, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
         subtask=submit_file.si(addon.pk, file_.pk, channel), pretask=pretask)
 
 
