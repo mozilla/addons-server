@@ -2,14 +2,14 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2018-10-13 08:00+0000\n"
-"Last-Translator: goofy <goofy@babelzilla.org>\n"
+"PO-Revision-Date: 2019-01-31 13:07+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgstr[0] "{0} étoile"
 msgstr[1] "{0} étoiles"
 
 msgid "There was a problem contacting the server."
-msgstr "Une erreur est survenue pendant le contact du serveur."
+msgstr "Un problème est survenu en essayant de joindre le serveur."
 
 msgid "Select a file..."
 msgstr "Sélectionner un fichier…"
@@ -74,10 +74,10 @@ msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Votre module dépasse la taille maximale de {0}."
 
 msgid "Received an empty response from the server; status: {0}"
-msgstr "Réception d’une réponse vide depuis le serveur ; statut : {0}"
+msgstr "Réception d’une réponse vide depuis le serveur ; état : {0}"
 
 msgid "Unexpected server error while validating."
-msgstr "Erreur serveur inattendue pendant la validation."
+msgstr "Erreur serveur inattendue lors de la validation."
 
 msgid "Finished validating {0}"
 msgstr "Validation de {0} terminée"
@@ -113,12 +113,12 @@ msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Effectuer le portage d’anciens modules Firefox sur MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
-msgstr "Ajouter des notes de version détaillées (cela peut être effectué lors de la prochaine étape)."
+msgstr "Ajouter des notes de version détaillées (cela peut être fait à l’étape suivante)."
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
-"peut être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
+" être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
@@ -149,7 +149,7 @@ msgid "Images must be either PNG or JPG."
 msgstr "Les images doivent être au format PNG ou JPG."
 
 msgid "Videos must be in WebM."
-msgstr "La vidéo doit être au format WebM."
+msgstr "Les vidéos doivent être au format WebM."
 
 msgid "Follow this Collection"
 msgstr "Suivre cette collection"
@@ -225,7 +225,7 @@ msgstr[1] "{0} téléchargements"
 
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} utilisateurs"
+msgstr[0] "{0} utilisateur ou utilisatrice"
 msgstr[1] "{0} utilisateurs ou utilisatrices"
 
 msgid "{0} add-on"
