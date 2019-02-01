@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Fout met {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr "Zorg ervoor dat u eventuele lintinggerelateerde problemen op GitHub meldt"
+msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
