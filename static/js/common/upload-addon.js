@@ -186,11 +186,10 @@
                 if (results && results.processed_by_addons_linter) {
                     $("<a>").text(gettext('We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub'))
                             .attr('href', 'https://github.com/thunderbird/addons-server')
-                            .attr('class', 'addons-linter-info')
-                            .attr('target', '_blank')
-                            .attr('rel', 'noopener noreferrer')
-                            .appendTo(upload_results);
-                }
+                    .attr('class', 'addons-linter-info')
+                    .attr('target', '_blank')
+                    .attr('rel', 'noopener noreferrer')
+                    .appendTo(upload_results);
 
                 var error_message = format(ngettext(
                         "Your add-on failed validation with {0} error.",
@@ -426,8 +425,7 @@
                     $("<strong>").text(message).appendTo(upload_results);
 
                     // Specific messages for unlisted addons.
-                    var validation_type = results.validation.detected_type;
-                    if ((["extension", "dictionary", "languagepack"].indexOf(validation_type) != -1) && isUnlisted()) {
+                    if (isUnlisted()) {
                       $("<p>").text(gettext("Your submission will be automatically signed.")).appendTo(upload_results);
                     }
 

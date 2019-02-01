@@ -12,7 +12,6 @@ x-env-mapping: &env
     - OLYMPIA_SITE_URL=http://olympia.test
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
-    - RECURSION_LIMIT=10000
     - TERM=xterm-256color
 
 services:

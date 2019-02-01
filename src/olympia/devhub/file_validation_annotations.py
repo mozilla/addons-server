@@ -9,7 +9,7 @@ from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.lib.akismet.models import AkismetReport
-from olympia.versions.compare import version_int
+from olympia.files.utils import RDFExtractor, SafeZip, get_file
 
 
 def insert_validation_message(results, type_='error', message='', msg_id='',
@@ -18,8 +18,7 @@ def insert_validation_message(results, type_='error', message='', msg_id='',
     if description is None:
         description = []
 
-    messages = results['messages']
-    messages.insert(0, {
+    results['messages'].insert(0, {
         'tier': 1,
         'type': type_,
         'id': ['validation', 'messages', msg_id],
@@ -30,135 +29,44 @@ def insert_validation_message(results, type_='error', message='', msg_id='',
     # Need to increment 'errors' or 'warnings' count, so add an extra 's' after
     # the type_ to increment the right entry.
     results['{}s'.format(type_)] += 1
+    results['success'] = not results['errors']
 
 
-def annotate_legacy_addon_restrictions(results, is_new_upload):
+def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     """
     Annotate validation results to restrict uploads of legacy
-    (non-webextension) add-ons if specific conditions are met.
+    (non-webextension) add-ons.
     """
-    metadata = results.get('metadata', {})
-    is_webextension = metadata.get('is_webextension') is True
+    # We can be broad here. Search plugins are not validated through this
+    # path and as of right now (Jan 2019) there aren't any legacy type
+    # add-ons allowed to submit anymore.
+    msg = ugettext(
+        u'Legacy extensions are no longer supported in Firefox.')
 
-    if is_webextension:
-        # If we're dealing with a webextension, return early as the whole
-        # function is supposed to only care about legacy extensions.
-        return results
+    description = ugettext(
+        u'Add-ons for Thunderbird and SeaMonkey are now listed and '
+        u'maintained on addons.thunderbird.net. You can use the same '
+        u'account to update your add-ons on the new site.')
 
-    target_apps = metadata.get('applications', {})
-    max_target_firefox_version = max(
-        version_int(target_apps.get('firefox', {}).get('max', '')),
-        version_int(target_apps.get('android', {}).get('max', ''))
-    )
+    # `parsed_data` only contains the most minimal amount of data because
+    # we aren't in the right context. Let's explicitly fetch the add-ons
+    # apps so that we can adjust the messaging to the user.
+    xpi = get_file(path)
+    extractor = RDFExtractor(SafeZip(xpi))
 
-    is_extension_or_complete_theme = (
-        # Note: annoyingly, `detected_type` is at the root level, not under
-        # `metadata`.
-        results.get('detected_type') in ('theme', 'extension'))
-    is_targeting_firefoxes_only = target_apps and (
-        set(target_apps.keys()).intersection(('firefox', 'android')) ==
-        set(target_apps.keys())
-    )
-    is_targeting_thunderbird_or_seamonkey_only = target_apps and (
-        set(target_apps.keys()).intersection(('thunderbird', 'seamonkey')) ==
-        set(target_apps.keys())
-    )
-    is_targeting_firefox_lower_than_53_only = (
-        metadata.get('strict_compatibility') is True and
-        # version_int('') is actually 200100. If strict compatibility is true,
-        # the validator should have complained about the non-existant max
-        # version, but it doesn't hurt to check that the value is sane anyway.
-        max_target_firefox_version > 200100 and
-        max_target_firefox_version < 53000000000000
-    )
-    is_targeting_firefox_higher_or_equal_than_57 = (
-        max_target_firefox_version >= 57000000000000 and
-        max_target_firefox_version < 99000000000000)
+    targets_thunderbird_or_seamonkey = False
+    thunderbird_or_seamonkey = {amo.THUNDERBIRD.guid, amo.SEAMONKEY.guid}
 
-    # Thunderbird/Seamonkey only add-ons are moving to addons.thunderbird.net.
-    if (is_targeting_thunderbird_or_seamonkey_only):
-        msg = ugettext(
-            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
-            u'maintained on addons.thunderbird.net. You can use the same '
-            u'account to update your add-ons on the new site.')
+    for ctx in extractor.rdf.objects(None, extractor.uri('targetApplication')):
+        if extractor.find('id', ctx) in thunderbird_or_seamonkey:
+            targets_thunderbird_or_seamonkey = True
 
-        insert_validation_message(
-            results, message=msg, msg_id='thunderbird_and_seamonkey_migration')
+    description = description if targets_thunderbird_or_seamonkey else []
 
-    # Legacy add-ons are no longer supported on AMO (if waffle is enabled).
-    elif (is_extension_or_complete_theme and
-            waffle.switch_is_active('disallow-legacy-submissions')):
-        msg = ugettext(
-            u'Legacy extensions are no longer supported in Firefox.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='legacy_addons_unsupported')
-
-    # New legacy add-ons targeting Firefox only must target Firefox 53 or
-    # lower, strictly. Extensions targeting multiple other apps are exempt from
-    # this.
-    elif (is_new_upload and
-            is_extension_or_complete_theme and
-            is_targeting_firefoxes_only and
-            not is_targeting_firefox_lower_than_53_only):
-
-        msg = ugettext(
-            u'Starting with Firefox 53, new add-ons on this site can '
-            u'only be WebExtensions.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='legacy_addons_restricted')
-
-    # All legacy add-ons (new or upgrades) targeting Firefox must target
-    # Firefox 56.* or lower, even if they target multiple apps.
-    elif (is_extension_or_complete_theme and
-            is_targeting_firefox_higher_or_equal_than_57):
-        # Note: legacy add-ons targeting '*' (which is the default for sdk
-        # add-ons) are excluded from this error, and instead are silently
-        # rewritten as supporting '56.*' in the manifest parsing code.
-        msg = ugettext(
-            u'Legacy add-ons are not compatible with Firefox 57 or higher. '
-            u'Use a maxVersion of 56.* or lower.')
-
-        insert_validation_message(
-            results, message=msg, msg_id='legacy_addons_max_version')
-
-    return results
-
-
-def annotate_legacy_langpack_restriction(results):
-    """
-    Annotate validation results to restrict uploads of legacy langpacks.
-    See https://github.com/mozilla/addons-linter/issues/1985 for more details.
-    """
-    if not waffle.switch_is_active('disallow-legacy-langpacks'):
-        return
-
-    metadata = results.get('metadata', {})
-
-    is_webextension = metadata.get('is_webextension') is True
-    target_apps = metadata.get('applications', {})
-
-    is_langpack = results.get('detected_type') == 'langpack'
-    is_targeting_firefoxes_only = (
-        set(target_apps.keys()).intersection(('firefox', 'android')) ==
-        set(target_apps.keys())
-    )
-
-    if not is_webextension and is_langpack and is_targeting_firefoxes_only:
-        link = (
-            'https://developer.mozilla.org/Add-ons/WebExtensions/'
-            'manifest.json')
-        msg = ugettext(
-            u'Legacy language packs for Firefox are no longer supported. '
-            u'A WebExtensions install manifest is required. See {mdn_link} '
-            u'for more details.')
-
-        insert_validation_message(
-            results, message=msg.format(mdn_link=link),
-            msg_id='legacy_langpacks_disallowed')
-
-    return results
+    insert_validation_message(
+        results, type_='error' if error else 'warning',
+        message=msg, description=description,
+        msg_id='legacy_addons_unsupported')
 
 
 def annotate_webext_incompatibilities(results, file_, addon, version_string,
@@ -193,36 +101,8 @@ def annotate_webext_incompatibilities(results, file_, addon, version_string,
             'this process. Once your users have the WebExtension '
             'installed, they will not be able to install a legacy add-on.')
 
-        messages = results['messages']
-        messages.insert(0, {
-            'tier': 1,
-            'type': 'warning',
-            'id': ['validation', 'messages', 'webext_upgrade'],
-            'message': msg,
-            'description': [],
-            'compatibility_type': None})
-        results['warnings'] += 1
-    elif was_webextension and not is_webextension:
-        msg = ugettext(
-            'You cannot update a WebExtensions add-on with a legacy '
-            'add-on. Your users would not be able to use your new version '
-            'because Firefox does not support this type of update.')
-
-        messages = results['messages']
-        messages.insert(0, {
-            'tier': 1,
-            'type': ('error' if channel == amo.RELEASE_CHANNEL_LISTED
-                     else 'warning'),
-            'id': ['validation', 'messages', 'webext_downgrade'],
-            'message': msg,
-            'description': [],
-            'compatibility_type': None})
-        if channel == amo.RELEASE_CHANNEL_LISTED:
-            results['errors'] += 1
-        else:
-            results['warnings'] += 1
-
-    return results
+        insert_validation_message(
+            results, type_='warning', message=msg, msg_id='webext_upgrade')
 
 
 def annotate_akismet_spam_check(results, akismet_results):
