@@ -22,7 +22,6 @@ from olympia.amo.tests import (
     addon_factory, reverse_ns, TestCase, developer_factory)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
-from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
 from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
@@ -47,11 +46,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             users=[self.user])
 
         self.view = VersionView.as_view()
-        create_version_patcher = mock.patch(
-            'olympia.devhub.tasks.create_version_for_upload',
-            tasks.create_version_for_upload.non_atomic)
-        self.create_version_for_upload = create_version_patcher.start()
-        self.addCleanup(create_version_patcher.stop)
 
         auto_sign_version_patcher = mock.patch(
             'olympia.devhub.views.auto_sign_version')

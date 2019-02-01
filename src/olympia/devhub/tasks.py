@@ -29,7 +29,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, Persona, Preview
 from olympia.amo.celery import task
-from olympia.amo.decorators import atomic, set_modified_on, use_primary_db
+from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
@@ -111,7 +111,7 @@ def submit_file(addon_pk, upload_pk, channel):
                  'validation'.format(upload_uuid=upload.uuid))
 
 
-@atomic
+@transaction.atomic
 def create_version_for_upload(addon, upload, channel):
     """Note this function is only used for API uploads."""
     fileupload_exists = addon.fileupload_set.filter(
