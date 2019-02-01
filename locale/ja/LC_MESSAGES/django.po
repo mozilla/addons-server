@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-26 08:46+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -2357,26 +2357,14 @@ msgstr "%sの最近の変更"
 msgid "Recent Changes for My Add-ons"
 msgstr "自分のアドオンの最近の変更"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "旧式の拡張機能は Firefox でサポートされなくなりました。"
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Firefox 53 以降、当サイトに登録可能な新規拡張機能は WebExtensions のみとなります。"
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "旧式拡張機能は Firefox 57 以降と互換性がありません。maxVersion には 56.* あるいはそれ以下を設定してください。"
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Firefox の旧式言語パックにはもう対応していません。WebExtensions インストールマニフェストが必要です。詳細は {mdn_link} でご覧ください。"
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Thunderbird と SeaMonkey のアドオンは現在、addons.thunderbird.net に掲載され、維持されています。新しいサイトでアドオンを更新するには、同じアカウントを使えます。"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "私たちはアップグレードを許容し推奨していますが、この手続きは取り消せません。一度ユーザーが WebExtension をインストールしたら、旧式のアドオンはインストールできなくなります。"
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "WebExtensions を旧式のアドオンへ更新することはできません。Firefox はそうした形での更新に対応していないため、ユーザーは新バージョンを使用できなくなります。"
 
 #, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
@@ -5642,11 +5630,15 @@ msgstr "%sで終わる GUID が設定されたアドオンを投稿すること�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "非対応のファイル形式です。アーカイブファイル {extensions} をアップロードしてください。"
+
 msgid "Unexpected error."
 msgstr "予期しないエラーが発生しました。"
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "install.rdf 内の <em:type>(%s) が AMO 上のあなたのアドオンのタイプ (%s) と一致しません"
 
 msgid "Back to review"

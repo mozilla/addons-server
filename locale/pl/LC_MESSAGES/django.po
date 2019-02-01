@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -2404,29 +2404,17 @@ msgstr "Ostanie zmiany dla %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Ostatnie zmiany dla moich dodatków"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
+
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 "Dodatki dla programów Thunderbird i SeaMonkey są teraz wyświetlane i obsługiwane na stronie addons.thunderbird.net. Możesz używać tego samego konta do aktualizowania swoich dodatków w nowej "
 "witrynie."
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Począwszy od Firefoksa 53, nowe dodatki w tej witrynie mogą być tylko rozszerzeniami WebExtension."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Przestarzałe dodatki nie są kompatybilne z Firefoksem 57 lub nowszej. Użyj wersji maxVersion 56.* lub niższej."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Przestarzałe pakiety językowe dla Firefoksa nie są już obsługiwane. Wymagany jest manifest instalacji rozszerzenia WebExtension. Aby uzyskać więcej szczegółów, zobacz {mdn_link}."
-
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Zezwalamy na aktualizację i zachęcamy do niej, ale tego procesu nie można odwrócić. Kiedy użytkownicy zainstalują rozszerzenie WebExtension, nie będą mogli zainstalować przestarzałego dodatku."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Nie można zaktualizować dodatku WebExtension przy użyciu przestarzałego dodatku. Użytkownicy nie będą mogli używać nowej wersji, ponieważ Firefox nie obsługuje aktualizacji tego typu."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
@@ -5722,11 +5710,15 @@ msgstr "Nie można przesłać dodatku z GUID kończącym się %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nie można przesłać podpisanego rozszerzenia Mozilla"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Nieobsługiwany typ pliku, wczytaj plik spakowany {extensions}."
+
 msgid "Unexpected error."
 msgstr "Nieoczekiwany błąd."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> w pliku install.rdf (%s) nie pasuje do typu dodatku na AMO (%s)"
 
 msgid "Back to review"

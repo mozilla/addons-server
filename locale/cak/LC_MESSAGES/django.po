@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2367,27 +2367,14 @@ msgstr "K'ak'a' taq Jaloj pa %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "K'ak'a' taq Jaloj pa Taq Nutz'aqat"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addons.thunderbird.net. Yatikïr nawokisaj ri rub'i' taqoya'l richin ye'ak'ëx pa ri k'ak'a' ajk'amaya'l ruxaq."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Nitikirisäx rik'in ri Firefox 53, ri k'ak'a' taq rutz'aqat ruxaq, e ütz we e WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Ri taq tz'aqat e'ichinan kan man e k'amonel ta rik'in ri Firefox 57 o jotöl. Tokisäx jun maxVersion richin 56.* o qajinäq."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Man yek'ul ta chik ojer taq pisoj ch'ab'äl pa Firefox. Rajowaxik niyak jun WebExtensions tzijoxïk. Tatz'eta' {mdn_link} richin ch'aqa' chik rutzijol."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Wakami ri taq rutz'aqat Thunderbird chuqa' SeaMonkey xtiq'alajin pa addons.thunderbird.net. Yatikïr nawokisaj ri rub'i' taqoya'l richin ye'ak'ëx pa ri k'ak'a' ajk'amaya'l ruxaq."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta nik'ex. Toq ri okisaxela' kiyakon chik ri WebExtension, man xketikïr ta xtikiyäk jun rutz'aqat choltz'ib'anem."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
-"Man yatikïr ta nak'ëx jun WebExtensions tz'aqat rik'in legacy tz'aqat. Man xketikïr xtikokisaj ri k'ak'a' ruwäch ri okisanela' ruma chi ri Firefox man nuya' ta q'ij chi ke re kiwäch k'exoj re'."
 
 #, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
@@ -5658,11 +5645,15 @@ msgstr "Man yatikïr ta natäq jun tz'aqat rik'in jun guid k'isinäq rik'in %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Man yek'ul ta re taq ruwäch yakb'äl re', tajotob'a' jun yakb'äl rik'in rub'anikil {extensions}."
+
 msgid "Unexpected error."
 msgstr "Man oyob'en ta re sachoj."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> pa ri ayakb'al install.rdf (%s) man nuk'äm ta ri' rik'in ri rucha'onem atz'aqat pa AMO (%s)"
 
 msgid "Back to review"
