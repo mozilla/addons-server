@@ -262,7 +262,7 @@ class TestValidateAddon(TestCase):
 
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
-        with open(fpath) as file_:
+        with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
         assert (
