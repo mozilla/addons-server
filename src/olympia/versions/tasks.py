@@ -134,3 +134,26 @@ def extract_version_to_git(version_id, author_id=None):
         log.info(
             'Extracted source files from {version} into {git_path}'.format(
                 version=version_id, git_path=repo.git_repository_path))
+
+
+@task
+def extract_version_source_to_git(version_id, author_id=None):
+    version = Version.objects.get(pk=version_id)
+    if not version.source:
+        log.info('Tried to extract sources of {version_id} but there none.')
+        return
+
+    if author_id is not None:
+        author = UserProfile.objects.get(pk=author_id)
+    else:
+        author = None
+
+    log.info('Extracting {version_id} source into git backend'.format(
+        version_id=version_id))
+
+    repo = AddonGitRepository.extract_and_commit_source_from_version(
+        version=version, author=author)
+
+    log.info(
+        'Extracted source files from {version} into {git_path}'.format(
+            version=version_id, git_path=repo.git_repository_path))
