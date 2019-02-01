@@ -47,11 +47,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             users=[self.user])
 
         self.view = VersionView.as_view()
-        create_version_patcher = mock.patch(
-            'olympia.devhub.tasks.create_version_for_upload',
-            tasks.create_version_for_upload.non_atomic)
-        self.create_version_for_upload = create_version_patcher.start()
-        self.addCleanup(create_version_patcher.stop)
 
         auto_sign_version_patcher = mock.patch(
             'olympia.devhub.views.auto_sign_version')

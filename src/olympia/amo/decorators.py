@@ -177,29 +177,3 @@ def allow_mine(f):
             user_id = request.user.id
         return f(request, user_id, *args, **kw)
     return wrapper
-
-
-def atomic(fn):
-    """Set the transaction isolation level to SERIALIZABLE and then delegate
-    to transaction.atomic to run the specified code atomically. The
-    SERIALIZABLE level will run SELECTs in LOCK IN SHARE MODE when used in
-    conjunction with transaction.atomic.
-    Docs: https://dev.mysql.com/doc/refman/5.6/en/set-transaction.html.
-    """
-    # TODO: Make this the default for all transactions.
-    @functools.wraps(fn)
-    @use_primary_db
-    def inner(*args, **kwargs):
-        cursor = connection.cursor()
-        cursor.execute('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE')
-        with transaction.atomic():
-            return fn(*args, **kwargs)
-    # The non_atomic version is essentially just a non-decorated version of the
-    # function. This is just here to handle the fact that django's tests are
-    # run in a transaction and setting this will make mysql blow up. You can
-    # mock your function to the non-atomic version to make it run in a test.
-    #
-    #  with mock.patch('module.func', module.func.non_atomic):
-    #      test_something()
-    inner.non_atomic = fn
-    return inner
