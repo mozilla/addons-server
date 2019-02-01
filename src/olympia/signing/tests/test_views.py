@@ -22,7 +22,6 @@ from olympia.amo.tests import (
     addon_factory, reverse_ns, TestCase, developer_factory)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
-from olympia.devhub import tasks
 from olympia.files.models import File, FileUpload
 from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView

@@ -5,7 +5,6 @@ import json
 from django import http
 from django.conf import settings
 from django.core.exceptions import PermissionDenied
-from django.db import connection, transaction
 
 import olympia.core.logger
 
