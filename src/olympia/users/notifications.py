@@ -40,16 +40,8 @@ upgrade_success = Notification(
     mandatory=False,
     default_checked=True)
 
-sdk_upgrade_success = Notification(
-    id=6,
-    group='dev',
-    short='sdk_upgrade_success',
-    label=_('my sdk-based add-on is upgraded successfully'),
-    mandatory=False,
-    default_checked=True)
-
 new_review = Notification(
-    id=7,
+    id=6,
     group='dev',
     short='new_review',
     label=_('someone writes a review of my add-on'),
@@ -62,7 +54,7 @@ new_review = Notification(
 # basket. It's not used in addons-server except for the user
 # profile forms.
 announcements = RemoteNotification(
-    id=8,
+    id=7,
     group='dev',
     short='announcements',
     label=_('stay up-to-date with news and events relevant to add-on '
@@ -72,23 +64,15 @@ announcements = RemoteNotification(
     basket_newsletter_id='about-addons')
 
 upgrade_fail = Notification(
-    id=9,
+    id=8,
     group='dev',
     short='upgrade_fail',
     label=_('my add-on\'s compatibility cannot be upgraded'),
     mandatory=True,
     default_checked=True)
 
-sdk_upgrade_fail = Notification(
-    id=10,
-    group='dev',
-    short='sdk_upgrade_fail',
-    label=_('my sdk-based add-on cannot be upgraded'),
-    mandatory=True,
-    default_checked=True)
-
 reviewer_reviewed = Notification(
-    id=11,
+    id=9,
     group='dev',
     short='reviewer_reviewed',
     label=_('my add-on is reviewed by a reviewer'),
@@ -96,7 +80,7 @@ reviewer_reviewed = Notification(
     default_checked=True)
 
 individual_contact = Notification(
-    id=12,
+    id=10,
     group='dev',
     short='individual_contact',
     label=_('Mozilla needs to contact me about my individual add-on'),
