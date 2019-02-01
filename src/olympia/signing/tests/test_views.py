@@ -18,7 +18,8 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
-from olympia.amo.tests import addon_factory, reverse_ns, TestCase
+from olympia.amo.tests import (
+    addon_factory, reverse_ns, TestCase, developer_factory)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.applications.models import AppVersion
 from olympia.devhub import tasks
@@ -30,10 +31,8 @@ from olympia.versions.models import Version
 
 
 class SigningAPITestMixin(APIKeyAuthTestMixin):
-    fixtures = ['base/addon_3615', 'base/user_4043307']
-
     def setUp(self):
-        self.user = UserProfile.objects.get(email='del@icio.us')
+        self.user = developer_factory(email='del@icio.us')
         self.api_key = self.create_api_key(self.user, str(self.user.pk) + ':f')
 
 
@@ -42,6 +41,11 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
     def setUp(self):
         super(BaseUploadVersionTestMixin, self).setUp()
         self.guid = '{2fa4ed95-0317-4c6a-a74c-5f3e3912c1f9}'
+        addon_factory(
+            guid=self.guid, file_kw={'is_webextension': True},
+            version_kw={'version': '2.1.072'},
+            users=[self.user])
+
         self.view = VersionView.as_view()
         create_version_patcher = mock.patch(
             'olympia.devhub.tasks.create_version_for_upload',
@@ -79,6 +83,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             filename = self.xpi_filepath(addon, version)
         if url is None:
             url = self.url(addon, version)
+
         with open(filename) as upload:
             data = {'upload': upload}
             if method == 'POST' and version:
@@ -224,14 +229,14 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_version_added_is_experiment(self):
         self.grant_permission(self.user, 'Experiments:submit')
-        guid = 'experiment@xpi'
+        guid = '@experiment-inside-webextension-guid'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
             'PUT',
-            addon=guid, version='0.1',
+            addon=guid, version='0.0.1',
             filename='src/olympia/files/fixtures/files/'
-                     'telemetry_experiment.xpi')
+                     'experiment_inside_webextension.xpi')
         assert response.status_code == 201
         assert qs.exists()
         addon = qs.get()
@@ -244,14 +249,14 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         self.auto_sign_version.assert_called_with(latest_version)
 
     def test_version_added_is_experiment_reject_no_perm(self):
-        guid = 'experiment@xpi'
+        guid = '@experiment-inside-webextension-guid'
         qs = Addon.unfiltered.filter(guid=guid)
         assert not qs.exists()
         response = self.request(
             'PUT',
             addon=guid, version='0.1',
             filename='src/olympia/files/fixtures/files/'
-                     'telemetry_experiment.xpi')
+                     'experiment_inside_webextension.xpi')
         assert response.status_code == 400
         assert response.data['error'] == (
             'You cannot submit this type of add-on')
@@ -603,14 +608,6 @@ class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
         assert response.data['error'] == u'Invalid GUID in URL'
         assert not Addon.unfiltered.filter(guid=guid).exists()
 
-    def test_optional_id_not_allowed_for_regular_addon(self):
-        response = self.request(
-            'POST',
-            url=reverse_ns('signing.version'),
-            addon='@create-version-no-id',
-            version='1.0')
-        assert response.status_code == 400
-
     def test_webextension_reuse_guid(self):
         response = self.request(
             'POST',
@@ -848,7 +845,7 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         file_ = qs.get()
         assert response.data['files'][0]['download_url'] == absolutify(
             reverse_ns('signing.file', kwargs={'file_id': file_.id}) +
-            '/delicious_bookmarks-3.0-fx.xpi?src=api')
+            '/{fname}?src=api'.format(fname=file_.filename))
 
     def test_file_hash(self):
         version_string = '3.0'

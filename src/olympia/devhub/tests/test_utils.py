@@ -21,29 +21,22 @@ from olympia.files.models import FileUpload
 from olympia.lib.akismet.models import AkismetReport
 
 
-class TestValidatorBase(TestCase):
+class TestAddonsLinterBase(TestCase):
 
     def setUp(self):
         # Create File objects for version 1.0 and 1.1.
         self.addon = addon_factory(
             guid='test-desktop@nowhere', slug='test-amo-addon',
-            version_kw={'version': '1.0'})
+            version_kw={'version': '1.0'},
+            file_kw={'filename': 'webextension.xpi'})
         self.version = self.addon.current_version
-        self.file = self.version.files.get()
-        self.version_1_1 = version_factory(addon=self.addon, version='1.1')
-        self.file_1_1 = self.version_1_1.files.get()
-
-        # Creating the files and versions above resets this.
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.file = self.version.current_file
 
         # Create a FileUpload object for an XPI containing version 1.1.
-        path = os.path.join(settings.ROOT,
-                            'src/olympia/devhub/tests/addons/desktop.xpi')
-        self.file_upload = FileUpload.objects.create(path=path)
-        self.xpi_version = '1.1'
+        self.file_upload = FileUpload.objects.create(
+            path=self.file.current_file_path)
 
         # Patch validation tasks that we expect the validator to call.
-        self.patchers = []
         self.save_file = self.patch(
             'olympia.devhub.tasks.handle_file_validation_result').subtask
         self.save_upload = self.patch(
@@ -68,16 +61,16 @@ class TestValidatorBase(TestCase):
         # We shouldn't be attempting to validate an existing file.
         assert not self.validate_file.called
 
+        channel = (amo.RELEASE_CHANNEL_LISTED if listed
+                   else amo.RELEASE_CHANNEL_UNLISTED)
+
         # Make sure we run the correct validation task for the upload.
         self.validate_upload.assert_called_once_with(
             [file_upload.path],
-            {'hash_': file_upload.hash, 'listed': listed,
-             'is_webextension': False})
+            {'channel': channel})
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
-        channel = (amo.RELEASE_CHANNEL_LISTED if listed
-                   else amo.RELEASE_CHANNEL_UNLISTED)
         self.save_upload.assert_has_calls([
             mock.call([mock.ANY, file_upload.pk, channel, False],
                       immutable=True),
@@ -92,9 +85,7 @@ class TestValidatorBase(TestCase):
         assert not self.validate_upload.called
 
         # Make sure we run the correct validation task.
-        self.validate_file.assert_called_once_with(
-            [file_.pk],
-            {'hash_': file_.original_hash, 'is_webextension': False})
+        self.validate_file.assert_called_once_with([file_.pk])
 
         # Make sure we run the correct save validation task, with a
         # fallback error handler.
@@ -105,7 +96,7 @@ class TestValidatorBase(TestCase):
                       link_error=mock.ANY)])
 
 
-class TestValidatorListed(TestValidatorBase):
+class TestAddonsLinterListed(TestAddonsLinterBase):
     @mock.patch('celery.Signature.__or__')
     def test_run_once_per_file(self, chain_mock):
         """Tests that only a single validation task is run for a given file."""
@@ -119,7 +110,8 @@ class TestValidatorListed(TestValidatorBase):
         assert isinstance(tasks.validate(self.file), AsyncResult)
         assert task.delay.call_count == 1
 
-        assert isinstance(tasks.validate(self.file_1_1), mock.Mock)
+        new_version = version_factory(addon=self.addon, version='0.0.2')
+        assert isinstance(tasks.validate(new_version.current_file), mock.Mock)
         assert task.delay.call_count == 2
 
     @mock.patch('celery.Signature.__or__')
@@ -151,11 +143,9 @@ class TestValidatorListed(TestValidatorBase):
     @mock.patch('olympia.devhub.utils.parse_addon')
     def test_search_plugin(self, parse_addon):
         """Test that search plugins are handled correctly."""
-
         parse_addon.return_value = {
             'guid': None,
             'version': '20140103',
-            'is_webextension': False,
         }
 
         addon = addon_factory(type=amo.ADDON_SEARCH,
@@ -171,7 +161,7 @@ class TestValidatorListed(TestValidatorBase):
         self.check_file(version.files.get())
 
 
-class TestLimitValidationResults(TestCase):
+class TestLimitAddonsLinterResults(TestCase):
     """Test that higher priority messages are truncated last."""
 
     def make_validation(self, types):
@@ -259,7 +249,8 @@ class TestFixAddonsLinterOutput(TestCase):
             ]
         }
 
-        fixed = utils.fix_addons_linter_output(original_output)
+        fixed = utils.fix_addons_linter_output(
+            original_output, amo.RELEASE_CHANNEL_LISTED)
 
         assert fixed['success']
         assert fixed['warnings'] == 4
@@ -273,8 +264,6 @@ class TestFixAddonsLinterOutput(TestCase):
             'notices': 0,
         }
         assert fixed['ending_tier'] == 5
-        assert fixed['metadata']['is_webextension'] is True
-        assert fixed['metadata']['processed_by_addons_linter'] is True
         assert fixed['metadata']['listed'] is True
         assert fixed['metadata']['identified_files'] == {
             'lib/vendor/jquery.js': {'path': 'jquery.2.1.4.jquery.js'}

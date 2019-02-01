@@ -4,7 +4,7 @@
         "model": "files.fileupload",
         "fields": {
             "hash": "sha256:96704ffb5f1acf602bda4715b3409fbe21fb39b461f0aac5a82940cfac62c9ec",
-            "name": "invalid-id-20101206.xpi",
+            "name": "invalid_webextension.xpi",
             "created": "2010-12-06 14:04:46",
             "modified": "2010-12-06 14:04:46",
             "user": null,

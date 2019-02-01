@@ -661,7 +661,12 @@ def json_upload_detail(request, upload, addon_slug=None):
         try:
             pkg = parse_addon(upload, addon=addon, user=request.user)
         except django_forms.ValidationError as exc:
-            errors_before = result['validation'].get('errors', 0)
+            # Don't add custom validation errors if we already
+            # failed validation (This can happen because validation does
+            # call `parse_addon` too.)
+            if result['validation'].get('errors', 0):
+                return result
+
             # This doesn't guard against client-side tinkering, and is purely
             # to display those non-linter errors nicely in the frontend. What
             # does prevent clients from bypassing those is the fact that we
@@ -677,9 +682,7 @@ def json_upload_detail(request, upload, addon_slug=None):
                 if result['validation']['ending_tier'] < 1:
                     result['validation']['ending_tier'] = 1
                 result['validation']['errors'] += 1
-
-            if not errors_before:
-                return json_view.error(result)
+            return json_view.error(result)
         else:
             result['addon_type'] = pkg.get('type', '')
     return result
@@ -698,17 +701,11 @@ def upload_validation_context(request, upload, addon=None, url=None):
 
     validation = upload.processed_validation or ''
 
-    processed_by_linter = (
-        validation and
-        validation.get('metadata', {}).get(
-            'processed_by_addons_linter', False))
-
     return {'upload': upload.uuid.hex,
             'validation': validation,
             'error': None,
             'url': url,
-            'full_report_url': full_report_url,
-            'processed_by_addons_linter': processed_by_linter}
+            'full_report_url': full_report_url}
 
 
 def upload_detail(request, uuid, format='html'):

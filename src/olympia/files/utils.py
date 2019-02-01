@@ -136,6 +136,10 @@ def make_xpi(files):
     return file_obj
 
 
+class UnsupportedFileType(forms.ValidationError):
+    pass
+
+
 class Extractor(object):
     """Extract add-on info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')
@@ -1077,8 +1081,16 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
     name = getattr(pkg, 'name', pkg)
     if name.endswith('.xml'):
         parsed = parse_search(pkg, addon)
-    else:
+    elif name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
         parsed = parse_xpi(pkg, addon, minimal=minimal, user=user)
+    else:
+        valid_extensions_string = u'(%s)' % u', '.join(
+            amo.VALID_ADDON_FILE_EXTENSIONS)
+        raise UnsupportedFileType(
+            ugettext(
+                'Unsupported file type, please upload an a supported '
+                'file {extensions}.'.format(
+                    extensions=valid_extensions_string)))
 
     if not minimal:
         if user is None:
@@ -1087,11 +1099,10 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
             raise forms.ValidationError(ugettext('Unexpected error.'))
 
         # FIXME: do the checks depending on user here.
-
         if addon and addon.type != parsed['type']:
             msg = ugettext(
-                "<em:type> in your install.rdf (%s) "
-                "does not match the type of your add-on on AMO (%s)")
+                'The type (%s) does not match the type of your add-on on '
+                'AMO (%s)')
             raise forms.ValidationError(msg % (parsed['type'], addon.type))
     return parsed
 

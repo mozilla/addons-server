@@ -2108,29 +2108,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
 
     @mock.patch('olympia.devhub.views.sign_file')
-    def test_experiments_are_auto_signed(self, mock_sign_file):
-        """Experiment extensions (bug 1220097) are auto-signed."""
-        self.grant_permission(
-            self.user, ':'.join(amo.permissions.EXPERIMENTS_SUBMIT))
-        self.upload = self.get_upload(
-            'telemetry_experiment.xpi',
-            validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
-            }))
-        self.addon.update(guid='experiment@xpi', status=amo.STATUS_PUBLIC)
-        self.post()
-        # Make sure the file created and signed is for this addon.
-        assert mock_sign_file.call_count == 1
-        mock_sign_file_call = mock_sign_file.call_args[0]
-        signed_file = mock_sign_file_call[0]
-        assert signed_file.version.addon == self.addon
-        assert signed_file.version.channel == amo.RELEASE_CHANNEL_LISTED
-        # There is a log for that file (with passed validation).
-        log = ActivityLog.objects.latest(field_name='id')
-        assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
-
-    @mock.patch('olympia.devhub.views.sign_file')
     def test_experiments_inside_webext_are_auto_signed(self, mock_sign_file):
         """Experiment extensions (bug 1220097) are auto-signed."""
         self.grant_permission(
@@ -2154,22 +2131,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
         # There is a log for that file (with passed validation).
         log = ActivityLog.objects.latest(field_name='id')
         assert log.action == amo.LOG.EXPERIMENT_SIGNED.id
-
-    @mock.patch('olympia.devhub.views.sign_file')
-    def test_experiment_upload_without_permission(self, mock_sign_file):
-        self.upload = self.get_upload(
-            'telemetry_experiment.xpi',
-            validation=json.dumps({
-                "notices": 2, "errors": 0, "messages": [],
-                "metadata": {}, "warnings": 1,
-            }))
-        self.addon.update(guid='experiment@xpi', status=amo.STATUS_PUBLIC)
-
-        response = self.post(expected_status=200)
-        assert pq(response.content)('ul.errorlist').text() == (
-            'You cannot submit this type of add-on')
-
-        assert mock_sign_file.call_count == 0
 
     @mock.patch('olympia.devhub.views.sign_file')
     def test_experiment_inside_webext_upload_without_permission(

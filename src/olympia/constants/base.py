@@ -272,6 +272,11 @@ VIDEO_TYPES = ('video/webm',)
 # The string concatinating all accepted image MIME-types with '|'
 SUPPORTED_IMAGE_TYPES = '|'.join(IMG_TYPES)
 
+# Acceptable Add-on file extensions.
+# This is being used by `parse_addon` so please make sure we don't have
+# to touch add-ons before removing anything from this list.
+VALID_ADDON_FILE_EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
+
 # These types don't maintain app compatibility in the db.  Instead, we look at
 # APP.types and APP_TYPE_SUPPORT to figure out where they are compatible.
 NO_COMPAT = (ADDON_SEARCH, ADDON_DICT, ADDON_PERSONA)
@@ -327,41 +332,15 @@ VALIDATOR_SKELETON_RESULTS = {
     "metadata": {"requires_chrome": False, "listed": True},
     "messages": [],
     "message_tree": {},
-    "detected_type": "extension",
     "ending_tier": 5,
 }
 
 # A skeleton set of validation results for a system error.
-VALIDATOR_SKELETON_EXCEPTION = {
-    "errors": 1,
-    "warnings": 0,
-    "notices": 0,
-    "success": True,
-    "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {"requires_chrome": False, "listed": True},
-    "messages": [
-        {"id": ["validator", "unexpected_exception"],
-         "message": "Sorry, we couldn't load your add-on.",
-         "description": [
-            "Validation was unable to complete successfully due to an "
-            "unexpected error.",
-            "The error has been logged, but please consider filing an issue "
-            "report here: http://bit.ly/1POrYYU"],
-         "type": "error",
-         "tier": 1,
-         "for_appversions": None,
-         "uid": "35432f419340461897aa8362398339c4"}
-    ],
-    "message_tree": {},
-    "detected_type": "extension",
-    "ending_tier": 5,
-}
-
 VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "errors": 1,
     "warnings": 0,
     "notices": 0,
-    "success": True,
+    "success": False,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
     "metadata": {
         "requires_chrome": False,
@@ -378,12 +357,12 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
             "to ensure your webextension is valid or file a bug at "
             "http://bit.ly/1POrYYU"],
          "type": "error",
+         "fatal": True,
          "tier": 1,
          "for_appversions": None,
          "uid": "35432f419340461897aa8362398339c4"}
     ],
     "message_tree": {},
-    "detected_type": "extension",
     "ending_tier": 5,
 }
 

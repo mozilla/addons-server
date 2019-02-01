@@ -38,9 +38,6 @@ from olympia.lib.cache import memoize
 
 log = olympia.core.logger.getLogger('z.files')
 
-# Acceptable extensions.
-EXTENSIONS = ('.crx', '.xpi', '.jar', '.xml', '.json', '.zip')
-
 
 @python_2_unicode_compatible
 class File(OnChangeMixin, ModelBase):
@@ -572,7 +569,7 @@ class FileUpload(ModelBase):
             ext = '.xpi'
             is_crx = True
 
-        if ext in EXTENSIONS:
+        if ext in amo.VALID_ADDON_FILE_EXTENSIONS:
             loc += ext
 
         log.info('UPLOAD: %r (%s bytes) to %r' % (filename, size, loc))
@@ -621,7 +618,10 @@ class FileUpload(ModelBase):
             validation = self.load_validation()
             is_compatibility = self.compat_with_app is not None
 
-            return process_validation(validation, is_compatibility, self.hash)
+            return process_validation(
+                validation,
+                is_compatibility=is_compatibility,
+                file_hash=self.hash)
 
     @property
     def passed_all_validations(self):
@@ -682,8 +682,10 @@ class FileValidation(ModelBase):
         """Return processed validation results as expected by the frontend."""
         # Import loop.
         from olympia.devhub.utils import process_validation
-        return process_validation(json.loads(self.validation),
-                                  file_hash=self.file.original_hash)
+        return process_validation(
+            json.loads(self.validation),
+            file_hash=self.file.original_hash,
+            channel=self.file.version.channel)
 
 
 class WebextPermission(ModelBase):

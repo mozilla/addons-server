@@ -25,7 +25,7 @@ from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
 from olympia.files.models import (
-    EXTENSIONS, File, FileUpload, FileValidation, WebextPermission,
+    File, FileUpload, FileValidation, WebextPermission,
     nfd_str, track_file_status_change)
 from olympia.files.utils import (
     Extractor, check_xpi_info, parse_addon, parse_xpi)
@@ -527,20 +527,12 @@ class TestParseXpi(TestCase):
         addon = Addon.objects.create(guid='guid@xpi', type=4)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon)
-        assert e.exception.messages[0].startswith(
-            '<em:type> in your install.rdf')
-
-    def test_match_type_extension_for_telemetry_experiments(self):
-        self.grant_permission(self.user, 'Experiments:submit')
-        parsed = self.parse(filename='telemetry_experiment.xpi')
-        # See bug 1220097: telemetry experiments (type 128) map to extensions.
-        assert parsed['type'] == amo.ADDON_EXTENSION
-        assert parsed['is_experiment']
-        assert not parsed['is_restart_required']
+        assert e.exception.messages[0] == (
+            'The type (1) does not match the type of your add-on on AMO (4)')
 
     def test_match_type_extension_for_webextension_experiments(self):
         self.grant_permission(self.user, 'Experiments:submit')
-        parsed = self.parse(filename='webextension_experiment.xpi')
+        parsed = self.parse(filename='experiment_inside_webextension.xpi')
         # See #3315: webextension experiments (type 256) map to extensions.
         assert parsed['type'] == amo.ADDON_EXTENSION
         assert parsed['is_experiment']
@@ -579,8 +571,8 @@ class TestParseXpi(TestCase):
         addon = Addon.objects.create(guid='guid@xpi', type=1)
         with self.assertRaises(forms.ValidationError) as e:
             self.parse(addon, filename='search.xml')
-        assert e.exception.messages[0].startswith(
-            '<em:type> in your install.rdf')
+        assert e.exception.messages[0] == (
+            'The type (4) does not match the type of your add-on on AMO (1)')
 
     def test_unknown_app(self):
         data = self.parse(filename='theme-invalid-app.jar')
@@ -1026,7 +1018,7 @@ class TestFileFromUpload(UploadTest):
 
     def upload(self, name):
         # Add in `.xpi` if the filename doesn't have a valid file extension.
-        if os.path.splitext(name)[-1] not in EXTENSIONS:
+        if os.path.splitext(name)[-1] not in amo.VALID_ADDON_FILE_EXTENSIONS:
             name = name + '.xpi'
 
         validation_data = json.dumps({
@@ -1174,7 +1166,7 @@ class TestFileFromUpload(UploadTest):
         assert not file_.is_multi_package
 
     def test_experiment(self):
-        upload = self.upload('telemetry_experiment')
+        upload = self.upload('experiment_inside_webextension')
         file_ = File.from_upload(
             upload, self.version, self.platform,
             parsed_data={'is_experiment': True})
