@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-06-29 16:27+0000\n"
 "Last-Translator: Rhoslyn Prys <rprys@posteo.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2471,25 +2471,13 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr ""
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr ""
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
@@ -5764,11 +5752,14 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr ""
+
 msgid "Unexpected error."
 msgstr ""
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Back to review"

@@ -2,12 +2,12 @@
 # Pascal Chevrel <pascal.chevrel@free.fr>, 2006-2009.
 # Jean-Bernard Marcon <goofy@babelzilla.org>, 2009-2010.
 # Alexandre Lissy <lissyx@mozfr.org>, 2009, 2010, 2011, 2012, 2013.
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-30 15:07+0000\n"
 "Last-Translator: patmol321 <patmol321@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -51,8 +51,8 @@ msgstr "Envoi de {0}"
 msgid "Error with {0}"
 msgstr "Erreur avec {0}"
 
-msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Nous avons activé un nouvel analyseur de code pour le traitement de votre module. Merci de signaler tout problème sur GitHub."
+msgid "Please make sure to report any linting related issues on GitHub"
+msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -117,8 +117,8 @@ msgstr "Ajouter des notes de version détaillées (cela peut être fait à l’�
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela peut"
-" être effectué à la prochaine étape)."
+"S’il est nécessaire d’avoir un compte sur un site web pour que votre module soit testé, ajoutez un nom d’utilisateur et un mot de passe d’un compte de test dans les notes pour le réviseur (cela "
+"peut être effectué à la prochaine étape)."
 
 msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"

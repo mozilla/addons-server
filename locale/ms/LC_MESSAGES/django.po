@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2338,26 +2338,14 @@ msgstr "Perubahan Terkini untuk %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Perubahan Terkini untuk Add-ons Saya"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di addons.thunderbird.net. Anda boleh gunakan akaun yang sama untuk mengemaskini add-ons di laman yang baru."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Ekstensi legasi tidak lagi disokong di Firefox."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Bermula dengan Firefox 53, add-ons baru dalam laman ini hanya WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Ekstensi legasi tidak serasi dengan Firefox 57 atau ke atas. Gunakan maxVersion 56.* atau ke bawah."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Pek bahasa legasi untuk Firefox tidak lagi disokong. Perlukan manifes pemasangan WebExtensions. Lihat {mdn_link} untuk maklumat lanjut."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Add-ons untuk Thunderbird dan SeaMonkey kini disenarai dan dikekalkan di addons.thunderbird.net. Anda boleh gunakan akaun yang sama untuk mengemaskini add-ons di laman yang baru."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Kami izin dan menggalakkan kemaskini tetapi anda tidak boleh undurkan proses ini. Sebaik sahaja WebExtension dipasang oleh pengguna, mereka tidak akan boleh pasang add-on legasi."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Anda tidak boleh mengemaskini add-on WebExtensions dengan add-on legasi. Pengguna tidak akan dapat menggunakan versi baru anda kerana Firefox tidak menyokong kemaskini jenis ini."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Teks dalam medan \"{field}\" telah ditandakan sebagai spam."
@@ -5622,11 +5610,15 @@ msgstr "Anda tidak boleh kemukakan add-on dengan guid yang berakhir dengan %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak boleh kemukakan Ekstensi Ditandatangani Mozilla"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Jenis fail tidak disokong, sila muat naik fail arkib {extensions}."
+
 msgid "Unexpected error."
 msgstr "Ralat tidak dijangka."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> dalam install.rdf (%s) anda tidak sepadan dengan jenis add-on anda dalam AMO (%s)"
 
 msgid "Back to review"

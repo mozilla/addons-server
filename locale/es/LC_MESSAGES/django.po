@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-10-14 17:20+0000\n"
 "Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -2391,26 +2391,14 @@ msgstr "Cambios recientes en %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Cambios recientes en Mis complementos"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en addons.thunderbird.net. Puedes utilizar la misma cuenta para actualizarlos en el nuebo sitio web."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "A partir de la versión 53 de Firefox, los nuevos complemento de este sitio solo pueden ser WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Los complementos heredados no son compatibles con Firefox 57 o superiores. Utiliza una maxVersion de 56.* o inferior."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Ya no se admiten los antiguos paquetes de idiomas para Firefox. Ahora hay que instalar un manifesto de WebExtensions. Para más detalles, consulta {mdn_link}."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en addons.thunderbird.net. Puedes utilizar la misma cuenta para actualizarlos en el nuebo sitio web."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "No puedes actualizar un complemento de WebExtensions con un complemento de enseñanza. Los usuarios no podrán utilizar la nueva versión porque Firefox no admite este tipo de actualización."
 
 #, fuzzy
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
@@ -5767,11 +5755,15 @@ msgstr "No puedes enviar un complemento con un guid acabado en %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "No se admite ese tipo de archivo. Por favor, sube un archivo con formato {extensions}."
+
 msgid "Unexpected error."
 msgstr "Error inesperado."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> en tu archivo install.rdf (%s) no se corresponde con la clasificación de tu complemento en AMO (%s)"
 
 msgid "Back to review"
