@@ -683,6 +683,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['errors'] == 1
         expected = ['validation', 'messages', 'legacy_addons_unsupported']
         assert upload.processed_validation['messages'][0]['id'] == expected
+        assert upload.processed_validation['messages'][0]['description'] == []
         assert not upload.valid
 
     def test_legacy_updates_disabled(self):
@@ -710,6 +711,44 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert upload.processed_validation['errors'] == 1
         expected = ['validation', 'messages', 'legacy_addons_unsupported']
         assert upload.processed_validation['messages'][0]['id'] == expected
+        assert not upload.valid
+
+    def test_submit_legacy_thunderbird_specific_message(self):
+        # We only show thunderbird/seamonkey specific error message
+        # if the user submits a thunderbird/seamonkey extension.
+        file_ = get_addon_file('valid_firefox_and_thunderbird_addon.xpi')
+        addon = addon_factory(version_kw={'version': '0.0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_addons_unsupported']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert upload.processed_validation['messages'][0]['description'] == [
+            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
+            'maintained on addons.thunderbird.net. You can use the same '
+            'account to update your add-ons on the new site.']
+        assert not upload.valid
+
+    def test_submit_legacy_seamonkey_specific_message(self):
+        # We only show thunderbird/seamonkey specific error message
+        # if the user submits a thunderbird/seamonkey extension.
+        file_ = get_addon_file('valid_seamonkey_addon.xpi')
+        addon = addon_factory(version_kw={'version': '0.0.1'})
+        upload = FileUpload.objects.create(path=file_, addon=addon)
+        tasks.validate(upload, listed=True)
+
+        upload.refresh_from_db()
+
+        assert upload.processed_validation['errors'] == 1
+        expected = ['validation', 'messages', 'legacy_addons_unsupported']
+        assert upload.processed_validation['messages'][0]['id'] == expected
+        assert upload.processed_validation['messages'][0]['description'] == [
+            u'Add-ons for Thunderbird and SeaMonkey are now listed and '
+            'maintained on addons.thunderbird.net. You can use the same '
+            'account to update your add-ons on the new site.']
         assert not upload.valid
 
     def test_submit_webextension(self):

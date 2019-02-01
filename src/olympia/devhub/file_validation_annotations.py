@@ -9,6 +9,7 @@ from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.lib.akismet.models import AkismetReport
+from olympia.files.utils import RDFExtractor, SafeZip, get_file
 
 
 def insert_validation_message(results, type_='error', message='', msg_id='',
@@ -31,7 +32,7 @@ def insert_validation_message(results, type_='error', message='', msg_id='',
     results['success'] = not results['errors']
 
 
-def annotate_legacy_addon_restrictions(results, parsed_data, error=True):
+def annotate_legacy_addon_restrictions(path, results, parsed_data, error=True):
     """
     Annotate validation results to restrict uploads of legacy
     (non-webextension) add-ons.
@@ -46,6 +47,21 @@ def annotate_legacy_addon_restrictions(results, parsed_data, error=True):
         u'Add-ons for Thunderbird and SeaMonkey are now listed and '
         u'maintained on addons.thunderbird.net. You can use the same '
         u'account to update your add-ons on the new site.')
+
+    # `parsed_data` only contains the most minimal amount of data because
+    # we aren't in the right context. Let's explicitly fetch the add-ons
+    # apps so that we can adjust the messaging to the user.
+    xpi = get_file(path)
+    extractor = RDFExtractor(SafeZip(xpi))
+
+    targets_thunderbird_or_seamonkey = False
+    thunderbird_or_seamonkey = {amo.THUNDERBIRD.guid, amo.SEAMONKEY.guid}
+
+    for ctx in extractor.rdf.objects(None, extractor.uri('targetApplication')):
+        if extractor.find('id', ctx) in thunderbird_or_seamonkey:
+            targets_thunderbird_or_seamonkey = True
+
+    description = description if targets_thunderbird_or_seamonkey else []
 
     insert_validation_message(
         results, type_='error' if error else 'warning',

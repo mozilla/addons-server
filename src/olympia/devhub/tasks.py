@@ -213,7 +213,7 @@ def validate_file_path(path, channel):
     if not is_webextension:
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
         annotations.annotate_legacy_addon_restrictions(
-            results=results, parsed_data=data,
+            path=path, results=results, parsed_data=data,
             error=not is_mozilla_signed)
         return json.dumps(results)
 
