@@ -1701,12 +1701,6 @@ DRF_API_GATES = {
     ),
 }
 
-# Return to AMO (https://bugzilla.mozilla.org/show_bug.cgi?id=1468680)
-# kill switch. RETURN_TO_AMO=0 env variable deactivates it, causing the API to
-# return 400s when the feature is used.
-RETURN_TO_AMO = env('RETURN_TO_AMO', default=True)
-
-
 # Change this to deactivate API throttling for views using a throttling class
 # depending on the one defined in olympia.api.throttling.
 API_THROTTLING = True
