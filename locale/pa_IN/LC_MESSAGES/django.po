@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-05 21:32+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2350,26 +2350,14 @@ msgstr "%s ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 msgid "Recent Changes for My Add-ons"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਹਾਲੀਆ ਬਦਲਾਵ"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "ਥੰਡਰਬਰਡ ਅਤੇ ਸੀਮੌਂਕੀ ਲਈ ਐਡਆਨ ਹੁਣ addons.thunderbird.net ਤੇ ਸੂਚੀਬੱਧ ਅਤੇ ਰੱਖੇ ਜਾ ਰਹੇ ਹਨ। ਤੁਸੀਂ ਨਵੀਂ ਸਾਈਟ ਤੇ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਉਸੇ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।"
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "ਫਾਇਰਫਾਕਸ ਵਿਚ ਪੁਰਾਣੇ ਐਕਸਟੈਂਸ਼ਨਾਂ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ।"
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "ਫਾਇਰਫਾਕਸ 53 ਨਾਲ ਸ਼ੁਰੂ ਹੋ ਰਿਹਾ ਹੈ, ਇਸ ਸਾਈਟ ਤੇ ਨਵੇਂ ਐਡਆਨ ਸਿਰਫ਼ WebExtensions ਹੋ ਸਕਦੇ ਹਨ।"
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "ਪੁਰਾਤਨ ਐਡ-ਆਨ Firefox57 ਜਾਂ ਇਸ ਤੋਂ ਵੱਧ ਦੇ ਅਨੁਕੂਲ ਨਹੀਂ ਹਨ। 56 ਜਾਂ ਹੇਠਲੇ ਦੀ ਸਭ ਤੋਂ ਵੱਧ ਵਰਤੋਂ ਕਰੋ।"
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Firefox ਲਈ ਪੁਰਾਣਾ ਭਾਸ਼ਾ ਪੈਕ ਹੁਣ ਸਮਰਥਿਤ ਨਹੀਂ ਹਨ। ਇੱਕ ਵੈਬ ਐਕਸਟੈਂਸ਼ਨ ਮਾਹਰ ਦੀ ਸਥਾਪਨਾ ਲਈ ਜ਼ਰੂਰੀ ਹੈ। ਵਧੇਰੇ ਵੇਰਵਿਆਂ ਲਈ {mdn_link} ਦੇਖੋ।"
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "ਥੰਡਰਬਰਡ ਅਤੇ ਸੀਮੌਂਕੀ ਲਈ ਐਡਆਨ ਹੁਣ addons.thunderbird.net ਤੇ ਸੂਚੀਬੱਧ ਅਤੇ ਰੱਖੇ ਜਾ ਰਹੇ ਹਨ। ਤੁਸੀਂ ਨਵੀਂ ਸਾਈਟ ਤੇ ਆਪਣੇ ਐਡਆਨ ਨੂੰ ਅਪਡੇਟ ਕਰਨ ਲਈ ਉਸੇ ਖਾਤੇ ਦੀ ਵਰਤੋਂ ਕਰ ਸਕਦੇ ਹੋ।"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "ਅਸੀਂ ਅਪਗ੍ਰੇਜ ਕਰਨ ਦੀ ਆਗਿਆ ਦਿੰਦੇ ਹਾਂ ਅਤੇ ਉਤਸ਼ਾਹਿਤ ਕਰਦੇ ਹਾਂ ਪਰ ਤੁਸੀਂ ਇਸ ਪ੍ਰਕਿਰਿਆ ਨੂੰ ਉਲਟਾ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਤੁਹਾਡੇ ਉਪਭੋਗਤਾਵਾਂ ਕੋਲ ਵੈਬ ਐਕਸਟੈਂਸ਼ਨ ਸਥਾਪਿਤ ਹੋਣ ਤੋਂ ਬਾਅਦ, ਉਹ ਵਿਰਾਸਤੀ ਐਡ-ਓਨ ਸਥਾਪਿਤ ਕਰਨ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ।"
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "ਤੁਸੀਂ ਪੁਰਾਣੇ ਐਡ-ਆਨ ਨਾਲ WebExtensions ਐਡ-ਓਨ ਨੂੰ ਅਪਡੇਟ ਨਹੀਂ ਕਰ ਸਕਦੇ। ਤੁਹਾਡੇ ਯੂਜ਼ਰ ਤੁਹਾਡੇ ਨਵੇਂ ਵਰਜਨ ਨੂੰ ਵਰਤਣ ਦੇ ਯੋਗ ਨਹੀਂ ਹੋਣਗੇ ਕਿਉਂਕਿ ਫਾਇਰਫਾਕਸ ਇਸ ਕਿਸਮ ਦੇ ਅਪਡੇਟ ਦਾ ਸਮਰਥਨ ਨਹੀਂ ਕਰਦਾ।"
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] ਦਰਜ ਕੀਤੀ ਗਈ ਟੈਕਸਟ \"{field}\" ਫੀਲਡ ਵਿਚ ਨੂੰ ਸਪੈਮ ਦੇ ਰੂਪ ਵਿੱਚ ਫਲੈਗ ਕੀਤਾ ਗਿਆ ਹੈ।"
@@ -5591,11 +5579,15 @@ msgstr "ਤੁਸੀਂ ਇੱਕ ਗਾਈਡ ਅੰਤ %s ਨਾਲ ਐਡਆ�
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
+
 msgid "Unexpected error."
 msgstr "ਅਚਾਨਕ ਗਲਤੀ।"
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em: ਕਿਸਮ> ਤੁਹਾਡੇ install.rdf (%s)ਵਿੱਚ AMO (%s) ਉੱਪਰ ਤੁਹਾਡੇ ਐਡਆਨ ਦੀ ਕਿਸਮ ਨਾਲ ਮੇਲ ਨਹੀਂ ਖਾਂਦਾ ਹੈ"
 
 msgid "Back to review"

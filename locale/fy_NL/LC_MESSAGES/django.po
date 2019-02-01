@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2376,28 +2376,16 @@ msgstr "Resinte wizigingen foar %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Resinte wizigingen foar myn add-ons"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Mei yngong fan Firefox 53 kinne nije add-ons op dizze website allinnich WebExtensions wêze."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Ferâldere add-ons binne net kompatibel mei Firefox 57 of heger. Brûk in maxVersion fan 56.* of leger."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Ferâldere taalpakketten foar Firefox wurde net mear stipe. In WebExtensions-ynstallaasjemanifest is fereaske. Sjoch op {mdn_link} foar mear details."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Add-ons foar Thunderbird en SeaMonkey wurde no fermeld en ûnderhâlden op addons.thunderbird.net. Foar it bywurkjen fan jo add-ons op de nije website kinne jo deselde account brûke."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Wy stean in fernijing ta en riede dit ek oan, mar jo kinne dit proses net ûngedien meitsje. As jo brûkers de WebExtension ien kear ynstallearre hawwe, kinne se gjin ferâldere add-on mear "
 "ynstallearje."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Jo kinne gjin WebExtensions-add-on bywurkje mei in ferâldere add-on. Jo brûkers soenen jo nije ferzje dan net brûke kinne, omdat Firefox dit type fernijing net stipet."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
@@ -5688,11 +5676,15 @@ msgstr "Jo kinne gjin add-on yntsjinje mei in GUID dy't op %s einiget"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Net-stipe bestânstype, laad in argyfbestân {extensions} op."
+
 msgid "Unexpected error."
 msgstr "Unferwachte flater."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> yn jo install.rdf (%s) komt net oerien mei it type fan jo add-on op AMO (%s)"
 
 msgid "Back to review"

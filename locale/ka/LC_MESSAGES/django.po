@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-14 18:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2385,26 +2385,14 @@ msgstr "%s ბოლო ცვლილებები"
 msgid "Recent Changes for My Add-ons"
 msgstr "ბოლო ცვლილებები ჩემს დამატებებში"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "დამატებები Thunderbird და SeaMonkey პროგრამებისთვის, ახლა უკვე განთავსებულია addons.thunderbird.net საიტზე. თქვენი დამატებებისთვის, შეგიძლიათ იგივე ანგარიში გამოიყენოთ ახალ საიტზეც."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "მოძველებული სახის გაფართოებები აღარაა მხარდაჭერილი Firefox-ში."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Firefox 53 ვერსიიდან დაწყებული, ამ საიტზე ნებადართულია მხოლოდ ახალი, WebExtensions დამატებების გამოქვეყნება."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "მოძველებული დამატებები არაა თავსებადი Firefox 57 ან უფრო მაღალ ვერსიებთან. maxVersion მიუთითეთ 56.* ან უფრო დაბალი."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "ენის მოძველებული ნაკრებები Firefox-ისთვის, აღარაა მხარდაჭერილი. აუცილებელია WebExtensions მანიფესტს. ვრცლად, იხილეთ {mdn_link} ბმულზე."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "დამატებები Thunderbird და SeaMonkey პროგრამებისთვის, ახლა უკვე განთავსებულია addons.thunderbird.net საიტზე. თქვენი დამატებებისთვის, შეგიძლიათ იგივე ანგარიში გამოიყენოთ ახალ საიტზეც."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "ჩვენ საშუალებას ვიძლევით და ხელს ვუწყობთ განახლებას, მაგრამ ეს ქმედება შეუქცევადია. თუ თქვენი მომხმარებლები დააყენებენ WebExtension-ს, მოძველებული დამატებების დაყენებას, ვეღარ შეძლებენ."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "WebExtensions დამატების მოძველებული დამატებით განახლება, არ შეგიძლიათ. თქვენი მომხმარებლები ვერ ისარგებლებენ ახალი ვერსიით, რადგან Firefox-ში არაა მხარდაჭერილი, ასეთი სახის განახლება."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] ტექსტი „{field}“ ველში აღნიშნა არასასურველად."
@@ -5661,11 +5649,15 @@ msgstr "არ შეგიძლიათ დამატების წარ
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla-ს მიერ დამოწმებული გაფართოების წარდგენა არ შეგიძლიათ"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "ამ სახის ფაილი არაა მხარდაჭერილი, გთხოვთ ატვირთოთ დაარქივებული ფაილი {extensions}."
+
 msgid "Unexpected error."
 msgstr "მოულოდნელი შეცდომა."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> თქვენს intall.rdf (%s) ფაილში, არ ემთხვევა თქვენი დამატების ტიპს AMO საიტზე (%s)"
 
 msgid "Back to review"

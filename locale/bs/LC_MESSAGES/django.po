@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2018-05-28 12:04+0000\n"
 "Last-Translator: Nihad Suljić <nihad.suljic92@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2363,26 +2363,14 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedavne promjene za moje dodatke"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr ""
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Počevši sa Firefox 53, novi dodaci na ovoj stranici mogu biti samo WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Naslijeđeni dodaci nisu kompatibilni sa Firefox 57 ili novijom verzijom. Koristite maxVersion od 56.* ili starije."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dozvoljavamo i potičemo nadogradnju, ali ne možete pokrenuti ovaj proces. Jednom kada vaši korisnici budu imali instaliran WebExtension, neće biti u mogućnosti instalirati dodatak naslijeđa."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Ne možete ažurirati WebExtensions dodatak sa naslijeđenim dodatkom. Vaši korisnici ne bi bili u mogućnosti koristiti vašu novu verziju jer Firefox ne podržava ove vrste ažuriranja."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
@@ -5804,11 +5792,15 @@ msgstr "Ne možete poslati dodatak sa završnom vezom %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ne možete poslati Mozilla potpisana proširenja"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Nepodržana vrsta datoteke, molimo učitajte arhivsku datoteku {extensions}."
+
 msgid "Unexpected error."
 msgstr ""
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Back to review"

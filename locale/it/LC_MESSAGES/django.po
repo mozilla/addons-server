@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-27 18:50+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
@@ -2428,32 +2428,18 @@ msgstr "Modifiche recenti per %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Modifiche recenti per i miei componenti aggiuntivi"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Le estensioni obsolete non sono più supportate in Firefox."
+
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 "I componenti aggiuntivi per Thunderbird e SeaMonkey ora sono elencati e mantenuti su addons.thunderbird.net. Puoi utilizzare lo stesso account che avevi per aggiornare i tuoi componenti aggiuntivi "
 "sul nuovo sito."
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Le estensioni obsolete non sono più supportate in Firefox."
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "A partire dalla versione 53 di Firefox, su questo sito verranno accettati solo componenti aggiuntivi realizzati con WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "I componenti aggiuntivi che utilizzano tecnologie obsolete non sono compatibili con Firefox 57 o superiore. Si raccomanda di impostare il campo maxVersion con un valore non superiore a 56."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "I precedenti language pack per Firefox non sono più supportati. Per l'installazione tramite WebExtensions è richiesto un file manifest. Per ulteriori informazioni leggere {mdn_link}."
-
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Mozilla consente e incoraggia l’aggiornamento, ma questa azione è irreversibile: effettuando il passaggio a WebExtension, non sarà più possibile fornire aggiornamenti per il componente aggiuntivo "
 "utilizzando la vecchia piattaforma di sviluppo."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
-"Non puoi aggiornare un componente aggiuntivo basato su WebExtension con una versione che utilizza la vecchia piattaforma di sviluppo. Gli utenti non potranno utilizzare questa versione perché "
-"Firefox non supporta questo tipo di aggiornamento."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Il testo nel campo “{field}” è stato contrassegnato come spam."
@@ -5752,11 +5738,15 @@ msgstr "Non è consentito caricare un componente aggiuntivo il cui guid termina 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Impossibile caricare un’estensione già firmata digitalmente da Mozilla"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Tipo di file non supportato. Carica un file archivio valido {extensions}."
+
 msgid "Unexpected error."
 msgstr "Errore inaspettato."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "Il valore <em:type> specificato nel file install.rdf (%s) non corrisponde a quello indicato su AMO (%s)."
 
 msgid "Back to review"

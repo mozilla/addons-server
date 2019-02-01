@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-10 18:57+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
@@ -2383,29 +2383,15 @@ msgstr "Ndryshime Së Fundi për %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Ndryshime Së Fundi për Shtesat e Mia"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Shtesat për Thunderbird-in dhe SeaMonkey-n tani shfaqen dhe mirëmbahen te addons.thunderbird.net. Mund të përdorni të njëjtën llogari që të përditësoni shtesat tuaja në sajtin e ri."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Zgjerimet e dikurshme nuk mbulohen më në Firefox."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Duke filluar me Firefox 53-shin, zgjerimet e reja në këtë sajt mund të jenë vetëm të llojit WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Shtesat e dikurshme s’janë të përputhshme me Firefox 57 apo më të madh. Përdorni një maxVersion 56.* ose më të ulët."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Paketat e dikurshme gjuhësore për Firefox-in nuk mbulohen më. Lypset një manifest instalimi WebExtensions. Për më tepër hollllësi, shihni te {mdn_link}."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Shtesat për Thunderbird-in dhe SeaMonkey-n tani shfaqen dhe mirëmbahen te addons.thunderbird.net. Mund të përdorni të njëjtën llogari që të përditësoni shtesat tuaja në sajtin e ri."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "E lejojmë dhe e nxisim një përmirësim, por këtë proces nuk mund ta zhbëni. Pasi përdoruesit tuaj të kenë instaluar WebExtension, nuk do të jenë në gjendje të instalojnë shtesa nga të dikurshmet."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr ""
-"S’mund të përditësoni një shtesë WebExtensions me një shtesë nga të dikurshmet. Përdoruesit tuaj nuk do të jenë në gjendje të përdorin versionin tuaj të ri, ngaqë Firefox-i nuk e mbulon këtë lloj "
-"përditësimesh."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Tekstit te fusha \"{field}\" i është vënë shenjë si mesazh i padëshiruar."
@@ -5678,11 +5664,15 @@ msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
+
 msgid "Unexpected error."
 msgstr "Gabim i papritur."
 
-#, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+#, fuzzy, python-format
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr "<em:type> te install.rdf juaj (%s) nuk përputhet me llojin e shtesës tuaj te AMO (%s)"
 
 msgid "Back to review"
