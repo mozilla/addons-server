@@ -699,8 +699,6 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         assert not upload.valid
 
     def test_submit_legacy_dictionary_disabled(self):
-        # Should not error: non-extensions types are not affected by the
-        # restriction, even if they target 57.
         file_ = get_addon_file('dictionary_targeting_57.xpi')
         addon = addon_factory(version_kw={'version': '0.1'},
                               type=amo.ADDON_DICT)
