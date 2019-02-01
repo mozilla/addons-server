@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-02-01 09:51+0000\n"
+"PO-Revision-Date: 2019-02-01 10:07+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -68,7 +68,7 @@ msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
 
 msgid "Validating {0}"
-msgstr "Validation {0}"
+msgstr "En cours de validation : {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Votre module dépasse la taille maximale de {0}."
@@ -134,7 +134,7 @@ msgstr ""
 "d’utiliser le champ permettant d’envoyer le code source pour éviter que votre envoi soit rejeté."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
+msgstr "Le processus de validation a permis de déceler les problèmes suivants, qui peuvent entraîner des rejets :"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
@@ -634,7 +634,7 @@ msgstr "Installations du {0} au {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> dans les derniers {1} jours"
+msgstr "<b>{0}</b> dans les {1} derniers jours"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -645,7 +645,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> en moyenne les derniers {1} jours"
 
 msgid "No data available."
-msgstr "Pas de donnée disponible."
+msgstr "Pas de données disponibles."
 
 msgid "Date"
 msgstr "Date"
@@ -663,8 +663,8 @@ msgstr[1] "Définir pour les modules {0} une version maximale de {1} et envoyer 
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Adresse électronique de l’auteur du module {2} dont la vérification a échoué."
-msgstr[1] "Adresses électroniques des auteurs des modules {2} dont la vérification a échoué."
+msgstr[0] "Envoyer un courriel à l’auteur du module complémentaire dont la validation a échoué."
+msgstr[1] "Envoyer des courriels aux auteurs des {2} modules dont la vérification a échoué."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -851,7 +851,7 @@ msgid "Reviewer"
 msgstr "Réviseur"
 
 msgid "Status"
-msgstr "Statut"
+msgstr "État"
 
 msgid "All tests passed successfully."
 msgstr "Tous les tests ont été réussis."
