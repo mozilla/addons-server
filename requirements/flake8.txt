@@ -11,9 +11,9 @@ enum34==1.1.6 \
     --hash=sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1 \
     --hash=sha256:2d81cbbe0e73112bdfe6ef8576f2238f2ba27dd0d55752a776c41d38b7da2850
 # flake8 is required by flake8-mutable
-flake8==3.7.3 \
-    --hash=sha256:806ec5785af23b4d9f3224a47cdd73714528923fccc95cc13cb1b74ba19c1820 \
-    --hash=sha256:b70f13ee944e536f22becfd716802b1f2fa4ca5ff7aea2c6423567569004f732
+flake8==3.7.4 \
+    --hash=sha256:e0f8cd519cfc0072c0ee31add5def09d2b3ef6040b34dc426445c3af9b02163c \
+    --hash=sha256:09b9bb539920776da542e67a570a5df96ff933c9a08b62cfae920bcc789e4383
 flake8-mutable==1.2.0 \
     --hash=sha256:ee9b77111b867d845177bbc289d87d541445ffcc6029a0c5c65865b42b18c6a6 \
     --hash=sha256:38fd9dadcbcda6550a916197bc40ed76908119dabb37fbcca30873666c31d2d5
