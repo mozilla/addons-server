@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-30 17:00+0000\n"
-"Last-Translator: patmol321 <patmol321@gmail.com>\n"
+"PO-Revision-Date: 2019-02-01 09:51+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -498,7 +498,7 @@ msgstr "Plateformes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Langages, derniers {0} jours"
+msgstr "Langages, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -506,7 +506,7 @@ msgstr "Langages du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Versions du module, derniers {0} jours"
+msgstr "Versions du module, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
@@ -514,15 +514,15 @@ msgstr "Versions du module du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Statut du module, derniers {0} jours"
+msgstr "État du module, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Statut du module du {0} au {1}"
+msgstr "État du module du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Sources de téléchargement, derniers {0} jours"
+msgstr "Sources de téléchargement, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -530,7 +530,7 @@ msgstr "Sources de téléchargement du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Contributions, derniers {0} jours"
+msgstr "Contributions, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -538,7 +538,7 @@ msgstr "Contributions du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Statistiques du site, derniers {0} jours"
+msgstr "Statistiques du site, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -546,7 +546,7 @@ msgstr "Statistiques du site du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr "Modules utilisés, derniers {0} jours"
+msgstr "Modules utilisés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
@@ -554,7 +554,7 @@ msgstr "Modules utilisés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Modules téléchargés, derniers {0} jours"
+msgstr "Modules téléchargés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -562,7 +562,7 @@ msgstr "Modules téléchargés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr "Modules créés, derniers {0} jours"
+msgstr "Modules créés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
@@ -570,7 +570,7 @@ msgstr "Modules créés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "Modules mis à jour, derniers {0} jours"
+msgstr "Modules mis à jour, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
@@ -578,7 +578,7 @@ msgstr "Modules mis à jour du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Critiques écrites, derniers {0} jours"
+msgstr "Critiques écrites, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
@@ -586,15 +586,15 @@ msgstr "Critiques écrites du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Connexions de l’utilisateur, derniers {0} jours"
+msgstr "Inscriptions d’utilisateurs, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Connexions de l’utilisateur du {0} au {1}"
+msgstr "Inscriptions d’utilisateurs du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Collections créées, derniers {0} jours"
+msgstr "Collections créées, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
@@ -602,15 +602,15 @@ msgstr "Collections créées du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Souscripteurs, derniers {0} jours"
+msgstr "Abonnés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Souscripteurs du {0} au {1}"
+msgstr "Abonnés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Notes, derniers {0} jours"
+msgstr "Notes, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -618,7 +618,7 @@ msgstr "Notes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr "Ventes, derniers {0} jours"
+msgstr "Ventes, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
@@ -626,7 +626,7 @@ msgstr "Ventes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr "Installations, derniers {0} jours"
+msgstr "Installations, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
