@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2018-12-10 08:49+0000\n"
+"PO-Revision-Date: 2019-02-01 13:40+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -47,7 +47,7 @@ msgid "Error with {0}"
 msgstr "{0} 出错"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "请务必到 GitHub 反馈任何与 linting 相关的问题"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
