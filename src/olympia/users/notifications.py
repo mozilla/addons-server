@@ -92,8 +92,8 @@ NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
 AMO_NOTIFICATIONS = [
-    reply, new_features, upgrade_success, sdk_upgrade_success,
-    new_review, upgrade_fail, sdk_upgrade_fail, reviewer_reviewed,
+    reply, new_features, upgrade_success,
+    new_review, upgrade_fail, reviewer_reviewed,
     individual_contact
 ]
 
