@@ -1650,7 +1650,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 10
+        assert len(response.data) == 8
 
     def test_disallowed_verbs(self):
         self.client.login_api(self.user)
