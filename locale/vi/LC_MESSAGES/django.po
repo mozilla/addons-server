@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-02 06:51+0000\n"
+"PO-Revision-Date: 2019-02-02 06:52+0000\n"
 "Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -1545,9 +1545,8 @@ msgstr "{addon} được thêm vào {collection}."
 msgid "{addon} removed from {collection}."
 msgstr "{addon} bị xóa khỏi {collection}."
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "{review} cho {addon} được viết."
+msgstr "{rating} cho {addon} được viết."
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -1580,20 +1579,17 @@ msgstr "Chính sách {addon} đã thay đổi."
 msgid "{addon} icon changed."
 msgstr "Biểu tượng {addon} đã thay đổi."
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} cho {addon} được chấp thuận."
+msgstr "{rating} cho {addon} được phê duyệt."
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} chấp thuận {review} cho {addon}."
+msgstr "{user} đã phê duyệt {rating} cho {addon}."
 
 msgid "Review {rating} for {addon} deleted."
 msgstr "Đánh giá {rating} cho {addon} đã bị xóa."
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} chấp thuận {review} cho {addon}."
+msgstr "{user} đã xóa {rating} cho {addon}."
 
 msgid "Application max version for {version} updated."
 msgstr "Đã cập nhật phiên bản tối đa cho {version}."
@@ -1637,9 +1633,8 @@ msgstr ""
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
 
-#, fuzzy
 msgid "{rating} for {addon} updated."
-msgstr "{review} cho {addon} được chấp thuận."
+msgstr "{rating} cho {addon} đã cập nhật."
 
 msgid "{addon} reviewed."
 msgstr ""
