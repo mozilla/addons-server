@@ -246,9 +246,9 @@ class TestUserEditForm(UserFormBase):
         del self.user.cached_developer_status
 
         form = UserEditForm({}, instance=self.user)
-        assert len(form.fields['notifications'].choices) == 10
+        assert len(form.fields['notifications'].choices) == 8
         assert [x[0] for x in form.fields['notifications'].choices] == [
-            3, 4, 5, 6, 7, 9, 10, 11, 12, 8
+            3, 4, 5, 7, 9, 11, 12, 8
         ]
 
     def test_basket_unsubscribe_newsletter(self):
