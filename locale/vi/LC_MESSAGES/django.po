@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-02 06:31+0000\n"
+"PO-Revision-Date: 2019-02-02 06:51+0000\n"
 "Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -688,9 +688,8 @@ msgstr ""
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Phải có ít nhất một người sở hữu."
+msgstr "Phải chứa ít nhất một ký tự có thể in được."
 
 msgid "Ensure this field contains at least one letter or number character."
 msgstr "Đảm bảo trường này chứa ít nhất một ký tự chữ hoặc số."
@@ -745,7 +744,7 @@ msgstr ""
 msgid "Not Found"
 msgstr "Không tìm thấy"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -753,12 +752,12 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Xin lỗi, nhưng chúng tôi không thể tìm thấy trang mà bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin mà bạn yêu cầu không có trên trang của chúng tôi. Có thể là bạn đã nhấn vào một liên kết hết "
-"hạn, hoặc gõ địa chỉ không chính xác. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đi theo một liên kết từ nơi nào đó, vui lòng cho chúng tôi biết tại <a "
-"href=\"mailto:webmaster@mozilla.com\">webmaster@mozilla.com</a>. Cho chúng tôi biết bạn đến từ nơi nào và cái mà bạn đang tìm kiếm, chúng tôi sẽ cố sửa. </li> </ul> <p>Hoặc bạn có thể đi tới một số "
-"trang thông dụng sau trên website của chúng tôi.</p> <ul> <li>Bạn có hứng thú với một <a href=\"%(rec)s\">danh sách các tiện ích đáng dùng</a>?</li> <li> Bạn có muốn <a href=\"%(search)s\">tìm kiếm "
-"tiện ích</a>? Bạn có thể vào <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ cần dùng trường tìm kiếm ở phía trên. </li> <li> Nếu bạn muốn bắt đầu từ đầu, chỉ cần vào <a href=\"%(home)s\">trang "
-"đầu Tiện ích</a>. </li> </ul>"
+"<h1>Chúng tôi xin lỗi, nhưng chúng tôi không thể tìm thấy những gì bạn đang tìm kiếm.</h1> <p> Trang hoặc tập tin bạn yêu cầu không được tìm thấy trên trang web của chúng tôi. Có thể bạn đã nhấp vào"
+" một liên kết đã lỗi thời hoặc nhập sai địa chỉ. </p> <ul> <li>Nếu bạn gõ địa chỉ, vui lòng kiểm tra lại chính tả.</li> <li> Nếu bạn đã theo một liên kết từ một nơi nào đó, xin vui lòng "
+"%(open_bug_link)sgửi một vấn đề%(close_bug_link)s. Hãy cho chúng tôi biết bạn đến từ đâu và những gì bạn đang tìm kiếm, và chúng tôi sẽ cố gắng hết sức để khắc phục nó. </li> </ul> <p>Hoặc bạn chỉ "
+"có thể chuyển qua một số trang phổ biến trên trang web của chúng tôi.</p> <ul> <li>Bạn có quan tâm đến <a href=\"%(rec)s\">danh sách các tiện ích nổi bật</a> không?</li> <li> Bạn có muốn <a "
+"href=\"%(search)s\">tìm kiếm tiện ích</a> không? Bạn có thể truy cập <a href=\"%(search)s\">trang tìm kiếm</a> hoặc chỉ sử dụng trường tìm kiếm ở trên. </li> <li> Nếu bạn muốn bắt đầu lại, chỉ cần "
+"truy cập <a href=\"%(home)s\">trang trước tiện ích</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ôi"
@@ -1092,13 +1091,12 @@ msgstr ""
 "Những tiện ích mà bạn đánh dấu là ưa thích bằng tính năng <b>Thêm vào Ưa thích</b> xuất hiện bên dưới. Bộ sưu tập này hiện đang <b>công khai</b>, có nghĩa là mọi người có thể thấy nó. Nếu bạn muốn "
 "ẩn nó khỏi khu vực công khai, nhấn lên nút bên dưới để chuyển nó thành riêng tư."
 
-#, fuzzy
 msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
 " be able to see your favorites, click the button below to make it public."
 msgstr ""
-"Những tiện ích mà bạn đánh dấu là ưa thích bằng tính năng <b>Thêm vào Ưa thích</b> xuất hiện bên dưới. Bộ sưu tập này hiện đang <b>công khai</b>, có nghĩa là mọi người có thể thấy nó. Nếu bạn muốn "
-"ẩn nó khỏi khu vực công khai, nhấn lên nút bên dưới để chuyển nó thành riêng tư."
+"Các tiện ích bổ sung mà bạn đánh dấu là mục ưa thích bằng tính năng <b>Thêm vào mục ưa thích</b> sẽ xuất hiện bên dưới. Bộ sưu tập này hiện đang <b>riêng tư</b>, có nghĩa là chỉ bạn mới có thể nhìn "
+"thấy nó. Nếu bạn muốn mọi người có thể xem mục yêu thích của bạn, nhấp vào nút bên dưới để công khai."
 
 msgid "My favorite add-ons"
 msgstr "Tiện ích ưa thích của tôi"
@@ -1590,9 +1588,8 @@ msgstr "{review} cho {addon} được chấp thuận."
 msgid "{user} approved {rating} for {addon}."
 msgstr "{user} chấp thuận {review} cho {addon}."
 
-#, fuzzy
 msgid "Review {rating} for {addon} deleted."
-msgstr "{review} cho {addon} được viết."
+msgstr "Đánh giá {rating} cho {addon} đã bị xóa."
 
 #, fuzzy
 msgid "{user} deleted {rating} for {addon}."
@@ -1669,9 +1666,8 @@ msgstr ""
 msgid "Addon id {0} with GUID {1} has been deleted"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} migrated from preliminary."
-msgstr "{addon} {version} đã được xét duyệt sơ bộ."
+msgstr "{addon} đã di chuyển từ sơ bộ."
 
 msgid "Reply by developer on {addon} {version}."
 msgstr ""
@@ -1680,9 +1676,8 @@ msgstr ""
 msgid "Developer Reply"
 msgstr "Trả lời nhà phát triển của {0}"
 
-#, fuzzy
 msgid "Reply by reviewer on {addon} {version}."
-msgstr "{review} cho {addon} được viết."
+msgstr "Trả lời bởi người đánh giá về {addon} {version}."
 
 #, fuzzy
 msgid "Reviewer Reply"
@@ -1709,39 +1704,32 @@ msgstr "Đã xác nhận phê duyệt tự động"
 msgid "{addon} {version} re-enabled."
 msgstr "{addon} {version} đã bật lại."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} nâng cấp."
+msgstr "{addon} {version} đã vô hiệu hóa."
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} giữ nguyên."
+msgstr "Nội dung {addon} {version} đã phê duyệt."
 
 msgid "Content approved"
 msgstr "Nội dung được phê duyệt"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} bị từ chối."
+msgstr "Nội dung {addon} {version} đã từ chối."
 
 msgid "Content rejected"
 msgstr "Nội dung bị từ chối"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Đã yêu cầu thêm thông tin"
+msgstr "{addon} yêu cầu thông tin đã thay đổi hoặc bị xóa bởi quản trị viên."
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Đã yêu cầu thêm thông tin"
+msgstr "Yêu cầu thông tin đã thay đổi"
 
-#, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
-msgstr "{review} cho {addon} được viết."
+msgstr "Yêu cầu thông tin đã bị xóa bởi nhà phát triển trên {addon} {version}."
 
-#, fuzzy
 msgid "Information request removed"
-msgstr "Đã yêu cầu thêm thông tin"
+msgstr "Yêu cầu thông tin đã bị xóa"
 
 #, fuzzy
 msgid "{addon} {version} admin add-on-review requested."
@@ -1767,9 +1755,8 @@ msgstr "{addon} {version} yêu cầu xét duyệt."
 msgid "Admin theme-review requested"
 msgstr "Yêu cầu Xét duyệt Đầy đủ."
 
-#, fuzzy
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "{addon} {version} đã được xét duyệt sơ bộ."
+msgstr "{addon} đã được di chuyển từ một chủ đề nhẹ."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -2184,9 +2171,8 @@ msgid "Android"
 msgstr "Android"
 
 # "Me" in this context is the user shown on the User Info page
-#, fuzzy
 msgid "Static Theme"
-msgstr "Tạo bởi Tôi"
+msgstr "Chủ đề tĩnh"
 
 msgid "Persona"
 msgstr "Persona"
@@ -2207,20 +2193,17 @@ msgstr ""
 msgid "Manual Reviewer Points"
 msgstr ""
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "Quản trị Xét duyệt"
+msgstr "Đánh giá tiện ích kế thừa mới"
 
 msgid "Preliminary Add-on Review"
 msgstr ""
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "Xét duyệt Đã được Điều chỉnh"
+msgstr "Đã cập nhật tiện ích kế thừa"
 
-#, fuzzy
 msgid "New Dictionary Review"
-msgstr "Xét duyệt Sơ bộ"
+msgstr "Đánh giá từ điển mới"
 
 msgid "Preliminary Dictionary Review"
 msgstr ""
@@ -2228,9 +2211,8 @@ msgstr ""
 msgid "Updated Dictionary Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Language Pack Review"
-msgstr "Gói ngôn ngữ"
+msgstr "Đánh giá gói ngôn ngữ mới"
 
 msgid "Preliminary Language Pack Review"
 msgstr ""
@@ -2241,13 +2223,11 @@ msgstr ""
 msgid "Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Theme (Static) Review"
-msgstr "Yêu cầu Xét duyệt Đầy đủ"
+msgstr "Đánh giá chủ đề (tĩnh)"
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "Nhà cung cấp Tìm kiếm"
+msgstr "Đánh giá nhà cung cấp dịch vụ tìm kiếm mới"
 
 msgid "Preliminary Search Provider Review"
 msgstr ""
@@ -2255,9 +2235,8 @@ msgstr ""
 msgid "Updated Search Provider Review"
 msgstr ""
 
-#, fuzzy
 msgid "New Complete Theme Review"
-msgstr "Giao diện Đầy đủ Xếp hạng Cao nhất"
+msgstr "Đánh giá chủ đề hoàn chỉnh mới"
 
 msgid "Preliminary Complete Theme Review"
 msgstr ""
@@ -2265,32 +2244,26 @@ msgstr ""
 msgid "Updated Complete Theme Review"
 msgstr ""
 
-#, fuzzy
 msgid "Moderated Add-on Review"
-msgstr "Xét duyệt Đã được Điều chỉnh"
+msgstr "Đánh giá tiện ích được kiểm duyệt"
 
 msgid "Add-on Review Moderation Reverted"
 msgstr ""
 
-#, fuzzy
 msgid "Add-on Content Review"
-msgstr "Chưa duyệt"
+msgstr "Đánh giá nội dung tiện ích"
 
-#, fuzzy
 msgid "Add-on Review (Highest Risk)"
-msgstr "Quản trị Xét duyệt"
+msgstr "Đánh giá tiện ích (Rủi ro cao nhất)"
 
-#, fuzzy
 msgid "Add-on Review (High Risk)"
-msgstr "Quản trị Xét duyệt"
+msgstr "Đánh giá tiện ích (Rủi ro cao)"
 
-#, fuzzy
 msgid "Add-on Review (Medium Risk)"
-msgstr "Quản trị Xét duyệt"
+msgstr "Đánh giá tiện ích (Rủi ro trung bình)"
 
-#, fuzzy
 msgid "Add-on Review (Low Risk)"
-msgstr "Quản trị Xét duyệt"
+msgstr "Đánh giá tiện ích (Rủi ro thấp)"
 
 msgid "Level 1"
 msgstr ""
@@ -2422,9 +2395,8 @@ msgstr "Vui lòng chỉ định Chính sách Riêng tư cho tiện ích của b�
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#, fuzzy
 msgid "Invalid or broken archive."
-msgstr "Gói nén bất hợp lệ."
+msgstr "Gói lưu trữ không hợp lệ hoặc bị hỏng."
 
 msgid "View current"
 msgstr ""
@@ -2441,23 +2413,20 @@ msgstr "Có một lỗi với việc tải lên của bạn. Vui lòng thử l�
 msgid "Override failed validation"
 msgstr ""
 
-#, fuzzy
 msgid "Need to select at least one application."
-msgstr "Cần ít nhất một ứng dụng tương thích."
+msgstr "Cần chọn ít nhất một ứng dụng."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr ""
 
-#, fuzzy
 msgid "Version {version} already exists."
-msgstr "{addon} {version} bị từ chối."
+msgstr "Phiên bản {version} đã tồn tại."
 
 msgid "Continue with existing upload instead?"
 msgstr ""
 
-#, fuzzy
 msgid "You have not uploaded a source file."
-msgstr "Không có tập tin nào trong tập tin được tải lên."
+msgstr "Bạn chưa tải lên một tập tin nguồn."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -2557,9 +2526,8 @@ msgstr ""
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "Hình ảnh phải là PNG hoặc JPG."
+msgstr "Kích thước hình ảnh phải theo tỷ lệ 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
@@ -2621,9 +2589,8 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "Yêu cầu Xét duyệt Đầy đủ."
+msgstr "Yêu cầu đánh giá."
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -2648,9 +2615,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "Ngày Duyệt"
+msgstr "Xem lại chính sách và quy tắc"
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -2770,9 +2736,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Cập nhật Tính tương thích</a> <a href=\"%(version_url)s\" class=\"button\">Tải lên Phiên bản Mới</a> hoặc <a href=\"#\""
 " class=\"close\">Bỏ qua</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Xem và cập nhật khoảng tương thích với ứng dụng."
+msgstr "Xem và cập nhật khoảng tương thích với ứng dụng"
 
 msgid "Compatibility"
 msgstr "Tính tương thích"
@@ -2819,9 +2784,8 @@ msgstr "Không"
 msgid "Preview"
 msgstr ""
 
-#, fuzzy
 msgid "Preview of listed version"
-msgstr "Xem các phiên bản khác"
+msgstr "Xem trước phiên bản được liệt kê"
 
 msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
@@ -2840,13 +2804,11 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "Chi tiết Tiện ích"
+msgstr "Chi tiết bổ sung"
 
-#, fuzzy
 msgid "Additional Details for {0}"
-msgstr "Chi tiết Tiện ích cho {0}"
+msgstr "Chi tiết bổ sung cho {0}"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -2862,9 +2824,8 @@ msgid "Reserved tag:"
 msgid_plural "Reserved tags:"
 msgstr[0] "Nhãn dự trữ:"
 
-#, fuzzy
 msgid "Contributions URL"
-msgstr "Khoản đóng góp"
+msgstr "URL đóng góp"
 
 msgid "If you would like to request monetary contributions from your users, set this to a page where they can do so."
 msgstr ""
@@ -2883,18 +2844,15 @@ msgid ""
 "ons."
 msgstr ""
 
-#, fuzzy
 msgid "Describe Add-on"
-msgstr "Mô tả tiện ích của bạn"
+msgstr "Mô tả tiện ích"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Mô tả tiện ích của bạn"
+msgstr "Mô tả {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Tóm tắt"
+msgstr "Tên và tóm tắt"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2913,31 +2871,26 @@ msgstr "Chọn một chuỗi từ URL độc đáo ngắn gọn cho tiện ích 
 msgid "View Listing"
 msgstr "Xem Liệt Kê"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Hiển thị Thay đổi Gần đây"
+msgstr "Xem trang sản phẩm"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 
-#, fuzzy
 msgid "Experimental?"
-msgstr "Thử nghiệm"
+msgstr "Thử nghiệm?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
+msgstr "Tiện ích này là thử nghiệm."
 
-#, fuzzy
 msgid "This add-on is ready for general use."
-msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
+msgstr "Tiện ích này đã sẵn sàng để sử dụng chung."
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "Trường bắt buộc"
+msgstr "Yêu cầu thanh toán?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -3066,9 +3019,8 @@ msgstr "Được dùng trong trang chi tiết của tiện ích."
 msgid "128x128px"
 msgstr ""
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Được dùng trong trang chi tiết của tiện ích."
+msgstr "Sẽ là tiêu chuẩn trong các trang chi tiết tiện ích trong tương lai."
 
 msgid "Upload a Custom Icon..."
 msgstr "Tải lên một Biểu tượng Tùy biến..."
@@ -3079,9 +3031,8 @@ msgstr ""
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG và JPG được hỗ trợ. Biểu tượng được chỉnh thành 64x64 điểm ảnh nếu lớn hơn."
+msgstr "Các biểu tượng sẽ được thay đổi kích thước thành 128x128 pixel nếu lớn hơn."
 
 msgid "Screenshots"
 msgstr "Ảnh chụp màn hình"
@@ -3128,9 +3079,8 @@ msgstr ""
 msgid "Select a different license."
 msgstr ""
 
-#, fuzzy
 msgid "More information on Creative Commons licenses"
-msgstr "Đã yêu cầu thêm thông tin"
+msgstr "Thông tin thêm về giấy phép Creative Commons"
 
 msgid "General Tests"
 msgstr "Kiểm tra Thông thường"
@@ -3182,9 +3132,8 @@ msgstr ""
 msgid "Actions"
 msgstr "Thao tác"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Tiếp tục quá trình gửi lên cho tiện ích này."
+msgstr "Tiếp tục quá trình đệ trình cho tiện ích này"
 
 msgid "Resume"
 msgstr "Tiếp tục"
@@ -3198,9 +3147,8 @@ msgstr "Xóa"
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Tải lên phiên bản mới của tiện ích này."
+msgstr "Tải lên phiên bản mới của tiện ích này"
 
 msgid "New Version"
 msgstr "Phiên bản Mới"
@@ -3232,16 +3180,14 @@ msgstr ""
 msgid "Transfer Ownership"
 msgstr ""
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Xóa tiện ích này."
+msgstr "Xóa chủ đề này"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr ""
 
-#, fuzzy
 msgid "This add-on doesn't have any versions."
-msgstr "Tiện ích này yêu cầu phần mềm bên ngoài."
+msgstr "Tiện ích này không có bất kỳ phiên bản nào."
 
 msgid "Status:"
 msgstr "Trạng thái:"
@@ -3258,13 +3204,11 @@ msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
 msgstr[0] "<strong>{0}</strong> người dùng hoạt động"
 
-#, fuzzy
 msgid "Submit a New Version"
-msgstr "Gửi lên một Tiện ích Mới"
+msgstr "Gửi một phiên bản mới"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Tóm tắt:"
+msgstr "Tên và tóm tắt:"
 
 msgid "required"
 msgstr "yêu cầu"
@@ -3287,9 +3231,8 @@ msgstr ""
 msgid "Summary:"
 msgstr "Tóm tắt:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Mô tả"
+msgstr "Miêu tả:"
 
 msgid "This add-on is experimental"
 msgstr "Tiện ích này là thử nghiệm"
@@ -3402,9 +3345,8 @@ msgstr ""
 msgid "Download {0}"
 msgstr "Tải xuống {0}"
 
-#, fuzzy
 msgid "Go to My Submissions"
-msgstr "Bản Gửi lên của Tôi"
+msgstr "Chuyển đến đệ trình của tôi"
 
 msgid "Source Code Upload"
 msgstr "Tải lên mã nguồn"
@@ -3833,9 +3775,8 @@ msgid "Listed on this site after passing code review. Automatic updates are hand
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "View All Submissions"
-msgstr "Xem Tất cả Phiên bản"
+msgstr "Xem tất cả các đệ trình"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr "Đây là nơi bạn xem và quản lý các tiện ích và chủ đề của mình. Để xuất bản tiện ích bổ sung đầu tiên của bạn, hãy nhấp vào \"Gửi tiện ích đầu tiên của bạn\" hoặc \"Gửi chủ đề đầu tiên của bạn\"."
@@ -5816,9 +5757,8 @@ msgstr "Báo cáo lỗi"
 msgid "Not Reported"
 msgstr "Không có báo cáo"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "Ghi chú Phiên bản"
+msgstr "Đã gửi nội dung"
 
 msgid "View Rating on site"
 msgstr "Xem xếp hạng trên trang web"
@@ -6235,9 +6175,8 @@ msgstr "Bình luận của Nhà phát triển"
 msgid "Search by add-on name / author email"
 msgstr "Tìm kiếm theo tên tiện ích / email tác giả"
 
-#, fuzzy
 msgid "Needs Admin Code Review"
-msgstr "Quản trị Xét duyệt"
+msgstr "Cần xem lại đoạn mã của quản trị"
 
 msgid "yes"
 msgstr "có"
@@ -6295,13 +6234,11 @@ msgstr "Tiếp tục đánh giá; loại bỏ cờ"
 msgid "Skip for now"
 msgstr "Bỏ qua"
 
-#, fuzzy
 msgid "Needs Admin Content Review"
-msgstr "Chưa duyệt"
+msgstr "Cần xem lại nội dung của quản trị"
 
-#, fuzzy
 msgid "Needs Admin Static Theme Review"
-msgstr "Quản trị Xét duyệt"
+msgstr "Cần xem lại chủ đề tĩnh của quản trị"
 
 msgid "Jetpack Add-on"
 msgstr ""
@@ -6309,9 +6246,8 @@ msgstr ""
 msgid "More Information Requested"
 msgstr ""
 
-#, fuzzy
 msgid "Expired Information Request"
-msgstr "Đã yêu cầu thêm thông tin"
+msgstr "Yêu cầu thông tin đã hết hạn"
 
 msgid "Sources provided"
 msgstr ""
@@ -6379,9 +6315,8 @@ msgstr ""
 msgid "Weight"
 msgstr ""
 
-#, fuzzy
 msgid "Information Request Deadline"
-msgstr "Đã yêu cầu thêm thông tin"
+msgstr "Thời hạn yêu cầu thông tin"
 
 msgid "Last Content Review"
 msgstr ""
@@ -7779,9 +7714,9 @@ msgstr "Xóa hình ảnh hiện tại"
 msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
 msgstr "Giới thiệu bản thân tới cộng đồng, nếu bạn thích! Đoạn văn này sẽ xuất hiện công khai trên trang thông tin người dùng của bạn."
 
-#, fuzzy, python-format
+#, python-format
 msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTML được cho phép: {0}. Các liên kết bị cấm."
+msgstr "HTML được phép: %(html)s. Liên kết đã bị cấm."
 
 msgid "Decide what collections should be shown in your profile."
 msgstr "Quyết định chọn các bộ sưu tập để hiển thị trong hồ sơ của bạn."
