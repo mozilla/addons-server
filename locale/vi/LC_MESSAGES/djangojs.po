@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-01-25 06:30+0000\n"
+"PO-Revision-Date: 2019-02-02 06:07+0000\n"
 "Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
@@ -47,7 +47,7 @@ msgid "Error with {0}"
 msgstr "Lỗi {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Vui lòng đảm bảo báo cáo mọi vấn đề liên quan đến linting trên GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -149,7 +149,7 @@ msgstr "Đang theo dõi"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
-msgstr ""
+msgstr "Chủ đề này không tương thích với phiên bản {0} của bạn"
 
 msgid "All Rights Reserved"
 msgstr "Bảo lưu toàn quyền"
@@ -816,22 +816,22 @@ msgid "Approved"
 msgstr "Chấp nhận"
 
 msgid "No results found"
-msgstr ""
+msgstr "Không tìm thấy kết quả nào"
 
 msgid "Theme"
-msgstr "Giao diện"
+msgstr "Chủ đề"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "Người đánh giá"
 
 msgid "Status"
 msgstr "Trạng thái"
 
 msgid "All tests passed successfully."
-msgstr ""
+msgstr "Tất cả các bài kiểm tra đã thông qua."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Những bài kiểm tra đã không được chạy."
 
 msgid "Tests"
 msgstr "Kiểm tra"
@@ -852,7 +852,7 @@ msgid "Add-on failed validation."
 msgstr "Tiện ích xác thực không thành công."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "Tiện ích đã thông qua xác nhận."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -867,7 +867,7 @@ msgid_plural "{0} notices"
 msgstr[0] "{0} chú ý"
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "Tác vụ xác nhận không hoàn thành hoặc hoàn thành với lỗi"
 
 msgid "Internal server error"
 msgstr "Lỗi nội bộ máy chủ"
