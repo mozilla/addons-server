@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2018-09-11 17:39+0000\n"
-"Last-Translator: RickieES <rpmdisguise-nave@yahoo.es>\n"
+"PO-Revision-Date: 2019-02-03 19:22+0000\n"
+"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
@@ -211,52 +211,44 @@ msgstr "Usar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " descargas"
-msgstr[1] " descargas"
+msgstr[0] "{0} descarga"
+msgstr[1] "{0} descargas"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} usuarios"
+msgstr[0] "{0} usuario"
 msgstr[1] "{0} usuarios"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} complementos"
+msgstr[0] "{0} complemento"
 msgstr[1] "{0} complementos"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} colecciones"
+msgstr[0] "{0} colección"
 msgstr[1] "{0} colecciones"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} valoraciones"
+msgstr[0] "{0} valoración"
 msgstr[1] "{0} valoraciones"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} ventas"
+msgstr[0] "{0} venta"
 msgstr[1] "{0} ventas"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} reembolsos"
+msgstr[0] "{0} reembolso"
 msgstr[1] "{0} reembolsos"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} instalaciones"
+msgstr[0] "{0} instalación"
 msgstr[1] "{0} instalaciones"
 
 msgid "Downloads"
@@ -771,18 +763,16 @@ msgid "Loading..."
 msgstr "Cargando..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> carácter restante."
-msgstr[1] "<b>{0}</b> caracteres restantes."
+msgstr[0] "<b>{0}</b> caracter"
+msgstr[1] "<b>{0}</b> caracteres"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> carácter restante."
-msgstr[1] "<b>{0}</b> caracteres restantes."
+msgstr[0] "<b>{0}</b> caracter restante"
+msgstr[1] "<b>{0}</b> caracteres restantes"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Esta característica está desactivada temporalmente mientras realizamos el mantenimiento de la página web. Inténtalo de nuevo pasados unos minutos."
