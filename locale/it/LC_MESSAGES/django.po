@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-02 13:43+0000\n"
-"Last-Translator: Dag7 <dag7@protonmail.com>\n"
+"PO-Revision-Date: 2019-02-02 15:31+0000\n"
+"Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -2520,7 +2520,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "È stato caricato un file sorgente ma non stato specificato che il sorgente era necessario."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Nome e riepilogo non devono superare complessivamente {limit_value} caratteri (caratteri attuali: {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -5603,7 +5603,7 @@ msgstr "Effettua le tue ricerche in piena sicurezza grazie al blocco degli eleme
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Semplifica le schede {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
@@ -5615,7 +5615,7 @@ msgstr "Gestione avanzata dei cookie {start_sub_heading}con {addon_name}{end_sub
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Cancella automaticamente i cookie indesiderati. Supporta blacklist e whitelist."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5627,7 +5627,7 @@ msgstr "Con un clic del mouse puoi guardare i video a schermo intero."
 
 #. editorial content for the discovery pane.
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Risparmia memoria {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
@@ -5736,7 +5736,7 @@ msgstr "Errore inaspettato."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr ""
+msgstr "Il tipo (%s) non corrisponde al tipo del tuo add-on su AMO (%s)"
 
 msgid "Back to review"
 msgstr "Ritorna alla recensione"
