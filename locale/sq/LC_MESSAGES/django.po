@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-04 09:51+0000\n"
+"PO-Revision-Date: 2019-02-04 10:03+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: sq\n"
 "Language: sq\n"
@@ -2468,9 +2468,8 @@ msgstr "S’keni ngarkuar kartelë burim."
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Kartela burim u ngarkua, por keni përcaktuar se s’lypset burim."
 
-#, fuzzy
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr "Garantoni që emri dhe përmbledhja tok të jenë e shumta 70 shenja (janë {0})."
+msgstr "Garantoni që emri dhe përmbledhja tok të jenë e shumta {limit_value} shenja (janë {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -5526,41 +5525,36 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "Kërkoni me më tepër siguri, përmes bllokimit të gjurmuesve, fshehtëzimi të mençur, kërkimesh private, dhe të tjera gjëra thelbësore."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Thjeshtoni kërkimin {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Administroni skedat tuaja të hapura në një anështyllë të pastër."
+msgstr "Sistemojini skedat tuaja të shumta të hapura në një anështyllë vertikale."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Administroni cookie-t {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Administrim i thelluar i cookie-ve {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Fshini automatikisht <em>cookies</em> të padëshiruara. Ofron mbulim listash lejimi dhe bllokimi."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "<em>Tweet it out</em> {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Shihni pamjen më të plotë {start_sub_heading}me {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Me një klikim të miut mund t’i shihni videot në shkëlqimin e plotë."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ruani tekst për më vonë, {start_sub_heading}me {addon_name}{end_sub_heading}"
+msgstr "Kurseni kujtesë me {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Reshtni së harxhuari hapësirë të vyer kujtese me skeda joaktive."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5600,10 +5594,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "S’u përtyp dot kartela e ngarkuar, element <%s> që mungon ose është i zbrazët"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Gabim Sigurie XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Gabim Përtypjeje XML."
 
 msgid "Could not parse uploaded file."
 msgstr "S’u përtyp dot kartela e ngarkuar."
@@ -5657,16 +5651,15 @@ msgstr "S’mund të parashtroni një shtesë me një GUID që mbaron me %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "S’mund të parashtroni një Zgjerim të Nënshkruar nga Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë arkivi {extensions}."
+msgstr "Lloj i pambuluar kartele, ju lutemi, ngarkoni një kartelë {extensions} që mbulohet."
 
 msgid "Unexpected error."
 msgstr "Gabim i papritur."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> te install.rdf juaj (%s) nuk përputhet me llojin e shtesës tuaj te AMO (%s)"
+msgstr "Lloji (%s) nuk përputhet me llojin e shtesës tuaj te (%s)"
 
 msgid "Back to review"
 msgstr "Mbrapsht te shqyrtimi"
