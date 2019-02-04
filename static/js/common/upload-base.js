@@ -1,16 +1,16 @@
 /* This abstracts the uploading of all files.  Currently, it's only
  * extended by addonUploader().  Eventually imageUploader() should as well */
 
+function fileSizeFormat(bytes) {
+    var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
+    if(bytes === 0) return bytes + " " + s[1];
+    var e = Math.floor( Math.log(bytes) / Math.log(1024) );
+    return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
+}
+
 (function($) {
     function getErrors(results) {
         return results.errors;
-    }
-
-    function textSize(bytes) {
-        var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-        if(bytes === 0) return bytes + " " + s[1];
-        var e = Math.floor( Math.log(bytes) / Math.log(1024) );
-        return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
     }
 
     var settings = {'filetypes': [], 'getErrors': getErrors, 'cancel': $(), 'maxSize': null};
@@ -70,7 +70,7 @@
                 }
 
                 if (settings.maxSize && domfile.size > settings.maxSize) {
-                    errors = [format(gettext("Your file exceeds the maximum size of {0}."), [textSize(settings.maxSize)])];
+                    errors = [format(gettext("Your file exceeds the maximum size of {0}."), [fileSizeFormat(settings.maxSize)])];
                     $upload_field.trigger("upload_errors", [file, errors]);
                     $upload_field.trigger("upload_finished", [file]);
                     return;

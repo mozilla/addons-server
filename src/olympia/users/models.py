@@ -8,6 +8,7 @@ from datetime import datetime
 from django import forms
 from django.conf import settings
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.signals import user_logged_in
 from django.core import validators
 from django.db import models
 from django.utils import timezone
@@ -21,7 +22,7 @@ import olympia.core.logger
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.translations.query import order_by_translation
@@ -86,13 +87,17 @@ class UserEmailField(forms.EmailField):
 
 class UserManager(BaseUserManager, ManagerBase):
 
-    def create_user(self, username, email, fxa_id=None):
+    def create_user(self, username, email, fxa_id=None, **kwargs):
         # We'll send username=None when registering through FxA to generate
         # an anonymous username.
         now = timezone.now()
         user = self.model(
-            username=username, email=email, fxa_id=fxa_id,
-            last_login=now)
+            username=username,
+            email=email,
+            fxa_id=fxa_id,
+            last_login=now,
+            **kwargs
+        )
         if username is None:
             user.anonymize_username()
         log.debug('Creating user with email {} and username {}'.format(
@@ -104,7 +109,7 @@ class UserManager(BaseUserManager, ManagerBase):
         """
         Creates and saves a superuser.
         """
-        user = self.create_user(username, email, fxa_id)
+        user = self.create_user(username=username, email=email, fxa_id=fxa_id)
         admins = Group.objects.get(name='Admins')
         GroupUser.objects.create(user=user, group=admins)
         return user
@@ -126,7 +131,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     biography = models.TextField(blank=True, null=True)
     deleted = models.BooleanField(default=False)
     display_collections = models.BooleanField(default=False)
-    display_collections_fav = models.BooleanField(default=False)
     homepage = models.URLField(max_length=255, blank=True, default='')
     location = models.CharField(max_length=255, blank=True, default='')
     notes = models.TextField(blank=True, null=True)
@@ -137,11 +141,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     read_dev_agreement = models.DateTimeField(null=True, blank=True)
 
     last_login_ip = models.CharField(default='', max_length=45, editable=False)
-    last_login_attempt = models.DateTimeField(null=True, editable=False)
-    last_login_attempt_ip = models.CharField(default='', max_length=45,
-                                             editable=False)
-    failed_login_attempts = models.PositiveIntegerField(default=0,
-                                                        editable=False)
     email_changed = models.DateTimeField(null=True, editable=False)
 
     # Is the profile page for this account publicly viewable?
@@ -328,16 +327,16 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @cached_property
     def cached_developer_status(self):
-        qset = list(
+        addon_types = list(
             self.addonuser_set
             .exclude(addon__status=amo.STATUS_DELETED)
             .values_list('addon__type', flat=True))
 
+        all_themes = [t for t in addon_types if t in amo.GROUP_TYPE_THEME]
         return {
-            'is_developer': bool(qset),
-            'is_addon_developer': bool(
-                [t for t in qset if t != amo.ADDON_PERSONA]),
-            'is_artist': bool([t for t in qset if t == amo.ADDON_PERSONA])
+            'is_developer': bool(addon_types),
+            'is_extension_developer': len(all_themes) != len(addon_types),
+            'is_theme_developer': bool(all_themes)
         }
 
     @property
@@ -346,14 +345,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_addon_developer(self):
-        return self.cached_developer_status['is_addon_developer']
+        return self.cached_developer_status['is_extension_developer']
 
     @property
     def is_artist(self):
         """Is this user a Personas Artist?"""
-        return self.cached_developer_status['is_artist']
+        return self.cached_developer_status['is_theme_developer']
 
-    @write
+    @use_primary_db
     def update_is_public(self):
         pre = self.is_public
         is_public = (
@@ -375,7 +374,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         elif self.has_anonymous_username:
             # L10n: {id} will be something like "13ad6a", just a random number
             # to differentiate this user from other anonymous users.
-            return ugettext('Anonymous user {id}').format(
+            return ugettext('Firefox user {id}').format(
                 id=self._anonymous_username_id())
         else:
             return force_text(self.username)
@@ -424,6 +423,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
                     addon.delete()
                 else:
                     addon.force_disable()
+            else:
+                addon.addonuser_set.filter(user=self).delete()
         user_responsible = core.get_user()
         self._ratings_all.all().delete(user_responsible=user_responsible)
         self.delete_picture()
@@ -482,8 +483,6 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             self.deleted = True
             self.picture_type = None
             self.auth_id = generate_auth_id()
-            self.last_login_attempt = None
-            self.last_login_attempt_ip = ''
             self.last_login_ip = ''
             self.anonymize_username()
             self.save()
@@ -500,23 +499,11 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     def check_password(self, password):
         raise NotImplementedError('cannot check password')
 
-    def log_login_attempt(self, successful):
-        """Log a user's login attempt"""
-        self.last_login_attempt = datetime.now()
-        self.last_login_attempt_ip = core.get_remote_addr()
-
-        if successful:
-            log.debug(u"User (%s) logged in successfully" % self)
-            self.failed_login_attempts = 0
-            self.last_login_ip = core.get_remote_addr()
-        else:
-            log.debug(u"User (%s) failed to log in" % self)
-            if self.failed_login_attempts < 16777216:
-                self.failed_login_attempts += 1
-
-        self.save(update_fields=['last_login_ip', 'last_login_attempt',
-                                 'last_login_attempt_ip',
-                                 'failed_login_attempts'])
+    @staticmethod
+    def user_logged_in(sender, request, user, **kwargs):
+        """Log when a user logs in and records its IP address."""
+        log.debug(u'User (%s) logged in successfully' % user)
+        user.update(last_login_ip=core.get_remote_addr() or '')
 
     def mobile_collection(self):
         return self.special_collection(
@@ -569,7 +556,7 @@ class UserNotification(ModelBase):
 
     @property
     def notification(self):
-        return NOTIFICATIONS_BY_ID[self.notification_id]
+        return NOTIFICATIONS_BY_ID.get(self.notification_id)
 
     def __str__(self):
         return (
@@ -636,3 +623,6 @@ def watch_changes(old_attr=None, new_attr=None, instance=None,
         ids = [addon.pk for addon in instance.get_addons_listed()]
         if ids:
             index_addons.delay(ids)
+
+
+user_logged_in.connect(UserProfile.user_logged_in)

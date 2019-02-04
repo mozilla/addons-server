@@ -7,7 +7,7 @@ from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
 from rest_framework import serializers
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.exceptions import ParseError
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.viewsets import ModelViewSet
@@ -33,6 +33,7 @@ from .models import GroupedRating, Rating, RatingFlag
 from .permissions import CanDeleteRatingPermission
 from .serializers import RatingSerializer, RatingSerializerReply
 from .templatetags.jinja_helpers import user_can_delete_review
+from .utils import maybe_check_with_akismet
 
 
 log = olympia.core.logger.getLogger('z.ratings')
@@ -71,12 +72,12 @@ def review_list(request, addon, review_id=None, user_id=None):
         if not is_admin:
             # But otherwise, filter out everyone elses empty reviews.
             user_filter = (Q(user=request.user.pk)
-                           if request.user.is_authenticated() else Q())
+                           if request.user.is_authenticated else Q())
             qs = qs.filter(~Q(body=None) | user_filter)
 
     ctx['reviews'] = reviews = paginate(request, qs)
     ctx['replies'] = Rating.get_replies(reviews.object_list)
-    if request.user.is_authenticated():
+    if request.user.is_authenticated:
         ctx['review_perms'] = {
             'is_admin': is_admin,
             'is_reviewer': acl.action_allowed(
@@ -191,6 +192,7 @@ def add(request, addon):
             not request.POST.get('detailed')):
         details = _review_details(request, addon, form)
         rating = Rating.objects.create(**details)
+        maybe_check_with_akismet(request, rating, None)
         if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
             rf = RatingFlag(rating=rating,
                             user_id=request.user.id,
@@ -213,6 +215,7 @@ def edit(request, addon, review_id):
     cls = forms.RatingReplyForm if rating.reply_to else forms.RatingForm
     form = cls(request.POST)
     if form.is_valid():
+        pre_save_body = rating.body
         data = _review_details(request, addon, form, create=False)
         for field, value in data.items():
             setattr(rating, field, value)
@@ -220,6 +223,7 @@ def edit(request, addon, review_id):
         # doesn't work with extra fields that are not meant to be saved like
         # 'user_responsible'.
         rating.save()
+        maybe_check_with_akismet(request, rating, pre_save_body)
         return {}
     else:
         return json_view.error(form.errors)
@@ -389,7 +393,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         if not hasattr(self, 'should_access_deleted_ratings'):
             self.should_access_deleted_ratings = (
                 ('with_deleted' in requested or self.action != 'list') and
-                self.request.user.is_authenticated() and
+                self.request.user.is_authenticated and
                 has_addons_edit)
 
         should_access_only_top_level_ratings = (
@@ -415,7 +419,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
 
         # Filter out empty ratings if specified.
         # Should the users own empty ratings be filtered back in?
-        if 'with_yours' in requested and self.request.user.is_authenticated():
+        if 'with_yours' in requested and self.request.user.is_authenticated:
             user_filter = Q(user=self.request.user.pk)
         else:
             user_filter = Q()
@@ -423,18 +427,19 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         if 'without_empty_body' in requested:
             queryset = queryset.filter(~Q(body=None) | user_filter)
 
-        # The serializer needs reply, version (only the "version" field) and
-        # user. We don't need much for version and user, so we can make joins
-        # with select_related(), but for replies additional queries will be
-        # made for translations anyway so we're better off using
-        # prefetch_related() to make a separate query to fetch them all.
-        queryset = queryset.select_related('version__version', 'user')
+        # The serializer needs reply, version and user. We don't need much
+        # for version and user, so we can make joins with select_related(),
+        # but for replies additional queries will be made for translations
+        # anyway so we're better off using prefetch_related() to make a
+        # separate query to fetch them all.
+        queryset = queryset.select_related('version', 'user')
         replies_qs = Rating.unfiltered.select_related('user')
         return queryset.prefetch_related(
             Prefetch('reply', queryset=replies_qs))
 
-    @detail_route(
-        methods=['post'], permission_classes=reply_permission_classes,
+    @action(
+        detail=True, methods=['post'],
+        permission_classes=reply_permission_classes,
         serializer_class=reply_serializer_class,
         throttle_classes=[RatingReplyThrottle])
     def reply(self, *args, **kwargs):
@@ -452,7 +457,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 
-    @detail_route(methods=['post'], throttle_classes=[])
+    @action(detail=True, methods=['post'], throttle_classes=[])
     def flag(self, request, *args, **kwargs):
         # We load the add-on object from the rating to trigger permission
         # checks.

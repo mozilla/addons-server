@@ -31,6 +31,9 @@ $(document).ready(function() {
     // Add-on Compatibility Check
     $('#addon-compat-upload').exists(initAddonCompatCheck, [$('#addon-compat-upload')]);
 
+    // Submission > Source
+    $("#submit-source").exists(initSourceSubmitOutcomes);
+
     // Submission > Describe
     $("#submit-describe").exists(initCatFields);
     $("#submit-describe").exists(initCCLicense);
@@ -1358,9 +1361,9 @@ function initCCLicense() {
         }
     }
     function setLicenseFromWizard() {
-        cc_data = $('input[name^="cc-"]:checked').map(function() {
+        var cc_data = $('input[name^="cc-"]:checked').map(function() {
             return this.dataset.cc;}).get();
-        radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
+        var radio = $('#submit-describe #license-list input[type=radio][data-cc="' + cc_data.join(' ') + '"]');
         if (radio.length) {
             radio.prop('checked', true);
             return radio;
@@ -1389,7 +1392,7 @@ function initCCLicense() {
     function updateLicenseBox($license) {
         if ($license.length) {
             var licenseTxt = $license.data('name');
-            url = $license.next('a');
+            var url = $license.next('a');
             if (url.length) {
                 licenseTxt = format('<a href="{0}">{1}</a>',
                                      url.attr('href'), licenseTxt);
@@ -1399,7 +1402,7 @@ function initCCLicense() {
         }
     }
     function licenseChangeHandler() {
-        $license = $('#submit-describe #license-list input[type=radio][name=license-builtin]:checked');
+        var $license = $('#submit-describe #license-list input[type=radio][name=license-builtin]:checked');
         if ($license.length) {
             setWizardFromLicense($license);
             updateLicenseBox($license);
@@ -1412,7 +1415,7 @@ function initCCLicense() {
         setCopyright($('input[name="cc-attrib"]:checked').data('cc') == 'copyr');
     });
     $('#submit-describe input[name^="cc-"]').change(function() {
-        $license = setLicenseFromWizard();
+        var $license = setLicenseFromWizard();
         updateLicenseBox($license);
     });
     $('#submit-describe #license-list input[type=radio][name=license-builtin]').change(licenseChangeHandler);
@@ -1421,4 +1424,32 @@ function initCCLicense() {
         $('#license-list').toggle();
     }));
     licenseChangeHandler();
+}
+
+function initSourceSubmitOutcomes() {
+    $('#submit-source #id_has_source input').change(function() {
+        $('#option_no_source').hide();
+        $('#option_yes_source').hide();
+        $('#submit-source #id_has_source input').each(function(index, element) {
+            var $radio = $(element);
+            if ($radio.val() == "yes" && $radio.prop('checked')) {
+                $('#option_yes_source').show();
+                $('#id_source').attr('required', true);
+            }
+            if ($radio.val() == "no" && $radio.prop('checked')) {
+                $('#option_no_source').show();
+                $('#id_source').attr('required', null);
+
+            }
+        });
+    }).change();
+    $('#submit-source').submit(function() {
+        // Drop the upload if 'no' is selected.
+        $('#submit-source #id_has_source input').each(function(index, element) {
+            var $radio = $(element);
+            if ($radio.val() == "no" && $radio.prop('checked')) {
+                $('#id_source').val('');
+            }
+        });
+    })
 }

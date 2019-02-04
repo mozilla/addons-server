@@ -437,6 +437,47 @@ class TestReviewLog(ReviewerTest):
         assert pq(response.content)(
             '#log-listing tr td a').eq(1).attr('href') == url
 
+    def test_reviewers_can_only_see_addon_types_they_have_perms_for(self):
+        def check_two_showing():
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            doc = pq(response .content)
+            assert doc('#log-filter button'), 'No filters.'
+            rows = doc('tbody tr')
+            assert rows.filter(':not(.hide)').length == 2
+            assert rows.filter('.hide').eq(0).text() == 'youwin'
+
+        def check_none_showing():
+            response = self.client.get(self.url)
+            assert response.status_code == 200
+            doc = pq(response.content)
+            assert not doc('tbody tr :not(.hide)')
+
+        self.make_approvals()
+        for perm in ['Review', 'ContentReview', 'PostReview']:
+            GroupUser.objects.filter(user=self.user).delete()
+            self.grant_permission(self.user, 'Addons:%s' % perm)
+            # Should have 2 showing.
+            check_two_showing()
+
+        # Should have none showing if the addons are static themes.
+        for addon in Addon.objects.all():
+            addon.update(type=amo.ADDON_STATICTHEME)
+        for perm in ['Review', 'ContentReview', 'PostReview']:
+            GroupUser.objects.filter(user=self.user).delete()
+            self.grant_permission(self.user, 'Addons:%s' % perm)
+            check_none_showing()
+
+        # But they should have 2 showing for someone with the right perms.
+        GroupUser.objects.filter(user=self.user).delete()
+        self.grant_permission(self.user, 'Addons:ThemeReview')
+        check_two_showing()
+
+        # Check if we set them back to extensions theme reviewers can't see 'em
+        for addon in Addon.objects.all():
+            addon.update(type=amo.ADDON_EXTENSION)
+        check_none_showing()
+
 
 class TestDashboard(TestCase):
     def setUp(self):
@@ -480,12 +521,12 @@ class TestDashboard(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         # Auto-approved and Content Review.
         addon1 = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon1)
         AutoApprovalSummary.objects.create(
             version=addon1.current_version, verdict=amo.AUTO_APPROVED)
         under_content_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version,
@@ -493,14 +534,14 @@ class TestDashboard(TestCase):
         AddonReviewerFlags.objects.create(
             addon=under_content_review, needs_admin_content_review=True)
         addon2 = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon2)
         AutoApprovalSummary.objects.create(
             version=addon2.current_version, verdict=amo.AUTO_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=addon2, needs_admin_content_review=True)
         under_code_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version,
@@ -510,10 +551,47 @@ class TestDashboard(TestCase):
         admins_group = Group.objects.create(name='Admins', rules='*:*')
         GroupUser.objects.create(user=self.user, group=admins_group)
 
-        # Addon with expired info request
-        expired = addon_factory(name=u'Expired')
+        # Pending addon with expired info request.
+        addon1 = addon_factory(name=u'Pending Addön 1',
+                               status=amo.STATUS_NOMINATED)
         AddonReviewerFlags.objects.create(
-            addon=expired,
+            addon=addon1,
+            pending_info_request=self.days_ago(2))
+
+        # Public addon with expired info request.
+        addon2 = addon_factory(name=u'Public Addön 2',
+                               status=amo.STATUS_PUBLIC)
+        AddonReviewerFlags.objects.create(
+            addon=addon2,
+            pending_info_request=self.days_ago(42))
+
+        # Deleted addon with expired info request.
+        addon3 = addon_factory(name=u'Deleted Addön 3',
+                               status=amo.STATUS_DELETED)
+        AddonReviewerFlags.objects.create(
+            addon=addon3,
+            pending_info_request=self.days_ago(42))
+
+        # Mozilla-disabled addon with expired info request.
+        addon4 = addon_factory(name=u'Disabled Addön 4',
+                               status=amo.STATUS_DISABLED)
+        AddonReviewerFlags.objects.create(
+            addon=addon4,
+            pending_info_request=self.days_ago(42))
+
+        # Incomplete addon with expired info request.
+        addon5 = addon_factory(name=u'Incomplete Addön 5',
+                               status=amo.STATUS_NULL)
+        AddonReviewerFlags.objects.create(
+            addon=addon5,
+            pending_info_request=self.days_ago(42))
+
+        # Invisible (user-disabled) addon with expired info request.
+        addon6 = addon_factory(name=u'Incomplete Addön 5',
+                               status=amo.STATUS_PUBLIC,
+                               disabled_by_user=True)
+        AddonReviewerFlags.objects.create(
+            addon=addon6,
             pending_info_request=self.days_ago(42))
 
         # Rating
@@ -563,7 +641,7 @@ class TestDashboard(TestCase):
         assert (doc('.dashboard a')[18].text ==
                 'Ratings Awaiting Moderation (1)')
         assert (doc('.dashboard a')[24].text ==
-                'Expired Information Requests (1)')
+                'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
         self.grant_permission(self.user, 'ReviewerTools:View')
@@ -654,7 +732,7 @@ class TestDashboard(TestCase):
         # Create an add-on to test the queue count. It's under admin content
         # review but that does not have an impact.
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -662,7 +740,7 @@ class TestDashboard(TestCase):
             addon=addon, needs_admin_content_review=True)
         # This one however is under admin code review, it's ignored.
         under_code_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_code_review)
         AutoApprovalSummary.objects.create(
             version=under_code_review.current_version,
@@ -691,7 +769,7 @@ class TestDashboard(TestCase):
         # Create an add-on to test the queue count. It's under admin code
         # review but that does not have an impact.
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -699,7 +777,7 @@ class TestDashboard(TestCase):
             addon=addon, needs_admin_code_review=True)
         # This one is under admin *content* review so it's ignored.
         under_content_review = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=under_content_review)
         AutoApprovalSummary.objects.create(
             version=under_content_review.current_version,
@@ -855,13 +933,13 @@ class TestDashboard(TestCase):
         # content approved, so the post review queue should contain 2 add-ons,
         # and the content review queue only 1.
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
         AddonApprovalsCounter.approve_content_for_addon(addon=addon)
 
         addon = addon_factory(
-            version_kw={'is_webextension': True})
+            file_kw={'is_webextension': True})
         AddonApprovalsCounter.reset_for_addon(addon=addon)
         AutoApprovalSummary.objects.create(
             version=addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -2661,6 +2739,8 @@ class TestReview(ReviewBase):
         assert (
             doc('#whiteboard_form').attr('action') ==
             '/en-US/reviewers/whiteboard/listed/public')
+        assert doc('#id_whiteboard-public')
+        assert doc('#id_whiteboard-private')
 
         # Content review.
         self.grant_permission(self.reviewer, 'Addons:ContentReview')
@@ -2698,13 +2778,17 @@ class TestReview(ReviewBase):
             doc('#whiteboard_form').attr('action') ==
             '/en-US/reviewers/whiteboard/listed/%d' % self.addon.pk)
 
-    def test_no_whiteboards_for_static_themes(self):
+    def test_whiteboard_for_static_themes(self):
         self.grant_permission(self.reviewer, 'Addons:ThemeReview')
         self.addon.update(type=amo.ADDON_STATICTHEME)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert not doc('#whiteboard_form')
+        assert (
+            doc('#whiteboard_form').attr('action') ==
+            '/en-US/reviewers/whiteboard/listed/public')
+        assert doc('#id_whiteboard-public')
+        assert not doc('#id_whiteboard-private')
 
     def test_comment(self):
         response = self.client.post(self.url, {'action': 'comment',
@@ -3397,6 +3481,20 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertContains(response, 'View End-User License Agreement')
+        eula_url = reverse(
+            'reviewers.eula', args=(self.addon.slug,))
+        self.assertContains(response, eula_url + '"')
+
+        # The url should pass on the channel param so the backlink works
+        self.make_addon_unlisted(self.addon)
+        self.login_as_admin()
+        unlisted_url = reverse(
+            'reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        eula_url = reverse(
+            'reviewers.eula', args=(self.addon.slug,))
+        self.assertContains(response, eula_url + '?channel=unlisted"')
 
     def test_privacy_policy_displayed(self):
         assert self.addon.privacy_policy is None
@@ -3409,6 +3507,20 @@ class TestReview(ReviewBase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertContains(response, 'View Privacy Policy')
+        privacy_url = reverse(
+            'reviewers.privacy', args=(self.addon.slug,))
+        self.assertContains(response, privacy_url + '"')
+
+        # The url should pass on the channel param so the backlink works
+        self.make_addon_unlisted(self.addon)
+        self.login_as_admin()
+        unlisted_url = reverse(
+            'reviewers.review', args=['unlisted', self.addon.slug])
+        response = self.client.get(unlisted_url)
+        assert response.status_code == 200
+        privacy_url = reverse(
+            'reviewers.privacy', args=(self.addon.slug,))
+        self.assertContains(response, privacy_url + '?channel=unlisted"')
 
     def test_requires_payment_indicator(self):
         assert not self.addon.requires_payment
@@ -4435,6 +4547,14 @@ class TestReviewPending(ReviewBase):
         assert doc('.auto_approval li').eq(0).text() == (
             'Is locked by a reviewer.')
 
+    def test_comments_box_doesnt_have_required_html_attribute(self):
+        """Regression test
+
+        https://github.com/mozilla/addons-server/issues/8907"""
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#id_comments').attr('required') is None
+
 
 class TestReviewerMOTD(ReviewerTest):
 
@@ -4700,6 +4820,83 @@ class TestXssOnAddonName(amo.tests.TestXss):
     def test_reviewers_review_page(self):
         url = reverse('reviewers.review', args=[self.addon.slug])
         self.assertNameAndNoXSS(url)
+
+
+class TestPolicyView(ReviewerTest):
+    def setUp(self):
+        super(TestPolicyView, self).setUp()
+        self.addon = addon_factory()
+        self.eula_url = reverse('reviewers.eula', args=[self.addon.slug])
+        self.privacy_url = reverse('reviewers.privacy', args=[self.addon.slug])
+        self.login_as_reviewer()
+        self.review_url = reverse(
+            'reviewers.review', args=('listed', self.addon.slug,))
+
+    def test_eula(self):
+        assert not bool(self.addon.eula)
+        response = self.client.get(self.eula_url)
+        assert response.status_code == 404
+
+        self.addon.eula = u'Eulá!'
+        self.addon.save()
+        assert bool(self.addon.eula)
+        response = self.client.get(self.eula_url)
+        assert response.status_code == 200
+        self.assertContains(
+            response,
+            '{addon} :: EULA'.format(addon=self.addon.name))
+        self.assertContains(response, u'End-User License Agreement')
+        self.assertContains(response, u'Eulá!')
+        self.assertContains(response, unicode(self.review_url))
+
+    def test_eula_with_channel(self):
+        unlisted_review_url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug,))
+        self.addon.eula = u'Eulá!'
+        self.addon.save()
+        assert bool(self.addon.eula)
+        response = self.client.get(self.eula_url + '?channel=unlisted')
+        assert response.status_code == 403  # Because unlisted
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'ReviewerTools:View')  # so get the view permissions
+        response = self.client.get(self.eula_url + '?channel=unlisted')
+        assert response.status_code == 200
+        self.assertContains(response, u'Eulá!')
+        self.assertContains(response, unicode(unlisted_review_url))
+
+    def test_privacy(self):
+        assert not bool(self.addon.privacy_policy)
+        response = self.client.get(self.privacy_url)
+        assert response.status_code == 404
+
+        self.addon.privacy_policy = u'Prívacy Pólicy?'
+        self.addon.save()
+        assert bool(self.addon.privacy_policy)
+        response = self.client.get(self.privacy_url)
+        assert response.status_code == 200
+        self.assertContains(
+            response,
+            '{addon} :: Privacy Policy'.format(addon=self.addon.name))
+        self.assertContains(response, 'Privacy Policy')
+        self.assertContains(response, u'Prívacy Pólicy?')
+        self.assertContains(response, unicode(self.review_url))
+
+    def test_privacy_with_channel(self):
+        unlisted_review_url = reverse(
+            'reviewers.review', args=('unlisted', self.addon.slug,))
+        self.addon.privacy_policy = u'Prívacy Pólicy?'
+        self.addon.save()
+        assert bool(self.addon.privacy_policy)
+        response = self.client.get(self.privacy_url + '?channel=unlisted')
+        assert response.status_code == 403  # Because unlisted
+        self.grant_permission(
+            UserProfile.objects.get(email='reviewer@mozilla.com'),
+            'ReviewerTools:View')  # so get the view permissions
+        response = self.client.get(self.privacy_url + '?channel=unlisted')
+        assert response.status_code == 200
+        self.assertContains(response, u'Prívacy Pólicy?')
+        self.assertContains(response, unicode(unlisted_review_url))
 
 
 class TestAddonReviewerViewSet(TestCase):

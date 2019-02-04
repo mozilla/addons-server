@@ -3,7 +3,7 @@ from datetime import datetime
 import olympia.core.logger
 
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.users.models import UserProfile
 
 
@@ -11,7 +11,7 @@ log = olympia.core.logger.getLogger('z.accounts')
 
 
 @task
-@write
+@use_primary_db
 def primary_email_change_event(email, uid, timestamp):
     """Process the primaryEmailChangedEvent."""
     try:

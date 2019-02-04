@@ -7,7 +7,7 @@ from urlparse import urljoin
 
 from django.conf import settings
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.core.urlresolvers import NoReverseMatch
+from django.urls import NoReverseMatch
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 from django.utils import translation

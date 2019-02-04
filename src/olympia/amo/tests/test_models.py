@@ -1,14 +1,16 @@
+from datetime import datetime
+
 import pytest
+from mock import Mock
 
 from django.core.files.storage import default_storage as storage
-
-from mock import Mock
 
 from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo import models as amo_models
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
+from olympia.zadmin.models import SiteEvent
 
 
 pytestmark = pytest.mark.django_db
@@ -27,12 +29,12 @@ class ManualOrderTest(TestCase):
         assert semi_arbitrary_order == [addon.id for addon in addons]
 
 
-def test_use_master():
+def test_use_primary_db():
     local = amo_models.multidb.pinning._locals
     assert not getattr(local, 'pinned', False)
-    with amo_models.use_master():
+    with amo_models.use_primary_db():
         assert local.pinned
-        with amo_models.use_master():
+        with amo_models.use_primary_db():
             assert local.pinned
         assert local.pinned
     assert not local.pinned
@@ -115,11 +117,17 @@ class TestModelBase(TestCase):
         assert fn.called
         # No exception = pass
 
-    def test_safer_get_or_create(self):
+    def test_get_or_create_read_committed(self):
+        """Test get_or_create behavior.
+
+        This test originally tested our own `safer_get_or_create` method
+        but since we switched to using 'read committed' isolation level
+        Djangos builtin `get_or_create` works perfectly for us now.
+        """
         data = {'guid': '123', 'type': amo.ADDON_EXTENSION}
-        a, c = Addon.objects.safer_get_or_create(**data)
+        a, c = Addon.objects.get_or_create(**data)
         assert c
-        b, c = Addon.objects.safer_get_or_create(**data)
+        b, c = Addon.objects.get_or_create(**data)
         assert not c
         assert a == b
 
@@ -185,3 +193,33 @@ class BasePreviewMixin(object):
     def test_delete_original(self):
         preview = self.get_object()
         self.check_delete(preview, preview.original_path)
+
+
+class BaseQuerysetTestCase(TestCase):
+    def test_queryset_transform(self):
+        # We test with the SiteEvent model because it's a simple model
+        # with no translated fields, no caching or other fancy features.
+        SiteEvent.objects.create(start=datetime.now(), description='Zero')
+        first = SiteEvent.objects.create(start=datetime.now(),
+                                         description='First')
+        second = SiteEvent.objects.create(start=datetime.now(),
+                                          description='Second')
+        SiteEvent.objects.create(start=datetime.now(), description='Third')
+        SiteEvent.objects.create(start=datetime.now(), description='')
+
+        seen_by_first_transform = []
+        seen_by_second_transform = []
+        with self.assertNumQueries(0):
+            # No database hit yet, everything is still lazy.
+            qs = amo_models.BaseQuerySet(SiteEvent)
+            qs = qs.exclude(description='').order_by('id')[1:3]
+            qs = qs.transform(
+                lambda items: seen_by_first_transform.extend(list(items)))
+            qs = qs.transform(
+                lambda items: seen_by_second_transform.extend(
+                    list(reversed(items))))
+        with self.assertNumQueries(1):
+            assert list(qs) == [first, second]
+        # Check that each transform function was hit correctly, once.
+        assert seen_by_first_transform == [first, second]
+        assert seen_by_second_transform == [second, first]

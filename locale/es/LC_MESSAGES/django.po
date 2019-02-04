@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-04-17 17:34+0000\n"
-"Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-12 21:57+0000\n"
+"Last-Translator: jlG <jlg.l10n.es@gmail.com>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
@@ -79,6 +79,9 @@ msgstr "Nota de revisión"
 
 msgid "Only latest versions of addons can have notes added."
 msgstr "Sólo se pueden añadir notas a las últimas versiones de los complementos."
+
+msgid "Status"
+msgstr "Estado"
 
 msgid "- Add-on not on AMO -"
 msgstr "- Complemento no disponible en AMO -"
@@ -568,8 +571,8 @@ msgstr ""
 "Algunos complementos piden permiso para realizar determinadas funciones (por ejemplo, un complemento de gestión de pestañas pedirá permiso para acceder al sistema de pestañas de tu navegador)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
 "Como tú tienes el control de tu Firefox, la decisión de autorizar o denegar estas peticiones es tuya. Aceptar estos permisos no implica comprometer el rendimiento o seguridad de tu navegador, pero "
 "en algunos casos raros puede implicar riesgos."
@@ -712,14 +715,36 @@ msgstr "Error al comprobar los datos, inténtelo de nuevo."
 msgid "This must be a valid hex color code, such as #000000."
 msgstr "Esto debe ser un código de color hexadecimal válido, tal como #000000."
 
+msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
+msgstr "Algunas características están temporalmente deshabilitadas mientras realizamos tareas de mantenimiento en la web. Volveremos a tener plena capacidad muy pronto."
+
 msgid "Not allowed"
 msgstr "No está permitido"
 
-msgid "<h1>Oops! Not allowed.</h1> <p>You tried to do something that you weren't allowed to.</p>"
-msgstr "<h1>¡Ups! No está permitido.</h1> <p>Has intentado hacer algo para lo que no tienes permiso.</p>"
+msgid "Oops! Not allowed."
+msgstr "¡Uy! No está permitido"
 
-msgid "<p>Try going back to the previous page, refreshing and then trying again.</p>"
-msgstr "<p>Prueba a volver a la página anterior, refrescar y luego inténtalo de nuevo.</p>"
+msgid "You tried to do something that you weren't allowed to."
+msgstr "Has intentado hacer algo para lo que no tienes permiso."
+
+msgid ""
+"You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
+"browser is not being hijacked by third parties."
+msgstr ""
+"Estás viendo este mensaje porque este sitio HTTPS requiere que tu navegador envíe un «encabezado del sitio de referencia», pero no se ha enviado ninguno. Este encabezado es necesario por razones de "
+"seguridad, para asegurarte de que tu navegador no está siendo secuestrado por terceros."
+
+msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
+msgstr ""
+"Si has configurado tu navegador para desactivar los encabezados de «del sitio de referencia», vuelve a habilitarlas, al menos para este sitio, o para conexiones HTTPS, o para peticiones con el "
+"«mismo origen»."
+
+msgid ""
+"You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
+"parties."
+msgstr ""
+"Estás viendo este mensaje porque este sitio requiere una cookie CSRF al enviar formularios. Esta cookie es necesaria por razones de seguridad, para asegurarte de que tu navegador no está siendo "
+"secuestrado por terceros."
 
 msgid "Page Not Found"
 msgstr "Página no encontrada"
@@ -754,13 +779,13 @@ msgstr "No encontrado"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please <a href=\"https://github.com/mozilla/"
+"addons-server/issues/new/\">file an issue</a>. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the "
 "popular pages on our website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may "
 "go to the <a href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Lo lamentamos, pero no encontramos lo que estás buscando.</h1> <p>La página o archivo que has solicitado no se encuentra en nuestro sitio. Es posible que hayas hecho clic en un enlace obsoleto o"
-" hayas escrito mal la dirección.</p> <ul> <li>Si escribiste la dirección, vuelve a comprobarla.</li> <li> Si seguiste un enlace desde otra página, <a href=\"https://github.com/mozilla/addons-"
+"<h1>Lo lamentamos, pero no encontramos lo que estás buscando.</h1> <p>La página o archivo que has solicitado no se encuentra en nuestro sitio. Es posible que hayas hecho clic en un enlace obsoleto "
+"o hayas escrito mal la dirección.</p> <ul> <li>Si escribiste la dirección, vuelve a comprobarla.</li> <li> Si seguiste un enlace desde otra página, <a href=\"https://github.com/mozilla/addons-"
 "server/issues/new/\">denuncia el problema</a>. Cuéntanos desde dónde llegaste y qué estabas buscando, y haremos todo lo posible para solucionarlo.</li> </ul> <p>O también puedes ir directamente a "
 "alguna de las páginas más populares de nuestra web.</p> <ul> <li>¿Te interesa una <a href=\"%(rec)s\">lista de complementos destacados</a>?</li> <li>¿Quieres <a href=\"%(search)s\">buscar "
 "complementos</a>? Puedes visitar la <a href=\"%(search)s\">página de búsqueda</a> o simplemente usar el campo de búsqueda de la parte superior. </li> <li> Si quieres empezar de cero, ve a la <a "
@@ -809,8 +834,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Por favor, introduce <strong>todas las palabras</strong> que aparecen abajo, <strong>separadas por un espacio si hace falta</strong>. </p> <p> Si es ilegible, puedes <a href=\"#\" "
-"id=\"recaptcha_different\">probar con otras palabras</a> o <a href=\"#\" id=\"recaptcha_audio\">probar otro tipo de reto</a>. </p>"
+"<p> Por favor, introduce <strong>todas las palabras</strong> que aparecen abajo, <strong>separadas por un espacio si hace falta</strong>. </p> <p> Si es ilegible, puedes <a href=\"#\" id="
+"\"recaptcha_different\">probar con otras palabras</a> o <a href=\"#\" id=\"recaptcha_audio\">probar otro tipo de reto</a>. </p>"
 
 msgid "Top Rated"
 msgstr "Mejor puntuados"
@@ -837,9 +862,6 @@ msgstr "Colecciones"
 
 msgid "Collections I've Made"
 msgstr "Colecciones mías"
-
-msgid "Collections I'm Following"
-msgstr "Colecciones que sigo"
 
 msgid "My Favorite Add-ons"
 msgstr "Mis complementos favoritos"
@@ -907,6 +929,9 @@ msgstr "La firma ha expirado."
 msgid "Error decoding signature."
 msgstr "Error al descodificar la firma."
 
+msgid "Wrong type for one or more keys in payload"
+msgstr ""
+
 msgid "Invalid JWT Token."
 msgstr "Token JWT no válido."
 
@@ -915,6 +940,9 @@ msgstr "El campo debe incluir al menos {num} caracteres."
 
 msgid "The language code {lang_code} is invalid."
 msgstr "El código del lenguaje {lang_code} no es válido."
+
+msgid "You must provide an object of {lang-code:value}."
+msgstr "Tienes que proporcionar un objeto de {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -936,7 +964,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr "Por favor, ten en cuenta que WebExtensions no acepta el símbolo \"*\" en la versión %(amo_version_link_open)s strict_min_version %(amo_version_link_open)s."
+msgstr "Por favor, ten en cuenta que WebExtensions no acepta el símbolo \"*\" en la versión %(amo_version_link_open)strict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -946,11 +974,11 @@ msgstr "Versiones"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Aunque la aplicación admitida por tu complemento no requiera un archivo de manifiesto, tienes que incluir uno con las propiedades requeridas, tal y como se especifica %(amo_manifests_mdn_link_open)s"
-" aquí %(amo_manifests_mdn_link_close)s."
+"Aunque la aplicación admitida por tu complemento no requiera un archivo de manifiesto, tienes que incluir uno con las propiedades requeridas, tal y como se especifica "
+"%(amo_manifests_mdn_link_open)s aquí %(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
 msgstr "Sólo yo puedo ver esta colección."
@@ -1057,28 +1085,11 @@ msgstr "(opcional)"
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
 msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancelar</a>"
 
-#. Link to remove a collection vote
-msgid "To rate collections, you must have an add-ons account."
-msgstr "Para puntuar las colecciones, debes tener una cuenta en Mozilla Add-ons."
-
-msgid "Create an Add-ons Account"
-msgstr "Crea una cuenta en Add-ons"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "o <a href=\"%(login)s\">entra en tu cuenta actual</a>"
-
 msgid "{0} :: Collections"
 msgstr "{0} :: Colecciones"
 
 msgid "private"
 msgstr "privado"
-
-#, python-format
-msgid "<span>%(num)s</span> follower"
-msgid_plural "<span>%(num)s</span> followers"
-msgstr[0] "<span>%(num)s</span> seguidor"
-msgstr[1] "<span>%(num)s</span> seguidores"
 
 msgid "About this Collection"
 msgstr "Acerca de esta colección"
@@ -1132,12 +1143,12 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Los complementos que marcas como favoritos con el botón <b>Agregar a favoritos</b> aparecen a continuación. Esta colección se encuentra actualmente en modo <b>público</b>, lo que significa que todos"
-" la pueden ver. Si deseas ocultarlos de la vista pública, haz clic sobre el botón de abajo para hacerla privada."
+"Los complementos que marcas como favoritos con el botón <b>Agregar a favoritos</b> aparecen a continuación. Esta colección se encuentra actualmente en modo <b>público</b>, lo que significa que "
+"todos la pueden ver. Si deseas ocultarlos de la vista pública, haz clic sobre el botón de abajo para hacerla privada."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Los complementos que marcas como favoritos con la opción <b>Agregar a favoritos</b> aparecen más abajo. Esta colección es <b>privada</b>, por lo que solo tú puedes verla.  Si quieres que todo el "
 "mundo vea tus favoritos, haz clic en el botón de abajo para hacerlos públicos."
@@ -1151,48 +1162,8 @@ msgid_plural "<span>%(addons)s</span> add-ons"
 msgstr[0] "<span>%(addons)s</span> complemento"
 msgstr[1] "<span>%(addons)s</span> complementos"
 
-#, python-format
-msgid "<span>%(followers)s</span> follower"
-msgid_plural "<span>%(followers)s</span> followers"
-msgstr[0] "<span>%(followers)s</span> seguidor"
-msgstr[1] "<span>%(followers)s</span> seguidores"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s weekly follower"
-msgid_plural "%(num)s weekly followers"
-msgstr[0] "%(num)s seguidor semanal"
-msgstr[1] "%(num)s seguidores semanales"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#, python-format
-msgid "%(num)s monthly follower"
-msgid_plural "%(num)s monthly followers"
-msgstr[0] "%(num)s seguidor al mes"
-msgstr[1] "%(num)s seguidores al mes"
-
-#. People "follow" collections to get notified of updates.                    Like
-#. Twitter followers.
-#. People "follow" collections to get notified of updates.
-#. Like Twitter followers.
-#, python-format
-msgid "%(num)s follower"
-msgid_plural "%(num)s followers"
-msgstr[0] "%(num)s seguidor"
-msgstr[1] "%(num)s seguidores"
-
 msgid "by {0}"
 msgstr "de {0}"
-
-msgid "Stop Following"
-msgstr "Dejar de seguir"
-
-msgid "Follow this Collection"
-msgstr "Seguir esta colección"
 
 msgid "Edit this Collection"
 msgstr "Editar esta colección"
@@ -1242,9 +1213,6 @@ msgstr ""
 msgid "by %(author_link)s"
 msgstr "de %(author_link)s"
 
-msgid "Following"
-msgstr "Siguiendo"
-
 msgid "Create a Collection"
 msgstr "Crear una colección"
 
@@ -1292,18 +1260,6 @@ msgstr "Agregar un comentario"
 
 msgid "Remove this add-on from the collection"
 msgstr "Eliminar este complemento de la colección"
-
-msgid "Add a positive vote for this collection"
-msgstr "Sumar un voto positivo a esta colección"
-
-msgid "Add a negative vote for this collection"
-msgstr "Sumar un voto negativo a esta colección"
-
-msgid "Remove my vote for this collection"
-msgstr "Eliminar mi voto de esta colección"
-
-msgid "Log in to vote for this collection"
-msgstr "Conéctate para votar por esta colección"
 
 msgid "Favorite"
 msgstr "Favorito"
@@ -1392,11 +1348,11 @@ msgstr "Descargar paquete de idioma"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
-"Si instalas un diccionario, se agregará una nueva opción de idioma a tu corrector ortográfico %(app_name)s y comprobará tu ortografía cuando rellenes formularios Web. Los complementos de paquetes de"
-" idioma cambian el idioma de la aplicación al completo."
+"Si instalas un diccionario, se agregará una nueva opción de idioma a tu corrector ortográfico %(app_name)s y comprobará tu ortografía cuando rellenes formularios Web. Los complementos de paquetes "
+"de idioma cambian el idioma de la aplicación al completo."
 
 msgid "Available in your locale"
 msgstr "Disponible en tu idioma"
@@ -1568,8 +1524,8 @@ msgstr "Informe de compatibilidad de complementos"
 
 #, python-format
 msgid ""
-"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need help"
-" supporting an upcoming Firefox version. </p>"
+"<p> Reports submitted to us through the <a href=\"%(url_)s\">Add-on Compatibility Reporter</a> are collected here for developers to view. These reports help us determine which add-ons will need "
+"help supporting an upcoming Firefox version. </p>"
 msgstr ""
 "<p> Los informes que recibimos a través del <a href=\"%(url_)s\">Informador de compatibilidad de complementos</a> son recopilados para que los desarrolladores los revisen. Estos informes nos ayudan "
 "a determinar qué complementos necesitarán ayuda para funcionar en las siguientes versiones de Firefox. </p>"
@@ -1835,6 +1791,12 @@ msgstr "Se actualizó el {rating} para {addon}."
 
 msgid "{addon} reviewed."
 msgstr "{addon} revisado."
+
+msgid "User {user} banned."
+msgstr "Usuario {user} expulsado."
+
+msgid "User {user} picture deleted."
+msgstr "Imagen de {user} eliminada."
 
 msgid "User {0.name} added to {group}."
 msgstr "Usuario/a {0.name} agregado/a a {group}."
@@ -2308,17 +2270,29 @@ msgstr "Tema estático"
 msgid "Persona"
 msgstr "Persona"
 
+msgid "No Reputation"
+msgstr "Sin reputación"
+
+msgid "Good (1)"
+msgstr "Bueno (1)"
+
+msgid "Very Good (2)"
+msgstr "Muy bueno (2)"
+
+msgid "Excellent (3)"
+msgstr "Excelente (3)"
+
 msgid "Manual Reviewer Points"
 msgstr "Puntos para revisores manuales"
 
-msgid "New Add-on Review"
-msgstr "Nueva valoración del complemento"
+msgid "New Legacy Add-on Review"
+msgstr "Nueva revisión de complemento heredado"
 
 msgid "Preliminary Add-on Review"
 msgstr "Valoración preliminar del complemento"
 
-msgid "Updated Add-on Review"
-msgstr "Valoración actualizada del complemento"
+msgid "Updated Legacy Add-on Review"
+msgstr "Revisión actualizada del complemento heredado"
 
 msgid "New Dictionary Review"
 msgstr "Nueva valoración del diccionario"
@@ -2371,17 +2345,18 @@ msgstr "Se restableció la moderación de la revisión de complemento"
 msgid "Add-on Content Review"
 msgstr "Revisión del contenido del complemento"
 
-msgid "Post-Approval Add-on Review (Highest Risk)"
+#, fuzzy
+msgid "Add-on Review (Highest Risk)"
 msgstr "Revisión del complemento posterior a la aprobación (riesgo alto)"
 
-msgid "Post-Approval Add-on Review (High Risk)"
-msgstr "Revisión del complemento posterior a la aprobación (riesgo alto)"
+msgid "Add-on Review (High Risk)"
+msgstr "Revisión del complemento (riesgo alto)"
 
-msgid "Post-Approval Add-on Review (Medium Risk)"
-msgstr "Revisión del complemento posterior a la aprobación (riesgo medio)"
+msgid "Add-on Review (Medium Risk)"
+msgstr "Revisión del complemento (riesgo medio)"
 
-msgid "Post-Approval Add-on Review (Low Risk)"
-msgstr "Revisión del complemento posterior a la aprobación (riesgo bajo)"
+msgid "Add-on Review (Low Risk)"
+msgstr "Revisión del complemento (riesgo bajo)"
 
 msgid "Level 1"
 msgstr "Nivel 1"
@@ -2516,9 +2491,6 @@ msgstr "Hay un error con tu envío. Vuelve a intentarlo."
 msgid "Override failed validation"
 msgstr "Ignorar error en la validación"
 
-msgid "Submit my add-on for manual review."
-msgstr "Enviar mi complemento para revisión manual."
-
 msgid "You cannot upload any more files for this version."
 msgstr "No puedes subir más archivos para esta versión."
 
@@ -2534,14 +2506,18 @@ msgstr "La versión {version} ya existe."
 msgid "Continue with existing upload instead?"
 msgstr "¿Continuar con la carga ya existente?"
 
+#, fuzzy
+msgid "You have not uploaded a source file."
+msgstr "No se ha podido interpretar el archivo subido."
+
+msgid "Source file uploaded but you indicated no source was needed."
+msgstr ""
+
 msgid "The platform All cannot be combined with specific platforms."
 msgstr "La plataforma Todas no puede combinarse con plataformas específicas."
 
 msgid "A platform can only be chosen once."
 msgstr "Una plataforma sólo puede ser elegida una vez."
-
-msgid "Reputation"
-msgstr "Valoración"
 
 msgid "Application"
 msgstr "Aplicación"
@@ -2557,10 +2533,11 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 "En esta página. <span class=\"helptext\">Tras pasar una revisión de código, millones de usuarios podrán ver tu comentario en esta página y en el Administrador de complementos de Firefox. La propia "
-"página gestionará las actualizaciones automáticas. El complemento también se tendrá en cuenta para promociones y concursos de Mozilla y los archivos revisados se podrán distribuir de forma "
-"propia.</span>"
+"página gestionará las actualizaciones automáticas. El complemento también se tendrá en cuenta para promociones y concursos de Mozilla y los archivos revisados se podrán distribuir de forma propia.</"
+"span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Por ti mismo. <span class=\"helptext\">Esta versión se firmará para distribución propia. Las actualizaciones se gestionan de forma manual a través de una updateURL o de actualizaciones externas de "
 "la aplicación.</span>"
@@ -2570,6 +2547,9 @@ msgstr "Las categorías no pueden cambiarse mientras tu complemento figura como 
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr "Ahora, los complementos de Thunderbird y SeaMonkey te aparecerán en addons.thunderbird.net. Puedes utilizar la misma cuenta para actualizarlos en el nuebo sitio web."
+
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr ""
 
 msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
 msgstr "A partir de la versión 53 de Firefox, los nuevos complemento de este sitio solo pueden ser WebExtensions."
@@ -2710,8 +2690,8 @@ msgid "API key revoked"
 msgstr "Clave API revocada"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Antes de comenzar, lee y acepta nuestro Acuerdo de distribución de complementos de Firefox y nuestras Reglas y políticas de revisión. En el acuerdo también encontrarás un enlace a nuestro Aviso de "
 "privacidad, donde se explica cómo administraremos tu información."
@@ -2848,7 +2828,9 @@ msgstr ""
 "versión nueva del mismo."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualizar compatibilidad</a> <a href=\"%(version_url)s\" class=\"button\">Subir nueva versión</a> o <a href=\"#\" "
 "class=\"close\">Ignorar</a>"
@@ -2971,7 +2953,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Las categorías son la forma principal de buscar complementos. Elige la que mejor se adapte a la funcionalidad de tu complemento para obtener mejores resultados."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Las categorías no pueden ser cambiadas mientras tu complemento aparece destacado para esta aplicación. Escribe a <a href=\"mailto:%(email)s\">%(email)s</a> si hay una razón por la que necesites "
 "modificar tus categorías."
@@ -3052,8 +3035,8 @@ msgid "Email"
 msgstr "Correo electrónico"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Si quieres mostrar el correo para resolver\n"
 "                          preguntas, introdúcelo aquí. Si tienes distintos correos\n"
@@ -3416,6 +3399,9 @@ msgstr "Envía una nueva versión"
 msgid "Describe Add-on"
 msgstr "Describir complemento"
 
+msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
+msgstr "El nombre en la lista de este sitio puede ser distinto al nombre que aparece en el complemento en Firefox"
+
 msgid "Add-on URL:"
 msgstr "URL del complemento:"
 
@@ -3457,6 +3443,15 @@ msgstr "Notas para revisores:"
 
 msgid "Is there anything our reviewers should bear in mind when reviewing this add-on?"
 msgstr "¿Hay algo que tengan que tener en cuenta los revisores al verificar este complemento?"
+
+msgid "Remember"
+msgstr "Recuerda"
+
+#, python-format
+msgid ""
+"If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
+"%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
+msgstr ""
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Solo tú y nuestros revisores podréis ver estas notas."
@@ -3548,6 +3543,75 @@ msgstr "Subir archivo"
 msgid "Go to My Submissions"
 msgstr "Ir a Mis envíos"
 
+#, fuzzy
+msgid "Source Code Upload"
+msgstr "Se ha actualizado el código fuente"
+
+msgid "Do You Need to Submit Source Code?"
+msgstr ""
+
+msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
+msgstr ""
+
+#, python-format
+msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
+msgstr ""
+
+msgid "Do you use any of the following?"
+msgstr "¿Usas alguno de los siguientes?"
+
+msgid "Code minifiers or obfuscators"
+msgstr ""
+
+msgid "Tools that combine multiple files into a single file, such as <span class=\"tech-emphasis\">webpack</span>"
+msgstr ""
+
+msgid "Web template engines, both for HTML and CSS"
+msgstr ""
+
+msgid "Any other tool that takes code or files, applies processing, and generates code or file(s) to include in the add-on"
+msgstr ""
+
+msgid "You do not need to submit Source Code, and you’re ready for the next step."
+msgstr ""
+
+msgid "Your Submission Requires Source Code."
+msgstr ""
+
+#, python-format
+msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
+msgstr ""
+
+msgid "Step-by-step build instructions to create an exact copy of the add-on code."
+msgstr ""
+
+msgid "A build script that executes all necessary technical steps."
+msgstr ""
+
+msgid "Operating system and build environment requirements."
+msgstr ""
+
+msgid ""
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
+msgstr ""
+
+msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
+msgstr ""
+
+msgid "How to Submit:"
+msgstr "Cómo enviar:"
+
+msgid "Include instructions in a README file in the source code,"
+msgstr "Incluye las instrucciones en un archivo README en el código fuente,"
+
+msgid "or in reviewer notes on the next page (if applicable)."
+msgstr ""
+
+#, fuzzy
+msgid "Upload source code:"
+msgstr "Código fuente"
+
 msgid "Add-on Distribution Agreement"
 msgstr "Acuerdo de distribución de complementos"
 
@@ -3598,8 +3662,11 @@ msgstr "Nombre del tema"
 msgid "Select a header image for your theme"
 msgstr "Selecciona una imagen de encabezado para tu tema"
 
-msgid "Image height should be 200 pixels"
-msgstr "El tamaño de la imagen debería ser de 200 píxeles"
+msgid "Recommended height: 200 pixels"
+msgstr "Altura recomendada: 200 píxeles"
+
+msgid "6.9MB max"
+msgstr ""
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG o GIF (sin animación)"
@@ -3682,8 +3749,8 @@ msgstr "Secreto JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Para hacer solicitudes API, envía un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> en forma de título para la autorización. Tendrás que generar un JWT cada vez que envíes una solicitud, como se "
 "explica en la <a href=\"%(docs_url)s\">documentation API</a>."
@@ -3949,18 +4016,19 @@ msgstr "Administrar tu complemento"
 msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Inicia sesión para editar y actualizar tu complemento"
 
-msgid "Help us improve the developer experience"
-msgstr "Ayúdanos a mejorar la experiencia del desarrollador"
+msgid "Resources for a successful launch"
+msgstr "Recursos para un lanzamiento con éxito"
 
+#, python-format
 msgid ""
-"We’re interested in your feedback about the extension development experience! Take our short survey to let us know what kinds of documentation, APIs, and tools would be most useful to your "
-"development work."
+"You've built your extension and are ready to publish it. What comes next? Check out our tips for creating an appealing listing page, getting your extension featured on %(amo_link_open)saddons."
+"mozilla.org%(amo_link_close)s, finding answers to development questions, and staying up-to-date with news and events relevant to extension developers."
 msgstr ""
-"¡Nos interesa conocer tu experiencia con el desarrollo de extensiones! Completa nuestra breve encuesta para hacernos saber qué tipos de documentación, APIs y herramientas te resultan más útiles en "
-"tu trabajo de programación."
+"Has construido tu extensión y estás listo para publicarla. ¿Qué viene después? Echa un vistazo a nuestros consejos para crear una página de listado atractiva, conseguir que tu extensión aparezca en "
+"%(amo_link_open)saddons.mozilla.org%(amo_link_close)s, encontrar respuestas a preguntas de desarrollo, y estar al día con noticias y eventos relevantes para los desarrolladores de extensiones."
 
-msgid "Take Survey"
-msgstr "Rellenar encuesta"
+msgid "View Resources for Publishers"
+msgstr "Ver recursos para publicistas"
 
 msgid "Welcome Back"
 msgstr "Bienvenido/a"
@@ -3970,6 +4038,13 @@ msgstr "Crea una lista interesante y ayudarás a los usuarios a descubrir tu ext
 
 msgid "Learn How"
 msgstr "Descubre cómo"
+
+#, python-format
+msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
+msgstr "¿Quieres que se promocione tu extensión en %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Encontrarás todo lo que necesitas saber en nuestras políticas de promoción de extensiones."
+
+msgid "Learn More"
+msgstr "Más información"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -4011,8 +4086,8 @@ msgstr "Personalizar Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Los complementos permiten a millones de usuarios de Firefox mejorar su experiencia de navegación. Si sabes de %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s y "
 "%(css_link_open)sCSS%(link_close)s, ya tienes todo lo necesario para crear un gran complemento."
@@ -4026,8 +4101,8 @@ msgstr "Portar una extensión de Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
-"Firefox admite las APIs de WebExtension, que en muchos casos son compatibles con la extensión APIs admitida por Google, Chrome y Opera. Por tanto, las extensiones funcionarán en Firefox con pequeños"
-" cambios."
+"Firefox admite las APIs de WebExtension, que en muchos casos son compatibles con la extensión APIs admitida por Google, Chrome y Opera. Por tanto, las extensiones funcionarán en Firefox con "
+"pequeños cambios."
 
 msgid "Publish Your Add-on"
 msgstr "Publica tu complemento"
@@ -4052,6 +4127,13 @@ msgstr "Prueba de compatibilidad"
 
 msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Comprueba si tu extensión es compatible con Firefox."
+
+#, fuzzy
+msgid "Live Testing"
+msgstr "Ver lista"
+
+msgid "Temporarily install your extension in Firefox for live testing and debugging."
+msgstr ""
 
 msgid "Transfer ownership"
 msgstr "Cambiar la titularidad"
@@ -4170,8 +4252,8 @@ msgstr "Dar un nombre a tu tema nuevo."
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
+"Communications and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "Estoy de acuerdo con el %(agreement_link_open)sAcuerdo de distribución de complementos de Firefox%(link_close)s y con que se administre mi información tal y como se describe en el "
 "%(privacy_notice_link_open)sAviso de privacidad sobre sitios web, mensajes y cookies%(link_close)s."
@@ -4219,8 +4301,8 @@ msgstr "PNG o JPG"
 msgid "Manage Version {0}"
 msgstr "Administrar versión {0}"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "Administrar {0}"
 
@@ -4328,9 +4410,6 @@ msgstr "Versiones listadas"
 msgid "Currently on AMO"
 msgstr "Actualmente en AMO"
 
-msgid "Status"
-msgstr "Estado"
-
 # Header for a column in a table
 msgid "Validation"
 msgstr "Validación"
@@ -4407,53 +4486,1326 @@ msgid_plural "{0} warnings"
 msgstr[0] "{0} aviso"
 msgstr[1] "{0} avisos"
 
+#. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Bloquea rastreadores que te espían furtivamente {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Detén los ratreadores sigilosos {start_sub_heading} con {addon_name}{end_sub_heading}"
 
-msgid " Block invisible trackers and spying ads that follow you around the web."
-msgstr " Bloquea rastreadores invisibles y anuncios que te espían y te siguen por toda la web."
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers and spying ads that follow you around the web."
+msgstr "Bloquea los rastreadores invisibles y los anuncios de espionaje que te siguen por la web."
 
-msgid "Customize new tab pages {start_sub_heading}with {addon_name} {end_sub_heading}"
-msgstr "Personaliza las páginas Nueva pestaña {start_sub_heading}con {addon_name}{end_sub_heading}"
+#. editorial content for the discovery pane.
+msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personaliza las pestañas nuevas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
+#. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Disfruta de una nueva página con fondos personalizables, información meteorólogica local y mucho más."
+msgstr "Disfruta de una bonita página nueva con fondos personalizables, la información meteorológica local y mucho más."
 
+#. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Traduce {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Traduce fácilmente {start_sub_heading}con {addon_name}{end_sub_heading}"
 
+#. editorial content for the discovery pane.
 msgid "Highlight any text, right-click, and translate instantly."
-msgstr "Resalta cualquier texto, hazle clic con el botón derecho y tradúcelo al instante."
+msgstr "Selecciona cualquier texto, haz clic con el botón derecho y tradúcelo al instante."
 
+#. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Busca imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
 
+#. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
-msgstr "Efectua búsquedas inversas de imágenes en un conjunto de motores de búsqueda."
+msgstr "Realiza búsquedas inversas de imágenes desde una variedad de buscadores."
 
-msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Descarga vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+#. editorial content for the discovery pane.
+msgid "Ad blocking & privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloqueo de los anuncios y protección de la privacidad {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "Works seamlessly with most popular video sites."
-msgstr "Funciona sin interrupciones con la mayoría de páginas de videos."
+#. editorial content for the discovery pane.
+msgid "A simple set-up lets you take control of the ads you see and how you’re tracked on the internet."
+msgstr "Una sencilla configuración te permite controlar los anuncios que ves y cómo se te sigue en Internet."
 
+#. editorial content for the discovery pane.
+msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reinventa las pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
+msgstr "¿Tienes un montón de cuentas abiertas? Ordénalas en una barra lateral."
+
+#. editorial content for the discovery pane.
+msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Detén el rastreo de Facebook {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
+msgstr "Aísla tu identidad de Facebook en un \"contenedor\" separado que dificulte a Facebook el seguimiento de tus movimientos por la web."
+
+#. editorial content for the discovery pane.
+msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Simplifica la búsqueda {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Just highlight text on any web page to search the phrase from an array of engines."
+msgstr "Simplemente selecciona un texto en cualquier página web para buscar la frase en una serie de buscadores."
+
+#. editorial content for the discovery pane.
+msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Actualizaciones instantáneas del pronóstico del tiempo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get instant global weather information right in Firefox."
+msgstr "En Firefox obtendrás la información meteorológica del mundo al instante."
+
+#. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Personaliza pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "Set the page you see every time you open a new tab."
-msgstr "Configura la página que quieres ver cada vez que abres una nueva pestaña."
+#. editorial content for the discovery pane.
+msgid "Choose the page you see every time you open a new tab."
+msgstr "Elige la página que quieres ver cada vez que abras una nueva pestaña."
 
+#. editorial content for the discovery pane.
+msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Búsqueda inversa de imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
+msgstr "¿Has visto una foto interesante en la web y quieres saber más sobre ella? Prueba esta herramienta de búsqueda de imágenes."
+
+#. editorial content for the discovery pane.
+msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Descarga vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
+msgstr "Funciona con YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope y cientos de otros sitios web de vídeos."
+
+#. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Mejora tu juego de emojis {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "Dozens of amazing emojis for every occasion—always just one click away."
-msgstr "Decenas de emojis alucinantes para cada ocasión—a un solo clic de distancia."
+#. editorial content for the discovery pane.
+msgid "Dozens of amazing emojis for every occasion—always just a click away."
+msgstr "Elige entre decenas de sorprendentes emojis para cada ocasión con un solo clic."
 
-msgid "Take screenshots {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Haz capturas de pantalla {start_sub_heading}con {addon_name}{end_sub_heading}"
+#. editorial content for the discovery pane.
+msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gestión de contraseñas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
-msgid "More than just a basic screenshot tool, Awesome Screenshot Plus lets you annotate images with custom text and graphics, plus the ability to store and share your visuals."
-msgstr "Más que una herramienta de capturas de pantalla, Awesome Screeshot Plus te permite personalizar las imágenes con texto y gráficos, además de guardarlas y compartirlas."
+#. editorial content for the discovery pane.
+msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
+msgstr "Simplifica y sincroniza los inicios de sesión de tus distintos sitios web en todos tus dispositivos con una sola contraseña para controlarlos todos."
+
+#. editorial content for the discovery pane.
+msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea publicidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
+msgstr "Un bloqueador de publicidad ligero y eficiente. uBlock Origin ejecuta miles de filtros de contenido sin ocupar demasiada memoria."
+
+#. editorial content for the discovery pane.
+msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mejora tus vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
+msgstr "Disfruta de una serie de funciones nuevas de Youtube, como el modo cine, el bloqueo de publicidad, el control de la reproducción automática y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Encuentra imágenes fácilmente {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight any text and right-click to quickly perform an image search."
+msgstr "Selecciona cualquier texto y haz clic con el botón derecho para realizar rápidamente una búsqueda de imágenes."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Disfruta de los marcadores visuales {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites from a tile layout."
+msgstr "Accede a tus sitios web favoritos a través de iconos dinámicos."
+
+#. editorial content for the discovery pane.
+msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Accede a contenido informativo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically add Britannica facts to your search results."
+msgstr "Añade automáticamente datos de Britannica a tus resultados de búsqueda."
+
+#. editorial content for the discovery pane.
+msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Elimina los anuncios de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block annoying ads and annotations from appearing on YouTube."
+msgstr "Bloquea los molestos anuncios y las anotaciones para que no aparezcan en YouTube."
+
+#. editorial content for the discovery pane.
+msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lee en cualquier lugar {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Send news articles, stories, blog posts, and more to your Kindle."
+msgstr "Envía artículos de noticias, historias, entradas en blogs y mucho más a tu Kindle."
+
+#. editorial content for the discovery pane.
+msgid "Color code your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ordena tus pestañas por colores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Organize your tabs by color grouping them based on URL patterns."
+msgstr "Organiza tus pestañas agrupándolas por colores según los patrones URL."
+
+#. editorial content for the discovery pane.
+msgid "Prevent cryptocurrency mining {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Evita la extracción de criptomonedas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
+msgstr "Impide que los sitios web maliciosos usen la energía de tu computadora para extraer criptomonedas."
+
+#. editorial content for the discovery pane.
+msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Revisión de gramática automática {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get grammar help anywhere you write on the web—social media, email, docs, and more."
+msgstr "Obtén ayuda gramatical dondequiera que escribas en la Web: redes sociales, correo electrónico, documentos y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Conoce la hora en el mundo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Display current worldwide times in Firefox's status bar."
+msgstr "Muestra la hora actual en el mundo en la barra de estado de Firefox."
+
+#. editorial content for the discovery pane.
+msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Traduce con facilidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any webpage—or select the entire page— to translate instantly."
+msgstr "Selecciona un texto en cualquier página web o selecciona toda la página para traducirlo al instante."
+
+#. editorial content for the discovery pane.
+msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Accede a conocimientos académicos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy free access to 10+ million research papers."
+msgstr "Disfruta del acceso gratuito a más de 10 millones de artículos de investigación."
+
+#. editorial content for the discovery pane.
+msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personaliza los gestos de ratón {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
+msgstr "Descubre una nueva forma de navegar con más de 50 gestos de ratón."
+
+#. editorial content for the discovery pane.
+msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Optimiza tus vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Darken the page around video players for a focused viewing experience."
+msgstr "Oscurece la página alrededor de los reproductores de vídeo para disfrutar de una experiencia de visualización enfocada."
+
+#. editorial content for the discovery pane.
+msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Busca a la vez que apoyas una buena causa {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+#, python-format
+msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
+msgstr "Ecosia utiliza el 80% de sus beneficios de búsqueda para financiar programas de plantación de árboles en todo el mundo. Añade Ecosia directamente como buscador en Firefox."
+
+#. editorial content for the discovery pane.
+msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Busca contenido web que ha desaparecido {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Is the page you're looking for unavailable? Search for an archived/cached version."
+msgstr "¿La página que buscas no está disponible? Busca una versión archivada o en la caché."
+
+#. editorial content for the discovery pane.
+msgid "Find missing web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Encuentra contenido web que ha desaparecido {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enlarge images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Amplía las imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simply hover over an image to magnify it."
+msgstr "Simplemente pasa el ratón por encima de una imagen para ampliarla."
+
+#. editorial content for the discovery pane.
+msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Haz que las cookies desaparezcan {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically erase cookies after you close a tab."
+msgstr "Borra automáticamente las cookies después de cerrar una pestaña."
+
+#. editorial content for the discovery pane.
+msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ajusta el tamaño de la página {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
+msgstr "Una forma sencilla de ajustar el tamaño de un texto en cualquier página, o incluso de ampliar la página misma."
+
+#. editorial content for the discovery pane.
+msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea los rastreos ocultos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers in their tracks and learn more about them."
+msgstr "Detén a los rastreadores y aprende más sobre ellos."
+
+#. editorial content for the discovery pane.
+msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "No dejes ningún rastro digital {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
+msgstr "Haz que Firefox olvide los datos del sitio, como cookies y almacenamiento local, pero solo en los dominios que elijas."
+
+#. editorial content for the discovery pane.
+msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Guarda un texto para más tarde {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
+msgstr "¡Deja de escribir lo mismo una y otra vez! Si reutilizas con frecuencia las mismas frases en tu trabajo u otras comunicaciones, guárdalas en Clippings y pégalas fácilmente cuando quieras."
+
+#. editorial content for the discovery pane.
+msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea la publicidad en el correo electrónico {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get more screen space by removing ads from your web-based inbox."
+msgstr "Obtén más espacio en pantalla eliminando anuncios de tu bandeja de entrada en la web."
+
+#. editorial content for the discovery pane.
+msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Encuentra tus pestañas con facilidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Manage your open tabs in a tidy sidebar."
+msgstr "Administra tus pestañas abiertas de forma ordenada en una barra lateral."
+
+#. editorial content for the discovery pane.
+msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Evita los rastreadores ocultos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
+msgstr "Oculta tu navegación enmascarando la identidad de tu navegador y sistema operativo."
+
+#. editorial content for the discovery pane.
+msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Actualiza las pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals you set."
+msgstr "Recarga automáticamente las pestañas según los intervalos de tiempo que hayas establecido."
+
+#. editorial content for the discovery pane.
+msgid "Separate your online lives {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Separa tus distintas vidas online {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
+msgstr "Separa en privado tus distintas identidades online, como, por ejemplo, trabajo, personal, etc. mediante pestañas de distintos colores que dividen tu rastro de cookies digitales."
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Detén los rastreos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Gain an additional layer of tracking protection as you browse the web."
+msgstr "Obtén una capa adicional de protección de rastreo mientras navegas por la web."
+
+#. editorial content for the discovery pane.
+msgid "Read ePub files {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lee archivos ePub {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
+msgstr "Disfruta de los archivos ePub directamente en Firefox: aumenta el tamaño de la fuente, las dimensiones de la página y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mejora tu experiencia de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Play videos by default in the highest quality, turn off annotations, and more."
+msgstr "Reproduce vídeos de forma predeterminada con la máxima calidad, desactiva las anotaciones y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Rastrea a los rastreadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get a glimpse into who's tracking you with just a click."
+msgstr "Averigua quién te está siguiendo con un solo clic."
+
+#. editorial content for the discovery pane.
+msgid "Change your proxy server {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cambia tu servidor proxy {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Surf the web through self-defined proxy settings."
+msgstr "Navega por la web con una configuración proxy determinada por ti."
+
+#. editorial content for the discovery pane.
+msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Controla la reproducción de vídeo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enhance your viewing experience by adjusting video speed and more."
+msgstr "Mejora tu experiencia de visualización ajustando la velocidad de vídeo y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Navega de forma segura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Add encrypted security to any site that supports HTTPS."
+msgstr "Añade seguridad cifrada a cualquier sitio que admita HTTPS."
+
+#. editorial content for the discovery pane.
+msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Compra y ahorra {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get the best coupons automatically applied to your shopping cart at checkout."
+msgstr "Obtén los mejores cupones para aplicarlos automáticamente a tu carrito de la compra al pagar."
+
+#. editorial content for the discovery pane.
+msgid "Swift translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Traducciones rápidas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Translate highlighted text or the entire webpage"
+msgstr "Traduce un texto seleccionado o toda la página web"
+
+#. editorial content for the discovery pane.
+msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mejora tu experiencia de Reddit {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Change the way you surf Reddit by using tags and more."
+msgstr "Cambia la forma de explorar Reddit a través de etiquetas y otras opciones."
+
+#. editorial content for the discovery pane.
+msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Toma fotos de la web {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Screenshot webpages, make edits, and share."
+msgstr "Haz capturas de pantalla de páginas web, realiza ediciones y compártelas."
+
+#. editorial content for the discovery pane.
+msgid "A superior Windows-only downloader tool."
+msgstr "Una excelente herramienta de descarga solo para Windows."
+
+#. editorial content for the discovery pane.
+msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Conoce a tus rastreadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find out who's tracking you and where they may be sharing your information."
+msgstr "Averigua quién te está siguiendo y dónde podrías estar compartiendo tu información."
+
+#. editorial content for the discovery pane.
+msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Navega de forma anónima {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
+msgstr "Navega por la web con una identidad disfrazada, incluso como si estuvieras navegando desde otro país."
+
+#. editorial content for the discovery pane.
+msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
+msgstr "Accede a tus sitios favoritos, pestañas cerradas recientemente y mucho más, a través de magníficos iconos dinámicos."
+
+#. editorial content for the discovery pane.
+msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Configura tu página de inicio {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Designate a custom home page for your new tabs."
+msgstr "Designa una página de inicio personalizada para tus pestañas nuevas."
+
+#. editorial content for the discovery pane.
+msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Haz una lista con todas tus pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
+msgstr "Convierte todas tus pestañas abiertas en una lista para administrarlas fácilmente y acelerar Firefox."
+
+#. editorial content for the discovery pane.
+msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Adquiere un potente gestor de descargas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Check the state of your downloads through a status bar, download history page, and more."
+msgstr "Comprueba el estado de tus descargas a través de una barra de estado, página de historial de descargas y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Extrae contenido web {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
+msgstr "Guarda información de Internet en OneNote para poder editarla, hacer anotaciones y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Protégete de rastreo en búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop trackers when you click Google and Yandex search returns."
+msgstr "No permitas ser rastreado al hacer clic en los resultados de búsqueda de Google y Yandex."
+
+#. editorial content for the discovery pane.
+msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Disfruta de una navegación dinámica {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
+msgstr "Usa gestos del ratón para cerrar pestañas, retroceder una página, actualizar y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Añade imágenes a los resultados de búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy thumbnail images alongside your search returns."
+msgstr "Disfruta de imágenes en miniatura junto a los resultados de búsqueda."
+
+#. editorial content for the discovery pane.
+msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Alivia la fatiga ocular {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make the web easier on the eyes by darkening its display."
+msgstr "Haz que la web afecte menos a tus ojos oscureciendo tu pantalla."
+
+#. editorial content for the discovery pane.
+msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea las ventanas emergentes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block all pop-ups by default, then decide which ones you'd like to open."
+msgstr "Bloquea todas las ventanas emergentes de forma predeterminada y, a continuación, decide cuáles quieres abrir."
+
+#. editorial content for the discovery pane.
+msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personaliza tus sitios web favoritos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Change the look of any website! Shift colors, page backgrounds, and more."
+msgstr "¡Cambia la apariencia de cualquier sitio web! Cambia los colores, los fondos de página y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personaliza tu pestaña nueva {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
+msgstr "Edita la página de la nueva pestaña para visualizar tus preferencias en cuanto al número de iconos dinámicos, la imagen de fondo y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Obtén traducciones de forma rápida {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text on any website, right-click, and translate instantly."
+msgstr "Selecciona un texto en cualquier sitio web, haz clic con el botón derecho y tradúcelo al instante."
+
+#. editorial content for the discovery pane.
+msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gestiona tus contraseñas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and access them across multiple devices."
+msgstr "Almacena contraseñas de forma segura y accede a ellas desde todos tus dispositivos."
+
+#. editorial content for the discovery pane.
+msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sé consciente de dónde te encuentras en la web {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get the country location for websites you visit. Be an informed internet traveler."
+msgstr "Obtén la ubicación del país de los sitios web que visitas. Sé un viajero web informado."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mejora tu experiencia de lectura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make the text you're reading more appealing by removing the clutter around it."
+msgstr "Haz que el texto que estás leyendo sea más atractivo eliminando los elementos innecesarios que lo rodean."
+
+#. editorial content for the discovery pane.
+msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Abre varios enlaces {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Right-click and drag over links you want open in new tabs."
+msgstr "Haz clic con el botón derecho y arrastra el cursor por encima de los enlaces que deseas abrir en las nuevas pestañas."
+
+#. editorial content for the discovery pane.
+msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Recupera pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
+msgstr "Accede a las pestañas cerradas recientemente haciendo clic con el botón derecho en el icono de la barra de herramientas."
+
+#. editorial content for the discovery pane.
+msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Inspírate y mejora tu productividad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
+msgstr "Modifica la nueva pestaña para visualizar un fondo bonito, añadir aquello que deseas ver a diario y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "View images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Ve imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Brings back the \"View image\" button while searching on Google Images."
+msgstr "Permite usar el botón \"Ver imagen\" mientras buscas en Google Imágenes."
+
+#. editorial content for the discovery pane.
+msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Incrementa tu productividad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Block time-wasting sites so you can focus on the task at hand."
+msgstr "Bloquea los sitios que te hacen perder el tiempo para poder concentrarte en la tarea que estás realizando."
+
+#. editorial content for the discovery pane.
+msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Actualiza las pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically reload tabs based on time intervals."
+msgstr "Programa la actualización automática de las pestañas."
+
+#. editorial content for the discovery pane.
+msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Arregla tus marcadores favoritos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find and resolve broken bookmarks, duplicates, and more."
+msgstr "Encuentra y elimina los problemas con tus marcadores rotos, duplicados y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Stress less {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "No te estreses {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get things done with a helpful to-do list that syncs across devices."
+msgstr "Recuerda tus tareas pendientes con una útil lista de tareas que se sincroniza en todos tus dispositivos."
+
+#. editorial content for the discovery pane.
+msgid "Shop Smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Compra de forma más inteligente {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
+msgstr "Haz un seguimiento de los precios históricos, productos de la competencia, conoce las valoraciones del vendedor y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Conviértelo en tu YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
+msgstr "Reproduce vídeos en una ventana flotante, ve anuncios únicamente en los canales suscritos, haz capturas de pantalla de vídeo y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Infórmate sobre el tráfico de sitios web {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get in-depth engagement and traffic information for any website."
+msgstr "Obtén información detallada sobre la interacción y el tráfico de cualquier sitio web."
+
+#. editorial content for the discovery pane.
+msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Dale un toque de estilo a tu Wikipedia {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Applies a fresh and modern appearance to Wikipedia."
+msgstr "Otorga a tu Wikipedia una apariencia fresca y moderna."
+
+#. editorial content for the discovery pane.
+msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Trabaja de forma más rápida {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use mouse gestures to get to things done—quicker."
+msgstr "Sácale partido a los distintos gestos de ratón para hacerlo todo de forma más rápida."
+
+#. editorial content for the discovery pane.
+msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Enmascara el sitio web {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Hide portions of the website you're viewing."
+msgstr "Oculta partes del sitio web que estás viendo."
+
+#. editorial content for the discovery pane.
+msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Descarga imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Grab images from any website and download them."
+msgstr "Obtén imágenes de cualquier sitio web y descárgalas."
+
+#. editorial content for the discovery pane.
+msgid "Mask your location {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Esconde tu ubicación {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Disguise your location to throw off trackers and protect your privacy."
+msgstr "Enmascara tu ubicación para despistar a los rastreadores y proteger tu privacidad."
+
+#. editorial content for the discovery pane.
+msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea tu acceso a cierto contenido {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Restrict access to inappropriate or undesired content with a filter."
+msgstr "Restringe el acceso a contenido inapropiado o no deseado con un filtro."
+
+#. editorial content for the discovery pane.
+msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mejora las pestañas nuevas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Open a new tab to the right of your current tab, not at the end of the row."
+msgstr "Abre una nueva pestaña a la derecha de la pestaña actual, no al final de la fila."
+
+#. editorial content for the discovery pane.
+msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Vence al spam {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Use clever temporary email addresses to remain anonymous and avoid spam."
+msgstr "Utiliza direcciones de correo electrónico temporales inteligentes para permanecer anónimo y evitar el spam."
+
+#. editorial content for the discovery pane.
+msgid "Alter your privacy {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cambia tu configuración de privacidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily customize the built-in privacy settings in Firefox."
+msgstr "Personaliza fácilmente la configuración de privacidad predeterminada de Firefox."
+
+#. editorial content for the discovery pane.
+msgid "Enhance your experience on VK {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mejora tu experiencia en VK {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Remove ads and download audio from VK."
+msgstr "Elimina anuncios y descarga audio desde VK."
+
+#. editorial content for the discovery pane.
+msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Obtén traducciones al instante {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access immediate translation by highlighting text and clicking the button that pops up."
+msgstr "Consigue una traducción inmediata seleccionando un texto y haciendo clic en el botón que aparece."
+
+#. editorial content for the discovery pane.
+msgid "Customize new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Personaliza las pestañas nuevas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get creative and customize your new tab page by displaying your favorite sites and selecting a theme."
+msgstr "Sé creativo y personaliza la página de la nueva pestaña mostrando tus sitios favoritos y seleccionando un tema."
+
+#. editorial content for the discovery pane.
+msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "No más redireccionamientos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Go straight to the website you want to access without being redirected in between."
+msgstr "Ve directamente al sitio web al que deseas acceder sin ser redirigido por el camino."
+
+#. editorial content for the discovery pane.
+msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mantente informado sobre tu WhatsApp {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
+msgstr "Accede a WhatsApp desde el panel de la barra de herramientas de Firefox para obtener una notificación acerca de las conversaciones no leídas."
+
+#. editorial content for the discovery pane.
+msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Traducciones al/del alemán {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Get expert German translations between English, French, Spanish, and other languages."
+msgstr "Obtén traducciones expertas de alemán en combinación con idiomas como el inglés, francés, español y otros idiomas."
+
+#. editorial content for the discovery pane.
+msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Crea una lista de sitios web bloqueados {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Restrict Firefox from accessing websites you define."
+msgstr "Restringe el acceso de Firefox a los sitios web que tú definas."
+
+#. editorial content for the discovery pane.
+msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Trabaja de forma más inteligente {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Manage your productivity by working in set time intervals."
+msgstr "Gestiona tu productividad trabajando en intervalos de tiempo establecidos."
+
+#. editorial content for the discovery pane.
+msgid "Easy reading {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Accede con facilidad a tus canales {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Check your favorite RSS feeds all in a single page."
+msgstr "Accede a tus canales RSS favoritos desde una sola página."
+
+#. editorial content for the discovery pane.
+msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reduce la fatiga ocular {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enable night mode for a better viewing experience."
+msgstr "Habilita el modo nocturno para una mejor experiencia de visualización."
+
+#. editorial content for the discovery pane.
+msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Busca imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Reverse image search by leveraging the power of multiple search providers."
+msgstr "Realiza una búsqueda inversa de imágenes aprovechando la potencia de varios buscadores."
+
+#. editorial content for the discovery pane.
+msgid "Save it for later {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Guárdalas para otro momento {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store web pages to access across devices."
+msgstr "Guarda páginas web para acceder a ellas desde otros dispositivos."
+
+#. editorial content for the discovery pane.
+msgid "Easily select bookmark locations {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Selecciona con facilidad las ubicaciones de tus marcadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A better way to save bookmarks if you use multiple bookmark folders."
+msgstr "Esta es la mejor manera de guardar tus marcadores si usas varias carpetas de marcadores."
+
+#. editorial content for the discovery pane.
+msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Deshazte del fomato {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Strip away unnecessary formatting and copy just the plain text."
+msgstr "Elimina el formato innecesario y copia sólo el texto sin formato."
+
+#. editorial content for the discovery pane.
+msgid "Convert an entire webpage to your preferred language—with the click of a button."
+msgstr "Cambia el idioma de una página web completa a tu idioma preferido haciendo clic en un botón."
+
+#. editorial content for the discovery pane.
+msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Extrae enlances {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Instantly display all links from a webpage in new tabs."
+msgstr "Muestra instantáneamente todos los enlaces de una página web en pestañas nuevas."
+
+#. editorial content for the discovery pane.
+msgid "View documents {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Abre documentos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access PDFs using your preferred PDF application."
+msgstr "Accede a los archivos PDF utilizando tu aplicación de PDF preferida."
+
+#. editorial content for the discovery pane.
+msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Evita los redireccionamientos y rastreadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Strip away redirect pages and URL tracking parameters."
+msgstr "Elimina el redireccionamiento de páginas y los parámetros de seguimiento URL."
+
+#. editorial content for the discovery pane.
+msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Detén a los rastreadores en buscadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Prevent search engines from knowing what search results you click on."
+msgstr "Evita que los motores de búsqueda sepan en qué resultados de búsqueda haces clic."
+
+#. editorial content for the discovery pane.
+msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Descarga vídeos de YouTube {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Download video and/or audio."
+msgstr "Descarga contenido de vídeo y/o audio."
+
+#. editorial content for the discovery pane.
+msgid "Gather reading material {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Recopila material de lectura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "An advanced reader for aggregating all of your RSS/Atom/RDF sources."
+msgstr "Un lector avanzado en el que podrás guardar todas tus fuentes de RSS/Atom/RDF."
+
+#. editorial content for the discovery pane.
+msgid "Jot it down {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Anótalo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Create general and website-specific notes to review later."
+msgstr "Crea notas generales y específicas del sitio web para revisarlas más adelante."
+
+#. editorial content for the discovery pane.
+msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Desplázate por páginas web como en tu teléfono móvil {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
+msgstr "Ofrece desplazamiento de ratón \"agarrar y arrastrar\" para páginas web de escritorio."
+
+#. editorial content for the discovery pane.
+msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Borra datos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Clear your browser cache with a click or keystroke."
+msgstr "Limpia la caché de tu navegador con un solo clic o pulsando una tecla."
+
+#. editorial content for the discovery pane.
+msgid "Never forget again {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "No vuelvas a olvidarte de nada {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Create and manage a to-do list in your browser."
+msgstr "Crea y gestiona una lista de tareas en tu navegador."
+
+#. editorial content for the discovery pane.
+msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Resalta partes de un texto {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a highly customizable text highlighter with different colors and save options."
+msgstr "Disfruta de un marcador de texto altamente personalizable con diferentes colores y opciones de archivo."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Disfruta de música de diferentes partes del mundo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Access 20,000+ radio stations from all over the globe."
+msgstr "Accede a más de 20.000 estaciones de radio de todo el mundo."
+
+#. editorial content for the discovery pane.
+msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Escucha vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save bandwidth by just streaming the audio from YouTube clips."
+msgstr "Ahorra ancho de banda transmitiendo solo el audio de los clips de YouTube."
+
+#. editorial content for the discovery pane.
+msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Transforma texto en imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Turn words into beautiful headlines and image overlay text."
+msgstr "Convierte palabras en bonitos títulos y añade texto a una imagen."
+
+#. editorial content for the discovery pane.
+msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Navega de forma segura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Navigate to the secure version of a website if it's available."
+msgstr "Navega por la versión segura de un sitio web si está disponible."
+
+#. editorial content for the discovery pane.
+msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Elimina tu historial de navegación {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Specify a custom number of days to retain browser history before it's automatically cleared."
+msgstr "Especifica el número de días que deseas conservar el historial de navegación antes de que se borre automáticamente."
+
+#. editorial content for the discovery pane.
+msgid "Remove search ads {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Elimina los anuncios en las búsquedas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop ads from appearing within your search results."
+msgstr "Impide que aparezcan anuncios en los resultados de búsqueda."
+
+#. editorial content for the discovery pane.
+msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gestiona tus contraseñas de forma segura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in to known websites automatically."
+msgstr "Almacena contraseñas de forma segura e inicia sesión automáticamente en los sitios web conocidos."
+
+#. editorial content for the discovery pane.
+msgid "Block ads & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Bloquea la publicidad y el rastreo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Protect your privacy by blocking ads and trackers (plus, you'll speed up page loads)."
+msgstr "Protege tu privacidad bloqueando anuncios y rastreadores (esto acelerará la carga de páginas)."
+
+#. editorial content for the discovery pane.
+msgid "Fill forms automatically {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Rellena formularios automáticamente {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save entered data once and it will autofill next time."
+msgstr "Guarda los datos introducidos una vez y se rellenarán automáticamente la próxima vez."
+
+#. editorial content for the discovery pane.
+msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Navega de forma privada {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Jump into private browsing mode with a click."
+msgstr "Cambia al modo de navegación privada con un solo clic."
+
+#. editorial content for the discovery pane.
+msgid "Stop tab hijacking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Detén el secuestro de pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Don't let clicked links take control of your current tab and load content you didn't ask for."
+msgstr "No permitas que los enlaces seleccionados tomen el control de tu pestaña actual y carguen contenido que no hayas solicitado."
+
+#. editorial content for the discovery pane.
+msgid "Easily access Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Accede de forma sencilla a Wikipedia {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Perform a Wikipedia search by simply highlighting text from any webpage and right-clicking."
+msgstr "Realiza una búsqueda en Wikipedia simplemente seleccionando un texto de cualquier página web y haciendo clic con el botón derecho del ratón."
+
+#. editorial content for the discovery pane.
+msgid "Discover site-specific content {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Descubre contenido de un sitio web en concreto {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find what you're looking for within a specific domain."
+msgstr "Busca contenido en un dominio en concreto."
+
+#. editorial content for the discovery pane.
+msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Busca vídeos {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Highlight text from any website and right-click to search YouTube for related media."
+msgstr "Selecciona el texto de cualquier sitio web y haz clic con el botón derecho para buscar cualquier contenido relacionado en YouTube."
+
+#. editorial content for the discovery pane.
+msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Disfruta de las ventajas de Amazon {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
+msgstr "Si el producto que estás buscando en distintas tiendas online, está también disponible en Amazon, solo tendrás que hacer clic en un botón para verlo en Amazon."
+
+#. editorial content for the discovery pane.
+msgid "Tweet it out {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tweetéalo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily broadcast web content to your Twitter following."
+msgstr "Comparte fácilmente contenido web con tus seguidores de Twitter."
+
+#. editorial content for the discovery pane.
+msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Excelente gestión de pestañas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
+msgstr "Dispone de muchas opciones para gestionar pestañas: cierre de pestañas duplicadas, fusión de ventanas, copia de títulos de pestañas y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Adquiere conocimientos de forma peculiar {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Load a random Wikipedia article each time you open a new tab."
+msgstr "Carga un artículo de Wikipedia al azar cada vez que abras una nueva pestaña."
+
+#. editorial content for the discovery pane.
+msgid "Change up your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cambia tus pestañas nuevas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Configure new tab pages to display custom background colors and images."
+msgstr "Configura pestañas nuevas para visualizar imágenes y colores de fondo personalizados."
+
+#. editorial content for the discovery pane.
+msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Los amantes de los gatos se alegrarán {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
+msgstr "Conoce a un adorable gatito con cada pestaña nueva. Ráscale detrás de la oreja y observa lo que pasa."
+
+#. editorial content for the discovery pane.
+msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Reduce tu productividad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "For those moments when you need to fire lasers out of a cat."
+msgstr "Para esos momentos en los que necesitas disparar rayos láser usando un gatito."
+
+#. editorial content for the discovery pane.
+msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Busca en Firefox {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Easily access your open tabs, bookmarks, and history."
+msgstr "Accede fácilmente a tus pestañas, marcadores e historial abiertos."
+
+#. editorial content for the discovery pane.
+msgid "Lots of open tabs? Skip the scrolling and search via keyboard shortcuts."
+msgstr "¿Tienes muchas pestañas abiertas? Evita el desplazamiento y busca mediante las teclas rápidas."
+
+#. editorial content for the discovery pane.
+msgid "Explore what's beneath {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Descubre las tecnologías que hay detrás de los sitios web {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Uncover the software that supports whatever website you're visiting."
+msgstr "Descubre el software utilizado en los sitios web que visitas."
+
+#. editorial content for the discovery pane.
+msgid "Prevent redirects & tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Evita los redireccionamientos y el rastreo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Stop redirects so you can access the site you want—faster."
+msgstr "Detén los redireccionamientos para acceder a los sitios que desees de forma más rápida."
+
+#. editorial content for the discovery pane.
+msgid "Reveal typed passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Muestra las contraseñas introducidas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Adds show/hide ability to all password fields."
+msgstr "Añade la capacidad de mostrar u ocultar todos los campos de contraseñas."
+
+#. editorial content for the discovery pane.
+msgid "Reduce distractions {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Minimiza las distracciones {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Focus on what you're watching by dimming everything but the video player."
+msgstr "Concéntrate en lo que estás viendo atenuando todo menos el reproductor de vídeo."
+
+#. editorial content for the discovery pane.
+msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gestiona tus marcadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Modify your bookmarks through an easily accessible panel."
+msgstr "Modifica tus marcadores a través de un panel de fácil acceso."
+
+#. editorial content for the discovery pane.
+msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Mantén tus contraseñas seguras {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Store passwords securely and sign in automatically to known websites."
+msgstr "Almacena contraseñas de forma segura e inicia sesión automáticamente en sitios web conocidos."
+
+#. editorial content for the discovery pane.
+msgid "A simple ad blocker focused on displaying just the content you want."
+msgstr "Un simple bloqueador de anuncios diseñado para mostrarte solo el contenido que deseas."
+
+#. editorial content for the discovery pane.
+msgid "Track Amazon Pricing History {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Haz un seguimiento del historial de precios en Amazon {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make informed decisions by tracking the price of a product listed on Amazon."
+msgstr "Toma decisiones informadas haciendo un seguimiento del precio de un producto ofrecido en Amazon."
+
+#. editorial content for the discovery pane.
+msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Compra de forma más segura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "An extra check to ensure you're shopping on a site that's been vetted for reliability."
+msgstr "Realiza una comprobación adicional para asegurarte de que estás comprando en un sitio que ha sido aprobado por su fiabilidad."
+
+#. editorial content for the discovery pane.
+msgid "Track productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Haz un seguimiento del tiempo que dedicas a tareas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Measure the amount of time you spend on the computer, or on specific work apps like Trello, JIRA, Basecamp, GitHub, and many more."
+msgstr "Averigua la cantidad de tiempo que pasas al ordenador, o en aplicaciones de trabajo específicas como Trello, JIRA, Basecamp, GitHub, y muchas más."
+
+#. editorial content for the discovery pane.
+msgid "Clip web content like articles, videos, images, and more to save and use for individual projects or real-time team collaboration."
+msgstr "Extrae contenido web como artículos, vídeos, imágenes y mucho más para guardarlo y utilizarlo en proyectos individuales o trabajos en grupo en tiempo real."
+
+#. editorial content for the discovery pane.
+msgid "Surf securely {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Navega de forma segura {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Only allow web content to run from sites you trust."
+msgstr "Solo permite que el contenido web se ejecute desde sitios web de confianza."
+
+#. editorial content for the discovery pane.
+msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Gestiona las cookies {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Take full control of the cookies you've accumulated while browsing."
+msgstr "Gestiona todas las cookies que vas acumulando mientras navegas en la web."
+
+#. editorial content for the discovery pane.
+msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Olvídate del pasado {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Automatically delete browser history for websites you select."
+msgstr "Elimina automáticamente el historial de navegación de los sitios web que selecciones."
+
+#. editorial content for the discovery pane.
+msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Protege tus marcadores {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Password-protect your personal bookmarks."
+msgstr "Protege tus marcadores personales con una contraseña."
+
+#. editorial content for the discovery pane.
+msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Evita que se filtre tu dirección IP {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
+msgstr "¿Utilizas una VPN? Es posible que tu dirección IP esté dejando rastro. Pon fin a esto desactivando WebRTC."
+
+#. editorial content for the discovery pane.
+msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cierra las molestas ventanas superpuestas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Simply click a button to close annoying pop-up overlays."
+msgstr "Simplemente pulsa un botón para cerrar las molestas ventanas emergentes superpuestas."
+
+#. editorial content for the discovery pane.
+msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Consigue información sobre cualquier imagen {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Find an interesting image on the web? Use TinEye to explore its origins."
+msgstr "¿Viste una imagen interesante en la web? Utiliza TinEye para buscar su procedencia."
+
+#. editorial content for the discovery pane.
+msgid "Streamline things {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Agiliza las cosas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
+msgstr "Solo tienes que arrastrar texto, imágenes o vínculos para realizar acciones como copiar, abrir, buscar y mucho más."
+
+#. editorial content for the discovery pane.
+msgid "Harness the ability to download video and/or audio in multiple formats."
+msgstr "Aprovecha la posibilidad de descargar contenido de vídeo y/o audio en distintos formatos."
+
+#. editorial content for the discovery pane.
+msgid "Location awareness {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Conoce la ubicación física {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Learn where any website's server is geographically located. Be an informed web traveler."
+msgstr "Averigua dónde está ubicado geográficamente el servidor de cualquier sitio web. Conviértete en un viajero web informado."
+
+#. editorial content for the discovery pane.
+msgid "Fix annoying audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Soluciona los molestos problemas de audio {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Is the volume on a website too quiet? Too loud? SoundFixer can help."
+msgstr "¿El volumen de un sitio web es demasiado bajo? ¿O demasiado alto? SoundFixer puede ayudarte."
+
+#. editorial content for the discovery pane.
+msgid "Edit before printing {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Edita contenido web antes de imprimirlo {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make extraordinary visual changes—remove ads or unsavory content—to any webpage you want to print."
+msgstr "Realiza extraordinarios cambios visuales (elimina anuncios o contenido desagradable) en cualquier página web que desees imprimir."
+
+#. editorial content for the discovery pane.
+msgid "Track Amazon pricing history {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Haz un seguimiento de precios en Amazon {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Make knowledgeable decisions by tracking and receiving alerts for the price of a product listed on Amazon."
+msgstr "Toma decisiones informadas haciendo un seguimiento del precio de un producto ofrecido en Amazon y recibiendo las alertas correspondientes."
+
+#. editorial content for the discovery pane.
+msgid "Master audio {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Utiliza un ecualizador de audio {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Adjust browser audio settings with extreme clarity."
+msgstr "Ajusta la configuración de audio del navegador para que se escuche con extrema claridad."
+
+#. editorial content for the discovery pane.
+msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Protege tu privacidad {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Defend yourself against the sneakiest trackers."
+msgstr "Protégete de los rastreadores más astutos."
+
+#. editorial content for the discovery pane.
+msgid "Cover your tracks {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cubre tus huellas {start_sub_heading}con {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Search with more security with tracker blocking, smarter encryption, private search, and other essentials."
+msgstr "Realiza búsquedas más seguras con bloqueo de rastreadores, cifrado más inteligente, búsqueda privada y otros elementos esenciales."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4542,6 +5894,9 @@ msgstr "Los números de las versiones deben contener únicamente letras, número
 
 msgid "WebExtension theme uploads are currently not supported."
 msgstr "Por ahora no se admitem las subidas del tema WebExtension."
+
+msgid "Maximum size for WebExtension themes is {0}."
+msgstr ""
 
 msgid "You cannot submit this type of add-on"
 msgstr "No puedes enviar este tipo de complemento"
@@ -4744,9 +6099,6 @@ msgstr ""
 "Los complementos son aplicaciones que te permiten personalizar %(app)s con más funcionalidades o estilo. Prueba una barra lateral que te ahorre tiempo, un aviso meteorológico o un diseño para que "
 "%(app)s tenga el aspecto que a ti te guste."
 
-msgid "Learn More"
-msgstr "Más información"
-
 msgid "Learn More About Add-ons"
 msgstr "Más información sobre complementos"
 
@@ -4802,6 +6154,50 @@ msgstr "Desbloquea el acceso temprano a las características experimentales del 
 
 msgid "Get Started"
 msgstr "Comenzar"
+
+#, fuzzy
+msgid "Reported Status"
+msgstr "Estado del sitio"
+
+#, fuzzy
+msgid "Reported Spam"
+msgstr "Tipo de informe"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Reported Ham"
+msgstr "Informar de un error"
+
+#, fuzzy
+msgid "Not Reported"
+msgstr "Sin puntuar aún"
+
+#, fuzzy
+msgid "Content Submitted"
+msgstr "Versión enviada"
+
+#, fuzzy
+msgid "View Rating on site"
+msgstr "Visita la nueva página"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, fuzzy
+msgid "Submit Ham to Akismet"
+msgstr "Enviar un nuevo archivo"
+
+#, fuzzy
+msgid "Submit Spam to Akismet"
+msgstr "Enviar un nuevo archivo"
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Ham reports submitted as Spam"
+msgstr ""
+
+#. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
+#, python-format
+msgid "%s Spam reports submitted as Ham"
+msgstr ""
 
 msgid "About Mozilla Add-ons"
 msgstr "Acerca de Mozilla Add-ons"
@@ -4863,7 +6259,8 @@ msgstr ""
 "complementos para comprobar su calidad y estabilidad."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Ayúdanos a mejorar esta página. Es de código abierto y puedes informar de bugs y enviar soluciones. <a href=\"%(url)s\">GitHub</a> contiene todos los bugs actuales; los bugs legales los puedes "
 "seguir viendo en Bugzilla."
@@ -4908,11 +6305,11 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Preguntas frecuentes sobre valoraciones"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
-"Las valoraciones de complementos son una manera de que compartas tus opiniones sobre los complementos que has instalado y usado. Nuestro equipo de moderación de valoraciones se reserva el derecho de"
-" rechazar o eliminar cualquier valoración que no siga estos lineamientos."
+"Las valoraciones de complementos son una manera de que compartas tus opiniones sobre los complementos que has instalado y usado. Nuestro equipo de moderación de valoraciones se reserva el derecho "
+"de rechazar o eliminar cualquier valoración que no siga estos lineamientos."
 
 msgid "Do:"
 msgstr "Sí:"
@@ -4998,8 +6395,8 @@ msgstr "Soy autor de un complemento, ¿puedo responder a las valoraciones?"
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
-"Sí, los autores de complementos pueden dar una sola respuesta a una revisión. Puedes abrir un tema de discusión en nuestro <a href=\"%(forum_url)s\">foro</a> para entablar otra discusión o seguir el"
-" hilo."
+"Sí, los autores de complementos pueden dar una sola respuesta a una revisión. Puedes abrir un tema de discusión en nuestro <a href=\"%(forum_url)s\">foro</a> para entablar otra discusión o seguir "
+"el hilo."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
 msgstr "Soy autor de un complemento, ¿puedo eliminar las valoraciones o las calificaciones desfavorables?"
@@ -5164,16 +6561,16 @@ msgstr "Agregar una valoración para {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Ten esto en cuenta:</h2><ul><li> Escribe como si le estuvieras contando a un amigo tu experiencia con el complemento. Da detalles específicos y útiles, como lo que te gustó y lo que no, si es "
-"fácil de usar y los contras que tenga. Evita lenguaje genérico como \"Bueno\" o \"Malo\", a menos que des razones de peso.</li><li> No informes de bugs en las valoraciones. Tu correo no es público y"
-" puede que los desarrolladores de complementos necesiten ponerse en contacto contigo. Consulta la <a href=\"%(support)s\">sección de ayuda</a> para ver dónde obtener ayuda con el "
-"complemento.</li><li>Intenta que las valoraciones sean limpias, evita el lenguaje inadecuado y no publiques información personal.</li></ul><p>Para más detalles sobre las valoraciones de usuario, lee"
-" las <a href=\"%(guide)s\">Pautas sobre valoraciones</a>.</p>"
+"fácil de usar y los contras que tenga. Evita lenguaje genérico como \"Bueno\" o \"Malo\", a menos que des razones de peso.</li><li> No informes de bugs en las valoraciones. Tu correo no es público "
+"y puede que los desarrolladores de complementos necesiten ponerse en contacto contigo. Consulta la <a href=\"%(support)s\">sección de ayuda</a> para ver dónde obtener ayuda con el complemento.</"
+"li><li>Intenta que las valoraciones sean limpias, evita el lenguaje inadecuado y no publiques información personal.</li></ul><p>Para más detalles sobre las valoraciones de usuario, lee las <a href="
+"\"%(guide)s\">Pautas sobre valoraciones</a>.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Responder a la valoración de {0}"
@@ -5380,9 +6777,6 @@ msgstr "Se ha solicitado más información"
 
 msgid "Expired Information Request"
 msgstr "La solicitud de información ha expirado"
-
-msgid "Contains Reviewer Comment"
-msgstr "Contiene un comentario del revisor"
 
 msgid "Sources provided"
 msgstr "Fuentes facilitadas"
@@ -5597,6 +6991,14 @@ msgstr "Revisión procesada con éxito."
 
 msgid "Review lock limit reached"
 msgstr "Límite de bloqueo de revisiones alcanzado"
+
+#, fuzzy
+msgid "{addon} :: EULA"
+msgstr "{addon} :: Informes de uso indebido"
+
+#, fuzzy
+msgid "{addon} :: Privacy Policy"
+msgstr "Este complemento tiene una política de privacidad"
 
 msgid "{0} theme review successfully processed (+{1} points, {2} total)."
 msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
@@ -6223,9 +7625,6 @@ msgstr "Mostrando {0} - {1} de {2} resultados de <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Mostrando {0} - {1} de {2} resultados"
 
-msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr "Algunas características están temporalmente deshabilitadas mientras realizamos tareas de mantenimiento en la web. Volveremos a tener plena capacidad muy pronto."
-
 msgid "Could not find add-on with id \"{}\"."
 msgstr "No se pudo encontrar ningún complemento con el ID \"{}\"."
 
@@ -6280,12 +7679,6 @@ msgstr "por plataforma"
 
 msgid "by Add-on Status"
 msgstr "por estado del complemento"
-
-msgid "Subscribers"
-msgstr "Suscriptores"
-
-msgid "Ratings"
-msgstr "Calificaciones"
 
 msgid "Add-on Statistics"
 msgstr "Estadísticas sobre complementos"
@@ -6480,18 +7873,18 @@ msgstr "Sobre la monitorización de orígenes externos..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Monitorizar orígenes externos</h2> <p>Si enlazas a la página de detalles de tu complemento o directamente a su archivo desde un sitio externo, como tu blog o sitio web, puedes añadir un "
 "parámetro para que sea seguido como un origen adicional de descargas en esta página. Por ejemplo, los siguientes enlaces aparecerían como originados por tu blog: <dl> <dt>Página de detalles de tu "
-"complemento</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Enlace directo al archivo</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sólo se monitorizan los parámetros src que comienzan con \"external-\", hasta 61"
-" caracteres adicionales. Cualquier texto tras \"external-\" puede usarse para describir el origen, como por ejemplo \"external-blog\", \"external-panel-lateral\", \"external-campanya225\", etc. Se "
-"permiten los siguientes caracteres seguros en URL: <code>a-z A-Z - . _ ~ %% +</code>"
+"complemento</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Enlace directo al archivo</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-"
+"latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sólo se monitorizan los parámetros src que comienzan con \"external-\", hasta 61 caracteres adicionales. Cualquier texto tras \"external-\" puede "
+"usarse para describir el origen, como por ejemplo \"external-blog\", \"external-panel-lateral\", \"external-campanya225\", etc. Se permiten los siguientes caracteres seguros en URL: <code>a-z A-Z "
+"- . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Estado del complemento por fecha"
@@ -6542,6 +7935,13 @@ msgstr "Visita la nueva página"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
 msgstr "Para crear tu propia colección, debes tener una cuenta de Mozilla Add-ons."
+
+msgid "Create an Add-ons Account"
+msgstr "Crea una cuenta en Add-ons"
+
+#, python-format
+msgid "or <a href=\"%(login)s\">log in to your current account</a>"
+msgstr "o <a href=\"%(login)s\">entra en tu cuenta actual</a>"
 
 msgid "Footer logo"
 msgstr "Logo de pie de página"
@@ -6671,11 +8071,29 @@ msgstr "¿Estás seguro de que quieres borrar las <b>{0}</b> traducciones? No po
 msgid "Delete Locale"
 msgstr "Eliminar traducción"
 
+#, python-format
+msgid "The user \"%(user)s\" has been banned."
+msgstr "Se ha expulsado al usuario \"%(user)s\"."
+
+#, python-format
+msgid "The picture belonging to user \"%(user)s\" has been deleted."
+msgstr "Se ha eliminado la imagen del usuario \"%(user)s\"."
+
+#, python-format
+msgid "The users \"%(users)s\" have been banned."
+msgstr "Se han expulsado a los usuarios \"%(users)s\"."
+
+msgid "Ban selected users"
+msgstr "Expulsar usuarios seleccionados"
+
 msgid "Profile Photo"
 msgstr "Foto del perfil"
 
 msgid "Addons"
 msgstr "Complementos"
+
+msgid "Ratings"
+msgstr "Calificaciones"
 
 msgid "Activity Logs"
 msgstr "Registros de actividad"
@@ -6701,16 +8119,14 @@ msgstr "Esta URL tiene un formato no válido. Las URLs válidas tienen un aspect
 msgid "To anonymize, enter a reason for the change but do not change any other field."
 msgstr "Para ocultarte en el anonimato, aduce una razón para el cambio pero no modifiques ningún otro campo."
 
-msgid "Please enter at least one name to be denied."
-msgstr "Por favor, introduce al menos un nombre en la lista negra."
-
 msgid "No user with that email."
 msgstr "No se ha encontrado un usuario con ese correo electrónico."
 
 #. L10n: {id} will be something like "13ad6a", just a random number
 #. to differentiate this user from other anonymous users.
-msgid "Anonymous user {id}"
-msgstr "Usuario anónimo {id}"
+#, fuzzy
+msgid "Firefox user {id}"
+msgstr "Firefox para Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Mis complementos para móviles"
@@ -6775,6 +8191,12 @@ msgstr "Usuarios con informes."
 msgid "new"
 msgstr "nuevo"
 
+msgid "Ban"
+msgstr "Expulsar"
+
+msgid "Delete picture"
+msgstr "Eliminar imagen"
+
 msgid "Delete User Account"
 msgstr "Borrar la cuenta de usuario"
 
@@ -6783,8 +8205,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"No puedes borrar tu cuenta si estás listado como <a href=\"%(link)s\">autor de cualquier complemento</a>. Para borrar tu cuenta, por favor, pide a otra persona de tu grupo de desarrollo que te borre"
-" de la lista de autores de tus complementos. Posteriormente podrás borrar tu cuenta aquí."
+"No puedes borrar tu cuenta si estás listado como <a href=\"%(link)s\">autor de cualquier complemento</a>. Para borrar tu cuenta, por favor, pide a otra persona de tu grupo de desarrollo que te "
+"borre de la lista de autores de tus complementos. Posteriormente podrás borrar tu cuenta aquí."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "Al hacer clic en \"borrar\", <strong>se eliminará definitivamente</strong> tu cuenta. Esto significa que:"
@@ -6857,9 +8279,6 @@ msgstr "Decide qué colecciones deben mostrarse en tu perfil."
 msgid "Display the collections I have created"
 msgstr "Mostrar las colecciones que he creado"
 
-msgid "Display collections I'm following"
-msgstr "Mostrar las colecciones que sigo"
-
 msgid "Notifications"
 msgstr "Avisos"
 
@@ -6930,9 +8349,6 @@ msgstr "Mis temas más populares"
 msgid "Themes I've created"
 msgstr "Temas que he creado"
 
-msgid "Followed by Me"
-msgstr "Seguido por mi"
-
 # "Me" in this context is the user shown on the User Info page
 msgid "Created by Me"
 msgstr "Creado por mí"
@@ -6977,7 +8393,8 @@ msgstr "No hemos podido cancelar tu suscripción"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr "Lo sentimos, no se ha cancelado la subspcripción.  El enlace que seleccionaste es inválido. Pero puedes cancelar la subscripción en tu <a href=\"%(edit_url)s\">página de edición de perfil</a>."
+msgstr ""
+"Lo sentimos, no se ha cancelado la subspcripción.  El enlace que seleccionaste es inválido. Pero puedes cancelar la subscripción en tu <a href=\"%(edit_url)s\">página de edición de perfil</a>."
 
 msgid "Developer Information"
 msgstr "Información del desarrollador"
@@ -7037,8 +8454,8 @@ msgstr "Publicado el {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Código fuente publicado bajo <a href=\"%(url)s\">%(name)s</a>"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 msgid "{0} Version History"
 msgstr "Historial de versiones de {0}"
 

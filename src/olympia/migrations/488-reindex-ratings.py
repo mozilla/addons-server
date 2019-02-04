@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 
 from addons.models import Addon
-from amo.decorators import write
+from amo.decorators import use_primary_db
 from amo.utils import chunked
 from celeryutils import task
 
 
 @task
-@write
+@use_primary_db
 def reindex_reviews(addon_id, **kw):
     try:
         # Emit post-save signals so ES gets the correct bayesian ratings.

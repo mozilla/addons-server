@@ -2,6 +2,7 @@ $(document).ready(function() {
 
     $('#theme-wizard').each(initThemeWizard);
 
+    var MAX_STATICTHEME_SIZE = 7 * 1024 * 1024;
 
     function initThemeWizard() {
         var $wizard = $(this);
@@ -48,6 +49,10 @@ $(document).ready(function() {
 
         function updateManifest() {
             textarea = $wizard.find('#manifest').val(generateManifest());
+            toggleSubmitIfNeeded();
+        }
+
+        function toggleSubmitIfNeeded() {
             $wizard.find('button.upload').attr('disabled', ! required_fields_present());
         }
 
@@ -120,9 +125,16 @@ $(document).ready(function() {
                 updateManifest();
             }
         });
-        /* force the pop-up panel ltr or the images end up in the wrong position. */
+        /* Force the pop-up panel ltr or the images end up in the wrong
+           position. */
         $wizard.find('div.minicolors-panel').attr('dir', 'ltr');
 
+        /* The submit button availability needs to follow changes to the theme
+           name as soon as they happen, to react properly if it's modified but
+           the user hasn't focused something else yet */
+        $wizard.on('input', '#theme-name', toggleSubmitIfNeeded);
+        /* We update the full manifest when a proper change event is triggered,
+           the user has finished editing the name at this point. */
         $wizard.on('change', '#theme-name', updateManifest);
 
         $wizard.on('click', 'button.upload', _pd(function(event) {
@@ -133,6 +145,11 @@ $(document).ready(function() {
                    .text($button.data('uploading-text'));
 
             zip.generateAsync({type: 'blob'}).then(function (blob) {
+                if (blob.size > MAX_STATICTHEME_SIZE) {
+                    throw format(gettext("Maximum upload size is {0} - choose a smaller background image."), fileSizeFormat(MAX_STATICTHEME_SIZE));
+                }
+                return blob;
+            }).then(function (blob) {
                 var formData = new FormData();
                 formData.append('upload', blob, 'upload.zip');
                 $.ajax({
@@ -146,7 +163,11 @@ $(document).ready(function() {
                     uploadDone(data);
                 });
             }, function (err) {
-                console.error(err);
+                // Fake the validation so we can display as an error.
+                uploadDone({validation:{
+                    errors:1,
+                    messages:[{message:err}]
+                }});
             });
         }));
 

@@ -15,24 +15,17 @@
         "pk": 80,
         "model": "bandwagon.collection",
         "fields": {
-            "rating": 0.0,
             "uuid": "a5f1b177-c01d-c306-3030-e01598892405",
             "default_locale": "en-US",
             "created": "2009-06-09 23:35:10",
-            "monthly_subscribers": 0,
             "nickname": "webdev",
-            "downvotes": 0,
-            "weekly_subscribers": 0,
             "modified": "2009-06-09 23:37:36",
             "addon_count": 2,
             "application": 1,
             "listed": 1,
-            "subscribers": 1,
-            "upvotes": 0,
             "icontype": "",
             "type": 0,
             "name": 394557,
-            "downloads": 46,
             "slug": "mccrackin",
             "author": 10482
         }
@@ -42,7 +35,6 @@
         "model": "bandwagon.collectionaddon",
         "fields": {
             "created": "2009-06-09 23:35:10",
-            "downloads": 30,
             "modified": "2009-06-09 23:35:10",
             "comments": null,
             "user": 10482,

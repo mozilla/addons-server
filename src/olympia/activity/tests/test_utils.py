@@ -55,6 +55,23 @@ class TestEmailParser(TestCase):
             # we control and catch later.
             parser.get_uuid()
 
+    def test_empty_text_body(self):
+        """We receive requests that either have no `TextBody` or it's None
+
+        https://github.com/mozilla/addons-server/issues/8848
+        """
+        message = copy.deepcopy(sample_message_content['Message'])
+        message['TextBody'] = None
+
+        with self.assertRaises(ActivityEmailEncodingError):
+            ActivityEmailParser(message)
+
+        message = copy.deepcopy(sample_message_content['Message'])
+        message.pop('TextBody', None)
+
+        with self.assertRaises(ActivityEmailEncodingError):
+            ActivityEmailParser(message)
+
 
 @override_switch('activity-email-bouncing', active=True)
 class TestEmailBouncing(TestCase):

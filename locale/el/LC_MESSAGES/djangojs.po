@@ -1,10 +1,10 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-06-24 15:05+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-06 08:15+0000\n"
 "Last-Translator: Jim Spentzos <jim.spentzos@outlook.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -185,10 +185,10 @@ msgid "Creative Commons Attribution-ShareAlike 3.0"
 msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Your Theme's Name"
-msgstr "Όνομα Θέματος"
+msgstr "Όνομα θέματος"
 
 msgid "Flagged for review"
-msgstr "Σημειώθηκε για αξιολόγηση"
+msgstr "Επισημάνθηκε για αξιολόγηση"
 
 msgid "Your input is required"
 msgstr "Απαιτείται η εισαγωγή"
@@ -217,29 +217,53 @@ msgstr "Χρήση αρχικού"
 msgid "Week of {0}"
 msgstr "Εβδομάδα {0}"
 
-msgid " downloads"
-msgstr " λήψεις"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " λήψεις"
+msgstr[1] " λήψεις"
 
-msgid "{0} users"
-msgstr "{0} χρήστες"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} χρήστες"
+msgstr[1] "{0} χρήστες"
 
-msgid "{0} add-ons"
-msgstr "{0} πρόσθετα"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} πρόσθετα"
+msgstr[1] "{0} πρόσθετα"
 
-msgid "{0} collections"
-msgstr "{0} συλλογές"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} συλλογές"
+msgstr[1] "{0} συλλογές"
 
-msgid "{0} reviews"
-msgstr "{0} αξιολογήσεις"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} αξιολογήσεις"
+msgstr[1] "{0} αξιολογήσεις"
 
-msgid "{0} sales"
-msgstr "{0} πωλήσεις"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} πωλήσεις"
+msgstr[1] "{0} πωλήσεις"
 
-msgid "{0} refunds"
-msgstr "{0} επιστροφές"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} επιστροφές"
+msgstr[1] "{0} επιστροφές"
 
-msgid "{0} installs"
-msgstr "{0} εγκαταστάσεις"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} εγκαταστάσεις"
+msgstr[1] "{0} εγκαταστάσεις"
 
 msgid "Downloads"
 msgstr "Λήψεις"
@@ -654,7 +678,7 @@ msgid "Accept and Install"
 msgstr "Αποδοχή και εγκατάσταση"
 
 msgid "Add to {0}"
-msgstr "Προσθήκη στον {0}"
+msgstr "Προσθήκη στο {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
@@ -683,7 +707,7 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "Λυπούμαστε αλλά απαιτείται περιηγητής της οικογένειας Mozilla (όπως ο Firefox) για να εγκαταστήσετε πρόσθετα αναζήτησης."
+msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε αρθρώματα αναζήτησης."
 
 msgid "Adding to Favorites&hellip;"
 msgstr "Γίνεται προσθήκη στις αγαπημένες&hellip;"
@@ -728,7 +752,7 @@ msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"
 
 msgid "Enter a new author's email address"
-msgstr "Εισάγετε τη διεύθυνση νέου συντάκτη"
+msgstr "Εισάγετε τη διεύθυνση email νέου συντάκτη"
 
 msgid "There was an error uploading your file."
 msgstr "Παρουσιάστηκε σφάλμα κατά τη μεταφόρτωση του αρχείου σας."
@@ -799,6 +823,9 @@ msgstr "Μέσες αξιολογήσεις"
 
 msgid "Number of Reviews"
 msgstr "Αριθμός αξιολογήσεων"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "Το μέγιστο μέγεθος μεταφόρτωσης είναι {0} - επιλέξτε μια μικρότερη εικόνα φόντου."
 
 msgid "Requested Info"
 msgstr "Ζητούμενες πληροφορίες"

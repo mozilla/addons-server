@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
+from datetime import timedelta
+
 from django import test
 from django.test.client import RequestFactory
+from django.test.utils import override_settings
 
 import pytest
 
@@ -10,7 +13,7 @@ from pyquery import PyQuery as pq
 from olympia.amo.middleware import (
     AuthenticationMiddlewareWithoutAPI, ScrubRequestOnException,
     RequestIdMiddleware)
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import TestCase, reverse_ns
 from olympia.amo.urlresolvers import reverse
 from olympia.zadmin.models import Config
 
@@ -35,13 +38,23 @@ class TestMiddleware(TestCase):
            'AuthenticationMiddleware.process_request')
     def test_authentication_used_outside_the_api(self, process_request):
         req = RequestFactory().get('/')
+        req.is_api = False
+        req.is_legacy_api = False
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.called
 
     @patch('django.contrib.sessions.middleware.'
            'SessionMiddleware.process_request')
     def test_authentication_not_used_with_the_api(self, process_request):
-        req = RequestFactory().get('/api/lol')
+        req = RequestFactory().get('/')
+        req.is_api = True
+        req.is_legacy_api = False
+        AuthenticationMiddlewareWithoutAPI().process_request(req)
+        assert not process_request.called
+
+        req = RequestFactory().get('/')
+        req.is_api = False
+        req.is_legacy_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert not process_request.called
 
@@ -49,10 +62,12 @@ class TestMiddleware(TestCase):
            'AuthenticationMiddleware.process_request')
     def test_authentication_is_used_with_accounts_auth(self, process_request):
         req = RequestFactory().get('/api/v3/accounts/authenticate/')
+        req.is_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 1
 
         req = RequestFactory().get('/api/v4/accounts/authenticate/')
+        req.is_api = True
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert process_request.call_count == 2
 
@@ -127,3 +142,29 @@ def test_request_id_middleware(client):
     request = RequestFactory().get('/')
     RequestIdMiddleware().process_request(request)
     assert request.request_id
+
+
+def test_read_only_header_always_set(client):
+    response = client.get(reverse_ns('abusereportuser-list'))
+    assert response['X-AMO-Read-Only'] == 'false'
+
+
+def test_read_only_mode(client):
+    with override_settings(READ_ONLY=True):
+        response = client.post(reverse_ns('abusereportuser-list'))
+
+    assert response.status_code == 503
+    assert 'website maintenance' in response.json()['error']
+    assert response['X-AMO-Read-Only'] == 'true'
+    assert 'Retry-After' not in response
+
+
+def test_read_only_mode_with_retry_after(client):
+    delta = timedelta(minutes=8)
+    with override_settings(READ_ONLY=True, READ_ONLY_RETRY_AFTER=delta):
+        response = client.post(reverse_ns('abusereportuser-list'))
+
+    assert response.status_code == 503
+    assert 'website maintenance' in response.json()['error']
+    assert response['X-AMO-Read-Only'] == 'true'
+    assert response['Retry-After'] == '480'

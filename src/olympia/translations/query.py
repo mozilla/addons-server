@@ -40,11 +40,11 @@ def order_by_translation(qs, fieldname, model=None):
     # INNER JOINs)
     qs.query = qs.query.clone(TranslationQuery)
     t1 = qs.query.join(
-        Join(field.rel.to._meta.db_table, model._meta.db_table,
+        Join(field.remote_field.model._meta.db_table, model._meta.db_table,
              None, LOUTER, field, True),
         reuse=set())
     t2 = qs.query.join(
-        Join(field.rel.to._meta.db_table, model._meta.db_table,
+        Join(field.remote_field.model._meta.db_table, model._meta.db_table,
              None, LOUTER, field, True),
         reuse=set())
 

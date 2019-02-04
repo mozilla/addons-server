@@ -1,3 +1,10 @@
+# Determine the python version (2 or 3) so we can load the correct requirements
+python_version_major := $(shell python -c 'import sys; print sys.version_info.major')
+
+# FXA username and password for ui-tests
+export FXA_EMAIL=uitest-$(shell uuid)@restmail.net
+export FXA_PASSWORD=uitester
+
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -68,13 +75,8 @@ help_submake:
 
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
-	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
-	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
-	# as https://github.com/django-extensions/django-extensions/pull/1214
-	# So this will have to be reverted once an upstream fix lands.  --no-utf8 here actually *enables*
-	# utf-8 support.
-	python manage.py reset_db --no-utf8
-	python manage.py migrate --noinput
+	python manage.py reset_db
+	python manage.py migrate --noinput --run-syncdb
 	python manage.py loaddata initial.json
 	python manage.py import_prod_versions
 	schematic --fake src/olympia/migrations/
@@ -87,25 +89,31 @@ populate_data:
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	python manage.py reindex --wipe --force --noinput
 	python manage.py generate_addons --app firefox $(NUM_ADDONS)
-	python manage.py generate_addons --app thunderbird $(NUM_ADDONS)
 	python manage.py generate_addons --app android $(NUM_ADDONS)
-	python manage.py generate_addons --app seamonkey $(NUM_ADDONS)
 	python manage.py generate_themes $(NUM_THEMES)
+	# These add-ons are specifically useful for the addons-frontend
+	# homepage. You may have to re-run this, in case the data there
+	# changes.
+	python manage.py generate_default_addons_for_frontend
+
 	# Now that addons have been generated, reindex.
 	python manage.py reindex --force --noinput
 	# Also update category counts (denormalized field)
 	python manage.py cron category_totals
 	python manage.py update_permissions_from_mc
 
-install_python_common_dependencies:
+cleanup_python_build_dir:
+	# Work arounds "Multiple .dist-info directories" issue.
+	rm -rf /deps/build/*
+
+install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	pip install --no-deps --exists-action=w -r requirements/system.txt
-
-install_python_test_dependencies: install_python_common_dependencies
+	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${python_version_major}.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
-install_python_dev_dependencies: install_python_common_dependencies
+install_python_dev_dependencies: install_python_test_dependencies
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	pip install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
@@ -121,7 +129,7 @@ copy_node_js:
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
-update_deps: install_python_dev_dependencies install_node_dependencies
+update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies
     # Make sure we pull our latest mozilla-product-data.
     # There were scenarios where this wouldn't happen automatically during our CircleCI ui-tests so we enforce it here as a workaround.
 	python manage.py update_product_details
@@ -130,7 +138,7 @@ update_db:
 	schematic src/olympia/migrations
 
 update_assets:
-	python manage.py compress_assets --use-uuid
+	python manage.py compress_assets
 	python manage.py collectstatic --noinput
 
 update: update_deps update_db update_assets
@@ -142,13 +150,8 @@ reindex:
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
-	# The --no-utf8 is a temporary workaround for https://github.com/mozilla/addons-server/issues/8593
-	# The actual fix is pushed upstream in https://github.com/django-extensions/django-extensions/issues/1213
-	# as https://github.com/django-extensions/django-extensions/pull/1214
-	# So this will have to be reverted once an upstream fix lands. --no-utf8 here actually *enables*
-	# utf-8 support.
-	python manage.py reset_db --noinput --no-utf8
-	python manage.py migrate --noinput
+	python manage.py reset_db --noinput
+	python manage.py migrate --noinput --run-syncdb
 	schematic --fake src/olympia/migrations/
 
 	# Let's load some initial data and import mozilla-product versions
@@ -162,14 +165,13 @@ setup-ui-tests:
 	# Create a proper superuser that can be used to access the API
 	python manage.py waffle_switch super-create-accounts on --create
 	python manage.py waffle_switch activate-autograph-signing on --create
-	python manage.py createsuperuser --email=uitest@mozilla.com --username=uitest --noinput --add-to-supercreate-group --save-api-credentials=tests/ui/variables.json --hostname=olympia-frontend.test
 
-ui-tests: setup-ui-tests
+run-ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
-	python manage.py generate_ui_test_addons
-	python manage.py reindex --force --noinput --wipe
-
 	pip install --progress-bar=off --no-deps -r requirements/uitests.txt
+	python manage.py generate_default_addons_for_frontend
+	python manage.py reindex --force --noinput --wipe
+	pytest --driver Firefox tests/ui/
 
 perf-tests: setup-ui-tests
 	pip install --progress-bar=off --no-deps -r requirements/perftests.txt

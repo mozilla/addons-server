@@ -5,10 +5,12 @@ import environ
 import logging
 import os
 import socket
+import json
 
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.functional import lazy
 
+import raven
 from kombu import Queue
 
 import olympia.core.logger
@@ -53,11 +55,8 @@ def path(*folders):
     return os.path.join(ROOT, *folders)
 
 
-# We need to track this because hudson can't just call its checkout "olympia".
-# It puts it in a dir called "workspace".  Way to be, hudson.
-ROOT_PACKAGE = os.path.basename(ROOT)
-
 DEBUG = False
+
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
 SILENCED_SYSTEM_CHECKS = (
@@ -110,27 +109,39 @@ def cors_endpoint_overrides(whitelist_endpoints):
 
 CORS_ENDPOINT_OVERRIDES = []
 
+
+def get_db_config(environ_var):
+    values = env.db(
+        var=environ_var,
+        default='mysql://root:@localhost/olympia')
+
+    values.update({
+        # Run all views in a transaction unless they are decorated not to.
+        'ATOMIC_REQUESTS': True,
+        # Pool our database connections up for 300 seconds
+        'CONN_MAX_AGE': 300,
+        'OPTIONS': {
+            'sql_mode': 'STRICT_ALL_TABLES',
+            'isolation_level': 'read committed'
+        },
+        'TEST': {
+            'CHARSET': 'utf8',
+            'COLLATION': 'utf8_general_ci'
+        },
+    })
+
+    return values
+
+
 DATABASES = {
-    'default': env.db(default='mysql://root:@localhost/olympia')
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
-DATABASES['default']['OPTIONS'] = {'sql_mode': 'STRICT_ALL_TABLES'}
-DATABASES['default']['TEST_CHARSET'] = 'utf8'
-DATABASES['default']['TEST_COLLATION'] = 'utf8_general_ci'
-# Run all views in a transaction unless they are decorated not to.
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-# Pool our database connections up for 300 seconds
-DATABASES['default']['CONN_MAX_AGE'] = 300
 
 # A database to be used by the services scripts, which does not use Django.
-# The settings can be copied from DATABASES, but since its not a full Django
-# database connection, only some values are supported.
-SERVICES_DATABASE = {
-    'NAME': DATABASES['default']['NAME'],
-    'USER': DATABASES['default']['USER'],
-    'PASSWORD': DATABASES['default']['PASSWORD'],
-    'HOST': DATABASES['default']['HOST'],
-    'PORT': DATABASES['default']['PORT'],
-}
+# Please note that this is not a full Django database connection
+# so the amount of values supported are limited. By default we are using
+# the same connection as 'default' but that changes in prod/dev/stage.
+SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
 
 DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
 
@@ -148,13 +159,12 @@ TIME_ZONE = 'UTC'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-US'
 
-# Accepted locales
-# Note: If you update this list, don't forget to also update the locale
-# permissions in the database.
+# Accepted locales.
 AMO_LANGUAGES = (
     'af',  # Afrikaans
     'ar',  # Arabic
     'ast',  # Asturian
+    'az',  # Azerbaijani
     'bg',  # Bulgarian
     'bn-BD',  # Bengali (Bangladesh)
     'bs',  # Bosnian
@@ -165,6 +175,7 @@ AMO_LANGUAGES = (
     'de',  # German
     'dsb',  # Lower Sorbian
     'el',  # Greek
+    'en-CA',  # English (Canada)
     'en-GB',  # English (British)
     'en-US',  # English (US)
     'es',  # Spanish
@@ -178,6 +189,7 @@ AMO_LANGUAGES = (
     'he',  # Hebrew
     'hsb',  # Upper Sorbian
     'hu',  # Hungarian
+    # 'ia',  # Interlingua - doesn't exist in product_details yet.
     'id',  # Indonesian
     'it',  # Italian
     'ja',  # Japanese
@@ -190,6 +202,7 @@ AMO_LANGUAGES = (
     'nb-NO',  # Norwegian (Bokmål)
     'nl',  # Dutch
     'nn-NO',  # Norwegian (Nynorsk)
+    'pa-IN',  # Punjabi
     'pl',  # Polish
     'pt-BR',  # Portuguese (Brazilian)
     'pt-PT',  # Portuguese (Portugal)
@@ -374,7 +387,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
 
@@ -413,7 +425,6 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.media',
                 'django.template.context_processors.request',
-                'session_csrf.context_processor',
 
                 'django.contrib.messages.context_processors.messages',
             ),
@@ -427,7 +438,28 @@ SECURE_BROWSER_XSS_FILTER = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_HSTS_SECONDS = 31536000
 
-MIDDLEWARE_CLASSES = (
+# Prefer using `X-Forwarded-Port` header instead of `Port` header.
+# We are behind both, the ELB and nginx which forwards requests to our
+# uwsgi app.
+# Our current request flow is this:
+# Request -> ELB (terminates SSL) -> Nginx -> Uwsgi -> addons-server
+#
+# The ELB terminates SSL and properly sets `X-Forwarded-Port` header
+# as well as `X-Forwarded-Proto` and others.
+# Nginx on the other hand runs on port 81 and thus sets `Port` to be
+# 81 but to make CSRF detection and other mechanisms work properly
+# we need to know that we're running on either port 80 or 443, or do something
+# with SECURE_PROXY_SSL_HEADER but we shouldn't if we can avoid that.
+# So, let's simply grab the properly set `X-Forwarded-Port` header.
+# https://github.com/mozilla/addons-server/issues/8835#issuecomment-405340432
+#
+# This is also backwards compatible for our local setup since Django falls back
+# to using `Port` if `X-Forwarded-Port` isn't set.
+USE_X_FORWARDED_PORT = True
+
+MIDDLEWARE = (
+    # Test if it's an API request first so later middlewares don't need to.
+    'olympia.api.middleware.IdentifyAPIRequestMiddleware',
     # Gzip (for API only) middleware needs to be executed after every
     # modification to the response, so it's placed at the top of the list.
     'olympia.api.middleware.GZipMiddlewareForAPIOnly',
@@ -453,18 +485,22 @@ MIDDLEWARE_CLASSES = (
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'olympia.amo.middleware.CorsMiddleware',
 
-    # This middleware does nothing, it's there for backwards-compatibility.
-    # Django < 1.10 checks for its presence to make session key rotation work.
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+    # Enable conditional processing, e.g ETags.
+    'django.middleware.http.ConditionalGetMiddleware',
 
     'olympia.amo.middleware.CommonMiddleware',
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
     'olympia.search.middleware.ElasticsearchExceptionMiddleware',
-    'session_csrf.CsrfMiddleware',
+
+    # Our middleware that adds additional information for the user
+    # and API about our read-only status.
+    'olympia.amo.middleware.ReadOnlyMiddleware',
+
+    'django.middleware.csrf.CsrfViewMiddleware',
 
     # This should come after AuthenticationMiddlewareWithoutAPI (to get the
     # current user) and after SetRemoteAddrFromForwardedFor (to get the correct
@@ -482,6 +518,19 @@ AUTH_USER_MODEL = 'users.UserProfile'
 ROOT_URLCONF = 'olympia.urls'
 
 INSTALLED_APPS = (
+    # The translations app *must* be the very first. This isn't necessarily
+    # relevant for daily business but very important for running initial
+    # migrations during our tests and local setup.
+    # Foreign keys to the `translations` table point to `id` which isn't
+    # unique on it's own but has a (id, locale) unique_together index.
+    # If `translations` would come after `olympia.addons` for example
+    # Django tries to first, create the table translations, then create the
+    # addons table, then adds the foreign key and only after that adds the
+    # unique_together index to `translations`. MySQL needs that index to be
+    # created first though, otherwise you'll run into
+    # `ERROR 1215 (HY000): Cannot add foreign key constraint` errors.
+    'olympia.translations',
+
     'olympia.core',
     'olympia.amo',  # amo comes first so it always takes precedence.
     'olympia.abuse',
@@ -501,13 +550,13 @@ INSTALLED_APPS = (
     'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
+    'olympia.lib.akismet',
     'olympia.pages',
     'olympia.ratings',
     'olympia.reviewers',
     'olympia.search',
     'olympia.stats',
     'olympia.tags',
-    'olympia.translations',
     'olympia.users',
     'olympia.versions',
     'olympia.zadmin',
@@ -520,7 +569,6 @@ INSTALLED_APPS = (
     'raven.contrib.django',
     'rest_framework',
     'waffle',
-    'jingo_minify',
     'django_jinja',
     'puente',
 
@@ -536,6 +584,15 @@ INSTALLED_APPS = (
     'django_statsd',
 )
 
+# This needs to point to prod, because that's where the database lives. You can
+# change it locally to test the extraction process, but be careful not to
+# accidentally nuke translations when doing that!
+DISCOVERY_EDITORIAL_CONTENT_API = (
+    'https://addons.mozilla.org/api/v4/discovery/editorial/')
+
+# Filename where the strings will be stored. Used in puente config below.
+DISCOVERY_EDITORIAL_CONTENT_FILENAME = 'src/olympia/discovery/strings.jinja2'
+
 # Tells the extract script what files to look for l10n in and what function
 # handles the extraction. The puente library expects this.
 PUENTE = {
@@ -545,6 +602,12 @@ PUENTE = {
     'DOMAIN_METHODS': {
         'django': [
             ('src/olympia/**.py', 'python'),
+
+            # Extract the generated file containing editorial content for all
+            # disco pane recommendations using jinja2 parser. It's not a real
+            # template, but it uses jinja2 syntax for convenience, hence why
+            # it's not in templates/ with a .html extension.
+            (DISCOVERY_EDITORIAL_CONTENT_FILENAME, 'jinja2'),
 
             # Make sure we're parsing django-admin templates with the django
             # template extractor
@@ -1017,7 +1080,6 @@ ADDON_ICONS_DEFAULT_PATH = os.path.join(ROOT, 'static', 'img', 'addon-icons')
 # URL paths
 # paths for images, e.g. mozcdn.com/amo or '/static'
 VAMO_URL = 'https://versioncheck.addons.mozilla.org'
-NEW_PERSONAS_UPDATE_URL = VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
 
 
 # Outgoing URL bouncer
@@ -1188,15 +1250,9 @@ CELERY_TASK_ROUTES = {
     'olympia.addons.cron._update_addons_current_version': {'queue': 'cron'},
     'olympia.addons.cron._update_appsupport': {'queue': 'cron'},
     'olympia.addons.cron._update_daily_theme_user_counts': {'queue': 'cron'},
-    'olympia.bandwagon.cron._drop_collection_recs': {'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_subscribers': {
-        'queue': 'cron'},
-    'olympia.bandwagon.cron._update_collections_votes': {'queue': 'cron'},
 
     # Bandwagon
     'olympia.bandwagon.tasks.collection_meta': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_votes': {'queue': 'bandwagon'},
-    'olympia.bandwagon.tasks.collection_watchers': {'queue': 'bandwagon'},
     'olympia.bandwagon.tasks.delete_icon': {'queue': 'bandwagon'},
 
     # Reviewers
@@ -1228,6 +1284,7 @@ CELERY_TASK_ROUTES = {
     'olympia.ratings.tasks.addon_grouped_rating': {'queue': 'ratings'},
     'olympia.ratings.tasks.addon_rating_aggregates': {'queue': 'ratings'},
     'olympia.ratings.tasks.update_denorm': {'queue': 'ratings'},
+    'olympia.ratings.tasks.check_with_akismet': {'queue': 'ratings'},
 
 
     # Stats
@@ -1235,9 +1292,6 @@ CELERY_TASK_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_addons_collections_downloads': {
-        'queue': 'stats'},
-    'olympia.stats.tasks.update_collections_total': {'queue': 'stats'},
     'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
 
     # Tags
@@ -1338,10 +1392,16 @@ LOGGING = {
             'level': logging.DEBUG,
             'propagate': False
         },
-        'django.request': {
+        'django': {
             'handlers': ['statsd'],
             'level': logging.ERROR,
             'propagate': True,
+        },
+        # Django CSRF related warnings
+        'django.security.csrf': {
+            'handlers': ['mozlog'],
+            'level': logging.WARNING,
+            'propagate': True
         },
         'elasticsearch': {
             'handlers': ['null'],
@@ -1392,11 +1452,6 @@ LOGGING = {
         'z.pool': {
             'handlers': ['mozlog'],
             'level': logging.ERROR,
-            'propagate': False
-        },
-        'z.redis': {
-            'handlers': ['mozlog'],
-            'level': logging.DEBUG,
             'propagate': False
         },
         'z.task': {
@@ -1478,11 +1533,25 @@ ENGAGE_ROBOTS = True
 # Read-only mode setup.
 READ_ONLY = env.bool('READ_ONLY', default=False)
 
+# Expected retry-time that can be respected by clients. This will
+# be set as `Retry-After` header.
+# Please set this to a `datetime.timedelta()` instance that is
+# reasonable for clients to try again.
+# We don't support hard dates as these are usually quite hard to
+# adhere anyway.
+# Will be ignored if `None`
+READ_ONLY_RETRY_AFTER = None
+
 
 # Turn on read-only mode in local_settings.py by putting this line
 # at the VERY BOTTOM: read_only_mode(globals())
-def read_only_mode(env):
+# Please also consider setting `retry_after` like this
+# import datetime
+# read_only_mode(globals(), retry_after=datetime.timedelta(minutes=10))
+# See `READ_ONLY_RETRY_AFTER` comment for more details
+def read_only_mode(env, retry_after=None):
     env['READ_ONLY'] = True
+    env['READ_ONLY_RETRY_AFTER'] = retry_after
 
     # Replace the default (master) db with a slave connection.
     if not env.get('SLAVE_DATABASES'):
@@ -1493,13 +1562,6 @@ def read_only_mode(env):
     # No sessions without the database, so disable auth.
     env['AUTHENTICATION_BACKENDS'] = ('olympia.users.backends.NoAuthForYou',)
 
-    # Add in the read-only middleware before csrf middleware.
-    extra = 'olympia.amo.middleware.ReadOnlyMiddleware'
-    before = 'session_csrf.CsrfMiddleware'
-    m = list(env['MIDDLEWARE_CLASSES'])
-    m.insert(m.index(before), extra)
-    env['MIDDLEWARE_CLASSES'] = tuple(m)
-
 
 # Uploaded file limits
 MAX_ICON_UPLOAD_SIZE = 4 * 1024 * 1024
@@ -1507,7 +1569,11 @@ MAX_IMAGE_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_VIDEO_UPLOAD_SIZE = 4 * 1024 * 1024
 MAX_PHOTO_UPLOAD_SIZE = MAX_ICON_UPLOAD_SIZE
 MAX_PERSONA_UPLOAD_SIZE = 300 * 1024
-MAX_REVIEW_ATTACHMENT_UPLOAD_SIZE = 5 * 1024 * 1024
+MAX_STATICTHEME_SIZE = 7 * 1024 * 1024
+
+# File uploads should have -rw-r--r-- permissions in order to be served by
+# nginx later one. The 0o prefix is intentional, this is an octal value.
+FILE_UPLOAD_PERMISSIONS = 0o644
 
 # RECAPTCHA: overload the following key settings in local_settings.py
 # with your keys.
@@ -1524,40 +1590,6 @@ ASYNC_SIGNALS = True
 # Performance for persona pagination, we hardcode the number of
 # available pages when the filter is up-and-coming.
 PERSONA_DEFAULT_PAGES = 10
-
-REDIS_LOCATION = os.environ.get(
-    'REDIS_LOCATION',
-    'redis://localhost:6379/0?socket_timeout=0.5')
-
-
-def get_redis_settings(uri):
-    import urlparse
-    urlparse.uses_netloc.append('redis')
-
-    result = urlparse.urlparse(uri)
-
-    options = dict(urlparse.parse_qsl(result.query))
-
-    if 'socket_timeout' in options:
-        options['socket_timeout'] = float(options['socket_timeout'])
-
-    return {
-        'HOST': result.hostname,
-        'PORT': result.port,
-        'PASSWORD': result.password,
-        'DB': int((result.path or '0').lstrip('/')),
-        'OPTIONS': options
-    }
-
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = REDIS_LOCATION
-
-REDIS_BACKENDS = {
-    'master': get_redis_settings(REDIS_LOCATION)
-}
-
-RESPONSYS_ID = env('RESPONSYS_ID', default=None)
 
 # Number of seconds before celery tasks will abort addon validation:
 VALIDATOR_TIMEOUT = 110
@@ -1646,6 +1678,7 @@ LOGIN_RATELIMIT_USER = 5
 LOGIN_RATELIMIT_ALL_USERS = '15/m'
 
 CSRF_FAILURE_VIEW = 'olympia.amo.views.csrf_failure'
+CSRF_USE_SESSIONS = True
 
 # Default file storage mechanism that holds media.
 DEFAULT_FILE_STORAGE = 'olympia.amo.utils.LocalFileStorage'
@@ -1694,8 +1727,6 @@ DEV_AGREEMENT_LAST_UPDATED = None
 # In production we do not want to allow this.
 ALLOW_SELF_REVIEWS = False
 
-# This saves us when we upgrade jingo-minify (jsocol/jingo-minify@916b054c).
-JINGO_MINIFY_USE_STATIC = True
 
 # Allow URL style format override. eg. "?format=json"
 URL_FORMAT_OVERRIDE = 'format'
@@ -1709,9 +1740,6 @@ HIVE_CONNECTION = {
     'auth_mechanism': 'PLAIN',
 }
 
-# Enable ETags (based on response content) on every view in CommonMiddleware.
-USE_ETAGS = True
-
 # CDN Host is blank on local installs, overwritten in dev/stage/prod envs.
 # Useful to force some dynamic content to be served from the CDN.
 CDN_HOST = ''
@@ -1719,11 +1747,11 @@ CDN_HOST = ''
 # Static
 STATIC_ROOT = path('site-static')
 STATIC_URL = '/static/'
-JINGO_MINIFY_ROOT = path('static')
+
 STATICFILES_DIRS = (
     path('static'),
-    JINGO_MINIFY_ROOT
 )
+
 NETAPP_STORAGE = TMP_PATH
 GUARDED_ADDONS_PATH = ROOT + '/guarded-addons'
 
@@ -1757,9 +1785,11 @@ DRF_API_GATES = {
     'v3': (
         'ratings-rating-shim',
         'ratings-title-shim',
+        'l10n_flat_input_output',
+        'collections-downloads-shim'
     ),
     'v4': (
-    )
+    ),
 }
 
 REST_FRAMEWORK = {
@@ -1807,8 +1837,35 @@ REST_FRAMEWORK = {
     'ORDERING_PARAM': 'sort',
 }
 
+
+def get_raven_release():
+    version_json = os.path.join(ROOT, 'version.json')
+    version = None
+
+    if os.path.exists(version_json):
+        try:
+            with open(version_json, 'rb') as fobj:
+                data = json.loads(fobj.read())
+                version = data.get('version') or data.get('commit')
+        except (IOError, KeyError):
+            version = None
+
+    if not version or version == 'origin/master':
+        try:
+            version = raven.fetch_git_sha(ROOT)
+        except raven.exceptions.InvalidGitRepository:
+            version = None
+    return version
+
+
 # This is the DSN to the Sentry service.
-SENTRY_DSN = env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN'))
+RAVEN_CONFIG = {
+    'dsn': env('SENTRY_DSN', default=os.environ.get('SENTRY_DSN')),
+    # Automatically configure the release based on git information.
+    # This uses our `version.json` file if possible or tries to fetch
+    # the current git-sha.
+    'release': get_raven_release(),
+}
 
 # Automatically do 'from olympia import amo' when running shell_plus.
 SHELL_PLUS_POST_IMPORTS = (
@@ -1841,12 +1898,7 @@ CRON_JOBS = {
 
     'gc': 'olympia.amo.cron',
     'category_totals': 'olympia.amo.cron',
-    'collection_subscribers': 'olympia.amo.cron',
     'weekly_downloads': 'olympia.amo.cron',
-
-    'update_collections_subscribers': 'olympia.bandwagon.cron',
-    'update_collections_votes': 'olympia.bandwagon.cron',
-    'reindex_collections': 'olympia.bandwagon.cron',
 
     'compatibility_report': 'olympia.compat.cron',
 
@@ -1855,8 +1907,6 @@ CRON_JOBS = {
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
 
-    'update_addons_collections_downloads': 'olympia.stats.cron',
-    'update_collections_total': 'olympia.stats.cron',
     'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
@@ -1882,6 +1932,7 @@ FXA_SQS_AWS_QUEUE_URL = (
 FXA_SQS_AWS_WAIT_TIME = 20  # Seconds.
 
 AWS_STATS_S3_BUCKET = env('AWS_STATS_S3_BUCKET', default=None)
+AWS_STATS_S3_PREFIX = env('AWS_STATS_S3_PREFIX', default='amo_stats')
 
 # For the Github webhook API.
 GITHUB_API_USER = env('GITHUB_API_USER', default='')
@@ -1893,3 +1944,8 @@ BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
 BASKET_TIMEOUT = 5
+
+AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
+AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
+AKISMET_API_TIMEOUT = 100
+AKISMET_REAL_SUBMIT = False

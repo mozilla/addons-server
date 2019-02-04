@@ -1,11 +1,11 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2016-10-12 07:22+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-07-11 15:09+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -68,7 +68,7 @@ msgid "Validating {0}"
 msgstr "Asentem {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr "Azegrir-ik iɛedda tilas n tuγzi n {0}."
+msgstr "Azegrir-ik iɛedda tilas n tuɣzi n {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "Irmes-d tiririt tilment seg uqeddac; addad: {0}"
@@ -136,7 +136,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "Anaw n ufaylu i tuzned ur yettwassen ara."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr "Afaylu-ik iɛedda tilas n tuγzi n {0}."
+msgstr "Afaylu-ik iɛedda tilas n tuɣzi n {0}."
 
 msgid "You cancelled the upload."
 msgstr "Tesfesxeḍ tuzna."
@@ -214,29 +214,53 @@ msgstr "seqdec aneẓli"
 msgid "Week of {0}"
 msgstr "Ḍduṛt n {0}"
 
-msgid " downloads"
-msgstr " isidar"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " isidar"
+msgstr[1] " isidar"
 
-msgid "{0} users"
-msgstr "{0} iseqdacen"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} iseqdacen"
+msgstr[1] "{0} iseqdacen"
 
-msgid "{0} add-ons"
-msgstr "{0} izegrar"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} izegrar"
+msgstr[1] "{0} izegrar"
 
-msgid "{0} collections"
-msgstr "{0} tigrummiwin"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} tigrummiwin"
+msgstr[1] "{0} tigrummiwin"
 
-msgid "{0} reviews"
-msgstr "{0} aɛiwed n tɣuṛi"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} aɛiwed n tɣuṛi"
+msgstr[1] "{0} aɛiwed n tɣuṛi"
 
-msgid "{0} sales"
-msgstr "{0} n uznuzu"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} n uznuzu"
+msgstr[1] "{0} n uznuzu"
 
-msgid "{0} refunds"
-msgstr "{0} n uɣram"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} n uɣram"
+msgstr[1] "{0} n uɣram"
 
-msgid "{0} installs"
-msgstr "{0} n usebded"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} n usebded"
+msgstr[1] "{0} n usebded"
 
 msgid "Downloads"
 msgstr "Isidar"
@@ -796,6 +820,9 @@ msgstr "Icegggiren ilemmasen"
 
 msgid "Number of Reviews"
 msgstr "Amḍan n iceggiren"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Talɣut n usuter"

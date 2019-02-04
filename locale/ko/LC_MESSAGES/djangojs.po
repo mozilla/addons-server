@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-12-13 07:04+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-08-23 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
@@ -179,7 +179,7 @@ msgid "Your Theme's Name"
 msgstr "테마 이름"
 
 msgid "Flagged for review"
-msgstr "평가에 표시하기"
+msgstr "검토를 위해 표시됨"
 
 msgid "Your input is required"
 msgstr "글을 입력해야 합니다"
@@ -208,29 +208,45 @@ msgstr "원본 사용"
 msgid "Week of {0}"
 msgstr "{0}번째 주"
 
-msgid " downloads"
-msgstr " 다운로드"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " 다운로드"
 
-msgid "{0} users"
-msgstr "사용자 {0}명"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "사용자 {0}명"
 
-msgid "{0} add-ons"
-msgstr "부가 기능 {0}개"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "부가 기능 {0}개"
 
-msgid "{0} collections"
-msgstr "모음집 {0}개"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "모음집 {0}개"
 
-msgid "{0} reviews"
-msgstr "평가 {0}개"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "검토 {0}개"
 
-msgid "{0} sales"
-msgstr "판매 {0}회"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "판매 {0}회"
 
-msgid "{0} refunds"
-msgstr "환불 {0}회"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "환불 {0}회"
 
-msgid "{0} installs"
-msgstr "설치 {0}회"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "설치 {0}회"
 
 msgid "Downloads"
 msgstr "다운로드 횟수"
@@ -267,7 +283,7 @@ msgid "Add-ons Updated"
 msgstr "업데이트한 부가 기능"
 
 msgid "Reviews Written"
-msgstr "평가가 있는 부가 기능"
+msgstr "검토 작성됨"
 
 msgid "User Signups"
 msgstr "사용자 등록"
@@ -552,11 +568,11 @@ msgstr "{0}부터 {1}까지 업데이트된 부가 기능"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "최근 {0}일간 작성된 평가"
+msgstr "최근 {0}일간 작성된 검토"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "{0}부터 {1}까지 작성된 평가"
+msgstr "{0}부터 {1}까지 작성된 검토"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
@@ -681,10 +697,10 @@ msgid "Removing Favorite&hellip;"
 msgstr "선호 목록에서 삭제중&hellip;"
 
 msgid "Add to Favorites"
-msgstr "선호 목록에 추가"
+msgstr "즐겨찾기에 추가"
 
 msgid "Remove from Favorites"
-msgstr "선호 목록에서 삭제"
+msgstr "즐겨찾기에서 삭제"
 
 msgid "Pending"
 msgstr "대기중"
@@ -769,7 +785,7 @@ msgid "Version Notes"
 msgstr "버전 기록서"
 
 msgid "Notes for Reviewers"
-msgstr "심사자의 메모"
+msgstr "검토자 메모"
 
 msgid "No version notes found"
 msgstr "버전 기록서가 없습니다"
@@ -778,13 +794,16 @@ msgid "Review Text"
 msgstr "검토 내용"
 
 msgid "Review notes found"
-msgstr "심사 메모가 발견됨"
+msgstr "검토 메모가 발견됨"
 
 msgid "Average Reviews"
-msgstr "평균 심사 횟수"
+msgstr "평균 검토 횟수"
 
 msgid "Number of Reviews"
-msgstr "심사 횟수"
+msgstr "검토 횟수"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "요청된 정보"
@@ -808,7 +827,7 @@ msgid "Theme"
 msgstr "테마"
 
 msgid "Reviewer"
-msgstr "심사원"
+msgstr "검토자"
 
 msgid "Status"
 msgstr "상태"

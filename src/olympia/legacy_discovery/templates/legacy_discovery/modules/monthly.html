@@ -21,9 +21,9 @@
           <a href="{{ addon_url }}" target="_self" class="button details-link">
             {{ _('Learn More') }}</a>
         </div>
-        {% if pick.image or addon.all_previews[0] %}
+        {% if pick.image or addon.current_previews[0] %}
           <a href="{{ addon_url }}" target="_self" class="thumb">
-            <img src="{{ pick.image or addon.all_previews[0].image_url }}" alt="">
+            <img src="{{ pick.image or addon.current_previews[0].image_url }}" alt="">
           </a>
         {% endif %}
       </div>

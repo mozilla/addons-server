@@ -1,0 +1,11 @@
+{% extends "reviewers/base.html" %}
+
+{% block title %}
+  {{ reviewer_page_title(page_title|format_html(addon=addon.name)) }}
+{% endblock %}
+
+{% block content %}
+  <h2>{{ long_title }}</h2>
+  <a href="{{ review_url }}">{{ _('Back to review') }}</a>
+  <div class="policy-statement">{{ content|nl2br }}</div>
+{% endblock %}

@@ -1,6 +1,5 @@
 {% for c in collections %}
-  {% set is_watching = request.user.is_authenticated() and c.id in request.user.watching %}
-  <div class="item{{ ' watching' if is_watching }}">
+  <div class="item">
     <div class="info">
       <h3>
         <a href="{{ c.get_url_path() }}">
@@ -11,25 +10,6 @@
       </h3>
       <p class="desc">{{ c.description|truncate(250)|nl2br }}</p>
       <div class="vitals c">
-        <div class="followers">
-          {% if field == 'popular' %}
-            {# L10n: People "follow" collections to get notified of updates.
-                     Like Twitter followers. #}
-            {% trans cnt=c.weekly_subscribers, num=c.weekly_subscribers|numberfmt %}
-              {{ num }} weekly follower
-            {% pluralize %}
-              {{ num }} weekly followers
-            {% endtrans %}
-          {% else %}
-            {# L10n: People "follow" collections to get notified of updates.
-                     Like Twitter followers. #}
-            {% trans cnt=c.subscribers, num=c.subscribers|numberfmt %}
-              {{ num }} follower
-            {% pluralize %}
-              {{ num }} followers
-            {% endtrans %}
-          {% endif %}
-        </div>
         {% if field in ('created', 'updated') %}
           <div class="updated">
             {% if field == 'created' %}
@@ -41,17 +21,6 @@
             {% endif %}
           </div>
         {% endif %}
-      </div>
-    </div>
-    <div class="action">
-      <div class="install-shell">
-      {% if request.user.is_authenticated() %}
-        {% if is_watching %}
-          <span class="is-watching">{{ _('Following') }}</span>
-        {% endif %}
-          <a href="{{ c.watch_url() }}" class="watch button">
-            <span>{{ _('Stop Following') if is_watching else _('Follow this Collection') }}</span></a>
-      {% endif %}
       </div>
     </div>
   </div>

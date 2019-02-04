@@ -3,7 +3,6 @@
         "pk": 4043307,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": true,
             "display_collections": true,
             "occupation": "Developer",
             "location": "World",
@@ -19,17 +18,13 @@
             "created": "2009-02-02 11:50:31",
             "notes": "",
             "modified": "2010-01-12 15:28:07",
-            "last_login_attempt": "2010-01-12 15:28:07",
-            "last_login_attempt_ip": "192.168.1.100",
-            "last_login_ip": "192.168.1.101",
-            "failed_login_attempts": 3
+            "last_login_ip": "192.168.1.101"
         }
     },
     {
         "pk": 9945,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "Add-ons Product Management @ Mozilla",
             "location": "San Francisco Bay Area",
@@ -51,7 +46,6 @@
         "pk": 5349055,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "occupation": "",
             "location": "",
@@ -99,7 +93,6 @@
         "pk": 9946,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",

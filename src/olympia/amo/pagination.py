@@ -3,6 +3,7 @@ from math import ceil
 from django.conf import settings
 from django.core.paginator import (
     EmptyPage, InvalidPage, Page, PageNotAnInteger, Paginator)
+from django.utils.functional import cached_property
 
 
 class ESPaginator(Paginator):
@@ -28,22 +29,19 @@ class ESPaginator(Paginator):
         self.use_elasticsearch_dsl = kwargs.pop('use_elasticsearch_dsl', True)
         Paginator.__init__(self, *args, **kwargs)
 
-    def _get_num_pages(self):
+    @cached_property
+    def num_pages(self):
         """
         Returns the total number of pages.
         """
-        if self._num_pages is None:
-            if self.count == 0 and not self.allow_empty_first_page:
-                self._num_pages = 0
-            else:
-                # Make sure we never return a page beyond max_result_window
-                hits = min(
-                    self.max_result_window,
-                    max(1, self.count - self.orphans))
+        if self.count == 0 and not self.allow_empty_first_page:
+            return 0
 
-                self._num_pages = int(ceil(hits / float(self.per_page)))
-        return self._num_pages
-    num_pages = property(_get_num_pages)
+        # Make sure we never return a page beyond max_result_window
+        hits = min(
+            self.max_result_window,
+            max(1, self.count - self.orphans))
+        return int(ceil(hits / float(self.per_page)))
 
     def validate_number(self, number):
         """
@@ -80,14 +78,15 @@ class ESPaginator(Paginator):
 
             # Overwrite `object_list` with the list of ES results.
             page = Page(result.hits, number, self)
-            # Update the `_count`.
-            self._count = page.object_list.total
+
+            # Overwrite the `count` with the total received from ES results.
+            self.count = page.object_list.total
         else:
             page = Page(self.object_list[bottom:top], number, self)
 
             # Force the search to evaluate and then attach the count.
             list(page.object_list)
-            self._count = page.object_list.count()
+            self.count = page.object_list.count()
 
         # Now that we have the count validate that the page number isn't higher
         # than the possible number of pages and adjust accordingly.

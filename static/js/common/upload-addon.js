@@ -91,13 +91,6 @@
 
             $upload_field.fileUploader(settings);
 
-            function textSize(bytes) {
-                var s = ['bytes', 'KB', 'MB', 'GB', 'TB', 'PB'];
-                if(bytes === 0) return bytes + " " + s[1];
-                var e = Math.floor( Math.log(bytes) / Math.log(1024) );
-                return (bytes / Math.pow(1024, Math.floor(e))).toFixed(2)+" "+s[e];
-            }
-
             function updateStatus(percentage, size) {
                 if (percentage) {
                     upload_status.show();
@@ -109,7 +102,7 @@
 
                     // L10n: "{bytes uploaded} of {total filesize}".
                     upload_status_progress.text(format(gettext('{0} of {1}'),
-                                [textSize(size), textSize(file.size)]));
+                                [fileSizeFormat(size), fileSizeFormat(file.size)]));
                 }
             }
 
@@ -289,7 +282,7 @@
                         errors.push(
                             format(
                                 gettext("Your add-on exceeds the maximum size of {0}."),
-                                [textSize(settings.maxSize)]));
+                                [fileSizeFormat(settings.maxSize)]));
                     } else {
                         // L10n: first argument is an HTTP status code
                         errors.push(

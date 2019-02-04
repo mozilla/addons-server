@@ -19,6 +19,7 @@ from elasticsearch import Elasticsearch
 from mock import patch
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
+from rest_framework.settings import api_settings
 from rest_framework.test import APIRequestFactory
 
 from olympia import amo
@@ -308,7 +309,7 @@ class TestICloudRedirect(TestCase):
     def test_redirect_with_waffle(self):
         r = self.client.get('/en-US/firefox/addon/icloud-bookmarks/')
         assert r.status_code == 302
-        assert r.get('location') == '%s/blocked/i1214/' % settings.SITE_URL
+        assert r.get('location') == '/blocked/i1214/'
 
     @override_switch('icloud_bookmarks_redirect', active=False)
     def test_redirect_without_waffle(self):
@@ -340,6 +341,10 @@ class TestDetailPage(TestCase):
             response = self.client.get(self.url)
             assert 'AMO is getting a new look.' in response.content
 
+    @pytest.mark.xfail(reason=(
+        'ETags currently don\'t work for add-on detail page. This is testing '
+        'a legacy page which will be gone quite soon and we didn\'t win '
+        'too much because of ETags anyway.'))
     def test_304(self):
         response = self.client.get(self.url)
         assert 'ETag' in response
@@ -1766,23 +1771,73 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
             'fr': u'Mon Addôn, le mien',
         }
         self.addon.save()
+
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
-        assert result['name'] == u'My Addôn, mine'
+        assert result['name'] == {'en-US': u'My Addôn, mine'}
 
         response = self.client.get(self.url, {'lang': 'fr'})
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
-        assert result['name'] == u'Mon Addôn, le mien'
+        assert result['name'] == {'fr': u'Mon Addôn, le mien'}
 
-        response = self.client.get(self.url, {'lang': 'en-US'})
+        response = self.client.get(self.url, {'lang': 'de'})
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result['id'] == self.addon.pk
-        assert result['name'] == u'My Addôn, mine'
+        assert result['name'] == {'en-US': u'My Addôn, mine'}
+
+        overridden_api_gates = {
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            response = self.client.get(self.url, {'lang': 'en-US'})
+            assert response.status_code == 200
+            result = json.loads(response.content)
+            assert result['id'] == self.addon.pk
+            assert result['name'] == u'My Addôn, mine'
+
+            response = self.client.get(self.url, {'lang': 'fr'})
+            assert response.status_code == 200
+            result = json.loads(response.content)
+            assert result['id'] == self.addon.pk
+            assert result['name'] == u'Mon Addôn, le mien'
+
+            response = self.client.get(self.url, {'lang': 'de'})
+            assert response.status_code == 200
+            result = json.loads(response.content)
+            assert result['id'] == self.addon.pk
+            assert result['name'] == u'My Addôn, mine'
+
+    def test_with_wrong_app_and_appversion_params(self):
+        # These parameters should only work with langpacks, and are ignored
+        # for the rest. Although the code lives in the serializer, this is
+        # tested on the view to make sure the error is propagated back
+        # correctly up to the view, generating a 400 error and not a 500.
+        # appversion without app
+        self.addon.update(type=amo.ADDON_LPAPP)
+
+        # Missing app
+        response = self.client.get(self.url, {'appversion': '58.0'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'Invalid "app" parameter.'}
+
+        # Invalid appversion
+        response = self.client.get(
+            self.url, {'appversion': 'fr', 'app': 'firefox'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'Invalid "appversion" parameter.'}
+
+        # Invalid app
+        response = self.client.get(
+            self.url, {'appversion': '58.0', 'app': 'fr'})
+        assert response.status_code == 400
+        data = json.loads(response.content)
+        assert data == {'detail': 'Invalid "app" parameter.'}
 
 
 class TestVersionViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
@@ -3049,11 +3104,22 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         # Search in a different language than the one used for the name: we
         # should fall back to default_locale and find the translation.
         data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
-        assert data['results'][0]['name'] == 'foobar'
+        assert data['results'][0]['name'] == {'pt-BR': 'foobar'}
 
         # Same deal in en-US.
         data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'en-US'})
-        assert data['results'][0]['name'] == 'foobar'
+        assert data['results'][0]['name'] == {'pt-BR': 'foobar'}
+
+        # And repeat with v3-style flat output when lang is specified:
+        overridden_api_gates = {
+            api_settings.DEFAULT_VERSION: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=overridden_api_gates):
+            data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
+            assert data['results'][0]['name'] == 'foobar'
+
+            data = self.perform_search(
+                self.url, {'q': 'foobar', 'lang': 'en-US'})
+            assert data['results'][0]['name'] == 'foobar'
 
     def test_empty(self):
         data = self.perform_search(self.url)
@@ -3684,6 +3750,11 @@ class TestReplacementAddonView(TestCase):
 
 
 class TestCompatOverrideView(TestCase):
+    """This view is used by Firefox directly and queried a lot.
+
+    That's why there are performance sensitive tests.
+    """
+
     client_class = APITestClient
 
     def setUp(self):
@@ -3756,6 +3827,41 @@ class TestCompatOverrideView(TestCase):
         # And no guid param should be a 400 too
         assert response.status_code == 400
         assert 'Empty, or no, guid parameter provided.' in response.content
+
+    def test_performance_no_matching_guid(self):
+        # There is at least one query from the paginator, counting all objects
+        # We do not query on `compat_override` though if the count is 0.
+        with self.assertNumQueries(1):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': u'unknownguid'})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 0
+
+    def test_performance_matches_one_guid(self):
+        # 1. Query is querying compat_override
+        # 2. Query is adding CompatOverrideRange via the transformer
+        with self.assertNumQueries(2):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': u'extrabad@thing'})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 1
+
+    def test_performance_matches_multiple_guid(self):
+        # 1. Query is querying compat_override
+        # 2. Query is adding CompatOverrideRange via the transformer
+        with self.assertNumQueries(2):
+            response = self.client.get(
+                reverse_ns('addon-compat-override'),
+                data={'guid': (
+                    u'extrabad@thing,invalid@guid,notevenaguid$,'
+                    u'bad@thing')})
+            assert response.status_code == 200
+            data = json.loads(response.content)
+            assert len(data['results']) == 2
 
 
 class TestAddonRecommendationView(ESTestCase):

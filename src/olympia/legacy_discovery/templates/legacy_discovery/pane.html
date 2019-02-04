@@ -15,7 +15,7 @@ data-upandcoming-url="{{ services_url('discovery.pane.more_addons', 'up-and-comi
 {% endblock %}
 
 {% block content %}
-  <header{% if user.is_authenticated() %} class="auth"{% endif %}>
+  <header{% if user.is_authenticated %} class="auth"{% endif %}>
     <section id="intro">
       <h1>
         <img src="{{ static('img/zamboni/discovery_pane/logo-addons.png') }}" width="87" height="82" alt="">

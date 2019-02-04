@@ -4,15 +4,45 @@
 
 {% block content %}
   <section class="primary">
-    {% trans %}
-      <h1>Oops! Not allowed.</h1>
-      <p>You tried to do something that you weren't allowed to.</p>
-    {% endtrans %}
-    {% if because_csrf %}
-      {% trans %}
-      <p>Try going back to the previous page, refreshing
-      and then trying again.</p>
-      {% endtrans %}
+    <h1>{{ _('Oops! Not allowed.') }}</h1>
+    <p>
+      {{ _("You tried to do something that you weren't allowed to.") }}
+    </p>
+  </section>
+
+  <section class="primary">
+    {# Taken primarily from Django's CSRF page #}
+    {% if no_referer %}
+      <p>
+        {% trans %}
+        You are seeing this message because this HTTPS site requires a
+        'Referer header' to be sent by your Web browser, but none was
+        sent. This header is required for security reasons, to ensure
+        that your browser is not being hijacked by third parties.
+        {% endtrans %}
+      <p>
+        {% trans %}
+        If you have configured your browser to disable 'Referer' headers,
+        please re-enable them, at least for this site, or for HTTPS
+        connections, or for 'same-origin' requests.
+        {% endtrans %}
+      </p>
+    {% endif %}
+
+    {% if no_cookie %}
+      <p>
+        {% trans %}
+        You are seeing this message because this site requires a CSRF
+        cookie when submitting forms. This cookie is required for
+        security reasons, to ensure that your browser is not being
+        hijacked by third parties.
+        {% endtrans %}
+      </p>
+      <p>
+        If you have configured your browser to disable cookies, please
+        re-enable them, at least for this site, or for 'same-origin'
+        requests.
+      </p>
     {% endif %}
   </section>
 {% endblock %}

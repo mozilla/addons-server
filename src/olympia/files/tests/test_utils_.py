@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import shutil
@@ -81,6 +82,30 @@ class TestExtractor(TestCase):
         utils.Extractor.parse(fake_zip)
         assert not rdf_extractor.called
         assert manifest_json_extractor.called
+
+    @mock.patch('olympia.files.utils.os.path.getsize')
+    @override_switch('allow-static-theme-uploads', active=True)
+    def test_static_theme_max_size(self, getsize_mock):
+        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{"theme": {}}').parse()
+
+        # Calling to check it doesn't raise.
+        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+
+        # Increase the size though and it should raise an error.
+        getsize_mock.return_value = settings.MAX_STATICTHEME_SIZE + 1
+        with pytest.raises(forms.ValidationError) as exc:
+            utils.check_xpi_info(manifest, xpi_file=mock.Mock())
+
+        assert (
+            exc.value.message ==
+            u'Maximum size for WebExtension themes is 7.0 MB.')
+
+        # dpuble check only static themes are limited
+        manifest = utils.ManifestJSONExtractor(
+            '/fake_path', '{}').parse()
+        assert utils.check_xpi_info(manifest, xpi_file=mock.Mock())
 
 
 class TestRDFExtractor(TestCase):
@@ -299,12 +324,36 @@ class TestManifestJSONExtractor(TestCase):
         parsed_data = self.parse(data)
         assert parsed_data['type'] == amo.ADDON_LPAPP
         assert parsed_data['strict_compatibility'] is True
+        assert parsed_data['is_webextension'] is True
 
         apps = parsed_data['apps']
         assert len(apps) == 1  # Langpacks are not compatible with android.
         assert apps[0].appdata == amo.FIREFOX
         assert apps[0].min.version == '60.0'
         assert apps[0].max.version == '60.*'
+
+    def test_dictionary(self):
+        self.create_webext_default_versions()
+        self.create_appversion('firefox', '61.0')
+        data = {
+            'applications': {
+                'gecko': {
+                    'id': '@langp'
+                }
+            },
+            'dictionaries': {'en-US': '/path/to/en-US.dic'}
+        }
+
+        parsed_data = self.parse(data)
+        assert parsed_data['type'] == amo.ADDON_DICT
+        assert parsed_data['strict_compatibility'] is False
+        assert parsed_data['is_webextension'] is True
+
+        apps = parsed_data['apps']
+        assert len(apps) == 1  # Dictionaries are not compatible with android.
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == '61.0'
+        assert apps[0].max.version == '*'
 
     def test_extensions_dont_have_strict_compatibility(self):
         assert self.parse({})['strict_compatibility'] is False
@@ -559,6 +608,9 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
         assert self.parse(data)['theme'] == data['theme']
 
     def test_langpack(self):
+        pass  # Irrelevant for static themes.
+
+    def test_dictionary(self):
         pass  # Irrelevant for static themes.
 
 

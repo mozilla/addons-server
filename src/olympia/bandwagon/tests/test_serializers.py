@@ -54,7 +54,6 @@ class TestCollectionAddonSerializer(BaseTestCase):
     def test_basic(self):
         data = self.serialize()
         assert data['addon']['id'] == self.collection.addons.all()[0].id
-        assert data['downloads'] == self.item.downloads
         assert data['notes'] == {'en-US': self.item.comments}
 
 

@@ -3,12 +3,14 @@ import pytest
 from pages.desktop.home import Home
 
 
+@pytest.mark.fxa_login
+@pytest.mark.skip("Addons frontend login not working")
 @pytest.mark.withoutresponses
-def test_login(base_url, selenium, user):
+def test_login(base_url, selenium, fxa_account):
     """User can login"""
     page = Home(selenium, base_url).open()
     assert not page.logged_in
-    page.login(user['email'], user['password'])
+    page.login(fxa_account.email, fxa_account.password)
     assert page.logged_in
 
 

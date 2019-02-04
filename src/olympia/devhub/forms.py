@@ -5,7 +5,7 @@ from django import forms
 from django.conf import settings
 from django.db.models import Q
 from django.forms.models import BaseModelFormSet, modelformset_factory
-from django.utils.functional import cached_property
+from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -20,7 +20,7 @@ from olympia.addons.forms import AddonFormBase
 from olympia.addons.models import (
     Addon, AddonCategory, AddonDependency, AddonReviewerFlags, AddonUser,
     Preview)
-from olympia.amo.fields import HttpHttpsOnlyURLField
+from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
@@ -28,7 +28,6 @@ from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon
-from olympia.lib import happyforms
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation, delete_translation
@@ -40,7 +39,7 @@ from olympia.versions.models import (
 from . import tasks
 
 
-class AuthorForm(happyforms.ModelForm):
+class AuthorForm(forms.ModelForm):
     class Meta:
         model = AddonUser
         exclude = ('addon',)
@@ -82,7 +81,7 @@ AuthorFormSet = modelformset_factory(AddonUser, formset=BaseAuthorFormSet,
                                      form=AuthorForm, can_delete=True, extra=0)
 
 
-class DeleteForm(happyforms.Form):
+class DeleteForm(forms.Form):
     slug = forms.CharField()
     reason = forms.CharField(required=False)
 
@@ -96,31 +95,48 @@ class DeleteForm(happyforms.Form):
             raise forms.ValidationError(ugettext('Slug incorrect.'))
 
 
-class LicenseRadioChoiceInput(forms.widgets.RadioChoiceInput):
+class LicenseRadioSelect(forms.RadioSelect):
 
-    def __init__(self, name, value, attrs, choice, index):
-        super(LicenseRadioChoiceInput, self).__init__(
-            name, value, attrs, choice, index)
-        license = choice[1]  # Choice is a tuple (object.id, object).
+    def get_context(self, name, value, attrs):
+        context = super(LicenseRadioSelect, self).get_context(
+            name, value, attrs)
+
+        # Make sure the `class` is only set on the radio fields and
+        # not on the `ul`. This avoids style issues among other things.
+        # See https://github.com/mozilla/addons-server/issues/8902
+        # and https://github.com/mozilla/addons-server/issues/8920
+        del context['widget']['attrs']['class']
+
+        return context
+
+    def create_option(self, name, value, label, selected, index,
+                      subindex=None, attrs=None):
+        context = super(LicenseRadioSelect, self).create_option(
+            name=name, value=value, label=label, selected=selected,
+            index=index, subindex=subindex, attrs=attrs)
+
         link = (u'<a class="xx extra" href="%s" target="_blank" '
                 u'rel="noopener noreferrer">%s</a>')
+        license = self.choices[index][1]
+
         if hasattr(license, 'url') and license.url:
             details = link % (license.url, ugettext('Details'))
-            self.choice_label = mark_safe(self.choice_label + ' ' + details)
+            context['label'] = mark_safe(
+                unicode(context['label']) + ' ' + details)
         if hasattr(license, 'icons'):
-            self.attrs['data-cc'] = license.icons
-        self.attrs['data-name'] = unicode(license)
-
-
-class LicenseRadioFieldRenderer(forms.widgets.RadioFieldRenderer):
-    choice_input_class = LicenseRadioChoiceInput
-
-
-class LicenseRadioSelect(forms.RadioSelect):
-    renderer = LicenseRadioFieldRenderer
+            context['attrs']['data-cc'] = license.icons
+        context['attrs']['data-name'] = unicode(license)
+        return context
 
 
 class LicenseForm(AMOModelForm):
+    # Hack to restore behavior from pre Django 1.10 times.
+    # Django 1.10 enabled `required` rendering for required widgets. That
+    # wasn't the case before, this should be fixed properly but simplifies
+    # the actual Django 1.11 deployment for now.
+    # See https://github.com/mozilla/addons-server/issues/8912 for proper fix.
+    use_required_attribute = False
+
     builtin = forms.TypedChoiceField(
         choices=[], coerce=int,
         widget=LicenseRadioSelect(attrs={'class': 'license'}))
@@ -282,26 +298,22 @@ class WithSourceMixin(object):
 
 class SourceFileInput(forms.widgets.ClearableFileInput):
     """
-    We need to customize the URL link.
-    1. Remove %(initial)% from template_with_initial
-    2. Prepend the new link (with customized text)
+    Like ClearableFileInput but with custom link URL and text for the initial
+    data. Uses a custom template because django's is not flexible enough for
+    our needs.
     """
+    initial_text = _('View current')
+    template_name = 'devhub/addons/includes/source_file_input.html'
 
-    template_with_initial = '%(clear_template)s<br />%(input_text)s: %(input)s'
-
-    def render(self, name, value, attrs=None):
-        output = super(SourceFileInput, self).render(name, value, attrs)
+    def get_context(self, name, value, attrs):
+        context = super(SourceFileInput, self).get_context(name, value, attrs)
         if value and hasattr(value, 'instance'):
-            url = reverse('downloads.source', args=(value.instance.pk, ))
-            params = {
-                'url': url,
-                'output': output,
-                'label': ugettext('View current')}
-            output = '<a href="%(url)s">%(label)s</a> %(output)s' % params
-        return output
+            context['download_url'] = reverse(
+                'downloads.source', args=(value.instance.pk, ))
+        return context
 
 
-class VersionForm(WithSourceMixin, happyforms.ModelForm):
+class VersionForm(WithSourceMixin, forms.ModelForm):
     releasenotes = TransField(
         widget=TransTextarea(), required=False)
     approvalnotes = forms.CharField(
@@ -348,7 +360,7 @@ class AppVersionChoiceField(forms.ModelChoiceField):
         return obj.version
 
 
-class CompatForm(happyforms.ModelForm):
+class CompatForm(forms.ModelForm):
     application = forms.TypedChoiceField(choices=amo.APPS_CHOICES,
                                          coerce=int,
                                          widget=forms.HiddenInput)
@@ -395,9 +407,6 @@ class CompatForm(happyforms.ModelForm):
 class BaseCompatFormSet(BaseModelFormSet):
 
     def __init__(self, *args, **kwargs):
-        # form_kwargs is only present in Django 1.9 and newer, so we
-        # re-implement it.
-        self.form_kwargs = kwargs.pop('form_kwargs', {})
         super(BaseCompatFormSet, self).__init__(*args, **kwargs)
         # We always want a form for each app, so force extras for apps
         # the add-on does not already have.
@@ -438,29 +447,17 @@ class BaseCompatFormSet(BaseModelFormSet):
                              if not f.cleaned_data.get('DELETE', False)])
 
         if not apps:
+            # At this point, we're raising a global error and re-displaying the
+            # applications that were present before. We don't want to keep the
+            # hidden delete fields in the data attribute, cause that's used to
+            # populate initial data for all forms, and would therefore make
+            # those delete fields active again.
+            self.data = {k: v for k, v in self.data.iteritems()
+                         if not k.endswith('-DELETE')}
+            for form in self.forms:
+                form.data = self.data
             raise forms.ValidationError(
                 ugettext('Need at least one compatible application.'))
-
-    # The 2 methods below, forms() and get_form_kwargs(), are lifted from
-    # Django 1.9, because we need form_kwargs to work.
-    @cached_property
-    def forms(self):
-        """
-        Instantiate forms at first property access.
-        """
-        # DoS protection is included in total_form_count()
-        forms = [self._construct_form(i, **self.get_form_kwargs(i))
-                 for i in range(self.total_form_count())]
-        return forms
-
-    def get_form_kwargs(self, index):
-        """
-        Return additional keyword arguments for each individual formset form.
-
-        index will be None if the form being constructed is a new empty
-        form.
-        """
-        return self.form_kwargs.copy()
 
 
 CompatFormSet = modelformset_factory(
@@ -468,7 +465,7 @@ CompatFormSet = modelformset_factory(
     form=CompatForm, can_delete=True, extra=0)
 
 
-class AddonUploadForm(WithSourceMixin, happyforms.Form):
+class NewUploadForm(forms.Form):
     upload = forms.ModelChoiceField(
         widget=forms.HiddenInput,
         queryset=FileUpload.objects,
@@ -480,27 +477,6 @@ class AddonUploadForm(WithSourceMixin, happyforms.Form):
     )
     admin_override_validation = forms.BooleanField(
         required=False, label=_(u'Override failed validation'))
-    source = forms.FileField(required=False)
-    is_manual_review = forms.BooleanField(
-        initial=False, required=False,
-        label=_(u'Submit my add-on for manual review.'))
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-        super(AddonUploadForm, self).__init__(*args, **kw)
-
-    def _clean_upload(self):
-        if not (self.cleaned_data['upload'].valid or
-                self.cleaned_data['upload'].validation_timeout or
-                self.cleaned_data['admin_override_validation'] and
-                acl.action_allowed(self.request,
-                                   amo.permissions.REVIEWS_ADMIN)):
-            raise forms.ValidationError(
-                ugettext(u'There was an error with your upload. '
-                         u'Please try again.'))
-
-
-class NewUploadForm(AddonUploadForm):
     supported_platforms = forms.TypedMultipleChoiceField(
         choices=amo.SUPPORTED_PLATFORMS_CHOICES,
         widget=forms.CheckboxSelectMultiple(attrs={'class': 'platform'}),
@@ -510,6 +486,7 @@ class NewUploadForm(AddonUploadForm):
     )
 
     def __init__(self, *args, **kw):
+        self.request = kw.pop('request')
         self.addon = kw.pop('addon', None)
         self.version = kw.pop('version', None)
         super(NewUploadForm, self).__init__(*args, **kw)
@@ -528,8 +505,16 @@ class NewUploadForm(AddonUploadForm):
                 to_exclude.add(amo.PLATFORM_ALL.id)
                 platforms.choices = [p for p in platforms.choices
                                      if p[0] not in to_exclude]
-            # Don't show the source field for new File uploads
-            del self.fields['source']
+
+    def _clean_upload(self):
+        if not (self.cleaned_data['upload'].valid or
+                self.cleaned_data['upload'].validation_timeout or
+                self.cleaned_data['admin_override_validation'] and
+                acl.action_allowed(self.request,
+                                   amo.permissions.REVIEWS_ADMIN)):
+            raise forms.ValidationError(
+                ugettext(u'There was an error with your upload. '
+                         u'Please try again.'))
 
     def clean(self):
         if self.version and not self.version.is_allowed_upload():
@@ -572,7 +557,32 @@ class NewUploadForm(AddonUploadForm):
         return self.cleaned_data
 
 
-class FileForm(happyforms.ModelForm):
+class SourceForm(WithSourceMixin, forms.ModelForm):
+    source = forms.FileField(required=False, widget=SourceFileInput)
+    has_source = forms.ChoiceField(
+        choices=(('yes', _('Yes')), ('no', _('No'))), required=True,
+        widget=RadioSelect)
+
+    class Meta:
+        model = Version
+        fields = ('source',)
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request')
+        super(SourceForm, self).__init__(*args, **kwargs)
+
+    def clean_has_source(self):
+        data = self.cleaned_data
+        if data.get('has_source') == 'yes' and not data.get('source'):
+            raise forms.ValidationError(
+                ugettext(u'You have not uploaded a source file.'))
+        elif data.get('has_source') == 'no' and data.get('source'):
+            raise forms.ValidationError(
+                ugettext(u'Source file uploaded but you indicated no source '
+                         u'was needed.'))
+
+
+class FileForm(forms.ModelForm):
     platform = File._meta.get_field('platform').formfield()
 
     class Meta:
@@ -656,7 +666,7 @@ class DescribeForm(AddonFormBase):
         return obj
 
 
-class PreviewForm(happyforms.ModelForm):
+class PreviewForm(forms.ModelForm):
     caption = TransField(widget=TransTextarea, required=False)
     file_upload = forms.FileField(required=False)
     upload_hash = forms.CharField(required=False)
@@ -697,7 +707,7 @@ PreviewFormSet = modelformset_factory(Preview, formset=BasePreviewFormSet,
                                       extra=1)
 
 
-class CheckCompatibilityForm(happyforms.Form):
+class CheckCompatibilityForm(forms.Form):
     application = forms.ChoiceField(
         label=_(u'Application'),
         choices=[(a.id, a.pretty) for a in amo.APP_USAGE])
@@ -736,7 +746,7 @@ def DependencyFormSet(*args, **kw):
     qs = (Addon.objects.public().exclude(id=addon_parent.id).
           exclude(type__in=[amo.ADDON_PERSONA]))
 
-    class _Form(happyforms.ModelForm):
+    class _Form(forms.ModelForm):
         addon = forms.CharField(required=False, widget=forms.HiddenInput)
         dependent_addon = forms.ModelChoiceField(qs, widget=forms.HiddenInput)
 
@@ -763,7 +773,7 @@ def DependencyFormSet(*args, **kw):
     return FormSet(*args, **kw)
 
 
-class DistributionChoiceForm(happyforms.Form):
+class DistributionChoiceForm(forms.Form):
     LISTED_LABEL = _(
         u'On this site. <span class="helptext">'
         u'Your submission will be listed on this site and the Firefox '
@@ -786,12 +796,21 @@ class DistributionChoiceForm(happyforms.Form):
         widget=forms.RadioSelect(attrs={'class': 'channel'}))
 
 
-class AgreementForm(happyforms.Form):
+class AgreementForm(forms.Form):
     distribution_agreement = forms.BooleanField()
     review_policy = forms.BooleanField()
+    recaptcha = ReCaptchaField(label='')
+
+    def __init__(self, *args, **kwargs):
+        render_captcha = kwargs.pop('render_captcha', False)
+
+        super(AgreementForm, self).__init__(*args, **kwargs)
+
+        if not render_captcha:
+            del self.fields['recaptcha']
 
 
-class SingleCategoryForm(happyforms.Form):
+class SingleCategoryForm(forms.Form):
     category = forms.ChoiceField(widget=forms.RadioSelect)
 
     def __init__(self, *args, **kw):

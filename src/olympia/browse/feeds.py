@@ -3,7 +3,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 from olympia import amo
 from olympia.addons.models import Addon, Category
-from olympia.amo.feeds import NonAtomicFeed
+from olympia.amo.feeds import BaseFeed
 from olympia.amo.templatetags.jinja_helpers import absolutify, page_name, url
 from olympia.amo.urlresolvers import reverse
 
@@ -28,7 +28,7 @@ class AddonFeedMixin(object):
         return unicode(addon.description) or ''
 
     def item_author_name(self, addon):
-        """Author for a particuar add-on (<item><dc:creator>)"""
+        """Author for a particular add-on (<item><dc:creator>)"""
         if addon.listed_authors:
             return addon.listed_authors[0].name
         else:
@@ -46,7 +46,7 @@ class AddonFeedMixin(object):
         return absolutify(url_)
 
 
-class CategoriesRss(AddonFeedMixin, NonAtomicFeed):
+class CategoriesRss(AddonFeedMixin, BaseFeed):
 
     def get_object(self, request, category_name=None):
         """
@@ -115,7 +115,7 @@ class ThemeCategoriesRss(CategoriesRss):
             return self.title
 
 
-class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
+class FeaturedRss(AddonFeedMixin, BaseFeed):
     request = None
 
     def get_object(self, request):
@@ -143,7 +143,7 @@ class FeaturedRss(AddonFeedMixin, NonAtomicFeed):
         return Addon.objects.featured(self.app)[:20]
 
 
-class SearchToolsRss(AddonFeedMixin, NonAtomicFeed):
+class SearchToolsRss(AddonFeedMixin, BaseFeed):
     category = None
     request = None
     TYPES = None

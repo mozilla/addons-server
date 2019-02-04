@@ -1,7 +1,6 @@
 [
     {
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",
@@ -26,7 +25,6 @@
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "averagerating": 3.39,
             "picture_type": "image/jpeg",
@@ -47,7 +45,6 @@
     },
     {
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",
@@ -70,7 +67,6 @@
     },
     {
         "fields": {
-            "display_collections_fav": 1,
             "display_collections": 1,
             "occupation": "",
             "location": "",
@@ -94,14 +90,10 @@
         "pk": 5497308,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "email": "reviewer@mozilla.com",
             "username": "reviewer",
-            "failed_login_attempts": 0,
             "deleted": false,
-            "last_login_attempt_ip": "127.0.0.1",
-            "last_login_attempt": "2010-11-16 10:51:34",
             "created": "2010-10-19 13:02:25",
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
@@ -113,14 +105,10 @@
         "pk": 5497311,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "email": "persona_reviewer@mozilla.com",
             "username": "Persona Reviewer",
-            "failed_login_attempts": 0,
             "deleted": false,
-            "last_login_attempt_ip": "127.0.0.1",
-            "last_login_attempt": "2010-11-16 10:51:34",
             "created": "2010-10-19 13:02:25",
             "modified": "2010-11-16 10:51:34",
             "last_login_ip": "127.0.0.1",
@@ -132,7 +120,6 @@
         "pk": 20,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "occupation": "",
             "display_name": "",
@@ -143,10 +130,7 @@
             "email": "partner@mozilla.com",
             "username": "partner",
             "biography": null,
-            "failed_login_attempts": 0,
             "deleted": false,
-            "last_login_attempt_ip": "",
-            "last_login_attempt": null,
             "created": "2011-12-01 16:20:55",
             "notes": null,
             "modified": "2011-12-01 16:20:56",

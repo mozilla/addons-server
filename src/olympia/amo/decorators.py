@@ -27,7 +27,7 @@ def login_required(f=None, redirect=True):
         def wrapper(request, *args, **kw):
             # Prevent circular ref in accounts.utils
             from olympia.accounts.utils import redirect_for_login
-            if request.user.is_authenticated():
+            if request.user.is_authenticated:
                 return func(request, *args, **kw)
             else:
                 if redirect:
@@ -102,16 +102,12 @@ json_view.error = lambda s: http.HttpResponseBadRequest(
     json.dumps(s), content_type='application/json')
 
 
-def use_master(f):
+def use_primary_db(f):
     @functools.wraps(f)
     def wrapper(*args, **kw):
-        with context.use_master():
+        with context.use_primary_db():
             return f(*args, **kw)
     return wrapper
-
-
-def write(f):
-    return use_master(f)
 
 
 def set_modified_on(f):
@@ -176,7 +172,7 @@ def allow_mine(f):
         # Prevent circular ref in accounts.utils
         from olympia.accounts.utils import redirect_for_login
         if username == 'mine':
-            if not request.user.is_authenticated():
+            if not request.user.is_authenticated:
                 return redirect_for_login(request)
             username = request.user.username
         return f(request, username, *args, **kw)
@@ -192,7 +188,7 @@ def atomic(fn):
     """
     # TODO: Make this the default for all transactions.
     @functools.wraps(fn)
-    @write
+    @use_primary_db
     def inner(*args, **kwargs):
         cursor = connection.cursor()
         cursor.execute('SET TRANSACTION ISOLATION LEVEL SERIALIZABLE')

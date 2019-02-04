@@ -1,6 +1,5 @@
 import logging
 import os
-import sys
 
 from datetime import datetime
 
@@ -18,13 +17,9 @@ log = logging.getLogger('z.startup')
 wsgi_loaded = datetime.now()
 
 
-# Do validate and activate translations like using `./manage.py runserver`.
-# http://blog.dscpl.com.au/2010/03/improved-wsgi-script-for-use-with.html
+# Do validate and activate translations before running the app.
 django.setup()
 django.utils.translation.activate(django.conf.settings.LANGUAGE_CODE)
-utility = django.core.management.ManagementUtility()
-command = utility.fetch_command('runserver')
-command.validate()
 
 # This is what mod_wsgi runs.
 django_app = get_wsgi_application()

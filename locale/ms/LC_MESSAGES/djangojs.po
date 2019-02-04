@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-09-09 02:57+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-03 11:21+0000\n"
 "Last-Translator: manxmensch <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ms\n"
@@ -211,29 +211,45 @@ msgstr "Guna asal"
 msgid "Week of {0}"
 msgstr "Minggu {0}"
 
-msgid " downloads"
-msgstr " muat turun"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " muat turun"
 
-msgid "{0} users"
-msgstr "{0} pengguna"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} pengguna"
 
-msgid "{0} add-ons"
-msgstr "{0} add-on"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} add-on"
 
-msgid "{0} collections"
-msgstr "{0} koleksi"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} koleksi"
 
-msgid "{0} reviews"
-msgstr "{0} semakan"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} semakan"
 
-msgid "{0} sales"
-msgstr "{0} jualan"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} jualan"
 
-msgid "{0} refunds"
-msgstr "{0} bayaran balik"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} bayaran balik"
 
-msgid "{0} installs"
-msgstr "{0} pemasangan"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} pemasangan"
 
 msgid "Downloads"
 msgstr "Muat turun"
@@ -788,6 +804,9 @@ msgstr "Purata Ulasan"
 
 msgid "Number of Reviews"
 msgstr "Bilangan Ulasan"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "Saiz maksimum muat naik {0} - pilih imej latar belakang yang lebih kecil."
 
 msgid "Requested Info"
 msgstr "Info diminta"

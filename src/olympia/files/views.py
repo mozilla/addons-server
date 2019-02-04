@@ -82,8 +82,8 @@ def check_compare_form(request, form):
 
 @csrf_exempt
 @file_view
-@condition(etag_func=etag, last_modified_func=last_modified)
 @non_atomic_requests
+@condition(etag_func=etag, last_modified_func=last_modified)
 def browse(request, viewer, key=None, type='file'):
     form = forms.FileCompareForm(request.POST or None, addon=viewer.addon,
                                  initial={'left': viewer.file},

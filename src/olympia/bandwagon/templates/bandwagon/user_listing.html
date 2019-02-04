@@ -1,11 +1,7 @@
 {% extends "base.html" %}
 
-{% if page == 'following' %}
-  {% set title = _("Collections I'm Following") %}
-{% else %}
-  {# L10n: {0} is a username. #}
-  {% set title = _('Collections by {0}')|format_html(author.name) %}
-{% endif %}
+{# L10n: {0} is a username. #}
+{% set title = _('Collections by {0}')|format_html(author.name) %}
 
 {% block title %}{{ page_title(title) }}{% endblock %}
 

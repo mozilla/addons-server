@@ -66,7 +66,7 @@ def extract_file(viewer, **kw):
                 'in progress. Please try again in approximately 5 minutes.'
                 % viewer)
             msg.save(info_msg)
-    except Exception, exc:
+    except Exception as exc:
         error_msg = ugettext('There was an error accessing file %s.') % viewer
 
         if settings.DEBUG:
@@ -127,7 +127,7 @@ class FileViewer(object):
 
                 try:
                     os.makedirs(self.dest)
-                except OSError, err:
+                except OSError as err:
                     task_log.error(
                         'Error (%s) creating directories %s'
                         % (err, self.dest))
@@ -142,7 +142,7 @@ class FileViewer(object):
                         extracted_files = extract_xpi(
                             self.src, self.dest, expand=True)
                         self._verify_files(extracted_files)
-                    except Exception, err:
+                    except Exception as err:
                         task_log.error(
                             'Error (%s) extracting %s' % (err, self.src))
                         raise

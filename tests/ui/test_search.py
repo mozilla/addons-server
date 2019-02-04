@@ -2,8 +2,6 @@
 import pytest
 
 from pages.desktop.home import Home
-from pages.desktop.extensions import Extensions
-from pages.desktop.themes import Themes
 from pages.desktop.search import Search
 
 
@@ -37,13 +35,13 @@ def test_legacy_extensions_do_not_load(base_url, selenium):
 @pytest.mark.parametrize('category, sort_attr', [
     ['Most Users', 'users'],
     ['Top Rated', 'rating']])
-def test_sorting_by(
-        base_url, selenium, es_test, category, sort_attr):
+def test_sorting_by(base_url, selenium, category, sort_attr):
     """Test searching for an addon and sorting."""
     Home(selenium, base_url).open()
     addon_name = 'Ui-addon'
     selenium.get('{}/search/?&q={}&sort={}'.format(
-                 base_url, addon_name, sort_attr))
+        base_url, addon_name, sort_attr)
+    )
     search_page = Search(selenium, base_url)
     results = [getattr(i, sort_attr)
                for i in search_page.result_list.extensions]

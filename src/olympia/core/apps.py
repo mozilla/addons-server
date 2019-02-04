@@ -8,8 +8,6 @@ from django.conf import settings
 from django.core.management import call_command
 from django.utils.translation import ugettext_lazy as _
 
-import session_csrf
-
 
 log = logging.getLogger('z.startup')
 
@@ -24,8 +22,6 @@ class CoreConfig(AppConfig):
         # Ignore Python warnings unless we're running in debug mode.
         if not settings.DEBUG:
             warnings.simplefilter('ignore')
-
-        session_csrf.monkeypatch()
 
         self.load_product_details()
         self.set_recursion_limit()

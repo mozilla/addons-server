@@ -26,13 +26,6 @@
           {% pluralize %}
             <span>{{ addons }}</span> add-ons
           {% endtrans %}
-          &middot;
-          {% set subscribers = collection.subscribers %}
-          {% trans num=subscribers, followers=subscribers|numberfmt %}
-            <span>{{ followers }}</span> follower
-          {% pluralize %}
-            <span>{{ followers }}</span> followers
-          {% endtrans %}
         </div>
       </div>
     </li>

@@ -10,8 +10,6 @@ from django.utils.http import is_safe_url
 from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 
-from session_csrf import anonymous_csrf, anonymous_csrf_exempt
-
 import olympia.core.logger
 
 from olympia import amo
@@ -22,7 +20,7 @@ from olympia.addons.decorators import addon_view_factory
 from olympia.addons.models import Addon, Category
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    json_view, login_required, permission_required, write)
+    json_view, login_required, permission_required, use_primary_db)
 from olympia.amo.forms import AbuseForm
 from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import escape_all, render
@@ -132,7 +130,7 @@ def delete_photo(request, user_id):
     return render(request, 'users/delete_photo.html', {'target_user': user})
 
 
-@write
+@use_primary_db
 @login_required
 def edit(request):
     # Don't use request.user since it has too much caching.
@@ -158,7 +156,7 @@ def edit(request):
                   {'form': form, 'amouser': amouser})
 
 
-@write
+@use_primary_db
 @login_required
 @permission_required(amo.permissions.USERS_EDIT)
 @user_view
@@ -192,27 +190,30 @@ def _clean_next_url(request):
     return request
 
 
-@anonymous_csrf
 def login(request):
-    return render(request, 'users/login.html')
+    if request.user.is_authenticated:
+        request = _clean_next_url(request)
+        return http.HttpResponseRedirect(request.GET['to'])
+    else:
+        return render(request, 'users/login.html')
 
 
 def logout(request):
     user = request.user
-    if not user.is_anonymous():
+    if not user.is_anonymous:
         log.debug(u"User (%s) logged out" % user)
 
     if 'to' in request.GET:
         request = _clean_next_url(request)
 
-    next = request.GET.get('to')
-    if not next:
-        next = settings.LOGOUT_REDIRECT_URL
+    next_url = request.GET.get('to')
+    if not next_url:
+        next_url = settings.LOGOUT_REDIRECT_URL
         prefixer = get_url_prefix()
         if prefixer:
-            next = prefixer.fix(next)
+            next_url = prefixer.fix(next_url)
 
-    response = http.HttpResponseRedirect(next)
+    response = http.HttpResponseRedirect(next_url)
 
     logout_user(request, response)
 
@@ -229,13 +230,9 @@ def profile(request, user):
     if user.display_collections:
         own_coll = (Collection.objects.listed().filter(author=user)
                     .order_by('-created'))[:10]
-    if user.display_collections_fav:
-        fav_coll = (Collection.objects.listed()
-                    .filter(following__user=user)
-                    .order_by('-following__created'))[:10]
 
     edit_any_user = acl.action_allowed(request, amo.permissions.USERS_EDIT)
-    own_profile = (request.user.is_authenticated() and
+    own_profile = (request.user.is_authenticated and
                    request.user.id == user.id)
 
     addons = []
@@ -307,7 +304,6 @@ def themes(request, user, category=None):
     return render(request, 'browse/personas/grid.html', ctx)
 
 
-@anonymous_csrf_exempt
 @user_view
 def report_abuse(request, user):
     form = AbuseForm(request.POST or None, request=request)

@@ -1,0 +1,52 @@
+.vForeignKeyRawIdAdminField {
+    width: 13em;
+}
+
+.field-previews .discovery-preview {
+    clear: left;
+    margin-top: 2em;
+}
+
+.field-previews h2.heading {
+    background: none;
+    color: #444;
+    font-size: 14px;
+    font-weight: medium;
+    line-height: 1.2;
+    margin: 0.75em 0 0 0;
+    padding: 0;
+}
+
+.field-previews .heading span {
+    color: #6a6a6a;
+    font-size: 10px;
+    font-weight: normal;
+}
+
+.field-previews .heading span a:link,
+.field-previews .heading span a:visited,
+.field-previews .heading span a:focus,
+.field-previews .heading span a:hover,
+.field-previews .heading span a:active {
+    color: #6a6a6a;
+    text-decoration: underline;
+}
+
+.field-previews .editorial-description {
+    color: #444;
+    font-size: 12px;
+    margin: 0.75em 0;
+}
+
+.field-previews .editorial-description blockquote {
+    border: none;
+    color: inherit;
+    font-size: inherit;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.field-previews .discovery-preview::before {
+    content: attr(data-locale);
+    display: block;
+}

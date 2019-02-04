@@ -4,7 +4,7 @@ from django import forms
 from django.conf import settings
 from django.contrib import admin
 from django.core import validators
-from django.core.urlresolvers import resolve
+from django.urls import resolve
 from django.utils.html import format_html
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -26,12 +26,13 @@ class AddonAdmin(admin.ModelAdmin):
     list_display = ('__unicode__', 'type', 'guid',
                     'status_with_admin_manage_link', 'average_rating')
     list_filter = ('type', 'status')
+    search_fields = ('id', '^guid', '^slug')
 
-    readonly_fields = ('status_with_admin_manage_link',)
+    readonly_fields = ('id', 'status_with_admin_manage_link',)
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'slug', 'guid', 'default_locale', 'type',
+            'fields': ('id', 'name', 'slug', 'guid', 'default_locale', 'type',
                        'status_with_admin_manage_link'),
         }),
         ('Details', {
@@ -70,6 +71,10 @@ class AddonAdmin(admin.ModelAdmin):
         return format_html(u'<a href="{}">{}</a>',
                            link, obj.get_status_display())
     status_with_admin_manage_link.short_description = _(u'Status')
+
+
+class AddonUserAdmin(admin.ModelAdmin):
+    raw_id_fields = ('addon', 'user')
 
 
 class FeatureAdmin(admin.ModelAdmin):

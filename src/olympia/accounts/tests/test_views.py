@@ -3,13 +3,12 @@ import base64
 import json
 import urlparse
 
-from datetime import datetime
 from os import path
 
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.test import RequestFactory
 from django.test.utils import override_settings
 
@@ -31,7 +30,7 @@ from olympia.amo.tests import (
     reverse_ns, user_factory)
 from olympia.amo.tests.test_helpers import get_uploaded_file
 from olympia.api.authentication import WebTokenAuthentication
-from olympia.api.tests.utils import APIKeyAuthTestCase
+from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
     NOTIFICATIONS_BY_ID, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
@@ -163,7 +162,7 @@ class TestLoginStartView(TestCase):
             ['default', 'amo', 'local'])
 
 
-class TestLoginUser(TestCase):
+class TestLoginUserAndRegisterUser(TestCase):
 
     def setUp(self):
         self.request = APIRequestFactory().get('/login')
@@ -171,8 +170,9 @@ class TestLoginUser(TestCase):
         self.user = UserProfile.objects.create(
             email='real@yeahoo.com', fxa_id='9001')
         self.identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
+        # This mock actually points to django.contrib.auth.login()
         patcher = mock.patch('olympia.accounts.views.login')
-        self.login = patcher.start()
+        self.login_mock = patcher.start()
         self.addCleanup(patcher.stop)
         patcher = mock.patch('olympia.core.get_remote_addr')
         get_remote_addr_mock = patcher.start()
@@ -180,36 +180,59 @@ class TestLoginUser(TestCase):
         self.addCleanup(patcher.stop)
 
     def test_user_gets_logged_in(self):
-        views.login_user(self.request, self.user, self.identity)
-        self.login.assert_called_with(self.request, self.user)
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity)
+        self.login_mock.assert_called_with(self.request, self.user)
 
-    def test_login_attempt_is_logged(self):
-        now = datetime.now()
-        self.user.update(last_login_attempt=now)
-        views.login_user(self.request, self.user, self.identity)
-        self.login.assert_called_with(self.request, self.user)
-        assert self.user.last_login_attempt > now
+    def test_login_is_logged(self):
+        self.user.update(last_login=self.days_ago(42))
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity)
+        self.login_mock.assert_called_with(self.request, self.user)
+        self.assertCloseToNow(self.user.last_login)
         assert self.user.last_login_ip == '8.8.8.8'
 
     def test_email_address_can_change(self):
         self.user.update(email='different@yeahoo.com')
-        views.login_user(self.request, self.user, self.identity)
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
 
     def test_fxa_id_can_be_set(self):
         self.user.update(fxa_id=None)
-        views.login_user(self.request, self.user, self.identity)
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity)
         user = self.user.reload()
         assert user.fxa_id == '9001'
         assert user.email == 'real@yeahoo.com'
 
     def test_auth_id_updated_if_none(self):
         self.user.update(auth_id=None)
-        views.login_user(self.request, self.user, self.identity)
+        views.login_user(
+            self.__class__, self.request, self.user, self.identity)
         self.user.reload()
         assert self.user.auth_id
+
+    def test_register_user(self):
+        views.register_user(self.__class__, self.request,
+                            {'email': 'new@yeahoo.com', 'uid': '424242'})
+        assert UserProfile.objects.count() == 2
+        user = UserProfile.objects.get(email='new@yeahoo.com')
+        assert user.fxa_id == '424242'
+        self.login_mock.assert_called_with(self.request, user)
+        self.assertCloseToNow(user.last_login)
+        assert user.last_login_ip == '8.8.8.8'
+
+        # The other user wasn't affected.
+        self.user.reload()
+        assert self.user.pk != user.pk
+        assert self.user.auth_id != user.auth_id
+        assert self.user.last_login != user.last_login
+        assert self.user.last_login_ip != user.last_login_ip
+        assert self.user.fxa_id != user.fxa_id
+        assert self.user.email != user.email
 
 
 class TestFindUser(TestCase):
@@ -242,6 +265,14 @@ class TestFindUser(TestCase):
             fxa_id='abc', email='me@amo.ca', deleted=True)
         with self.assertRaises(PermissionDenied):
             views.find_user({'uid': 'abc', 'email': 'you@amo.ca'})
+
+    def test_find_user_mozilla(self):
+        task_user = user_factory(
+            id=settings.TASK_USER_ID, fxa_id='abc')
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': '123456', 'email': task_user.email})
+        with self.assertRaises(PermissionDenied):
+            views.find_user({'uid': task_user.fxa_id, 'email': 'doesnt@matta'})
 
 
 class TestRenderErrorHTML(TestCase):
@@ -479,7 +510,7 @@ class TestWithUser(TestCase):
         }
         self.user = UserProfile()
         self.request.user = self.user
-        assert self.user.is_authenticated()
+        assert self.user.is_authenticated
         self.request.COOKIES = {views.API_TOKEN_COOKIE: 'foobar'}
         self.fn(self.request)
         self.render_error.assert_called_with(
@@ -497,7 +528,7 @@ class TestWithUser(TestCase):
         }
         self.user = UserProfile()
         self.request.user = self.user
-        assert self.user.is_authenticated()
+        assert self.user.is_authenticated
         self.request.COOKIES = {}
         self.fn(self.request)
         self.render_error.assert_called_with(
@@ -605,9 +636,9 @@ class TestAuthenticateView(BaseAuthenticationView):
         return absolutify(urlparams(reverse('users.login'), **params))
 
     def test_write_is_used(self, **params):
-        with mock.patch('olympia.amo.models.use_master') as use_master:
+        with mock.patch('olympia.amo.models.use_primary_db') as use_primary_db:
             self.client.get(self.url)
-        assert use_master.called
+        assert use_primary_db.called
 
     def test_no_code_provided(self):
         response = self.client.get(self.url)
@@ -645,13 +676,14 @@ class TestAuthenticateView(BaseAuthenticationView):
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
         self.register_user.side_effect = (
-            lambda r, i: UserProfile.objects.create(
+            lambda sender, request, identity: UserProfile.objects.create(
                 username='foo', email='me@yeahoo.com', fxa_id='e0b6f'))
         response = self.client.get(
             self.url, {'code': 'codes!!', 'state': self.fxa_state})
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
-        self.register_user.assert_called_with(mock.ANY, identity)
+        self.register_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, identity)
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == UserProfile.objects.get(username='foo')
@@ -673,7 +705,8 @@ class TestAuthenticateView(BaseAuthenticationView):
             response, reverse('users.edit'), target_status_code=302)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
-        self.register_user.assert_called_with(mock.ANY, identity)
+        self.register_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, identity)
 
     @mock.patch('olympia.accounts.views.AuthenticateView.ALLOWED_FXA_CONFIGS',
                 ['default', 'skip'])
@@ -695,7 +728,8 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.assertRedirects(
             response, '/go/here', fetch_redirect_response=False)
         assert not self.login_user.called
-        self.register_user.assert_called_with(mock.ANY, identity)
+        self.register_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, identity)
 
     def test_success_with_account_logs_in(self):
         user = UserProfile.objects.create(
@@ -708,7 +742,8 @@ class TestAuthenticateView(BaseAuthenticationView):
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == user
-        self.login_user.assert_called_with(mock.ANY, user, identity)
+        self.login_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
 
     def test_banned_user_cant_log_in(self):
@@ -733,7 +768,8 @@ class TestAuthenticateView(BaseAuthenticationView):
         })
         self.assertRedirects(
             response, '/en-US/firefox/a/path', target_status_code=404)
-        self.login_user.assert_called_with(mock.ANY, user, identity)
+        self.login_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
 
     def test_log_in_sets_fxa_data_and_redirects(self):
@@ -748,7 +784,8 @@ class TestAuthenticateView(BaseAuthenticationView):
         })
         self.assertRedirects(
             response, '/en-US/firefox/a/path', target_status_code=404)
-        self.login_user.assert_called_with(mock.ANY, user, identity)
+        self.login_user.assert_called_with(
+            views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
 
 
@@ -847,6 +884,12 @@ class TestAccountViewSet(TestCase):
                               kwargs={'pk': self.user.username})
         self.test_is_public_because_developer()
 
+        # Should still work if the username contains a period.
+        self.user.update(username=u'fôo.bar')
+        self.url = reverse_ns('account-detail',
+                              kwargs={'pk': self.user.username})
+        self.test_is_public_because_developer()
+
     def test_admin_view_slug(self):
         # Check it works the same with an account slug rather than pk.
         self.grant_permission(self.user, 'Users:Edit')
@@ -862,7 +905,7 @@ class TestAccountViewSet(TestCase):
             self.random_user.get_url_path())
 
 
-class TestProfileViewWithJWT(APIKeyAuthTestCase):
+class TestProfileViewWithJWT(APIKeyAuthTestMixin, TestCase):
     """This just tests JWT Auth (external) on the profile endpoint.
 
     See TestAccountViewSet for internal auth test.
@@ -1137,7 +1180,7 @@ class TestAccountViewSetDelete(TestCase):
         assert self.user.reload().deleted
 
 
-class TestAccountSuperCreate(APIKeyAuthTestCase):
+class TestAccountSuperCreate(APIKeyAuthTestMixin, TestCase):
 
     def setUp(self):
         super(TestAccountSuperCreate, self).setUp()
@@ -1376,6 +1419,19 @@ class TestAccountNotificationViewSetList(TestCase):
         assert len(response.data) == 2
         assert (
             {'name': u'reply', 'enabled': False, 'mandatory': False} in
+            response.data)
+
+    def test_old_notifications_are_safely_ignored(self):
+        UserNotification.objects.create(
+            user=self.user, notification_id=69,
+            enabled=True)
+        self.client.login_api(self.user)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        assert len(response.data) == 10
+        # Check for any known notification, just to see the response looks okay
+        assert (
+            {'name': u'reply', 'enabled': True, 'mandatory': False} in
             response.data)
 
     def test_basket_integration(self):

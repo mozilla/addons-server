@@ -2,7 +2,6 @@ import collections
 import json as jsonlib
 import os
 import random
-import re
 
 from operator import attrgetter
 from urlparse import urljoin
@@ -29,8 +28,7 @@ from olympia import amo
 from olympia.amo import urlresolvers, utils
 from olympia.constants.licenses import PERSONA_LICENSES_IDS
 from olympia.lib.jingo_minify_helpers import (
-    _build_html, _get_compiled_css_url, get_css_urls, get_js_urls, get_path,
-    is_external)
+    _build_html, get_css_urls, get_js_urls)
 from olympia.lib.cache import cache_get_or_set, make_key
 
 
@@ -480,45 +478,6 @@ def _relative_to_absolute(url):
     if not url.startswith(('data:', 'http:', 'https:', '//')):
         url = url.replace('../../', settings.STATIC_URL)
     return 'url(%s)' % url
-
-
-@library.global_function
-def inline_css(bundle, media=False, debug=None):
-    """
-    If we are in debug mode, just output a single style tag for each css file.
-    If we are not in debug mode, return a style that contains bundle-min.css.
-    Forces a regular css() call for external URLs (no inline allowed).
-
-    Extracted from jingo-minify and re-registered, see:
-    https://github.com/jsocol/jingo-minify/pull/41
-    Added: turns relative links to absolute ones using STATIC_URL.
-    """
-    if debug is None:
-        debug = getattr(settings, 'DEBUG', False)
-
-    if debug:
-        items = [_get_compiled_css_url(i)
-                 for i in settings.MINIFY_BUNDLES['css'][bundle]]
-    else:
-        items = ['css/%s-min.css' % bundle]
-
-    if not media:
-        media = getattr(settings, 'CSS_MEDIA_DEFAULT', 'screen,projection,tv')
-
-    contents = []
-    for css in items:
-        if is_external(css):
-            return _build_html([css], '<link rel="stylesheet" media="%s" '
-                                      'href="%%s" />' % media)
-        with open(get_path(css), 'r') as f:
-            css_content = f.read()
-            css_parsed = re.sub(r'url\(([^)]*?)\)',
-                                _relative_to_absolute,
-                                css_content)
-            contents.append(css_parsed)
-
-    return _build_html(contents, '<style type="text/css" media="%s">%%s'
-                                 '</style>' % media)
 
 
 # A (temporary?) copy of this is in services/utils.py. See bug 1055654.

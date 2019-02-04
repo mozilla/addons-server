@@ -10,12 +10,11 @@ from django.utils.translation import ugettext
 from django.views.decorators.cache import cache_control, cache_page
 from django.views.decorators.vary import vary_on_headers
 
-import session_csrf
 import waffle
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
-from rest_framework.decorators import detail_route
+from rest_framework.decorators import action
 from rest_framework.generics import GenericAPIView, ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 from rest_framework.response import Response
@@ -127,7 +126,7 @@ def extension_detail(request, addon):
         'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True).exclude(body=None),
         'get_replies': Rating.get_replies,
-        'collections': collections.order_by('-subscribers')[:3],
+        'collections': collections[:3],
         'abuse_form': AbuseForm(request=request),
     }
 
@@ -380,7 +379,6 @@ def license_redirect(request, version):
     return redirect(version.license_url(), permanent=True)
 
 
-@session_csrf.anonymous_csrf_exempt
 @addon_view
 @non_atomic_requests
 def report_abuse(request, addon):
@@ -456,7 +454,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         # Special case: admins - and only admins - can see deleted add-ons.
         # This is handled outside a permission class because that condition
         # would pollute all other classes otherwise.
-        if (self.request.user.is_authenticated() and
+        if (self.request.user.is_authenticated and
                 acl.action_allowed(self.request,
                                    amo.permissions.ADDONS_VIEW_DELETED)):
             return Addon.unfiltered.all()
@@ -471,7 +469,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         obj = getattr(self, 'instance')
         request = self.request
         if (acl.check_unlisted_addons_reviewer(request) or
-                (obj and request.user.is_authenticated() and
+                (obj and request.user.is_authenticated and
                  obj.authors.filter(pk=request.user.pk).exists())):
             return self.serializer_class_with_unlisted_data
         return self.serializer_class
@@ -515,7 +513,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             }
             raise exc
 
-    @detail_route()
+    @action(detail=True)
     def feature_compatibility(self, request, pk=None):
         obj = self.get_object()
         serializer = AddonFeatureCompatibilitySerializer(
@@ -523,7 +521,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
             context=self.get_serializer_context())
         return Response(serializer.data)
 
-    @detail_route()
+    @action(detail=True)
     def eula_policy(self, request, pk=None):
         obj = self.get_object()
         serializer = AddonEulaPolicySerializer(
@@ -935,13 +933,10 @@ class LanguageToolsView(ListAPIView):
         # can avoid loading translations by removing transforms and then
         # re-applying the default one that takes care of the files and compat
         # info.
-        versions_qs = Version.objects.filter(
-            apps__application=application,
-            apps__min__version_int__lte=appversions['min'],
-            apps__max__version_int__gte=appversions['max'],
-            channel=amo.RELEASE_CHANNEL_LISTED,
-            files__status=amo.STATUS_PUBLIC,
-        ).order_by('-created').no_transforms().transform(Version.transformer)
+        versions_qs = (
+            Version.objects
+                   .latest_public_compatible_with(application, appversions)
+                   .no_transforms().transform(Version.transformer))
         return (
             qs.prefetch_related(Prefetch('versions',
                                          to_attr='compatible_versions',
@@ -954,7 +949,7 @@ class LanguageToolsView(ListAPIView):
               .distinct()
         )
 
-    @method_decorator(cache_page(60 * 60 * 24, cache='filesystem'))
+    @method_decorator(cache_page(60 * 60 * 24))
     def dispatch(self, *args, **kwargs):
         return super(LanguageToolsView, self).dispatch(*args, **kwargs)
 
@@ -974,18 +969,42 @@ class ReplacementAddonView(ListAPIView):
 
 
 class CompatOverrideView(ListAPIView):
+    """This view is used by Firefox so it's performance-critical.
+
+    Every firefox client requests the list of overrides approx. once per day.
+    Firefox requests the overrides via a list of GUIDs which makes caching
+    hard because the variation of possible GUID combinations prevent us to
+    simply add some dumb-caching and requires us to resolve cache-misses.
+    """
+
     queryset = CompatOverride.objects.all()
     serializer_class = CompatOverrideSerializer
 
-    def filter_queryset(self, queryset):
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(CompatOverrideView, cls).as_view(**initkwargs))
+
+    def get_guids(self):
         # Use the same Filter we use for AddonSearchView for consistency.
         guid_filter = AddonGuidQueryParam(self.request)
-        guids = guid_filter.get_value()
+        return guid_filter.get_value()
+
+    def filter_queryset(self, queryset):
+        guids = self.get_guids()
         if not guids:
             raise exceptions.ParseError(
                 'Empty, or no, guid parameter provided.')
-        return queryset.filter(guid__in=guids).transform(
-            CompatOverride.transformer).order_by('-pk')
+        # Evaluate the queryset and cast it into a list.
+        # This will force Django to simply use len(queryset) instead of
+        # calling .count() on it and avoids an additional COUNT query.
+        # The amount of GUIDs we should get in real-life won't be paginated
+        # most of the time so it's safe to simply evaluate the query.
+        # The advantage here is that we are saving ourselves a `COUNT` query
+        # and these are expensive.
+        return list(queryset.filter(guid__in=guids).transform(
+            CompatOverride.transformer).order_by('-pk'))
 
 
 class AddonRecommendationView(AddonSearchView):

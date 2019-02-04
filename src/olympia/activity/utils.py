@@ -5,6 +5,7 @@ from email.utils import formataddr
 from HTMLParser import HTMLParser
 
 from django.conf import settings
+from django.forms import ValidationError
 from django.contrib.humanize.templatetags.humanize import apnumber
 from django.template import loader
 from django.utils import translation
@@ -60,7 +61,11 @@ class ActivityEmailParser(object):
     address_prefix = REPLY_TO_PREFIX
 
     def __init__(self, message):
-        if (not isinstance(message, dict) or 'TextBody' not in message):
+        invalid_email = (
+            not isinstance(message, dict) or
+            not message.get('TextBody', None))
+
+        if invalid_email:
             log.exception('ActivityEmailParser didn\'t get a valid message.')
             raise ActivityEmailEncodingError(
                 'Invalid or malformed json message object.')
@@ -134,7 +139,7 @@ def add_email_to_activity_log(parser):
     uuid = parser.get_uuid()
     try:
         token = ActivityLogToken.objects.get(uuid=uuid)
-    except (ActivityLogToken.DoesNotExist, ValueError):
+    except (ActivityLogToken.DoesNotExist, ValidationError):
         log.error('An email was skipped with non-existing uuid %s.' % uuid)
         raise ActivityEmailUUIDError(
             'UUID found in email address TO: header but is not a valid token '

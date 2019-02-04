@@ -39,6 +39,7 @@ function init_environment {
 
 
 function extract_locales {
+    python manage.py extract_disco_strings
     python manage.py extract
 
     pushd locale > /dev/null

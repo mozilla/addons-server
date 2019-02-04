@@ -313,11 +313,11 @@ class TestThemeForm(TestCase):
         self.request = mock.Mock()
         self.request.user = mock.Mock()
         self.request.user.groups_list = []
-        self.request.user.is_authenticated.return_value = True
+        self.request.user.is_authenticated = True
 
     def populate(self):
-        self.cat = Category.objects.create(application=amo.FIREFOX.id,
-                                           type=amo.ADDON_PERSONA, name='xxxx')
+        self.cat = Category.objects.create(
+            application=amo.FIREFOX.id, type=amo.ADDON_PERSONA, db_name='xxxx')
         License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
@@ -533,7 +533,7 @@ class TestEditThemeForm(TestCase):
         self.request.user.groups_list = []
         self.request.user.username = 'swagyismymiddlename'
         self.request.user.name = 'Sir Swag A Lot'
-        self.request.user.is_authenticated.return_value = True
+        self.request.user.is_authenticated = True
 
     def populate(self):
         self.instance = Addon.objects.create(
@@ -541,7 +541,7 @@ class TestEditThemeForm(TestCase):
             slug='swag-overload', name='Bands Make Me Dance',
             description='tha description')
         self.cat = Category.objects.create(
-            type=amo.ADDON_PERSONA, name='xxxx')
+            type=amo.ADDON_PERSONA, db_name='xxxx')
         self.instance.addoncategory_set.create(category=self.cat)
         self.license = amo.LICENSE_CC_BY.id
         self.theme = Persona.objects.create(

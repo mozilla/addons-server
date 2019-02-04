@@ -136,13 +136,6 @@ class TestPendingQueue(TestQueue):
         queue = self.Queue.objects.get()
         assert queue.flags == [('info', 'More Information Requested')]
 
-    def test_flags_reviewer_comment(self):
-        self.new_addon().find_latest_version(self.channel).update(
-            has_reviewer_comment=True)
-
-        queue = self.Queue.objects.get()
-        assert queue.flags == [('reviewer', 'Contains Reviewer Comment')]
-
     def test_flags_jetpack(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             jetpack_version='1.8')

@@ -1,8 +1,3 @@
-"""
-Borrowed from: http://code.google.com/p/django-localeurl
-
-Note: didn't make sense to use localeurl since we need to capture app as well
-"""
 import contextlib
 import re
 import socket
@@ -13,14 +8,18 @@ from django.conf import settings
 from django.contrib.auth.middleware import AuthenticationMiddleware
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.sessions.middleware import SessionMiddleware
-from django.core.urlresolvers import is_valid_path
-from django.http import HttpResponsePermanentRedirect, HttpResponseRedirect
+from django.urls import is_valid_path
+from django.http import (
+    HttpResponsePermanentRedirect, HttpResponseRedirect,
+    JsonResponse)
 from django.middleware import common
 from django.utils.cache import patch_cache_control, patch_vary_headers
+from django.utils.deprecation import MiddlewareMixin
 from django.utils.encoding import force_bytes, iri_to_uri
-from django.utils.translation import activate
+from django.utils.translation import activate, ugettext_lazy as _
 
 import MySQLdb as mysql
+from corsheaders.middleware import CorsMiddleware as _CorsMiddleware
 
 from olympia import amo
 from olympia.amo.utils import render
@@ -32,7 +31,7 @@ from .templatetags.jinja_helpers import urlparams
 auth_path = re.compile('%saccounts/authenticate/?$' % settings.DRF_API_REGEX)
 
 
-class LocaleAndAppURLMiddleware(object):
+class LocaleAndAppURLMiddleware(MiddlewareMixin):
     """
     1. search for locale first
     2. see if there are acceptable apps
@@ -95,6 +94,11 @@ class LocaleAndAppURLMiddleware(object):
         activate(request.LANG)
         request.APP = amo.APPS.get(prefixer.app, amo.FIREFOX)
 
+        # Match legacy api requests too - IdentifyAPIRequestMiddleware is v3+
+        # TODO - remove this when legacy_api goes away
+        # https://github.com/mozilla/addons-server/issues/9274
+        request.is_legacy_api = request.path_info.startswith('/api/')
+
 
 class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     """
@@ -102,8 +106,8 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
     own authentication mechanism.
     """
     def process_request(self, request):
-        if (request.path.startswith('/api/') and
-                not auth_path.match(request.path)):
+        legacy_or_drf_api = request.is_api or request.is_legacy_api
+        if legacy_or_drf_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
         else:
             return super(
@@ -124,13 +128,17 @@ class NoVarySessionMiddleware(SessionMiddleware):
     def process_response(self, request, response):
         if settings.READ_ONLY:
             return response
+
         # Let SessionMiddleware do its processing but prevent it from changing
         # the Vary header.
         vary = None
         if hasattr(response, 'get'):
             vary = response.get('Vary', None)
-        new_response = (super(NoVarySessionMiddleware, self)
-                        .process_response(request, response))
+
+        new_response = (
+            super(NoVarySessionMiddleware, self)
+            .process_response(request, response))
+
         if vary:
             new_response['Vary'] = vary
         else:
@@ -138,7 +146,7 @@ class NoVarySessionMiddleware(SessionMiddleware):
         return new_response
 
 
-class RemoveSlashMiddleware(object):
+class RemoveSlashMiddleware(MiddlewareMixin):
     """
     Middleware that tries to remove a trailing slash if there was a 404.
 
@@ -184,18 +192,58 @@ class CommonMiddleware(common.CommonMiddleware):
             return super(CommonMiddleware, self).process_request(request)
 
 
-class ReadOnlyMiddleware(object):
+class ReadOnlyMiddleware(MiddlewareMixin):
+    """Middleware that announces a downtime which for us usually means
+    putting the site into read only mode.
+
+    Supports issuing `Retry-After` header.
+    """
+    ERROR_MSG = _(
+        u'Some features are temporarily disabled while we '
+        u'perform website maintenance. We\'ll be back to '
+        u'full capacity shortly.')
+
+    READ_ONLY_HEADER = 'X-AMO-Read-Only'
+
+    def _render_api_error(self):
+        response = JsonResponse({'error': self.ERROR_MSG}, status=503)
+        response[self.READ_ONLY_HEADER] = 'true'
+        if settings.READ_ONLY_RETRY_AFTER is not None:
+            response['Retry-After'] = settings.READ_ONLY_RETRY_AFTER.seconds
+        return response
 
     def process_request(self, request):
-        if request.method == 'POST':
+        if not settings.READ_ONLY:
+            return
+
+        if request.is_api:
+            writable_method = request.method in ('POST', 'PUT', 'DELETE')
+            if writable_method:
+                return self._render_api_error()
+        elif request.method == 'POST':
             return render(request, 'amo/read-only.html', status=503)
+
+    def process_response(self, request, response):
+        # We haven't set the header yet so it's not an error response
+        # set by this middleware so we should default to setting it to
+        # `false`
+        header_name = self.READ_ONLY_HEADER
+
+        if header_name not in response:
+            response[self.READ_ONLY_HEADER] = 'false'
+        return response
 
     def process_exception(self, request, exception):
+        if not settings.READ_ONLY:
+            return
+
         if isinstance(exception, mysql.OperationalError):
+            if request.is_api:
+                return self._render_api_error()
             return render(request, 'amo/read-only.html', status=503)
 
 
-class SetRemoteAddrFromForwardedFor(object):
+class SetRemoteAddrFromForwardedFor(MiddlewareMixin):
     """
     Set request.META['REMOTE_ADDR'] from request.META['HTTP_X_FORWARDED_FOR'].
 
@@ -232,7 +280,7 @@ class SetRemoteAddrFromForwardedFor(object):
                 break
 
 
-class ScrubRequestOnException(object):
+class ScrubRequestOnException(MiddlewareMixin):
     """
     Hide sensitive information so they're not recorded in error logging.
     * passwords in request.POST
@@ -254,7 +302,7 @@ class ScrubRequestOnException(object):
             request.META['HTTP_COOKIE'] = '******'
 
 
-class RequestIdMiddleware(object):
+class RequestIdMiddleware(MiddlewareMixin):
     """Middleware that adds a unique request-id to every incoming request.
 
     This can be used to track a request across different system layers,
@@ -273,3 +321,11 @@ class RequestIdMiddleware(object):
             response['X-AMO-Request-ID'] = request.request_id
 
         return response
+
+
+class CorsMiddleware(_CorsMiddleware, MiddlewareMixin):
+    """Wrapper to allow old style Middleware to work with django 1.10+.
+    Will be unneeded once
+    https://github.com/mstriemer/django-cors-headers/pull/3 is merged and a
+    new release of django-cors-headers-multi is available."""
+    pass

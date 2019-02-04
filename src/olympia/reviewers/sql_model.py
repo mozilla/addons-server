@@ -85,6 +85,9 @@ class RawSQLManager(object):
         else:
             raise TypeError('Key must be a slice or integer.')
 
+    def __len__(self):
+        return self.count()
+
     def all(self):
         return self._clone()
 

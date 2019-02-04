@@ -25,13 +25,13 @@ class TestAddonFormSupport(TestCase):
         form = forms.AddonFormSupport(
             {'support_url': 'javascript://something.com'}, request=None)
         assert not form.is_valid()
-        assert form.errors['support_url'][0][1] == u'Enter a valid URL.'
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
 
     def test_ftp_support_url(self):
         form = forms.AddonFormSupport(
             {'support_url': 'ftp://foo.com'}, request=None)
         assert not form.is_valid()
-        assert form.errors['support_url'][0][1] == u'Enter a valid URL.'
+        assert form.errors['support_url'] == [u'Enter a valid URL.']
 
     def test_http_support_url(self):
         form = forms.AddonFormSupport(
@@ -70,7 +70,7 @@ class FormsTest(TestCase):
             instance=delicious)
 
         assert not form.is_valid()
-        assert dict(form.errors['name'])['en-us'].startswith(
+        assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     def test_name_trademark_firefox(self):
@@ -80,7 +80,7 @@ class FormsTest(TestCase):
             request=self.request,
             instance=delicious)
         assert not form.is_valid()
-        assert dict(form.errors['name'])['en-us'].startswith(
+        assert form.errors['name'].data[0].message.startswith(
             u'Add-on names cannot contain the Mozilla or Firefox trademarks.')
 
     def test_name_trademark_allowed_for_prefix(self):
@@ -105,13 +105,13 @@ class FormsTest(TestCase):
         form = forms.AddonFormDetails(
             {'homepage': 'javascript://something.com'}, request=self.request)
         assert not form.is_valid()
-        assert form.errors['homepage'][0][1] == u'Enter a valid URL.'
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
 
     def test_ftp_homepage(self):
         form = forms.AddonFormDetails(
             {'homepage': 'ftp://foo.com'}, request=self.request)
         assert not form.is_valid()
-        assert form.errors['homepage'][0][1] == u'Enter a valid URL.'
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
 
     def test_homepage_is_not_required(self):
         delicious = Addon.objects.get()
@@ -261,8 +261,6 @@ class TestTagsForm(TestCase):
 class TestIconForm(TestCase):
     fixtures = ['base/addon_3615']
 
-    # TODO: AddonFormMedia save() method could do with cleaning up
-    # so this isn't necessary
     def setUp(self):
         super(TestIconForm, self).setUp()
         self.temp_dir = tempfile.mkdtemp(dir=settings.TMP_PATH)
@@ -282,29 +280,6 @@ class TestIconForm(TestCase):
     def get_icon_paths(self):
         path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
         return ['%s-%s.png' % (path, size) for size in amo.ADDON_ICON_SIZES]
-
-    @patch('olympia.addons.models.Addon.get_icon_dir')
-    def testIconUpload(self, get_icon_dir):
-        # TODO(gkoberger): clarify this please.
-        # We no longer use AddonFormMedia to upload icons, so
-        # skipping until I can ask andym what the point of this
-        # test is.  Additionally, it's called "TestIconRemoval",
-        # but it doesn't seem to remove icons.
-        return
-        get_icon_dir.return_value = self.temp_dir
-
-        for path in self.get_icon_paths():
-            assert not os.path.exists(path)
-
-        img = get_image_path('non-animated.png')
-        data = {'icon_upload': img, 'icon_type': 'text/png'}
-        self.request.FILES = {'icon_upload': open(img)}
-        form = forms.AddonFormMedia(data=data, request=self.request,
-                                    instance=self.addon)
-        assert form.is_valid()
-        form.save(self.addon)
-        for path in self.get_icon_paths():
-            assert os.path.exists(path)
 
     @patch('olympia.amo.models.ModelBase.update')
     def test_icon_modified(self, update_mock):
@@ -336,7 +311,7 @@ class TestCategoryForm(TestCase):
 class TestThemeForm(TestCase):
 
     # Don't save image, we use a fake one.
-    @patch('olympia.addons.forms.save_theme')
+    @patch('olympia.addons.forms.addons_tasks.save_theme')
     def test_long_author_or_display_username(self, mock_save_theme):
         # Bug 1181751.
         user = UserProfile.objects.create(email='foo@bar.com',

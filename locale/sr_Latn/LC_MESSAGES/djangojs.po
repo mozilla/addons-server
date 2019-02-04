@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,29 +213,53 @@ msgstr "koristi original"
 msgid "Week of {0}"
 msgstr "Sedmica od {0}"
 
-msgid " downloads"
-msgstr ""
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] "Preuzimanja"
+msgstr[1] "Preuzimanja"
 
-msgid "{0} users"
-msgstr "{0} korisnika"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} korisnika"
+msgstr[1] "{0} korisnika"
 
-msgid "{0} add-ons"
-msgstr "{0} dodataka"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} dodataka"
+msgstr[1] "{0} dodataka"
 
-msgid "{0} collections"
-msgstr "{0} kolekcije"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} kolekcije"
+msgstr[1] "{0} kolekcije"
 
-msgid "{0} reviews"
-msgstr "{0} recenzija"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} recenzija"
+msgstr[1] "{0} recenzija"
 
-msgid "{0} sales"
-msgstr "{0} prodaja"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} prodaja"
+msgstr[1] "{0} prodaja"
 
-msgid "{0} refunds"
-msgstr "{0} refunkdacija"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} refunkdacija"
+msgstr[1] "{0} refunkdacija"
 
-msgid "{0} installs"
-msgstr "{0} instalacija"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalacija"
+msgstr[1] "{0} instalacija"
 
 msgid "Downloads"
 msgstr "Preuzimanja"
@@ -796,6 +820,9 @@ msgid "Average Reviews"
 msgstr ""
 
 msgid "Number of Reviews"
+msgstr ""
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"

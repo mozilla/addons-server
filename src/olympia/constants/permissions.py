@@ -51,8 +51,6 @@ COLLECTIONS_CONTRIBUTE = AclPermission('Collections', 'Contribute')
 
 # Can view statistics for all addons, regardless of privacy settings.
 STATS_VIEW = AclPermission('Stats', 'View')
-# Can view collection statistics.
-COLLECTION_STATS_VIEW = AclPermission('CollectionStats', 'View')
 
 # Can submit experiments.
 EXPERIMENTS_SUBMIT = AclPermission('Experiments', 'submit')
@@ -73,6 +71,9 @@ REVIEWS_ADMIN = AclPermission('Reviews', 'Admin')
 # Can access advanced admin features, like deletion.
 ADMIN_ADVANCED = AclPermission('Admin', 'Advanced')
 
+# Can add/edit/delete DiscoveryItems.
+DISCOVERY_EDIT = AclPermission('Discovery', 'Edit')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
@@ -81,20 +82,38 @@ PERMISSIONS_LIST = [
 # require superuser admins (which also have all other permissions anyway) to do
 # something, and then add some custom ones.
 DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
-# Curators can do anything to ReplacementAddon. In addition, the modeladmin
-# will also check for addons:edit and give them read-only access to the
-# changelist (obj=None passed to the has_change_permission() method)
+
 DJANGO_PERMISSIONS_MAPPING.update({
+    'abuse.delete_abusereport': ADMIN_ADVANCED,
+    # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
+    # This is just here to allow deletion of users, because django checks
+    # foreign keys even though users are only soft-deleted and related objects
+    # will be kept.
+    'activity.delete_activitylog': ADMIN_ADVANCED,
     'addons.change_addon': ADDONS_EDIT,
+    'addons.delete_addonuser': ADMIN_ADVANCED,
+    # Users with Admin:Curation can do anything to ReplacementAddon.
+    # In addition, the modeladmin will also check for Addons:Edit and give them
+    # read-only access to the changelist (obj=None passed to the
+    # has_change_permission() method)
     'addons.change_replacementaddon': ADMIN_CURATION,
     'addons.add_replacementaddon': ADMIN_CURATION,
     'addons.delete_replacementaddon': ADMIN_CURATION,
 
     'bandwagon.change_collection': COLLECTIONS_EDIT,
-    'bandwagon.delete_collection': COLLECTIONS_EDIT,
+    'bandwagon.delete_collection': ADMIN_ADVANCED,
+
+    'discovery.add_discoveryitem': DISCOVERY_EDIT,
+    'discovery.change_discoveryitem': DISCOVERY_EDIT,
+    'discovery.delete_discoveryitem': DISCOVERY_EDIT,
+
+    'files.change_file': ADMIN_ADVANCED,
+
+    'reviewers.delete_reviewerscore': ADMIN_ADVANCED,
 
     'users.change_userprofile': USERS_EDIT,
     'users.delete_userprofile': ADMIN_ADVANCED,
 
     'ratings.change_rating': RATINGS_MODERATE,
+    'ratings.delete_rating': ADMIN_ADVANCED,
 })

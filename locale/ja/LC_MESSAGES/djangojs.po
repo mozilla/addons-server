@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2017-11-20 13:55+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -208,29 +208,45 @@ msgstr "オリジナルを使用"
 msgid "Week of {0}"
 msgstr "{0} の週"
 
-msgid " downloads"
-msgstr " 件のダウンロード"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " 件のダウンロード"
 
-msgid "{0} users"
-msgstr "{0} 人のユーザー"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} 人のユーザー"
 
-msgid "{0} add-ons"
-msgstr "{0} 個のアドオン"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} 個のアドオン"
 
-msgid "{0} collections"
-msgstr "{0} 個のコレクション"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} 個のコレクション"
 
-msgid "{0} reviews"
-msgstr "{0} 件のレビュー"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} 件のレビュー"
 
-msgid "{0} sales"
-msgstr "{0} 個の販売"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} 個の販売"
 
-msgid "{0} refunds"
-msgstr "{0} 個の返品"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} 個の返品"
 
-msgid "{0} installs"
-msgstr "{0} 回のインストール"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} 回のインストール"
 
 msgid "Downloads"
 msgstr "ダウンロード数"
@@ -785,6 +801,9 @@ msgstr "レビュー平均"
 
 msgid "Number of Reviews"
 msgstr "レビュー数"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "求められている情報"

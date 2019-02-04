@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-11-25 14:53+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-06 08:37+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
 "Language: ar\n"
@@ -19,32 +19,31 @@ msgid "{0} star"
 msgid_plural "{0} stars"
 msgstr[0] "لا نجوم"
 msgstr[1] "نجمة واحدة"
-msgstr[2] "نجمتين"
+msgstr[2] "نجمتان اثنتان"
 msgstr[3] "{0} نجوم"
 msgstr[4] "{0} نجمة"
 msgstr[5] "{0} نجمة"
 
 msgid "There was a problem contacting the server."
-msgstr "هناك مشكلة ما في الاتصال بالخادم."
+msgstr "هناك مشكلة ما في الاتصال بالخادوم."
 
 msgid "Select a file..."
-msgstr "اختر ملفا..."
+msgstr "اختر ملفًا…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "إضافتك ينبغي أن تنتهي بـ xpi. أو jar. أو xml."
+msgstr "يجب أن ينتهي اسم الإضافة بأحد الآتي: ‎.zip أو ‎.xpi أو ‎.crx أو ‎.jar أو ‎.xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
-msgstr "اكتمل {0}%"
+msgstr "اكتمل بنسبة {0}%"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr "{0} من {1}"
+msgstr "{0} من أصل {1}"
 
 msgid "Cancel"
-msgstr "إلغاء"
+msgstr "ألغِ"
 
 msgid "Uploading {0}"
 msgstr "يرفع {0}"
@@ -58,29 +57,29 @@ msgstr ""
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
 msgstr[0] "لم يفشل التثبّت من الإضافة."
-msgstr[1] "فشل التحقق من الإضافة بخطأ واحد."
-msgstr[2] "فشل التحقق من الإضافة بخطأين."
-msgstr[3] "فشل التحقق من الإضافة بِ‍ {0} أخطاء."
-msgstr[4] "فشل التحقق من الإضافة بِ‍ {0} خطأ."
-msgstr[5] "فشل التحقق من الإضافة بِ‍ {0} خطأ."
+msgstr[1] "فشل التثبّت من الإضافة بخطأ واحد."
+msgstr[2] "فشل التثبّت من الإضافة بخطأين اثنين."
+msgstr[3] "فشل التثبّت من الإضافة بِ‍ {0} أخطاء."
+msgstr[4] "فشل التثبّت من الإضافة بِ‍ {0} خطأ."
+msgstr[5] "فشل التثبّت من الإضافة بِ‍ {0} خطأ."
 
 msgid "&hellip;and {0} more"
 msgid_plural "&hellip;and {0} more"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "&hellip; ولا غيرها"
+msgstr[1] "&hellip;و واحد آخر"
+msgstr[2] "&hellip;و اثنين آخرين"
+msgstr[3] "&hellip;و {0} أخرى"
+msgstr[4] "&hellip;و {0} أخرى"
+msgstr[5] "&hellip;و {0} أخرى"
 
 msgid "See full validation report"
-msgstr "مشاهدة تقرير التحقق كاملاً"
+msgstr "طالع تقرير التثبّت كاملًا"
 
 msgid "Validating {0}"
-msgstr "يتم التحقق {0}"
+msgstr "يتثبّت من {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "تخطت إضافتك الحجم المسموح به بقيمة {0}."
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "استقبلتُ استجابة فارغة من الخادوم، الحالة: {0}"
@@ -89,55 +88,55 @@ msgid "Unexpected server error while validating."
 msgstr "خطأ في الخادوم غير متوقّع أثناء التثبّت."
 
 msgid "Finished validating {0}"
-msgstr "تم انتهاء التحقق {0}"
+msgstr "انتهى التثبّت من {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "انتهت مهلة التثبّت من إضافتك، سيكون التحقق منها يدوي."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل التثبّت من إضافتك بدون أي أخطاء أو تحذيرات."
+msgstr[1] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع تحذير واحد."
+msgstr[2] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع تحذيرين."
+msgstr[3] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذيرات."
+msgstr[4] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذيرًا."
+msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} تحذير."
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
+msgstr[1] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع رسالة واحدة."
+msgstr[2] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع رسالتين."
+msgstr[3] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسائل."
+msgstr[4] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسالةً."
+msgstr[5] "اكتمل التثبّت من إضافتك بدون أي أخطاء، ومع {0} رسالة."
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "اكتمل التثبّت من إضافتك بدون أي أخطاء أو رسائل."
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "سيُوقّع ما تُرسله تلقائيًا."
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "الترقية إلى WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "نتيح ونشجّع على إجراء ترقية إلا أنك لا تستطيع عكس العملية. ما إن يُثبّت المستخدمون WebExtension، لن يقدروا على تثبيت إضافة عتيقة بعد الآن."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "”نقل إضافة فَيَرفُكس عتيقة“ على MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr ""
+msgstr "إن كانت إضافتك تحتاج حسابًا في موقع معين لتُختبر كما ينبغي، فضمّن اسم مستخدم وكلمة سر اختباريّين في قسم الملاحظات للمراجعين (يمكن إجراء هذا في الخطوة التالية)."
 
 msgid "Add-on submission checklist"
 msgstr ""
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "رجاءً تحقق من النقاط الآتية قبل إنهاء الطلب. سيقلّل هذا احتمالية التأخير أو سوء الفهم أثناء عملية المراجعة:"
+msgstr "رجاءً تحقّق من النقاط الآتية قبل إنهاء الطلب. سيقلّل هذا احتمالية التأخير أو سوء الفهم أثناء عملية المراجعة:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -145,34 +144,34 @@ msgid ""
 msgstr ""
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "وجدت عملية التثبّت المشكلات الآتية والتي قد تؤدّي بالرفض:"
 
 msgid "Sorry, no supported platform has been found."
 msgstr "نعتذر، لم يُعثر على منصة مدعومة."
 
 msgid "The filetype you uploaded isn't recognized."
-msgstr ""
+msgstr "لم يُتعرّف على نوع الملف الذي رفعته."
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "تخطّى الملف الحجم الأقصى ({0})."
 
 msgid "You cancelled the upload."
 msgstr "لقد ألغيت الرفع."
 
 msgid "Images must be either PNG or JPG."
-msgstr "الصور يجب أن تكون PNG أو JPG."
+msgstr "يجب أن تكون الصور إما PNG أو JPG."
 
 msgid "Videos must be in WebM."
-msgstr "يجب أن تكون الفيديوهات بصيغة WebM."
+msgstr "يجب أن تكون الڤديوهات بنسق WebM."
 
 msgid "Follow this Collection"
-msgstr "تابع هذه المجموعة"
+msgstr "تابِع هذه المجموعة"
 
 msgid "Stop Following"
-msgstr "أوقف المتابعة"
+msgstr "أوقِف المتابعة"
 
 msgid "Following"
-msgstr "متابعة"
+msgstr "مُتابعة"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -203,28 +202,28 @@ msgid "Your Theme's Name"
 msgstr "اسم السمة"
 
 msgid "Flagged for review"
-msgstr "تم تعليمه للمراجعة"
+msgstr "عليه علامة لمراجعته"
 
 msgid "Your input is required"
 msgstr "الدخل مطلوب"
 
 msgid "Marked for deletion"
-msgstr "تم تعليمه ليُحذف"
+msgstr "عليه علامة لحذفه"
 
 msgid "Updating results&hellip;"
-msgstr "يجري تحديث النتائج&hellip;"
+msgstr "يُحدّث النتائج&hellip;"
 
 msgid "Category"
-msgstr "التصنيف"
+msgstr "الفئة"
 
 msgid "Search themes for <b>{0}</b>"
-msgstr "البحث في السِمات عن <b>{0}</b>"
+msgstr "ابحث في السمات عن <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "البحث في التطبيقات عن <b>{0}</b>"
+msgstr "ابحث في التطبيقات عن <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
-msgstr "البحث في الإضافات عن <b>{0}</b>"
+msgstr "ابحث في الإضافات عن <b>{0}</b>"
 
 msgid "Use original"
 msgstr ""
@@ -232,29 +231,81 @@ msgstr ""
 msgid "Week of {0}"
 msgstr ""
 
-msgid " downloads"
-msgstr ""
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] "التنزيلات"
+msgstr[1] "التنزيلات"
+msgstr[2] "التنزيلات"
+msgstr[3] "التنزيلات"
+msgstr[4] "التنزيلات"
+msgstr[5] "التنزيلات"
 
-msgid "{0} users"
-msgstr ""
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "لا نجوم"
+msgstr[1] "نجمة واحدة"
+msgstr[2] "نجمتان اثنتان"
+msgstr[3] "{0} نجوم"
+msgstr[4] "{0} نجمة"
+msgstr[5] "{0} نجمة"
 
-msgid "{0} add-ons"
-msgstr ""
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} collections"
-msgstr ""
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} reviews"
-msgstr ""
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} sales"
-msgstr ""
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "لا نجوم"
+msgstr[1] "نجمة واحدة"
+msgstr[2] "نجمتان اثنتان"
+msgstr[3] "{0} نجوم"
+msgstr[4] "{0} نجمة"
+msgstr[5] "{0} نجمة"
 
-msgid "{0} refunds"
-msgstr ""
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
-msgid "{0} installs"
-msgstr ""
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "لا نجوم"
+msgstr[1] "نجمة واحدة"
+msgstr[2] "نجمتان اثنتان"
+msgstr[3] "{0} نجوم"
+msgstr[4] "{0} نجمة"
+msgstr[5] "{0} نجمة"
 
 msgid "Downloads"
 msgstr "التنزيلات"
@@ -269,7 +320,7 @@ msgid "Number of Contributions"
 msgstr "عدد المساهمات"
 
 msgid "More Info..."
-msgstr "مزيد من المعلومات..."
+msgstr "معلومات أكثر…"
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -279,25 +330,25 @@ msgid "Collections Created"
 msgstr ""
 
 msgid "Add-ons in Use"
-msgstr "الإضافات قيد الاستخدام"
+msgstr "الإضافات المستخدمة"
 
 msgid "Add-ons Created"
-msgstr "الإضافات المُنشئة"
+msgstr "الإضافات المنشأة"
 
 msgid "Add-ons Downloaded"
-msgstr "الإضافات المُنزّلة"
+msgstr "الإضافات المنزّلة"
 
 msgid "Add-ons Updated"
-msgstr "الإضافات المُحدّثة"
+msgstr "الإضافات المحدّثة"
 
 msgid "Reviews Written"
-msgstr "التعليقات المكتوبة"
+msgstr "المراجعات المكتوبة"
 
 msgid "User Signups"
 msgstr "تسجيلات المستخدمين"
 
 msgid "Subscribers"
-msgstr "المشتركين"
+msgstr "المشتركون"
 
 msgid "Ratings"
 msgstr "التقييمات"
@@ -426,19 +477,19 @@ msgid "Usage"
 msgstr ""
 
 msgid "Firefox"
-msgstr "فيرفُكس"
+msgstr "فَيَرفُكس"
 
 msgid "Mozilla"
 msgstr "موزيلا"
 
 msgid "Thunderbird"
-msgstr "تندربيرد"
+msgstr "ثنْدَربِرد"
 
 msgid "Sunbird"
-msgstr "صنبيرد"
+msgstr "صَنْبِرد"
 
 msgid "SeaMonkey"
-msgstr "سيمنكي"
+msgstr "سي‌مَنكي"
 
 msgid "Fennec"
 msgstr ""
@@ -448,91 +499,91 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "التنزيلات والاستخدام اليومي، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "التنزيلات والاستخدام اليومي، من {0} إلى {1}"
+msgstr "التنزيلات والاستخدام اليومي من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "التثبيتات والاستخدام اليومي، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "التثبيتات والاستخدام اليومي، من {0} إلى {1}"
+msgstr "التثبيتات والاستخدام اليومي من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
-msgstr "التنزيلات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads from {0} to {1}"
-msgstr "التنزيلات، من {0} إلى {1}"
+msgstr "التنزيلات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "الاستخدام اليومي، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "الاستخدام اليومي، من {0} إلى {1}"
+msgstr "الاستخدام اليومي من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
-msgstr "التطبيقات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Applications from {0} to {1}"
-msgstr "التطبيقات، من {0} إلى {1}"
+msgstr "التطبيقات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "المنصات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "المنصات، من {0} إلى {1}"
+msgstr "المنصات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "اللغات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "اللغات، من {0} إلى {1}"
+msgstr "اللغات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "إصدارات الإضافة، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "إصدارات الإضافة، من {0} إلى {1}"
+msgstr "إصدارات الإضافة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "إحصائات الإضافة، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "إحصائات الإضافة، من {0} إلى {1}"
+msgstr "إحصاءات الإضافة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "مصادر التنزيل، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "مصادر التنزيل، من {0} إلى {1}"
+msgstr "مصادر التنزيل من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "المساهمات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
-msgstr "المساهمات، من {0} إلى {1}"
+msgstr "المساهمات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
@@ -544,35 +595,35 @@ msgstr ""
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr "الإضافات قيد الاستخدام، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
-msgstr "الإضافات قيد الاستخدام، من {0} إلى {1}"
+msgstr "الإضافات المستخدمة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "الإضافات المُنزّلة، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
-msgstr "الإضافات المُنزّلة، من {0} إلى {1}"
+msgstr "الإضافات المنزّلة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr "الإضافات المُنشئة، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
-msgstr "الإضافات المُنشئة، من {0} إلى {1}"
+msgstr "الإضافات المنشأة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "الإضافات المُحدّثة، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
-msgstr "الإضافات المُحدّثة، من {0} إلى {1}"
+msgstr "الإضافات المحدّثة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
@@ -580,59 +631,59 @@ msgstr "التعليقات المكتوبة، آخر {0} أيام/يوم"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
-msgstr "التعليقات المكتوبة، من {0} إلى {1}"
+msgstr "المراجعات المكتوبة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "تسجيلات المستخدمين، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "تسجيلات المستخدمين، من {0} إلى {1}"
+msgstr "تسجيلات المستخدمين من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "المجموعات المُنشئة، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
-msgstr "المجموعات المُنشئة، من {0} إلى {1}"
+msgstr "المجموعات المنشأة من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "الاشتراكات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "الاشتراكات، من {0} إلى {1}"
+msgstr "المشتركين من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "التقييمات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
-msgstr "التقييمات، من {0} إلى {1}"
+msgstr "التقييمات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr "المبيعات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
-msgstr "المبيعات، من {0} إلى {1}"
+msgstr "المبيعات من {0} إلى {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr "التثبيتات، آخر {0} أيام/يوم"
+msgstr ""
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
-msgstr "التثبيتات، من {0} إلى {1}"
+msgstr "التثبيتات من {0} إلى {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> في آخر {1} أيام/يوم"
+msgstr ""
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -646,13 +697,13 @@ msgid "No data available."
 msgstr "لا بيانات متوفرة."
 
 msgid "Date"
-msgstr "التّاريخ"
+msgstr "التاريخ"
 
 msgid "Other"
 msgstr "أخرى"
 
 msgid "Select an application first"
-msgstr ""
+msgstr "اختر تطبيقًا أولًا"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
@@ -674,97 +725,95 @@ msgstr[5] ""
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
-msgstr "قبول وتثبيت"
+msgstr "اقبل وثبّت"
 
 msgid "Add to {0}"
 msgstr "أضِف إلى {0}"
 
 #. L10n: {0} is an platform like Windows or Linux.
 msgid "Install for {0} anyway"
-msgstr "ثبّت لـ {0} على كل حال"
+msgstr "ثبّت على {0} بأي حال"
 
 msgid "Download for {0} anyway"
-msgstr "نزّل لـ {0} على كل حال"
+msgstr "نزّل على {0} بأي حال"
 
 msgid "Not available for your platform"
-msgstr "غير متوفر لمنصتك"
+msgstr "غير متوفّر لمنصتك"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "هذه السِمة غير متوافقة مع إصدارتك من {0}"
+msgstr "هذه الإضافة غير متوافقة مع إصدارة {0} الحالية."
 
 msgid "View other versions"
-msgstr "عرض الإصدارات الأخرى"
+msgstr "اعرض الإصدارات الأخرى"
 
 msgid "Works with {app} {min} - {max}"
-msgstr "تعمل مع {app} {min} - {max}"
+msgstr ""
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "تعمل مع {app} {min} - {max}"
+msgstr "تعمل مع {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "فقط في فَيَرفُكس — نزّله الآن!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr "عفوًا، أنت بحاجة إلى متفصح مبني على موزيلا (مثل متصفح فيرفُكس) لتثبيت مُلحقات البحث."
+msgstr "نأسف، تحتاجُ متفصحًا من موزيلا (مثل متصفح فَيَرفُكس) لتثبيت ملحقات البحث."
 
 msgid "Adding to Favorites&hellip;"
-msgstr "إضافة إلى المفضلات&hellip;"
+msgstr "يُضيف إلى المفضلة&hellip;"
 
 msgid "Removing Favorite&hellip;"
-msgstr "إزالة المفضل&hellip;"
+msgstr ""
 
 msgid "Add to Favorites"
-msgstr "أضِف إلى المفضلات"
+msgstr "أضِف إلى المفضلة"
 
 msgid "Remove from Favorites"
-msgstr "أزِل من المفضلات"
+msgstr "أزِل من المفضلة"
 
 msgid "Pending"
-msgstr "في الانتظار"
+msgstr ""
 
 msgid "Add a comment"
-msgstr "أضِف تعليقا"
+msgstr "أضِف تعليقًا"
 
 msgid "Comment"
-msgstr "تعليق"
+msgstr ""
 
 msgid "Remove this add-on from the collection"
-msgstr "إزالة هذه الإضافة من المجموعة"
+msgstr "أزِل هذه الإضافة من المجموعة"
 
 msgid "Remove"
-msgstr "إزالة"
+msgstr "أزِل"
 
 msgid "Add to favorites"
-msgstr "أضِف إلى المفضلات"
+msgstr "أضِف إلى المفضلة"
 
 msgid "Remove from favorites"
-msgstr "إزِل من المفضلات"
+msgstr "أزِل من المفضلة"
 
 msgid "Stop following"
-msgstr "أوقف المتابعة"
+msgstr "أوقِف المتابعة"
 
 msgid "Your browser does not support the video tag"
-msgstr ""
+msgstr "لا يدعم المتصفح لديك وسم الڤديوهات"
 
 msgid "Changes Saved"
 msgstr "حُفظت التغييرات"
 
 msgid "Enter a new author's email address"
-msgstr ""
+msgstr "أدخِل عنوان البريد الجديد للمؤلف"
 
 msgid "There was an error uploading your file."
-msgstr "كانت هناك أخطاء أثناء رفع ملفك."
+msgstr "حدث خطأ أثناء رفع الملف."
 
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] "لا ملفات"
 msgstr[1] "ملف واحد"
-msgstr[2] "ملفان"
+msgstr[2] "ملفان اثنان"
 msgstr[3] "{files} ملفات"
-msgstr[4] "{files} ملفا"
+msgstr[4] "{files} ملفًا"
 msgstr[5] "{files} ملف"
 
 msgid "{reviews} user review"
@@ -777,29 +826,29 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Image changes being processed"
-msgstr ""
+msgstr "يُعالج التغييرات على الصورة"
 
 msgid "No results found."
 msgstr "لم يُعثر على نتائج."
 
 msgid "Loading..."
-msgstr "يُحمّل..."
+msgstr "يُحمّل…"
 
 #. L10n: {0} is the number of characters left.
 msgid "<b>{0}</b> character left."
 msgid_plural "<b>{0}</b> characters left."
-msgstr[0] "لا حروف متبقية"
-msgstr[1] "حرف واحد متبقي"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "لم يبقَ <b>أي</b> حرف."
+msgstr[1] "بقيَ حرف <b>واحد</b>."
+msgstr[2] "بقيَ <b>حرفين</b>."
+msgstr[3] "بقيت <b>{0}</b> أحرف."
+msgstr[4] "بقيَ <b>{0}</b> حرفًا."
+msgstr[5] "بقيَ <b>{0}</b> حرف."
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
-msgstr "هذه الميزة معطلة مؤقتا بينما نقوم بصيانة الموقع حاليًا. رجاءً حاول مجددًا بعد قليل."
+msgstr "هذه الميزة معطلة مؤقتًا بينما نقوم بصيانة الموقع. رجاءً أعِد المحاولة بعد بعض الوقت."
 
 msgid "Remove this localization"
-msgstr ""
+msgstr "أزِل هذا التوطين"
 
 msgid "{name} was viewing this page first."
 msgstr ""
@@ -814,7 +863,7 @@ msgid "{name} was viewing this add-on first."
 msgstr ""
 
 msgid "Loading&hellip;"
-msgstr "يجري التحميل&hellip;"
+msgstr "يُحمّل&hellip;"
 
 msgid "Version Notes"
 msgstr ""
@@ -837,6 +886,9 @@ msgstr ""
 msgid "Number of Reviews"
 msgstr ""
 
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
+
 msgid "Requested Info"
 msgstr ""
 
@@ -850,7 +902,7 @@ msgid "Rejected"
 msgstr ""
 
 msgid "Approved"
-msgstr "مصادق عليه"
+msgstr ""
 
 msgid "No results found"
 msgstr "لم يُعثر على نتائج"
@@ -890,10 +942,10 @@ msgid "Compatibility Tests"
 msgstr ""
 
 msgid "Add-on failed validation."
-msgstr ""
+msgstr "فشل التثبّت من الإضافة."
 
 msgid "Add-on passed validation."
-msgstr ""
+msgstr "نجح التثبّت من الإضافة."
 
 msgid "{0} error"
 msgid_plural "{0} errors"
@@ -923,7 +975,7 @@ msgstr[4] ""
 msgstr[5] ""
 
 msgid "Validation task could not complete or completed with errors"
-msgstr ""
+msgstr "تعذّر اكتمال مهمة التثبّت أو أنها اكتملت مع أخطاء."
 
 msgid "Internal server error"
 msgstr "خطأ داخلي في الخادوم"

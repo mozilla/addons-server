@@ -3,14 +3,14 @@ import olympia.core.logger
 from olympia.activity.models import ActivityLogEmails
 from olympia.activity.utils import add_email_to_activity_log_wrapper
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 
 
 log = olympia.core.logger.getLogger('z.amo.activity')
 
 
 @task
-@write
+@use_primary_db
 def process_email(message, **kwargs):
     """Parse emails and save activity log entry."""
     # Some emails (gmail, at least) come with Message-ID instead of MessageId.

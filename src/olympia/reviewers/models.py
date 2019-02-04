@@ -7,7 +7,6 @@ from django.conf import settings
 from django.core.cache import cache
 from django.db import models
 from django.db.models import Q, Sum
-from django.db.models.functions import Func
 from django.template import loader
 from django.utils.translation import ugettext, ugettext_lazy as _
 
@@ -44,17 +43,9 @@ VIEW_QUEUE_FLAGS = (
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('pending_info_request', 'info', _('More Information Requested')),
     ('expired_info_request', 'expired-info', _('Expired Information Request')),
-    ('has_reviewer_comment', 'reviewer', _('Contains Reviewer Comment')),
     ('sources_provided', 'sources-provided', _('Sources provided')),
     ('is_webextension', 'webextension', _('WebExtension')),
 )
-
-
-# Django 1.8 does not have Cast(), so this is a simple dumb implementation
-# that only handles Cast(..., DateTimeField())
-class DateTimeCast(Func):
-    function = 'CAST'
-    template = '%(function)s(%(expressions)s AS DATETIME(6))'
 
 
 def get_reviewing_cache_key(addon_id):
@@ -121,7 +112,6 @@ class ViewQueue(RawSQLModel):
     latest_version = models.CharField(max_length=255)
     pending_info_request = models.DateTimeField()
     expired_info_request = models.NullBooleanField()
-    has_reviewer_comment = models.BooleanField()
     waiting_time_days = models.IntegerField()
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
@@ -141,7 +131,6 @@ class ViewQueue(RawSQLModel):
                 ('needs_admin_theme_review',
                     'addons_addonreviewerflags.needs_admin_theme_review'),
                 ('latest_version', 'versions.version'),
-                ('has_reviewer_comment', 'versions.has_editor_comment'),
                 ('pending_info_request',
                     'addons_addonreviewerflags.pending_info_request'),
                 ('expired_info_request', (
@@ -1135,6 +1124,9 @@ class RereviewQueueTheme(ModelBase):
 
     class Meta:
         db_table = 'rereview_queue_theme'
+        # This is very important: please read the lengthy comment in Addon.Meta
+        # description
+        base_manager_name = 'unfiltered'
 
     def __str__(self):
         return str(self.id)

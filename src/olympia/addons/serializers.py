@@ -2,7 +2,7 @@ import re
 
 from django.conf import settings
 
-from rest_framework import serializers
+from rest_framework import exceptions, serializers
 
 from olympia import amo
 from olympia.accounts.serializers import BaseUserSerializer
@@ -211,6 +211,44 @@ class VersionSerializer(SimpleVersionSerializer):
                   'release_notes', 'reviewed', 'url', 'version')
 
 
+class CurrentVersionSerializer(SimpleVersionSerializer):
+    def to_representation(self, obj):
+        # If the add-on is a langpack, and `appversion` is passed, try to
+        # determine the latest public compatible version and replace the obj
+        # with the result. Because of the perf impact, only done for langpacks
+        # in the detail API.
+        request = self.context.get('request')
+        view = self.context.get('view')
+        addon = obj.addon
+        if (request and request.GET.get('appversion') and
+                getattr(view, 'action', None) == 'retrieve' and
+                addon.type == amo.ADDON_LPAPP):
+            obj = self.get_current_compatible_version(addon)
+        return super(CurrentVersionSerializer, self).to_representation(obj)
+
+    def get_current_compatible_version(self, addon):
+        """
+        Return latest public version compatible with the app & appversion
+        passed through the request, or fall back to addon.current_version if
+        none is found.
+
+        Only use on langpacks if the appversion parameter is present.
+        """
+        request = self.context.get('request')
+        try:
+            # AddonAppVersionQueryParam.get_values() returns (app_id, min, max)
+            # but we want {'min': min, 'max': max}.
+            value = AddonAppVersionQueryParam(request).get_values()
+            application = value[0]
+            appversions = dict(zip(('min', 'max'), value[1:]))
+        except ValueError as exc:
+            raise exceptions.ParseError(exc.message)
+
+        version_qs = Version.objects.latest_public_compatible_with(
+            application, appversions).filter(addon=addon)
+        return version_qs.first() or addon.current_version
+
+
 class AddonEulaPolicySerializer(serializers.ModelSerializer):
     eula = TranslationSerializerField()
     privacy_policy = TranslationSerializerField()
@@ -236,7 +274,7 @@ class AddonSerializer(serializers.ModelSerializer):
     authors = AddonDeveloperSerializer(many=True, source='listed_authors')
     categories = serializers.SerializerMethodField()
     contributions_url = serializers.URLField(source='contributions')
-    current_version = SimpleVersionSerializer()
+    current_version = CurrentVersionSerializer()
     description = TranslationSerializerField()
     developer_comments = TranslationSerializerField()
     edit_url = serializers.SerializerMethodField()
@@ -441,6 +479,12 @@ class AddonSerializerWithUnlistedData(AddonSerializer):
         fields = AddonSerializer.Meta.fields + ('latest_unlisted_version',)
 
 
+class SimpleAddonSerializer(AddonSerializer):
+    class Meta:
+        model = Addon
+        fields = ('id', 'slug', 'name', 'icon_url')
+
+
 class ESAddonSerializer(BaseESSerializer, AddonSerializer):
     # Override various fields for related objects which we don't want to expose
     # data the same way than the regular serializer does (usually because we
@@ -625,7 +669,7 @@ class ESAddonSerializerWithUnlistedData(
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'name', 'url')
+        fields = ('id', 'icon_url', 'name', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):

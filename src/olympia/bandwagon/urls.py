@@ -1,7 +1,5 @@
 from django.conf.urls import include, url
 
-from olympia.stats.urls import collection_stats_urls
-
 from . import views
 
 
@@ -15,14 +13,11 @@ detail_urls = [
     url('^$', views.collection_detail, name='collections.detail'),
     url('^format:json$', views.collection_detail_json,
         name='collections.detail.json'),
-    url('^vote/(?P<direction>up|down)$', views.collection_vote,
-        name='collections.vote'),
     url('^edit/', include(edit_urls)),
     url('^delete$', views.delete, name='collections.delete'),
     url('^delete_icon$', views.delete_icon, name='collections.delete_icon'),
     url('^(?P<action>add|remove)$', views.collection_alter,
         name='collections.alter'),
-    url('^watch$', views.watch, name='collections.watch'),
 ]
 
 ajax_urls = [
@@ -46,14 +41,10 @@ urlpatterns = [
         views.legacy_directory_redirects),
     url('^collections/mine/(?P<slug>[^/]+)?$', views.mine,
         name='collections.mine', kwargs={'username': 'mine'}),
-    url('^collections/following/', views.following,
-        name='collections.following'),
     url('^collections/(?P<username>[^/]+)/$', views.user_listing,
         name='collections.user'),
     url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/',
         include(detail_urls)),
-    url('^collections/(?P<username>[^/]+)/(?P<slug>[^/]+)/statistics/',
-        include(collection_stats_urls)),
     url('^collections/add$', views.add, name='collections.add'),
     url('^collections/ajax/', include(ajax_urls)),
 ]

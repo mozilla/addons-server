@@ -570,11 +570,12 @@ class TestMonthlyPick(TestCase):
 
         # Tests for screenshot image when set.
         Preview.objects.create(addon=self.addon)
+        del self.addon._all_previews
         r = self.client.get(self.url)
         pick = pq(r.content)('#monthly')
         assert pick.length == 1
         assert pick.find('img').attr('src') == (
-            self.addon.all_previews[0].image_url)
+            self.addon.current_previews[0].image_url)
 
     def test_no_monthlypick(self):
         r = self.client.get(self.url)

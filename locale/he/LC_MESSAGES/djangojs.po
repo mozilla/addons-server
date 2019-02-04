@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2015-12-01 12:34+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-03 12:15+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -36,7 +36,7 @@ msgstr "{0}% הושלמו"
 
 #. L10n: "{bytes uploaded} of {total filesize}".
 msgid "{0} of {1}"
-msgstr "‎{0} מתוך ‎{1}"
+msgstr "‏‎{0}‏ מתוך ‎{1}‏"
 
 msgid "Cancel"
 msgstr "ביטול"
@@ -209,31 +209,55 @@ msgid "Use original"
 msgstr "שימוש במקור"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "שבוע {0}"
 
-msgid " downloads"
-msgstr " הורדות"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " הורדות"
+msgstr[1] " הורדות"
 
-msgid "{0} users"
-msgstr "{0} משתמשים"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} משתמשים"
+msgstr[1] "{0} משתמשים"
 
-msgid "{0} add-ons"
-msgstr "{0} תוספות"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} תוספות"
+msgstr[1] "{0} תוספות"
 
-msgid "{0} collections"
-msgstr "{0} אוספים"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} אוספים"
+msgstr[1] "{0} אוספים"
 
-msgid "{0} reviews"
-msgstr "{0} סקירות"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} סקירות"
+msgstr[1] "{0} סקירות"
 
-msgid "{0} sales"
-msgstr "{0} מכירות"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} מכירות"
+msgstr[1] "{0} מכירות"
 
-msgid "{0} refunds"
-msgstr "{0} החזרים כספיים"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} החזרים כספיים"
+msgstr[1] "{0} החזרים כספיים"
 
-msgid "{0} installs"
-msgstr "{0} התקנות"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} התקנות"
+msgstr[1] "{0} התקנות"
 
 msgid "Downloads"
 msgstr "הורדות"
@@ -793,6 +817,9 @@ msgstr "ממוצע הסקירות"
 
 msgid "Number of Reviews"
 msgstr "מספר הסקירות"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "גודל ההעלאה המירבי הוא {0} - נא לבחור בתמונת רקע קטנה יותר."
 
 msgid "Requested Info"
 msgstr "נדרש מידע"

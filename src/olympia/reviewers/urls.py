@@ -48,6 +48,9 @@ urlpatterns = (
         views.review, name='reviewers.review'),
     url(r'^whiteboard/(?P<channel>listed|unlisted|content)/%s$' % ADDON_ID,
         views.whiteboard, name='reviewers.whiteboard'),
+    url(r'^eula/%s$' % ADDON_ID, views.eula, name='reviewers.eula'),
+    url(r'^privacy/%s$' % ADDON_ID, views.privacy, name='reviewers.privacy'),
+
     url(r'^performance/(?P<user_id>\d+)?$', views.performance,
         name='reviewers.performance'),
     url(r'^motd$', views.motd, name='reviewers.motd'),

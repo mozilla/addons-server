@@ -1,6 +1,0 @@
-[git]
-name=Git Repo
-baseurl=https://s3-us-west-2.amazonaws.com/net-mozaws-prod-us-west-2-ops-rpmrepo-mirror/git/7/x86_64
-enabled=1
-gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-git

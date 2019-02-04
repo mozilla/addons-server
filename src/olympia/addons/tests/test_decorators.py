@@ -19,8 +19,9 @@ class TestAddonView(TestCase):
         self.func.__name__ = 'mock_function'
         self.view = dec.addon_view(self.func)
         self.request = mock.Mock()
-        self.slug_path = urllib.quote(
-            ('/addon/%s/reviews' % self.addon.slug).encode('utf8'))
+        self.slug_path = (
+            'http://testserver/addon/%s/reviews' %
+            urllib.quote(self.addon.slug.encode('utf-8')))
         self.request.path = self.id_path = (
             u'http://testserver/addon/%s/reviews' % self.addon.id)
         self.request.GET = {}
@@ -34,9 +35,10 @@ class TestAddonView(TestCase):
         self.request.path = path.format(id=self.addon.id)
 
         res = self.view(self.request, str(self.addon.id))
-        redirection = urllib.quote(
-            u'/addon/{slug}/reviews/{id}345/path'.format(
-                id=self.addon.id, slug=self.addon.slug).encode('utf8'))
+        redirection = (
+            u'http://testserver/addon/{slug}/reviews/{id}345/path'.format(
+                id=self.addon.id,
+                slug=urllib.quote(self.addon.slug.encode('utf8'))))
         self.assert3xx(res, redirection, 301)
 
     def test_301_with_querystring(self):

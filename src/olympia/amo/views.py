@@ -1,6 +1,5 @@
 import json
 import os
-import re
 
 from django import http
 from django.conf import settings
@@ -24,8 +23,7 @@ def monitor(request):
     status_summary = {}
     results = {}
 
-    checks = ['memcache', 'libraries', 'elastic', 'path',
-              'rabbitmq', 'redis', 'signer']
+    checks = ['memcache', 'libraries', 'elastic', 'path', 'rabbitmq', 'signer']
 
     for check in checks:
         with statsd.timer('monitor.%s' % check) as timer:
@@ -63,7 +61,7 @@ def contribute(request):
 
 @non_atomic_requests
 def handler403(request):
-    if request.path_info.startswith('/api/'):
+    if request.is_legacy_api:
         # Pass over to handler403 view in api if api was targeted.
         return legacy_api.views.handler403(request)
     else:
@@ -72,11 +70,12 @@ def handler403(request):
 
 @non_atomic_requests
 def handler404(request):
-    if re.match(settings.DRF_API_REGEX, request.path_info):
+    if request.is_api:
+        # It's a v3+ api request
         return JsonResponse(
             {'detail': unicode(NotFound.default_detail)}, status=404)
-    elif request.path_info.startswith('/api/'):
-        # Pass over to handler404 view in api if api was targeted.
+    elif request.is_legacy_api:
+        # It's a legacy api request - pass over to legacy api handler404.
         return legacy_api.views.handler404(request)
     # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
     # a mobile User Agent or when the mamo cookie is present.
@@ -88,7 +87,7 @@ def handler404(request):
 
 @non_atomic_requests
 def handler500(request):
-    if request.path_info.startswith('/api/'):
+    if request.is_legacy_api:
         # Pass over to handler500 view in api if api was targeted.
         return legacy_api.views.handler500(request)
     else:
@@ -97,8 +96,13 @@ def handler500(request):
 
 @non_atomic_requests
 def csrf_failure(request, reason=''):
-    return render(request, 'amo/403.html',
-                  {'because_csrf': 'CSRF' in reason}, status=403)
+    from django.middleware.csrf import REASON_NO_REFERER, REASON_NO_CSRF_COOKIE
+    ctx = {
+        'reason': reason,
+        'no_referer': reason == REASON_NO_REFERER,
+        'no_cookie': reason == REASON_NO_CSRF_COOKIE,
+    }
+    return render(request, 'amo/403.html', ctx, status=403)
 
 
 @non_atomic_requests

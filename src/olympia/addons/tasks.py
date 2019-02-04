@@ -18,9 +18,10 @@ from olympia.addons.models import (
     Addon, AddonCategory, AppSupport, Category, CompatOverride,
     IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
     attach_translations)
-from olympia.addons.utils import build_static_theme_xpi_from_lwt
+from olympia.addons.utils import (
+    build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
 from olympia.amo.celery import task
-from olympia.amo.decorators import set_modified_on, write
+from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
@@ -46,7 +47,7 @@ log = olympia.core.logger.getLogger('z.task')
 
 
 @task
-@write
+@use_primary_db
 def version_changed(addon_id, **kw):
     update_last_updated(addon_id)
     update_appsupport([addon_id])
@@ -76,7 +77,7 @@ def update_last_updated(addon_id):
         Addon.objects.filter(pk=pk).update(last_updated=t)
 
 
-@write
+@use_primary_db
 def update_appsupport(ids):
     log.info("[%s@None] Updating appsupport for %s." % (len(ids), ids))
 
@@ -296,7 +297,7 @@ def rereviewqueuetheme_checksum(rqt, **kw):
 
 
 @task
-@write
+@use_primary_db
 def save_theme(header, addon_pk, **kw):
     """Save theme image and calculates checksum after theme save."""
     addon = Addon.objects.get(pk=addon_pk)
@@ -317,7 +318,7 @@ def save_theme(header, addon_pk, **kw):
 
 
 @task
-@write
+@use_primary_db
 def save_theme_reupload(header, addon_pk, **kw):
     addon = Addon.objects.get(pk=addon_pk)
     header_dst = None
@@ -344,7 +345,7 @@ def save_theme_reupload(header, addon_pk, **kw):
 
 
 @task
-@write
+@use_primary_db
 def calc_checksum(theme_id, **kw):
     """For migration 596."""
     lfs = LocalFileStorage()
@@ -371,7 +372,7 @@ def calc_checksum(theme_id, **kw):
 
 
 @task
-@write  # To bypass cache and use the primary replica.
+@use_primary_db  # To bypass cache and use the primary replica.
 def find_inconsistencies_between_es_and_db(ids, **kw):
     length = len(ids)
     log.info(
@@ -405,7 +406,7 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def add_firefox57_tag(ids, **kw):
     """Add firefox57 tag to addons with the specified ids."""
     log.info(
@@ -423,7 +424,7 @@ def add_firefox57_tag(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def add_dynamic_theme_tag(ids, **kw):
     """Add dynamic theme tag to addons with the specified ids."""
     log.info(
@@ -435,6 +436,7 @@ def add_dynamic_theme_tag(ids, **kw):
         files = addon.current_version.all_files
         if any('theme' in file_.webext_permissions_list for file_ in files):
             Tag(tag_text='dynamic theme').save_tag(addon)
+            index_addons.delay([addon.id])
 
 
 def extract_strict_compatibility_value_for_addon(addon):
@@ -489,7 +491,7 @@ def bump_appver_for_addon_if_necessary(
 # fired 250 times. With 5 workers at 5 tasks / minute limit we should do 25
 # tasks in a minute, taking ~ 10 minutes for the whole thing to finish.
 @task(rate_limit='5/m')
-@write
+@use_primary_db
 def bump_appver_for_legacy_addons(ids, **kw):
     """
     Task to bump the max appversion to 56.* for legacy add-ons that have not
@@ -608,7 +610,7 @@ def add_static_theme_from_lwt(lwt):
     for file_ in version.all_files:
         sign_file(file_)
         file_.update(
-            datestatuschanged=datetime.now(),
+            datestatuschanged=lwt.last_updated,
             reviewed=datetime.now(),
             status=amo.STATUS_PUBLIC)
     addon_updates['status'] = amo.STATUS_PUBLIC
@@ -616,13 +618,14 @@ def add_static_theme_from_lwt(lwt):
     # set the modified and creation dates to match the original.
     addon_updates['created'] = lwt.created
     addon_updates['modified'] = lwt.modified
+    addon_updates['last_updated'] = lwt.last_updated
 
     addon.update(**addon_updates)
     return addon
 
 
 @task
-@write
+@use_primary_db
 def migrate_lwts_to_static_themes(ids, **kw):
     """With the specified ids, create new static themes based on an existing
     lightweight themes (personas), and delete the lightweight themes after."""
@@ -657,7 +660,7 @@ def migrate_lwts_to_static_themes(ids, **kw):
 
 
 @task
-@write
+@use_primary_db
 def delete_addon_not_compatible_with_firefoxes(ids, **kw):
     """
     Delete the specified add-ons.
@@ -668,16 +671,61 @@ def delete_addon_not_compatible_with_firefoxes(ids, **kw):
         ids[0], ids[-1], len(ids))
     qs = Addon.objects.filter(id__in=ids)
     for addon in qs:
-        addon.appsupport_set.filter(
-            app__in=(amo.FIREFOX.id, amo.ANDROID.id)).delete()
-        addon.delete()
+        with transaction.atomic():
+            addon.appsupport_set.filter(
+                app__in=(amo.FIREFOX.id, amo.ANDROID.id)).delete()
+            addon.delete()
 
 
 @task
-@write
+@use_primary_db
 def delete_obsolete_applicationsversions(**kw):
     """Delete ApplicationsVersions objects not relevant for Firefoxes."""
     qs = ApplicationsVersions.objects.exclude(
         application__in=(amo.FIREFOX.id, amo.ANDROID.id))
     for av in qs.iterator():
         av.delete()
+
+
+@task
+@use_primary_db
+def migrate_legacy_dictionaries_to_webextension(ids, **kw):
+    """Migrate a chunk of legacy dictionaries to webextension format.
+    Used by process_addons command."""
+    log.info(
+        'Migrating legacy dictionaries to webextension %d-%d [%d].',
+        ids[0], ids[-1], len(ids))
+    addons = list(Addon.objects.filter(id__in=ids))
+    for addon in addons:
+        migrate_legacy_dictionary_to_webextension(addon)
+    index_addons.delay(addons)
+
+
+@transaction.atomic()
+def migrate_legacy_dictionary_to_webextension(addon):
+    """Migrate a single legacy dictionary to webextension format, creating a
+    new package from the current_version, faking an upload to create a new
+    Version instance."""
+    user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
+    now = datetime.now()
+
+    # Wrap zip in FileUpload for Version.from_upload() to consume.
+    upload = FileUpload.objects.create(
+        user=user, valid=True)
+    destination = os.path.join(
+        user_media_path('addons'), 'temp', uuid.uuid4().hex + '.xpi')
+    build_webext_dictionary_from_legacy(addon, destination)
+    upload.update(path=destination)
+
+    parsed_data = parse_addon(upload, user=user)
+    # Create version.
+    version = Version.from_upload(
+        upload, addon, platforms=[amo.PLATFORM_ALL.id],
+        channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
+    activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=user)
+
+    # Sign the file, and set it to public. That should automatically set
+    # current_version to the version we created.
+    file_ = version.all_files[0]
+    sign_file(file_)
+    file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)

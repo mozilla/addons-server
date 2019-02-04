@@ -42,8 +42,8 @@ Detail
 This endpoint allows you to fetch a single collection by its ``slug``.
 It returns any ``public`` collection by the specified user. You can access
 a non-``public`` collection only if it was authored by you, the authenticated user.
- If you have ``Admin:Curation`` permission you can see any collection belonging
- to the ``mozilla`` user.
+If you have ``Admin:Curation`` permission you can see any collection belonging
+to the ``mozilla`` user.
 
 
 .. http:get:: /api/v4/accounts/account/(int:user_id|string:username)/collections/(string:collection_slug)/
@@ -214,7 +214,6 @@ This endpoint gets details of a single add-on in a collection, together with col
 
     :>json object addon: The :ref:`add-on <addon-detail-object>` for this item.
     :>json string|object|null notes: The collectors notes for this item. (See :ref:`translated fields <api-overview-translations>`).
-    :>json int downloads: The downloads that occured via this collection.
 
 
 -------------------------

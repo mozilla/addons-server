@@ -18,7 +18,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.addons.models import Addon, AppSupport, FrozenAddon
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import chunked, walkfiles
 from olympia.files.models import File
 from olympia.lib.es.utils import raise_if_reindex_in_progress
@@ -105,7 +105,7 @@ def _update_addon_download_totals(data, **kw):
         except Addon.DoesNotExist:
             # We exclude deleted add-ons in the cron, but an add-on could have
             # been deleted by the time the task is processed.
-            m = ("Got new download totals (total=%s,avg=%s) but the add-on"
+            m = ("Got new download totals (total=%s) but the add-on"
                  "doesn't exist (%s)" % (sum_download_counts, pk))
             task_log.debug(m)
 
@@ -133,7 +133,7 @@ def _change_last_updated(next):
         addon.update(last_updated=changes[addon.id])
 
 
-@write
+@use_primary_db
 def addon_last_updated():
     next = {}
     for q in Addon._last_updated_queries().values():

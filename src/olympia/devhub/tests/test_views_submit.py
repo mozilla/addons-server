@@ -1,13 +1,17 @@
+import urllib
 import json
 import os
+import stat
 
 from datetime import datetime, timedelta
 
 from django.conf import settings
 from django.core.files import temp
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 import mock
+import responses
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -171,6 +175,64 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         assert response.status_code == 200
         assert 'agreement_form' in response.context
 
+    def test_read_dev_agreement_captcha_inactive(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' not in form.fields
+
+        doc = pq(response.content)
+        assert doc('.g-recaptcha') == []
+
+    @override_switch('addon-submission-captcha', active=True)
+    def test_read_dev_agreement_captcha_active_error(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+
+        response = self.client.post(reverse('devhub.submit.agreement'))
+
+        # Captcha is properly rendered
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
+
+        assert 'recaptcha' in response.context['agreement_form'].errors
+
+    @responses.activate
+    @override_switch('addon-submission-captcha', active=True)
+    def test_read_dev_agreement_captcha_active_success(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.submit.agreement'))
+        assert response.status_code == 200
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+        # Captcha is also properly rendered
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
+
+        verify_data = urllib.urlencode({
+            'secret': 'privkey',
+            'remoteip': '127.0.0.1',
+            'response': 'test',
+        })
+
+        responses.add(
+            responses.GET,
+            'https://www.google.com/recaptcha/api/siteverify?' + verify_data,
+            json={'error-codes': [], 'success': True})
+
+        response = self.client.post(reverse('devhub.submit.agreement'), data={
+            'g-recaptcha-response': 'test',
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.submit.distribution')
+
 
 class TestAddonSubmitDistribution(TestCase):
     fixtures = ['base/users']
@@ -249,12 +311,11 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.client.post(reverse('devhub.submit.agreement'))
 
     def post(self, supported_platforms=None, expect_errors=False,
-             source=None, listed=True, status_code=200, url=None):
+             listed=True, status_code=200, url=None):
         if supported_platforms is None:
             supported_platforms = [amo.PLATFORM_ALL]
         data = {
             'upload': self.upload.uuid.hex,
-            'source': source,
             'supported_platforms': [p.id for p in supported_platforms]
         }
         url = url or reverse('devhub.submit.upload',
@@ -309,7 +370,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         assert version
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         self.assert3xx(
-            response, reverse('devhub.submit.details', args=[addon.slug]))
+            response, reverse('devhub.submit.source', args=[addon.slug]))
         log_items = ActivityLog.objects.for_addons(addon)
         assert log_items.filter(action=amo.LOG.CREATE_ADDON.id), (
             'New add-on creation never logged.')
@@ -355,7 +416,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             supported_platforms=[amo.PLATFORM_MAC, amo.PLATFORM_LINUX])
         addon = Addon.objects.get()
         self.assert3xx(
-            response, reverse('devhub.submit.details', args=[addon.slug]))
+            response, reverse('devhub.submit.source', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
 
@@ -370,28 +431,12 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(
-            response, reverse('devhub.submit.finish', args=[addon.slug]))
+            response, reverse('devhub.submit.source', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
         assert all_ == [u'xpi_name-0.1-linux.xpi', u'xpi_name-0.1-mac.xpi']
         mock_auto_sign_file.assert_has_calls([
             mock.call(f)
             for f in latest_version.all_files])
-
-    def test_with_source(self):
-        response = self.client.get(
-            reverse('devhub.submit.upload', args=['listed']))
-        assert pq(response.content)('#id_source')
-        tdir = temp.gettempdir()
-        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
-        source.write('a' * (2 ** 21))
-        source.seek(0)
-        assert Addon.objects.count() == 0
-        response = self.post(source=source)
-        addon = Addon.objects.get()
-        self.assert3xx(
-            response, reverse('devhub.submit.details', args=[addon.slug]))
-        assert addon.current_version.source
-        assert Addon.objects.get(pk=addon.pk).needs_admin_code_review
 
     @override_switch('allow-static-theme-uploads', active=True)
     def test_static_theme_wizard_button_shown(self):
@@ -475,6 +520,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         doc = pq(response.content)
         assert doc('#theme-wizard')
         assert doc('#theme-wizard').attr('data-version') == '1.0'
+        assert doc('input#theme-name').attr('type') == 'text'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -507,6 +553,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         doc = pq(response.content)
         assert doc('#theme-wizard')
         assert doc('#theme-wizard').attr('data-version') == '1.0'
+        assert doc('input#theme-name').attr('type') == 'text'
 
         # And then check the upload works.  In reality the zip is generated
         # client side in JS but the zip file is the same.
@@ -542,7 +589,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         response = self.post()
         addon = Addon.objects.get()
         self.assert3xx(
-            response, reverse('devhub.submit.details', args=[addon.slug]))
+            response, reverse('devhub.submit.source', args=[addon.slug]))
         assert addon.tags.filter(tag_text='dynamic theme').exists()
 
     @mock.patch('olympia.devhub.forms.parse_addon',
@@ -556,8 +603,122 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         response = self.post(listed=False)
         addon = Addon.objects.get()
         self.assert3xx(
-            response, reverse('devhub.submit.finish', args=[addon.slug]))
+            response, reverse('devhub.submit.source', args=[addon.slug]))
         assert not addon.tags.filter(tag_text='dynamic theme').exists()
+
+
+class TestAddonSubmitSource(TestSubmitBase):
+
+    def setUp(self):
+        super(TestAddonSubmitSource, self).setUp()
+        assert not self.get_version().source
+        self.url = reverse('devhub.submit.source', args=[self.addon.slug])
+        self.next_url = reverse(
+            'devhub.submit.details', args=[self.addon.slug])
+
+    def post(self, has_source, source, expect_errors=False, status_code=200):
+        data = {
+            'has_source': 'yes' if has_source else 'no',
+            'source': source,
+        }
+        response = self.client.post(self.url, data, follow=True)
+        assert response.status_code == status_code
+        if not expect_errors:
+            # Show any unexpected form errors.
+            if response.context and 'form' in response.context:
+                assert response.context['form'].errors == {}
+        return response
+
+    def get_source(self, suffix='.zip'):
+        tdir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix=suffix, dir=tdir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+        return source
+
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
+    def test_submit_source(self):
+        response = self.post(has_source=True, source=self.get_source())
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert self.get_version().source
+        assert self.addon.needs_admin_code_review
+        mode = (
+            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+        assert mode == '0100644'
+
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=1)
+    def test_say_no_but_submit_source_anyway_fails(self):
+        response = self.post(
+            has_source=False, source=self.get_source(), expect_errors=True)
+        assert response.context['form'].errors == {
+            'has_source': [
+                u'Source file uploaded but you indicated no source was needed.'
+            ]
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_say_yes_but_dont_submit_source_fails(self):
+        response = self.post(
+            has_source=True, source=None, expect_errors=True)
+        assert response.context['form'].errors == {
+            'has_source': [u'You have not uploaded a source file.']
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    @override_settings(FILE_UPLOAD_MAX_MEMORY_SIZE=2 ** 22)
+    def test_submit_source_in_memory_upload(self):
+        response = self.post(has_source=True, source=self.get_source())
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert self.get_version().source
+        assert self.addon.needs_admin_code_review
+        mode = (
+            oct(os.stat(self.get_version().source.path)[stat.ST_MODE]))
+        assert mode == '0100644'
+
+    def test_with_bad_source_format(self):
+        response = self.post(
+            has_source=True, source=self.get_source(suffix='.exe'),
+            expect_errors=True)
+        assert response.context['form'].errors == {
+            'source': [
+                u"Unsupported file type, please upload an archive file "
+                "('.zip', '.tar', '.7z', '.tar.gz', '.tgz', '.tbz', '.txz', "
+                "'.tar.bz2', '.tar.xz')."],
+            # Django deletes the source data from the cleaned form data
+            # in case of an error on a field, so that `source` doesn't
+            # exist for the `has_source` check
+            'has_source': [u'You have not uploaded a source file.']
+        }
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_no_source(self):
+        response = self.post(has_source=False, source=None)
+        self.assert3xx(response, self.next_url)
+        self.addon = self.addon.reload()
+        assert not self.get_version().source
+        assert not self.addon.needs_admin_code_review
+
+    def test_non_extension_redirects_past_to_details(self):
+        # static themes should redirect
+        self.addon.update(type=amo.ADDON_STATICTHEME)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
+        # extensions shouldn't redirect
+        self.addon.update(type=amo.ADDON_EXTENSION)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        # check another non-extension type also redirects
+        self.addon.update(type=amo.ADDON_DICT)
+        response = self.client.get(self.url)
+        self.assert3xx(response, self.next_url)
 
 
 class DetailsPageMixin(object):
@@ -783,6 +944,22 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         category_ids_new = [cat.id for cat in self.get_addon().all_categories]
         assert category_ids_new == [22]
 
+    def test_ul_class_rendering_regression(self):
+        """Test ul of license widget doesn't render `license` class.
+
+        Regression test for:
+         * https://github.com/mozilla/addons-server/issues/8902
+         * https://github.com/mozilla/addons-server/issues/8920
+        """
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        ul = doc('#id_license-builtin')
+
+        assert ul.attr('class') is None
+
     def test_set_builtin_license_no_log(self):
         self.is_success(self.get_dict(**{'license-builtin': 3}))
         addon = self.get_addon()
@@ -807,6 +984,36 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
         """
         self.get_addon().update(eula=None, privacy_policy=None)
         self.is_success(self.get_dict(has_priv=True))
+
+    def test_source_submission_notes_not_shown_by_default(self):
+        url = reverse('devhub.submit.source', args=[self.addon.slug])
+        response = self.client.post(url, {
+            'has_source': 'no',
+            'source': None,
+        }, follow=True)
+
+        assert response.status_code == 200
+
+        doc = pq(response.content)
+        assert 'Remember: ' not in doc('.source-submission-note').text()
+
+    def test_source_submission_notes_shown(self):
+        url = reverse('devhub.submit.source', args=[self.addon.slug])
+
+        temp_dir = temp.gettempdir()
+        source = temp.NamedTemporaryFile(suffix='.zip', dir=temp_dir)
+        source.write('a' * (2 ** 21))
+        source.seek(0)
+
+        response = self.client.post(url, {
+            'has_source': 'yes',
+            'source': source,
+        }, follow=True)
+
+        assert response.status_code == 200
+
+        doc = pq(response.content)
+        assert 'Remember: ' in doc('.source-submission-note').text()
 
 
 class TestStaticThemeSubmitDetails(DetailsPageMixin, TestSubmitBase):
@@ -1143,7 +1350,7 @@ class TestAddonSubmitFinish(TestSubmitBase):
         # First link is to edit listing.
         assert links[0].attrib['href'] == self.addon.get_dev_url()
         # Second link is back to my submissions.
-        assert links[1].attrib['href'] == reverse('devhub.addons')
+        assert links[1].attrib['href'] == reverse('devhub.themes')
 
         # Text is static theme specific.
         assert "This version will be available after it passes review." in (
@@ -1156,8 +1363,24 @@ class TestAddonSubmitFinish(TestSubmitBase):
 
     def test_finish_submitting_unlisted_static_theme(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)
-        # Page should be identical to extensions
-        self.test_finish_submitting_unlisted_addon
+        self.make_addon_unlisted(self.addon)
+
+        latest_version = self.addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+
+        content = doc('.addon-submission-process')
+        links = content('a')
+        assert len(links) == 2
+        # First link is to the file download.
+        file_ = latest_version.all_files[-1]
+        assert links[0].attrib['href'] == file_.get_url_path('devhub')
+        assert links[0].text == (
+            'Download %s' % file_.filename)
+        # Second back to my submissions.
+        assert links[1].attrib['href'] == reverse('devhub.themes')
 
 
 class TestAddonSubmitResume(TestSubmitBase):
@@ -1223,7 +1446,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         args, _ = _submit_upload_mock.call_args
         assert args[1:] == (
             self.addon, amo.RELEASE_CHANNEL_LISTED,
-            'devhub.submit.version.details', 'devhub.submit.version.finish')
+            'devhub.submit.version.source')
 
     @mock.patch('olympia.devhub.views._submit_upload',
                 side_effect=views._submit_upload)
@@ -1234,7 +1457,7 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
         args, _ = _submit_upload_mock.call_args
         assert args[1:] == (
             self.addon, amo.RELEASE_CHANNEL_UNLISTED,
-            'devhub.submit.version.details', 'devhub.submit.version.finish')
+            'devhub.submit.version.source')
 
     def test_no_versions_redirects_to_distribution(self):
         [v.delete() for v in self.addon.versions.all()]
@@ -1287,29 +1510,8 @@ class VersionSubmitUploadMixin(object):
         return response
 
     def get_next_url(self, version):
-        raise NotImplementedError
-
-    def test_with_source(self):
-        response = self.client.get(self.url)
-        assert pq(response.content)('#id_source')
-        tdir = temp.gettempdir()
-        source = temp.NamedTemporaryFile(suffix=".zip", dir=tdir)
-        source.write('a' * (2 ** 21))
-        source.seek(0)
-        response = self.post(source=source)
-        version = self.addon.find_latest_version(channel=self.channel)
-        assert version.source
-        self.assert3xx(response, self.get_next_url(version))
-        assert self.addon.reload().needs_admin_code_review
-
-    def test_with_bad_source_format(self):
-        tdir = temp.gettempdir()
-        source = temp.NamedTemporaryFile(suffix=".exe", dir=tdir)
-        source.write('a' * (2 ** 21))
-        source.seek(0)
-        response = self.post(source=source, expected_status=200)
-        assert response.context['new_addon_form'].errors.as_text().startswith(
-            '* source\n  * Unsupported file type, please upload an archive ')
+        return reverse('devhub.submit.version.source', args=[
+            self.addon.slug, version.pk])
 
     def test_missing_platforms(self):
         response = self.client.post(self.url, {'upload': self.upload.uuid.hex})
@@ -1426,6 +1628,9 @@ class VersionSubmitUploadMixin(object):
         doc = pq(response.content)
         assert doc('#theme-wizard')
         assert doc('#theme-wizard').attr('data-version') == '3.0'
+        assert doc('input#theme-name').attr('type') == 'hidden'
+        assert doc('input#theme-name').attr('value') == (
+            unicode(self.addon.name))
 
         # And then check the upload works.
         path = os.path.join(
@@ -1471,10 +1676,6 @@ class VersionSubmitUploadMixin(object):
 
 class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_LISTED
-
-    def get_next_url(self, version):
-        return reverse('devhub.submit.version.details', args=[
-            self.addon.slug, version.pk])
 
     def test_success(self):
         response = self.post()
@@ -1584,10 +1785,6 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
-    def get_next_url(self, version):
-        return reverse('devhub.submit.version.finish', args=[
-            self.addon.slug, version.pk])
-
     @mock.patch('olympia.reviewers.utils.sign_file')
     def test_success(self, mock_sign_file):
         """Sign automatically."""
@@ -1618,6 +1815,23 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         mock_auto_sign_file.assert_has_calls([
             mock.call(f)
             for f in version.all_files])
+
+
+class TestVersionSubmitSource(TestAddonSubmitSource):
+
+    def setUp(self):
+        super(TestVersionSubmitSource, self).setUp()
+        addon = self.get_addon()
+        self.version = version_factory(
+            addon=addon,
+            channel=amo.RELEASE_CHANNEL_LISTED,
+            license_id=addon.versions.latest().license_id)
+        self.url = reverse(
+            'devhub.submit.version.source', args=[addon.slug, self.version.pk])
+        self.next_url = reverse(
+            'devhub.submit.version.details',
+            args=[addon.slug, self.version.pk])
+        assert not self.get_version().source
 
 
 class TestVersionSubmitDetails(TestSubmitBase):

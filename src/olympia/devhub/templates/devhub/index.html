@@ -28,7 +28,7 @@
 
     {% block extrahead %}{% endblock %}
 
-    {% if request.user.is_authenticated() %}
+    {% if request.user.is_authenticated %}
       <meta name="csrf" content="{{ csrf_token }}">
     {% endif %}
 
@@ -41,11 +41,11 @@
 
     {{ js('preload') }}
   </head>
-  {% set user_authenticated = request.user.is_authenticated() %}
+  {% set user_authenticated = request.user.is_authenticated %}
 
   <body class="html-{{ DIR }} {{ request.APP.short }} {% if user_authenticated %}user-signedin{% endif %} {% block bodyclass %}{% endblock %}"
-        data-raven-dsn="{{ settings.RAVEN_DSN }}"
-        data-raven-urls="{{ settings.RAVEN_ALLOW_LIST }}"
+        data-raven-dsn="{{ settings.RAVEN_JS_DSN }}"
+        data-raven-urls="{{ settings.RAVEN_JS_ALLOW_LIST }}"
         {% block bodyattrs %}{% endblock %}>
 
 

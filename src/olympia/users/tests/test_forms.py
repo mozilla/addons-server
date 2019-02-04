@@ -441,8 +441,7 @@ class TestDeniedNameAdminAddForm(UserFormBase):
         url = reverse('admin:users_deniedname_add')
         data = {'names': "\n\n", }
         r = self.client.post(url, data)
-        msg = 'Please enter at least one name to be denied.'
-        self.assertFormError(r, 'form', 'names', msg)
+        self.assertFormError(r, 'form', 'names', u'This field is required.')
 
     def test_add(self):
         self.client.login(email='testo@example.com')

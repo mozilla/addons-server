@@ -52,10 +52,6 @@
 
   {{ new_addon_form.non_field_errors() }}
 
-  {% if submit_page != 'file' %}
-    {{ source_form_field(new_addon_form.source) }}
-  {% endif %}
-
     <div class="platform">
       <div class="supported-platforms{% if not new_addon_form.supported_platforms.errors %} edit_initially_hidden{% endif %}">
         <label>{{ _('Which platforms is this file compatible with?') }}</label>

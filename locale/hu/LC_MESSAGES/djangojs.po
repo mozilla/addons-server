@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-09-10 11:46+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-03 12:48+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -40,7 +40,7 @@ msgid "{0} of {1}"
 msgstr "{0} / {1}"
 
 msgid "Cancel"
-msgstr "Mégsem"
+msgstr "Mégse"
 
 msgid "Uploading {0}"
 msgstr "{0} feltöltése"
@@ -102,7 +102,7 @@ msgid "WebExtension upgrade"
 msgstr "WebExtension frissítés"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem visszafordítható. Ha a felhasználók telepítik a WebExtensiont, akkor nem lesznek képesek telepíteni az örökölt kiegészítőt."
+msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem fordítható vissza. Ha a felhasználók telepítik a WebExtensiont, akkor többé nem telepíthetik a hagyományos kiegészítőt."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Egy örökölt Firefox kiegészítő portolása az MDN-en"
@@ -216,29 +216,53 @@ msgstr "Eredeti használata"
 msgid "Week of {0}"
 msgstr "{0}. hét"
 
-msgid " downloads"
-msgstr " letöltés"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " letöltés"
+msgstr[1] " letöltés"
 
-msgid "{0} users"
-msgstr "{0} felhasználó"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} felhasználó"
+msgstr[1] "{0} felhasználó"
 
-msgid "{0} add-ons"
-msgstr "{0} kiegészítő"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} kiegészítő"
+msgstr[1] "{0} kiegészítő"
 
-msgid "{0} collections"
-msgstr "{0} gyűjtemény"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} gyűjtemény"
+msgstr[1] "{0} gyűjtemény"
 
-msgid "{0} reviews"
-msgstr "{0} értékelés"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} értékelés"
+msgstr[1] "{0} értékelés"
 
-msgid "{0} sales"
-msgstr "{0} eladás"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} eladás"
+msgstr[1] "{0} eladás"
 
-msgid "{0} refunds"
-msgstr "{0} visszatérítés"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} visszatérítés"
+msgstr[1] "{0} visszatérítés"
 
-msgid "{0} installs"
-msgstr "{0} telepítés"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} telepítés"
+msgstr[1] "{0} telepítés"
 
 msgid "Downloads"
 msgstr "Letöltések"
@@ -798,6 +822,9 @@ msgstr "Átlagos értékelések"
 
 msgid "Number of Reviews"
 msgstr "Értékelések száma"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "A maximális feltöltési méret {0} – válasszon egy kisebb háttérképet."
 
 msgid "Requested Info"
 msgstr "Kért információ"

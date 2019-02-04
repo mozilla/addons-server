@@ -1,11 +1,11 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-02-20 09:07+0000\n"
-"Last-Translator: Po-chiang (Bob) Chao <bobchao@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-11 13:38+0000\n"
+"Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
@@ -90,7 +90,7 @@ msgid "Your add-on was validated with no errors or warnings."
 msgstr "已驗證您的附加元件，無錯誤或警告。"
 
 msgid "Your submission will be automatically signed."
-msgstr "您的提交已被自動簽署。"
+msgstr "已自動簽署您送出的項目。"
 
 msgid "WebExtension upgrade"
 msgstr "升級 WebExtension"
@@ -105,13 +105,13 @@ msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "包含詳細的版本資訊（可以在下一步完成）。"
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
-msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的紀錄中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
+msgstr "若您的附加元件需要在某個網站上有帳號才能進行測試，請也在給審核者的留言中包含測試帳號的帳號名稱與密碼。（可以在下一步完成）"
 
 msgid "Add-on submission checklist"
 msgstr "附加元件送出前檢查清單"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "送出前，請確認下列幾項是否已完成。這樣將可以降低審查時間:"
+msgstr "送出前，請確認下列幾項是否已完成。這樣將可加速審查:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -206,29 +206,45 @@ msgstr "使用原始的"
 msgid "Week of {0}"
 msgstr "第 {0} 週"
 
-msgid " downloads"
-msgstr " 次下載"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " 次下載"
 
-msgid "{0} users"
-msgstr "{0} 位使用者"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} 位使用者"
 
-msgid "{0} add-ons"
-msgstr "{0} 個附加元件"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} 個附加元件"
 
-msgid "{0} collections"
-msgstr "{0} 個收藏集"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} 個收藏集"
 
-msgid "{0} reviews"
-msgstr "{0} 個評論"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} 個評論"
 
-msgid "{0} sales"
-msgstr "{0} 筆銷售"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} 筆銷售"
 
-msgid "{0} refunds"
-msgstr "{0} 筆退費"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} 筆退費"
 
-msgid "{0} installs"
-msgstr "{0} 個安裝數"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} 個安裝數"
 
 msgid "Downloads"
 msgstr "下載數"
@@ -767,7 +783,7 @@ msgid "Version Notes"
 msgstr "版本資訊"
 
 msgid "Notes for Reviewers"
-msgstr "給審查者的筆記"
+msgstr "給審核者的留言"
 
 msgid "No version notes found"
 msgstr "找不到版本紀錄"
@@ -783,6 +799,9 @@ msgstr "平均評等"
 
 msgid "Number of Reviews"
 msgstr "留言數量"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "最大上傳大小為 {0} - 請縮小背景圖片。"
 
 msgid "Requested Info"
 msgstr "已要求資訊"

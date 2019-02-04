@@ -7,6 +7,7 @@ from django.core import mail
 from django.core.cache import cache
 
 import mock
+from waffle.testutils import override_switch
 
 from freezegun import freeze_time
 from pyquery import PyQuery as pq
@@ -609,6 +610,19 @@ class TestCreate(ReviewTest):
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.add_url).status_code == 404
 
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
+    def test_create_calls_akismet(self, check_with_akismet_mock):
+        response = self.client.post(
+            self.add_url, {'body': 'xx', 'rating': 3},
+            HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
+            HTTP_REFERER='https://mozilla.org/')
+        self.assertRedirects(response, self.list_url, status_code=302)
+
+        rating = Rating.objects.latest('pk')
+        check_with_akismet_mock.assert_called_with(
+            rating.pk, '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+
 
 class TestEdit(ReviewTest):
 
@@ -712,6 +726,20 @@ class TestEdit(ReviewTest):
 
         assert len(mail.outbox) == 0
 
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
+    def test_edit_calls_akismet(self, check_with_akismet_mock):
+        url = jinja_helpers.url('addons.ratings.edit', self.addon.slug, 218207)
+        response = self.client.post(
+            url, {'rating': 2, 'body': 'woo woo'},
+            X_REQUESTED_WITH='XMLHttpRequest',
+            HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
+            HTTP_REFERER='https://mozilla.org/')
+        assert response.status_code == 200
+
+        check_with_akismet_mock.assert_called_with(
+            218207, '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+
 
 class TestRatingViewSetGet(TestCase):
     client_class = APITestClient
@@ -807,7 +835,7 @@ class TestRatingViewSetGet(TestCase):
 
         cache.clear()
         with self.assertNumQueries(5):
-            # 6 queries:
+            # 5 queries:
             # - One for the ratings count (pagination)
             # - One for the ratings themselves
             # - One for the replies (there aren't any, but we don't know
@@ -820,15 +848,19 @@ class TestRatingViewSetGet(TestCase):
             with mock.patch('olympia.ratings.views.RatingViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
-                response = self.client.get(self.url, {'addon': self.addon.pk})
+                response = self.client.get(
+                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['count'] == 3
         assert data['results']
         assert len(data['results']) == 3
         assert data['results'][0]['body'] == review3.body
+        assert data['results'][0]['addon']['slug'] == self.addon.slug
         assert data['results'][1]['body'] == review2.body
+        assert data['results'][1]['addon']['slug'] == self.addon.slug
         assert data['results'][2]['body'] == review1.body
+        assert data['results'][2]['addon']['slug'] == self.addon.slug
 
     def test_list_addon_queries_with_replies(self):
         version1 = self.addon.current_version
@@ -855,10 +887,10 @@ class TestRatingViewSetGet(TestCase):
 
         cache.clear()
         with self.assertNumQueries(5):
-            # 9 queries:
+            # 5 queries:
             # - One for the ratings count
             # - One for the ratings
-            # - One for the ratings fields
+            # - One for the replies (using prefetch_related())
             # - Two for opening and closing a transaction/savepoint
             #   (https://github.com/mozilla/addons-server/issues/3610)
             #
@@ -868,7 +900,8 @@ class TestRatingViewSetGet(TestCase):
             with mock.patch('olympia.ratings.views.RatingViewSet'
                             '.get_addon_object') as get_addon_object:
                 get_addon_object.return_value = self.addon
-                response = self.client.get(self.url, {'addon': self.addon.pk})
+                response = self.client.get(
+                    self.url, {'addon': self.addon.pk, 'lang': 'en-US'})
         assert response.status_code == 200
         data = json.loads(response.content)
         assert data['count'] == 3
@@ -876,10 +909,13 @@ class TestRatingViewSetGet(TestCase):
         assert len(data['results']) == 3
         assert data['results'][0]['body'] == review3.body
         assert data['results'][0]['reply'] is None
+        assert data['results'][0]['addon']['slug'] == self.addon.slug
         assert data['results'][1]['body'] == review2.body
         assert data['results'][1]['reply']['body'] == reply2.body
+        assert data['results'][1]['addon']['slug'] == self.addon.slug
         assert data['results'][2]['body'] == review1.body
         assert data['results'][2]['reply']['body'] == reply1.body
+        assert data['results'][2]['addon']['slug'] == self.addon.slug
 
     def test_list_addon_grouped_ratings(self):
         data = self.test_list_addon(show_grouped_ratings='true')
@@ -1652,6 +1688,22 @@ class TestRatingViewSetEdit(TestCase):
         self.rating.reload()
         assert unicode(self.rating.body) == u'yés!'
 
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
+    def test_edit_calls_akismet(self, check_with_akismet_mock):
+        self.client.login_api(self.user)
+        response = self.client.patch(
+            self.url, {'score': 2, 'body': u'løl!'},
+            HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
+            HTTP_REFERER='https://mozilla.org/')
+        assert response.status_code == 200
+        self.rating.reload()
+        assert response.data['id'] == self.rating.pk
+
+        check_with_akismet_mock.assert_called_with(
+            self.rating.pk,
+            '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
+
 
 class TestRatingViewSetPost(TestCase):
     client_class = APITestClient
@@ -2068,6 +2120,24 @@ class TestRatingViewSetPost(TestCase):
                 'addon': self.addon.pk, 'body': u'My réview',
                 'score': 2, 'version': new_version.pk})
             assert response.status_code == 201, response.content
+
+    @override_switch('akismet-spam-check', active=True)
+    @mock.patch('olympia.ratings.utils.check_with_akismet.delay')
+    def test_post_rating_calls_akismet(self, check_with_akismet_mock):
+        self.user = user_factory()
+        self.client.login_api(self.user)
+        assert not Rating.objects.exists()
+        response = self.client.post(
+            self.url, {
+                'addon': self.addon.pk, 'body': u'test bodyé',
+                'score': 5, 'version': self.addon.current_version.pk},
+            HTTP_USER_AGENT='. Gecko/20100101 Firefox/62.0',
+            HTTP_REFERER='https://mozilla.org/')
+        assert response.status_code == 201
+        rating = Rating.objects.latest('pk')
+        assert rating.pk == response.data['id']
+        check_with_akismet_mock.assert_called_with(
+            rating.pk, '. Gecko/20100101 Firefox/62.0', 'https://mozilla.org/')
 
 
 class TestRatingViewSetFlag(TestCase):

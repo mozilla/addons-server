@@ -16,6 +16,8 @@ form .char-count:after,
     margin-bottom:3em;
     width: 100%;
     overflow: hidden;
+    word-wrap: break-word;
+    word-break: break-all;
 }
 
 #edit-addon h3 a {
@@ -1544,4 +1546,13 @@ span.distribution-tag-listed {
 
 span.distribution-tag-unlisted {
     background-color: #7A2F7A;
+}
+
+.source-submission-note p {
+    font-size: 0.9em;
+    margin-bottom: 0.2em;
+}
+
+.source-submission-note p:last-child {
+    margin-bottom: 1.5em;
 }

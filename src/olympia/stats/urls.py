@@ -12,8 +12,6 @@ series_re = '%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, '%s-%s' % (type, series_re)) for type in views.SERIES)
 global_series = dict((type, '%s-%s' % (type, series_re))
                      for type in views.GLOBAL_SERIES)
-collection_series = dict((type, '%s-%s' % (type, series_re))
-                         for type in views.COLLECTION_SERIES)
 
 
 urlpatterns = [
@@ -22,8 +20,6 @@ urlpatterns = [
     url('^site%s/%s$' % (format_re, group_date_re),
         views.site, name='stats.site'),
     url('^site-%s' % series_re, views.site, name='stats.site.new'),
-    url('^collection/(?P<uuid>[\w-]+).%s$' % (format_re),
-        views.collection, name='stats.collection'),
 ]
 
 # These are the front end pages, so that when you click the links on the
@@ -40,32 +36,6 @@ for key in keys:
         global_series[key], views.site_series,
         kwargs={'field': key}))
 
-collection_stats_urls = [
-    url(collection_series['subscribers'], views.collection_series,
-        kwargs={'field': 'subscribers'}),
-    url(collection_series['ratings'], views.collection_series,
-        kwargs={'field': 'ratings'}),
-    url(collection_series['downloads'], views.collection_series,
-        kwargs={'field': 'downloads'}),
-
-    url('^$', views.collection_report, name='collections.stats',
-        kwargs={'report': 'subscribers'}),
-    url('^subscribers/$', views.collection_report,
-        name='collections.stats.subscribers',
-        kwargs={'report': 'subscribers'}),
-    url(collection_series['subscribers'], views.collection_stats,
-        name='collections.stats.subscribers_series'),
-    url('^ratings/$', views.collection_report,
-        name='collections.stats.ratings',
-        kwargs={'report': 'ratings'}),
-    url(collection_series['ratings'], views.collection_stats,
-        name='collections.stats.ratings_series'),
-    url('^downloads/$', views.collection_report,
-        name='collections.stats.downloads',
-        kwargs={'report': 'downloads'}),
-    url(collection_series['downloads'], views.collection_stats,
-        name='collections.stats.downloads_series'),
-]
 
 # Addon specific stats.
 stats_patterns = [

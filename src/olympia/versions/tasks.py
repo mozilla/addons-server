@@ -6,7 +6,7 @@ from django.template import loader
 
 from olympia import amo
 from olympia.amo.celery import task
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import pngcrush_image
 from olympia.devhub.tasks import resize_image
 from olympia.versions.models import VersionPreview
@@ -48,7 +48,7 @@ def _build_static_theme_preview_context(theme_manifest, header_root):
 
 
 @task
-@write
+@use_primary_db
 def generate_static_theme_preview(theme_manifest, header_root, version_pk):
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')

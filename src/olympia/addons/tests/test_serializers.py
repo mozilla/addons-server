@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from django.test.utils import override_settings
 from django.utils.translation import override
 
 from rest_framework.test import APIRequestFactory
@@ -15,7 +16,8 @@ from olympia.addons.serializers import (
     LicenseSerializer, ReplacementAddonSerializer, SimpleVersionSerializer,
     VersionSerializer)
 from olympia.addons.utils import generate_addon_guid
-from olympia.addons.views import AddonAutoCompleteSearchView, AddonSearchView
+from olympia.addons.views import (
+    AddonAutoCompleteSearchView, AddonSearchView, AddonViewSet)
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     ESTestCase, TestCase, addon_factory, collection_factory, file_factory,
@@ -285,7 +287,7 @@ class AddonSerializerOutputTestMixin(object):
             'en-US': unicode(self.addon.support_url),
         }
         assert 'theme_data' not in result
-        assert set(result['tags']) == set(['some_tag', 'some_other_tag'])
+        assert set(result['tags']) == {'some_tag', 'some_other_tag'}
         assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
         assert result['weekly_downloads'] == self.addon.weekly_downloads
@@ -312,6 +314,18 @@ class AddonSerializerOutputTestMixin(object):
         self.request = APIRequestFactory().get('/', {
             'lang': 'en-US', 'wrap_outgoing_links': 1})
         result = self.serialize()
+        assert result['contributions_url'] == (
+            get_outgoing_url(unicode(self.addon.contributions)))
+        assert result['homepage'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.homepage)),
+        }
+        assert result['support_url'] == {
+            'en-US': get_outgoing_url(unicode(self.addon.support_url)),
+        }
+        # And again, but with v3 style flat strings
+        gates = {None: ('l10n_flat_input_output',)}
+        with override_settings(DRF_API_GATES=gates):
+            result = self.serialize()
         assert result['contributions_url'] == (
             get_outgoing_url(unicode(self.addon.contributions)))
         assert result['homepage'] == (
@@ -476,6 +490,14 @@ class AddonSerializerOutputTestMixin(object):
         self.request = APIRequestFactory().get('/', {'lang': 'fr'})
         with override('fr'):
             result = self.serialize()
+        assert result['description'] == {'fr': translated_descriptions['fr']}
+        assert result['homepage'] == {'fr': translated_homepages['fr']}
+
+        # And again, but with v3 style flat strings
+        with override('fr'):
+            gates = {None: ('l10n_flat_input_output',)}
+            with override_settings(DRF_API_GATES=gates):
+                result = self.serialize()
         assert result['description'] == translated_descriptions['fr']
         assert result['homepage'] == translated_homepages['fr']
 
@@ -646,12 +668,165 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
     serializer_class = AddonSerializer
     serializer_class_with_unlisted_data = AddonSerializerWithUnlistedData
 
+    def setUp(self):
+        super(TestAddonSerializerOutput, self).setUp()
+        self.action = 'retrieve'
+
     def serialize(self):
-        self.serializer = self.serializer_class(
-            context={'request': self.request})
+        self.serializer = self.serializer_class(context={
+            'request': self.request,
+            'view': AddonViewSet(action=self.action)
+        })
         # Manually reload the add-on first to clear any cached properties.
         self.addon = Addon.unfiltered.get(pk=self.addon.pk)
         return self.serializer.to_representation(self.addon)
+
+    def test_langpack_current_version_with_appversion(self):
+        """Test for langpack current_version property when appversion param
+        is passed. Specific to the non-ES serializer, this option is only
+        available through the add-on detail API.
+        """
+        self.addon = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        self.addon.current_version.update(created=self.days_ago(3))
+        version_for_58 = version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        version_for_58.update(created=self.days_ago(2))
+        # Extra version for 59, should not be returned.
+        version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        # Extra version that would be compatible and more recent, but belongs
+        # to a different add-on and should be ignored.
+        addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='fr',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '58.0', 'max_app_version': '58.*'})
+        # Extra version that would be compatible and more recent, but is not
+        # public.
+        not_public_version_for_58 = version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True,
+                     'status': amo.STATUS_DISABLED},
+            min_app_version='58.0', max_app_version='58.*')
+        not_public_version_for_58.update(created=self.days_ago(1))
+
+        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.action = 'retrieve'
+
+        result = self.serialize()
+        assert result['current_version']['id'] == version_for_58.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'58.*', 'min': u'58.0'}
+        }
+        assert result['current_version']['is_strict_compatibility_enabled']
+
+    def test_langpack_current_version_with_appversion_fallback(self):
+        """Like test_langpack_current_version_with_appversion() above, but
+        falling back to the current_version because no compatible version was
+        found."""
+        self.addon = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        self.addon.current_version.update(created=self.days_ago(2))
+        version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.action = 'retrieve'
+
+        result = self.serialize()
+        assert result['current_version']['id'] == self.addon.current_version.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'59.*', 'min': u'59.0'}
+        }
+        assert result['current_version']['is_strict_compatibility_enabled']
+
+    def test_langpack_current_version_without_parameters(self):
+        self.addon = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        self.addon.current_version.update(created=self.days_ago(2))
+        version_for_58 = version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        version_for_58.update(created=self.days_ago(1))
+        version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        # Regular detail action with no special parameters, we'll just return
+        # the current_version.
+        self.action = 'retrieve'
+
+        result = self.serialize()
+        assert result['current_version']['id'] == self.addon.current_version.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'59.*', 'min': u'59.0'}
+        }
+        assert result['current_version']['is_strict_compatibility_enabled']
+
+    def test_langpack_current_version_with_non_detail_action(self):
+        self.addon = addon_factory(
+            type=amo.ADDON_LPAPP, target_locale='es',
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        self.addon.current_version.update(created=self.days_ago(2))
+        version_for_58 = version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        version_for_58.update(created=self.days_ago(1))
+        version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        # The parameters are going to be ignored, since we're not dealing with
+        # the detail API.
+        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.action = 'list'
+
+        result = self.serialize()
+        assert result['current_version']['id'] == self.addon.current_version.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'59.*', 'min': u'59.0'}
+        }
+        assert result['current_version']['is_strict_compatibility_enabled']
+
+    def test_app_and_appversion_parameters_on_non_langpack(self):
+        self.addon = addon_factory(
+            file_kw={'strict_compatibility': True},
+            version_kw={'min_app_version': '57.0', 'max_app_version': '57.*'})
+        self.addon.current_version.update(created=self.days_ago(2))
+        version_for_58 = version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='58.0', max_app_version='58.*')
+        version_for_58.update(created=self.days_ago(1))
+        # Extra version for 59, should not be returned.
+        version_factory(
+            addon=self.addon,
+            file_kw={'strict_compatibility': True},
+            min_app_version='59.0', max_app_version='59.*')
+        # The parameters are going to be ignored since it's not a langpack.
+        self.request = APIRequestFactory().get('/?app=firefox&appversion=58.0')
+        self.action = 'retrieve'
+
+        result = self.serialize()
+        assert result['current_version']['id'] == self.addon.current_version.pk
+        assert result['current_version']['compatibility'] == {
+            'firefox': {'max': u'59.*', 'min': u'59.0'}
+        }
+        assert result['current_version']['is_strict_compatibility_enabled']
 
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
@@ -673,8 +848,10 @@ class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
         return qs.filter('term', id=self.addon.pk).execute()[0]
 
     def serialize(self):
-        self.serializer = self.serializer_class(
-            context={'request': self.request})
+        self.serializer = self.serializer_class(context={
+            'request': self.request,
+            'view': AddonSearchView(action='list')
+        })
 
         obj = self.search()
 
@@ -988,8 +1165,10 @@ class TestLanguageToolsSerializerOutput(TestCase):
         result = self.serialize()
         assert 'current_compatible_version' in result
         assert result['current_compatible_version'] is not None
-        assert set(result['current_compatible_version'].keys()) == set(
-            ['id', 'files', 'reviewed', 'version'])
+        assert (
+            set(result['current_compatible_version'].keys()) ==
+            {'id', 'files', 'reviewed', 'version'}
+        )
 
         self.addon.compatible_versions = None
         result = self.serialize()
@@ -1034,10 +1213,14 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         self.addon = addon_factory()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert (
+            set(result.keys()) ==
+            {'id', 'name', 'icon_url', 'type', 'url'}
+        )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': unicode(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
     def test_translations(self):
@@ -1058,6 +1241,13 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         self.request = APIRequestFactory().get('/', {'lang': 'fr'})
         with override('fr'):
             result = self.serialize()
+        assert result['name'] == {'fr': translated_name['fr']}
+
+        # And again, but with v3 style flat strings
+        with override('fr'):
+            gates = {None: ('l10n_flat_input_output',)}
+            with override_settings(DRF_API_GATES=gates):
+                result = self.serialize()
         assert result['name'] == translated_name['fr']
 
     def test_icon_url_with_persona_id(self):
@@ -1074,7 +1264,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert not persona.is_new()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert (
+            set(result.keys()) ==
+            {'id', 'name', 'icon_url', 'type', 'url'}
+        )
+        assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
     def test_icon_url_persona_with_no_persona_id(self):
@@ -1094,7 +1288,11 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         assert persona.is_new()
 
         result = self.serialize()
-        assert set(result.keys()) == set(['id', 'name', 'icon_url', u'url'])
+        assert (
+            set(result.keys()) ==
+            {'id', 'name', 'icon_url', 'type', 'url'}
+        )
+        assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
 
 

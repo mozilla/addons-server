@@ -55,7 +55,7 @@
   </div>{# /more-personas #}
 
   {{ review_list_box(addon=addon, reviews=reviews) }}
-  {% if request.user.is_authenticated() %}
+  {% if request.user.is_authenticated %}
     {{ review_add_box(addon=addon) }}
   {% endif %}
 

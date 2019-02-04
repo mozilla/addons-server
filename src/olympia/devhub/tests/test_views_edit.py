@@ -196,6 +196,7 @@ class BaseTestEditBasic(BaseTestEdit):
         assert response.status_code == 200
         self.assertFormError(
             response, 'form', 'name', 'This field is required.')
+        assert self.get_addon().name != ''
 
     def test_edit_name_spaces(self):
         data = self.get_dict(name='    ', slug='test_addon')
@@ -707,6 +708,38 @@ class TestEditMedia(BaseTestEdit):
         for k in data:
             assert unicode(getattr(addon, k)) == data[k]
 
+    def test_edit_media_shows_proper_labels(self):
+        """Regression test for
+
+        https://github.com/mozilla/addons-server/issues/8900"""
+        doc = pq(self.client.get(self.media_edit_url).content)
+
+        labels = doc('#icons_default li label')
+
+        assert labels.length == 18
+
+        # First one is the default icon
+        assert labels[0].get('for') == 'id_icon_type_0_0'
+        assert labels[0].find('input').get('name') == 'icon_type'
+        assert labels[0].find('input').get('value') == ''
+
+        assert labels[1].get('for') == 'id_icon_type_1_1'
+        assert labels[1].find('input').get('name') == 'icon_type'
+        assert labels[1].find('input').get('value') == 'icon/alerts'
+
+        # Make sure we're rendering our <input> fields for custom icon
+        # upload correctly.
+        # They're split into two fields which happens in
+        # :func:`addons.forms:icons`
+        inputs = doc('#icons_default li.hide input')
+
+        assert inputs.length == 2
+        assert inputs[0].get('name') == 'icon_type'
+        assert inputs[0].get('value') == 'image/jpeg'
+
+        assert inputs[1].get('name') == 'icon_type'
+        assert inputs[1].get('value') == 'image/png'
+
     def test_edit_media_preuploadedicon(self):
         data = {'icon_type': 'icon/appearance'}
         data_formset = self.formset_media(**data)
@@ -997,7 +1030,7 @@ class TestEditMedia(BaseTestEdit):
 
 
 class BaseTestEditDetails(BaseTestEdit):
-    __test__ = True
+    __test__ = False
 
     def setUp(self):
         super(BaseTestEditDetails, self).setUp()
@@ -1010,8 +1043,11 @@ class BaseTestEditDetails(BaseTestEdit):
             'default_locale': 'en-US',
             'homepage': 'http://twitter.com/fligtarsmom'
         }
+        response = self.client.get(self.details_edit_url)
+        assert response.status_code == 200
 
         response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
@@ -1027,10 +1063,18 @@ class BaseTestEditDetails(BaseTestEdit):
                                   "<script>alert('awesome')</script>")
         self.addon.save()
         response = self.client.get(self.url)
+        assert response.status_code == 200
         doc = pq(response.content)
 
         assert doc('#edit-addon-details span[lang]').html() == (
             "This<br/><b>IS</b>&lt;script&gt;alert('awesome')&lt;/script&gt;")
+
+        response = self.client.get(self.details_edit_url)
+        assert response.status_code == 200
+
+        assert '<script>' not in response.content
+        assert ('This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
+                '&#39;)&lt;/script&gt;</textarea>') in response.content
 
     def test_edit_homepage_optional(self):
         data = {
@@ -1040,6 +1084,7 @@ class BaseTestEditDetails(BaseTestEdit):
         }
 
         response = self.client.post(self.details_edit_url, data)
+        assert response.status_code == 200
         assert response.context['form'].errors == {}
         addon = self.get_addon()
 
@@ -1048,6 +1093,7 @@ class BaseTestEditDetails(BaseTestEdit):
 
 
 class TestEditDetailsListed(BaseTestEditDetails):
+    __test__ = True
 
     def test_edit_default_locale_required_trans(self):
         # name, summary, and description are required in the new locale.
@@ -1432,13 +1478,14 @@ class TestEditTechnical(BaseTestEdit):
         self.check_dep_ids([5299])
 
 
-class TestEditBasicUnlisted(BaseTestEditBasic):
+class TestEditBasicUnlisted(BaseTestEditBasic, L10nTestsMixin):
     listed = False
     __test__ = True
 
 
 class TestEditDetailsUnlisted(BaseTestEditDetails):
     listed = False
+    __test__ = True
 
 
 class TestEditTechnicalUnlisted(BaseTestEdit):

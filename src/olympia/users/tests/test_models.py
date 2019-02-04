@@ -19,7 +19,7 @@ from olympia import amo
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, addon_factory, safe_exec, user_factory
-from olympia.bandwagon.models import Collection, CollectionWatcher
+from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
@@ -30,35 +30,62 @@ from olympia.zadmin.models import set_config
 class TestUserProfile(TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'users/test_backends')
 
-    def test_is_developer(self):
-        user = UserProfile.objects.get(id=4043307)
-        assert not user.addonuser_set.exists()
-        assert not user.is_developer
-
-        addon = Addon.objects.get(pk=3615)
-        addon.addonuser_set.create(user=user)
-
-        assert not user.is_developer  # it's a cached property...
-        del user.cached_developer_status  # ... let's reset it and try again.
-        assert user.is_developer
-
-        addon.delete()
-        del user.cached_developer_status
-        assert not user.is_developer
-
     def test_is_addon_developer(self):
-        user = UserProfile.objects.get(pk=4043307)
+        user = user_factory()
         assert not user.addonuser_set.exists()
+        assert not user.is_developer
         assert not user.is_addon_developer
-        addon = Addon.objects.get(pk=3615)
-        addon.addonuser_set.create(user=user)
+        assert not user.is_artist
 
-        del user.cached_developer_status
+        addon = addon_factory(users=[user])
+        del user.cached_developer_status  # it's a cached property.
+        assert user.is_developer
         assert user.is_addon_developer
+        assert not user.is_artist
 
         addon.delete()
         del user.cached_developer_status
+        assert not user.is_developer
         assert not user.is_addon_developer
+        assert not user.is_artist
+
+    def test_is_artist(self):
+        user = user_factory()
+        assert not user.addonuser_set.exists()
+        assert not user.is_developer
+        assert not user.is_addon_developer
+        assert not user.is_artist
+
+        addon = addon_factory(users=[user], type=amo.ADDON_PERSONA)
+        del user.cached_developer_status  # it's a cached property.
+        assert user.is_developer
+        assert not user.is_addon_developer
+        assert user.is_artist
+
+        addon.delete()
+        del user.cached_developer_status
+        assert not user.is_developer
+        assert not user.is_addon_developer
+        assert not user.is_artist
+
+    def test_is_artist_of_static_theme(self):
+        user = user_factory()
+        assert not user.addonuser_set.exists()
+        assert not user.is_developer
+        assert not user.is_addon_developer
+        assert not user.is_artist
+
+        addon = addon_factory(users=[user], type=amo.ADDON_STATICTHEME)
+        del user.cached_developer_status  # it's a cached property.
+        assert user.is_developer
+        assert not user.is_addon_developer
+        assert user.is_artist
+
+        addon.delete()
+        del user.cached_developer_status
+        assert not user.is_developer
+        assert not user.is_addon_developer
+        assert not user.is_artist
 
     def test_delete(self):
         user = UserProfile.objects.get(pk=4043307)
@@ -81,8 +108,6 @@ class TestUserProfile(TestCase):
         assert user.display_name
         assert user.homepage
         assert user.picture_type
-        assert user.last_login_attempt
-        assert user.last_login_attempt_ip
         assert user.last_login_ip
         assert not user.has_anonymous_username
 
@@ -96,8 +121,6 @@ class TestUserProfile(TestCase):
         assert user.display_name is None
         assert user.homepage == ''
         assert user.picture_type is None
-        assert user.last_login_attempt is None
-        assert user.last_login_attempt_ip == ''
         assert user.last_login_ip == ''
         assert user.has_anonymous_username
         assert not storage.exists(user.picture_path)
@@ -261,7 +284,7 @@ class TestUserProfile(TestCase):
     def test_welcome_name_anonymous(self):
         user = UserProfile(
             username='anonymous-bb4f3cbd422e504080e32f2d9bbfcee0')
-        assert user.welcome_name == 'Anonymous user bb4f3c'
+        assert user.welcome_name == 'Firefox user bb4f3c'
 
     def test_welcome_name_anonymous_with_display(self):
         user = UserProfile(display_name='John Connor')
@@ -448,19 +471,6 @@ class TestUserProfile(TestCase):
         other_collection.add_addon(addon2)
         assert user.favorite_addons.count() == 1
         assert user.favorite_addons[0] == addon1.pk
-
-    def test_watching(self):
-        user = UserProfile.objects.get(id='4043307')
-        watched_collection1 = Collection.objects.create(name='watched-1')
-        watched_collection2 = Collection.objects.create(name='watched-2')
-        Collection.objects.create(name='other')
-        CollectionWatcher.objects.create(user=user,
-                                         collection=watched_collection1)
-        CollectionWatcher.objects.create(user=user,
-                                         collection=watched_collection2)
-        assert len(user.watching) == 2
-        assert tuple(user.watching) == (watched_collection1.pk,
-                                        watched_collection2.pk)
 
     def test_cannot_set_password(self):
         user = UserProfile.objects.get(id='4043307')

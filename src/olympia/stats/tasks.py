@@ -1,5 +1,4 @@
 import datetime
-import itertools
 
 from django.db import connection
 from django.db.models import Max, Sum
@@ -19,37 +18,10 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 
 from . import search
-from .models import (
-    AddonCollectionCount, CollectionCount, CollectionStats, DownloadCount,
-    ThemeUserCount, UpdateCount)
+from .models import DownloadCount, ThemeUserCount, UpdateCount
 
 
 log = olympia.core.logger.getLogger('z.task')
-
-
-@task
-def update_addons_collections_downloads(data, **kw):
-    log.info("[%s] Updating addons+collections download totals." %
-             (len(data)))
-    query = (
-        "UPDATE addons_collections SET downloads=%s WHERE addon_id=%s "
-        "AND collection_id=%s;" * len(data))
-
-    with connection.cursor() as cursor:
-        cursor.execute(
-            query,
-            list(itertools.chain.from_iterable(
-                [var['sum'], var['addon'], var['collection']]
-                for var in data)))
-
-
-@task
-def update_collections_total(data, **kw):
-    log.info("[%s] Updating collections' download totals." %
-             (len(data)))
-    for var in data:
-        (Collection.objects.filter(pk=var['collection_id'])
-         .update(downloads=var['sum']))
 
 
 @task
@@ -138,10 +110,6 @@ def _get_daily_jobs(date=None):
         'collection_count_total': Collection.objects.filter(
             created__lt=next_date).count,
         'collection_count_new': Collection.objects.extra(**extra).count,
-
-        'collection_addon_downloads': (
-            lambda: AddonCollectionCount.objects.filter(
-                date__lte=date).aggregate(sum=Sum('count'))['sum']),
     }
 
     # If we're processing today's stats, we'll do some extras.  We don't do
@@ -226,35 +194,6 @@ def index_download_counts(ids, index=None, **kw):
                    doc_type=DownloadCount.get_mapping_type(), refresh=True)
     except Exception as exc:
         index_download_counts.retry(args=[ids, index], exc=exc)
-        raise
-
-
-@task
-def index_collection_counts(ids, index=None, **kw):
-    index = index or search.get_alias()
-
-    es = amo_search.get_es()
-    qs = CollectionCount.objects.filter(collection__in=ids)
-
-    if qs.exists():
-        log.info('Indexing %s addon collection counts: %s'
-                 % (qs.count(), qs[0].date))
-
-    data = []
-    try:
-        for collection_count in qs:
-            collection = collection_count.collection_id
-            filters = dict(collection=collection,
-                           date=collection_count.date)
-            data.append(search.extract_addon_collection(
-                collection_count,
-                AddonCollectionCount.objects.filter(**filters),
-                CollectionStats.objects.filter(**filters)))
-        bulk_index(es, data, index=index,
-                   doc_type=CollectionCount.get_mapping_type(),
-                   refresh=True)
-    except Exception as exc:
-        index_collection_counts.retry(args=[ids], exc=exc)
         raise
 
 

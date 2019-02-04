@@ -46,35 +46,18 @@ ADDONS_PATH = NETAPP_STORAGE_ROOT + '/files'
 
 REVIEWER_ATTACHMENTS_PATH = MEDIA_ROOT + '/reviewer_attachment'
 
-FILESYSTEM_CACHE_ROOT = NETAPP_STORAGE_ROOT + '/cache'
+DATABASES = {
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
+    'slave': get_db_config('DATABASES_SLAVE_URL'),
+}
 
-DATABASES = {}
-DATABASES['default'] = env.db('DATABASES_DEFAULT_URL')
-DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
-# Run all views in a transaction (on master) unless they are decorated not to.
-DATABASES['default']['ATOMIC_REQUESTS'] = True
-# Pool our database connections up for 300 seconds
-DATABASES['default']['CONN_MAX_AGE'] = 300
-
-DATABASES['slave'] = env.db('DATABASES_SLAVE_URL')
-# Do not open a transaction for every view on the slave DB.
-DATABASES['slave']['ATOMIC_REQUESTS'] = False
-DATABASES['slave']['ENGINE'] = 'django.db.backends.mysql'
-# Pool our database connections up for 300 seconds
-DATABASES['slave']['CONN_MAX_AGE'] = 300
-
-SERVICES_DATABASE = env.db('SERVICES_DATABASE_URL')
+SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
 
 SLAVE_DATABASES = ['slave']
 
 CACHE_MIDDLEWARE_KEY_PREFIX = CACHE_PREFIX
 
-CACHES = {
-    'filesystem': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': FILESYSTEM_CACHE_ROOT,
-    }
-}
+CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')
 CACHES['default']['TIMEOUT'] = 500
 CACHES['default']['BACKEND'] = 'django.core.cache.backends.memcached.MemcachedCache'  # noqa
@@ -90,19 +73,8 @@ LOGGING['loggers'].update({
     'requests': {'level': logging.WARNING},
     'z.addons': {'level': logging.INFO},
     'z.task': {'level': logging.DEBUG},
-    'z.redis': {'level': logging.DEBUG},
     'z.pool': {'level': logging.ERROR},
 })
-
-# This is used for `django-cache-machine`
-REDIS_BACKEND = env('REDIS_BACKENDS_CACHE')
-
-REDIS_BACKENDS = {
-    'cache': get_redis_settings(env('REDIS_BACKENDS_CACHE')),
-    'cache_slave': get_redis_settings(env('REDIS_BACKENDS_CACHE_SLAVE')),
-    'master': get_redis_settings(env('REDIS_BACKENDS_MASTER')),
-    'slave': get_redis_settings(env('REDIS_BACKENDS_SLAVE'))
-}
 
 ES_TIMEOUT = 60
 ES_HOSTS = env('ES_HOSTS')
@@ -114,9 +86,7 @@ CEF_PRODUCT = STATSD_PREFIX
 
 NEW_FEATURES = True
 
-CLEANCSS_BIN = 'cleancss'
-UGLIFY_BIN = 'uglifyjs'
-ADDONS_LINTER_BIN = 'addons-linter'
+ADDONS_LINTER_BIN = 'node_modules/.bin/addons-linter'
 
 XSENDFILE_HEADER = 'X-Accel-Redirect'
 
@@ -155,9 +125,9 @@ VALIDATOR_TIMEOUT = 360
 
 ES_DEFAULT_NUM_SHARDS = 10
 
-RAVEN_DSN = (
+RAVEN_JS_DSN = (
     'https://8c1c5936578948a9a0614cbbafccf049@sentry.prod.mozaws.net/78')
-RAVEN_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
+RAVEN_JS_ALLOW_LIST = ['addons.mozilla.org', 'addons.cdn.mozilla.net']
 
 
 RECOMMENDATION_ENGINE_URL = env(

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import math
 import os
 import random
 import shutil
@@ -8,6 +7,7 @@ import uuid
 from contextlib import contextmanager
 from datetime import datetime, timedelta
 from functools import partial
+from importlib import import_module
 from tempfile import NamedTemporaryFile
 from urlparse import parse_qs, urlparse
 
@@ -23,7 +23,7 @@ from django.test.client import Client, RequestFactory
 from django.test.utils import override_settings
 from django.conf import urls as django_urls
 from django.utils import translation
-from django.utils.importlib import import_module
+from django.utils.encoding import force_str
 
 import mock
 import pytest
@@ -257,7 +257,7 @@ def create_flag(name=None, **kw):
 class PatchMixin(object):
 
     def patch(self, thing):
-        patcher = mock.patch(thing)
+        patcher = mock.patch(thing, autospec=True)
         self.addCleanup(patcher.stop)
         return patcher.start()
 
@@ -373,6 +373,7 @@ class BaseTestCase(test.TestCase):
         self.client = self.client_class()
 
     def trans_eq(self, trans, localized_string, locale):
+        assert trans.id
         translation = Translation.objects.get(id=trans.id, locale=locale)
         assert translation.localized_string == localized_string
 
@@ -708,18 +709,12 @@ def collection_factory(**kw):
         'name': 'Collection %s' % abs(hash(datetime.now())),
         'description': 'Its a collection %s' % abs(hash(datetime.now())),
         'addon_count': random.randint(200, 2000),
-        'subscribers': random.randint(1000, 5000),
-        'monthly_subscribers': random.randint(100, 500),
-        'weekly_subscribers': random.randint(10, 50),
-        'upvotes': random.randint(100, 500),
-        'downvotes': random.randint(100, 500),
         'listed': True,
     }
     data.update(kw)
     c = Collection(**data)
     if c.slug is None:
         c.slug = data['name'].replace(' ', '-').lower()
-    c.rating = (c.upvotes - c.downvotes) * math.log(c.upvotes + c.downvotes)
     c.created = c.modified = datetime(2011, 11, 11, random.randint(0, 23),
                                       random.randint(0, 59))
     c.save()
@@ -1006,7 +1001,7 @@ def safe_exec(string, value=None, globals_=None, locals_=None):
     """
     locals_ = locals_ or {}
     try:
-        exec(string, globals_ or globals(), locals_)
+        exec(force_str(string), globals_ or globals(), locals_)
     except Exception as e:
         if value:
             raise AssertionError(

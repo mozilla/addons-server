@@ -1,5 +1,6 @@
 import re
 
+from collections import OrderedDict
 from urllib2 import unquote
 
 from django.utils.translation import ugettext
@@ -8,40 +9,41 @@ from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.addons.serializers import SimpleVersionSerializer
+from olympia.addons.serializers import (
+    SimpleAddonSerializer, SimpleVersionSerializer)
 from olympia.api.utils import is_gate_active
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import Rating
+from olympia.ratings.utils import maybe_check_with_akismet
 from olympia.versions.models import Version
 
 
+class RatingAddonSerializer(SimpleAddonSerializer):
+    def get_attribute(self, obj):
+        # Avoid database queries if possible by re-using the addon object from
+        # the view if there is one.
+        return self.context['view'].get_addon_object() or obj.addon
+
+
 class BaseRatingSerializer(serializers.ModelSerializer):
-    addon = serializers.SerializerMethodField()
+    addon = RatingAddonSerializer(read_only=True)
     body = serializers.CharField(allow_null=True, required=False)
+    is_developer_reply = serializers.SerializerMethodField()
     is_latest = serializers.BooleanField(read_only=True)
     previous_count = serializers.IntegerField(read_only=True)
     user = BaseUserSerializer(read_only=True)
 
     class Meta:
         model = Rating
-        fields = ('id', 'addon', 'body', 'created', 'is_latest',
-                  'previous_count', 'user')
+        fields = ('id', 'addon', 'body', 'created', 'is_developer_reply',
+                  'is_latest', 'previous_count', 'user')
 
     def __init__(self, *args, **kwargs):
         super(BaseRatingSerializer, self).__init__(*args, **kwargs)
         self.request = kwargs.get('context', {}).get('request')
 
-    def get_addon(self, obj):
-        # We only return the addon id and slug for convenience, so just return
-        # them directly to avoid instantiating a full serializer. Also avoid
-        # database queries if possible by re-using the addon object from the
-        # view if there is one.
-        addon = self.context['view'].get_addon_object() or obj.addon
-
-        return {
-            'id': addon.id,
-            'slug': addon.slug
-        }
+    def get_is_developer_reply(self, obj):
+        return obj.reply_to_id is not None
 
     def validate(self, data):
         data = super(BaseRatingSerializer, self).validate(data)
@@ -136,7 +138,8 @@ class RatingVersionSerializer(SimpleVersionSerializer):
         # Version queryset is unfiltered, the version is checked more
         # thoroughly in `RatingSerializer.validate()` method.
         field = PrimaryKeyRelatedField(queryset=Version.unfiltered)
-        return field.to_internal_value(data)
+        value = field.to_internal_value(data)
+        return OrderedDict([('id', data), ('version', value)])
 
 
 class RatingSerializer(BaseRatingSerializer):
@@ -170,7 +173,8 @@ class RatingSerializer(BaseRatingSerializer):
             # BaseRatingSerializer.validate() should complain about that, not
             # this method.
             return None
-        if version.addon_id != addon.pk or not version.is_public():
+        version_inst = version['version']
+        if version_inst.addon_id != addon.pk or not version_inst.is_public():
             raise serializers.ValidationError(
                 ugettext(u'This version of the add-on doesn\'t exist or '
                          u'isn\'t public.'))
@@ -185,9 +189,27 @@ class RatingSerializer(BaseRatingSerializer):
 
             rating_exists_on_this_version = Rating.objects.filter(
                 addon=data['addon'], user=data['user'],
-                version=data['version']).using('default').exists()
+                version=data['version']['version']).using('default').exists()
             if rating_exists_on_this_version:
                 raise serializers.ValidationError(
                     ugettext(u'You can\'t leave more than one review for the '
                              u'same version of an add-on.'))
         return data
+
+    def create(self, validated_data):
+        if 'version' in validated_data:
+            # Flatten this because create can't handle nested serializers
+            validated_data['version'] = (
+                validated_data['version'].get('version'))
+        return super(RatingSerializer, self).create(validated_data)
+
+    def save(self, **kwargs):
+        # Take a copy of the body before the save because we pass it to
+        # maybe_check_with_akismet to confirm it changed.
+        pre_save_body = unicode(self.instance.body) if self.instance else None
+
+        instance = super(RatingSerializer, self).save(**kwargs)
+
+        request = self.context.get('request')
+        maybe_check_with_akismet(request, instance, pre_save_body)
+        return instance

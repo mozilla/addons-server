@@ -76,7 +76,7 @@ class TestHomeAndIndex(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         modules = [x.text for x in doc('a.section')]
-        assert len(modules) == 16  # Increment as we add new admin modules.
+        assert len(modules) == 18  # Increment as we add new admin modules.
 
         # Redirected because no permissions if not logged in.
         self.client.logout()
@@ -103,7 +103,7 @@ class TestHomeAndIndex(TestCase):
 
     def test_django_admin_logout(self):
         url = reverse('admin:logout')
-        response = self.client.get(url)
+        response = self.client.get(url, follow=True)
         assert response.status_code == 200
 
 
@@ -220,7 +220,7 @@ class TestMonthlyPick(TestCase):
         data = formset(initial(self.f), dupe, initial_count=1)
         self.client.post(self.url, data)
         assert MonthlyPick.objects.count() == 2
-        assert MonthlyPick.objects.all()[1].locale == ''
+        assert MonthlyPick.objects.all()[1].locale is None
 
     def test_insert_long_blurb(self):
         dupe = initial(self.f)
@@ -434,7 +434,7 @@ class TestAddonAdmin(TestCase):
         rows = doc('#result_list tbody tr')
         assert rows.length == 1
         assert rows.find('a').attr('href') == (
-            '/en-US/admin/models/addons/addon/3615/')
+            '/en-US/admin/models/addons/addon/3615/change/')
 
 
 class TestAddonManagement(TestCase):
@@ -849,7 +849,8 @@ class TestFileDownload(TestCase):
         assert resp.status_code == 302
 
         self.upload = FileUpload.objects.get()
-        self.url = reverse('zadmin.download_file', args=[self.upload.uuid.hex])
+        self.url = reverse(
+            'zadmin.download_file_upload', args=[self.upload.uuid.hex])
 
     def test_download(self):
         """Test that downloading file_upload objects works."""
@@ -874,7 +875,8 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status(
+            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
@@ -889,7 +891,8 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 200)
         self.assert_status('zadmin.env', 200)
         self.assert_status('zadmin.settings', 200)
-        self.assert_status('zadmin.download_file', 404, uuid=self.FILE_ID)
+        self.assert_status(
+            'zadmin.download_file_upload', 404, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
@@ -901,7 +904,8 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.index', 403)
         self.assert_status('zadmin.env', 403)
         self.assert_status('zadmin.settings', 403)
-        self.assert_status('zadmin.download_file', 403, uuid=self.FILE_ID)
+        self.assert_status(
+            'zadmin.download_file_upload', 403, uuid=self.FILE_ID)
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.monthly_pick', 403)
         self.assert_status('zadmin.features', 403)

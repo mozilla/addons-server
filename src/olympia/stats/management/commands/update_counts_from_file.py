@@ -59,7 +59,7 @@ class Command(BaseCommand):
 
     If stats_source is s3:
         This file will be located in
-            `<settings.AWS_STATS_S3_BUCKET>/amo_stats`.
+            `<settings.AWS_STATS_S3_BUCKET>/<settings.AWS_STATS_S3_PREFIX>`.
 
         Five files are processed:
         - update_counts_by_version/YYYY-MM-DD/000000_0
@@ -109,7 +109,7 @@ class Command(BaseCommand):
         for group in groups:
             if options['stats_source'] == 's3':
                 filepath = 's3://' + '/'.join([settings.AWS_STATS_S3_BUCKET,
-                                               'amo_stats',
+                                               settings.AWS_STATS_S3_PREFIX,
                                                'update_counts_by_%s' % group,
                                                day, '000000_0'])
 
@@ -133,10 +133,12 @@ class Command(BaseCommand):
         # Perf: preload all the addons once and for all.
         # This builds a dict where each key (the addon guid we get from the
         # hive query) has the addon_id as value.
-        guids_to_addon = (dict(Addon.objects.public()
-                                            .exclude(guid__isnull=True)
-                                            .exclude(type=amo.ADDON_PERSONA)
-                                            .values_list('guid', 'id')))
+        guids_to_addon = (dict(
+            Addon.unfiltered
+            .exclude(status=amo.STATUS_NULL)
+            .exclude(guid__isnull=True)
+            .exclude(type=amo.ADDON_PERSONA)
+            .values_list('guid', 'id')))
 
         for group, filepath in group_filepaths:
             count_file = get_stats_data(filepath)

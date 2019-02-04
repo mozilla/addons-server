@@ -31,10 +31,10 @@ from olympia import activity, amo, core
 from olympia.access import acl
 from olympia.addons.utils import (
     generate_addon_guid, get_creatured_ids, get_featured_ids)
-from olympia.amo.decorators import use_master, write
+from olympia.amo.decorators import use_primary_db
 from olympia.amo.models import (
-    BasePreview, ManagerBase, manual_order, ModelBase, OnChangeMixin,
-    SaveUpdateMixin, SlugField, BaseQuerySet)
+    BasePreview, BaseQuerySet, ManagerBase, ModelBase, OnChangeMixin,
+    SaveUpdateMixin, SlugField, manual_order)
 from olympia.amo.templatetags import jinja_helpers
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
@@ -47,7 +47,8 @@ from olympia.files.utils import extract_translations, resolve_i18n_message
 from olympia.ratings.models import Rating
 from olympia.tags.models import Tag
 from olympia.translations.fields import (
-    LinkifiedField, PurifiedField, TranslatedField, Translation, save_signal)
+    LinkifiedField, PurifiedField, TranslatedField, save_signal)
+from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version, VersionPreview
@@ -84,11 +85,10 @@ def clean_slug(instance, slug_field='slug'):
         translations = Translation.objects.filter(id=instance.name_id)
         if translations.exists():
             slug = translations[0]
-        else:
-            slug = get_random_slug()
 
     max_length = instance._meta.get_field(slug_field).max_length
-    slug = slugify(slug)[:max_length]
+    # We have to account for slug being reduced to '' by slugify
+    slug = slugify(slug or '')[:max_length] or get_random_slug()
 
     if DeniedSlug.blocked(slug):
         slug = slug[:max_length - 1] + '~'
@@ -216,6 +216,7 @@ class AddonQuerySet(BaseQuerySet):
 
 
 class AddonManager(ManagerBase):
+    _queryset_class = AddonQuerySet
 
     def __init__(self, include_deleted=False):
         # DO NOT change the default value of include_deleted unless you've read
@@ -226,7 +227,6 @@ class AddonManager(ManagerBase):
 
     def get_queryset(self):
         qs = super(AddonManager, self).get_queryset()
-        qs = qs._clone(klass=AddonQuerySet)
         if not self.include_deleted:
             qs = qs.exclude(status=amo.STATUS_DELETED)
         return qs.transform(Addon.transformer)
@@ -273,7 +273,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     guid = models.CharField(max_length=255, unique=True, null=True)
     slug = models.CharField(max_length=30, unique=True, null=True)
-    name = TranslatedField(default=None)
+    name = TranslatedField()
     default_locale = models.CharField(max_length=10,
                                       default=settings.LANGUAGE_CODE,
                                       db_column='defaultlocale')
@@ -360,25 +360,25 @@ class Addon(OnChangeMixin, ModelBase):
                   'A value of 0 has no impact')
     requires_payment = models.BooleanField(default=False)
 
-    # The order of those managers is very important:
-    # The first one discovered, if it has "use_for_related_fields = True"
-    # (which it has if it's inheriting `ManagerBase`), will
-    # be used for relations like `version.addon`. We thus want one that is NOT
-    # filtered in any case, we don't want a 500 if the addon is not found
-    # (because it has the status amo.STATUS_DELETED for example).
-    # The CLASS of the first one discovered will also be used for "many to many
-    # relations" like `collection.addons`. In that case, we do want the
-    # filtered version by default, to make sure we're not displaying stuff by
-    # mistake. You thus want the CLASS of the first one to be filtered by
-    # default.
-    # We don't control the instantiation, but AddonManager sets include_deleted
-    # to False by default, so filtering is enabled by default. This is also why
-    # it's not repeated for 'objects' below.
     unfiltered = AddonManager(include_deleted=True)
     objects = AddonManager()
 
     class Meta:
         db_table = 'addons'
+        # This is very important:
+        # The default base manager will be used for relations like
+        # `version.addon`. We thus want one that is NOT filtered in any case,
+        # we don't want a 500 if the addon is not found (because it has the
+        # status amo.STATUS_DELETED for example).
+        # The CLASS of the one configured here will also be used for "many to
+        # many relations" like `collection.addons`. In that case, we do want
+        # the filtered version by default, to make sure we're not displaying
+        # stuff by mistake. You thus want the filtered one configured
+        # as `base_manager_name`.
+        # We don't control the instantiation, but AddonManager sets
+        # include_deleted to False by default, so filtering is enabled by
+        # default.
+        base_manager_name = 'unfiltered'
         index_together = [
             ['weekly_downloads', 'type'],
             ['created', 'type'],
@@ -417,7 +417,7 @@ class Addon(OnChangeMixin, ModelBase):
             status__in=amo.REVIEWED_STATUSES,
             current_version__exists=True)
 
-    @use_master
+    @use_primary_db
     def clean_slug(self, slug_field='slug'):
         if self.status == amo.STATUS_DELETED:
             return
@@ -591,9 +591,8 @@ class Addon(OnChangeMixin, ModelBase):
         return addon
 
     @classmethod
-    def from_upload(cls, upload, platforms, source=None,
-                    channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=None,
-                    user=None):
+    def from_upload(cls, upload, platforms, channel=amo.RELEASE_CHANNEL_LISTED,
+                    parsed_data=None, user=None):
         """
         Create an Addon instance, a Version and corresponding File(s) from a
         FileUpload, a list of platform ids, a channel id and the
@@ -611,8 +610,8 @@ class Addon(OnChangeMixin, ModelBase):
         if upload.validation_timeout:
             AddonReviewerFlags.objects.update_or_create(
                 addon=addon, defaults={'needs_admin_code_review': True})
-        Version.from_upload(upload, addon, platforms, source=source,
-                            channel=channel, parsed_data=parsed_data)
+        Version.from_upload(
+            upload, addon, platforms, channel=channel, parsed_data=parsed_data)
 
         activity.log_create(amo.LOG.CREATE_ADDON, addon)
         log.debug('New addon %r from %r' % (addon, upload))
@@ -779,7 +778,7 @@ class Addon(OnChangeMixin, ModelBase):
             latest = None
         return latest
 
-    @write
+    @use_primary_db
     def update_version(self, ignore=None, _signal=True):
         """
         Update the current_version field on this add-on if necessary.
@@ -856,7 +855,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def current_version(self):
-        """Return the latest public listed version of an addon
+        """Return the latest public listed version of an addon.
 
         If the add-on is not public, it can return a listed version awaiting
         review (since non-public add-ons should not have public versions).
@@ -956,7 +955,7 @@ class Addon(OnChangeMixin, ModelBase):
             settings.STATIC_URL, 'default', size
         )
 
-    @write
+    @use_primary_db
     def update_status(self, ignore_version=None):
         self.reload()
 
@@ -1006,9 +1005,10 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_related_versions(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
-        all_ids = set(filter(None, (a._current_version_id for a in addons)))
+        all_ids = set(
+            filter(None, (addon._current_version_id for addon in addons)))
         versions = list(Version.objects.filter(id__in=all_ids).order_by())
         for version in versions:
             try:
@@ -1024,36 +1024,43 @@ class Addon(OnChangeMixin, ModelBase):
     @staticmethod
     def attach_listed_authors(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
         qs = (UserProfile.objects
               .filter(addons__in=addons, addonuser__listed=True)
               .extra(select={'addon_id': 'addons_users.addon_id',
                              'position': 'addons_users.position'}))
         qs = sorted(qs, key=lambda u: (u.addon_id, u.position))
+        seen = set()
         for addon_id, users in itertools.groupby(qs, key=lambda u: u.addon_id):
             addon_dict[addon_id].listed_authors = list(users)
-        # FIXME: set listed_authors to empty list on addons without listed
-        # authors
+            seen.add(addon_id)
+        # set listed_authors to empty list on addons without listed authors.
+        [setattr(addon, 'listed_authors', []) for addon in addon_dict.values()
+         if addon.id not in seen]
 
     @staticmethod
     def attach_previews(addons, addon_dict=None, no_transforms=False):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {a.id: a for a in addons}
 
         qs = Preview.objects.filter(addon__in=addons,
                                     position__gte=0).order_by()
         if no_transforms:
             qs = qs.no_transforms()
         qs = sorted(qs, key=lambda x: (x.addon_id, x.position, x.created))
-        for addon, previews in itertools.groupby(qs, lambda x: x.addon_id):
-            addon_dict[addon].all_previews = list(previews)
-        # FIXME: set all_previews to empty list on addons without previews.
+        seen = set()
+        for addon_id, previews in itertools.groupby(qs, lambda x: x.addon_id):
+            addon_dict[addon_id]._all_previews = list(previews)
+            seen.add(addon_id)
+        # set _all_previews to empty list on addons without previews.
+        [setattr(addon, '_all_previews', []) for addon in addon_dict.values()
+         if addon.id not in seen]
 
     @staticmethod
     def attach_static_categories(addons, addon_dict=None):
         if addon_dict is None:
-            addon_dict = dict((a.id, a) for a in addons)
+            addon_dict = {addon.id: addon for addon in addons}
 
         qs = (
             AddonCategory.objects
@@ -1135,7 +1142,7 @@ class Addon(OnChangeMixin, ModelBase):
         Returns the addon's thumbnail url or a default.
         """
         try:
-            preview = self.all_previews[0]
+            preview = self._all_previews[0]
             return preview.thumbnail_url
         except IndexError:
             return settings.STATIC_URL + '/img/icons/no-preview.png'
@@ -1289,7 +1296,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def has_author(self, user):
         """True if ``user`` is an author of the add-on."""
-        if user is None or user.is_anonymous():
+        if user is None or user.is_anonymous:
             return False
         return AddonUser.objects.filter(addon=self, user=user).exists()
 
@@ -1318,7 +1325,7 @@ class Addon(OnChangeMixin, ModelBase):
 
         personas = (Addon.objects.filter(type=amo.ADDON_PERSONA)
                     .extra(select={'last_updated': 'created'}))
-        return dict(public=public, exp=exp, personas=personas)
+        return {'public': public, 'exp': exp, 'personas': personas}
 
     @cached_property
     def all_categories(self):
@@ -1334,10 +1341,10 @@ class Addon(OnChangeMixin, ModelBase):
                 return self.current_version.previews.all()
             return []
         else:
-            return self.all_previews
+            return self._all_previews
 
     @cached_property
-    def all_previews(self):
+    def _all_previews(self):
         """Exclude promo graphics."""
         return list(self.previews.exclude(position=-1))
 
@@ -1375,7 +1382,7 @@ class Addon(OnChangeMixin, ModelBase):
 
     def can_review(self, user):
         """Check whether the user should be prompted to add a review or not."""
-        return not user.is_authenticated() or not self.has_author(user)
+        return not user.is_authenticated or not self.has_author(user)
 
     @property
     def all_dependencies(self):
@@ -1520,14 +1527,14 @@ def watch_disabled(old_attr=None, new_attr=None, instance=None, sender=None,
         old_attr = {}
     if new_attr is None:
         new_attr = {}
-    attrs = dict((k, v) for k, v in old_attr.items()
-                 if k in ('disabled_by_user', 'status'))
+    attrs = {key: value for key, value in old_attr.items()
+             if key in ('disabled_by_user', 'status')}
     if Addon(**attrs).is_disabled and not instance.is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
-            f.unhide_disabled_file()
+        for file_ in File.objects.filter(version__addon=instance.id):
+            file_.unhide_disabled_file()
     if instance.is_disabled and not Addon(**attrs).is_disabled:
-        for f in File.objects.filter(version__addon=instance.id):
-            f.hide_disabled_file()
+        for file_ in File.objects.filter(version__addon=instance.id):
+            file_.hide_disabled_file()
 
 
 def attach_translations(addons):
@@ -1536,7 +1543,7 @@ def attach_translations(addons):
 
 
 def attach_tags(addons):
-    addon_dict = dict((a.id, a) for a in addons)
+    addon_dict = {addon.id: addon for addon in addons}
     qs = (Tag.objects.not_denied().filter(addons__in=addon_dict)
           .values_list('addons__id', 'tag_text'))
     for addon, tags in sorted_groupby(qs, lambda x: x[0]):
@@ -1678,7 +1685,8 @@ class Persona(models.Model):
     @cached_property
     def update_url(self):
         locale = settings.LANGUAGE_URL_MAP.get(trans_real.get_language())
-        return settings.NEW_PERSONAS_UPDATE_URL % {
+        url = settings.VAMO_URL + '/%(locale)s/themes/update-check/%(id)d'
+        return url % {
             'locale': locale or settings.LANGUAGE_CODE,
             'id': self.addon.id
         }
@@ -1942,6 +1950,9 @@ class Category(OnChangeMixin, ModelBase):
         Does not save it into the database by default. Useful in tests."""
         # we need to drop description as it's a StaticCategory only property.
         _dict = dict(static_category.__dict__)
+        # Convert `name` to `db_name`. `Category` uses `db_name` as it's field
+        # name but the database field is actually linked to `name`.
+        _dict['db_name'] = _dict.pop('name', None)
         del _dict['description']
         if save:
             category, _ = Category.objects.get_or_create(
@@ -2056,7 +2067,7 @@ class CompatOverride(ModelBase):
         if not overrides:
             return
 
-        id_map = dict((o.id, o) for o in overrides)
+        id_map = {override.id: override for override in overrides}
         qs = CompatOverrideRange.objects.filter(compat__in=id_map)
 
         for compat_id, ranges in sorted_groupby(qs, 'compat_id'):

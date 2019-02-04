@@ -13,7 +13,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.users.models import UserProfile
 
 
-class JWTAuthKeyTester(TestCase):
+class JWTAuthKeyTester(object):
 
     def create_api_key(self, user, key='some-user-key', is_active=True,
                        secret='some-shared-secret', **kw):
@@ -21,7 +21,7 @@ class JWTAuthKeyTester(TestCase):
                                      user=user, key=key, secret=secret,
                                      is_active=is_active, **kw)
 
-    def auth_token_payload(self, user, issuer):
+    def auth_token_payload(self, user, issuer, issued_at=None):
         """Creates a JWT payload as a client would."""
         issued_at = datetime.utcnow()
         return {
@@ -42,7 +42,7 @@ class JWTAuthKeyTester(TestCase):
         return self.encode_token_payload(payload, secret)
 
 
-class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester):
+class TestJWTKeyAuthDecodeHandler(JWTAuthKeyTester, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):

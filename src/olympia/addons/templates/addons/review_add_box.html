@@ -1,7 +1,7 @@
 {% if not addon.has_author(user) %}
   <h3>{{ _('What do you think?') }}</h3>
   <div id="review-box" class="highlight">
-    {% if not user.is_authenticated() %}
+    {% if not user.is_authenticated %}
       <p>
         {% trans login=login_link() %}
           Please <a href="{{ login }}">log in</a> to submit a review
@@ -10,7 +10,7 @@
     {% endif %}
 
     <form disabled method="post" action="{{ url('addons.ratings.add', addon.slug) }}">
-      {% set attrs = {} if user.is_authenticated() else {'disabled': 'disabled'} %}
+      {% set attrs = {} if user.is_authenticated else {'disabled': 'disabled'} %}
       {% csrf_token %}
       {{ field(review_form.body, _('Review:'), **attrs) }}
       {{ field(review_form.rating, _('Rating:'), **attrs) }}

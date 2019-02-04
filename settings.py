@@ -30,10 +30,6 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
         'LOCATION': os.environ.get('MEMCACHE_LOCATION', 'localhost:11211'),
     },
-    'filesystem': {
-        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-        'LOCATION': FILESYSTEM_CACHE_ROOT,
-    }
 }
 
 # If you're not running on SSL you'll want this to be False.

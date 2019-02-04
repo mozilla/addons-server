@@ -8,7 +8,8 @@ RUN touch /addons-server-docker-container
 # Add nodesource repository and requirements
 ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
 RUN apt-get update && apt-get install -y \
-        gnupg2 \
+        apt-transport-https              \
+        gnupg2                           \
     && rm -rf /var/lib/apt/lists/*
 RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
 ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
@@ -42,6 +43,8 @@ RUN apt-get update && apt-get install -y \
         librsvg2-bin \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush \
+        # our makefile and ui-tests require uuid to be installed
+        uuid \
     && rm -rf /var/lib/apt/lists/*
 
 # Compile required locale

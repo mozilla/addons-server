@@ -191,6 +191,18 @@ class TestCleanSlug(TestCase):
         addon = Addon.objects.create(name=u'Addön 1')
         assert addon.slug == u'addön-1'
 
+    def test_name_only_has_invalid_slug_chars(self):
+        # Create an addon and save it to have an id.
+        a = Addon.objects.create()
+        # Give the Addon a name that would slugify would reduce to ''.
+        a.slug = ''
+        a.name = '%$#'
+        a.clean_slug()
+
+        # Slugs that are generated from add-ons without an name use
+        # uuid without the node bit so have the length 20.
+        assert len(a.slug) == 20
+
 
 class TestAddonManager(TestCase):
     fixtures = ['base/appversion', 'base/users',
@@ -1140,7 +1152,7 @@ class TestAddonModels(TestCase):
         # one that does not exist in the constants.
         unknown_cat = Category.objects.create(
             application=amo.SUNBIRD.id, id=123456, type=amo.ADDON_EXTENSION,
-            name='Sunny D')
+            db_name='Sunny D')
         AddonCategory.objects.create(addon=addon, category=unknown_cat)
         thunderbird_static_cat = (
             CATEGORIES[amo.THUNDERBIRD.id][amo.ADDON_EXTENSION]['appearance'])
@@ -1507,6 +1519,29 @@ class TestAddonModels(TestCase):
         in_the_future = datetime.now() + timedelta(days=2)
         flags.update(pending_info_request=in_the_future)
         assert not addon.expired_info_request
+
+    def test_attach_previews(self):
+        addons = [addon_factory(), addon_factory(), addon_factory()]
+        # Give some of the addons previews:
+        # 2 for addons[0]
+        pa = Preview.objects.create(addon=addons[0])
+        pb = Preview.objects.create(addon=addons[0])
+        # nothing for addons[1]; and 1 for addons[2]
+        pc = Preview.objects.create(addon=addons[2])
+
+        Addon.attach_previews(addons)
+
+        # Create some more previews for [0] and [1].  As _all_previews and
+        # _current_previews are cached_property-s then if attach_previews
+        # worked then these new Previews won't be in the cached values.
+        Preview.objects.create(addon=addons[0])
+        Preview.objects.create(addon=addons[1])
+        assert addons[0]._all_previews == [pa, pb]
+        assert addons[1]._all_previews == []
+        assert addons[2]._all_previews == [pc]
+        assert addons[0].current_previews == [pa, pb]
+        assert addons[1].current_previews == []
+        assert addons[2].current_previews == [pc]
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):
@@ -2037,11 +2072,9 @@ class TestPersonaModel(TestCase):
     def test_json_data(self):
         self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
 
-        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
-
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
-                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           VAMO_URL='https://vamo',
                            SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data
 
@@ -2076,11 +2109,9 @@ class TestPersonaModel(TestCase):
 
         self.persona.addon.all_categories = [Category(db_name='Yolo Art')]
 
-        VAMO = 'https://vamo/%(locale)s/themes/update-check/%(id)d'
-
         with self.settings(LANGUAGE_CODE='fr',
                            LANGUAGE_URL_MAP={},
-                           NEW_PERSONAS_UPDATE_URL=VAMO,
+                           VAMO_URL='https://vamo',
                            SITE_URL='https://omgsh.it'):
             data = self.persona.theme_data
 

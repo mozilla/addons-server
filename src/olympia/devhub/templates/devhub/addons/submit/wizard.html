@@ -11,7 +11,13 @@
   <div id="theme-wizard" data-version="{{ version_number }}">
     <div>
         <h3>{{ _('Theme name') }}<span class="req" title="{{ _('required') }}">*</span></h3>
-        <input type="text" id="theme-name"/>
+        {% if addon %}
+          <input type="hidden" id="theme-name" value="{{ addon.name }}"/>
+          {{ addon.name }}
+      </ul>
+        {% else %}
+          <input type="text" id="theme-name"/>
+        {% endif %}
     </div>
     <div id="theme-header" class="row">
       <label class="row" for="header-img">
@@ -20,7 +26,8 @@
       <input data-allowed-types="image/jpeg|image/png|image/apng|image/svg|image/gif"
              id="header-img" name="header" type="file">
       <ul class="note">
-        <li>{{ _('Image height should be 200 pixels') }}</li>
+        <li>{{ _('Recommended height: 200 pixels') }}</li>
+        <li>{{ _('6.9MB max') }}</li>
         <li>{{ _('PNG, JPG, APNG, SVG or GIF (not animated)') }}</li>
         <li>{{ _('Aligned to top-right') }}</li>
       </ul>

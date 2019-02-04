@@ -97,7 +97,6 @@
         "pk": 10482,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": true,
             "display_collections": true,
             "averagerating": 3.38,
             "picture_type": "image/jpeg",

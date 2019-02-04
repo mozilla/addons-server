@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2017-11-27 18:26+0000\n"
-"Last-Translator: Alberto Castro <albertdcastro@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-09-03 14:20+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -79,7 +79,7 @@ msgid "Finished validating {0}"
 msgstr "Validação de {0} terminada"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr "A validação do seu extra expirou; será revisto manualmente."
+msgstr "A validação do seu extra expirou, será revisto manualmente."
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
@@ -101,10 +101,11 @@ msgid "WebExtension upgrade"
 msgstr "Atualização WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Permitimos e encorajamos uma atualização, mas você não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
+msgstr ""
+"Nós permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, estes não poderão instalar um extra anterior."
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr "Portar um extra de legado do Firefox no MDN"
+msgstr "Portar um extra de legado do Firefox na MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr "Inclua notas detalhadas da versão (isto pode ser feito no próximo passo)."
@@ -191,7 +192,7 @@ msgid "Your input is required"
 msgstr "É necessária a sua entrada"
 
 msgid "Marked for deletion"
-msgstr "Marcado para eliminar"
+msgstr "Marcado para eliminação"
 
 msgid "Updating results&hellip;"
 msgstr "A atualizar resultados&hellip;"
@@ -214,29 +215,53 @@ msgstr "Usar original"
 msgid "Week of {0}"
 msgstr "Semana de {0}"
 
-msgid " downloads"
-msgstr " transferências"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " transferências"
+msgstr[1] " transferências"
 
-msgid "{0} users"
-msgstr "{0} utilizadores"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} utilizadores"
+msgstr[1] "{0} utilizadores"
 
-msgid "{0} add-ons"
-msgstr "{0} extras"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} extras"
+msgstr[1] "{0} extras"
 
-msgid "{0} collections"
-msgstr "{0} coleções"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} coleções"
+msgstr[1] "{0} coleções"
 
-msgid "{0} reviews"
-msgstr "{0} revisões"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} revisões"
+msgstr[1] "{0} revisões"
 
-msgid "{0} sales"
-msgstr "{0} vendas"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} vendas"
+msgstr[1] "{0} vendas"
 
-msgid "{0} refunds"
-msgstr "{0} devoluções"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} devoluções"
+msgstr[1] "{0} devoluções"
 
-msgid "{0} installs"
-msgstr "{0} instalações"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instalações"
+msgstr[1] "{0} instalações"
 
 msgid "Downloads"
 msgstr "Transferências"
@@ -251,7 +276,7 @@ msgid "Number of Contributions"
 msgstr "Número de contribuições"
 
 msgid "More Info..."
-msgstr "Mais info..."
+msgstr "Mais informação..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -796,6 +821,9 @@ msgstr "Pontuação média"
 
 msgid "Number of Reviews"
 msgstr "Número de análises"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr "Tamanho de carregamento máximo é de {0} - escolha uma imagem de fundo mais pequena."
 
 msgid "Requested Info"
 msgstr "Solicitadas mais informações"

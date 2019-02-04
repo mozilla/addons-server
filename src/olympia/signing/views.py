@@ -1,7 +1,6 @@
 import functools
 
 from django import forms
-from django.conf import settings
 from django.utils.translation import ugettext
 
 from rest_framework import status
@@ -14,7 +13,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
-from olympia.amo.decorators import write
+from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
 from olympia.devhub.views import handle_upload
 from olympia.files.models import FileUpload
@@ -25,21 +24,6 @@ from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('signing')
-
-
-def handle_read_only_mode(fn):
-    @functools.wraps(fn)
-    def inner(*args, **kwargs):
-        if settings.READ_ONLY:
-            return Response(
-                {'error': ugettext(
-                    'Some features are temporarily disabled while we '
-                    'perform website maintenance. We\'ll be back to '
-                    'full capacity shortly.')},
-                status=503)
-        else:
-            return fn(*args, **kwargs)
-    return inner
 
 
 def with_addon(allow_missing=False):
@@ -88,7 +72,6 @@ class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @handle_read_only_mode
     def post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)
 
@@ -103,7 +86,6 @@ class VersionView(APIView):
             file_upload, context={'request': request})
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-    @handle_read_only_mode
     @with_addon(allow_missing=True)
     def put(self, request, addon, version_string, guid=None):
         try:
@@ -121,7 +103,7 @@ class VersionView(APIView):
             file_upload, context={'request': request})
         return Response(serializer.data, status=status_code)
 
-    @write
+    @use_primary_db
     def handle_upload(self, request, addon, version_string, guid=None):
         if 'upload' in request.FILES:
             filedata = request.FILES['upload']
@@ -212,7 +194,7 @@ class VersionView(APIView):
 
         return file_upload, created
 
-    @write
+    @use_primary_db
     @with_addon()
     def get(self, request, addon, version_string, uuid=None, guid=None):
         file_upload_qs = FileUpload.objects.filter(
@@ -248,6 +230,6 @@ class SignedFile(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated]
 
-    @write
+    @use_primary_db
     def get(self, request, file_id):
         return version_views.download_file(request, file_id)

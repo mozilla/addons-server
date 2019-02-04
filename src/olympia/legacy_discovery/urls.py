@@ -1,5 +1,5 @@
 from django.conf.urls import include, url
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import redirect
 

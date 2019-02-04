@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
-"PO-Revision-Date: 2018-05-05 16:49+0000\n"
-"Last-Translator: pirthi.d <pirthi.d@gmail.com>\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
+"PO-Revision-Date: 2018-08-13 13:23+0000\n"
+"Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -26,12 +26,11 @@ msgstr "ਸਰਵਰ ਨਾਲ ਸੰਪਰਕ ਵੇਲੇ ਇੱਕ ਮੁਸ਼�
 msgid "Select a file..."
 msgstr "ਇੱਕ ਫਾਈਲ ਚੁਣੋ..."
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "ਤੁਹਾਡਾ ਐਡ-ਆਨ .xpi, .jar ਜਾਂ .xml ਨਾਲ ਖਤਮ ਹੋਣਾ ਚਾਹੀਦਾ"
+msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਖੀਰ ਵਿੱਚ .zip, .xpi, .crx, .jar ਜਾਂ .xml ਹੋਣਾ ਚਾਹੀਦਾ ਹੈI"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
-#, fuzzy, python-format
+#, python-format
 msgid "{0}% complete"
 msgstr "{0}% ਮੁਕੰਮਲ"
 
@@ -40,7 +39,7 @@ msgid "{0} of {1}"
 msgstr "{1} ਵਿੱਚੋਂ {0}"
 
 msgid "Cancel"
-msgstr "ਰੱਦ"
+msgstr "ਰੱਦ ਕਰੋ"
 
 msgid "Uploading {0}"
 msgstr "{0} ਅੱਪਲੋਡ ਹੋ ਰਿਹਾ"
@@ -49,7 +48,7 @@ msgid "Error with {0}"
 msgstr "{0} ਨਾਲ ਖਾਮੀ"
 
 msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr ""
+msgstr "ਅਸੀਂ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਦੇ ਅਮਲ ਲਈ ਇੱਕ ਨਵਾਂ ਲਿੰਟਰ ਯੋਗ ਕੀਤਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਕਿਸੇ ਵੀ ਮੁਸ਼ਕਲ ਦੀ ਸੂਚਨਾ GitHub ਤੇ ਦੇਣੀ ਯਕੀਨੀ ਬਣਾਉ"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -68,7 +67,7 @@ msgid "Validating {0}"
 msgstr "{0} ਵੈਧਤਾ"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਦੀ ਵੱਧੋ-ਵੱਧ ਹੱਦ ਤੋਂ ਵੱਡਾ ਹੈ।"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ਸਰਵਰ ਵੱਲੋਂ ਇੱਕ ਖਾਲੀ ਜਵਾਬ ਮਿਲਿਆ; ਸਥਿਤੀ: {0}"
@@ -80,12 +79,12 @@ msgid "Finished validating {0}"
 msgstr "{0} ਵੈਧਤਾ ਮੁੰਕਮਲ ਹੋਈ"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਐਡ-ਔਨ ਪ੍ਰਮਾਣਿਕਤਾ ਦੀ ਮਿਆਦ ਪੁੱਗ ਗਈ ਹੈ, ਇਸਦੀ ਸਮੀਖਿਆ ਦਸਤੀ ਕੀਤੀ ਜਾਵੇਗੀ।"
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਚੇਤਾਵਨੀ ਅਤੇ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀ ਦੇ ਪ੍ਰਮਾਣਿਤ ਕੀਤਾ ਗਿਆ ਸੀ।"
+msgstr[1] "ਤੁਹਾਡਾ ਐਡ-ਔਨ {0} ਚੇਤਾਵਨੀਆਂ ਅਤੇ ਬਿਨਾਂ ਕਿਸੇ ਗਲਤੀ ਦੇ ਪ੍ਰਮਾਣਿਤ ਕੀਤਾ ਗਿਆ ਸੀ।"
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
@@ -136,7 +135,7 @@ msgid "The filetype you uploaded isn't recognized."
 msgstr "ਤੁਹਾਨੂੰ ਵੱਲੋਂ ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਕਿਸਮ ਦੀ ਪਛਾਣ ਨਹੀਂ ਹੋਈ।"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ਤੁਹਾਡੀ ਜ਼ਿਲਦ {0} ਦੀ ਵੱਧੋ ਵੱਧ ਹੱਦ ਤੋਂ ਵੱਡੀ ਹੈ।"
 
 msgid "You cancelled the upload."
 msgstr "ਤੁਸੀਂ ਅੱਪਲੋਡ ਨੂੰ ਰੱਦ ਕੀਤਾ।"
@@ -161,43 +160,43 @@ msgid "This theme is incompatible with your version of {0}"
 msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
 
 msgid "All Rights Reserved"
-msgstr "ਸਭ ਹੱਕ ਰਾਖਵੇ ਹਨ"
+msgstr "ਸੱਭ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ ੩.੦"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr "ਕਰੀਏਟਿਵ-ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ-ਕਮਰਸ਼ੀਅਲ 3.0"
+msgstr "ਕਰੀਏਟਿਵ-ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-NonCommercial ੩.੦"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਨੋਨ ਡਰਾਈਵ 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-NonCommercial-NoDerivs ੩.੦"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨਾਨ ਕਮਰਸ਼ੀਅਲ-ਸ਼ੇਅਰ-ਅਲਾਈਕ 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-NonCommercial-ਸ਼ੇਅਰ-ਅਲਾਈਕ ੩.੦"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਨੌਨ ਡਰਾਈਵ 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-NoDerivs ੩.੦"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ਸੇਅਰ ਅਲਾਈਕ 3.0"
+msgstr "ਕਰੀਏਟਿਵ ਕਾਮਨਜ਼ ਐਟਰੀਬਿਊਸ਼ਨ-ShareAlike ੩.੦"
 
 msgid "Your Theme's Name"
 msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਮ"
 
 msgid "Flagged for review"
-msgstr "ਸਮੀਖਿਆ ਲਈ ਫਲੈਗ ਕੀਤਾ"
+msgstr "ਸਮੀਖਿਆ ਲਈ ਨਿਸ਼ਾਨਬੱਧ ਕੀਤਾ"
 
 msgid "Your input is required"
 msgstr "ਤੁਹਾਡੇ ਇਨਪੁੱਟ ਦੀ ਲੋੜ ਹੈ"
 
 msgid "Marked for deletion"
-msgstr "ਹਟਾਉਣ ਲਈ ਮਾਰਕ ਕੀਤਾ"
+msgstr "ਮਿਟਾਉਣ ਲਈ ਨਿਸ਼ਾਨੀ ਲਾਈ"
 
 msgid "Updating results&hellip;"
 msgstr "ਅੱਪਡੇਟ ਨਤੀਜੇ&hellip;"
 
 msgid "Category"
-msgstr "ਕੈਟਾਗਿਰੀ"
+msgstr "ਵਰਗ"
 
 msgid "Search themes for <b>{0}</b>"
 msgstr "<b>{0}</b> ਲਈ ਥੀਮ ਖੋਜੋ"
@@ -208,45 +207,68 @@ msgstr "<b>{0}</b> ਲਈ ਐਪ ਖੋਜੋ"
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "<b>{0}</b> ਲਈ ਐਡ-ਆਨ ਖੋਜੋ"
 
-#, fuzzy
 msgid "Use original"
-msgstr "ਅਸਲੀ ਵਰਤੋ"
+msgstr "ਅਸਲ ਵਰਤੋ"
 
 msgid "Week of {0}"
 msgstr "{0} ਦਾ ਹਫਤਾ"
 
-msgid " downloads"
-msgstr " ਡਾਊਨਲੋਡ"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " ਡਾਊਨਲੋਡ"
+msgstr[1] " ਡਾਊਨਲੋਡ"
 
-msgid "{0} users"
-msgstr "{0} ਯੂਜਰ"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} ਵਰਤੋਂਕਾਰ"
+msgstr[1] "{0} ਵਰਤੋਂਕਾਰ"
 
-msgid "{0} add-ons"
-msgstr "{0} ਐਡ-ਆਨ"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} ਐਡ-ਆਨ"
+msgstr[1] "{0} ਐਡ-ਆਨ"
 
-msgid "{0} collections"
-msgstr "{0} ਭੰਡਾਰ"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} ਭੰਡਾਰ"
+msgstr[1] "{0} ਭੰਡਾਰ"
 
-msgid "{0} reviews"
-msgstr "{0} ਸਮੀਖਿਅਕ"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} ਸਮੀਖਿਅਕ"
+msgstr[1] "{0} ਸਮੀਖਿਅਕ"
 
-msgid "{0} sales"
-msgstr "{0} ਸੇਲ"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} ਵਿਕਰੀ"
+msgstr[1] "{0} ਵਿਕਰੀ"
 
-msgid "{0} refunds"
-msgstr "{0} ਰਿਫੰਡ"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} ਮੁੜਾਈ"
+msgstr[1] "{0} ਮੁੜਾਈ"
 
-msgid "{0} installs"
-msgstr "{0} ਇੰਸਟਾਲ"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} ਇੰਸਟਾਲ"
+msgstr[1] "{0} ਇੰਸਟਾਲ"
 
 msgid "Downloads"
 msgstr "ਡਾਊਨਲੋਡ"
 
 msgid "Daily Users"
-msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 msgid "Amount, in USD"
-msgstr "USA ਵਿੱਚ, ਰਾਸ਼ੀ"
+msgstr "USD ਵਿੱਚ ਰਾਸ਼ੀ"
 
 msgid "Number of Contributions"
 msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
@@ -256,58 +278,58 @@ msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
-msgstr "{0} ਲਈ ਵੇਰਵਾ"
+msgstr "{0} ਲਈ ਵੇਰਵੇ"
 
 msgid "Collections Created"
-msgstr "ਬਣਾਇਆ ਭੰਡਾਰ"
+msgstr "ਬਣਾਏ ਭੰਡਾਰ"
 
 msgid "Add-ons in Use"
-msgstr "ਐਡ-ਆਨ ਵਿੱਚ ਵਰਤੋ"
+msgstr "ਵਰਤਿਆ ਜਾ ਰਿਹਾ ਐਡ-ਆਨ"
 
 msgid "Add-ons Created"
-msgstr "ਐਡ-ਆਨ ਬਣਾਓ"
+msgstr "ਐਡ-ਆਨ ਬਣਾਇਆ ਗਿਆ"
 
 msgid "Add-ons Downloaded"
-msgstr "ਐਡ-ਆਨ ਡਾਊਨਲੋਡ"
+msgstr "ਡਾਉਨਲੋਡ ਕੀਤੇ ਗਏ ਐਡ-ਆਨ"
 
 msgid "Add-ons Updated"
-msgstr "ਐਡ-ਆਨ ਅੱਪਡੇਟ"
+msgstr "ਨਵਿਆਏ ਗਏ ਐਡ-ਆਨ"
 
 msgid "Reviews Written"
-msgstr "ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
+msgstr "ਲਿਖੀਆਂ ਗਈਆਂ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "User Signups"
-msgstr "ਯੂਜਰ ਸਾਈਨਅੱਪ"
+msgstr "ਵਾਰਤੋਂਕਾਰਾਂ ਦੇ ਸਾਈਨਅੱਪ"
 
 msgid "Subscribers"
 msgstr "ਗਾਹਕ"
 
 msgid "Ratings"
-msgstr "ਰੇਟਿੰਗ"
+msgstr "ਦਰਜਾਬੰਦੀ"
 
 msgid "Sales"
-msgstr "ਸੇਲ"
+msgstr "ਵਿਕਰੀ"
 
 msgid "Installs"
 msgstr "ਇੰਸਟਾਲ"
 
 msgid "Unknown"
-msgstr "ਅਣਜਾਣ"
+msgstr "ਅਣਪਛਾਤੇ"
 
 msgid "Add-ons Manager"
-msgstr "ਐਡ-ਆਨ ਮਨੇਜਰ"
+msgstr "ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "ਐਡ-ਔਨ ਪ੍ਰਬੰਧਕ ਝਲਕ"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "ਪੇਸ਼ ਕੀਤਾ ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
 
 msgid "Add-ons Manager Learn More"
-msgstr ""
+msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਵਧੇਰੇ ਸਿੱਖੋ"
 
 msgid "Search Suggestions"
-msgstr ""
+msgstr "ਖੋਜ ਸੁਝਾਅ"
 
 msgid "Search Results"
 msgstr "ਨਤੀਜੇ ਖੋਜੋ"
@@ -346,13 +368,13 @@ msgid "Upsell"
 msgstr "ਵਾਧੂ ਖਰੀਦਦਾਰੀ ਲਈ ਉਕਸਾਉਣਾ"
 
 msgid "Meet the Developer"
-msgstr ""
+msgstr "ਵਿਕਾਸਕਾਰ ਨੂੰ ਮਿਲੋ"
 
 msgid "User Profile"
-msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਪਰੋਫਾਇਲ"
+msgstr "ਵਰਤੋਂਕਾਰ ਦਾ ਬਿਉਰਾ"
 
 msgid "Version History"
-msgstr "ਵਰਜ਼ਨ ਦਾ ਅਤੀਤ"
+msgstr "ਵੰਨਗੀ ਦਾ ਅਤੀਤ"
 
 msgid "Sharing"
 msgstr "ਵੰਡਣਾ"
@@ -409,10 +431,10 @@ msgid "Usage"
 msgstr "ਵਰਤੋਂ"
 
 msgid "Firefox"
-msgstr "ਫਾਇਰਫਾਕਸ"
+msgstr "ਫਾਇਰਫੌਕਸ"
 
 msgid "Mozilla"
-msgstr "ਮੌਜੀਲਾ"
+msgstr "ਮੌਜ਼ਿਲਾ"
 
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
@@ -421,29 +443,29 @@ msgid "Sunbird"
 msgstr "ਸਨਬਰਡ"
 
 msgid "SeaMonkey"
-msgstr "ਸੀਮੌਂਕੀ"
+msgstr "ਸੀਅਮੌਂਕੀ"
 
 msgid "Fennec"
-msgstr "ਫਿੱਨਸ"
+msgstr "ਫੇਨੇਕ"
 
 msgid "Android"
-msgstr "ਐਨਡਰੋਇਡ"
+msgstr "ਐਂਡਰੌਇਡ"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਇੰਸਟਾਲ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "{0} ਤੋ {1} ਤੱਕ ਇੰਸਟਾਲ ਅਤੇ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -455,11 +477,11 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "ਰੋਜਾਨਾਂ ਯੂਜਰ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜਾਨਾਂ ਯੂਜਰ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
@@ -471,27 +493,27 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਪਲੀਕੇਸ਼ਨ"
 
 #. L10n: {0} is an integer.
 msgid "Platforms, last {0} days"
-msgstr "ਪਲੇਟਫਾਰਮ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਮੰਚ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Platforms from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਪਲੇਟਫਾਰਮ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਮੰਚ"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "ਭਾਸ਼ਾਵਾਂ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਬੋਲੀਆਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਭਾਸ਼ਾਵਾਂ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬੋਲੀਆਂ"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "ਐਡ-ਆਨ ਵਰਜਨ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਐਡ-ਆਨ ਵੰਨਗੀਆਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵਰਜਨ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਵੰਨਗੀਆਂ"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
@@ -503,11 +525,11 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਐਡ-ਆਨ ਸਥਿਤੀ"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "ਡਾਊਨਲੋਡ ਸਰੋਤ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਡਾਊਨਲੋਡ ਸੋਮੇ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸਰੋਤ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਡਾਊਨਲੋਡ ਸੋਮੇ"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
@@ -519,7 +541,7 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੋਗਦਾਨ"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਮੈਟ੍ਰਿਕਸ"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਸਾਈਟ ਬਿਉਰਾ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -567,11 +589,11 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਲਿਖਤੀ ਸਮੀਖਿਅਕ"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
+msgstr "ਪਿਛਲੇ {0} ਦਿਨ, ਵਰਤੋਂਕਾਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "{0} ਤੋਂ {1} ਤੱਕ ਯੂਜਰ ਸਾਈਨ ਅੱਪ"
+msgstr "{0} ਤੋਂ {1} ਤੱਕ ਵਰਤੋਂਕਾਰ ਸਾਈਨ ਅੱਪ"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
@@ -626,13 +648,13 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b>ਅੌਸਤ ਆਖਰੀ {1} ਦਿਨਾਂ ਵਿਚ"
 
 msgid "No data available."
-msgstr "ਕੋਈ ਡਾਟਾ ਮੌਜ਼ੂਦ ਨਹੀ"
+msgstr "ਕੋਈ ਡੇਟਾ ਮੌਜ਼ੂਦ ਨਹੀ।"
 
 msgid "Date"
-msgstr "ਤਾਰੀਖ"
+msgstr "ਮਿਤੀ"
 
 msgid "Other"
-msgstr "ਦੂਜਾ"
+msgstr "ਹੋਰ"
 
 msgid "Select an application first"
 msgstr "ਪਹਿਲਾਂ ਇੱਕ ਐਪਲੀਕੇਸ਼ਨ ਚੁੱਣੋ"
@@ -665,19 +687,17 @@ msgid "Not available for your platform"
 msgstr "ਤੁਹਾਡੇ ਪਲੇਟਫਾਰਮ ਲਈ ਉਪਲੱਬਧ ਨਹੀਂ"
 
 #. L10n: {0} is an app name.
-#, fuzzy
 msgid "This add-on is not compatible with your version of {0}."
-msgstr "{0} ਦੇ ਤੁਹਾਡੇ ਵਰਜਨ ਨਾਲ ਇਹ ਥੀਮ ਅਨੁਕੂਲ ਨਹੀਂ ਹੈ"
+msgstr "ਇਹ ਐਡ-ਆਨ ਤੁਹਾਡੀ {0} ਵਾਲੀ ਵੰਨਗੀ ਦੇ ਮੇਚ ਦਾ ਨਹੀਂ ਹੈI"
 
 msgid "View other versions"
-msgstr "ਹੋਰ ਵਰਜਨ ਦੇਖੋ"
+msgstr "ਹੋਰ ਵੰਨਗੀਆਂ ਦੇਖੋ"
 
 msgid "Works with {app} {min} - {max}"
 msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 
-#, fuzzy
 msgid "Works with {app}"
-msgstr "{app} {min} - {max} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
+msgstr "{app} ਦੇ ਨਾਲ ਕੰਮ ਕਰਦਾ ਹੈ"
 
 msgid "Only with Firefox — Get Firefox Now!"
 msgstr "ਸਿਰਫ਼ ਫਾਇਰਫਾਕਸ ਨਾਲ — ਫਾਇਰਫਾਕਸ ਹੁਣੇ ਲਵੋ!"
@@ -701,10 +721,10 @@ msgid "Pending"
 msgstr "ਬਕਾਇਆ"
 
 msgid "Add a comment"
-msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
+msgstr "ਕੋਈ ਟਿੱਪਣੀ ਸ਼ਾਮਲ ਕਰੋ"
 
 msgid "Comment"
-msgstr "ਕਾਮੈਂਟ"
+msgstr "ਟਿੱਪਣੀ"
 
 msgid "Remove this add-on from the collection"
 msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
@@ -762,7 +782,7 @@ msgid "This feature is temporarily disabled while we perform website maintenance
 msgstr "ਇਹ ਫ਼ੀਚਰ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹੈ,ਜਦ ਤੱਕ ਅਸੀ ਵੈਬਸਾਈਟ ਚ ਸੁਧਾਰ ਕਰ ਰਹੇ ਹਾਂ । ਕਿਰਪਾ ਕਰਕੇ ਕੁਝ ਚਿਰ ਬਾਅਦ ਪੜਤਾਲ ਕਰੋ ।"
 
 msgid "Remove this localization"
-msgstr "ਇਹ ਸਥਾਨੀਕਰਨ ਹਟਾਓ"
+msgstr "ਇਹ ਲਿਪੀਅੰਤਰ ਹਟਾਓ"
 
 msgid "{name} was viewing this page first."
 msgstr "{name} ਇਹ ਸਫਾ ਪਹਿਲਾਂ ਦੇਖਿਆ ਸੀ।"
@@ -780,24 +800,27 @@ msgid "Loading&hellip;"
 msgstr "&hellip; ਲ੍ਹੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ"
 
 msgid "Version Notes"
-msgstr "ਸੂਚਨਾਂ ਵਰਜਨ"
+msgstr "ਵੰਨਗੀ ਲਿਖਤ"
 
 msgid "Notes for Reviewers"
 msgstr "ਸਮੀਖਿਅਕ ਲਈ ਸੂਚਨਾਂ"
 
 msgid "No version notes found"
-msgstr "ਵਰਜਨ ਨੂੰ ਨੋਟਿਸ ਨਹੀਂ ਮਿਲਿਆ"
+msgstr "ਕੋਈ ਵੰਨਗੀ ਲਿਖਤ ਨਹੀਂ ਮਿਲੀ"
 
 msgid "Review Text"
-msgstr ""
+msgstr "ਲਿਖਤ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "ਲੱਭੀਆਂ ਗਈਆਂ ਲਿਖਤਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰੋ"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "ਔਸਤ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "Number of Reviews"
+msgstr "ਸਮੀਖਿਆਵਾਂ ਦੀ ਗਿਣਤੀ"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr ""
 
 msgid "Requested Info"
@@ -819,10 +842,10 @@ msgid "No results found"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਲੱਭਿਆ"
 
 msgid "Theme"
-msgstr ""
+msgstr "ਥੀਮ"
 
 msgid "Reviewer"
-msgstr "ਪੜਤਾਲਕਰਤਾ"
+msgstr "ਸਮੀਖਿਆ ਕਰਤਾ"
 
 msgid "Status"
 msgstr "ਹਾਲਤ"

@@ -14,10 +14,10 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.activity.models import ActivityLog
+from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
-from olympia.addons.tasks import save_theme, save_theme_reupload
-from olympia.addons.widgets import CategoriesSelectMultiple, IconWidgetRenderer
+from olympia.addons.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.addons.utils import verify_mozilla_trademark
 from olympia.amo.fields import (
     ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
@@ -25,7 +25,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.devhub import tasks as devhub_tasks
-from olympia.lib import happyforms
 from olympia.tags.models import Tag
 from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
@@ -105,7 +104,7 @@ def clean_tags(request, tags):
     return target
 
 
-class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
+class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
     def __init__(self, *args, **kw):
         self.request = kw.pop('request')
@@ -121,7 +120,9 @@ class AddonFormBase(TranslationFormMixin, happyforms.ModelForm):
     def clean_name(self):
         user = getattr(self.request, 'user', None)
 
-        name = verify_mozilla_trademark(self.cleaned_data['name'], user)
+        name = verify_mozilla_trademark(
+            self.cleaned_data['name'], user,
+            form=self)
 
         return name
 
@@ -225,6 +226,9 @@ class CategoryForm(forms.Form):
         # Remove old, outdated categories cache on the model.
         del addon.all_categories
 
+        # Make sure the add-on is properly re-indexed
+        addons_tasks.index_addons.delay([addon.id])
+
     def clean_categories(self):
         categories = self.cleaned_data['categories']
         total = categories.count()
@@ -306,12 +310,12 @@ def icons():
         if '32' in fname and 'default' not in fname:
             icon_name = fname.split('-')[0]
             icons.append(('icon/%s' % icon_name, icon_name))
-    return icons
+    return sorted(icons)
 
 
 class AddonFormMedia(AddonFormBase):
-    icon_type = forms.CharField(widget=forms.RadioSelect(
-        renderer=IconWidgetRenderer, choices=[]), required=False)
+    icon_type = forms.CharField(widget=IconTypeSelect(
+        choices=[]), required=False)
     icon_upload_hash = forms.CharField(required=False)
 
     class Meta:
@@ -373,12 +377,10 @@ class AddonFormDetails(AddonFormBase):
         return data
 
 
-class AddonFormDetailsUnlisted(AddonFormBase):
-    homepage = TransField.adapt(HttpHttpsOnlyURLField)(required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('description', 'homepage')
+class AddonFormDetailsUnlisted(AddonFormDetails):
+    # We want the same fields as the listed version. In particular,
+    # default_locale is referenced in the template and needs to exist.
+    pass
 
 
 class AddonFormSupport(AddonFormBase):
@@ -411,7 +413,7 @@ class AddonFormTechnicalUnlisted(AddonFormBase):
         fields = ()
 
 
-class AbuseForm(happyforms.Form):
+class AbuseForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
     text = forms.CharField(required=True,
                            label='',
@@ -421,7 +423,7 @@ class AbuseForm(happyforms.Form):
         self.request = kwargs.pop('request')
         super(AbuseForm, self).__init__(*args, **kwargs)
 
-        if (not self.request.user.is_anonymous() or
+        if (not self.request.user.is_anonymous or
                 not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
 
@@ -506,7 +508,7 @@ class ThemeForm(ThemeFormBase):
         p.save()
 
         # Save header and preview images.
-        save_theme.delay(data['header_hash'], addon.pk)
+        addons_tasks.save_theme.delay(data['header_hash'], addon.pk)
 
         # Save user info.
         addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
@@ -649,12 +651,13 @@ class EditThemeForm(AddonFormBase):
         # Theme reupload.
         if not addon.is_pending():
             if data['header_hash']:
-                save_theme_reupload.delay(data['header_hash'], addon.pk)
+                addons_tasks.save_theme_reupload.delay(
+                    data['header_hash'], addon.pk)
 
         return data
 
 
-class EditThemeOwnerForm(happyforms.Form):
+class EditThemeOwnerForm(forms.Form):
     owner = UserEmailField()
 
     def __init__(self, *args, **kw):

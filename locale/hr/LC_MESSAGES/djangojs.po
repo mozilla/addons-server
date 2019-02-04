@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2018-06-21 06:01+0000\n"
+"POT-Creation-Date: 2018-09-17 10:26+0000\n"
 "PO-Revision-Date: 2017-04-19 19:31+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -221,29 +221,61 @@ msgstr "Koristi original"
 msgid "Week of {0}"
 msgstr "Tjedan {0}"
 
-msgid " downloads"
-msgstr " preuzimanja"
+#, fuzzy
+msgid "{0} download"
+msgid_plural "{0} downloads"
+msgstr[0] " preuzimanja"
+msgstr[1] " preuzimanja"
+msgstr[2] " preuzimanja"
 
-msgid "{0} users"
-msgstr "{0} korisnika"
+#, fuzzy
+msgid "{0} user"
+msgid_plural "{0} users"
+msgstr[0] "{0} korisnika"
+msgstr[1] "{0} korisnika"
+msgstr[2] "{0} korisnika"
 
-msgid "{0} add-ons"
-msgstr "{0} dodataka"
+#, fuzzy
+msgid "{0} add-on"
+msgid_plural "{0} add-ons, n"
+msgstr[0] "{0} dodataka"
+msgstr[1] "{0} dodataka"
+msgstr[2] "{0} dodataka"
 
-msgid "{0} collections"
-msgstr "{0} kolekcija"
+#, fuzzy
+msgid "{0} collection"
+msgid_plural "{0} collections"
+msgstr[0] "{0} kolekcija"
+msgstr[1] "{0} kolekcija"
+msgstr[2] "{0} kolekcija"
 
-msgid "{0} reviews"
-msgstr "{0} ocjena"
+#, fuzzy
+msgid "{0} review"
+msgid_plural "{0} reviews"
+msgstr[0] "{0} ocjena"
+msgstr[1] "{0} ocjena"
+msgstr[2] "{0} ocjena"
 
-msgid "{0} sales"
-msgstr "{0} prodaja"
+#, fuzzy
+msgid "{0} sale"
+msgid_plural "{0} sales"
+msgstr[0] "{0} prodaja"
+msgstr[1] "{0} prodaja"
+msgstr[2] "{0} prodaja"
 
-msgid "{0} refunds"
-msgstr "{0} povratka novca"
+#, fuzzy
+msgid "{0} refund"
+msgid_plural "{0} refunds"
+msgstr[0] "{0} povratka novca"
+msgstr[1] "{0} povratka novca"
+msgstr[2] "{0} povratka novca"
 
-msgid "{0} installs"
-msgstr "{0} instaliranja"
+#, fuzzy
+msgid "{0} install"
+msgid_plural "{0} installs"
+msgstr[0] "{0} instaliranja"
+msgstr[1] "{0} instaliranja"
+msgstr[2] "{0} instaliranja"
 
 msgid "Downloads"
 msgstr "Preuzimanja"
@@ -809,6 +841,9 @@ msgstr "Prosječne ocjene"
 
 msgid "Number of Reviews"
 msgstr "Broj ocjena"
+
+msgid "Maximum upload size is {0} - choose a smaller background image."
+msgstr ""
 
 msgid "Requested Info"
 msgstr "Zatražene informacije"

@@ -86,7 +86,6 @@
         "pk": 888,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": false,
             "display_collections": false,
             "averagerating": 4.88,
             "picture_type": "",

@@ -3,7 +3,7 @@ from functools import update_wrapper
 from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.utils import unquote
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db.utils import IntegrityError
 from django.http import (
     Http404, HttpResponseForbidden, HttpResponseNotAllowed,
@@ -50,8 +50,7 @@ class UserAdmin(admin.ModelAdmin):
                        'picture_img'),
         }),
         ('Flags', {
-            'fields': ('display_collections', 'display_collections_fav',
-                       'deleted', 'is_public'),
+            'fields': ('display_collections', 'deleted', 'is_public'),
         }),
         ('Content', {
             'fields': ('addons_created', 'collections_created',
@@ -126,9 +125,9 @@ class UserAdmin(admin.ModelAdmin):
 
         ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
         obj.ban_and_disable_related_content()
+        kw = {'user': force_text(obj)}
         self.message_user(
-            request, ugettext('The user "%(user)s" has been banned.' %
-                              {'user': force_text(obj)}))
+            request, ugettext('The user "%(user)s" has been banned.' % kw))
         return HttpResponseRedirect('../')
 
     def delete_picture_view(self, request, object_id, extra_context=None):
@@ -144,10 +143,11 @@ class UserAdmin(admin.ModelAdmin):
 
         ActivityLog.create(amo.LOG.ADMIN_USER_PICTURE_DELETED, obj)
         obj.delete_picture()
+        kw = {'user': force_text(obj)}
         self.message_user(
             request, ugettext(
                 'The picture belonging to user "%(user)s" has been deleted.' %
-                {'user': force_text(obj)}))
+                kw))
         return HttpResponseRedirect('../')
 
     def ban_action(self, request, qs):
@@ -156,9 +156,9 @@ class UserAdmin(admin.ModelAdmin):
             ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
             obj.ban_and_disable_related_content()
             users.append(force_text(obj))
+        kw = {'users': u', '.join(users)}
         self.message_user(
-            request, ugettext('The users "%(users)s" have been banned.' %
-                              {'users': u', '.join(users)}))
+            request, ugettext('The users "%(users)s" have been banned.' % kw))
     ban_action.short_description = _('Ban selected users')
 
     def picture_img(self, obj):
@@ -178,8 +178,10 @@ class UserAdmin(admin.ModelAdmin):
         from django.contrib.admin.utils import display_for_value
         # We sort by -created by default, so first() gives us the last one, or
         # None.
-        return display_for_value(UserLog.objects.filter(
-            user=obj).values_list('created', flat=True).first())
+        user_log = (
+            UserLog.objects.filter(user=obj)
+            .values_list('created', flat=True).first())
+        return display_for_value(user_log, '')
 
     def related_content_link(self, obj, related_class, related_field,
                              related_manager='objects'):

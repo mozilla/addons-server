@@ -239,7 +239,6 @@
   "fields": {
     "license": null,
     "created": "2014-12-08T06:39:45",
-    "has_reviewer_comment": false,
     "releasenotes": null,
     "source": "",
     "approvalnotes": "",
@@ -258,7 +257,6 @@
   "fields": {
     "license": null,
     "created": "2014-12-08T06:40:07",
-    "has_reviewer_comment": false,
     "releasenotes": null,
     "source": "",
     "approvalnotes": "",
@@ -277,7 +275,6 @@
   "fields": {
     "license": null,
     "created": "2014-12-08T06:40:16",
-    "has_reviewer_comment": false,
     "releasenotes": null,
     "source": "",
     "approvalnotes": "",
@@ -296,7 +293,6 @@
   "fields": {
     "license": null,
     "created": "2014-12-08T06:40:23",
-    "has_reviewer_comment": false,
     "releasenotes": null,
     "source": "",
     "approvalnotes": "",
@@ -315,7 +311,6 @@
   "fields": {
     "license": null,
     "created": "2014-12-08T06:40:24",
-    "has_reviewer_comment": false,
     "releasenotes": null,
     "source": "",
     "approvalnotes": "",
@@ -334,7 +329,6 @@
   "fields": {
     "license": null,
     "created": "2014-12-08T06:40:25",
-    "has_reviewer_comment": false,
     "releasenotes": null,
     "source": "",
     "approvalnotes": "",

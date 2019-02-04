@@ -1,6 +1,6 @@
 from django import shortcuts
 from django.conf import settings
-from django.core.urlresolvers import set_script_prefix
+from django.urls import set_script_prefix
 from django.test.client import Client, RequestFactory
 
 import pytest
@@ -75,11 +75,23 @@ class MiddlewareTest(BaseTestCase):
             assert self.request.LANG == 'en-US'
             assert response is None
 
-    def test_api_no_redirect(self):
+    def test_v3_api_no_redirect(self):
         response = self.process('/api/v3/some/endpoint/')
         assert response is None
         response = self.process('/api/v4/some/endpoint/')
         assert response is None
+
+    def test_v1_api_is_identified_as_api_request(self):
+        response = self.process('/en-US/firefox/api/')
+        assert response is None
+        assert self.request.LANG == 'en-US'
+        assert self.request.is_legacy_api
+
+        # double-check _only_ /api/ is marked as .is_api
+        response = self.process('/en-US/firefox/apii/')
+        assert response is None
+        assert self.request.LANG == 'en-US'
+        assert not self.request.is_legacy_api
 
     def test_vary(self):
         response = self.process('/')
@@ -217,7 +229,6 @@ class TestPrefixer(BaseTestCase):
 
         # Now check reverse.
         urlresolvers.set_url_prefix(prefixer)
-        set_script_prefix('/oremj')
         assert urlresolvers.reverse('home') == '/oremj/en-US/firefox/'
 
 

@@ -10,7 +10,7 @@ import settings
 
 from olympia import amo
 from olympia.amo.tests import addon_factory
-from olympia.discovery.data import DiscoItem
+from olympia.discovery.models import DiscoveryItem
 from olympia.discovery.utils import (
     call_recommendation_server, get_recommendations, replace_extensions)
 
@@ -73,42 +73,58 @@ def test_call_recommendation_server_parameters(requests_get):
 @mock.patch('olympia.discovery.utils.call_recommendation_server')
 @pytest.mark.django_db
 def test_get_recommendations(call_recommendation_server):
-    a101 = addon_factory(id=101, guid='101@mozilla')
-    addon_factory(id=102, guid='102@mozilla')
-    addon_factory(id=103, guid='103@mozilla')
-    addon_factory(id=104, guid='104@mozilla')
+    expected_addons = [
+        addon_factory(guid='101@mozilla'),
+        addon_factory(guid='102@mozilla'),
+        addon_factory(guid='103@mozilla'),
+        addon_factory(guid='104@mozilla'),
+    ]
+    # Only the first one has a DiscoveryItem. The rest should still be
+    # returned.
 
     call_recommendation_server.return_value = [
         '101@mozilla', '102@mozilla', '103@mozilla', '104@mozilla'
     ]
     recommendations = get_recommendations(
         '0', {'locale': 'en-US', 'platform': 'WINNT'})
-    assert ([r.addon_id for r in recommendations] == [101, 102, 103, 104])
-    assert all([r.is_recommendation for r in recommendations])
+    assert [r.addon for r in recommendations] == expected_addons
 
     # only valid, public add-ons should match guids
-    a101.update(status=amo.STATUS_NULL)
+    incomplete_addon = expected_addons.pop()
+    incomplete_addon.update(status=amo.STATUS_NULL)
+    # Remove this one and have recommendations return a bad guid instead.
+    expected_addons.pop()
     call_recommendation_server.return_value = [
-        '101@mozilla', '102@mozilla', '103@mozilla', '104@badguid'
+        '101@mozilla', '102@mozilla', '103@badbadguid', '104@mozilla'
     ]
     recommendations = get_recommendations(
         '0', {'locale': 'en-US', 'platform': 'WINNT'})
-    assert ([r.addon_id for r in recommendations] == [102, 103])
+    assert [result.addon for result in recommendations] == expected_addons
 
 
+@pytest.mark.django_db
 def test_replace_extensions():
     source = [
-        DiscoItem(addon_id=101, addon_name=u'replacê me'),
-        DiscoItem(addon_id=102, addon_name=u'replace me tøø'),
-        DiscoItem(addon_id=103, addon_name=u'ŋot me', type=amo.ADDON_PERSONA),
-        DiscoItem(addon_id=104, addon_name=u'ŋor me', type=amo.ADDON_PERSONA),
-        DiscoItem(addon_id=105, addon_name=u'probably me'),
-        DiscoItem(addon_id=106, addon_name=u'safê', type=amo.ADDON_PERSONA),
+        DiscoveryItem(addon=addon_factory(), custom_addon_name=u'replacê me'),
+        DiscoveryItem(
+            addon=addon_factory(), custom_addon_name=u'replace me tøø'),
+        DiscoveryItem(
+            addon=addon_factory(type=amo.ADDON_PERSONA),
+            custom_addon_name=u'ŋot me'),
+        DiscoveryItem(
+            addon=addon_factory(type=amo.ADDON_PERSONA),
+            custom_addon_name=u'ŋor me'),
+        DiscoveryItem(addon=addon_factory(), custom_addon_name=u'probably me'),
+        DiscoveryItem(
+            addon=addon_factory(type=amo.ADDON_PERSONA),
+            custom_addon_name=u'safê')
     ]
     # Just 2 replacements
     replacements = [
-        DiscoItem(addon_id=999, addon_name=u'just for you'),
-        DiscoItem(addon_id=998, addon_name=u'and this øne'),
+        DiscoveryItem(
+            addon=addon_factory(), custom_addon_name=u'just for you'),
+        DiscoveryItem(
+            addon=addon_factory(), custom_addon_name=u'and this øne'),
     ]
     result = replace_extensions(source, replacements)
     assert result == [
@@ -121,8 +137,10 @@ def test_replace_extensions():
     ], result
 
     # Add a few more so all extensions are replaced, with one spare.
-    replacements.append(DiscoItem(addon_id=997, addon_name='extra one'))
-    replacements.append(DiscoItem(addon_id=997, addon_name='extra too'))
+    replacements.append(DiscoveryItem(
+        addon=addon_factory(), custom_addon_name=u'extra ône'))
+    replacements.append(DiscoveryItem(
+        addon=addon_factory(), custom_addon_name=u'extra tôo'))
     result = replace_extensions(source, replacements)
     assert result == [
         replacements[0],

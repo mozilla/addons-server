@@ -14,6 +14,7 @@ class TestBaseRatingSerializer(TestCase):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
         self.view = Mock(spec=['get_addon_object'])
+        self.view.get_addon_object.return_value = None
         self.user = user_factory()
 
     def serialize(self, **extra_context):
@@ -38,11 +39,14 @@ class TestBaseRatingSerializer(TestCase):
         assert result['addon'] == {
             'id': addon.pk,
             'slug': addon.slug,
+            'name': {'en-US': addon.name},
+            'icon_url': absolutify(addon.get_icon_url(64)),
         }
         assert result['body'] == unicode(self.rating.body)
         assert result['created'] == (
             self.rating.created.replace(microsecond=0).isoformat() + 'Z')
         assert result['previous_count'] == int(self.rating.previous_count)
+        assert result['is_developer_reply'] is False
         assert result['is_latest'] == self.rating.is_latest
         assert result['score'] == int(self.rating.rating)
         assert result['reply'] is None
@@ -116,7 +120,6 @@ class TestBaseRatingSerializer(TestCase):
 
     def test_addon_slug_even_if_view_doesnt_return_addon_object(self):
         addon = addon_factory()
-        self.view.get_addon_object.return_value = None
         self.rating = Rating.objects.create(
             addon=addon, user=self.user, rating=4,
             version=addon.current_version, body=u'This is my rëview. Like ît?')
@@ -127,6 +130,8 @@ class TestBaseRatingSerializer(TestCase):
         assert result['addon'] == {
             'id': addon.pk,
             'slug': addon.slug,
+            'name': {'en-US': addon.name},
+            'icon_url': absolutify(addon.get_icon_url(64)),
         }
 
     def test_with_previous_count(self):
@@ -142,6 +147,20 @@ class TestBaseRatingSerializer(TestCase):
         assert result['is_latest'] is False
 
     def test_with_reply(self):
+        def _test_reply(data):
+            assert data['id'] == reply.pk
+            assert data['body'] == unicode(reply.body)
+            assert data['created'] == (
+                reply.created.replace(microsecond=0).isoformat() + 'Z')
+            assert data['is_developer_reply'] is True
+            assert data['user'] == {
+                'id': reply_user.pk,
+                'name': unicode(reply_user.name),
+                # should be the profile for a developer
+                'url': absolutify(reply_user.get_url_path()),
+                'username': reply_user.username,
+            }
+
         reply_user = user_factory()
         addon = addon_factory(users=[reply_user])
         self.rating = Rating.objects.create(
@@ -154,19 +173,17 @@ class TestBaseRatingSerializer(TestCase):
         result = self.serialize()
 
         assert result['reply']
-        assert 'rating' not in result['reply']
+        assert 'score' not in result['reply']
         assert 'reply' not in result['reply']
-        assert result['reply']['id'] == reply.pk
-        assert result['reply']['body'] == unicode(reply.body)
-        assert result['reply']['created'] == (
-            reply.created.replace(microsecond=0).isoformat() + 'Z')
-        assert result['reply']['user'] == {
-            'id': reply_user.pk,
-            'name': unicode(reply_user.name),
-            # should be the profile for a developer
-            'url': absolutify(reply_user.get_url_path()),
-            'username': reply_user.username,
-        }
+        _test_reply(result['reply'])
+
+        # If we instantiate a standard RatingSerializer class with a reply, it
+        # should work like normal. `score` and `reply` should be there, blank.
+        self.rating = reply
+        result = self.serialize()
+        _test_reply(result)
+        assert result['score'] is None
+        assert result['reply'] is None
 
     def test_reply_profile_url_for_yourself(self):
         addon = addon_factory()

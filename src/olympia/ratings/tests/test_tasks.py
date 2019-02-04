@@ -1,8 +1,13 @@
+# -*- coding: utf-8 -*-
 import mock
+import pytest
+
+from django.conf import settings
 
 from olympia.amo.tests import TestCase, addon_factory, user_factory
-from olympia.ratings.models import Rating
-from olympia.ratings.tasks import addon_rating_aggregates
+from olympia.ratings.models import Rating, RatingFlag
+from olympia.ratings.tasks import (
+    addon_rating_aggregates, check_with_akismet)
 
 
 class TestAddonRatingAggregates(TestCase):
@@ -86,3 +91,36 @@ class TestAddonRatingAggregates(TestCase):
         assert addon.average_rating == 2.25
         assert addon2.bayesian_rating == 1.97915
         assert addon2.average_rating == 2.3333
+
+
+@pytest.mark.django_db
+@pytest.mark.parametrize(
+    'return_value,headers,flag_count',
+    [
+        (True, {}, 1),
+        (True, {'X-akismet-pro-tip': 'discard'}, 1),
+        (False, {}, 0),
+    ])
+def test_check_with_akismet(return_value, headers, flag_count):
+    task_user = user_factory(id=settings.TASK_USER_ID)
+    assert RatingFlag.objects.count() == 0
+    rating = Rating.objects.create(
+        addon=addon_factory(), user=user_factory(), rating=4, body=u'spám?',
+        ip_address='1.2.3.4')
+
+    with mock.patch('olympia.lib.akismet.models.requests.post') as post_mock:
+        # Mock a definitely spam response - same outcome
+        post_mock.return_value.json.return_value = return_value
+        post_mock.return_value.headers = headers
+        check_with_akismet(rating.id, 'foo/baa', '')
+
+    RatingFlag.objects.count() == flag_count
+    rating = rating.reload()
+    if flag_count > 0:
+        flag = RatingFlag.objects.get()
+        assert flag.rating == rating
+        assert flag.user == task_user
+        assert flag.flag == RatingFlag.SPAM
+        assert rating.editorreview
+    else:
+        assert not rating.editorreview

@@ -30,7 +30,7 @@ def install_button(context, addon, version=None,
         show_warning=show_warning, src=src, collection=collection, size=size,
         detailed=detailed, impala=impala,
         show_download_anyway=show_download_anyway)
-    installed = (request.user.is_authenticated() and
+    installed = (request.user.is_authenticated and
                  addon.id in request.user.mobile_addons)
     context = {
         'button': button, 'addon': addon, 'version': button.version,

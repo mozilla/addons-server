@@ -27,7 +27,6 @@
         "pk": 2488420,
         "model": "users.userprofile",
         "fields": {
-            "display_collections_fav": 0,
             "display_collections": 0,
             "occupation": "\u041f\u0440\u043e\u0433\u0440\u0430\u043c\u043c\u0438\u0441\u0442",
             "location": "\u0420\u043e\u0441\u0441\u0438\u044f, \u041e\u043c\u0441\u043a",
