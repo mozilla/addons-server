@@ -9,7 +9,6 @@ import six
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import extract_colors_from_image, pngcrush_image
@@ -64,6 +63,10 @@ def _build_static_theme_preview_context(theme_manifest, file_):
 @task
 @use_primary_db
 def generate_static_theme_preview(theme_manifest, version_pk):
+    # Make sure we import `index_addons` late in the game to avoid having
+    # a "copy" of it here that won't get mocked by our ESTestCase
+    from olympia.addons.tasks import index_addons
+
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     file_ = File.objects.filter(version_id=version_pk).first()

@@ -54,7 +54,6 @@ from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
 from olympia.versions import compare
-from olympia.versions.tasks import extract_version_source_to_git
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config
 
