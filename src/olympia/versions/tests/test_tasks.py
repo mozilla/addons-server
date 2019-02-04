@@ -63,7 +63,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.index_addons.delay')
+@mock.patch('olympia.addons.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.extract_colors_from_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
@@ -169,7 +169,7 @@ def test_generate_static_theme_preview(
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.index_addons.delay')
+@mock.patch('olympia.addons.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.extract_colors_from_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
@@ -284,7 +284,7 @@ def check_render_additional(svg_content, inner_svg_width, colors):
 
 
 @pytest.mark.django_db
-@mock.patch('olympia.versions.tasks.index_addons.delay')
+@mock.patch('olympia.addons.tasks.index_addons.delay')
 @mock.patch('olympia.versions.tasks.extract_colors_from_image')
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
