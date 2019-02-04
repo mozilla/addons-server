@@ -38,7 +38,8 @@ class FileSelectWidget(widgets.Select):
         def option(files, label=None, deleted=False, channel=None):
             # Make sure that if there's a non-disabled version,
             # that's the one we use for the ID.
-            sorted(files, key=lambda a: a.status == amo.STATUS_DISABLED)
+            files = sorted(
+                files, key=lambda a: a.status == amo.STATUS_DISABLED)
 
             if label is None:
                 label = u', '.join(f.get_platform_display() for f in files)

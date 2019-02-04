@@ -301,7 +301,7 @@ class FilesBase(object):
         doc = pq(res.content)
 
         disabled_file = doc('#id_left > optgroup > option.status-disabled')
-        assert disabled_file.attr('value') == str(self.files[1].id)
+        assert disabled_file.attr('value') == str(self.files[2].id)
 
     def test_files_for_unlisted_addon_returns_404(self):
         """Files browsing isn't allowed for unlisted addons."""
