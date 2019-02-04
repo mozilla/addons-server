@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-04 19:10+0000\n"
+"PO-Revision-Date: 2019-01-29 14:16+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5586,7 +5586,6 @@ msgid "Organize your many open tabs in a vertical sidebar."
 msgstr "Gérez les onglets ouverts dans une barre latérale."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Gérez les cookies {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
