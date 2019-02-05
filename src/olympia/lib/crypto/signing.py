@@ -130,7 +130,7 @@ def autograph_sign_data(file_obj):
     signed_manifest = six.text_type(jar.signatures)
 
     signing_request = [{
-        'input': b64encode(force_bytes(signed_manifest)),
+        'input': force_text(b64encode(force_bytes(signed_manifest))),
         'keyid': conf['signer'],
         'options': {
             'id': get_id(file_obj.version.addon),
