@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-import urllib
-
 from django.utils import translation
+from django.utils.encoding import force_bytes, force_text
 
 import pytest
 import six
 
 from mock import Mock
+from six.moves.urllib.parse import quote
 
 from olympia import amo
 from olympia.activity.models import ActivityLog
@@ -72,17 +72,17 @@ class TestDisplayUrl(amo.tests.BaseTestCase):
 
     def setUp(self):
         super(TestDisplayUrl, self).setUp()
-        self.raw_url = u'http://host/%s' % 'フォクすけといっしょ'.decode('utf8')
+        self.raw_url = u'http://host/%s' % u'フォクすけといっしょ'
 
     def test_utf8(self):
-        url = urllib.quote(self.raw_url.encode('utf8'))
-        assert render('{{ url|display_url }}', {'url': url}) == (
+        url = quote(self.raw_url.encode('utf8'))
+        assert render(u'{{ url|display_url }}', {'url': url}) == (
             self.raw_url)
 
     def test_unicode(self):
-        url = urllib.quote(self.raw_url.encode('utf8'))
-        url = six.text_type(url, 'utf8')
-        assert render('{{ url|display_url }}', {'url': url}) == (
+        url = quote(self.raw_url.encode('utf8'))
+        url = force_text(force_bytes(url, 'utf8'), 'utf8')
+        assert render(u'{{ url|display_url }}', {'url': url}) == (
             self.raw_url)
 
 

@@ -4,6 +4,7 @@ import os
 
 from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
+from django.utils.encoding import force_text
 
 import mock
 import six
@@ -345,7 +346,7 @@ class BaseTestEditDescribe(BaseTestEdit):
         assert description_report.comment == data['description']
 
         assert comment_check_mock.call_count == 3
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
         # And metadata was updated
         addon = self.get_addon()
@@ -377,7 +378,7 @@ class BaseTestEditDescribe(BaseTestEdit):
 
         assert comment_check_mock.call_count == 3
         # But because we're not taking any action from the spam, don't report.
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
         # And metadata was updated
         addon = self.get_addon()
@@ -446,9 +447,9 @@ class BaseTestEditDescribe(BaseTestEdit):
         response = self.client.get(self.describe_edit_url)
         assert response.status_code == 200
 
-        assert '<script>' not in response.content
-        assert ('This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
-                '&#39;)&lt;/script&gt;</textarea>') in response.content
+        assert b'<script>' not in response.content
+        assert (b'This\n&lt;b&gt;IS&lt;/b&gt;&lt;script&gt;alert(&#39;awesome'
+                b'&#39;)&lt;/script&gt;</textarea>') in response.content
 
     def test_description_optional(self):
         """Description is optional by default - so confirm that here and
@@ -472,8 +473,8 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_name_summary_lengths_short(self):
         # check the separate name and summary labels, etc are served
         response = self.client.get(self.url)
-        assert 'Name and Summary' not in response.content
-        assert 'It will be shown in listings and searches' in response.content
+        assert b'Name and Summary' not in response.content
+        assert b'It will be shown in listings and searches' in response.content
 
         self.client.post(
             self.describe_edit_url, self.get_dict(name='a', summary='b'))
@@ -492,7 +493,7 @@ class BaseTestEditDescribe(BaseTestEdit):
     def test_name_summary_lengths_content_optimization(self):
         # check the combined name and summary label, etc are served
         response = self.client.get(self.url)
-        assert 'Name and Summary' in response.content
+        assert b'Name and Summary' in response.content
 
         # name and summary are too short
         response = self.client.post(
@@ -625,8 +626,9 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
-        assert set(response.context['addon'].all_categories) == set(
-            self.addon.all_categories)
+        assert (
+            set(cat.id for cat in response.context['addon'].all_categories) ==
+            set(cat.id for cat in self.addon.all_categories))
 
     def test_edit_categories_addandremove(self):
         AddonCategory(addon=self.addon, category_id=1).save()
@@ -641,8 +643,9 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
-        assert set(response.context['addon'].all_categories) == set(
-            self.addon.all_categories)
+        assert (
+            set(cat.id for cat in response.context['addon'].all_categories) ==
+            set(cat.id for cat in self.addon.all_categories))
 
     def test_edit_categories_remove(self):
         category = Category.objects.get(id=1)
@@ -659,7 +662,7 @@ class TestEditDescribeListed(BaseTestEditDescribe, L10nTestsMixin):
 
         # Make sure the categories list we display to the user in the response
         # has been updated.
-        assert set(response.context['addon'].all_categories) == set(
+        assert response.context['addon'].all_categories == (
             self.addon.all_categories)
 
     def test_edit_categories_required(self):
@@ -928,7 +931,7 @@ class TestEditMedia(BaseTestEdit):
         data = {'upload_image': src_image}
 
         response = self.client.post(self.icon_upload, data)
-        response_json = json.loads(response.content)
+        response_json = json.loads(force_text(response.content))
         addon = self.get_addon()
 
         # Now, save the form so it gets moved properly.
@@ -951,7 +954,7 @@ class TestEditMedia(BaseTestEdit):
 
         # Check that it was actually uploaded
         dirname = os.path.join(user_media_path('addon_icons'),
-                               '%s' % (addon.id / 1000))
+                               '%s' % (addon.id // 1000))
         dest = os.path.join(dirname, '%s-32.png' % addon.id)
 
         assert storage.exists(dest)
@@ -974,7 +977,7 @@ class TestEditMedia(BaseTestEdit):
         data = {'upload_image': src_image}
 
         response = self.client.post(self.icon_upload, data)
-        response_json = json.loads(response.content)
+        response_json = json.loads(force_text(response.content))
         addon = self.get_addon()
 
         # Now, save the form so it gets moved properly.
@@ -997,7 +1000,7 @@ class TestEditMedia(BaseTestEdit):
 
         # Check that it was actually uploaded
         dirname = os.path.join(user_media_path('addon_icons'),
-                               '%s' % (addon.id / 1000))
+                               '%s' % (addon.id // 1000))
         dest = os.path.join(dirname, '%s-64.png' % addon.id)
 
         assert storage.exists(dest)
@@ -1012,7 +1015,7 @@ class TestEditMedia(BaseTestEdit):
         src_image = open(img, 'rb')
 
         res = self.client.post(url, {'upload_image': src_image})
-        response_json = json.loads(res.content)
+        response_json = json.loads(force_text(res.content))
         assert response_json['errors'][0] == msg
 
     def test_edit_media_icon_wrong_type(self):
@@ -1042,55 +1045,55 @@ class TestEditMedia(BaseTestEdit):
         addon = self.get_addon()
         addon.update(icon_type='')
         url = reverse('devhub.ajax.image.status', args=[addon.slug])
-        result = json.loads(self.client.get(url).content)
+        result = json.loads(force_text(self.client.get(url).content))
         assert result['icons']
 
     def test_image_status_works(self):
         self.setup_image_status()
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert result['icons']
 
     def test_image_status_fails(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert not result['icons']
 
     def test_preview_status_works(self):
         self.setup_image_status()
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert result['previews']
 
         # No previews means that all the images are done.
         self.addon.previews.all().delete()
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert result['previews']
 
     def test_preview_status_fails(self):
         self.setup_image_status()
         storage.delete(self.preview.thumbnail_path)
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert not result['previews']
 
     def test_image_status_persona(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
         self.get_addon().update(type=amo.ADDON_PERSONA)
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert result['icons']
 
     def test_image_status_default(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
         self.get_addon().update(icon_type='icon/photos')
-        result = json.loads(self.client.get(self.url).content)
+        result = json.loads(force_text(self.client.get(self.url).content))
         assert result['icons']
 
     def check_image_animated(self, url, msg):
         filehandle = open(get_image_path('animated.png'), 'rb')
 
         res = self.client.post(url, {'upload_image': filehandle})
-        response_json = json.loads(res.content)
+        response_json = json.loads(force_text(res.content))
         assert response_json['errors'][0] == msg
 
     def test_icon_animated(self):
@@ -1110,27 +1113,29 @@ class TestEditMedia(BaseTestEdit):
         response = self.client.post(
             self.icon_upload,
             {'upload_image': open(get_image_path('mozilla-small.png'), 'rb')})
-        assert json.loads(response.content)['errors'] == [size_msg, ratio_msg]
+        assert json.loads(force_text(response.content))['errors'] == [
+            size_msg, ratio_msg]
 
         # icon64.png is the right ratio, but only 64x64
         response = self.client.post(
             self.icon_upload,
             {'upload_image': open(
                 get_image_path('icon64.png'), 'rb')})
-        assert json.loads(response.content)['errors'] == [size_msg]
+        assert json.loads(force_text(response.content))['errors'] == [size_msg]
 
         # mozilla.png is big enough but still not square
         response = self.client.post(
             self.icon_upload,
             {'upload_image': open(get_image_path('mozilla.png'), 'rb')})
-        assert json.loads(response.content)['errors'] == [ratio_msg]
+        assert json.loads(force_text(response.content))['errors'] == [
+            ratio_msg]
 
         # and mozilla-sq is the right ratio and big enough
         response = self.client.post(
             self.icon_upload,
             {'upload_image': open(get_image_path('mozilla-sq.png'), 'rb')})
-        assert json.loads(response.content)['errors'] == []
-        assert json.loads(response.content)['upload_hash']
+        assert json.loads(force_text(response.content))['errors'] == []
+        assert json.loads(force_text(response.content))['upload_hash']
 
     def preview_add(self, amount=1, image_name='preview_4x3.jpg'):
         src_image = open(get_image_path(image_name), 'rb')
@@ -1140,7 +1145,7 @@ class TestEditMedia(BaseTestEdit):
         url = self.preview_upload
         response = self.client.post(url, data_formset)
 
-        details = json.loads(response.content)
+        details = json.loads(force_text(response.content))
         upload_hash = details['upload_hash']
 
         # Create and post with the formset.
@@ -1175,27 +1180,29 @@ class TestEditMedia(BaseTestEdit):
         response = self.client.post(
             self.preview_upload,
             {'upload_image': open(get_image_path('mozilla.png'), 'rb')})
-        assert json.loads(response.content)['errors'] == [size_msg, ratio_msg]
+        assert json.loads(force_text(response.content))['errors'] == [
+            size_msg, ratio_msg]
 
         # preview_landscape.jpg is the right ratio-ish, but too small
         response = self.client.post(
             self.preview_upload,
             {'upload_image': open(
                 get_image_path('preview_landscape.jpg'), 'rb')})
-        assert json.loads(response.content)['errors'] == [size_msg]
+        assert json.loads(force_text(response.content))['errors'] == [size_msg]
 
         # teamaddons.jpg is big enough but still wrong ratio.
         response = self.client.post(
             self.preview_upload,
             {'upload_image': open(get_image_path('teamaddons.jpg'), 'rb')})
-        assert json.loads(response.content)['errors'] == [ratio_msg]
+        assert json.loads(force_text(response.content))['errors'] == [
+            ratio_msg]
 
         # and preview_4x3.jpg is the right ratio and big enough
         response = self.client.post(
             self.preview_upload,
             {'upload_image': open(get_image_path('preview_4x3.jpg'), 'rb')})
-        assert json.loads(response.content)['errors'] == []
-        assert json.loads(response.content)['upload_hash']
+        assert json.loads(force_text(response.content))['errors'] == []
+        assert json.loads(force_text(response.content))['upload_hash']
 
     def test_edit_media_preview_edit(self):
         self.preview_add()
@@ -1657,7 +1664,7 @@ class TestEditDescribeStaticThemeListed(StaticMixin, BaseTestEditDescribe,
         assert [cat.id for cat in self.get_addon().all_categories] == []
         response = self.client.post(
             self.describe_edit_url, self.get_dict(category='firefox'))
-        assert set(response.context['addon'].all_categories) == set(
+        assert response.context['addon'].all_categories == (
             self.get_addon().all_categories)
 
         addon_cats = self.get_addon().categories.values_list('id', flat=True)
