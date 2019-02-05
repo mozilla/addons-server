@@ -63,7 +63,7 @@ def gc(test_result=True):
 
         output = Popen(cmd, stdout=PIPE).communicate()[0]
 
-        for line in output.split("\n"):
+        for line in output.split(b'\n'):
             log.debug(line)
 
     else:
@@ -78,7 +78,7 @@ def gc(test_result=True):
                '-exec', 'rm', '{}', ';')
         output = Popen(cmd, stdout=PIPE).communicate()[0]
 
-        for line in output.split("\n"):
+        for line in output.split(b'\n'):
             log.debug(line)
 
     # Delete stale FileUploads.

@@ -116,8 +116,8 @@ class TestNoDjangoDebugToolbar(TestCase):
     def test_no_django_debug_toolbar(self):
         with self.settings(DEBUG=False):
             res = self.client.get(reverse('home'), follow=True)
-            assert 'djDebug' not in res.content
-            assert 'debug_toolbar' not in res.content
+            assert b'djDebug' not in res.content
+            assert b'debug_toolbar' not in res.content
 
 
 def test_hide_password_middleware():

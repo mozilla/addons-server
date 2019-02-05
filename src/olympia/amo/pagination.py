@@ -80,13 +80,13 @@ class ESPaginator(Paginator):
             page = Page(result.hits, number, self)
 
             # Overwrite the `count` with the total received from ES results.
-            self.count = page.object_list.total
+            self.count = int(page.object_list.total)
         else:
             page = Page(self.object_list[bottom:top], number, self)
 
             # Force the search to evaluate and then attach the count.
             list(page.object_list)
-            self.count = page.object_list.count()
+            self.count = int(page.object_list.count())
 
         # Now that we have the count validate that the page number isn't higher
         # than the possible number of pages and adjust accordingly.
