@@ -57,7 +57,7 @@ class CategoriesSelectMultiple(forms.CheckboxSelectMultiple):
     def __init__(self, **kwargs):
         super(self.__class__, self).__init__(**kwargs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         value = value or []
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, {'name': name})
