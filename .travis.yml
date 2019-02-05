@@ -24,10 +24,10 @@ jobs:
     - { stage: python3working, python: 3.6, env: TOXENV=assets }
     - { stage: python3working, python: 3.6, env: TOXENV=es }
     - { stage: python3working, python: 3.6, env: TOXENV=addons-versions-and-files }
+    - { stage: python3working, python: 3.6, env: TOXENV=devhub }
     - { stage: python3working, python: 3.6, env: TOXENV=reviewers-and-zadmin }
     - { stage: python3working, python: 3.6, env: TOXENV=accounts-users-and-ratings }
     - { stage: python3working, python: 3.6, env: TOXENV=main }
-    - { stage: python3, python: 3.6, env: TOXENV=devhub }
     - { stage: python3, python: 3.6, env: TOXENV=amo-lib-locales-and-signing }
 
 env:

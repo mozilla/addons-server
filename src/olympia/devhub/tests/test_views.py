@@ -9,6 +9,7 @@ from django.core import mail
 from django.core.files.storage import default_storage as storage
 from django.test import RequestFactory
 from django.test.utils import override_settings
+from django.utils.encoding import force_text
 from django.utils.translation import trim_whitespace
 
 import mock
@@ -416,7 +417,7 @@ class TestVersionStats(TestCase):
                                   version=addon.current_version)
 
         url = reverse('devhub.versions.stats', args=[addon.slug])
-        data = json.loads(self.client.get(url).content)
+        data = json.loads(force_text(self.client.get(url).content))
         exp = {str(version.id):
                {'reviews': 10, 'files': 1, 'version': version.version,
                 'id': version.id}}
@@ -522,7 +523,7 @@ class TestHome(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertTemplateUsed(response, 'devhub/index.html')
-        assert 'Customize Firefox' in response.content
+        assert b'Customize Firefox' in response.content
 
     def test_default_lang_selected(self):
         self.client.logout()
@@ -534,7 +535,7 @@ class TestHome(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         self.assertTemplateUsed(response, 'devhub/index.html')
-        assert 'My Add-ons' in response.content
+        assert b'My Add-ons' in response.content
 
     def test_my_addons_addon_versions_link(self):
         assert self.client.login(email='del@icio.us')
@@ -944,7 +945,7 @@ class TestUploadDetail(BaseUploadTest):
         response = self.client.get(reverse('devhub.upload_detail',
                                    args=[upload.uuid.hex, 'json']))
         assert response.status_code == 200
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
 
         assert data['validation']['errors'] == 1
         assert data['url'] == (
@@ -1033,7 +1034,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('type') == 'error')
                    for m in data['validation']['messages']]
         expected = [(u'&#34;/version&#34; is a required property', True)]
@@ -1048,7 +1049,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('fatal', False))
                    for m in data['validation']['messages']]
         assert message == [
@@ -1065,7 +1066,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1076,8 +1077,10 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
-        assert data['validation']['messages'] == []
+        data = json.loads(force_text(response.content))
+        assert data['validation']['messages'] == [
+            {u'tier': 1, u'message': u'You cannot submit this type of add-on',
+             u'fatal': True, u'type': u'error'}]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_system_addon_allowed(self, mock_validator):
@@ -1089,7 +1092,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
@@ -1102,7 +1105,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
             {u'tier': 1,
              u'message': u'You cannot submit an add-on with a guid ending '
@@ -1122,7 +1125,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
     @mock.patch('olympia.files.utils.get_signer_organizational_unit_name')
@@ -1135,7 +1138,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == [
             {u'tier': 1,
              u'message': u'You cannot submit a Mozilla Signed Extension',
@@ -1162,7 +1165,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
 
         msg = data['validation']['messages'][0]
 
@@ -1185,7 +1188,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail_for_version',
                                            args=[addon.slug, upload.uuid.hex]))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'] == []
 
     def test_legacy_langpacks_disallowed(self):
@@ -1194,7 +1197,7 @@ class TestUploadDetail(BaseUploadTest):
         upload = FileUpload.objects.get()
         response = self.client.get(reverse('devhub.upload_detail',
                                            args=[upload.uuid.hex, 'json']))
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'][0]['id'] == [
             u'validation', u'messages', u'legacy_addons_unsupported'
         ]
@@ -1236,7 +1239,7 @@ class TestUploadDetail(BaseUploadTest):
         report = AkismetReport.objects.get(upload_instance=upload)
         assert report.comment_type == 'product-name'
         assert report.comment == 'Beastify'  # the addon's name
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=False)
@@ -1256,7 +1259,7 @@ class TestUploadDetail(BaseUploadTest):
         assert report.comment_type == 'product-name'
         assert report.comment == 'Beastify'  # the addon's name
         assert report.result == AkismetReport.MAYBE_SPAM
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=True)
@@ -1275,9 +1278,9 @@ class TestUploadDetail(BaseUploadTest):
         report = AkismetReport.objects.get(upload_instance=upload)
         assert report.comment_type == 'product-name'
         assert report.comment == 'Beastify'  # the addon's name
-        assert 'spam' in response.content
+        assert b'spam' in response.content
         assert report.result == AkismetReport.MAYBE_SPAM
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data['validation']['messages'][0]['id'] == [
             u'validation', u'messages', u'akismet_is_spam_name'
         ]
@@ -1307,7 +1310,7 @@ class TestUploadDetail(BaseUploadTest):
             u'Varsling ved trykk på lenke i18n',  # nb_NO
         ]
         assert report.comment in names
-        assert 'spam' not in response.content
+        assert b'spam' not in response.content
 
     @override_switch('akismet-spam-check', active=True)
     def test_akismet_reports_not_created_for_unlisted(self):
@@ -1436,8 +1439,8 @@ class TestVersionXSS(TestCase):
             version='<script>alert("Happy XSS-Xmas");<script>')
         response = self.client.get(reverse('devhub.addons'))
         assert response.status_code == 200
-        assert '<script>alert' not in response.content
-        assert '&lt;script&gt;alert' in response.content
+        assert b'<script>alert' not in response.content
+        assert b'&lt;script&gt;alert' in response.content
 
 
 class TestDeleteAddon(TestCase):
@@ -1717,7 +1720,7 @@ class TestThemeBackgroundImage(TestCase):
     def test_no_header_image(self):
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data == {}
 
     def test_header_image(self):
@@ -1727,7 +1730,7 @@ class TestThemeBackgroundImage(TestCase):
         copy_stored_file(zip_file, destination)
         response = self.client.post(self.url, follow=True)
         assert response.status_code == 200
-        data = json.loads(response.content)
+        data = json.loads(force_text(response.content))
         assert data
         assert len(data.items()) == 1
         assert 'weta.png' in data

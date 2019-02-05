@@ -75,7 +75,7 @@ def _uploader(resize_size, final_size):
     original_size = (339, 128)
 
     src = tempfile.NamedTemporaryFile(
-        mode='r+w+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
+        mode='r+b', suffix='.png', delete=False, dir=settings.TMP_PATH)
 
     if not isinstance(final_size, list):
         final_size = [final_size]
@@ -122,18 +122,20 @@ def test_recreate_previews(pngcrush_image_mock):
     addon = addon_factory()
     # Set up the preview so it has files in the right places.
     preview_no_original = Preview.objects.create(addon=addon)
-    with storage.open(preview_no_original.image_path, 'w') as dest:
-        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg')), dest)
-    with storage.open(preview_no_original.thumbnail_path, 'w') as dest:
-        shutil.copyfileobj(open(get_image_path('mozilla.png')), dest)
+    with storage.open(preview_no_original.image_path, 'wb') as dest:
+        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'),
+                           dest)
+    with storage.open(preview_no_original.thumbnail_path, 'wb') as dest:
+        shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
     # And again but this time with an "original" image.
     preview_has_original = Preview.objects.create(addon=addon)
-    with storage.open(preview_has_original.image_path, 'w') as dest:
-        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg')), dest)
-    with storage.open(preview_has_original.thumbnail_path, 'w') as dest:
-        shutil.copyfileobj(open(get_image_path('mozilla.png')), dest)
-    with storage.open(preview_has_original.original_path, 'w') as dest:
-        shutil.copyfileobj(open(get_image_path('teamaddons.jpg')), dest)
+    with storage.open(preview_has_original.image_path, 'wb') as dest:
+        shutil.copyfileobj(open(get_image_path('preview_landscape.jpg'), 'rb'),
+                           dest)
+    with storage.open(preview_has_original.thumbnail_path, 'wb') as dest:
+        shutil.copyfileobj(open(get_image_path('mozilla.png'), 'rb'), dest)
+    with storage.open(preview_has_original.original_path, 'wb') as dest:
+        shutil.copyfileobj(open(get_image_path('teamaddons.jpg'), 'rb'), dest)
 
     tasks.recreate_previews([addon.id])
 

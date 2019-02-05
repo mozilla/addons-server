@@ -5,7 +5,6 @@ from defusedxml.common import DefusedXmlException
 from xml.parsers.expat import ExpatError
 
 from django.utils.translation import ugettext
-from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.lib.akismet.models import AkismetReport
@@ -123,10 +122,8 @@ def annotate_search_plugin_validation(results, file_path, channel):
         return
 
     try:
-        # Requires bytes because defusedxml fails to detect
-        # unicode strings as filenames.
-        # https://gist.github.com/EnTeQuAk/25f99701d8b123f7611acd6ce0d5840b
-        dom = minidom.parse(force_bytes(file_path))
+        with open(file_path, 'r') as file_obj:
+            dom = minidom.parse(file_obj)
     except DefusedXmlException:
         url = 'https://pypi.python.org/pypi/defusedxml/0.3#attack-vectors'
         insert_validation_message(

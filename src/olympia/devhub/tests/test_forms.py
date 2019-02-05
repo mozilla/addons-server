@@ -6,6 +6,7 @@ import shutil
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils import translation
+from django.utils.encoding import force_text
 
 import mock
 import pytest
@@ -302,8 +303,8 @@ class TestPreviewForm(TestCase):
         name = 'transparent.png'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        with storage.open(os.path.join(self.dest, name), 'w') as f:
-            shutil.copyfileobj(open(get_image_path(name)), f)
+        with storage.open(os.path.join(self.dest, name), 'wb') as f:
+            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
         assert form.is_valid()
         form.save(addon)
         assert update_mock.called
@@ -314,8 +315,8 @@ class TestPreviewForm(TestCase):
         name = 'teamaddons.jpg'
         form = forms.PreviewForm({'caption': 'test', 'upload_hash': name,
                                   'position': 1})
-        with storage.open(os.path.join(self.dest, name), 'w') as f:
-            shutil.copyfileobj(open(get_image_path(name)), f)
+        with storage.open(os.path.join(self.dest, name), 'wb') as f:
+            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
         assert form.is_valid()
         form.save(addon)
         preview = addon.previews.all()[0]

@@ -17,6 +17,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.validators import ValidationError
 from django.db import transaction
 from django.template import loader
+from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
 import celery
@@ -161,7 +162,7 @@ def validation_task(fn):
         task.ignore_result = True
         try:
             data = fn(id_or_path, **kwargs)
-            results = json.loads(data)
+            results = json.loads(force_text(data))
             if akismet_results:
                 annotations.annotate_akismet_spam_check(
                     results, akismet_results)
@@ -452,7 +453,7 @@ def run_addons_linter(path, channel):
     if error:
         raise ValueError(error)
 
-    parsed_data = json.loads(output)
+    parsed_data = json.loads(force_text(output))
 
     fixed_data = fix_addons_linter_output(parsed_data, channel)
 
@@ -467,7 +468,7 @@ def track_validation_stats(json_result):
     """
     Given a raw JSON string of validator results, log some stats.
     """
-    result = json.loads(json_result)
+    result = json.loads(force_text(json_result))
     result_kind = 'success' if result['errors'] == 0 else 'failure'
     statsd.incr('devhub.linter.results.all.{}'.format(result_kind))
 

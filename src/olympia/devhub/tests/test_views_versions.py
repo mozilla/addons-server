@@ -786,8 +786,8 @@ class TestVersionEditDetails(TestVersionEditBase):
             user=self.user, details={'comments': 'this is an info request'})
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert 'this should not be shown' not in response.content
-        assert 'this is an info request' in response.content
+        assert b'this should not be shown' not in response.content
+        assert b'this is an info request' in response.content
 
     def test_dont_show_request_for_information_if_none_pending(self):
         self.user = UserProfile.objects.latest('pk')
@@ -799,8 +799,8 @@ class TestVersionEditDetails(TestVersionEditBase):
             user=self.user, details={'comments': 'this is an info request'})
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert 'this should not be shown' not in response.content
-        assert 'this is an info request' not in response.content
+        assert b'this should not be shown' not in response.content
+        assert b'this is an info request' not in response.content
 
     def test_clear_request_for_information(self):
         AddonReviewerFlags.objects.create(
@@ -901,8 +901,8 @@ class TestVersionEditCompat(TestVersionEditBase):
             initial_count=1)
         response = self.client.post(self.url, data)
         assert response.status_code == 302
-        apps = self.get_version().compatible_apps.keys()
-        assert sorted(apps) == sorted([amo.FIREFOX, amo.ANDROID])
+        apps = [app.id for app in self.get_version().compatible_apps.keys()]
+        assert sorted(apps) == sorted([amo.FIREFOX.id, amo.ANDROID.id])
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
@@ -944,13 +944,13 @@ class TestVersionEditCompat(TestVersionEditBase):
         # Add android compat so we can delete firefox.
         self.test_add_appversion()
         form = self.client.get(self.url).context['compat_form']
-        data = map(initial, form.initial_forms)
+        data = list(map(initial, form.initial_forms))
         data[0]['DELETE'] = True
         response = self.client.post(
             self.url, self.formset(*data, initial_count=2))
         assert response.status_code == 302
-        apps = self.get_version().compatible_apps.keys()
-        assert apps == [amo.ANDROID]
+        apps = [app.id for app in self.get_version().compatible_apps.keys()]
+        assert apps == [amo.ANDROID.id]
         assert list(ActivityLog.objects.all().values_list('action')) == (
             [(amo.LOG.MAX_APPVERSION_UPDATED.id,)])
 
