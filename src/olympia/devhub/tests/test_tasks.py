@@ -827,8 +827,6 @@ class TestCreateVersionForUpload(TestCase):
     def setUp(self):
         super(TestCreateVersionForUpload, self).setUp()
         self.addon = Addon.objects.get(pk=3615)
-        self.create_version_for_upload = (
-            tasks.create_version_for_upload.non_atomic)
         self.mocks = {}
         for key in ['Version.from_upload', 'parse_addon']:
             patcher = mock.patch('olympia.devhub.tasks.%s' % key)
@@ -847,13 +845,13 @@ class TestCreateVersionForUpload(TestCase):
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # Check that the older file won't turn into a Version.
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         assert not self.mocks['Version.from_upload'].called
 
         # But the newer one will.
-        self.create_version_for_upload(self.addon, newer_upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, newer_upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['Version.from_upload'].assert_called_with(
             newer_upload, self.addon, [amo.FIREFOX.id, amo.ANDROID.id],
             amo.RELEASE_CHANNEL_LISTED,
@@ -864,8 +862,8 @@ class TestCreateVersionForUpload(TestCase):
         Version.objects.create(addon=upload.addon, version=upload.version)
 
         # Check that the older file won't turn into a Version.
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent_failed(self):
@@ -875,8 +873,8 @@ class TestCreateVersionForUpload(TestCase):
                             valid=False,
                             validation=json.dumps({"errors": 5}))
 
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent(self):
@@ -886,8 +884,8 @@ class TestCreateVersionForUpload(TestCase):
 
         # The Version is created because the newer upload is for a different
         # version_string.
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
@@ -897,8 +895,8 @@ class TestCreateVersionForUpload(TestCase):
 
     def test_file_passed_all_validations_beta_string(self):
         upload = self.create_upload(version='1.0-beta1')
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(
@@ -908,8 +906,8 @@ class TestCreateVersionForUpload(TestCase):
 
     def test_file_passed_all_validations_no_version(self):
         upload = self.create_upload(version=None)
-        self.create_version_for_upload(self.addon, upload,
-                                       amo.RELEASE_CHANNEL_LISTED)
+        tasks.create_version_for_upload(self.addon, upload,
+                                        amo.RELEASE_CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(
             upload, self.addon, user=self.user)
         self.mocks['Version.from_upload'].assert_called_with(

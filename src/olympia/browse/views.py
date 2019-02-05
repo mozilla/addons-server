@@ -18,7 +18,7 @@ from olympia.addons.views import BaseFilter
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import render
-from olympia.core.languages import LANGUAGE_MAPPING
+from olympia.core.languages import ALL_LANGUAGES
 
 
 PAGINATE_PERSONAS_BY = 30
@@ -34,8 +34,8 @@ def locale_display_name(locale):
     if not locale:
         raise KeyError
 
-    if locale.lower() in LANGUAGE_MAPPING:
-        v = LANGUAGE_MAPPING[locale.lower()]
+    if locale.lower() in ALL_LANGUAGES:
+        v = ALL_LANGUAGES[locale.lower()]
         return v['english'], v['native']
     else:
         # Take out the regional portion and try again.
@@ -92,7 +92,7 @@ def _get_locales(addons):
             english, native = locale_display_name(locale)
             # Add the locale as a differentiator if we had to strip the
             # regional portion.
-            if locale not in LANGUAGE_MAPPING:
+            if locale not in ALL_LANGUAGES:
                 native = '%s (%s)' % (native, locale)
             addon.locale_display, addon.locale_native = english, native
         except KeyError:

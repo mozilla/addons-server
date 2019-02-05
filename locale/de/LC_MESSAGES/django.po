@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 19:06+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 17:19+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -2404,30 +2404,18 @@ msgstr "Neueste Änderungen für %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Neueste Änderungen für meine Add-ons"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "Alt-Erweiterungen werden in Firefox nicht mehr unterstützt."
+
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 "Add-ons für Thunderbird und SeaMonkey werden jetzt unter addons.thunderbird.net aufgeführt und gewartet. Sie können dasselbe Benutzerkonto verwenden, um Ihre Add-ons auf der neuen Website zu "
 "aktualisieren."
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "Alt-Erweiterungen werden in Firefox nicht mehr unterstützt."
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Ab Firefox 53 können neue Add-ons auf dieser Website nur WebExtensions sein."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Alt-Add-ons sind nicht mit Firefox 57 oder höher kompatibel. Nutzen Sie eine maxVersion von 56.* oder niedriger."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Ältere Sprachpakete für Firefox werden nicht mehr unterstützt. Ein WebExtensions-Installationsmanifest ist erforderlich. Weitere Informationen finden Sie unter {mdn_link}."
-
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "Wir gestatten und empfehlen ein Upgrade, dieser Vorgang kann allerdings nicht rückgängig gemacht werden. Sobald Ihre Nutzer die WebExtension installiert haben, können sie keine Alt-Add-ons mehr "
 "installieren."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Sie können ein WebExtensions-Add-on nicht mit einem Alt-Add-on aktualisieren. Ihre Nutzer könnten Ihre neue Version nicht verwenden, weil Firefox diese Art von Update nicht unterstützt."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Der Text im Feld „{field}“ wurde als Spam markiert."
@@ -5690,12 +5678,15 @@ msgstr "Sie können kein Add-on einreichen, dessen GUID auf „%s“ endet"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Sie können eine signierte Mozilla-Erweiterung nicht übermitteln"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Nicht unterstützter Dateityp, bitte laden Sie eine unterstützte Datei hoch {extensions}."
+
 msgid "Unexpected error."
 msgstr "Unerwarteter Fehler."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> in Ihrer install.rdf (%s) stimmt nicht mit der ID Ihres Add-ons auf AMO (%s) überein."
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "Der Typ (%s) stimmt nicht mit dem Typ Ihres Add-ons auf AMO (%s) überein"
 
 msgid "Back to review"
 msgstr "Zurück zur Überprüfung"

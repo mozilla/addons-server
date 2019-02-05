@@ -1,12 +1,12 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-03 17:29+0000\n"
-"Last-Translator: Rodrigo Guerra <rodmguerra@gmail.com>\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-04 03:49+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -48,8 +48,8 @@ msgstr "Cargamento de {0} fluente"
 msgid "Error with {0}"
 msgstr "Error per {0}"
 
-msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Nos ha activate un nove dispositivo pro processar tu additivo. Per favor reporta sempre ulle problemas sur GitHub"
+msgid "Please make sure to report any linting related issues on GitHub"
+msgstr "Cura de signalar sur GitHub ulle problema correlate al linting"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."

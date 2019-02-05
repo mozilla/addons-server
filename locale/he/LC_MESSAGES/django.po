@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 14:33+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 13:13+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -2417,26 +2417,14 @@ msgstr "שינויים אחרונים עבור %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "שינויים אחרונים עבור התוספות שלי"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "תוספות עבור Thunderbird ו־SeaMonkey כרגע מוצגות ומתוחזקות ב־addons.thunderbird.net. ניתן להשתמש באותו החשבון כדי לעדכן את התוספות שלך באתר החדש."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "הרחבות מדור קודם אינן נתמכות עוד ב־Firefox."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "החל מ־Firefox 53, תוספות חדשות באתר זה יכולות להיות אך ורק בתבנית WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "תוספות מדור קודם אינן נתמכות ב־Firefox 57 ומעלה. יש להשתמש ב־maxVersion של *.56 ומטה."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "תוספות עבור Thunderbird ו־SeaMonkey כרגע מוצגות ומתוחזקות ב־addons.thunderbird.net. ניתן להשתמש באותו החשבון כדי לעדכן את התוספות שלך באתר החדש."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "אנו מאפשרים ומעודדים שדרוג אבל תהליך זה אינו הפיך. לאחר שהמשתמשים שלך יתקינו את WebExtension, לא תהיה להם אפשרות להתקין תוספת מדור קודם."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "לא ניתן לעדכן תוספת של WebExtensions בתוספת מדור קודם. המשתמשים שלך לא יוכלו להשתמש בגרסה החדשה שלך כיוון שב־Firefox אין עוד תמיכה בעדכון מסוג זה."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] הטקסט בשדה ״{field}״ סומן בדגל כספאם."
@@ -5750,12 +5738,15 @@ msgstr "לא ניתן להגיש תוספת עם guid שמסתיים ב־%s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "לא ניתן להגיש הרחבות החתומות על ידי Mozilla"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "סוג הקובץ לא נתמך, נא להעלות קובץ {extensions} נתמך."
+
 msgid "Unexpected error."
 msgstr "שגיאה בלתי צפויה."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "‏<em:type> ב־install.rdf שלך (%s) אינו תואם את סוג התוספת שלך ב־AMO‏ (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "הסוג (%s) אינו תואם את סוג התוספת שלך ב־AMO‏ (%s)"
 
 msgid "Back to review"
 msgstr "חזרה לסקירה"

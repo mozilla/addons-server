@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-30 17:00+0000\n"
-"Last-Translator: patmol321 <patmol321@gmail.com>\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-04 19:09+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -51,8 +51,8 @@ msgstr "Envoi de {0}"
 msgid "Error with {0}"
 msgstr "Erreur avec {0}"
 
-msgid "We have enabled a new linter to process your Add-on. Please make sure to report any issues on GitHub"
-msgstr "Nous avons activé un nouvel analyseur de code pour le traitement de votre module. Merci de signaler tout problème sur GitHub."
+msgid "Please make sure to report any linting related issues on GitHub"
+msgstr ""
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -68,7 +68,7 @@ msgid "See full validation report"
 msgstr "Voir le rapport de validation complet"
 
 msgid "Validating {0}"
-msgstr "Validation {0}"
+msgstr "En cours de validation : {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
 msgstr "Votre module dépasse la taille maximale de {0}."
@@ -124,17 +124,17 @@ msgid "Add-on submission checklist"
 msgstr "Liste de points à vérifier pour l’envoi d’un module"
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr "Veuillez vérifier les points suivants avant de finaliser votre envoi. Cela réduira le délai ou les incompréhensions lors du processus de revue :"
+msgstr "Veuillez vérifier les points suivants avant de finaliser votre envoi. Cela réduira au minimum les retards ou les incompréhensions au cours du processus de revue :"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Les fichiers sources des fichiers binaires compilés, des scripts minifiés ou compactés (à l’exception des bibliothèques connues) doivent être envoyés pour être revus séparément. Assurez-vous "
-"d’utiliser le champ permettant d’envoyer le code source pour éviter que votre envoi soit rejeté."
+"Les fichiers binaires compilés, ainsi que les scripts minifiés ou compactés (à l’exception des bibliothèques connues) doivent être soumis séparément pour examen. Assurez-vous d’utiliser le champ "
+"permettant d’envoyer le code source pour éviter que votre envoi ne soit rejeté."
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr "Le processus de validation a détecté ces problèmes qui peuvent entraîner des rejets :"
+msgstr "Le processus de validation a permis de déceler les problèmes suivants, qui peuvent entraîner des rejets :"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "Le type de fichier que vous avez envoyé n’est pas reconnu."
@@ -189,7 +189,7 @@ msgid "Your Theme's Name"
 msgstr "Le nom de votre thème"
 
 msgid "Flagged for review"
-msgstr "Étiqueter pour revue"
+msgstr "Étiqueter pour révision"
 
 msgid "Your input is required"
 msgstr "Votre avis est demandé"
@@ -245,12 +245,12 @@ msgstr[1] "{0} critiques"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} ventes"
+msgstr[0] "{0} vente"
 msgstr[1] "{0} ventes"
 
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} remboursements"
+msgstr[0] "{0} remboursement"
 msgstr[1] "{0} remboursements"
 
 msgid "{0} install"
@@ -265,7 +265,7 @@ msgid "Daily Users"
 msgstr "Utilisateurs et utilisatrices quotidien⋅ne⋅s"
 
 msgid "Amount, in USD"
-msgstr "Montant, en dollars US"
+msgstr "Montant, $US"
 
 msgid "Number of Contributions"
 msgstr "Nombre de contributions"
@@ -299,7 +299,7 @@ msgid "User Signups"
 msgstr "Connexions de l’utilisateur"
 
 msgid "Subscribers"
-msgstr "Souscripteurs"
+msgstr "Abonnés"
 
 msgid "Ratings"
 msgstr "Notes"
@@ -344,13 +344,13 @@ msgid "Homepage Most Popular"
 msgstr "Les plus populaires en page d’accueil"
 
 msgid "Detail Page"
-msgstr "Page de détail"
+msgstr "Page de détails"
 
 msgid "Detail Page (bottom)"
-msgstr "Page de détail (bas)"
+msgstr "Page de détails (bas)"
 
 msgid "Detail Page (Development Channel)"
-msgstr "Page de détail (canal développement)"
+msgstr "Page de détails (canal développement)"
 
 msgid "Often Used With"
 msgstr "Fréquemment utilisé avec"
@@ -498,7 +498,7 @@ msgstr "Plateformes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Languages, last {0} days"
-msgstr "Langages, derniers {0} jours"
+msgstr "Langages, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Languages from {0} to {1}"
@@ -506,7 +506,7 @@ msgstr "Langages du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Versions du module, derniers {0} jours"
+msgstr "Versions du module, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
@@ -514,15 +514,15 @@ msgstr "Versions du module du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Statut du module, derniers {0} jours"
+msgstr "État du module, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Statut du module du {0} au {1}"
+msgstr "État du module du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"
-msgstr "Sources de téléchargement, derniers {0} jours"
+msgstr "Sources de téléchargement, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Download Sources from {0} to {1}"
@@ -530,7 +530,7 @@ msgstr "Sources de téléchargement du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Contributions, last {0} days"
-msgstr "Contributions, derniers {0} jours"
+msgstr "Contributions, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Contributions from {0} to {1}"
@@ -538,7 +538,7 @@ msgstr "Contributions du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Site Metrics, last {0} days"
-msgstr "Statistiques du site, derniers {0} jours"
+msgstr "Statistiques du site, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Site Metrics from {0} to {1}"
@@ -546,7 +546,7 @@ msgstr "Statistiques du site du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons in Use, last {0} days"
-msgstr "Modules utilisés, derniers {0} jours"
+msgstr "Modules utilisés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons in Use from {0} to {1}"
@@ -554,7 +554,7 @@ msgstr "Modules utilisés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Downloaded, last {0} days"
-msgstr "Modules téléchargés, derniers {0} jours"
+msgstr "Modules téléchargés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Downloaded from {0} to {1}"
@@ -562,7 +562,7 @@ msgstr "Modules téléchargés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Created, last {0} days"
-msgstr "Modules créés, derniers {0} jours"
+msgstr "Modules créés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Created from {0} to {1}"
@@ -570,7 +570,7 @@ msgstr "Modules créés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-ons Updated, last {0} days"
-msgstr "Modules mis à jour, derniers {0} jours"
+msgstr "Modules mis à jour, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-ons Updated from {0} to {1}"
@@ -578,7 +578,7 @@ msgstr "Modules mis à jour du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Reviews Written, last {0} days"
-msgstr "Critiques écrites, derniers {0} jours"
+msgstr "Critiques écrites, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Reviews Written from {0} to {1}"
@@ -586,15 +586,15 @@ msgstr "Critiques écrites du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "User Signups, last {0} days"
-msgstr "Connexions de l’utilisateur, derniers {0} jours"
+msgstr "Inscriptions d’utilisateurs, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "User Signups from {0} to {1}"
-msgstr "Connexions de l’utilisateur du {0} au {1}"
+msgstr "Inscriptions d’utilisateurs du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Collections Created, last {0} days"
-msgstr "Collections créées, derniers {0} jours"
+msgstr "Collections créées, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Collections Created from {0} to {1}"
@@ -602,15 +602,15 @@ msgstr "Collections créées du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Subscribers, last {0} days"
-msgstr "Souscripteurs, derniers {0} jours"
+msgstr "Abonnés, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Subscribers from {0} to {1}"
-msgstr "Souscripteurs du {0} au {1}"
+msgstr "Abonnés du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Ratings, last {0} days"
-msgstr "Notes, derniers {0} jours"
+msgstr "Notes, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Ratings from {0} to {1}"
@@ -618,7 +618,7 @@ msgstr "Notes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Sales, last {0} days"
-msgstr "Ventes, derniers {0} jours"
+msgstr "Ventes, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Sales from {0} to {1}"
@@ -626,7 +626,7 @@ msgstr "Ventes du {0} au {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs, last {0} days"
-msgstr "Installations, derniers {0} jours"
+msgstr "Installations, {0} derniers jours"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs from {0} to {1}"
@@ -634,7 +634,7 @@ msgstr "Installations du {0} au {1}"
 
 #. L10n: {0} and {1} are integers.
 msgid "<b>{0}</b> in last {1} days"
-msgstr "<b>{0}</b> dans les derniers {1} jours"
+msgstr "<b>{0}</b> dans les {1} derniers jours"
 
 #. L10n: {0} is an integer and {1} and {2} are dates in YYYY-MM-DD format.
 msgid "<b>{0}</b> from {1} to {2}"
@@ -645,7 +645,7 @@ msgid "<b>{0}</b> average in last {1} days"
 msgstr "<b>{0}</b> en moyenne les derniers {1} jours"
 
 msgid "No data available."
-msgstr "Pas de donnée disponible."
+msgstr "Pas de données disponibles."
 
 msgid "Date"
 msgstr "Date"
@@ -663,8 +663,8 @@ msgstr[1] "Définir pour les modules {0} une version maximale de {1} et envoyer 
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] "Adresse électronique de l’auteur du module {2} dont la vérification a échoué."
-msgstr[1] "Adresses électroniques des auteurs des modules {2} dont la vérification a échoué."
+msgstr[0] "Envoyer un courriel à l’auteur du module complémentaire dont la validation a échoué."
+msgstr[1] "Envoyer des courriels aux auteurs des {2} modules dont la vérification a échoué."
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -806,7 +806,7 @@ msgid "Version Notes"
 msgstr "Notes de version"
 
 msgid "Notes for Reviewers"
-msgstr "Notes aux testeurs"
+msgstr "Notes à l’intention des évaluateurs"
 
 msgid "No version notes found"
 msgstr "Pas de notes de version"
@@ -818,7 +818,7 @@ msgid "Review notes found"
 msgstr "Notes de révision trouvées"
 
 msgid "Average Reviews"
-msgstr "Critiques moyennes"
+msgstr "Moyenne des évaluations"
 
 msgid "Number of Reviews"
 msgstr "Nombre de critiques"
@@ -851,7 +851,7 @@ msgid "Reviewer"
 msgstr "Réviseur"
 
 msgid "Status"
-msgstr "Statut"
+msgstr "État"
 
 msgid "All tests passed successfully."
 msgstr "Tous les tests ont été réussis."

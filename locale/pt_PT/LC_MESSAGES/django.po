@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-31 17:09+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 19:36+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2381,26 +2381,14 @@ msgstr "Alterações recentes para %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Alterações recentes aos meus extras"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Os extras para Thunderbird e SeaMonkey são agora listados e mantidos em addons.thunderbird.net. Pode utilizar a mesma conta para atualizar os seus extras no novo site."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "As extensões de legado já não são suportadas no Firefox."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "A partir do Firefox 53, os novos extras neste site só podem ser WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Os extras de legado não são compatíveis com o Firefox 57 ou superior. Utilize um maxVersion de 56.* ou inferior."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Os pacotes de idiomas de legado para o Firefox já não são suportados. Um manifesto de instalação de WebExtensions é necessário. Veja {mdn_link} para mais detalhes."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Os extras para Thunderbird e SeaMonkey são agora listados e mantidos em addons.thunderbird.net. Pode utilizar a mesma conta para atualizar os seus extras no novo site."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Permitimos e encorajamos uma atualização, mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, não poderão instalar um extra de legado."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Não pode atualizar uma extensão WebExtensions com um extra de legado. Os seus utilizadores não poderão utilizar a sua nova versão porque o Firefox não suporta este tipo de atualização."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] O texto no campo \"{field}\" foi marcado como spam."
@@ -5671,12 +5659,15 @@ msgstr "Não pode submeter um extra com um guid que acabe em %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Não pode submeter uma extensão assinada pela Mozilla"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Tipo de ficheiro não suportado, por favor carregue um ficheiro suportado {extensions}."
+
 msgid "Unexpected error."
 msgstr "Erro inesperado."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> no seu install.rdf (%s) não corresponde ao tipo do seu extra no AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "O tipo (%s) não corresponde ao tipo do seu extra no AMO (%s)"
 
 msgid "Back to review"
 msgstr "Voltar à revisão"
@@ -6620,7 +6611,7 @@ msgstr ""
 "Os bloqueios ao seu tema foram libertados com sucesso. Outros revisores podem agora rever os temas libertados. Pode ter de atualizar a página para ver as alterações refletidas na tabela em baixo."
 
 msgid "{addon} :: Abuse Reports"
-msgstr "{addon} :: Relatar abuso"
+msgstr "{addon} :: Relatórios de abuso"
 
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Denúncias de abuso para {addon} e os seus programadores ({num})"
@@ -6660,7 +6651,7 @@ msgid "Last Approval Date"
 msgstr "Data da última aprovação"
 
 msgid "Abuse Reports ({num})"
-msgstr "Denúncias de abuso ({num})"
+msgstr "Relatórios de abuso ({num})"
 
 msgid "Bad User Ratings ({num})"
 msgstr "Más análises de utilizador ({num})"

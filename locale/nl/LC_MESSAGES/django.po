@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-30 15:21+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 14:00+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -2385,28 +2385,16 @@ msgstr "Recente wijzigingen voor %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Recente wijzigingen voor mijn add-ons"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Add-ons voor Thunderbird en SeaMonkey worden nu vermeld en onderhouden op addons.thunderbird.net. Voor het bijwerken van uw add-ons op de nieuwe website kunt u dezelfde account gebruiken."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Verouderde extensies worden in Firefox niet meer ondersteund."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Met ingang van Firefox 53 kunnen nieuwe add-ons op deze website alleen WebExtensions zijn."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Verouderde add-ons zijn niet compatibel met Firefox 57 of hoger. Gebruik een maxVersion van 56.* of lager."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Verouderde taalpakketten voor Firefox worden niet meer ondersteund. Een WebExtensions-installatiemanifest is vereist. Kijk op {mdn_link} voor meer details."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Add-ons voor Thunderbird en SeaMonkey worden nu vermeld en onderhouden op addons.thunderbird.net. Voor het bijwerken van uw add-ons op de nieuwe website kunt u dezelfde account gebruiken."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
 "We staan een upgrade toe en raden dit ook aan, maar u kunt dit proces niet ongedaan maken. Als uw gebruikers de WebExtension eenmaal hebben geïnstalleerd, kunnen ze geen verouderde add-on meer "
 "installeren."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "U kunt geen WebExtensions-add-on bijwerken met een verouderde add-on. Uw gebruikers zouden uw nieuwe versie dan niet kunnen gebruiken, omdat Firefox dit type update niet ondersteunt."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] De tekst in het veld ‘{field}’ is gemarkeerd als spam."
@@ -5666,12 +5654,15 @@ msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Niet-ondersteund bestandstype, upload een ondersteund bestand {extensions}."
+
 msgid "Unexpected error."
 msgstr "Onverwachte fout."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> in uw install.rdf (%s) komt niet overeen met het type van uw add-on op AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "Het type (%s) komt niet overeen met het type van uw add-on op AMO (%s)"
 
 msgid "Back to review"
 msgstr "Terug naar beoordeling"

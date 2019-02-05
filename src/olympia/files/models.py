@@ -654,11 +654,6 @@ class FileValidation(ModelBase):
     def from_json(cls, file, validation):
         if isinstance(validation, six.string_types):
             validation = json.loads(validation)
-        new = cls(file=file, validation=json.dumps(validation),
-                  errors=validation['errors'],
-                  warnings=validation['warnings'],
-                  notices=validation['notices'],
-                  valid=validation['errors'] == 0)
 
         if 'metadata' in validation:
             if (validation['metadata'].get('contains_binary_extension') or
@@ -674,8 +669,13 @@ class FileValidation(ModelBase):
         # currently do not have the ability to track.
         cls.objects.filter(file=file).delete()
 
-        new.save()
-        return new
+        return cls.objects.create(
+            file=file,
+            validation=json.dumps(validation),
+            errors=validation['errors'],
+            warnings=validation['warnings'],
+            notices=validation['notices'],
+            valid=validation['errors'] == 0)
 
     @property
     def processed_validation(self):

@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 15:03+0000\n"
-"Last-Translator: YFdyh000 <yfdyh000@gmail.com>\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 13:35+0000\n"
+"Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -2321,26 +2321,14 @@ msgstr "%s 的近期更改"
 msgid "Recent Changes for My Add-ons"
 msgstr "我的附加组件的近期更改"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "即日起，Thunderbird 与 SeaMonkey 的附加组件将上架于 addons.thunderbird.net 。您可以在该网站上使用相同账号登录更新您的附加组件。"
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Firefox 已不再支持旧式扩展。"
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "从 Firefox 53 开始，新上架至此网站的扩展仅能为 WebExtension。"
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "旧式扩展不兼容 Firefox 57 或更高版本。请将 maxVersion 设为 56.* 或更低。"
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Firefox 旧式语言包不再受支持，语言包必需提供提供 WebExtension 安装信息文件。详见：{mdn_link} 。"
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "即日起，Thunderbird 与 SeaMonkey 的附加组件将上架于 addons.thunderbird.net 。您可以在该网站上使用相同账号登录更新您的附加组件。"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "我们允许和鼓励升级，但您不能逆转此过程。一旦您的用户已安装 WebExtension 版本，他们将不能再安装旧式附加组件。"
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "您不能用一个旧式附加组件更新 WebExtension 附加组件。您的用户将无法使用您的新版本，因为 Firefox 不支持此种更新。"
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}]“{field}”栏中输入的文本已被标记为垃圾留言。"
@@ -5528,12 +5516,15 @@ msgstr "您提交的附加组件不能以 %s 作为 GUID 结尾"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能提交一个 Mozilla 签名的扩展"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "不支持的文件类型，请上传一个支持的 {extensions} 格式文件。"
+
 msgid "Unexpected error."
 msgstr "意外错误。"
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "您的 install.rdf (%s) 中的 <em:type> 与您的附加组件在 AMO (%s) 上的类型不匹配。"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "类型（%s）与您的附加组件在 AMO 上架的类型（%s）不匹配"
 
 msgid "Back to review"
 msgstr "返回审核"

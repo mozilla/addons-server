@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-31 12:08+0000\n"
-"Last-Translator: Rok Žerdin <rok.zerdin1990@gmail.com>\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-02 22:22+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -2414,26 +2414,14 @@ msgstr "Nedavne spremembe za %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedavne spremembe za Moje dodatke"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Dodatki za Thunderbird in SeaMonkey so sedaj objavljeni in vzdrževani na addons.thunderbird.net. Za posodabljanje dodatkov na novi strani lahko uporabite isti račun."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Stare razširitve niso več podprte v Firefoxu."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Dodatki za Firefox 53 in novejše so lahko samo WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Stari dodatki niso združljivi s Firefoxom 57 in novejšimi. Uporabite maxVersion 56.* ali nižjo."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Starejši jezikovni paketi za Firefox niso več podprti. Zahtevan je namestitveni manifest WebExtensions. Za podrobnosti glejte {mdn_link}."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Dodatki za Thunderbird in SeaMonkey so sedaj objavljeni in vzdrževani na addons.thunderbird.net. Za posodabljanje dodatkov na novi strani lahko uporabite isti račun."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Nadgradnjo omogočamo in spodbujamo, vendar procesa ne morete povrniti. Ko bodo ljudje namestili razširitev WebExtension, ne bodo več mogli namestiti stare različice."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Dodatka WebExtensions ne morete posodobiti s starejšim dodatkom. Uporabniki vašega dodatka ne bodo mogli uporabljati nove različice, ker Firefox ne podpira te vrste posodabljanja."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Besedilo v polju \"{field}\" je bilo označeno kot neželena vsebina."
@@ -5589,9 +5577,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Poenostavite zavihke {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Upravljajte odprte zavihke v urejeni stranski vrstici."
+msgstr "Organizirajte svojo množico odprtih zavihkov v navpični stranski vrstici."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5713,12 +5700,15 @@ msgstr "Ne morete oddati dodatka, katerega guid se končuje z %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ne morete poslati Mozilline podpisane razširitve"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Nepodprta vrsta datoteke, naložite podprto vrsto datoteke {extensions}."
+
 msgid "Unexpected error."
 msgstr "Nepričakovana napaka."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> v vaši datoteki install.rdf (%s) se ne sklada z vrsto vašega dodatka na AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "Vrsta (%s) se ne sklada z vrsto vašega dodatka na AMO (%s)"
 
 msgid "Back to review"
 msgstr "Nazaj na pregled"

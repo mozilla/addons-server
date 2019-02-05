@@ -9,7 +9,6 @@ import six
 import olympia.core.logger
 
 from olympia import amo
-from olympia.addons.tasks import index_addons
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import extract_colors_from_image, pngcrush_image
@@ -64,6 +63,10 @@ def _build_static_theme_preview_context(theme_manifest, file_):
 @task
 @use_primary_db
 def generate_static_theme_preview(theme_manifest, version_pk):
+    # Make sure we import `index_addons` late in the game to avoid having
+    # a "copy" of it here that won't get mocked by our ESTestCase
+    from olympia.addons.tasks import index_addons
+
     tmpl = loader.get_template(
         'devhub/addons/includes/static_theme_preview_svg.xml')
     file_ = File.objects.filter(version_id=version_pk).first()
@@ -109,6 +112,7 @@ def delete_preview_files(pk, **kw):
 
 
 @task
+@use_primary_db
 def extract_version_to_git(version_id, author_id=None):
     """Extract a `File` into our git storage backend."""
     version = Version.objects.get(pk=version_id)
@@ -134,3 +138,27 @@ def extract_version_to_git(version_id, author_id=None):
         log.info(
             'Extracted source files from {version} into {git_path}'.format(
                 version=version_id, git_path=repo.git_repository_path))
+
+
+@task
+@use_primary_db
+def extract_version_source_to_git(version_id, author_id=None):
+    version = Version.objects.get(pk=version_id)
+    if not version.source:
+        log.info('Tried to extract sources of {version_id} but there none.')
+        return
+
+    if author_id is not None:
+        author = UserProfile.objects.get(pk=author_id)
+    else:
+        author = None
+
+    log.info('Extracting {version_id} source into git backend'.format(
+        version_id=version_id))
+
+    repo = AddonGitRepository.extract_and_commit_source_from_version(
+        version=version, author=author)
+
+    log.info(
+        'Extracted source files from {version} into {git_path}'.format(
+            version=version_id, git_path=repo.git_repository_path))

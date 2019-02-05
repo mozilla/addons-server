@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
 "PO-Revision-Date: 2019-01-04 22:24+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -2382,25 +2382,13 @@ msgstr "Nedávne zmeny pre %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nedávne zmeny pre moje doplmky"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Doplnky pre Thunderbird a SeaMonkey sú odteraz na samostatnej stránke addons.thunderbird.net. Pre aktualizáciu svojho doplnku môžete použiť svoj terajší účet."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Zastarané rozšírenia už nie sú vo Firefoxe podporované."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Od Firefoxu 53 môžu byť nové doplnky na tejto stránke len typu WebExtensions."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Zastarané doplnky nie sú kompatibilné s Firefoxom 57 a novším. Nastavte atribút maxVersion na 56.* alebo nižší."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr ""
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Doplnky pre Thunderbird a SeaMonkey sú odteraz na samostatnej stránke addons.thunderbird.net. Pre aktualizáciu svojho doplnku môžete použiť svoj terajší účet."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
 msgstr ""
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
@@ -5631,11 +5619,15 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemôžete nahrať rozšírenie podpísané Mozillou"
 
+#, fuzzy
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Nepodporovaný typ súboru. Nahrajte prosím súbor s archívom pre {extensions}."
+
 msgid "Unexpected error."
 msgstr ""
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
 
 msgid "Back to review"

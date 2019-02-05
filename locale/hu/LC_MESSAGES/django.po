@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 15:56+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 12:51+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -2393,28 +2393,16 @@ msgstr "%s legutóbbi változásai"
 msgid "Recent Changes for My Add-ons"
 msgstr "Saját kiegészítők legutóbbi változásai"
 
+msgid "Legacy extensions are no longer supported in Firefox."
+msgstr "A hagyományos bővítményeket már nem támogatja a Firefox."
+
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
 "A Thunderbird és SeaMonkey kiegészítők mostantól az addons.thunderbird.net oldalon szerepelnek és vannak karban tartva. Ugyanazt a felhasználói fiókot használhatja a kiegészítők frissítésére az új "
 "oldalon is."
 
-msgid "Legacy extensions are no longer supported in Firefox."
-msgstr "A hagyományos bővítményeket már nem támogatja a Firefox."
-
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "A Firefox 53-tól kezdve, az oldalon lévő új kiegészítők csak WebExtensionök lehetnek."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Az örökölt kiegészítők nem kompatibilisek a Firefox 57-tel, vagy későbbi verziókkal. Használjon 56.* vagy alacsonyabb maxVersion értéket."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Az örökölt Firefox nyelvi csomagok már nem támogatottak. Egy WebExtension telepítési leírófájl szükséges. További részletekért lásd: {mdn_link}."
-
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Engedélyezzük és támogatjuk a frissítést, de a folyamat nem fordítható vissza. Ha a felhasználók telepítik a WebExtensiont, akkor többé nem telepíthetik a hagyományos kiegészítőt."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Nem frissítheti a WebExtension kiegészítőket hagyományos kiegészítőkkel. A felhasználók nem fogják tudni használni az új verzióját, mert a Firefox nem támogatja az ilyen frissítéseket."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] A(z) „{field}” mező szövege spamként lett megjelölve."
@@ -5677,12 +5665,15 @@ msgstr "Nem nyújthat be %s GUID-dal végződő kiegészítőt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nem küldhet be Mozilla által aláírt kiegészítőt"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Nem támogatott fájlformátum, töltsön fel egy támogatott fájlt: {extensions}."
+
 msgid "Unexpected error."
 msgstr "Váratlan hiba."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "az install.rdf fájlban lévő <em:type> (%s) nem egyezik a kiegészítő típusával az AMO-n (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "A típus (%s) nem egyezik meg a kiegészítő típusával az AMO-ban (%s)"
 
 msgid "Back to review"
 msgstr "Vissza az értékeléshez"

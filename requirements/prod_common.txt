@@ -112,9 +112,9 @@ PyJWT==1.7.1 \
 SQLAlchemy==0.7.5 \
     --hash=sha256:7e31190a15753694dcb6f4399ce7d02091b0bccf825272d6254e56144debfd18 # pyup: ==0.7.5
 # amqp is required by kombu
-amqp==2.4.0 \
-    --hash=sha256:c3d7126bfbc640d076a01f1f4f6e609c0e4348508150c1f61336b0d83c738d2b \
-    --hash=sha256:9f181e4aef6562e6f9f45660578fc1556150ca06e836ecb9e733e6ea10b48464
+amqp==2.4.1 \
+    --hash=sha256:16056c952e8029ce8db097edf0d7c2fe2ba9de15d30ba08aee2c5221273d8e23 \
+    --hash=sha256:6816eed27521293ee03aa9ace300a07215b11fee4e845588a9b863a7ba30addb
 # anyjson is required by kombu
 anyjson==0.3.3 \
     --hash=sha256:37812d863c9ad3e35c0734c42e0bf0320ce8c3bed82cd20ad54cb34d158157ba
@@ -128,9 +128,9 @@ billiard==3.5.0.5 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.9.86 \
-    --hash=sha256:d1338582bc58741f54bd6b43488de6097a82ea45cebed0a3fd936981eadbb3a5 \
-    --hash=sha256:63cd957ba663f5c10ff48ed904575eaa701314f79f18dbc59bd050311cd5f809
+boto3==1.9.87 \
+    --hash=sha256:50d8bcf0b25719963cd6aa4ee1e95a24d642a78427fe90a5cdc5a32e5e05fab3 \
+    --hash=sha256:9ccd57a0884d8d827a2e0107f1d38677efa47fb0892e1bfab331333c461d8898
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
@@ -216,8 +216,8 @@ dockerflow==2018.4.0 \
 drf-nested-routers==0.91 \
     --hash=sha256:60c1e1f5cc801e757d26a8138e61c44419ef800c213c3640c5b6138e77d46762 \
     --hash=sha256:46e5c3abc15c782cafafd7d75028e8f9121bbc6228e3599bbb48a3daa4585034
-easy-thumbnails==2.5 \
-    --hash=sha256:e244d1f26027fc32c6ca60ffb0169a39099446f614b0433e907a2588ae7d9b95
+easy-thumbnails==2.6 \
+    --hash=sha256:23fbe3415c93b2369ece8ebdfb5faa05540943bef8b941b3118ce769ba95e275
 # elasticsearch is required by elasticsearch-dsl
 elasticsearch==5.5.3 \
     --hash=sha256:658380fd60bdaf746fef12958f0abc49063218ce93ee1ae4ca1fe6291c896433 \

@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-01-29 13:14+0000\n"
-"PO-Revision-Date: 2019-01-29 17:17+0000\n"
+"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"PO-Revision-Date: 2019-02-01 22:15+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -2407,26 +2407,14 @@ msgstr "Nejnowše změny za %s"
 msgid "Recent Changes for My Add-ons"
 msgstr "Nejnowše změny za móje dodanki"
 
-msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
-msgstr "Dodanki za Thunderbird a SeaMonkey se něnto na addons.thunderbird.net nalicyju a wówarduju. Móžośo to samske konto wužywaś, aby swóje dodanki na nowem sedle aktualizěrował."
-
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr "Zestarjone rozšyrjenja se wěcej w Firefox njepódpěraju."
 
-msgid "Starting with Firefox 53, new add-ons on this site can only be WebExtensions."
-msgstr "Wót Firefox 53 mógu nowe rozšyrjenja na toś tom sedle jano WebExtensions byś."
-
-msgid "Legacy add-ons are not compatible with Firefox 57 or higher. Use a maxVersion of 56.* or lower."
-msgstr "Zestarjone dodanki z Firefox 57 abo nowšymi kompatibelne njejsu. Wužywajśo maxVersion 56.* abo niše."
-
-msgid "Legacy language packs for Firefox are no longer supported. A WebExtensions install manifest is required. See {mdn_link} for more details."
-msgstr "Rěcne pakśiki starego typa se wěcej njepódpěraju. Instalěrowański manifest WebExtensions jo trěbny. Glejśo {mdn_link} za dalšne drobnostki."
+msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
+msgstr "Dodanki za Thunderbird a SeaMonkey se něnto na addons.thunderbird.net nalicyju a wówarduju. Móžośo to samske konto wužywaś, aby swóje dodanki na nowem sedle aktualizěrował."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr "Dowólujomy a pśiraźujomy aktualizaciju, ale njamóžośo toś ten proces pśewobrośiś. Gaž waše wužywarje su WebExtension zainstalěrowali, njamógu wěcej dodank starego typa instalěrowaś."
-
-msgid "You cannot update a WebExtensions add-on with a legacy add-on. Your users would not be able to use your new version because Firefox does not support this type of update."
-msgstr "Njamóžośo dodank typa WebExtensions pśez dodank starego typa aktualizěrowaś. Waše wužywarje njemógli wašu nowu wersiju wužywaś, dokulaž Firefox njepódpěra toś ten typ aktualizacije."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Tekst w \"{field}\" pólu jo se markěrował ako spam."
@@ -5687,12 +5675,15 @@ msgstr "Njamóžośo žeden dodank z GUID zapódaś, kótaryž kóńcy se na %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njamóžośo signěrowane rozšyrjenje Mozilla zapódaś"
 
+msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo pódpěranu dataju {extensions}."
+
 msgid "Unexpected error."
 msgstr "Njewócakana zmólka."
 
 #, python-format
-msgid "<em:type> in your install.rdf (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> we wašej dataji install.rdf (%s) njewótpowědujo typoju wašogo dodanka na AMO (%s)"
+msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
+msgstr "Typ (%s) typoju wašogo dodanka na AMO (%s) njewótpowědujo"
 
 msgid "Back to review"
 msgstr "Slědk k pśeglědanjeju"
