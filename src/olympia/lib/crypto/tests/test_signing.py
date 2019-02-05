@@ -175,8 +175,17 @@ class TestSigning(TestCase):
         signing.sign_file(self.file_)
         self.assert_signed()
 
-    # FIXME: need to add a test with a unicode filename inside the package
-    # itself, and then check the signature.
+    def test_sign_file_with_utf8_filename_inside_package(self):
+        fpath = 'src/olympia/files/fixtures/files/unicode-filenames.xpi'
+        with amo.tests.copy_file(fpath, self.file_.file_path, overwrite=True):
+            self.assert_not_signed()
+            signing.sign_file(self.file_)
+            self.assert_signed()
+
+            with zipfile.ZipFile(self.file_.file_path, mode='r') as zf:
+                with zf.open('META-INF/manifest.mf', 'r') as manifest_mf:
+                    manifest_contents = manifest_mf.read().decode('utf-8')
+                    assert u'\u1109\u1161\u11a9' in manifest_contents
 
     def test_no_sign_missing_file(self):
         os.unlink(self.file_.file_path)
