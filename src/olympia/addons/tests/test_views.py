@@ -4005,4 +4005,3 @@ class TestAddonRecommendationView(ESTestCase):
                 assert len(data['results']) == 4
                 assert search_mock.call_count == 1
                 assert count_mock.call_count == 0
-
