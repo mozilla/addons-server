@@ -26,7 +26,7 @@ from olympia.access import acl
 from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
-from olympia.core.languages import LANGUAGE_MAPPING
+from olympia.core.languages import ALL_LANGUAGES
 from olympia.lib.cache import memoize
 from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
@@ -292,7 +292,7 @@ def process_locales(series):
     """Convert locale codes to pretty names, skip any unknown locales."""
     languages = {
         key.lower(): value['native']
-        for key, value in LANGUAGE_MAPPING.items()}
+        for key, value in ALL_LANGUAGES.items()}
 
     for row in series:
         if 'data' in row:
