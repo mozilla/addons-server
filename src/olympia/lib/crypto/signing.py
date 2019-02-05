@@ -64,7 +64,7 @@ def autograph_sign_file(file_obj):
     conf = settings.AUTOGRAPH_CONFIG
 
     with storage.open(file_obj.current_file_path) as fobj:
-        input_data = b64encode(fobj.read())
+        input_data = force_text(b64encode(fobj.read()))
 
     signing_request = [{
         'input': input_data,
