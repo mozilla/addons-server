@@ -112,6 +112,7 @@ def delete_preview_files(pk, **kw):
 
 
 @task
+@use_primary_db
 def extract_version_to_git(version_id, author_id=None):
     """Extract a `File` into our git storage backend."""
     version = Version.objects.get(pk=version_id)
@@ -140,6 +141,7 @@ def extract_version_to_git(version_id, author_id=None):
 
 
 @task
+@use_primary_db
 def extract_version_source_to_git(version_id, author_id=None):
     version = Version.objects.get(pk=version_id)
     if not version.source:
