@@ -14,7 +14,7 @@ class NotificationsSelectMultiple(forms.CheckboxSelectMultiple):
     def __init__(self, **kwargs):
         super(self.__class__, self).__init__(**kwargs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         str_values = [int(v) for v in value] or []
         final_attrs = self.build_attrs(attrs, {'name': name})
         groups = {}
@@ -63,7 +63,7 @@ class RequiredInputMixin(object):
 
     required_attrs = {'required': 'required', 'aria-required': 'true'}
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         attrs = attrs or {}
         attrs.update(self.required_attrs)
         return super(RequiredInputMixin, self).render(name, value, attrs)
