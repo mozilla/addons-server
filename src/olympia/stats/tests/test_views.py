@@ -307,7 +307,7 @@ class TestCSVs(ESStatsTest):
         assert response.status_code == 200
         self.csv_eq(
             response,
-            u"""date,count,English (US) (en-us),Ελληνικά (el),Espa\xf1ol (de M\xe9xico) (es-mx)
+            u"""date,count,English (US) (en-us),Espa\xf1ol (de M\xe9xico) (es-mx),Ελληνικά (el)
                2009-06-02,1500,300,400,400
                2009-06-01,1000,300,400,400""")  # noqa
 
@@ -490,7 +490,7 @@ class TestResponses(ESStatsTest):
             'stats.locales_series', group='day', format='csv')
         assert response.status_code == 200
         self.csv_eq(response,
-            u"""date,count,English (US) (en-us),Ελληνικά (el),Espa\xf1ol (de M\xe9xico) (es-mx)
+            u"""date,count,English (US) (en-us),Espa\xf1ol (de M\xe9xico) (es-mx),Ελληνικά (el)
                2009-06-02,1500,300,400,400
                2009-06-01,1000,300,400,400""")  # noqa
 

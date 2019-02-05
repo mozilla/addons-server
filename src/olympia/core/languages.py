@@ -298,10 +298,6 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'english': u'Welsh',
         'native': u'Cymraeg'
     },
-    u'dbg': {
-        'english': u'Debug Robot',
-        'native': u'\u1e12\u1e17\u0180\u016d\u0260 \u0158\u01ff\u0180\u01ff\u0167'  # noqa
-    },
     u'de-AT': {
         'english': u'German (Austria)',
         'native': u'Deutsch (\xd6sterreich)'
