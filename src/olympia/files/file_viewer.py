@@ -327,8 +327,9 @@ class FileViewer(object):
         result = OrderedDict()
 
         for path in get_all_files(self.dest):
-            filename = force_text(os.path.basename(path), errors='replace')
-            short = force_text(path[len(self.dest) + 1:], errors='replace')
+            path = force_text(path, errors='replace')
+            filename = os.path.basename(path)
+            short = path[len(self.dest) + 1:]
             mime, encoding = mimetypes.guess_type(filename)
             directory = os.path.isdir(path)
 
