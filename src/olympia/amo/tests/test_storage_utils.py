@@ -101,22 +101,22 @@ class TestFileOps(BaseTestCase):
         return src
 
     def test_copy(self):
-        src = self.newfile('src.txt', '<contents>')
+        src = self.newfile('src.txt', u'<contents>')
         dest = self.path('somedir/dest.txt')
         copy_stored_file(src, dest)
-        assert self.contents(dest) == '<contents>'
+        assert self.contents(dest) == b'<contents>'
 
     def test_self_copy(self):
-        src = self.newfile('src.txt', '<contents>')
+        src = self.newfile('src.txt', u'<contents>')
         dest = self.path('src.txt')
         copy_stored_file(src, dest)
-        assert self.contents(dest) == '<contents>'
+        assert self.contents(dest) == b'<contents>'
 
     def test_move(self):
-        src = self.newfile('src.txt', '<contents>')
+        src = self.newfile('src.txt', u'<contents>')
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest)
-        assert self.contents(dest) == '<contents>'
+        assert self.contents(dest) == b'<contents>'
         assert not storage.exists(src)
 
     def test_non_ascii(self):
@@ -124,17 +124,17 @@ class TestFileOps(BaseTestCase):
                            u'ivan kristi\u0107'.encode('utf8'))
         dest = self.path(u'somedir/kristi\u0107.txt')
         copy_stored_file(src, dest)
-        assert self.contents(dest) == 'ivan kristi\xc4\x87'
+        assert self.contents(dest) == b'ivan kristi\xc4\x87'
 
     def test_copy_chunking(self):
-        src = self.newfile('src.txt', '<contents>')
+        src = self.newfile('src.txt', u'<contents>')
         dest = self.path('somedir/dest.txt')
         copy_stored_file(src, dest, chunk_size=1)
-        assert self.contents(dest) == '<contents>'
+        assert self.contents(dest) == b'<contents>'
 
     def test_move_chunking(self):
-        src = self.newfile('src.txt', '<contents>')
+        src = self.newfile('src.txt', u'<contents>')
         dest = self.path('somedir/dest.txt')
         move_stored_file(src, dest, chunk_size=1)
-        assert self.contents(dest) == '<contents>'
+        assert self.contents(dest) == b'<contents>'
         assert not storage.exists(src)
