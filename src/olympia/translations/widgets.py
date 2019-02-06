@@ -30,7 +30,7 @@ class TranslationTextInput(forms.widgets.TextInput):
 
 class TranslationTextarea(forms.widgets.Textarea):
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if isinstance(value, six.integer_types):
             value = get_string(value)
         return super(TranslationTextarea, self).render(name, value, attrs)
@@ -60,7 +60,7 @@ class TransMulti(forms.widgets.MultiWidget):
         super(TransMulti, self).__init__(
             widgets=[self.widget(attrs=attrs)], attrs=attrs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         self.name = name
         value = self.decompress(value)
         if value:
@@ -156,7 +156,7 @@ class _TransWidget(object):
     input name.
     """
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         from .fields import switch
 
         if attrs is None:
