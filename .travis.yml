@@ -9,7 +9,7 @@ jobs:
   allow_failures:
     - stage: python3
   include:
-    - { stage: python2, env: TOXENV=codestyle }
+    - { stage: python2, env: TOXENV=py2-codestyle }
     - { stage: python2, env: TOXENV=docs }
     - { stage: python2, env: TOXENV=assets }
     - { stage: python2, env: TOXENV=es }
@@ -19,7 +19,7 @@ jobs:
     - { stage: python2, env: TOXENV=accounts-users-and-ratings }
     - { stage: python2, env: TOXENV=amo-lib-locales-and-signing }
     - { stage: python2, env: TOXENV=main }
-    - { stage: python3working, python: 3.6, env: TOXENV=codestyle}
+    - { stage: python3working, python: 3.6, env: TOXENV=py3-codestyle}
     - { stage: python3working, python: 3.6, env: TOXENV=docs }
     - { stage: python3working, python: 3.6, env: TOXENV=assets }
     - { stage: python3working, python: 3.6, env: TOXENV=es }
