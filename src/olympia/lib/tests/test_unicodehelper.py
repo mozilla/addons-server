@@ -8,11 +8,9 @@ COMPARISON = u'täst'
 
 def _do_test(path):
     """Performs a test on a JS file"""
-    path = os.path.join(
-        os.path.abspath(os.path.dirname(__file__)),
-        path)
+    path = os.path.join(os.path.abspath(os.path.dirname(__file__)), path)
 
-    with open(path) as fobj:
+    with open(path, 'rb') as fobj:
         text = fobj.read()
 
     utext = unicodehelper.decode(text)

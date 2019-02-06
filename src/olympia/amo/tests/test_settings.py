@@ -43,7 +43,7 @@ def test_raven_release_config():
 
     # Cleanup for tests
     if os.path.exists(version_json):
-        with open(version_json, 'rb') as fobj:
+        with open(version_json) as fobj:
             original = fobj.read()
 
         os.remove(version_json)
@@ -52,7 +52,7 @@ def test_raven_release_config():
     assert len(get_raven_release()) == 40
 
     # It fetches `version` from the version.json
-    with open(version_json, 'wb') as fobj:
+    with open(version_json, 'w') as fobj:
         fobj.write(json.dumps({
             'version': '2018.07.19'
         }))
@@ -62,7 +62,7 @@ def test_raven_release_config():
     os.remove(version_json)
 
     # Or tries to get the commit from version.json alternatively
-    with open(version_json, 'wb') as fobj:
+    with open(version_json, 'w') as fobj:
         fobj.write(json.dumps({
             'commit': '1111111'
         }))
@@ -70,11 +70,11 @@ def test_raven_release_config():
     assert get_raven_release() == '1111111'
 
     if original:
-        with open(version_json, 'wb') as fobj:
+        with open(version_json, 'w') as fobj:
             fobj.write(original)
 
     # Usual state of things, version is empty but commit is set
-    with open(version_json, 'wb') as fobj:
+    with open(version_json, 'w') as fobj:
         fobj.write(json.dumps({
             'version': '',
             'commit': '1111111'
@@ -83,5 +83,5 @@ def test_raven_release_config():
     assert get_raven_release() == '1111111'
 
     if original:
-        with open(version_json, 'wb') as fobj:
+        with open(version_json, 'w') as fobj:
             fobj.write(original)

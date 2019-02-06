@@ -82,7 +82,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
         if url is None:
             url = self.url(addon, version)
 
-        with open(filename) as upload:
+        with open(filename, 'rb') as upload:
             data = {'upload': upload}
             if method == 'POST' and version:
                 data['version'] = version
@@ -490,7 +490,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         validation_response = self.get(self.url(self.guid, '3.0'))
         assert validation_response.status_code == 200
-        assert 'spam' not in validation_response.content
+        assert b'spam' not in validation_response.content
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=False)
@@ -513,7 +513,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         validation_response = self.get(self.url(self.guid, '3.0'))
         assert validation_response.status_code == 200
-        assert 'spam' not in validation_response.content
+        assert b'spam' not in validation_response.content
 
     @override_switch('akismet-spam-check', active=True)
     @override_switch('akismet-addon-action', active=True)
@@ -536,8 +536,8 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
         validation_response = self.get(self.url(self.guid, '3.0'))
         assert validation_response.status_code == 200
-        assert 'spam' in validation_response.content
-        data = json.loads(validation_response.content)
+        assert b'spam' in validation_response.content
+        data = json.loads(validation_response.content.decode('utf-8'))
         assert data['validation_results']['messages'][0]['id'] == [
             u'validation', u'messages', u'akismet_is_spam_name'
         ]
