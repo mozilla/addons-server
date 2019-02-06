@@ -201,23 +201,24 @@ class TestCacheNamespaces(BaseTestCase):
         super(TestCacheNamespaces, self).setUp()
         self.namespace = 'redis-is-dead'
 
-    @mock.patch('olympia.amo.utils.epoch')
+    @mock.patch('olympia.amo.utils.utc_millesecs_from_epoch')
     def test_no_preexisting_key(self, epoch_mock):
-        epoch_mock.return_value = 123456
-        assert cache_ns_key(self.namespace) == '123456:ns:%s' % self.namespace
+        epoch_mock.return_value = 1549383758398
+        assert cache_ns_key(self.namespace) == (
+            '1549383758398:ns:%s' % self.namespace)
 
-    @mock.patch('olympia.amo.utils.epoch')
+    @mock.patch('olympia.amo.utils.utc_millesecs_from_epoch')
     def test_no_preexisting_key_incr(self, epoch_mock):
-        epoch_mock.return_value = 123456
+        epoch_mock.return_value = 1549383758398
         assert cache_ns_key(self.namespace, increment=True) == (
-            '123456:ns:%s' % self.namespace)
+            '1549383758398:ns:%s' % self.namespace)
 
-    @mock.patch('olympia.amo.utils.epoch')
+    @mock.patch('olympia.amo.utils.utc_millesecs_from_epoch')
     def test_key_incr(self, epoch_mock):
-        epoch_mock.return_value = 123456
-        cache_ns_key(self.namespace)  # Sets ns to 123456
-        ns_key = cache_ns_key(self.namespace, increment=True)
-        expected = '123457:ns:%s' % self.namespace
+        epoch_mock.return_value = 1549383758398
+        cache_ns_key(self.namespace)  # Sets ns to 1549383758398
+        ns_key = cache_ns_key(self.namespace, increment=True)  # Increments it.
+        expected = '1549383758399:ns:%s' % self.namespace
         assert ns_key == expected
         assert cache_ns_key(self.namespace) == expected
 
