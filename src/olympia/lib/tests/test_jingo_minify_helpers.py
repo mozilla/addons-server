@@ -4,6 +4,7 @@ from django.conf import settings
 from django.test.utils import override_settings
 
 import mock
+import six
 
 from olympia.amo.utils import from_string
 
@@ -226,7 +227,7 @@ def test_css(getmtime, time):
     'css': {'compiled': ['css/impala/buttons.less']}})
 @mock.patch('olympia.lib.jingo_minify_helpers.os.path.getmtime')
 @mock.patch('olympia.lib.jingo_minify_helpers.subprocess')
-@mock.patch('__builtin__.open', spec=True)
+@mock.patch('%s.open' % ('__builtin__' if six.PY2 else 'builtins'), spec=True)
 def test_compiled_css(open_mock, subprocess_mock, getmtime_mock):
     getmtime_mock.side_effect = [
         # The first call is for the source
