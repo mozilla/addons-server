@@ -64,6 +64,12 @@ jquery-ui/ui/widgets/autocomplete.js \
 jquery-ui/ui/widgets/datepicker.js \
 jquery-ui/ui/widgets/sortable.js
 
+FLAKE8 := -r requirements/flake8.txt
+ifeq ($(PYTHON_VERSION_MAJOR), 2)
+	FLAKE8 += -r requirements/flake8_py2.txt
+endif
+
+
 help_redirect:
 	@$(MAKE) help --no-print-directory
 
@@ -115,8 +121,8 @@ install_python_test_dependencies:
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${PYTHON_VERSION_MAJOR}.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
-install_python_dev_dependencies: install_python_test_dependencies
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/flake8.txt
+install_python_dev_dependencies:
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w $(FLAKE8)
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
