@@ -49,7 +49,7 @@ class TestUploadValidation(ValidatorTestCase, BaseUploadTest):
 
     def test_upload_processed_validation_error(self):
         addon_file = open(
-            'src/olympia/devhub/tests/addons/invalid_webextension.xpi')
+            'src/olympia/devhub/tests/addons/invalid_webextension.xpi', 'rb')
         response = self.client.post(reverse('devhub.upload'),
                                     {'name': 'addon.xpi',
                                      'upload': addon_file})
@@ -119,8 +119,8 @@ class TestFileValidation(TestCase):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file_validation = FileValidation.objects.get(pk=1)
         self.file = self.file_validation.file
-        with storage.open(self.file.file_path, 'w') as f:
-            f.write('<pretend this is an xpi>\n')
+        with storage.open(self.file.file_path, 'wb') as f:
+            f.write(b'<pretend this is an xpi>\n')
         self.addon = self.file.version.addon
         args = [self.addon.slug, self.file.id]
         self.url = reverse('devhub.file_validation', args=args)
@@ -229,7 +229,7 @@ class TestValidateAddon(TestCase):
         response = self.client.get(reverse('devhub.validate_addon'))
         assert response.status_code == 200
 
-        assert 'this tool only works with legacy' not in response.content
+        assert b'this tool only works with legacy' not in response.content
 
         doc = pq(response.content)
         assert doc('#upload-addon').attr('data-upload-url') == (
@@ -246,13 +246,13 @@ class TestValidateAddon(TestCase):
 
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
-        with open(fpath) as file_:
+        with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=(upload.uuid.hex,)))
-        assert 'Validation Results for webextension_no_id' in response.content
+        assert b'Validation Results for webextension_no_id' in response.content
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_upload_listed_addon(self, validate_mock):
@@ -279,7 +279,7 @@ class TestValidateAddon(TestCase):
 
         fpath = 'src/olympia/files/fixtures/files/webextension_no_id.xpi'
 
-        with open(fpath) as file_:
+        with open(fpath, 'rb') as file_:
             self.client.post(url, {'upload': file_})
 
         assert (
@@ -338,7 +338,7 @@ class TestUploadURLs(TestCase):
             'src/olympia/files/fixtures/files/'
             'webextension_validation_error.zip')
 
-        with open(fpath) as file_:
+        with open(fpath, 'rb') as file_:
             resp = self.client.post(reverse(view, kwargs=kw),
                                     {'upload': file_})
             assert resp.status_code == 302
@@ -391,9 +391,9 @@ class TestValidateFile(BaseUploadTest):
         self.user = UserProfile.objects.get(email='del@icio.us')
         self.file = File.objects.get(pk=100456)
         # Move the file into place as if it were a real file
-        with storage.open(self.file.file_path, 'w') as dest:
+        with storage.open(self.file.file_path, 'wb') as dest:
             fpath = self.file_fixture_path('webextension_validation_error.zip')
-            shutil.copyfileobj(open(fpath), dest)
+            shutil.copyfileobj(open(fpath, 'rb'), dest)
         self.addon = self.file.version.addon
 
     def tearDown(self):
@@ -528,7 +528,7 @@ class TestValidateFile(BaseUploadTest):
 
     def test_opensearch_validation(self):
         addon_file = open(
-            'src/olympia/files/fixtures/files/opensearch/sp_no_url.xml')
+            'src/olympia/files/fixtures/files/opensearch/sp_no_url.xml', 'rb')
         response = self.client.post(
             reverse('devhub.upload'),
             {'name': 'sp_no_url.xml', 'upload': addon_file})

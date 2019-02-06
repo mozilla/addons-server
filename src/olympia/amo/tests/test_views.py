@@ -332,10 +332,10 @@ class TestOtherStuff(TestCase):
         self.assertCloseToNow(response['Expires'],
                               now=datetime.now() + timedelta(days=365))
 
-        en = self.client.get(reverse('jsi18n')).content
+        en = self.client.get(reverse('jsi18n')).content.decode('utf-8')
 
         with self.activate('fr'):
-            fr = self.client.get(reverse('jsi18n')).content
+            fr = self.client.get(reverse('jsi18n')).content.decode('utf-8')
 
         assert en != fr
 
@@ -424,7 +424,7 @@ class TestRobots(TestCase):
         url = reverse('collections.list')
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
-        assert 'Disallow: %s' % url in response.content
+        assert 'Disallow: %s' % url in response.content.decode('utf-8')
 
     @override_settings(ENGAGE_ROBOTS=True)
     def test_allow_mozilla_collections(self):
@@ -433,7 +433,7 @@ class TestRobots(TestCase):
                              settings.TASK_USER_ID)
         response = self.client.get('/robots.txt')
         assert response.status_code == 200
-        assert 'Allow: {}'.format(url) in response.content
+        assert 'Allow: {}'.format(url) in response.content.decode('utf-8')
 
 
 class TestAtomicRequests(WithDynamicEndpointsAndTransactions):

@@ -66,8 +66,10 @@ def test_locale_display_name():
         actual = locale_display_name(locale)
         assert actual == (english, native)
 
-    check('el', 'Greek', u'Ελληνικά')
-    check('el-XX', 'Greek', u'Ελληνικά')
+    check('el', u'Greek', u'Ελληνικά')
+    check('el-XX', u'Greek', u'Ελληνικά')
+    check('wo', u'Wolof', u'Wolof')
+    check('es-MX', u'Spanish', u'Espa\xf1ol')
     pytest.raises(KeyError, check, 'fake-lang', '', '')
 
 

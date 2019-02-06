@@ -307,9 +307,9 @@ class TestCSVs(ESStatsTest):
         assert response.status_code == 200
         self.csv_eq(
             response,
-            u"""date,count,English (US) (en-us),Ελληνικά (el)
-               2009-06-02,1500,300,400
-               2009-06-01,1000,300,400""")
+            u"""date,count,English (US) (en-us),Espa\xf1ol (de M\xe9xico) (es-mx),Ελληνικά (el)
+               2009-06-02,1500,300,400,400
+               2009-06-01,1000,300,400,400""")  # noqa
 
     def test_statuses_series(self):
         response = self.get_view_response('stats.statuses_series',
@@ -469,6 +469,7 @@ class TestResponses(ESStatsTest):
                 "end": "2009-06-02",
                 "data": {
                     u"Ελληνικά (el)": 400,
+                    u'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
                     u"English (US) (en-us)": 300
                 }
             },
@@ -478,18 +479,20 @@ class TestResponses(ESStatsTest):
                 "end": "2009-06-01",
                 "data": {
                     u"Ελληνικά (el)": 400,
+                    u'Espa\xf1ol (de M\xe9xico) (es-mx)': 400,
                     u"English (US) (en-us)": 300
                 }
-            }
+            },
         ])
 
     def test_usage_by_locale_csv(self):
         response = self.get_view_response(
             'stats.locales_series', group='day', format='csv')
         assert response.status_code == 200
-        self.csv_eq(response, """date,count,English (US) (en-us),Ελληνικά (el)
-                                 2009-06-02,1500,300,400
-                                 2009-06-01,1000,300,400""")
+        self.csv_eq(response,
+            u"""date,count,English (US) (en-us),Espa\xf1ol (de M\xe9xico) (es-mx),Ελληνικά (el)
+               2009-06-02,1500,300,400,400
+               2009-06-01,1000,300,400,400""")  # noqa
 
     def test_usage_by_os_json(self):
         response = self.get_view_response(

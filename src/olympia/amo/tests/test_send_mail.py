@@ -220,7 +220,7 @@ class TestSendMail(BaseTestCase):
     def test_send_attachment(self):
         path = os.path.join(ATTACHMENTS_DIR, 'bacon.txt')
         attachments = [(
-            os.path.basename(path), storage.open(path).read(),
+            os.path.basename(path), storage.open(path, 'r').read(),
             mimetypes.guess_type(path)[0])]
         send_mail('test subject', 'test body', from_email='a@example.com',
                   recipient_list=['b@example.com'], attachments=attachments)

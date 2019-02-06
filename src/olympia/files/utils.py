@@ -862,16 +862,18 @@ def extract_extension_to_dest(source, dest=None, force_fsync=False):
         target = dest
 
     try:
-        if source.endswith(('.zip', '.xpi')):
-            zip_file = SafeZip(source, force_fsync=force_fsync)
-            zip_file.extract_to_dest(target)
-        elif source.endswith(('.tar.gz', '.tar.bz2', '.tgz')):
+        source = force_text(source)
+        if source.endswith((u'.zip', u'.xpi')):
+            with open(source, 'rb') as source_file:
+                zip_file = SafeZip(source_file, force_fsync=force_fsync)
+                zip_file.extract_to_dest(target)
+        elif source.endswith((u'.tar.gz', u'.tar.bz2', u'.tgz')):
             tarfile_class = (
                 tarfile.TarFile
                 if not force_fsync else FSyncedTarFile)
             with tarfile_class.open(source) as archive:
                 archive.extractall(target)
-        elif source.endswith('.xml'):
+        elif source.endswith(u'.xml'):
             shutil.copy(source, target)
             if force_fsync:
                 FSyncMixin()._fsync_file(target)

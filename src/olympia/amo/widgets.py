@@ -9,7 +9,7 @@ class EmailWidget(Input):
         self.placeholder = kwargs.pop('placeholder', None)
         return super(EmailWidget, self).__init__(*args, **kwargs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         attrs = attrs or {}
         if self.placeholder:
             attrs['placeholder'] = self.placeholder
@@ -24,7 +24,7 @@ class ColorWidget(Input):
         self.placeholder = kwargs.pop('placeholder', None)
         return super(ColorWidget, self).__init__(*args, **kwargs)
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         attrs = attrs or {}
         if self.placeholder:
             attrs['placeholder'] = self.placeholder

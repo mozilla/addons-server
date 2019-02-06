@@ -1,5 +1,7 @@
 import uuid
 
+from django.utils.encoding import force_text
+
 import six
 from six.moves.urllib_parse import urlencode
 
@@ -176,34 +178,35 @@ class TestActivity(HubTest):
     def test_rss(self):
         self.log_creates(5)
         # This will give us a new RssKey
-        r = self.get_response()
+        self.get_response()
         key = RssKey.objects.get()
 
         assert isinstance(key.key, uuid.UUID)
 
-        r = self.get_response(privaterss=key.key)
-        assert r['content-type'] == 'application/rss+xml; charset=utf-8'
-        assert '<title>Recent Changes for My Add-ons</title>' in r.content
+        res = self.get_response(privaterss=key.key)
+        assert res['content-type'] == 'application/rss+xml; charset=utf-8'
+        assert b'<title>Recent Changes for My Add-ons</title>' in res.content
 
     def test_rss_accepts_verbose(self):
         self.log_creates(5)
-        r = self.get_response()
+        self.get_response()
         key = RssKey.objects.get()
-        r = self.get_response(privaterss=str(key.key))
-        assert r['content-type'] == 'application/rss+xml; charset=utf-8'
-        assert '<title>Recent Changes for My Add-ons</title>' in r.content
+        res = self.get_response(privaterss=str(key.key))
+        assert res['content-type'] == 'application/rss+xml; charset=utf-8'
+        assert b'<title>Recent Changes for My Add-ons</title>' in res.content
 
     def test_rss_single(self):
         self.log_creates(5)
         self.log_creates(13, self.addon2)
 
         # This will give us a new RssKey
-        r = self.get_response(addon=self.addon.id)
+        self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
-        r = self.get_response(privaterss=key.key)
-        assert r['content-type'] == 'application/rss+xml; charset=utf-8'
-        assert len(pq(r.content)('item')) == 5
-        assert '<title>Recent Changes for %s</title>' % self.addon in r.content
+        res = self.get_response(privaterss=key.key)
+        assert res['content-type'] == 'application/rss+xml; charset=utf-8'
+        assert len(pq(res.content)('item')) == 5
+        assert '<title>Recent Changes for %s</title>' % self.addon in (
+            force_text(res.content))
 
     def test_rss_unlisted_addon(self):
         """Unlisted addon logs appear in the rss feed."""
@@ -293,11 +296,11 @@ class TestActivity(HubTest):
         res = self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         res = self.get_response(privaterss=key.key)
-        assert "<title>Comment on" not in res.content
+        assert b'<title>Comment on' not in res.content
 
     def test_no_guid(self):
         self.log_creates(1)
         self.get_response(addon=self.addon.id)
         key = RssKey.objects.get()
         res = self.get_response(privaterss=key.key)
-        assert "<guid>" not in res.content
+        assert b'<guid>' not in res.content
