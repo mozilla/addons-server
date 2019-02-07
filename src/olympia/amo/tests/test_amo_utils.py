@@ -59,8 +59,8 @@ def test_resize_transparency():
     expected = src.replace('.png', '-expected.png')
     try:
         resize_image(src, dest, (32, 32))
-        with open(dest) as dfh:
-            with open(expected) as efh:
+        with open(dest, 'rb') as dfh:
+            with open(expected, 'rb') as efh:
                 assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
@@ -79,8 +79,8 @@ def test_resize_transparency_for_P_mode_bug_1181221():
     expected = src.replace('.png', '-expected.png')
     try:
         resize_image(src, dest, (32, 32))
-        with open(dest) as dfh:
-            with open(expected) as efh:
+        with open(dest, 'rb') as dfh:
+            with open(expected, 'rb') as efh:
                 assert dfh.read() == efh.read()
     finally:
         if os.path.exists(dest):
