@@ -245,3 +245,17 @@ def test_extract_colors_from_image():
         {'h': 40, 'l': 201, 'ratio': 0.05934128722434598, 's': 83}
     ]
     assert extract_colors_from_image(path) == expected
+
+
+@pytest.mark.skipif(
+    six.PY2,
+    reason='Python 2 doesn`t raise BytesWarning for comparing bytes and '
+           'unicode.')
+class TestPytest(TestCase):
+    """This verifies that we have the correct pytest setup under python3,
+    specifically that pytest is being run via `python -bb -m pytest ...` and
+    the BytesWarning warning is being escalated to an error."""
+
+    def test_bytes_warning(self):
+        with self.assertRaises(BytesWarning):
+            print(u'foo %s' % b'baa')
