@@ -16,12 +16,19 @@ from olympia.lib.git import AddonGitRepository, TemporaryWorktree
 from olympia.files.utils import id_to_path
 
 
+def _run_process(cmd, repo):
+    """Small helper to run git commands on the shell"""
+    return subprocess.check_output(
+        cmd,
+        shell=True,
+        env={'GIT_DIR': repo.git_repository.path},
+        universal_newlines=True)
+
+
 def test_temporary_worktree(settings):
     repo = AddonGitRepository(1)
 
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output('git worktree list', shell=True, env=env)
+    output = _run_process('git worktree list', repo)
     assert output.startswith(repo.git_repository.path)
 
     with TemporaryWorktree(repo.git_repository) as worktree:
@@ -29,13 +36,12 @@ def test_temporary_worktree(settings):
         assert worktree.path == os.path.join(
             worktree.temp_directory, worktree.name)
 
-        output = subprocess.check_output(
-            'git worktree list', shell=True, env=env)
+        output = _run_process('git worktree list', repo)
         assert worktree.name in output
 
     # Test that it cleans up properly
     assert not os.path.exists(worktree.temp_directory)
-    output = subprocess.check_output('git worktree list', shell=True, env=env)
+    output = _run_process('git worktree list', repo)
     assert worktree.name not in output
 
 
@@ -97,9 +103,7 @@ def test_extract_and_commit_from_version(settings):
 
     # Verify via subprocess to make sure the repositories are properly
     # read by the regular git client
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output('git branch', shell=True, env=env)
+    output = _run_process('git branch', repo)
     assert 'listed' in output
     assert 'unlisted' not in output
 
@@ -107,11 +111,11 @@ def test_extract_and_commit_from_version(settings):
     addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
     repo = AddonGitRepository.extract_and_commit_from_version(
         version=addon.current_version)
-    output = subprocess.check_output('git branch', shell=True, env=env)
+    output = _run_process('git branch', repo)
     assert 'listed' in output
     assert 'unlisted' in output
 
-    output = subprocess.check_output('git log listed', shell=True, env=env)
+    output = _run_process('git log listed', repo)
     expected = 'Create new version {} ({}) for {} from {}'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
@@ -146,12 +150,10 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
 
     # Verify via subprocess to make sure the repositories are properly
     # read by the regular git client
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output('git branch', shell=True, env=env)
+    output = _run_process('git branch', repo)
     assert 'listed' in output
 
-    output = subprocess.check_output('git log listed', shell=True, env=env)
+    output = _run_process('git log listed', repo)
     expected = 'Create new version {} ({}) for {} from {}'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
@@ -168,7 +170,7 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
         version='0.3')
     repo = AddonGitRepository.extract_and_commit_from_version(version=version)
 
-    output = subprocess.check_output('git log listed', shell=True, env=env)
+    output = _run_process('git log listed', repo)
     assert output.count('Create new version') == 3
     assert '0.1' in output
     assert '0.2' in output
@@ -178,7 +180,7 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
     assert output.count('Mozilla Add-ons Robot') == 4
 
     # Make sure the commits didn't spill over into the master branch
-    output = subprocess.check_output('git log', shell=True, env=env)
+    output = _run_process('git log', repo)
     assert output.count('Mozilla Add-ons Robot') == 1
     assert '0.1' not in output
 
@@ -193,10 +195,7 @@ def test_extract_and_commit_from_version_use_applied_author():
         version=addon.current_version,
         author=user)
 
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output(
-        'git log --format=full listed', shell=True, env=env)
+    output = _run_process('git log --format=full listed', repo)
     assert 'Author: Fancy Test User <fancyuser@foo.bar>' in output
     assert (
         'Commit: Mozilla Add-ons Robot '
@@ -210,10 +209,7 @@ def test_extract_and_commit_from_version_use_addons_robot_default():
     repo = AddonGitRepository.extract_and_commit_from_version(
         version=addon.current_version)
 
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output(
-        'git log --format=full listed', shell=True, env=env)
+    output = _run_process('git log --format=full listed', repo)
     assert (
         'Author: Mozilla Add-ons Robot '
         '<addons-dev-automation+github@mozilla.com>'
@@ -246,13 +242,11 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
 
     # Verify via subprocess to make sure the repositories are properly
     # read by the regular git client
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output('git branch', shell=True, env=env)
+    output = _run_process('git branch', repo)
     assert 'listed' in output
     assert 'unlisted' not in output
 
-    output = subprocess.check_output('git log listed', shell=True, env=env)
+    output = _run_process('git log listed', repo)
     expected = 'Create new version {} ({}) for {} from {}'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
@@ -282,12 +276,10 @@ def test_extract_and_commit_source_from_version(settings):
 
     # Verify via subprocess to make sure the repositories are properly
     # read by the regular git client
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output('git branch', shell=True, env=env)
+    output = _run_process('git branch', repo)
     assert 'listed' in output
 
-    output = subprocess.check_output('git log listed', shell=True, env=env)
+    output = _run_process('git log listed', repo)
     expected = 'Create new version {} ({}) for {} from source file'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon))
     assert expected in output
@@ -315,10 +307,7 @@ def test_extract_and_commit_from_version_commits_files(
 
     # Verify via subprocess to make sure the repositories are properly
     # read by the regular git client
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output(
-        'git ls-tree -r --name-only listed', shell=True, env=env)
+    output = _run_process('git ls-tree -r --name-only listed', repo)
 
     assert set(output.split()) == expected
 
@@ -336,9 +325,7 @@ def test_extract_and_commit_from_version_reverts_active_locale():
             addon.current_version)
         assert get_language() == 'fr'
 
-    env = {'GIT_DIR': repo.git_repository.path}
-
-    output = subprocess.check_output('git log listed', shell=True, env=env)
+    output = _run_process('git log listed', repo)
     expected = 'Create new version {} ({}) for {} from {}'.format(
         repr(addon.current_version), addon.current_version.id, repr(addon),
         repr(addon.current_version.all_files[0]))
