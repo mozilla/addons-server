@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-07 20:12+0000\n"
+"PO-Revision-Date: 2019-02-07 21:08+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -733,9 +733,8 @@ msgstr "Deve ser um código de cor hexadecimal válido, como #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Alguns recursos foram temporariamente desativados para realizamos a manutenção do site. Em breve estaremos de volta a plena capacidade."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Deve haver pelo menos um dono."
+msgstr "Deve conter pelo menos um caractere imprimível."
 
 #, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
@@ -2977,9 +2976,8 @@ msgstr "Escolha um URL curto e exclusivo para sua extensão."
 msgid "View Listing"
 msgstr "Ver listagem"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Visualizar perfil"
+msgstr "Ver página do produto"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Este resumo deve explicar claramente o que a sua extensão faz. Ele será exibido em listas e pesquisas, e será usado pelos revisores para testar a sua extensão."
@@ -3147,9 +3145,8 @@ msgstr "Usado na página de detalhes da extensão."
 msgid "128x128px"
 msgstr "128x128px"
 
-#, fuzzy
 msgid "Will be the standard in future add-on detail pages."
-msgstr "Usado na página de detalhes da extensão."
+msgstr "Será o padrão em futuras páginas de detalhes de extensões."
 
 msgid "Upload a Custom Icon..."
 msgstr "Enviar ícone..."
@@ -3328,9 +3325,8 @@ msgstr "Muda o dono desse tema."
 msgid "Transfer Ownership"
 msgstr "Transferir propriedade"
 
-#, fuzzy
 msgid "Delete this theme"
-msgstr "Excluir este tema."
+msgstr "Excluir este tema"
 
 msgid "This add-on is missing some required information before it can be submitted for publication."
 msgstr "Antes que esta extensão possa ser enviada para publicação, estão faltando algumas informações necessárias."
@@ -4122,23 +4118,21 @@ msgstr "Selecione as cores do seu tema."
 msgid "Foreground Text"
 msgstr "Cor do texto"
 
-#, fuzzy
 msgid "This is the color of the tab text"
-msgstr "Esta é a cor do texto das abas."
+msgstr "Esta é a cor do texto da aba"
 
 msgid "Background"
 msgstr "Fundo"
 
-#, fuzzy
 msgid "This is the color of the tabs"
-msgstr "Esta é a cor do fundo das abas."
+msgstr "Esta é a cor das abas"
 
 msgid "Your Theme's Name"
 msgstr "Nome do seu tema"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "por <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr "por <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 msgid "Create a New Theme"
 msgstr "Criar um novo tema"
