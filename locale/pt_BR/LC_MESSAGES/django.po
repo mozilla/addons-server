@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-07 17:11+0000\n"
+"PO-Revision-Date: 2019-02-07 17:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -7805,7 +7805,7 @@ msgstr "Novos idiomas"
 
 #. {0} is a language name, like 'French'
 msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save your changes before switching locales?"
-msgstr "Você realizou alterações não salvas no idioma <b>{0}</b>. Você gostaria de salvar as suas alterações antes de trocar de idioma?"
+msgstr "Você tem alterações não salvas no idioma <b>{0}</b>. Quer salvar suas alterações antes de trocar de idioma?"
 
 msgid "Discard Changes"
 msgstr "Descartar alterações"
