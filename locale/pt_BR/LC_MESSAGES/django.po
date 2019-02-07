@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-07 17:12+0000\n"
+"PO-Revision-Date: 2019-02-07 20:11+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2433,7 +2433,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Nós permitimos e encorajamos atualizar, mas você não pode reverter este processo. Uma vez que os usuários tenham o WebExtension instalado, não serão capazes de instalar uma extensão legada."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
+msgstr "[{field}] O texto no campo \"{field}\" foi marcado como spam."
 
 msgid "Must have at least one owner."
 msgstr "Deve haver pelo menos um dono."
@@ -2511,7 +2511,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "O arquivo fonte foi enviado, contudo, você indicou que nenhum arquivo era necessário."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Garanta que o nome e o resumo combinados tenham no máximo {limit_value} caracteres (agora têm {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -2620,7 +2620,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "A imagem deve ter exatamente {0} píxeis de largura e {1} píxeis de altura."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 
 msgid "There was an error uploading your preview."
 msgstr "Ocorreu um erro ao enviar sua imagem."
@@ -3626,7 +3626,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Altura recomendada: 200 pixels"
 
 msgid "6.9MB max"
-msgstr ""
+msgstr "6.9 MB no máximo"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ou GIF (não animado)"
@@ -4040,7 +4040,7 @@ msgid "Live Testing"
 msgstr "Teste ao vivo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
-msgstr ""
+msgstr "Instale provisoriamente sua extensão no Firefox para teste e depuração em tempo real."
 
 msgid "Transfer ownership"
 msgstr "Transferir propriedade"
@@ -5664,7 +5664,7 @@ msgstr "Salve texto para ler mais tarde {start_sub_heading}com {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "Pare de desperdiçar espaço valioso de memória com abas inativas."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5704,10 +5704,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Não foi possível analisar o arquivo carregado, elemento <%s> ausente ou vazio"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Erro de segurança do XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Erro de análise do XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Não foi possível interpretar o arquivo enviado."
@@ -5750,7 +5750,7 @@ msgid "Version numbers should only contain letters, numbers, and these punctuati
 msgstr "Os números de versão devem conter apenas letras, números e os seguintes caracteres de pontuação: +*-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "O tamanho máximo de temas WebExtension é {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Você não pode submeter este tipo de extensão"
@@ -6745,7 +6745,7 @@ msgid "Add-on ID"
 msgstr "Extensão"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "ID AMO interno"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
