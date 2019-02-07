@@ -25,7 +25,6 @@ HOME=/tmp
 30 14 * * * %(z_cron)s category_totals
 0 22 * * * %(z_cron)s gc
 30 6 * * * %(z_cron)s deliver_hotness
-45 7 * * * %(django)s dump_apps
 0 8 * * * %(django)s update_product_details
 0 9 * * * %(z_cron)s add_latest_appversion
 
