@@ -1,3 +1,5 @@
+-r codestyle_common.txt
+
 configparser==3.7.1 \
     --hash=sha256:c114ff90ee2e762db972fa205f02491b1f5cf3ff950decd8542c62970c9bedac \
     --hash=sha256:df28e045fbff307a28795b18df6ac8662be3219435560ddb068c283afab1ea7a \
