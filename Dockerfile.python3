@@ -1,6 +1,8 @@
-FROM python:2.7.15-slim-stretch
+FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
+
+ENV PYTHON_VERSION_MAJOR 3
 
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
@@ -28,10 +30,6 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev \
         libffi-dev \
         libssl-dev \
-        python-dev \
-        python3-dev \
-        python-pip \
-        python3-pip \
         nodejs \
         # Git, because we're using git-checkout dependencies
         git \
