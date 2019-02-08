@@ -44,6 +44,8 @@ class TestFileEntriesSerializer(TestCase):
             'http://testserver/firefox/downloads/file/{}'
             '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
 
+        assert data['selected_file'] == 'manifest.json'
+
         assert set(data['entries'].keys()) == {
             'README.md',
             '_locales', '_locales/de', '_locales/en', '_locales/nb_NO',
