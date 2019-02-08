@@ -18,7 +18,7 @@ jobs:
           name: Build docker image and push to repo
           command: |
             docker version
-            docker build -t app:build -f Dockerfile.deploy .
+            docker build -t app:build -f Dockerfile.py3.deploy .
             docker tag app:build ${DOCKERHUB_REPO}:latest
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
             docker push ${DOCKERHUB_REPO}:latest
@@ -39,7 +39,7 @@ jobs:
           name: Build docker image and push to repo
           command: |
             docker version
-            docker build -t app:build -f Dockerfile.deploy .
+            docker build -t app:build -f Dockerfile.py2.deploy .
             docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
             docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
             docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}

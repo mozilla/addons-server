@@ -20,7 +20,7 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: addons/addons-server
+    image: addons/addons-server:latest-py3
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     entrypoint: ./scripts/start-docker.sh
     volumes:
@@ -31,16 +31,6 @@ services:
   web:
     <<: *worker
     command: supervisord -n -c /code/docker/supervisor.conf
-
-  web3:
-    extends:
-      service: web
-    image: addons/addons-server:latest-py3
-    # This container is only for running unit tests under python3 atm, so give
-    # it a dummy command so that it doesn't exit, but don't let it run
-    # supervisord as normal - we don't want the webserver.
-    command: /usr/bin/tail -f /dev/null
-
 
   nginx:
     image: addons/addons-nginx
