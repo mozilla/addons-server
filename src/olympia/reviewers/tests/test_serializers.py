@@ -44,6 +44,8 @@ class TestFileEntriesSerializer(TestCase):
             'http://testserver/firefox/downloads/file/{}'
             '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
 
+        assert data['selected_file'] == 'manifest.json'
+
         assert set(data['entries'].keys()) == {
             'README.md',
             '_locales', '_locales/de', '_locales/en', '_locales/nb_NO',
@@ -101,6 +103,7 @@ class TestFileEntriesSerializer(TestCase):
             'content-script.js', 'icons', 'icons/LICENSE', 'icons/link-48.png',
             'manifest.json'}
 
+        assert data['selected_file'] == 'icons/LICENSE'
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
 
@@ -227,3 +230,10 @@ class TestAddonBrowseVersionSerializer(TestCase):
         assert 'file' in data
 
         assert data['has_been_validated'] is False
+
+        assert dict(data['addon']) == {
+            'id': self.addon.id,
+            'slug': self.addon.slug,
+            'name': {'en-US': self.addon.name},
+            'icon_url': absolutify(self.addon.get_icon_url(64))
+        }

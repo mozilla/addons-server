@@ -14,7 +14,8 @@ from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
 
 from olympia.amo.urlresolvers import reverse
-from olympia.addons.serializers import VersionSerializer, FileSerializer
+from olympia.addons.serializers import (
+    VersionSerializer, FileSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
@@ -36,9 +37,12 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
 class FileEntriesSerializer(FileSerializer):
     content = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
+    selected_file = serializers.SerializerMethodField()
 
     class Meta:
-        fields = FileSerializer.Meta.fields + ('content', 'entries')
+        fields = FileSerializer.Meta.fields + (
+            'content', 'entries', 'selected_file'
+        )
         model = File
 
     @cached_property
@@ -65,11 +69,19 @@ class FileEntriesSerializer(FileSerializer):
                 'Couldn\'t find the requested version in git-repository')
 
     def get_entries(self, obj):
+        # Given that this is a very expensive operation we have a two-fold
+        # cache, one that is stored on this instance for very-fast retrieval
+        # to support other method calls on this serializer
+        # and another that uses memcached for regular caching
+        if hasattr(self, '_entries'):
+            return self._entries
+
         commit = self._get_commit(obj)
         result = OrderedDict()
 
         def _fetch_entries():
-            for entry_wrapper in self.repo.iter_tree(commit.tree):
+            tree = self.repo.get_root_tree(commit)
+            for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
@@ -100,13 +112,6 @@ class FileEntriesSerializer(FileSerializer):
                     'modified': commit_time,
                 }
             return result
-
-        # Given that this is a very expensive operation we have a two-fold
-        # cache, one that is stored on this instance for very-fast retrieval
-        # to support other method calls on this serializer
-        # and another that uses memcached for regular caching
-        if hasattr(self, '_entries'):
-            return self._entries
 
         self._entries = cache_get_or_set(
             'reviewers:fileentriesserializer:entries:{}'.format(commit.hex),
@@ -140,12 +145,11 @@ class FileEntriesSerializer(FileSerializer):
 
         return False
 
-    def get_selected_file(self, files=None):
+    def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
 
         if requested_file is None:
-            if files is None:
-                files = self.get_entries(self.get_instance())
+            files = self.get_entries(obj)
 
             for manifest in ('manifest.json', 'install.rdf', 'package.json'):
                 if manifest in files:
@@ -159,7 +163,8 @@ class FileEntriesSerializer(FileSerializer):
 
     def get_content(self, obj):
         commit = self._get_commit(obj)
-        blob_or_tree = commit.tree[self.get_selected_file()]
+        tree = self.repo.get_root_tree(commit)
+        blob_or_tree = tree[self.get_selected_file(obj)]
 
         if blob_or_tree.type == 'blob':
             # TODO: Test if this is actually needed, historically it was
@@ -174,6 +179,7 @@ class AddonBrowseVersionSerializer(VersionSerializer):
     validation_url = serializers.SerializerMethodField()
     has_been_validated = serializers.SerializerMethodField()
     file = FileEntriesSerializer(source='current_file')
+    addon = SimpleAddonSerializer()
 
     class Meta:
         model = Version
@@ -183,7 +189,7 @@ class AddonBrowseVersionSerializer(VersionSerializer):
                   'release_notes', 'reviewed', 'url', 'version',
                   # Our custom fields
                   'file', 'validation_url', 'validation_url_json',
-                  'has_been_validated')
+                  'has_been_validated', 'addon')
 
     def get_validation_url_json(self, obj):
         return reverse('devhub.json_file_validation', args=[

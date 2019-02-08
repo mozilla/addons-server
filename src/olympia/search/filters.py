@@ -42,7 +42,9 @@ class AddonQueryParam(object):
             value = self.get_value_from_reverse_dict()
         if self.is_valid(value):
             return value
-        raise ValueError('Invalid "%s" parameter.' % self.query_param)
+        raise ValueError(
+            ugettext('Invalid "%s" parameter.' % self.query_param)
+        )
 
     def is_valid(self, value):
         return value in self.valid_values
@@ -55,7 +57,9 @@ class AddonQueryParam(object):
         value = self.request.GET.get(self.query_param, '')
         value = self.reverse_dict.get(value.lower())
         if value is None:
-            raise ValueError('Invalid "%s" parameter.' % self.query_param)
+            raise ValueError(
+                ugettext('Invalid "%s" parameter.' % self.query_param)
+            )
         return value
 
     def get_value_from_object_from_reverse_dict(self):
@@ -91,12 +95,14 @@ class AddonAppVersionQueryParam(AddonQueryParam):
             low = version_int(appversion)
             high = version_int(appversion + 'a')
             if low < version_int('10.0'):
-                raise ValueError('Invalid "%s" parameter.' % self.query_param)
+                raise ValueError(
+                    ugettext('Invalid "%s" parameter.' % self.query_param)
+                )
             return app, low, high
-        raise ValueError(
+        raise ValueError(ugettext(
             'Invalid combination of "%s" and "%s" parameters.' % (
                 AddonAppQueryParam.query_param,
-                self.query_param))
+                self.query_param)))
 
     def get_es_query(self):
         app_id, low, high = self.get_values()
@@ -153,20 +159,30 @@ class AddonGuidQueryParam(AddonQueryParam):
         # feature in Firefox.
         if value.startswith('rta:') and '@' not in value:
             if not switch_is_active('return-to-amo'):
-                raise ValueError('RTA is currently disabled')
+                raise ValueError(
+                    ugettext('Return To AMO is currently disabled')
+                )
             try:
                 value = force_text(urlsafe_base64_decode(value[4:]))
                 if not amo.ADDON_GUID_PATTERN.match(value):
                     raise ValueError()
             except (TypeError, ValueError):
-                raise ValueError('Invalid RTA guid (not in base64url format?)')
+                raise ValueError(
+                    ugettext(
+                        'Invalid Return To AMO guid (not in base64url format?)'
+                    )
+                )
 
             # Unfortunately we have to check against the database here. We only
             # need to check that a DiscoveryItem exists, if somehow the add-on
             # is not public, it will get filtered out later by
             # ReviewedContentFilter.
             if not DiscoveryItem.objects.filter(addon__guid=value).exists():
-                raise ValueError('Invalid RTA guid (not a curated add-on)')
+                raise ValueError(
+                    ugettext(
+                        'Invalid Return To AMO guid (not a curated add-on)'
+                    )
+                )
 
         return value.split(',') if value else []
 
@@ -239,11 +255,11 @@ class AddonCategoryQueryParam(AddonQueryParam):
             types = AddonTypeQueryParam(self.request).get_value()
             self.reverse_dict = [CATEGORIES[app][type_] for type_ in types]
         except KeyError:
-            raise ValueError(
+            raise ValueError(ugettext(
                 'Invalid combination of "%s", "%s" and "%s" parameters.' % (
                     AddonAppQueryParam.query_param,
                     AddonTypeQueryParam.query_param,
-                    self.query_param))
+                    self.query_param)))
 
     def get_value(self):
         value = super(AddonCategoryQueryParam, self).get_value()
@@ -259,7 +275,9 @@ class AddonCategoryQueryParam(AddonQueryParam):
         for reverse_dict in self.reverse_dict:
             value = reverse_dict.get(query_value)
             if value is None:
-                raise ValueError('Invalid "%s" parameter.' % self.query_param)
+                raise ValueError(
+                    ugettext('Invalid "%s" parameter.' % self.query_param)
+                )
             values.append(value)
         return values
 
@@ -737,7 +755,8 @@ class SearchQueryFilter(BaseFilterBackend):
 
         if len(search_query) > self.MAX_QUERY_LENGTH:
             raise serializers.ValidationError(
-                ugettext('Maximum query length exceeded.'))
+                ugettext('Maximum query length exceeded.')
+            )
 
         return self.apply_search_query(search_query, qs, sort_param)
 
