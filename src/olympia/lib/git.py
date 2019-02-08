@@ -346,7 +346,7 @@ class AddonGitRepository(object):
 
         This doesn't contain the ``EXTRACTED_PREFIX`` prefix folder.
         """
-        return self.git_repository[commit.tree['extracted'].oid]
+        return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]
 
     def iter_tree(self, tree):
         """Recursively iterate through a tree.
