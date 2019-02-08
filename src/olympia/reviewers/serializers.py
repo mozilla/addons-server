@@ -80,7 +80,8 @@ class FileEntriesSerializer(FileSerializer):
         result = OrderedDict()
 
         def _fetch_entries():
-            for entry_wrapper in self.repo.iter_tree(commit.tree):
+            tree = self.repo.get_root_tree(commit)
+            for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
@@ -162,7 +163,8 @@ class FileEntriesSerializer(FileSerializer):
 
     def get_content(self, obj):
         commit = self._get_commit(obj)
-        blob_or_tree = commit.tree[self.get_selected_file(obj)]
+        tree = self.repo.get_root_tree(commit)
+        blob_or_tree = tree[self.get_selected_file(obj)]
 
         if blob_or_tree.type == 'blob':
             # TODO: Test if this is actually needed, historically it was

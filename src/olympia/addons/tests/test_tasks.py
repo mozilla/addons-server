@@ -371,7 +371,7 @@ class TestMigrateWebextensionsToGitStorage(TestCase):
         repo = AddonGitRepository(addon.pk)
 
         assert repo.git_repository_path == os.path.join(
-            settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
+            settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
         assert os.listdir(repo.git_repository_path) == ['.git']
 
     @mock.patch('olympia.versions.tasks.extract_version_to_git')
