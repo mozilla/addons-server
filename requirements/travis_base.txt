@@ -10,8 +10,6 @@ setuptools==40.8.0 \
 tox==3.7.0 \
     --hash=sha256:04f8f1aa05de8e76d7a266ccd14e0d665d429977cd42123bc38efa9b59964e9e \
     --hash=sha256:25ef928babe88c71e3ed3af0c464d1160b01fca2dd1870a5bb26c2dea61a17fc
-tox-travis==0.11 \
-    --hash=sha256:7e2f0b9db1ff9521da6a32a34aa4bfe292ea1c90ff8eb26001bf52f44ca0dc47
 
 # Dependencies of Tox
 virtualenv==16.3.0 \
