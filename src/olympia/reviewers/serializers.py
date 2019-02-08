@@ -69,7 +69,8 @@ class FileEntriesSerializer(FileSerializer):
         result = OrderedDict()
 
         def _fetch_entries():
-            for entry_wrapper in self.repo.iter_tree(commit.tree):
+            tree = self.repo.get_root_tree(commit)
+            for entry_wrapper in self.repo.iter_tree(tree):
                 entry = entry_wrapper.tree_entry
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
