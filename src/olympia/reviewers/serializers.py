@@ -160,7 +160,8 @@ class FileEntriesSerializer(FileSerializer):
 
     def get_content(self, obj):
         commit = self._get_commit(obj)
-        blob_or_tree = commit.tree[self.get_selected_file()]
+        tree = self.repo.get_root_tree(commit)
+        blob_or_tree = tree[self.get_selected_file()]
 
         if blob_or_tree.type == 'blob':
             # TODO: Test if this is actually needed, historically it was
