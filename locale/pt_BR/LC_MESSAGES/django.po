@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-08 13:30+0000\n"
+"PO-Revision-Date: 2019-02-08 13:33+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3925,7 +3925,7 @@ msgid ""
 msgstr ""
 
 msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
+msgstr "Veja as melhores práticas de desenvolvimento para vários navegadores"
 
 # %s is the user's name
 msgid "Welcome Back"
