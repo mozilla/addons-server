@@ -14,7 +14,8 @@ from django.utils.functional import cached_property
 import olympia.core.logger
 
 from olympia import amo
-from olympia.files.utils import id_to_path, extract_extension_to_dest
+from olympia.files.utils import (
+    id_to_path, extract_extension_to_dest, get_all_files)
 
 
 log = olympia.core.logger.getLogger('z.git_storage')
@@ -27,6 +28,10 @@ BRANCHES = {
     amo.RELEASE_CHANNEL_UNLISTED: 'unlisted'
 }
 
+# Prefix folder name we are using to store extracted add-on or source
+# data to avoid any clashes, e.g with .git folders.
+EXTRACTED_PREFIX = 'extracted'
+
 
 class TemporaryWorktree(object):
     def __init__(self, repository):
@@ -34,6 +39,7 @@ class TemporaryWorktree(object):
         self.name = uuid.uuid4().hex
         self.temp_directory = tempfile.mkdtemp(dir=settings.TMP_PATH)
         self.path = os.path.join(self.temp_directory, self.name)
+        self.extraction_target_path = os.path.join(self.path, EXTRACTED_PREFIX)
         self.obj = None
         self.repo = None
 
@@ -49,6 +55,8 @@ class TemporaryWorktree(object):
                 os.unlink(path)
             else:
                 shutil.rmtree(path)
+
+        os.makedirs(self.extraction_target_path)
 
         return self
 
@@ -66,9 +74,9 @@ class TemporaryWorktree(object):
 
 class AddonGitRepository(object):
 
-    def __init__(self, addon_or_id, package_type='package'):
+    def __init__(self, addon_or_id, package_type='addon'):
         from olympia.addons.models import Addon
-        assert package_type in ('package', 'source')
+        assert package_type in ('addon', 'source')
 
         # Always enforce the search path being set to our ROOT
         # setting. This is sad, libgit tries to fetch the global git
@@ -190,7 +198,7 @@ class AddonGitRepository(object):
             # to give us wrong results
             translation.activate('en-US')
 
-            repo = cls(version.addon.id)
+            repo = cls(version.addon.id, package_type='addon')
             file_obj = version.all_files[0]
             branch = repo.find_or_create_branch(BRANCHES[version.channel])
 
@@ -273,12 +281,34 @@ class AddonGitRepository(object):
             # Now extract the extension to the workdir
             extract_extension_to_dest(
                 source=path,
-                dest=worktree.path,
+                dest=worktree.extraction_target_path,
                 force_fsync=True)
 
             # Stage changes, `TemporaryWorktree` always cleans the whole
             # directory so we can simply add all changes and have the correct
             # state.
+
+            # Fetch all files and strip the absolute path but keep the
+            # `extracted/` prefix
+            files = get_all_files(
+                worktree.extraction_target_path,
+                worktree.path,
+                '')
+
+            # Make sure the index is up to date
+            worktree.repo.index.read()
+
+            for filename in files:
+                if os.path.basename(filename) == '.git':
+                    # For security reasons git doesn't allow adding
+                    # .git subdirectories anywhere in the repository.
+                    # So we're going to rename them and add a random
+                    # postfix
+                    renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
+                    shutil.move(
+                        os.path.join(worktree.path, filename),
+                        os.path.join(worktree.path, renamed)
+                    )
 
             # Add all changes to the index (git add --all ...)
             worktree.repo.index.add_all()
@@ -287,7 +317,6 @@ class AddonGitRepository(object):
             tree = worktree.repo.index.write_tree()
 
             # Now create an commit directly on top of the respective branch
-
             oid = worktree.repo.create_commit(
                 None,
                 # author, using the actual uploading user
@@ -311,6 +340,13 @@ class AddonGitRepository(object):
             branch.set_target(commit.hex)
 
         return commit
+
+    def get_root_tree(self, commit):
+        """Return the root tree object.
+
+        This doesn't contain the ``EXTRACTED_PREFIX`` prefix folder.
+        """
+        return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]
 
     def iter_tree(self, tree):
         """Recursively iterate through a tree.
