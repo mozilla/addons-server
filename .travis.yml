@@ -6,29 +6,27 @@ python:
 
 jobs:
   fast_finish: true
-  allow_failures:
-    - stage: python3
   include:
-    - { stage: python2, env: TOXENV=codestyle }
-    - { stage: python2, env: TOXENV=docs }
-    - { stage: python2, env: TOXENV=assets }
-    - { stage: python2, env: TOXENV=es }
-    - { stage: python2, env: TOXENV=addons-versions-and-files }
-    - { stage: python2, env: TOXENV=devhub }
-    - { stage: python2, env: TOXENV=reviewers-and-zadmin }
-    - { stage: python2, env: TOXENV=accounts-users-and-ratings }
-    - { stage: python2, env: TOXENV=amo-lib-locales-and-signing }
-    - { stage: python2, env: TOXENV=main }
-    - { stage: python3working, python: 3.6, env: TOXENV=codestyle}
-    - { stage: python3working, python: 3.6, env: TOXENV=docs }
-    - { stage: python3working, python: 3.6, env: TOXENV=assets }
-    - { stage: python3working, python: 3.6, env: TOXENV=es }
-    - { stage: python3working, python: 3.6, env: TOXENV=addons-versions-and-files }
-    - { stage: python3working, python: 3.6, env: TOXENV=devhub }
-    - { stage: python3working, python: 3.6, env: TOXENV=reviewers-and-zadmin }
-    - { stage: python3working, python: 3.6, env: TOXENV=accounts-users-and-ratings }
-    - { stage: python3working, python: 3.6, env: TOXENV=main }
-    - { stage: python3, python: 3.6, env: TOXENV=amo-lib-locales-and-signing }
+    - { env: TOXENV=codestyle }
+    - { env: TOXENV=docs }
+    - { env: TOXENV=assets }
+    - { env: TOXENV=es }
+    - { env: TOXENV=addons-versions-and-files }
+    - { env: TOXENV=devhub }
+    - { env: TOXENV=reviewers-and-zadmin }
+    - { env: TOXENV=accounts-users-and-ratings }
+    - { env: TOXENV=amo-lib-locales-and-signing }
+    - { env: TOXENV=main }
+    - { python: 3.6, env: TOXENV=codestyle}
+    - { python: 3.6, env: TOXENV=docs }
+    - { python: 3.6, env: TOXENV=assets }
+    - { python: 3.6, env: TOXENV=es }
+    - { python: 3.6, env: TOXENV=addons-versions-and-files }
+    - { python: 3.6, env: TOXENV=devhub }
+    - { python: 3.6, env: TOXENV=reviewers-and-zadmin }
+    - { python: 3.6, env: TOXENV=accounts-users-and-ratings }
+    - { python: 3.6, env: TOXENV=main }
+    - { python: 3.6, env: TOXENV=amo-lib-locales-and-signing }
 
 env:
   global:
