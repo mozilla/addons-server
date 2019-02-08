@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-07 21:08+0000\n"
+"PO-Revision-Date: 2019-02-08 13:30+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1952,13 +1952,13 @@ msgid "Download Management"
 msgstr "Gerenciador de downloads"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que podem ajudar a baixar conteúdo, músicas e vídeos. Você também pode encontrar extensões para gerenciar downloads, compartilhar arquivos e muito mais."
 
 msgid "Feeds, News & Blogging"
 msgstr "Feeds, notícias e blogs"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que removem a confusão para que você possa se manter atualizado nas mídias sociais, acompanhar blogs, feeds RSS, reduzir o cansaço visual e muito mais."
 
 msgid "Games & Entertainment"
 msgstr "Jogos e Entretenimento"
@@ -1970,13 +1970,13 @@ msgid "Language Support"
 msgstr "Suporte ao Idioma"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que oferecem suporte a idiomas, como verificação gramatical, busca de palavras, tradução de texto, conversão de texto em fala e muito mais."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotos, música e vídeos"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que melhoram a experiência com fotos, músicas e vídeos. Extensões nesta categoria modificam áudio e vídeo, realizam busca reversa de imagens e muito mais."
 
 msgid "Privacy & Security"
 msgstr "Privacidade e Segurança"
@@ -2874,7 +2874,7 @@ msgstr[0] "<b>{0}</b> tema"
 msgstr[1] "<b>{0}</b> temas"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Editar página de produto"
 
 msgid "None"
 msgstr "Nenhum(a)"
@@ -3417,7 +3417,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr "Há alguma coisa que nossos revisores devem levar em conta ao analisar esta extensão?"
 
 msgid "Remember"
-msgstr ""
+msgstr "Lembrar"
 
 #, python-format
 msgid ""
@@ -3942,7 +3942,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Ver melhores práticas"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Listado neste site após revisão de código. Atualizações serão gerenciadas automaticamente por este site."
@@ -5640,7 +5640,7 @@ msgstr "Gerencie os cookies {start_sub_heading}com {addon_name}{end_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Exclui automaticamente cookies indesejados. Oferece suporte a listas de permissão e proibição."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5649,7 +5649,7 @@ msgstr "Tweet {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "Com um clique do mouse você pode assistir vídeos em tela cheia."
 
 #. editorial content for the discovery pane.
 #, fuzzy
@@ -5986,12 +5986,12 @@ msgstr "Enviar spam para Akismet"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr ""
+msgstr "%s relatórios não spam enviados como spam"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr ""
+msgstr "%s relatórios spam enviados como não spam"
 
 msgid "About Mozilla Add-ons"
 msgstr "Sobre as extensões da Mozilla"
