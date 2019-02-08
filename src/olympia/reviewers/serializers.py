@@ -187,8 +187,7 @@ class AddonBrowseVersionSerializer(VersionSerializer):
                   'release_notes', 'reviewed', 'url', 'version',
                   # Our custom fields
                   'file', 'validation_url', 'validation_url_json',
-                  'has_been_validated',
-                  'addon')
+                  'has_been_validated', 'addon')
 
     def get_validation_url_json(self, obj):
         return reverse('devhub.json_file_validation', args=[
