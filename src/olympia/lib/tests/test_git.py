@@ -64,7 +64,7 @@ def test_git_repo_init(settings):
     repo = AddonGitRepository(1)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
+        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'addon')
 
     assert not os.path.exists(repo.git_repository_path)
 
@@ -76,7 +76,7 @@ def test_git_repo_init(settings):
 
 def test_git_repo_init_opens_existing_repo(settings):
     expected_path = os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'package')
+        settings.GIT_FILE_STORAGE_PATH, '1/1/1', 'addon')
 
     assert not os.path.exists(expected_path)
     repo = AddonGitRepository(1)
@@ -98,7 +98,7 @@ def test_extract_and_commit_from_version(settings):
         addon.current_version)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -145,7 +145,7 @@ def test_extract_and_commit_from_version_multiple_versions(settings):
         addon.current_version)
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -237,7 +237,7 @@ def test_extract_and_commit_from_version_valid_extensions(settings, filename):
         assert fsync_mock.called
 
     assert repo.git_repository_path == os.path.join(
-        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'package')
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
     assert os.listdir(repo.git_repository_path) == ['.git']
 
     # Verify via subprocess to make sure the repositories are properly
@@ -286,6 +286,38 @@ def test_extract_and_commit_source_from_version(settings):
 
 
 @pytest.mark.django_db
+def test_extract_and_commit_source_from_version_no_dotgit_clash(settings):
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'},
+        version_kw={'version': '0.1'})
+
+    # Generate source file
+    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
+    with zipfile.ZipFile(source, 'w') as zip_file:
+        zip_file.writestr('manifest.json', '{}')
+        zip_file.writestr('.git/config', '')
+    source.seek(0)
+    addon.current_version.source = DjangoFile(source)
+    addon.current_version.save()
+
+    with mock.patch('olympia.lib.git.uuid.uuid4') as uuid4_mock:
+        uuid4_mock.return_value = mock.Mock(
+            hex='b236f5994773477bbcd2d1b75ab1458f')
+        repo = AddonGitRepository.extract_and_commit_source_from_version(
+            addon.current_version)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    output = _run_process('git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == {
+        'extracted/manifest.json', 'extracted/.git.b236f599/config'}
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize('filename, expected', [
     ('webextension_no_id.xpi', {'README.md', 'manifest.json'}),
     ('webextension_no_id.zip', {'README.md', 'manifest.json'}),
@@ -307,7 +339,8 @@ def test_extract_and_commit_from_version_commits_files(
 
     # Verify via subprocess to make sure the repositories are properly
     # read by the regular git client
-    output = _run_process('git ls-tree -r --name-only listed', repo)
+    output = _run_process(
+        'git ls-tree -r --name-only listed:extracted', repo)
 
     assert set(output.split()) == expected
 
@@ -341,7 +374,7 @@ def test_iter_tree():
 
     commit = repo.git_repository.revparse_single('listed')
 
-    tree = list(repo.iter_tree(commit.tree))
+    tree = list(repo.iter_tree(repo.get_root_tree(commit)))
 
     # path, filename mapping
     expected_files = [

@@ -129,15 +129,15 @@ billiard==3.5.0.5 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.9.89 \
-    --hash=sha256:6ca40ef1893eacb37a3696bb2a5739a9b33a7d978658b451f4d87729cb5ec576 \
-    --hash=sha256:465b4da5d292373f9ec5bb8834f26251a5f464f2ce9da1756988c16bb5e49cff
+boto3==1.9.90 \
+    --hash=sha256:ff4f0d48b7f6e7fcc3503597e1225c8413d83a43afbf3940f9fcb5a019f3c327 \
+    --hash=sha256:d494043f4fa833c14ca553dd27dc9fd714390215783ff88d2b5597dbc801e779
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.89 \
-    --hash=sha256:2257dc1c012f535ef364b6b60fc9fdc822605fafd6765c3095385528669260aa \
-    --hash=sha256:b0b9f204cbba3ad7a523f7b274e2d0ca252384e0c114fdfe94c00eb205fb2537
+botocore==1.12.90 \
+    --hash=sha256:c6d4ffcf6c152b3224f16d59f92d938a7375c8b185bb08165a001e9bc59f95cc \
+    --hash=sha256:5a3dd9fe7cc5a5dab62016108180c58444e9025a3edd7b4b76b3573db1fcebe4
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -248,9 +248,9 @@ isodate==0.6.0 \
 jmespath==0.9.3 \
     --hash=sha256:f11b4461f425740a1d908e9a3f7365c3d2e569f6ca68a2ff8bc5bcd9676edd63
 # kombu is required by celery
-kombu==4.2.2.post1 \
-    --hash=sha256:1ef049243aa05f29e988ab33444ec7f514375540eaa8e0b2e1f5255e81c5e56d \
-    --hash=sha256:3c9dca2338c5d893f30c151f5d29bfb81196748ab426d33c362ab51f1e8dbf78
+kombu==4.3.0 \
+    --hash=sha256:7a2cbed551103db9a4e2efafe9b63222e012a61a18a881160ad797b9d4e1d0a1 \
+    --hash=sha256:529df9e0ecc0bad9fc2b376c3ce4796c41b482cf697b78b71aea6ebe7ca353c8
 # lxml is required by pyquery
 lxml==4.3.0 \
     --hash=sha256:f726444b8e909c4f41b4fde416e1071cf28fa84634bfb4befdf400933b6463af \
