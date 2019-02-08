@@ -298,15 +298,15 @@ class AddonGitRepository(object):
             # Make sure the index is up to date
             worktree.repo.index.read()
 
-            for file in files:
-                if os.path.basename(file) == '.git':
+            for filename in files:
+                if os.path.basename(filename) == '.git':
                     # For security reasons git doesn't allow adding
                     # .git subdirectories anywhere in the repository.
                     # So we're going to rename them and add a random
                     # postfix
-                    renamed = '{}.{}'.format(file, uuid.uuid4().hex[:8])
+                    renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
                     shutil.move(
-                        os.path.join(worktree.path, file),
+                        os.path.join(worktree.path, filename),
                         os.path.join(worktree.path, renamed)
                     )
 
