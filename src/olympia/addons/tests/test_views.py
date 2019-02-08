@@ -2881,14 +2881,15 @@ class TestAddonSearchView(ESTestCase):
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400, expected_queries=1)
-        assert data == [u'Invalid RTA guid (not a curated add-on)']
+        assert data == [u'Invalid Return To AMO guid (not a curated add-on)']
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
         param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
-        assert data == [u'Invalid RTA guid (not in base64url format?)']
+        assert data == [
+            u'Invalid Return To AMO guid (not in base64url format?)']
 
     def test_filter_by_guid_return_to_amo_garbage(self):
         # 'garbage' does decode using base64, but would lead to an
@@ -2896,13 +2897,15 @@ class TestAddonSearchView(ESTestCase):
         param = 'rta:garbage'
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
-        assert data == [u'Invalid RTA guid (not in base64url format?)']
+        assert data == [
+            u'Invalid Return To AMO guid (not in base64url format?)']
 
         # Empty param is just as bad.
         param = 'rta:'
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
-        assert data == [u'Invalid RTA guid (not in base64url format?)']
+        assert data == [
+            u'Invalid Return To AMO guid (not in base64url format?)']
 
     def test_filter_by_guid_return_to_amo_feature_disabled(self):
         self.create_switch('return-to-amo', active=False)
@@ -2917,7 +2920,7 @@ class TestAddonSearchView(ESTestCase):
 
         data = self.perform_search(
             self.url, {'guid': param}, expected_status=400)
-        assert data == [u'RTA is currently disabled']
+        assert data == [u'Return To AMO is currently disabled']
 
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
