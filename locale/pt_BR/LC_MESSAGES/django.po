@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-08 19:51+0000\n"
+"PO-Revision-Date: 2019-02-10 00:50+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1964,7 +1964,7 @@ msgid "Games & Entertainment"
 msgstr "Jogos e Entretenimento"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que turbinam sua experiência com entretenimento. Esta categoria inclui extensões que podem melhorar jogos, controlar reprodução de vídeo e muito mais."
 
 msgid "Language Support"
 msgstr "Suporte ao Idioma"
@@ -1983,21 +1983,23 @@ msgstr "Privacidade e Segurança"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Baixe extensões do Firefox para navegar com privacidade e segurança. Esta categoria inclui extensões para bloquear propagandas irritantes, previnir rastreamento, gerenciar redirecionamentos e muito "
+"mais."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox para consulta e pesquisa. Esta categoria inclui extensões que buscam e destacam texto, pesquisam domínios ou endereços IP e muito mais."
 
 msgid "Shopping"
 msgstr "Compras"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que podem aprimorar sua experiência de compras online com pesquisa de cupons, busca de ofertas, análises e muito mais."
 
 msgid "Social & Communication"
 msgstr "Social e comunicação"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox para aprimorar mídias sociais e mensagens instantâneas. Esta categoria inclui notificações aprimoradas de abas, baixadores de vídeos e muito mais."
 
 msgid "Tabs"
 msgstr "Abas"
