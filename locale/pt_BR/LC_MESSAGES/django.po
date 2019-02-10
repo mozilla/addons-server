@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-10 01:13+0000\n"
+"PO-Revision-Date: 2019-02-10 13:31+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2128,25 +2128,25 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Baixe temas do Firefox com o Firefox japonês. Esta categoria inclui temas que retratam o bonito mascote Foxkeh em várias poses em diversas paisagens."
 
 msgid "Holiday"
 msgstr "Feriado"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Baixe temas do Firefox com feriados. Esta categoria inclui Natal, Dia das Bruxas, Ação de Graças, Dia de São Patrício, Páscoa, Quatro de Julho e muito mais."
 
 msgid "Music"
 msgstr "Música"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Baixe temas do Firefox com interesses e artistas musicais. Esta categoria inclui bandas populares como Nirvana e BTS, instrumentos, vídeos musicais e muito mais."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Baixe temas do Firefox com animais e paisagens naturais. Esta categoria inclui flores, por do sol, raposas, estações do ano, planetas, gatinhos, pássaros e muito mais."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Baixe temas do Firefox que são interessantes, criativos e únicos."
 
 msgid "Scenery"
 msgstr "Cenário"
