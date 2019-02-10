@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-10 13:31+0000\n"
+"PO-Revision-Date: 2019-02-10 13:40+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2143,7 +2143,7 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr "Baixe temas do Firefox com interesses e artistas musicais. Esta categoria inclui bandas populares como Nirvana e BTS, instrumentos, vídeos musicais e muito mais."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr "Baixe temas do Firefox com animais e paisagens naturais. Esta categoria inclui flores, por do sol, raposas, estações do ano, planetas, gatinhos, pássaros e muito mais."
+msgstr "Baixe temas do Firefox com animais e paisagens naturais. Esta categoria inclui flores, pôr do sol, raposas, estações do ano, planetas, gatinhos, pássaros e muito mais."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Baixe temas do Firefox que são interessantes, criativos e únicos."
@@ -2152,28 +2152,28 @@ msgid "Scenery"
 msgstr "Cenário"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "Baixe temas do Firefox que destacam o meio ambiente e o mundo natural. Esta categoria inclui pôr do sol, praias, ilustrações, horizontes de cidades e muito mais."
 
 msgid "Seasonal"
 msgstr "Sazonal"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Baixe temas do Firefox com as quatro estações - outono, inverno, primavera e verão. Folhas de outono, picos nevados de montanhas, dias ensolarados de verão e flores da primavera."
 
 msgid "Solid"
 msgstr "Sólido"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
-msgstr ""
+msgstr "Baixe temas do Firefox com cores sólidas e gradientes para personalizar seu navegador. Esta categoria inclui cores fortes, pastéis, tons suaves de cinza e muito mais."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Baixe temas do Firefox que apresentam uma variedade de esportes. Esta categoria inclui bandeiras de países, equipes esportivas, futebol, hóquei e muito mais."
 
 msgid "Websites"
 msgstr "Sites"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Baixe temas do Firefox que capturam a essência da web - cativantes, incomuns e distintos."
 
 # This is the name/category for a group of tests
 msgid "General"
