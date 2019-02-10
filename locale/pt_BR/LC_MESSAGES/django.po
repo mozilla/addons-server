@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-10 00:50+0000\n"
+"PO-Revision-Date: 2019-02-10 01:09+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2005,68 +2005,70 @@ msgid "Tabs"
 msgstr "Abas"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox para personalizar abas e a página de nova aba. Descubra extensões que podem controlar abas, mudar o modo de interagir com elas e muito mais."
 
 msgid "Web Development"
 msgstr "Desenvolvimento Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox que contêm ferramentas de desenvolvimento web. Esta categoria inclui extensões para o GitHub, troca de agente do usuário, gerenciamento de cookies e muito mais."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Outro"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Baixe extensões do Firefox que podem ser imprevisíveis e criativas, mas úteis para aquelas tarefas peculiares."
 
 msgid "Device Features & Location"
 msgstr "Características do dispositivo e localização"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Baixe extensões para melhorar o Firefox para Android. Realize pesquisas rápidas, libere recursos do sistema, faça anotações e muito mais."
 
 msgid "Experimental"
 msgstr "Experimental"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Baixe extensões do Firefox que são regularmente atualizadas e disponibilizadas para testes públicos. Sua opinião informa os desenvolvedores sobre alterações a ser feitas em futuras versões."
 
 msgid "Performance"
 msgstr "Desempenho"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Baixe extensões que dão ao Firefox um aumento de desempenho. Encontre extensões que ajudam você a ser mais produtivo e eficiente, bloqueando anúncios irritantes e muito mais."
 
 msgid "Photos & Media"
 msgstr "Fotos e mídia"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox para aprimorar fotos e mídia. Esta categoria inclui extensões para fazer pesquisa reversa de imagens, capturar páginas inteiras e muito mais."
 
 msgid "Security & Privacy"
 msgstr "Segurança e Privacidade"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Baixe extensões do Firefox para navegar com segurança e privacidade. Descubra extensões que podem impedir rastreadores de anúncios sorrateiros, limpar facilmente o histórico de navegação e muito "
+"mais."
 
 msgid "Social Networking"
 msgstr "Redes sociais"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox para aprimorar sua experiência em sites de redes sociais populares, como YouTube, GitHub, Reddit e muito mais."
 
 msgid "Sports & Games"
 msgstr "Esportes e Jogos"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox para incrementar sua experiência de entretenimento, com aprimoradores de transmissões ao vivo, novidades sobre esportes e muito mais."
 
 msgid "User Interface"
 msgstr "Interface do usuário"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Baixe extensões do Firefox de interface do usuário, que modificam páginas web para facilitar a leitura, pesquisa, navegação e muito mais."
 
 msgid "Animals"
 msgstr "Animais"
@@ -2099,19 +2101,19 @@ msgid "Abstract"
 msgstr "Abstrato"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Baixe temas artísticos e conceituais do Firefox. Esta categoria inclui paletas e formas coloridas, paisagens de fantasia, gatos brincalhões e flores psicodélicas."
 
 msgid "Causes"
 msgstr "Causas"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Baixe temas do Firefox para interesses e tópicos de nicho. Essa categoria inclui temas esportivos, feriados, causas filantrópicas, nacionalidades e muito mais."
 
 msgid "Fashion"
 msgstr "Moda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Baixe temas do Firefox que celebram o estilo de todas as formas - padrões, florais, texturas, modelos e muito mais."
 
 msgid "Film and TV"
 msgstr "Filme e TV"
