@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-11 16:11+0000\n"
+"PO-Revision-Date: 2019-02-11 16:12+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -7260,7 +7260,7 @@ msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "שילוב שגוי של הפרמטרים ״%s״, ״%s״ ו־״%״."
 
 msgid "Maximum query length exceeded."
 msgstr "חרגת מאורך השאילתה המרבי."
