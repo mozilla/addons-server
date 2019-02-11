@@ -1,8 +1,8 @@
 -r tests.txt
 
-FoxPuppet==1.0.2 \
-    --hash=sha256:b9efa67cbc433ad70420ff9480cc11aaab985ce7b820e72763d673deeae9f7fe \
-    --hash=sha256:4f1236474b92715649f6f2684092945ff551ca7bffe326775ec2501726758878
+FoxPuppet==1.0.3 \
+    --hash=sha256:356a53ecea108e11526557e78ae9f7587cbe6113912ef36aa7b633c4a3318a96 \
+    --hash=sha256:d60e2b0d39bb9fdc2097f72e1a3e88d3fbb69a5b09fd78c26ebcd4da4956aa00
 fxapom==1.10.2 \
     --hash=sha256:56fdff0a0f0ea58831337e3a859971f98c59fd028ebc14baa8e37ae08a40efa0 \
     --hash=sha256:5fb902afaaa9d9b82b5d1d54b9e19f1f4c9be128deb3b0e0ac82a9303f76000f
