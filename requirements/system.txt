@@ -90,9 +90,9 @@ ndg-httpsclient==0.5.1 \
 packaging==19.0 \
     --hash=sha256:9e1cbf8c12b1f1ce0bb5344b8d7ecf66a6f8a6e91bcb0c84593ed6d3ab5c4ab3 \
     --hash=sha256:0c98a5d0be38ed775798ece1b9727178c4469d9c3b4ada66e8e6b7849f8732af
-pip==19.0.1 \
-    --hash=sha256:aae79c7afe895fb986ec751564f24d97df1331bb99cdfec6f70dada2f40c0044 \
-    --hash=sha256:e81ddd35e361b630e94abeda4a1eddd36d47a90e71eb00f38f46b57f787cd1a5
+pip==19.0.2 \
+    --hash=sha256:6a59f1083a63851aeef60c7d68b119b46af11d9d803ddc1cf927b58edcd0b312 \
+    --hash=sha256:f851133f8b58283fa50d8c78675eb88d4ff4cde29b6c41205cd938b06338e0e5
 pyOpenSSL==19.0.0 \
     --hash=sha256:c727930ad54b10fc157015014b666f2d8b41f70c0d03e83ab67624fd3dd5d1e6 \
     --hash=sha256:aeca66338f6de19d1aa46ed634c3b9ae519a64b458f8468aec688e7e3c20f200
