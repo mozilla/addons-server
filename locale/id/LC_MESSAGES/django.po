@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"POT-Creation-Date: 2019-02-11 14:23+0000\n"
 "PO-Revision-Date: 2019-01-20 16:48+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -7130,6 +7130,27 @@ msgstr "Ditandai"
 
 msgid "Updates"
 msgstr "Pembaruan"
+
+#, fuzzy, python-format
+msgid "Invalid \"%s\" parameter."
+msgstr "Bentangan versi tidak valid."
+
+#, python-format
+msgid "Invalid combination of \"%s\" and \"%s\" parameters."
+msgstr ""
+
+msgid "Return To AMO is currently disabled"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not in base64url format?)"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not a curated add-on)"
+msgstr ""
+
+#, python-format
+msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Melebihi batas panjang maksimum kueri."
