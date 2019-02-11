@@ -11,7 +11,7 @@ from django.db.models import Q
 
 import pytest
 
-from olympia.amo.tests import BaseTestCase
+from olympia.amo.tests import TestCase
 from olympia.reviewers.sql_model import RawSQLModel
 
 
@@ -62,7 +62,7 @@ class ProductDetail(RawSQLModel):
         }
 
 
-class TestSQLModel(BaseTestCase):
+class TestSQLModel(TestCase):
 
     @pytest.fixture(autouse=True)
     def setup(self, request):

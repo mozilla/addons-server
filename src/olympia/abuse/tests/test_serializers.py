@@ -2,10 +2,10 @@ from olympia.abuse.models import AbuseReport
 from olympia.abuse.serializers import (
     AddonAbuseReportSerializer, UserAbuseReportSerializer)
 from olympia.accounts.serializers import BaseUserSerializer
-from olympia.amo.tests import BaseTestCase, addon_factory, user_factory
+from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
-class TestAddonAbuseReportSerializer(BaseTestCase):
+class TestAddonAbuseReportSerializer(TestCase):
 
     def serialize(self, report, **extra_context):
         return AddonAbuseReportSerializer(report, context=extra_context).data
@@ -30,7 +30,7 @@ class TestAddonAbuseReportSerializer(BaseTestCase):
                           'message': 'bad stuff'}
 
 
-class TestUserAbuseReportSerializer(BaseTestCase):
+class TestUserAbuseReportSerializer(TestCase):
 
     def serialize(self, report, **extra_context):
         return UserAbuseReportSerializer(report, context=extra_context).data

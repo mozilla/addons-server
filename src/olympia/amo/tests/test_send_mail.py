@@ -13,7 +13,7 @@ import six
 from celery.exceptions import Retry
 
 from olympia.amo.models import FakeEmail
-from olympia.amo.tests import BaseTestCase
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import send_html_mail_jinja, send_mail
 from olympia.users import notifications
 from olympia.users.models import UserNotification, UserProfile
@@ -23,7 +23,7 @@ TESTS_DIR = os.path.dirname(os.path.abspath(__file__))
 ATTACHMENTS_DIR = os.path.join(TESTS_DIR, 'attachments')
 
 
-class TestSendMail(BaseTestCase):
+class TestSendMail(TestCase):
     fixtures = ['base/users']
 
     def setUp(self):

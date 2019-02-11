@@ -8,7 +8,7 @@ from django.core.validators import ValidationError
 import mock
 import pytest
 
-from olympia.amo.tests import BaseTestCase
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import (
     LocalFileStorage, cache_ns_key, escape_all, find_language, from_string,
     no_jinja_autoescape, resize_image, rm_local_tmp_dir,
@@ -118,7 +118,7 @@ def test_find_language(test_input, expected):
     assert find_language(test_input) == expected
 
 
-class TestLocalFileStorage(BaseTestCase):
+class TestLocalFileStorage(TestCase):
 
     def setUp(self):
         super(TestLocalFileStorage, self).setUp()
@@ -195,7 +195,7 @@ class TestLocalFileStorage(BaseTestCase):
         assert os.path.exists(dp)
 
 
-class TestCacheNamespaces(BaseTestCase):
+class TestCacheNamespaces(TestCase):
 
     def setUp(self):
         super(TestCacheNamespaces, self).setUp()
