@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-01 11:25+0000\n"
-"PO-Revision-Date: 2019-02-04 22:00+0000\n"
+"PO-Revision-Date: 2019-02-10 12:43+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -5593,9 +5593,8 @@ msgid "Automatically delete unwanted cookies. Offers white and blacklist support
 msgstr "Supprime automatiquement les cookies indésirables. Offre un support de liste blanche et noire."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Dites-le sur Twitter {start_sub_heading}avec {addon_name}{end_sub_heading}"
+msgstr "Voyez les choses en grand {start_sub_heading}avec {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
@@ -5711,9 +5710,9 @@ msgstr "Ce type de fichier n’est pas pris en charge, veuillez envoyer une arch
 msgid "Unexpected error."
 msgstr "Erreur inattendue."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> dans votre install.rdf (%s) ne correspond pas au type de votre module sur AMO (%s)"
+msgstr "Le type (%s) ne correspond pas avec le type de votre module sur AMO (%s)"
 
 msgid "Back to review"
 msgstr "Retour à la revue"
