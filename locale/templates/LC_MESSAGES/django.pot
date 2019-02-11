@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"POT-Creation-Date: 2019-02-11 14:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -144,93 +144,93 @@ msgstr ""
 msgid "Add to {0}"
 msgstr ""
 
-#: src/olympia/addons/forms.py:51
+#: src/olympia/addons/forms.py:52
 msgid "This slug is already in use. Please choose another."
 msgstr ""
 
-#: src/olympia/addons/forms.py:54
+#: src/olympia/addons/forms.py:55
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
 msgstr ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: src/olympia/addons/forms.py:75
+#: src/olympia/addons/forms.py:76
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
-#: src/olympia/addons/forms.py:85
+#: src/olympia/addons/forms.py:86
 msgid "\"{0}\" is a reserved tag and cannot be used."
 msgid_plural "\"{0}\" are reserved tags and cannot be used."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/forms.py:93
+#: src/olympia/addons/forms.py:94
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/forms.py:99
+#: src/olympia/addons/forms.py:100
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
 msgstr ""
 
-#: src/olympia/addons/forms.py:104
+#: src/olympia/addons/forms.py:105
 msgid "All tags must be at least {0} character."
 msgid_plural "All tags must be at least {0} characters."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/forms.py:140 src/olympia/bandwagon/serializers.py:52
+#: src/olympia/addons/forms.py:141 src/olympia/bandwagon/serializers.py:52
 msgid "The text entered has been flagged as spam."
 msgstr ""
 
-#: src/olympia/addons/forms.py:222
+#: src/olympia/addons/forms.py:223
 msgid ""
 "Categories cannot be changed while your add-on is featured for this "
 "application."
 msgstr ""
 
 #. L10n: {0} is the number of categories.
-#: src/olympia/addons/forms.py:227
+#: src/olympia/addons/forms.py:228
 msgid "You can have only {0} category."
 msgid_plural "You can have only {0} categories."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/olympia/addons/forms.py:234
+#: src/olympia/addons/forms.py:235
 msgid "The miscellaneous category cannot be combined with additional categories."
 msgstr ""
 
-#: src/olympia/addons/forms.py:353
+#: src/olympia/addons/forms.py:354
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
 msgstr ""
 
-#: src/olympia/addons/forms.py:371
+#: src/olympia/addons/forms.py:372
 #, python-format
 msgid ""
 "Before changing your default locale you must have a name, summary, and "
 "description in that locale. You are missing %s."
 msgstr ""
 
-#: src/olympia/addons/forms.py:461 src/olympia/addons/forms.py:548
+#: src/olympia/addons/forms.py:462 src/olympia/addons/forms.py:549
 msgid "A license must be selected."
 msgstr ""
 
-#: src/olympia/addons/forms.py:529
+#: src/olympia/addons/forms.py:530
 msgid "Give Your Theme a Name."
 msgstr ""
 
-#: src/olympia/addons/forms.py:535
+#: src/olympia/addons/forms.py:536
 #: src/olympia/devhub/templates/devhub/personas/submit.html:51
 msgid "Describe your Theme."
 msgstr ""
 
-#: src/olympia/addons/forms.py:672
+#: src/olympia/addons/forms.py:673
 msgid "Enter a new author's email address"
 msgstr ""
 
@@ -1102,14 +1102,14 @@ msgstr ""
 
 #: src/olympia/amo/context_processors.py:78
 #: src/olympia/amo/templates/amo/site_nav.html:81
-#: src/olympia/devhub/templatetags/jinja_helpers.py:41
+#: src/olympia/devhub/templatetags/jinja_helpers.py:40
 #: src/olympia/templates/footer.html:6
 msgid "Developer Hub"
 msgstr ""
 
 #: src/olympia/amo/context_processors.py:81
 #: src/olympia/devhub/templates/devhub/new-landing/components/footer.html:40
-#: src/olympia/devhub/views.py:1804
+#: src/olympia/devhub/views.py:1805
 msgid "Manage API Keys"
 msgstr ""
 
@@ -3644,25 +3644,25 @@ msgstr ""
 msgid "Recent Changes for My Add-ons"
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:43
+#: src/olympia/devhub/file_validation_annotations.py:42
 msgid "Legacy extensions are no longer supported in Firefox."
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:46
+#: src/olympia/devhub/file_validation_annotations.py:45
 msgid ""
 "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on "
 "addons.thunderbird.net. You can use the same account to update your add-ons "
 "on the new site."
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:99
+#: src/olympia/devhub/file_validation_annotations.py:98
 msgid ""
 "We allow and encourage an upgrade but you cannot reverse this process. Once "
 "your users have the WebExtension installed, they will not be able to install "
 "a legacy add-on."
 msgstr ""
 
-#: src/olympia/devhub/file_validation_annotations.py:109
+#: src/olympia/devhub/file_validation_annotations.py:108
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
@@ -3720,7 +3720,7 @@ msgstr ""
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
-#: src/olympia/devhub/forms.py:318 src/olympia/files/utils.py:882
+#: src/olympia/devhub/forms.py:318 src/olympia/files/utils.py:884
 msgid "Invalid or broken archive."
 msgstr ""
 
@@ -3794,19 +3794,19 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:356
+#: src/olympia/devhub/tasks.py:357
 msgid ""
 "Your developer API key was found in the submitted file. To protect your "
 "account, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:361
+#: src/olympia/devhub/tasks.py:362
 msgid ""
 "The developer API key of a coauthor was found in the submitted file. To "
 "protect your add-on, the key will be revoked."
 msgstr ""
 
-#: src/olympia/devhub/tasks.py:700
+#: src/olympia/devhub/tasks.py:701
 msgid "Mozilla Security Notice: Your AMO API credentials have been revoked"
 msgstr ""
 
@@ -3846,7 +3846,7 @@ msgstr ""
 msgid "Changes successfully saved."
 msgstr ""
 
-#: src/olympia/devhub/views.py:355 src/olympia/devhub/views.py:1661
+#: src/olympia/devhub/views.py:355 src/olympia/devhub/views.py:1662
 msgid "Please check the form for errors."
 msgstr ""
 
@@ -4006,29 +4006,29 @@ msgid ""
 "field:  toolbar_field_text."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1700
+#: src/olympia/devhub/views.py:1701
 msgid "Review requested."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1702
+#: src/olympia/devhub/views.py:1703
 msgid "You must provide further details to proceed."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1781
+#: src/olympia/devhub/views.py:1782
 msgid ""
 "Your old credentials were revoked and are no longer valid. Be sure to update "
 "all API clients with the new credentials."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1798
+#: src/olympia/devhub/views.py:1799
 msgid "Your old credentials were revoked and are no longer valid."
 msgstr ""
 
-#: src/olympia/devhub/views.py:1812
+#: src/olympia/devhub/views.py:1813
 msgid "New API key created"
 msgstr ""
 
-#: src/olympia/devhub/views.py:1823
+#: src/olympia/devhub/views.py:1824
 msgid "API key revoked"
 msgstr ""
 
@@ -6479,19 +6479,19 @@ msgstr ""
 msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
-#: src/olympia/devhub/templatetags/jinja_helpers.py:50
+#: src/olympia/devhub/templatetags/jinja_helpers.py:49
 msgid "Add-on Documentation :: Developer Hub"
 msgstr ""
 
 #. L10n: first parameter is the number of errors
-#: src/olympia/devhub/templatetags/jinja_helpers.py:108
+#: src/olympia/devhub/templatetags/jinja_helpers.py:107
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] ""
 msgstr[1] ""
 
 #. L10n: first parameter is the number of warnings
-#: src/olympia/devhub/templatetags/jinja_helpers.py:111
+#: src/olympia/devhub/templatetags/jinja_helpers.py:110
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] ""
@@ -8330,61 +8330,61 @@ msgstr ""
 msgid "Invalid archive."
 msgstr ""
 
-#: src/olympia/files/utils.py:972 src/olympia/files/utils.py:976
+#: src/olympia/files/utils.py:974 src/olympia/files/utils.py:978
 msgid "Could not parse the manifest file."
 msgstr ""
 
-#: src/olympia/files/utils.py:997
+#: src/olympia/files/utils.py:999
 msgid "Could not find an add-on ID."
 msgstr ""
 
-#: src/olympia/files/utils.py:1008
+#: src/olympia/files/utils.py:1010
 #, python-format
 msgid ""
 "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID"
 " of your add-on on AMO (%s)"
 msgstr ""
 
-#: src/olympia/files/utils.py:1019
+#: src/olympia/files/utils.py:1021
 msgid "Duplicate add-on ID found."
 msgstr ""
 
-#: src/olympia/files/utils.py:1022
+#: src/olympia/files/utils.py:1024
 msgid "Version numbers should have fewer than 32 characters."
 msgstr ""
 
-#: src/olympia/files/utils.py:1025
+#: src/olympia/files/utils.py:1027
 msgid ""
 "Version numbers should only contain letters, numbers, and these punctuation "
 "characters: +*.-_."
 msgstr ""
 
-#: src/olympia/files/utils.py:1032
+#: src/olympia/files/utils.py:1034
 msgid "Maximum size for WebExtension themes is {0}."
 msgstr ""
 
-#: src/olympia/files/utils.py:1045
+#: src/olympia/files/utils.py:1047
 msgid "You cannot submit this type of add-on"
 msgstr ""
 
-#: src/olympia/files/utils.py:1052
+#: src/olympia/files/utils.py:1054
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
 msgstr ""
 
-#: src/olympia/files/utils.py:1057
+#: src/olympia/files/utils.py:1059
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-#: src/olympia/files/utils.py:1092
+#: src/olympia/files/utils.py:1094
 msgid "Unsupported file type, please upload an a supported file {extensions}."
 msgstr ""
 
-#: src/olympia/files/utils.py:1099
+#: src/olympia/files/utils.py:1101
 msgid "Unexpected error."
 msgstr ""
 
-#: src/olympia/files/utils.py:1103
+#: src/olympia/files/utils.py:1105
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
 msgstr ""
@@ -10443,7 +10443,35 @@ msgstr ""
 msgid "Updates"
 msgstr ""
 
-#: src/olympia/search/filters.py:740
+#: src/olympia/search/filters.py:46 src/olympia/search/filters.py:61
+#: src/olympia/search/filters.py:99 src/olympia/search/filters.py:279
+#, python-format
+msgid "Invalid \"%s\" parameter."
+msgstr ""
+
+#: src/olympia/search/filters.py:103
+#, python-format
+msgid "Invalid combination of \"%s\" and \"%s\" parameters."
+msgstr ""
+
+#: src/olympia/search/filters.py:163
+msgid "Return To AMO is currently disabled"
+msgstr ""
+
+#: src/olympia/search/filters.py:171
+msgid "Invalid Return To AMO guid (not in base64url format?)"
+msgstr ""
+
+#: src/olympia/search/filters.py:182
+msgid "Invalid Return To AMO guid (not a curated add-on)"
+msgstr ""
+
+#: src/olympia/search/filters.py:259
+#, python-format
+msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgstr ""
+
+#: src/olympia/search/filters.py:758
 msgid "Maximum query length exceeded."
 msgstr ""
 

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"POT-Creation-Date: 2019-02-11 14:23+0000\n"
 "PO-Revision-Date: 2019-01-04 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -7307,6 +7307,27 @@ msgstr "İşaretli"
 
 msgid "Updates"
 msgstr "Güncellemeler"
+
+#, fuzzy, python-format
+msgid "Invalid \"%s\" parameter."
+msgstr "Geçersiz sürüm aralığı."
+
+#, python-format
+msgid "Invalid combination of \"%s\" and \"%s\" parameters."
+msgstr ""
+
+msgid "Return To AMO is currently disabled"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not in base64url format?)"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not a curated add-on)"
+msgstr ""
+
+#, python-format
+msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr "Maksimum sorgu uzunluğu aşıldı."

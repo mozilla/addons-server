@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-01 11:25+0000\n"
+"POT-Creation-Date: 2019-02-11 14:23+0000\n"
 "PO-Revision-Date: 2017-03-21 23:23+0000\n"
 "Last-Translator: Ramin.Najarbashi <Ramin.Najarbashi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -7251,6 +7251,27 @@ msgstr ""
 #, fuzzy
 msgid "Updates"
 msgstr "به‌هنگام شده"
+
+#, python-format
+msgid "Invalid \"%s\" parameter."
+msgstr ""
+
+#, python-format
+msgid "Invalid combination of \"%s\" and \"%s\" parameters."
+msgstr ""
+
+msgid "Return To AMO is currently disabled"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not in base64url format?)"
+msgstr ""
+
+msgid "Invalid Return To AMO guid (not a curated add-on)"
+msgstr ""
+
+#, python-format
+msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
+msgstr ""
 
 msgid "Maximum query length exceeded."
 msgstr ""
