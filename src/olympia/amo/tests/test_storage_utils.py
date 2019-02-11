@@ -12,7 +12,7 @@ import pytest
 
 from olympia.amo.storage_utils import (
     copy_stored_file, move_stored_file, rm_stored_dir, walk_storage)
-from olympia.amo.tests import BaseTestCase
+from olympia.amo.tests import TestCase
 from olympia.amo.utils import rm_local_tmp_dir
 
 
@@ -78,7 +78,7 @@ def test_rm_stored_dir():
         rm_local_tmp_dir(tmp)
 
 
-class TestFileOps(BaseTestCase):
+class TestFileOps(TestCase):
 
     def setUp(self):
         super(TestFileOps, self).setUp()

@@ -7,13 +7,13 @@ import pytest
 
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
-from olympia.amo.tests import BaseTestCase, TestCase
+from olympia.amo.tests import TestCase, TestCase
 
 
 pytestmark = pytest.mark.django_db
 
 
-class MiddlewareTest(BaseTestCase):
+class MiddlewareTest(TestCase):
     """Tests that the locale and app redirection work properly."""
 
     def setUp(self):
@@ -147,7 +147,7 @@ class MiddlewareTest(BaseTestCase):
         check('/en-US/firefox?lang=es-PE', '/es/firefox/')
 
 
-class TestPrefixer(BaseTestCase):
+class TestPrefixer(TestCase):
 
     def tearDown(self):
         urlresolvers.clean_url_prefixes()
@@ -198,7 +198,7 @@ class TestPrefixer(BaseTestCase):
 
     def test_reverse(self):
         # Make sure it works outside the request.
-        urlresolvers.clean_url_prefixes()  # Modified in BaseTestCase.
+        urlresolvers.clean_url_prefixes()  # Modified in TestCase.
         assert urlresolvers.reverse('home') == '/'
 
         # With a request, locale and app prefixes work.

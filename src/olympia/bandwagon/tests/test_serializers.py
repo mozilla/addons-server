@@ -4,7 +4,7 @@ from rest_framework import serializers
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import (
-    BaseTestCase, addon_factory, collection_factory, TestCase, user_factory)
+    TestCase, addon_factory, collection_factory, TestCase, user_factory)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
     CollectionAddonSerializer, CollectionAkismetSpamValidator,
@@ -105,7 +105,7 @@ class TestCollectionAkismetSpamValidator(TestCase):
         assert comment_check_mock.call_count == 1
 
 
-class TestCollectionSerializer(BaseTestCase):
+class TestCollectionSerializer(TestCase):
     serializer = CollectionSerializer
 
     def setUp(self):
@@ -133,7 +133,7 @@ class TestCollectionSerializer(BaseTestCase):
         assert data['default_locale'] == self.collection.default_locale
 
 
-class TestCollectionAddonSerializer(BaseTestCase):
+class TestCollectionAddonSerializer(TestCase):
 
     def setUp(self):
         self.collection = collection_factory()

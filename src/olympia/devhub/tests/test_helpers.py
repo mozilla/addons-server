@@ -68,7 +68,7 @@ def test_log_action_class():
         assert render('{{ log_action_class(id) }}', {'id': v.id}) == cls
 
 
-class TestDisplayUrl(amo.tests.BaseTestCase):
+class TestDisplayUrl(amo.tests.TestCase):
 
     def setUp(self):
         super(TestDisplayUrl, self).setUp()

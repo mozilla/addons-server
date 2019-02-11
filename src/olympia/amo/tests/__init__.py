@@ -356,6 +356,10 @@ ES_patchers = [
 
 
 def start_es_mocks():
+    # Before starting to mock, stop them first. That way we ensure we're not
+    # trying to mock over an existing mock, which would be problematic since
+    # we use spec=True.
+    stop_es_mocks()
     for patch in ES_patchers:
         patch.start()
 
@@ -367,23 +371,6 @@ def stop_es_mocks():
         except RuntimeError:
             # Ignore already stopped patches.
             pass
-
-
-class BaseTestCase(test.TestCase):
-    """Base test case that most test cases should inherit from."""
-
-    def _pre_setup(self):
-        super(BaseTestCase, self)._pre_setup()
-        self.client = self.client_class()
-
-    def trans_eq(self, trans, localized_string, locale):
-        assert trans.id
-        translation = Translation.objects.get(id=trans.id, locale=locale)
-        assert translation.localized_string == localized_string
-
-    def assertUrlEqual(self, url, other, compare_host=False):
-        """Compare url paths and query strings."""
-        assert_url_equal(url, other, compare_host=compare_host)
 
 
 def fxa_login_link(response=None, to=None, request=None):
@@ -424,9 +411,32 @@ def grant_permission(user_obj, rules, name):
     GroupUser.objects.create(group=group, user=user_obj)
 
 
-class TestCase(PatchMixin, InitializeSessionMixin, BaseTestCase):
+class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
     """Base class for all amo tests."""
     client_class = TestClient
+
+    def _pre_setup(self):
+        super(TestCase, self)._pre_setup()
+        self.client = self.client_class()
+
+    @classmethod
+    def setUpClass(cls):
+        start_es_mocks()
+        super(TestCase, cls).setUpClass()
+
+    @classmethod
+    def tearDownClass(cls):
+        stop_es_mocks()
+        super(TestCase, cls).tearDownClass()
+
+    def trans_eq(self, trans, localized_string, locale):
+        assert trans.id
+        translation = Translation.objects.get(id=trans.id, locale=locale)
+        assert translation.localized_string == localized_string
+
+    def assertUrlEqual(self, url, other, compare_host=False):
+        """Compare url paths and query strings."""
+        assert_url_equal(url, other, compare_host=compare_host)
 
     @contextmanager
     def activate(self, locale=None, app=None):

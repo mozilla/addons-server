@@ -18,7 +18,7 @@ from mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.models import use_primary_db
-from olympia.amo.tests import BaseTestCase
+from olympia.amo.tests import TestCase
 from olympia.translations.models import (
     LinkifiedTranslation, NoLinksNoMarkupTranslation,
     PurifiedTranslation, Translation, TranslationSequence)
@@ -35,7 +35,7 @@ def ids(qs):
     return [o.id for o in qs]
 
 
-class TranslationFixturelessTestCase(BaseTestCase):
+class TranslationFixturelessTestCase(TestCase):
     "We want to be able to rollback stuff."
 
     def test_whitespace(self):
@@ -44,7 +44,7 @@ class TranslationFixturelessTestCase(BaseTestCase):
         assert 'khaaaaaan!' == t.localized_string
 
 
-class TranslationSequenceTestCase(BaseTestCase):
+class TranslationSequenceTestCase(TestCase):
     """
     Make sure automatic translation sequence generation works
     as expected.
@@ -77,7 +77,7 @@ class TranslationSequenceTestCase(BaseTestCase):
             'Translation sequence needs to keep increasing.')
 
 
-class TranslationTestCase(BaseTestCase):
+class TranslationTestCase(TestCase):
     fixtures = ['testapp/test_models.json']
 
     def setUp(self):
@@ -530,7 +530,7 @@ class TranslationMultiDbTests(TransactionTestCase):
                 assert len(connections['slave-2'].queries) == 0
 
 
-class PurifiedTranslationTest(BaseTestCase):
+class PurifiedTranslationTest(TestCase):
 
     def test_output(self):
         assert isinstance(PurifiedTranslation().__html__(), six.text_type)
@@ -579,7 +579,7 @@ class PurifiedTranslationTest(BaseTestCase):
         assert doc('b')[0].text == 'markup'
 
 
-class LinkifiedTranslationTest(BaseTestCase):
+class LinkifiedTranslationTest(TestCase):
 
     @patch('olympia.amo.urlresolvers.get_outgoing_url')
     def test_allowed_tags(self, get_outgoing_url_mock):
@@ -598,7 +598,7 @@ class LinkifiedTranslationTest(BaseTestCase):
             '&lt;b&gt;bold&lt;/b&gt;')
 
 
-class NoLinksNoMarkupTranslationTest(BaseTestCase):
+class NoLinksNoMarkupTranslationTest(TestCase):
 
     def test_forbidden_tags(self):
         s = u'<script>some naughty xss</script> <b>bold</b>'
