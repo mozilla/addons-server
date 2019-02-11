@@ -2409,7 +2409,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Permitimos y alentamos las actualizaciones, pero no se puede invertir. Cuando los usuarios tengan la WebExtension instalada, no podrán instalar un complemento de alfabetización."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr "[{field}} El texto en el campo \"{field}\" se ha marcado como spam."
+msgstr "[{field}] El texto en el campo \"{field}\" se ha marcado como spam."
 
 msgid "Must have at least one owner."
 msgstr "Debe tener al menos un propietario."
