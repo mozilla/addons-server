@@ -13,7 +13,7 @@ def render(s, context=None):
     return t.render(context)
 
 
-class TestHelpers(amo.tests.BaseTestCase):
+class TestHelpers(amo.tests.TestCase):
     fixtures = ('base/addon_3615', 'base/user_2519', 'base/user_4043307',
                 'tags/tags')
 

@@ -11,7 +11,7 @@ import pytest
 
 from olympia import amo
 from olympia.amo import decorators
-from olympia.amo.tests import BaseTestCase, TestCase, fxa_login_link
+from olympia.amo.tests import TestCase, TestCase, fxa_login_link
 from olympia.users.models import UserProfile
 
 
@@ -79,7 +79,7 @@ def test_json_view_response_status():
     assert response.status_code == 202
 
 
-class TestLoginRequired(BaseTestCase):
+class TestLoginRequired(TestCase):
 
     def setUp(self):
         super(TestLoginRequired, self).setUp()
