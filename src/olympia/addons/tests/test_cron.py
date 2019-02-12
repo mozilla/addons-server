@@ -160,14 +160,12 @@ class TestHideDisabledFiles(TestCase):
 
         # Check that we called `move_stored_file` for f2 properly
         f2 = self.f2
-        mv_mock.assert_called_with(
-            force_bytes(f2.file_path), force_bytes(f2.guarded_file_path))
+        mv_mock.assert_called_with(f2.file_path, f2.guarded_file_path)
 
         # Check that we called `move_stored_file` for f1 properly
         f1 = self.f1
         mv_mock.call_args = mv_mock.call_args_list[0]
-        mv_mock.assert_called_with(
-            force_bytes(f1.file_path), force_bytes(f1.guarded_file_path))
+        mv_mock.assert_called_with(f1.file_path, f1.guarded_file_path)
 
         # Make sure we called `mv` twice despite an `IOError` for the first
         # file
