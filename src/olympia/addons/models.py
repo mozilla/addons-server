@@ -1574,7 +1574,7 @@ class Persona(models.Model):
     STATUS_CHOICES = amo.STATUS_CHOICES_PERSONA
 
     id = PositiveAutoField(primary_key=True)
-    addon = models.OneToOneField(Addon, null=True)
+    addon = models.OneToOneField(Addon, null=True, on_delete=models.CASCADE)
     persona_id = models.PositiveIntegerField(db_index=True)
     # name: deprecated in favor of Addon model's name field
     # description: deprecated, ditto
@@ -1593,7 +1593,8 @@ class Persona(models.Model):
 
     # To spot duplicate submissions.
     checksum = models.CharField(max_length=64, blank=True, default='')
-    dupe_persona = models.ForeignKey('self', null=True)
+    dupe_persona = models.ForeignKey(
+        'self', null=True, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'personas'
@@ -1755,10 +1756,12 @@ class Persona(models.Model):
 
 class MigratedLWT(OnChangeMixin, ModelBase):
     lightweight_theme = models.ForeignKey(
-        Addon, unique=True, related_name='migrated_to_static_theme')
+        Addon, unique=True, related_name='migrated_to_static_theme',
+        on_delete=models.CASCADE)
     getpersonas_id = models.PositiveIntegerField(db_index=True)
     static_theme = models.ForeignKey(
-        Addon, unique=True, related_name='migrated_from_lwt')
+        Addon, unique=True, related_name='migrated_from_lwt',
+        on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'migrated_personas'
@@ -1771,7 +1774,7 @@ class MigratedLWT(OnChangeMixin, ModelBase):
 class AddonCategory(models.Model):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
-    category = models.ForeignKey('Category')
+    category = models.ForeignKey('Category', on_delete=models.CASCADE)
     feature = models.BooleanField(default=False)
     feature_locales = models.CharField(max_length=255, default='', null=True)
 
@@ -1953,7 +1956,8 @@ class Category(OnChangeMixin, ModelBase):
 
 class Preview(BasePreview, ModelBase):
     id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey(Addon, related_name='previews')
+    addon = models.ForeignKey(
+        Addon, related_name='previews', on_delete=models.CASCADE)
     caption = TranslatedField()
     position = models.IntegerField(default=0)
     sizes = JSONField(default={})
@@ -2005,7 +2009,7 @@ class DeniedSlug(ModelBase):
 class FrozenAddon(models.Model):
     """Add-ons in this table never get a hotness score."""
     id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'frozen_addons'
@@ -2027,9 +2031,9 @@ class CompatOverride(ModelBase):
     id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     guid = models.CharField(max_length=255, unique=True)
-    addon = models.ForeignKey(Addon, blank=True, null=True,
-                              help_text='Fill this out to link an override '
-                                        'to a hosted add-on')
+    addon = models.ForeignKey(
+        Addon, blank=True, null=True, on_delete=models.CASCADE,
+        help_text='Fill this out to link an override to a hosted add-on')
 
     class Meta:
         db_table = 'compat_override'
@@ -2101,7 +2105,9 @@ OVERRIDE_TYPES = (
 class CompatOverrideRange(ModelBase):
     """App compatibility for a certain version range of a RemoteAddon."""
     id = PositiveAutoField(primary_key=True)
-    compat = models.ForeignKey(CompatOverride, related_name='_compat_ranges')
+    compat = models.ForeignKey(
+        CompatOverride, related_name='_compat_ranges',
+        on_delete=models.CASCADE)
     type = models.SmallIntegerField(choices=OVERRIDE_TYPES, default=1)
     min_version = models.CharField(
         max_length=255, default='0',
@@ -2136,7 +2142,8 @@ class IncompatibleVersions(ModelBase):
     a particular version falls within the range of a compatibility override.
     """
     id = PositiveAutoField(primary_key=True)
-    version = models.ForeignKey(Version, related_name='+')
+    version = models.ForeignKey(
+        Version, related_name='+', on_delete=models.CASCADE)
     app = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                       db_column='app_id')
     min_app_version = models.CharField(max_length=255, blank=True, default='0')

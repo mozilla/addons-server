@@ -813,15 +813,15 @@ class TestCollectionForm(TestCase):
     def test_denied_name(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6Fan'}
-        with self.assertRaisesRegexp(ValidationError,
-                                     'This name cannot be used.'):
+        with self.assertRaisesRegex(ValidationError,
+                                    'This name cannot be used.'):
             form.clean_name()
 
     def test_denied_name_contains(self):
         form = forms.CollectionForm()
         form.cleaned_data = {'name': 'IE6fanBoy'}
-        with self.assertRaisesRegexp(ValidationError,
-                                     'This name cannot be used.'):
+        with self.assertRaisesRegex(ValidationError,
+                                    'This name cannot be used.'):
             form.clean_name()
 
     def test_clean_description(self):
@@ -832,13 +832,13 @@ class TestCollectionForm(TestCase):
 
         # No links allowed: raise on text links.
         form.cleaned_data = {'description': 'http://example.com'}
-        with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
+        with self.assertRaisesRegex(ValidationError, 'No links are allowed'):
             form.clean_description()
 
         # No links allowed: raise on URLs.
         form.cleaned_data = {
             'description': '<a href="http://example.com">example.com</a>'}
-        with self.assertRaisesRegexp(ValidationError, 'No links are allowed'):
+        with self.assertRaisesRegex(ValidationError, 'No links are allowed'):
             form.clean_description()
 
     def test_honeypot_not_required(self):

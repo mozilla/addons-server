@@ -74,12 +74,17 @@ class WithoutRepliesRatingManager(ManagerBase):
 @python_2_unicode_compatible
 class Rating(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey('addons.Addon', related_name='_ratings')
-    version = models.ForeignKey('versions.Version', related_name='ratings',
-                                null=True)
-    user = models.ForeignKey('users.UserProfile', related_name='_ratings_all')
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='_ratings', on_delete=models.CASCADE)
+    version = models.ForeignKey(
+        'versions.Version', related_name='ratings', null=True,
+        on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        'users.UserProfile', related_name='_ratings_all',
+        on_delete=models.CASCADE)
     reply_to = models.OneToOneField(
-        'self', null=True, related_name='reply', db_column='reply_to')
+        'self', null=True, related_name='reply', db_column='reply_to',
+        on_delete=models.CASCADE)
 
     rating = models.PositiveSmallIntegerField(null=True)
     body = models.TextField(db_column='text_body', null=True)
@@ -300,12 +305,14 @@ class RatingFlag(ModelBase):
         (OTHER, _(u'Other (please specify)')),
     )
 
-    rating = models.ForeignKey(Rating, db_column='review_id')
-    user = models.ForeignKey('users.UserProfile', null=True)
-    flag = models.CharField(max_length=64, default=OTHER,
-                            choices=FLAGS, db_column='flag_name')
-    note = models.CharField(max_length=100, db_column='flag_notes', blank=True,
-                            default='')
+    rating = models.ForeignKey(
+        Rating, db_column='review_id', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        'users.UserProfile', null=True, on_delete=models.CASCADE)
+    flag = models.CharField(
+        max_length=64, default=OTHER, choices=FLAGS, db_column='flag_name')
+    note = models.CharField(
+        max_length=100, db_column='flag_notes', blank=True, default='')
 
     class Meta:
         db_table = 'reviews_moderation_flags'

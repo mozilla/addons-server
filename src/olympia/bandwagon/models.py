@@ -99,8 +99,9 @@ class Collection(ModelBase):
 
     addons = models.ManyToManyField(Addon, through='CollectionAddon',
                                     related_name='collections')
-    author = models.ForeignKey(UserProfile, null=True,
-                               related_name='collections')
+    author = models.ForeignKey(
+        UserProfile, null=True, related_name='collections',
+        on_delete=models.CASCADE)
 
     objects = CollectionManager()
 
@@ -305,11 +306,11 @@ models.signals.post_delete.connect(Collection.post_delete, sender=Collection,
 
 class CollectionAddon(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey(Addon)
-    collection = models.ForeignKey(Collection)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
     # category (deprecated: for "Fashion Your Firefox")
     comments = LinkifiedField(null=True)
-    user = models.ForeignKey(UserProfile, null=True)
+    user = models.ForeignKey(UserProfile, null=True, on_delete=models.CASCADE)
 
     ordering = models.PositiveIntegerField(
         default=0,
@@ -358,7 +359,7 @@ class FeaturedCollection(ModelBase):
     id = PositiveAutoField(primary_key=True)
     application = models.PositiveIntegerField(choices=amo.APPS_CHOICES,
                                               db_column='application_id')
-    collection = models.ForeignKey(Collection)
+    collection = models.ForeignKey(Collection, on_delete=models.CASCADE)
     locale = models.CharField(max_length=10, null=True)
 
     class Meta:
@@ -381,7 +382,7 @@ models.signals.post_delete.connect(FeaturedCollection.post_save_or_delete,
 
 
 class MonthlyPick(ModelBase):
-    addon = models.ForeignKey(Addon)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
     blurb = models.TextField()
     image = models.URLField()
     locale = models.CharField(

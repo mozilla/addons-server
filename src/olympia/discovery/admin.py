@@ -85,7 +85,8 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
         if db_field.name == 'addon':
             kwargs['widget'] = ForeignKeyRawIdWidget(
-                db_field.rel, self.admin_site, using=kwargs.get('using'))
+                db_field.remote_field, self.admin_site,
+                using=kwargs.get('using'))
             kwargs['queryset'] = Addon.objects.public()
             kwargs['help_text'] = db_field.help_text
             return SlugOrPkChoiceField(**kwargs)

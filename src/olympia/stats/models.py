@@ -20,7 +20,7 @@ class StatsSearchMixin(SearchMixin):
 class DownloadCount(StatsSearchMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     # has an index `addon_id` on this column...
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
 
     # has an index named `count` in dev, stage and prod
     count = models.PositiveIntegerField(db_index=True)
@@ -42,7 +42,7 @@ class DownloadCount(StatsSearchMixin, models.Model):
 class UpdateCount(StatsSearchMixin, models.Model):
     id = PositiveAutoField(primary_key=True)
     # Has an index `addon_id` in our dev, stage and prod database
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
     # Has an index named `count` in our dev, stage and prod database
     count = models.PositiveIntegerField(db_index=True)
     # Has an index named `date` in our dev, stage and prod database
@@ -124,7 +124,7 @@ class ThemeUserCount(StatsSearchMixin, models.Model):
     (Persona).
 
     """
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     date = models.DateField()
 

@@ -174,15 +174,18 @@ def zip_overview(downloads, updates):
     downloads, updates = iter(downloads), iter(updates)
 
     def iterator(series):
-        item = next(series)
-        next_date = start_date
-        while True:
-            if item['date'] == next_date:
-                yield item['count']
-                item = next(series)
-            else:
-                yield 0
-            next_date = next_date - timedelta(days=1)
+        try:
+            item = next(series)
+            next_date = start_date
+            while True:
+                if item['date'] == next_date:
+                    yield item['count']
+                    item = next(series)
+                else:
+                    yield 0
+                next_date = next_date - timedelta(days=1)
+        except StopIteration:
+            pass
 
     series = six.moves.zip_longest(iterator(downloads), iterator(updates))
     for idx, (dl_count, up_count) in enumerate(series):
