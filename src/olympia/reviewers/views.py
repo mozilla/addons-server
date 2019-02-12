@@ -20,7 +20,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import RetrieveModelMixin
+from rest_framework.mixins import ListModelMixin
 
 import olympia.core.logger
 
@@ -52,7 +52,8 @@ from olympia.reviewers.models import (
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
-    AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer)
+    AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
+    DiffableVersionSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
@@ -1240,43 +1241,93 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(serializer.data)
 
 
-class BrowseVersionViewSet(RetrieveModelMixin, GenericViewSet):
+class ReviewAddonVersionViewSet(ListModelMixin, GenericViewSet):
     permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
     )]
-
-    serializer_class = AddonBrowseVersionSerializer
+    serializer_class = DiffableVersionSerializer
+    lookup_url_kwarg = 'version_pk'
 
     def get_queryset(self):
-        """Return queryset to be used for the view."""
         # Permission classes disallow access to non-public/unlisted add-ons
         # unless logged in as a reviewer/addon owner/admin, so we don't have to
         # filter the base queryset here.
-        return Version.unfiltered.all()
+        return (
+            Version.unfiltered
+            .filter(addon=self.get_addon_object())
+            .order_by('-created'))
 
-    def get_serializer_context(self):
-        context = super(BrowseVersionViewSet, self).get_serializer_context()
-        context.update({
-            'file': self.request.GET.get('file', None)
-        })
-        return context
+    def get_addon_object(self):
+        return get_object_or_404(Addon, pk=self.kwargs.get('addon_pk'))
 
-    def check_object_permissions(self, request, obj):
-        """
-        Check if the request should be permitted for a given version.
+    def get_object(self):
+        qset = self.filter_queryset(self.get_queryset())
 
-        This calls the DRF implementation but forwards the respective Add-on
-        as `obj` since most of our permission classes are based on an Add-on
-        being passed around.
-        """
+        filter_kwargs = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
+
+        obj = get_object_or_404(qset, **filter_kwargs)
+
         # If the instance is marked as deleted and the client is not allowed to
         # see deleted instances, we want to return a 404, behaving as if it
         # does not exist.
         if obj.deleted and not (
                 GroupPermission(amo.permissions.ADDONS_VIEW_DELETED).
-                has_object_permission(request, self, obj.addon)):
+                has_object_permission(self.request, self, obj.addon)):
             raise http.Http404
 
-        return (
-            super(BrowseVersionViewSet, self)
-            .check_object_permissions(request, obj.addon))
+        # Now we can checking permissions
+        self.check_object_permissions(self.request, obj)
+
+        return obj
+
+    def check_permissions(self, request):
+        if self.action == 'list':
+            # When listing DRF doesn't explicitly check for object permissions
+            # but here we need to do that against the parent add-on.
+            # So we're calling super + check_object_permission() ourselves,
+            # passing down the addon object directly.
+            return (
+                super(ReviewAddonVersionViewSet, self)
+                .check_object_permissions(request, self.get_addon_object()))
+
+        super(ReviewAddonVersionViewSet, self).check_permissions(request)
+
+    def check_object_permissions(self, request, obj):
+        """Check permissions against the parent add-on object."""
+        return super(ReviewAddonVersionViewSet, self).check_object_permissions(
+            request, obj.addon)
+
+    def get_serializer_context(self):
+        context = super(
+            ReviewAddonVersionViewSet, self).get_serializer_context()
+        context['should_show_channel'] = self.should_show_channel
+        return context
+
+    def filter_queryset(self, qset):
+        if acl.check_unlisted_addons_reviewer(self.request):
+            has_listed = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+            has_unlisted = qset.filter(channel=amo.RELEASE_CHANNEL_UNLISTED)
+            self.should_show_channel = (
+                has_listed.exists() and
+                has_unlisted.exists())
+        else:
+            self.should_show_channel = False
+            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+        return qset
+
+    def list(self, request, *args, **kwargs):
+        """Return all (re)viewable versions for this add-on.
+
+        Full list, no pagination."""
+        queryset = self.filter_queryset(self.get_queryset())
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+
+    @action(
+        detail=True, methods=['get'], permission_classes=permission_classes)
+    def browse(self, request, **kwargs):
+        serializer = AddonBrowseVersionSerializer(
+            instance=self.get_object(),
+            context={
+                'file': self.request.GET.get('file', None)})
+        return Response(serializer.data)

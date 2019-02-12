@@ -203,3 +203,14 @@ class AddonBrowseVersionSerializer(VersionSerializer):
 
     def get_has_been_validated(self, obj):
         return obj.current_file.has_been_validated
+
+
+class DiffableVersionSerializer(VersionSerializer):
+    should_show_channel = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Version
+        fields = ('id', 'channel', 'url', 'version', 'should_show_channel')
+
+    def get_should_show_channel(self, obj):
+        return self.context.get('should_show_channel', False)

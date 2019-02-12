@@ -24,6 +24,7 @@ from pyquery import PyQuery as pq
 from six.moves.urllib_parse import parse_qs
 
 from olympia import amo, core, ratings
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
@@ -5163,11 +5164,11 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.arguments[0] == self.addon
 
 
-class TestBrowseViewSet(TestCase):
+class TestReviewAddonVersionViewSetBrowseAction(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestBrowseViewSet, self).setUp()
+        super(TestReviewAddonVersionViewSetBrowseAction, self).setUp()
 
         # TODO: Most of the initial setup could be moved to
         # setUpTestData but unfortunately paths are setup in pytest via a
@@ -5195,8 +5196,9 @@ class TestBrowseViewSet(TestCase):
         assert '"name": "Beastify"' in result['file']['content']
 
     def _set_tested_url(self):
-        self.url = reverse_ns('reviewers-browse-detail', kwargs={
-            'pk': self.version.pk})
+        self.url = reverse_ns('reviewers-versions-browse', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk})
 
     def test_anonymous(self):
         response = self.client.get(self.url)
@@ -5217,8 +5219,9 @@ class TestBrowseViewSet(TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.url = reverse_ns('reviewers-browse-detail', kwargs={
-            'pk': self.version.current_file.pk + 42})
+        self.url = reverse_ns('reviewers-versions-browse', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.current_file.pk + 42})
         response = self.client.get(self.url)
         assert response.status_code == 404
 
@@ -5315,6 +5318,100 @@ class TestBrowseViewSet(TestCase):
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
         assert response.status_code == 403
+
+
+class TestReviewAddonVersionViewSetList(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestReviewAddonVersionViewSetList, self).setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url()
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result == [{
+            'url': absolutify(self.version.get_url_path()),
+            'should_show_channel': False,
+            'version': self.version.version,
+            'id': self.version.id,
+            'channel': u'listed',
+        }]
+
+    def _set_tested_url(self):
+        self.url = reverse_ns('reviewers-versions-list', kwargs={
+            'addon_pk': self.addon.pk})
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_permissions_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self._test_url()
+
+    def test_permissions_disabled_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_permissions_disabled_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_permissions_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_should_show_channel(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result == [
+            {
+                'url': absolutify(unlisted_version.get_url_path()),
+                'should_show_channel': True,
+                'version': unlisted_version.version,
+                'id': unlisted_version.id,
+                'channel': u'unlisted'
+            },
+            {
+                'url': absolutify(self.version.get_url_path()),
+                'should_show_channel': True,
+                'version': self.version.version,
+                'id': self.version.id,
+                'channel': u'listed'
+            },
+        ]
 
 
 class TestThemeBackgroundImages(ReviewBase):
