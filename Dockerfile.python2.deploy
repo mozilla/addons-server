@@ -83,6 +83,7 @@ RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
 # Fix for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=783738
 RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
 
+WORKDIR /data/olympia
 RUN echo "from olympia.lib.settings_base import *\n\
 LESS_BIN = 'node_modules/less/bin/lessc'\n\
 CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
