@@ -7000,7 +7000,7 @@ msgstr "參數「%s」無效。"
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr "「％s」和「％s」的參數組合無效。"
+msgstr "「%s」和「%s」的參數組合無效。"
 
 msgid "Return To AMO is currently disabled"
 msgstr "目前已停用 Return To AMO 功能"
@@ -7013,7 +7013,7 @@ msgstr "Return To AMO GUID 無效（非精選附加元件）"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "「％s」、「％s」和「％s」的參數組合無效。"
+msgstr "「%s」、「%s」和「%s」的參數組合無效。"
 
 msgid "Maximum query length exceeded."
 msgstr "超過最大查詢長度。"
