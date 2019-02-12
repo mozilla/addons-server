@@ -6,7 +6,8 @@ from .models import UserProfile
 class TestUserBackend(object):
     """Authentication backend to easily log in a user while testing."""
 
-    def authenticate(self, username=None, email=None, password=None):
+    def authenticate(self, request=None, username=None, email=None,
+                     password=None):
         # This needs to explicitly throw when there is a password since django
         # will skip this backend if a user passes a password.
         # http://bit.ly/2duYr93
