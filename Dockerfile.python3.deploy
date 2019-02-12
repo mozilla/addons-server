@@ -1,0 +1,104 @@
+FROM python:3.6-slim-stretch
+
+ENV PYTHON_VERSION_MAJOR 3
+
+# need to compile swig
+ENV SWIG_FEATURES="-D__x86_64__"
+
+# Should change it to use ARG instead of ENV for OLYMPIA_UID
+# once the jenkins server is upgraded to support docker >= v1.9.0
+ENV OLYMPIA_UID=9500
+RUN useradd -u ${OLYMPIA_UID} -s /sbin/nologin olympia
+
+# Add nodesource repository and requirements
+ADD docker/nodesource.gpg.key /etc/pki/gpg/GPG-KEY-nodesource
+RUN apt-get update && apt-get install -y \
+        apt-transport-https              \
+        gnupg2                           \
+    && rm -rf /var/lib/apt/lists/*
+RUN cat /etc/pki/gpg/GPG-KEY-nodesource | apt-key add -
+ADD docker/debian-stretch-nodesource-repo /etc/apt/sources.list.d/nodesource.list
+ADD docker/debian-stretch-backports-repo /etc/apt/sources.list.d/backports.list
+
+RUN apt-get update && apt-get install -y \
+        # General (dev-) dependencies
+        bash-completion                  \
+        build-essential                  \
+        curl                             \
+        libcap-dev                       \
+        libjpeg-dev                      \
+        libpcre3-dev                     \
+        libsasl2-dev                     \
+        libxml2-dev                      \
+        libxslt-dev                      \
+        locales                          \
+        zlib1g-dev                       \
+        libffi-dev                       \
+        libssl-dev                       \
+        nodejs                           \
+        uuid-dev                         \
+        uwsgi                            \
+        uwsgi-plugin-python              \
+        # Git, because we're using git-checkout dependencies
+        git                              \
+        # Dependencies for mysql-python
+        mysql-client                     \
+        default-libmysqlclient-dev       \
+        swig                             \
+        gettext                          \
+        # Use rsvg-convert to render our static theme previews
+        librsvg2-bin                     \
+        # Use pngcrush to optimize the PNGs uploaded by developers
+        pngcrush                         \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get -t stretch-backports install -y \
+        # For git-based files storage backend
+        libgit2-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Compile required locale
+RUN localedef -i en_US -f UTF-8 en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LC_ALL en_US.UTF-8
+
+# Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
+WORKDIR /usr/lib/uwsgi/plugins
+RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
+    rm -rf uwsgi-dogstatsd
+
+# version.json is overwritten by CircleCI (see circle.yml).
+# The pipeline v2 standard requires the existence of /app/version.json
+# inside the docker image, thus it's copied there.
+COPY version.json /app/version.json
+COPY . /data/olympia
+WORKDIR /data/olympia
+
+# Install all python requires
+RUN pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt              \
+    && pip3 install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_py3.txt         \
+    && pip3 install --no-cache-dir --exists-action=w --no-deps -e .
+
+# Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian
+RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
+
+# Fix for https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=783738
+RUN ln -s /usr/lib/python2.7/plat-*/_sysconfigdata_nd.py /usr/lib/python2.7/
+
+RUN echo "from olympia.lib.settings_base import *\n\
+LESS_BIN = 'node_modules/less/bin/lessc'\n\
+CLEANCSS_BIN = 'node_modules/clean-css-cli/bin/cleancss'\n\
+UGLIFY_BIN = 'node_modules/uglify-js/bin/uglifyjs'\n\
+FXA_CONFIG = {'default': {}, 'internal': {}}\n"\
+> settings_local.py
+
+RUN DJANGO_SETTINGS_MODULE='settings_local' locale/compile-mo.sh locale
+
+# compile asssets
+RUN npm install \
+    && make -f Makefile-docker copy_node_js \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py compress_assets \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py generate_jsi18n_files \
+    && DJANGO_SETTINGS_MODULE='settings_local' python manage.py collectstatic --noinput
+
+RUN rm -f settings_local.py settings_local.pyc

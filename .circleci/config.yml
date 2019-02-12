@@ -1,48 +1,69 @@
-version: 2.0
+version: 2.1
 
+commands:
+  build_and_push_container_image:
+    description: "Builds and pushes a Docker image"
+    parameters:
+      dockerfile:
+        type: string
+        default: "Dockerfile.python2.deploy"
+      image_tag:
+        type: string
+        default: "latest"
+    steps:
+      - run: >
+          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
+          "$CIRCLE_SHA1"
+          "$CIRCLE_TAG"
+          "$CIRCLE_PROJECT_USERNAME"
+          "$CIRCLE_PROJECT_REPONAME"
+          "$CIRCLE_BUILD_URL"
+          > version.json
+      - run:
+          name: Build docker image and push to repo
+          command: |
+            docker version
+            docker build -t app:build -f << parameters.dockerfile >> .
+            docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
+            docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
+            docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
 jobs:
-  build-deploy: # build for the master branch
+  build-py2:
     machine: true
     working_directory: ~/addons-server
     steps:
       - checkout
-      - run: >
-          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
-          "$CIRCLE_SHA1"
-          "$CIRCLE_TAG"
-          "$CIRCLE_PROJECT_USERNAME"
-          "$CIRCLE_PROJECT_REPONAME"
-          "$CIRCLE_BUILD_URL"
-          > version.json
-      - run:
-          name: Build docker image and push to repo
-          command: |
-            docker version
-            docker build -t app:build -f Dockerfile.deploy .
-            docker tag app:build ${DOCKERHUB_REPO}:latest
-            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
-            docker push ${DOCKERHUB_REPO}:latest
-  build-release: # build for releases (tags)
+      - build_and_push_container_image:
+          image_tag: latest
+          dockerfile: "Dockerfile.python2.deploy"
+  
+  build-py3:
     machine: true
     working_directory: ~/addons-server
     steps:
       - checkout
-      - run: >
-          printf '{"commit":"%s","version":"%s","source":"https://github.com/%s/%s","build":"%s"}\n'
-          "$CIRCLE_SHA1"
-          "$CIRCLE_TAG"
-          "$CIRCLE_PROJECT_USERNAME"
-          "$CIRCLE_PROJECT_REPONAME"
-          "$CIRCLE_BUILD_URL"
-          > version.json
-      - run:
-          name: Build docker image and push to repo
-          command: |
-            docker version
-            docker build -t app:build -f Dockerfile.deploy .
-            docker tag app:build ${DOCKERHUB_REPO}:${CIRCLE_TAG}
-            docker login -u $DOCKERHUB_USER -p $DOCKERHUB_PASS
-            docker push ${DOCKERHUB_REPO}:${CIRCLE_TAG}
+      - build_and_push_container_image:
+          image_tag: latest-py3
+          dockerfile: "Dockerfile.python3.deploy"
+  
+  build-py2-tag:
+    machine: true
+    working_directory: ~/addons-server
+    steps:
+      - checkout
+      - build_and_push_container_image:
+          image_tag: "${CIRCLE_TAG}"
+          dockerfile: "Dockerfile.python2.deploy"
+  
+  build-py3-tag:
+    machine: true
+    working_directory: ~/addons-server
+    steps:
+      - checkout
+      - build_and_push_container_image:
+          image_tag: "${CIRCLE_TAG}-py3"
+          dockerfile: "Dockerfile.python3.deploy"
+  
   integration_test:
     working_directory: ~/addons-server
     machine: true
@@ -147,11 +168,21 @@ workflows:
   version: 2
   build_test_deploy_release:
     jobs:
-      - build-deploy:
+      - build-py2:
           filters:
             branches:
               only: master
-      - build-release:
+      - build-py3:
+          filters:
+            branches:
+              only: master
+      - build-py2-tag:
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              ignore: /.*/
+      - build-py3-tag:
           filters:
             tags:
               only: /.*/
