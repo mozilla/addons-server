@@ -40,9 +40,11 @@ MAX_TOKEN_USE_COUNT = 100
 
 class ActivityLogToken(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    version = models.ForeignKey(Version, related_name='token')
-    user = models.ForeignKey('users.UserProfile',
-                             related_name='activity_log_tokens')
+    version = models.ForeignKey(
+        Version, related_name='token', on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        'users.UserProfile', related_name='activity_log_tokens',
+        on_delete=models.CASCADE)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
     use_count = models.IntegerField(
         default=0,
@@ -82,8 +84,8 @@ class AddonLog(ModelBase):
     """
     This table is for indexing the activity log by addon.
     """
-    addon = models.ForeignKey(Addon)
-    activity_log = models.ForeignKey('ActivityLog')
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'log_activity_addon'
@@ -114,7 +116,7 @@ class CommentLog(ModelBase):
     """
     This table is for indexing the activity log by comment.
     """
-    activity_log = models.ForeignKey('ActivityLog')
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
     comments = models.TextField()
 
     class Meta:
@@ -126,8 +128,8 @@ class VersionLog(ModelBase):
     """
     This table is for indexing the activity log by version.
     """
-    activity_log = models.ForeignKey('ActivityLog')
-    version = models.ForeignKey(Version)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    version = models.ForeignKey(Version, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'log_activity_version'
@@ -139,8 +141,8 @@ class UserLog(ModelBase):
     This table is for indexing the activity log by user.
     Note: This includes activity performed unto the user.
     """
-    activity_log = models.ForeignKey('ActivityLog')
-    user = models.ForeignKey(UserProfile)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'log_activity_user'
@@ -152,8 +154,8 @@ class GroupLog(ModelBase):
     This table is for indexing the activity log by access group.
     """
     id = PositiveAutoField(primary_key=True)
-    activity_log = models.ForeignKey('ActivityLog')
-    group = models.ForeignKey(Group)
+    activity_log = models.ForeignKey('ActivityLog', on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'log_activity_group'
@@ -282,7 +284,8 @@ class ActivityLog(ModelBase):
     TYPES = sorted(
         [(value.id, key)
          for key, value in constants.activity.LOG_BY_ID.items()])
-    user = models.ForeignKey('users.UserProfile', null=True)
+    user = models.ForeignKey(
+        'users.UserProfile', null=True, on_delete=models.CASCADE)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')

@@ -27,7 +27,8 @@ class APIKey(ModelBase):
     A developer's key/secret pair to access the API.
     """
     id = PositiveAutoField(primary_key=True)
-    user = models.ForeignKey(UserProfile, related_name='api_keys')
+    user = models.ForeignKey(
+        UserProfile, related_name='api_keys', on_delete=models.CASCADE)
 
     # A user can only have one active key at the same time, it's enforced by
     # a unique db constraint. Since we keep old inactive keys though, nulls

@@ -20,8 +20,10 @@ class RssKey(models.Model):
     key = models.UUIDField(
         db_column='rsskey', unique=True, null=True,
         default=uuid.uuid4)
-    addon = models.ForeignKey(Addon, null=True, unique=True)
-    user = models.ForeignKey(UserProfile, null=True, unique=True)
+    addon = models.ForeignKey(
+        Addon, null=True, unique=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        UserProfile, null=True, unique=True, on_delete=models.CASCADE)
     created = models.DateField(default=datetime.now)
 
     class Meta:

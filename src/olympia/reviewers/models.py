@@ -328,8 +328,8 @@ class PerformanceGraph(RawSQLModel):
 
 
 class ReviewerSubscription(ModelBase):
-    user = models.ForeignKey(UserProfile)
-    addon = models.ForeignKey(Addon)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    addon = models.ForeignKey(Addon, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'editor_subscriptions'
@@ -379,10 +379,14 @@ version_uploaded.connect(send_notifications, dispatch_uid='send_notifications')
 
 class ReviewerScore(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    user = models.ForeignKey(UserProfile, related_name='_reviewer_scores')
-    addon = models.ForeignKey(Addon, blank=True, null=True, related_name='+')
-    version = models.ForeignKey(Version, blank=True, null=True,
-                                related_name='+')
+    user = models.ForeignKey(
+        UserProfile, related_name='_reviewer_scores', on_delete=models.CASCADE)
+    addon = models.ForeignKey(
+        Addon, blank=True, null=True, related_name='+',
+        on_delete=models.CASCADE)
+    version = models.ForeignKey(
+        Version, blank=True, null=True, related_name='+',
+        on_delete=models.CASCADE)
     score = models.IntegerField()
     # For automated point rewards.
     note_key = models.SmallIntegerField(choices=amo.REVIEWED_CHOICES.items(),
@@ -1155,12 +1159,13 @@ class RereviewQueueThemeManager(ManagerBase):
 @python_2_unicode_compatible
 class RereviewQueueTheme(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    theme = models.ForeignKey(Persona)
+    theme = models.ForeignKey(Persona, on_delete=models.CASCADE)
     header = models.CharField(max_length=72, blank=True, default='')
 
     # Holds whether this reuploaded theme is a duplicate.
-    dupe_persona = models.ForeignKey(Persona, null=True,
-                                     related_name='dupepersona')
+    dupe_persona = models.ForeignKey(
+        Persona, null=True, related_name='dupepersona',
+        on_delete=models.CASCADE)
 
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
@@ -1201,7 +1206,7 @@ class RereviewQueueTheme(ModelBase):
 
 class ThemeLock(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    theme = models.OneToOneField('addons.Persona')
+    theme = models.OneToOneField('addons.Persona', on_delete=models.CASCADE)
     reviewer = UserForeignKey()
     expiry = models.DateTimeField()
 

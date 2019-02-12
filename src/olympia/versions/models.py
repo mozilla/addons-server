@@ -109,7 +109,8 @@ class Version(OnChangeMixin, ModelBase):
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
         'addons.Addon', related_name='versions', on_delete=models.CASCADE)
-    license = models.ForeignKey('License', null=True)
+    license = models.ForeignKey(
+        'License', null=True, on_delete=models.CASCADE)
     release_notes = PurifiedField(db_column='releasenotes')
     approval_notes = models.TextField(
         db_column='approvalnotes', default='', null=True)
@@ -657,7 +658,8 @@ def extract_version_to_git_repository(version, upload):
 
 
 class VersionPreview(BasePreview, ModelBase):
-    version = models.ForeignKey(Version, related_name='previews')
+    version = models.ForeignKey(
+        Version, related_name='previews', on_delete=models.CASCADE)
     position = models.IntegerField(default=0)
     sizes = JSONField(default={})
     colors = JSONField(default=None, null=True)
@@ -829,10 +831,12 @@ class ApplicationsVersions(models.Model):
                                               db_column='application_id')
     version = models.ForeignKey(
         Version, related_name='apps', on_delete=models.CASCADE)
-    min = models.ForeignKey(AppVersion, db_column='min',
-                            related_name='min_set')
-    max = models.ForeignKey(AppVersion, db_column='max',
-                            related_name='max_set')
+    min = models.ForeignKey(
+        AppVersion, db_column='min', related_name='min_set',
+        on_delete=models.CASCADE)
+    max = models.ForeignKey(
+        AppVersion, db_column='max', related_name='max_set',
+        on_delete=models.CASCADE)
 
     class Meta:
         db_table = u'applications_versions'

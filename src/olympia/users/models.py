@@ -541,7 +541,8 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
 @python_2_unicode_compatible
 class UserNotification(ModelBase):
-    user = models.ForeignKey(UserProfile, related_name='notifications')
+    user = models.ForeignKey(
+        UserProfile, related_name='notifications', on_delete=models.CASCADE)
     notification_id = models.IntegerField()
     enabled = models.BooleanField(default=False)
 
@@ -592,7 +593,8 @@ class DeniedName(ModelBase):
 class UserHistory(ModelBase):
     id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75)
-    user = models.ForeignKey(UserProfile, related_name='history')
+    user = models.ForeignKey(
+        UserProfile, related_name='history', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'users_history'
