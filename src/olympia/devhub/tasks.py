@@ -349,8 +349,7 @@ def check_for_api_keys_in_file(results, upload):
             if zipinfo.file_size >= 64:
                 file_ = zipfile.read(zipinfo)
                 for key in keys:
-                    if key.secret in file_.decode(encoding='unicode-escape',
-                                                  errors="ignore"):
+                    if key.secret in file_.decode(errors="ignore"):
                         log.info('Developer API key for user %s found in '
                                  'submission.' % key.user)
                         if key.user == upload.user:

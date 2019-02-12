@@ -55,6 +55,8 @@ class UserForeignKey(models.ForeignKey):
         # since it's the same for every instance.
         kwargs.pop('to', None)
         self.to = 'users.UserProfile'
+        if 'on_delete' not in kwargs:
+            kwargs['on_delete'] = models.CASCADE
         super(UserForeignKey, self).__init__(self.to, *args, **kwargs)
 
     def value_from_object(self, obj):
