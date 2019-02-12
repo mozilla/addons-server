@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 12:49+0000\n"
+"PO-Revision-Date: 2019-02-12 13:27+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3161,7 +3161,7 @@ msgid "PNG and JPG supported."
 msgstr "São suportados os formatos PNG e JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Os ícones devem ser quadrados e ter um tamanho mínimo de 128x128 pixels."
 
 #, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
@@ -3430,6 +3430,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Se você submeteu o código fonte, mas não incluiu instruções, deve fornecê-las aqui. Insira instruções passo a passo de como criar uma cópia exata do código da extensão, de acordo com os "
+"%(policy_requirements_open)srequisitos da política%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Estas notas só serão visíveis por você e nossos revisores."
@@ -7293,7 +7295,7 @@ msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Combinação inválida de parâmetros \"%s\", \"%s\" e \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Excedeu tamanho máximo da consulta."
