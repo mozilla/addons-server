@@ -37,8 +37,6 @@ RUN apt-get update && apt-get install -y \
         python-pip                       \
         nodejs                           \
         uuid-dev                         \
-        uwsgi                            \
-        uwsgi-plugin-python              \
         # Git, because we're using git-checkout dependencies
         git                              \
         # Dependencies for mysql-python
@@ -62,11 +60,6 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
 
-# Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
-WORKDIR /usr/lib/uwsgi/plugins
-RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
-    rm -rf uwsgi-dogstatsd
-
 # version.json is overwritten by CircleCI (see circle.yml).
 # The pipeline v2 standard requires the existence of /app/version.json
 # inside the docker image, thus it's copied there.
@@ -78,6 +71,11 @@ WORKDIR /data/olympia
 RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt              \
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_py2.txt         \
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
+
+# Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
+WORKDIR /usr/lib/uwsgi/plugins
+RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
+    rm -rf uwsgi-dogstatsd
 
 # Link /usr/sbin/uwsgi and /usr/bin/uwsgi to deal with migration from Centos -> Debian
 RUN ln -s /usr/bin/uwsgi /usr/sbin/uwsgi
