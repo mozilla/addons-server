@@ -32,8 +32,8 @@ class Group(ModelBase):
 
 class GroupUser(models.Model):
     id = PositiveAutoField(primary_key=True)
-    group = models.ForeignKey(Group)
-    user = models.ForeignKey('users.UserProfile')
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    user = models.ForeignKey('users.UserProfile', on_delete=models.CASCADE)
 
     class Meta:
         db_table = u'groups_users'

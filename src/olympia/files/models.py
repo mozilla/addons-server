@@ -518,18 +518,21 @@ class FileUpload(ModelBase):
     name = models.CharField(max_length=255, default='',
                             help_text="The user's original filename")
     hash = models.CharField(max_length=255, default='')
-    user = models.ForeignKey('users.UserProfile', null=True)
+    user = models.ForeignKey(
+        'users.UserProfile', null=True, on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     validation = models.TextField(null=True)
     automated_signing = models.BooleanField(default=False)
     compat_with_app = models.PositiveIntegerField(
         choices=amo.APPS_CHOICES, db_column="compat_with_app_id", null=True)
     compat_with_appver = models.ForeignKey(
-        AppVersion, null=True, related_name='uploads_compat_for_appver')
+        AppVersion, null=True, related_name='uploads_compat_for_appver',
+        on_delete=models.CASCADE)
     # Not all FileUploads will have a version and addon but it will be set
     # if the file was uploaded using the new API.
     version = models.CharField(max_length=255, null=True)
-    addon = models.ForeignKey('addons.Addon', null=True)
+    addon = models.ForeignKey(
+        'addons.Addon', null=True, on_delete=models.CASCADE)
 
     objects = ManagerBase()
 
@@ -640,7 +643,8 @@ class FileUpload(ModelBase):
 
 class FileValidation(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    file = models.OneToOneField(File, related_name='validation')
+    file = models.OneToOneField(
+        File, related_name='validation', on_delete=models.CASCADE)
     valid = models.BooleanField(default=False)
     errors = models.IntegerField(default=0)
     warnings = models.IntegerField(default=0)

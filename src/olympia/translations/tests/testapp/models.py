@@ -13,7 +13,7 @@ class TranslatedModel(ModelBase):
 
     translated_through_fk = models.ForeignKey(
         'TranslatedModelLinkedAsForeignKey',
-        null=True, default=None)
+        null=True, default=None, on_delete=models.CASCADE)
     objects = ManagerBase()
 
 

@@ -15,18 +15,22 @@ from olympia.users.models import UserProfile
 @python_2_unicode_compatible
 class AbuseReport(ModelBase):
     # NULL if the reporter is anonymous.
-    reporter = models.ForeignKey(UserProfile, null=True,
-                                 blank=True, related_name='abuse_reported')
+    reporter = models.ForeignKey(
+        UserProfile, null=True, blank=True, related_name='abuse_reported',
+        on_delete=models.SET_NULL)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
     # If user is null then addon should be non-null if guid was in our DB,
     # otherwise addon will be null also.
     # If both addon and user is null guid should be set.
-    addon = models.ForeignKey(Addon, null=True, related_name='abuse_reports')
+    addon = models.ForeignKey(
+        Addon, null=True, related_name='abuse_reports',
+        on_delete=models.CASCADE)
     guid = models.CharField(max_length=255, null=True)
-    user = models.ForeignKey(UserProfile, null=True,
-                             related_name='abuse_reports')
+    user = models.ForeignKey(
+        UserProfile, null=True, related_name='abuse_reports',
+        on_delete=models.SET_NULL)
     message = models.TextField()
 
     class Meta:

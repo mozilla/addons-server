@@ -69,8 +69,10 @@ class Tag(ModelBase):
 
 class AddonTag(ModelBase):
     id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey('addons.Addon', related_name='addon_tags')
-    tag = models.ForeignKey(Tag, related_name='addon_tags')
+    addon = models.ForeignKey(
+        'addons.Addon', related_name='addon_tags', on_delete=models.CASCADE)
+    tag = models.ForeignKey(
+        Tag, related_name='addon_tags', on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'users_tags_addons'
