@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 00:08+0000\n"
+"PO-Revision-Date: 2019-02-12 12:28+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -7000,20 +7000,20 @@ msgstr "參數「%s」無效。"
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "「％s」和「％s」的參數組合無效。"
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "目前已停用 Return To AMO 功能"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Return To AMO GUID 無效（base64 網址格式不正確？）"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Return To AMO GUID 無效（非精選附加元件）"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "「％s」、「％s」和「％s」的參數組合無效。"
 
 msgid "Maximum query length exceeded."
 msgstr "超過最大查詢長度。"
