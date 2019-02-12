@@ -7247,7 +7247,7 @@ msgstr "הפרמטר \"%s\" שגוי."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr "שילוב שגוי של הפרמטרים ״%s״ ו־״%״."
+msgstr "Invalid combination of \"%s\" and \"%s\" parameters."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
@@ -7260,7 +7260,7 @@ msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr "שילוב שגוי של הפרמטרים ״%s״, ״%s״ ו־״%״."
+msgstr "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 
 msgid "Maximum query length exceeded."
 msgstr "חרגת מאורך השאילתה המרבי."
