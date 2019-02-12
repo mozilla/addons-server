@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-10 12:43+0000\n"
+"PO-Revision-Date: 2019-02-12 16:57+0000\n"
 "Last-Translator: goofy <goofy@babelzilla.org>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
@@ -7190,7 +7190,7 @@ msgstr "Mises à jour"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr ""
+msgstr "Paramètre « %s » invalide."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
