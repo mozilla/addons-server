@@ -1,5 +1,3 @@
-.PHONY: help docs test test_es test_no_es test_force_db tdd test_failed initialize_db populate_data update_deps update_db update_assets initialize update reindex lint-codestyle shell debug
-
 IN_DOCKER = $(wildcard /addons-server-docker-container)
 
 ifneq ($(IN_DOCKER),)
@@ -13,11 +11,6 @@ include $(SUB_MAKEFILE)
 
 help:
 	@echo "Please use 'make <target>' where <target> is one of the following commands."
-	@echo "Commands that are designed to be run in either the container or the host:"
-	@echo "  docs              to builds the documentation"
 	@$(MAKE) help_submake --no-print-directory
 
 	@echo "Check the Makefile to know exactly what each target is doing."
-
-docs:
-	$(MAKE) -C docs html

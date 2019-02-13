@@ -4,7 +4,6 @@ import os
 import time
 
 from django.core.management.base import CommandError
-from django.utils.encoding import force_bytes
 from django.test.utils import override_settings
 
 import mock
