@@ -1246,7 +1246,6 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
     permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
     )]
-    serializer_class = DiffableVersionSerializer
     lookup_url_kwarg = 'version_pk'
 
     def get_queryset(self):
@@ -1282,14 +1281,12 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         return obj
 
     def check_permissions(self, request):
-        if self.action in ('list', 'retrieve'):
+        if self.action in (u'list', u'retrieve'):
             # When listing DRF doesn't explicitly check for object permissions
             # but here we need to do that against the parent add-on.
-            # So we're calling super + check_object_permission() ourselves,
-            # passing down the addon object directly.
-            return (
-                super(ReviewAddonVersionViewSet, self)
-                .check_object_permissions(request, self.get_addon_object()))
+            # So we're calling check_object_permission() ourselves,
+            # which will pass down the addon object directly.
+            return self.check_object_permissions(request, self.get_object())
 
         super(ReviewAddonVersionViewSet, self).check_permissions(request)
 
@@ -1297,12 +1294,6 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         """Check permissions against the parent add-on object."""
         return super(ReviewAddonVersionViewSet, self).check_object_permissions(
             request, obj.addon)
-
-    def get_serializer_context(self):
-        context = super(
-            ReviewAddonVersionViewSet, self).get_serializer_context()
-        context['should_show_channel'] = self.should_show_channel
-        return context
 
     def filter_queryset(self, qset):
         if acl.check_unlisted_addons_reviewer(self.request):
@@ -1321,7 +1312,14 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
 
         Full list, no pagination."""
         queryset = self.filter_queryset(self.get_queryset())
-        serializer = self.get_serializer(queryset, many=True)
+
+        serializer = DiffableVersionSerializer(
+            queryset,
+            context={
+                'should_show_channel': self.should_show_channel
+            },
+            many=True)
+
         return Response(serializer.data)
 
     def retrieve(self, request, *args, **kwargs):
