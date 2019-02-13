@@ -1,4 +1,4 @@
-.. _search:
+.. _amo_search_explainer:
 
 ============================
 How does search on AMO work?

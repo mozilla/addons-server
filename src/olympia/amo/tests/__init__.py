@@ -564,10 +564,6 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
             email += '@mozilla.com'
         assert self.client.login(email=email)
 
-    def assertUrlEqual(self, url, other, compare_host=False):
-        """Compare url paths and query strings."""
-        assert_url_equal(url, other, compare_host)
-
     def enable_messages(self, request):
         setattr(request, 'session', 'session')
         messages = FallbackStorage(request)

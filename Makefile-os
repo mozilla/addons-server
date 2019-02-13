@@ -1,8 +1,10 @@
 APP=src/olympia/
 
+.PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
 
+.PHONY: help_submake
 help_submake:
 	@echo "Commands that are designed to be run in the host:"
 	@echo "  debug             to connect to a running addons-server docker for debugging"
@@ -19,45 +21,58 @@ help_submake:
 	@echo "  initialize_docker to initialize a docker image"
 	@echo "  update_docker     to update a docker image"
 
+.PHONY: test
 test:
 	docker-compose exec web pytest $(APP) $(ARGS)
 
+.PHONY: test_es
 test_es:
 	docker-compose exec web pytest -m es_tests $(APP) $(ARGS)
 
+.PHONY: test_no_es
 test_no_es:
 	docker-compose exec web pytest -m "not es_tests" $(APP) $(ARGS)
 
+.PHONY: test_force_db
 test_force_db:
 	docker-compose exec web pytest --create-db $(APP) $(ARGS)
 
+.PHONY: tdd
 tdd:
 	docker-compose exec web pytest -x --pdb $(ARGS) $(APP)
 
+.PHONY: test_failed
 test_failed:
 	docker-compose exec web pytest --lf $(ARGS) $(APP)
 
+.PHONY: update_docker
 update_docker:
 	docker-compose exec worker make update_deps
 	docker-compose exec web make update
 	docker-compose restart web
 	docker-compose restart worker
 
+.PHONY: initialize_docker
 initialize_docker:
 	docker-compose exec web make initialize
 
+.PHONY: debug
 debug:
 	docker-compose exec web supervisorctl fg olympia
 
+.PHONY: shell
 shell:
 	docker-compose exec web bash
 
+.PHONY: djshell
 djshell:
 	docker-compose exec web ./manage.py shell_plus
 
+.PHONY: dbshell
 dbshell:
 	docker-compose exec web ./manage.py dbshell
 
 # Run a make command in the container
+.PHONY: make
 make:
 	docker-compose exec web make $(ARGS)

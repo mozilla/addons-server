@@ -7,7 +7,7 @@ import pytest
 
 from olympia.amo import urlresolvers
 from olympia.amo.middleware import LocaleAndAppURLMiddleware
-from olympia.amo.tests import TestCase, TestCase
+from olympia.amo.tests import TestCase
 
 
 pytestmark = pytest.mark.django_db
