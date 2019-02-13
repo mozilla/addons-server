@@ -154,13 +154,13 @@ class File(OnChangeMixin, ModelBase):
         assert parsed_data is not None
 
         file_ = cls(version=version, platform=platform)
-        upload.path = force_bytes(nfd_str(upload.path))
-        ext = force_text(os.path.splitext(upload.path)[1])
+        upload_path = force_text(nfd_str(upload.path))
+        ext = force_text(os.path.splitext(upload_path)[1])
         if ext == '.jar':
             ext = '.xpi'
         file_.filename = file_.generate_filename(extension=ext or '.xpi')
         # Size in bytes.
-        file_.size = storage.size(upload.path)
+        file_.size = storage.size(upload_path)
         file_.is_restart_required = parsed_data.get(
             'is_restart_required', False)
         file_.strict_compatibility = parsed_data.get(
@@ -171,7 +171,7 @@ class File(OnChangeMixin, ModelBase):
         file_.is_mozilla_signed_extension = parsed_data.get(
             'is_mozilla_signed_extension', False)
 
-        file_.hash = file_.generate_hash(upload.path)
+        file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
 
         if upload.validation:
@@ -192,7 +192,7 @@ class File(OnChangeMixin, ModelBase):
         log.debug('New file: %r from %r' % (file_, upload))
 
         # Move the uploaded file from the temp location.
-        copy_stored_file(upload.path, file_.current_file_path)
+        copy_stored_file(upload_path, file_.current_file_path)
 
         if upload.validation:
             FileValidation.from_json(file_, validation)
@@ -290,17 +290,14 @@ class File(OnChangeMixin, ModelBase):
 
     def move_file(self, source, destination, log_message):
         """Move a file from `source` to `destination`."""
-        # Make sure we are passing bytes to Python's io system.
-        source, destination = force_bytes(source), force_bytes(destination)
-
+        log_message = force_text(log_message)
         try:
             if storage.exists(source):
                 log.info(log_message.format(
                     source=source, destination=destination))
                 move_stored_file(source, destination)
         except (UnicodeEncodeError, IOError):
-            msg = 'Move Failure: {} {}'.format(
-                force_bytes(source), force_bytes(destination))
+            msg = u'Move Failure: {} {}'.format(source, destination)
             log.exception(msg)
 
     def hide_disabled_file(self):
