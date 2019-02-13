@@ -206,7 +206,7 @@ lint-codestyle:
 
 .PHONY: docs
 docs:
-	$(MAKE) -C docs html
+	$(MAKE) -C docs html SPHINXOPTS='-nW'
 
 .PHONY: initialize
 initialize: update_deps initialize_db update_assets populate_data

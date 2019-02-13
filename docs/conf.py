@@ -241,4 +241,5 @@ nitpick_ignore = [
     ('http:obj', 'string|object'),
     ('http:obj', 'string|null'),
     ('http:obj', 'int|null'),
+    ('http:obj', 'boolean|string'),  # FIXME: should be removed in #10685
 ]
