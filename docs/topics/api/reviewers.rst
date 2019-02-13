@@ -96,7 +96,7 @@ This endpoint allows you to list versions that can be used either for :ref:`brow
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/
 
     :>json int id: The version id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
