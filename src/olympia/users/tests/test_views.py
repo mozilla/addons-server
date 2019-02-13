@@ -18,7 +18,6 @@ from six.moves.urllib_parse import urlparse
 from olympia import amo, core
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
-from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonUser, Category
 from olympia.amo.templatetags.jinja_helpers import urlparams
@@ -406,54 +405,6 @@ class TestSessionLength(UserViewBase):
 
         assert cookie.value != ''
         assert expiry >= four_weeks_from_now
-
-
-class TestLogout(UserViewBase):
-
-    def test_success(self):
-        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
-        self.client.login(email=user.email)
-        response = self.client.get('/', follow=True)
-        assert (
-            pq(response.content.decode('utf-8'))('.account .user').text() ==
-            user.display_name)
-        assert (
-            pq(response.content)('.account .user').attr('title') == user.email)
-
-        response = self.client.get('/users/logout', follow=True)
-        assert not pq(response.content)('.account .user')
-
-    def test_redirect(self):
-        self.client.login(email='jbalogh@mozilla.com')
-        self.client.get('/', follow=True)
-        url = '/en-US/about'
-        response = self.client.get(urlparams(reverse('users.logout'), to=url),
-                                   follow=True)
-        self.assert3xx(response, url, status_code=302)
-
-        url = urlparams(reverse('users.logout'), to='/addon/new',
-                        domain='builder')
-        response = self.client.get(url, follow=False)
-        self.assert3xx(
-            response, 'https://builder.addons.mozilla.org/addon/new',
-            status_code=302)
-
-        # Test an invalid domain
-        url = urlparams(reverse('users.logout'), to='/en-US/about',
-                        domain='http://evil.com')
-        response = self.client.get(url, follow=False)
-        self.assert3xx(response, '/en-US/about', status_code=302)
-
-    def test_session_cookie_deleted_on_logout(self):
-        self.client.login(email='jbalogh@mozilla.com')
-        self.client.cookies[API_TOKEN_COOKIE] = 'some.token.value'
-        response = self.client.get(reverse('users.logout'))
-        cookie = response.cookies[settings.SESSION_COOKIE_NAME]
-        assert cookie.value == ''
-        assert cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
-        jwt_cookie = response.cookies[API_TOKEN_COOKIE]
-        assert jwt_cookie.value == ''
-        assert jwt_cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
 
 
 class TestRegistrationAndLoginViews(UserViewBase):

@@ -24,7 +24,6 @@ users_patterns = [
     url(r'^edit(?:/(?P<user_id>\d+))?$', views.admin_edit,
         name='users.admin_edit'),
     url(r'^login', views.login, name='users.login'),
-    url(r'^logout', views.logout, name='users.logout'),
     url(r'^register$',
         RedirectView.as_view(pattern_name='users.login', permanent=True),
         name='users.register'),

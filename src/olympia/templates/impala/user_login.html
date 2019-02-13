@@ -12,9 +12,9 @@
       {% endif %}
       <li class="nomenu logout">
          {% if devhub_backlink %}
-           <a href="{{ url('users.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
+           <a href="{{ url('devhub.logout') }}?to={{ url('devhub.index') }}">{{ _('Log out') }}</a>
          {% else %}
-           <a href="{{ url('users.logout') }}">{{ _('Log out') }}</a>
+           <a href="{{ url('devhub.logout') }}">{{ _('Log out') }}</a>
          {% endif %}
       </li>
     </ul>

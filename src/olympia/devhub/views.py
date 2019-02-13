@@ -12,6 +12,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
+from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -26,7 +27,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
-from olympia.accounts.views import API_TOKEN_COOKIE
+from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
@@ -35,12 +36,13 @@ from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import MenuItem, escape_all, render, send_mail
 from olympia.api.models import APIKey
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, SourceForm
 from olympia.devhub.models import BlogPost, RssKey
+from olympia.devhub.signals import logged_out
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
     fetch_existing_translations_from_addon, get_addon_akismet_reports,
@@ -1835,3 +1837,44 @@ def theme_background_image(request, addon_id, addon, channel):
     version = addon.find_latest_version(channel_id)
     return (version.get_background_images_encoded(header_only=True) if version
             else {})
+
+
+def _clean_next_url(request):
+    gets = request.GET.copy()
+    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
+
+    if not is_safe_url(url):
+        log.info(u'Unsafe redirect to %s' % url)
+        url = settings.LOGIN_REDIRECT_URL
+
+    domain = gets.get('domain', None)
+    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
+        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
+
+    gets['to'] = url
+    request.GET = gets
+    return request
+
+
+def logout(request):
+    user = request.user
+    if not user.is_anonymous:
+        log.debug(u"User (%s) logged out" % user)
+
+    if 'to' in request.GET:
+        request = _clean_next_url(request)
+
+    next_url = request.GET.get('to')
+    if not next_url:
+        next_url = settings.LOGOUT_REDIRECT_URL
+        prefixer = get_url_prefix()
+        if prefixer:
+            next_url = prefixer.fix(next_url)
+
+    response = http.HttpResponseRedirect(next_url)
+
+    logout_user(request, response)
+
+    # Fire logged out signal.
+    logged_out.send(None, request=request, response=response)
+    return response
