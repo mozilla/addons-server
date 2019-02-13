@@ -4,7 +4,7 @@ from rest_framework import serializers
 from waffle.testutils import override_switch
 
 from olympia.amo.tests import (
-    TestCase, addon_factory, collection_factory, TestCase, user_factory)
+    addon_factory, collection_factory, TestCase, user_factory)
 from olympia.bandwagon.models import CollectionAddon
 from olympia.bandwagon.serializers import (
     CollectionAddonSerializer, CollectionAkismetSpamValidator,
