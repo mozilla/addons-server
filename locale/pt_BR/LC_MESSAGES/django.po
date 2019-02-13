@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 13:27+0000\n"
+"PO-Revision-Date: 2019-02-13 00:51+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3947,7 +3947,7 @@ msgid "Learn More"
 msgstr "Saiba mais"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "Você pode ajudar os usuários a ganhar confiança em sua extensão seguindo nossas práticas recomendadas para a integração de usuários."
 
 msgid "See Best Practices"
 msgstr "Ver melhores práticas"
@@ -7288,10 +7288,10 @@ msgid "Return To AMO is currently disabled"
 msgstr "Retornar ao AMO está desativado no momento"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Inválido GUID do Retorno ao AMO (não está no formato base64url ?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Inválido GUID do Retorno ao AMO (não é uma extensão curada)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
