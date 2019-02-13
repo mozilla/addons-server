@@ -119,7 +119,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/browse/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
 
     Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
 

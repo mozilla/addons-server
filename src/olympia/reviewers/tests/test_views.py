@@ -5164,11 +5164,11 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.arguments[0] == self.addon
 
 
-class TestReviewAddonVersionViewSetBrowseAction(TestCase):
+class TestReviewAddonVersionViewSetDetail(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestReviewAddonVersionViewSetBrowseAction, self).setUp()
+        super(TestReviewAddonVersionViewSetDetail, self).setUp()
 
         # TODO: Most of the initial setup could be moved to
         # setUpTestData but unfortunately paths are setup in pytest via a
@@ -5196,7 +5196,7 @@ class TestReviewAddonVersionViewSetBrowseAction(TestCase):
         assert '"name": "Beastify"' in result['file']['content']
 
     def _set_tested_url(self):
-        self.url = reverse_ns('reviewers-versions-browse', kwargs={
+        self.url = reverse_ns('reviewers-versions-detail', kwargs={
             'addon_pk': self.addon.pk,
             'version_pk': self.version.pk})
 
@@ -5219,7 +5219,7 @@ class TestReviewAddonVersionViewSetBrowseAction(TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.url = reverse_ns('reviewers-versions-browse', kwargs={
+        self.url = reverse_ns('reviewers-versions-detail', kwargs={
             'addon_pk': self.addon.pk,
             'version_pk': self.version.current_file.pk + 42})
         response = self.client.get(self.url)

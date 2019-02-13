@@ -20,7 +20,7 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
-from rest_framework.mixins import ListModelMixin
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 
 import olympia.core.logger
 
@@ -1241,7 +1241,8 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(serializer.data)
 
 
-class ReviewAddonVersionViewSet(ListModelMixin, GenericViewSet):
+class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
+                                GenericViewSet):
     permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
     )]
@@ -1281,7 +1282,7 @@ class ReviewAddonVersionViewSet(ListModelMixin, GenericViewSet):
         return obj
 
     def check_permissions(self, request):
-        if self.action == 'list':
+        if self.action in ('list', 'retrieve'):
             # When listing DRF doesn't explicitly check for object permissions
             # but here we need to do that against the parent add-on.
             # So we're calling super + check_object_permission() ourselves,
@@ -1323,9 +1324,7 @@ class ReviewAddonVersionViewSet(ListModelMixin, GenericViewSet):
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
-    @action(
-        detail=True, methods=['get'], permission_classes=permission_classes)
-    def browse(self, request, **kwargs):
+    def retrieve(self, request, *args, **kwargs):
         serializer = AddonBrowseVersionSerializer(
             instance=self.get_object(),
             context={
