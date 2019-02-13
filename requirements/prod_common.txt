@@ -129,15 +129,15 @@ billiard==3.5.0.5 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.9.91 \
-    --hash=sha256:4a693170c79b4275d8bb6884e9930c82e6bb4e303597ca545f288333db77c6a7 \
-    --hash=sha256:428c6d535f373a7203ed7ec687bb826b88e62de7befc3816e0aacd305f7572a2
+boto3==1.9.93 \
+    --hash=sha256:0bed0db8c10b88b3daa042adaa1fb6c3262caed39d28086e8548015405c71744 \
+    --hash=sha256:70e71e0192a68f65754ab9d2a335be3c6856a1e8a15f3bd6263ea12e2f442bc7
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.91 \
-    --hash=sha256:4ca7da7128915d7ac149e12f8a3efeb4e590793189cabe0bcd3c3eee5b84f656 \
-    --hash=sha256:bd788c6ebae55db17d9cc125fa3817fddb20d3fc8bd15791995d82c466238a3b
+botocore==1.12.93 \
+    --hash=sha256:4df39ef9bcd7766e3a71a9e7f976ca6c9e926f451914a9c073aa50e9519436ca \
+    --hash=sha256:d3cea95919892eac30e2ff8c5a8908022d5a93f917df3cff4ed06a6926dcc0e5
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \

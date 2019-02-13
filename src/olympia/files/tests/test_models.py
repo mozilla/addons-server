@@ -156,6 +156,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     def test_unhide_disabled_files(self):
         f = File.objects.get(pk=67442)
         f.status = amo.STATUS_PUBLIC
+        f.filename = u'test_unhide_disabled_filés.xpi'
         with storage.open(f.guarded_file_path, 'wb') as fp:
             fp.write(b'some data\n')
         f.unhide_disabled_file()
@@ -714,7 +715,7 @@ class TestFileUpload(UploadTest):
     def upload(self, **params):
         # The data should be in chunks.
         data = [bytes(bytearray(s)) for s in chunked(self.data, 3)]
-        return FileUpload.from_post(data, 'filename.xpi',
+        return FileUpload.from_post(data, u'filenamé.xpi',
                                     len(self.data), **params)
 
     def test_from_post_write_file(self):
@@ -723,11 +724,12 @@ class TestFileUpload(UploadTest):
     def test_from_post_filename(self):
         upload = self.upload()
         assert upload.uuid
-        assert upload.name == '{0}_filename.xpi'.format(upload.uuid.hex)
+        assert upload.name == u'{0}_filenamé.xpi'.format(
+            force_text(upload.uuid.hex))
 
     def test_from_post_hash(self):
-        hash = hashlib.sha256(self.data).hexdigest()
-        assert self.upload().hash == 'sha256:%s' % hash
+        hashdigest = hashlib.sha256(self.data).hexdigest()
+        assert self.upload().hash == 'sha256:%s' % hashdigest
 
     def test_from_post_extra_params(self):
         upload = self.upload(automated_signing=True, addon_id=3615)
@@ -1091,6 +1093,21 @@ class TestFileFromUpload(UploadTest):
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
         assert file_.filename == u'jets-0.1.xpi'
+
+    @mock.patch('olympia.files.models.copy_stored_file')
+    def test_dont_send_both_bytes_and_str_to_copy_stored_file(
+            self, copy_stored_file_mock):
+        upload = self.upload(u'jétpack')
+        self.version.addon.name = u'jéts!'
+        file_ = File.from_upload(
+            upload, self.version, self.platform, parsed_data={})
+        assert file_.filename == u'jets-0.1.xpi'
+        expected_path_orig = force_text(upload.path)
+        expected_path_dest = force_text(file_.current_file_path)
+        assert copy_stored_file_mock.call_count == 1
+        assert copy_stored_file_mock.call_args_list[0][0] == (
+            expected_path_orig, expected_path_dest
+        )
 
     def test_size(self):
         upload = self.upload('extension')
