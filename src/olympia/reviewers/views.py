@@ -1281,12 +1281,14 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         return obj
 
     def check_permissions(self, request):
-        if self.action in (u'list', u'retrieve'):
+        if self.action == u'list':
             # When listing DRF doesn't explicitly check for object permissions
             # but here we need to do that against the parent add-on.
             # So we're calling check_object_permission() ourselves,
             # which will pass down the addon object directly.
-            return self.check_object_permissions(request, self.get_object())
+            return (
+                super(ReviewAddonVersionViewSet, self)
+                .check_object_permissions(request, self.get_addon_object()))
 
         super(ReviewAddonVersionViewSet, self).check_permissions(request)
 
@@ -1295,29 +1297,23 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         return super(ReviewAddonVersionViewSet, self).check_object_permissions(
             request, obj.addon)
 
-    def filter_queryset(self, qset):
-        if acl.check_unlisted_addons_reviewer(self.request):
-            has_listed = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-            has_unlisted = qset.filter(channel=amo.RELEASE_CHANNEL_UNLISTED)
-            self.should_show_channel = (
-                has_listed.exists() and
-                has_unlisted.exists())
-        else:
-            self.should_show_channel = False
-            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-        return qset
-
     def list(self, request, *args, **kwargs):
         """Return all (re)viewable versions for this add-on.
 
         Full list, no pagination."""
-        queryset = self.filter_queryset(self.get_queryset())
+        qset = self.filter_queryset(self.get_queryset())
+
+        should_show_channel = False
+
+        if acl.check_unlisted_addons_reviewer(self.request):
+            has_listed = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+            has_unlisted = qset.filter(channel=amo.RELEASE_CHANNEL_UNLISTED)
+            should_show_channel = (
+                has_listed.exists() and has_unlisted.exists())
 
         serializer = DiffableVersionSerializer(
-            queryset,
-            context={
-                'should_show_channel': self.should_show_channel
-            },
+            qset,
+            context={'should_show_channel': should_show_channel},
             many=True)
 
         return Response(serializer.data)
@@ -1325,6 +1321,5 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
     def retrieve(self, request, *args, **kwargs):
         serializer = AddonBrowseVersionSerializer(
             instance=self.get_object(),
-            context={
-                'file': self.request.GET.get('file', None)})
+            context={'file': self.request.GET.get('file', None)})
         return Response(serializer.data)
