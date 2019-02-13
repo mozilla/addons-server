@@ -1026,7 +1026,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # These should have app+locale at the start to avoid redirects
-LOGIN_URL = reverse_lazy('users.login')
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # When logging in with browser ID, a username is created automatically.

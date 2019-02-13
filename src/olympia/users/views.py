@@ -172,31 +172,6 @@ def admin_edit(request, user):
     return render(request, 'users/edit.html', {'form': form, 'amouser': user})
 
 
-def _clean_next_url(request):
-    gets = request.GET.copy()
-    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
-
-    if not is_safe_url(url):
-        log.info(u'Unsafe redirect to %s' % url)
-        url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
-    gets['to'] = url
-    request.GET = gets
-    return request
-
-
-def login(request):
-    if request.user.is_authenticated:
-        request = _clean_next_url(request)
-        return http.HttpResponseRedirect(request.GET['to'])
-    else:
-        return render(request, 'users/login.html')
-
-
 @user_view
 @non_atomic_requests
 def profile(request, user):
