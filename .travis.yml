@@ -78,6 +78,7 @@ before_script:
   - node --version
   - java -version
   - curl -v http://localhost:9200/
+  - sudo touch /addons-server-docker-container
 
 script:
   - |
