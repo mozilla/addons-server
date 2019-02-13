@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-13 01:26+0000\n"
+"PO-Revision-Date: 2019-02-13 01:33+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -952,7 +952,7 @@ msgid "Error decoding signature."
 msgstr "Erro ao decodificar assinatura."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Tipo incorreto de uma ou mais chaves na carga útil"
 
 msgid "Invalid JWT Token."
 msgstr "Token JWT inválido."
@@ -2959,9 +2959,8 @@ msgstr "Descreva a extensão"
 msgid "Describe {0}"
 msgstr "Descreva {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Resumo"
+msgstr "Nome e resumo"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
