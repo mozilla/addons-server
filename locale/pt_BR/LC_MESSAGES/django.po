@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-14 20:53+0000\n"
+"PO-Revision-Date: 2019-02-14 21:11+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -2606,7 +2606,7 @@ msgstr "As imagens não podem ser maiores que %d kB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "A imagem deve ter exatamente {0} píxeis de largura e {1} píxeis de altura."
+msgstr "A imagem deve ter exatamente {0} pixels de largura e {1} pixels de altura."
 
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "A imagem deve ter pelo menos {0} pixels de largura e {1} pixels de altura."
@@ -3718,11 +3718,8 @@ msgstr "Esta é a versão da sua extensão que será instalada se alguém clica
 msgid "Next Listed Version:"
 msgstr "Ver outras versões:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
-"Esta é a última versão carregada, entretanto\n"
-"                                           ainda não está disponível no site."
+msgstr "Esta é a versão enviada mais recentemente, mas ainda não está disponível no site"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Filas não são revisadas de forma rigorosa"
@@ -4175,7 +4172,7 @@ msgid "Select a header image for your Theme."
 msgstr "Selecione uma imagem de cabeçalho para seu tema."
 
 msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 píxeis"
+msgstr "3000 &times; 200 pixels"
 
 msgid "300 KB max"
 msgstr "máximo de 300 KB"
@@ -4282,11 +4279,11 @@ msgstr "Visibilidade da extensão"
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
 msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído em resultados de pesquisa e páginas de produto."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisível:{label_close} Não será incluída nos resultados de pesquisas, e suas página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
+"{label_open}Invisível:{label_close} Não será incluído em resultados de pesquisas, e sua página de produto indicará que você desativou. Submissões de novas versões do produto não serão aceitas neste "
+"estado."
 
 msgid "Listed versions"
 msgstr "Versão listada"
@@ -5613,37 +5610,32 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "Realize pesquisas mais seguras com bloqueio de rastreadores, criptografia inteligente, pesquisa privativas e outros fatores essenciais."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifique a pesquisa {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Simplifique abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Gerencie suas abas abertas em uma barra lateral."
+msgstr "Organize suas muitas abas abertas em um painel lateral."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gerencie os cookies {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Gerenciamento avançado de cookies {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr "Exclui automaticamente cookies indesejados. Oferece suporte a listas de permissão e proibição."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tweet {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Veja a situação como um todo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Com um clique do mouse você pode assistir vídeos em tela cheia."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salve texto para ler mais tarde {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Economize memória {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
@@ -5745,16 +5737,15 @@ msgstr "Você não pode enviar uma extensão com guid terminando em %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento no formato {extensions}."
+msgstr "Tipo de arquivo não suportado, envie um arquivo no formato {extensions}."
 
 msgid "Unexpected error."
 msgstr "Erro inesperado."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> em seu install.rdf(%s) não coincide com o tipo da sua extensão na AMO (%s)"
+msgstr "O tipo (%s) não coincide com o tipo da sua extensão no AMO (%s)"
 
 msgid "Back to review"
 msgstr "Voltar para a análise"
@@ -6188,13 +6179,11 @@ msgstr ""
 "No geral, não. Mas se a análise não cumprir com as diretrizes de análises descritas acima, pode clicar em \"Reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
 "reclamação que já não seja válida devido ao lançamento de uma nova versão da extensão, podemos considerar excluir a análise."
 
-#, fuzzy
 msgid "User"
 msgstr "Usuário"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "E-mail"
+msgstr "Endereço IP"
 
 # %1 is the add-on name
 #, python-format
@@ -6723,9 +6712,8 @@ msgstr "{addon} :: Denúncias de abuso"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Denúncias de abuso para {addon} e os seus desenvolvedores ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Extensão"
+msgstr "ID da extensão"
 
 msgid "Internal AMO ID"
 msgstr "ID AMO interno"
@@ -7257,9 +7245,9 @@ msgstr "Marcado"
 msgid "Updates"
 msgstr "Atualizações"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Intervalo de versões inválido."
+msgstr "Parâmetro \"%s\" inválido."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -7372,9 +7360,8 @@ msgstr "Exibindo resultados {0} a {1} de {2} com <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Exibindo resultados {0} a {1} de {2}"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Não foi possível encontrar a extensão com o id \"{}\"."
+msgstr "Não foi possível encontrar uma extensão com GUID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Você não possui esta extensão."
