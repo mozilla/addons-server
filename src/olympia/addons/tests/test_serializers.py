@@ -100,7 +100,6 @@ class AddonSerializerOutputTestMixin(object):
                 'versions.edit', args=[version.pk], prefix_only=True))
         assert data['reviewed'] == version.reviewed
         assert data['version'] == version.version
-        assert data['url'] == absolutify(version.get_url_path())
 
     def test_basic(self):
         cat1 = Category.from_static_category(
@@ -204,10 +203,6 @@ class AddonSerializerOutputTestMixin(object):
         assert result['current_version']
         self._test_version(
             self.addon.current_version, result['current_version'])
-        assert result['current_version']['url'] == absolutify(
-            reverse('addons.versions',
-                    args=[self.addon.slug, self.addon.current_version.version])
-        )
         self._test_version_license_and_release_notes(
             self.addon.current_version, result['current_version'])
 
@@ -835,7 +830,6 @@ class TestAddonSerializerOutput(AddonSerializerOutputTestMixin, TestCase):
         self._test_version(
             self.addon.latest_unlisted_version,
             result['latest_unlisted_version'])
-        assert result['latest_unlisted_version']['url'] == absolutify('')
 
 
 class TestESAddonSerializerOutput(AddonSerializerOutputTestMixin, ESTestCase):
@@ -997,7 +991,6 @@ class TestVersionSerializerOutput(TestCase):
         }
         assert result['reviewed'] == (
             now.replace(microsecond=0).isoformat() + 'Z')
-        assert result['url'] == absolutify(self.version.get_url_path())
 
     def test_unlisted(self):
         addon = addon_factory()
