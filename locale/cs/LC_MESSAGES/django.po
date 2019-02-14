@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2018-12-19 11:42+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2019-02-11 14:12+0000\n"
+"Last-Translator: martinmikulas8 <martinmikulas8@seznam.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid "This display name cannot be used."
 msgstr "Toto jméno nemůže být použito."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Domovskou stránku lze použít jen pro odkaz na externí webové stránky."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
@@ -136,7 +136,7 @@ msgstr[1] "Všechny štítky musí mít alespoň {0} znaky."
 msgstr[2] "Všechny štítky musí mít alespoň {0} znaků."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Zadaný text byl označen jako spam."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "V době, kdy je váš doplněk pro tuto aplikaci veden jako doporučený, nemůžete změnit jeho umístění v kategoriích."
@@ -431,8 +431,8 @@ msgid ""
 "See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
 "support\">add-on community</a> for help."
 msgstr ""
-"Podívejte se do <a href=\"%(support)s\">sekce podpory tohoto doplňku</a>, kde zjistíte, jestli je dostupná podpora. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-community.org/c/"
-"add-ons/add-on-support\">komunitu doplňků</a>."
+"Podívejte se do <a href=\"%(support)s\">sekce podpory tohoto doplňku</a>, kde zjistíte, jestli je dostupná podpora. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-community.org/c"
+"/add-ons/add-on-support\">komunitu doplňků</a>."
 
 msgid "Review Guidelines"
 msgstr "Příručka recenzenta"
@@ -574,8 +574,8 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Některé doplňky vyžadují oprávnění k provádění určitých akcí (příklad: doplněk pro správu panelů bude požadovat oprávnění pro přístup k systému panelů prohlížeče)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
+" rare cases risk may be involved."
 msgstr ""
 "Jelikož jste to vy, kdo má kontrolu nad svým Firefoxem, rozhodnutí, zda oprávnění udělit či neudělit, je jen na vás. Udělení oprávnění nemusí znamenat ovlivnění výkonu nebo bezpečnosti vašeho "
 "prohlížeče, ale v některých vzácných případech toto riziko vyskytuje."
@@ -712,11 +712,11 @@ msgid "Admin Tools"
 msgstr "Nástroje administrátora"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Kladné celé číslo"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Toto pole lze použít jen pro odkaz na externí webové stránky. URL na %(domain)s nejsou povoleny."
 
 msgid "Incorrect, please try again."
 msgstr "Neplatné, zkuste to prosím znovu."
@@ -730,13 +730,11 @@ msgstr "Musí se jednat o platnou barvu v hexa formátu, například #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Některá funkčnost je v průběhu údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Musí být alespoň jeden vlastník."
+msgstr "Musí obsahovat alespoň jeden tisknutelný znak."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Musí být alespoň jeden vlastník."
+msgstr "Ujistěte se, že toto pole obsahuje alespoň jeden znak písmen nebo číslic."
 
 msgid "Not allowed"
 msgstr "Není povoleno"
@@ -788,8 +786,8 @@ msgstr "Doplňky pro Firefox"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
-"Pokud jste se sem dostali pomocí některého z odkazů, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my uděláme vše proto, abychom "
-"to napravili."
+"Pokud jste se sem dostali pomocí některého z odkazů, %(open_bug_link)snahlaste nám prosím chybu%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my uděláme vše proto, abychom to"
+" napravili."
 
 msgid "Not Found"
 msgstr "Nenalezeno"
@@ -797,16 +795,16 @@ msgstr "Nenalezeno"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Je nám líto, ale nemůžeme nalézt, co hledáte.</h1> <p>Stránka nebo soubor, který jste požadovali, nebyl na tomto serveru nalezen. Pravděpodobně jste klepli na neaktuální odkaz nebo napsali "
-"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, %(open_bug_link)sdejte nám o tom prosím vědět"
-"%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé populární stránky na našem serveru.</p> "
-"<ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na stránku <a href=\"%(search)s\">hledání</a> "
-"a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
+"nesprávnou adresu.</p> <ul> <li>Pokud jste zadali adresu ručně, zkontrolujte prosím její správnost.</li> <li> Pokud jste klepli na odkaz, %(open_bug_link)sdejte nám o tom prosím "
+"vědět%(close_bug_link)s. Sdělte nám, odkud jste přišli a co jste hledali, a my se vynasnažíme to opravit. </li> </ul> <p>A nebo můžete rovnou skočit na některé populární stránky na našem "
+"serveru.</p> <ul> <li>Zajímal by vás seznam <a href=\"%(rec)s\">doporučovaných doplňků</a>?</li> <li> Hledáte <a href=\"%(search)s\">nějaký doplněk</a>? Pak skočte na stránku <a "
+"href=\"%(search)s\">hledání</a> a nebo použijte vyhledávací pole výše. </li> <li> Pokud si přejete začít od začátku, jděte na <a href=\"%(home)s\">titulní stránku</a> webu. </li> </ul>"
 
 msgid "Oops"
 msgstr "Jejda"
@@ -851,8 +849,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" id=\"recaptcha_different"
-"\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
+"<p> Zadejte prosím <strong>všechna slova</strong> níže a <strong>oddělte je mezerami</strong>, pokud je to nutné. </p> <p> Pokud se nedají přečíst, můžete <a href=\"#\" "
+"id=\"recaptcha_different\">zkusit jiná slova</a> nebo <a href=\"#\" id=\"recaptcha_audio\">jiný typ ověření</a>. </p>"
 
 msgid "Top Rated"
 msgstr "Nejlépe hodnocené"
@@ -947,7 +945,7 @@ msgid "Error decoding signature."
 msgstr "Chyba při čtení podpisu."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Špatný typ pro jeden nebo více klíčů v datovém obsahu"
 
 msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
@@ -989,8 +987,8 @@ msgstr "Verze"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr "Pokud vámi podporovaná aplikace nevyžaduje manifest, musíte přidat takový, který obsahuje povinné atributy specifikované %(amo_manifests_mdn_link_open)szde%(amo_manifests_mdn_link_close)s."
 
 msgid "Only I can view this collection."
@@ -1147,8 +1145,8 @@ msgstr ""
 "rádi skryli, klepněte na tlačítko níže a učiňte ji soukromou."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
+" be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Doplňky označené jako oblíbené pomocí funkce <b>Přidat k oblíbeným</b> se zobrazí níže. Tato sbírka je nyní <b>soukromá</b>, což znamená, že ji můžete vidět jenom vy. Pokud byste ji chtěli "
 "zveřejnit, klepněte na tlačítko níže."
@@ -1332,8 +1330,8 @@ msgstr "Instalovat jazykový balíček"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
+" the entire application."
 msgstr ""
 "Nainstalováním slovníku se přidá nový jazyk k vestavěné kontrole pravopisu aplikace %(app_name)s, která kontroluje překlepy při vyplňování formulářů na webu. Jazykové balíčky mění jazyk celé "
 "aplikace."
@@ -1906,119 +1904,119 @@ msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou sledovat stav úkolů a zvyšovat efektivitu práce. Najděte si rozšíření, které obnovuje obsah panelů, pomáhá zvýšit produktivitu atd."
 
 msgid "Appearance"
 msgstr "Vzhled"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření, která upravují vzhled webových stránek i samotného Firefoxu. Tato kategorie obsahuje rozšíření pro nastavení tmavého vzhledu, správu panelů a další."
 
 msgid "Bookmarks"
 msgstr "Záložky"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření, které ochrání záložky heslem, najde duplikáty nebo nefunkční odkazy a další."
 
 msgid "Download Management"
 msgstr "Stahování souborů"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou stahovat webové stránky, hudbu nebo videa. Máme také rozšíření pro správu stahování, sdílení souborů a další."
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS a blogování"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která odstraní nepořádek, takže můžete sledovat sociálních sítě, vyhledávat na blogu, používat RSS kanály, ulevit svým očím a další."
 
 msgid "Games & Entertainment"
 msgstr "Hry a zábava"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox se kterým si užijete spoustu zábavy. Tato kategorie zahrnuje rozšíření, která mohou zlepšit hraní her, ovládání přehrávání videí apod."
 
 msgid "Language Support"
 msgstr "Podpora jazyků"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která nabízejí podporu jazyků jako je kontrola gramatiky, vyhledávání slov, překlad textů, převod textu na řeč a další."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotografie a média"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu a videa. Rozšíření v této kategorii upravují zvuk a videa, dohledávají texty k obrázkům a další."
 
 msgid "Privacy & Security"
 msgstr "Soukromí a bezpečnost"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro soukromé a bezpečnější prohlížení. Tato kategorie obsahuje rozšíření blokující nepříjemné reklamy a sledovací prvky nebo spravují přesměrování a další."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, IP adresy, domény a další."
 
 msgid "Shopping"
 msgstr "Nakupování"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vás pomohou při online nákupech, vyhledávání kupónů, obchodů nebo analýzou recenzí."
 
 msgid "Social & Communication"
 msgstr "Sdílení a sociální sítě"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox pro zlepšení sociálních sítí a psaní zpráv. Tato kategorie zahrnuje funkce pro oznámení v panelech, stahování vidí videa a další."
 
 msgid "Tabs"
 msgstr "Panely"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox a přizpůsobte si obsah nového panelu. Objevte rozšíření, která mohou ovládat panely, měnit způsob jejich ovládání a další."
 
 msgid "Web Development"
 msgstr "Vývoj webu"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Stáhněte si nástroje pro Firefox a vývoj webových aplikací. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Ostatní"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která mohou být až nepředvídatelně kreativní, ale přesto užitečná pro různé úkoly."
 
 msgid "Device Features & Location"
 msgstr "Vlastnosti zařízení a umístění"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření a vylepšete si Firefox pro Android. Rychlá vyhledávání, uvolnění systémových zdrojů, psaní poznámek a další."
 
 msgid "Experimental"
 msgstr "Experimentální"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která jsou pravidelně aktualizována a připravena pro veřejné testování. Vaše připomínky pomohou vývojářům při změnách pro připravované verze."
 
 msgid "Performance"
 msgstr "Výkon"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření, která zvýší výkonnost Firefoxu. Najděte rozšíření, která vám pomohou zvýšit produktivitu a efektivitu tím, že zablokujete nepříjemné reklamy a další."
 
 msgid "Photos & Media"
 msgstr "Fotky a média"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefoxu a vylepšete fotografie a další média. Tato kategorie zahrnuje rozšíření pro zpětné vyhledávání obrázků, zachycení snímků stránek a další."
 
 msgid "Security & Privacy"
 msgstr "Bezpečnost a soukromí"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox a bezpečné a soukromé prohlížení webu. Objevte rozšíření, která mohou zastavit záludné sledovací reklamy, snadno vymazat historii prohlížení a další."
 
 msgid "Social Networking"
 msgstr "Sociální sítě"
@@ -2493,11 +2491,10 @@ msgstr ""
 "uživatelů. Automatické aktualizace budou spravovány touto stránkou. Doplněk také může být brán v potaz v soutěžích a propagacích od Mozilly. Po kontrole bude také možné distribuovat doplněk "
 "vlastními kanály.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Na vlastní pěst. <span class=\"helptext\">Nahrané soubory budou automaticky podepsány pro samostatnou distribuci. Aktualizace mohou být řešeny pomocí updateURL nebo externími aktualizacemi aplikace."
-"</span>"
+"Na vlastní pěst. <span class=\"helptext\">Nahrané soubory budou automaticky podepsány pro samostatnou distribuci. Aktualizace mohou být řešeny pomocí updateURL nebo externími aktualizacemi "
+"aplikace.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Dokud je váš doplněk veden jako doporučený, nemůžete měnit jeho umístění v kategoriích."
@@ -2665,8 +2662,8 @@ msgid "API key revoked"
 msgstr "API klíč byl revokován"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznámky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše zásady ochrany osobních údajů, které "
 "vysvětlují, jak nakládáme s vašimi informacemi."
@@ -2790,9 +2787,7 @@ msgstr ""
 "verzi."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Aktualizovat kompatibilitu</a> <a href=\"%(version_url)s\" class=\"button\">Nahrát novou verzi</a> nebo <a href=\"#\" "
 "class=\"close\">Ignorovat</a>"
@@ -2975,24 +2970,23 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Kategorie jsou pro uživatele hlavní způsob orientace mezi doplňky. Pro co nejsnazší nalezení vašeho doplňku vyberte všechny, které se k němu hodí."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a href=\"mailto:"
-"%(email)s\">%(email)s</a>."
+"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho umístění v kategoriích. Pokud máte důvod, proč chcete kategorie změnit, napište nám prosím e-mail na <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho kategorie. Pokud máte důvod, proč je potřeba kategorie změnit, napište nám prosím e-mailem na <a href=\"mailto:%(email)s"
-"\">%(email)s</a>."
+"Pokud je doplněk pro tuto aplikaci veden jako doporučený, nemůžete měnit jeho kategorie. Pokud máte důvod, proč je potřeba kategorie změnit, napište nám prosím e-mailem na <a "
+"href=\"mailto:%(email)s\">%(email)s</a>."
 
 msgid "Email"
 msgstr "E-mail"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
 "Chcete-li zobrazit e-mailovou adresu pro dotazy na podporu, zadejte ji zde. Máte-li různé adresy pro různé jazyky, můžete přidat více překladů tohoto políčka. Relevantní pouze pro zveřejněné "
 "doplňky."
@@ -3079,8 +3073,8 @@ msgid ""
 "Upload an icon for your add-on or choose from one of ours. The icon is displayed nearly everywhere your add-on is. Uploaded images must be one of the following image types: .png, .jpg. It is only "
 "relevant for listed add-ons."
 msgstr ""
-"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, kde je váš doplněk. Nahrané obrázky musí mít některou z následujících přípon: .png, .jpg. Relevantní pouze pro "
-"zveřejněné doplňky."
+"Nahrajte nebo vyberte ikonu pro váš doplněk. Ikona je zobrazena téměř všude, kde je váš doplněk. Nahrané obrázky musí mít některou z následujících přípon: .png, .jpg. Relevantní pouze pro zveřejněné"
+" doplňky."
 
 msgid "Select an icon for your add-on:"
 msgstr "Vyberte ikonku vašeho doplňku:"
@@ -3110,7 +3104,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Nahrání vlastní ikonky..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Podporovanými typy jsou PNG a JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -3485,8 +3479,8 @@ msgid "Operating system and build environment requirements."
 msgstr ""
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
@@ -3603,11 +3597,11 @@ msgstr "JWT secret"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý požadavek, jak je vysvětleno v <a href="
-"\"%(docs_url)s\">API dokumentaci</a>."
+"Pro vytváření API požadavků pošlete <a href=\"%(jwt_url)s\">JWT (JSON Web Token)</a> jako autorizační hlavičku. JWT je nutno vygenerovat pro každý požadavek, jak je vysvětleno v <a "
+"href=\"%(docs_url)s\">API dokumentaci</a>."
 
 msgid "You don't have any API credentials."
 msgstr "Nemáte žádné přihlašovací údaje k API."
@@ -3872,9 +3866,7 @@ msgid "View All Submissions"
 msgstr "Zobrazit všechny příspěvky"
 
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
-msgstr ""
-"Toto je místo, kde se zobrazují a odkud můžete spravovat vaše rozšíření a motivy vzhledu. Pro publikaci prvního doplňku klepněte na \"Přidejte svůj první doplněk\" nebo \"Přidejte svůj první motiv"
-"\"."
+msgstr "Toto je místo, kde se zobrazují a odkud můžete spravovat vaše rozšíření a motivy vzhledu. Pro publikaci prvního doplňku klepněte na \"Přidejte svůj první doplněk\" nebo \"Přidejte svůj první motiv\"."
 
 msgid "Submit Your First Add-on"
 msgstr "Přidejte svůj první doplněk"
@@ -3907,11 +3899,11 @@ msgstr "Přizpůsobte si Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Doplňky umožňují milionům uživatelů Firefoxu vylepšit jejich prohlížeč. Pokud znáte %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a %(css_link_open)sCSS"
-"%(link_close)s, máte všechny potřebné schopnosti k vytvoření skvělého doplňku."
+"Doplňky umožňují milionům uživatelů Firefoxu vylepšit jejich prohlížeč. Pokud znáte %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a "
+"%(css_link_open)sCSS%(link_close)s, máte všechny potřebné schopnosti k vytvoření skvělého doplňku."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Naučit se vytvářet doplňky"
@@ -3951,7 +3943,7 @@ msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Ověřte, zda je vaše rozšíření kompatibilní s Firefoxem."
 
 msgid "Live Testing"
-msgstr ""
+msgstr "Testování naživo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
@@ -4062,8 +4054,8 @@ msgstr "Krátký popis vašeho motivu vzhledu, který je zobrazen ve vyhledává
 
 #, python-format
 msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
+"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
+" and Cookies Privacy Notice%(link_close)s."
 msgstr ""
 "Souhlasím s %(agreement_link_open)sDohodou o distribuci doplňků pro Firefox%(link_close)s a se zpracováním mých údajů v souladu se %(privacy_notice_link_open)sZásadami ochrany osobních údajů pro "
 "webové stránky, sdělení a soubory cookies%(link_close)s."
@@ -4107,8 +4099,8 @@ msgstr "PNG nebo JPG"
 msgid "Manage Version {0}"
 msgstr "Správa verze {0}"
 
-# {0} is the name of the collection
 #. {0} is an add-on name.
+# {0} is the name of the collection
 msgid "Manage {0}"
 msgstr "Správa {0}"
 
@@ -4275,16 +4267,16 @@ msgstr "Opravdu chcete zrušit vaši žádost o kontrolu?"
 msgid "Add-on Documentation :: Developer Hub"
 msgstr "Dokumentace k doplňku :: Centrum pro vývojáře doplňků"
 
-# {0} is a number
 #. L10n: first parameter is the number of errors
+# {0} is a number
 msgid "{0} error"
 msgid_plural "{0} errors"
 msgstr[0] "{0} chyba"
 msgstr[1] "{0} chyby"
 msgstr[2] "{0} chyb"
 
-# {0} is a number
 #. L10n: first parameter is the number of warnings
+# {0} is a number
 msgid "{0} warning"
 msgid_plural "{0} warnings"
 msgstr[0] "{0} varování"
@@ -5939,12 +5931,10 @@ msgstr "<a href=\"%(url)s\">Vytvořit vlastní doplněk</a>. Poskytujeme pro ně
 msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
-msgstr ""
-"Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, kteří kontrolují jejich kvalitu a stabilitu."
+msgstr "Pokud máte zkušenosti s vývojem doplňků, <a href=\"%(url)s\">můžete se stát redaktorem</a>! Naši redaktoři jsou technicky založení fanoušci doplňků, kteří kontrolují jejich kvalitu a stabilitu."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Pomozte nám vylepšit tento web. Má otevřený zdrojový kód a hlásit chyby a posílat záplaty na mě můžete i vy. <a href=\"%(url)s\">GitHub</a> obsahuje soupis všech aktuálních chyb, starší chyby pak "
 "můžete nalézt na BugZille."
@@ -5989,8 +5979,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Často kladené otázky k recenzím"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Recenze doplňků jsou způsob, jak sdílet váš názor na doplněk, který jste si nainstalovali a vyzkoušeli. Náš tým kontrolující recenze si vyhrazuje právo recenze odmítnout nebo smazat, pokud "
 "neodpovídají těmto pokynům."
@@ -6059,8 +6049,8 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
-"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro "
-"své fungování potřebuje."
+"Nekritizujte doplněk za něco, k čemu je určen. Např. nepište negativní recenze kvůli zobrazování reklam nebo sběru dat, pokud je to právě účel fungování daného doplňku, nebo doplněk sběr dat pro své"
+" fungování potřebuje."
 
 msgid "How can I report a problematic review?"
 msgstr "Jak mohu nahlásit problematickou recenzi?"
@@ -6156,15 +6146,15 @@ msgstr "Přidat recenzi na {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Mějte na mysli tyto rady:</h2><ul><li>Pište, jako by jste své zkušenosti s doplňkem popisovali svému příteli. Zmiňte se o specifických a užitečných detailech, jako například funkce, které se "
-"vám líbily či nelíbily, jaké výhody či nevýhody doplněk má nebo jak jednoduše se používá. Zkuste se vyhnout jednoduchým a nicneříkajícím zvoláním jako \"Skvělé\" nebo \"Na nic\", pokud k nim "
-"neposkytnete pádné důvody.</li><li>Nehlaste do recenzí chyby. vývojářům neposkytujeme vaši e-mailovou adresu, pomocí které by vás mohl v souvislosti s vyřešením problému kontaktovat. Podívejte se "
-"do <a href=\"%(support)s\">sekce podpory doplňku</a>, kde naleznete více informací o tom, jak získat podporu pro tento doplněk. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-"
+"<h2>Mějte na mysli tyto rady:</h2><ul><li>Pište, jako by jste své zkušenosti s doplňkem popisovali svému příteli. Zmiňte se o specifických a užitečných detailech, jako například funkce, které se vám"
+" líbily či nelíbily, jaké výhody či nevýhody doplněk má nebo jak jednoduše se používá. Zkuste se vyhnout jednoduchým a nicneříkajícím zvoláním jako \"Skvělé\" nebo \"Na nic\", pokud k nim "
+"neposkytnete pádné důvody.</li><li>Nehlaste do recenzí chyby. vývojářům neposkytujeme vaši e-mailovou adresu, pomocí které by vás mohl v souvislosti s vyřešením problému kontaktovat. Podívejte se do"
+" <a href=\"%(support)s\">sekce podpory doplňku</a>, kde naleznete více informací o tom, jak získat podporu pro tento doplněk. Můžete také požádat o pomoc <a href=\"https://discourse.mozilla-"
 "community.org/c/add-ons/add-on-support\">komunitu doplňků</a>.</li><li>Udržujte své recenze přehledné, vyvarujte se nevhodného jazyka a neuvádějte v nich své osobní informace.</li></ul><p>Pro více "
 "informacích o recenzích doplňků si přečtěte naši <a href=\"%(guide)s\">příručku recenzenta</a>.</p>"
 
@@ -7510,17 +7500,17 @@ msgstr "O sledování externích zdrojů..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Sledování externích zdrojů</h2> <p> Pokud odkazujete z externího webu na stránku s informacemi o doplňku či přímo na soubor s doplňkem, můžete přidat parametr, který vám umožní sledovat zdroje, "
-"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?"
-"src=<b>external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou "
-"pouze zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje jako je \"external-blog\", \"external-sidebar"
-"\", \"external-campaign225\" atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z A-Z - . _ ~ %% +</code>"
+"odkud je doplněk stahován. Například můžete použít následující odkazy jako zdroj pro svůj blog: <dl> <dt>Stránka s informacemi o doplňku</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b"
+">external-blog</b></dd> <dt>Přímý odkaz na soubor</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Sledovány budou pouze "
+"zdroje, které začínají prefixem \"external-\" a nemají více než 61 dalších znaků. Jakýkoliv text za \"external-\" může být použit pro popis zdroje jako je \"external-blog\", \"external-sidebar\", "
+"\"external-campaign225\" atd. Jsou povoleny následující znaky, které jsou bezpečné pro URL: <code>a-z A-Z - . _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Stav doplňku dle data"
@@ -7538,8 +7528,8 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>Kdo jsou denní uživatelé?</h2> <p> Motivy vzhledu nainstalované z této stránky jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový počet těchto dotazů udává počet "
-"aktivních denních uživatelů či celkový počet lidí, kteří motiv v konkrétní den použili. </p>"
+"<h2>Kdo jsou denní uživatelé?</h2> <p> Motivy vzhledu nainstalované z této stránky jednou denně kontrolují, zda pro ně není k dispozici aktualizace. Celkový počet těchto dotazů udává počet aktivních"
+" denních uživatelů či celkový počet lidí, kteří motiv v konkrétní den použili. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
@@ -7829,8 +7819,8 @@ msgid ""
 "You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
 "the list of authors for your add-ons. Afterwards you will be able to delete your account here."
 msgstr ""
-"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás "
-"odstranila ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
+"Nemůžete smazat svůj uživatelský účet, protože jste vedeni jako <a href=\"%(link)s\"> autor některého doplňku</a>. Před smazáním účtu pověřte jinou osobu z vašeho vývojového týmu, aby vás odstranila"
+" ze seznamu autorů vašich doplňků. Poté budete na tomto místě moci váš účet smazat."
 
 msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
 msgstr "Po klepnutí na \"smazat\" bude váš účet <strong>trvale odstraněn</strong>. To prakticky znamená:"
@@ -8017,8 +8007,7 @@ msgstr "Nemůžeme vás odhlásit"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-"Bohužel, ale nemůžeme vás odhlásit z odběru. Odkaz, na který jste klepli, je neplatný. Odhlášení odběru však můžete stále provést na <a href=\"%(edit_url)s\">stránce pro úpravy svého profilu</a>."
+msgstr "Bohužel, ale nemůžeme vás odhlásit z odběru. Odkaz, na který jste klepli, je neplatný. Odhlášení odběru však můžete stále provést na <a href=\"%(edit_url)s\">stránce pro úpravy svého profilu</a>."
 
 msgid "Developer Information"
 msgstr "Informace o vývojáři"
@@ -8080,8 +8069,8 @@ msgstr "Vydáno dne {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Zdrojový kód je uvolněn pod <a href=\"%(url)s\">%(name)s</a>"
 
-# {0} is the add-on name
 #. {0} is an add-on name.
+# {0} is the add-on name
 msgid "{0} Version History"
 msgstr "Historie verzí doplňku {0}"
 
