@@ -60,11 +60,8 @@
           <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
         {% endfor %}
         <hr>
-        <li><a href="{{ url('collections.mine') }}">
+        <li><a href="{{ url('collections.list') }}">
           {{ _("Collections I've Made") }}</a></li>
-        {# We never let you change the favorites slug. #}
-        <li><a href="{{ url('collections.mine', 'favorites') }}">
-          {{ _('My Favorite Add-ons') }}</a></li>
       </ul>
       {% endwith %}
     </li>

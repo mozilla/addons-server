@@ -1,12 +1,8 @@
 {% set links = [
     (_('My Profile'), user.get_url_path()),
     (_('Account Settings'), url('users.edit')),
-    (_('My Collections'), url('collections.mine'))
+    (_('My Collections'), url('collections.list'))
 ] %}
-{% if user.favorite_addons %}
-  {% do links.append((_('My Favorites'),
-                      url('collections.mine', 'favorites'))) %}
-{% endif %}
 
 <div id="secondary-nav" class="secondary">
   <h2>{{ _('My Account') }}</h2>
