@@ -2858,6 +2858,8 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
+        # need to keep this force_text because pre django2.2
+        # urlsafe_base64_encode returns a bytestring and a string after
         param = 'rta:%s' % force_text(
             urlsafe_base64_encode(force_bytes(addon.guid)))
 
@@ -2876,6 +2878,8 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
+        # need to keep this force_text because pre django2.2
+        # urlsafe_base64_encode returns a bytestring and a string after
         param = 'rta:%s' % force_text(
             urlsafe_base64_encode(force_bytes(addon.guid)))
 
@@ -2884,6 +2888,8 @@ class TestAddonSearchView(ESTestCase):
         assert data == [u'Invalid Return To AMO guid (not a curated add-on)']
 
     def test_filter_by_guid_return_to_amo_wrong_format(self):
+        # need to keep this force_text because pre django2.2
+        # urlsafe_base64_encode returns a bytestring and a string after
         param = 'rta:%s' % force_text(urlsafe_base64_encode(b'foo@bar')[:-1])
 
         data = self.perform_search(
@@ -2915,6 +2921,8 @@ class TestAddonSearchView(ESTestCase):
         addon_factory()
         self.reindex(Addon)
 
+        # need to keep this force_text because pre django2.2
+        # urlsafe_base64_encode returns a bytestring and a string after
         param = 'rta:%s' % force_text(
             urlsafe_base64_encode(force_bytes(addon.guid)))
 
