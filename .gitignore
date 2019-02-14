@@ -26,6 +26,7 @@ docker*.yml
 docker/artifacts/*
 docs/_gh-pages
 docs/api/_build
+docs/_build
 local_settings.py
 logs/*
 MANIFEST
