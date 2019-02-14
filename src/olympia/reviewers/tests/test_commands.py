@@ -15,6 +15,7 @@ from olympia.addons.models import (
     AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
+from olympia.lib.crypto.signing import SigningError
 from olympia.files.models import FileValidation
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.management.commands import auto_approve
@@ -251,6 +252,15 @@ class TestAutoApproveCommand(TestCase):
         assert get_reviewing_cache(self.addon.pk) is None
         assert create_summary_for_version_mock.call_count == 1
         self._check_stats({'total': 1, 'error': 1})
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_signing_error(self, sign_file_mock):
+        sign_file_mock.side_effect = SigningError
+        call_command('auto_approve')
+        assert sign_file_mock.call_count == 1
+        assert get_reviewing_cache(self.addon.pk) is None
+        self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
+                           'has_auto_approval_disabled': 0})
 
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
