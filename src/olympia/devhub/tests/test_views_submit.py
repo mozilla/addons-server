@@ -476,14 +476,75 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.assert3xx(
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0-tb.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert addon.type == amo.ADDON_STATICTHEME
+        # Only listed submissions need a preview generated.
+        assert latest_version.previews.all().count() == 0
+
+    def test_static_theme_wizard_listed(self):
+        # Check we get the correct template.
+        url = reverse('devhub.submit.wizard', args=['listed'])
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '1.0'
+        assert doc('input#theme-name').attr('type') == 'text'
+
+        # And then check the upload works.  In reality the zip is generated
+        # client side in JS but the zip file is the same.
+        assert Addon.objects.count() == 0
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        response = self.post(url=url)
+        addon = Addon.objects.get()
+        # Next step is same as non-wizard flow too.
+        self.assert3xx(
+            response, reverse('devhub.submit.details', args=[addon.slug]))
+        all_ = sorted([f.filename for f in addon.current_version.all_files])
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert addon.type == amo.ADDON_STATICTHEME
+        previews = list(addon.current_version.previews.all())
+        assert len(previews) == 3
+        assert storage.exists(previews[0].image_path)
+        assert storage.exists(previews[1].image_path)
+        assert storage.exists(previews[2].image_path)
+
+    def test_static_theme_wizard_unlisted(self):
+        # Check we get the correct template.
+        url = reverse('devhub.submit.wizard', args=['unlisted'])
+        response = self.client.get(url)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#theme-wizard')
+        assert doc('#theme-wizard').attr('data-version') == '1.0'
+        assert doc('input#theme-name').attr('type') == 'text'
+
+        # And then check the upload works.  In reality the zip is generated
+        # client side in JS but the zip file is the same.
+        assert Addon.unfiltered.count() == 0
+        path = os.path.join(
+            settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+        self.upload = self.get_upload(abspath=path)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(url=url, listed=False)
+        addon = Addon.unfiltered.get()
+        latest_version = addon.find_latest_version(
+            channel=amo.RELEASE_CHANNEL_UNLISTED)
+        # Next step is same as non-wizard flow too.
+        self.assert3xx(
+            response, reverse('devhub.submit.finish', args=[addon.slug]))
+        all_ = sorted([f.filename for f in latest_version.all_files])
+        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -511,7 +572,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             settings.ROOT,
             'src/olympia/devhub/tests/addons/valid_webextension.xpi')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(listed=False)
         addon = Addon.objects.get()
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
@@ -2084,8 +2146,14 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
-    @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_success(self, mock_sign_file):
+    def setUp(self):
+        super(TestVersionSubmitUploadUnlisted, self).setUp()
+        # Mock sign_file() to avoid errors because signing is not enabled.
+        patch = mock.patch('olympia.reviewers.utils.sign_file')
+        self.sign_file_mock = patch.start()
+        self.addCleanup(patch.stop)
+
+    def test_success(self):
         """Sign automatically."""
         # No validation errors or warning.
         result = {
@@ -2103,7 +2171,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert version.all_files[0].status == amo.STATUS_PUBLIC
         self.assert3xx(response, self.get_next_url(version))
-        assert mock_sign_file.called
+        assert self.sign_file_mock.call_count == 1
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):

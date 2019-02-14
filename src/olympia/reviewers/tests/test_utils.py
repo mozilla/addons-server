@@ -4,8 +4,10 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 from django.utils import translation
 
+import mock
 import pytest
 import six
 
@@ -167,6 +169,11 @@ class TestUnlistedViewAllListTable(TestCase):
 yesterday = datetime.today() - timedelta(days=1)
 
 
+# Those tests can call signing when making things public. We want to test that
+# it works correctly, so we set ENABLE_ADDON_SIGNING to True and mock the
+# actual signing call.
+@override_settings(ENABLE_ADDON_SIGNING=True)
+@mock.patch('olympia.lib.crypto.signing.call_signing', lambda f: None)
 class TestReviewHelper(TestCase):
     fixtures = ['base/addon_3615', 'base/users']
     preamble = 'Mozilla Add-ons: Delicious Bookmarks 2.1.072'
@@ -191,10 +198,17 @@ class TestReviewHelper(TestCase):
         assert scores[0].score == amo.REVIEWED_SCORES[reviewed_type] + bonus
         assert scores[0].note_key == reviewed_type
 
+    def remove_paths(self):
+        for path in (self.file.file_path, self.file.guarded_file_path):
+            if not storage.exists(path):
+                storage.delete(path)
+
     def create_paths(self):
-        if not storage.exists(self.file.file_path):
-            with storage.open(self.file.file_path, 'w') as f:
-                f.write('test data\n')
+        for path in (self.file.file_path, self.file.guarded_file_path):
+            if not storage.exists(path):
+                with storage.open(path, 'w') as f:
+                    f.write('test data\n')
+        self.addCleanup(self.remove_paths)
 
     def get_data(self):
         return {'comments': 'foo', 'addon_files': self.version.files.all(),
@@ -1106,19 +1120,29 @@ class TestReviewHelper(TestCase):
 
             assert self.addon.needs_admin_code_review
 
-    def test_nominated_review_time_set_version(self):
-        for process in ('process_sandbox', 'process_public'):
-            self.version.update(reviewed=None)
-            self.setup_data(amo.STATUS_NOMINATED)
-            getattr(self.helper.handler, process)()
-            assert self.version.reload().reviewed
+    def test_nominated_review_time_set_version_process_public(self):
+        self.version.update(reviewed=None)
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+        assert self.version.reload().reviewed
 
-    def test_nominated_review_time_set_file(self):
-        for process in ('process_sandbox', 'process_public'):
-            self.file.update(reviewed=None)
-            self.setup_data(amo.STATUS_NOMINATED)
-            getattr(self.helper.handler, process)()
-            assert File.objects.get(pk=self.file.pk).reviewed
+    def test_nominated_review_time_set_version_process_sandbox(self):
+        self.version.update(reviewed=None)
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_sandbox()
+        assert self.version.reload().reviewed
+
+    def test_nominated_review_time_set_file_process_public(self):
+        self.file.update(reviewed=None)
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_public()
+        assert File.objects.get(pk=self.file.pk).reviewed
+
+    def test_nominated_review_time_set_file_process_sandbox(self):
+        self.file.update(reviewed=None)
+        self.setup_data(amo.STATUS_NOMINATED)
+        self.helper.handler.process_sandbox()
+        assert File.objects.get(pk=self.file.pk).reviewed
 
     def test_review_unlisted_while_a_listed_version_is_awaiting_review(self):
         self.make_addon_unlisted(self.addon)
