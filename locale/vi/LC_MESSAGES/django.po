@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-14 13:32+0000\n"
+"PO-Revision-Date: 2019-02-14 13:53+0000\n"
 "Last-Translator: Quế Tùng (Cloney 173741) <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -551,16 +551,16 @@ msgid "This add-on can:"
 msgstr "Tiện ích này có thể:"
 
 msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
+msgstr "Một số tiện ích mở rộng yêu cầu sự cho phép để thực hiện các chức năng nhất định. Vì bạn có quyền kiểm soát Firefox của mình, nên lựa chọn cấp hoặc từ chối các yêu cầu này là của bạn."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
+msgstr "Vui lòng lưu ý tiện ích mở rộng này sử dụng công nghệ cũ, cho phép nó truy cập vào tất cả các chức năng và dữ liệu của trình duyệt mà không yêu cầu sự cho phép của bạn."
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Tiện ích này đã bị gỡ bỏ bởi tác giả."
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Tiện ích này đã bị vô hiệu hóa bởi quản trị viên."
 
 msgid "Source Code License for {addon}"
 msgstr "Giấy phép Mã nguồn cho {addon}"
@@ -584,7 +584,7 @@ msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "Xem tất cả %(cnt)s nhận xét của người dùng"
 
 msgid "This add-on has not yet been reviewed."
-msgstr ""
+msgstr "Tiện ích này chưa được xem xét."
 
 msgid "Be the first!"
 msgstr "Hãy là người đầu tiên!"
@@ -618,10 +618,10 @@ msgid "Review History"
 msgstr "Xem lại lịch sử"
 
 msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
+msgstr "Xin lỗi, chủ đề này đang chờ xử lý. Vui lòng quay lại sau."
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
+msgstr "Chủ đề này đang chờ xử lý. Tất cả mọi người không thể thấy nó trừ bạn."
 
 msgid "Collector's Note"
 msgstr "Ghi chú của Người sưu tập"
@@ -678,16 +678,16 @@ msgstr ""
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Trường này chỉ có thể được sử dụng để liên kết đến các trang web bên ngoài. URL trên %(domain)s không được phép."
 
 msgid "Incorrect, please try again."
-msgstr ""
+msgstr "Không chính xác, vui lòng thử lại."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Lỗi khi xác minh dữ liệu vào, vui lòng thử lại."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Phải là mã màu hex hợp lệ, chẳng hạn như #000000."
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Một số tính năng tạm thời bị vô hiệu hóa trong khi chúng tôi bảo trì trang web. Chúng tôi sẽ hoạt động đầy đủ lại nhanh thôi."
@@ -705,7 +705,7 @@ msgid "Oops! Not allowed."
 msgstr "Rất tiếc! Không cho phép."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Bạn đã cố gắng làm điều gì đó mà bạn không được phép."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -727,10 +727,10 @@ msgid "Firefox Add-ons"
 msgstr "Tiện ích Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "Xin lỗi, nhưng chúng tôi không thể tìm thấy bất cứ điều gì tại địa chỉ bạn đã nhập. Nếu bạn đã theo liên kết đến một tiện ích mở rộng, có thể tiện ích đó đã bị xóa bởi tác giả."
 
 msgid "Suggested Pages"
-msgstr ""
+msgstr "Trang được đề xuất"
 
 msgid "Browse all extensions"
 msgstr "Khám phá tất cả tiện ích"
@@ -744,6 +744,8 @@ msgstr "Trang chủ Tiện ích"
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
 msgstr ""
+"Nếu bạn đã theo dõi một liên kết từ một nơi nào đó, vui lòng %(open_bug_link)shoàn thành vấn đề%(close_bug_link)s. Hãy cho chúng tôi biết bạn đến từ đâu và những gì bạn đang tìm kiếm, và chúng tôi "
+"sẽ cố gắng hết sức để khắc phục nó."
 
 msgid "Not Found"
 msgstr "Không tìm thấy"
@@ -774,7 +776,7 @@ msgid "Some rights reserved"
 msgstr "Một số quyền được bảo lưu"
 
 msgid "No results found"
-msgstr ""
+msgstr "Không tìm thấy kết quả nào"
 
 #. abbreviation of 'previous'
 msgid "Prev"
@@ -851,16 +853,16 @@ msgstr "Công cụ tìm kiếm"
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
-msgstr ""
+msgstr "Trang <a href=\"%(current_pg_url)s\">%(current_pg)s</a> của <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
 
 msgid "Jump to first page"
-msgstr ""
+msgstr "Chuyển đến trang đầu tiên"
 
 msgid "Previous"
 msgstr "Trước"
 
 msgid "Jump to last page"
-msgstr ""
+msgstr "Chuyển đến trang cuối cùng"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -876,16 +878,16 @@ msgid "{0} ago"
 msgstr "{0} trước"
 
 msgid "Title"
-msgstr ""
+msgstr "Tiêu đề"
 
 msgid "Body"
-msgstr ""
+msgstr "Nội dung"
 
 msgid "Another Title"
-msgstr ""
+msgstr "Tiêu đề khác"
 
 msgid "Another Body"
-msgstr ""
+msgstr "Nội dung khác"
 
 msgid "Invalid Authorization header. No credentials provided."
 msgstr ""
@@ -894,10 +896,10 @@ msgid "Invalid Authorization header. Credentials string should not contain space
 msgstr ""
 
 msgid "Signature has expired."
-msgstr ""
+msgstr "Chữ ký đã hết hạn."
 
 msgid "Error decoding signature."
-msgstr ""
+msgstr "Lỗi khi giải mã chữ ký."
 
 msgid "Wrong type for one or more keys in payload"
 msgstr ""
@@ -1069,7 +1071,7 @@ msgstr "Xóa Bộ sưu tập"
 #, python-format
 msgid "%(num)s Theme in this Collection"
 msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
+msgstr[0] "%(num)s chủ đề trong bộ sưu tập này"
 
 #, python-format
 msgid "%(num)s Add-on in this Collection"
@@ -1108,7 +1110,7 @@ msgstr "Tiện ích ưa thích của tôi"
 #, python-format
 msgid "<span>%(addons)s</span> add-on"
 msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] ""
+msgstr[0] "<span>%(addons)s</span> tiện ích"
 
 msgid "by {0}"
 msgstr "bởi {0}"
@@ -1124,10 +1126,10 @@ msgid "Are you sure?"
 msgstr "Bạn có chắc không?"
 
 msgid "Yes"
-msgstr ""
+msgstr "Có"
 
 msgid "No"
-msgstr ""
+msgstr "Không"
 
 #. {0} is the name of the collection.
 msgid "Edit {0}"
@@ -1210,7 +1212,7 @@ msgstr "Tiện ích %s"
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Themes"
-msgstr ""
+msgstr "%s chủ đề"
 
 #, python-format
 msgid "Featured Add-ons :: %s"
@@ -1282,12 +1284,14 @@ msgid ""
 "Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
 " the entire application."
 msgstr ""
+"Cài đặt tiện ích từ điển sẽ thêm tùy chọn ngôn ngữ mới vào trình kiểm tra chính tả %(app_name)s của bạn, để kiểm tra chính tả của bạn khi bạn điền vào biểu mẫu Web. Tiện ích gói ngôn ngữ thay đổi "
+"ngôn ngữ của toàn bộ ứng dụng."
 
 msgid "Available in your locale"
-msgstr ""
+msgstr "Có sẵn tại địa phương của bạn"
 
 msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
+msgstr "Danh sách các gói ngôn ngữ và từ điển có sẵn tại địa phương của bạn."
 
 msgid "Language"
 msgstr "Ngôn ngữ"
@@ -1333,11 +1337,11 @@ msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-
 msgstr "Tìm hiểu thêm về <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">thanh tìm kiếm</a> trong {0}"
 
 msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
+msgstr "Duyệt qua thậm chí nhiều nhà cung cấp dịch vụ tìm kiếm hơn tại <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sTạo công cụ tìm kiếm%(amo_mdn_link_close)s của riêng bạn"
 
 msgid "Most Popular Extensions"
 msgstr "Tiện ích phổ biến nhất"
@@ -1346,16 +1350,16 @@ msgid "Top-Rated Extensions"
 msgstr "Tiện ích được xếp hạng cao nhất"
 
 msgid "Newest Extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng mới nhất"
 
 msgid "Extensions by Name"
-msgstr ""
+msgstr "Tiện ích mở rộng theo tên"
 
 msgid "Extensions by Weekly Downloads"
 msgstr "Tiện ích mở rộng theo lượt tải xuống hàng tuần"
 
 msgid "Recently Updated Extensions"
-msgstr ""
+msgstr "Tiện ích mở rộng được cập nhật gần đây"
 
 msgid "Up & Coming Extensions"
 msgstr ""
@@ -1389,20 +1393,20 @@ msgstr ""
 #, python-format
 msgid "See the %(cnt)s extension in %(name)s &raquo;"
 msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
+msgstr[0] "Xem tất cả %(cnt)s tiện ích mở rộng trong %(name)s &raquo;"
 
 msgid "{0} Themes"
-msgstr ""
+msgstr "{0} chủ đề"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
 msgstr ""
 
 msgid "View Profile"
-msgstr ""
+msgstr "Xem hồ sơ"
 
 msgid "Create Your Own Theme"
-msgstr ""
+msgstr "Tạo chủ đề của riêng bạn"
 
 msgid "Your browser, your style! Dress it up with a design of your own!"
 msgstr ""
@@ -1421,10 +1425,10 @@ msgstr "Hiển thị Tất cả Xếp hạng Cao nhất"
 
 #, python-format
 msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
+msgstr "Hơn 300.000 thiết kế để cá nhân hóa trình duyệt của bạn! Di chuyển chuột qua chủ đề nền để thử. <a href=\"%(url)s\" class=\"more-info\">Bắt đầu khám phá</a>"
 
 msgid "Want more personalization?"
-msgstr ""
+msgstr "Muốn cá nhân hóa hơn?"
 
 #. "Complete" is used as an adjective. "Complete Theme" means a full-featured
 #. theme.
@@ -1464,7 +1468,7 @@ msgid "Contributions for {addon}."
 msgstr "Đóng góp cho {addon}."
 
 msgid "{addon} disabled."
-msgstr ""
+msgstr "{addon} bị vô hiệu hóa."
 
 msgid "{addon} enabled."
 msgstr "{addon} đã bật."
@@ -1490,7 +1494,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr "Tập tin {0} được xóa khỏi {version} của {addon}."
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} đã được phê duyệt."
 
 msgid "{addon} {version} given preliminary review."
 msgstr "{addon} {version} đã được xét duyệt sơ bộ."
@@ -1605,7 +1609,7 @@ msgid "Email sent to Author about add-on compatibility."
 msgstr ""
 
 msgid "Password changed."
-msgstr ""
+msgstr "Đã thay đổi mất khẩu."
 
 msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
@@ -1617,13 +1621,13 @@ msgid "Account updated."
 msgstr ""
 
 msgid "Created: {0}."
-msgstr ""
+msgstr "Đã tạo: {0}."
 
 msgid "Edited field: {2} set to: {0}."
 msgstr ""
 
 msgid "Deleted: {1}."
-msgstr ""
+msgstr "Đã xóa: {1}."
 
 msgid "User {user} edited, reason: {1}"
 msgstr ""
@@ -1659,7 +1663,7 @@ msgid "{addon} unlisted."
 msgstr ""
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "{file} đã được ký."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
@@ -1779,7 +1783,7 @@ msgid "Mozilla"
 msgstr "Mozilla"
 
 msgid "Unknown"
-msgstr ""
+msgstr "Không rõ"
 
 msgid "Incomplete"
 msgstr "Chưa hoàn tất"
@@ -1788,13 +1792,13 @@ msgid "Disabled by Mozilla"
 msgstr "Bị vô hiệu bởi Mozilla"
 
 msgid "Deleted"
-msgstr ""
+msgstr "Đã xóa"
 
 msgid "Pending approval"
 msgstr "Đang chờ chấp thuận"
 
 msgid "Flagged for further review"
-msgstr ""
+msgstr "Được gắn cờ để xem xét thêm"
 
 msgid "Unlisted"
 msgstr ""
@@ -1819,7 +1823,7 @@ msgid "Language Pack (Application)"
 msgstr "Gói ngôn ngữ (Ứng dụng)"
 
 msgid "Language Pack (Add-on)"
-msgstr ""
+msgstr "Gói ngôn ngữ (Tiện ích)"
 
 msgid "Plugin"
 msgstr "Phần bổ trợ"
@@ -1828,7 +1832,7 @@ msgid "Theme"
 msgstr "Giao diện"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Chủ đề (Tĩnh)"
 
 msgid "Complete Themes"
 msgstr ""
@@ -1842,25 +1846,25 @@ msgid "Language Packs (Application)"
 msgstr "Gói ngôn ngữ (Ứng dụng)"
 
 msgid "Language Packs (Add-on)"
-msgstr ""
+msgstr "Các gói ngôn ngữ (Tiện ích)"
 
 msgid "Plugins"
 msgstr "Phần bổ trợ"
 
 msgid "Themes (Static)"
-msgstr ""
+msgstr "Các chủ đề (Tĩnh)"
 
 msgid "Alerts & Updates"
 msgstr "Cảnh báo & Cập nhật"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox giúp bạn luôn cập nhật, theo dõi các tác vụ, nâng cao hiệu quả. Tìm các tiện ích mở rộng mà nó tải lại các thẻ, quản lý năng suất và hơn thế nữa."
 
 msgid "Appearance"
 msgstr "Diện mạo"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng sửa đổi giao diện của trang web và trình duyệt Firefox. Danh mục này bao gồm các tiện ích mở rộng cho các chủ đề tối, quản lý thẻ và hơn thế nữa."
 
 msgid "Bookmarks"
 msgstr "Đánh dấu"
@@ -1872,25 +1876,25 @@ msgid "Download Management"
 msgstr "Quản lí tải xuống"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox có thể giúp tải xuống nội dung web, nhạc và video. Bạn cũng có thể tìm các tiện ích mở rộng để quản lý tải xuống, chia sẻ tập tin và hơn thế nữa."
 
 msgid "Feeds, News & Blogging"
 msgstr "Nguồn cấp dữ liệu, tin tức & blog"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox để loại bỏ sự lộn xộn mà bạn có thể cập nhật trên phương tiện truyền thông xã hội, cập nhật blog, nguồn cấp dữ liệu RSS, đỡ bị mỏi mắt và hơn thế nữa."
 
 msgid "Games & Entertainment"
 msgstr "Trò chơi & Giải trí"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Tải xuống tiện ích mở rộng Firefox để tăng trải nghiệm giải trí của bạn. Danh mục này bao gồm các tiện ích mở rộng có thể tăng cường chơi trò chơi, kiểm soát phát lại video và hơn thế nữa."
 
 msgid "Language Support"
 msgstr "Hỗ trợ Ngôn ngữ"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox có hỗ trợ ngôn ngữ như kiểm tra ngữ pháp, tra từ, dịch văn bản, cung cấp văn bản thành giọng nói và hơn thế nữa."
 
 msgid "Photos, Music & Videos"
 msgstr "Hình ảnh, Âm nhạc và Phim"
@@ -1903,33 +1907,36 @@ msgstr "Riêng tư & Bảo mật"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Tải xuống các tiện ích mở rộng Firefox để duyệt riêng tư và an toàn. Danh mục này bao gồm các tiện ích mở rộng để chặn quảng cáo gây phiền nhiễu, ngăn theo dõi, quản lý chuyển hướng và hơn thế nữa."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Tải xuống tiện ích mở rộng Firefox để tìm kiếm và tra cứu. Danh mục này bao gồm các tiện ích mở rộng làm nổi bật và tìm kiếm văn bản, tra cứu địa chỉ IP/tên miền và hơn thế nữa."
 
 msgid "Shopping"
 msgstr "Mua sắm"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox có thể nâng cao trải nghiệm mua sắm trực tuyến của bạn với các công cụ tìm phiếu, tìm công cụ tìm kiếm, phân tích đánh giá và hơn thế nữa."
 
 msgid "Social & Communication"
 msgstr "Giao lưu & Liên lạc"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
+"Tải xuống các tiện ích mở rộng Firefox để tăng cường phương tiện truyền thông xã hội và nhắn tin tức thời. Danh mục này bao gồm các thông báo thẻ được cải thiện, trình tải xuống video và hơn thế "
+"nữa."
 
 msgid "Tabs"
 msgstr "Thẻ"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Tải xuống tiện ích mở rộng Firefox để tùy chỉnh các thẻ và trang thẻ mới. Khám phá các tiện ích mở rộng có thể kiểm soát các thẻ, thay đổi cách bạn tương tác với chúng và hơn thế nữa."
 
 msgid "Web Development"
 msgstr "Phát triển Web"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox có các công cụ phát triển web. Danh mục này bao gồm các tiện ích mở rộng cho GitHub, chuyển đổi tác nhân người dùng, quản lý cookie và hơn thế nữa."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
@@ -1942,19 +1949,21 @@ msgid "Device Features & Location"
 msgstr "Địa điểm & Tính năng Thiết bị"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng để nâng cao Firefox dành cho Android. Thực hiện tìm kiếm nhanh, giải phóng tài nguyên hệ thống, ghi chú và hơn thế nữa."
 
 msgid "Experimental"
 msgstr "Thử nghiệm"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Tải xuống các tiện ích mở rộng Firefox thường xuyên được cập nhật và sẵn sàng để thử nghiệm công khai. Phản hồi của bạn thông báo cho các nhà phát triển về những thay đổi để thực hiện trong các "
+"phiên bản sắp tới."
 
 msgid "Performance"
 msgstr "Hiệu suất"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng giúp Firefox tăng hiệu suất. Tìm các tiện ích mở rộng giúp bạn làm việc hiệu quả và hiệu quả hơn bằng cách chặn quảng cáo gây phiền nhiễu và hơn thế nữa."
 
 msgid "Photos & Media"
 msgstr "Hình ảnh & Đa phương tiện"
@@ -1967,18 +1976,20 @@ msgstr "Bảo mật & Riêng tư"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Tải xuống tiện ích mở rộng Firefox để lướt web an toàn và riêng tư. Khám phá các tiện ích mở rộng có thể ngăn chặn trình theo dõi quảng cáo lén lút trong các trình theo dõi của chúng, dễ dàng xóa "
+"lịch sử duyệt web và hơn thế nữa."
 
 msgid "Social Networking"
 msgstr "Mạng xã hội"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox để nâng cao trải nghiệm của bạn trên các trang web mạng xã hội phổ biến như YouTube, GitHub, Reddit và hơn thế nữa."
 
 msgid "Sports & Games"
 msgstr "Thể thao & Trò chơi"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox để tăng trải nghiệm giải trí của bạn với các cải tiến phát trực tiếp, cập nhật thể thao và hơn thế nữa."
 
 msgid "User Interface"
 msgstr "Giao diện Người dùng"
@@ -2128,22 +2139,22 @@ msgid "All Rights Reserved"
 msgstr "Mọi Quyền Được Bảo Lưu"
 
 msgid "Creative Commons Attribution 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NonCommercial-Share Alike 3.0"
 
 msgid "Creative Commons Attribution-NoDerivs 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-NoDerivs 3.0"
 
 msgid "Creative Commons Attribution-ShareAlike 3.0"
-msgstr ""
+msgstr "Creative Commons Attribution-ShareAlike 3.0"
 
 msgid "Any"
 msgstr "Bất kì"
@@ -2181,13 +2192,13 @@ msgid "No Reputation"
 msgstr "Tài liệu"
 
 msgid "Good (1)"
-msgstr ""
+msgstr "Tốt (1)"
 
 msgid "Very Good (2)"
-msgstr ""
+msgstr "Rất tốt (2)"
 
 msgid "Excellent (3)"
-msgstr ""
+msgstr "Tuyệt vời (3)"
 
 msgid "Manual Reviewer Points"
 msgstr ""
@@ -2265,13 +2276,13 @@ msgid "Add-on Review (Low Risk)"
 msgstr "Đánh giá tiện ích (Rủi ro thấp)"
 
 msgid "Level 1"
-msgstr ""
+msgstr "Cấp 1"
 
 msgid "Level 2"
-msgstr ""
+msgstr "Cấp 2"
 
 msgid "Level 3"
-msgstr ""
+msgstr "Cấp 3"
 
 msgid "Level 4"
 msgstr ""
