@@ -11,7 +11,7 @@ from pages.desktop.devhub import DevHub
 def test_devhub_home_loads_addons(base_url, selenium, devhub_login):
     """Test devhub home loads correct number of addons listed."""
     devhub = devhub_login
-    r = requests.get('http://olympia.test/api/v4/accounts/account/uitest/')
+    r = requests.get('{}/api/v4/accounts/account/uitest/'.format(base_url))
     author_addons = r.json()['num_addons_listed']
     assert len(devhub.addons_list) == author_addons
 
@@ -52,7 +52,7 @@ def test_devhub_logout(base_url, selenium, devhub_login):
 @pytest.mark.nondestructive
 def test_devhub_register(base_url, selenium):
     """Test register link loads register page."""
-    selenium.get('http://olympia.test/en-US/developers/')
+    selenium.get('{}/en-US/developers/'.format(base_url))
     devhub = DevHub(selenium, base_url)
     assert not devhub.logged_in
     devhub.header.register()
