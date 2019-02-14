@@ -1,4 +1,5 @@
 from django.shortcuts import get_object_or_404
+from django.utils.encoding import force_bytes
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import six
@@ -46,7 +47,7 @@ class AddonFeedMixin(object):
         """Guid for a particular version (<item><guid>)"""
         guid = urljoin(
             reverse('addons.versions', args=[addon.slug]),
-            quote(addon.current_version.version))
+            quote(force_bytes(addon.current_version.version)))
         return absolutify(guid)
 
 
