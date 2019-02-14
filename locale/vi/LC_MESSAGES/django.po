@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-14 13:53+0000\n"
+"PO-Revision-Date: 2019-02-14 13:55+0000\n"
 "Last-Translator: Quế Tùng (Cloney 173741) <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -2285,37 +2285,37 @@ msgid "Level 3"
 msgstr "Cấp 3"
 
 msgid "Level 4"
-msgstr ""
+msgstr "Cấp 4"
 
 msgid "Level 5"
-msgstr ""
+msgstr "Cấp 5"
 
 msgid "Level 6"
-msgstr ""
+msgstr "Cấp 6"
 
 msgid "Level 7"
-msgstr ""
+msgstr "Cấp 7"
 
 msgid "Level 8"
-msgstr ""
+msgstr "Cấp 8"
 
 msgid "Level 9"
-msgstr ""
+msgstr "Cấp 9"
 
 msgid "Request More Info"
 msgstr "Yêu cầu Thêm Thông tin"
 
 msgid "Flag"
-msgstr ""
+msgstr "Gắn cờ"
 
 msgid "Duplicate"
-msgstr ""
+msgstr "Bản sao"
 
 msgid "Reject"
 msgstr "Từ chối"
 
 msgid "Approve"
-msgstr ""
+msgstr "Phê duyệt"
 
 msgid "Sexual or pornographic content"
 msgstr ""
@@ -2339,7 +2339,7 @@ msgid "Spam content"
 msgstr ""
 
 msgid "Low-quality, stretched, or blank image"
-msgstr ""
+msgstr "Chất lượng thấp, kéo dài hoặc hình ảnh trống"
 
 msgid "Header image alignment problem"
 msgstr ""
@@ -2349,19 +2349,21 @@ msgstr ""
 
 #, python-format
 msgid "Recent Changes for %s"
-msgstr ""
+msgstr "Thay đổi gần đây cho %s"
 
 msgid "Recent Changes for My Add-ons"
-msgstr ""
+msgstr "Những thay đổi gần đây cho tiện ích của tôi"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "Các tiện ích mở rộng cũ không còn được hỗ trợ trong Firefox."
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
+"Tiện ích bổ sung cho Thunderbird và SeaMonkey hiện được liệt kê và duy trì trên addons.thunderbird.net. Bạn có thể sử dụng cùng một tài khoản để cập nhật các tiện ích mở rộng của mình trên trang web"
+" mới."
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
@@ -2376,7 +2378,7 @@ msgid "An author can only be listed once."
 msgstr "Một tác giả chỉ có thể được liệt kê một lần."
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "Slug không chính xác."
 
 msgid "Details"
 msgstr "Chi tiết"
@@ -7016,9 +7018,9 @@ msgstr ""
 msgid "Updates"
 msgstr "Cập nhật"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Khoảng phiên bản bất hợp lệ."
+msgstr "Tham số \"%s\" không hợp lệ."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
