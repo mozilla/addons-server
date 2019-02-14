@@ -530,7 +530,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -588,7 +589,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(url=url, listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -623,7 +625,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             settings.ROOT,
             'src/olympia/devhub/tests/addons/valid_webextension.xpi')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(listed=False)
         addon = Addon.objects.get()
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
@@ -2197,8 +2200,14 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
-    @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_success(self, mock_sign_file):
+    def setUp(self):
+        super(TestVersionSubmitUploadUnlisted, self).setUp()
+        # Mock sign_file() to avoid errors because signing is not enabled.
+        patch = mock.patch('olympia.reviewers.utils.sign_file')
+        self.sign_file_mock = patch.start()
+        self.addCleanup(patch.stop)
+
+    def test_success(self):
         """Sign automatically."""
         # No validation errors or warning.
         result = {
@@ -2216,7 +2225,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert version.all_files[0].status == amo.STATUS_PUBLIC
         self.assert3xx(response, self.get_next_url(version))
-        assert mock_sign_file.called
+        assert self.sign_file_mock.call_count == 1
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):
