@@ -85,7 +85,7 @@ API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
 def safe_redirect(url, action):
-    if not is_safe_url(url):
+    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
         url = reverse('home')
     log.info(u'Redirecting after {} to: {}'.format(action, url))
     return HttpResponseRedirect(url)
@@ -173,7 +173,7 @@ def render_error(request, error, next_path=None, format=None):
         status = ERROR_STATUSES.get(error, 422)
         response = Response({'error': error}, status=status)
     else:
-        if not is_safe_url(next_path):
+        if not is_safe_url(next_path, allowed_hosts=(settings.DOMAIN,)):
             next_path = None
         messages.error(
             request,
@@ -199,7 +199,7 @@ def parse_next_path(state_parts):
             log.info('Error decoding next_path {}'.format(
                 encoded_path))
             pass
-    if not is_safe_url(next_path):
+    if not is_safe_url(next_path, allowed_hosts=(settings.DOMAIN,)):
         next_path = None
     return next_path
 
