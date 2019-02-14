@@ -192,7 +192,8 @@ class TestSigning(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        signing.sign_file(self.file_)
+        with self.assertRaises(signing.SigningError):
+            signing.sign_file(self.file_)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
@@ -222,7 +223,8 @@ class TestSigning(TestCase):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
-            signing.sign_file(self.file_)
+            with self.assertRaises(signing.SigningError):
+                signing.sign_file(self.file_)
             self.assert_not_signed()
             # The multi-package itself isn't signed.
             assert not signing.is_signed(self.file_.file_path)

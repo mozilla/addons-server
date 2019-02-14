@@ -13,6 +13,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.files.utils import atomic_lock
+from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
@@ -99,15 +100,17 @@ class Command(BaseCommand):
                      summary.get_verdict_display())
             self.stats.update({k: int(v) for k, v in info.items()})
             if summary.verdict == self.successful_verdict:
-                self.stats['auto_approved'] += 1
                 if summary.verdict == amo.AUTO_APPROVED:
                     self.approve(version)
+                self.stats['auto_approved'] += 1
 
         except (AutoApprovalNotEnoughFilesError,
-                AutoApprovalNoValidationResultError):
+                AutoApprovalNoValidationResultError,
+                SigningError):
             log.info(
                 'Version %s was skipped either because it had no '
-                'file or because it had no validation attached.', version)
+                'files or had no validation attached to its files, or signing '
+                'failed', version)
             self.stats['error'] += 1
         finally:
             # Always clear our own lock no matter what happens (but only ours).
@@ -140,7 +143,8 @@ class Command(BaseCommand):
         if stats['error']:
             log.info(
                 '%d versions were skipped because they had no files or had '
-                'no validation attached to their files.', stats['error'])
+                'no validation attached to their files, or signing failed on '
+                'their files.', stats['error'])
         if self.dry_run:
             log.info('%d versions were marked as would have been approved.',
                      stats['auto_approved'])
