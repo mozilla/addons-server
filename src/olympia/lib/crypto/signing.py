@@ -180,14 +180,22 @@ def call_signing(file_obj):
 
 
 def sign_file(file_obj):
-    """Sign a File.
+    """Sign a File if necessary.
+
+    If it's not necessary (file exists but it's a mozilla signed one, or it's
+    a search plugin) then return the file directly.
 
     If there's no endpoint (signing is not enabled) or isn't reviewed yet,
     or there was an error while signing, raise an exception - it
     shouldn't happen.
 
-    Otherwise return the signed file.
+    Otherwise proceed with signing and return the signed file.
     """
+    if (file_obj.version.addon.type == amo.ADDON_SEARCH and
+            file_obj.version.is_webextension is False):
+        # Those aren't meant to be signed, we shouldn't be here.
+        return file_obj
+
     if not settings.ENABLE_ADDON_SIGNING:
         raise SigningError(u'Not signing file {0}: no active endpoint'.format(
             file_obj.pk))
