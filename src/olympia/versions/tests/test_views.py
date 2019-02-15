@@ -23,7 +23,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.versions import views
 
 
 class TestViews(TestCase):
@@ -35,59 +34,6 @@ class TestViews(TestCase):
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
         self.url_list = reverse('addons.versions', args=[self.addon.slug])
-        self.url_detail = reverse(
-            'addons.versions',
-            args=[self.addon.slug, self.addon.current_version.version])
-
-    @mock.patch.object(views, 'PER_PAGE', 1)
-    def test_version_detail(self):
-        version = version_factory(addon=self.addon, version='2.0')
-        version.update(created=self.days_ago(2))
-        version = version_factory(addon=self.addon, version='2.1')
-        version.update(created=self.days_ago(1))
-        urls = [(v.version, reverse('addons.versions',
-                                    args=[self.addon.slug, v.version]))
-                for v in self.addon.versions.all()]
-
-        version, url = urls[0]
-        assert version == '2.1'
-        response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, self.url_list + '?page=1#version-%s' % version)
-
-        version, url = urls[1]
-        assert version == '2.0'
-        response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, self.url_list + '?page=2#version-%s' % version)
-
-        version, url = urls[2]
-        assert version == '1.0'
-        response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, self.url_list + '?page=3#version-%s' % version)
-
-    def test_version_detail_cache_key_normalized(self):
-        """Test regression with memcached cache-key.
-
-        https://github.com/mozilla/addons-server/issues/8622
-        """
-        url = reverse(
-            'addons.versions', args=[self.addon.slug, u'Âûáèðàåì âåðñèþ 23.0'])
-
-        response = self.client.get(url, follow=True)
-        assert response.status_code == 404
-
-    def test_version_detail_404(self):
-        bad_pk = self.addon.current_version.pk + 42
-        response = self.client.get(reverse('addons.versions',
-                                           args=[self.addon.slug, bad_pk]))
-        assert response.status_code == 404
-
-        bad_pk = u'lolé'
-        response = self.client.get(reverse('addons.versions',
-                                           args=[self.addon.slug, bad_pk]))
-        assert response.status_code == 404
 
     def get_content(self):
         response = self.client.get(self.url_list)
@@ -111,8 +57,6 @@ class TestViews(TestCase):
     def test_version_link(self):
         version = self.addon.current_version.version
         doc = self.get_content()
-        link = doc('.version h3 > a').attr('href')
-        assert link == self.url_detail
         assert doc('.version').attr('id') == 'version-%s' % version
 
     def test_version_list_button_shows_download_anyway(self):
@@ -150,11 +94,6 @@ class TestViews(TestCase):
         """Unlisted addons are not listed and have no version list."""
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url_list).status_code == 404
-
-    def test_version_detail_does_not_return_unlisted_versions(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.get(self.url_detail)
-        assert response.status_code == 404
 
     def test_version_list_file_size_uses_binary_prefix(self):
         response = self.client.get(self.url_list)

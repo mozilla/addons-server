@@ -215,7 +215,6 @@ class TestAddonBrowseVersionSerializer(TestCase):
         }
         assert data['reviewed'] == (
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
-        assert data['url'] == absolutify(self.version.get_url_path())
 
         # Custom fields
         validation_url_json = reverse('devhub.json_file_validation', args=[

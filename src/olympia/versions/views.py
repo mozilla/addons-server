@@ -50,20 +50,6 @@ def version_list(request, addon):
 
 @addon_view
 @non_atomic_requests
-def version_detail(request, addon, version_num):
-    ids = list(_version_list_qs(addon).values_list('version', flat=True))
-
-    url = reverse('addons.versions', args=[addon.slug])
-    if version_num in ids:
-        page = 1 + ids.index(version_num) // PER_PAGE
-        to = urlparams(url, 'version-%s' % version_num, page=page)
-        return http.HttpResponseRedirect(to)
-    else:
-        raise http.Http404()
-
-
-@addon_view
-@non_atomic_requests
 def update_info(request, addon, version_num):
     version = Version.objects.filter(addon=addon, version=version_num,
                                      files__status__in=amo.VALID_FILE_STATUSES,

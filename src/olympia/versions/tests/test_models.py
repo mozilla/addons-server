@@ -468,7 +468,7 @@ class TestVersion(TestCase):
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (
-            '/en-US/firefox/addon/a3615/versions/2.1.072')
+            '/en-US/firefox/addon/a3615/versions/')
 
     def test_valid_versions(self):
         addon = Addon.objects.get(id=3615)

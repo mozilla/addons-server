@@ -11,8 +11,6 @@ urlpatterns = [
         views.version_list, name='addons.versions'),
     url(r'^format:rss$',
         VersionsRss(), name='addons.versions.rss'),
-    url(r'^(?P<version_num>[^/]+)$', views.version_detail,
-        name='addons.versions'),
     url(r'^(?P<version_num>[^/]+)/updateinfo/$', views.update_info,
         name='addons.versions.update_info'),
 ]
