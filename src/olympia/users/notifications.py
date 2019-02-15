@@ -40,14 +40,6 @@ upgrade_success = Notification(
     mandatory=False,
     default_checked=True)
 
-sdk_upgrade_success = Notification(
-    id=6,
-    group='dev',
-    short='sdk_upgrade_success',
-    label=_('my sdk-based add-on is upgraded successfully'),
-    mandatory=False,
-    default_checked=True)
-
 new_review = Notification(
     id=7,
     group='dev',
@@ -79,14 +71,6 @@ upgrade_fail = Notification(
     mandatory=True,
     default_checked=True)
 
-sdk_upgrade_fail = Notification(
-    id=10,
-    group='dev',
-    short='sdk_upgrade_fail',
-    label=_('my sdk-based add-on cannot be upgraded'),
-    mandatory=True,
-    default_checked=True)
-
 reviewer_reviewed = Notification(
     id=11,
     group='dev',
@@ -108,8 +92,8 @@ NOTIFICATION_GROUPS = {'dev': _('Developer'),
                        'user': _('User Notifications')}
 
 AMO_NOTIFICATIONS = [
-    reply, new_features, upgrade_success, sdk_upgrade_success,
-    new_review, upgrade_fail, sdk_upgrade_fail, reviewer_reviewed,
+    reply, new_features, upgrade_success,
+    new_review, upgrade_fail, reviewer_reviewed,
     individual_contact
 ]
 
