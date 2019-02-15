@@ -7,8 +7,6 @@ import os
 import socket
 import json
 
-from django.urls import reverse_lazy
-
 import raven
 from kombu import Queue
 

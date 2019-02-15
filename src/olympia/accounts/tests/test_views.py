@@ -24,7 +24,7 @@ from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
-from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
     WithDynamicEndpoints, addon_factory, assert_url_equal, create_switch,

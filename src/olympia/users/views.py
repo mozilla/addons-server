@@ -3,10 +3,8 @@ import functools
 from operator import attrgetter
 
 from django import http
-from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 
