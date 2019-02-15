@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-14 21:11+0000\n"
+"PO-Revision-Date: 2019-02-15 20:10+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -35,19 +35,19 @@ msgstr "As imagens não podem ser animadas."
 
 #, python-format
 msgid "Please use images smaller than %dMB."
-msgstr "Por favor, use imagens menores que %dMB."
+msgstr "Use imagens menores que %dMB."
 
 msgid "You are already logged in."
 msgstr "Você já se identificou."
 
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "A sua tentativa de identificação não pôde ser analisada. Por favor, tente novamente."
+msgstr "A sua tentativa de identificação não pôde ser analisada. Tente novamente."
 
 msgid "Your Firefox Account could not be found. Please try again."
-msgstr "A sua conta Firefox não pôde ser encontrada. Por favor, tente novamente."
+msgstr "Sua Conta Firefox não pôde ser encontrada. Tente novamente."
 
 msgid "You could not be logged in. Please try again."
-msgstr "Não pôde entrar. Por favor, tente novamente."
+msgstr "Você não pôde entrar. Tente novamente."
 
 msgid "Need help?"
 msgstr "Precisa de ajuda?"
@@ -2565,7 +2565,7 @@ msgid "Changes successfully saved."
 msgstr "Alterações salvas com sucesso."
 
 msgid "Please check the form for errors."
-msgstr "Por favor, verifique se ha erros no formulário."
+msgstr "Verifique se há erros no formulário."
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "A extensão não pode ser excluída. Em seu lugar, desabilite-a."
@@ -3163,10 +3163,10 @@ msgid "Screenshots"
 msgstr "Capturas de tela"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Por favor, forneça pelo menos uma captura de tela da sua extensão:"
+msgstr "Forneça pelo menos uma captura de tela da sua extensão:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Por favor, forneça uma legenda para essa captura de tela:"
+msgstr "Forneça uma legenda para essa captura de tela:"
 
 msgid "Add a Screenshot..."
 msgstr "Adicionar uma captura de tela..."
@@ -3258,10 +3258,10 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "Digite o seguinte texto para confirmar sua decisão: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr "Por favor, nos diga porquê está excluindo o seu tema:"
+msgstr "Nos diga porque está excluindo seu tema:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr "Por favor, nos diga porquê está excluindo sua extensão:"
+msgstr "Nos diga porque está excluindo sua extensão:"
 
 msgid "Actions"
 msgstr "Ações"
@@ -3363,7 +3363,7 @@ msgid "Add-on URL:"
 msgstr "URL da extensão:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
-msgstr "Use apenas letras, números, sublinhados e traços em seu URL."
+msgstr "Use apenas letras, números, sublinhados e traços em sua URL."
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Nome na listagem neste site. Pode ser diferente do nome dentro da extensão, que é mostrado dentro do Firefox"
@@ -3395,7 +3395,7 @@ msgid "License:"
 msgstr "Licença:"
 
 msgid "Please choose a license appropriate for the rights you grant."
-msgstr "Por favor escolha uma licença apropriada para os direitos que concede."
+msgstr "Escolha uma licença apropriada para os direitos que concede."
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used."
 msgstr "Se sua extensão enviar qualquer dado do computador do usuário, é obrigatória uma política de privacidade que explique quais dados são enviados e como são usados."
@@ -3503,7 +3503,7 @@ msgstr "Pode ser que você precise enviar o código fonte. Caso contrário, sua 
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
-msgstr "Por favor, revise a <a %(a_attrs)s>política de envio de código fonte</a>."
+msgstr "Revise a <a %(a_attrs)s>política de envio de código fonte</a>."
 
 msgid "Do you use any of the following?"
 msgstr "Você usa algum dos seguintes?"
@@ -3687,7 +3687,7 @@ msgid "Invisible"
 msgstr "Oculto"
 
 msgid "Please complete your add-on by adding a version or missing metadata."
-msgstr "Por favor, complete a sua extensão adicionando uma versão ou os metadados que faltam."
+msgstr "Complete sua extensão adicionando uma versão ou metadados que faltam."
 
 msgid "You will receive an email when the review is complete. Until then, your add-on is not listed in our gallery but can be accessed directly from its details page. "
 msgstr "Irá receber um email quando a análise estiver concluída. Até lá, a extensão não estará listada na nossa galeria, mas pode ser acessada diretamente da sua página de detalhes. "
