@@ -474,7 +474,6 @@ INSTALLED_APPS = (
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
-    'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
     'olympia.lib.akismet',

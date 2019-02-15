@@ -384,12 +384,6 @@ class TestCORS(TestCase):
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Credentials')
 
-    def test_no_cors_legacy_api(self):
-        response = self.get('/en-US/firefox/api/1.5/search/test')
-        assert response.status_code == 200
-        assert not response.has_header('Access-Control-Allow-Origin')
-        assert not response.has_header('Access-Control-Allow-Credentials')
-
     def test_cors_api_v3(self):
         url = reverse_ns('addon-detail', api_version='v3', args=(3615,))
         assert '/api/v3/' in url
