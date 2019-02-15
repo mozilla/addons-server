@@ -135,10 +135,6 @@ FXA_CONFIG = {
 DEFAULT_FXA_CONFIG_NAME = 'default'
 ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    ['amo.addons-dev.allizom.org', 'localhost:3000']
-)
-
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
     'amo-account-change-dev')
