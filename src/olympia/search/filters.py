@@ -163,6 +163,8 @@ class AddonGuidQueryParam(AddonQueryParam):
                     ugettext('Return To AMO is currently disabled')
                 )
             try:
+                # We need to keep force_text on the input because
+                # urlsafe_base64_decode requires str from Django 2.2 onwards.
                 value = force_text(
                     urlsafe_base64_decode(force_text(value[4:])))
                 if not amo.ADDON_GUID_PATTERN.match(value):
