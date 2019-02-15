@@ -84,6 +84,28 @@ add-on.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
 
 
+-------------
+List Versions
+-------------
+
+This endpoint allows you to list versions that can be used either for :ref:`browsing <reviewers-versions-browse>` or diffing versions.
+
+    .. note::
+        Requires authentication and the current user to have ``ReviewerTools:View``
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
+        unlisted add-ons. Additionally the current user can also be the owner
+        of the add-on.
+
+If the user doesn't have ``AddonsReviewUnlisted`` permissions only listed versions are shown. Otherwise it can contain mixed listed and unlisted versions.
+
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/
+
+    :>json int id: The version id.
+    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json string version: The version number string for the version.
+
+.. _reviewers-versions-browse:
+
 ------
 Browse
 ------
@@ -96,7 +118,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v4/reviewers/browse/(int:version_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
 
     Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
 
