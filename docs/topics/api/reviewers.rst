@@ -96,14 +96,13 @@ This endpoint allows you to list versions that can be used either for :ref:`brow
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
+If the user doesn't have ``AddonsReviewUnlisted`` permissions only listed versions are shown. Otherwise it can contain mixed listed and unlisted versions.
+
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/
 
     :>json int id: The version id.
     :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
     :>json string version: The version number string for the version.
-    :>json string url: The (absolute) version detail URL.
-    :>json boolean should_show_channel: Boolean if the channel should be explicitly shown. Will be ``True`` if mixed channels exist (e.g some versions are listed and some are unlisted), ``False`` otherwise.
-
 
 .. _reviewers-versions-browse:
 
