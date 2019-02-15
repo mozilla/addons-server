@@ -1507,7 +1507,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 10
+        assert len(response.data) == 8
         assert (
             {'name': u'reply', 'enabled': True, 'mandatory': False} in
             response.data)
@@ -1530,7 +1530,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 10
+        assert len(response.data) == 8
         assert (
             {'name': u'reply', 'enabled': False, 'mandatory': False} in
             response.data)
@@ -1556,7 +1556,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 10
+        assert len(response.data) == 8
         # Check for any known notification, just to see the response looks okay
         assert (
             {'name': u'reply', 'enabled': True, 'mandatory': False} in
@@ -1639,7 +1639,7 @@ class TestAccountNotificationViewSetList(TestCase):
         self.client.login_api(self.user)
         response = self.client.get(self.url)
         assert response.status_code == 200
-        assert len(response.data) == 10
+        assert len(response.data) == 8
 
     def test_disallowed_verbs(self):
         self.client.login_api(self.user)
