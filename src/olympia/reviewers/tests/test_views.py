@@ -5416,7 +5416,11 @@ class TestReviewAddonVersionViewSetList(TestCase):
         unlisted_version = version_factory(
             addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
 
-        response = self.client.get(self.url)
+        # We have a .only() and .no_transforms or .only_translations
+        # querysets which reduces the amount of queries to "only" 11
+        with self.assertNumQueries(11):
+            response = self.client.get(self.url)
+
         assert response.status_code == 200
         result = json.loads(response.content)
 

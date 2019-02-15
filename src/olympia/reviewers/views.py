@@ -1254,11 +1254,15 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         # filter the base queryset here.
         return (
             Version.unfiltered
+            .get_queryset()
+            .only_translations()
             .filter(addon=self.get_addon_object())
             .order_by('-created'))
 
     def get_addon_object(self):
-        return get_object_or_404(Addon, pk=self.kwargs.get('addon_pk'))
+        return get_object_or_404(
+            Addon.objects.get_queryset().only_translations(),
+            pk=self.kwargs.get('addon_pk'))
 
     def get_object(self):
         qset = self.filter_queryset(self.get_queryset())
@@ -1305,6 +1309,10 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
 
         if not acl.check_unlisted_addons_reviewer(self.request):
             qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+
+        # Smaller performance optimization, only list fields we actually
+        # need.
+        qset = qset.no_transforms().only(*DiffableVersionSerializer.Meta.fields)
 
         serializer = DiffableVersionSerializer(qset, many=True)
 
