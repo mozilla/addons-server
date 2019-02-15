@@ -24,7 +24,6 @@ from pyquery import PyQuery as pq
 from six.moves.urllib_parse import parse_qs
 
 from olympia import amo, core, ratings
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE

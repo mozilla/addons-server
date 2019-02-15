@@ -1312,7 +1312,8 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
 
         # Smaller performance optimization, only list fields we actually
         # need.
-        qset = qset.no_transforms().only(*DiffableVersionSerializer.Meta.fields)
+        qset = qset.no_transforms().only(
+            *DiffableVersionSerializer.Meta.fields)
 
         serializer = DiffableVersionSerializer(qset, many=True)
 
