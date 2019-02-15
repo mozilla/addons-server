@@ -50,7 +50,7 @@ def global_settings(request):
                               'href': reverse('users.edit')})
         account_links.append({
             'text': ugettext('My Collections'),
-            'href': reverse('collections.user', args=[request.user.id])})
+            'href': reverse('collections.list')})
 
         if request.user.favorite_addons:
             account_links.append(
