@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-11 16:45+0000\n"
+"PO-Revision-Date: 2019-02-14 01:17+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -7142,9 +7142,9 @@ msgstr "Marcado"
 msgid "Updates"
 msgstr "Atualizações"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Intervalo da versão inválido."
+msgstr "Parâmetro \"%s\" inválido."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."

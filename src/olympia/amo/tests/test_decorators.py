@@ -11,7 +11,7 @@ import pytest
 
 from olympia import amo
 from olympia.amo import decorators
-from olympia.amo.tests import TestCase, TestCase, fxa_login_link
+from olympia.amo.tests import TestCase, fxa_login_link
 from olympia.users.models import UserProfile
 
 

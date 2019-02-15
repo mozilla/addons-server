@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 23:38+0000\n"
+"PO-Revision-Date: 2019-01-30 14:17+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -5512,11 +5512,11 @@ msgstr "Recerca con plus securitate con le blocada del traciatores, un cryptogra
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifica le recerca {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Simplifica le schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Gere tu schedas aperte in un barra lateral ordinate."
+msgstr "Gere tu schedas aperte in un barra lateral vertical."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7130,7 +7130,7 @@ msgid "Return To AMO is currently disabled"
 msgstr "Retornar a AMO es al momento disactivate"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Guida de retorno al AMO non valide (formato de url non in base 64?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
 msgstr "Return To AMO guid non valide (additivo non curate)"

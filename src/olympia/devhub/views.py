@@ -1843,7 +1843,7 @@ def _clean_next_url(request):
     gets = request.GET.copy()
     url = gets.get('to', settings.LOGIN_REDIRECT_URL)
 
-    if not is_safe_url(url):
+    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
         log.info(u'Unsafe redirect to %s' % url)
         url = settings.LOGIN_REDIRECT_URL
 
