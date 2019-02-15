@@ -22,7 +22,7 @@ def get_string(x):
 class TranslationTextInput(forms.widgets.TextInput):
     """A simple textfield replacement for collecting translated names."""
 
-    def _format_value(self, value):
+    def format_value(self, value):
         if isinstance(value, six.integer_types):
             return get_string(value)
         return value
