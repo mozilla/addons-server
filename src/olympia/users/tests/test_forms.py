@@ -1,3 +1,4 @@
+from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_encode
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import RequestFactory
@@ -22,7 +23,10 @@ class UserFormBase(TestCase):
     def setUp(self):
         super(UserFormBase, self).setUp()
         self.user = self.user_profile = UserProfile.objects.get(id='4043307')
-        self.uidb64 = urlsafe_base64_encode(binary_type(self.user.id))
+        # need to keep this force_text because pre django2.2
+        # urlsafe_base64_encode returns a bytestring and a string after
+        self.uidb64 = force_text(
+            urlsafe_base64_encode(binary_type(self.user.id)))
 
 
 class TestUserDeleteForm(UserFormBase):
