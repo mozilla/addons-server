@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-15 20:10+0000\n"
+"PO-Revision-Date: 2019-02-15 20:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3696,7 +3696,7 @@ msgid "Your add-on is displayed in our gallery and users are receiving automatic
 msgstr "Sua extensão será exibido em nossa galeria e os usuários receberão atualizações automáticas."
 
 msgid "Your add-on was disabled by a site administrator and is no longer shown in our gallery. If you have any questions, please email amo-admins@mozilla.org."
-msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibido em nossa galeria. Se você tiver alguma dúvida, por favor, envie um e-mail para amo-admins@mozilla.org."
+msgstr "Sua extensão foi desativada por um administrador do site e não será mais exibida em nossa galeria. Se você tem alguma dúvida, envie um e-mail para amo-admins@mozilla.org."
 
 msgid "Your add-on won't be included in search results, and its listing page will indicate you disabled it. New version submissions for listing won't be accepted in this state."
 msgstr "Sua extensão não será incluída nos resultados de pesquisas, e a página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
