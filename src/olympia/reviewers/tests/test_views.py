@@ -5342,8 +5342,6 @@ class TestReviewAddonVersionViewSetList(TestCase):
         assert response.status_code == 200
         result = json.loads(response.content)
         assert result == [{
-            'url': absolutify(self.version.get_url_path()),
-            'should_show_channel': False,
             'version': self.version.version,
             'id': self.version.id,
             'channel': u'listed',
@@ -5384,9 +5382,35 @@ class TestReviewAddonVersionViewSetList(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
-    def test_should_show_channel(self):
+    def test_show_only_listed_without_unlisted_permission(self):
         user = UserProfile.objects.create(username='admin')
-        self.grant_permission(user, '*:*')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:Review')
+
+        self.client.login_api(user)
+
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result == [
+            {
+                'version': self.version.version,
+                'id': self.version.id,
+                'channel': u'listed'
+            },
+        ]
+
+    def test_show_listed_and_unlisted_with_permissions(self):
+        user = UserProfile.objects.create(username='admin')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+
         self.client.login_api(user)
 
         unlisted_version = version_factory(
@@ -5398,15 +5422,11 @@ class TestReviewAddonVersionViewSetList(TestCase):
 
         assert result == [
             {
-                'url': absolutify(unlisted_version.get_url_path()),
-                'should_show_channel': True,
                 'version': unlisted_version.version,
                 'id': unlisted_version.id,
                 'channel': u'unlisted'
             },
             {
-                'url': absolutify(self.version.get_url_path()),
-                'should_show_channel': True,
                 'version': self.version.version,
                 'id': self.version.id,
                 'channel': u'listed'

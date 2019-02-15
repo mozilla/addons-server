@@ -206,11 +206,7 @@ class AddonBrowseVersionSerializer(VersionSerializer):
 
 
 class DiffableVersionSerializer(VersionSerializer):
-    should_show_channel = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
-        fields = ('id', 'channel', 'url', 'version', 'should_show_channel')
-
-    def get_should_show_channel(self, obj):
-        return self.context.get('should_show_channel', False)
+        fields = ('id', 'channel', 'version')

@@ -1303,18 +1303,10 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         Full list, no pagination."""
         qset = self.filter_queryset(self.get_queryset())
 
-        should_show_channel = False
+        if not acl.check_unlisted_addons_reviewer(self.request):
+            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
 
-        if acl.check_unlisted_addons_reviewer(self.request):
-            has_listed = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-            has_unlisted = qset.filter(channel=amo.RELEASE_CHANNEL_UNLISTED)
-            should_show_channel = (
-                has_listed.exists() and has_unlisted.exists())
-
-        serializer = DiffableVersionSerializer(
-            qset,
-            context={'should_show_channel': should_show_channel},
-            many=True)
+        serializer = DiffableVersionSerializer(qset, many=True)
 
         return Response(serializer.data)
 
