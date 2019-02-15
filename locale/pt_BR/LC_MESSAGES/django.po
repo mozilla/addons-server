@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-13 01:33+0000\n"
+"PO-Revision-Date: 2019-02-14 21:11+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -736,9 +736,8 @@ msgstr "Alguns recursos foram temporariamente desativados para realizamos a manu
 msgid "Must contain at least one printable character."
 msgstr "Deve conter pelo menos um caractere imprimível."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Deve haver pelo menos um dono."
+msgstr "Garanta que este campo contenha pelo menos um caractere de letra ou número."
 
 msgid "Not allowed"
 msgstr "Não permitido"
@@ -789,15 +788,14 @@ msgstr "Navegar em todos os temas"
 msgid "Add-ons Home Page"
 msgstr "Página inicial das extensões"
 
-#, fuzzy, python-format
+#, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
-"Se você chegou até aqui através de um link, por favor %(open_bug_link)s reporte um bug%(close_bug_link)s. Digamos de onde você veio e o que estava procurando, e faremos nosso melhor para corrigir."
+msgstr "Se você chegou até aqui através de um link, %(open_bug_link)sreporte um bug%(close_bug_link)s. Nos diga de onde veio e o que estava procurando, e faremos o possível para corrigir."
 
 msgid "Not Found"
 msgstr "Não encontrado"
 
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
 "the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
@@ -805,11 +803,11 @@ msgid ""
 "website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
 "href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Pedimos desculpa, mas não encontrámos o que procura.</h1> <p> A página ou arquivo que pediu não foi encontrado no nosso site. É possível que tenha clicado num link desatualizado ou tenha "
-"digitado o endereço incorretamente. </p> <ul> <li> Se digitou o endereço, verifique a ortografia.</li> <li> Se seguiu um link de um outro local, por favor <a href=\"https://github.com/mozilla"
-"/addons-server/issues/new/\">informe o problema</a>. Diga-nos de onde veio e o que procura e faremos o possível para o corrigir. </li> </ul> <p>Ou pode procurar nas nossas páginas mais "
-"populares.</p> <ul> <li>Está interessado em <a href=\"%(rec)s\">uma lista de extensões em destaque</a>?</li> <li> Você quer <a href=\"%(search)s\">procurar extensões</a>? Pode ir para a <a "
-"href=\"%(search)s\">página de pesquisa</a> ou para o campo de pesquisa acima. </li> <li> Se preferir recomeçar, vá para a <a href=\"%(home)s\">página inicial de extensões</a>. </li> </ul>"
+"<h1>Desculpe, mas não encontramos o que você está procurando.</h1> <p> A página ou arquivo que você solicitou não foi encontrado no nosso site. É possível que você tenha clicado em um link "
+"desatualizado, ou digitou o endereço incorretamente. </p> <ul> <li>Se você digitou o endereço, verifique a digitação.</li> <li> Se seguiu um link de algum lugar, %(open_bug_link)sregistre o "
+"problema%(close_bug_link)s. Nos diga de onde veio e o que procurava, e faremos o possível para corrigir. </li> </ul> <p>Ou você pode ir para algumas das páginas mais populares do nosso site.</p> "
+"<ul> <li>Está interessado em uma <a href=\"%(rec)s\">lista de extensões em destaque</a>?</li> <li> Quer <a href=\"%(search)s\">procurar extensões</a>? Você pode ir na <a href=\"%(search)s\">página "
+"de pesquisa</a> ou simplesmente usar o campo de pesquisa acima. </li> <li> Se preferir começar de novo, basta ir até a <a href=\"%(home)s\">página inicial de extensões</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ops"
@@ -2608,19 +2606,16 @@ msgstr "As imagens não podem ser maiores que %d kB."
 
 #. L10n: {0} is an image width (in pixels), {1} is a height.
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
-msgstr "A imagem deve ter exatamente {0} píxeis de largura e {1} píxeis de altura."
+msgstr "A imagem deve ter exatamente {0} pixels de largura e {1} pixels de altura."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
-msgstr "A imagem deve ter exatamente {0} píxeis de largura e {1} píxeis de altura."
+msgstr "A imagem deve ter pelo menos {0} pixels de largura e {1} pixels de altura."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "As imagens devem ser PNG ou JPG."
+msgstr "As dimensões da imagem devem estar na proporção 4:3."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "A imagem deve ter exatamente {0} píxeis de largura e {1} píxeis de altura."
+msgstr "O ícone deve ter pelo menos {0} pixels de largura e altura."
 
 msgid "Icon must be square (same width and height)."
 msgstr "O ícone deve ser quadrado (mesma largura e altura)."
@@ -2832,9 +2827,8 @@ msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Atualizar compatibilidade</a>, <a href=\"%(version_url)s\" class=\"button\">Enviar uma nova versão</a> ou <a href=\"#\""
 " class=\"close\">Ignorar</a>"
 
-#, fuzzy
 msgid "View and update application compatibility ranges"
-msgstr "Ver e atualizar os parâmetros de compatibilidade da aplicação."
+msgstr "Ver e atualizar os intervalos de compatibilidade da aplicação"
 
 msgid "Compatibility"
 msgstr "Compatibilidade"
@@ -3162,9 +3156,8 @@ msgstr "São suportados os formatos PNG e JPG."
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr "Os ícones devem ser quadrados e ter um tamanho mínimo de 128x128 pixels."
 
-#, fuzzy
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr "PNG e JPG suportados. Os ícones serão redimensionados para 64x64 píxeis caso sejam maiores."
+msgstr "Os ícones serão redimensionados para 128x128 pixels caso sejam maiores."
 
 msgid "Screenshots"
 msgstr "Capturas de tela"
@@ -3273,9 +3266,8 @@ msgstr "Por favor, nos diga porquê está excluindo sua extensão:"
 msgid "Actions"
 msgstr "Ações"
 
-#, fuzzy
 msgid "Resume the submission process for this add-on"
-msgstr "Retomar o processo de submissão para esta extensão."
+msgstr "Retomar o processo de submissão desta extensão"
 
 # Alt text to remove tag (verb)
 msgid "Resume"
@@ -3287,20 +3279,17 @@ msgstr "Excluir esta extensão."
 msgid "Delete"
 msgstr "Excluir"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "Editar as informações de exibição deste tema."
+msgstr "Editar detalhes na página de produto desta extensão"
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Enviar uma versão nova desta extensão."
+msgstr "Enviar uma nova versão desta extensão"
 
 msgid "New Version"
 msgstr "Nova versão"
 
-#, fuzzy
 msgid "Daily statistics on downloads and users"
-msgstr "Estatísticas diárias de downloads e usuários."
+msgstr "Estatísticas diárias de downloads e usuários"
 
 msgid "Statistics"
 msgstr "Estatísticas"
@@ -3312,20 +3301,17 @@ msgstr "Gerenciar status e versões"
 msgid "View Recent Changes"
 msgstr "Ver alterações recentes"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "Editar as informações de exibição deste tema."
+msgstr "Editar detalhes na página de produto deste tema"
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "Visualizar a popularidade deste tema pelo tempo"
+msgstr "Ver a popularidade deste tema ao longo do tempo"
 
 msgid "View Statistics"
 msgstr "Ver estatísticas"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Muda o dono desse tema."
+msgstr "Mudar o dono deste tema"
 
 msgid "Transfer Ownership"
 msgstr "Transferir propriedade"
@@ -3359,9 +3345,8 @@ msgstr[1] "<strong>{0}</strong> usuários ativos"
 msgid "Submit a New Version"
 msgstr "Submeter uma nova versão"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Resumo:"
+msgstr "Nome e resumo:"
 
 msgid "required"
 msgstr "obrigatório"
@@ -3721,25 +3706,20 @@ msgid "Created:"
 msgstr "Criação:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
-#, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
-msgstr "Listado neste site após revisão de código. Atualizações serão gerenciadas automaticamente por este site."
+msgstr "Listado neste site após passar pela revisão de código. Atualizações automáticas são gerenciadas por este site"
 
 msgid "Listed Version:"
 msgstr "Versão listada:"
 
-#, fuzzy
 msgid "This is the version of your add-on that will be installed if someone clicks the Install button on addons.mozilla.org"
-msgstr "Esta é a versão da sua extensão que será instalada se alguém clicar no botão Instalar em addons.mozilla.org."
+msgstr "Esta é a versão da sua extensão que será instalada se alguém clicar no botão Instalar em addons.mozilla.org"
 
 msgid "Next Listed Version:"
 msgstr "Ver outras versões:"
 
-#, fuzzy
 msgid "This is the newest uploaded version, however it isn’t live on the site yet"
-msgstr ""
-"Esta é a última versão carregada, entretanto\n"
-"                                           ainda não está disponível no site."
+msgstr "Esta é a versão enviada mais recentemente, mas ainda não está disponível no site"
 
 msgid "Queues are not reviewed strictly in order"
 msgstr "Filas não são revisadas de forma rigorosa"
@@ -3757,9 +3737,8 @@ msgstr "Marcado para distribuição. Atualizações serão gerenciadas por você
 msgid "Latest Version:"
 msgstr "Versão mais recente:"
 
-#, fuzzy
 msgid "This is the newest uploaded unlisted version"
-msgstr "Esta é versão não listada mais recente."
+msgstr "Esta é versão não listada enviada mais recentemente"
 
 msgid "Upload New Version"
 msgstr "Enviar versão nova"
@@ -4153,7 +4132,6 @@ msgstr "Temas de fundo permitem que você personalize facilmente o visual do seu
 msgid "Give your Theme a name."
 msgstr "Digite um nome para seu tema."
 
-#, fuzzy
 msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Uma breve explicação sobre as funcionalidades básicas do seu tema é exibida em pesquisas e listas de navegação, assim como no início da página de detalhes do seu tema."
 
@@ -4194,7 +4172,7 @@ msgid "Select a header image for your Theme."
 msgstr "Selecione uma imagem de cabeçalho para seu tema."
 
 msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 píxeis"
+msgstr "3000 &times; 200 pixels"
 
 msgid "300 KB max"
 msgstr "máximo de 300 KB"
@@ -4298,15 +4276,14 @@ msgstr "Responder"
 msgid "Listing visibility"
 msgstr "Visibilidade da extensão"
 
-#, fuzzy
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído nos resultados de pesquisa e páginas listadas."
+msgstr "{label_open}Visível:{label_close} Visível para todos em {site_url} e incluído em resultados de pesquisa e páginas de produto."
 
-#, fuzzy
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
 msgstr ""
-"{label_open}Invisível:{label_close} Não será incluída nos resultados de pesquisas, e suas página de listagem indicará que você desativou a extensão. Novas versões não serão aceitas neste estado."
+"{label_open}Invisível:{label_close} Não será incluído em resultados de pesquisas, e sua página de produto indicará que você desativou. Submissões de novas versões do produto não serão aceitas neste "
+"estado."
 
 msgid "Listed versions"
 msgstr "Versão listada"
@@ -5633,37 +5610,32 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "Realize pesquisas mais seguras com bloqueio de rastreadores, criptografia inteligente, pesquisa privativas e outros fatores essenciais."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifique a pesquisa {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Simplifique abas {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Gerencie suas abas abertas em uma barra lateral."
+msgstr "Organize suas muitas abas abertas em um painel lateral."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Gerencie os cookies {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Gerenciamento avançado de cookies {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr "Exclui automaticamente cookies indesejados. Oferece suporte a listas de permissão e proibição."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tweet {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Veja a situação como um todo {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Com um clique do mouse você pode assistir vídeos em tela cheia."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salve texto para ler mais tarde {start_sub_heading}com {addon_name}{end_sub_heading}"
+msgstr "Economize memória {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
@@ -5765,16 +5737,15 @@ msgstr "Você não pode enviar uma extensão com guid terminando em %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Você não pode submeter uma extensão assinada pela Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr "Tipo de arquivo não suportado, envie um arquivo de arquivamento no formato {extensions}."
+msgstr "Tipo de arquivo não suportado, envie um arquivo no formato {extensions}."
 
 msgid "Unexpected error."
 msgstr "Erro inesperado."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> em seu install.rdf(%s) não coincide com o tipo da sua extensão na AMO (%s)"
+msgstr "O tipo (%s) não coincide com o tipo da sua extensão no AMO (%s)"
 
 msgid "Back to review"
 msgstr "Voltar para a análise"
@@ -6208,13 +6179,11 @@ msgstr ""
 "No geral, não. Mas se a análise não cumprir com as diretrizes de análises descritas acima, pode clicar em \"Reportar esta análise\" para que a mesma seja moderada. Se uma análise tiver uma "
 "reclamação que já não seja válida devido ao lançamento de uma nova versão da extensão, podemos considerar excluir a análise."
 
-#, fuzzy
 msgid "User"
 msgstr "Usuário"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "E-mail"
+msgstr "Endereço IP"
 
 # %1 is the add-on name
 #, python-format
@@ -6743,9 +6712,8 @@ msgstr "{addon} :: Denúncias de abuso"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Denúncias de abuso para {addon} e os seus desenvolvedores ({num})"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "Extensão"
+msgstr "ID da extensão"
 
 msgid "Internal AMO ID"
 msgstr "ID AMO interno"
@@ -7277,9 +7245,9 @@ msgstr "Marcado"
 msgid "Updates"
 msgstr "Atualizações"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Intervalo de versões inválido."
+msgstr "Parâmetro \"%s\" inválido."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
@@ -7392,9 +7360,8 @@ msgstr "Exibindo resultados {0} a {1} de {2} com <strong>{3}</strong>"
 msgid "Showing {0} - {1} of {2} results"
 msgstr "Exibindo resultados {0} a {1} de {2}"
 
-#, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
-msgstr "Não foi possível encontrar a extensão com o id \"{}\"."
+msgstr "Não foi possível encontrar uma extensão com GUID \"{}\"."
 
 msgid "You do not own this addon."
 msgstr "Você não possui esta extensão."

@@ -64,9 +64,11 @@ jquery-ui/ui/widgets/autocomplete.js \
 jquery-ui/ui/widgets/datepicker.js \
 jquery-ui/ui/widgets/sortable.js
 
+.PHONY: help_redirect
 help_redirect:
 	@$(MAKE) help --no-print-directory
 
+.PHONY: help_submake
 help_submake:
 	@echo "Commands that are designed be run in the container:"
 	@echo "  initialize        to init the dependencies, the database, and assets"
@@ -76,7 +78,10 @@ help_submake:
 	@echo "  reindex           to reindex everything in elasticsearch, for AMO"
 	@echo "  update_deps       to update the pythondependencies"
 	@echo "  update_db         to run the database migrations"
+	@echo "  docs              to build the documentation"
+	@echo "  lint-codestyle    to lint the code"
 
+.PHONY: initialize_db
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
 	$(PYTHON_COMMAND) manage.py reset_db
@@ -87,6 +92,7 @@ initialize_db:
 	$(PYTHON_COMMAND) manage.py createsuperuser
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 
+.PHONY: populate_data
 populate_data:
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
@@ -104,10 +110,12 @@ populate_data:
 	# Also update category counts (denormalized field)
 	$(PYTHON_COMMAND) manage.py cron category_totals
 
+.PHONY: cleanup_python_build_dir
 cleanup_python_build_dir:
 	# Work arounds "Multiple .dist-info directories" issue.
 	rm -rf /deps/build/*
 
+.PHONY: install_python_test_dependencies
 install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
@@ -115,38 +123,48 @@ install_python_test_dependencies:
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${PYTHON_VERSION_MAJOR}.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
+.PHONY: install_python_dev_dependencies
 install_python_dev_dependencies: install_python_test_dependencies setup-codestyle
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/dev_without_hash.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/docs.txt
 	$(PIP_COMMAND) install -e .
 
+.PHONY: install_node_dependencies
 install_node_dependencies: install_node_js copy_node_js
 
+.PHONY: install_node_js
 install_node_js:
 	npm install $(NPM_ARGS)
 
+.PHONY: copy_node_js
 copy_node_js:
 	for dest in $(NODE_LIBS_CSS) ; do cp $(NODE_MODULES)$$dest $(STATIC_CSS) ; done
 	for dest in $(NODE_LIBS_JS) ; do cp $(NODE_MODULES)$$dest $(STATIC_JS) ; done
 	for dest in $(NODE_LIBS_JQUERY_UI) ; do cp $(NODE_MODULES)$$dest $(STATIC_JQUERY_UI) ; done
 
+.PHONY: update_deps
 update_deps: cleanup_python_build_dir install_python_dev_dependencies install_node_dependencies
 
+.PHONY: update_db
 update_db:
 	./schematic src/olympia/migrations
 
+.PHONY: update_assets
 update_assets:
 	# If changing this here, make sure to adapt tests in amo/test_commands.py
 	$(PYTHON_COMMAND) manage.py compress_assets
 	$(PYTHON_COMMAND) manage.py collectstatic --noinput
 	$(PYTHON_COMMAND) manage.py generate_jsi18n_files
 
+.PHONY: update
 update: update_deps update_db update_assets
 
+.PHONY: reindex
 reindex:
 	$(PYTHON_COMMAND) manage.py reindex $(ARGS)
 
+.PHONY: setup-ui-tests
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
@@ -165,6 +183,7 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py waffle_switch super-create-accounts on --create
 	$(PYTHON_COMMAND) manage.py waffle_switch activate-autograph-signing on --create
 
+.PHONY: run-ui-tests
 run-ui-tests: setup-ui-tests
 	# Generate test add-ons and force a reindex to make sure things are updated
 	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/uitests.txt
@@ -172,14 +191,22 @@ run-ui-tests: setup-ui-tests
 	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
 	pytest --driver Firefox tests/ui/
 
+.PHONY: perf-tests
 perf-tests: setup-ui-tests
 	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/perftests.txt
 	locust --no-web -c 1 -f tests/performance/locustfile.py --host "http://olympia.test"
 
+.PHONY: setup-codestyle
 setup-codestyle:
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle_py${PYTHON_VERSION_MAJOR}.txt
 
+.PHONY: lint-codestyle
 lint-codestyle:
 	flake8 src/ services/ tests/
 
+.PHONY: docs
+docs:
+	$(MAKE) -C docs html SPHINXOPTS='-nW'
+
+.PHONY: initialize
 initialize: update_deps initialize_db update_assets populate_data

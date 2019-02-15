@@ -162,13 +162,12 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
     is_strict_compatibility_enabled = serializers.SerializerMethodField()
     license = CompactLicenseSerializer()
     release_notes = TranslationSerializerField()
-    url = serializers.SerializerMethodField()
 
     class Meta:
         model = Version
         fields = ('id', 'compatibility', 'edit_url', 'files',
                   'is_strict_compatibility_enabled', 'license',
-                  'release_notes', 'reviewed', 'url', 'version')
+                  'release_notes', 'reviewed', 'version')
 
     def to_representation(self, instance):
         # Help the LicenseSerializer find the version we're currently
@@ -193,9 +192,6 @@ class SimpleVersionSerializer(MinimalVersionSerializer):
     def get_is_strict_compatibility_enabled(self, obj):
         return any(file_.strict_compatibility for file_ in obj.all_files)
 
-    def get_url(self, obj):
-        return absolutify(obj.get_url_path())
-
 
 class VersionSerializer(SimpleVersionSerializer):
     channel = ReverseChoiceField(
@@ -206,7 +202,7 @@ class VersionSerializer(SimpleVersionSerializer):
         model = Version
         fields = ('id', 'channel', 'compatibility', 'edit_url', 'files',
                   'is_strict_compatibility_enabled', 'license',
-                  'release_notes', 'reviewed', 'url', 'version')
+                  'release_notes', 'reviewed', 'version')
 
 
 class CurrentVersionSerializer(SimpleVersionSerializer):

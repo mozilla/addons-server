@@ -278,7 +278,7 @@ class Version(OnChangeMixin, ModelBase):
     def get_url_path(self):
         if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
             return ''
-        return reverse('addons.versions', args=[self.addon.slug, self.version])
+        return reverse('addons.versions', args=[self.addon.slug])
 
     def delete(self, hard=False):
         # To avoid a circular import

@@ -30,7 +30,7 @@ def fxa_config(request):
 
 def fxa_login_url(
         config, state, next_path=None, action=None, force_two_factor=False):
-    if next_path and is_safe_url(next_path):
+    if next_path and is_safe_url(next_path, allowed_hosts=(settings.DOMAIN,)):
         state += u':' + force_text(
             urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(u'=')
     query = {

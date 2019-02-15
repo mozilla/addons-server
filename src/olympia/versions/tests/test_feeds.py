@@ -39,7 +39,7 @@ class TestFeeds(TestCase):
         assert len(doc('rss channel item title')[0].text) > 0
         # link present and well formed
         item_link = doc('rss channel item link')[0]
-        assert item_link.text.endswith('/addon/a11730/versions/20090521')
+        assert item_link.text.endswith('/addon/a11730/versions/')
         # guid present
         assert len(doc('rss channel item guid')[0].text) > 0
         # proper date format for item
