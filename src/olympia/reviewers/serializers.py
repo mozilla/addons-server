@@ -186,7 +186,7 @@ class AddonBrowseVersionSerializer(VersionSerializer):
         # Doesn't contain `files` from VersionSerializer
         fields = ('id', 'channel', 'compatibility', 'edit_url',
                   'is_strict_compatibility_enabled', 'license',
-                  'release_notes', 'reviewed', 'url', 'version',
+                  'release_notes', 'reviewed', 'version',
                   # Our custom fields
                   'file', 'validation_url', 'validation_url_json',
                   'has_been_validated', 'addon')
