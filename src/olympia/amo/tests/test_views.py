@@ -360,17 +360,6 @@ class TestOtherStuff(TestCase):
         doc = pq(test.Client().get('/android', follow=True).content)
         assert doc('#site-nav #more .more-mobile').length == 0
 
-    def test_opensearch(self):
-        client = test.Client()
-        page = client.get('/en-US/firefox/opensearch.xml')
-
-        wanted = ('Content-Type', 'text/xml')
-        assert page._headers['content-type'] == wanted
-
-        doc = etree.fromstring(page.content)
-        e = doc.find("{http://a9.com/-/spec/opensearch/1.1/}ShortName")
-        assert e.text == "Firefox Add-ons"
-
 
 class TestCORS(TestCase):
     fixtures = ('base/addon_3615',)
