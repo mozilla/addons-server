@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-17 08:33+0000\n"
+"PO-Revision-Date: 2019-02-17 10:13+0000\n"
 "Last-Translator: Sav22999 <saverio.morelli@outlook.it>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -7234,10 +7234,10 @@ msgid "Return To AMO is currently disabled"
 msgstr "Ritorna su AMO è attualmente disattivato"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "GUID Ritorna su AMO non valido (possibili cause: non è in formato base64url)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "GUID Ritorna su AMO non valido (componente aggiuntivo senza gestore)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
