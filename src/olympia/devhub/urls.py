@@ -205,4 +205,7 @@ urlpatterns = decorate(use_primary_db, [
     # Developer docs
     url(r'docs/(?P<doc_name>[-_\w]+(?:/[-_\w]+)?)?$',
         views.docs, name='devhub.docs'),
+
+    # logout page
+    url(r'^logout', views.logout, name='devhub.logout'),
 ])

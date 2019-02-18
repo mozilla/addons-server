@@ -60,7 +60,7 @@ def global_settings(request):
 
         account_links.append({
             'text': ugettext('Log out'),
-            'href': reverse('users.logout') + '?to=' + urlquote(request.path),
+            'href': reverse('devhub.logout') + '?to=' + urlquote(request.path),
         })
 
         if request.user.is_developer:
