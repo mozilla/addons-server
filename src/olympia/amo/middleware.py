@@ -107,9 +107,9 @@ class AuthenticationMiddlewareWithoutAPI(AuthenticationMiddleware):
         if request.is_api and not auth_path.match(request.path):
             request.user = AnonymousUser()
         else:
-            return (
-                super(AuthenticationMiddlewareWithoutAPI, self)
-                .process_request(request))
+            return super(
+                AuthenticationMiddlewareWithoutAPI,
+                self).process_request(request)
 
 
 class NoVarySessionMiddleware(SessionMiddleware):

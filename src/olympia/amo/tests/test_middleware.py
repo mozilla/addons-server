@@ -48,11 +48,6 @@ class TestMiddleware(TestCase):
         AuthenticationMiddlewareWithoutAPI().process_request(req)
         assert not process_request.called
 
-        req = RequestFactory().get('/')
-        req.is_api = False
-        AuthenticationMiddlewareWithoutAPI().process_request(req)
-        assert not process_request.called
-
     @patch('django.contrib.auth.middleware.'
            'AuthenticationMiddleware.process_request')
     def test_authentication_is_used_with_accounts_auth(self, process_request):
