@@ -102,7 +102,7 @@ class AddonAbuseViewSetTestBase(object):
             data={'message': 'abuse!'})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Need an addon parameter'}
+            'addon': ['This field is required.']}
 
     def test_message_required_empty(self):
         addon = addon_factory()
@@ -112,7 +112,7 @@ class AddonAbuseViewSetTestBase(object):
                   'message': ''})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Abuse reports need a message'}
+            'message': ['This field may not be blank.']}
 
     def test_message_required_missing(self):
         addon = addon_factory()
@@ -121,7 +121,7 @@ class AddonAbuseViewSetTestBase(object):
             data={'addon': six.text_type(addon.id)})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Abuse reports need a message'}
+            'message': ['This field is required.']}
 
     def test_throttle(self):
         addon = addon_factory()
@@ -201,7 +201,7 @@ class UserAbuseViewSetTestBase(object):
             data={'message': 'abuse!'})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Need a user parameter'}
+            'user': ['This field is required.']}
 
     def test_message_required_empty(self):
         user = user_factory()
@@ -210,7 +210,7 @@ class UserAbuseViewSetTestBase(object):
             data={'user': six.text_type(user.username), 'message': ''})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Abuse reports need a message'}
+            'message': ['This field may not be blank.']}
 
     def test_message_required_missing(self):
         user = user_factory()
@@ -219,7 +219,7 @@ class UserAbuseViewSetTestBase(object):
             data={'user': six.text_type(user.username)})
         assert response.status_code == 400
         assert json.loads(response.content) == {
-            'detail': 'Abuse reports need a message'}
+            'message': ['This field is required.']}
 
     def test_throttle(self):
         user = user_factory()
