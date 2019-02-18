@@ -21,8 +21,8 @@ pytest-html==1.20.0 \
 pytest-firefox==0.1.1 \
     --hash=sha256:d91ddd9b7090986d6e45df38830328d7178e95a846eafb1a975a12b7eb5a9fdb \
     --hash=sha256:7c7acb4dc3d068a6d356797f18731b6ad2f64b5681043c0119f4b821bf20ea07
-pytest-instafail==0.4.0 \
-    --hash=sha256:162bd7c5c196e3b2fe2a5285b69362ee3d9f768d5451413ef914be38df74e3de
+pytest-instafail==0.4.1 \
+    --hash=sha256:84c87dd708f00d248fb062cdfaf5ba14bf10ce68ce56d46d58f20aa882a33924
 pytest-metadata==1.8.0 \
     --hash=sha256:c29a1fb470424926c63154c1b632c02585f2ba4282932058a71d35295ff8c96d \
     --hash=sha256:2071a59285de40d7541fde1eb9f1ddea1c9db165882df82781367471238b66ba
