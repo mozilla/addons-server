@@ -76,7 +76,6 @@ class Command(BaseCommand):
                 # We didn't get the lock...
                 log.error('auto-approve lock present, aborting.')
 
-    @transaction.atomic
     def process(self, version):
         """Process a single version, figuring out if it should be auto-approved
         and calling the approval code if necessary."""
@@ -89,28 +88,36 @@ class Command(BaseCommand):
             # our own.
             set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
         try:
-            log.info('Processing %s version %s...',
-                     six.text_type(version.addon.name),
-                     six.text_type(version.version))
-            summary, info = AutoApprovalSummary.create_summary_for_version(
-                version, dry_run=self.dry_run)
-            log.info('Auto Approval for %s version %s: %s',
-                     six.text_type(version.addon.name),
-                     six.text_type(version.version),
-                     summary.get_verdict_display())
-            self.stats.update({k: int(v) for k, v in info.items()})
-            if summary.verdict == self.successful_verdict:
-                if summary.verdict == amo.AUTO_APPROVED:
-                    self.approve(version)
-                self.stats['auto_approved'] += 1
+            with transaction.atomic():
+                log.info('Processing %s version %s...',
+                         six.text_type(version.addon.name),
+                         six.text_type(version.version))
+                summary, info = AutoApprovalSummary.create_summary_for_version(
+                    version, dry_run=self.dry_run)
+                log.info('Auto Approval for %s version %s: %s',
+                         six.text_type(version.addon.name),
+                         six.text_type(version.version),
+                         summary.get_verdict_display())
+                self.stats.update({k: int(v) for k, v in info.items()})
+                if summary.verdict == self.successful_verdict:
+                    if summary.verdict == amo.AUTO_APPROVED:
+                        self.approve(version)
+                    self.stats['auto_approved'] += 1
 
+        # At this point, any exception should have rolled back the transaction,
+        # so even if we did create/update an AutoApprovalSummary instance that
+        # should have been rolled back. This ensures that, for instance, a
+        # signing error doesn't leave the version and its autoapprovalsummary
+        # in conflicting states.
         except (AutoApprovalNotEnoughFilesError,
-                AutoApprovalNoValidationResultError,
-                SigningError):
+                AutoApprovalNoValidationResultError):
             log.info(
                 'Version %s was skipped either because it had no '
-                'files or had no validation attached to its files, or signing '
-                'failed', version)
+                'files or because it had no validation attached.', version)
+            self.stats['error'] += 1
+        except SigningError:
+            log.info(
+                'Version %s was skipped because of a signing error', version)
             self.stats['error'] += 1
         finally:
             # Always clear our own lock no matter what happens (but only ours).
