@@ -31,6 +31,8 @@ class DatabaseWrapper(MySQLDBWrapper):
     introspection_class = DatabaseIntrospection
     SchemaEditorClass = DatabaseSchemaEditor
 
-    _data_types = dict(
-        MySQLDBWrapper._data_types,
+    # data_types is _data_types in <django2.1
+    data_types = dict(
+        getattr(MySQLDBWrapper, '_data_types', MySQLDBWrapper.data_types),
         PositiveAutoField='integer UNSIGNED AUTO_INCREMENT')
+    _data_types = data_types
