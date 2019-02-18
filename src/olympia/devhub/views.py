@@ -42,7 +42,6 @@ from olympia.api.models import APIKey
 from olympia.devhub.decorators import dev_required, no_admin_disabled
 from olympia.devhub.forms import AgreementForm, SourceForm
 from olympia.devhub.models import BlogPost, RssKey
-from olympia.devhub.signals import logged_out
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
     fetch_existing_translations_from_addon, get_addon_akismet_reports,
@@ -1875,6 +1874,4 @@ def logout(request):
 
     logout_user(request, response)
 
-    # Fire logged out signal.
-    logged_out.send(None, request=request, response=response)
     return response
