@@ -102,21 +102,6 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = DRF_API_REGEX
 
 
-# Sadly the term WHITELIST is used by the library
-# https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
-def cors_endpoint_overrides(whitelist_endpoints):
-    return [
-        ('%saccounts/login/?$' % DRF_API_REGEX, {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
-    ]
-
-
-CORS_ENDPOINT_OVERRIDES = []
-
-
 def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
     assert charset in ('utf8', 'utf8mb4')
 
@@ -412,7 +397,7 @@ MIDDLEWARE = (
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
-    'olympia.amo.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
