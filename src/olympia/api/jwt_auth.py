@@ -43,7 +43,7 @@ def jwt_decode_handler(token, get_api_key=APIKey.get_jwt_key):
         'verify_nbf': False,
         'verify_iat': False,
         'verify_aud': False,
-    })
+    }, algorithms=[api_settings.JWT_ALGORITHM])
 
     if 'iss' not in token_data:
         log.info('No issuer in JWT auth token: {}'.format(token_data))

@@ -22,7 +22,6 @@ from rest_framework import permissions
 from six.moves.urllib.parse import quote
 
 import MySQLdb as mysql
-from corsheaders.middleware import CorsMiddleware as _CorsMiddleware
 
 from olympia import amo
 from olympia.amo.utils import render
@@ -322,11 +321,3 @@ class RequestIdMiddleware(MiddlewareMixin):
             response['X-AMO-Request-ID'] = request.request_id
 
         return response
-
-
-class CorsMiddleware(_CorsMiddleware, MiddlewareMixin):
-    """Wrapper to allow old style Middleware to work with django 1.10+.
-    Will be unneeded once
-    https://github.com/mstriemer/django-cors-headers/pull/3 is merged and a
-    new release of django-cors-headers-multi is available."""
-    pass

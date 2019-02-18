@@ -3,10 +3,8 @@ import functools
 from operator import attrgetter
 
 from django import http
-from django.conf import settings
 from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_list_or_404, get_object_or_404, redirect
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext
 from django.views.decorators.cache import never_cache
 
@@ -22,7 +20,7 @@ from olympia.amo import messages
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, use_primary_db)
 from olympia.amo.forms import AbuseForm
-from olympia.amo.urlresolvers import get_url_prefix, reverse
+from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import escape_all, render
 from olympia.bandwagon.models import Collection
 from olympia.browse.views import PersonasFilter
@@ -31,7 +29,6 @@ from olympia.users.models import UserNotification
 
 from . import forms, tasks
 from .models import UserProfile
-from .signals import logged_out
 from .utils import UnsubscribeCode
 
 
@@ -171,55 +168,6 @@ def admin_edit(request, user):
     else:
         form = forms.AdminUserEditForm(instance=user, request=request)
     return render(request, 'users/edit.html', {'form': form, 'amouser': user})
-
-
-def _clean_next_url(request):
-    gets = request.GET.copy()
-    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
-
-    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
-        log.info(u'Unsafe redirect to %s' % url)
-        url = settings.LOGIN_REDIRECT_URL
-
-    domain = gets.get('domain', None)
-    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
-        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
-
-    gets['to'] = url
-    request.GET = gets
-    return request
-
-
-def login(request):
-    if request.user.is_authenticated:
-        request = _clean_next_url(request)
-        return http.HttpResponseRedirect(request.GET['to'])
-    else:
-        return render(request, 'users/login.html')
-
-
-def logout(request):
-    user = request.user
-    if not user.is_anonymous:
-        log.debug(u"User (%s) logged out" % user)
-
-    if 'to' in request.GET:
-        request = _clean_next_url(request)
-
-    next_url = request.GET.get('to')
-    if not next_url:
-        next_url = settings.LOGOUT_REDIRECT_URL
-        prefixer = get_url_prefix()
-        if prefixer:
-            next_url = prefixer.fix(next_url)
-
-    response = http.HttpResponseRedirect(next_url)
-
-    logout_user(request, response)
-
-    # Fire logged out signal.
-    logged_out.send(None, request=request, response=response)
-    return response
 
 
 @user_view

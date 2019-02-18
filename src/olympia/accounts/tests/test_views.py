@@ -24,7 +24,7 @@ from olympia import amo
 from olympia.access.acl import action_allowed_user
 from olympia.access.models import Group, GroupUser
 from olympia.accounts import verify, views
-from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     APITestClient, InitializeSessionMixin, PatchMixin, TestCase,
     WithDynamicEndpoints, addon_factory, assert_url_equal, create_switch,
@@ -143,17 +143,6 @@ def has_cors_headers(response, origin='https://addons-frontend'):
     return (
         response['Access-Control-Allow-Origin'] == origin and
         response['Access-Control-Allow-Credentials'] == 'true')
-
-
-def update_domains(overrides):
-    overrides = overrides.copy()
-    overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
-    return overrides
-
-
-endpoint_overrides = [
-    (regex, update_domains(overrides))
-    for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
 
 
 class TestLoginStartView(TestCase):
@@ -284,9 +273,6 @@ class TestRenderErrorHTML(TestCase):
         request.user = AnonymousUser()
         return self.enable_messages(request)
 
-    def login_url(self, **params):
-        return urlparams(reverse('users.login'), **params)
-
     def render_error(self, request, error, next_path=None):
         return views.render_error(
             request, error, format='html', next_path=next_path)
@@ -307,7 +293,7 @@ class TestRenderErrorHTML(TestCase):
         messages = get_messages(request)
         assert len(messages) == 1
         assert 'could not be parsed' in next(iter(messages)).message
-        assert_url_equal(response['location'], self.login_url())
+        assert_url_equal(response['location'], '/')
 
     def test_error_no_profile_with_no_path(self):
         request = self.make_request()
@@ -318,7 +304,7 @@ class TestRenderErrorHTML(TestCase):
         assert len(messages) == 1
         assert ('Firefox Account could not be found'
                 in next(iter(messages)).message)
-        assert_url_equal(response['location'], self.login_url())
+        assert_url_equal(response['location'], '/')
 
     def test_error_state_mismatch_with_unsafe_path(self):
         request = self.make_request()
@@ -330,7 +316,7 @@ class TestRenderErrorHTML(TestCase):
         messages = get_messages(request)
         assert len(messages) == 1
         assert 'could not be logged in' in next(iter(messages)).message
-        assert_url_equal(response['location'], self.login_url())
+        assert_url_equal(response['location'], '/')
 
 
 class TestRenderErrorJSON(TestCase):
@@ -744,9 +730,6 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.login_user = self.patch('olympia.accounts.views.login_user')
         self.register_user = self.patch('olympia.accounts.views.register_user')
 
-    def login_url(self, **params):
-        return absolutify(urlparams(reverse('users.login'), **params))
-
     def test_write_is_used(self, **params):
         with mock.patch('olympia.amo.models.use_primary_db') as use_primary_db:
             self.client.get(self.url)
@@ -757,7 +740,7 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert response.status_code == 302
         # Messages seem to appear in the context for some reason.
         assert 'could not be parsed' in response.context['title']
-        assert_url_equal(response['location'], self.login_url())
+        assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
 
@@ -766,7 +749,7 @@ class TestAuthenticateView(BaseAuthenticationView):
             self.url, {'code': 'foo', 'state': '9f865be0'})
         assert response.status_code == 302
         assert 'could not be logged in' in response.context['title']
-        assert_url_equal(response['location'], self.login_url())
+        assert_url_equal(response['location'], '/')
         assert not self.login_user.called
         assert not self.register_user.called
 
@@ -777,7 +760,7 @@ class TestAuthenticateView(BaseAuthenticationView):
         assert response.status_code == 302
         assert ('Your Firefox Account could not be found'
                 in response.context['title'])
-        assert_url_equal(response['location'], self.login_url())
+        assert_url_equal(response['location'], '/')
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         assert not self.register_user.called

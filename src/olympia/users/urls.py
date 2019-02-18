@@ -1,5 +1,4 @@
 from django.conf.urls import include, url
-from django.views.generic.base import RedirectView
 
 from . import views
 
@@ -23,11 +22,6 @@ users_patterns = [
     url(r'^edit$', views.edit, name='users.edit'),
     url(r'^edit(?:/(?P<user_id>\d+))?$', views.admin_edit,
         name='users.admin_edit'),
-    url(r'^login', views.login, name='users.login'),
-    url(r'^logout', views.logout, name='users.logout'),
-    url(r'^register$',
-        RedirectView.as_view(pattern_name='users.login', permanent=True),
-        name='users.register'),
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
         r'(?P<perm_setting>[\w]+)?$', views.unsubscribe,
         name="users.unsubscribe"),

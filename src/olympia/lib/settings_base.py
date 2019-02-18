@@ -7,8 +7,6 @@ import os
 import socket
 import json
 
-from django.urls import reverse_lazy
-
 import raven
 from kombu import Queue
 
@@ -102,21 +100,6 @@ DRF_API_REGEX = r'^/?api/(?:v3|v4|v4dev)/'
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = DRF_API_REGEX
-
-
-# Sadly the term WHITELIST is used by the library
-# https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
-def cors_endpoint_overrides(whitelist_endpoints):
-    return [
-        ('%saccounts/login/?$' % DRF_API_REGEX, {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
-    ]
-
-
-CORS_ENDPOINT_OVERRIDES = []
 
 
 def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
@@ -414,7 +397,7 @@ MIDDLEWARE = (
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
-    'olympia.amo.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
@@ -1025,8 +1008,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # These should have app+locale at the start to avoid redirects
-LOGIN_URL = reverse_lazy('users.login')
-LOGOUT_URL = reverse_lazy('users.logout')
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # When logging in with browser ID, a username is created automatically.
