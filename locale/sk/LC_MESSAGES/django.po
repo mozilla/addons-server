@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-04 22:24+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -865,9 +865,6 @@ msgstr "Kolekcie"
 msgid "Collections I've Made"
 msgstr "Kolekcie, ktoré som vytvoril"
 
-msgid "My Favorite Add-ons"
-msgstr "Moje obľúbené doplnky"
-
 msgid "More&hellip;"
 msgstr "Ďalšie&hellip;"
 
@@ -1199,6 +1196,9 @@ msgstr "Kolekcie sú skupiny podobných doplnkov, ktoré môže vytvárať a zdi
 #, python-format
 msgid "by %(author_link)s"
 msgstr "autor: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moje obľúbené doplnky"
 
 msgid "Create a Collection"
 msgstr "Vytvoriť kolekciu"
@@ -7709,9 +7709,6 @@ msgstr "sú dostupné nové doplnky alebo funkcie Firefoxu"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kompatibilita môjho doplnku je úspešne upravená"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "môj doplnok vytvorený pomocou SDK bol úspešne aktualizovaný"
-
 msgid "someone writes a review of my add-on"
 msgstr "niekto napíše recenziu na môj doplnok"
 
@@ -7720,9 +7717,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "nie je možné zmeniť kompatibilitu môjho doplnku"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "môj doplnok vytvorený pomocou SDK nie je možné aktualizovať"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "môj doplnok bol skontrolovaný"
@@ -7871,12 +7865,6 @@ msgstr "všetky"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Stránka s doplnkami odteraz používa pre prihlásenie účty Firefox. Pokračujte pre dokončenie jednoduchého prihlasovacieho procesu."
-
-msgid "User Login"
-msgstr "Prihlásenie používateľa"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Prihlásiť sa účtom Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "Vynulovanie hesla"

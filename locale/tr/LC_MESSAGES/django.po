@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-04 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -876,9 +876,6 @@ msgstr "Koleksiyonlar"
 msgid "Collections I've Made"
 msgstr "Oluşturduğum Koleksiyonlar"
 
-msgid "My Favorite Add-ons"
-msgstr "Favori Eklentilerim"
-
 msgid "More&hellip;"
 msgstr "Daha fazlası&hellip;"
 
@@ -1228,6 +1225,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "%(author_link)s tarafından"
+
+msgid "My Favorite Add-ons"
+msgstr "Favori Eklentilerim"
 
 # 89%
 # 100%
@@ -7939,9 +7939,6 @@ msgstr "yeni eklentiler veya Firefox özellikleri mevcut"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 #, fuzzy
 msgid "someone writes a review of my add-on"
 msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
@@ -7952,9 +7949,6 @@ msgstr ""
 #, fuzzy
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "Eklenti Uyumluluk Merkezi"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8108,12 +8102,6 @@ msgstr "tümü"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla Eklentileri, giriş yapmak için Firefox Hesaplarına geçmiştir. Basit giriş işlemini tamamlamaya devam edin."
-
-msgid "User Login"
-msgstr "Kullanıcı Girişi"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox Hesabı ile Giriş"
 
 msgid "Password Reset"
 msgstr "Parola Sıfırlama"

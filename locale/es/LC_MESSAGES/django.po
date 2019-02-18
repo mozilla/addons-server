@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-02-10 17:38+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
@@ -869,9 +869,6 @@ msgstr "Colecciones"
 msgid "Collections I've Made"
 msgstr "Colecciones mías"
 
-msgid "My Favorite Add-ons"
-msgstr "Mis complementos favoritos"
-
 msgid "More&hellip;"
 msgstr "Más&hellip;"
 
@@ -1203,6 +1200,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "de %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mis complementos favoritos"
 
 msgid "Create a Collection"
 msgstr "Crear una colección"
@@ -7832,9 +7832,6 @@ msgstr "hay disponibles nuevos complementos o características de Firefox"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "la compatibilidad de mi complemento se actualiza con éxito"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "mi complemento basado en el SDK está actualizado con éxito"
-
 msgid "someone writes a review of my add-on"
 msgstr "alguien escribe una valoración de mi complemento"
 
@@ -7843,9 +7840,6 @@ msgstr "mantente al día de las noticias y eventos relacionados con los desarrol
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "la compatibilidad de mi complemento no puede ser actualizada"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "mi complemento basado en el SDK no puede ser actualizado"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mi compelemento es revisado por un editor"
@@ -7994,12 +7988,6 @@ msgstr "todos"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Ahora se accede a los complementos de Mozilla con las cuentas de Firefox. Continúa para completar el inicio de sesión."
-
-msgid "User Login"
-msgstr "Identificación de usuario"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Iniciar sesión con la cuenta de Firefox"
 
 msgid "Password Reset"
 msgstr "Reiniciar contraseña"

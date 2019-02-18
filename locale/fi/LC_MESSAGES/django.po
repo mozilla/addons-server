@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-26 22:22+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -858,9 +858,6 @@ msgstr "Kokoelmat"
 msgid "Collections I've Made"
 msgstr "Tekemäni kokoelmat"
 
-msgid "My Favorite Add-ons"
-msgstr "Suosikkilisäosani"
-
 msgid "More&hellip;"
 msgstr "Lisää&hellip;"
 
@@ -1217,6 +1214,9 @@ msgstr "Kokoelmat ovat toisiinsa liittyvien lisäosien ryhmiä, joita kuka tahan
 #, python-format
 msgid "by %(author_link)s"
 msgstr "tekijältä %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Suosikkilisäosani"
 
 # 89%
 # 100%
@@ -7937,9 +7937,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7947,9 +7944,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -8103,12 +8097,6 @@ msgstr "kaikki"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
-
-msgid "User Login"
-msgstr "Käyttäjäkirjautuminen"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Kirjaudu käyttäen Firefox-tiliä"
 
 msgid "Password Reset"
 msgstr "Salasanan nollaaminen"

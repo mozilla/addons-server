@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2017-02-15 17:32+0000\n"
 "Last-Translator: echrs <echrs@outlook.com>\n"
 "Language-Team: Croatian\n"
@@ -873,9 +873,6 @@ msgstr "Zbirke"
 msgid "Collections I've Made"
 msgstr ""
 
-msgid "My Favorite Add-ons"
-msgstr "Moji omiljeni dodaci"
-
 msgid "More&hellip;"
 msgstr "Više&hellip;"
 
@@ -1215,6 +1212,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "od %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moji omiljeni dodaci"
 
 msgid "Create a Collection"
 msgstr "Stvori zbirku"
@@ -7879,9 +7879,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7889,9 +7886,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -8040,12 +8034,6 @@ msgid "all"
 msgstr "sve"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr ""
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

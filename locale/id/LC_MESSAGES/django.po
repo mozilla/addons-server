@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-20 16:48+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -850,9 +850,6 @@ msgstr "Koleksi"
 msgid "Collections I've Made"
 msgstr "Koleksi yang Saya Buat"
 
-msgid "My Favorite Add-ons"
-msgstr "Pengaya Fovorit Saya"
-
 msgid "More&hellip;"
 msgstr "Selengkapnya&hellip;"
 
@@ -1180,6 +1177,9 @@ msgstr "Koleksi adalah sekelompok pengaya terkait yang dapat dibuat dan dibagi o
 #, python-format
 msgid "by %(author_link)s"
 msgstr "oleh %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Pengaya Fovorit Saya"
 
 msgid "Create a Collection"
 msgstr "Membuat Koleksi"
@@ -7746,9 +7746,6 @@ msgstr "pengaya baru atau fitur Firefox tersedia"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kecocokan pengaya saya berhasil ditingkatkan"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "pengaya berdasarkan sdk saya berhasil ditingkatkan"
-
 msgid "someone writes a review of my add-on"
 msgstr "seseorang menulis ulasan pengaya saya"
 
@@ -7757,9 +7754,6 @@ msgstr "dapatkan kabar dan kegiatan terbaru tentang pengembang pengaya (termasuk
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kecocokan pengaya saya tidak bisa ditingkatkan"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "pengaya berdasarkan sdk saya tidak bisa ditingkatkan"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "pengaya saya diulas oleh seorang penyunting"
@@ -7908,12 +7902,6 @@ msgstr "semua"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses masuk sederhana."
-
-msgid "User Login"
-msgstr "Masuk"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Masuk dengan Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "Setel Ulang Sandi"

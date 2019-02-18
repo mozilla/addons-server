@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2015-03-16 11:24+0000\n"
 "Last-Translator: Friedel <friedel@translate.org.za>\n"
 "Language-Team: translate-discuss-af@lists.sourceforge.net\n"
@@ -878,9 +878,6 @@ msgstr "Versamelings"
 msgid "Collections I've Made"
 msgstr "Versamelings wat ek gemaak het"
 
-msgid "My Favorite Add-ons"
-msgstr "My gunsteling byvoegings"
-
 msgid "More&hellip;"
 msgstr "Meer&hellip;"
 
@@ -1234,6 +1231,9 @@ msgstr "Versamelings is groepe van verwante byvoegings wat enigeen kan bou en de
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "deur %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "My gunsteling byvoegings"
 
 # 89%
 # 100%
@@ -7930,9 +7930,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7940,9 +7937,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -8094,12 +8088,6 @@ msgid "all"
 msgstr ""
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr ""
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"
