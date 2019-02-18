@@ -4708,7 +4708,7 @@ class TestAbuseReports(TestCase):
         AbuseReport.objects.create(user=someone, message=u'hey nöw')
         # Make a user abuse report for one of the add-on developers: it should
         # show up.
-        AbuseReport.objects.create(user=addon_developer, message='bü!')
+        AbuseReport.objects.create(user=addon_developer, message=u'bü!')
 
     def test_abuse_reports_list(self):
         assert self.client.login(email='admin@mozilla.com')

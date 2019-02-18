@@ -40,7 +40,7 @@ class AbuseReport(ModelBase):
         if self.reporter:
             user_name = '%s (%s)' % (self.reporter.name, self.reporter.email)
         else:
-            user_name = 'An anonymous coward'
+            user_name = 'An anonymous user'
 
         target_url = ('%s%s' % (settings.SITE_URL, self.target.get_url_path())
                       if self.target else 'GUID not in database')
@@ -49,6 +49,12 @@ class AbuseReport(ModelBase):
             user_name, name, target_url, self.message)
         send_mail(
             six.text_type(self), msg, recipient_list=(settings.ABUSE_EMAIL,))
+
+    def save(self, *args, **kwargs):
+        creation = not self.pk
+        super(AbuseReport, self).save(*args, **kwargs)
+        if creation:
+            self.send()
 
     @property
     def target(self):
@@ -77,4 +83,3 @@ def send_abuse_report(request, obj, message):
     elif isinstance(obj, UserProfile):
         report.user = obj
     report.save()
-    report.send()

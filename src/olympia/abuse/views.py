@@ -59,37 +59,13 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
             return guid
         return None
 
-    def create(self, request, *args, **kwargs):
-        addon_id = self.request.data.get('addon')
-        if not addon_id:
-            raise ParseError('Need an addon parameter')
-
-        message = self.request.data.get('message')
-        if not message:
-            raise ParseError('Abuse reports need a message')
-
-        abuse_kwargs = {
-            'ip_address': request.META.get('REMOTE_ADDR'),
-            'message': message,
-            # get_guid() must be called first or addons not in our DB will 404.
-            'guid': self.get_guid(),
-            'addon': self.get_addon_object()}
-        if request.user.is_authenticated:
-            abuse_kwargs['reporter'] = request.user
-
-        report = AbuseReport.objects.create(**abuse_kwargs)
-        report.send()
-
-        serializer = self.get_serializer(report)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
-
 
 class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
     permission_classes = []
     serializer_class = UserAbuseReportSerializer
     throttle_classes = (AbuseThrottle,)
 
-    def get_user_object(self, user_id):
+    def get_user_object(self):
         if hasattr(self, 'user_object'):
             return self.user_object
 
@@ -101,25 +77,3 @@ class UserAbuseViewSet(CreateModelMixin, GenericViewSet):
         return AccountViewSet(
             request=self.request, permission_classes=[],
             kwargs={'pk': self.kwargs['user_pk']}).get_object()
-
-    def create(self, request, *args, **kwargs):
-        user_id = self.request.data.get('user')
-        if not user_id:
-            raise ParseError('Need a user parameter')
-
-        message = self.request.data.get('message')
-        if not message:
-            raise ParseError('Abuse reports need a message')
-
-        abuse_kwargs = {
-            'ip_address': request.META.get('REMOTE_ADDR'),
-            'message': message,
-            'user': self.get_user_object(user_id)}
-        if request.user.is_authenticated:
-            abuse_kwargs['reporter'] = request.user
-
-        report = AbuseReport.objects.create(**abuse_kwargs)
-        report.send()
-
-        serializer = self.get_serializer(report)
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
