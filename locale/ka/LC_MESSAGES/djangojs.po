@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-18 15:23+0000\n"
-"PO-Revision-Date: 2019-01-14 18:32+0000\n"
+"PO-Revision-Date: 2019-02-18 18:27+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -49,7 +49,7 @@ msgid "Error with {0}"
 msgstr "{0} – შეცდომა"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "გთხოვთ, მოგვახსენოთ Linting-თან დაკავშირებული ყველა ხარვეზე GitHub-ზე"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
