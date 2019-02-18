@@ -2054,10 +2054,6 @@ class CompatOverride(ModelBase):
         else:
             return self.guid
 
-    def is_hosted(self):
-        """Am I talking about an add-on on AMO?"""
-        return bool(self.addon_id)
-
     @staticmethod
     def transformer(overrides):
         if not overrides:
