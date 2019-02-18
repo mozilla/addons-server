@@ -180,7 +180,7 @@ def render_error(request, error, next_path=None, format=None):
             fxa_error_message(LOGIN_ERROR_MESSAGES[error], LOGIN_HELP_URL),
             extra_tags='fxa')
         if next_path is None:
-            response = HttpResponseRedirect(reverse('users.login'))
+            response = HttpResponseRedirect('/')
         else:
             response = HttpResponseRedirect(next_path)
     return response
