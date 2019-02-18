@@ -138,11 +138,6 @@ class FileEntriesSerializer(FileSerializer):
         if any(bytes_[:len(x)] == x for x in denied_magic_numbers):
             return True
 
-        if mimetype:
-            major, minor = mimetype.split('/')
-            if major == 'image':
-                return 'image'  # Mark that the file is binary, but an image.
-
         return False
 
     def get_selected_file(self, obj):
