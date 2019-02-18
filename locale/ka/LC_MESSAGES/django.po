@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-18 15:23+0000\n"
-"PO-Revision-Date: 2019-02-18 18:31+0000\n"
+"PO-Revision-Date: 2019-02-18 18:50+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5533,16 +5533,15 @@ msgstr "იხილეთ სრული ზომით {start_sub_heading}{a
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
-msgstr ""
+msgstr "თაგვის ერთი დაწკაპებით შეგიძლიათ უყუროთ ვიდეოებს სრულ ეკრანზე."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გადაინახეთ ტექსტი {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "დაზოგეთ მეხსიერება {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "შეწყვიტეთ საჭირო მეხსიერების უაზრო ხარჯვა, უქმი ჩანართებისთვის."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5582,10 +5581,10 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "ატვირთული ფაილის დამუშავება ვერ მოხერხდა, <%s> ელემენტი აკლია, ან ცარიელია"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: XML უსაფრთხოების შეცდომა."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: XML დამუშავების შეცდომა."
 
 msgid "Could not parse uploaded file."
 msgstr "ატვირთული ფაილის დამუშავება ვერ მოხერხდა."
@@ -5639,16 +5638,15 @@ msgstr "არ შეგიძლიათ დამატების წარ
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla-ს მიერ დამოწმებული გაფართოების წარდგენა არ შეგიძლიათ"
 
-#, fuzzy
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr "ამ სახის ფაილი არაა მხარდაჭერილი, გთხოვთ ატვირთოთ დაარქივებული ფაილი {extensions}."
+msgstr "მხარდაუჭერელი სახის ფაილი, გთხოვთ ატვირთოთ მხარდაჭერილი სახის ფაილი {extensions}."
 
 msgid "Unexpected error."
 msgstr "მოულოდნელი შეცდომა."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> თქვენს intall.rdf (%s) ფაილში, არ ემთხვევა თქვენი დამატების ტიპს AMO საიტზე (%s)"
+msgstr "სახეობა (%s), არ ემთხვევა თქვენი დამატების სახეობას AMO-საიტზე (%s)"
 
 msgid "Back to review"
 msgstr "მიმოხილვაზე დაბრუნება"
@@ -7121,26 +7119,26 @@ msgstr "მონიშნულია"
 msgid "Updates"
 msgstr "განახლებები"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "ვერსიის არასწორი დიაპაზონი."
+msgstr "არამართებული პარამეტრი „%s“."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "არამართებული შეთავსება პარამეტრების „%s“ და „%s“."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "AMO-ზე დაბრუნება ამჟამად გათიშულია"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "AMO GUID-ზე არასწორი დაბრუნება (არ ეფუძნება base64url-სახეობას?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "AMO GUID-ზე არასწორი დაბრუნება (დამატება არაა ზედამხედველობის ქვეშ)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "არამართებული შეთავსება პარამეტრების „%s“, „%s“ და „%s“."
 
 msgid "Maximum query length exceeded."
 msgstr "მოთხოვნის სიგრძე აჭარბებს ზღვარს."
