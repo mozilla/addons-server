@@ -31,6 +31,12 @@ class DatabaseWrapper(MySQLDBWrapper):
     introspection_class = DatabaseIntrospection
     SchemaEditorClass = DatabaseSchemaEditor
 
-    _data_types = dict(
-        MySQLDBWrapper._data_types,
-        PositiveAutoField='integer UNSIGNED AUTO_INCREMENT')
+    # data_types is _data_types in <django2.1
+    # Also replaces data_types cached_property in <django2.1 so copy over the
+    # microsecond fixes as >=mysql5.6.4 is supports_microsecond_precision=True.
+    data_types = dict(
+        getattr(MySQLDBWrapper, '_data_types', MySQLDBWrapper.data_types),
+        PositiveAutoField='integer UNSIGNED AUTO_INCREMENT',
+        DateTimeField='datetime(6)',
+        TimeField='time(6)')
+    _data_types = data_types
