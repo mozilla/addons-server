@@ -145,17 +145,6 @@ def has_cors_headers(response, origin='https://addons-frontend'):
         response['Access-Control-Allow-Credentials'] == 'true')
 
 
-def update_domains(overrides):
-    overrides = overrides.copy()
-    overrides['CORS_ORIGIN_WHITELIST'] = ['addons-frontend', 'localhost:3000']
-    return overrides
-
-
-endpoint_overrides = [
-    (regex, update_domains(overrides))
-    for regex, overrides in settings.CORS_ENDPOINT_OVERRIDES]
-
-
 class TestLoginStartView(TestCase):
 
     def test_default_config_is_used(self):

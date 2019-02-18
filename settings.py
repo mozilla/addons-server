@@ -58,10 +58,6 @@ AES_KEYS = {
         ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
 }
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    ['localhost:3000', 'olympia.test']
-)
-
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL', charset='utf8mb4'),
 }
