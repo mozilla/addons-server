@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-14 18:37+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -850,9 +850,6 @@ msgstr "კრებულები"
 msgid "Collections I've Made"
 msgstr "ჩემ მიერ შექმნილი კრებულები"
 
-msgid "My Favorite Add-ons"
-msgstr "ჩემი რჩეული დამატებები"
-
 msgid "More&hellip;"
 msgstr "სხვა&hellip;"
 
@@ -1183,6 +1180,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "შემქმნელი: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "ჩემი რჩეული დამატებები"
 
 msgid "Create a Collection"
 msgstr "კრებულის შექმნა"
@@ -7740,9 +7740,6 @@ msgstr "ახალი დამატებების ან Firefox-ის 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "ჩემი დამატების თავსებადობა განახლდა წარმატებით"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "ჩემი sdk-ზე დაფუძნებული დამატება განახლდა წარმატებით"
-
 msgid "someone writes a review of my add-on"
 msgstr "ვიღაცა წერს მიმოხილვას ჩემი დამატების შესახებ"
 
@@ -7751,9 +7748,6 @@ msgstr "გაეცანით სიახლეებსა და დამ
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "ჩემი დამატების თავსებადობის განახლება ვერ ხერხდება"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "ჩემი sdk-ზე დაფუძნებული დამატების განახლება, ვერ ხერხდება"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "ჩემი დამატება განხილულია მიმომხილველის მიერ"
@@ -7902,12 +7896,6 @@ msgstr "ყველა"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "ანგარიშზე შესვლისთვის, Mozilla დამატებების საიტი გადამისამართდება Firefox-ანგარიშების საიტზე. გადადით და დაასრულეთ ანგარიშის მონაცემების შეყვანა."
-
-msgid "User Login"
-msgstr "მომხმარებლის შესვლა"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox Accounts-ით შესვლა"
 
 msgid "Password Reset"
 msgstr "პაროლის განულება"

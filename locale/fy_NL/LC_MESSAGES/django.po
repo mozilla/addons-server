@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,8 +44,8 @@ msgstr "Jo binne al oanmeld."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Jo oanmeldbesykjen koe net ferwurke wurde. Probearje it opnij."
 
-msgid "Your account could not be found. Please try again."
-msgstr "Jo account waard net fûn. Probearje it opnij."
+msgid "Your Firefox Account could not be found. Please try again."
+msgstr "Jo Firefox-account waard net fûn. Probearje it opnij."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Jo kinne net oanmeld wurde. Probearje it opnij."
@@ -558,18 +558,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Guon add-ons freegje tastimming om bepaalde funksjes út te fieren (bygelyks: in ljepblêd-add-on freget tastimming foar tagong ta it ljepblêdensysteem fan jo browser)."
 
 msgid ""
-"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Omdat jo de kontrôle oer jo Thunderbird hawwe, is de kar om dizze oanfragen ta te kennen of te wegerjen oan jo. It akseptearjen fan tastimmingen hat yn prinsipe gjin gefolgen foar de prestaasjes of "
+"Omdat jo de kontrôle oer jo Firefox hawwe, is de kar om dizze oanfragen ta te kennen of te wegerjen oan jo. It akseptearjen fan tastimmingen hat yn prinsipe gjin gefolgen foar de prestaasjes of "
 "befeiliging fan jo browser, mar yn seldsume gefallen kin der sprake wêze fan in risiko."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Dizze add-on kin:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
-msgstr "Guon add-ons freegje tastimming om bepaalde funksjes út te fieren. Omdat jo de kontrôle oer jo Thunderbird hawwe, is de kar om dizze oanfragen ta te kennen of te wegerjen oan jo."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Guon add-ons freegje tastimming om bepaalde funksjes út te fieren. Omdat jo de kontrôle oer jo Firefox hawwe, is de kar om dizze oanfragen ta te kennen of te wegerjen oan jo."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Hâld der rekkening mei dat dizze add-on ferâldere technology brûkt, dy't de add-on tagong ta alle browserfunksjes jout sûnder om jo tastimming te freegjen."
@@ -858,9 +858,6 @@ msgstr "Kolleksjes"
 
 msgid "Collections I've Made"
 msgstr "Myn kolleksjes"
-
-msgid "My Favorite Add-ons"
-msgstr "Myn favorite add-ons"
 
 msgid "More&hellip;"
 msgstr "Mear…"
@@ -1192,6 +1189,9 @@ msgstr "Kolleksjes binne groepen relatearre add-ons dy't elkenien meitsje en die
 #, python-format
 msgid "by %(author_link)s"
 msgstr "troch %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Myn favorite add-ons"
 
 msgid "Create a Collection"
 msgstr "In kolleksje meitsje"
@@ -7755,8 +7755,8 @@ msgstr "Lokaasje"
 msgid "Occupation"
 msgstr "Berop"
 
-msgid "See this help article for information on how to change your email address."
-msgstr ""
+msgid "You can change your email address on Firefox Accounts."
+msgstr "Jo kinne jo e-mailadres wizigje by Firefox Accounts."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Dizze URL hat in ûnjildige opmaak. Jildige URL’s lykje op http://example.com/myn_side."
@@ -7782,9 +7782,6 @@ msgstr "der binne nije add-ons of Firefox-funksjes beskikber"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "de komptabiliteit fan myn add-on is mei sukses bywurke"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "myn sdk-basearre add-on is mei sukses bywurku"
-
 msgid "someone writes a review of my add-on"
 msgstr "ien skriuwt in beoardieling oer myn add-on"
 
@@ -7793,9 +7790,6 @@ msgstr "bliuw by-de-tiid mei foar add-on-ûntwikkelers relevant nijs en evenemin
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "de komptabiliteit fan myn add-on kin net bywurke wurde"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "myn sdk-basearre add-on kin net bywurke wurde"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "myn add-on wurdt troch in beoardieler beoardiele"
@@ -7881,14 +7875,14 @@ msgstr "Stel jo skermnamme yn"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Stel jo skermnamme of brûkersnamme yn om it registraasjeproses te foltôgjen."
 
-msgid "Manage basic account information."
-msgstr "Behear basale accountynformaasje, lykas jo brûkersnamme en ynstellingen fan Accounts."
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgstr "Behear basale accountynformaasje, lykas jo brûkersnamme en ynstellingen fan Firefox Accounts."
 
 msgid "Email Address"
 msgstr "E-mailadres"
 
-msgid "Manage other account details..."
-msgstr "Account beheare…"
+msgid "Manage Firefox Account..."
+msgstr "Firefox-account beheare…"
 
 msgid "Profile"
 msgstr "Profyl"
@@ -7942,11 +7936,8 @@ msgstr "gjin"
 msgid "all"
 msgstr "alles"
 
-msgid "User Login"
-msgstr "Brûker oanmelde"
-
-msgid "Log in"
-msgstr "Oanmelde mei account"
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
+msgstr "Mozilla Add-ons is foar oanmelding oergien op Firefox Accounts. Gean troch om it ienfâldige oanmeldingsproses te foltôgjen."
 
 msgid "Password Reset"
 msgstr "Wachtwurd opnij ynstelle"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -40,7 +40,7 @@ msgstr ""
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your account could not be found. Please try again."
+msgid "Your Firefox Account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
@@ -603,7 +603,7 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Since you’re in control of your Thunderbird, the choice to grant or deny these "
+"Since you’re in control of your Firefox, the choice to grant or deny these "
 "requests is yours. Accepting permissions does not inherently compromise your "
 "browser’s performance or security, but in some rare cases risk may be "
 "involved."
@@ -616,7 +616,7 @@ msgstr "Ovaj dodatak zahteva spoljašnji softver."
 
 msgid ""
 "Some add-ons ask for permission to perform certain functions. Since you’re "
-"in control of your Thunderbird, the choice to grant or deny these requests is "
+"in control of your Firefox, the choice to grant or deny these requests is "
 "yours."
 msgstr ""
 
@@ -978,9 +978,6 @@ msgstr "Kolekcije"
 
 msgid "Collections I've Made"
 msgstr "Moje kolekcije"
-
-msgid "My Favorite Add-ons"
-msgstr "Moji omiljeni dodaci"
 
 msgid "More&hellip;"
 msgstr "Još&hellip;"
@@ -1353,6 +1350,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "od %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moji omiljeni dodaci"
 
 msgid "Create a Collection"
 msgstr "Kreirajte kolekciju"
@@ -9074,7 +9074,7 @@ msgstr "Lokacija"
 msgid "Occupation"
 msgstr "Zanimanje"
 
-msgid "See this help article for information on how to change your email address."
+msgid "You can change your email address on Firefox Accounts."
 msgstr ""
 
 msgid ""
@@ -9110,9 +9110,6 @@ msgstr "novi dodaci ili Firefox mogućnosti su dostupni"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kompatabilnost mog dodatka je uspešno nadograđena"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "moj dodatak zasnovan na sdk je uspešno nadograđen"
-
 msgid "someone writes a review of my add-on"
 msgstr "neko piše recenziju na moj dodatak"
 
@@ -9123,9 +9120,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatabilnost mog dodatka se ne može nadograditi"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "moj dodatak zasnovan na sdk se ne može nadograditi"
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -9235,7 +9229,8 @@ msgstr ""
 
 #, fuzzy
 msgid ""
-"Manage basic account information."
+"Manage basic account information, such as your username and Firefox Accounts "
+"settings."
 msgstr ""
 "Upravljajte sa osnovnim informacijama o nalogu, kao što su korisničko ime i "
 "adresa e-pošte."
@@ -9243,7 +9238,7 @@ msgstr ""
 msgid "Email Address"
 msgstr "Adresa e-pošte"
 
-msgid "Manage other account details..."
+msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
@@ -9315,10 +9310,9 @@ msgstr "nijedna"
 msgid "all"
 msgstr "sve"
 
-msgid "User Login"
-msgstr "Prijava korisnika"
-
-msgid "Log in"
+msgid ""
+"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
+"complete the simple login process."
 msgstr ""
 
 msgid "Password Reset"

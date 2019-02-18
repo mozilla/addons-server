@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-12-31 19:19+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
@@ -874,9 +874,6 @@ msgstr "Збірки"
 msgid "Collections I've Made"
 msgstr "Створені мною збірки"
 
-msgid "My Favorite Add-ons"
-msgstr "Мої улюблені додатки"
-
 msgid "More&hellip;"
 msgstr "Більше&hellip;"
 
@@ -1207,6 +1204,9 @@ msgstr "Збірки - це групи відповідних додатків, 
 #, python-format
 msgid "by %(author_link)s"
 msgstr "від %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Мої улюблені додатки"
 
 msgid "Create a Collection"
 msgstr "Створити збірку"
@@ -7764,9 +7764,6 @@ msgstr "доступні нові додатки чи можливості Firef
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "сумісність мого додатку успішно оновлена"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "мій оснований на SDK додаток успішно оновлений"
-
 msgid "someone writes a review of my add-on"
 msgstr "хтось пише відгук до мого додатку"
 
@@ -7775,9 +7772,6 @@ msgstr "будьте в курсі новин та подій, пов'язани
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "сумісність мого додатку не може бути оновлена"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "мій оснований на SDK додаток не може бути оновлений"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "мій додаток перевірений редактором"
@@ -7926,12 +7920,6 @@ msgstr "все"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Сайт додатків Mozilla тепер використовує для входу облікові записи Firefox. Продовжіть для завершення простого процесу авторизації."
-
-msgid "User Login"
-msgstr "Вхід до аккаунту"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Вхід з обліковим записом Firefox"
 
 msgid "Password Reset"
 msgstr "Скидання пароля"

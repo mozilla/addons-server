@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-02-08 00:00+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -848,9 +848,6 @@ msgstr "コレクション"
 msgid "Collections I've Made"
 msgstr "自分が作成したコレクション"
 
-msgid "My Favorite Add-ons"
-msgstr "お気に入りのアドオン"
-
 msgid "More&hellip;"
 msgstr "その他&hellip;"
 
@@ -1179,6 +1176,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "作者: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "お気に入りのアドオン"
 
 msgid "Create a Collection"
 msgstr "コレクションを作成"
@@ -7711,9 +7711,6 @@ msgstr "アドオンや Firefox の新機能が使用可能になったとき"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "自分のアドオンの互換性が正しく更新されたとき"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "自分の SDK ベースのアドオンが正しく更新されたとき"
-
 msgid "someone writes a review of my add-on"
 msgstr "ユーザーによって自分のアドオンのレビューが書かれたとき"
 
@@ -7722,9 +7719,6 @@ msgstr "アドオン開発者向けのニュースやイベントを含む最新
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "自分のアドオンの互換性が更新できないとき"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "自分の SDK ベースのアドオンが更新できないとき"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "自分のアドオンが審査担当者によって審査されたとき"
@@ -7873,12 +7867,6 @@ msgstr "すべて"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "アドオンサイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
-
-msgid "User Login"
-msgstr "ログイン"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox アカウントでログイン"
 
 msgid "Password Reset"
 msgstr "パスワードの変更"

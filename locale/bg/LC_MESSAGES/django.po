@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-09-20 11:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -43,8 +43,8 @@ msgstr "Вече сте вписани."
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr "Опитът ви за вписване но може да бъде разчетен. Моля, опитайте отново."
 
-msgid "Your account could not be found. Please try again."
-msgstr "Вашият account не може да бъде намерен. Моля, опитайте отново."
+msgid "Your Firefox Account could not be found. Please try again."
+msgstr "Вашият Firefox Account не може да бъде намерен. Моля, опитайте отново."
 
 msgid "You could not be logged in. Please try again."
 msgstr "Не можахте да бъдете вписани. Моля, опитайте отново."
@@ -557,18 +557,18 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Някои добавки искат разрешение, за да извършат определени действия (например, добавка която управлява раздели би поискала права за достъп до системата от раздели на четеца)."
 
 msgid ""
-"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
-"Тъй като държите контрола над вашия Thunderbird, изборът да дадете разрешение или не е изцяло ваш. Ако дадете разрешение това не означава, че жертвате производителността или защитата на четеца, но в "
+"Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш. Ако дадете разрешение това не означава, че жертвате производителността или защитата на четеца, но в "
 "редки случаи може да бъде замесен и риск."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
 msgstr "Добавката иска следните права:"
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
-msgstr "Някои добавки искат разрешение, за да извършат определени действия. Тъй като държите контрола над вашия Thunderbird, изборът да дадете разрешение или не е изцяло ваш."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
+msgstr "Някои добавки искат разрешение, за да извършат определени действия. Тъй като държите контрола над вашия Firefox, изборът да дадете разрешение или не е изцяло ваш."
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
 msgstr "Обърнете внимание, че тази добавка използва остаряла технология, която дава достъп до пълната функционалност и данни на четеца без да пита за разрешение за това."
@@ -850,9 +850,6 @@ msgstr "Списъци"
 
 msgid "Collections I've Made"
 msgstr "Списъци, които съм създал"
-
-msgid "My Favorite Add-ons"
-msgstr "Моите любими добавки"
 
 msgid "More&hellip;"
 msgstr "Още&hellip;"
@@ -1179,6 +1176,9 @@ msgstr "Списъкът е набор от сродни добавки, кой�
 #, python-format
 msgid "by %(author_link)s"
 msgstr "от %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Моите любими добавки"
 
 msgid "Create a Collection"
 msgstr "Създаване на списък"
@@ -7793,7 +7793,7 @@ msgstr "Местоположение"
 msgid "Occupation"
 msgstr "Професия"
 
-msgid "See this help article for information on how to change your email address."
+msgid "You can change your email address on Firefox Accounts."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -7821,9 +7821,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7831,9 +7828,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -7921,13 +7915,13 @@ msgstr "Моля, изберете име"
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Моля, изберете име, което да бъде показвано или потребителско име, за да завършите регистрацията."
 
-msgid "Manage basic account information."
-msgstr "Управление на основна информация за сметката като потребителско име и настройки на Account."
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
+msgstr "Управление на основна информация за сметката като потребителско име и настройки на Firefox Account."
 
 msgid "Email Address"
 msgstr "Имейл адрес"
 
-msgid "Manage other account details..."
+msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
@@ -7982,11 +7976,8 @@ msgstr "никои"
 msgid "all"
 msgstr "всички"
 
-msgid "User Login"
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
-
-msgid "Log in"
-msgstr "Вписване"
 
 msgid "Password Reset"
 msgstr "Нулиране на парола"

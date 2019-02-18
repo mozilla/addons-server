@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-31 09:20+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -855,9 +855,6 @@ msgstr "Samlinger"
 msgid "Collections I've Made"
 msgstr "Samlinger jeg har lavet"
 
-msgid "My Favorite Add-ons"
-msgstr "Mine favorittilføjelser"
-
 msgid "More&hellip;"
 msgstr "Flere&hellip;"
 
@@ -1184,6 +1181,9 @@ msgstr "Samlinger er grupper af relaterede tilføjelser, som alle kan lave og de
 #, python-format
 msgid "by %(author_link)s"
 msgstr "af %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mine favorittilføjelser"
 
 msgid "Create a Collection"
 msgstr "Opret en samling"
@@ -7827,9 +7827,6 @@ msgstr "nye tilføjelser eller Firefox-funktioner er tilgængelige"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "min tilføjelses kompatibilitet er opgraderet"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "min sdk-baserede tilføjelse er opgraderet"
-
 msgid "someone writes a review of my add-on"
 msgstr "nogen skriver en anmeldelse af min tilføjelse"
 
@@ -7838,9 +7835,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "min tilføjelses kompatibilitet ikke kan opgraderes"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "min sdk-baserede tilføjelse ikke kan opgraderes"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "min tilføjelse er gennemgået af en redaktør"
@@ -7987,12 +7981,6 @@ msgstr "alle"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla-tilføjelser er gået over til Firefox-konti til login. Fortsæt for at fuldføre den enkle login-proces."
-
-msgid "User Login"
-msgstr "Bruger-login"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Log ind med Firefox-konti"
 
 msgid "Password Reset"
 msgstr "Nulstil adgangskode"

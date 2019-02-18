@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -854,9 +854,6 @@ msgstr "Taq mol"
 msgid "Collections I've Made"
 msgstr "Taq Mol Enutz'ukun"
 
-msgid "My Favorite Add-ons"
-msgstr "Taq Tz'aqat Ewajowan"
-
 msgid "More&hellip;"
 msgstr "Ch'aqa' chik&hellip;"
 
@@ -1186,6 +1183,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "ruma %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Taq Tz'aqat Ewajowan"
 
 msgid "Create a Collection"
 msgstr "Titz'uk jun Mol"
@@ -7734,9 +7734,6 @@ msgstr "e k'o k'ak'a' taq rutz'aqat o rub'anikil Firefox"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "ri k'amonel nutz'aqat ütz nuk'ëx ri'"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "ri nutz'aqat rik'in sdk-ruxe'el ütz xk'extäj"
-
 msgid "someone writes a review of my add-on"
 msgstr "k'o nutz'ib'aj jun ejqalem chi rij ri nutz'aqat"
 
@@ -7745,9 +7742,6 @@ msgstr "tawetamaj q'ij q'ij pa kiwi' ri taq tzijol chuqa' taq kinimaq'ij b'anone
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "man tikirel ta nik'ex ri ruk'amonel nutz'aqat"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "man tikirel ta nik'ex ri sdk-ruxe'el nutz'aqat"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "ri nutz'aqat ninik'öx ruma jun nuk'unel"
@@ -7896,12 +7890,6 @@ msgstr "ronojel"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Wakami yatok pa taq rutz'aqat Mozilla rik'in ri rub'i' rutaqoya'l Firefox. Tak'isa' richin natz'aqatisaj ri rutikirisanik molojri'ïl."
-
-msgid "User Login"
-msgstr "Retamaxik Ruwäch Okisanel"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Titikirisäx molojri'ïl rik'in ri Rub'i' Rutaqoya'l Firefox"
 
 msgid "Password Reset"
 msgstr "Titzolïx Ewan Tzij"

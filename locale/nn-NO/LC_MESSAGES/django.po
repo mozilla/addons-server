@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-02-02 08:42+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -843,9 +843,6 @@ msgstr "Samlingar"
 msgid "Collections I've Made"
 msgstr "Samlingar eg har laga"
 
-msgid "My Favorite Add-ons"
-msgstr "Mine favoritt-tillegg"
-
 msgid "More&hellip;"
 msgstr "Meir&hellip;"
 
@@ -1169,6 +1166,9 @@ msgstr "Samlingar er grupper av tillegg som kven som helst kan lage og dele. Utf
 #, python-format
 msgid "by %(author_link)s"
 msgstr "av %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mine favoritt-tillegg"
 
 msgid "Create a Collection"
 msgstr "Lag ei samling"
@@ -7821,9 +7821,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7831,9 +7828,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -7981,12 +7975,6 @@ msgstr "alle"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla-utvidingar har gått over til Firefox-kontoar for å logge inn. Fortset for å fullføre den enkle innloggingsprosessen."
-
-msgid "User Login"
-msgstr "Brukarinnlogging"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Logg inn med Firefox-kontoar"
 
 msgid "Password Reset"
 msgstr "Tilbakestilling av passord"

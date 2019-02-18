@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgstr ""
 msgid "Your login attempt could not be parsed. Please try again."
 msgstr ""
 
-msgid "Your account could not be found. Please try again."
+msgid "Your Firefox Account could not be found. Please try again."
 msgstr ""
 
 msgid "You could not be logged in. Please try again."
@@ -542,7 +542,7 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr ""
 
 msgid ""
-"Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
 "some rare cases risk may be involved."
 msgstr ""
 
@@ -550,7 +550,7 @@ msgstr ""
 msgid "This add-on can:"
 msgstr ""
 
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Thunderbird, the choice to grant or deny these requests is yours."
+msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
 msgstr ""
 
 msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
@@ -826,9 +826,6 @@ msgid "Collections"
 msgstr ""
 
 msgid "Collections I've Made"
-msgstr ""
-
-msgid "My Favorite Add-ons"
 msgstr ""
 
 msgid "More&hellip;"
@@ -1152,6 +1149,9 @@ msgstr ""
 
 #, python-format
 msgid "by %(author_link)s"
+msgstr ""
+
+msgid "My Favorite Add-ons"
 msgstr ""
 
 msgid "Create a Collection"
@@ -7548,7 +7548,7 @@ msgstr ""
 msgid "Occupation"
 msgstr ""
 
-msgid "See this help article for information on how to change your email address."
+msgid "You can change your email address on Firefox Accounts."
 msgstr ""
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
@@ -7575,9 +7575,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7585,9 +7582,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -7672,13 +7666,13 @@ msgstr ""
 msgid "Please set your display name or username to complete the registration process."
 msgstr ""
 
-msgid "Manage basic account information."
+msgid "Manage basic account information, such as your username and Firefox Accounts settings."
 msgstr ""
 
 msgid "Email Address"
 msgstr ""
 
-msgid "Manage other account details..."
+msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
@@ -7733,10 +7727,7 @@ msgstr ""
 msgid "all"
 msgstr ""
 
-msgid "User Login"
-msgstr ""
-
-msgid "Log in"
+msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
 
 msgid "Password Reset"
