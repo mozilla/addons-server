@@ -186,9 +186,9 @@ class AddonFormBase(TranslationFormMixin, forms.ModelForm):
 
 
 class CategoryForm(forms.Form):
-    application = forms.TypedChoiceField(amo.APPS_CHOICES, coerce=int,
-                                         widget=forms.HiddenInput,
-                                         required=True)
+    application = forms.TypedChoiceField(
+        choices=amo.APPS_CHOICES, coerce=int, widget=forms.HiddenInput,
+        required=True)
     categories = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(), widget=CategoriesSelectMultiple)
 
