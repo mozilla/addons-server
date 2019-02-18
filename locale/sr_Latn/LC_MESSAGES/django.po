@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -979,9 +979,6 @@ msgstr "Kolekcije"
 msgid "Collections I've Made"
 msgstr "Moje kolekcije"
 
-msgid "My Favorite Add-ons"
-msgstr "Moji omiljeni dodaci"
-
 msgid "More&hellip;"
 msgstr "Još&hellip;"
 
@@ -1353,6 +1350,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "od %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moji omiljeni dodaci"
 
 msgid "Create a Collection"
 msgstr "Kreirajte kolekciju"
@@ -9110,9 +9110,6 @@ msgstr "novi dodaci ili Firefox mogućnosti su dostupni"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kompatabilnost mog dodatka je uspešno nadograđena"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "moj dodatak zasnovan na sdk je uspešno nadograđen"
-
 msgid "someone writes a review of my add-on"
 msgstr "neko piše recenziju na moj dodatak"
 
@@ -9123,9 +9120,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatabilnost mog dodatka se ne može nadograditi"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "moj dodatak zasnovan na sdk se ne može nadograditi"
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -9319,12 +9313,6 @@ msgstr "sve"
 msgid ""
 "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
 "complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "Prijava korisnika"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

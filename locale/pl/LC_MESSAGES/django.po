@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -881,9 +881,6 @@ msgstr "Kolekcje"
 msgid "Collections I've Made"
 msgstr "Moje kolekcje"
 
-msgid "My Favorite Add-ons"
-msgstr "Moje ulubione dodatki"
-
 msgid "More&hellip;"
 msgstr "Więcej&hellip;"
 
@@ -1215,6 +1212,9 @@ msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć 
 #, python-format
 msgid "by %(author_link)s"
 msgstr "autor: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moje ulubione dodatki"
 
 msgid "Create a Collection"
 msgstr "Utwórz kolekcję"
@@ -7830,9 +7830,6 @@ msgstr "Dostępne są nowe dodatki lub funkcje Firefoksa"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "Kompatybilność mojego dodatku została zaktualizowana"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "Mój dodatek stworzony za pomocą SDK został zaktualizowany"
-
 msgid "someone writes a review of my add-on"
 msgstr "Ktoś napisał opinię o moim dodatku"
 
@@ -7841,9 +7838,6 @@ msgstr "pozostawaj na bieżąco z wiadomościami i wydarzeniami istotnymi dla tw
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "Nie można zaktualizować kompatybilności mojego dodatku"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "Nie można zaktualizować mojego dodatku stworzonego za pomocą SDK"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mój dodatek został sprawdzony przez recenzenta"
@@ -7992,12 +7986,6 @@ msgstr "wszystkie"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Witryna Mozilla Add-ons przeszła na konta Firefoksa do obsługi logowania. Kontynuuj, aby wykonać prosty proces logowania."
-
-msgid "User Login"
-msgstr "Login użytkownika"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Zaloguj się przy użyciu konta Firefoksa"
 
 msgid "Password Reset"
 msgstr "Resetowanie hasła"

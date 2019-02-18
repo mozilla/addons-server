@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -861,9 +861,6 @@ msgstr "ਸੰਗ੍ਰਹਿ "
 msgid "Collections I've Made"
 msgstr "ਮੇਰੇ ਬਣਾਏ ਹੋਏ ਸੰਗ੍ਰਹਿ"
 
-msgid "My Favorite Add-ons"
-msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
-
 msgid "More&hellip;"
 msgstr "ਹੋਰ&hellip;"
 
@@ -1196,6 +1193,9 @@ msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱ�
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "%(users)s ਵੱਲੋਂ"
+
+msgid "My Favorite Add-ons"
+msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 
 msgid "Create a Collection"
 msgstr "ਇੱਕ ਸੰਗ੍ਰਹਿ ਬਣਾਓ"
@@ -7979,9 +7979,6 @@ msgstr "ਨਵੇਂ ਐਡ-ਆਨ ਜਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਗੁਣ 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਸਫ਼ਲਤਾਪੂਰਨ ਅੱਪਗਰੇਡ ਹੋਈ"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਸਫ਼ਲਤਾਪੂਰਨ ਅੱਪਗਰੇਡ ਹੋਇਆ"
-
 msgid "someone writes a review of my add-on"
 msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ ਲਿਖੀ"
 
@@ -7990,9 +7987,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦੀ"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦਾ"
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8144,12 +8138,6 @@ msgid "all"
 msgstr "ਸਾਰੇ"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

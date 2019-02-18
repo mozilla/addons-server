@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-02-03 07:14+0000\n"
 "Last-Translator: gneha2324 <gneha2324@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -847,9 +847,6 @@ msgstr "ਸੰਗ੍ਰਹਿ "
 msgid "Collections I've Made"
 msgstr "ਮੇਰੇ ਬਣਾਏ ਹੋਏ ਸੰਗ੍ਰਹਿ"
 
-msgid "My Favorite Add-ons"
-msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
-
 msgid "More&hellip;"
 msgstr "ਹੋਰ&hellip;"
 
@@ -1176,6 +1173,9 @@ msgstr "ਸੰਗ੍ਰਹਿ ਸਬੰਧਤ ਐਡ-ਆਨ ਦੇ ਗਰੁੱ�
 #, python-format
 msgid "by %(author_link)s"
 msgstr "%(author_link)s ਵੱਲੋਂ"
+
+msgid "My Favorite Add-ons"
+msgstr "ਮੇਰੇ ਪਸੰਦੀਦਾ ਐਡ-ਆਨ"
 
 msgid "Create a Collection"
 msgstr "ਇੱਕ ਸੰਗ੍ਰਹਿ ਬਣਾਓ"
@@ -7656,9 +7656,6 @@ msgstr "ਨਵੇਂ ਐਡ-ਆਨ ਜਾਂ ਫ਼ਾਇਰਫ਼ਾਕਸ ਗੁਣ 
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਸਫ਼ਲਤਾਪੂਰਨ ਅੱਪਗਰੇਡ ਹੋਈ"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਸਫ਼ਲਤਾਪੂਰਨ ਅੱਪਗਰੇਡ ਹੋਇਆ"
-
 msgid "someone writes a review of my add-on"
 msgstr "ਕਿਸੇ ਨੇ ਮੇਰੇ ਐਡ-ਆਨ ਲਈ ਸਮੀਖਿਆ ਲਿਖੀ"
 
@@ -7667,9 +7664,6 @@ msgstr "ਐਡਆਨ ਡਿਵੈਲਪਰ (ਐਡਆਨ ਨਿਊਜ਼ਲੈ�
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "ਮੇਰੇ ਐਡ-ਆਨ ਦੀ ਅਨੁਕੂਲਤਾ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦੀ"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "ਮੇਰਾ sdk-ਅਧਾਰਿਤ ਐਡ-ਆਨ ਅੱਪਗਰੇਡ ਨਹੀਂ ਹੋ ਸਕਦਾ"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "ਮੇਰੇ ਐਡਆਨ ਦੀ ਸਮੀਖਿਅਕ ਵੱਲੋਂ ਸਮੀਖਿਆ ਹੋਈ"
@@ -7818,12 +7812,6 @@ msgstr "ਸਾਰੇ"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "ਲਾਗਇਨ ਵਾਸਤੇ Mozilla ਐਡ-ਆਨ Firefox ਖਾਤੇ ਵਿੱਚ ਤਬਦੀਲ ਹੋ ਗਿਆ ਹੈ। ਸਧਾਰਨ ਲਾਗਇਨ ਕਾਰਵਾਈ ਪੂਰੀ ਕਰਨ ਲਈ ਜਾਰੀ ਰੱਖੋ।"
-
-msgid "User Login"
-msgstr "ਉਪਭੋਗੀ ਲਾਗਇਨ"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox ਖਾਤਿਆਂ ਨਾਲ ਲੌਗਇਨ ਕਰੋ"
 
 msgid "Password Reset"
 msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ"

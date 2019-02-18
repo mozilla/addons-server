@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-09-20 11:28+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -851,9 +851,6 @@ msgstr "Списъци"
 msgid "Collections I've Made"
 msgstr "Списъци, които съм създал"
 
-msgid "My Favorite Add-ons"
-msgstr "Моите любими добавки"
-
 msgid "More&hellip;"
 msgstr "Още&hellip;"
 
@@ -1179,6 +1176,9 @@ msgstr "Списъкът е набор от сродни добавки, кой�
 #, python-format
 msgid "by %(author_link)s"
 msgstr "от %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Моите любими добавки"
 
 msgid "Create a Collection"
 msgstr "Създаване на списък"
@@ -7821,9 +7821,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7831,9 +7828,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -7984,12 +7978,6 @@ msgstr "всички"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr ""
-
-msgid "User Login"
-msgstr ""
-
-msgid "Log in with Firefox Accounts"
-msgstr "Вписване с Firefox Account"
 
 msgid "Password Reset"
 msgstr "Нулиране на парола"

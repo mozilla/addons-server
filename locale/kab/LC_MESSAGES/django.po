@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-02-10 21:31+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -846,9 +846,6 @@ msgstr "Tigrummiwin"
 msgid "Collections I've Made"
 msgstr "Tigrimmiwin i xedmeɣ"
 
-msgid "My Favorite Add-ons"
-msgstr "Izegrar inu inurifen"
-
 msgid "More&hellip;"
 msgstr "Ugar &hellip;"
 
@@ -1177,6 +1174,9 @@ msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen i yezmer yal yiwen ad
 #, python-format
 msgid "by %(author_link)s"
 msgstr "sγur %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Izegrar inu inurifen"
 
 msgid "Create a Collection"
 msgstr "Rnu tagrumma"
@@ -7867,9 +7867,6 @@ msgstr "izegrar neɣ timahilin timaynutin n Firefox llant"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "amṣda n uzegrir-inu yettwalqem akken iwata"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "amṣada n uzegrir inu s useqdec n sdk yettwalqem akken iwata"
-
 msgid "someone writes a review of my add-on"
 msgstr "yella win yuran acegger ɣef uzegrir inu"
 
@@ -7878,9 +7875,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "amṣada n uzegrir-inu ur yettwalqem ara"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "amṣada n uzegrir inu s useqdec n sdk ur yettwalqem ara"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "azegrir-inu yettucegger sɣuṛ yiwen n imcegger."
@@ -8029,12 +8023,6 @@ msgstr "akk"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Asmel n izegrar n Mozilla iseqdac akka tura imiḍanen Firefox di tuqqna. Kemmel akken ad fakeḍ akala n uleqqem."
-
-msgid "User Login"
-msgstr "Tuqqna n useqdac"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Qqen s umiḍan Firefox"
 
 msgid "Password Reset"
 msgstr "Awal uffir ittuwennez"

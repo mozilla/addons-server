@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -863,9 +863,6 @@ msgstr "Coleções"
 msgid "Collections I've Made"
 msgstr "Coleções que fiz"
 
-msgid "My Favorite Add-ons"
-msgstr "Os meus extras favoritos"
-
 msgid "More&hellip;"
 msgstr "Mais&hellip;"
 
@@ -1198,6 +1195,9 @@ msgstr "As coleções são grupos de extras relacionados que qualquer um pode cr
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "por %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Os meus extras favoritos"
 
 msgid "Create a Collection"
 msgstr "Criar uma coleção"
@@ -8032,9 +8032,6 @@ msgstr "estão disponíveis novos extras ou funcionalidades do Firefox"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "a compatibilidade do meu extra foi atualizada com sucesso"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
-
 msgid "someone writes a review of my add-on"
 msgstr "alguém escreveu um comentário sobre o meu extra"
 
@@ -8043,9 +8040,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu extra não pode ser atualizada"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8197,12 +8191,6 @@ msgid "all"
 msgstr "tudo"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "Nome de utilizador"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

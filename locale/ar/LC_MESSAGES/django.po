@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2017-10-11 01:08+0000\n"
 "Last-Translator: Hadi <h.alshakhori@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -917,9 +917,6 @@ msgstr "المجموعات"
 msgid "Collections I've Made"
 msgstr "المجموعات التي أنشأتها"
 
-msgid "My Favorite Add-ons"
-msgstr "إضافاتي المفضلة"
-
 msgid "More&hellip;"
 msgstr "المزيد&hellip;"
 
@@ -1263,6 +1260,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "بواسطة %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "إضافاتي المفضلة"
 
 msgid "Create a Collection"
 msgstr "إنشاء مجموعة"
@@ -8037,9 +8037,6 @@ msgstr "عندما تتوفر إضافات جديدة أو مميزات جديد
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "عندما تنجح ترقية توافقية إضافتي"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr "عندما يكتب شخصا ما تعليقا على إضافتي"
 
@@ -8048,9 +8045,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "عندما تتعذّر ترقية التوافقية لإضافتي"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8201,12 +8195,6 @@ msgid "all"
 msgstr "الكل"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "ولوج المستخدم"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

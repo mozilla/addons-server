@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -859,9 +859,6 @@ msgstr "Kolleksjes"
 msgid "Collections I've Made"
 msgstr "Myn kolleksjes"
 
-msgid "My Favorite Add-ons"
-msgstr "Myn favorite add-ons"
-
 msgid "More&hellip;"
 msgstr "Mear…"
 
@@ -1192,6 +1189,9 @@ msgstr "Kolleksjes binne groepen relatearre add-ons dy't elkenien meitsje en die
 #, python-format
 msgid "by %(author_link)s"
 msgstr "troch %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Myn favorite add-ons"
 
 msgid "Create a Collection"
 msgstr "In kolleksje meitsje"
@@ -7782,9 +7782,6 @@ msgstr "der binne nije add-ons of Firefox-funksjes beskikber"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "de komptabiliteit fan myn add-on is mei sukses bywurke"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "myn sdk-basearre add-on is mei sukses bywurku"
-
 msgid "someone writes a review of my add-on"
 msgstr "ien skriuwt in beoardieling oer myn add-on"
 
@@ -7793,9 +7790,6 @@ msgstr "bliuw by-de-tiid mei foar add-on-ûntwikkelers relevant nijs en evenemin
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "de komptabiliteit fan myn add-on kin net bywurke wurde"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "myn sdk-basearre add-on kin net bywurke wurde"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "myn add-on wurdt troch in beoardieler beoardiele"
@@ -7944,12 +7938,6 @@ msgstr "alles"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla Add-ons is foar oanmelding oergien op Firefox Accounts. Gean troch om it ienfâldige oanmeldingsproses te foltôgjen."
-
-msgid "User Login"
-msgstr "Brûker oanmelde"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Oanmelde mei Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "Wachtwurd opnij ynstelle"

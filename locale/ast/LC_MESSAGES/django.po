@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2018-09-24 01:47+0000\n"
 "Last-Translator: Enol <enolp@softastur.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -831,9 +831,6 @@ msgstr "Coleiciones"
 msgid "Collections I've Made"
 msgstr "Coleiciones que fici"
 
-msgid "My Favorite Add-ons"
-msgstr "Los mios complementos favoritos"
-
 msgid "More&hellip;"
 msgstr "Más&hellip;"
 
@@ -1156,6 +1153,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr ""
+
+msgid "My Favorite Add-ons"
+msgstr "Los mios complementos favoritos"
 
 msgid "Create a Collection"
 msgstr ""
@@ -7593,9 +7593,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7603,9 +7600,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -7752,12 +7746,6 @@ msgid "all"
 msgstr ""
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr ""
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

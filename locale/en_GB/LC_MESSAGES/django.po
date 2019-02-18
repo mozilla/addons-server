@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-18 15:23+0000\n"
 "PO-Revision-Date: 2019-01-15 17:04+0000\n"
 "Last-Translator: Flavoured Milk <tihsamikah@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -848,9 +848,6 @@ msgstr "Collections"
 msgid "Collections I've Made"
 msgstr "Collections I've Made"
 
-msgid "My Favorite Add-ons"
-msgstr "My Favourite Add-ons"
-
 msgid "More&hellip;"
 msgstr "More&hellip;"
 
@@ -1179,6 +1176,9 @@ msgstr "Collections are groups of related add-ons that anyone can create and sha
 #, python-format
 msgid "by %(author_link)s"
 msgstr "by %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "My Favourite Add-ons"
 
 msgid "Create a Collection"
 msgstr "Create a Collection"
@@ -7732,9 +7732,6 @@ msgstr "new add-ons or Firefox features are available"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "my add-on's compatibility is upgraded successfully"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "my sdk-based add-on is upgraded successfully"
-
 msgid "someone writes a review of my add-on"
 msgstr "someone writes a review of my add-on"
 
@@ -7743,9 +7740,6 @@ msgstr "stay up-to-date with news and events relevant to add-on developers (incl
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "my add-on's compatibility cannot be upgraded"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "my sdk-based add-on cannot be upgraded"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "my add-on is reviewed by a reviewer"
@@ -7894,12 +7888,6 @@ msgstr "all"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-
-msgid "User Login"
-msgstr "User Login"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Log in with Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "Password Reset"
