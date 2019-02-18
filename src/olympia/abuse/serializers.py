@@ -1,7 +1,9 @@
 from rest_framework import serializers
 
+from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.accounts.serializers import BaseUserSerializer
+from olympia.api.fields import ReverseChoiceField
 
 
 class BaseAbuseReportSerializer(serializers.ModelSerializer):
@@ -29,11 +31,30 @@ class BaseAbuseReportSerializer(serializers.ModelSerializer):
 
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     addon = serializers.SerializerMethodField()
+    reason = ReverseChoiceField(
+        choices=list(AbuseReport.REASON_CHOICES_API.items()), required=False)
+    application = ReverseChoiceField(
+        choices=list((v.id, k) for k, v in amo.APPS.items()), required=False)
 
     class Meta:
         model = AbuseReport
         fields = BaseAbuseReportSerializer.Meta.fields + (
             'addon',
+            'addon_install_entry_point',
+            'addon_install_method',
+            'addon_install_origin',
+            'addon_name',
+            'addon_signature',
+            'addon_summary',
+            'addon_version',
+            'application',
+            'application_locale',
+            'application_version',
+            'client_id',
+            'install_date',
+            'operating_system',
+            'operating_system_version',
+            'reason',
         )
 
     def to_internal_value(self, data):

@@ -18,7 +18,22 @@ class TestAddonAbuseReportSerializer(TestCase):
                           'addon': {'guid': addon.guid,
                                     'id': addon.id,
                                     'slug': addon.slug},
-                          'message': 'bad stuff'}
+                          'message': 'bad stuff',
+                          'addon_install_entry_point': None,
+                          'addon_install_method': None,
+                          'addon_install_origin': None,
+                          'addon_name': None,
+                          'addon_signature': None,
+                          'addon_summary': None,
+                          'addon_version': None,
+                          'application': 'firefox',
+                          'application_locale': None,
+                          'application_version': None,
+                          'client_id': None,
+                          'install_date': None,
+                          'operating_system': None,
+                          'operating_system_version': None,
+                          'reason': None}
 
     def test_guid_report(self):
         report = AbuseReport(guid='@guid', message='bad stuff')
@@ -27,7 +42,22 @@ class TestAddonAbuseReportSerializer(TestCase):
                           'addon': {'guid': '@guid',
                                     'id': None,
                                     'slug': None},
-                          'message': 'bad stuff'}
+                          'message': 'bad stuff',
+                          'addon_install_entry_point': None,
+                          'addon_install_method': None,
+                          'addon_install_origin': None,
+                          'addon_name': None,
+                          'addon_signature': None,
+                          'addon_summary': None,
+                          'addon_version': None,
+                          'application': 'firefox',
+                          'application_locale': None,
+                          'application_version': None,
+                          'client_id': None,
+                          'install_date': None,
+                          'operating_system': None,
+                          'operating_system_version': None,
+                          'reason': None}
 
 
 class TestUserAbuseReportSerializer(TestCase):
