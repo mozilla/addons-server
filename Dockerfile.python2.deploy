@@ -72,6 +72,10 @@ RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/syste
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_py2.txt         \
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
 
+# Link /usr/bin/uwsgi to /usr/local/bin/uwsgi, as that was the
+# previous location of the binary when installed by apt-get.
+RUN ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi
+
 # Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
 WORKDIR /usr/lib/uwsgi/plugins
 RUN uwsgi --build-plugin https://github.com/Datadog/uwsgi-dogstatsd && \
