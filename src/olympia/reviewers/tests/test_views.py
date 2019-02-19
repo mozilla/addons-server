@@ -1215,10 +1215,10 @@ class TestQueueBasics(QueueTest):
             expected)
 
     def test_grid_headers_sort_after_search(self):
-        params = dict(searching=['True'],
-                      text_query=['abc'],
-                      addon_type_ids=['2'],
-                      sort=['addon_type_id'])
+        params = {'searching': ['True'],
+                  'text_query': ['abc'],
+                  'addon_type_ids': ['2'],
+                  'sort': ['addon_type_id']}
         response = self.client.get(self.url, params)
         assert response.status_code == 200
         tr = pq(response.content)('#addon-queue tr')
@@ -4472,6 +4472,19 @@ class TestReviewPending(ReviewBase):
         assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
 
         assert mock_sign.called
+
+    @override_settings(ENABLE_ADDON_SIGNING=True)
+    def test_pending_to_public_search(self):
+        # sign_file() is *not* mocked here. We shouldn't need to, it should
+        # just avoid signing search plugins silently.
+        self.version.files.all().update(is_webextension=False)
+        self.addon.update(type=amo.ADDON_SEARCH)
+        response = self.client.post(self.url, self.pending_dict())
+        self.assert3xx(response, reverse('reviewers.queue_pending'))
+        assert self.get_addon().status == amo.STATUS_PUBLIC
+        statuses = (self.version.files.values_list('status', flat=True)
+                    .order_by('status'))
+        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
 
     def test_display_only_unreviewed_files(self):
         """Only the currently unreviewed files are displayed."""

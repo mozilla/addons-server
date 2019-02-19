@@ -3,6 +3,7 @@
 For different add-on and file statuses, test reviewing them, and make sure then
 end up in the correct state.
 """
+import mock
 import pytest
 
 from olympia import amo
@@ -35,6 +36,7 @@ def addon_with_files(db):
     return addon
 
 
+@mock.patch('olympia.reviewers.utils.sign_file', lambda f: None)
 @pytest.mark.parametrize(
     'review_action,addon_status,file_status,review_class,review_type,'
     'final_addon_status,final_file_status',
