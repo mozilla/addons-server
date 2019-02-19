@@ -16,8 +16,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, Category
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import (
-    TestCase, addon_factory, formset, initial, req_factory_factory)
+from olympia.amo.tests import TestCase, formset, initial, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
@@ -25,7 +24,6 @@ from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.forms import DescribeForm
-from olympia.devhub.views import edit_theme
 from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.cache import memoize_key
 from olympia.tags.models import AddonTag, Tag
