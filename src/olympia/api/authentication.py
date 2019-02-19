@@ -2,7 +2,7 @@ from django.conf import settings
 from django.contrib.auth.signals import user_logged_in
 from django.core import signing
 from django.utils.crypto import constant_time_compare
-from django.utils.encoding import smart_text
+from django.utils.encoding import smart_text, force_text
 from django.utils.translation import ugettext
 
 import jwt
@@ -89,7 +89,7 @@ class WebTokenAuthentication(BaseAuthentication):
     def authenticate_token(self, token):
         try:
             payload = signing.loads(
-                token, salt=self.salt,
+                force_text(token), salt=self.salt,
                 max_age=settings.SESSION_COOKIE_AGE or None)
         except signing.SignatureExpired:
             msg = {
