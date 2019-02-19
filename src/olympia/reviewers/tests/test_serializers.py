@@ -113,13 +113,13 @@ class TestFileEntriesSerializer(TestCase):
         files = [
             'foo.rdf', 'foo.xml', 'foo.js', 'foo.py' 'foo.html', 'foo.txt',
             'foo.dtd', 'foo.xul', 'foo.sh', 'foo.properties', 'foo.json',
-            'foo.src', 'CHANGELOG']
+            'foo.src', 'CHANGELOG', 'foo.png', 'foo.gif']
 
         for fname in files:
             mime, encoding = mimetypes.guess_type(fname)
             assert not serializer.is_binary(fname, mime, b'')
 
-        for fname in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
+        for fname in ['foo.exe', 'foo.swf']:
             mime, encoding = mimetypes.guess_type(fname)
             assert serializer.is_binary(fname, mime, b'')
 
