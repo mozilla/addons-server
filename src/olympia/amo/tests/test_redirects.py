@@ -30,13 +30,6 @@ class TestRedirects(TestCase):
         redirect = response.redirect_chain[-1][0]
         assert redirect.endswith('/en-US/firefox/addon/5326/')
 
-    def test_utf8(self):
-        """Without proper unicode handling this will fail."""
-        response = self.client.get(u'/api/1.5/search/ツールバー',
-                                   follow=True)
-        # Sphinx will be off so let's just test that it redirects.
-        assert response.redirect_chain[0][1] == 302
-
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)
         self.assert3xx(response, '/en-US/firefox/addon/a4/reviews/',

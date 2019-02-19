@@ -49,6 +49,8 @@ from html5lib.serializer import HTMLSerializer
 from PIL import Image
 from rest_framework.utils.encoders import JSONEncoder
 
+from django.db.transaction import non_atomic_requests
+
 from olympia.core.logger import getLogger
 from olympia.amo import ADDON_ICON_SIZES, search
 from olympia.amo.pagination import ESPaginator
@@ -69,6 +71,36 @@ def render(request, template, ctx=None, status=None, content_type=None):
 
 def from_string(string):
     return engines['jinja2'].from_string(string)
+
+
+def render_xml_to_string(request, template, context=None):
+    from olympia.amo.templatetags.jinja_helpers import strip_controls
+
+    if context is None:
+        context = {}
+
+    xml_env = engines['jinja2'].env.overlay()
+    old_finalize = xml_env.finalize
+    xml_env.finalize = lambda x: strip_controls(old_finalize(x))
+
+    for processor in engines['jinja2'].context_processors:
+        context.update(processor(request))
+
+    template = xml_env.get_template(template)
+    return template.render(context)
+
+
+@non_atomic_requests
+def render_xml(request, template, context=None, **kwargs):
+    """Safely renders xml, stripping out nasty control characters."""
+    if context is None:
+        context = {}
+    rendered = render_xml_to_string(request, template, context)
+
+    if 'content_type' not in kwargs:
+        kwargs['content_type'] = 'text/xml'
+
+    return HttpResponse(rendered, **kwargs)
 
 
 def days_ago(n):

@@ -11,8 +11,6 @@ edit_urls = [
 
 detail_urls = [
     url(r'^$', views.collection_detail, name='collections.detail'),
-    url(r'^format:json$', views.collection_detail_json,
-        name='collections.detail.json'),
     url(r'^edit/', include(edit_urls)),
     url(r'^delete$', views.delete, name='collections.delete'),
     url(r'^(?P<action>add|remove)$', views.collection_alter,
