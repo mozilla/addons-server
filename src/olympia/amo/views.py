@@ -13,7 +13,7 @@ import six
 from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
 
-from olympia import amo, legacy_api
+from olympia import amo
 from olympia.amo.utils import render
 
 from . import monitors
@@ -68,11 +68,7 @@ def contribute(request):
 
 @non_atomic_requests
 def handler403(request, **kwargs):
-    if request.is_legacy_api:
-        # Pass over to handler403 view in api if api was targeted.
-        return legacy_api.views.handler403(request)
-    else:
-        return render(request, 'amo/403.html', status=403)
+    return render(request, 'amo/403.html', status=403)
 
 
 @non_atomic_requests
@@ -81,9 +77,6 @@ def handler404(request, **kwargs):
         # It's a v3+ api request
         return JsonResponse(
             {'detail': six.text_type(NotFound.default_detail)}, status=404)
-    elif request.is_legacy_api:
-        # It's a legacy api request - pass over to legacy api handler404.
-        return legacy_api.views.handler404(request)
     # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
     # a mobile User Agent or when the mamo cookie is present.
     if request.META.get('X_IS_MOBILE_AGENTS') == '1':
@@ -94,11 +87,7 @@ def handler404(request, **kwargs):
 
 @non_atomic_requests
 def handler500(request, **kwargs):
-    if getattr(request, 'is_legacy_api', False):
-        # Pass over to handler500 view in api if api was targeted.
-        return legacy_api.views.handler500(request)
-    else:
-        return render(request, 'amo/500.html', status=500)
+    return render(request, 'amo/500.html', status=500)
 
 
 @non_atomic_requests

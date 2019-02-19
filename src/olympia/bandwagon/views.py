@@ -24,13 +24,12 @@ from olympia.addons.models import Addon
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages
 from olympia.amo.decorators import (
-    allow_mine, json_view, login_required, post_required, use_primary_db)
+    allow_mine, login_required, post_required, use_primary_db)
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render, urlparams
 from olympia.api.filters import OrderingAliasFilter
 from olympia.api.permissions import (
     AllOf, AllowReadOnlyIfPublic, AnyOf, PreventActionPermission)
-from olympia.legacy_api.utils import addon_to_dict
 from olympia.translations.query import order_by_translation
 from olympia.users.decorators import process_user_id
 from olympia.users.models import UserProfile
@@ -192,24 +191,6 @@ def collection_detail(request, user_id, slug):
                       {'collection': collection, 'filter': filter,
                        'addons': addons, 'notes': notes,
                        'user_perms': user_perms})
-
-
-@json_view(has_trans=True)
-@allow_mine
-@process_user_id
-@non_atomic_requests
-def collection_detail_json(request, user_id, slug):
-    collection = get_collection(request, user_id, slug)
-    if not (collection.listed or acl.check_collection_ownership(
-            request, collection)):
-        raise PermissionDenied
-    # We evaluate the QuerySet with `list` to work around bug 866454.
-    addons_dict = [addon_to_dict(a) for a in list(collection.addons.valid())]
-    return {
-        'name': collection.name,
-        'url': collection.get_abs_url(),
-        'addons': addons_dict
-    }
 
 
 def get_notes(collection, raw=False):

@@ -701,19 +701,13 @@ class TestRankingScenarios(ESTestCase):
         ))
 
     def test_scenario_grapple(self):
-        """Making sure this scenario works via the API,
-
-        see `legacy_api.SearchTest` for various examples.
-        """
+        """Making sure this scenario works via the API"""
         self._check_scenario('grapple', (
             ['GrApple Yummy', 0.69091946],
         ))
 
     def test_scenario_delicious(self):
-        """Making sure this scenario works via the API,
-
-        see `legacy_api.SearchTest` for various examples.
-        """
+        """Making sure this scenario works via the API"""
         self._check_scenario('delicious', (
             ['Delicious Bookmarks', 0.8113203],
         ))

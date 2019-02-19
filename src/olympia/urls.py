@@ -81,9 +81,6 @@ urlpatterns = [
         cache_page(60 * 60 * 24 * 365)(JavaScriptCatalog.as_view()),
         {'domain': 'djangojs', 'packages': []}, name='jsi18n'),
 
-    # SAMO (Legacy API)
-    url(r'^api/', include('olympia.legacy_api.urls')),
-
     # API v3+.
     url(r'^api/', include('olympia.api.urls')),
 
