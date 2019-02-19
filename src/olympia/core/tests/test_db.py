@@ -11,6 +11,15 @@ class TestUtf8mb4Support(TestCase):
 
         assert TestRegularCharField.objects.get().name == 'a' * 255
 
+        TestRegularCharField.objects.all().delete()
+
+        # This still works, mysql reserves 4 bytes per character
+        # which this perfectly matches
+        TestRegularCharField.objects.create(name=u'🔍' * 255)
+
+        assert TestRegularCharField.objects.get().name == u'🔍' * 255
+
+        # Now, the red heart emoji is 6 bytes long though...
         TestRegularCharField.objects.create(name=u'❤️' * 255)
 
         assert TestRegularCharField.objects.get().name == u'❤️' * 255
