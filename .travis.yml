@@ -27,6 +27,7 @@ jobs:
     - { python: 3.6, env: TOXENV=accounts-users-and-ratings }
     - { python: 3.6, env: TOXENV=main }
     - { python: 3.6, env: TOXENV=amo-lib-locales-and-signing }
+    - { python: 3.6, env: TOXENV=assets DJANGO=django22 }
 
 env:
   global:
