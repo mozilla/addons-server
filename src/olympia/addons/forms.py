@@ -8,7 +8,6 @@ from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 
-import six
 import waffle
 from six.moves.urllib_parse import urlsplit
 
@@ -16,7 +15,6 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.activity.models import ActivityLog
 from olympia.addons import tasks as addons_tasks
 from olympia.addons.models import (
     Addon, AddonCategory, Category, DeniedSlug, Persona)
@@ -36,8 +34,6 @@ from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation
-from olympia.translations.utils import transfield_changed
-from olympia.users.models import UserEmailField
 from olympia.versions.models import Version
 
 
@@ -524,187 +520,3 @@ class ThemeForm(ThemeFormBase):
         AddonCategory(addon=addon, category=data['category']).save()
 
         return addon
-
-
-class EditThemeForm(AddonFormBase):
-    name = TransField(max_length=50, label=_('Give Your Theme a Name.'))
-    slug = forms.CharField(max_length=30)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                      widget=forms.widgets.RadioSelect)
-    description = TransField(
-        widget=TransTextarea(attrs={'rows': 4}),
-        max_length=500, required=False, label=_('Describe your Theme.'))
-    tags = forms.CharField(required=False)
-    accentcolor = ColorField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'color-picker'}),
-    )
-    textcolor = ColorField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'color-picker'}),
-    )
-    license = forms.TypedChoiceField(
-        choices=amo.PERSONA_LICENSES_CHOICES, coerce=int, empty_value=None,
-        widget=forms.HiddenInput,
-        error_messages={'required': _(u'A license must be selected.')})
-
-    # Theme re-upload.
-    header = forms.FileField(required=False)
-    header_hash = forms.CharField(widget=forms.HiddenInput, required=False)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'description', 'tags')
-
-    def __init__(self, *args, **kw):
-        self.request = kw.pop('request')
-
-        super(AddonFormBase, self).__init__(*args, **kw)
-
-        addon = Addon.objects.get(id=self.instance.id)
-        persona = addon.persona
-
-        # Allow theme artists to localize Name and Description.
-        for trans in Translation.objects.filter(id=self.initial['name']):
-            self.initial['name_' + trans.locale.lower()] = trans
-        for trans in Translation.objects.filter(
-                id=self.initial['description']):
-            self.initial['description_' + trans.locale.lower()] = trans
-
-        self.old_tags = self.get_tags(addon)
-        self.initial['tags'] = ', '.join(self.old_tags)
-        if persona.accentcolor:
-            self.initial['accentcolor'] = '#' + persona.accentcolor
-        if persona.textcolor:
-            self.initial['textcolor'] = '#' + persona.textcolor
-        self.initial['license'] = persona.license
-
-        cats = sorted(Category.objects.filter(type=amo.ADDON_PERSONA,
-                                              weight__gte=0),
-                      key=lambda x: x.name)
-        self.fields['category'].choices = [(c.id, c.name) for c in cats]
-        try:
-            self.initial['category'] = addon.categories.values_list(
-                'id', flat=True)[0]
-        except IndexError:
-            pass
-
-        for field in ('header', ):
-            self.fields[field].widget.attrs = {
-                'data-upload-url': reverse('devhub.personas.reupload_persona',
-                                           args=[addon.slug,
-                                                 'persona_%s' % field]),
-                'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES
-            }
-
-    def clean_slug(self):
-        return clean_addon_slug(self.cleaned_data['slug'], self.instance)
-
-    def save(self):
-        addon = self.instance
-        persona = addon.persona
-        data = self.cleaned_data
-
-        # Update Persona-specific data.
-        persona_data = {
-            'license': int(data['license']),
-            'accentcolor': data['accentcolor'].lstrip('#'),
-            'textcolor': data['textcolor'].lstrip('#'),
-            'author': self.request.user.username,
-            'display_username': self.request.user.name
-        }
-        changed = False
-        for k, v in six.iteritems(persona_data):
-            if v != getattr(persona, k):
-                changed = True
-                setattr(persona, k, v)
-        if changed:
-            persona.save()
-
-        if self.changed_data:
-            ActivityLog.create(amo.LOG.EDIT_PROPERTIES, addon)
-        self.instance.modified = datetime.now()
-
-        # Update Addon-specific data.
-        changed = (
-            set(self.old_tags) != data['tags'] or  # Check if tags changed.
-            self.initial['slug'] != data['slug'] or  # Check if slug changed.
-            transfield_changed('description', self.initial, data) or
-            transfield_changed('name', self.initial, data))
-        if changed:
-            # Only save if addon data changed.
-            super(EditThemeForm, self).save()
-
-        # Update tags.
-        tags_new = data['tags']
-        tags_old = [slugify(t, spaces=True) for t in self.old_tags]
-        # Add new tags.
-        for t in set(tags_new) - set(tags_old):
-            Tag(tag_text=t).save_tag(addon)
-        # Remove old tags.
-        for t in set(tags_old) - set(tags_new):
-            Tag(tag_text=t).remove_tag(addon)
-
-        # Update category.
-        if data['category'].id != self.initial['category']:
-            addon_cat = addon.addoncategory_set.all()[0]
-            addon_cat.category = data['category']
-            addon_cat.save()
-
-        # Theme reupload.
-        if not addon.is_pending():
-            if data['header_hash']:
-                addons_tasks.save_theme_reupload.delay(
-                    data['header_hash'], addon.pk)
-
-        return data
-
-
-class EditThemeOwnerForm(forms.Form):
-    owner = UserEmailField()
-
-    def __init__(self, *args, **kw):
-        self.instance = kw.pop('instance')
-
-        super(EditThemeOwnerForm, self).__init__(*args, **kw)
-
-        addon = self.instance
-
-        self.fields['owner'].widget.attrs['placeholder'] = _(
-            "Enter a new author's email address")
-
-        try:
-            self.instance_addonuser = addon.addonuser_set.all()[0]
-            self.initial['owner'] = self.instance_addonuser.user.email
-        except IndexError:
-            # If there was never an author before, then don't require one now.
-            self.instance_addonuser = None
-            self.fields['owner'].required = False
-
-    def save(self):
-        data = self.cleaned_data
-
-        if data.get('owner'):
-            changed = (not self.instance_addonuser or
-                       self.instance_addonuser != data['owner'])
-            if changed:
-                # Update Persona-specific data.
-                persona = self.instance.persona
-                persona.author = data['owner'].username
-                persona.display_username = data['owner'].name
-                persona.save()
-
-            if not self.instance_addonuser:
-                # If there previously never another owner, create one.
-                self.instance.addonuser_set.create(user=data['owner'],
-                                                   role=amo.AUTHOR_ROLE_OWNER)
-            elif self.instance_addonuser != data['owner']:
-                # If the owner has changed, update the `AddonUser` object.
-                self.instance_addonuser.user = data['owner']
-                self.instance_addonuser.role = amo.AUTHOR_ROLE_OWNER
-                self.instance_addonuser.save()
-
-            self.instance.modified = datetime.now()
-            self.instance.save()
-
-        return data

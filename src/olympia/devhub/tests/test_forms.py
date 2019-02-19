@@ -16,7 +16,7 @@ from PIL import Image
 from waffle.testutils import override_switch
 
 from olympia import amo
-from olympia.addons.forms import EditThemeForm, EditThemeOwnerForm, ThemeForm
+from olympia.addons.forms import ThemeForm
 from olympia.addons.models import Addon, Category, Persona
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.tests import TestCase, req_factory_factory
@@ -25,8 +25,6 @@ from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
-from olympia.reviewers.models import RereviewQueueTheme
-from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 from olympia.versions.models import License
 
@@ -334,237 +332,223 @@ class TestPreviewForm(TestCase):
             preview.image_path)
 
 
-class TestEditThemeForm(TestCase):
+class TestThemeForm(TestCase):
     fixtures = ['base/user_2519']
 
     def setUp(self):
-        super(TestEditThemeForm, self).setUp()
+        super(TestThemeForm, self).setUp()
         self.populate()
         self.request = mock.Mock()
         self.request.user = mock.Mock()
         self.request.user.groups_list = []
-        self.request.user.username = 'swagyismymiddlename'
-        self.request.user.name = 'Sir Swag A Lot'
         self.request.user.is_authenticated = True
 
     def populate(self):
-        self.instance = Addon.objects.create(
-            type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC,
-            slug='swag-overload', name='Bands Make Me Dance',
-            description='tha description')
-        self.cat = Category.objects.create(type=amo.ADDON_PERSONA)
-        self.instance.addoncategory_set.create(category=self.cat)
-        self.license = amo.LICENSE_CC_BY.id
-        self.theme = Persona.objects.create(
-            persona_id=0, addon_id=self.instance.id, license=self.license,
-            accentcolor='C0FFEE', textcolor='EFFFFF')
-        Tag(tag_text='sw').save_tag(self.instance)
-        Tag(tag_text='ag').save_tag(self.instance)
+        self.cat = Category.objects.create(
+            application=amo.FIREFOX.id, type=amo.ADDON_PERSONA)
+        License.objects.create(id=amo.LICENSE_CC_BY.id)
 
     def get_dict(self, **kw):
         data = {
-            'accentcolor': '#C0FFEE',
+            'name': 'new name',
+            'slug': 'special-slug',
             'category': self.cat.id,
-            'license': self.license,
-            'slug': self.instance.slug,
-            'tags': 'ag, sw',
-            'textcolor': '#EFFFFF',
-
-            'name_en-us': six.text_type(self.instance.name),
-            'description_en-us': six.text_type(self.instance.description),
+            'accentcolor': '#003366',
+            'textcolor': '#C0FFEE',
+            'description': 'new description',
+            'tags': 'tag1, tag2, tag3',
+            'license': amo.LICENSE_CC_BY.id,
+            'agreed': True,
+            'header_hash': 'b4ll1n'
         }
         data.update(**kw)
         return data
 
-    def test_initial(self):
-        self.form = EditThemeForm(None, request=self.request,
-                                  instance=self.instance)
+    def post(self, **kw):
+        self.form = ThemeForm(self.get_dict(**kw), request=self.request)
+        return self.form
 
-        # Compare form initial data with post data.
-        eq_data = self.get_dict()
-        for k in [k for k in self.form.initial.keys()
-                  if k not in ['name', 'description']]:
-            assert self.form.initial[k] == eq_data[k]
+    def test_name_required(self):
+        self.post(name=u'')
+        assert not self.form.is_valid()
+        assert self.form.errors == {'name': ['This field is required.']}
 
-    def save_success(self):
-        other_cat = Category.objects.create(type=amo.ADDON_PERSONA)
-        self.data = {
-            'accentcolor': '#EFF0FF',
-            'category': other_cat.id,
-            'license': amo.LICENSE_CC_BY_NC_SA.id,
-            'slug': 'swag-lifestyle',
-            'tags': 'ag',
-            'textcolor': '#CACACA',
+    def test_name_length(self):
+        self.post(name=u'a' * 51)
+        assert not self.form.is_valid()
+        assert self.form.errors == {
+            'name': ['Ensure this value has at most '
+                     '50 characters (it has 51).']}
 
-            'name_en-us': 'All Day I Dream About Swag',
-            'description_en-us': 'ADIDAS',
-        }
-        self.form = EditThemeForm(self.data, request=self.request,
-                                  instance=self.instance)
+    def test_slug_unique(self):
+        # A theme cannot share the same slug as another theme's.
+        Addon.objects.create(type=amo.ADDON_PERSONA, slug='harry-potter')
+        for slug in ('Harry-Potter', '  harry-potter  ', 'harry-potter'):
+            self.post(slug=slug)
+            assert not self.form.is_valid()
+            assert self.form.errors == {
+                'slug': ['This slug is already in use. '
+                         'Please choose another.']}
 
-        # Compare form initial data with post data.
-        eq_data = self.get_dict()
-        for k in [k for k in self.form.initial.keys()
-                  if k not in ['name', 'description']]:
-            assert self.form.initial[k] == eq_data[k]
+    def test_slug_required(self):
+        self.post(slug='')
+        assert not self.form.is_valid()
+        assert self.form.errors == {'slug': ['This field is required.']}
 
-        assert self.form.data == self.data
+    def test_slug_length(self):
+        self.post(slug='a' * 31)
+        assert not self.form.is_valid()
+        assert self.form.errors == {
+            'slug': ['Ensure this value has at most 30 characters '
+                     '(it has 31).']}
+
+    def test_description_optional(self):
+        self.post(description='')
+        assert self.form.is_valid()
+
+    def test_description_length(self):
+        self.post(description='a' * 501)
+        assert not self.form.is_valid()
+        assert self.form.errors == (
+            {'description': ['Ensure this value has at most '
+                             '500 characters (it has 501).']})
+
+    def test_categories_required(self):
+        self.post(category='')
+        assert not self.form.is_valid()
+        assert self.form.errors == {'category': ['This field is required.']}
+
+    def test_license_required(self):
+        self.post(license='')
+        assert not self.form.is_valid()
+        assert self.form.errors == {'license': ['A license must be selected.']}
+
+    def test_header_hash_required(self):
+        self.post(header_hash='')
+        assert not self.form.is_valid()
+        assert self.form.errors == {'header_hash': ['This field is required.']}
+
+    def test_accentcolor_optional(self):
+        self.post(accentcolor='')
+        assert self.form.is_valid()
+
+    def test_accentcolor_invalid(self):
+        self.post(accentcolor='#BALLIN')
+        assert not self.form.is_valid()
+        assert self.form.errors == (
+            {'accentcolor': ['This must be a valid hex color code, '
+                             'such as #000000.']})
+
+    def test_textcolor_optional(self):
+        self.post(textcolor='')
         assert self.form.is_valid(), self.form.errors
-        self.form.save()
 
-    def test_success(self):
-        self.save_success()
-        self.instance = self.instance.reload()
-        assert six.text_type(self.instance.persona.accentcolor) == (
-            self.data['accentcolor'].lstrip('#'))
-        assert self.instance.categories.all()[0].id == self.data['category']
-        assert self.instance.persona.license == self.data['license']
-        assert six.text_type(self.instance.name) == self.data['name_en-us']
-        assert six.text_type(self.instance.description) == (
-            self.data['description_en-us'])
-        self.assertSetEqual(
-            set(self.instance.tags.values_list('tag_text', flat=True)),
-            {self.data['tags']})
-        assert six.text_type(self.instance.persona.textcolor) == (
-            self.data['textcolor'].lstrip('#'))
+    def test_textcolor_invalid(self):
+        self.post(textcolor='#BALLIN')
+        assert not self.form.is_valid()
+        assert self.form.errors == (
+            {'textcolor': ['This must be a valid hex color code, '
+                           'such as #000000.']})
 
-    def test_success_twice(self):
-        """Form should be just fine when POSTing twice."""
-        self.save_success()
-        self.form.save()
+    def get_img_urls(self):
+        return reverse('devhub.personas.upload_persona',
+                       args=['persona_header'])
 
-    def test_localize_name_description(self):
-        data = self.get_dict(name_de='name_de',
-                             description_de='description_de')
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-        assert self.form.is_valid(), self.form.errors
-        self.form.save()
+    def test_img_attrs(self):
+        header_url = self.get_img_urls()
+
+        self.post()
+        assert self.form.fields['header'].widget.attrs == (
+            {'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES,
+             'data-upload-url': header_url})
 
     @mock.patch('olympia.addons.tasks.make_checksum')
     @mock.patch('olympia.addons.tasks.create_persona_preview_images')
     @mock.patch('olympia.addons.tasks.save_persona_image')
-    def test_reupload(self, save_persona_image_mock,
-                      create_persona_preview_images_mock,
-                      make_checksum_mock):
-        make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
-        data = self.get_dict(header_hash='y0l0')
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-        assert self.form.is_valid()
+    @pytest.mark.skipif(not hasattr(Image.core, 'jpeg_encoder'),
+                        reason='Not having a jpeg encoder makes test sad')
+    def test_success(self, save_persona_image_mock,
+                     create_persona_preview_images_mock, make_checksum_mock):
+        make_checksum_mock.return_value = 'hashyourselfbeforeyoucrashyourself'
+
+        self.request.user = UserProfile.objects.get(pk=2519)
+
+        data = self.get_dict()
+        header_url = self.get_img_urls()
+
+        # Upload header image.
+        img = open(get_image_path('persona-header.jpg'), 'rb')
+        r_ajax = self.client.post(header_url, {'upload_image': img})
+        content = json.loads(force_text(r_ajax.content))
+        data.update(header_hash=content['upload_hash'])
+
+        # Populate and save form.
+        self.post()
+        assert self.form.is_valid(), self.form.errors
         self.form.save()
 
-        dst = os.path.join(user_media_path('addons'), str(self.instance.id))
+        addon = Addon.objects.filter(type=amo.ADDON_PERSONA).order_by('-id')[0]
+        persona = addon.persona
+
+        # Test for correct Addon and Persona values.
+        assert six.text_type(addon.name) == data['name']
+        assert addon.slug == data['slug']
+        self.assertSetEqual(set(addon.categories.values_list('id', flat=True)),
+                            {self.cat.id})
+        self.assertSetEqual(set(addon.tags.values_list('tag_text', flat=True)),
+                            set(data['tags'].split(', ')))
+        assert persona.persona_id == 0
+        assert persona.license == data['license']
+        assert persona.accentcolor == data['accentcolor'].lstrip('#')
+        assert persona.textcolor == data['textcolor'].lstrip('#')
+        assert persona.author == self.request.user.username
+        assert persona.display_username == self.request.user.name
+        assert not persona.dupe_persona
+
+        v = addon.versions.all()
+        assert len(v) == 1
+        assert v[0].version == '0'
+
+        # Test for header and preview images.
+        dst = os.path.join(user_media_path('addons'), str(addon.id))
+
         header_src = os.path.join(settings.TMP_PATH, 'persona_header',
-                                  u'y0l0')
+                                  u'b4ll1n')
 
         assert save_persona_image_mock.mock_calls == (
             [mock.call(src=header_src,
-                       full_dst=os.path.join(dst, 'pending_header.png'))])
+                       full_dst=os.path.join(dst, 'header.png'))])
 
-        rqt = RereviewQueueTheme.objects.filter(theme=self.instance.persona)
-        assert rqt.count() == 1
-        assert rqt[0].header == 'pending_header.png'
-        assert not rqt[0].dupe_persona
+        create_persona_preview_images_mock.assert_called_with(
+            src=header_src,
+            full_dst=[os.path.join(dst, 'preview.png'),
+                      os.path.join(dst, 'icon.png')],
+            set_modified_on=addon.serializable_reference())
 
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images',
-                new=mock.Mock)
-    @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
+    @mock.patch('olympia.addons.tasks.create_persona_preview_images')
+    @mock.patch('olympia.addons.tasks.save_persona_image')
     @mock.patch('olympia.addons.tasks.make_checksum')
-    def test_reupload_duplicate(self, make_checksum_mock):
-        make_checksum_mock.return_value = 'checksumbeforeyouwrecksome'
-
-        theme = amo.tests.addon_factory(type=amo.ADDON_PERSONA)
-        theme.persona.checksum = 'checksumbeforeyouwrecksome'
-        theme.persona.save()
-
-        data = self.get_dict(header_hash='head')
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-        assert self.form.is_valid()
-        self.form.save()
-
-        rqt = RereviewQueueTheme.objects.get(theme=self.instance.persona)
-        assert rqt.dupe_persona == theme.persona
-
-    @mock.patch('olympia.addons.tasks.make_checksum')
-    @mock.patch('olympia.addons.tasks.create_persona_preview_images',
-                new=mock.Mock)
-    @mock.patch('olympia.addons.tasks.save_persona_image', new=mock.Mock)
-    def test_reupload_legacy_header_only(self, make_checksum_mock):
+    def test_dupe_persona(self, make_checksum_mock, mock1, mock2):
         """
-        STR the bug this test fixes:
-
-        - Reupload a legacy theme (/w footer == leg.png) legacy, header only.
-        - The header would get saved as 'pending_header.png'.
-        - The footer would get saved as 'footer.png'.
-        - On approving, it would see 'footer.png' !== 'leg.png'
-        - It run move_stored_file('footer.png', 'leg.png').
-        - But footer.png does not exist. BAM BUG.
-
-        Footer has been removed in Issue #5379
-        https://github.com/mozilla/addons-server/issues/5379
+        Submitting persona with checksum already in db should be marked
+        duplicate.
         """
-        make_checksum_mock.return_value = 'comechecksome'
+        make_checksum_mock.return_value = 'cornhash'
 
-        self.theme.header = 'Legacy-header3H.png'
-        self.theme.save()
+        self.request.user = UserProfile.objects.get(pk=2519)
 
-        data = self.get_dict(header_hash='arthro')
-        self.form = EditThemeForm(data, request=self.request,
-                                  instance=self.instance)
-        assert self.form.is_valid()
-        self.form.save()
-
-        rqt = RereviewQueueTheme.objects.get()
-        assert rqt.header == 'pending_header.png'
-
-
-class TestEditThemeOwnerForm(TestCase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestEditThemeOwnerForm, self).setUp()
-        self.instance = Addon.objects.create(
-            type=amo.ADDON_PERSONA,
-            status=amo.STATUS_PUBLIC, slug='swag-overload',
-            name='Bands Make Me Dance', description='tha description')
-        Persona.objects.create(
-            persona_id=0, addon_id=self.instance.id,
-            license=amo.LICENSE_CC_BY.id, accentcolor='C0FFEE',
-            textcolor='EFFFFF')
-
-    def test_initial(self):
-        self.form = EditThemeOwnerForm(None, instance=self.instance)
-        assert self.form.initial == {}
-
-        self.instance.addonuser_set.create(user_id=999)
-        assert self.instance.addonuser_set.all()[0].user.email == (
-            'regular@mozilla.com')
-        self.form = EditThemeOwnerForm(None, instance=self.instance)
-        assert self.form.initial == {'owner': 'regular@mozilla.com'}
-
-    def test_success_change_from_no_owner(self):
-        self.form = EditThemeOwnerForm({'owner': 'regular@mozilla.com'},
-                                       instance=self.instance)
+        self.post()
         assert self.form.is_valid(), self.form.errors
         self.form.save()
-        assert self.instance.addonuser_set.all()[0].user.email == (
-            'regular@mozilla.com')
 
-    def test_success_replace_owner(self):
-        self.instance.addonuser_set.create(user_id=999)
-        self.form = EditThemeOwnerForm({'owner': 'regular@mozilla.com'},
-                                       instance=self.instance)
+        self.post(name='whatsinaname', slug='metalslug')
         assert self.form.is_valid(), self.form.errors
         self.form.save()
-        assert self.instance.addonuser_set.all()[0].user.email == (
-            'regular@mozilla.com')
 
-    def test_error_invalid_user(self):
-        self.form = EditThemeOwnerForm({'owner': 'omg@org.yes'},
-                                       instance=self.instance)
-        assert not self.form.is_valid()
+        personas = Persona.objects.order_by('addon__name')
+        assert personas[0].checksum == personas[1].checksum
+        assert personas[1].dupe_persona == personas[0]
+        assert personas[0].dupe_persona is None
 
 
 class TestDistributionChoiceForm(TestCase):
