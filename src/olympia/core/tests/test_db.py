@@ -1,25 +1,15 @@
-from olympia.amo.tests import TestCase
+import pytest
 
 from olympia.core.tests.db_tests_testapp.models import TestRegularCharField
 
 
-class TestUtf8mb4Support(TestCase):
-    """Utf8mb4 encoding related tests."""
+@pytest.mark.django_db
+@pytest.mark.parametrize('value', [
+    'a',
+    '🔍',  # \U0001f50d
+    '❤',  # Regular red heart emoji (\u27640)
+])
+def test_max_length_utf8mb4(value):
+    TestRegularCharField.objects.create(name=value * 255)
 
-    def test_max_length(self):
-        TestRegularCharField.objects.create(name='a' * 255)
-
-        assert TestRegularCharField.objects.get().name == 'a' * 255
-
-        TestRegularCharField.objects.all().delete()
-
-        # This still works, mysql reserves 4 bytes per character
-        # which this perfectly matches
-        TestRegularCharField.objects.create(name=u'🔍' * 255)
-
-        assert TestRegularCharField.objects.get().name == u'🔍' * 255
-
-        # Now, the red heart emoji is 6 bytes long though...
-        TestRegularCharField.objects.create(name=u'❤️' * 255)
-
-        assert TestRegularCharField.objects.get().name == u'❤️' * 255
+    assert TestRegularCharField.objects.get().name == value * 255
