@@ -1817,15 +1817,3 @@ class TestThemeEdit(TestCase):
         el = doc('input.color-picker')
         assert el.attr('type') == 'text'
         assert not el.attr('value')
-
-    def test_color_input_is_not_empty_at_edit(self):
-        color = "123456"
-        self.addon.persona.accentcolor = color
-        self.addon.persona.save()
-        self.client.login(email='regular@mozilla.com')
-        url = reverse('devhub.themes.edit', args=(self.addon.slug, ))
-        response = self.client.get(url)
-        doc = pq(response.content)
-        el = doc('input#id_accentcolor')
-        assert el.attr('type') == 'text'
-        assert el.attr('value') == "#" + color

@@ -335,29 +335,8 @@ def edit(request, addon_id, addon):
 
 @dev_required(theme=True)
 def edit_theme(request, addon_id, addon, theme=False):
-    form = addon_forms.EditThemeForm(data=request.POST or None,
-                                     request=request, instance=addon)
-    owner_form = addon_forms.EditThemeOwnerForm(data=request.POST or None,
-                                                instance=addon)
-
-    if request.method == 'POST':
-        if 'owner_submit' in request.POST:
-            if owner_form.is_valid():
-                owner_form.save()
-                messages.success(
-                    request, ugettext('Changes successfully saved.'))
-                return redirect('devhub.themes.edit', addon.slug)
-        elif form.is_valid():
-            form.save()
-            messages.success(request, ugettext('Changes successfully saved.'))
-            return redirect('devhub.themes.edit', addon.reload().slug)
-        else:
-            messages.error(
-                request, ugettext('Please check the form for errors.'))
-
     return render(request, 'devhub/personas/edit.html', {
-        'addon': addon, 'persona': addon.persona, 'form': form,
-        'owner_form': owner_form})
+        'addon': addon, 'persona': addon.persona})
 
 
 @dev_required(owner_for_post=True, theme=True)
