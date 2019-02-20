@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-18 15:23+0000\n"
-"PO-Revision-Date: 2019-02-20 06:10+0000\n"
+"PO-Revision-Date: 2019-02-20 06:16+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -820,7 +820,7 @@ msgstr "Khám phá"
 
 # Plural in this context means many of the add-on type
 msgid "Extensions"
-msgstr "Tiện ích"
+msgstr "Tiện ích mở rộng"
 
 #. {0} is a category name. Ex: "Sports"
 msgid "Themes"
@@ -931,7 +931,7 @@ msgstr ""
 
 #, python-format
 msgid "Please be aware that WebExtensions will not accept a \"*\" in %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
-msgstr ""
+msgstr "Xin lưu ý rằng WebExtensions sẽ không chấp nhận \"*\" trong %(amo_version_link_open)sstrict_min_version%(amo_version_link_close)s."
 
 msgid "GUID"
 msgstr "GUID"
@@ -1900,7 +1900,7 @@ msgid "Photos, Music & Videos"
 msgstr "Hình ảnh, Âm nhạc và Phim"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Tải xuống các tiện ích mở rộng Firefox giúp nâng cao trải nghiệm ảnh, nhạc và video. Các tiện ích mở rộng trong danh mục này sửa đổi âm thanh và video, tìm kiếm hình ảnh ngược và hơn thế nữa."
 
 msgid "Privacy & Security"
 msgstr "Riêng tư & Bảo mật"
@@ -1970,6 +1970,8 @@ msgstr "Hình ảnh & Đa phương tiện"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"Tải xuống tiện ích mở rộng Firefox để nâng cao hình ảnh và phương tiện truyền thông. Danh mục này bao gồm các tiện ích mở rộng để đảo ngược hình ảnh tìm kiếm, chụp ảnh màn hình toàn trang và hơn thế"
+" nữa."
 
 msgid "Security & Privacy"
 msgstr "Bảo mật & Riêng tư"
@@ -2404,7 +2406,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "Vui lòng chỉ định Chính sách Riêng tư cho tiện ích của bạn:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "Kiểu tập tin không được hỗ trợ, vui lòng tải lên tệp lưu trữ {extensions}."
 
 msgid "Invalid or broken archive."
 msgstr "Gói lưu trữ không hợp lệ hoặc bị hỏng."
@@ -3774,6 +3776,8 @@ msgstr "Chào mừng trở lại"
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
 msgstr ""
+"Muốn tiện ích mở rộng của bạn được làm nổi bật trên %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Các chính sách tiện ích mở rộng nổi bật của chúng tôi sẽ cho bạn biết những gì bạn cần "
+"biết."
 
 msgid "Learn More"
 msgstr "Tìm hiểu Thêm"
@@ -5565,7 +5569,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr ""
+msgstr "Kiểu tập tin không được hỗ trợ, vui lòng tải lên tệp được hỗ trợ {extensions}."
 
 msgid "Unexpected error."
 msgstr ""
@@ -7154,7 +7158,7 @@ msgid "Version already exists. Latest version is: %s."
 msgstr ""
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Chỉ WebExtensions mới được phép bỏ qua GUID"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
 msgstr ""
