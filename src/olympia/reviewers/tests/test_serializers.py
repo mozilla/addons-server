@@ -2,6 +2,9 @@
 import mimetypes
 from datetime import datetime
 
+import mock
+import pytest
+
 from django.core.cache import cache
 
 from olympia import amo
@@ -58,9 +61,7 @@ class TestFileEntriesSerializer(TestCase):
             'manifest.json'}
 
         manifest_data = data['entries']['manifest.json']
-        assert manifest_data['binary'] is False
         assert manifest_data['depth'] == 0
-        assert manifest_data['directory'] is False
         assert manifest_data['filename'] == u'manifest.json'
         assert manifest_data['sha256'] == (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
@@ -71,9 +72,7 @@ class TestFileEntriesSerializer(TestCase):
 
         ja_locale_data = data['entries']['_locales/ja']
 
-        assert ja_locale_data['binary'] is False
         assert ja_locale_data['depth'] == 1
-        assert ja_locale_data['directory'] is True
         assert ja_locale_data['filename'] == 'ja'
         assert ja_locale_data['sha256'] == ''
         assert ja_locale_data['mimetype'] == 'application/octet-stream'
@@ -107,26 +106,6 @@ class TestFileEntriesSerializer(TestCase):
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
 
-    def test_is_binary(self):
-        serializer = FileEntriesSerializer()
-
-        files = [
-            'foo.rdf', 'foo.xml', 'foo.js', 'foo.py' 'foo.html', 'foo.txt',
-            'foo.dtd', 'foo.xul', 'foo.sh', 'foo.properties', 'foo.json',
-            'foo.src', 'CHANGELOG']
-
-        for fname in files:
-            mime, encoding = mimetypes.guess_type(fname)
-            assert not serializer.is_binary(fname, mime, b'')
-
-        for fname in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
-            mime, encoding = mimetypes.guess_type(fname)
-            assert serializer.is_binary(fname, mime, b'')
-
-        for contents in [b'#!/usr/bin/python', b'#python', b'\0x2']:
-            mime, encoding = mimetypes.guess_type(fname)
-            assert not serializer.is_binary('random_junk', mime, contents)
-
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
         serializer = FileEntriesSerializer(instance=file)
@@ -139,6 +118,20 @@ class TestFileEntriesSerializer(TestCase):
 
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
         assert cache.get(key) == data['entries']
+
+
+@pytest.mark.parametrize('entry, blob', [
+
+files = [
+    'foo.rdf', 'foo.xml', 'foo.js', 'foo.py' 'foo.html', 'foo.txt',
+    'foo.dtd', 'foo.xul', 'foo.sh', 'foo.properties', 'foo.json',
+    'foo.src', 'CHANGELOG']
+
+        for fname in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
+        for contents in [b'#!/usr/bin/python', b'#python', b'\0x2']:
+])
+def test_file_entries_serializer_category_type():
+    serializer = FileEntriesSerializer()
 
 
 class TestAddonBrowseVersionSerializer(TestCase):

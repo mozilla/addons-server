@@ -5,6 +5,7 @@ from collections import OrderedDict
 from datetime import datetime
 
 import pygit2
+import magic
 
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
@@ -86,27 +87,25 @@ class FileEntriesSerializer(FileSerializer):
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
 
-                is_directory = entry.type == 'tree'
                 mime, encoding = mimetypes.guess_type(entry.name)
-                is_binary = (
-                    self.is_binary(path, mime, blob)
-                    if not is_directory else False)
                 sha_hash = (
                     get_sha256(io.BytesIO(memoryview(blob)))
-                    if not is_directory else '')
+                    if not entry.type == 'tree' else '')
 
                 commit_tzinfo = FixedOffset(commit.commit_time_offset)
                 commit_time = datetime.fromtimestamp(
                     float(commit.commit_time),
                     commit_tzinfo)
 
+                mimetype, entry_category_type = self.get_entry_mime_type(
+                    entry, blob)
+
                 result[path] = {
-                    'binary': is_binary,
                     'depth': path.count(os.sep),
-                    'directory': is_directory,
                     'filename': force_text(entry.name),
                     'sha256': sha_hash,
-                    'mimetype': mime or 'application/octet-stream',
+                    'category_type': entry_category_type,
+                    'mimetype': mimetype,
                     'path': path,
                     'size': blob.size if blob is not None else None,
                     'modified': commit_time,
@@ -123,27 +122,21 @@ class FileEntriesSerializer(FileSerializer):
 
         return self._entries
 
-    def is_binary(self, filepath, mimetype, blob):
+    def get_entry_mime_type(self, entry, blob):
+        """Returns the mimetype and type category.
+
+        The type category can be ``image``, ``directory``, ``text`` or
+        ``binary``.
         """
-        Using filepath, mimetype and in-memory buffer to determine if a file
-        can be shown in HTML or not.
-        """
-        # Re-use the denied data from amo-validator to spot binaries.
-        ext = os.path.splitext(filepath)[1][1:]
-        if ext in denied_extensions:
-            return True
+        if entry.type == 'tree':
+            return 'application/octet-stream', 'directory'
 
-        bytes_ = tuple(bytearray(memoryview(blob)[:4]))
+        mime = magic.from_buffer(memoryview(blob))
+        mime_type = mime.split('/')[0]
 
-        if any(bytes_[:len(x)] == x for x in denied_magic_numbers):
-            return True
+        known_types = ('image', 'text')
 
-        if mimetype:
-            major, minor = mimetype.split('/')
-            if major == 'image':
-                return 'image'  # Mark that the file is binary, but an image.
-
-        return False
+        return mime, 'binary' if mime_type not in known_types else mime_type
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
