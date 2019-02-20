@@ -773,7 +773,7 @@ def test_translated_field_fk_lookups():
 def test_translated_field_emoji_support():
     # Make sure utf8mb4 settings are correct and emojis are correctly handled
     assert Translation.objects.count() == 0
-    obj = TranslatedModel.objects.create(name='😀❤')
+    obj = TranslatedModel.objects.create(name=u'😀❤')
 
     def get_model():
         return TranslatedModel.objects.get(pk=obj.pk)
@@ -787,7 +787,7 @@ def test_translated_field_emoji_support():
     # Its name should still be there, using the fallback...
     translation.activate('de')
     german = get_model()
-    assert german.name == '😀❤'
+    assert german.name == u'😀❤'
     assert german.name.locale == 'en-us'
 
     # Check that a different locale creates a new row with the same id.
