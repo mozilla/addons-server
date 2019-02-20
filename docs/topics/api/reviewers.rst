@@ -131,7 +131,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
-    :>json boolean|string file.entries[].binary: ``True`` if the file is a binary file (e.g an .exe, dll, java, swf file), ``'image'`` if the file is an image or ``False`` otherwise. If ``False`` or ``'image'`` the file should be presentable to the user.
+    :>json boolean file.entries[].binary: ``True`` if the file is a binary file (e.g an .exe, dll, java, swf file) or ``False`` otherwise. If ``False`` the file should be presentable to the user.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json boolean file.entries[].is_directory: Wheather the file is a directory.
     :>json string file.entries[].filename: The filename of the file.
