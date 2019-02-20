@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from settings import *  # noqa
 
-# Make sure the app needed to test translations is present.
+# Make sure the apps needed to test translations and core are present.
 INSTALLED_APPS += (
     'olympia.translations.tests.testapp',
+    'olympia.core.tests.db_tests_testapp',
 )
 # Make sure the debug toolbar isn't used during the tests.
 INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
