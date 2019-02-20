@@ -19,7 +19,7 @@ Submitting an add-on abuse report
 The following API endpoint allows an abuse report to be submitted for an Add-on,
 either listed on https://addons.mozilla.org or not.
 Authentication is not required, but is recommended so reports can be responded
-to if nessecary.
+to if necessary.
 
 .. http:post:: /api/v4/abuse/report/addon/
 
@@ -27,6 +27,20 @@ to if nessecary.
 
     :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
+    :<json string|null addon_install_entry_point: The add-on install entry point. Accepted values: TBD.
+    :<json string|null addon_install_method: The add-on install method. Accepted values: TBD.
+    :<json string|null addon_install_origin: The add-on install origin.
+    :<json string|null addon_name: The add-on name in the locale used by the client.
+    :<json string|null addon_signature: The add-on signature state. Accepted values: TBD.
+    :<json string|null addon_summary: The add-on summary in the locale used by the client.
+    :<json string|null addon_version: The add-on version string.
+    :<json string|null application: The application used by the client. Can be either ``firefox`` or ``android``.
+    :<json string|null application_locale: The locale used by the client for the application.
+    :<json string|null client_id: The client's hashed telemetry ID.
+    :<json string|null install_date: The add-on install date.
+    :<json string|null operating_system: The client's operating system.
+    :<json string|null operating_system_version: The client's operating system version.
+    :<json string|null reason: The reason for the report. Can be ``malware``, ``spam_or_advertising``, ``search_takeover``, ``new_tab_takeover``, ``breaks_website``, ``offensive``, ``does_not_match_description`` or ``does_not_work``.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -37,6 +51,20 @@ to if nessecary.
     :>json int|null addon.id: The add-on id on AMO. If the guid submitted didn't match a known add-on on AMO, then null.
     :>json string|null addon.slug: The add-on slug. If the guid submitted didn't match a known add-on on AMO, then null.
     :>json string message: The body/content of the abuse report.
+    :>json string|null addon_install_entry_point: The add-on install entry point.
+    :>json string|null addon_install_method: The add-on install method.
+    :>json string|null addon_install_origin: The add-on install origin.
+    :>json string|null addon_name: The add-on name in the locale used by the client.
+    :>json string|null addon_signature: The add-on signature state.
+    :>json string|null addon_summary: The add-on summary in the locale used by the client.
+    :>json string|null addon_version: The add-on version string.
+    :>json string|null application: The application used by the client.
+    :>json string|null application_locale: The locale used by the client for the application.
+    :>json string|null client_id: The client's hashed telemetry ID.
+    :>json string|null install_date: The add-on install date.
+    :>json string|null operating_system: The client's operating system.
+    :>json string|null operating_system_version: The client's operating system version.
+    :>json string|null reason: The reason for the report.
 
 
 ------------------------------
@@ -47,7 +75,7 @@ Submitting a user abuse report
 
 The following API endpoint allows an abuse report to be submitted for a user account
 on https://addons.mozilla.org.  Authentication is not required, but is recommended
-so reports can be responded to if nessecary.
+so reports can be responded to if necessary.
 
 .. http:post:: /api/v4/abuse/report/user/
 
