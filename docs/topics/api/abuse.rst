@@ -40,7 +40,7 @@ to if necessary.
     :<json string|null install_date: The add-on install date.
     :<json string|null operating_system: The client's operating system.
     :<json string|null operating_system_version: The client's operating system version.
-    :<json string|null reason: The reason for the report. Can be ``malware``, ``spam_or_advertising``, ``search_takeover``, ``new_tab_takeover``, `breaks_website``, `offensive``, `does_not_match_description`` or ``does_not_work``.
+    :<json string|null reason: The reason for the report. Can be ``malware``, ``spam_or_advertising``, ``search_takeover``, ``new_tab_takeover``, ``breaks_website``, ``offensive``, ``does_not_match_description`` or ``does_not_work``.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
