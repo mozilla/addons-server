@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
-import mimetypes
+import os
 from datetime import datetime
 
-import mock
 import pytest
 
+from mock import MagicMock
+
 from django.core.cache import cache
+from django.conf import settings
+from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.reviewers.serializers import (
@@ -65,7 +68,8 @@ class TestFileEntriesSerializer(TestCase):
         assert manifest_data['filename'] == u'manifest.json'
         assert manifest_data['sha256'] == (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
-        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['mimetype'] == 'text/plain'
+        assert manifest_data['mime_category'] == 'text'
         assert manifest_data['path'] == u'manifest.json'
         assert manifest_data['size'] == 622
         assert isinstance(manifest_data['modified'], datetime)
@@ -73,6 +77,7 @@ class TestFileEntriesSerializer(TestCase):
         ja_locale_data = data['entries']['_locales/ja']
 
         assert ja_locale_data['depth'] == 1
+        assert ja_locale_data['mime_category'] == 'directory'
         assert ja_locale_data['filename'] == 'ja'
         assert ja_locale_data['sha256'] == ''
         assert ja_locale_data['mimetype'] == 'application/octet-stream'
@@ -120,18 +125,45 @@ class TestFileEntriesSerializer(TestCase):
         assert cache.get(key) == data['entries']
 
 
-@pytest.mark.parametrize('entry, blob', [
-
-files = [
-    'foo.rdf', 'foo.xml', 'foo.js', 'foo.py' 'foo.html', 'foo.txt',
-    'foo.dtd', 'foo.xul', 'foo.sh', 'foo.properties', 'foo.json',
-    'foo.src', 'CHANGELOG']
-
-        for fname in ['foo.png', 'foo.gif', 'foo.exe', 'foo.swf']:
-        for contents in [b'#!/usr/bin/python', b'#python', b'\0x2']:
-])
-def test_file_entries_serializer_category_type():
+@pytest.mark.parametrize(
+    'entry, filename, expected_category, expected_mimetype',
+    [
+        (MagicMock(type='blob'), 'blank.pdf', 'binary', 'application/pdf'),
+        (MagicMock(type='blob'), 'blank.txt', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'empty_bat.exe', 'binary',
+                                 'application/x-dosexec'),
+        (MagicMock(type='blob'), 'fff.gif', 'image', 'image/gif'),
+        (MagicMock(type='blob'), 'foo.css', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'foo.html', 'text', 'text/html'),
+        (MagicMock(type='blob'), 'foo.js', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'foo.py', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'image.jpg', 'image', 'image/jpeg'),
+        (MagicMock(type='blob'), 'image.png', 'image', 'image/png'),
+        (MagicMock(type='blob'), 'search.xml', 'text', 'text/xml'),
+        (MagicMock(type='blob'), 'js_containing_png_data.js', 'text',
+                                 'text/plain'),
+        (MagicMock(type='blob'), 'foo.json', 'text', 'text/plain'),
+        (MagicMock(type='tree'), 'foo', 'directory',
+                                 'application/octet-stream'),
+    ]
+)
+def test_file_entries_serializer_category_type(
+        entry, filename, expected_category, expected_mimetype):
     serializer = FileEntriesSerializer()
+
+    root = os.path.join(
+        settings.ROOT,
+        'src/olympia/files/fixtures/files/file_viewer_filetypes/')
+
+    if entry.type == 'tree':
+        mime, category = serializer.get_entry_mime_type(entry, None)
+    else:
+        with open(os.path.join(root, filename), 'rb') as fobj:
+            mime, category = serializer.get_entry_mime_type(
+                entry, force_bytes(fobj.read()))
+
+    assert mime == expected_mimetype
+    assert category == expected_category
 
 
 class TestAddonBrowseVersionSerializer(TestCase):

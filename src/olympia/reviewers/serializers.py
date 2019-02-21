@@ -20,7 +20,6 @@ from olympia.addons.serializers import (
 from olympia.addons.models import AddonReviewerFlags
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
-from olympia.files.file_viewer import denied_extensions, denied_magic_numbers
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository
 from olympia.lib import unicodehelper
@@ -97,14 +96,14 @@ class FileEntriesSerializer(FileSerializer):
                     float(commit.commit_time),
                     commit_tzinfo)
 
-                mimetype, entry_category_type = self.get_entry_mime_type(
+                mimetype, entry_mime_category = self.get_entry_mime_type(
                     entry, blob)
 
                 result[path] = {
                     'depth': path.count(os.sep),
                     'filename': force_text(entry.name),
                     'sha256': sha_hash,
-                    'category_type': entry_category_type,
+                    'mime_category': entry_mime_category,
                     'mimetype': mimetype,
                     'path': path,
                     'size': blob.size if blob is not None else None,
@@ -131,9 +130,19 @@ class FileEntriesSerializer(FileSerializer):
         if entry.type == 'tree':
             return 'application/octet-stream', 'directory'
 
-        mime = magic.from_buffer(memoryview(blob))
-        mime_type = mime.split('/')[0]
+        # Hardcoding the maximum amount of bytes to read here
+        # until https://github.com/ahupp/python-magic/commit/50e8c856
+        # lands in a release and we can read that value from libmagic
+        bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
+        mime = magic.from_buffer(bytes_, mime=True)
 
+        # Special case, for empty text files libmime reports
+        # application/x-empty for empty plain text files
+        # So, let's normalize this.
+        if mime == 'application/x-empty':
+            mime = 'text/plain'
+
+        mime_type = mime.split('/')[0]
         known_types = ('image', 'text')
 
         return mime, 'binary' if mime_type not in known_types else mime_type
