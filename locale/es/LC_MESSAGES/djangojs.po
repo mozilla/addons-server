@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-18 15:23+0000\n"
-"PO-Revision-Date: 2019-02-03 19:22+0000\n"
+"PO-Revision-Date: 2019-02-21 17:27+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Error con {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Asegúrate de informar cualquier problema relacionado con la formación de líneas en GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -123,8 +123,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de "
-"subir código fuente para evitar que tu envío sea rechazado."
+"Los binarios compilados, así como los scripts minificados u ofuscados (excluyendo bibliotecas conocidas) deben ser enviados por separado para su revisión. Asegúrate de que utilizas el campo de subir"
+" código fuente para evitar que tu envío sea rechazado."
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "El proceso de validación encontró estos problemas que pueden llevar a rechazos:"
