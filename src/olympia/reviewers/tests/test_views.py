@@ -4225,7 +4225,7 @@ class TestReview(ReviewBase):
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
             addon=self.addon, message=u'Et mël mazim ludus.',
-            ip_address='10.1.2.3')
+            country_code='FR')
         created_at = defaultfilters.date(report.created)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4246,13 +4246,13 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous [10.1.2.3] reported Public on %s\nEt mël mazim ludus.'
+            u'anonymous [FR] reported Public on %s\nEt mël mazim ludus.'
             % created_at)
 
     def test_abuse_reports_developers(self):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
-            ip_address='10.4.5.6')
+            country_code='DE')
         created_at = defaultfilters.date(report.created)
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
@@ -4263,7 +4263,7 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous [10.4.5.6] reported regularuser التطب on %s\nFoo, Bâr!'
+            u'anonymous [DE] reported regularuser التطب on %s\nFoo, Bâr!'
             % created_at)
 
     def test_user_ratings(self):
