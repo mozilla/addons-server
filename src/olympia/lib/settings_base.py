@@ -1831,3 +1831,5 @@ AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
 AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
 AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False
+
+GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'

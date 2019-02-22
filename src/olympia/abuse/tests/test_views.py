@@ -4,6 +4,7 @@ from datetime import datetime
 
 from django.core import mail
 
+import mock
 import six
 
 from olympia import amo
@@ -17,13 +18,18 @@ class AddonAbuseViewSetTestBase(object):
 
     def setUp(self):
         self.url = reverse_ns('abusereportaddon-list')
+        geoip_patcher = mock.patch('olympia.abuse.models.GeoIP2')
+        self.GeoIP2_mock = geoip_patcher.start()
+        self.GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
+        self.addCleanup(geoip_patcher.stop)
 
     def check_reporter(self, report):
         raise NotImplementedError
 
     def check_report(self, report, text):
         assert six.text_type(report) == text
-        assert report.ip_address == '123.45.67.89'
+        assert report.ip_address is None
+        assert report.country_code == 'ZZ'
         assert mail.outbox[0].subject == text
         self.check_reporter(report)
 
@@ -257,13 +263,17 @@ class UserAbuseViewSetTestBase(object):
 
     def setUp(self):
         self.url = reverse_ns('abusereportuser-list')
+        geoip_patcher = mock.patch('olympia.abuse.models.GeoIP2')
+        self.GeoIP2_mock = geoip_patcher.start()
+        self.GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
+        self.addCleanup(geoip_patcher.stop)
 
     def check_reporter(self, report):
         raise NotImplementedError
 
     def check_report(self, report, text):
         assert six.text_type(report) == text
-        assert report.ip_address == '123.45.67.89'
+        assert report.country_code == 'ZZ'
         assert mail.outbox[0].subject == text
         self.check_reporter(report)
 

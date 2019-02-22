@@ -1,9 +1,14 @@
+from django import forms
 from django.conf import settings
+from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
+from django.core.validators import validate_ipv46_address
 from django.db import models
 from django.utils import translation
 from django.utils.encoding import python_2_unicode_compatible
 
 import six
+
+from geoip2.errors import GeoIP2Error
 
 from olympia import amo
 from olympia.addons.models import Addon
@@ -53,7 +58,10 @@ class AbuseReport(ModelBase):
     reporter = models.ForeignKey(
         UserProfile, null=True, blank=True, related_name='abuse_reported',
         on_delete=models.SET_NULL)
-    ip_address = models.CharField(max_length=255, default='0.0.0.0')
+    # ip_address should be removed in a future release once we've migrated
+    # existing reports in the database to 'country'.
+    ip_address = models.CharField(max_length=255, default=None, null=True)
+    country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
     # If user is null then addon should be non-null if guid was in our DB,
@@ -128,6 +136,21 @@ class AbuseReport(ModelBase):
         if creation:
             self.send()
 
+    @classmethod
+    def lookup_country_code_from_ip(cls, ip):
+        try:
+            # Early check to avoid initializing GeoIP2 on invalid addresses
+            if not ip:
+                raise forms.ValidationError('No IP')
+            validate_ipv46_address(ip)
+            geoip = GeoIP2()
+            value = geoip.country_code(ip)
+        # Annoyingly, we have to catch both django's GeoIP2Exception (setup
+        # issue) and geoip2's GeoIP2Error (lookup issue)
+        except (forms.ValidationError, GeoIP2Exception, GeoIP2Error):
+            value = ''
+        return value
+
     @property
     def target(self):
         return self.addon or self.user
@@ -146,8 +169,9 @@ class AbuseReport(ModelBase):
 
 def send_abuse_report(request, obj, message):
     # Only used by legacy frontend
-    report = AbuseReport(ip_address=request.META.get('REMOTE_ADDR'),
-                         message=message)
+    country_code = AbuseReport.lookup_country_code_from_ip(
+        request.META.get('REMOTE_ADDR'))
+    report = AbuseReport(ip_address=country_code, message=message)
     if request.user.is_authenticated:
         report.reporter = request.user
     if isinstance(obj, Addon):
