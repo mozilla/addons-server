@@ -149,7 +149,7 @@ class FileEntriesSerializer(FileSerializer):
         # We're wrapping this via `BytesIO` to only read the needed amount
         # of content from the file to not exhaust/read the whole blob
         # into memory again.
-        bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
+        bytes_ = bytes(memoryview(blob)[:1048576])
         mime = magic.from_buffer(bytes_, mime=True)
 
         # Apply compatibility mappings
