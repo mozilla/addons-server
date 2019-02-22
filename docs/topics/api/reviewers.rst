@@ -131,12 +131,11 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
-    :>json boolean|string file.entries[].binary: ``True`` if the file is a binary file (e.g an .exe, dll, java, swf file), ``'image'`` if the file is an image or ``False`` otherwise. If ``False`` or ``'image'`` the file should be presentable to the user.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
-    :>json boolean file.entries[].is_directory: Wheather the file is a directory.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
     :>json string file.entries[].sha256: SHA256 hash.
     :>json string file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
+    :>json string files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int file.entries[].size: The size in bytes.
     :>json string file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.

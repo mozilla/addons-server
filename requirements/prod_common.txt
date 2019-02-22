@@ -380,3 +380,6 @@ cachetools==3.1.0 \
 sqlparse==0.2.4 \
     --hash=sha256:d9cf190f51cbb26da0412247dfe4fb5f4098edb73db84e02f9fc21fdca31fed4 \
     --hash=sha256:ce028444cfab83be538752a2ffdb56bc417b7784ff35bb9a3062413717807dec
+python-magic==0.4.15 \
+    --hash=sha256:f2674dcfad52ae6c49d4803fa027809540b130db1dec928cfbb9240316831375 \
+    --hash=sha256:f3765c0f582d2dfc72c15f3b5a82aecfae9498bd29ca840d72f37d7bd38bfcd5

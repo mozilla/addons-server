@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y \
         locales                          \
         zlib1g-dev                       \
         libffi-dev                       \
+        libmagic-dev                     \
         libssl-dev                       \
         nodejs                           \
         uuid-dev                         \
