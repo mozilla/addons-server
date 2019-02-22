@@ -2914,7 +2914,7 @@ class TestAddonSearchView(ESTestCase):
             u'Invalid Return To AMO guid (not in base64url format?)']
 
     def test_filter_by_guid_return_to_amo_feature_disabled(self):
-        self.create_switch('return-to-amo', active=False)
+        self.create_switch('return-to-amo', active=False).flush()
         assert not switch_is_active('return-to-amo')
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
                               guid='random@guid', weekly_downloads=999)
