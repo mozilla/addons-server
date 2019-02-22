@@ -31,7 +31,7 @@ from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
 from olympia.addons.decorators import addon_view, addon_view_factory
 from olympia.addons.models import (
-    Addon, AddonApprovalsCounter, AddonReviewerFlags, Persona)
+    Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.decorators import (
     json_view, login_required, permission_required, post_required)
 from olympia.amo.urlresolvers import reverse
@@ -47,7 +47,7 @@ from olympia.reviewers.forms import (
     RatingFlagFormSet, RatingModerationLogForm, ReviewForm, ReviewLogForm,
     WhiteboardForm)
 from olympia.reviewers.models import (
-    AutoApprovalSummary, PerformanceGraph, RereviewQueueTheme, ReviewerScore,
+    AutoApprovalSummary, PerformanceGraph, ReviewerScore,
     ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue, Whiteboard,
     clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
@@ -221,32 +221,6 @@ def dashboard(request):
         ), (
             ugettext('Performance'),
             reverse('reviewers.performance')
-        )]
-    if view_all or acl.action_allowed(
-            request, amo.permissions.THEMES_REVIEW):
-        sections[ugettext('Lightweight Themes')] = [(
-            ugettext('New Themes ({0})').format(
-                Persona.objects.filter(
-                    addon__status=amo.STATUS_PENDING).count()),
-            reverse('reviewers.themes.list')
-        ), (
-            ugettext('Themes Updates ({0})').format(
-                RereviewQueueTheme.objects.count()),
-            reverse('reviewers.themes.list_rereview')
-        ), (
-            ugettext('Flagged Themes ({0})').format(
-                Persona.objects.filter(
-                    addon__status=amo.STATUS_REVIEW_PENDING).count()),
-            reverse('reviewers.themes.list_flagged')
-        ), (
-            ugettext('Lightweight Themes Review Log'),
-            reverse('reviewers.themes.logs')
-        ), (
-            ugettext('Deleted Themes Log'),
-            reverse('reviewers.themes.deleted')
-        ), (
-            ugettext('Review Guide'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines'
         )]
     if view_all or acl.action_allowed(
             request, amo.permissions.RATINGS_MODERATE):

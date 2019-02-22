@@ -56,25 +56,6 @@ def unlisted_addons_reviewer_required(f):
     return wrapper
 
 
-def personas_reviewer_required(f):
-    """Require an persona reviewer user.
-
-    The user logged in must be a personas reviewer or admin, or have the
-    'ReviewerTools:View' permission for GET requests.
-
-    A personas reviewer is someone who is in the group with the following
-    permission: 'Personas:Review'.
-
-    """
-    @login_required
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if _view_on_get(request) or acl.check_personas_reviewer(request):
-            return f(request, *args, **kw)
-        raise PermissionDenied
-    return wrapper
-
-
 def ratings_moderator_required(f):
     """Require a ratings moderator user.
 
@@ -106,7 +87,6 @@ def any_reviewer_required(f):
     - Addons:ReviewUnlisted
     - Addons:ContentReview
     - Addons:PostReview
-    - Personas:Review
     - Addons:ThemeReview
     """
     @functools.wraps(f)

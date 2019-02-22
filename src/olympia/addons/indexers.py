@@ -330,8 +330,7 @@ class AddonIndexer(BaseSearchIndexer):
             # add-ons stored in ES.
             data['platforms'] = [amo.PLATFORM_ALL.id]
             try:
-                data['has_theme_rereview'] = (
-                    obj.persona.rereviewqueuetheme_set.exists())
+                data['has_theme_rereview'] = False
                 # Theme popularity is roughly equivalent to average daily users
                 # (the period is not the same and the methodology differs since
                 # themes don't have updates, but it's good enough).

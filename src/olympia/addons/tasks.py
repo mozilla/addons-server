@@ -45,7 +45,6 @@ from olympia.files.utils import (
 from olympia.lib.crypto.signing import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
-from olympia.reviewers.models import RereviewQueueTheme
 from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
 from olympia.translations.models import Translation
@@ -391,12 +390,6 @@ def save_theme_reupload(header, addon_pk, **kw):
     if header_dst:
         theme = addon.persona
         header = 'pending_header.png' if header_dst else theme.header
-
-        # Store pending header file paths for review.
-        RereviewQueueTheme.objects.filter(theme=theme).delete()
-        rqt = RereviewQueueTheme(theme=theme, header=header)
-        rereviewqueuetheme_checksum(rqt=rqt)
-        rqt.save()
 
 
 @task

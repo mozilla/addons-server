@@ -38,8 +38,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
-    AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
-    ReviewerSubscription, Whiteboard)
+    AutoApprovalSummary, ReviewerScore, ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -604,7 +603,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -618,12 +617,6 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
-            reverse('reviewers.themes.list'),
-            reverse('reviewers.themes.list_rereview'),
-            reverse('reviewers.themes.list_flagged'),
-            reverse('reviewers.themes.logs'),
-            reverse('reviewers.themes.deleted'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -638,9 +631,9 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[1].text == 'Updates (3)'
         assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
         assert doc('.dashboard a')[10].text == 'Content Review (4)'
-        assert (doc('.dashboard a')[18].text ==
+        assert (doc('.dashboard a')[12].text ==
                 'Ratings Awaiting Moderation (1)')
-        assert (doc('.dashboard a')[24].text ==
+        assert (doc('.dashboard a')[18].text ==
                 'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -648,7 +641,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -662,12 +655,6 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
-            reverse('reviewers.themes.list'),
-            reverse('reviewers.themes.list_rereview'),
-            reverse('reviewers.themes.list_flagged'),
-            reverse('reviewers.themes.logs'),
-            reverse('reviewers.themes.deleted'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -800,38 +787,6 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Content Review (1)'
-
-    def test_themes_reviewer(self):
-        # Create some themes to test the queue counts.
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
-        addon = addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
-        RereviewQueueTheme.objects.create(theme=addon.persona)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
-
-        # Grant user the permission to see only the themes section.
-        self.grant_permission(self.user, 'Personas:Review')
-
-        # Test.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 1
-        expected_links = [
-            reverse('reviewers.themes.list'),
-            reverse('reviewers.themes.list_rereview'),
-            reverse('reviewers.themes.list_flagged'),
-            reverse('reviewers.themes.logs'),
-            reverse('reviewers.themes.deleted'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
-        ]
-        links = [link.attrib['href'] for link in doc('.dashboard a')]
-        assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New Themes (2)'
-        assert doc('.dashboard a')[1].text == 'Themes Updates (1)'
-        assert doc('.dashboard a')[2].text == 'Flagged Themes (3)'
 
     def test_ratings_moderator(self):
         # Create an rating to test the queue count.
