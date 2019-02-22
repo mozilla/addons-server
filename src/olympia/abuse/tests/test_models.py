@@ -12,6 +12,65 @@ from olympia.amo.tests import TestCase
 class TestAbuse(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
 
+    def test_choices(self):
+        assert AbuseReport.ADDON_SIGNATURES.choices == ((None, 'None'),)
+        assert AbuseReport.ADDON_SIGNATURES.api_choices == ((None, None),)
+
+        assert AbuseReport.REASONS.choices == (
+            (None, 'None'),
+            (1, 'Malware'),
+            (2, 'Spam / Advertising'),
+            (3, 'Search takeover'),
+            (4, 'New tab takeover'),
+            (5, 'Breaks websites'),
+            (6, 'Offensive'),
+            (7, "Doesn't match description"),
+            (8, "Doesn't work"),
+        )
+        assert AbuseReport.REASONS.api_choices == (
+            (None, None),
+            (1, 'malware'),
+            (2, 'spam_or_advertising'),
+            (3, 'search_takeover'),
+            (4, 'new_tab_takeover'),
+            (5, 'breaks_websites'),
+            (6, 'offensive'),
+            (7, 'does_not_match_description'),
+            (8, 'does_not_work'),
+        )
+
+        assert AbuseReport.ADDON_INSTALL_METHODS.choices == (
+            (None, 'None'),
+            (1, 'Add-on Manager Web API'),
+            (2, 'Direct link'),
+            (3, 'Install Trigger'),
+            (4, 'From File'),
+            (5, 'Webext management API'),
+            (6, 'Drag & Drop'),
+            (7, 'Sideload'),
+        )
+        assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == (
+            (None, None),
+            (1, 'amwebapi'),
+            (2, 'link'),
+            (3, 'installtrigger'),
+            (4, 'install-from-file'),
+            (5, 'management-webext-api'),
+            (6, 'drag-and-drop'),
+            (7, 'sideload')
+        )
+
+        assert AbuseReport.REPORT_ENTRY_POINTS.choices == (
+            (None, 'None'),
+            (1, 'Uninstall'),
+            (2, 'Menu')
+        )
+        assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
+            (None, None),
+            (1, 'uninstall'),
+            (2, 'menu')
+        )
+
     def test_user(self):
         report = AbuseReport(user_id=999)
         report.send()

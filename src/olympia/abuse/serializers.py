@@ -33,29 +33,44 @@ class BaseAbuseReportSerializer(serializers.ModelSerializer):
 class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     addon = serializers.SerializerMethodField()
     reason = ReverseChoiceField(
-        choices=list(AbuseReport.REASON_CHOICES_API.items()), required=False)
-    application = ReverseChoiceField(
-        choices=list((v.id, k) for k, v in amo.APPS.items()), required=False)
+        choices=list(AbuseReport.REASONS.api_choices), required=False,
+        allow_null=True)
+    app = ReverseChoiceField(
+        choices=list((v.id, k) for k, v in amo.APPS.items()), required=False,
+        source='application')
+    appversion = serializers.CharField(
+        required=False, source='application_version', max_length=255)
+    lang = serializers.CharField(
+        required=False, source='application_locale', max_length=255)
+    report_entry_point = ReverseChoiceField(
+        choices=list(AbuseReport.REPORT_ENTRY_POINTS.api_choices),
+        required=False, allow_null=True)
+    addon_install_method = ReverseChoiceField(
+        choices=list(AbuseReport.ADDON_INSTALL_METHODS.api_choices),
+        required=False, allow_null=True)
+    addon_signature = ReverseChoiceField(
+        choices=list(AbuseReport.ADDON_SIGNATURES.api_choices),
+        required=False, allow_null=True)
 
     class Meta:
         model = AbuseReport
         fields = BaseAbuseReportSerializer.Meta.fields + (
             'addon',
-            'addon_install_entry_point',
             'addon_install_method',
             'addon_install_origin',
             'addon_name',
             'addon_signature',
             'addon_summary',
             'addon_version',
-            'application',
-            'application_locale',
-            'application_version',
+            'app',
+            'appversion',
             'client_id',
             'install_date',
+            'lang',
             'operating_system',
             'operating_system_version',
             'reason',
+            'report_entry_point'
         )
 
     def to_internal_value(self, data):
