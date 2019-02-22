@@ -2,9 +2,10 @@
 from django.conf import settings
 from django.core import mail
 
+import mock
 import six
 
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
 from olympia.amo.tests import TestCase
 
 
@@ -56,3 +57,20 @@ class TestAbuse(TestCase):
             mail.outbox[0].subject ==
             u'[Addon] Abuse Report for foo@bar.org')
         assert 'GUID not in database' in mail.outbox[0].body
+
+    @mock.patch('olympia.abuse.models.GeoIP2')
+    def test_lookup_country_code_from_ip(self, GeoIP2_mock):
+        GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
+        assert AbuseReport.lookup_country_code_from_ip('') == ''
+        assert AbuseReport.lookup_country_code_from_ip('notanip') == ''
+        assert GeoIP2_mock.return_value.country_code.call_count == 0
+
+        GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
+        assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == 'ZZ'
+        assert AbuseReport.lookup_country_code_from_ip('::1') == 'ZZ'
+
+        GeoIP2_mock.return_value.country_code.side_effect = GeoIP2Exception
+        assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''
+
+        GeoIP2_mock.return_value.country_code.side_effect = GeoIP2Error
+        assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''

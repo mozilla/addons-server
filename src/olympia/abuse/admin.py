@@ -41,10 +41,10 @@ class AbuseReportTypeFilter(admin.SimpleListFilter):
 
 class AbuseReportAdmin(admin.ModelAdmin):
     raw_id_fields = ('addon', 'user', 'reporter')
-    readonly_fields = ('ip_address', 'message', 'created', 'addon', 'user',
-                       'guid', 'reporter')
-    list_display = ('reporter', 'ip_address', 'type', 'target', 'message',
-                    'created')
+    readonly_fields = ('country_code', 'message', 'created',
+                       'addon', 'user', 'guid', 'reporter')
+    list_display = ('reporter', 'country_code', 'type', 'target',
+                    'message', 'created')
     list_filter = (AbuseReportTypeFilter, )
     actions = ('delete_selected',)
 
