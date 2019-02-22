@@ -146,9 +146,8 @@ class FileEntriesSerializer(FileSerializer):
         # Hardcoding the maximum amount of bytes to read here
         # until https://github.com/ahupp/python-magic/commit/50e8c856
         # lands in a release and we can read that value from libmagic
-        # We're wrapping this via `BytesIO` to only read the needed amount
-        # of content from the file to not exhaust/read the whole blob
-        # into memory again.
+        # We're only reading the needed amount of content from the file to
+        # not exhaust/read the whole blob into memory again.
         bytes_ = bytes(memoryview(blob)[:1048576])
         mime = magic.from_buffer(bytes_, mime=True)
 
