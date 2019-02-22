@@ -26,6 +26,19 @@ from olympia.lib import unicodehelper
 from olympia.lib.cache import cache_get_or_set
 
 
+# Sometime mimetypes get changed in libmagic so this is a (hopefully short)
+# list of mappings from old -> new types so that we stay compatible
+# with versions out there in the wild.
+MIMETYPE_COMPAT_MAPPING = {
+    # https://github.com/file/file/commit/cee2b49c
+    'application/xml': 'text/xml',
+    # Special case, for empty text files libmime reports
+    # application/x-empty for empty plain text files
+    # So, let's normalize this.
+    'application/x-empty': 'text/plain',
+}
+
+
 class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AddonReviewerFlags
@@ -136,11 +149,8 @@ class FileEntriesSerializer(FileSerializer):
         bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
         mime = magic.from_buffer(bytes_, mime=True)
 
-        # Special case, for empty text files libmime reports
-        # application/x-empty for empty plain text files
-        # So, let's normalize this.
-        if mime == 'application/x-empty':
-            mime = 'text/plain'
+        # Apply compatibility mappings
+        mime = MIMETYPE_COMPAT_MAPPING.get(mime, mime)
 
         mime_type = mime.split('/')[0]
         known_types = ('image', 'text')
