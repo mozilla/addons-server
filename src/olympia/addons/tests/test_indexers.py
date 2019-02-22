@@ -51,7 +51,7 @@ class TestAddonIndexer(TestCase):
         complex_fields = [
             'app', 'boost', 'category', 'colors', 'current_version',
             'description', 'featured_for', 'has_eula', 'has_privacy_policy',
-            'has_theme_rereview', 'is_featured', 'listed_authors', 'name',
+            'is_featured', 'listed_authors', 'name',
             'platforms', 'previews', 'public_stats', 'ratings', 'summary',
             'tags',
         ]
@@ -177,7 +177,6 @@ class TestAddonIndexer(TestCase):
         assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
         assert extracted['category'] == [1, 22, 71]  # From fixture.
         assert extracted['current_version']
-        assert extracted['has_theme_rereview'] is None
         assert extracted['listed_authors'] == [
             {'name': u'55021 التطب', 'id': 55021, 'username': '55021',
              'is_public': True}]
@@ -437,7 +436,6 @@ class TestAddonIndexer(TestCase):
         assert extracted['average_daily_users'] == persona.popularity
         assert extracted['weekly_downloads'] == persona.popularity * 7
         assert extracted['boost'] == float(persona.popularity ** .2) * 4
-        assert extracted['has_theme_rereview'] is False
         assert extracted['persona']['accentcolor'] == persona.accentcolor
         # We need the author that will go in theme_data here, which is
         # persona.display_username, not persona.author.
