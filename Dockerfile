@@ -48,7 +48,7 @@ RUN apt-get update && apt-get install -y \
         uuid \
         # Use libmaxmind for speedy geoip lookups
         libmaxminddb0                    \
-        libmaxminddb-dev                 \Z
+        libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get -t stretch-backports install -y \
