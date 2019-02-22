@@ -1062,8 +1062,15 @@ class AutoApprovalSummary(ModelBase):
 
     @classmethod
     def check_is_locked(cls, version):
-        locked = get_reviewing_cache(version.addon.pk)
-        return bool(locked) and locked != settings.TASK_USER_ID
+        # Langpacks are submitted as part of Firefox release process and should
+        # never be blocked by a reviewer having opened the review page - they
+        # should always be auto-approved anyway.
+        is_langpack = version.addon.type == amo.ADDON_LPAPP
+        locked_by = get_reviewing_cache(version.addon.pk)
+        return (
+            not is_langpack and
+            bool(locked_by) and
+            locked_by != settings.TASK_USER_ID)
 
     @classmethod
     def check_has_auto_approval_disabled(cls, version):

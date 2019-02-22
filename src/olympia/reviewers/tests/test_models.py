@@ -1570,6 +1570,10 @@ class TestAutoApprovalSummary(TestCase):
         set_reviewing_cache(self.version.addon.pk, settings.TASK_USER_ID + 42)
         assert AutoApprovalSummary.check_is_locked(self.version) is True
 
+        # Langpacks are never considered locked.
+        self.addon.update(type=amo.ADDON_LPAPP)
+        assert AutoApprovalSummary.check_is_locked(self.version) is False
+
     @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)
     def test_create_summary_for_version(
