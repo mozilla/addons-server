@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-18 15:23+0000\n"
-"PO-Revision-Date: 2019-02-01 19:30+0000\n"
+"PO-Revision-Date: 2019-02-23 04:58+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
@@ -820,7 +820,7 @@ msgid "Maximum upload size is {0} - choose a smaller background image."
 msgstr "Tamanho de carregamento máximo é de {0} - escolha uma imagem de fundo mais pequena."
 
 msgid "Requested Info"
-msgstr "Solicitadas mais informações"
+msgstr "Informação solicitada"
 
 msgid "Flagged"
 msgstr "Marcado"
