@@ -40,7 +40,7 @@ DATABASES = {
 
 SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
 
-SLAVE_DATABASES = ['slave']
+REPLICA_DATABASES = ['slave']
 
 CACHES = {}
 CACHES['default'] = env.cache('CACHES_DEFAULT')

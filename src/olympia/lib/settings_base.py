@@ -143,10 +143,10 @@ DATABASES = {
 # the same connection as 'default' but that changes in prod/dev/stage.
 SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
 
-DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
+DATABASE_ROUTERS = ('multidb.PinningReplicaRouter',)
 
 # Put the aliases for your slave databases in this list.
-SLAVE_DATABASES = []
+REPLICA_DATABASES = []
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -1419,9 +1419,9 @@ def read_only_mode(env):
     env['READ_ONLY'] = True
 
     # Replace the default (master) db with a slave connection.
-    if not env.get('SLAVE_DATABASES'):
+    if not env.get('REPLICA_DATABASES'):
         raise Exception('We need at least one slave database.')
-    slave = env['SLAVE_DATABASES'][0]
+    slave = env['REPLICA_DATABASES'][0]
     env['DATABASES']['default'] = env['DATABASES'][slave]
 
     # No sessions without the database, so disable auth.
