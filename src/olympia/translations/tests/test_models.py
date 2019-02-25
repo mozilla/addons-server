@@ -492,7 +492,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         assert len(connections['default'].queries) == 2
 
     @override_settings(DEBUG=True)
-    @patch('multidb.get_slave', lambda: 'slave-2')
+    @patch('multidb.get_replica', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
@@ -504,7 +504,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             assert len(connections['slave-2'].queries) == 2
 
     @override_settings(DEBUG=True)
-    @patch('multidb.get_slave', lambda: 'slave-2')
+    @patch('multidb.get_replica', lambda: 'slave-2')
     @pytest.mark.xfail(reason='Needs django-queryset-transform patch to work')
     def test_translations_reading_from_multiple_db_using(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
@@ -517,7 +517,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             assert len(connections['slave-2'].queries) == 0
 
     @override_settings(DEBUG=True)
-    @patch('multidb.get_slave', lambda: 'slave-2')
+    @patch('multidb.get_replica', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db_pinning(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
