@@ -72,8 +72,8 @@ class ColorField(fields.CharField):
     widget = ColorWidget
 
     def __init__(self, max_length=7, min_length=None, *args, **kwargs):
-        super(ColorField, self).__init__(max_length, min_length, *args,
-                                         **kwargs)
+        super(ColorField, self).__init__(
+            *args, max_length=max_length, min_length=min_length, **kwargs)
 
     def clean(self, value):
         super(ColorField, self).clean(value)

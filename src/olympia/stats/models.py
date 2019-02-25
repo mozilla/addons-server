@@ -78,7 +78,7 @@ class ThemeUpdateCountManager(models.Manager):
 class ThemeUpdateCount(StatsSearchMixin, models.Model):
     """Daily users taken from the ADI data (coming from Hive)."""
     id = PositiveAutoField(primary_key=True)
-    addon = models.ForeignKey('addons.Addon')
+    addon = models.ForeignKey('addons.Addon', on_delete=models.CASCADE)
     count = models.PositiveIntegerField()
     date = models.DateField()
 

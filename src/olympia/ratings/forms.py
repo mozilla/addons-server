@@ -41,7 +41,7 @@ class RatingForm(RatingReplyForm):
         label='Review',
     )
     rating = forms.ChoiceField(
-        zip(range(1, 6), range(1, 6)), label=_(u'Rating')
+        choices=zip(range(1, 6), range(1, 6)), label=_(u'Rating')
     )
     # re.L flag has been removed in py3.6 as Unicode matching is already
     # enabled by default for Unicode (str) patterns.

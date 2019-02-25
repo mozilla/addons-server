@@ -20,16 +20,21 @@ wrapped around each callback in the urlconf as if you had @decorator above the
 function.
 
 """
-from django.urls import RegexURLPattern, RegexURLResolver
+try:
+    from django.urls import URLPattern, URLResolver
+except ImportError:
+    # django1.11
+    from django.urls import (
+        RegexURLPattern as URLPattern, RegexURLResolver as URLResolver)
 
 
 def decorate(decorator, urlconf):
     if isinstance(urlconf, (list, tuple)):
         for item in urlconf:
             decorate(decorator, item)
-    elif isinstance(urlconf, RegexURLResolver):
+    elif isinstance(urlconf, URLResolver):
         for item in urlconf.url_patterns:
             decorate(decorator, item)
-    elif isinstance(urlconf, RegexURLPattern):
+    elif isinstance(urlconf, URLPattern):
         urlconf._callback = decorator(urlconf.callback)
     return urlconf

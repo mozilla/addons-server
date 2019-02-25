@@ -46,7 +46,7 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         """Handle command arguments."""
         parser.add_argument(
-            'force', action='store_true',
+            '--force', action='store_true',
             help='Ignores modified/created dates and forces compression.')
 
     def generate_build_id(self):
