@@ -1,8 +1,8 @@
 -r codestyle_common.txt
 
-configparser==3.7.2 \
-    --hash=sha256:3bdab5c38acb71c4e9b8508d11ac8e2fa6eeb1cf97e072a3c3d7f87db02302a9 \
-    --hash=sha256:d5f1d063e24c700e9809394853ebbabe6093d6842cbfcda1729bf40b126bcc18
+configparser==3.7.3 \
+    --hash=sha256:27594cf4fc279f321974061ac69164aaebd2749af962ac8686b20503ac0bcf2d \
+    --hash=sha256:9d51fe0a382f05b6b117c5e601fc219fede4a8c71703324af3f7d883aef476a3
 enum34==1.1.6 \
     --hash=sha256:6bd0f6ad48ec2aa117d3d141940d484deccda84d4fcd884f5c3d93c23ecd8c79 \
     --hash=sha256:8ad8c4783bf61ded74527bffb48ed9b54166685e4230386a9ed9b1279e2df5b1 \
