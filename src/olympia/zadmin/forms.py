@@ -23,7 +23,7 @@ class FeaturedCollectionForm(forms.ModelForm):
         (idx, LANGUAGE_MAPPING[idx]['native'])
         for idx in settings.LANGUAGE_MAPPING)
 
-    application = forms.ChoiceField(amo.APPS_CHOICES)
+    application = forms.ChoiceField(choices=amo.APPS_CHOICES)
     collection = forms.CharField(widget=forms.HiddenInput)
     locale = forms.ChoiceField(choices=LOCALES, required=False)
 
