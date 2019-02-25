@@ -1,4 +1,5 @@
 import itertools
+from collections import OrderedDict
 
 from django.conf import settings
 from django.db import models
@@ -28,7 +29,7 @@ def order_by_translation(qs, fieldname, model=None):
 
     # Doing the manual joins is flying under Django's radar, so we need to make
     # sure the initial alias (the main table) is set up.
-    if not qs.query.tables:
+    if not qs.query.table_map:
         qs.query.get_initial_alias()
 
     # Force two new joins against the translation table, without reusing any
@@ -38,7 +39,8 @@ def order_by_translation(qs, fieldname, model=None):
     # building the query manually, does not detect that an inner join would
     # remove results and happily simplifies the LEFT OUTER JOINs to
     # INNER JOINs)
-    qs.query = qs.query.clone(TranslationQuery)
+    qs.query = qs.query.clone()
+    qs.query.__class__ = TranslationQuery
     t1 = qs.query.join(
         Join(field.remote_field.model._meta.db_table, model._meta.db_table,
              None, LOUTER, field, True),
@@ -65,9 +67,9 @@ class TranslationQuery(models.sql.query.Query):
     translations.
     """
 
-    def clone(self, klass=None, **kwargs):
+    def clone(self):
         # Maintain translation_aliases across clones.
-        c = super(TranslationQuery, self).clone(klass, **kwargs)
+        c = super(TranslationQuery, self).clone()
         c.translation_aliases = self.translation_aliases
         return c
 
@@ -83,10 +85,15 @@ class SQLCompiler(compiler.SQLCompiler):
     def get_from_clause(self):
         # Temporarily remove translation tables from query.tables so Django
         # doesn't create joins against them.
-        old_tables = list(self.query.tables)
+        # self.query.tables was removed in django2.0+
+        old_tables = (
+            list(self.query.tables) if hasattr(self.query, 'tables') else None)
+        old_map = OrderedDict(self.query.alias_map)
         for table in itertools.chain(*self.query.translation_aliases.values()):
-            if table in self.query.tables:
-                self.query.tables.remove(table)
+            if table in self.query.alias_map:
+                if old_tables:
+                    self.query.tables.remove(table)
+                del self.query.alias_map[table]
 
         joins, params = super(SQLCompiler, self).get_from_clause()
 
@@ -103,20 +110,22 @@ class SQLCompiler(compiler.SQLCompiler):
         # Django had in query.tables, but that seems to be ok.
         for field, aliases in self.query.translation_aliases.items():
             t1, t2 = aliases
-            joins.append(self.join_with_locale(t1))
-            joins.append(self.join_with_locale(t2, fallback))
+            joins.append(self.join_with_locale(t1, None, old_map))
+            joins.append(self.join_with_locale(t2, fallback, old_map))
 
-        self.query.tables = old_tables
+        if old_tables:
+            self.query.tables = old_tables
+        self.query.alias_map = old_map
         return joins, params
 
-    def join_with_locale(self, alias, fallback=None):
+    def join_with_locale(self, alias, fallback, alias_map):
         # This is all lifted from the real sql.compiler.get_from_clause(),
         # except for the extra AND clause.  Fun project: fix Django to use Q
         # objects here instead of a bunch of strings.
         qn = self.quote_name_unless_alias
         qn2 = self.connection.ops.quote_name
 
-        join = self.query.alias_map[alias]
+        join = alias_map[alias]
         lhs_col, rhs_col = join.join_cols[0]
         alias_str = (
             '' if join.table_alias == join.table_name

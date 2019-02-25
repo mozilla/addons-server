@@ -28,10 +28,17 @@ class TranslationDescriptor(related.ForwardManyToOneDescriptor):
         # happen if the field was set or accessed already), it does a db query
         # to follow the foreign key. We expect translations to be set by
         # queryset transforms, so doing a query is the wrong thing here.
-        try:
-            return getattr(instance, self.cache_name)
-        except AttributeError:
-            return None
+        # django2.0+ uses field.get_cached_value rather than cache_name
+        if hasattr(self.field, 'get_cached_value'):
+            try:
+                return self.field.get_cached_value(instance)
+            except KeyError:
+                return None
+        else:
+            try:
+                return getattr(instance, self.cache_name)
+            except AttributeError:
+                return None
 
     def __set__(self, instance, value):
         lang = translation_utils.get_language()
