@@ -292,7 +292,7 @@ def send_mail(subject, message, from_email=None, recipient_list=None,
                 token, hash = UnsubscribeCode.create(recipient)
                 unsubscribe_url = absolutify(
                     reverse('users.unsubscribe',
-                            args=[token, hash, perm_setting.short],
+                            args=[force_text(token), hash, perm_setting.short],
                             add_prefix=False))
 
                 context = {
