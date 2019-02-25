@@ -183,9 +183,9 @@ django-csp==3.5 \
 django-environ==0.4.5 \
     --hash=sha256:c57b3c11ec1f319d9474e3e5a79134f40174b17c7cc024bbb2fad84646b120c4 \
     --hash=sha256:6c9d87660142608f63ec7d5ce5564c49b603ea8ff25da595fd6098f6dc82afde
-django-extended-choices==1.3.1 \
-    --hash=sha256:99eaabc3deb609f3d75ec0cb589b97f29b2fbdc148246ce23d87c554a3e3673f \
-    --hash=sha256:dd1764015006cb602659854f43244773be466efab55fad018fadaff3531a7480
+django-extended-choices==1.3.2 \
+    --hash=sha256:22c4d500d6ded58b270c4b314c82b894649011c4205935878875219048b6181d \
+    --hash=sha256:7d95674d593d4ccf5c6393e83a787d8e55377e3efd88fa0ff5dc29f6f81d9a49
 django-extensions==2.1.6 \
     --hash=sha256:109004f80b6f45ad1f56addaa59debca91d94aa0dc1cb19678b9364b4fe9b6f4 \
     --hash=sha256:307766e5e6c1caffe76c5d99239d8115d14ae3f7cab2cd991fcffd763dad904b
@@ -238,9 +238,6 @@ feedparser==5.2.1 \
 funcsigs==1.0.2 \
     --hash=sha256:330cc27ccbf7f1e992e69fef78261dc7c6569012cf397db8d3de0234e6c937ca \
     --hash=sha256:a7bb0f2cf3a3fd1ab2732cb49eba4252c2af4240442415b4abce3b87022a8f50
-# future is required by django-extended-choices
-future==0.17.1 \
-    --hash=sha256:67045236dcfd6816dc439556d009594abf643e5eb48992e36beac09c2ca659b8
 geoip2==2.9.0 \
     --hash=sha256:a37ddac2d200ffb97c736da8b8ba9d5d8dc47da6ec0f162a461b681ecac53a14 \
     --hash=sha256:f7ffe9d258e71a42cf622ce6350d976de1d0312b9f2fbce3975c7d838b57ecf0
