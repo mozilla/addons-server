@@ -1,5 +1,0 @@
-{% block content %}
-A reviewer has flagged Theme, {{ theme.addon.name }}, for further review. You may help review it at {{ url('reviewers.themes.single', theme.addon.slug)|absolutify(base_url) }}
-
-Comment: {{ comment }}
-{% endblock %}

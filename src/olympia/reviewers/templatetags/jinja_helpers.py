@@ -214,55 +214,5 @@ def get_position(addon):
 
 @library.global_function
 @jinja2.contextfunction
-def logs_tabnav_themes(context):
-    """
-    Returns tuple of tab navigation for the log pages.
-
-    Each tuple contains three elements: (named url, tab_code, tab_text)
-    """
-    return (
-        ('reviewers.themes.logs', 'themes', ugettext('Reviews')),
-        ('reviewers.themes.deleted', 'deleted', ugettext('Deleted')),
-    )
-
-
-@library.global_function
-@jinja2.contextfunction
-def queue_tabnav_themes(context):
-    """Similar to queue_tabnav, but for themes."""
-    if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
-        tabs = (
-            ('reviewers.themes.list', 'pending_themes',
-                ugettext('Pending')),
-            ('reviewers.themes.list_flagged', 'flagged_themes',
-                ugettext('Flagged')),
-            ('reviewers.themes.list_rereview', 'rereview_themes',
-                ugettext('Updates')),
-        )
-    else:
-        tabs = ()
-    return tabs
-
-
-@library.global_function
-@jinja2.contextfunction
-def queue_tabnav_themes_interactive(context):
-    """Tabnav for the interactive shiny theme queues."""
-    if acl.action_allowed(context['request'], amo.permissions.THEMES_REVIEW):
-        tabs = (
-            ('reviewers.themes.queue_themes', 'pending',
-                ugettext('Pending')),
-            ('reviewers.themes.queue_flagged', 'flagged',
-                ugettext('Flagged')),
-            ('reviewers.themes.queue_rereview', 'rereview',
-                ugettext('Updates')),
-        )
-    else:
-        tabs = ()
-    return tabs
-
-
-@library.global_function
-@jinja2.contextfunction
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()
