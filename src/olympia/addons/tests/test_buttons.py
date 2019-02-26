@@ -2,7 +2,10 @@ import json
 
 from datetime import datetime
 
+import django
+
 import jinja2
+import pytest
 
 from mock import Mock, patch
 from pyquery import PyQuery
@@ -84,6 +87,9 @@ class ButtonTest(TestCase):
         return file
 
 
+@pytest.mark.skipif(
+    django.VERSION[0] >= 2,
+    reason='Legacy UI tests')
 class TestButtonSetup(ButtonTest):
     """Tests for setup code inside install_button."""
 
@@ -140,6 +146,9 @@ class TestButtonSetup(ButtonTest):
         assert b.version == self.version
 
 
+@pytest.mark.skipif(
+    django.VERSION[0] >= 2,
+    reason='Legacy UI tests')
 class TestButton(ButtonTest):
     """Tests for the InstallButton class."""
 
@@ -296,6 +305,9 @@ class TestButton(ButtonTest):
         }
 
 
+@pytest.mark.skipif(
+    django.VERSION[0] >= 2,
+    reason='Legacy UI tests')
 class TestButtonHtml(ButtonTest):
 
     def test_basics(self):
@@ -457,6 +469,9 @@ class TestButtonHtml(ButtonTest):
         assert doc('.download-anyway')
 
 
+@pytest.mark.skipif(
+    django.VERSION[0] >= 2,
+    reason='Legacy UI tests')
 class TestViews(TestCase):
     fixtures = ['addons/eula+contrib-addon']
 
