@@ -230,6 +230,7 @@ def create_sample(name=None, **kw):
     if not created:
         sample.__dict__.update(kw)
         sample.save()
+    sample.flush()
 
     return sample
 
@@ -242,6 +243,7 @@ def create_switch(name=None, **kw):
     if not created:
         switch.__dict__.update(kw)
         switch.save()
+    switch.flush()
 
     return switch
 
@@ -254,6 +256,7 @@ def create_flag(name=None, **kw):
     if not created:
         flag.__dict__.update(kw)
         flag.save()
+    flag.flush()
 
     return flag
 
