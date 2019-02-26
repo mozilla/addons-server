@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-10 15:36+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -164,15 +164,6 @@ msgstr "Abans de canviar la vostra llengua per defecte heu d'escriure un nom, un
 
 msgid "A license must be selected."
 msgstr "Cal seleccionar una llicència."
-
-msgid "Give Your Theme a Name."
-msgstr ""
-
-msgid "Describe your Theme."
-msgstr ""
-
-msgid "Enter a new author's email address"
-msgstr ""
 
 # Column name in a table.
 msgid "Listed"
@@ -2602,12 +2593,6 @@ msgstr "Col·leccions dels usuaris"
 msgid "User Reviews"
 msgstr "Comentaris dels usuaris"
 
-msgid "Changes successfully saved."
-msgstr "S'han desat els canvis correctament."
-
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "No es pot suprimir el complement. Mireu d'inhabilitar-lo."
 
@@ -2631,6 +2616,9 @@ msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "S'han desat els canvis correctament."
 
 msgid "Validate Add-on"
 msgstr "Valida el complement"
@@ -2717,6 +2705,9 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Please check the form for errors."
 msgstr ""
 
 #, fuzzy
@@ -4103,10 +4094,23 @@ msgstr "Mostra la llista"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
+# 80%
+# 100%
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Revisions moderades"
+
+msgid "Create a New Theme"
+msgstr ""
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
 
 msgid "Theme Details"
+msgstr ""
+
+msgid "Give your Theme a name."
 msgstr ""
 
 msgid "Supply a pretty URL for your detail page."
@@ -4118,58 +4122,19 @@ msgstr ""
 msgid "Add some tags to describe your Theme."
 msgstr ""
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr ""
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
-msgstr ""
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Es permet copiar, distribuir, mostrar i fer servir l'obra, fins i tot amb propòsits comercials."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Els altres usuaris poden copiar, distribuir, mostrar i fer servir l'obra només amb propòsits no comercials."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr ""
-
-msgid "Can others create derivative works from your Theme?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Es permet copiar, distribuir, mostrar i fer servir l'obra, així com fer-ne obres derivades."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Es permet copiar, distribuir, distribuir i transmetre només còpies no alterades de l'obra, no obres derivades."
-
-msgid "Your Theme will be released under the following license:"
 msgstr ""
 
 msgid "Select a license for your Theme."
 msgstr ""
 
 msgid "Theme Design"
-msgstr ""
-
-msgid "Upload New Design"
-msgstr ""
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-
-msgid "Pending Header"
-msgstr ""
-
-msgid "You may update your theme design here once it has been approved."
-msgstr ""
-
-msgid "Header"
 msgstr ""
 
 msgid "Select colors for your Theme."
@@ -4195,19 +4160,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "Publicat sota <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Create a New Theme"
-msgstr ""
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Give your Theme a name."
-msgstr ""
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5898,12 +5850,6 @@ msgstr "No s'ha trobat cap fitxer per pujar"
 msgid "Fetching file."
 msgstr "S'està analitzant el fitxer."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "No s'ha implementat encara."
-
 msgid "Shopping Made Easy"
 msgstr ""
 
@@ -7153,7 +7099,7 @@ msgid "No reviews found for this period."
 msgstr "No s'han trobat revisions per aquest període."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"

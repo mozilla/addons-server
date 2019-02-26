@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-18 07:22+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -156,15 +156,6 @@ msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezum
 
 msgid "A license must be selected."
 msgstr "Trebuie selectată o licență."
-
-msgid "Give Your Theme a Name."
-msgstr "Dă-i un nume temei tale."
-
-msgid "Describe your Theme."
-msgstr "Descrie tema ta."
-
-msgid "Enter a new author's email address"
-msgstr "Introdu o nouă adresă de e-mail pentru autor"
 
 msgid "Listed"
 msgstr "Listat"
@@ -2551,12 +2542,6 @@ msgstr "Colecțiile utilizatorului"
 msgid "User Reviews"
 msgstr "Recenziile utilizatorilor"
 
-msgid "Changes successfully saved."
-msgstr "Modificări salvate cu succes."
-
-msgid "Please check the form for errors."
-msgstr "Te rugăm să verifici formularul pentru erori."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Suplimentul nu poate fi șters. Dezactivează acest supliment."
 
@@ -2580,6 +2565,9 @@ msgstr "A fost modificat rolul unui autor în suplimentul tău"
 
 msgid "An author has been removed from your add-on"
 msgstr "A fost eliminat un autor din suplimentul tău"
+
+msgid "Changes successfully saved."
+msgstr "Modificări salvate cu succes."
 
 msgid "Validate Add-on"
 msgstr "Validează suplimentul"
@@ -2663,6 +2651,9 @@ msgstr "Text din zona câmpului barei de unelte"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Culoarea textului din câmpurile barei de unelte, cum ar fi bara de adrese. Câmp manifest:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Te rugăm să verifici formularul pentru erori."
 
 msgid "Review requested."
 msgstr "Recenzie solicitată."
@@ -3994,11 +3985,22 @@ msgstr "Testare live"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Instalează-ți temporar extensia în Firefox pentru testare live și depanare."
 
-msgid "Transfer ownership"
-msgstr "Transferă drepturile de proprietate"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Jurnal de recenzie pentru teme lejere"
+
+msgid "Create a New Theme"
+msgstr "Creează o temă nouă"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Temele de fundal își permit personalizarea ușoară a aspectului Firefox. Trimite-ne designuri proprii mai jos sau <a href=\"%(submit_url)s\">află cum poți crea una</a>!"
 
 msgid "Theme Details"
 msgstr "Detaliile temei"
+
+msgid "Give your Theme a name."
+msgstr "Denumește-ți tema."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Furnizează un URL simplificat pentru pagina ta de detalii."
@@ -4009,59 +4011,20 @@ msgstr "Selectează categoria care descrie cel mai bine tema ta."
 msgid "Add some tags to describe your Theme."
 msgstr "Adaugă câteva etichete care să-ți descrie tema."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listele de căutare și de navigare, precum și în partea de sus a paginii de detalii a temei tale."
+msgid "Describe your Theme."
+msgstr "Descrie tema ta."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listele de căutare și de navigare, precum și în partea de sus a paginii de detalii a temei tale"
 
 msgid "Theme License"
 msgstr "Licența temei"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Permiți altora să îți distribuie tema, cu condiția să ți-o atribuie?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Deținătorul licenței permite altora să copieze, să distribuie, să afișeze și să execute lucrarea, inclusiv în scopuri comerciale."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Deținătorul licenței permite altora să copieze, să distribuie, să afișeze și să execute lucrarea numai în scopuri necomerciale."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Permiți altora să utilizeze în scopuri comerciale tema ta?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Permiți altora să creeze lucrări derivate din tema ta?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Deținătorul licenței permite altora să copieze, să distribuie, să afișeze și să execute lucrarea, precum și realizarea de lucrări derivate."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Deținătorul licenței permite altora să copieze, să distribuie și să transmită numai copii nemodificate ale lucrării — nu lucrări derivate."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Tema ta va fi lansată sub următoarea licență:"
 
 msgid "Select a license for your Theme."
 msgstr "Selectează o licență pentru tema ta."
 
 msgid "Theme Design"
 msgstr "Designul temei"
-
-msgid "Upload New Design"
-msgstr "Încarcă un design nou"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "La încărcare și trimiterea formularului, echipa AMO îți va revizui designul actualizat. Între timp, designul actual va fi în continuare public."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Designul pe care l-ai redepus anterior, care este acum în așteptarea unei revizuiri."
-
-msgid "Pending Header"
-msgstr "Antet în așteptare"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Îți poți actualiza aici designul temei odată ce a fost aprobată."
-
-msgid "Header"
-msgstr "Antet"
 
 msgid "Select colors for your Theme."
 msgstr "Selectează culorile temei tale."
@@ -4084,19 +4047,6 @@ msgstr "Denumirea temei tale"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "de <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Creează o temă nouă"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Temele de fundal își permit personalizarea ușoară a aspectului Firefox. Trimite-ne designuri proprii mai jos sau <a href=\"%(submit_url)s\">află cum poți crea una</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Denumește-ți tema."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "O explicație scurtă a funcționalității de bază a temei tale, care vine afișată în listele de căutare și de navigare, precum și în partea de sus a paginii de detalii a temei tale"
 
 #, python-format
 msgid ""
@@ -5781,12 +5731,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr ""
-
 msgid "Shopping Made Easy"
 msgstr "Cumpărăturile au devenit ușoare"
 
@@ -6981,8 +6925,8 @@ msgstr ""
 msgid "No reviews found for this period."
 msgstr ""
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] a raportat %(object)s la data de %(date)s"
 
 msgid "Dismiss this announcement"

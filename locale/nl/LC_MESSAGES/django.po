@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-12 18:07+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -155,15 +155,6 @@ msgstr "Voordat u uw standaardlocale wijzigt, dient u een naam, samenvatting en 
 
 msgid "A license must be selected."
 msgstr "U dient een licentie te selecteren."
-
-msgid "Give Your Theme a Name."
-msgstr "Geef uw thema een naam."
-
-msgid "Describe your Theme."
-msgstr "Beschrijf uw thema."
-
-msgid "Enter a new author's email address"
-msgstr "Voer het e-mailadres van een nieuwe schrijver in"
 
 # Column name in a table.
 msgid "Listed"
@@ -2525,12 +2516,6 @@ msgstr "Gebruikerscollecties"
 msgid "User Reviews"
 msgstr "Gebruikersbeoordelingen"
 
-msgid "Changes successfully saved."
-msgstr "Wijzigingen met succes opgeslagen."
-
-msgid "Please check the form for errors."
-msgstr "Controleer het formulier op fouten."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Add-on kan niet worden verwijderd. Schakel deze add-on uit."
 
@@ -2554,6 +2539,9 @@ msgstr "Een schrijver heeft een gewijzigde rol voor uw add-on"
 
 msgid "An author has been removed from your add-on"
 msgstr "Er is een schrijver verwijderd van uw add-on"
+
+msgid "Changes successfully saved."
+msgstr "Wijzigingen met succes opgeslagen."
 
 msgid "Validate Add-on"
 msgstr "Add-on valideren"
@@ -2637,6 +2625,9 @@ msgstr "Tekst van werkbalkveldgebied"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "De kleur van tekst in velden in de werkbalk, zoals de URL-balk. Manifestveld:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Controleer het formulier op fouten."
 
 msgid "Review requested."
 msgstr "Beoordeling aangevraagd."
@@ -3962,11 +3953,22 @@ msgstr "Live testen"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Installeer uw extensie in Firefox tijdelijk voor live testen en debuggen."
 
-msgid "Transfer ownership"
-msgstr "Eigendom overdragen"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Beoordelingslogboek van lichtgewicht thema’s"
+
+msgid "Create a New Theme"
+msgstr "Een nieuw thema maken"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Met achtergrondthema’s kunt u eenvoudig de uitstraling van uw Firefox personaliseren. Dien hieronder uw eigen ontwerp in, of <a href=\"%(submit_url)s\">lees hoe u er één kunt maken</a>!"
 
 msgid "Theme Details"
 msgstr "Thema-details"
+
+msgid "Give your Theme a name."
+msgstr "Geef uw thema een naam."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Geef een mooie URL voor uw detailpagina."
@@ -3977,59 +3979,20 @@ msgstr "Selecteer de categorie die het beste bij uw thema past."
 msgid "Add some tags to describe your Theme."
 msgstr "Voeg enkele labels toe die uw thema beschrijven."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema."
+msgid "Describe your Theme."
+msgstr "Beschrijf uw thema."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema"
 
 msgid "Theme License"
 msgstr "Thema-licentie"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Mogen andere uw thema delen, zolang ze u bedanken?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, inclusief commercieel gebruik."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "De licentiegever staat anderen alleen voor niet-commerciële doeleinden toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Mogen anderen uw thema commercieel gebruiken?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Mogen anderen werk afleiden van uw thema?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "De licentiegever staat anderen toe het werk te kopiëren, verspreiden, weer te geven en uit te voeren, en staat tevens toe werk ervan af te leiden."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "De licentiegever staat anderen alleen toe ongewijzigde kopieën van het werk te kopiëren, verspreiden en verzenden &ndash; geen ervan afgeleide werken."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Uw thema wordt uitgegeven onder de volgende licentie:"
 
 msgid "Select a license for your Theme."
 msgstr "Selecteer een licentie voor uw thema."
 
 msgid "Theme Design"
 msgstr "Thema-ontwerp"
-
-msgid "Upload New Design"
-msgstr "Nieuw ontwerp uploaden"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Bij uploaden en indienen van het formulier beoordeelt het AMO-team uw bijgewerkte ontwerp. Ondertussen blijft uw huidige ontwerp beschikbaar."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Uw eerder opnieuw ingediende ontwerp, dat momenteel op beoordeling wacht."
-
-msgid "Pending Header"
-msgstr "Wachtende headerafbeelding"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "U kunt het ontwerp van uw thema hier bijwerken zodra dit is goedgekeurd."
-
-msgid "Header"
-msgstr "Header"
 
 msgid "Select colors for your Theme."
 msgstr "Selecteer kleuren voor uw thema."
@@ -4052,19 +4015,6 @@ msgstr "Naam van uw thema"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "door <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Een nieuw thema maken"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Met achtergrondthema’s kunt u eenvoudig de uitstraling van uw Firefox personaliseren. Dien hieronder uw eigen ontwerp in, of <a href=\"%(submit_url)s\">lees hoe u er één kunt maken</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Geef uw thema een naam."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema"
 
 #, python-format
 msgid ""
@@ -5748,12 +5698,6 @@ msgstr "Geen bestanden in geüpload bestand."
 msgid "Fetching file."
 msgstr "Bestand ophalen."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "De API-versie, {0:.1f}, die u gebruikt is niet geldig. Werk bij naar de huidige versie van de API, {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Nog niet geïmplementeerd."
-
 msgid "Shopping Made Easy"
 msgstr "Winkelen wordt eenvoudig"
 
@@ -6937,8 +6881,8 @@ msgstr "Opmerkingen verbergen"
 msgid "No reviews found for this period."
 msgstr "Geen beoordelingen in deze periode gevonden."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] heeft %(object)s gerapporteerd op %(date)s"
 
 msgid "Dismiss this announcement"

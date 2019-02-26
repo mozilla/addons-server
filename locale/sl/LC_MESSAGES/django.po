@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-13 16:45+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -161,15 +161,6 @@ msgstr "Preden spremenite privzeto lokalno nastavitev, morate imeti v novi nasta
 
 msgid "A license must be selected."
 msgstr "Izbrati je treba licenco."
-
-msgid "Give Your Theme a Name."
-msgstr "Poimenujte svojo temo."
-
-msgid "Describe your Theme."
-msgstr "Opišite svojo temo."
-
-msgid "Enter a new author's email address"
-msgstr "Vnesite e-poštni naslov novega avtorja"
 
 # Column name in a table.
 msgid "Listed"
@@ -2550,12 +2541,6 @@ msgstr "Uporabniške zbirke"
 msgid "User Reviews"
 msgstr "Ocene uporabnikov"
 
-msgid "Changes successfully saved."
-msgstr "Spremembe uspešno shranjene."
-
-msgid "Please check the form for errors."
-msgstr "Prosimo, poiščite napake v obrazcu."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodatka ni mogoče zbrisati. Namesto tega ga onemogočite."
 
@@ -2579,6 +2564,9 @@ msgstr "Avtor vašega dodatka ima spremenjeno vlogo"
 
 msgid "An author has been removed from your add-on"
 msgstr "Vašemu dodatku je bil odstranjen avtor"
+
+msgid "Changes successfully saved."
+msgstr "Spremembe uspešno shranjene."
 
 msgid "Validate Add-on"
 msgstr "Preveri veljavnost dodatka"
@@ -2662,6 +2650,9 @@ msgstr "Besedilo območja polja orodne vrstice"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Barva besedila v poljih orodne vrstice, kot je vrstica z naslovom. Polje manifesta:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Prosimo, poiščite napake v obrazcu."
 
 msgid "Review requested."
 msgstr "Pregled zahtevan."
@@ -3998,11 +3989,23 @@ msgstr "Preskušanje v živo"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Začasno namestite razširitev v Firefox za preizkušanje v živo in odpravljanje napak."
 
-msgid "Transfer ownership"
-msgstr "Prenos lastništva"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Dnevnik pregledov lahkih tem"
+
+msgid "Create a New Theme"
+msgstr "Ustvarite novo temo"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr ""
+"S temami za ozadje si lahko hitro in enostavno prilagodite videz svojega Firefoxa. Spodaj pošljite svoj lastni izdelek ali pa <a href=\"%(submit_url)s\">se naučite, kako si ga lahko naredite</a>!"
 
 msgid "Theme Details"
 msgstr "Podrobnosti o temi"
+
+msgid "Give your Theme a name."
+msgstr "Poimenujte svojo temo."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Poskrbite za čeden spletni naslov za stran s podrobnostmi."
@@ -4014,67 +4017,20 @@ msgstr "Izberite kategorijo, ki najbolje opisuje vašo temo."
 msgid "Add some tags to describe your Theme."
 msgstr "Dodajte nekaj oznak, ki opisujejo vašo temo."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
-"Kratka razlaga osnovnega delovanja\n"
-"                                vaše teme, ki je prikazana na seznamu\n"
-"                                iskanja in brskanja kot tudi na vrhu strani s\n"
-"                                podrobnostmi vaše teme."
+msgid "Describe your Theme."
+msgstr "Opišite svojo temo."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Kratka razlaga osnovnih funkcij vaše teme, ki se ga prikazuje v rezultatih iskanja in brskanja, kot tudi na vrhu strani s podrobnostmi o temi"
 
 msgid "Theme License"
 msgstr "Licenca za temo"
-
-# 88%
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Lahko drugi, v kolikor ste omenjeni kot avtor, vašo temo širijo dalje?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prikazovati izdelek ter opravljati delo, tudi v komercialne namene."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prikazovati izdelek ter opravljati delo samo za nekomercialne namene."
-
-# 85%
-msgid "Can others make commercial use of your Theme?"
-msgstr "Lahko drugi uporabljajo vašo temo v komercialne namene?"
-
-# 86%
-msgid "Can others create derivative works from your Theme?"
-msgstr "Lahko drugi ustvarjajo izpeljanke na osnovi vaše teme?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati, prikazovati izdelek in opravljati delo, kot tudi ustvarjati izpeljanke na njeni osnovi."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Dajatelj licence dovoljuje drugim kopirati, distribuirati in prenašati samo nespremenjene kopije svojega dela - in ne izpeljank, ki temeljijo na njem,"
-
-# 87%
-msgid "Your Theme will be released under the following license:"
-msgstr "Vaša tema bo objavljena pod naslednjo licenco:"
 
 msgid "Select a license for your Theme."
 msgstr "Izberite licenco za svojo temo."
 
 msgid "Theme Design"
 msgstr "Načrt teme"
-
-msgid "Upload New Design"
-msgstr "Naloži nov načrt"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Potem ko naložite in sestavite prispevek, bo ekipa AMO pregledala vašo posodobljeno zasnovo. Vaša trenutna zasnova bo kljub temu javna v trenutku."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Vaša prej poslana zasnova, ki čaka na pregled."
-
-msgid "Pending Header"
-msgstr "Glava v čakanju"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Morda boste posodobili zasnovo teme potem, ko bo odobrena."
-
-msgid "Header"
-msgstr "Glava"
 
 msgid "Select colors for your Theme."
 msgstr "Izberite barve za svojo temo."
@@ -4097,20 +4053,6 @@ msgstr "Ime vaše teme"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "— <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Ustvarite novo temo"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-"S temami za ozadje si lahko hitro in enostavno prilagodite videz svojega Firefoxa. Spodaj pošljite svoj lastni izdelek ali pa <a href=\"%(submit_url)s\">se naučite, kako si ga lahko naredite</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Poimenujte svojo temo."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Kratka razlaga osnovnih funkcij vaše teme, ki se ga prikazuje v rezultatih iskanja in brskanja, kot tudi na vrhu strani s podrobnostmi o temi"
 
 #, python-format
 msgid ""
@@ -5799,12 +5741,6 @@ msgstr "Ni datotek v naloženi datoteki."
 msgid "Fetching file."
 msgstr "Pridobivam datoteko."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Različica API-ja, {0:.1f}, ki jo uporabljate je neveljavna. Posodobite jo na najnovejšo različico {1:.1f} API."
-
-msgid "Not implemented yet."
-msgstr "Še ni uvedeno."
-
 msgid "Shopping Made Easy"
 msgstr "Enostavno nakupovanje"
 
@@ -7009,8 +6945,8 @@ msgstr "Skrij komentarje"
 msgid "No reviews found for this period."
 msgstr "Za to obdobje ni najti pregledov."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "je %(user)s [%(ip_address)s] prijavil %(object)s (%(date)s)"
 
 msgid "Dismiss this announcement"

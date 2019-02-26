@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2018-11-19 23:48+0000\n"
 "Last-Translator: Othman Wagiman <manxmensch@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,15 +147,6 @@ msgstr "Sebelum menukar lokaliti piawai anda, anda mesti ada nama, ringkasan dan
 
 msgid "A license must be selected."
 msgstr "Lesen mesti dipilih."
-
-msgid "Give Your Theme a Name."
-msgstr "Berikan Nama untuk Tema Anda."
-
-msgid "Describe your Theme."
-msgstr "Jelaskan tema anda."
-
-msgid "Enter a new author's email address"
-msgstr "Masukkan alamat e-mel baru pengarang"
 
 msgid "Listed"
 msgstr "Tersenarai"
@@ -2474,12 +2465,6 @@ msgstr "Koleksi Pengguna"
 msgid "User Reviews"
 msgstr "Ulasan Pengguna"
 
-msgid "Changes successfully saved."
-msgstr "Perubahan berjaya disimpan."
-
-msgid "Please check the form for errors."
-msgstr "Sila semak borang untuk ralat."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Add-on ini tidak boleh dibuang. Hanya nyahdayakan sahaja."
 
@@ -2503,6 +2488,9 @@ msgstr "Peranan pengarang add-on anda telah ditukar"
 
 msgid "An author has been removed from your add-on"
 msgstr "Seorang pengarang disingkir daripada add-on anda"
+
+msgid "Changes successfully saved."
+msgstr "Perubahan berjaya disimpan."
 
 msgid "Validate Add-on"
 msgstr "Sahkan Add-on"
@@ -2589,6 +2577,9 @@ msgstr "Teks kawasan medan bar alatan"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Warna teks dalam medan bar alatan, seperti bar URL. Medan manifes:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Sila semak borang untuk ralat."
 
 msgid "Review requested."
 msgstr "Perlu semakan."
@@ -3910,11 +3901,22 @@ msgstr "Ujian Langsung"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Pasang ekstensi sementara dalam Firefox untuk ujian dan menyahpepijat secara langsung."
 
-msgid "Transfer ownership"
-msgstr "Pindah pemilikan"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Lig Ulasan Tema Ringan"
+
+msgid "Create a New Theme"
+msgstr "Cipta Tema Baru"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Tema latar belakang membolehkan anda memperibadikan rupa Firefox dengan mudah. Hantarkan rekaan anda sendiri di bawah, atau <a href=\"%(submit_url)s\">belajar cara mencipta</a>!"
 
 msgid "Theme Details"
 msgstr "Butiran Tema"
+
+msgid "Give your Theme a name."
+msgstr "Berikan nama untuk Tema anda."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Sesiakan URL yang cantik untuk halaman butiran anda."
@@ -3925,59 +3927,21 @@ msgstr "Pilih kategori yang paling sesuai menjelaskan Tema anda."
 msgid "Add some tags to describe your Theme."
 msgstr "Tambah beberapa tag untuk menjelaskan Tema anda."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Jelaskan tema anda."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Penjelasan ringkas fungsi asas tema anda yang dipamerkan dalam senarai carian dan pelayaran, serta pada bahagian atas halaman butiran tema anda."
 
 msgid "Theme License"
 msgstr "Lesen Tema"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Bolehkah orang lain berkongsi tema anda, selagi anda diberi penghargaan?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, termasuk bagi tujuan komersial."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, bagi tujuan bukan komersial sahaja."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Bolehkah pihak lain menggunakan Tema anda bagi tujuan komersial?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Bolehkan pihak lain membuat kerja terbitan daripada Tema anda?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar, memapar dan melaksanakan kerja, serta kerja terbitan daripadanya."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Pemberi lesen membenarkan pihak lain menyalin, mengedar dan menghantar hanya salinan kerja yang tidak diubah — bukan kerja terbitan daripadanya."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Tema anda akan dikeluarkan di bawah lesen berikut:"
 
 msgid "Select a license for your Theme."
 msgstr "Pilih lesen untuk Tema anda."
 
 msgid "Theme Design"
 msgstr "Rekaan Tema"
-
-msgid "Upload New Design"
-msgstr "Muat naik Rekaan Baru"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Setelah muat naik dan serahan borang, pasukan AMO akan mengkaji semula reka bentuk anda yang dikemaskini. Pada masa yang sama, reka bentuk semasa masih akan dipamerkan kepada umum."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Reka bentuk anda sebelum ini yang direka semula, yang masih menunggu semakan."
-
-msgid "Pending Header"
-msgstr "Pengepala Tertangguh"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Anda boleh mengemaskini reka bentuk tema anda di sini apabila sudah diluluskan."
-
-msgid "Header"
-msgstr "Pengepala"
 
 msgid "Select colors for your Theme."
 msgstr "Pilih warna untuk Tema anda."
@@ -4002,20 +3966,6 @@ msgstr "Nama Tema Anda"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "oleh <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Cipta Tema Baru"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Tema latar belakang membolehkan anda memperibadikan rupa Firefox dengan mudah. Hantarkan rekaan anda sendiri di bawah, atau <a href=\"%(submit_url)s\">belajar cara mencipta</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Berikan nama untuk Tema anda."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Penjelasan ringkas fungsi asas tema anda yang dipamerkan dalam senarai carian dan pelayaran, serta pada bahagian atas halaman butiran tema anda."
 
 #, python-format
 msgid ""
@@ -5701,12 +5651,6 @@ msgstr "Tiada fail yang dimuat naik."
 msgid "Fetching file."
 msgstr "Mendapatkan fail."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Versi API, {0:.1f}, yang sedang anda gunakan tidak sah. Sila naik taraf ke versi semasa API {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Belum dilaksanakan lagi."
-
 msgid "Shopping Made Easy"
 msgstr "Membeli-belah Semakin Mudah"
 
@@ -6882,8 +6826,8 @@ msgstr "Sorok Komen"
 msgid "No reviews found for this period."
 msgstr "Tiada semakan ditemukan dalam tempoh ini."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] melaporkan %(object)s pada %(date)s"
 
 msgid "Dismiss this announcement"

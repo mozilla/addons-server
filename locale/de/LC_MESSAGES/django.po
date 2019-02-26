@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-11 20:27+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,15 +152,6 @@ msgstr "Bevor Sie Ihre Standardsprache ändern, müssen Sie in dieser Sprache ei
 
 msgid "A license must be selected."
 msgstr "Es muss eine Lizenz ausgewählt werden."
-
-msgid "Give Your Theme a Name."
-msgstr "Geben Sie Ihrem Theme einen Namen."
-
-msgid "Describe your Theme."
-msgstr "Beschreiben Sie Ihr Theme."
-
-msgid "Enter a new author's email address"
-msgstr "Geben Sie eine neue E-Mail-Adresse des Autors ein"
 
 # Column name in a table.
 msgid "Listed"
@@ -2544,12 +2535,6 @@ msgstr "Benutzer-Sammlungen"
 msgid "User Reviews"
 msgstr "Benutzer-Bewertungen"
 
-msgid "Changes successfully saved."
-msgstr "Änderungen erfolgreich gespeichert."
-
-msgid "Please check the form for errors."
-msgstr "Bitte prüfen Sie das Formular auf Fehler."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Add-on kann nicht gelöscht werden. Deaktivieren Sie dieses Add-on stattdessen."
 
@@ -2573,6 +2558,9 @@ msgstr "Die Rolle eines Autors Ihres Add-ons hat sich geändert"
 
 msgid "An author has been removed from your add-on"
 msgstr "Von Ihrem Add-on wurde ein Autor entfernt"
+
+msgid "Changes successfully saved."
+msgstr "Änderungen erfolgreich gespeichert."
 
 msgid "Validate Add-on"
 msgstr "Add-on überprüfen"
@@ -2656,6 +2644,9 @@ msgstr "Text des Feldbereichs der Symbolleisten"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Die Textfarbe für Felder in den Symbolleisten, wie der Adressleiste. Feld im Manifest:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Bitte prüfen Sie das Formular auf Fehler."
 
 msgid "Review requested."
 msgstr "Überprüfung angefordert."
@@ -3986,11 +3977,24 @@ msgstr "Live-Test"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Installieren Sie Ihre Erweiterung temporär in Firefox, um sie live zu testen und Fehler zu beheben."
 
-msgid "Transfer ownership"
-msgstr "Besitz übertragen"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Logbuch der Überprüfungen für leichtgewichtige Themes"
+
+msgid "Create a New Theme"
+msgstr "Erstellen Sie ein neues Theme"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr ""
+"Mit Hintergrund-Themes können Sie einfach das Erscheinungsbild Ihres Firefox’ personalisieren. Übermitteln Sie im Folgenden Ihr eigenes Design oder <a href=\"%(submit_url)s\">erfahren Sie, wie Sie "
+"eines erstellen</a>!"
 
 msgid "Theme Details"
 msgstr "Details zum Theme"
+
+msgid "Give your Theme a name."
+msgstr "Geben Sie Ihrem Theme einen Namen."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Wählen Sie eine schöne URL für Ihre Detailseite aus."
@@ -4001,59 +4005,20 @@ msgstr "Wählen Sie die Kategorie aus, die Ihr Theme am besten beschreibt."
 msgid "Add some tags to describe your Theme."
 msgstr "Fügen Sie ein paar Schlagwörter hinzu, um Ihr Theme zu beschreiben."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Eine kurze Erklärung der wichtigsten Funktionen Ihres Themes, die in Suchergebnissen und Listen angezeigt wird, sowie oben auf der Detailseite Ihres Themes."
+msgid "Describe your Theme."
+msgstr "Beschreiben Sie Ihr Theme."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Eine kurze Erklärung der grundlegenden Funktionalität Ihres Themes, die in Suchergebnissen und beim Durchsehen, sowie oben auf der Detailseite Ihres Themes angezeigt wird"
 
 msgid "Theme License"
 msgstr "Theme-Lizenz"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Dürfen andere Ihr Theme weitergeben, solange Sie als Autor genannt werden?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Der Lizenzgeber erlaubt es anderen, die Arbeit – auch für kommerzielle Zwecke – zu kopieren, zu verteilen, darzustellen und aufzuführen."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Der Lizenzgeber erlaubt es anderen, die Arbeit nur für nichtkommerzielle Zwecke zu kopieren, zu verteilen, darzustellen und aufzuführen."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Dürfen andere Ihr Theme kommerziell verwenden?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Dürfen andere aus Ihrem Theme abgeleitete Werke erstellen?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Der Lizenzgeber erlaubt es anderen, die Arbeit zu kopieren, zu verteilen, darzustellen und aufzuführen und auch darauf basierende Abwandlungen zu erstellen."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Der Lizenzgeber erlaubt es anderen, nur unveränderte Kopien des Werks zu kopieren, zu verteilen und zu übermitteln — keine darauf basierenden Abwandlungen."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Ihr Theme wird unter der folgenden Lizenz veröffentlicht:"
 
 msgid "Select a license for your Theme."
 msgstr "Wählen Sie eine Lizenz für Ihr Theme."
 
 msgid "Theme Design"
 msgstr "Theme-Gestaltung"
-
-msgid "Upload New Design"
-msgstr "Neues Design hochladen"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Sobald der Upload abgeschlossen und das Formular abgesendet ist, wird das AMO-Team Ihr aktualisiertes Design überprüfen. Ihr aktuelles Design ist währenddessen weiter verfügbar."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Ihr zuvor erneut eingereichtes Design, das auf Überprüfung wartet."
-
-msgid "Pending Header"
-msgstr "Zu überprüfender Kopfbereich"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Sie können das Design Ihres Themes hier aktualisieren, sobald es freigeschaltet wurde."
-
-msgid "Header"
-msgstr "Kopfbereich"
 
 msgid "Select colors for your Theme."
 msgstr "Wählen Sie Farben für Ihr Theme aus."
@@ -4076,21 +4041,6 @@ msgstr "Name Ihres Themes"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "von <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Erstellen Sie ein neues Theme"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-"Mit Hintergrund-Themes können Sie einfach das Erscheinungsbild Ihres Firefox’ personalisieren. Übermitteln Sie im Folgenden Ihr eigenes Design oder <a href=\"%(submit_url)s\">erfahren Sie, wie Sie "
-"eines erstellen</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Geben Sie Ihrem Theme einen Namen."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Eine kurze Erklärung der grundlegenden Funktionalität Ihres Themes, die in Suchergebnissen und beim Durchsehen, sowie oben auf der Detailseite Ihres Themes angezeigt wird"
 
 #, python-format
 msgid ""
@@ -5772,12 +5722,6 @@ msgstr "Keine Dateien in der hochgeladenen Datei"
 msgid "Fetching file."
 msgstr "Datei wird geholt."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Die verwendete API-Version {0:.1f} ist ungültig. Bitte aktualisieren Sie auf die aktuelle API-Version {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Noch nicht implementiert."
-
 msgid "Shopping Made Easy"
 msgstr "Einkaufen leicht gemacht"
 
@@ -6962,8 +6906,8 @@ msgstr "Kommentare ausblenden"
 msgid "No reviews found for this period."
 msgstr "Keine Überprüfungen für diesen Zeitraum gefunden."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] meldete %(object)s am %(date)s"
 
 msgid "Dismiss this announcement"

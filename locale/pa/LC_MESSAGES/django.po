@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2015-07-18 03:09+0000\n"
 "Last-Translator: ubuntuser13 <ubuntuser13@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,15 +150,6 @@ msgstr "ਤੁਹਾਡਾ ਮੂਲ ਲੋਕੇਲ ਬਦਲਣ ਤੋਂ ਪ�
 
 msgid "A license must be selected."
 msgstr "ਇਕ ਲਾਇਸੰਸ ਚੁਣਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ।"
-
-msgid "Give Your Theme a Name."
-msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
-
-msgid "Describe your Theme."
-msgstr "ਤੁਹਾਡਾ ਥੀਮ ਦਾ ਵਰਣਨ ਕਰੋ।"
-
-msgid "Enter a new author's email address"
-msgstr "ਇੱਕ ਨਵੇਂ ਲੇਖਕ ਦਾ ਈਮੇਲ ਪਤਾ ਭਰੋ"
 
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
@@ -2583,12 +2574,6 @@ msgstr "ਉਪਭੋਗੀ ਸੰਗ੍ਰਹਿ"
 msgid "User Reviews"
 msgstr "ਉਪਭੋਗੀ ਸਮੀਖਿਆਵਾਂ"
 
-msgid "Changes successfully saved."
-msgstr "ਬਦਲਾਵ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
-
-msgid "Please check the form for errors."
-msgstr "ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "ਐਡ-ਆਨ ਹਟਾਇਆ ਨਹੀਂ ਜਾ ਸਕਿਆ। ਇਸ ਦੀ ਬਜਾਏ ਇਸ ਐਡ-ਆਨ ਨੂੰ ਅਯੋਗ ਕਰੋ।"
 
@@ -2612,6 +2597,9 @@ msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੇ ਇੱਕ ਲੇਖਕ ਦੀ �
 
 msgid "An author has been removed from your add-on"
 msgstr "ਤੁਹਾਡੇ ਐਡ-ਆਨ ਤੋਂ ਇੱਕ ਲੇਖਕ ਨੂੰ ਹਟਾਇਆ ਗਿਆ"
+
+msgid "Changes successfully saved."
+msgstr "ਬਦਲਾਵ ਸਫ਼ਲਤਾਪੂਰਕ ਸੰਭਾਲ੍ਹੇ ਗਏ।"
 
 msgid "Validate Add-on"
 msgstr "ਐਡ-ਆਨ ਦੀ ਪੜਤਾਲ"
@@ -2699,6 +2687,9 @@ msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
 
 #, fuzzy
 msgid "Review requested."
@@ -4102,11 +4093,22 @@ msgstr "ਸੂਚੀ ਵੇਖੋ"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "ਮਾਲਕੀ ਦੀ ਤਬਾਦਲਾ"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "ਲਾਈਟਵੇਟ ਥੀਮ"
+
+msgid "Create a New Theme"
+msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "ਬੈਕਗਰਾਂਊਡ ਥੀਮ ਤੁਹਾਨੂੰ ਤੁਹਾਡੀ ਫ਼ਾਇਰਫ਼ਾਕਸ ਦੀ ਦਿੱਖ ਅਸਾਨੀ ਨਾਲ ਬਦਲਣ ਦਿੰਦੇ ਹਨ। ਆਪਣਾ ਡਿਜ਼ਾਇਨ ਹੇਠ ਦਾਖਲ ਕਰੋ, ਜਾਂ <a href=\"%(submit_url)s\">ਜਾਣੋ ਇੱਕ ਕਿਵੇਂ ਰਚੀਏ</a>!"
 
 msgid "Theme Details"
 msgstr "ਥੀਮ ਵੇਰਵਾ"
+
+msgid "Give your Theme a name."
+msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "ਆਪਣੀ ਵੇਰਵੇ ਸਫ਼ੇ ਲਈ ਇੱਕ ਵਧੀਆ URL ਦਿਓ।"
@@ -4117,59 +4119,21 @@ msgstr "ਸੰਗ੍ਰਹਿ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਥੀਮ �
 msgid "Add some tags to describe your Theme."
 msgstr "ਆਪਣੇ ਥੀਮ ਦੇ ਵੇਰਵੇ ਲਈ ਕੁੱਝ ਟੈਗ ਸ਼ਾਮਲ ਕਰੋ।"
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "ਤੁਹਾਡਾ ਥੀਮ ਦਾ ਵਰਣਨ ਕਰੋ।"
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਸੂਚੀ ਝਲਕ, ਨਾਲ ਹੀ ਨਾਲ ਤੁਹਾਡੇ ਥੀਮ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਦੇ ਉੱਪਰ ਵਿਖਾਈ ਜਾਏਗੀ।"
 
 msgid "Theme License"
 msgstr "ਥੀਮ ਲਾਇਸੰਸ"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡਾ ਥੀਮ ਸਾਂਝਾ ਕਰ ਸਕਦਾ, ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਕ੍ਰੈਡਿਟ ਦਿੱਤਾ?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "ਲਾਇਸੰਸਰ ਵਪਾਰਕ ਮਕਸਦਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰਦੇ ਹੋਏ, ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "ਲਾਇਸੰਸ ਦੂਜਿਆਂ ਨੂੰ ਗੈਰ-ਵਪਾਰਕ ਮਕਸਦਾਂ ਲਈ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਵਪਾਰਕ ਵਰਤੋਂ ਕਰ ਸਕਦਾ?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "ਕੀ ਕੋਈ ਹੋਰ ਤੁਹਾਡੇ ਥੀਮ ਤੋਂ ਛਾਪ ਲੈ ਕੇ ਰਚਨਾ ਕਰ ਸਕਦਾ?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕਾਪੀ, ਵੰਡਣ, ਵਿਖਾਉਣ ਅਤੇ ਕੰਮ ਕਰਨ, ਨਾਲ ਦੀ ਨਾਲ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਬਣਾਉਣਾ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ।"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "ਲਾਇਸੰਸਰ ਦੂਜਿਆਂ ਨੂੰ ਕੇਵਲ ਉਸਦੇ ਕੰਮ ਦੀਆਂ ਬਿਨਾਂ-ਬਦਲਾਅ ਵਾਲੀਆਂ ਨਕਲਾਂ ਦੀ ਕਾਪੀ, ਵੰਡਣ ਅਤੇ ਭੇਜਣ ਦੀ ਮਨਜ਼ੂਰੀ ਦਿੰਦਾ— ਨਾ ਕਿ ਇਸ ਤੇ ਅਧਾਰਿਤ ਛਾਪਾਂ ਦੀ।"
-
-msgid "Your Theme will be released under the following license:"
-msgstr "ਤੁਹਾਡਾ ਥੀਮ ਅੱਗੇ ਦਿੱਤੇ ਲਾਇਸੰਸ ਦੇ ਅਧੀਨ ਜਾਰੀ ਕੀਤਾ ਜਾਵੇਗਾ:"
 
 msgid "Select a license for your Theme."
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਲਾਇਸੰਸ ਚੁਣੋ।"
 
 msgid "Theme Design"
 msgstr "ਥੀਮ ਡਿਜਾਇਨ"
-
-msgid "Upload New Design"
-msgstr "ਨਵਾਂ ਡਿਜਾਇਨ ਅੱਪਲੋਡ ਕਰੋ"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "ਅੱਪਲੋਡ ਅਤੇ ਫ਼ਾਰਮ ਦਾਖਲ ਕਰਨ ਤੋਂ ਬਾਅਦ, AMO ਟੀਮ ਤੁਹਾਡੇ ਅੱਪਡੇਟ ਕੀਤੇ ਡਿਜਾਇਨ ਦੀ ਸਮੀਖਿਆ ਕਰੇਗੀ। ਇਸ ਦੌਰਾਨ ਤੁਹਾਡਾ ਮੌਜੂਦਾ ਡਿਜਾਇਨ ਅਜੇ ਵੀ ਜਨਤਕ ਰਹੇਗਾ।"
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "ਤੁਹਾਡਾ ਪਿਛਲਾ ਮੁੜ-ਦਾਖਲ ਹੋਇਆ ਡਿਜਾਇਨ, ਜਿਹੜਾ ਅਧੂਰੀ ਸਮੀਖਿਆ ਦੇ ਅਧੀਨ ਹੈ।"
-
-msgid "Pending Header"
-msgstr "ਅਧੂਰਾ ਸਿਰਲੇਖ"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "ਹੋ ਸਕਦਾ ਤੁਸੀਂ ਇੱਥੇ ਆਪਣੇ ਥੀਮ ਦਾ ਡਿਜਾਇਨ ਅੱਪਡੇਟ ਕਰੋ ਜਦੋਂ ਇਹ ਇੱਕ ਵਾਰ ਪ੍ਰਵਾਨਿਤ ਹੋ ਜਾਵੇ।"
-
-msgid "Header"
-msgstr "ਸਿਰਲੇਖ"
 
 msgid "Select colors for your Theme."
 msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
@@ -4194,20 +4158,6 @@ msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a> ਦੇ ਅਧੀਨ ਜਾਰੀ ਹੋਇਆ"
-
-msgid "Create a New Theme"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "ਬੈਕਗਰਾਂਊਡ ਥੀਮ ਤੁਹਾਨੂੰ ਤੁਹਾਡੀ ਫ਼ਾਇਰਫ਼ਾਕਸ ਦੀ ਦਿੱਖ ਅਸਾਨੀ ਨਾਲ ਬਦਲਣ ਦਿੰਦੇ ਹਨ। ਆਪਣਾ ਡਿਜ਼ਾਇਨ ਹੇਠ ਦਾਖਲ ਕਰੋ, ਜਾਂ <a href=\"%(submit_url)s\">ਜਾਣੋ ਇੱਕ ਕਿਵੇਂ ਰਚੀਏ</a>!"
-
-msgid "Give your Theme a name."
-msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਸੂਚੀ ਝਲਕ, ਨਾਲ ਹੀ ਨਾਲ ਤੁਹਾਡੇ ਥੀਮ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਦੇ ਉੱਪਰ ਵਿਖਾਈ ਜਾਏਗੀ।"
 
 #, python-format
 msgid ""
@@ -5898,12 +5848,6 @@ msgstr "ਅੱਪਲੋਡ ਕੀਤੀ ਫ਼ਾਈਲ ਵਿੱਚ ਕੋਈ ਫ਼�
 msgid "Fetching file."
 msgstr "ਫ਼ਾਈਲ ਪ੍ਰਾਪਤ ਕਰ ਰਿਹਾ।"
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "ਹਾਲੇ ਤੱਕ ਲਾਗੂ ਨਹੀਂ ਕੀਤਾ।"
-
 msgid "Shopping Made Easy"
 msgstr "ਖਰੀਦਦਾਰੀ ਕਰਨਾ ਅਸਾਨ ਹੋਇਆ"
 
@@ -7160,7 +7104,7 @@ msgid "No reviews found for this period."
 msgstr "ਇਸ ਮਿਆਦ ਦੌਰਾਨ ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ ਮਿਲੀ।"
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"

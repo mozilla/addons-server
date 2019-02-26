@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2018-12-13 07:28+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -151,15 +151,6 @@ msgstr "మీ అప్రమేయ లొకేలును మార్చడ
 
 msgid "A license must be selected."
 msgstr "లైసెన్సు తప్పక ఎంచుకోవాలి."
-
-msgid "Give Your Theme a Name."
-msgstr "మీ అలంకారానికి ఒక పేరు ఇవ్వండి."
-
-msgid "Describe your Theme."
-msgstr "మీ అలంకారాన్ని వివరించండి."
-
-msgid "Enter a new author's email address"
-msgstr "కొత్త రచయిత ఈమెయిలు చిరునామాను ఇవ్వండి"
 
 msgid "Listed"
 msgstr "జాబితాచేయబడినవి"
@@ -2465,12 +2456,6 @@ msgstr "వనరుని సేకరణలు"
 msgid "User Reviews"
 msgstr "వనరుని సమీక్షలు"
 
-msgid "Changes successfully saved."
-msgstr "మార్పులు విజయవంతంగా భద్రపరచబడ్డాయి."
-
-msgid "Please check the form for errors."
-msgstr "దయచేసి లోపాల కోసం ఫారమ్ను తనిఖీ చేయండి."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "పొడిగింత తొలగించబడదు. దానికి బదులుగా ఈ పొడిగింతను అచేతనపరచు."
 
@@ -2494,6 +2479,9 @@ msgstr "మీ పొడిగింతలో ఒక రచయిత పాత�
 
 msgid "An author has been removed from your add-on"
 msgstr "మీ పొడిగింత నుండి ఒక రచయిత తొలగించబడ్డారు"
+
+msgid "Changes successfully saved."
+msgstr "మార్పులు విజయవంతంగా భద్రపరచబడ్డాయి."
 
 msgid "Validate Add-on"
 msgstr "పొడిగింతను ధృవీకరించండి"
@@ -2580,6 +2568,9 @@ msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "దయచేసి లోపాల కోసం ఫారమ్ను తనిఖీ చేయండి."
 
 msgid "Review requested."
 msgstr "సమీక్ష అభ్యర్థించబడింది."
@@ -3858,11 +3849,22 @@ msgstr ""
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "యాజమాన్యాన్ని బదిలీ చేయండి"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "తేలికైన అలంకారాల సమీక్షల చిట్టా"
+
+msgid "Create a New Theme"
+msgstr "క్రొత్త అలంకారాన్ని సృష్టించండి"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr ""
 
 msgid "Theme Details"
 msgstr "అలంకారపు వివరాలు"
+
+msgid "Give your Theme a name."
+msgstr "మీ అలంకారానికి ఒక పేరు ఇవ్వండి."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -3873,59 +3875,20 @@ msgstr ""
 msgid "Add some tags to describe your Theme."
 msgstr ""
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "మీ అలంకారాన్ని వివరించండి."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
 msgstr "అలంకారం లైసెన్సు"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr ""
-
-msgid "Can others create derivative works from your Theme?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
-msgstr ""
 
 msgid "Select a license for your Theme."
 msgstr "మీ అలంకారానికి ఒక లైసెన్సును ఎంచుకోండి."
 
 msgid "Theme Design"
 msgstr "అలంకారం రూపకల్పన"
-
-msgid "Upload New Design"
-msgstr ""
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-
-msgid "Pending Header"
-msgstr ""
-
-msgid "You may update your theme design here once it has been approved."
-msgstr ""
-
-msgid "Header"
-msgstr "శీర్షిక"
 
 msgid "Select colors for your Theme."
 msgstr "మీ అలంకారానికి రంగులను ఎంచుకోండి."
@@ -3949,19 +3912,6 @@ msgstr "మీ అలంకారం పేరు"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "ద్వారా <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "క్రొత్త అలంకారాన్ని సృష్టించండి"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Give your Theme a name."
-msgstr "మీ అలంకారానికి ఒక పేరు ఇవ్వండి."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5634,12 +5584,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "ఇంకా అమలు చేయలేదు."
-
 msgid "Shopping Made Easy"
 msgstr "షాపింగ్ తేలికయ్యింది"
 
@@ -6803,7 +6747,7 @@ msgid "No reviews found for this period."
 msgstr ""
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
