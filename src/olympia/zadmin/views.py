@@ -194,8 +194,16 @@ def general_search(request, app_id, model_id):
     # This is a hideous api, but uses the builtin admin search_fields API.
     # Expecting this to get replaced by ES so soon, that I'm not going to lose
     # too much sleep about it.
-    cl = ChangeList(request, obj.model, [], [], [], [], obj.search_fields, [],
-                    obj.list_max_show_all, limit, [], obj)
+    args = [request, obj.model, [], [], [], [], obj.search_fields, [],
+            obj.list_max_show_all, limit, [], obj]
+    try:
+        # python3.2+ only
+        from inspect import signature
+        if 'sortable_by' in signature(ChangeList.__init__).parameters:
+            args.append('None')  # sortable_by is a django2.1+ addition
+    except ImportError:
+        pass
+    cl = ChangeList(*args)
     qs = cl.get_queryset(request)
     # Override search_fields_response on the ModelAdmin object
     # if you'd like to pass something else back to the front end.
