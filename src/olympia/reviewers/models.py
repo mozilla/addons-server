@@ -18,16 +18,16 @@ import olympia.core.logger
 from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
-from olympia.addons.models import Addon, Persona
+from olympia.addons.models import Addon
 from olympia.amo.fields import PositiveAutoField
-from olympia.amo.models import ManagerBase, ModelBase
+from olympia.amo.models import ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import cache_ns_key, send_mail
 from olympia.files.models import FileValidation
 from olympia.ratings.models import Rating
 from olympia.reviewers.sql_model import RawSQLModel
-from olympia.users.models import UserForeignKey, UserProfile
+from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
 
@@ -1144,81 +1144,6 @@ class AutoApprovalSummary(ModelBase):
             qs = qs.exclude(
                 addonreviewerflags__needs_admin_content_review=True)
         return qs
-
-
-class RereviewQueueThemeManager(ManagerBase):
-
-    def __init__(self, include_deleted=False):
-        # DO NOT change the default value of include_deleted unless you've read
-        # through the comment just above the Addon managers
-        # declaration/instantiation and understand the consequences.
-        ManagerBase.__init__(self)
-        self.include_deleted = include_deleted
-
-    def get_queryset(self):
-        qs = super(RereviewQueueThemeManager, self).get_queryset()
-        if self.include_deleted:
-            return qs
-        else:
-            return qs.exclude(theme__addon__status=amo.STATUS_DELETED)
-
-
-@python_2_unicode_compatible
-class RereviewQueueTheme(ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    theme = models.ForeignKey(Persona, on_delete=models.CASCADE)
-    header = models.CharField(max_length=72, blank=True, default='')
-
-    # Holds whether this reuploaded theme is a duplicate.
-    dupe_persona = models.ForeignKey(
-        Persona, null=True, related_name='dupepersona',
-        on_delete=models.CASCADE)
-
-    # The order of those managers is very important: please read the lengthy
-    # comment above the Addon managers declaration/instantiation.
-    unfiltered = RereviewQueueThemeManager(include_deleted=True)
-    objects = RereviewQueueThemeManager()
-
-    class Meta:
-        db_table = 'rereview_queue_theme'
-        # This is very important: please read the lengthy comment in Addon.Meta
-        # description
-        base_manager_name = 'unfiltered'
-
-    def __str__(self):
-        return str(self.id)
-
-    @property
-    def header_path(self):
-        """Return the path to the header image."""
-        return self.theme._image_path(self.header or self.theme.header)
-
-    @property
-    def footer_path(self):
-        """Return the path to the optional footer image."""
-        footer = self.footer or self.theme.footer
-        return footer and self.theme._image_path(footer) or ''
-
-    @property
-    def header_url(self):
-        """Return the url of the header imager."""
-        return self.theme._image_url(self.header or self.theme.header)
-
-    @property
-    def footer_url(self):
-        """Return the url of the optional footer image."""
-        footer = self.footer or self.theme.footer
-        return footer and self.theme._image_url(footer) or ''
-
-
-class ThemeLock(ModelBase):
-    id = PositiveAutoField(primary_key=True)
-    theme = models.OneToOneField('addons.Persona', on_delete=models.CASCADE)
-    reviewer = UserForeignKey()
-    expiry = models.DateTimeField()
-
-    class Meta:
-        db_table = 'theme_locks'
 
 
 @python_2_unicode_compatible
