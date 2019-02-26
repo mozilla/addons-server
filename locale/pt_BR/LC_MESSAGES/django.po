@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-26 09:17+0000\n"
+"PO-Revision-Date: 2019-02-26 20:31+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1822,7 +1822,7 @@ msgid "Admin theme-review requested"
 msgstr "Análise administrativa do tema solicitada"
 
 msgid "{addon} was migrated from a lightweight theme."
-msgstr "Migração a partir de um tema leve de {addon}"
+msgstr "{addon} foi migrado a partir de um tema leve."
 
 msgid "Firefox"
 msgstr "Firefox"
@@ -4017,9 +4017,8 @@ msgstr "Teste ao vivo"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Instale provisoriamente sua extensão no Firefox para teste e depuração em tempo real."
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "Registro de revisão de temas leves"
+msgstr "A edição de temas leves foi desativada."
 
 msgid "Create a New Theme"
 msgstr "Criar um novo tema"
