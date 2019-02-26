@@ -206,7 +206,8 @@ class TestAddonBrowseVersionSerializer(TestCase):
         )
 
         extract_version_to_git(self.addon.current_version.pk)
-        self.addon.current_version.refresh_from_db()
+        self.addon.current_version.reload()
+        assert self.addon.current_version.release_notes
         self.version = self.addon.current_version
 
     def serialize(self, **extra_context):
