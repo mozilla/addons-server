@@ -147,9 +147,6 @@ class AddonAbuseViewSetTestBase(object):
         assert response.status_code == 429
 
     def test_optional_fields(self):
-        # FIXME: when choices for addon_signature, addon_install_method and
-        # addon_install_entry_point are finalized, update this test. In the
-        # meantime we pass None.
         data = {
             'addon': '@mysteryaddon',
             'message': u'This is abusé!',
@@ -158,15 +155,15 @@ class AddonAbuseViewSetTestBase(object):
             'addon_summary': u'Addon sûmmary',
             'addon_version': '0.01.01',
             'addon_signature': None,
-            'application': 'firefox',
-            'application_version': '42.0.1',
-            'application_locale': u'Lô-käl',
+            'app': 'firefox',
+            'appversion': '42.0.1',
+            'lang': u'Lô-käl',
             'operating_system': u'Sømething OS',
             'install_date': '2004-08-15T16:23:42',
             'reason': 'spam_or_advertising',
             'addon_install_origin': 'http://example.com/',
             'addon_install_method': None,
-            'addon_install_entry_point': None,
+            'report_entry_point': None,
         }
         response = self.client.post(
             self.url,
@@ -181,17 +178,18 @@ class AddonAbuseViewSetTestBase(object):
         assert not report.addon  # Not an add-on in database, that's ok.
         # Straightforward comparisons:
         for field in ('message', 'client_id', 'addon_name', 'addon_summary',
-                      'addon_version', 'application_version',
-                      'application_locale', 'operating_system',
+                      'addon_version', 'operating_system',
                       'addon_install_origin'):
             assert getattr(report, field) == data[field], field
         # More complex comparisons:
         assert report.addon_signature is None
         assert report.application == amo.FIREFOX.id
+        assert report.application_version == data['appversion']
+        assert report.application_locale == data['lang']
         assert report.install_date == datetime(2004, 8, 15, 16, 23, 42)
         assert report.reason == 2  # Spam / Advertising
         assert report.addon_install_method is None
-        assert report.addon_install_entry_point is None
+        assert report.report_entry_point is None
 
     def test_optional_fields_errors(self):
         data = {
@@ -202,15 +200,15 @@ class AddonAbuseViewSetTestBase(object):
             'addon_summary': 's' * 256,
             'addon_version': 'v' * 256,
             'addon_signature': 'Something not in signature choices',
-            'application': 'FIRE! EXCLAMATION MARK',
-            'application_version': '1' * 256,
-            'application_locale': 'l' * 256,
+            'app': 'FIRE! EXCLAMATION MARK',
+            'appversion': '1' * 256,
+            'lang': 'l' * 256,
             'operating_system': 'o' * 256,
             'install_date': 'not_a_date',
             'reason': 'Something not in reason choices',
             'addon_install_origin': 'u' * 256,
             'addon_install_method': 'Something not in install method choices',
-            'addon_install_entry_point': 'Something not in entrypoint choices',
+            'report_entry_point': 'Something not in entrypoint choices',
         }
         response = self.client.post(
             self.url,
@@ -227,9 +225,9 @@ class AddonAbuseViewSetTestBase(object):
             'addon_version': [expected_max_length_message % 255],
             'addon_signature': [
                 expected_choices_message % data['addon_signature']],
-            'application': [expected_choices_message % data['application']],
-            'application_version': [expected_max_length_message % 255],
-            'application_locale': [expected_max_length_message % 255],
+            'app': [expected_choices_message % data['app']],
+            'appversion': [expected_max_length_message % 255],
+            'lang': [expected_max_length_message % 255],
             'operating_system': [expected_max_length_message % 255],
             'install_date': [
                 'Datetime has wrong format. Use one of these formats '
@@ -238,8 +236,8 @@ class AddonAbuseViewSetTestBase(object):
             'addon_install_origin': [expected_max_length_message % 255],
             'addon_install_method': [
                 expected_choices_message % data['addon_install_method']],
-            'addon_install_entry_point': [
-                expected_choices_message % data['addon_install_entry_point']],
+            'report_entry_point': [
+                expected_choices_message % data['report_entry_point']],
         }
 
 

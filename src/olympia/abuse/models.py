@@ -14,6 +14,7 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.amo.models import ModelBase
 from olympia.amo.utils import send_mail
+from olympia.api.utils import APIChoicesWithNone
 from olympia.users.models import UserProfile
 
 
@@ -22,36 +23,29 @@ class AbuseReport(ModelBase):
     # Note: those choices don't need to be translated for now, the
     # human-readable values are only exposed in the admin. The values will be
     # updated once they are finalized in the PRD.
-    ADDON_SIGNATURE_CHOICES = (
-        (None, 'None'),
+    ADDON_SIGNATURES = APIChoicesWithNone()
+    REASONS = APIChoicesWithNone(
+        ('MALWARE', 1, 'Malware'),
+        ('SPAM_OR_ADVERTISING', 2, 'Spam / Advertising'),
+        ('SEARCH_TAKEOVER', 3, 'Search takeover'),
+        ('NEW_TAB_TAKEOVER', 4, 'New tab takeover'),
+        ('BREAKS_WEBSITES', 5, 'Breaks websites'),
+        ('OFFENSIVE', 6, 'Offensive'),
+        ('DOES_NOT_MATCH_DESCRIPTION', 7, 'Doesn\'t match description'),
+        ('DOES_NOT_WORK', 8, 'Doesn\'t work'),
     )
-    REASON_CHOICES = (
-        (None, 'None'),
-        (1, 'Malware'),
-        (2, 'Spam / Advertising'),
-        (3, 'Search takeover'),
-        (4, 'New tab takeover'),
-        (5, 'Breaks websites'),
-        (6, 'Offensive'),
-        (7, 'Doesn\'t match description'),
-        (8, 'Doesn\'t work'),
+    ADDON_INSTALL_METHODS = APIChoicesWithNone(
+        ('AMWEBAPI', 1, 'Add-on Manager Web API'),
+        ('LINK', 2, 'Direct link'),
+        ('INSTALLTRIGGER', 3, 'Install Trigger'),
+        ('INSTALL-FROM-FILE', 4, 'From File'),
+        ('MANAGEMENT-WEBEXT-API', 5, 'Webext management API'),
+        ('DRAG-AND-DROP', 6, 'Drag & Drop'),
+        ('SIDELOAD', 7, 'Sideload'),
     )
-    REASON_CHOICES_API = {
-        None: None,
-        1: 'malware',
-        2: 'spam_or_advertising',
-        3: 'search_takeover',
-        4: 'new_tab_takeover',
-        5: 'breaks_websites',
-        6: 'offensive',
-        7: 'does_not_match_description',
-        8: 'does_not_work',
-    }
-    ADDON_INSTALL_METHOD_CHOICES = (
-        (None, 'None'),
-    )
-    ADDON_INSTALL_ENTRY_POINTS_CHOICES = (
-        (None, 'None'),
+    REPORT_ENTRY_POINTS = APIChoicesWithNone(
+        ('UNINSTALL', 1, 'Uninstall'),
+        ('MENU', 2, 'Menu'),
     )
 
     # NULL if the reporter is anonymous.
@@ -88,7 +82,7 @@ class AbuseReport(ModelBase):
     addon_version = models.CharField(
         default=None, max_length=255, blank=True, null=True)
     addon_signature = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_SIGNATURE_CHOICES, blank=True, null=True)
+        default=None, choices=ADDON_SIGNATURES.choices, blank=True, null=True)
     application = models.PositiveSmallIntegerField(
         default=amo.FIREFOX.id, choices=amo.APPS_CHOICES, blank=True,
         null=True)
@@ -103,14 +97,14 @@ class AbuseReport(ModelBase):
     install_date = models.DateTimeField(
         default=None, blank=True, null=True)
     reason = models.PositiveSmallIntegerField(
-        default=None, choices=REASON_CHOICES, blank=True, null=True)
+        default=None, choices=REASONS.choices, blank=True, null=True)
     addon_install_origin = models.CharField(
         default=None, max_length=255, blank=True, null=True)
     addon_install_method = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_INSTALL_METHOD_CHOICES, blank=True,
+        default=None, choices=ADDON_INSTALL_METHODS.choices, blank=True,
         null=True)
-    addon_install_entry_point = models.PositiveSmallIntegerField(
-        default=None, choices=ADDON_INSTALL_ENTRY_POINTS_CHOICES, blank=True,
+    report_entry_point = models.PositiveSmallIntegerField(
+        default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
         null=True)
 
     class Meta:
