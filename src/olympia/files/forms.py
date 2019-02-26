@@ -3,9 +3,10 @@ from collections import defaultdict
 from django import forms
 from django.forms import widgets
 from django.forms.utils import flatatt
-from django.utils.translation import ugettext
+from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
+from django.utils.translation import ugettext
 
 import jinja2
 
@@ -42,7 +43,8 @@ class FileSelectWidget(widgets.Select):
                 files, key=lambda a: a.status == amo.STATUS_DISABLED)
 
             if label is None:
-                label = u', '.join(f.get_platform_display() for f in files)
+                label = u', '.join(
+                    force_text(f.get_platform_display()) for f in files)
 
             output = [u'<option value="', jinja2.escape(files[0].id), u'" ']
             if selected in files:
