@@ -53,14 +53,14 @@ class TestUnsubscribe(UserViewBase):
     def test_correct_url_update_notification(self):
         # Make sure the user is subscribed
         perm_setting = email.NOTIFICATIONS_COMBINED[0]
-        un = UserNotification.objects.create(notification_id=perm_setting.id,
-                                             user=self.user,
-                                             enabled=True)
+        un = UserNotification.objects.create(
+            notification_id=perm_setting.id, user=self.user, enabled=True)
 
         # Create a URL
         token, hash = UnsubscribeCode.create(self.user.email)
-        url = reverse('users.unsubscribe', args=[token, hash,
-                                                 perm_setting.short])
+        url = reverse(
+            'users.unsubscribe', args=[
+                force_text(token), hash, perm_setting.short])
 
         # Load the URL
         r = self.client.get(url)
@@ -72,8 +72,8 @@ class TestUnsubscribe(UserViewBase):
         assert doc('#standalone ul li').length == 1
 
         # Make sure the user is unsubscribed
-        un = UserNotification.objects.filter(notification_id=perm_setting.id,
-                                             user=self.user)
+        un = UserNotification.objects.filter(
+            notification_id=perm_setting.id, user=self.user)
         assert un.count() == 1
         assert not un.all()[0].enabled
 
@@ -84,8 +84,9 @@ class TestUnsubscribe(UserViewBase):
         # Create a URL
         perm_setting = email.NOTIFICATIONS_COMBINED[0]
         token, hash = UnsubscribeCode.create(self.user.email)
-        url = reverse('users.unsubscribe', args=[token, hash,
-                                                 perm_setting.short])
+        url = reverse(
+            'users.unsubscribe', args=[
+                force_text(token), hash, perm_setting.short])
 
         # Load the URL
         r = self.client.get(url)
@@ -97,8 +98,8 @@ class TestUnsubscribe(UserViewBase):
         assert doc('#standalone ul li').length == 1
 
         # Make sure the user is unsubscribed
-        un = UserNotification.objects.filter(notification_id=perm_setting.id,
-                                             user=self.user)
+        un = UserNotification.objects.filter(
+            notification_id=perm_setting.id, user=self.user)
         assert un.count() == 1
         assert not un.all()[0].enabled
 
@@ -107,8 +108,9 @@ class TestUnsubscribe(UserViewBase):
         token, hash = UnsubscribeCode.create(self.user.email)
         hash = hash[::-1]  # Reverse the hash, so it's wrong
 
-        url = reverse('users.unsubscribe', args=[token, hash,
-                                                 perm_setting.short])
+        url = reverse(
+            'users.unsubscribe', args=[
+                force_text(token), hash, perm_setting.short])
         r = self.client.get(url)
         doc = pq(r.content)
 
