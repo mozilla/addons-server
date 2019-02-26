@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-15 20:12+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,15 +157,6 @@ msgstr "Antes de alterar o idioma padrão você deve ter um nome, resumo e descr
 
 msgid "A license must be selected."
 msgstr "Uma licença deve ser selecionada."
-
-msgid "Give Your Theme a Name."
-msgstr "Dê um nome ao seu tema."
-
-msgid "Describe your Theme."
-msgstr "Descreva seu tema."
-
-msgid "Enter a new author's email address"
-msgstr "Insira um endereço de e-mail do novo autor"
 
 # Column name in a table.
 msgid "Listed"
@@ -2562,12 +2553,6 @@ msgstr "Coleções de usuários"
 msgid "User Reviews"
 msgstr "Análises de usuários"
 
-msgid "Changes successfully saved."
-msgstr "Alterações salvas com sucesso."
-
-msgid "Please check the form for errors."
-msgstr "Verifique se há erros no formulário."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "A extensão não pode ser excluída. Em seu lugar, desabilite-a."
 
@@ -2591,6 +2576,9 @@ msgstr "Foi alterado o papel de um autor da sua extensão"
 
 msgid "An author has been removed from your add-on"
 msgstr "Foi removido um autor da sua extensão"
+
+msgid "Changes successfully saved."
+msgstr "Alterações salvas com sucesso."
 
 msgid "Validate Add-on"
 msgstr "Validar extensão"
@@ -2675,6 +2663,9 @@ msgstr "Área do campo de texto da barra de ferramentas"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "A cor do texto em campos da barra de ferramentas, tais como a barra de URL. Campo do manifesto:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Verifique se há erros no formulário."
 
 msgid "Review requested."
 msgstr "Análise solicitada."
@@ -4031,11 +4022,22 @@ msgstr "Teste ao vivo"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Instale provisoriamente sua extensão no Firefox para teste e depuração em tempo real."
 
-msgid "Transfer ownership"
-msgstr "Transferir propriedade"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Registro de revisão de temas leves"
+
+msgid "Create a New Theme"
+msgstr "Criar um novo tema"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Temas de fundo permitem que você personalize facilmente o visual do seu Firefox. Submeta seu próprio design abaixo, ou <a href=\"%(submit_url)s\">saiba como criar um</a>!"
 
 msgid "Theme Details"
 msgstr "Detalhes do tema"
+
+msgid "Give your Theme a name."
+msgstr "Digite um nome para seu tema."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Forneça um URL fácil para a sua página de detalhes."
@@ -4047,63 +4049,20 @@ msgstr "Selecione a categoria que descreve melhor o seu tema."
 msgid "Add some tags to describe your Theme."
 msgstr "Adicione algumas etiquetas para descrever o seu tema."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Descreva seu tema."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Uma breve explicação sobre as funcionalidades básicas do seu tema é exibida em pesquisas e listas de navegação, assim como no início da página de detalhes do seu tema."
 
 msgid "Theme License"
 msgstr "Licença do tema"
-
-# 88%
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Outras pessoas podem compartilhar seu tema, desde que dando crédito a você?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "O licenciador permite que outras pessoas copiem, distribuam, exibam e executem o trabalho, incluindo para fins comerciais."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "O licenciador permite que outras pessoas copiem, distribuam, exibam e executem o trabalho apenas para fins não comerciais."
-
-# 85%
-msgid "Can others make commercial use of your Theme?"
-msgstr "Outras pessoas podem usar seu tema comercialmente?"
-
-# 86%
-msgid "Can others create derivative works from your Theme?"
-msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "O licenciador permite que outras pessoas copiem, distribuam, exibam e executem o trabalho, além de poder criar trabalhos derivados baseados nele."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "O licenciador permite que outras pessoas copiem, distribuam e transmitam apenas cópias inalteradas do trabalho — e não trabalhos derivados baseados nele."
-
-# 87%
-msgid "Your Theme will be released under the following license:"
-msgstr "Seu tema será lançado sob a seguinte licença:"
 
 msgid "Select a license for your Theme."
 msgstr "Selecione uma licença para o seu tema."
 
 msgid "Theme Design"
 msgstr "Design do tema"
-
-msgid "Upload New Design"
-msgstr "Enviar um novo design"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Após envio e submissão do formulário, o time do AMO irá rever o seu projeto atualizado. Seu projeto atual continuará público nesse período."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "O seu design anteriormente resubmetido aguarda revisão."
-
-msgid "Pending Header"
-msgstr "Cabeçalho pendente"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Você pode atualizar o projeto do tema aqui, uma vez que foi aprovado."
-
-msgid "Header"
-msgstr "Cabeçalho"
 
 msgid "Select colors for your Theme."
 msgstr "Selecione as cores do seu tema."
@@ -4126,19 +4085,6 @@ msgstr "Nome do seu tema"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "por <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Criar um novo tema"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Temas de fundo permitem que você personalize facilmente o visual do seu Firefox. Submeta seu próprio design abaixo, ou <a href=\"%(submit_url)s\">saiba como criar um</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Digite um nome para seu tema."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Uma breve explicação sobre as funcionalidades básicas do seu tema é exibida em pesquisas e listas de navegação, assim como no início da página de detalhes do seu tema."
 
 #, python-format
 msgid ""
@@ -5839,12 +5785,6 @@ msgstr "Não há arquivos no arquivo enviado."
 msgid "Fetching file."
 msgstr "Obtendo arquivo."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "A versão da API, {0:.1f}, que você está usando não é válida. Por favor, atualize para a versão atual {1:.1f} da API."
-
-msgid "Not implemented yet."
-msgstr "Ainda não implementado."
-
 msgid "Shopping Made Easy"
 msgstr "Fazer compras ficou mais fácil"
 
@@ -7046,8 +6986,8 @@ msgstr "Ocultar comentários"
 msgid "No reviews found for this period."
 msgstr "Não foram encontradas análises nesse período."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] reportou %(object)s em %(date)s"
 
 msgid "Dismiss this announcement"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-01-04 22:24+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -158,15 +158,6 @@ msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a
 
 msgid "A license must be selected."
 msgstr "Musí byť zvolená licencia."
-
-msgid "Give Your Theme a Name."
-msgstr "Pomenujte svoju tému."
-
-msgid "Describe your Theme."
-msgstr "Popíšte svoju tému."
-
-msgid "Enter a new author's email address"
-msgstr "Zadajte novú e-mailovú adresu autora"
 
 # Column name in a table.
 msgid "Listed"
@@ -2513,12 +2504,6 @@ msgstr "Kolekcie používateľa"
 msgid "User Reviews"
 msgstr "Recenzie používateľa"
 
-msgid "Changes successfully saved."
-msgstr "Zmeny boli úspešne uložené."
-
-msgid "Please check the form for errors."
-msgstr "Skontrolujte prosím chyby vo formulári."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Doplněk nemôže byť odstránený. Namiesto toho ho zakážte."
 
@@ -2542,6 +2527,9 @@ msgstr "Pri vašom doplnku autor zmenil rolu"
 
 msgid "An author has been removed from your add-on"
 msgstr "Autor bol pri vašom doplnku odobraný"
+
+msgid "Changes successfully saved."
+msgstr "Zmeny boli úspešne uložené."
 
 msgid "Validate Add-on"
 msgstr "Overiť doplnok"
@@ -2625,6 +2613,9 @@ msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "Skontrolujte prosím chyby vo formulári."
 
 msgid "Review requested."
 msgstr "Vyžaduje sa kontrola."
@@ -3918,11 +3909,21 @@ msgstr ""
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Presun vlastníctva"
+msgid "Lightweight Theme editing has been disabled."
+msgstr ""
+
+msgid "Create a New Theme"
+msgstr "Vytvorenie novej témy"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Témy vám dávajú možnosť jednoducho si prispôsobiť vzhľad vášho Firefoxu. Pridajte svoj vlastný motív nižšie alebo <a href=\"%(submit_url)s\">si prečítajte, ako vytvoriť nový</a>!"
 
 msgid "Theme Details"
 msgstr "Detaily o téme"
+
+msgid "Give your Theme a name."
+msgstr "Pomenujte vašu tému."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Nastavte si peknú URL adresu pre stránku detailu."
@@ -3934,60 +3935,20 @@ msgstr "Zvoľte kategóriu, ktorá najlepšie popisuje vašu tému."
 msgid "Add some tags to describe your Theme."
 msgstr "Pridajte značky, ktoré popisujú vašu tému."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Krátky popis vašej témy, ktorý je zobrazený vo vyhľadávaní, prehľade kategórií, alebo priamo na stránke s detailom témy."
+msgid "Describe your Theme."
+msgstr "Popíšte svoju tému."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Krátky popis vašej témy, ktorý je zobrazený vo vyhľadávaní, prehľade kategórií, alebo priamo na stránke s podrobnosťami témy"
 
 msgid "Theme License"
 msgstr "Licencia témy"
-
-# 88%
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Môžu ďalší zdieľať vašu tému, ak vás uvedú ako autora?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Autor dáva ďalším právo kopírovať, distribuovať, zobrazovať a upravovať. Tieto povolenia platia aj pre komerčné využívanie."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Autor dáva ďalším právo kopírovať, distribuovať, zobrazovať a upravovať. Tieto povolenia neplatia pre komerčné využívanie."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Môžu ďalší komerčne využívať vašu tému?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Môžu ďalší vytvárať odvodené diela z vašej témy?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Autor dáva ostatným právo kopírovať, distribuovať, zobrazovať a upravovať. Dáva tiež dovolenie na vytváranie odvodených diel."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Vaša téma vzhľadu bude k dispozícii pod nasledujúcou licenciou:"
 
 msgid "Select a license for your Theme."
 msgstr "Zvoľte licenciu vašej témy."
 
 msgid "Theme Design"
 msgstr "Vzhľad témy"
-
-msgid "Upload New Design"
-msgstr "Načítať nový návrh"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Po načítaní a odoslaní vykoná tím AMO kontrolu vami aktualizovanej témy. Vaša aktuálna téma bude medzi tým stále k dispozícií na webe."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Vami skôr odoslaná téma, ktorá čaká na kontrolu."
-
-msgid "Pending Header"
-msgstr "Čakajúca hlavička"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Svoj návrh témy budete môcť aktualizovať, až keď bude schválený."
-
-msgid "Header"
-msgstr "Hlavička"
 
 msgid "Select colors for your Theme."
 msgstr "Zvoľte farby vašej témy."
@@ -4010,19 +3971,6 @@ msgstr "Názov vašej témy"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "autor: <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Vytvorenie novej témy"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Témy vám dávajú možnosť jednoducho si prispôsobiť vzhľad vášho Firefoxu. Pridajte svoj vlastný motív nižšie alebo <a href=\"%(submit_url)s\">si prečítajte, ako vytvoriť nový</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Pomenujte vašu tému."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krátky popis vašej témy, ktorý je zobrazený vo vyhľadávaní, prehľade kategórií, alebo priamo na stránke s podrobnosťami témy"
 
 #, python-format
 msgid ""
@@ -5707,12 +5655,6 @@ msgstr "V odoslanom archíve sa nenachádzajú žiadne súbory."
 msgid "Fetching file."
 msgstr "Získava sa súbor..."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Verzia API {0:.1f}, ktorú používate, nie je platná. Prosím, aktualizujte na súčasnú verziu API {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Zatiaľ nie je implementované."
-
 msgid "Shopping Made Easy"
 msgstr "Nakupovanie ľahko a jednoducho"
 
@@ -6887,7 +6829,7 @@ msgid "No reviews found for this period."
 msgstr "Za toto obdobie neboli nájdené žiadne recenzie."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"

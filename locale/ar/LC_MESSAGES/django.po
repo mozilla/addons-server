@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2017-10-11 01:08+0000\n"
 "Last-Translator: Hadi <h.alshakhori@gmail.com>\n"
 "Language-Team: Arabeyes <doc@arabeyes.org>\n"
@@ -179,15 +179,6 @@ msgstr ""
 
 msgid "A license must be selected."
 msgstr "يجب اختيار رخصة."
-
-msgid "Give Your Theme a Name."
-msgstr ""
-
-msgid "Describe your Theme."
-msgstr "صِف السمة."
-
-msgid "Enter a new author's email address"
-msgstr ""
 
 # Column name in a table.
 #, fuzzy
@@ -2623,12 +2614,6 @@ msgstr ""
 msgid "User Reviews"
 msgstr "تعليقات المستخدمين"
 
-msgid "Changes successfully saved."
-msgstr "حُفظت التغييرات بنجاح."
-
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "لا يمكن حذف الإضافة. يمكنك تعطيل الإضافة بدلا من ذلك."
 
@@ -2652,6 +2637,9 @@ msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "حُفظت التغييرات بنجاح."
 
 msgid "Validate Add-on"
 msgstr ""
@@ -2737,6 +2725,9 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Please check the form for errors."
 msgstr ""
 
 #, fuzzy
@@ -4117,11 +4108,24 @@ msgstr "View Listing"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "تعليق مُفصّل"
+
+#, fuzzy
+msgid "Create a New Theme"
+msgstr "أنشئ سمتك الخاصة بنفسك"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
 
 msgid "Theme Details"
 msgstr "تفاصيل السِمة"
+
+#, fuzzy
+msgid "Give your Theme a name."
+msgstr "أعط اسما لمجموعتك."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4133,34 +4137,13 @@ msgstr "اختر التصنيف الذي يصف السِمة أفضل وصف."
 msgid "Add some tags to describe your Theme."
 msgstr "صِف السمة."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "صِف السمة."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
-msgstr ""
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr ""
-
-msgid "Can others create derivative works from your Theme?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
 msgstr ""
 
 #, fuzzy
@@ -4170,24 +4153,6 @@ msgstr "اختر ترخيصًا"
 #, fuzzy
 msgid "Theme Design"
 msgstr "تفاصيل السِمة"
-
-msgid "Upload New Design"
-msgstr ""
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-
-msgid "Pending Header"
-msgstr ""
-
-msgid "You may update your theme design here once it has been approved."
-msgstr ""
-
-msgid "Header"
-msgstr ""
 
 #, fuzzy
 msgid "Select colors for your Theme."
@@ -4211,21 +4176,6 @@ msgstr ""
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "صدرت تحت <a href=\"%(url)s\">%(name)s</a>"
-
-#, fuzzy
-msgid "Create a New Theme"
-msgstr "أنشئ سمتك الخاصة بنفسك"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-#, fuzzy
-msgid "Give your Theme a name."
-msgstr "أعط اسما لمجموعتك."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5923,12 +5873,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr ""
-
 msgid "Shopping Made Easy"
 msgstr ""
 
@@ -7197,7 +7141,7 @@ msgid "No reviews found for this period."
 msgstr "لم يُعثر على تعليقات لهذه الفترة."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
