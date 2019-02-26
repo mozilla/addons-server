@@ -10,7 +10,7 @@ from six.moves.urllib_parse import parse_qs, urlparse
 from django.contrib.auth.models import AnonymousUser
 from django.test import RequestFactory
 from django.test.utils import override_settings
-from django.utils.encoding import force_text
+from django.utils.encoding import force_bytes, force_text
 
 from olympia.accounts import utils
 from olympia.accounts.utils import process_fxa_event
@@ -60,7 +60,7 @@ def test_fxa_config_logged_in():
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_default_fxa_login_url_with_state():
-    path = b'/en-US/addons/abp/?source=ddg'
+    path = u'/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.default_fxa_login_url(request)
@@ -69,7 +69,7 @@ def test_default_fxa_login_url_with_state():
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
-    next_path = urlsafe_b64encode(path).rstrip(b'=')
+    next_path = urlsafe_b64encode(force_bytes(path)).rstrip(b'=')
     assert query == {
         'action': ['signin'],
         'client_id': ['foo'],
@@ -82,7 +82,7 @@ def test_default_fxa_login_url_with_state():
 
 @override_settings(FXA_CONFIG=FXA_CONFIG)
 def test_default_fxa_register_url_with_state():
-    path = b'/en-US/addons/abp/?source=ddg'
+    path = '/en-US/addons/abp/?source=ddg'
     request = RequestFactory().get(path)
     request.session = {'fxa_state': 'myfxastate'}
     raw_url = utils.default_fxa_register_url(request)
@@ -91,7 +91,7 @@ def test_default_fxa_register_url_with_state():
         scheme=url.scheme, netloc=url.netloc, path=url.path)
     assert base == 'https://accounts.firefox.com/oauth/authorization'
     query = parse_qs(url.query)
-    next_path = urlsafe_b64encode(path).rstrip(b'=')
+    next_path = urlsafe_b64encode(force_bytes(path)).rstrip(b'=')
     assert query == {
         'action': ['signup'],
         'client_id': ['foo'],
