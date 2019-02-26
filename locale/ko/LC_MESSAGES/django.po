@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-ko\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-12 02:26+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: none\n"
@@ -149,15 +149,6 @@ msgstr "기본 언어를 변경하려면 먼저 이름, 요약 정보, 설명을
 
 msgid "A license must be selected."
 msgstr "라이선스를 선택해야 합니다."
-
-msgid "Give Your Theme a Name."
-msgstr "테마 이름을 입력하세요."
-
-msgid "Describe your Theme."
-msgstr "테마에 대해 설명해 주세요."
-
-msgid "Enter a new author's email address"
-msgstr "새 제작자의 이메일 주소를 입력하세요"
 
 # Column name in a table.
 msgid "Listed"
@@ -2476,12 +2467,6 @@ msgstr "사용자 모음집"
 msgid "User Reviews"
 msgstr "사용자 검토"
 
-msgid "Changes successfully saved."
-msgstr "변경 내역이 성공적으로 저장되었습니다."
-
-msgid "Please check the form for errors."
-msgstr "오류 유형에 체크해 주세요."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "부가 기능을 삭제할 수 없습니다. 사용 정지 상태로 만드세요."
 
@@ -2505,6 +2490,9 @@ msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "변경 내역이 성공적으로 저장되었습니다."
 
 msgid "Validate Add-on"
 msgstr "부가 기능 검사"
@@ -2592,6 +2580,9 @@ msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "오류 유형에 체크해 주세요."
 
 msgid "Review requested."
 msgstr "검토가 요청되었습니다."
@@ -3934,11 +3925,22 @@ msgstr "목록 보기"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "소유권 이전"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "가벼운 테마 검토 로그"
+
+msgid "Create a New Theme"
+msgstr "새로운 테마 만들기"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "배경 테마는 Firefox 외형을 쉽게 개인화해 줍니다. 직접 만든 디자인을 올려주세요. 잘 모르겠다면 <a href=\"%(submit_url)s\">제작 방법을 익혀보세요</a>!"
 
 msgid "Theme Details"
 msgstr "테마 상세 정보"
+
+msgid "Give your Theme a name."
+msgstr "테마 이름 짓기"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "상세 정보 페이지에 쓸 보기 좋은 URL로 제공해 주세요."
@@ -3950,63 +3952,21 @@ msgstr "테마를 가장 잘 설명하고 있는 분류를 선택하세요."
 msgid "Add some tags to describe your Theme."
 msgstr "테마를 설명할 수 있는 태그를 추가하세요."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "테마에 대해 설명해 주세요."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "테마의 기본적인 기능에 대해 짧은 설명을 적어주세요. 검색 또는 테마 목록, 테마 세부 정보 페이지 상단에 노출됩니다."
 
 msgid "Theme License"
 msgstr "테마 라이선스"
-
-# 88%
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "인증받은 사람에 한해 테마를 공유하게 할까요?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 상업적 용도로 작품을 제작하는 것을 허용합니다."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "라이선스 보유자가 다른 사람의 복사, 배포, 전시, 비 상업적 용도일때에 한해 작품을 제작하는 것을 허용합니다."
-
-# 85%
-msgid "Can others make commercial use of your Theme?"
-msgstr "다른 사람이 당신의 테마를 상업적으로 사용할 수 있도록 허용할까요?"
-
-# 86%
-msgid "Can others create derivative works from your Theme?"
-msgstr "다른 사람이 당신의 테마를 사용해서 작품을 만들 수 있도록 허용할까요?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 전시, 페르소나를 바탕으로 한 파생 작품을 제작하는 것 까지도 허용합니다."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "라이선스 보유자가 다른 사람이 복사, 배포, 변형되지 않은 저작물 사본을 전송하는 것을 허용합니다. 단, 저작물을 사용한 파생 작품은 제외합니다."
-
-# 87%
-msgid "Your Theme will be released under the following license:"
-msgstr "테마가 다음의 라이선스 하에 공개됩니다:"
 
 msgid "Select a license for your Theme."
 msgstr "여러분의 테마를 위한 라이선스를 선택하세요."
 
 msgid "Theme Design"
 msgstr "테마 디자인"
-
-msgid "Upload New Design"
-msgstr "새 디자인 업로드"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "업로드 및 양식 제출시 AMO 팀이 업데이트한 디자인을 검토하게 됩니다. 현재 디자인은 검토가 끝날때까지는 계속 공개 상태일 것입니다."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "이전에 다시 제출했던 디자인으로 검토 대기중에 있습니다."
-
-msgid "Pending Header"
-msgstr "대기중 상단"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "승급이 되면 이곳에서 테마 디자인을 업데이트 할 수 있습니다."
-
-msgid "Header"
-msgstr "상단"
 
 msgid "Select colors for your Theme."
 msgstr "테마에 사용할 색을 설정하세요."
@@ -4031,20 +3991,6 @@ msgstr "테마의 이름"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "<a href=\"%(url)s\">%(name)s</a>를 사용해서 출시"
-
-msgid "Create a New Theme"
-msgstr "새로운 테마 만들기"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "배경 테마는 Firefox 외형을 쉽게 개인화해 줍니다. 직접 만든 디자인을 올려주세요. 잘 모르겠다면 <a href=\"%(submit_url)s\">제작 방법을 익혀보세요</a>!"
-
-msgid "Give your Theme a name."
-msgstr "테마 이름 짓기"
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "테마의 기본적인 기능에 대해 짧은 설명을 적어주세요. 검색 또는 테마 목록, 테마 세부 정보 페이지 상단에 노출됩니다."
 
 #, python-format
 msgid ""
@@ -5732,12 +5678,6 @@ msgstr "업로드한 파일 내역에 파일이 없습니다."
 msgid "Fetching file."
 msgstr "파일을 가져오고 있습니다."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "아직 제대로 작동되지 않습니다."
-
 msgid "Shopping Made Easy"
 msgstr "쇼핑을 쉽고 간편하게"
 
@@ -6951,7 +6891,7 @@ msgid "No reviews found for this period."
 msgstr "기간 내 제출된 검토 항목이 없습니다."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"

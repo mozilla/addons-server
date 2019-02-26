@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-18 15:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-11 16:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -162,15 +162,6 @@ msgstr "Nježli až změnjaśo swóju standardnu rěc, musyśo mě, zespominanje
 
 msgid "A license must be selected."
 msgstr "Musyśo licencu wubraś."
-
-msgid "Give Your Theme a Name."
-msgstr "Dajśo swójej drastwje mě."
-
-msgid "Describe your Theme."
-msgstr "Wopišćo swóju drastwu."
-
-msgid "Enter a new author's email address"
-msgstr "Zapódajśo nowu e-mailowu adresu awtora"
 
 msgid "Listed"
 msgstr "W lisćinje"
@@ -2543,12 +2534,6 @@ msgstr "Wužywarske zběrki"
 msgid "User Reviews"
 msgstr "Wužywarske pógódnośenja"
 
-msgid "Changes successfully saved."
-msgstr "Změny su se wuspěšnje składli."
-
-msgid "Please check the form for errors."
-msgstr "Pšosym pśepytujśo formular za zmólkami."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodank njedajo se lašowaś. Znjemóžniśo toś ten dodank město togo."
 
@@ -2572,6 +2557,9 @@ msgstr "Awtor ma rolu, kótaraž jo se za waš dodank změniła"
 
 msgid "An author has been removed from your add-on"
 msgstr "Awtor jo se z wašogo dodanka wótpórał"
+
+msgid "Changes successfully saved."
+msgstr "Změny su se wuspěšnje składli."
 
 msgid "Validate Add-on"
 msgstr "Dodank pśeglědowaś"
@@ -2655,6 +2643,9 @@ msgstr "Tekst pólnego wobcerka symboloweje rědki"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Tekstowa barwa w pólach w symbolowej rědce, na pś. w adresowem pólu Pólo manifesta: toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Pšosym pśepytujśo formular za zmólkami."
 
 msgid "Review requested."
 msgstr "Pśeglědowanje jo se pominało."
@@ -3985,11 +3976,22 @@ msgstr "Testowanje live"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Instalěrujśo swójo rozšyrjenje nachylu w Firefox, a by jo live testował a za zmólkami pśespytował."
 
-msgid "Transfer ownership"
-msgstr "Wobsejźeństwo pśenosowaś"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Protokol za pśeglědowanje lažkich drastwow"
+
+msgid "Create a New Theme"
+msgstr "Napórajśo nowu drastwu"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Slězynowe drastwy wam zmóžnjaju, naglěd wašogo Firefox personalizěrowaś. Zapódajśo dołojce swój design abo <a href=\"%(submit_url)s\">zgóńśo, kak móžośo design napóraś</a>!"
 
 msgid "Theme Details"
 msgstr "Drobnostki drastwy"
+
+msgid "Give your Theme a name."
+msgstr "Pomjeńśo swóju drastwu."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Pódajśo rědny URL za swój bok drobnostkow."
@@ -4000,59 +4002,20 @@ msgstr "Wubjeŕśo kategoriju, kótaraž nejlěpjej wopisujo wašu drastwu."
 msgid "Add some tags to describe your Theme."
 msgstr "Pśidajśo někotare wobznamjenja, aby swóju drastwu wopisał."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Krotke wujasnjenje zakładneje funkcionalnosći wašeje drastwy, kótarež pokazujo se w pytańskich a pśeglědowańskich lisćinowych zapiskach akoe teke górjejce na boku drobnostkow wašeje drastwy."
+msgid "Describe your Theme."
+msgstr "Wopišćo swóju drastwu."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Krotke wujasnjenje zakładneje funkcionalnosći wašeje drastwy, kótarež pokazujo se w pytańskich a pśeglědowańskich lisćinowych zapiskach ako teke górjejce na boku drobnostkow wašeje drastwy"
 
 msgid "Theme License"
 msgstr "Licenca drastwy"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Směju druge wašu drastwu źěliś, jolic was ako awtora naspomnjeju?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencudawaŕ dowólujo drugim, źěło kopěrowaś, rozdźělowaś, pokazowaś a wuwjasć, teke za komercielne zaměry."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencudawaŕ dowólujo drugim, źěło jano za njekomercielne zaměry kopěrowaś, rozdźělowaś, pokazowaś a wuwjasć."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Směju druge luźe wašu drastwu komercielnje wužywaś?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Směju druge luźe z wašeje drastwy wótwóźone źěła napóraś?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencudawaŕ dowólujo drugim, źěło kopěrowaś, rozdźělowaś, pokazowaś a wuwjasć a swójske źěła napóraś, kótarež bazěruju na toś tom źěle."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencudawaŕ dowólujo drugim, jano njezměnjone kopije źěła kopěrowaś, rozdźělowaś a dalej dawaś — žedne źěła, kótarež bazěruju na toś tom źěle."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Waša drastwa wózjawijo se pód slědujuceju licencu:"
 
 msgid "Select a license for your Theme."
 msgstr "Wubjeŕśo licencu za swóju drastwu."
 
 msgid "Theme Design"
 msgstr "Drastwowy design"
-
-msgid "Upload New Design"
-msgstr "Nowy design nagraś"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Mjaztym až nagrawaśo a wótpósćełaśo formular, buźo team AMO waš zaktualizěrowany design pśeglědowaś. Waš aktualny design wóstanjo mjaztym hyšći zjawny."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Waš design znowego zapódany do togo, kótaryž na pśeglědanje caka."
-
-msgid "Pending Header"
-msgstr "Cakajuca głowa"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Móžośo how swój drastwowy design aktualizěrowaś, gaž jo se pśizwólił."
-
-msgid "Header"
-msgstr "Głowa"
 
 msgid "Select colors for your Theme."
 msgstr "Wubjeŕśo barwy za swóju drastwu."
@@ -4075,19 +4038,6 @@ msgstr "Mě wašeje drastwy"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "wót <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Napórajśo nowu drastwu"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Slězynowe drastwy wam zmóžnjaju, naglěd wašogo Firefox personalizěrowaś. Zapódajśo dołojce swój design abo <a href=\"%(submit_url)s\">zgóńśo, kak móžośo design napóraś</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Pomjeńśo swóju drastwu."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krotke wujasnjenje zakładneje funkcionalnosći wašeje drastwy, kótarež pokazujo se w pytańskich a pśeglědowańskich lisćinowych zapiskach ako teke górjejce na boku drobnostkow wašeje drastwy"
 
 #, python-format
 msgid ""
@@ -5771,12 +5721,6 @@ msgstr "Žedne dataje w nagratej dataji."
 msgid "Fetching file."
 msgstr "Dataja se wótwołujo."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "API-wersija, {0:.1f}, kótaruž wužywaśo, njejo płaśiwa. Pšosym aktualizěrujśo na aktualnu wersiju {1:.1f} API."
-
-msgid "Not implemented yet."
-msgstr "Hyšći njeimplementěrowany."
-
 msgid "Shopping Made Easy"
 msgstr "Nakupowanje lažko cynjone"
 
@@ -6976,8 +6920,8 @@ msgstr "Komentary schowaś"
 msgid "No reviews found for this period."
 msgstr "Žedne pógódnośenja za toś ten cas namakane."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] jo dał %(object)s %(date)s k wěsći"
 
 msgid "Dismiss this announcement"
