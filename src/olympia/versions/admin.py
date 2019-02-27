@@ -14,7 +14,7 @@ class VersionAdmin(admin.ModelAdmin):
     view_on_site = False
     readonly_fields = ('version', 'channel')
 
-    raw_id_fields = ('addon', 'license', 'release_notes')
+    raw_id_fields = ('addon', 'license')
 
     fieldsets = (
         (None, {
