@@ -6927,9 +6927,9 @@ msgstr "Cacher les commentaires"
 msgid "No reviews found for this period."
 msgstr "Pas de revue trouvée pour cette période."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] a signalé %(object)s le %(date)s"
+msgstr ""
 
 msgid "Dismiss this announcement"
 msgstr "Rejeter cette annonce"
