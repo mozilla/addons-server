@@ -645,8 +645,9 @@ class TestAddonSubmitSource(TestSubmitBase):
     def post(self, has_source, source, expect_errors=False, status_code=200):
         data = {
             'has_source': 'yes' if has_source else 'no',
-            'source': source,
         }
+        if source is not None:
+            data['source'] = source
         response = self.client.post(self.url, data, follow=True)
         assert response.status_code == status_code
         if not expect_errors:
@@ -1417,8 +1418,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def test_source_submission_notes_not_shown_by_default(self):
         url = reverse('devhub.submit.source', args=[self.addon.slug])
         response = self.client.post(url, {
-            'has_source': 'no',
-            'source': None,
+            'has_source': 'no'
         }, follow=True)
 
         assert response.status_code == 200
@@ -1873,10 +1873,11 @@ class VersionSubmitUploadMixin(object):
             compatible_apps = [amo.FIREFOX]
         data = {
             'upload': self.upload.uuid.hex,
-            'source': source,
             'compatible_apps': [p.id for p in compatible_apps],
             'admin_override_validation': override_validation
         }
+        if source is not None:
+            data['source'] = source
         response = self.client.post(self.url, data, **(extra_kwargs or {}))
         assert response.status_code == expected_status
         return response
