@@ -5258,6 +5258,14 @@ class TestReviewAddonVersionViewSetDetail(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
+    def test_unlisted_version_post_review_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:PostReview')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
     def test_unlisted_version_unlisted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:ReviewUnlisted')
