@@ -74,12 +74,13 @@ class TestSearchPaginator(TestCase):
     def test_single_hit(self):
         """Test the ESPaginator only queries ES one time."""
         mocked_qs = MagicMock()
-        mocked_qs.count.return_value = 42
+        mocked_qs.count.return_value = 42  # django2.1
+        mocked_qs.__len__.return_value = 42  # django2.2+
         paginator = Paginator(mocked_qs, 5)
         # With the base paginator, requesting any page forces a count.
         paginator.page(1)
         assert paginator.count == 42
-        assert mocked_qs.count.call_count == 1
+        assert mocked_qs.count.call_count + mocked_qs.__len__.call_count == 1
 
         mocked_qs = MagicMock()
         mocked_qs.__getitem__().execute().hits.total = 666
