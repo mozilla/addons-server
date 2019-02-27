@@ -1226,12 +1226,17 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         # Permission classes disallow access to non-public/unlisted add-ons
         # unless logged in as a reviewer/addon owner/admin, so we don't have to
         # filter the base queryset here.
-        return (
+        qset = (
             Version.unfiltered
             .get_queryset()
             .only_translations()
             .filter(addon=self.get_addon_object())
             .order_by('-created'))
+
+        if not acl.check_unlisted_addons_reviewer(self.request):
+            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
+
+        return qset
 
     def get_addon_object(self):
         return get_object_or_404(

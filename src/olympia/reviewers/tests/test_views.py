@@ -5286,6 +5286,35 @@ class TestReviewAddonVersionViewSetDetail(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 403
 
+    def test_mixed_channel_only_listed_without_unlisted_perm(self):
+        user = UserProfile.objects.create(username='admin')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:Review')
+
+        self.client.login_api(user)
+
+        # Add an unlisted version to the mix
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Now the add-on has both, listed and unlisted versions
+        # but only reviewers with Addons:ReviewUnlisted are able
+        # to see them
+        url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': unlisted_version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 404
+
 
 class TestReviewAddonVersionViewSetList(TestCase):
     client_class = APITestClient
