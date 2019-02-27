@@ -75,6 +75,10 @@ LANGUAGE_MAPPING = {
         'english': u'Spanish',
         'native': u'Espa\xf1ol'
     },
+    'et': {
+        'english': u'Estonian',
+        'native': u'Eesti keel'
+    },
     'eu': {
         'english': u'Basque',
         'native': u'Euskara'
@@ -106,6 +110,10 @@ LANGUAGE_MAPPING = {
     'he': {
         'english': u'Hebrew',
         'native': u'\u05e2\u05d1\u05e8\u05d9\u05ea'
+    },
+    'hr': {
+        'english': u'Croatian',
+        'native': u'Hrvatski'
     },
     'hsb': {
         'english': u'Upper Sorbian',
@@ -139,6 +147,14 @@ LANGUAGE_MAPPING = {
         'english': u'Korean',
         'native': u'\ud55c\uad6d\uc5b4'
     },
+    'lt': {
+        'english': u'Lithuanian',
+        'native': u'Lietuvi\u0173'
+    },
+    'lv': {
+        'english': u'Latvian',
+        'native': u'Latvie\u0161u'
+    },
     'mk': {
         'english': u'Macedonian',
         'native': u'\u041c\u0430\u043a\u0435\u0434\u043e\u043d\u0441\u043a\u0438'  # noqa
@@ -150,6 +166,10 @@ LANGUAGE_MAPPING = {
     'ms': {
         'english': u'Malay',
         'native': u'Melayu'
+    },
+    'mt': {
+        'english': u'Maltese',
+        'native': u'Malti',
     },
     'nb-NO': {
         'english': u'Norwegian (Bokm\xe5l)',
@@ -339,10 +359,7 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'native': u'Espa\xf1ol (de Espa\xf1a)'},
     u'es-MX': {
         'english': u'Spanish (Mexico)',
-        'native': u'Espa\xf1ol (de M\xe9xico)'},
-    u'et': {
-        'english': u'Estonian',
-        'native': u'Eesti keel'
+        'native': u'Espa\xf1ol (de M\xe9xico)'
     },
     u'ff': {
         'english': u'Fulah',
@@ -386,10 +403,6 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
     u'hi-IN': {
         'english': u'Hindi (India)',
         'native': u'\u0939\u093f\u0928\u094d\u0926\u0940 (\u092d\u093e\u0930\u0924)'  # noqa
-    },
-    u'hr': {
-        'english': u'Croatian',
-        'native': u'Hrvatski'
     },
     u'hy-AM': {
         'english': u'Armenian',
@@ -451,17 +464,9 @@ ADDITIONAL_PRODUCT_LANGUAGES = {
         'english': u'Lao',
         'native': u'\u0e9e\u0eb2\u0eaa\u0eb2\u0ea5\u0eb2\u0ea7'
     },
-    u'lt': {
-        'english': u'Lithuanian',
-        'native': u'Lietuvi\u0173'
-    },
     u'ltg': {
         'english': u'Latgalian',
         'native': u'Latgalie\u0161u valoda'
-    },
-    u'lv': {
-        'english': u'Latvian',
-        'native': u'Latvie\u0161u'
     },
     u'mai': {
         'english': u'Maithili',
