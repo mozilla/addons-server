@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 11:31+0000\n"
+"PO-Revision-Date: 2019-02-28 11:51+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -1575,7 +1575,7 @@ msgid "{addon} {version} more information requested."
 msgstr "Informații suplimentare pentru {addon} {version} solicitate."
 
 msgid "More information requested"
-msgstr "S-au solicitat informații suplimentare"
+msgstr "S-au cerut mai multe informații"
 
 msgid "{addon} {version} super review requested."
 msgstr "Suprarevizuire pentru {addon}{version} solicitată."
@@ -3984,9 +3984,8 @@ msgstr "Testare live"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Instalează-ți temporar extensia în Firefox pentru testare live și depanare."
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "Jurnal de recenzie pentru teme lejere"
+msgstr "Editarea de teme ușoare a fost dezactivată."
 
 msgid "Create a New Theme"
 msgstr "Creează o temă nouă"
@@ -5646,9 +5645,9 @@ msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensi
 msgid "Unexpected error."
 msgstr "Eroare neașteptată."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> din fișierul tău install.rdf (%s) nu se potrivește cu tipul suplimentului tău de pe AMO (%s)"
+msgstr "Tipul (%s) nu se potrivește cu tipul suplimentului înregistrat pe AMO (%s)"
 
 msgid "Back to review"
 msgstr "Înapoi la recenzie"
@@ -6933,9 +6932,9 @@ msgstr "Ascunde comentariile"
 msgid "No reviews found for this period."
 msgstr "Nu s-a găsit nicio recenzie pentru această perioadă."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] a raportat %(object)s la data de %(date)s"
+msgstr "%(user)s [%(country_code)s] raportat %(object)s la %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Respinge acest anunț"
@@ -7055,29 +7054,29 @@ msgid "Release My Theme Locks"
 msgstr "Deblochează-mi temele"
 
 msgid "Interactive Theme Queue"
-msgstr ""
+msgstr "Coadă interactivă de așteptare pentru teme"
 
 msgid "Reviewers' Guide"
 msgstr "Ghidul revizorului"
 
 msgid "Theme Review for {0}"
-msgstr ""
+msgstr "Recenzie la tema {0}"
 
 msgid "Edit Listing"
-msgstr ""
+msgstr "Editează listarea"
 
 msgid "(Probable Duplicate Submission)"
 msgstr "(Probabil depunere în duplicat)"
 
 msgid "Submitted"
-msgstr ""
+msgstr "Trimisă"
 
 msgid "Past Review Notes"
-msgstr ""
+msgstr "Note de recenzii anterioare"
 
 #. {previous review action taken on theme}: {comment about review action}
 msgid "More Info Requested: {0}"
-msgstr ""
+msgstr "S-au cerut mai multe informații: {0}"
 
 msgid "Flagged: {0}"
 msgstr ""
@@ -7086,25 +7085,25 @@ msgid "Approve Theme"
 msgstr "Aprobă tema"
 
 msgid "Field required"
-msgstr ""
+msgstr "Câmp obligatoriu"
 
 msgid "Enter the ID or URL of the duplicate"
-msgstr ""
+msgstr "Introdu ID-ul sau adresa URL a duplicatului"
 
 msgid "Select a reason for rejection"
-msgstr ""
+msgstr "Selectează motivul respingerii"
 
 msgid "Describe your reason for rejection"
-msgstr ""
+msgstr "Descrie motivul respingerii"
 
 msgid "Ask a question to the artist"
 msgstr "Adresează o întrebare artistului"
 
 msgid "Describe your reason for flagging"
-msgstr ""
+msgstr "Descrie motivul semnalării"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Respinse sau fără recenzii"
 
 #, python-format
 msgid "[status:%s]"
@@ -7138,10 +7137,10 @@ msgstr[1] "Solicitări de informații expirate ({0})"
 msgstr[2] "Solicitări de informații expirate ({0})"
 
 msgid "Flagged"
-msgstr ""
+msgstr "Semnalizate"
 
 msgid "Updates"
-msgstr ""
+msgstr "Actualizări"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7149,10 +7148,10 @@ msgstr "Parametru \"%s\" invalid."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Combinație invalidă a parametrilor „% s\" și „% s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Întoarcerea pe AMO este dezactivată acum"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr ""
@@ -7171,13 +7170,13 @@ msgid "search for add-ons"
 msgstr "caută suplimente"
 
 msgid "search for themes"
-msgstr ""
+msgstr "caută teme"
 
 msgid "search for apps"
-msgstr ""
+msgstr "caută aplicații"
 
 msgid "Relevance"
-msgstr ""
+msgstr "Relevanță"
 
 msgid "All Add-ons"
 msgstr "Toate suplimentele"
@@ -7194,26 +7193,26 @@ msgstr "Toate etichetele"
 
 #. {0} is the string the user was searching for
 msgid "Collection Search Results for {0}"
-msgstr ""
+msgstr "Rezultatele căutării de colecții pentru {0}"
 
 msgid "Collection Search Results"
-msgstr ""
+msgstr "Rezultatele căutării de colecții"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Rezultatele căutării"
 
 msgid "Search Unavailable"
-msgstr ""
+msgstr "Căutare indisponibilă"
 
 msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
+msgstr "Căutările sunt temporar indisponibile. Te rugăm să încerci din nou în câteva minute."
 
 #. {0} is the string the user was searching for
 msgid "Themes Search Results for {0}"
-msgstr ""
+msgstr "Rezultatele căutării de teme pentru {0}"
 
 msgid "Themes Search Results"
-msgstr ""
+msgstr "Rezultatele căutării de teme"
 
 #. {0} is a search term, such as Firebug.
 msgid "{0} :: Search"
@@ -7221,7 +7220,7 @@ msgstr "{0} :: Căutare"
 
 #. {0} is a search term, such as Firebug.
 msgid "Search Results for \"{0}\""
-msgstr ""
+msgstr "Rezultatele căutării pentru „{0}\""
 
 #. {0} is a tag, such as jetpack.
 msgid "{0} :: Tag"
@@ -7229,7 +7228,7 @@ msgstr "{0} :: Etichetă"
 
 #. {0} is a tag, such as jetpack.
 msgid "Search Results for tag \"{0}\""
-msgstr ""
+msgstr "Rezultatele căutării pentru eticheta „{0}\""
 
 msgid "<b>{0}</b> matching result"
 msgid_plural "<b>{0}</b> matching results"
@@ -7238,13 +7237,13 @@ msgstr[1] "<b>{0}</b> rezultate"
 msgstr[2] "<b>{0}</b> de rezultate"
 
 msgid "Filter Results"
-msgstr ""
+msgstr "Filtrează rezultatele"
 
 msgid "Category"
 msgstr "Categorie"
 
 msgid "Tag"
-msgstr ""
+msgstr "Etichetă"
 
 # {0} is a number
 # {1} is a number
@@ -7260,7 +7259,7 @@ msgid "Showing {0} - {1} of {2} results"
 msgstr "Se afișează {0} - {1} din {2} rezultate"
 
 msgid "Could not find add-on with guid \"{}\"."
-msgstr ""
+msgstr "Nu am găsit niciun supliment cu guid „{}\"."
 
 msgid "You do not own this addon."
 msgstr "Nu deții acest supliment."
@@ -7270,29 +7269,29 @@ msgstr ""
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
-msgstr ""
+msgstr "Nu poți adăuga versiuni la un supliment cu starea: %s."
 
 msgid "Version does not match the manifest file."
-msgstr ""
+msgstr "Versiunea nu corespunde cu fișierul manifest."
 
 #, python-format
 msgid "Version already exists. Latest version is: %s."
-msgstr ""
+msgstr "Versiunea deja există. Ultima versiune este: %s."
 
 msgid "Only WebExtensions are allowed to omit the GUID"
-msgstr ""
+msgstr "Numai WebExtensions pot omite GUID-ul"
 
 msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 characters."
-msgstr ""
+msgstr "Te rugăm să specifici GUID-ul suplimentului tău în manifest dacă are mai mult de 64 de caractere."
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID invalid în URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Nu există niciun fișier încărcat pentru acel supliment și acea versiune."
 
 msgid "Overview"
 msgstr "Prezentare generală"
@@ -7331,13 +7330,13 @@ msgid "Add-ons Updated"
 msgstr "Suplimente actualizate"
 
 msgid "Collections Created"
-msgstr ""
+msgstr "Colecții create"
 
 msgid "Reviews Written"
-msgstr ""
+msgstr "Recenzii scrise"
 
 msgid "User Signups"
-msgstr ""
+msgstr "Înregistrări de utilizatori"
 
 msgid "Archived Data"
 msgstr "Date arhivate"
@@ -7412,9 +7411,10 @@ msgstr "Personalizat..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
+"Prelucrarea statisticilor este momentan dezactivată și, deci, nu sunt disponibile date recente. Statisticile sunt în continuare colectate și pagina va fi actualizată în curând cu datele lipsă."
 
 msgid "Loading the latest data&hellip;"
-msgstr ""
+msgstr "Se încarcă cele mai recente date&hellip;"
 
 msgid "No data available."
 msgstr "Nu există date disponibile."
@@ -7450,7 +7450,7 @@ msgid "Downloaded by Date"
 msgstr "Descărcări în funcție de dată"
 
 msgid "How are downloads counted?"
-msgstr ""
+msgstr "Cum sun contorizate descărcările?"
 
 msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
@@ -7469,7 +7469,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> (de) descărcări"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Se încarcă..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "<b>{0}</b> (de) utilizatori zilnici în medie"
@@ -7567,10 +7567,10 @@ msgid "Visit the new site"
 msgstr "Vizitează-ne noul site"
 
 msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
+msgstr "Pentru crearea de colecții proprii, trebuie să ai un cont de suplimente Mozilla."
 
 msgid "Create an Add-ons Account"
-msgstr ""
+msgstr "Creează un cont de suplimente"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
