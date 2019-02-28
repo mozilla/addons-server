@@ -99,7 +99,6 @@ class FileEntriesSerializer(FileSerializer):
                 path = force_text(entry_wrapper.path)
                 blob = entry_wrapper.blob
 
-                mime, encoding = mimetypes.guess_type(entry.name)
                 sha_hash = (
                     get_sha256(io.BytesIO(memoryview(blob)))
                     if not entry.type == 'tree' else '')
@@ -156,6 +155,13 @@ class FileEntriesSerializer(FileSerializer):
 
         mime_type = mime.split('/')[0]
         known_types = ('image', 'text')
+
+        if mime_type == 'text':
+            # Allow text mimetypes to be more specific for readable
+            # files. `python-magic`/`libmagic` usually just returns
+            # plain/text but we should use actual types like text/css or
+            # text/javascript.
+            mime, _ = mimetypes.guess_type(entry.name)
 
         return mime, 'binary' if mime_type not in known_types else mime_type
 

@@ -68,7 +68,7 @@ class TestFileEntriesSerializer(TestCase):
         assert manifest_data['filename'] == u'manifest.json'
         assert manifest_data['sha256'] == (
             '71d4122c0f2f78e089136602f88dbf590f2fa04bb5bc417454bf21446d6cb4f0')
-        assert manifest_data['mimetype'] == 'text/plain'
+        assert manifest_data['mimetype'] == 'application/json'
         assert manifest_data['mime_category'] == 'text'
         assert manifest_data['path'] == u'manifest.json'
         assert manifest_data['size'] == 622
@@ -133,16 +133,16 @@ class TestFileEntriesSerializer(TestCase):
         (MagicMock(type='blob'), 'empty_bat.exe', 'binary',
                                  'application/x-dosexec'),
         (MagicMock(type='blob'), 'fff.gif', 'image', 'image/gif'),
-        (MagicMock(type='blob'), 'foo.css', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'foo.css', 'text', 'text/css'),
         (MagicMock(type='blob'), 'foo.html', 'text', 'text/html'),
-        (MagicMock(type='blob'), 'foo.js', 'text', 'text/plain'),
-        (MagicMock(type='blob'), 'foo.py', 'text', 'text/plain'),
+        (MagicMock(type='blob'), 'foo.js', 'text', 'application/javascript'),
+        (MagicMock(type='blob'), 'foo.py', 'text', 'text/x-python'),
         (MagicMock(type='blob'), 'image.jpg', 'image', 'image/jpeg'),
         (MagicMock(type='blob'), 'image.png', 'image', 'image/png'),
-        (MagicMock(type='blob'), 'search.xml', 'text', 'text/xml'),
+        (MagicMock(type='blob'), 'search.xml', 'text', 'application/xml'),
         (MagicMock(type='blob'), 'js_containing_png_data.js', 'text',
-                                 'text/plain'),
-        (MagicMock(type='blob'), 'foo.json', 'text', 'text/plain'),
+                                 'application/javascript'),
+        (MagicMock(type='blob'), 'foo.json', 'text', 'application/json'),
         (MagicMock(type='tree'), 'foo', 'directory',
                                  'application/octet-stream'),
     ]
@@ -150,6 +150,8 @@ class TestFileEntriesSerializer(TestCase):
 def test_file_entries_serializer_category_type(
         entry, filename, expected_category, expected_mimetype):
     serializer = FileEntriesSerializer()
+
+    entry.name = filename
 
     root = os.path.join(
         settings.ROOT,
