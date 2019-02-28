@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 10:11+0000\n"
+"PO-Revision-Date: 2019-02-28 10:31+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5603,32 +5603,32 @@ msgid "Invalid file name in archive: {0}"
 msgstr "Denumire de fișier invalidă în arhiva: {0}"
 
 msgid "File exceeding size limit in archive: {0}"
-msgstr ""
+msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
 msgid "Invalid archive."
-msgstr ""
+msgstr "Arhivă invalidă."
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "Nu s-a reușit analizarea fișierului manifest."
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "Nu s-a găsit un ID al suplimentului."
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
-msgstr ""
+msgstr "ID-ul suplimentului din manifest.json sau install.rdf (%s) nu corespunde ID-ului dat suplimentului pe AMO (%s)"
 
 msgid "Duplicate add-on ID found."
-msgstr ""
+msgstr "S-a depistat un ID de supliment duplicat."
 
 msgid "Version numbers should have fewer than 32 characters."
-msgstr ""
+msgstr "Numerele de versiune trebuie să aibă mai puțin de 32 de caractere."
 
 msgid "Version numbers should only contain letters, numbers, and these punctuation characters: +*.-_."
-msgstr ""
+msgstr "Numerele de versiune trebuie să conțină numai litere, cifre și aceste semne de punctuație: +*.-_."
 
 msgid "Maximum size for WebExtension themes is {0}."
-msgstr ""
+msgstr "Mărimea maximă pentru temele WebExtension este {0}."
 
 msgid "You cannot submit this type of add-on"
 msgstr "Nu poți trimite acest tip de supliment"
@@ -5644,7 +5644,7 @@ msgid "Unsupported file type, please upload an a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Eroare neașteptată."
 
 #, fuzzy, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -5658,7 +5658,7 @@ msgstr "Înapoi la supliment"
 
 #, python-format
 msgid "Version: %(version)s &bull; Size: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Mimetype: %(mimetype)s"
-msgstr ""
+msgstr "Versiune: %(version)s &bull; Mărime: %(size)s &bull; SHA256 hash: %(sha256)s &bull; Tip Mime: %(mimetype)s"
 
 msgid "File Compare :: Reviewer tools"
 msgstr "Comparare fișiere: Unelte pentru revizori"
@@ -5667,29 +5667,29 @@ msgid "File Viewer :: Reviewer tools"
 msgstr "Vizualizator de fișiere:: Unelte pentru revizori"
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "Validarea a eșuat:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr "Conținutul fișierului nu este suportat pentru evidențierea sintaxei"
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Este posibil ca ieșirea să fie coruptă. Te rugăm să fii atent(ă) și %(link_start)sraportează problema%(link_end)s imediat!"
 
 msgid "Add-on file being processed, please wait."
 msgstr "Fișierul suplimentului este în curs de procesare; te rugăm să aștepți."
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "Se obțin rezultatele de validare..."
 
 msgid "Files:"
-msgstr ""
+msgstr "Fișiere:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "Fișiere șterse:"
 
 msgid "Hide known files"
-msgstr ""
+msgstr "Ascunde fișierele cunoscute"
 
 msgid "Add-on SDK Version:"
 msgstr "Versiune SDK supliment:"
@@ -5698,67 +5698,67 @@ msgid "Tab stops:"
 msgstr ""
 
 msgid "Up file"
-msgstr ""
+msgstr "Du fișierul mai sus"
 
 msgid "Down file"
-msgstr ""
+msgstr "Du fișierul mai jos"
 
 msgid "Previous diff"
-msgstr ""
+msgstr "Diferența anterioară"
 
 msgid "Previous note"
-msgstr ""
+msgstr "Nota anterioară"
 
 msgid "Next diff"
-msgstr ""
+msgstr "Diferența următoare"
 
 msgid "Next note"
-msgstr ""
+msgstr "Nota următoare"
 
 msgid "Expand all"
-msgstr ""
+msgstr "Extinde tot"
 
 msgid "Hide or unhide tree"
-msgstr ""
+msgstr "Ascunde sau afișează arborele"
 
 msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "Niciun fișier în fișierul încărcat."
 
 msgid "Fetching file."
-msgstr ""
+msgstr "Se obține fișierul."
 
 msgid "Shopping Made Easy"
 msgstr "Cumpărăturile au devenit ușoare"
 
 msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
+msgstr "Salvează confortabil elementele favorite, din browser."
 
 msgid "Build the perfect website"
 msgstr "Realizează site-ul web perfect"
 
 msgid "First time with Add-ons?"
-msgstr ""
+msgstr "Prima dată când utilizezi suplimente?"
 
 msgid "Not to worry, here are three to get started."
-msgstr ""
+msgstr "Nicio problemă. Ai aici trei cu care să începi."
 
 msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
+msgstr "Tradu conținuturi de pe web din și în peste 40 de limbi."
 
 msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
+msgstr "Te conectezi ușor la rețelele de socializare și partajezi sau comentezi pe pagina pe care o vizitezi."
 
 msgid "A quick view to compare prices when you shop online or search for flights."
 msgstr "O vedere rapidă de comparat prețuri când faci cumpărături online sau cauți zboruri."
 
 msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
+msgstr "Teme de Sf. Petru"
 
 msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
+msgstr "Decorează-ți browserul ca să sărbătorești de Sf. Petru."
 
 msgid "A+ add-ons for School"
 msgstr "Suplimente A+ pentru școală"
@@ -5767,52 +5767,52 @@ msgid "Add-ons for teachers, parents, and students heading back to school."
 msgstr "Suplimente pentru profesori, părinți și elevi care reîncep școala."
 
 msgid "Would you like to know which websites you can trust?"
-msgstr ""
+msgstr "Vrei să știi în ce site-uri web poți avea încredere?"
 
 msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
+msgstr "Xmarks este suplimentul de marcaje numărul #1."
 
 msgid "Web page and text translator, dictionary, and more!"
 msgstr "Pagină web și traducător de text, dicționar și multe altele!"
 
 msgid "Love is in the Air"
-msgstr ""
+msgstr "Plutește dragostea în aer"
 
 msgid "Add some romance to your Firefox."
 msgstr "Adaugă puțin romantism în Firefox."
 
 msgid "Get up and move!"
-msgstr ""
+msgstr "Ridică-te și mergi!"
 
 msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
+msgstr "Instalează aceste suplimente de fitness ca să te menții activ(ă) și în formă."
 
 msgid "New &amp; Now"
-msgstr ""
+msgstr "Nou și acum"
 
 msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
+msgstr "Obține cele mai recente și indispensabile suplimente ale momentului."
 
 msgid "Worry-free browsing"
-msgstr ""
+msgstr "Navigare fără griji"
 
 msgid "Protect your privacy online with the add-ons in this collection."
 msgstr "Protejează-ți intimitatea online cu suplimente din această colecție."
 
 msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
+msgstr "Suplimente grozave pentru lucru, distracție, confidențialitate, productivitate&hellip;...pentru orice!"
 
 msgid "Games!"
-msgstr ""
+msgstr "Jocuri!"
 
 msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
 msgstr "Adaugă un plus de distracție în Firefox. Joacă zeci de jocuri direct în browser—puzzle, arcade clasice, jocuri de acțiune și multe altele!"
 
 msgid "Must-Have Media"
-msgstr ""
+msgstr "Medii indispensabile"
 
 msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
+msgstr "Faci capturi mai bune de ecran, îți îmbunătățești experiența video online, afli cum să creezi un GIF și multe alte unelte pentru conținuturi multimedia."
 
 msgid "Mozilla&rsquo;s Pick of the Month!"
 msgstr "Alegerea lunii din partea Mozilla!"
@@ -5821,16 +5821,16 @@ msgid "Become a Test Pilot"
 msgstr "Devino pilot de testare"
 
 msgid "Unlock early access to experimental browser features."
-msgstr ""
+msgstr "Obții acces anticipat la funcționalități experimentale ale browserului."
 
 msgid "Get Started"
-msgstr ""
+msgstr "Începe"
 
 msgid "Reported Status"
 msgstr "Stare raportată"
 
 msgid "Reported Spam"
-msgstr ""
+msgstr "Mesaje nedorite raportate"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
@@ -5886,14 +5886,14 @@ msgstr ""
 "de o echipă de revizori înainte de a fi lansate. Suplimentele marcate ca experimentale nu au fost revizuite și trebuie instalate cu prudență."
 
 msgid "How do I keep up with what's happening at AMO?"
-msgstr ""
+msgstr "Cum mă pot ține la curent cu ce se petrece la AMO?"
 
 msgid "There are several ways to find out the latest news from the world of add-ons:"
-msgstr ""
+msgstr "Sunt mai multe căi de aflat cele mai recente știri din lumea suplimentelor:"
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">Add-ons Blog</a> is regularly updated with information for both add-on enthusiasts and developers."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Blogul nostru de suplimente</a> este actualizat periodic cu informații atât pentru amatorii de suplimente, cât și pentru dezvoltatori."
 
 #, python-format
 msgid "We often post news, tips, and tricks to our Twitter account, <a href=\"%(url)s\">mozamo</a>"
@@ -5901,13 +5901,13 @@ msgstr "Adesea postăm știri, ponturi și trucuri pe contul nostru de Twitter, 
 
 #, python-format
 msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the add-ons community and discuss upcoming changes to AMO."
-msgstr ""
+msgstr "<a href=\"%(url)s\">Forumurile noastre</a> sunt un loc bun de interacționat cu comunitatea și de discutat modificări AMO în curs de implementare."
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "Sună bine! Cum pot să mă implic?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
-msgstr ""
+msgstr "Există multe căi. Dacă ai înclinații pe partea tehnică:"
 
 #, python-format
 msgid "<a href=\"%(url)s\">Make your own add-on</a>. We provide free hosting and update services and can help you reach a large audience of users."
@@ -5928,7 +5928,7 @@ msgstr ""
 "defectele vechi sunt încă pe Bugzilla."
 
 msgid "If you're interested in add-ons but not quite as technical, there are still ways to help:"
-msgstr ""
+msgstr "Dacă ești interesat(ă) de suplimente, dar nu te pricepi prea mult la partea tehnică, tot există căi să ne dai o mână de ajutor:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
 msgstr ""
