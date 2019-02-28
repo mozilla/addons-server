@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 10:44+0000\n"
+"PO-Revision-Date: 2019-02-28 11:10+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -6038,9 +6038,11 @@ msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
 "add-on, or the add-on requires gathering data to function."
 msgstr ""
+"Nu critica un supliment pentru ce a fost conceput să facă. De exemplu, nu lăsa recenzii negative pentru un supliment care afișează reclame sau necesită colectare de date când de fapt aceasta este "
+"destinația utilizării suplimentului sau dacă suplimentul necesită colectarea de date ca să poată funcționa."
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "Cum pot raporta o recenzie problematică?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -6050,14 +6052,16 @@ msgstr ""
 "recenzii în evaluarea faptului dacă recenzia va fi ștearsă sau reintrodusă pe site."
 
 msgid "I’m an add-on author, can I respond to reviews?"
-msgstr ""
+msgstr "Sunt autorul unui supliment. Pot răspunde la recenzii?"
 
 #, python-format
 msgid "Yes, add-on authors can provide a single response to a review. You can set up a discussion topic in our <a href=\"%(forum_url)s\">forum</a> to engage in additional discussion or follow-up."
 msgstr ""
+"Da, autorii de suplimente pot da un singur răspuns per recenzie. Poți crea un subiect de discuție pe <a href=\"%(forum_url)s\">forumurile</a>noastre dacă vrei să te angajezi în discuții mai "
+"dezvoltate sau de urmărire a subiectului."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr ""
+msgstr "Sunt autorul unui supliment. Pot șterge recenzii sau evaluări defavorabile?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
@@ -6067,10 +6071,10 @@ msgstr ""
 "include o reclamație care nu mai este de actualitate datorită lansării unei versiuni noi a suplimentului tău, este posibil să luăm în calcul ștergerea recenziei."
 
 msgid "User"
-msgstr ""
+msgstr "Utilizator"
 
 msgid "IP Address"
-msgstr ""
+msgstr "Adresă IP"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6100,28 +6104,28 @@ msgid "Other (please specify)"
 msgstr "Altele (vă rugăm să specificați)"
 
 msgid "This field is required."
-msgstr ""
+msgstr "Câmp obligatoriu."
 
 msgid "You can't change the add-on of a review once it has been created."
-msgstr ""
+msgstr "Nu poți modifica suplimentul unei recenzii după ce a fost creată."
 
 msgid "You can't reply to a review that is already a reply."
-msgstr ""
+msgstr "Nu poți răspunde la o recenzie care are deja un răspuns."
 
 msgid "You can't change the version of the add-on reviewed once the review has been created."
-msgstr ""
+msgstr "Nu poți modifica versiunea suplimentului după crearea recenziei."
 
 msgid "This version of the add-on doesn't exist or isn't public."
-msgstr ""
+msgstr "Această versiune a suplimentului nu există sau nu este publică."
 
 msgid "You can't leave a review on your own add-on."
-msgstr ""
+msgstr "Nu poți posta o recenzie la propriul tău supliment."
 
 msgid "You can't leave more than one review for the same version of an add-on."
-msgstr ""
+msgstr "Nu poți posta mai mult de o recenzie pentru aceeași versiune a unui supliment."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Această evaluare nu poate fi semnalată pentru că nu are text deloc."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Îți mulțumim; această recenzie a fost semnalată în scopul aprobării de către un revizor."
@@ -6146,21 +6150,21 @@ msgstr ""
 "citești <a href=\"%(guide)s\">Ghidul pentru recenzii</a>pentru mai multe detalii privind recenziile utilizatorilor despre suplimente.</p>"
 
 msgid "Reply to review by {0}"
-msgstr ""
+msgstr "Răspunde la recenzia lui {0}"
 
 msgid "Write a Reply"
-msgstr ""
+msgstr "Scrie o recenzie"
 
 msgid "Submit"
-msgstr ""
+msgstr "Trimite"
 
 #. this string is following a <button>.
 #, python-format
 msgid "or <a href=\"%(url)s\">Cancel</a>"
-msgstr ""
+msgstr "sau<a href=\"%(url)s\">Renunță</a>"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "Te rugăm să alegi un motiv:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
@@ -6173,13 +6177,13 @@ msgstr "Această recenzie este pentru o versiune anterioară a suplimentului ({0
 #, python-format
 msgid "This user has a <a href=\"%(user_review_url)s\">previous review</a> of this add-on."
 msgid_plural "This user has <a href=\"%(user_review_url)s\">%(cnt)s previous reviews</a> of this add-on."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Acest utilizator are deja o <a href=\"%(user_review_url)s\">recenzie anterioară</a> postată pentru acest supliment."
+msgstr[1] "Acest utilizator are deja <a href=\"%(user_review_url)s\">%(cnt)s recenzii anterioare</a> postate pentru acest supliment."
+msgstr[2] "Acest utilizator are deja <a href=\"%(user_review_url)s\">%(cnt)s de recenzii anterioare</a> postate pentru acest supliment."
 
 #, python-format
 msgid "This user has <a href=\"%(user_review_url)s\">other reviews</a> of this add-on."
-msgstr ""
+msgstr "Acest utilizator are deja <a href=\"%(user_review_url)s\">alte recenzii</a> postate pentru acest supliment."
 
 msgid "Flagged for review"
 msgstr "Semnalat pentru recenzie"
@@ -6188,16 +6192,16 @@ msgid "Report this review"
 msgstr "Raportează această recenzie"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "Răspunde la recenzie"
 
 msgid "Edit reply"
-msgstr ""
+msgstr "Editează răspunsul"
 
 msgid "Edit review"
 msgstr "Editează recenzia"
 
 msgid "Delete reply"
-msgstr ""
+msgstr "Șterge răspunsul"
 
 msgid "Delete review"
 msgstr "Șterge recenzia"
@@ -6207,7 +6211,7 @@ msgid "{0} :: Reviews"
 msgstr "{0} :: Recenzii"
 
 msgid "Reviews for {0}"
-msgstr ""
+msgstr "Recenzii pentru {0}"
 
 #. {0} is a number.
 msgid "<b>{0}</b> review for this add-on"
@@ -6218,7 +6222,7 @@ msgstr[2] "<b>{0}</b> de recenzii pentru acest supliment"
 
 #. {0} is a developer's name.
 msgid "Developer reply by {0}"
-msgstr ""
+msgstr "Răspunsul dezvoltatorului de la {0}"
 
 #, python-format
 msgid "Review for %(addon)s by %(user)s"
@@ -6235,7 +6239,7 @@ msgid "<strong>Average</strong> (%(total)s)"
 msgstr "<strong>Medie</strong> (%(total)s)"
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "Scrie o recenzie nouă"
 
 msgid "Be the first to write a review."
 msgstr "Fii primul care scrie o recenzie."
@@ -6260,53 +6264,53 @@ msgid "Deleted reviews"
 msgstr "Recenzii șterse"
 
 msgid "View entries between"
-msgstr ""
+msgstr "Vezi înregistrările între"
 
 msgid "and"
 msgstr "și"
 
 msgid "Filter by type/action"
-msgstr ""
+msgstr "Filtrează după tip/acțiune"
 
 msgid "containing"
-msgstr ""
+msgstr "care conțin"
 
 msgid "start"
-msgstr ""
+msgstr "început"
 
 msgid "end"
-msgstr ""
+msgstr "sfârșit"
 
 #. L10n: Description of what can be searched for
 msgid "add-on, reviewer or comment"
 msgstr "supliment, revizor sau comentariu"
 
 msgid "Search by add-on name / author email"
-msgstr ""
+msgstr "Caută după denumirea suplimentului / e-mailul autorului"
 
 msgid "Needs Admin Code Review"
 msgstr "Necesită recenzia codului de către un administrator"
 
 msgid "yes"
-msgstr ""
+msgstr "da"
 
 msgid "no"
-msgstr ""
+msgstr "nu"
 
 msgid "Add-on Types"
 msgstr "Tipuri de suplimente"
 
 msgid "Search by add-on name / author email / guid"
-msgstr ""
+msgstr "Caută după denumirea suplimentului / e-mailul autorului / guid"
 
 msgid "Max. Version"
-msgstr ""
+msgstr "Versiune max."
 
 msgid "Select an application first"
-msgstr ""
+msgstr "Selectează o aplicație mai întâi"
 
 msgid "Comments:"
-msgstr ""
+msgstr "Comentarii:"
 
 msgid "Operating systems:"
 msgstr "Sisteme de operare:"
@@ -6315,7 +6319,7 @@ msgid "Applications:"
 msgstr "Aplicații:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Cere dezvoltatorului să răspundă în mai puțin de…"
 
 msgid "days"
 msgstr "zile"
@@ -6325,23 +6329,23 @@ msgstr "Alege un răspuns predefinit..."
 
 #. L10n: Description of what can be searched for.
 msgid "theme name"
-msgstr ""
+msgstr "denumirea temei"
 
 msgid "Someone else is reviewing this theme."
-msgstr ""
+msgstr "Altcineva scrie o recenzie la această temă."
 
 #. L10n: Description of what can be searched for.
 msgid "theme, reviewer, or comment"
 msgstr "temă, revizor sau comentariu"
 
 msgid "Private Whiteboard"
-msgstr ""
+msgstr "Tablă albă privată"
 
 msgid "Keep review; remove flags"
-msgstr ""
+msgstr "Păstrează recenzia; elimină marcajele de semnalizare"
 
 msgid "Skip for now"
-msgstr ""
+msgstr "Treci peste deocamdată"
 
 msgid "Needs Admin Content Review"
 msgstr "Necesită recenzia conținutului de către un administrator"
@@ -6350,16 +6354,16 @@ msgid "Needs Admin Static Theme Review"
 msgstr "Necestită recenzia temei statice de către un administrator"
 
 msgid "Jetpack Add-on"
-msgstr ""
+msgstr "Supliment Jetpack"
 
 msgid "More Information Requested"
-msgstr ""
+msgstr "S-au cerut mai multe informații"
 
 msgid "Expired Information Request"
 msgstr "Solicitare de informații expirată"
 
 msgid "Sources provided"
-msgstr ""
+msgstr "Surse furnizate"
 
 msgid "WebExtension"
 msgstr "WebExtension"
@@ -6368,13 +6372,13 @@ msgid "Is locked by a reviewer."
 msgstr "Este blocat de un revizor."
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
+msgstr "Are setată o semnalizare de aprobare automată dezactivată."
 
 msgid "Duplicate Submission"
-msgstr ""
+msgstr "Transmisie duplicat"
 
 msgid "Thanks for submitting your Theme"
-msgstr ""
+msgstr "Îți mulțumim că ne-ai trimis tema"
 
 msgid "A problem with your Theme submission"
 msgstr "O problemă cu depunerea temei tale"
@@ -6386,13 +6390,13 @@ msgid "A question about your Theme submission"
 msgstr "O întrebare despre depunerea temei tale"
 
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 msgid "Waiting Time"
 msgstr "Timp de așteptare"
 
 msgid "Flags"
-msgstr ""
+msgstr "Semnalizări"
 
 msgid "moments ago"
 msgstr "momente în urmă"
@@ -6419,10 +6423,10 @@ msgstr[1] "{0} zile"
 msgstr[2] "{0} de zile"
 
 msgid "Last Review"
-msgstr ""
+msgstr "Ultima recenzie"
 
 msgid "Last Update"
-msgstr ""
+msgstr "Ultima actualizare"
 
 msgid "No Reviews"
 msgstr "Nicio recenzie"
@@ -6431,37 +6435,39 @@ msgid "Weight"
 msgstr "Greutate"
 
 msgid "Information Request Deadline"
-msgstr ""
+msgstr "Termen-limită pentru solicitări de informații"
 
 msgid "Last Content Review"
-msgstr ""
+msgstr "Ultima recenzie a conținutului"
 
 msgid "This will approve, sign, and publish this version. The comments will be sent to the developer."
-msgstr ""
+msgstr "Această acțiune va aproba, semna și publica această versiune. Comentariile vor fi trimise dezvoltatorului."
 
 msgid "This will reject this version and remove it from the queue. The comments will be sent to the developer."
-msgstr ""
+msgstr "Această acțiune va respinge versiunea și o va elimina din coada de așteptare. Comentariile vor fi trimise dezvoltatorului."
 
 msgid "Confirm Approval"
-msgstr ""
+msgstr "Confirmă aprobarea"
 
 msgid "The latest public version of this add-on was automatically approved. This records your confirmation of the approval of that version, without notifying the developer."
 msgstr ""
+"Cea mai recentă versiune publică a acestui supliment a fost aprobată automat. Aceasta este înregistrarea confirmării pe care ai dat-o pentru aprobarea versiunii respective, fără notificarea "
+"dezvoltatorului."
 
 msgid "Reject Multiple Versions"
 msgstr "Respinge multiple versiuni"
 
 msgid "This will reject the selected public versions. The comments will be sent to the developer."
-msgstr ""
+msgstr "Această acțiune va respinge versiunile publice selectate. Comentariile vor fi trimise dezvoltatorului."
 
 msgid "Reviewer reply"
 msgstr "Răspunsul revizorului"
 
 msgid "This will send a message to the developer. You will be notified when they reply."
-msgstr ""
+msgstr "Această acțiune va trimite un mesaj dezvoltatorului. Vei primi o notificare când îți va răspunde."
 
 msgid "Request super-review"
-msgstr ""
+msgstr "Solicită o suprarecenzie"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
