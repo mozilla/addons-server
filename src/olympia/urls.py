@@ -100,9 +100,6 @@ urlpatterns = [
     url(r'^reviews/add/(\d+)',
         lambda r, id: redirect('addons.ratings.add', id, permanent=True)),
 
-    url(r'^users/info/(\d+)',
-        lambda r, id: redirect('users.profile', id, permanent=True)),
-
     url(r'^pages/about$',
         lambda r: redirect('pages.about', permanent=True)),
 

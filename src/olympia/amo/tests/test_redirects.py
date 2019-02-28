@@ -95,11 +95,6 @@ class TestRedirects(TestCase):
                                    HTTP_ACCEPT_LANGUAGE='en-us;q=0.5, de')
         self.assert3xx(response, '/de/firefox/', status_code=302)
 
-    def test_users(self):
-        response = self.client.get('/users/info/1', follow=True)
-        self.assert3xx(response, '/en-US/firefox/user/1/',
-                       status_code=302)
-
     def test_extension_sorting(self):
         r = self.client.get('/browse/type:1?sort=updated', follow=True)
         self.assert3xx(r, '/en-US/firefox/extensions/?sort=updated',

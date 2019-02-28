@@ -1,5 +1,4 @@
 from django.conf import settings
-from django.template import loader
 from django.utils.encoding import force_text
 from django.utils.translation import pgettext
 
@@ -83,19 +82,6 @@ def _user_link(user, max_text_length=None):
     return u'<a href="%s" title="%s">%s</a>' % (
         user.get_url_path(), jinja2.escape(user.name),
         jinja2.escape(force_text(name)))
-
-
-@library.filter
-@jinja2.contextfilter
-def user_vcard(context, user, table_class='person-info', is_profile=False):
-    c = dict(context.items())
-    c.update({
-        'profile': user,
-        'table_class': table_class,
-        'is_profile': is_profile
-    })
-    t = loader.get_template('users/vcard.html').render(c)
-    return jinja2.Markup(t)
 
 
 @library.global_function
