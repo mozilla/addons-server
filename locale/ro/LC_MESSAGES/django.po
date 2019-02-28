@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 11:10+0000\n"
+"PO-Revision-Date: 2019-02-28 11:31+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -6470,16 +6470,16 @@ msgid "Request super-review"
 msgstr "Solicită o suprarecenzie"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
-msgstr ""
+msgstr "În cazul în care consideri că acest supliment ar trebui să fie analizat de un recenzent administrator, introdu comentariile tale în zona de mai jos. Nu vor fi trimise dezvoltatorului."
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Scrie un comentariu la această versiune. Dezvoltatorul nu îl va putea vedea."
 
 msgid "Approve Content"
 msgstr "Aprobă conținutul"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Aceasta este înregistrarea aprobării pe care ai dat-o pentru conținutul ultimei versiuni publice, fără notificarea dezvoltatorului."
 
 msgid "Static Themes and Legacy Add-ons"
 msgstr "Teme statice și suplimente perimate"
@@ -6528,9 +6528,9 @@ msgstr "Recenzie de conţinut"
 
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Recenzie conținut ({0})"
+msgstr[1] "Recenzii conținut ({0})"
+msgstr[2] "Recenzii conținut ({0})"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
@@ -6542,22 +6542,22 @@ msgid "Themes Updates ({0})"
 msgstr "Actualizări teme ({0})"
 
 msgid "Flagged Themes ({0})"
-msgstr ""
+msgstr "Teme semnalizate ({0})"
 
 msgid "Lightweight Themes Review Log"
 msgstr "Jurnal de recenzie pentru teme lejere"
 
 msgid "Deleted Themes Log"
-msgstr ""
+msgstr "Jurnal de teme șterse"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Moderarea evaluărilor de la utilizatori"
 
 msgid "Ratings Awaiting Moderation ({0})"
-msgstr ""
+msgstr "Evaluări în așteptarea moderării ({0})"
 
 msgid "Moderated Review Log"
-msgstr ""
+msgstr "Jurnal de recenzii moderate"
 
 msgid "Moderation Guide"
 msgstr "Ghid de moderare"
@@ -6572,7 +6572,7 @@ msgid "Announcement"
 msgstr "Anunț"
 
 msgid "Update message of the day"
-msgstr ""
+msgstr "Actualizează mesajul zilei"
 
 msgid "Expired Information Requests ({0})"
 msgstr "Solicitări de informații expirate ({0})"
@@ -6581,13 +6581,13 @@ msgid "An unknown error occurred"
 msgstr "A apărut o eroare necunoscută"
 
 msgid "Self-reviews are not allowed."
-msgstr ""
+msgstr "Autorecenziile nu sunt permise."
 
 msgid "Review successfully processed."
-msgstr ""
+msgstr "Recenzie prelucrată cu succes."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "S-a atins limita de blocare pentru recenzie"
 
 msgid "{addon} :: EULA"
 msgstr "{addon} :: EULA"
@@ -6603,6 +6603,8 @@ msgstr[2] "{0} de recenzii de teme procesate cu succes (+{1} puncte, {2} total).
 
 msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
 msgstr ""
+"Temele tale au fost deblocate cu succes. Alți recenzenți pot acum să scrie recenzii la temele respective. Este posibil să trebuiască să reîmprospătezi pagina ca să vezi schimbările reflectate în "
+"tabelul de mai jos."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Raportări de abuzuri"
@@ -6614,7 +6616,7 @@ msgid "Add-on ID"
 msgstr "ID supliment"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "ID AMO intern"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -6636,7 +6638,7 @@ msgid "View Privacy Policy"
 msgstr "Vezi politica de confidențialitate"
 
 msgid "Requires Payment"
-msgstr ""
+msgstr "Necesită plată"
 
 msgid "EULA"
 msgstr "ALUF"
@@ -6663,7 +6665,7 @@ msgid "Image Gallery"
 msgstr "Galerie de imagini"
 
 msgid "Nothing to see here!  The developer did not include any details."
-msgstr ""
+msgstr "Nimic de văzut aici! Dezvoltatorul nu a inclus niciun detaliu."
 
 # {0} is the application name.  Example:  Firefox
 msgid "Return to the Reviewer Tools dashboard"
@@ -6673,32 +6675,32 @@ msgid "Reviewer Leaderboard"
 msgstr "Clasament revizori de top"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Nu s-au acordat încă puncte pentru recenzie."
 
 msgid "Rank"
-msgstr ""
+msgstr "Rang"
 
 msgid "Score"
-msgstr ""
+msgstr "Scor"
 
 #. "Filter" is a button label (verb)
 msgid "Filter"
-msgstr ""
+msgstr "Filtru"
 
 msgid "Date"
 msgstr "Dată"
 
 msgid "Event"
-msgstr ""
+msgstr "Eveniment"
 
 msgid "More details."
 msgstr "Mai multe detalii."
 
 msgid "No events found for this period."
-msgstr ""
+msgstr "Nu s-a găsit niciun eveniment pentru această perioadă."
 
 msgid "Log details"
-msgstr ""
+msgstr "Jurnal de detalii"
 
 msgid "Review Author"
 msgstr "Autor recenzie"
@@ -6711,25 +6713,25 @@ msgid "Add-on Title"
 msgstr "Titlul suplimentului"
 
 msgid "Review Text"
-msgstr ""
+msgstr "Text recenzie"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Recenzia a fost marcată înainte de ștergere."
 
 msgid "Undelete"
-msgstr ""
+msgstr "Anulează ștergerea"
 
 msgid "Save"
-msgstr ""
+msgstr "Salvează"
 
 msgid "Add-on Reviewer Performance"
 msgstr "Performanța revizorilor de suplimente"
 
 msgid "View statistics for user"
-msgstr ""
+msgstr "Vezi statisticile utilizatorului"
 
 msgid "Range"
-msgstr ""
+msgstr "Domeniu"
 
 msgid "Your Reviews"
 msgstr "Recenziile tale"
@@ -6738,31 +6740,31 @@ msgid "By {user_name}"
 msgstr "De {user_name}"
 
 msgid "Total Reviews"
-msgstr ""
+msgstr "Total recenzii"
 
 msgid "Active Contributors"
 msgstr "Colaboratori activi"
 
 msgid "This Month"
-msgstr ""
+msgstr "Luna curentă"
 
 msgid "This Year"
-msgstr ""
+msgstr "Anul curent"
 
 msgid "Monthly Performance"
-msgstr ""
+msgstr "Performanță lunară"
 
 msgid "All-time Point Breakdown by Type"
-msgstr ""
+msgstr "Desfășurător punctaje totale după tip"
 
 msgid "Total"
-msgstr ""
+msgstr "Total"
 
 msgid "Month"
-msgstr ""
+msgstr "Lună"
 
 msgid "Year"
-msgstr ""
+msgstr "An"
 
 msgid "All-Time"
 msgstr "Dintotdeauna"
@@ -6774,7 +6776,7 @@ msgid "clear search"
 msgstr "șterge căutarea"
 
 msgid "Process Reviews"
-msgstr ""
+msgstr "Prelucrează recenziile"
 
 msgid "Moderation actions:"
 msgstr "Acțiuni de moderare:"
@@ -6791,10 +6793,10 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "Toate recenziile au fost moderate. Bravo!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr ""
+msgstr "Acum nu există niciun supliment de acest tip disponibil pentru recenzii."
 
 msgid "Helpful Links:"
-msgstr ""
+msgstr "Linkuri utile:"
 
 msgid "Add-on Policy"
 msgstr "Politica suplimentului"
@@ -6808,7 +6810,7 @@ msgstr "Recenzie de conţinut {0}"
 
 #. "Review [add-on name]"
 msgid "Review {0}"
-msgstr ""
+msgstr "Recenzie ({0})"
 
 msgid "Add-on user change history"
 msgstr "Istoricul modificărilor suplimentului de către utilizatori"
@@ -6818,22 +6820,22 @@ msgstr "Istoricul suplimentului"
 
 #, python-format
 msgid "Version %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
-msgstr ""
+msgstr "Versiune %(version)s &middot; %(created)s <span class=\"light\">&middot; %(version_status)s</span>"
 
 msgid "(Confirmed)"
 msgstr "(Confirmat)"
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Compatibilitate:"
 
 msgid "Additional sources:"
 msgstr "Surse suplimentare:"
 
 msgid "Download files"
-msgstr ""
+msgstr "Descarcă fișierele"
 
 msgid "The developer has provided source code."
-msgstr ""
+msgstr "Dezvoltatorul a furnizat codul-sursă."
 
 msgid "Weight:"
 msgstr "Greutate:"
@@ -6845,46 +6847,46 @@ msgid "Auto-Approval script has not run yet on this version."
 msgstr "Scriptul de aprobare automată nu a fost rulat încă pe această versiune."
 
 msgid "This version has not been reviewed."
-msgstr ""
+msgstr "Această versiune nu a primit o recenzie."
 
 msgid "Please select one or more versions in the list above."
 msgstr "Te rugăm să selectezi una sau mai multe versiuni din lista de mai sus."
 
 msgid "You can still submit this form, however only do so if you know it won't conflict."
-msgstr ""
+msgstr "Încă mai poți trimite formularul, dar trimite-l numai dacă sigur nu va crea conflicte."
 
 msgid "Insert canned response..."
-msgstr ""
+msgstr "Introdu răspuns predefinit..."
 
 msgid "Tested on:"
-msgstr ""
+msgstr "Testat la:"
 
 msgid "<strong>Warning!</strong> Another user was viewing this page before you."
 msgstr "<strong>Avertisment!</strong> Alt utilizator a vizualizat această pagină înaintea ta."
 
 msgid "The whiteboard is the place to exchange information relevant to this addon (whatever the version), between the developer and the reviewer. This is visible and editable by both."
-msgstr ""
+msgstr "Tabla albă este locul pentru schimb de informații relevante despre acest supliment (indiferent de versiune) între dezvoltator și recenzent. Este vizibilă și poate fi editată de amândoi."
 
 msgid "The private whiteboard is used for exchanging information between reviewers that is independent of the version. Please keep the language objective. It is visible only to reviewers."
-msgstr ""
+msgstr "Tabla albă privată este folosită pentru schimbul de informații dintre recenzenți, indiferent de versiune. Te rugăm să rămâi obiectiv(ă). Este vizibilă numai pentru recenzenți."
 
 msgid "Update whiteboards"
-msgstr ""
+msgstr "Actualizează table albe"
 
 msgid "More Actions"
 msgstr "Mai multe acțiuni"
 
 msgid "Notify me about new listed versions"
-msgstr ""
+msgstr "Notifică-mă pentru versiuni noi listate"
 
 msgid "Force-disable add-on"
-msgstr ""
+msgstr "Dezactivează forțat suplimentul"
 
 msgid "Force-enable add-on"
-msgstr ""
+msgstr "Activează forțat suplimentul"
 
 msgid "Disable Auto-Approval"
-msgstr ""
+msgstr "Dezactivează aprobarea automată"
 
 msgid "Enable Auto-Approval"
 msgstr "Activează aprobarea automată"
@@ -6908,13 +6910,13 @@ msgid "Admin Page"
 msgstr "Pagină admin"
 
 msgid "Review This Add-on"
-msgstr ""
+msgstr "Scrie o recenzie la acest supliment"
 
 msgid "More Information"
 msgstr "Mai multe informații"
 
 msgid "Resolution"
-msgstr ""
+msgstr "Rezoluție"
 
 msgid "Reviewer"
 msgstr "Revizor"
@@ -6923,29 +6925,29 @@ msgid "Add-on has been deleted."
 msgstr "Suplimentul a fost șters."
 
 msgid "Show Comments"
-msgstr ""
+msgstr "Afișează comentariile"
 
 msgid "Hide Comments"
-msgstr ""
+msgstr "Ascunde comentariile"
 
 msgid "No reviews found for this period."
-msgstr ""
+msgstr "Nu s-a găsit nicio recenzie pentru această perioadă."
 
 #, fuzzy, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] a raportat %(object)s la data de %(date)s"
 
 msgid "Dismiss this announcement"
-msgstr ""
+msgstr "Respinge acest anunț"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "Fișiere în această versiune:"
 
 msgid "Contents"
-msgstr ""
+msgstr "Conținuturi"
 
 msgid "Compare"
-msgstr ""
+msgstr "Compară"
 
 msgid "Permissions:"
 msgstr "Permisiuni:"
@@ -6955,16 +6957,16 @@ msgid "<div>By %(user)s on %(date)s</div>"
 msgstr "<div>De către %(user)s la data de %(date)s</div>"
 
 msgid "Older"
-msgstr ""
+msgstr "Mai vechi"
 
 msgid "Newer"
-msgstr ""
+msgstr "Mai noi"
 
 msgid "Recent Points"
-msgstr ""
+msgstr "Puncte recente"
 
 msgid "No points awarded yet."
-msgstr ""
+msgstr "Nu s-au acordat puncte încă."
 
 msgid "Top Reviewers (past 7 days)"
 msgstr "Revizori de top (ultimele 7 zile)"
@@ -6984,37 +6986,37 @@ msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s la data de %(date)s [%(ip_address)s]"
 
 msgid "Date Deleted"
-msgstr ""
+msgstr "Data ștergerii"
 
 msgid "No deleted themes found for this period."
-msgstr ""
+msgstr "Nu s-au găsit teme șterse pentru această perioadă."
 
 msgid "Theme Review History for {0}"
 msgstr "Istoricul recenziilor la temă pentru {0}"
 
 msgid "Review Date"
-msgstr ""
+msgstr "Data recenziei"
 
 msgid "Action"
 msgstr "Acțiune"
 
 msgid "Reason"
-msgstr ""
+msgstr "Motiv"
 
 msgid "There are currently no reviews."
-msgstr ""
+msgstr "Acum nu există nicio recenzie."
 
 msgid "Flagged Themes"
-msgstr ""
+msgstr "Teme semnalizate"
 
 msgid "Theme Review Queue"
-msgstr ""
+msgstr "Coadă de așteptare pentru recenzii la teme"
 
 msgid "Queues"
-msgstr ""
+msgstr "Cozi de așteptare"
 
 msgid "Review Options"
-msgstr ""
+msgstr "Opțiuni pentru recenzie"
 
 msgid "Auto-advance after review"
 msgstr "Trecere automată mai departe după recenzie"
@@ -7035,22 +7037,22 @@ msgid "Your Review History"
 msgstr "Istoricul recenziilor tale"
 
 msgid "Commit Review"
-msgstr ""
+msgstr "Trimite recenzia"
 
 msgid "Commit Reviews"
-msgstr ""
+msgstr "Trimite recenziile"
 
 msgid "{0} out of {1} reviewed"
 msgstr "{0} din {1} revizuite"
 
 msgid "There are currently no Themes to review."
-msgstr ""
+msgstr "Acum nu mai sunt teme în așteptarea unei recenzii."
 
 msgid "Clear Search"
 msgstr "Șterge căutarea"
 
 msgid "Release My Theme Locks"
-msgstr ""
+msgstr "Deblochează-mi temele"
 
 msgid "Interactive Theme Queue"
 msgstr ""
