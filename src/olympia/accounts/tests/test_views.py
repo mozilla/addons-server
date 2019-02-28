@@ -7,6 +7,7 @@ import six
 from os import path
 from six.moves.urllib_parse import parse_qs, urlparse
 
+from django import http
 from django.conf import settings
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages import get_messages
@@ -788,21 +789,25 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.test_success_no_account_registers()
 
     def test_register_redirects_edit(self):
+
+        def empty_view(*args, **kwargs):
+            return http.HttpResponse()
+
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
         self.fxa_identify.return_value = identity
         user = UserProfile(username='foo', email='me@yeahoo.com')
         self.register_user.return_value = user
-        response = self.client.get(self.url, {
-            'code': 'codes!!',
-            'state': ':'.join(
-                [self.fxa_state,
-                 force_text(base64.urlsafe_b64encode(b'/go/here'))]),
-        })
-        # This 302s because the user isn't logged in due to mocking.
-        self.assertRedirects(
-            response, reverse('users.edit'), target_status_code=302)
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(self.url, {
+                'code': 'codes!!',
+                'state': ':'.join(
+                    [self.fxa_state,
+                     force_text(base64.urlsafe_b64encode(b'/go/here'))]),
+            })
+            self.assertRedirects(
+                response, reverse('users.edit'), target_status_code=200)
         self.fxa_identify.assert_called_with('codes!!', config=FXA_CONFIG)
         assert not self.login_user.called
         self.register_user.assert_called_with(
