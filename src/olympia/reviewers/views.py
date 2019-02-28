@@ -1286,9 +1286,6 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         Full list, no pagination."""
         qset = self.filter_queryset(self.get_queryset())
 
-        if not acl.check_unlisted_addons_reviewer(self.request):
-            qset = qset.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-
         # Smaller performance optimization, only list fields we actually
         # need.
         qset = qset.no_transforms().only(
