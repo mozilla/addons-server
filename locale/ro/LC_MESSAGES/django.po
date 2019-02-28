@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 10:31+0000\n"
+"PO-Revision-Date: 2019-02-28 10:44+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -5931,17 +5931,17 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr "Dacă ești interesat(ă) de suplimente, dar nu te pricepi prea mult la partea tehnică, tot există căi să ne dai o mână de ajutor:"
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "Zi-le și prietenilor! Spune-le ce suplimente folosești."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
-msgstr ""
+msgstr "Participă pe <a href=\"%(url)s\">forumurile</a> noastre."
 
 msgid "Review add-ons on the site. Add-on authors are more likely to improve their add-ons and write new ones when they know people appreciate their work."
-msgstr ""
+msgstr "Recenzează suplimente pe site. Crește probabilitatea ca autorii de suplimente să își îmbunătățească suplimentele și să creeze altele noi dacă știu că munca le este apreciată."
 
 msgid "I have a question"
-msgstr ""
+msgstr "Am o întrebare"
 
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
@@ -5949,22 +5949,22 @@ msgstr "Un loc bun de început este <a href=\"%(sumo_url)s\">Support</a> Mozilla
 
 #, python-format
 msgid "If you really need to contact someone from the Mozilla team, please see our <a href=\"%(url)s\"> contact information</a> page."
-msgstr ""
+msgstr "Dacă ai nevoie într-adevăr să intri în contact cu cineva din echipa Mozilla, intră pe pagina noastră de <a href=\"%(url)s\">informații de contact</a>."
 
 msgid "Who works on this website?"
 msgstr "Cine lucrează la acest site web?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
-msgstr ""
+msgstr "De-a lungul anilor, au contribuit multe persoane la acest site web, inclusiv voluntari din comunitate și o echipă AMO dedicată."
 
 msgid "Sections"
-msgstr ""
+msgstr "Secțiuni"
 
 msgid "Some tips for writing a great review"
-msgstr ""
+msgstr "Câteva sfaturi pentru recenzii bune"
 
 msgid "Frequently Asked Questions about Reviews"
-msgstr ""
+msgstr "Întrebări adresate frecvent despre recenzii"
 
 msgid ""
 "Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
@@ -5974,19 +5974,19 @@ msgstr ""
 "respingă sau să elimine orice recenzie care nu se conformează la aceste reguli."
 
 msgid "Do:"
-msgstr ""
+msgstr "Așa da:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
-msgstr ""
+msgstr "Scrie ca și când i-ai povesti unui prieten experiența ta cu suplimentul respectiv."
 
 msgid "Keep reviews concise and easy to understand."
-msgstr ""
+msgstr "Fii concis(ă) și redactează recenzii ușor de înțeles."
 
 msgid "Give specific and helpful details. For example:"
-msgstr ""
+msgstr "Dă detalii specifice și utile. De exemplu:"
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "Suplimentul a funcționat așa cum te așteptai?"
 
 msgid "What features did you like or dislike?"
 msgstr "Ce funcționalități ți-au plăcut sau nu ți-au plăcut?"
@@ -6001,36 +6001,38 @@ msgid "Will you continue to use this add-on?"
 msgstr "Vei continua să utilizezi acest supliment?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
-msgstr ""
+msgstr "Acordă-ți timp să recitești recenzia înainte de a o transmite ca să minimalizezi erorile ortografice și gramaticale."
 
 msgid "Don’t:"
-msgstr ""
+msgstr "Așa nu:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
-msgstr ""
+msgstr "Nu trimite recenzii constând numai dintr-un cuvânt, de genul „Grozav!”, „Minunat” sau „Prost”."
 
 msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
+"Nu posta probleme tehnice, cereri de asistență sau sugestii de funcționalități. Folosește opțiunile disponibile de asistență pentru fiecare supliment în parte, dacă sunt disponibile. Le găsești în "
+"coloana laterală, în dreptul secțiunii Despre acest supliment."
 
 msgid "Write reviews for add-ons which you have not personally used."
-msgstr ""
+msgstr "Nu scrie recenzii pentru suplimente pe care nu le-ai folosit personal."
 
 msgid "Use profanity, sexual language or language that can be construed as hateful."
-msgstr ""
+msgstr "Nu folosi vulgarități, obscenități sau un limbaj care ar putea fi interpretat ca răuvoitor."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr ""
+msgstr "Nu include HTML, linkuri, cod-sursă sau fragmente de cod. Recenziile trebuie să fie numai text."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
-msgstr ""
+msgstr "Nu face afirmații false, nu denigra autorii suplimentelor și nu îi insulta."
 
 msgid "Include your own or anyone else’s email, phone number, or other personal details."
-msgstr ""
+msgstr "Nu include adrese de e-mail, numere de telefon sau alte detalii personale (ale tale sau ale altora)."
 
 msgid "Post reviews for an add-on you or your organization wrote or represent."
-msgstr ""
+msgstr "Nu posta recenzii la suplimente scrise sau reprezentate de tine sau de organizația ta."
 
 msgid ""
 "Criticize an add-on for something it’s intended to do. For example, leaving a negative review of an add-on for displaying ads or requiring data gathering, when that is the intended purpose of the "
