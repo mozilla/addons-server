@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 08:47+0000\n"
-"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
+"PO-Revision-Date: 2019-02-28 09:21+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -3982,9 +3982,8 @@ msgstr "Preskušanje v živo"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Začasno namestite razširitev v Firefox za preizkušanje v živo in odpravljanje napak."
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "Dnevnik pregledov lahkih tem"
+msgstr "Urejanje lahke teme je bilo onemogočeno."
 
 msgid "Create a New Theme"
 msgstr "Ustvarite novo temo"
@@ -6936,9 +6935,9 @@ msgstr "Skrij komentarje"
 msgid "No reviews found for this period."
 msgstr "Za to obdobje ni najti pregledov."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "je %(user)s [%(ip_address)s] prijavil %(object)s (%(date)s)"
+msgstr "%(user)s [%(country_code)s] je prijavil %(object)s na %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Opusti to objavo"
