@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 11:51+0000\n"
+"PO-Revision-Date: 2019-02-28 12:00+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -7164,7 +7164,7 @@ msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 msgstr ""
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "S-a depășit lungimea maximă de interogare."
 
 msgid "search for add-ons"
 msgstr "caută suplimente"
@@ -7574,7 +7574,7 @@ msgstr "Creează un cont de suplimente"
 
 #, python-format
 msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr ""
+msgstr "sau<a href=\"%(login)s\">autentifică-te în contul tău existent</a>"
 
 msgid "Footer logo"
 msgstr "Logo la subsol"
@@ -7589,7 +7589,7 @@ msgid "View the new site"
 msgstr "Vezi noul site"
 
 msgid "Report a bug"
-msgstr ""
+msgstr "Raportează o defecțiune"
 
 msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
@@ -7599,7 +7599,7 @@ msgstr ""
 "href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> Creative Commons Attribution Share-Alike v3.0 </a> sau orice versiune ulterioară."
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "descoperă <b>suplimente</b>"
 
 msgid "Download Firefox"
 msgstr "Descarcă Firefox"
@@ -7667,7 +7667,7 @@ msgid "Android Add-ons"
 msgstr "Suplimente pentru Android"
 
 msgid "Required fields"
-msgstr ""
+msgstr "Câmpuri obligatorii"
 
 #. {0} is a language name, like 'French'
 #, python-format
@@ -7689,32 +7689,32 @@ msgid "You have unsaved changes in the <b>{0}</b> locale. Would you like to save
 msgstr "Ai modificări nesalvate în<b>{0}</b> limba actuală. Vrei să-ți salvezi modificările înainte de comutarea limbii?"
 
 msgid "Discard Changes"
-msgstr ""
+msgstr "Renunță la modificări"
 
 #. {0} is a language name, like 'French'
 msgid "Are you sure you want to remove all <b>{0}</b> translations? This cannot be undone."
 msgstr "Sigur vrei să elimini toate <b>{0}</b> traducerile? Acțiunea nu poate fi inversată."
 
 msgid "Delete Locale"
-msgstr ""
+msgstr "Șterge traducerea"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "Utilizatorului „%(user)s” i s-a pus interdicție."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
-msgstr ""
+msgstr "Imaginea aparținând utilizatorului „%(user)s„ a fost ștearsă."
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "Utilizatorilor „%(users)s” li s-a pus interdicție."
 
 msgid "Ban selected users"
 msgstr "Pune o interdicție utilizatorilor selectați"
 
 msgid "Profile Photo"
-msgstr ""
+msgstr "Fotografie de profil"
 
 msgid "Addons"
 msgstr "Suplimente"
@@ -7723,10 +7723,10 @@ msgid "Activity Logs"
 msgstr "Jurnale de activitate"
 
 msgid "Email must be {email}."
-msgstr ""
+msgstr "Adresa de e-mail trebuie să fie {email}."
 
 msgid "Display Name"
-msgstr ""
+msgstr "Afișează numele"
 
 msgid "Location"
 msgstr "Locație"
@@ -7735,22 +7735,22 @@ msgid "Occupation"
 msgstr "Ocupație"
 
 msgid "You can change your email address on Firefox Accounts."
-msgstr ""
+msgstr "Îți poți schimba adresa de e-mail în contul Firefox."
 
 msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
 msgstr "Acest URL are un format nevalid. URL-urile valide arată ca http://exemplu.ro/pagina_mea."
 
 msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
+msgstr "Pentru anonimizare, introdu motivul schimbării, dar nu modifica niciun alt câmp."
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Nu există niciun utilizator cu acea adresă de e-mail."
 
 msgid "Firefox user {id}"
 msgstr "Utilizator Firefox {id}"
 
 msgid "My Mobile Add-ons"
-msgstr ""
+msgstr "Suplimentele mele pentru dispozitive mobile"
 
 msgid "an add-on developer replies to my review"
 msgstr "un dezvoltator de suplimente răspunde la recenzia mea"
@@ -7777,7 +7777,7 @@ msgid "Mozilla needs to contact me about my individual add-on"
 msgstr "Mozilla trebuie să mă contacteze cu privire la suplimentul meu individual"
 
 msgid "User Notifications"
-msgstr ""
+msgstr "Notificări utilizatori"
 
 msgid "An email address is required."
 msgstr "Este necesară o adresă de e-mail."
@@ -7786,25 +7786,25 @@ msgid "A user with that email address does not exist."
 msgstr "Nu există niciun utilizator cu acea adresă de e-mail."
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Profil șters"
 
 msgid "Photo Deleted"
-msgstr ""
+msgstr "Fotografie ștearsă"
 
 msgid "Profile Updated"
-msgstr ""
+msgstr "Profil actualizat"
 
 msgid "Errors Found"
-msgstr ""
+msgstr "Erori depistate"
 
 msgid "There were errors in the changes you made. Please correct them and resubmit."
 msgstr "Sunt erori în schimbările pe care le-ai făcut. Te rugăm să le corectezi și să le retrimiți."
 
 msgid "User reported."
-msgstr ""
+msgstr "Utilizator raportat."
 
 msgid "new"
-msgstr ""
+msgstr "nou"
 
 msgid "Ban"
 msgstr "Interdicție"
@@ -7835,28 +7835,28 @@ msgid "Confirm account deletion"
 msgstr "Confirmă ștergerea contului"
 
 msgid "I understand this step cannot be undone."
-msgstr ""
+msgstr "Înțeleg că acest pas nu mai poate fi anulat."
 
 msgid "Delete my user account now"
 msgstr "Șterge contul meu de utilizator acum"
 
 msgid "Delete User Photo"
-msgstr ""
+msgstr "Șterge fotografia utilizatorului"
 
 msgid "Delete my user picture now"
-msgstr ""
+msgstr "Șterge-mi fotografia de utilizator acum"
 
 msgid "Please set your display name"
-msgstr ""
+msgstr "Te rugăm să îți setezi numele de utilizator afișat"
 
 msgid "Please set your display name or username to complete the registration process."
 msgstr "Te rugăm să îți setezi numele de afișat sau numele de utilizator pentru a finaliza procedura de înregistrare."
 
 msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
+msgstr "Gestionează informații de bază ale contului, cum ar fi numele de utilizator și setările contului Firefox."
 
 msgid "Email Address"
-msgstr ""
+msgstr "Adresă de e-mail"
 
 msgid "Manage Firefox Account..."
 msgstr ""
