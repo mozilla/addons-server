@@ -5256,7 +5256,7 @@ class TestReviewAddonVersionViewSetDetail(TestCase):
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 404
 
     def test_unlisted_version_unlisted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -5284,7 +5284,7 @@ class TestReviewAddonVersionViewSetDetail(TestCase):
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 404
 
     def test_mixed_channel_only_listed_without_unlisted_perm(self):
         user = UserProfile.objects.create(username='admin')
