@@ -18,7 +18,7 @@ task_log = olympia.core.logger.getLogger('z.task')
 def update_user_ratings():
     """Update add-on author's ratings."""
 
-    cursor = connections[multidb.get_slave()].cursor()
+    cursor = connections[multidb.get_replica()].cursor()
     # We build this query ahead of time because the cursor complains about data
     # truncation if it does the parameters.  Also, this query is surprisingly
     # quick, <1sec for 6100 rows returned

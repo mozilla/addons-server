@@ -38,7 +38,7 @@ def update_addon_average_daily_users():
         return False
 
     raise_if_reindex_in_progress('amo')
-    cursor = connections[multidb.get_slave()].cursor()
+    cursor = connections[multidb.get_replica()].cursor()
     q = """SELECT addon_id, AVG(`count`)
            FROM update_counts
            WHERE `date` > DATE_SUB(CURDATE(), INTERVAL 13 DAY)
