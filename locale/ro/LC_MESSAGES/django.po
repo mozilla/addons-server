@@ -1,4 +1,4 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
@@ -7148,7 +7148,7 @@ msgstr "Parametru \"%s\" invalid."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr "Combinație invalidă a parametrilor „% s\" și „% s\"."
+msgstr "Combinație invalidă a parametrilor \"%s\" și \"%s\"."
 
 msgid "Return To AMO is currently disabled"
 msgstr "Întoarcerea pe AMO este dezactivată acum"
