@@ -1801,8 +1801,10 @@ class TestLogout(UserViewBase):
         self.client.cookies[API_TOKEN_COOKIE] = 'some.token.value'
         response = self.client.get(reverse('devhub.logout'))
         cookie = response.cookies[settings.SESSION_COOKIE_NAME]
+        cookie_date_string = u'Thu, 01 Jan 1970 00:00:00 GMT'
         assert cookie.value == ''
-        assert cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
+        # in django2.1+ changed to django.utils.http.http_date from cookie_date
+        assert cookie['expires'].replace('-', ' ') == cookie_date_string
         jwt_cookie = response.cookies[API_TOKEN_COOKIE]
         assert jwt_cookie.value == ''
-        assert jwt_cookie['expires'] == u'Thu, 01-Jan-1970 00:00:00 GMT'
+        assert jwt_cookie['expires'].replace('-', ' ') == cookie_date_string

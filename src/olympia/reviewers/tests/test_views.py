@@ -4070,12 +4070,15 @@ class TestReview(ReviewBase):
         # change and deletion.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        ActivityLog.create(amo.LOG.ADD_USER_WITH_ROLE,
-                           author.user, author.get_role_display(), self.addon)
-        ActivityLog.create(amo.LOG.CHANGE_USER_WITH_ROLE,
-                           author.user, author.get_role_display(), self.addon)
-        ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE,
-                           author.user, author.get_role_display(), self.addon)
+        ActivityLog.create(
+            amo.LOG.ADD_USER_WITH_ROLE, author.user,
+            six.text_type(author.get_role_display()), self.addon)
+        ActivityLog.create(
+            amo.LOG.CHANGE_USER_WITH_ROLE, author.user,
+            six.text_type(author.get_role_display()), self.addon)
+        ActivityLog.create(
+            amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+            six.text_type(author.get_role_display()), self.addon)
 
         response = self.client.get(self.url)
         assert response.status_code == 200

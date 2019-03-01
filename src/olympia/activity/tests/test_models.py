@@ -258,8 +258,9 @@ class TestActivityLog(TestCase):
         addon.save()
         addon = addon.reload()
         au = AddonUser(addon=addon, user=self.user)
-        ActivityLog.create(amo.LOG.CHANGE_USER_WITH_ROLE, au.user,
-                           au.get_role_display(), addon)
+        ActivityLog.create(
+            amo.LOG.CHANGE_USER_WITH_ROLE, au.user,
+            six.text_type(au.get_role_display()), addon)
         log = ActivityLog.objects.get()
 
         log_expected = ('Yolo role changed to Owner for <a href="/en-US/'

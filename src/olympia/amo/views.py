@@ -67,12 +67,12 @@ def contribute(request):
 
 
 @non_atomic_requests
-def handler403(request, **kwargs):
+def handler403(request, exception=None, **kwargs):
     return render(request, 'amo/403.html', status=403)
 
 
 @non_atomic_requests
-def handler404(request, **kwargs):
+def handler404(request, exception=None, **kwargs):
     if request.is_api:
         # It's a v3+ api request
         return JsonResponse(

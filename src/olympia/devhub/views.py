@@ -469,18 +469,21 @@ def ownership(request, addon_id, addon):
 
             author.save()
             if action:
-                ActivityLog.create(action, author.user,
-                                   author.get_role_display(), addon)
+                ActivityLog.create(
+                    action, author.user,
+                    six.text_type(author.get_role_display()), addon)
             if (author._original_user_id and
                     author.user_id != author._original_user_id):
-                ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE,
-                                   (UserProfile, author._original_user_id),
-                                   author.get_role_display(), addon)
+                ActivityLog.create(
+                    amo.LOG.REMOVE_USER_WITH_ROLE,
+                    (UserProfile, author._original_user_id),
+                    six.text_type(author.get_role_display()), addon)
 
         for author in user_form.deleted_objects:
             author.delete()
-            ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-                               author.get_role_display(), addon)
+            ActivityLog.create(
+                amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+                six.text_type(author.get_role_display()), addon)
             authors_emails.add(author.user.email)
             mail_user_changes(
                 author=author,
