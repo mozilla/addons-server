@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-21 06:49+0000\n"
-"Last-Translator: Mikko <mikko.alafossi@gmail.com>\n"
+"PO-Revision-Date: 2019-03-03 19:54+0000\n"
+"Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -501,7 +501,7 @@ msgid "Icon of {0}"
 msgstr ""
 
 msgid "Contribute"
-msgstr "Lahjoita"
+msgstr "Myötävaikuta"
 
 msgid "Enjoy this add-on?"
 msgstr "Pidätkö tästä lisäosasta?"
@@ -570,10 +570,10 @@ msgid "Please note this add-on uses legacy technology, which gives it access to 
 msgstr ""
 
 msgid "This add-on has been removed by its author."
-msgstr ""
+msgstr "Tämän lisäosan tekijä on poistanut lisäosan."
 
 msgid "This add-on has been disabled by an administrator."
-msgstr ""
+msgstr "Ylläpitäjä on poistanut tämän lisäosan."
 
 msgid "Source Code License for {addon}"
 msgstr "Lisäosan {addon} lähdekoodin lisenssi"
@@ -631,7 +631,7 @@ msgid "Approve / Reject"
 msgstr "Hyväksy tai hylkää"
 
 msgid "Review History"
-msgstr ""
+msgstr "Arvosteluhistoria"
 
 msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
@@ -702,10 +702,10 @@ msgid "Incorrect, please try again."
 msgstr "Väärin. Yritä uudelleen."
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "Virhe syötettä varmistaessa, yritä uudelleen."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr ""
+msgstr "Syötetyn arvon tulee olla kelvollinen hex-värikoodi, kuten #000000."
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Osa toiminnoista on hetkellisesti poissa käytöstä suorittaessamme verkkosivun huoltoa. Palaamme täyteen toimintaan pikaisesti."
@@ -723,7 +723,7 @@ msgid "Oops! Not allowed."
 msgstr "Hups! Ei sallittu."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Yritit tehdä jotain mitä sinun ei ole sallittu tekevän."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -1068,7 +1068,7 @@ msgid "(optional)"
 msgstr "(valinnainen)"
 
 msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr ""
+msgstr "tai <a id=\"collections-new-cancel\" href=\"#\">Peru</a>"
 
 # ikkunan otsikko
 msgid "{0} :: Collections"
@@ -1218,7 +1218,7 @@ msgid "Collections make it easy to keep track of favorite add-ons and share your
 msgstr "Kokoelmien avulla on helppo seurata suosituimpia lisäosia ja jakaa täydellisesti mukautettu selaimesi muiden kanssa."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Lomakkeessa on virheitä. Korjaa ne alapuolella."
 
 msgid "Add-ons in Your Collection"
 msgstr "Kokoelmasi lisäosat"
@@ -1400,7 +1400,7 @@ msgstr ""
 
 #, python-format
 msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
+msgstr "%(amo_mdn_link_open)sTee oma%(amo_mdn_link_close)s hakutyökalu"
 
 msgid "Most Popular Extensions"
 msgstr "Suosituimmat laajennukset"
@@ -1554,7 +1554,7 @@ msgid "File {0} deleted from {version} of {addon}."
 msgstr ""
 
 msgid "{addon} {version} approved."
-msgstr ""
+msgstr "{addon} {version} hyväksytty."
 
 msgid "{addon} {version} given preliminary review."
 msgstr ""
@@ -1674,7 +1674,7 @@ msgid "Password changed."
 msgstr "Salasana vaihdettu."
 
 msgid "{addon} {version} approved but waiting to be made public."
-msgstr ""
+msgstr "{addon} {version} hyväksytty mutta odottaa julkistamista."
 
 msgid "Approved but waiting"
 msgstr "Hyväksytty mutta odottaa"
@@ -1771,16 +1771,16 @@ msgid "{addon} {version} disabled."
 msgstr "{addon} {version} poistettu käytöstä."
 
 msgid "{addon} {version} content approved."
-msgstr ""
+msgstr "{addon} {version} -sisältö hyväksyttiin."
 
 msgid "Content approved"
-msgstr ""
+msgstr "Sisältö hyväksytty"
 
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} sisältö hylättiin."
 
 msgid "Content rejected"
-msgstr ""
+msgstr "Sisältö hylätty"
 
 # 85%
 #, fuzzy
@@ -1805,9 +1805,8 @@ msgid "{addon} {version} admin add-on-review requested."
 msgstr "{addon} luotiin."
 
 # 85%
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Arvostelu:"
+msgstr ""
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
@@ -1855,7 +1854,7 @@ msgid "Unknown"
 msgstr "Tuntematon"
 
 msgid "Incomplete"
-msgstr ""
+msgstr "Keskeneräinen"
 
 msgid "Disabled by Mozilla"
 msgstr ""
@@ -1865,7 +1864,7 @@ msgid "Deleted"
 msgstr "Poistettu"
 
 msgid "Pending approval"
-msgstr ""
+msgstr "Odottaa hyväksyntää"
 
 msgid "Flagged for further review"
 msgstr ""
@@ -1905,7 +1904,7 @@ msgid "Theme"
 msgstr "Teema"
 
 msgid "Theme (Static)"
-msgstr ""
+msgstr "Teema (staattinen)"
 
 msgid "Complete Themes"
 msgstr "Täydelliset teemat"
@@ -1985,7 +1984,7 @@ msgid "Download Firefox extensions for search and look-up. This category include
 msgstr ""
 
 msgid "Shopping"
-msgstr ""
+msgstr "Ostokset"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
 msgstr ""
@@ -2048,7 +2047,7 @@ msgid "Download Firefox extensions to surf safely and privately. Discover extens
 msgstr ""
 
 msgid "Social Networking"
-msgstr ""
+msgstr "Sosiaalinen verkosto"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
 msgstr ""
@@ -2120,7 +2119,7 @@ msgid "Download Firefox themes with the Firefox browser theme. This category inc
 msgstr ""
 
 msgid "Foxkeh"
-msgstr ""
+msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
@@ -2141,7 +2140,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Lataa kiinnostavia, luovia ja yksilöllisiä Firefox-teemoja."
 
 msgid "Scenery"
 msgstr "Maisema"
@@ -2400,25 +2399,25 @@ msgid "Reject"
 msgstr "Hylkää"
 
 msgid "Approve"
-msgstr ""
+msgstr "Hyväksy"
 
 msgid "Sexual or pornographic content"
-msgstr ""
+msgstr "Seksuaalinen tai pornografinen sisältö"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "Sopimaton tai loukkaava sisältö"
 
 msgid "Violence, war, or weaponry images"
-msgstr ""
+msgstr "Väkivaltaa, sotaa tai aseita esittäviä kuvia"
 
 msgid "Nazi or other hate content"
-msgstr ""
+msgstr "Natsi- tai muuta vihasisältöä"
 
 msgid "Defamatory content"
 msgstr ""
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Verkkouhkapeliä"
 
 msgid "Spam content"
 msgstr ""
@@ -2452,7 +2451,7 @@ msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "Must have at least one owner."
-msgstr ""
+msgstr "On oltava vähintään yksi omistaja."
 
 msgid "At least one author must be listed."
 msgstr ""
@@ -2476,16 +2475,16 @@ msgid "License text is required when choosing Other."
 msgstr ""
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "Tällä lisäosalla on loppukäyttäjän lisenssiehdot"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "Määritä lisäosasi loppukäyttäjän lisenssiehdot:"
 
 msgid "This add-on has a Privacy Policy"
-msgstr ""
+msgstr "Tällä lisäosalla on yksityisyyskäytäntö"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr ""
+msgstr "Määritä lisäosasi yksityisyyskäytäntö:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
@@ -2503,10 +2502,10 @@ msgid "Need at least one compatible application."
 msgstr "Tarvitset vähintään yhden yhteensopivan sovelluksen."
 
 msgid "There was an error with your upload. Please try again."
-msgstr ""
+msgstr "Latauksessa tapahtui virhe. Yritä uudelleen."
 
 msgid "Override failed validation"
-msgstr ""
+msgstr "Ohita epäonnistunut vahvistus"
 
 msgid "Need to select at least one application."
 msgstr "On valittava vähintään yksi sovellus."
@@ -2521,7 +2520,7 @@ msgid "Continue with existing upload instead?"
 msgstr ""
 
 msgid "You have not uploaded a source file."
-msgstr ""
+msgstr "Et ole lähettänyt lähdetiedostoa."
 
 msgid "Source file uploaded but you indicated no source was needed."
 msgstr ""
@@ -2635,7 +2634,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "Kuvakkeen on oltava neliö (sama leveys ja korkeus)."
 
 msgid "There was an error uploading your preview."
-msgstr ""
+msgstr "Esikatselun lataamisessa tapahtui virhe."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2797,10 +2796,10 @@ msgstr "Haluatko lisäosasi jaeltavaksi tällä sivustolla?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "Tiedoston {0} kelpuutustulokset"
 
 msgid "Validation Results"
-msgstr ""
+msgstr "Kelpuutustulokset"
 
 msgid "Validated at:"
 msgstr ""
@@ -2882,7 +2881,7 @@ msgstr[0] "<b>{0}</b> teema"
 msgstr[1] "<b>{0}</b> teemaa"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Muokkaa tuotesivua"
 
 # 75%
 msgid "None"
@@ -2902,7 +2901,7 @@ msgid "Manage Authors & License"
 msgstr ""
 
 msgid "Authors"
-msgstr ""
+msgstr "Tekijät"
 
 msgid "About author roles"
 msgstr ""
@@ -2967,13 +2966,11 @@ msgid "Describe Add-on"
 msgstr "Kuvaa lisäosa"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Kuvaa lisäosa"
+msgstr "Kuvaa {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "Yhteenveto"
+msgstr "Nimi ja yhteenveto"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2992,9 +2989,8 @@ msgstr ""
 msgid "View Listing"
 msgstr ""
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "Näytä profiili"
+msgstr "Näytä tuotesivu"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -3009,7 +3005,7 @@ msgid "This add-on is experimental."
 msgstr "Tämä lisäosa on kokeellinen."
 
 msgid "This add-on is ready for general use."
-msgstr ""
+msgstr "Tämä lisäosa on valmis yleiseen käyttöön."
 
 msgid "Requires Payment?"
 msgstr "Vaatiiko maksusuoritusta?"
@@ -3051,14 +3047,14 @@ msgid ""
 msgstr ""
 
 msgid "Images"
-msgstr ""
+msgstr "Kuvat"
 
 msgid "Technical Details"
 msgstr "Tekniset tiedot"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "Lisäosan {0} tekniset tiedot"
 
 # 100%
 msgid "Developer Comments"
@@ -3142,16 +3138,16 @@ msgstr ""
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128 px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "Lähetä mukautettu kuvake..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG ja JPG ovat tuettuja."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
@@ -3163,7 +3159,7 @@ msgid "Screenshots"
 msgstr "Kuvakaappaukset"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr ""
+msgstr "Aseta ainakin yksi kuvakaappaus lisäosastasi:"
 
 msgid "Please provide a caption for this screenshot:"
 msgstr ""
@@ -3184,10 +3180,10 @@ msgid "Continue"
 msgstr "Jatka"
 
 msgid "Can others share your Add-on, as long as you're given credit?"
-msgstr ""
+msgstr "Voivatko muut jakaa lisäosaasi, jos nimesi mainitaan?"
 
 msgid "Can others make commercial use of your Add-on?"
-msgstr ""
+msgstr "Voivatko muut käyttää lisäosaasi kaupallisesti?"
 
 msgid "Can others create derivative works from your Add-on?"
 msgstr ""
@@ -3208,19 +3204,19 @@ msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "General Tests"
-msgstr ""
+msgstr "Yleiset testit"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "Tietoturvatestit"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "Laajennustestit"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "Lokalisointitestit"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "Yhteensopivuustestit"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -3238,7 +3234,7 @@ msgid "Delete Add-on"
 msgstr "Poista lisäosa"
 
 msgid "Deleting your theme will permanently remove it from the site."
-msgstr ""
+msgstr "Teeman poistaminen poistaa sen pysyvästi sivustolta."
 
 msgid ""
 "Deleting your add-on will permanently delete all versions and files you have submitted for this add-on, listed or not. The add-on ID will continue to be linked to your account, so others won't be "
@@ -3249,10 +3245,10 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr ""
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "Kerro meille miksi poistat teemasi:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "Kerro meille miksi poistat lisäosasi:"
 
 # 75%
 msgid "Actions"
@@ -3262,7 +3258,7 @@ msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "Jatka"
 
 msgid "Delete this add-on."
 msgstr "Poista tämä lisäosa."
@@ -3273,9 +3269,8 @@ msgstr "Poista"
 msgid "Edit details on this add-on's product page"
 msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "Lähetä uusi versio tästä lisäosasta."
+msgstr "Lähetä uusi versio tästä lisäosasta"
 
 msgid "New Version"
 msgstr "Uusi versio"
@@ -3291,7 +3286,7 @@ msgid "Manage Status & Versions"
 msgstr "Hallitse tilaa ja versioita"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "Näytä viimeisimmät muutokset"
 
 msgid "Edit details on this theme's product page"
 msgstr ""
@@ -3302,9 +3297,8 @@ msgstr ""
 msgid "View Statistics"
 msgstr "Näytä tilastoja"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "Vaihda tämän teeman omistajaa."
+msgstr "Vaihda tämän teeman omistaja"
 
 msgid "Transfer Ownership"
 msgstr "Siirrä omistajuus"
@@ -3339,9 +3333,8 @@ msgstr[1] "<strong>{0}</strong> aktiivista käyttäjää"
 msgid "Submit a New Version"
 msgstr "Lisää uusi versio"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "Yhteenveto:"
+msgstr "Nimi ja yhteenveto:"
 
 msgid "required"
 msgstr "vaaditaan"
@@ -3421,9 +3414,8 @@ msgstr "Lisää uusi lisäosa"
 msgid "Cancel and Disable Version"
 msgstr "Peruuta asennus"
 
-#, fuzzy
 msgid "Describe Version"
-msgstr "Löydä lisäosia"
+msgstr "Kuvaa versio"
 
 msgid "Release Notes:"
 msgstr "Julkaisutiedot:"
