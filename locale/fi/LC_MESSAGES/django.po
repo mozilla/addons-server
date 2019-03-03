@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-04 19:07+0000\n"
+"PO-Revision-Date: 2019-02-04 19:27+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
 "Language: fi\n"
@@ -4030,7 +4030,7 @@ msgid "Sign In"
 msgstr "Kirjaudu"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4096,13 +4096,13 @@ msgid "Select colors for your Theme."
 msgstr "Valitse värit teemallesi."
 
 msgid "Foreground Text"
-msgstr ""
+msgstr "Edustateksti"
 
 msgid "This is the color of the tab text"
 msgstr ""
 
 msgid "Background"
-msgstr ""
+msgstr "Tausta"
 
 msgid "This is the color of the tabs"
 msgstr ""
@@ -4145,7 +4145,7 @@ msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
 msgstr ""
 
 msgid "Select a header image for your Theme."
-msgstr ""
+msgstr "Valitse otsakekuva teemallesi."
 
 msgid "3000 &times; 200 pixels"
 msgstr "3000 &times; 200 pikseliä"
