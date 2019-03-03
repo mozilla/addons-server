@@ -5446,9 +5446,8 @@ msgid "Automatically delete unwanted cookies. Offers white and blacklist support
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Prispôsobte si svoje karty {start_sub_heading}s doplnkom {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
@@ -7029,9 +7028,9 @@ msgstr "Označené"
 msgid "Updates"
 msgstr "Aktualizácie"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Neplatný rozsah verzií."
+msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
