@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2018-12-14 14:27+0000\n"
-"Last-Translator: Jarmo <jarmo@juslin.me>\n"
+"PO-Revision-Date: 2019-02-12 08:09+0000\n"
+"Last-Translator: Mikko <mikko.alafossi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -88,8 +88,8 @@ msgstr[1] "Lisäosasi tarkistus suoritettiin virheittä, mutta ilmeni {0} varoit
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Lisäosasi tarkistus suoritettiin virheittä ja ilmeni {0} ilmoitus."
+msgstr[1] "Lisäosasi tarkistus suoritettiin virheittä ja ilmeni {0} ilmoitusta."
 
 msgid "Your add-on was validated with no errors or warnings."
 msgstr "Lisäosasi tarkistus suoritettiin ilman virheitä tai varoituksia."
@@ -98,7 +98,7 @@ msgid "Your submission will be automatically signed."
 msgstr ""
 
 msgid "WebExtension upgrade"
-msgstr ""
+msgstr "WebExtension-päivitys"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
 msgstr ""
@@ -208,7 +208,7 @@ msgid "Use original"
 msgstr "Käytä alkuperäistä"
 
 msgid "Week of {0}"
-msgstr ""
+msgstr "Viikko {0}"
 
 msgid "{0} download"
 msgid_plural "{0} downloads"
@@ -232,8 +232,8 @@ msgstr[1] "{0} kokoelmaa"
 
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{0} arvio"
+msgstr[1] "{0} arviota"
 
 msgid "{0} sale"
 msgid_plural "{0} sales"
@@ -294,7 +294,7 @@ msgid "Subscribers"
 msgstr "Tilaajat"
 
 msgid "Ratings"
-msgstr ""
+msgstr "Arviot"
 
 msgid "Sales"
 msgstr "Myynti"
@@ -321,7 +321,7 @@ msgid "Search Suggestions"
 msgstr "Hakuehdotukset"
 
 msgid "Search Results"
-msgstr ""
+msgstr "Hakutulokset"
 
 msgid "Homepage Promo"
 msgstr ""
@@ -348,7 +348,7 @@ msgid "Often Used With"
 msgstr ""
 
 msgid "Others By Author"
-msgstr ""
+msgstr "Muut tekijältä"
 
 msgid "Dependencies"
 msgstr "Riippuvuudet"
@@ -749,8 +749,8 @@ msgstr[1] "{files} tiedostoa"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{reviews} käyttäjäarvostelu"
+msgstr[1] "{reviews} käyttäjäarvostelua"
 
 msgid "Image changes being processed"
 msgstr ""
@@ -795,13 +795,13 @@ msgid "Loading&hellip;"
 msgstr "Ladataan&hellip;"
 
 msgid "Version Notes"
-msgstr ""
+msgstr "Versiokommentit"
 
 msgid "Notes for Reviewers"
 msgstr "Huomioita arvioijalle"
 
 msgid "No version notes found"
-msgstr ""
+msgstr "Ei versiota koskevia kommentteja"
 
 msgid "Review Text"
 msgstr ""
@@ -822,7 +822,7 @@ msgid "Requested Info"
 msgstr ""
 
 msgid "Flagged"
-msgstr ""
+msgstr "Merkitty"
 
 msgid "Duplicate"
 msgstr "Kaksoiskappale"
@@ -849,7 +849,7 @@ msgid "All tests passed successfully."
 msgstr "Kaikki testit läpäistiin onnistuneesti."
 
 msgid "These tests were not run."
-msgstr ""
+msgstr "Näitä testejä ei suoritettu."
 
 msgid "Tests"
 msgstr "Testit"

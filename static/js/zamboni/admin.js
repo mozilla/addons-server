@@ -25,7 +25,7 @@
                     event.preventDefault();
                 },
                 select: function(event, ui) {
-                    window.location = $form.attr('action') + '/' + ui.item.value;
+                    window.location = format($form.attr('action'), {id: ui.item.value});
                     event.preventDefault();
                 }
             });
