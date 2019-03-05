@@ -6,16 +6,17 @@ import shlex
 from pkg_resources import safe_name
 
 import pip
-from pip.req.req_file import parse_requirements, build_parser, break_args_options
+from pip.req.req_file import (parse_requirements, build_parser,
+                              break_args_options)
 from hashin import run_single_package
 
 
 def rdeps(pkg_name):
     return sorted([safe_name(pkg.project_name)
-            for pkg in pip.get_installed_distributions()
-            if safe_name(pkg_name) in [
-                safe_name(requirement.project_name)
-                for requirement in pkg.requires()]])
+                   for pkg in pip.get_installed_distributions()
+                   if safe_name(pkg_name) in [
+                       safe_name(requirement.project_name)
+                       for requirement in pkg.requires()]])
 
 
 def main(requirements_path):
@@ -24,7 +25,7 @@ def main(requirements_path):
         requirements_path, session=pip.download.PipSession())
     requirements = [
         req for req in parsed
-            # Skip packages from other requirements files
+        # Skip packages from other requirements files
         if this_requirements_file in req.comes_from]
 
     reverse_requirements = {}

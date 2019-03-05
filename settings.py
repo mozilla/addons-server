@@ -116,7 +116,7 @@ INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa
-except ImportError as exc:
+except ImportError:
     import warnings
     import traceback
 
