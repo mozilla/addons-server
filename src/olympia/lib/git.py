@@ -366,6 +366,8 @@ class AddonGitRepository(object):
 
         This doesn't contain the ``EXTRACTED_PREFIX`` prefix folder.
         """
+        # When `commit` is a commit hash, e.g passed to us through the API
+        # serializers we have to fetch the actual commit object to proceed.
         if isinstance(commit, six.string_types):
             commit = self.git_repository[commit]
 
