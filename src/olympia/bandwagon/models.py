@@ -11,7 +11,7 @@ from olympia import activity, amo
 from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.utils import clear_get_featured_ids_cache
-from olympia.amo.fields import PositiveAutoField
+from olympia.amo.fields import ManyToManyField, PositiveAutoField
 from olympia.amo.models import BaseQuerySet, ManagerBase, ModelBase
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.urlresolvers import reverse
@@ -97,8 +97,8 @@ class Collection(ModelBase):
         default=False,
         help_text='Does this collection only contain Themes?')
 
-    addons = models.ManyToManyField(Addon, through='CollectionAddon',
-                                    related_name='collections')
+    addons = ManyToManyField(
+        Addon, through='CollectionAddon', related_name='collections')
     author = models.ForeignKey(
         UserProfile, null=True, related_name='collections',
         on_delete=models.CASCADE)

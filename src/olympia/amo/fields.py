@@ -4,8 +4,10 @@ from django.conf import settings
 from django.core import exceptions
 from django.core.validators import RegexValidator, URLValidator
 from django.db import models
+from django.db.models.fields import related_descriptors
 from django.forms import fields
 from django.utils.translation import ugettext_lazy as _
+from django.utils.functional import cached_property
 
 from nobot.fields import HumanCaptchaField
 
@@ -63,3 +65,22 @@ class ReCaptchaField(HumanCaptchaField):
         'captcha_invalid': _('Incorrect, please try again.'),
         'captcha_error': _('Error verifying input, please try again.'),
     }
+
+
+class ManyToManyDescriptor(related_descriptors.ManyToManyDescriptor):
+
+    @cached_property
+    def related_manager_cls(self):
+        """The constrained_target optimization doesn't play nice with our
+        ManagerBase that has default filtering, so set to None so it's
+        bypassed."""
+        manager = super(ManyToManyDescriptor, self).related_manager_cls
+        setattr(manager, 'constrained_target', None)
+        return manager
+
+
+class ManyToManyField(models.ManyToManyField):
+    def contribute_to_class(self, cls, name, **kwargs):
+        super(ManyToManyField, self).contribute_to_class(cls, name, **kwargs)
+        setattr(cls, self.name, ManyToManyDescriptor(
+            self.remote_field, reverse=False))
