@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-01 17:05+0000\n"
+"PO-Revision-Date: 2019-03-05 16:59+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
 "Language: sk\n"
@@ -728,10 +728,10 @@ msgid "Not allowed"
 msgstr "Nepovolené"
 
 msgid "Oops! Not allowed."
-msgstr ""
+msgstr "Hups. Toto nie je povolené."
 
 msgid "You tried to do something that you weren't allowed to."
-msgstr ""
+msgstr "Skúsili ste urobiť niečo, čo nie je povolené."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -2226,7 +2226,7 @@ msgid "Preliminary Add-on Review"
 msgstr "Predbežná kontrola doplnku"
 
 msgid "Updated Legacy Add-on Review"
-msgstr ""
+msgstr "Kontrola aktualizácie zastaraného doplnku"
 
 msgid "New Dictionary Review"
 msgstr "Nová kontrola slovníka"
@@ -2250,7 +2250,7 @@ msgid "Theme Review"
 msgstr "Kontrola témy"
 
 msgid "Theme (Static) Review"
-msgstr ""
+msgstr "Kontrola statickej témy vzhľadu"
 
 msgid "New Search Provider Review"
 msgstr "Nová kontrola vyhľadávacieho modulu"
@@ -2440,7 +2440,7 @@ msgid "Override failed validation"
 msgstr "Prepísať neúspešnú kontrolu"
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "Musíte vybrať aspoň jednu aplikáciu."
 
 msgid "Version {version} was uploaded before and deleted."
 msgstr "Verzia {version} už bola v minulosti nahraná a odstránená."
@@ -2550,13 +2550,13 @@ msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr ""
 
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr ""
+msgstr "Rozmery obrázku musia byť v pomere 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr ""
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikona musí byť štvorcová (rovnaká šírka a výška)."
 
 msgid "There was an error uploading your preview."
 msgstr "Pri odosielaní ukážky sa vyskytla chyba."
@@ -3065,10 +3065,10 @@ msgid "Upload a Custom Icon..."
 msgstr "Odoslať vlastnú ikonu..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Podporované typy sú PNG a JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikony musia byť štvorcové a mať minimálnu veľkosť 128x128 pixelov."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr ""
@@ -3114,7 +3114,7 @@ msgid "The licensor permits others to distribute derivativeworks only under the 
 msgstr "Licencia umožňuje ostatným distribuovať odvodenú prácu len pod rovnakou licenciou, prípadne inou, ktorá je však zlúčiteľná s licenciou pôvodného diela."
 
 msgid "Your Add-on will be released under the following license:"
-msgstr ""
+msgstr "Váš doplnok bude k dispozícii v rámci nasledujúcej licencie:"
 
 msgid "Select a different license."
 msgstr "Zvoľte inú licenciu."
@@ -5560,7 +5560,7 @@ msgid "Unsupported file type, please upload an a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Neočakávaná chyba."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -5788,6 +5788,8 @@ msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
 "the way your browser or application works. Take a look around and explore the thousands of ways to customize the way you do things online."
 msgstr ""
+"Webová stránka addons.mozilla.org, tiež známa ako „AMO“, je oficiálna stránka Mozilly s doplnkami pre aplikácie, ako je Firefox, Thunderbird a SeaMonkey. Doplnky vám umožňujú do svojich aplikácií "
+"pridávať nové funkcie a meniť spôsob, ako sa vaše aplikácie chovajú. Poobzerajte sa okolo seba a objavte nové spôsoby prispôsobenia."
 
 msgid "Who creates these add-ons?"
 msgstr "Kto vytvára tieto doplnky?"
@@ -6375,7 +6377,7 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 msgid "Static Themes and Legacy Add-ons"
-msgstr ""
+msgstr "Statické témy vzhľadu a zastarané doplnky"
 
 msgid "Static Themes"
 msgstr ""
@@ -6498,10 +6500,10 @@ msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
 msgid "Add-on ID"
-msgstr "Identifikátor doplnku"
+msgstr "ID doplnku"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Interné ID doplnku na AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
