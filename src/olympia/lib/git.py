@@ -4,7 +4,9 @@ import uuid
 import os
 import shutil
 import tempfile
+import sys
 
+import six
 import pygit2
 
 from django.conf import settings
@@ -28,9 +30,27 @@ BRANCHES = {
     amo.RELEASE_CHANNEL_UNLISTED: 'unlisted'
 }
 
+# Constants from libgit2 includes/git2/diff.h
+# while they're not in upstream pygit2 I added them here (cgrebs)
+# We don't have all line constants here though since we don't
+# really make use of them in the frontend.
+GIT_DIFF_LINE_CONTEXT = ' '
+GIT_DIFF_LINE_ADDITION = '+'
+GIT_DIFF_LINE_DELETION = '-'
+
+# This matches typing in addons-frontend
+GIT_DIFF_LINE_MAPPING = {
+    GIT_DIFF_LINE_CONTEXT: 'normal',
+    GIT_DIFF_LINE_ADDITION: 'insert',
+    GIT_DIFF_LINE_DELETION: 'delete'
+}
+
 # Prefix folder name we are using to store extracted add-on or source
 # data to avoid any clashes, e.g with .git folders.
 EXTRACTED_PREFIX = 'extracted'
+
+# Rename and copy threshold, 50% is the default git threshold
+SIMILARITY_THRESHOLD = 50
 
 
 class TemporaryWorktree(object):
@@ -346,6 +366,11 @@ class AddonGitRepository(object):
 
         This doesn't contain the ``EXTRACTED_PREFIX`` prefix folder.
         """
+        # When `commit` is a commit hash, e.g passed to us through the API
+        # serializers we have to fetch the actual commit object to proceed.
+        if isinstance(commit, six.string_types):
+            commit = self.git_repository[commit]
+
         return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]
 
     def iter_tree(self, tree):
@@ -370,3 +395,91 @@ class AddonGitRepository(object):
                     blob=tree_or_blob,
                     tree_entry=tree_entry,
                     path=tree_entry.name)
+
+    def get_diff(self, commit, parent=None):
+        """Get a diff from `parent` to `commit`.
+
+        If `parent` is not given we assume it's the first commit and handle
+        it accordingly.
+
+        We are resolving renames and copies according to a 50% similarity
+        threshold.
+        """
+        if parent is None:
+            return self.get_diff_for_initial_commit(commit)
+        changes = []
+        diff = self.git_repository.diff(
+            self.get_root_tree(parent),
+            self.get_root_tree(commit),
+            # We always show the whole file by default
+            context_lines=sys.maxsize,
+            interhunk_lines=0)
+
+        opts = pygit2.GIT_DIFF_FIND_RENAMES | pygit2.GIT_DIFF_FIND_COPIES
+        diff.find_similar(opts, SIMILARITY_THRESHOLD, SIMILARITY_THRESHOLD)
+
+        # TODO (cgrebs): double-check if we are indeed processing files
+        # multiple times (e.g on renames, copies etc)
+        # I think this happens when renames are < similarity threshold or so
+        # needs some more tests though...
+        checked_paths = set()
+
+        for patch in diff:
+            if patch.delta.new_file.path in checked_paths:
+                continue
+
+            checked_paths.add(patch.delta.new_file.path)
+            changes.append(self._render_patch(patch, commit, parent))
+        return changes
+
+    def get_diff_for_initial_commit(self, commit):
+        # Initial commits are special since they're comparing against
+        # an empty tree.
+        diff = self.get_root_tree(commit).diff_to_tree(
+            context_lines=sys.maxsize,
+            interhunk_lines=1,
+            swap=True)
+
+        return [
+            self._render_patch(patch, commit, commit)
+            for patch in diff]
+
+    def _render_patch(self, patch, commit, parent):
+        # This will be moved to a proper drf serializer in the future
+        # but until the format isn't set we'll keep it like that to simplify
+        # experimentation.
+        hunks = [
+            {
+                'header': hunk.header,
+                'old_start': hunk.old_start,
+                'new_start': hunk.new_start,
+                'old_lines': hunk.old_lines,
+                'new_lines': hunk.new_lines,
+                'changes': [
+                    {
+                        'content': line.content,
+                        'type': GIT_DIFF_LINE_MAPPING[line.origin],
+                        # Can be `-1` for additions
+                        'old_line_number': line.old_lineno,
+                        'new_line_number': line.new_lineno,
+                    }
+                    for line in hunk.lines
+                ]
+            }
+            for hunk in patch.hunks
+        ]
+
+        entry = {
+            'path': patch.delta.new_file.path,
+            'size': patch.delta.new_file.size,
+            'lines_added': patch.line_stats[1],
+            'lines_deleted': patch.line_stats[2],
+            'is_binary': patch.delta.is_binary,
+            'mode': patch.delta.status_char(),
+            'hunks': hunks,
+            'old_path': patch.delta.old_file.path,
+            'parent': parent,
+            'hash': commit,
+        }
+
+        return entry

@@ -12,7 +12,8 @@ from django.core.files.base import File as DjangoFile
 from olympia import amo
 from olympia.amo.tests import (
     addon_factory, version_factory, user_factory, activate_locale)
-from olympia.lib.git import AddonGitRepository, TemporaryWorktree
+from olympia.lib.git import (
+    AddonGitRepository, TemporaryWorktree, BRANCHES, EXTRACTED_PREFIX)
 from olympia.files.utils import id_to_path
 
 
@@ -23,6 +24,42 @@ def _run_process(cmd, repo):
         shell=True,
         env={'GIT_DIR': repo.git_repository.path},
         universal_newlines=True)
+
+
+def appply_changes(repo, version, contents, path):
+    # Apply the requested change to the git repository
+    branch_name = BRANCHES[version.channel]
+    git_repo = repo.git_repository
+    blob_id = git_repo.create_blob(contents)
+
+    # Initialize the index from the tree structure of the most
+    # recent commit in `branch`
+    tree = git_repo.revparse_single(branch_name).tree
+    index = git_repo.index
+    index.read_tree(tree)
+
+    # Add / update the index
+    path = os.path.join(EXTRACTED_PREFIX, path)
+    entry = pygit2.IndexEntry(path, blob_id, pygit2.GIT_FILEMODE_BLOB)
+    index.add(entry)
+
+    tree = index.write_tree()
+
+    # Now apply a new commit
+    author = pygit2.Signature('test', 'test@foo.bar')
+    committer = pygit2.Signature('test', 'test@foo.bar')
+
+    branch = git_repo.branches.get(branch_name)
+
+    # Create commit and properly update branch and reflog
+    oid = git_repo.create_commit(
+        None, author, committer, '...', tree, [branch.target])
+    commit = git_repo.get(oid)
+    branch.set_target(commit.hex)
+
+    # To make sure the serializer makes use of the new commit we'll have
+    # to update the `git_hash` values on the version object.
+    version.update(git_hash=commit.hex)
 
 
 def test_temporary_worktree(settings):
@@ -407,3 +444,194 @@ def test_iter_tree():
         assert entry.path == expected_path
         assert entry.tree_entry.name == expected_name
         assert entry.tree_entry.type == expected_type
+
+
+@pytest.mark.django_db
+def test_get_diff_add_new_file():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    appply_changes(repo, version, '{"id": "random"}\n', 'new_file.json')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert changes[0]['hunks'] == [{
+        'changes': [{
+            'content': '{"id": "random"}\n',
+            'new_line_number': 1,
+            'old_line_number': -1,
+            'type': 'insert'
+        }],
+        'new_lines': 1,
+        'new_start': 1,
+        'old_lines': 0,
+        'old_start': 0,
+        'header': '@@ -0,0 +1 @@\n',
+    }]
+
+    assert changes[0]['is_binary'] is False
+    assert changes[0]['lines_added'] == 1
+    assert changes[0]['lines_deleted'] == 0
+    assert changes[0]['mode'] == 'A'
+    assert changes[0]['old_path'] == 'new_file.json'
+    assert changes[0]['path'] == 'new_file.json'
+    assert changes[0]['size'] == 17
+    assert changes[0]['parent'] == original_version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+
+
+@pytest.mark.django_db
+def test_get_diff_change_files():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    appply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
+    appply_changes(repo, version, 'Updated readme\n', 'README.md')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert len(changes) == 2
+
+    assert changes[0]
+    assert changes[0]['is_binary'] is False
+    assert changes[0]['lines_added'] == 1
+    assert changes[0]['lines_deleted'] == 25
+    assert changes[0]['mode'] == 'M'
+    assert changes[0]['old_path'] == 'README.md'
+    assert changes[0]['path'] == 'README.md'
+    assert changes[0]['size'] == 15
+    assert changes[0]['parent'] == original_version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+
+    # There is actually just one big hunk in this diff since it's simply
+    # removing everything and adding new content
+    assert len(changes[0]['hunks']) == 1
+
+    assert changes[0]['hunks'][0]['header'] == '@@ -1,25 +1 @@\n'
+    assert changes[0]['hunks'][0]['old_start'] == 1
+    assert changes[0]['hunks'][0]['new_start'] == 1
+    assert changes[0]['hunks'][0]['old_lines'] == 25
+    assert changes[0]['hunks'][0]['new_lines'] == 1
+
+    hunk_changes = changes[0]['hunks'][0]['changes']
+
+    assert hunk_changes[0] == {
+        'content': '# notify-link-clicks-i18n\n',
+        'new_line_number': -1,
+        'old_line_number': 1,
+        'type': 'delete'
+    }
+
+    assert all(x['type'] == 'delete' for x in hunk_changes[:-1])
+
+    assert hunk_changes[-1] == {
+        'content': 'Updated readme\n',
+        'new_line_number': 1,
+        'old_line_number': -1,
+        'type': 'insert',
+    }
+
+    assert changes[1]
+    assert changes[1]['is_binary'] is False
+    assert changes[1]['lines_added'] == 1
+    assert changes[1]['lines_deleted'] == 32
+    assert changes[1]['mode'] == 'M'
+    assert changes[1]['old_path'] == 'manifest.json'
+    assert changes[1]['path'] == 'manifest.json'
+    assert changes[1]['size'] == 17
+    assert changes[1]['parent'] == original_version.git_hash
+    assert changes[1]['hash'] == version.git_hash
+
+    # There is actually just one big hunk in this diff since it's simply
+    # removing everything and adding new content
+    assert len(changes[1]['hunks']) == 1
+
+    assert changes[1]['hunks'][0]['header'] == '@@ -1,32 +1 @@\n'
+    assert changes[1]['hunks'][0]['old_start'] == 1
+    assert changes[1]['hunks'][0]['new_start'] == 1
+    assert changes[1]['hunks'][0]['old_lines'] == 32
+    assert changes[1]['hunks'][0]['new_lines'] == 1
+
+    hunk_changes = changes[1]['hunks'][0]['changes']
+
+    assert all(x['type'] == 'delete' for x in hunk_changes[:-1])
+
+    assert hunk_changes[-1] == {
+        'content': '{"id": "random"}\n',
+        'new_line_number': 1,
+        'old_line_number': -1,
+        'type': 'insert'
+    }
+
+
+@pytest.mark.django_db
+def test_get_diff_initial_commit():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    version = addon.current_version
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=None)
+
+    # This makes sure that sub-directories are diffed properly too
+    assert changes[1]['is_binary'] is False
+    assert changes[1]['lines_added'] == 27
+    assert changes[1]['lines_deleted'] == 0
+    assert changes[1]['mode'] == 'A'
+    assert changes[1]['old_path'] == '_locales/de/messages.json'
+    assert changes[1]['parent'] == version.git_hash
+    assert changes[1]['hash'] == version.git_hash
+    assert changes[1]['path'] == '_locales/de/messages.json'
+    assert changes[1]['size'] == 658
+
+    # It's all an insert
+    assert all(
+        x['type'] == 'insert' for x in changes[0]['hunks'][0]['changes'])
+
+    assert changes[-1]['is_binary'] is False
+    assert changes[-1]['lines_added'] == 32
+    assert changes[-1]['lines_deleted'] == 0
+    assert changes[-1]['mode'] == 'A'
+    assert changes[-1]['old_path'] == 'manifest.json'
+    assert changes[-1]['parent'] == version.git_hash
+    assert changes[-1]['hash'] == version.git_hash
+    assert changes[-1]['path'] == 'manifest.json'
+    assert changes[-1]['size'] == 622
+
+    # Binary files work fine too
+    assert changes[-2]['hash'] == version.git_hash
+    assert changes[-2]['parent'] == version.git_hash
+    assert changes[-2]['hunks'] == []
+    assert changes[-2]['is_binary'] is True
+    assert changes[-2]['lines_added'] == 0
+    assert changes[-2]['lines_deleted'] == 0
+    assert changes[-2]['mode'] == 'A'
+    assert changes[-2]['old_path'] == 'icons/link-48.png'
+    assert changes[-2]['path'] == 'icons/link-48.png'
+    assert changes[-2]['size'] == 596
+
+    # It's all an insert
+    assert all(
+        x['type'] == 'insert' for x in changes[0]['hunks'][0]['changes'])
