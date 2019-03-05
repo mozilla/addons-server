@@ -51,8 +51,8 @@ def extract_translations_for_given_locale(all_translations, locale):
 
 def main():
     if not os.path.isdir('locale'):
-        print ('Sorry, please run from the root of the project, '
-               'eg. ./locale/generate_category_po_files.py')
+        print('Sorry, please run from the root of the project, '
+              'eg. ./locale/generate_category_po_files.py')
         return
 
     print('Loading translations JSON dump...')

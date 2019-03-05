@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-11 22:27+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-26 15:43+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -151,15 +151,6 @@ msgstr "Innan du ändrar ditt standardspråk måste du ha ett namn, sammanfattni
 
 msgid "A license must be selected."
 msgstr "En licens måste väljas."
-
-msgid "Give Your Theme a Name."
-msgstr "Ge ditt tema ett namn."
-
-msgid "Describe your Theme."
-msgstr "Beskriv ditt tema."
-
-msgid "Enter a new author's email address"
-msgstr "Ange en ny e-postadress till utvecklaren"
 
 msgid "Listed"
 msgstr "Listad"
@@ -849,9 +840,6 @@ msgstr "Samlingar"
 msgid "Collections I've Made"
 msgstr "Samlingar jag skapat"
 
-msgid "My Favorite Add-ons"
-msgstr "Mina favorittillägg"
-
 msgid "More&hellip;"
 msgstr "Mer&hellip;"
 
@@ -1180,6 +1168,9 @@ msgstr "Samlingar är grupper av tillägg som vem som helst kan skapa och dela. 
 #, python-format
 msgid "by %(author_link)s"
 msgstr "av %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mina favorittillägg"
 
 msgid "Create a Collection"
 msgstr "Skapa en samling"
@@ -2494,12 +2485,6 @@ msgstr "Användarsamlingar"
 msgid "User Reviews"
 msgstr "Användarrecensioner"
 
-msgid "Changes successfully saved."
-msgstr "Ändringar sparade."
-
-msgid "Please check the form for errors."
-msgstr "Kontrollera formuläret efter fel."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Tillägg kan inte tas bort. Inaktivera detta tillägg istället."
 
@@ -2523,6 +2508,9 @@ msgstr "För en upphovsman har en roll ändrats i ditt tillägg"
 
 msgid "An author has been removed from your add-on"
 msgstr "En upphovsman har tagits bort från ditt tillägg"
+
+msgid "Changes successfully saved."
+msgstr "Ändringar sparade."
 
 msgid "Validate Add-on"
 msgstr "Validera tillägg"
@@ -2606,6 +2594,9 @@ msgstr "Text på verktygsfältets fältområde"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Färgen på text i fält i verktygsfältet, till exempel URL-fältet. Manifest-fält:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Kontrollera formuläret efter fel."
 
 msgid "Review requested."
 msgstr "Granskning begärd."
@@ -3949,11 +3940,21 @@ msgstr "Live Testing"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Installera tillfälligt ditt tillägg i Firefox för live testning och felsökning."
 
-msgid "Transfer ownership"
-msgstr "Överför ägarskapet"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Redigering av lätta teman har inaktiverats."
+
+msgid "Create a New Theme"
+msgstr "Skapa ett nytt tema"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Med bakgrundsteman kan du enkelt anpassa utseendet på Firefox. Skicka in din egen design nedan eller <a href=\"%(submit_url)s\">lär dig att skapa en</a>!"
 
 msgid "Theme Details"
 msgstr "Detaljer för tema"
+
+msgid "Give your Theme a name."
+msgstr "Ge ditt tema ett namn."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Tillhandahålla en snygg URL för din detaljsida."
@@ -3964,63 +3965,20 @@ msgstr "Välj den kategori som bäst beskriver ditt tema."
 msgid "Add some tags to describe your Theme."
 msgstr "Lägg till några taggar för att beskriva ditt tema."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
-"En kort förklaring av ditt temas\n"
-"                                grundläggande funktionalitet som visas i\n"
-"                                sök- och bläddringslistor, liksom överst i\n"
-"                                ditt temas detaljsida."
+msgid "Describe your Theme."
+msgstr "Beskriv ditt tema."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "En kort förklaring av ditt temas  grundläggande funktionalitet som visas sök- och bläddringslistor, liksom överst i ditt temas detaljsida"
 
 msgid "Theme License"
 msgstr "Licens för tema"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Kan andra dela ditt tema, så länge du omnämnes?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, även för kommersiella ändamål."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet endast för icke-kommersiella ändamål."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Kan andra använda ditt tema i kommersiellt syfte?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Kan andra skapa utvecklingar från ditt tema?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera, visa och utföra arbetet, samt göra utvecklingar av tidigare arbete."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licensgivaren tillåter andra att kopiera, distribuera och överföra endast oförändrade kopior av arbetet — inte arbetet som bygger på den."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Ditt tema kommer att släppas under följande licens:"
 
 msgid "Select a license for your Theme."
 msgstr "Välj en licens för ditt tema."
 
 msgid "Theme Design"
 msgstr "Design för tema"
-
-msgid "Upload New Design"
-msgstr "Ladda upp en ny design"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Vid uppladdning och inskickning av formulär kommer gruppen från AMO att granska din uppdaterade design. Din nuvarande utformning kommer fortfarande att vara offentliga under tiden."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Din tidigare återinskickade design,  som är under pågående granskning."
-
-msgid "Pending Header"
-msgstr "Väntande sidhuvud"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Du kan uppdatera ditt temas design här när det har godkänts."
-
-msgid "Header"
-msgstr "Sidhuvud"
 
 msgid "Select colors for your Theme."
 msgstr "Välj färger för ditt tema."
@@ -4043,19 +4001,6 @@ msgstr "Ditt temas namn"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "av <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Skapa ett nytt tema"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Med bakgrundsteman kan du enkelt anpassa utseendet på Firefox. Skicka in din egen design nedan eller <a href=\"%(submit_url)s\">lär dig att skapa en</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Ge ditt tema ett namn."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "En kort förklaring av ditt temas  grundläggande funktionalitet som visas sök- och bläddringslistor, liksom överst i ditt temas detaljsida"
 
 #, python-format
 msgid ""
@@ -5735,12 +5680,6 @@ msgstr "Inga filer i den uppladdade filen."
 msgid "Fetching file."
 msgstr "Hämtar fil."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "API-versionen, {0:.1f}, som du använder är inte giltig. Uppgradera till den senaste versionen {1:.1f} API."
-
-msgid "Not implemented yet."
-msgstr "Inte implementerat ännu."
-
 msgid "Shopping Made Easy"
 msgstr "Shopping utan problem"
 
@@ -6920,8 +6859,8 @@ msgid "No reviews found for this period."
 msgstr "Inga granskningar funna för denna period."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] rapporterade %(object)s den %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(country_code)s] rapporterad %(object)s den %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Avfärda detta meddelande"
@@ -7730,9 +7669,6 @@ msgstr "nya tillägg eller funktioner i Firefox är tillgängliga"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "mitt tilläggs kompatibilitet har uppgraderats"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "mitt sdk-baserade tillägg har uppgraderats"
-
 msgid "someone writes a review of my add-on"
 msgstr "någon skriver en recension av mitt tillägg"
 
@@ -7741,9 +7677,6 @@ msgstr "håll dig uppdaterad med nyheter och händelser som är relevanta för t
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "mitt tilläggs kompatibilitet kan inte uppgraderas"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "mitt sdk-baserade tillägg kan inte uppgraderas"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mitt tillägg granskas av en granskare"
@@ -7892,12 +7825,6 @@ msgstr "Alla"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla tillägg har övergått till Firefox-konton för att logga in. Fortsätt för att slutföra den enkla inloggningsprocessen."
-
-msgid "User Login"
-msgstr "Användarinloggning"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Logga in med Firefox-konton"
 
 msgid "Password Reset"
 msgstr "Återställ lösenord"

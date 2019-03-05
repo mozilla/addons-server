@@ -492,7 +492,7 @@ class TranslationMultiDbTests(TransactionTestCase):
         assert len(connections['default'].queries) == 2
 
     @override_settings(DEBUG=True)
-    @patch('multidb.get_slave', lambda: 'slave-2')
+    @patch('multidb.get_replica', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
@@ -504,7 +504,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             assert len(connections['slave-2'].queries) == 2
 
     @override_settings(DEBUG=True)
-    @patch('multidb.get_slave', lambda: 'slave-2')
+    @patch('multidb.get_replica', lambda: 'slave-2')
     @pytest.mark.xfail(reason='Needs django-queryset-transform patch to work')
     def test_translations_reading_from_multiple_db_using(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
@@ -517,7 +517,7 @@ class TranslationMultiDbTests(TransactionTestCase):
             assert len(connections['slave-2'].queries) == 0
 
     @override_settings(DEBUG=True)
-    @patch('multidb.get_slave', lambda: 'slave-2')
+    @patch('multidb.get_replica', lambda: 'slave-2')
     def test_translations_reading_from_multiple_db_pinning(self):
         with patch.object(django.db.connections, 'databases', self.mocked_dbs):
             # Make sure we are in a clean environnement.
@@ -768,3 +768,40 @@ def test_translated_field_fk_lookups():
     fresh_parent = TranslatedModel.objects.get(pk=parent.pk)
     assert fresh_parent.translated_through_fk.name_id == obj.name_id
     assert fresh_parent.translated_through_fk.name is not None
+
+
+def test_translated_field_emoji_support():
+    # Make sure utf8mb4 settings are correct and emojis are correctly handled
+    assert Translation.objects.count() == 0
+    obj = TranslatedModel.objects.create(name=u'😀❤')
+
+    def get_model():
+        return TranslatedModel.objects.get(pk=obj.pk)
+
+    assert Translation.objects.count() == 1
+
+    # Make sure the translation id is stored on the model, not the autoid.
+    assert obj.name.id == obj.name_id
+
+    # Reload the object from database with a different locale activated.
+    # Its name should still be there, using the fallback...
+    translation.activate('de')
+    german = get_model()
+    assert german.name == u'😀❤'
+    assert german.name.locale == 'en-us'
+
+    # Check that a different locale creates a new row with the same id.
+    german.name = u'😀'
+    german.save()
+
+    assert Translation.objects.count() == 2  # New name *and* description.
+    assert german.name == u'😀'
+    assert german.name.locale == 'de'
+
+    # ids should be the same, autoids are different.
+    assert obj.name.id == german.name.id
+    assert obj.name.autoid != german.name.autoid
+
+    # Check that de finds the right translation.
+    fresh_german = get_model()
+    assert fresh_german.name == u'😀'

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 12:28+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-26 07:08+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -146,15 +146,6 @@ msgstr "在您更動您的預設語系前，您必須為那個語系填入名稱
 
 msgid "A license must be selected."
 msgstr "您必須選擇一項授權條款。"
-
-msgid "Give Your Theme a Name."
-msgstr "給您的佈景主題一個名稱。"
-
-msgid "Describe your Theme."
-msgstr "敘述您的佈景主題。"
-
-msgid "Enter a new author's email address"
-msgstr "輸入一個新的作者電子郵件地址"
 
 # Column name in a table.
 msgid "Listed"
@@ -824,9 +815,6 @@ msgstr "收藏集"
 msgid "Collections I've Made"
 msgstr "我建立的收藏集"
 
-msgid "My Favorite Add-ons"
-msgstr "我最愛的附加元件"
-
 msgid "More&hellip;"
 msgstr "更多&hellip;"
 
@@ -1146,6 +1134,9 @@ msgstr "收藏集是一張任何人都能製作並分享的清單，清單上記
 #, python-format
 msgid "by %(author_link)s"
 msgstr "作者：%(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "我最愛的附加元件"
 
 msgid "Create a Collection"
 msgstr "建立一個收藏集"
@@ -2467,12 +2458,6 @@ msgstr "使用者收藏集"
 msgid "User Reviews"
 msgstr "使用者評論"
 
-msgid "Changes successfully saved."
-msgstr "已成功儲存變更。"
-
-msgid "Please check the form for errors."
-msgstr "請檢查表格是否有錯誤。"
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "無法刪除此附加元件，請停用。"
 
@@ -2496,6 +2481,9 @@ msgstr "您的附加元件的某位作者的角色發生變更"
 
 msgid "An author has been removed from your add-on"
 msgstr "您的附加元件中的某位作者已被移除"
+
+msgid "Changes successfully saved."
+msgstr "已成功儲存變更。"
 
 msgid "Validate Add-on"
 msgstr "驗證附加元件"
@@ -2579,6 +2567,9 @@ msgstr "工具列欄位區文字"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具列中的欄位（例如網址列）的文字顏色。安裝資訊欄位: toolbar_field_text。"
+
+msgid "Please check the form for errors."
+msgstr "請檢查表格是否有錯誤。"
 
 msgid "Review requested."
 msgstr "已要求審核。"
@@ -3855,11 +3846,21 @@ msgstr "測試中"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "在 Firefox 暫時安裝您的擴充套件，進行測試與除錯。"
 
-msgid "Transfer ownership"
-msgstr "移轉擁有權"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "已停用輕量佈景主題編輯。"
+
+msgid "Create a New Theme"
+msgstr "建立一個新的主題"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "背景圖片讓您輕易自訂 Firefox 瀏覽器的外觀。您可以在下方提交您的設計，或是<a href=\"%(submit_url)s\">學習如何設計</a>!"
 
 msgid "Theme Details"
 msgstr "主題詳細資訊"
+
+msgid "Give your Theme a name."
+msgstr "主題的名稱為"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "請為您的詳細資訊頁面取個漂亮的 URL。"
@@ -3871,63 +3872,20 @@ msgstr "選擇適合您的主題的分類。"
 msgid "Add some tags to describe your Theme."
 msgstr "加入有些標籤來敘述您的主題。"
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "關於您的佈景主題的基本功能的簡短描述，會顯示在搜尋與瀏覽清單，以及佈景主題的詳細資訊頁面頂端。"
+msgid "Describe your Theme."
+msgstr "敘述您的佈景主題。"
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "關於您的佈景主題的基本功能的簡短描述，會顯示在搜尋與瀏覽清單，以及佈景主題的詳細資訊頁面頂端"
 
 msgid "Theme License"
 msgstr "佈景主題授權條款"
-
-# 88%
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "他人是否可以在姓名標示的情況下分享您的佈景主題?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以進行商業用途。"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，但不得進行商業用途。"
-
-# 85%
-msgid "Can others make commercial use of your Theme?"
-msgstr "他人是否可以使用您的佈景主題進行商業用途?"
-
-# 86%
-msgid "Can others create derivative works from your Theme?"
-msgstr "他人是否可以使用您的佈景主題創造衍生著作?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "授權人允許其他人重製、散佈、展示或演出該著作，而且得以創造衍生著作。"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "授權人允許其他人重製、散佈或傳送未經改作之著作，但不得創造衍生著作。"
-
-# 87%
-msgid "Your Theme will be released under the following license:"
-msgstr "您的佈景主題將以下列授權條款釋出："
 
 msgid "Select a license for your Theme."
 msgstr "為您的佈景主題選一個授權條款。"
 
 msgid "Theme Design"
 msgstr "佈景主題設計"
-
-msgid "Upload New Design"
-msgstr "上傳新的設計"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "在您上傳設計與送出表單後，AMO 團隊就會審核您更新的設計。在此期間，大眾仍會存取您現有的設計。"
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "您先前重新送出的設計，還在審核當中。"
-
-msgid "Pending Header"
-msgstr "等待審核的頂部圖片"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "通過審核後，您可以在這裡更新您的主題設計。"
-
-msgid "Header"
-msgstr "頂部"
 
 msgid "Select colors for your Theme."
 msgstr "選擇佈景主題的顏色。"
@@ -3950,19 +3908,6 @@ msgstr "您的佈景主題名稱"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "來自 <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "建立一個新的主題"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "背景圖片讓您輕易自訂 Firefox 瀏覽器的外觀。您可以在下方提交您的設計，或是<a href=\"%(submit_url)s\">學習如何設計</a>!"
-
-msgid "Give your Theme a name."
-msgstr "主題的名稱為"
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "關於您的佈景主題的基本功能的簡短描述，會顯示在搜尋與瀏覽清單，以及佈景主題的詳細資訊頁面頂端"
 
 #, python-format
 msgid ""
@@ -5640,12 +5585,6 @@ msgstr "上傳的檔案當中沒有檔案。"
 msgid "Fetching file."
 msgstr "正在取得檔案。"
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "您正使用的 API 版本 {0:.1f} 無效。請升級到最新 {1:.1f} 版本的 API。"
-
-msgid "Not implemented yet."
-msgstr "尚未實作。"
-
 msgid "Shopping Made Easy"
 msgstr "輕鬆購物"
 
@@ -6795,8 +6734,8 @@ msgid "No reviews found for this period."
 msgstr "此時間內，尚無審核。"
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] 於 %(date)s 回報了 %(object)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(country_code)s] 於 %(date)s 回報了 %(object)s"
 
 msgid "Dismiss this announcement"
 msgstr "略過這個消息"
@@ -7600,9 +7539,6 @@ msgstr "有新的附加元件或 Firefox 功能可用"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "我的附加元件之相容性升級成功"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "我使用 SDK 開發的附加元件升級成功"
-
 msgid "someone writes a review of my add-on"
 msgstr "某位使用者評論我的附加元件"
 
@@ -7611,9 +7547,6 @@ msgstr "取得與附加元件開發者有關的最新消息與活動資訊（包
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "我的附加元件相容性無法升級"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "我使用 SDK 開發的附加元件升級失敗"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "審核者已經審核我的附加元件"
@@ -7760,12 +7693,6 @@ msgstr "全部勾選"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla 附加元件站已改用 Firefox 帳號登入。請繼續完成簡單的登入流程。"
-
-msgid "User Login"
-msgstr "使用者登入"
-
-msgid "Log in with Firefox Accounts"
-msgstr "使用 Firefox 帳號登入"
 
 msgid "Password Reset"
 msgstr "重設密碼"

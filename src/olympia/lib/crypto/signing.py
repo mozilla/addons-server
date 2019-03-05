@@ -180,42 +180,50 @@ def call_signing(file_obj):
 
 
 def sign_file(file_obj):
-    """Sign a File.
+    """Sign a File if necessary.
+
+    If it's not necessary (file exists but it's a mozilla signed one, or it's
+    a search plugin) then return the file directly.
 
     If there's no endpoint (signing is not enabled) or isn't reviewed yet,
-    or there was an error while signing, log and return nothing.
+    or there was an error while signing, raise an exception - it
+    shouldn't happen.
 
-    Otherwise return the signed file.
+    Otherwise proceed with signing and return the signed file.
     """
+    if (file_obj.version.addon.type == amo.ADDON_SEARCH and
+            file_obj.version.is_webextension is False):
+        # Those aren't meant to be signed, we shouldn't be here.
+        return file_obj
+
     if not settings.ENABLE_ADDON_SIGNING:
-        log.info(u'Not signing file {0}: no active endpoint'.format(
+        raise SigningError(u'Not signing file {0}: no active endpoint'.format(
             file_obj.pk))
-        return
 
     # No file? No signature.
     if not os.path.exists(file_obj.current_file_path):
-        log.info(u'File {0} doesn\'t exist on disk'.format(
+        raise SigningError(u'File {0} doesn\'t exist on disk'.format(
             file_obj.current_file_path))
-        return
 
     # Don't sign Mozilla signed extensions (they're already signed).
     if file_obj.is_mozilla_signed_extension:
+        # Don't raise an exception here, just log and return file_obj even
+        # though we didn't sign, it's not an error - we just don't need to do
+        # anything in this case.
         log.info(u'Not signing file {0}: mozilla signed extension is already '
                  u'signed'.format(file_obj.pk))
-        return
+        return file_obj
 
     # Don't sign multi-package XPIs. Their inner add-ons need to be signed.
     if file_obj.is_multi_package:
-        log.info(u'Not signing file {0}: multi-package XPI'.format(
+        raise SigningError(u'Not signing file {0}: multi-package XPI'.format(
             file_obj.pk))
-        return
 
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
-        log.info(
+        raise SigningError(
             u'Not signing version {0}: not for a Firefox version we support'
             .format(file_obj.version.pk))
-        return
 
     # Sign the file. If there's any exception, we skip the rest.
     cert_serial_num = six.text_type(call_signing(file_obj))

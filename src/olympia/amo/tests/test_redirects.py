@@ -30,20 +30,6 @@ class TestRedirects(TestCase):
         redirect = response.redirect_chain[-1][0]
         assert redirect.endswith('/en-US/firefox/addon/5326/')
 
-    def test_utf8(self):
-        """Without proper unicode handling this will fail."""
-        response = self.client.get(u'/api/1.5/search/ツールバー',
-                                   follow=True)
-        # Sphinx will be off so let's just test that it redirects.
-        assert response.redirect_chain[0][1] == 302
-
-    def test_parameters(self):
-        """Bug 554976. Make sure when we redirect, we preserve our query
-        strings."""
-        url = u'/users/login?to=/en-US/firefox/users/edit'
-        r = self.client.get(url, follow=True)
-        self.assert3xx(r, '/en-US/firefox' + url, status_code=302)
-
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)
         self.assert3xx(response, '/en-US/firefox/addon/a4/reviews/',
@@ -108,11 +94,6 @@ class TestRedirects(TestCase):
         response = self.client.get('/', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='en-us;q=0.5, de')
         self.assert3xx(response, '/de/firefox/', status_code=302)
-
-    def test_users(self):
-        response = self.client.get('/users/info/1', follow=True)
-        self.assert3xx(response, '/en-US/firefox/user/1/',
-                       status_code=302)
 
     def test_extension_sorting(self):
         r = self.client.get('/browse/type:1?sort=updated', follow=True)

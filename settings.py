@@ -58,10 +58,6 @@ AES_KEYS = {
         ROOT, 'src', 'olympia', 'api', 'tests', 'assets', 'test-api-key.txt'),
 }
 
-CORS_ENDPOINT_OVERRIDES = cors_endpoint_overrides(
-    ['localhost:3000', 'olympia.test']
-)
-
 DATABASES = {
     'default': get_db_config('DATABASES_DEFAULT_URL', charset='utf8mb4'),
 }
@@ -120,7 +116,7 @@ INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
     from local_settings import *  # noqa
-except ImportError as exc:
+except ImportError:
     import warnings
     import traceback
 

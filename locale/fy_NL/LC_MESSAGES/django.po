@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -155,15 +155,6 @@ msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en 
 
 msgid "A license must be selected."
 msgstr "Jo moatte in lisinsje selektearje."
-
-msgid "Give Your Theme a Name."
-msgstr "Jou jo tema in namme."
-
-msgid "Describe your Theme."
-msgstr "Beskriuw jo tema."
-
-msgid "Enter a new author's email address"
-msgstr "Fier it e-mailadres fan in nije skriuwer yn"
 
 # Column name in a table.
 msgid "Listed"
@@ -859,9 +850,6 @@ msgstr "Kolleksjes"
 msgid "Collections I've Made"
 msgstr "Myn kolleksjes"
 
-msgid "My Favorite Add-ons"
-msgstr "Myn favorite add-ons"
-
 msgid "More&hellip;"
 msgstr "Mear…"
 
@@ -1192,6 +1180,9 @@ msgstr "Kolleksjes binne groepen relatearre add-ons dy't elkenien meitsje en die
 #, python-format
 msgid "by %(author_link)s"
 msgstr "troch %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Myn favorite add-ons"
 
 msgid "Create a Collection"
 msgstr "In kolleksje meitsje"
@@ -2518,12 +2509,6 @@ msgstr "Brûkerskolleksjes"
 msgid "User Reviews"
 msgstr "Brûkersbeoardielingen"
 
-msgid "Changes successfully saved."
-msgstr "Wizigingen mei sukses bewarre."
-
-msgid "Please check the form for errors."
-msgstr "Kontrolearje it formulier op flaters."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Add-on kin net fuortsmiten wurde. Skeakelje dizze add-on út."
 
@@ -2547,6 +2532,9 @@ msgstr "In skriuwer hat in wizige rol foar jo add-on"
 
 msgid "An author has been removed from your add-on"
 msgstr "Der is in skriuwer fuortsmiten fan jo add-on"
+
+msgid "Changes successfully saved."
+msgstr "Wizigingen mei sukses bewarre."
 
 msgid "Validate Add-on"
 msgstr "Add-on falidearje"
@@ -2633,6 +2621,9 @@ msgstr "Tekst arkbalkefjildgebied"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Kontrolearje it formulier op flaters."
 
 msgid "Review requested."
 msgstr "Beoardieling oanfrege."
@@ -3970,11 +3961,23 @@ msgstr "List besjen"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Eigendom oerdrage"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Beoardielingslochboek ljochtgewicht-tema’s"
+
+msgid "Create a New Theme"
+msgstr "In nij tema meitsje"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr ""
+"Mei eftergrûntema’s kinne jo ienfâldichwei de útstrieling fan jo Firefox personalisearje. Tsjinje hjirûnder jo eigen ûntwerp yn, of <a href=\"%(submit_url)s\">lês hoe't jo der ien meitsje kinne</a>!"
 
 msgid "Theme Details"
 msgstr "Tema-details"
+
+msgid "Give your Theme a name."
+msgstr "Jou jo tema in namme."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Jou in moaie URL foar jo detailside."
@@ -3985,59 +3988,21 @@ msgstr "Selektearje de kategory dy't it bêste by jo tema past."
 msgid "Add some tags to describe your Theme."
 msgstr "Foegje inkelde labels ta dy't jo tema beskriuwe."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Beskriuw jo tema."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "In koarte útlis fan de basisfunksjes fan jo tema dy't werjûn wurdt yn syk- en navigaasjelisten, lykas boppe oan de detailside fan jo tema."
 
 msgid "Theme License"
 msgstr "Tema-lisinsje"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Meie oaren jo tema diele, salang se jo betankje?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "De lisinsjejouwer stiet oaren ta it wurk te kopiearjen, fersprieden, wer te jaan en út te fieren, ynklusyf kommersjeel gebrûk."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "De lisinsjejouwer stiet oaren allinnich foar net-kommersjele doelen ta it wurk te kopiearjen, fersprieden, wer te jaan en út te fieren."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Meie oaren jo tema kommersjeel brûke?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Meie oaren wurk ôfliede fan jo tema?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "De lisinsjeútjouwer stiet oaren ta it wurk te kopiearjen, fersprieden, wer te jaan en út te fieren, en stiet ek ta wurk derfan ôf te lieden."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "De lisinsjejouwer stiet oaren allinnich ta net wizige kopyen fan it wurk te kopiearjen, fersprieden en ferstjoeren &ndash; gjin derfan ôflade wurken."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Jo tema wurdt útjûn ûnder de folgjende lisinsje:"
 
 msgid "Select a license for your Theme."
 msgstr "Selektearje in lisinsje foar jo tema."
 
 msgid "Theme Design"
 msgstr "Tema-ûntwerp"
-
-msgid "Upload New Design"
-msgstr "Nij ûntwerp oplade"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "By opladen en yntsjinjen fan it formulier beoardielet it AMO-team jo bywurke ûntwerp. Undertusken bliuwt jo aktuele ûntwerp beskikber."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Jo earder opnij yntsjinne ûntwerp, dat op dit stuit op beoardieling wachtet."
-
-msgid "Pending Header"
-msgstr "Wachtsjende headerôfbylding"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Jo kinne it ûntwerp fan jo tema hjir bywurkje sa gau as dit goedkard is."
-
-msgid "Header"
-msgstr "Header"
 
 msgid "Select colors for your Theme."
 msgstr "Selektearje kleuren foar jo tema."
@@ -4062,21 +4027,6 @@ msgstr "Namme fan jo tema"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "troch <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "In nij tema meitsje"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-"Mei eftergrûntema’s kinne jo ienfâldichwei de útstrieling fan jo Firefox personalisearje. Tsjinje hjirûnder jo eigen ûntwerp yn, of <a href=\"%(submit_url)s\">lês hoe't jo der ien meitsje kinne</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Jou jo tema in namme."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "In koarte útlis fan de basisfunksjes fan jo tema dy't werjûn wurdt yn syk- en navigaasjelisten, lykas boppe oan de detailside fan jo tema."
 
 #, python-format
 msgid ""
@@ -5767,12 +5717,6 @@ msgstr "Gjin bestannen yn oplaad bestân."
 msgid "Fetching file."
 msgstr "Bestân ophelje."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "De API-ferzje, {0:.1f}, dy't jo brûke is net jildich. Wurkje by nei de aktuele ferzje fan de API, {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Noch net ymplemintearre."
-
 msgid "Shopping Made Easy"
 msgstr "Winkelje wurdt ienfâldich"
 
@@ -6960,8 +6904,8 @@ msgstr "Opmerkingen ferstopje"
 msgid "No reviews found for this period."
 msgstr "Gjin beoardielingen yn dizze perioade fûn."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] hat %(object)s rapportearre op %(date)s"
 
 msgid "Dismiss this announcement"
@@ -7782,9 +7726,6 @@ msgstr "der binne nije add-ons of Firefox-funksjes beskikber"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "de komptabiliteit fan myn add-on is mei sukses bywurke"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "myn sdk-basearre add-on is mei sukses bywurku"
-
 msgid "someone writes a review of my add-on"
 msgstr "ien skriuwt in beoardieling oer myn add-on"
 
@@ -7793,9 +7734,6 @@ msgstr "bliuw by-de-tiid mei foar add-on-ûntwikkelers relevant nijs en evenemin
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "de komptabiliteit fan myn add-on kin net bywurke wurde"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "myn sdk-basearre add-on kin net bywurke wurde"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "myn add-on wurdt troch in beoardieler beoardiele"
@@ -7944,12 +7882,6 @@ msgstr "alles"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla Add-ons is foar oanmelding oergien op Firefox Accounts. Gean troch om it ienfâldige oanmeldingsproses te foltôgjen."
-
-msgid "User Login"
-msgstr "Brûker oanmelde"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Oanmelde mei Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "Wachtwurd opnij ynstelle"

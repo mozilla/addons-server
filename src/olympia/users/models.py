@@ -16,7 +16,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text, python_2_unicode_compatible
-from django.utils.functional import cached_property, lazy
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext
 
 import olympia.core.logger
@@ -82,11 +82,6 @@ class UserEmailField(forms.EmailField):
             return UserProfile.objects.get(email=value)
         except UserProfile.DoesNotExist:
             raise forms.ValidationError(ugettext('No user with that email.'))
-
-    def widget_attrs(self, widget):
-        lazy_reverse = lazy(reverse, str)
-        return {'class': 'email-autocomplete',
-                'data-src': lazy_reverse('users.ajax')}
 
 
 class UserManager(BaseUserManager, ManagerBase):
@@ -258,21 +253,18 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return salted_hmac(key_salt, str(self.auth_id)).hexdigest()
 
     @staticmethod
-    def create_user_url(id_, url_name='profile', src=None, args=None):
-        """
-        We use <username> as the slug, unless it contains gross
-        characters - in which case use <id> as the slug.
-        """
+    def create_user_url(id_, src=None):
         from olympia.amo.utils import urlparams
-        args = args or []
-        url = reverse('users.%s' % url_name, args=[id_] + args)
+        url = reverse('users.profile', args=[id_])
         return urlparams(url, src=src)
 
     def get_themes_url_path(self, src=None, args=None):
-        return self.create_user_url(self.id, 'themes', src=src, args=args)
+        from olympia.amo.utils import urlparams
+        url = reverse('users.themes', args=[self.id] + (args or []))
+        return urlparams(url, src=src)
 
     def get_url_path(self, src=None):
-        return self.create_user_url(self.id, 'profile', src=src)
+        return self.create_user_url(self.id, src=src)
 
     @cached_property
     def groups_list(self):

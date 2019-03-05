@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -150,15 +150,6 @@ msgstr "Antes de alterar o seu idioma por omissão tem de ter um nome, resumo e 
 
 msgid "A license must be selected."
 msgstr "Tem de ser selecionada uma licença."
-
-msgid "Give Your Theme a Name."
-msgstr "Dê um nome ao seu tema."
-
-msgid "Describe your Theme."
-msgstr "Descreva o seu tema."
-
-msgid "Enter a new author's email address"
-msgstr "Introduza o novo endereço de email do autor"
 
 msgid "Listed"
 msgstr "Listado"
@@ -863,9 +854,6 @@ msgstr "Coleções"
 msgid "Collections I've Made"
 msgstr "Coleções que fiz"
 
-msgid "My Favorite Add-ons"
-msgstr "Os meus extras favoritos"
-
 msgid "More&hellip;"
 msgstr "Mais&hellip;"
 
@@ -1198,6 +1186,9 @@ msgstr "As coleções são grupos de extras relacionados que qualquer um pode cr
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "por %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Os meus extras favoritos"
 
 msgid "Create a Collection"
 msgstr "Criar uma coleção"
@@ -2587,12 +2578,6 @@ msgstr "Coleções do utilizador"
 msgid "User Reviews"
 msgstr "Comentários do utilizador"
 
-msgid "Changes successfully saved."
-msgstr "Alterações guardadas com sucesso."
-
-msgid "Please check the form for errors."
-msgstr "Por favor confirme se o formulário tem erros."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "O extra não pode ser eliminado. Em vez disso desative este extra."
 
@@ -2616,6 +2601,9 @@ msgstr "Um autor teve o seu papel alterado no seu extra"
 
 msgid "An author has been removed from your add-on"
 msgstr "Foi removido um autor do seu extra"
+
+msgid "Changes successfully saved."
+msgstr "Alterações guardadas com sucesso."
 
 msgid "Validate Add-on"
 msgstr "Validar extra"
@@ -2703,6 +2691,9 @@ msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "Por favor confirme se o formulário tem erros."
 
 #, fuzzy
 msgid "Review requested."
@@ -4134,11 +4125,22 @@ msgstr "Ver listagem"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Transferir propriedade"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Temas leves"
+
+msgid "Create a New Theme"
+msgstr "Criar um novo tema"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Os temas de fundo permitem-lhe personalizar facilmente a aparência do seu Firefox. Submeta o seu próprio design abaixo, ou <a href=\"%(submit_url)s\">aprenda a criar um</a>!"
 
 msgid "Theme Details"
 msgstr "Detalhes do tema"
+
+msgid "Give your Theme a name."
+msgstr "Dê um nome ao seu tema."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Forneça uma URL amigável para a sua página de detalhes."
@@ -4149,59 +4151,21 @@ msgstr "Selecione a categoria que melhor descreve o seu tema."
 msgid "Add some tags to describe your Theme."
 msgstr "Adicione algumas etiquetas para descrever o seu tema."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Descreva o seu tema."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Uma explicação curta das funcionalidades básicas do seu tema é apresentada nas listagens de pesquisa e de navegação, assim como no início da página de detalhes do seu tema."
 
 msgid "Theme License"
 msgstr "Licença do tema"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Outras pessoas podem compartilhar o seu tema, desde que lhe sejam atribuído créditos?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "O licenciante permite que outros possam copiar, distribuir, mostrar e destacar o trabalho, incluindo para fins comerciais."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "O licenciante permite que outros copiem, distribuam e efetuem o trabalho apenas para fins não comerciais."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Outras pessoas podem utilizar comercialmente o seu tema?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Outras pessoas podem criar outros trabalhos derivados do seu tema?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "O licenciante permite que outros copiem, distribuam, mostrem e executem o trabalho, bem como a criação de trabalhos derivados com base neste."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "O licenciante permite que outros copiem, distribuam e transmitam apenas cópias inalteradas do trabalho - não trabalhos derivados baseados no mesmo."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "O seu tema será lançado sob a seguinte licença:"
 
 msgid "Select a license for your Theme."
 msgstr "Selecione uma licença para o seu tema."
 
 msgid "Theme Design"
 msgstr "Design do tema"
-
-msgid "Upload New Design"
-msgstr "Enviar um novo design"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Após envio e submissão do formulário, a equipa do AMO irá rever o seu design atualizado. Durante este processo o design atual continuará a ser público."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "O seu design anteriormente resubmetido e que aguarda revisão."
-
-msgid "Pending Header"
-msgstr "Cabeçalho em espera"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Pode atualizar aqui o design do seu tema após este ter sido aprovado."
-
-msgid "Header"
-msgstr "Cabeçalho"
 
 msgid "Select colors for your Theme."
 msgstr "Selecione as cores para o seu tema."
@@ -4226,20 +4190,6 @@ msgstr "Nome do seu tema"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "Disponibilizado sob <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Criar um novo tema"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Os temas de fundo permitem-lhe personalizar facilmente a aparência do seu Firefox. Submeta o seu próprio design abaixo, ou <a href=\"%(submit_url)s\">aprenda a criar um</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Dê um nome ao seu tema."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Uma explicação curta das funcionalidades básicas do seu tema é apresentada nas listagens de pesquisa e de navegação, assim como no início da página de detalhes do seu tema."
 
 #, python-format
 msgid ""
@@ -5933,12 +5883,6 @@ msgstr "Não há ficheiros no ficheiro enviado."
 msgid "Fetching file."
 msgstr "A obter o ficheiro."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "Ainda não implementado."
-
 msgid "Shopping Made Easy"
 msgstr "As compras, mais fáceis"
 
@@ -7208,7 +7152,7 @@ msgid "No reviews found for this period."
 msgstr "Nenhuma revisão encontrada para este período."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -8032,9 +7976,6 @@ msgstr "estão disponíveis novos extras ou funcionalidades do Firefox"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "a compatibilidade do meu extra foi atualizada com sucesso"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "o meu extra baseado no sdk foi atualizado com sucesso"
-
 msgid "someone writes a review of my add-on"
 msgstr "alguém escreveu um comentário sobre o meu extra"
 
@@ -8043,9 +7984,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a compatibilidade do meu extra não pode ser atualizada"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "o meu extra baseado no sdk não pode ser atualizado"
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8197,12 +8135,6 @@ msgid "all"
 msgstr "tudo"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "Nome de utilizador"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

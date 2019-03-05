@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y \
         locales                          \
         zlib1g-dev                       \
         libffi-dev                       \
+        libmagic-dev                     \
         libssl-dev                       \
         nodejs                           \
         uuid-dev                         \
@@ -48,6 +49,9 @@ RUN apt-get update && apt-get install -y \
         librsvg2-bin                     \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush                         \
+        # Use libmaxmind for speedy geoip lookups
+        libmaxminddb0                    \
+        libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get -t stretch-backports install -y \

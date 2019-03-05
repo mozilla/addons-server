@@ -530,7 +530,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -588,7 +589,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         path = os.path.join(
             settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(url=url, listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(url=url, listed=False)
         addon = Addon.unfiltered.get()
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
@@ -623,7 +625,8 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
             settings.ROOT,
             'src/olympia/devhub/tests/addons/valid_webextension.xpi')
         self.upload = self.get_upload(abspath=path)
-        response = self.post(listed=False)
+        with mock.patch('olympia.devhub.views.auto_sign_file', lambda x: None):
+            response = self.post(listed=False)
         addon = Addon.objects.get()
         self.assert3xx(
             response, reverse('devhub.submit.source', args=[addon.slug]))
@@ -642,8 +645,9 @@ class TestAddonSubmitSource(TestSubmitBase):
     def post(self, has_source, source, expect_errors=False, status_code=200):
         data = {
             'has_source': 'yes' if has_source else 'no',
-            'source': source,
         }
+        if source is not None:
+            data['source'] = source
         response = self.client.post(self.url, data, follow=True)
         assert response.status_code == status_code
         if not expect_errors:
@@ -1414,8 +1418,7 @@ class TestAddonSubmitDetails(DetailsPageMixin, TestSubmitBase):
     def test_source_submission_notes_not_shown_by_default(self):
         url = reverse('devhub.submit.source', args=[self.addon.slug])
         response = self.client.post(url, {
-            'has_source': 'no',
-            'source': None,
+            'has_source': 'no'
         }, follow=True)
 
         assert response.status_code == 200
@@ -1870,10 +1873,11 @@ class VersionSubmitUploadMixin(object):
             compatible_apps = [amo.FIREFOX]
         data = {
             'upload': self.upload.uuid.hex,
-            'source': source,
             'compatible_apps': [p.id for p in compatible_apps],
             'admin_override_validation': override_validation
         }
+        if source is not None:
+            data['source'] = source
         response = self.client.post(self.url, data, **(extra_kwargs or {}))
         assert response.status_code == expected_status
         return response
@@ -2197,8 +2201,14 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
 class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
     channel = amo.RELEASE_CHANNEL_UNLISTED
 
-    @mock.patch('olympia.reviewers.utils.sign_file')
-    def test_success(self, mock_sign_file):
+    def setUp(self):
+        super(TestVersionSubmitUploadUnlisted, self).setUp()
+        # Mock sign_file() to avoid errors because signing is not enabled.
+        patch = mock.patch('olympia.reviewers.utils.sign_file')
+        self.sign_file_mock = patch.start()
+        self.addCleanup(patch.stop)
+
+    def test_success(self):
         """Sign automatically."""
         # No validation errors or warning.
         result = {
@@ -2216,7 +2226,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
         assert version.all_files[0].status == amo.STATUS_PUBLIC
         self.assert3xx(response, self.get_next_url(version))
-        assert mock_sign_file.called
+        assert self.sign_file_mock.call_count == 1
 
 
 class TestVersionSubmitSource(TestAddonSubmitSource):

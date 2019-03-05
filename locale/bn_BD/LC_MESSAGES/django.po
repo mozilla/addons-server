@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2018-11-02 15:00+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,15 +152,6 @@ msgstr "পূর্বনির্ধারিত লোকেল পরিব�
 
 msgid "A license must be selected."
 msgstr "একটি লাইসেন্স অবশ্যই নির্বাচন করতে হবে।"
-
-msgid "Give Your Theme a Name."
-msgstr "আপনার থিমের একটি নাম দিন।"
-
-msgid "Describe your Theme."
-msgstr "আপনার থিমটির বর্ণনা দিন।"
-
-msgid "Enter a new author's email address"
-msgstr "একজন নতুন সম্পাদকের ইমেল ঠিকানা প্রবেশ করান"
 
 msgid "Listed"
 msgstr "তালিকাভুক্ত"
@@ -840,9 +831,6 @@ msgstr "সংগ্রহ"
 msgid "Collections I've Made"
 msgstr "আমার তৈরি সংগ্রহসমূহ"
 
-msgid "My Favorite Add-ons"
-msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
-
 msgid "More&hellip;"
 msgstr "More&hellip;"
 
@@ -1168,6 +1156,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "%(author_link)s দ্বারা"
+
+msgid "My Favorite Add-ons"
+msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
 
 msgid "Create a Collection"
 msgstr "সংগ্রহ তৈরি করুন"
@@ -2528,12 +2519,6 @@ msgstr "ব্যবহারকারীরর সংগ্রহসমূহ"
 msgid "User Reviews"
 msgstr "ব্যবহারকারীর পর্যালোচনা"
 
-msgid "Changes successfully saved."
-msgstr "পরিবর্তনগুলো সফলতার সাথে সংরক্ষিত হয়েছে।"
-
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
@@ -2557,6 +2542,9 @@ msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "পরিবর্তনগুলো সফলতার সাথে সংরক্ষিত হয়েছে।"
 
 msgid "Validate Add-on"
 msgstr "বৈধ এড-অন"
@@ -2641,6 +2629,9 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Please check the form for errors."
 msgstr ""
 
 msgid "Review requested."
@@ -3965,11 +3956,22 @@ msgstr ""
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "থিম রিভিউ"
+
+msgid "Create a New Theme"
+msgstr "একটি নতুন থিম তৈরী করুন"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
 
 msgid "Theme Details"
 msgstr "থিম এর বিস্তারিত"
+
+msgid "Give your Theme a name."
+msgstr "আপনার থিমের একটি নাম দিন।"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -3980,59 +3982,20 @@ msgstr ""
 msgid "Add some tags to describe your Theme."
 msgstr ""
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "আপনার থিমটির বর্ণনা দিন।"
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
 msgstr "থিম লাইসেন্স"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr ""
-
-msgid "Can others create derivative works from your Theme?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
-msgstr ""
 
 msgid "Select a license for your Theme."
 msgstr ""
 
 msgid "Theme Design"
 msgstr "থিম ডিজাইন"
-
-msgid "Upload New Design"
-msgstr "নতুন ডিজাইন আপলোড করুন"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "আপলোড এবং ফর্ম সাবমিট করার পর এএমও দল আপনার হালনাগাদকৃত ডিজাইন পর্যালোচনা করবে। সেসময় পর্যন্ত, আপনার বর্তমান ডিজাইন সকলের নিকট দেখা যাবে।"
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "আপনি পূর্বেই ডিজাইন সাবমিট করেছিলেন যেটি বর্তমানে পর্যালোচনার অপেক্ষায় রয়েছে।"
-
-msgid "Pending Header"
-msgstr "পেন্ডিং হেডার"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "আপনার থিমের ডিজাইন গৃহীত হলে আপনি এখান হতেই তা হালনাগাদ করতে পারবেন।"
-
-msgid "Header"
-msgstr "হেডার"
 
 msgid "Select colors for your Theme."
 msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
@@ -4057,19 +4020,6 @@ msgstr "আপনার থিমের নাম"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "<a href=\"%(profile_url)s\"> %(user)s </a> দ্বারা"
-
-msgid "Create a New Theme"
-msgstr "একটি নতুন থিম তৈরী করুন"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Give your Theme a name."
-msgstr "আপনার থিমের একটি নাম দিন।"
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5746,12 +5696,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "এখনও বাস্তবায়িত হয়নি।"
-
 msgid "Shopping Made Easy"
 msgstr ""
 
@@ -6975,7 +6919,7 @@ msgid "No reviews found for this period."
 msgstr ""
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -7781,9 +7725,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -7791,9 +7732,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -7942,12 +7880,6 @@ msgid "all"
 msgstr "সব"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "ব্যবহারকারীর লগিন"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

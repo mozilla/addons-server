@@ -3,6 +3,7 @@ import os
 import six
 
 from django.conf import settings
+from django.utils.encoding import smart_text
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.test.utils import override_settings
@@ -23,7 +24,19 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams
 from olympia.files.models import File
 from olympia.users.models import UserProfile
-from olympia.versions import views
+
+
+def decode_http_header_value(value):
+    """
+    Reverse the encoding that django applies to bytestrings in
+    HttpResponse._convert_to_charset(). Needed to test header values that we
+    explicitly pass as bytes such as filenames for content-disposition or
+    xsendfile headers.
+    """
+    if six.PY3:
+        return value.encode('latin-1').decode('utf-8')
+    else:
+        return value.decode('utf-8')
 
 
 class TestViews(TestCase):
@@ -35,59 +48,6 @@ class TestViews(TestCase):
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
         self.url_list = reverse('addons.versions', args=[self.addon.slug])
-        self.url_detail = reverse(
-            'addons.versions',
-            args=[self.addon.slug, self.addon.current_version.version])
-
-    @mock.patch.object(views, 'PER_PAGE', 1)
-    def test_version_detail(self):
-        version = version_factory(addon=self.addon, version='2.0')
-        version.update(created=self.days_ago(2))
-        version = version_factory(addon=self.addon, version='2.1')
-        version.update(created=self.days_ago(1))
-        urls = [(v.version, reverse('addons.versions',
-                                    args=[self.addon.slug, v.version]))
-                for v in self.addon.versions.all()]
-
-        version, url = urls[0]
-        assert version == '2.1'
-        response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, self.url_list + '?page=1#version-%s' % version)
-
-        version, url = urls[1]
-        assert version == '2.0'
-        response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, self.url_list + '?page=2#version-%s' % version)
-
-        version, url = urls[2]
-        assert version == '1.0'
-        response = self.client.get(url, follow=True)
-        self.assert3xx(
-            response, self.url_list + '?page=3#version-%s' % version)
-
-    def test_version_detail_cache_key_normalized(self):
-        """Test regression with memcached cache-key.
-
-        https://github.com/mozilla/addons-server/issues/8622
-        """
-        url = reverse(
-            'addons.versions', args=[self.addon.slug, u'Âûáèðàåì âåðñèþ 23.0'])
-
-        response = self.client.get(url, follow=True)
-        assert response.status_code == 404
-
-    def test_version_detail_404(self):
-        bad_pk = self.addon.current_version.pk + 42
-        response = self.client.get(reverse('addons.versions',
-                                           args=[self.addon.slug, bad_pk]))
-        assert response.status_code == 404
-
-        bad_pk = u'lolé'
-        response = self.client.get(reverse('addons.versions',
-                                           args=[self.addon.slug, bad_pk]))
-        assert response.status_code == 404
 
     def get_content(self):
         response = self.client.get(self.url_list)
@@ -111,8 +71,6 @@ class TestViews(TestCase):
     def test_version_link(self):
         version = self.addon.current_version.version
         doc = self.get_content()
-        link = doc('.version h3 > a').attr('href')
-        assert link == self.url_detail
         assert doc('.version').attr('id') == 'version-%s' % version
 
     def test_version_list_button_shows_download_anyway(self):
@@ -150,11 +108,6 @@ class TestViews(TestCase):
         """Unlisted addons are not listed and have no version list."""
         self.make_addon_unlisted(self.addon)
         assert self.client.get(self.url_list).status_code == 404
-
-    def test_version_detail_does_not_return_unlisted_versions(self):
-        self.addon.versions.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        response = self.client.get(self.url_detail)
-        assert response.status_code == 404
 
     def test_version_list_file_size_uses_binary_prefix(self):
         response = self.client.get(self.url_list)
@@ -507,23 +460,19 @@ class TestDownloadSource(TestCase):
         )
         self.url = reverse('downloads.source', args=(self.version.pk, ))
 
-    @pytest.mark.skipif(
-        six.PY3,
-        reason='Currently broken in Python 3, needs to be fixed')
     def test_owner_should_be_allowed(self):
         self.client.login(email=self.user.email)
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
-        filename = self.filename
-        if not isinstance(filename, six.text_type):
-            filename = filename.decode('utf8')
-        assert filename in response['Content-Disposition'].decode('utf8')
-        path = self.version.source.path
-        if not isinstance(path, six.text_type):
-            path = path.decode('utf8')
-        assert response[settings.XSENDFILE_HEADER].decode('utf8') == path
+        filename = smart_text(self.filename)
+        content_disposition = response['Content-Disposition']
+        assert filename in decode_http_header_value(content_disposition)
+        expected_path = smart_text(self.version.source.path)
+        xsendfile_header = decode_http_header_value(
+            response[settings.XSENDFILE_HEADER])
+        assert xsendfile_header == expected_path
 
     def test_anonymous_should_not_be_allowed(self):
         response = self.client.get(self.url)
@@ -536,9 +485,6 @@ class TestDownloadSource(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
-    @pytest.mark.skipif(
-        six.PY3,
-        reason='Currently broken in Python 3, needs to be fixed')
     def test_group_binarysource_should_be_allowed(self):
         GroupUser.objects.create(user=self.user, group=self.group)
         self.client.login(email=self.user.email)
@@ -546,14 +492,13 @@ class TestDownloadSource(TestCase):
         assert response.status_code == 200
         assert response[settings.XSENDFILE_HEADER]
         assert 'Content-Disposition' in response
-        filename = self.filename
-        if not isinstance(filename, six.text_type):
-            filename = filename.decode('utf8')
-        assert filename in response['Content-Disposition'].decode('utf8')
-        path = self.version.source.path
-        if not isinstance(path, six.text_type):
-            path = path.decode('utf8')
-        assert response[settings.XSENDFILE_HEADER].decode('utf8') == path
+        filename = smart_text(self.filename)
+        content_disposition = response['Content-Disposition']
+        assert filename in decode_http_header_value(content_disposition)
+        expected_path = smart_text(self.version.source.path)
+        xsendfile_header = decode_http_header_value(
+            response[settings.XSENDFILE_HEADER])
+        assert xsendfile_header == expected_path
 
     def test_no_source_should_go_in_404(self):
         self.version.source = None

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 14:06+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-26 16:01+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "Language: hu\n"
@@ -159,15 +159,6 @@ msgstr "Az alapértelmezett nyelv módosítása előtt meg kell adnia a nevét, 
 
 msgid "A license must be selected."
 msgstr "Ki kell választani egy licencet."
-
-msgid "Give Your Theme a Name."
-msgstr "Adjon egy nevet a témának."
-
-msgid "Describe your Theme."
-msgstr "Írja le a témát."
-
-msgid "Enter a new author's email address"
-msgstr "Írjon be egy új szerzői e-mail címet"
 
 # Column name in a table.
 msgid "Listed"
@@ -859,9 +850,6 @@ msgstr "Gyűjtemények"
 msgid "Collections I've Made"
 msgstr "Saját gyűjtemények"
 
-msgid "My Favorite Add-ons"
-msgstr "Kedvenc kiegészítőim"
-
 msgid "More&hellip;"
 msgstr "Tovább&hellip;"
 
@@ -1192,6 +1180,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "szerző: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Kedvenc kiegészítőim"
 
 msgid "Create a Collection"
 msgstr "Gyűjtemény készítése"
@@ -2531,12 +2522,6 @@ msgstr "Felhasználó gyűjteményei"
 msgid "User Reviews"
 msgstr "Felhasználói értékelések"
 
-msgid "Changes successfully saved."
-msgstr "A változások sikeresen elmentve."
-
-msgid "Please check the form for errors."
-msgstr "Ellenőrizze az űrlap hibáit."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "A kiegészítő nem törölhető. Inkább tiltsa le azt."
 
@@ -2560,6 +2545,9 @@ msgstr "A kiegészítő egyik szerzőjének szerepe megváltozott"
 
 msgid "An author has been removed from your add-on"
 msgstr "A kiegészítő egy szerzője eltávolításra került"
+
+msgid "Changes successfully saved."
+msgstr "A változások sikeresen elmentve."
 
 msgid "Validate Add-on"
 msgstr "Kiegészítő ellenőrzése"
@@ -2643,6 +2631,9 @@ msgstr "Az eszköztár mezőterületének szövege"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Az eszköztáron található mezők, mint a keresősáv, szövegszíne. Leírófájl mező: toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Ellenőrizze az űrlap hibáit."
 
 msgid "Review requested."
 msgstr "Értékelés kérve."
@@ -3969,11 +3960,21 @@ msgstr "Élő tesztelés"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "A kiegészítő ideiglenes telepítése a Firefoxba élő tesztelési és hibakeresési célokkal."
 
-msgid "Transfer ownership"
-msgstr "Tulajdonjog átadása"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "A könnyűsúlyú téma szerkesztése letiltásra került."
+
+msgid "Create a New Theme"
+msgstr "Új téma létrehozása"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "A háttértémák egyszerűen testre szabhatóvá teszik a Firefox kinézetét. Küldje be saját dizájnját lent, vagy <a href=\"%(submit_url)s\">ismerje meg hogyan készíthet egyet</a>!"
 
 msgid "Theme Details"
 msgstr "Téma részletei"
+
+msgid "Give your Theme a name."
+msgstr "Adjon egy nevet a témának."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Adjon meg egy szép URL-t a részletek oldalához."
@@ -3984,59 +3985,20 @@ msgstr "Válassza ki a kategóriát, amely legjobban jellemzi a témáját."
 msgid "Add some tags to describe your Theme."
 msgstr "Adjon meg néhány címkét, amely jellemzi a témáját."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a keresésekben és a böngészi listázásokban, valamint a témája részletező oldalának tetején."
+msgid "Describe your Theme."
+msgstr "Írja le a témát."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a keresésekben és a böngészi listázásokban, valamint a témája részletező oldalának tetején"
 
 msgid "Theme License"
 msgstr "Téma licence"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Megoszthatják mások a témáját, ha megjelölik Önt forrásként?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott munkát, akár kereskedelmi célokra is."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott munkát, de csak akkor ha felhasználásuk nem kereskedelmi jellegű."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Használhatják-e mások kereskedelmi célokra a témáját?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Készíthetnek-e a mások származékos munkákat a témájából?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni, megjeleníteni és felhasználni az adott, vagy az ebből származtatott munkát."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "A licencadó lehetővé teszi másoknak, hogy lehessen másolni, terjeszteni és átadni az adott munkát, amíg az változatlan marad — nem engedélyezett ebből származtatott munka készítése."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "A témája a következő licenc alatt kerül kiadásra:"
 
 msgid "Select a license for your Theme."
 msgstr "Válasszon licencet a témájához."
 
 msgid "Theme Design"
 msgstr "Téma dizájn"
-
-msgid "Upload New Design"
-msgstr "Új dizájn feltöltése"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Feltöltés és az űrlap feladása után, az AMO csapat értékeli a feltöltött dizájnt. Addig is, a jelenlegi dizájn továbbra is nyilvános marad."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Az előzőleg benyújtott dizájnja, amely értékelésre vár."
-
-msgid "Pending Header"
-msgstr "Függő fejléc"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Majd frissítheti a témadizájnt itt, amint az elfogadásra került."
-
-msgid "Header"
-msgstr "Fejléc"
 
 msgid "Select colors for your Theme."
 msgstr "Válasszon színeket a témájához."
@@ -4059,19 +4021,6 @@ msgstr "Téma neve"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "készítette: <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Új téma létrehozása"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "A háttértémák egyszerűen testre szabhatóvá teszik a Firefox kinézetét. Küldje be saját dizájnját lent, vagy <a href=\"%(submit_url)s\">ismerje meg hogyan készíthet egyet</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Adjon egy nevet a témának."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Egy rövid magyarázat a témája alapfunkcionalitásáról, amely megjelenik a keresésekben és a böngészi listázásokban, valamint a témája részletező oldalának tetején"
 
 #, python-format
 msgid ""
@@ -5757,12 +5706,6 @@ msgstr "Nincsenek fájlok a feltöltött fájlban."
 msgid "Fetching file."
 msgstr "Fájl feldolgozása."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Az API verzió, amit használ ({0:.1f}), érvénytelen. Frissítsen a jelenlegi, {1:.1f} API verzióra."
-
-msgid "Not implemented yet."
-msgstr "Még nem megvalósított."
-
 msgid "Shopping Made Easy"
 msgstr "Könnyűvé tett vásárlás"
 
@@ -6948,8 +6891,8 @@ msgid "No reviews found for this period."
 msgstr "Nincsenek értékelések ebben az időszakban."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] jelentette: %(object)s, ekkor: %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(country_code)s] jelentette: %(object)s, ekkor: %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Bejelentés elvetése"
@@ -7766,9 +7709,6 @@ msgstr "új kiegészítő vagy Firefox funkció érhető el"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "a kiegészítő kompatibilitása sikeresen frissítve"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "az sdk-alapú kiegészítő frissítése sikeres"
-
 msgid "someone writes a review of my add-on"
 msgstr "valaki értékelést ír a kiegészítőmhöz"
 
@@ -7777,9 +7717,6 @@ msgstr "legyen naprakész a hírekkel és a kiegészítőfejlesztők számára r
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "a kiegészítő kompatibilitása nem frissíthető"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "az sdk-alapú kiegészítő nem frissíthető"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "a kiegészítőmet egy szerkesztő értékeli"
@@ -7928,12 +7865,6 @@ msgstr "mind"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "A Mozilla Kiegészítők áttért a Firefox fiókokra a bejelentkezéshez. Folytassa az egyszerű bejelentkezési folyamat befejezéséhez."
-
-msgid "User Login"
-msgstr "Felhasználónév"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Bejelentkezés Firefox fiókkal"
 
 msgid "Password Reset"
 msgstr "Jelszó beállítása"

@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2018-12-19 11:42+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-24 21:13+0000\n"
+"Last-Translator: Martin Blažek <blazekm@protonmail.com>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -27,7 +27,7 @@ msgid "This display name cannot be used."
 msgstr "Toto jméno nemůže být použito."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Domovskou stránku lze použít jen pro odkaz na externí webové stránky."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Obrázky musí být ve formátech PNG či JPG."
@@ -136,7 +136,7 @@ msgstr[1] "Všechny štítky musí mít alespoň {0} znaky."
 msgstr[2] "Všechny štítky musí mít alespoň {0} znaků."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Zadaný text byl označen jako spam."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "V době, kdy je váš doplněk pro tuto aplikaci veden jako doporučený, nemůžete změnit jeho umístění v kategoriích."
@@ -161,15 +161,6 @@ msgstr "Dříve, než změníte výchozí jazyk, musíte mít v tomto jazyce vyp
 
 msgid "A license must be selected."
 msgstr "Musí být zvolena licence."
-
-msgid "Give Your Theme a Name."
-msgstr "Napište název vzhledu."
-
-msgid "Describe your Theme."
-msgstr "Popište svůj motiv vzhledu."
-
-msgid "Enter a new author's email address"
-msgstr "Vložte novou e-mailovou adresu autora"
 
 # Column name in a table.
 msgid "Listed"
@@ -712,11 +703,11 @@ msgid "Admin Tools"
 msgstr "Nástroje administrátora"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Kladné celé číslo"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Toto pole lze použít jen pro odkaz na externí webové stránky. URL na %(domain)s nejsou povoleny."
 
 msgid "Incorrect, please try again."
 msgstr "Neplatné, zkuste to prosím znovu."
@@ -730,13 +721,11 @@ msgstr "Musí se jednat o platnou barvu v hexa formátu, například #000000."
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Některá funkčnost je v průběhu údržby webu dočasně nedostupná. Brzy opět poběžíme naplno."
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Musí být alespoň jeden vlastník."
+msgstr "Musí obsahovat alespoň jeden tisknutelný znak."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Musí být alespoň jeden vlastník."
+msgstr "Ujistěte se, že toto pole obsahuje alespoň jeden znak písmen nebo číslic."
 
 msgid "Not allowed"
 msgstr "Není povoleno"
@@ -880,9 +869,6 @@ msgstr "Sbírky"
 msgid "Collections I've Made"
 msgstr "Sbírky, které jsem vytvořili"
 
-msgid "My Favorite Add-ons"
-msgstr "Mé oblíbené doplňky"
-
 msgid "More&hellip;"
 msgstr "Více&hellip;"
 
@@ -947,7 +933,7 @@ msgid "Error decoding signature."
 msgstr "Chyba při čtení podpisu."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Špatný typ pro jeden nebo více klíčů v datovém obsahu"
 
 msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
@@ -1212,6 +1198,9 @@ msgstr "Sbírky jsou skupiny podobných doplňků, které může kdokoliv vytvo�
 #, python-format
 msgid "by %(author_link)s"
 msgstr "od autora %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mé oblíbené doplňky"
 
 msgid "Create a Collection"
 msgstr "Vytvořit sbírku"
@@ -1906,119 +1895,119 @@ msgid "Alerts & Updates"
 msgstr "Upozornění a aktualizace"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou sledovat stav úkolů a zvyšovat efektivitu práce. Najděte si rozšíření, které obnovuje obsah panelů, pomáhá zvýšit produktivitu atd."
 
 msgid "Appearance"
 msgstr "Vzhled"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření, která upravují vzhled webových stránek i samotného Firefoxu. Tato kategorie obsahuje rozšíření pro nastavení tmavého vzhledu, správu panelů a další."
 
 msgid "Bookmarks"
 msgstr "Záložky"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření, které ochrání záložky heslem, najde duplikáty nebo nefunkční odkazy a další."
 
 msgid "Download Management"
 msgstr "Stahování souborů"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vám pomohou stahovat webové stránky, hudbu nebo videa. Máme také rozšíření pro správu stahování, sdílení souborů a další."
 
 msgid "Feeds, News & Blogging"
 msgstr "RSS a blogování"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která odstraní nepořádek, takže můžete sledovat sociálních sítě, vyhledávat na blogu, používat RSS kanály, ulevit svým očím a další."
 
 msgid "Games & Entertainment"
 msgstr "Hry a zábava"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox se kterým si užijete spoustu zábavy. Tato kategorie zahrnuje rozšíření, která mohou zlepšit hraní her, ovládání přehrávání videí apod."
 
 msgid "Language Support"
 msgstr "Podpora jazyků"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která nabízejí podporu jazyků jako je kontrola gramatiky, vyhledávání slov, překlad textů, převod textu na řeč a další."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotografie a média"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vylepšují fotky, hudbu a videa. Rozšíření v této kategorii upravují zvuk a videa, dohledávají texty k obrázkům a další."
 
 msgid "Privacy & Security"
 msgstr "Soukromí a bezpečnost"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro soukromé a bezpečnější prohlížení. Tato kategorie obsahuje rozšíření blokující nepříjemné reklamy a sledovací prvky nebo spravují přesměrování a další."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, IP adresy, domény a další."
 
 msgid "Shopping"
 msgstr "Nakupování"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která vás pomohou při online nákupech, vyhledávání kupónů, obchodů nebo analýzou recenzí."
 
 msgid "Social & Communication"
 msgstr "Sdílení a sociální sítě"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox pro zlepšení sociálních sítí a psaní zpráv. Tato kategorie zahrnuje funkce pro oznámení v panelech, stahování vidí videa a další."
 
 msgid "Tabs"
 msgstr "Panely"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox a přizpůsobte si obsah nového panelu. Objevte rozšíření, která mohou ovládat panely, měnit způsob jejich ovládání a další."
 
 msgid "Web Development"
 msgstr "Vývoj webu"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
-msgstr ""
+msgstr "Stáhněte si nástroje pro Firefox a vývoj webových aplikací. Tato kategorie zahrnuje rozšíření pro GitHub, nastavení user agenta, správu cookies a další."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
 msgstr "Ostatní"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která mohou být až nepředvídatelně kreativní, ale přesto užitečná pro různé úkoly."
 
 msgid "Device Features & Location"
 msgstr "Vlastnosti zařízení a umístění"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření a vylepšete si Firefox pro Android. Rychlá vyhledávání, uvolnění systémových zdrojů, psaní poznámek a další."
 
 msgid "Experimental"
 msgstr "Experimentální"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox, která jsou pravidelně aktualizována a připravena pro veřejné testování. Vaše připomínky pomohou vývojářům při změnách pro připravované verze."
 
 msgid "Performance"
 msgstr "Výkon"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření, která zvýší výkonnost Firefoxu. Najděte rozšíření, která vám pomohou zvýšit produktivitu a efektivitu tím, že zablokujete nepříjemné reklamy a další."
 
 msgid "Photos & Media"
 msgstr "Fotky a média"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefoxu a vylepšete fotografie a další média. Tato kategorie zahrnuje rozšíření pro zpětné vyhledávání obrázků, zachycení snímků stránek a další."
 
 msgid "Security & Privacy"
 msgstr "Bezpečnost a soukromí"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr ""
+msgstr "Stáhněte si rozšíření pro Firefox a bezpečné a soukromé prohlížení webu. Objevte rozšíření, která mohou zastavit záludné sledovací reklamy, snadno vymazat historii prohlížení a další."
 
 msgid "Social Networking"
 msgstr "Sociální sítě"
@@ -2533,12 +2522,6 @@ msgstr "Sbírky uživatele"
 msgid "User Reviews"
 msgstr "Recenze uživatelů"
 
-msgid "Changes successfully saved."
-msgstr "Změny byly úspěšně uloženy."
-
-msgid "Please check the form for errors."
-msgstr "Zkontrolujte prosím chyby ve formuláři."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Doplněk nemůže být smazán. Na místo toho jej zakažte."
 
@@ -2563,6 +2546,9 @@ msgstr "U vašeho doplňku autor změnil roli"
 msgid "An author has been removed from your add-on"
 msgstr "Autor byl u vašeho doplňku odebrán"
 
+msgid "Changes successfully saved."
+msgstr "Změny byly úspěšně uloženy."
+
 msgid "Validate Add-on"
 msgstr "Kontrola doplňku"
 
@@ -2584,13 +2570,13 @@ msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "Obrázek musí být alespoň {0} pixelů široký a {1} pixelů vysoký."
 
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr ""
+msgstr "Rozměry obrázku musí být v poměru 4:3."
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Ikona musí být alespoň {0} pixelů široká i vysoká."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Ikona musí být čtvercová (stejná šířka a výška)."
 
 msgid "There was an error uploading your preview."
 msgstr "Při nahrávání obrázku se vyskytla chyba."
@@ -2645,6 +2631,9 @@ msgstr "Text polí v nástrojových lištách"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu: toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Zkontrolujte prosím chyby ve formuláři."
 
 msgid "Review requested."
 msgstr "Vyžádána kontrola."
@@ -2839,7 +2828,7 @@ msgstr[1] "<b>{0}</b> motivy vzhledu"
 msgstr[2] "<b>{0}</b> motivů vzhledu"
 
 msgid "Edit Product Page"
-msgstr ""
+msgstr "Upravit stránku produktu"
 
 msgid "None"
 msgstr "Žádné"
@@ -2942,7 +2931,7 @@ msgid "View Listing"
 msgstr "Stránka doplňku"
 
 msgid "View Product Page"
-msgstr ""
+msgstr "Zobrazit stránku produktu"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Tento souhrn by měl jasně vysvětlit, k čemu váš doplněk slouží. Bude zobrazen v seznamech a vyhledávání a poslouží kontrolorům při testování vašeho doplňku."
@@ -3110,13 +3099,13 @@ msgid "Upload a Custom Icon..."
 msgstr "Nahrání vlastní ikonky..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Podporovanými typy jsou PNG a JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Ikony musí být čtvercové a mít minimální velikost 128x128 pixelů."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
-msgstr ""
+msgstr "Velké ikony budou automaticky zmenšeny na 128x128 pixelů."
 
 msgid "Screenshots"
 msgstr "Obrázky"
@@ -3951,16 +3940,27 @@ msgid "Check to see if your extension is compatible with Firefox."
 msgstr "Ověřte, zda je vaše rozšíření kompatibilní s Firefoxem."
 
 msgid "Live Testing"
-msgstr ""
+msgstr "Testování naživo"
 
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Přesun vlastnictví"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Záznam kontrol lehkých vzhledů"
+
+msgid "Create a New Theme"
+msgstr "Vytvoření nového vzhledu"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Motivy vám dávají možnost si snadno přizpůsobit vzhled svého Firefoxu. Přidejte svůj vlastní motiv níže nebo <a href=\"%(submit_url)s\">si přečtěte, jak vytvořit nový</a>!"
 
 msgid "Theme Details"
 msgstr "Detaily o motivu vzhledu"
+
+msgid "Give your Theme a name."
+msgstr "Dejte vašemu vzhledu jméno."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Nastavte si hezkou URL pro stránku detailu."
@@ -3971,59 +3971,20 @@ msgstr "Zvolte kategorii, která nejlépe popisuje váš motiv vzhledu."
 msgid "Add some tags to describe your Theme."
 msgstr "Přidejte štítky, které popisují váš motiv vzhledu."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Krátký popis vašeho motivu vzhledu, který je zobrazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu."
+msgid "Describe your Theme."
+msgstr "Popište svůj motiv vzhledu."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Krátký popis vašeho motivu vzhledu, který je zobrazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu"
 
 msgid "Theme License"
 msgstr "Licence motivu vzhledu"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Mohou ostatní sdílet váš motiv vzhledu za předpokladu, že vás uvedou jako autora?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. A to včetně komerčního použití."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Bez možnosti komerčního použití."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Mohou ostatní komerčně využívat váš motiv vzhledu?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Mohou ostatní vytvářet odvozená díla z vašeho motivu vzhledu?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Autor dává ostatním právo kopírovat, distribuovat, zobrazovat a upravovat. Dává též svolení na vytváření odvozených děl."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licence umožňuje ostatním kopírovat, distribuovat a přenášet dílo pouze v nezměněné podobě — odvozená díla nejsou povolena."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Váš motiv vzhledu bude k dispozici pod následující licencí:"
 
 msgid "Select a license for your Theme."
 msgstr "Zvolte licenci vašeho motivu vzhledu."
 
 msgid "Theme Design"
 msgstr "Návrh vzhledu"
-
-msgid "Upload New Design"
-msgstr "Nahrát nový návrh"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Po nahrání a odeslání provede tým AMO kontrolu vámi aktualizovaného vzhledu. Váš aktuální vzhled bude v mezidobí stále k dispozici na webu."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Vámi dříve odeslaný vzhled, který čeká na kontrolu."
-
-msgid "Pending Header"
-msgstr "Čekající hlavička"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Svůj návrh motivu vzhledu budete moci aktualizovat až bude schválen."
-
-msgid "Header"
-msgstr "Hlavička"
 
 msgid "Select colors for your Theme."
 msgstr "Zvolte barvy pro váš vzhledu."
@@ -4046,19 +4007,6 @@ msgstr "Jméno vašeho vzhledu"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Vytvoření nového vzhledu"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Motivy vám dávají možnost si snadno přizpůsobit vzhled svého Firefoxu. Přidejte svůj vlastní motiv níže nebo <a href=\"%(submit_url)s\">si přečtěte, jak vytvořit nový</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Dejte vašemu vzhledu jméno."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krátký popis vašeho motivu vzhledu, který je zobrazen ve vyhledávání, přehledu v kategorii či přímo na stránce detailu motivu"
 
 #, python-format
 msgid ""
@@ -4505,7 +4453,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
-msgstr ""
+msgstr "Mějte volný přístup k více než 10 milionům výzkumných prací."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4558,7 +4506,7 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} nechá cookies zmizet"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr ""
+msgstr "Automaticky smazat cookies po zavření panelu."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4798,7 +4746,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Ulevte svým očím na webu ztmavením jeho zobrazení."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4806,7 +4754,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Automaticky blokovat všechna vyskakovací okna, a poté vybrat, která z nich chcete otevřít."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5170,7 +5118,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "Vyberte si z více než 30 000 rozhlasových stanic z celého světa."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5430,7 +5378,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Password-protect your personal bookmarks."
-msgstr ""
+msgstr "Zabezpečte své osobní záložky heslem."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5745,12 +5693,6 @@ msgstr "V nahraném souboru se nenachází žádné soubory."
 
 msgid "Fetching file."
 msgstr "Probíhá stahování souboru."
-
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Verze API {0:.1f}, kterou používáte, je neplatná. Aktualizujte prosím na současnou verzi API {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Dosud není implementováno."
 
 msgid "Shopping Made Easy"
 msgstr "Snadné nakupování"
@@ -6940,8 +6882,8 @@ msgstr "Skrýt komentáře"
 msgid "No reviews found for this period."
 msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "Uživatel %(user)s [%(ip_address)s] %(object)s nahlásil dne %(date)s"
 
 msgid "Dismiss this announcement"
@@ -7764,9 +7706,6 @@ msgstr "jsou dostupné nové doplňky nebo nové vlastnosti Firefoxu"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kompatibilita mého doplňku je úspěšně aktualizována"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "můj doplněk založený na SDK je úspěšně aktualizován"
-
 msgid "someone writes a review of my add-on"
 msgstr "někdo napíše recenzi k mému doplňku"
 
@@ -7775,9 +7714,6 @@ msgstr "mějte přehled o novinkách a akcích pro vývojáře doplňků (včetn
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatibilita mého doplňku nemůže být aktualizována"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "můj doplněk postavený na SDK nemůže být aktualizován"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "můj doplněk je zkontrolován redaktorem"
@@ -7926,12 +7862,6 @@ msgstr "vše"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Server s doplňky nyní pro přihlášení využívá účty Firefoxu. Pokračujte prosím pro dokončení jednoduchého přihlašovacího procesu."
-
-msgid "User Login"
-msgstr "Přihlášení uživatele"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Přihlásit se účtem Firefoxu"
 
 msgid "Password Reset"
 msgstr "Obnovení hesla"

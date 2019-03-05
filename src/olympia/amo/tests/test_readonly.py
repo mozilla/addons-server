@@ -14,7 +14,7 @@ def read_only_mode(client, settings, db):
     def _db_error(*args, **kwargs):
         raise mysql.OperationalError("You can't do this in read-only mode.")
 
-    settings.SLAVE_DATABASES = ['default']
+    settings.REPLICA_DATABASES = ['default']
     models.signals.pre_save.connect(_db_error)
     models.signals.pre_delete.connect(_db_error)
 

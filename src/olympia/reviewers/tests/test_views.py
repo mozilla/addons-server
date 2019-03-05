@@ -38,8 +38,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
-    AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
-    ReviewerSubscription, Whiteboard)
+    AutoApprovalSummary, ReviewerScore, ReviewerSubscription, Whiteboard)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -604,7 +603,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -618,12 +617,6 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
-            reverse('reviewers.themes.list'),
-            reverse('reviewers.themes.list_rereview'),
-            reverse('reviewers.themes.list_flagged'),
-            reverse('reviewers.themes.logs'),
-            reverse('reviewers.themes.deleted'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -638,9 +631,9 @@ class TestDashboard(TestCase):
         assert doc('.dashboard a')[1].text == 'Updates (3)'
         assert doc('.dashboard a')[6].text == 'Auto Approved Add-ons (4)'
         assert doc('.dashboard a')[10].text == 'Content Review (4)'
-        assert (doc('.dashboard a')[18].text ==
+        assert (doc('.dashboard a')[12].text ==
                 'Ratings Awaiting Moderation (1)')
-        assert (doc('.dashboard a')[24].text ==
+        assert (doc('.dashboard a')[18].text ==
                 'Expired Information Requests (2)')
 
     def test_can_see_all_through_reviewer_view_all_permission(self):
@@ -648,7 +641,7 @@ class TestDashboard(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 8  # All sections are present.
+        assert len(doc('.dashboard h3')) == 7  # All sections are present.
         expected_links = [
             reverse('reviewers.queue_nominated'),
             reverse('reviewers.queue_pending'),
@@ -662,12 +655,6 @@ class TestDashboard(TestCase):
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide',
             reverse('reviewers.queue_content_review'),
             reverse('reviewers.performance'),
-            reverse('reviewers.themes.list'),
-            reverse('reviewers.themes.list_rereview'),
-            reverse('reviewers.themes.list_flagged'),
-            reverse('reviewers.themes.logs'),
-            reverse('reviewers.themes.deleted'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
             reverse('reviewers.queue_moderated'),
             reverse('reviewers.ratings_moderation_log'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide/Moderation',
@@ -800,38 +787,6 @@ class TestDashboard(TestCase):
         links = [link.attrib['href'] for link in doc('.dashboard a')]
         assert links == expected_links
         assert doc('.dashboard a')[0].text == 'Content Review (1)'
-
-    def test_themes_reviewer(self):
-        # Create some themes to test the queue counts.
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PENDING)
-        addon = addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
-        RereviewQueueTheme.objects.create(theme=addon.persona)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
-        addon_factory(type=amo.ADDON_PERSONA, status=amo.STATUS_REVIEW_PENDING)
-
-        # Grant user the permission to see only the themes section.
-        self.grant_permission(self.user, 'Personas:Review')
-
-        # Test.
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert len(doc('.dashboard h3')) == 1
-        expected_links = [
-            reverse('reviewers.themes.list'),
-            reverse('reviewers.themes.list_rereview'),
-            reverse('reviewers.themes.list_flagged'),
-            reverse('reviewers.themes.logs'),
-            reverse('reviewers.themes.deleted'),
-            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines',
-        ]
-        links = [link.attrib['href'] for link in doc('.dashboard a')]
-        assert links == expected_links
-        assert doc('.dashboard a')[0].text == 'New Themes (2)'
-        assert doc('.dashboard a')[1].text == 'Themes Updates (1)'
-        assert doc('.dashboard a')[2].text == 'Flagged Themes (3)'
 
     def test_ratings_moderator(self):
         # Create an rating to test the queue count.
@@ -1215,10 +1170,10 @@ class TestQueueBasics(QueueTest):
             expected)
 
     def test_grid_headers_sort_after_search(self):
-        params = dict(searching=['True'],
-                      text_query=['abc'],
-                      addon_type_ids=['2'],
-                      sort=['addon_type_id'])
+        params = {'searching': ['True'],
+                  'text_query': ['abc'],
+                  'addon_type_ids': ['2'],
+                  'sort': ['addon_type_id']}
         response = self.client.get(self.url, params)
         assert response.status_code == 200
         tr = pq(response.content)('#addon-queue tr')
@@ -4115,12 +4070,15 @@ class TestReview(ReviewBase):
         # change and deletion.
         author = self.addon.addonuser_set.get()
         core.set_user(author.user)
-        ActivityLog.create(amo.LOG.ADD_USER_WITH_ROLE,
-                           author.user, author.get_role_display(), self.addon)
-        ActivityLog.create(amo.LOG.CHANGE_USER_WITH_ROLE,
-                           author.user, author.get_role_display(), self.addon)
-        ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE,
-                           author.user, author.get_role_display(), self.addon)
+        ActivityLog.create(
+            amo.LOG.ADD_USER_WITH_ROLE, author.user,
+            six.text_type(author.get_role_display()), self.addon)
+        ActivityLog.create(
+            amo.LOG.CHANGE_USER_WITH_ROLE, author.user,
+            six.text_type(author.get_role_display()), self.addon)
+        ActivityLog.create(
+            amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+            six.text_type(author.get_role_display()), self.addon)
 
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4225,7 +4183,7 @@ class TestReview(ReviewBase):
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
             addon=self.addon, message=u'Et mël mazim ludus.',
-            ip_address='10.1.2.3')
+            country_code='FR')
         created_at = defaultfilters.date(report.created)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -4246,13 +4204,13 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous [10.1.2.3] reported Public on %s\nEt mël mazim ludus.'
+            u'anonymous [FR] reported Public on %s\nEt mël mazim ludus.'
             % created_at)
 
     def test_abuse_reports_developers(self):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
-            ip_address='10.4.5.6')
+            country_code='DE')
         created_at = defaultfilters.date(report.created)
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
@@ -4263,7 +4221,7 @@ class TestReview(ReviewBase):
         assert doc('.abuse_reports')
         assert (
             doc('.abuse_reports').text() ==
-            u'anonymous [10.4.5.6] reported regularuser التطب on %s\nFoo, Bâr!'
+            u'anonymous [DE] reported regularuser التطب on %s\nFoo, Bâr!'
             % created_at)
 
     def test_user_ratings(self):
@@ -4472,6 +4430,19 @@ class TestReviewPending(ReviewBase):
         assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
 
         assert mock_sign.called
+
+    @override_settings(ENABLE_ADDON_SIGNING=True)
+    def test_pending_to_public_search(self):
+        # sign_file() is *not* mocked here. We shouldn't need to, it should
+        # just avoid signing search plugins silently.
+        self.version.files.all().update(is_webextension=False)
+        self.addon.update(type=amo.ADDON_SEARCH)
+        response = self.client.post(self.url, self.pending_dict())
+        self.assert3xx(response, reverse('reviewers.queue_pending'))
+        assert self.get_addon().status == amo.STATUS_PUBLIC
+        statuses = (self.version.files.values_list('status', flat=True)
+                    .order_by('status'))
+        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
 
     def test_display_only_unreviewed_files(self):
         """Only the currently unreviewed files are displayed."""
@@ -4708,7 +4679,7 @@ class TestAbuseReports(TestCase):
         AbuseReport.objects.create(user=someone, message=u'hey nöw')
         # Make a user abuse report for one of the add-on developers: it should
         # show up.
-        AbuseReport.objects.create(user=addon_developer, message='bü!')
+        AbuseReport.objects.create(user=addon_developer, message=u'bü!')
 
     def test_abuse_reports_list(self):
         assert self.client.login(email='admin@mozilla.com')
@@ -5163,11 +5134,11 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.arguments[0] == self.addon
 
 
-class TestBrowseViewSet(TestCase):
+class TestReviewAddonVersionViewSetDetail(TestCase):
     client_class = APITestClient
 
     def setUp(self):
-        super(TestBrowseViewSet, self).setUp()
+        super(TestReviewAddonVersionViewSetDetail, self).setUp()
 
         # TODO: Most of the initial setup could be moved to
         # setUpTestData but unfortunately paths are setup in pytest via a
@@ -5195,8 +5166,9 @@ class TestBrowseViewSet(TestCase):
         assert '"name": "Beastify"' in result['file']['content']
 
     def _set_tested_url(self):
-        self.url = reverse_ns('reviewers-browse-detail', kwargs={
-            'pk': self.version.pk})
+        self.url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk})
 
     def test_anonymous(self):
         response = self.client.get(self.url)
@@ -5217,8 +5189,9 @@ class TestBrowseViewSet(TestCase):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
-        self.url = reverse_ns('reviewers-browse-detail', kwargs={
-            'pk': self.version.current_file.pk + 42})
+        self.url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.current_file.pk + 42})
         response = self.client.get(self.url)
         assert response.status_code == 404
 
@@ -5286,7 +5259,7 @@ class TestBrowseViewSet(TestCase):
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
-        assert response.status_code == 403
+        assert response.status_code == 404
 
     def test_unlisted_version_unlisted_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -5314,7 +5287,154 @@ class TestBrowseViewSet(TestCase):
         self.client.login_api(user)
         self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_mixed_channel_only_listed_without_unlisted_perm(self):
+        user = UserProfile.objects.create(username='admin')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:Review')
+
+        self.client.login_api(user)
+
+        # Add an unlisted version to the mix
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # Now the add-on has both, listed and unlisted versions
+        # but only reviewers with Addons:ReviewUnlisted are able
+        # to see them
+        url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+
+        url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': unlisted_version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+
+class TestReviewAddonVersionViewSetList(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestReviewAddonVersionViewSetList, self).setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url()
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result == [{
+            'version': self.version.version,
+            'id': self.version.id,
+            'channel': u'listed',
+        }]
+
+    def _set_tested_url(self):
+        self.url = reverse_ns('reviewers-versions-list', kwargs={
+            'addon_pk': self.addon.pk})
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_permissions_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self._test_url()
+
+    def test_permissions_disabled_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_permissions_disabled_version_admin(self):
+        user = UserProfile.objects.create(username='admin')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        self._test_url()
+
+    def test_permissions_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+        response = self.client.get(self.url)
         assert response.status_code == 403
+
+    def test_show_only_listed_without_unlisted_permission(self):
+        user = UserProfile.objects.create(username='admin')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:Review')
+
+        self.client.login_api(user)
+
+        version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result == [
+            {
+                'version': self.version.version,
+                'id': self.version.id,
+                'channel': u'listed'
+            },
+        ]
+
+    def test_show_listed_and_unlisted_with_permissions(self):
+        user = UserProfile.objects.create(username='admin')
+
+        # User doesn't have ReviewUnlisted permission
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+
+        self.client.login_api(user)
+
+        unlisted_version = version_factory(
+            addon=self.addon, channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        # We have a .only() and .no_transforms or .only_translations
+        # querysets which reduces the amount of queries to "only" 11
+        with self.assertNumQueries(11):
+            response = self.client.get(self.url)
+
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result == [
+            {
+                'version': unlisted_version.version,
+                'id': unlisted_version.id,
+                'channel': u'unlisted'
+            },
+            {
+                'version': self.version.version,
+                'id': self.version.id,
+                'channel': u'listed'
+            },
+        ]
 
 
 class TestThemeBackgroundImages(ReviewBase):

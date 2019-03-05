@@ -84,6 +84,28 @@ add-on.
     :>json boolean needs_admin_content_review: Boolean indicating whether the add-on needs its content to be reviewed by an admin or not.
 
 
+-------------
+List Versions
+-------------
+
+This endpoint allows you to list versions that can be used either for :ref:`browsing <reviewers-versions-browse>` or diffing versions.
+
+    .. note::
+        Requires authentication and the current user to have ``ReviewerTools:View``
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
+        unlisted add-ons. Additionally the current user can also be the owner
+        of the add-on.
+
+If the user doesn't have ``AddonsReviewUnlisted`` permissions only listed versions are shown. Otherwise it can contain mixed listed and unlisted versions.
+
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/
+
+    :>json int id: The version id.
+    :>json string channel: The version channel, which determines its visibility on the site. Can be either ``unlisted`` or ``listed``.
+    :>json string version: The version number string for the version.
+
+.. _reviewers-versions-browse:
+
 ------
 Browse
 ------
@@ -96,7 +118,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
         unlisted add-ons. Additionally the current user can also be the owner
         of the add-on.
 
-.. http:get:: /api/v4/reviewers/browse/(int:version_id)/
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/
 
     Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
 
@@ -109,12 +131,11 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
-    :>json boolean|string file.entries[].binary: ``True`` if the file is a binary file (e.g an .exe, dll, java, swf file), ``'image'`` if the file is an image or ``False`` otherwise. If ``False`` or ``'image'`` the file should be presentable to the user.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
-    :>json boolean file.entries[].is_directory: Wheather the file is a directory.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
     :>json string file.entries[].sha256: SHA256 hash.
     :>json string file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
+    :>json string files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int file.entries[].size: The size in bytes.
     :>json string file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.

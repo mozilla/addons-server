@@ -6,7 +6,7 @@
     "node": ">= 8.10"
   },
   "dependencies": {
-    "addons-linter": "1.6.1",
+    "addons-linter": "1.6.2",
     "clean-css": "4.1.9",
     "clean-css-cli": "4.1.11",
     "jqmodal": "1.4.2",
@@ -16,10 +16,10 @@
     "@claviska/jquery-minicolors": "2.3.4",
     "jquery-pjax": "2.0.1",
     "jquery-ui": "1.12.1",
-    "jszip": "3.1.4",
+    "jszip": "3.2.0",
     "less": "3.9.0",
     "source-map": "0.7.3",
-    "timeago": "1.6.4",
+    "timeago": "1.6.5",
     "uglify-js": "3.4.9",
     "underscore": "1.9.1"
   },

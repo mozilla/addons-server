@@ -12,6 +12,7 @@ from django.db import transaction
 from django.db.models import Count
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
+from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_exempt
@@ -26,7 +27,7 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.accounts.utils import redirect_for_login
-from olympia.accounts.views import API_TOKEN_COOKIE
+from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
 from olympia.addons import forms as addon_forms
@@ -35,7 +36,7 @@ from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
 from olympia.amo.decorators import json_view, login_required, post_required
 from olympia.amo.templatetags.jinja_helpers import absolutify, urlparams
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import MenuItem, escape_all, render, send_mail
 from olympia.api.models import APIKey
 from olympia.devhub.decorators import dev_required, no_admin_disabled
@@ -334,29 +335,8 @@ def edit(request, addon_id, addon):
 
 @dev_required(theme=True)
 def edit_theme(request, addon_id, addon, theme=False):
-    form = addon_forms.EditThemeForm(data=request.POST or None,
-                                     request=request, instance=addon)
-    owner_form = addon_forms.EditThemeOwnerForm(data=request.POST or None,
-                                                instance=addon)
-
-    if request.method == 'POST':
-        if 'owner_submit' in request.POST:
-            if owner_form.is_valid():
-                owner_form.save()
-                messages.success(
-                    request, ugettext('Changes successfully saved.'))
-                return redirect('devhub.themes.edit', addon.slug)
-        elif form.is_valid():
-            form.save()
-            messages.success(request, ugettext('Changes successfully saved.'))
-            return redirect('devhub.themes.edit', addon.reload().slug)
-        else:
-            messages.error(
-                request, ugettext('Please check the form for errors.'))
-
     return render(request, 'devhub/personas/edit.html', {
-        'addon': addon, 'persona': addon.persona, 'form': form,
-        'owner_form': owner_form})
+        'addon': addon, 'persona': addon.persona})
 
 
 @dev_required(owner_for_post=True, theme=True)
@@ -489,18 +469,21 @@ def ownership(request, addon_id, addon):
 
             author.save()
             if action:
-                ActivityLog.create(action, author.user,
-                                   author.get_role_display(), addon)
+                ActivityLog.create(
+                    action, author.user,
+                    six.text_type(author.get_role_display()), addon)
             if (author._original_user_id and
                     author.user_id != author._original_user_id):
-                ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE,
-                                   (UserProfile, author._original_user_id),
-                                   author.get_role_display(), addon)
+                ActivityLog.create(
+                    amo.LOG.REMOVE_USER_WITH_ROLE,
+                    (UserProfile, author._original_user_id),
+                    six.text_type(author.get_role_display()), addon)
 
         for author in user_form.deleted_objects:
             author.delete()
-            ActivityLog.create(amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
-                               author.get_role_display(), addon)
+            ActivityLog.create(
+                amo.LOG.REMOVE_USER_WITH_ROLE, author.user,
+                six.text_type(author.get_role_display()), addon)
             authors_emails.add(author.user.email)
             mail_user_changes(
                 author=author,
@@ -1835,3 +1818,42 @@ def theme_background_image(request, addon_id, addon, channel):
     version = addon.find_latest_version(channel_id)
     return (version.get_background_images_encoded(header_only=True) if version
             else {})
+
+
+def _clean_next_url(request):
+    gets = request.GET.copy()
+    url = gets.get('to', settings.LOGIN_REDIRECT_URL)
+
+    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
+        log.info(u'Unsafe redirect to %s' % url)
+        url = settings.LOGIN_REDIRECT_URL
+
+    domain = gets.get('domain', None)
+    if domain in settings.VALID_LOGIN_REDIRECTS.keys():
+        url = settings.VALID_LOGIN_REDIRECTS[domain] + url
+
+    gets['to'] = url
+    request.GET = gets
+    return request
+
+
+def logout(request):
+    user = request.user
+    if not user.is_anonymous:
+        log.debug(u"User (%s) logged out" % user)
+
+    if 'to' in request.GET:
+        request = _clean_next_url(request)
+
+    next_url = request.GET.get('to')
+    if not next_url:
+        next_url = settings.LOGOUT_REDIRECT_URL
+        prefixer = get_url_prefix()
+        if prefixer:
+            next_url = prefixer.fix(next_url)
+
+    response = http.HttpResponseRedirect(next_url)
+
+    logout_user(request, response)
+
+    return response

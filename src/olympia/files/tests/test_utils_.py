@@ -501,6 +501,28 @@ class TestManifestJSONExtractor(TestCase):
 
         self.parse(data)['apps']
 
+    def test_dont_skip_apps_because_of_strict_version_incompatibility(self):
+        # We shouldn't skip adding specific apps to the WebExtension
+        # no matter any potential incompatibility, e.g
+        # browser_specific_settings is only supported from Firefox 48.0
+        # onwards, now if the user specifies strict_min_compat as 42.0
+        # we shouldn't skip the app because of that.
+        self.create_webext_default_versions()
+        data = {
+            'browser_specific_settings': {
+                'gecko': {
+                    'strict_min_version': '42.0',
+                    'id': '@random'
+                }
+            }
+        }
+
+        apps = self.parse(data)['apps']
+        assert len(apps) == 1
+
+        assert apps[0].appdata == amo.FIREFOX
+        assert apps[0].min.version == amo.DEFAULT_WEBEXT_MIN_VERSION
+
 
 class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
     def parse(self, base_data):

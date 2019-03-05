@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-08 00:00+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -151,15 +151,6 @@ msgstr "既定のロケールを変更する前に、そのロケールでアド
 
 msgid "A license must be selected."
 msgstr "ライセンスを選択してください。"
-
-msgid "Give Your Theme a Name."
-msgstr "テーマに名前を付けてください。"
-
-msgid "Describe your Theme."
-msgstr "テーマの説明を記入してください。"
-
-msgid "Enter a new author's email address"
-msgstr "新しい作者のメールアドレスを入力"
 
 # Column name in a table.
 msgid "Listed"
@@ -848,9 +839,6 @@ msgstr "コレクション"
 msgid "Collections I've Made"
 msgstr "自分が作成したコレクション"
 
-msgid "My Favorite Add-ons"
-msgstr "お気に入りのアドオン"
-
 msgid "More&hellip;"
 msgstr "その他&hellip;"
 
@@ -1179,6 +1167,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "作者: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "お気に入りのアドオン"
 
 msgid "Create a Collection"
 msgstr "コレクションを作成"
@@ -2495,12 +2486,6 @@ msgstr "ユーザーコレクション"
 msgid "User Reviews"
 msgstr "ユーザーレビュー"
 
-msgid "Changes successfully saved."
-msgstr "変更の保存が完了しました。"
-
-msgid "Please check the form for errors."
-msgstr "フォームの入力ミスを確認してください。"
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "アドオンを削除できません。代わりに無効化してください。"
 
@@ -2524,6 +2509,9 @@ msgstr "このアドオンの作者の役割が変更されました"
 
 msgid "An author has been removed from your add-on"
 msgstr "このアドオンの作者が削除されました"
+
+msgid "Changes successfully saved."
+msgstr "変更の保存が完了しました。"
 
 msgid "Validate Add-on"
 msgstr "アドオンの検証"
@@ -2610,6 +2598,9 @@ msgstr "ツールバー入力領域の文字"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "アドレスバーなどツールバー上の入力欄の文字色。マニフェストの該当項目は toolbar_field_text です。"
+
+msgid "Please check the form for errors."
+msgstr "フォームの入力ミスを確認してください。"
 
 msgid "Review requested."
 msgstr "審査が申請されました。"
@@ -3930,11 +3921,22 @@ msgstr "ライブテスト"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "実際の動作テストとデバッグを行うため、あなたの拡張機能を Firefox へ一時的にインストールします。"
 
-msgid "Transfer ownership"
-msgstr "オーナーを変更"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "軽量テーマの審査ログ"
+
+msgid "Create a New Theme"
+msgstr "新しいテーマを作成"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "背景テーマで Firefox の外観を簡単にパーソナライズできます。以下から独自のデザインを登録するか、<a href=\"%(submit_url)s\">作り方を学んでください</a>！"
 
 msgid "Theme Details"
 msgstr "テーマの詳細"
+
+msgid "Give your Theme a name."
+msgstr "テーマに名前を付けてください。"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "詳細ページのシンプルな URL を設定してください。"
@@ -3945,59 +3947,21 @@ msgstr "このテーマが当てはまるカテゴリーを選択してくださ
 msgid "Add some tags to describe your Theme."
 msgstr "このテーマを説明するタグをいくつか追加してください。"
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "テーマの説明を記入してください。"
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "検索結果やカテゴリーなどのリスト、そしてテーマの詳細ページ最上部に表示される、このテーマの基本機能についての短い説明文。"
 
 msgid "Theme License"
 msgstr "テーマのライセンス"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "このテーマを、あなたのクレジットを表示する限り、他の人が共有できるようにしますか？"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "ライセンサーは、商用を含め、他者が作品を複製、頒布、展示、実演することを許可します。"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "ライセンサーは、非営利目的に限って、他者が作品を複製、頒布、展示、実演することを許可します。"
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "このテーマを他の人が商用にも利用できるようにしますか？"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "他の人がこのテーマを元にした派生作品を作れるようにしますか？"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "ライセンサーは、他者が作品を複製、頒布、展示、実演、および本作品に基いた派生作品を作成することを許可します。"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "ライセンサーは、変更していない作品の複製 (本作品に基いた派生作品でない場合) に限って、他者が作品を複製、頒布、送信することを許可します。"
-
-msgid "Your Theme will be released under the following license:"
-msgstr "このテーマは以下のライセンスで公開されます:"
 
 msgid "Select a license for your Theme."
 msgstr "テーマのライセンスを選択してください。"
 
 msgid "Theme Design"
 msgstr "テーマのデザイン"
-
-msgid "Upload New Design"
-msgstr "新しいデザインをアップロード"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "アップロードとフォームの送信を行うと、AMO チームが最新のデザインを審査します。その間は、現在のデザインが公開されたままになります。"
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "あなたが以前再投稿したデザインで、現在審査待ちとなっているもの。"
-
-msgid "Pending Header"
-msgstr "保留中のヘッダー"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "承認されたら、テーマのデザインをこちらで更新できます。"
-
-msgid "Header"
-msgstr "ヘッダー"
 
 msgid "Select colors for your Theme."
 msgstr "テーマの配色を選択してください。"
@@ -4022,20 +3986,6 @@ msgstr "テーマの名前"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "作者: <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "新しいテーマを作成"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "背景テーマで Firefox の外観を簡単にパーソナライズできます。以下から独自のデザインを登録するか、<a href=\"%(submit_url)s\">作り方を学んでください</a>！"
-
-msgid "Give your Theme a name."
-msgstr "テーマに名前を付けてください。"
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "検索結果やカテゴリーなどのリスト、そしてテーマの詳細ページ最上部に表示される、このテーマの基本機能についての短い説明文。"
 
 #, python-format
 msgid ""
@@ -5721,12 +5671,6 @@ msgstr "アップロードされたファイルにはファイルが含まれて
 msgid "Fetching file."
 msgstr "ファイルを取得しています。"
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "使用されている API バージョン {0:.1f} は無効です。現行のバージョン {1:.1f} API にアップグレードしてください。"
-
-msgid "Not implemented yet."
-msgstr "まだ実装されていません。"
-
 msgid "Shopping Made Easy"
 msgstr "お手軽ショッピング"
 
@@ -6896,8 +6840,8 @@ msgstr "コメントを隠す"
 msgid "No reviews found for this period."
 msgstr "この期間に審査が行われたアドオンはありません。"
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] が %(object)s を %(date)s に報告"
 
 msgid "Dismiss this announcement"
@@ -7711,9 +7655,6 @@ msgstr "アドオンや Firefox の新機能が使用可能になったとき"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "自分のアドオンの互換性が正しく更新されたとき"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "自分の SDK ベースのアドオンが正しく更新されたとき"
-
 msgid "someone writes a review of my add-on"
 msgstr "ユーザーによって自分のアドオンのレビューが書かれたとき"
 
@@ -7722,9 +7663,6 @@ msgstr "アドオン開発者向けのニュースやイベントを含む最新
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "自分のアドオンの互換性が更新できないとき"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "自分の SDK ベースのアドオンが更新できないとき"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "自分のアドオンが審査担当者によって審査されたとき"
@@ -7873,12 +7811,6 @@ msgstr "すべて"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "アドオンサイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
-
-msgid "User Login"
-msgstr "ログイン"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox アカウントでログイン"
 
 msgid "Password Reset"
 msgstr "パスワードの変更"

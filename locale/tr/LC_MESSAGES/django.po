@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-01-04 17:54+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -157,15 +157,6 @@ msgstr "Varsaılan dilinizi değiştirmek için o dilde bir adınız, özetiniz 
 
 msgid "A license must be selected."
 msgstr "Bir lisans seçilmelidir."
-
-msgid "Give Your Theme a Name."
-msgstr "Temanıza bir ad verin."
-
-msgid "Describe your Theme."
-msgstr "Temanızı açıklayın."
-
-msgid "Enter a new author's email address"
-msgstr "Yeni yazarın e-posta adresini girin"
 
 # Column name in a table.
 msgid "Listed"
@@ -876,9 +867,6 @@ msgstr "Koleksiyonlar"
 msgid "Collections I've Made"
 msgstr "Oluşturduğum Koleksiyonlar"
 
-msgid "My Favorite Add-ons"
-msgstr "Favori Eklentilerim"
-
 msgid "More&hellip;"
 msgstr "Daha fazlası&hellip;"
 
@@ -1228,6 +1216,9 @@ msgstr ""
 #, python-format
 msgid "by %(author_link)s"
 msgstr "%(author_link)s tarafından"
+
+msgid "My Favorite Add-ons"
+msgstr "Favori Eklentilerim"
 
 # 89%
 # 100%
@@ -2589,12 +2580,6 @@ msgstr "Kullanıcı koleksiyonları"
 msgid "User Reviews"
 msgstr "Kullanıcı incelemeleri"
 
-msgid "Changes successfully saved."
-msgstr "Değişiklikler başarıyla kaydedildi."
-
-msgid "Please check the form for errors."
-msgstr "Lütfen formdaki hataları kontrol edin."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Eklenti silinemiyor. Bunun yerine bu eklentiyi devre dışı bırakın."
 
@@ -2618,6 +2603,9 @@ msgstr "Eklentinizdeki bir yazarın rolü değişti"
 
 msgid "An author has been removed from your add-on"
 msgstr "Eklentinizdeki bir yazar silindi"
+
+msgid "Changes successfully saved."
+msgstr "Değişiklikler başarıyla kaydedildi."
 
 msgid "Validate Add-on"
 msgstr "Eklentiyi doğrula"
@@ -2705,6 +2693,9 @@ msgstr "Araç çubuğu alan metni"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "Lütfen formdaki hataları kontrol edin."
 
 msgid "Review requested."
 msgstr "İnceleme talep edildi."
@@ -4053,11 +4044,22 @@ msgstr "Listelemeyi gör"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Sahipliği aktar"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Hafif Temalar"
+
+msgid "Create a New Theme"
+msgstr "Yeni bir tema oluştur"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr ""
 
 msgid "Theme Details"
 msgstr "Tema ayrıntıları"
+
+msgid "Give your Theme a name."
+msgstr "Temanıza bir ad verin."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Açıklama sayfanız için okunaklı bir URL ekleyin."
@@ -4068,61 +4070,20 @@ msgstr "Temanızı en iyi şekilde tanımlayan kategoriyi seçin."
 msgid "Add some tags to describe your Theme."
 msgstr "Temanızı tanımlayan birkaç etiket ekleyin."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Temanızı açıklayın."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
 msgstr "Tema Lisansı"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Kaynak gösterildiği sürece başkaları temanızı paylaşabilir mi?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Lisans sahibi; bu çalışmanın ticari amaçlar için de dahil olmak üzere başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Lisans sahibi; bu çalışmanın yalnızca ticari olmayan amaçlar için başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Başkaları temanızı ticari amaçla kullanabilir mi?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Başkaları temanızı temel alan farklı çalışmalar yapabilir mi?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Lisans sahibi; bu çalışmanın başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine, uygulanmasına ve bu çalışmayı temel alan çalışmalar oluşturulmasına izin veriyor."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-"Lisans sahibi; bu çalışmanın yalnızca değiştirilmemiş halinin başkaları tarafından kopyalanmasına, dağıtılmasına, sergilenmesine ve uygulanmasına izin veriyor; çalışmayı temel alan başka "
-"çalışmalara izin vermiyor."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Temanız şu lisansla yayımlanacaktır:"
 
 msgid "Select a license for your Theme."
 msgstr "Temanız için bir lisans seçin."
 
 msgid "Theme Design"
 msgstr "Tema tasarımı"
-
-msgid "Upload New Design"
-msgstr "Yeni tasarım yükle"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-
-msgid "Pending Header"
-msgstr ""
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Tema tasarımınız onaylandıktan sonra burada güncelleştirebilirsiniz."
-
-msgid "Header"
-msgstr "Üstbilgi"
 
 msgid "Select colors for your Theme."
 msgstr "Temanızın renklerini seçin."
@@ -4147,19 +4108,6 @@ msgstr "Temanızın adı"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "<a href=\"%(profile_url)s\">%(user)s</a> tarafından"
-
-msgid "Create a New Theme"
-msgstr "Yeni bir tema oluştur"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Give your Theme a name."
-msgstr "Temanıza bir ad verin."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5846,12 +5794,6 @@ msgstr "Yüklenen dosyada dosya yok."
 msgid "Fetching file."
 msgstr "Dosya getiriliyor."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Kullandığınız API sürümü {0:.1f} geçerli değil. Lütfen güncel {1:.1f} API sürümüne yükseltin."
-
-msgid "Not implemented yet."
-msgstr "Henüz hazır değil."
-
 msgid "Shopping Made Easy"
 msgstr "Kolay alışveriş"
 
@@ -7095,7 +7037,7 @@ msgid "No reviews found for this period."
 msgstr ""
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -7939,9 +7881,6 @@ msgstr "yeni eklentiler veya Firefox özellikleri mevcut"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 #, fuzzy
 msgid "someone writes a review of my add-on"
 msgstr "Bu eklentinin %(cnt)s incelemesinin tümünü göster"
@@ -7952,9 +7891,6 @@ msgstr ""
 #, fuzzy
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "Eklenti Uyumluluk Merkezi"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr ""
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8108,12 +8044,6 @@ msgstr "tümü"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla Eklentileri, giriş yapmak için Firefox Hesaplarına geçmiştir. Basit giriş işlemini tamamlamaya devam edin."
-
-msgid "User Login"
-msgstr "Kullanıcı Girişi"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Firefox Hesabı ile Giriş"
 
 msgid "Password Reset"
 msgstr "Parola Sıfırlama"

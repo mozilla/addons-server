@@ -140,7 +140,6 @@ class AddonIndexer(BaseSearchIndexer):
                     'guid': {'type': 'keyword'},
                     'has_eula': {'type': 'boolean', 'index': False},
                     'has_privacy_policy': {'type': 'boolean', 'index': False},
-                    'has_theme_rereview': {'type': 'boolean'},
                     'hotness': {'type': 'double'},
                     'icon_hash': {'type': 'keyword', 'index': False},
                     'icon_type': {'type': 'keyword', 'index': False},
@@ -330,8 +329,6 @@ class AddonIndexer(BaseSearchIndexer):
             # add-ons stored in ES.
             data['platforms'] = [amo.PLATFORM_ALL.id]
             try:
-                data['has_theme_rereview'] = (
-                    obj.persona.rereviewqueuetheme_set.exists())
                 # Theme popularity is roughly equivalent to average daily users
                 # (the period is not the same and the methodology differs since
                 # themes don't have updates, but it's good enough).
@@ -358,7 +355,6 @@ class AddonIndexer(BaseSearchIndexer):
             if obj.current_version:
                 data['platforms'] = [p.id for p in
                                      obj.current_version.supported_platforms]
-            data['has_theme_rereview'] = None
 
             # Extract dominant colors from static themes.
             if obj.type == amo.ADDON_STATICTHEME:

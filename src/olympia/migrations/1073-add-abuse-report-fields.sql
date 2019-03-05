@@ -1,0 +1,16 @@
+ALTER TABLE `abuse_reports`
+    ADD COLUMN `client_id` varchar(64),
+    ADD COLUMN `addon_name` varchar(255),
+    ADD COLUMN `addon_summary` varchar(255),
+    ADD COLUMN `addon_version` varchar(255),
+    ADD COLUMN `addon_signature` smallint UNSIGNED,
+    ADD COLUMN `application` smallint UNSIGNED,
+    ADD COLUMN `application_version` varchar(255),
+    ADD COLUMN `application_locale` varchar(255),
+    ADD COLUMN `operating_system` varchar(255),
+    ADD COLUMN `operating_system_version` varchar(255),
+    ADD COLUMN `install_date` datetime(6),
+    ADD COLUMN `reason` smallint UNSIGNED,
+    ADD COLUMN `addon_install_origin` varchar(255),
+    ADD COLUMN `addon_install_method` smallint UNSIGNED,
+    ADD COLUMN `addon_install_entry_point` smallint UNSIGNED;

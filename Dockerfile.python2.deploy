@@ -33,6 +33,7 @@ RUN apt-get update && apt-get install -y \
         zlib1g-dev                       \
         libffi-dev                       \
         libssl-dev                       \
+        libmagic-dev                     \
         python-dev                       \
         python-pip                       \
         nodejs                           \
@@ -48,6 +49,9 @@ RUN apt-get update && apt-get install -y \
         librsvg2-bin                     \
         # Use pngcrush to optimize the PNGs uploaded by developers
         pngcrush                         \
+        # Use libmaxmind for speedy geoip lookups
+        libmaxminddb0                    \
+        libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get -t stretch-backports install -y \
@@ -71,6 +75,10 @@ WORKDIR /data/olympia
 RUN pip install --no-cache-dir --exists-action=w --no-deps -r requirements/system.txt              \
     && pip install --no-cache-dir --exists-action=w --no-deps -r requirements/prod_py2.txt         \
     && pip install --no-cache-dir --exists-action=w --no-deps -e .
+
+# Link /usr/bin/uwsgi to /usr/local/bin/uwsgi, as that was the
+# previous location of the binary when installed by apt-get.
+RUN ln -s /usr/local/bin/uwsgi /usr/bin/uwsgi
 
 # Install uwsgi statsd exporter to collect metrics from uwsgi when deployed
 WORKDIR /usr/lib/uwsgi/plugins

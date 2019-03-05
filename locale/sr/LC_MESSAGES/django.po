@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -153,15 +153,6 @@ msgstr "Пре него што измените подразумевани пр�
 
 msgid "A license must be selected."
 msgstr "Лиценца мора бити изабрана."
-
-msgid "Give Your Theme a Name."
-msgstr "Дајте име Вашој теми."
-
-msgid "Describe your Theme."
-msgstr "Опишите Вашу тему."
-
-msgid "Enter a new author's email address"
-msgstr "Додајте адресу е-поште новог аутора"
 
 # Column name in a table.
 msgid "Listed"
@@ -872,9 +863,6 @@ msgstr "Колекције"
 msgid "Collections I've Made"
 msgstr "Моје колекције"
 
-msgid "My Favorite Add-ons"
-msgstr "Моји омиљени додаци"
-
 msgid "More&hellip;"
 msgstr "Још&hellip;"
 
@@ -1207,6 +1195,9 @@ msgstr "Колекције су групе сродних додатака ко�
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "од %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Моји омиљени додаци"
 
 msgid "Create a Collection"
 msgstr "Креирајте колекцију"
@@ -2603,12 +2594,6 @@ msgstr "Корисничке збирке"
 msgid "User Reviews"
 msgstr "Рецензије корисника"
 
-msgid "Changes successfully saved."
-msgstr "Измене су успешно сачуване."
-
-msgid "Please check the form for errors."
-msgstr "Молимо Вас проверите да ли има грешака у форми."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Додатак се не може избрисати. Уместо тога га онемогућите."
 
@@ -2632,6 +2617,9 @@ msgstr "Аутор је променио улогу Вашег додатка"
 
 msgid "An author has been removed from your add-on"
 msgstr "Аутор је уклоњен са Вашег додатка"
+
+msgid "Changes successfully saved."
+msgstr "Измене су успешно сачуване."
 
 msgid "Validate Add-on"
 msgstr "Оверите додатак"
@@ -2719,6 +2707,9 @@ msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
+
+msgid "Please check the form for errors."
+msgstr "Молимо Вас проверите да ли има грешака у форми."
 
 #, fuzzy
 msgid "Review requested."
@@ -4118,11 +4109,22 @@ msgstr "Погледај листинг"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Пренеси власништво"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Рецензија теме"
+
+msgid "Create a New Theme"
+msgstr "Направи нову тему"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Теме позадине су лак начин да персонализујете Firefox. Доставите Ваш дизајн испод, или <a href=\"%(submit_url)s\">научите како да је направите</a>!"
 
 msgid "Theme Details"
 msgstr "Детаљи теме"
+
+msgid "Give your Theme a name."
+msgstr "Дајте назив Вашој теми."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Обезбеди лепу URL адресу за Вашу страницу са детаљима."
@@ -4133,59 +4135,21 @@ msgstr "Изаберите категорију која најбоље опис
 msgid "Add some tags to describe your Theme."
 msgstr "Додајте неке ознаке да опишете Вашу тему."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Опишите Вашу тему."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Кратко објашњење основних фукционалности Ваше теме које је приказано у листама претраге и прегледавања, као и на врху странице са детаљима Ваше теме."
 
 msgid "Theme License"
 msgstr "Лиценца теме"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Да ли други могу да деле Вашу тему, уколико Вама иду заслуге?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Давалац лиценце дозвољава другима да копирају, дистрибуирају, приказују и обављају посао, укључујући и комерцијалне сврхе."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Да ли други могу да користе Вашу тему у комерцијалне сврхе?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Да ли други могу да праве изведена дела на основу Ваше теме?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Ваша тема биће издата под следећом лиценцом:"
 
 msgid "Select a license for your Theme."
 msgstr "Изаберите лиценцу за Вашу тему."
 
 msgid "Theme Design"
 msgstr "Дизајн теме"
-
-msgid "Upload New Design"
-msgstr "Поставите нови дизајн"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "По поставци и слању формулара, АМО тим ће прегледати Ваш ажуриран дизајн. Ваш тренутни дизајн ће у међувремену бити јаван."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Ваш претходно поднет дизајн, који је на чекању за преглед."
-
-msgid "Pending Header"
-msgstr "Нерешено заглавље"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Можете да ажурирате дизајн Ваше теме наком што се одобри."
-
-msgid "Header"
-msgstr "Заглавље"
 
 msgid "Select colors for your Theme."
 msgstr "Одаберите боје за Вашу тему."
@@ -4210,20 +4174,6 @@ msgstr "Име теме"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "Објављен под <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Направи нову тему"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Теме позадине су лак начин да персонализујете Firefox. Доставите Ваш дизајн испод, или <a href=\"%(submit_url)s\">научите како да је направите</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Дајте назив Вашој теми."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Кратко објашњење основних фукционалности Ваше теме које је приказано у листама претраге и прегледавања, као и на врху странице са детаљима Ваше теме."
 
 #, python-format
 msgid ""
@@ -5918,12 +5868,6 @@ msgstr "Нема датотека из отпремљене датотеке."
 msgid "Fetching file."
 msgstr "Преузимање датотеке."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "Није још имплементиран."
-
 msgid "Shopping Made Easy"
 msgstr "Куповина учињена једноставном"
 
@@ -7178,7 +7122,7 @@ msgid "No reviews found for this period."
 msgstr "Није пронађена ни једна рецензија за овај период."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -8003,9 +7947,6 @@ msgstr "нови додаци или Firefox могућности су дост�
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "компатабилност мог додаткa је успешно надограђена"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "мој додатак заснован на sdk је успешно надограђен"
-
 msgid "someone writes a review of my add-on"
 msgstr "неко пише рецензију на мој додатак"
 
@@ -8014,9 +7955,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "компатабилност мог додатка се не може надоградити"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "мој додатак заснован на sdk се не може надоградити"
 
 #, fuzzy
 msgid "my add-on is reviewed by a reviewer"
@@ -8168,12 +8106,6 @@ msgid "all"
 msgstr "све"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "Пријава корисника"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"

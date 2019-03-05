@@ -4,6 +4,7 @@ import sys
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import ViewDoesNotExist
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
@@ -13,7 +14,7 @@ import six
 from django_statsd.clients import statsd
 from rest_framework.exceptions import NotFound
 
-from olympia import amo, legacy_api
+from olympia import amo
 from olympia.amo.utils import render
 
 from . import monitors
@@ -67,23 +68,16 @@ def contribute(request):
 
 
 @non_atomic_requests
-def handler403(request, **kwargs):
-    if request.is_legacy_api:
-        # Pass over to handler403 view in api if api was targeted.
-        return legacy_api.views.handler403(request)
-    else:
-        return render(request, 'amo/403.html', status=403)
+def handler403(request, exception=None, **kwargs):
+    return render(request, 'amo/403.html', status=403)
 
 
 @non_atomic_requests
-def handler404(request, **kwargs):
+def handler404(request, exception=None, **kwargs):
     if request.is_api:
         # It's a v3+ api request
         return JsonResponse(
             {'detail': six.text_type(NotFound.default_detail)}, status=404)
-    elif request.is_legacy_api:
-        # It's a legacy api request - pass over to legacy api handler404.
-        return legacy_api.views.handler404(request)
     # X_IS_MOBILE_AGENTS is set by nginx as an env variable when it detects
     # a mobile User Agent or when the mamo cookie is present.
     if request.META.get('X_IS_MOBILE_AGENTS') == '1':
@@ -94,11 +88,7 @@ def handler404(request, **kwargs):
 
 @non_atomic_requests
 def handler500(request, **kwargs):
-    if getattr(request, 'is_legacy_api', False):
-        # Pass over to handler500 view in api if api was targeted.
-        return legacy_api.views.handler500(request)
-    else:
-        return render(request, 'amo/500.html', status=500)
+    return render(request, 'amo/500.html', status=500)
 
 
 @non_atomic_requests
@@ -127,3 +117,16 @@ def version(request):
     contents['python'] = '{major}.{minor}'.format(
         major=py_info.major, minor=py_info.minor)
     return HttpResponse(json.dumps(contents), content_type='application/json')
+
+
+def _frontend_view(*args, **kwargs):
+    """View has migrated to addons-frontend but we still have the url so we
+    can reverse() to it in addons-server code.
+    If you ever hit this url somethunk gun wrong!"""
+    raise ViewDoesNotExist()
+
+
+@non_atomic_requests
+def frontend_view(*args, **kwargs):
+    """Wrap _frontend_view so we can mock it in tests."""
+    return _frontend_view(*args, **kwargs)

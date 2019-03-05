@@ -3,9 +3,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-02 06:25+0000\n"
-"Last-Translator: Cloney 173741 <best.cloney.1301@gmail.com>\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-20 06:07+0000\n"
+"Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: vi\n"
 "MIME-Version: 1.0\n"
@@ -106,8 +106,8 @@ msgstr "Bao gồm các ghi chú chi tiết (điều này có thể hoàn tất t
 
 msgid "If your add-on requires an account to a website in order to be fully tested, include a test username and password in the Notes to Reviewer (this can be done in the next step)."
 msgstr ""
-"Nếu tiện ích bổ sung của bạn yêu cầu tài khoản cho trang web để được kiểm tra đầy đủ, nhớ đính kèm tên người dùng và mật khẩu thử nghiệm trong Ghi chú cho đánh giá viên (điều này có thể được hoàn "
-"thành trong bước tiếp theo)."
+"Nếu tiện ích của bạn yêu cầu tài khoản cho trang web để được kiểm tra đầy đủ, nhớ đính kèm tên người dùng và mật khẩu thử nghiệm trong Ghi chú cho đánh giá viên (điều này có thể được hoàn thành "
+"trong bước tiếp theo)."
 
 msgid "Add-on submission checklist"
 msgstr "Danh sách kiểm tra bản đệ trình tiện ích"
@@ -262,16 +262,16 @@ msgid "Collections Created"
 msgstr "Bộ sưu tập đã được tạo"
 
 msgid "Add-ons in Use"
-msgstr "Số Tiện ích được Sử dụng"
+msgstr "Tiện ích đang sử dụng"
 
 msgid "Add-ons Created"
-msgstr "Số Tiện ích được Tạo"
+msgstr "Tiện ích đã tạo"
 
 msgid "Add-ons Downloaded"
 msgstr "Tiện ích đã tải xuống"
 
 msgid "Add-ons Updated"
-msgstr "Số Tiện ích được Cập nhật"
+msgstr "Tiện ích đã cập nhật"
 
 msgid "Reviews Written"
 msgstr "Số bài xem xét được viết"
@@ -487,19 +487,19 @@ msgstr "Ngôn ngữ từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "Phiên bản Tiện ích, {0} ngày trước"
+msgstr "Phiên bản tiện ích, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"
-msgstr "Phiên bản Tiện ích từ {0} đến {1}"
+msgstr "Phiên bản tiện ích từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Status, last {0} days"
-msgstr "Trạng thái Tiện ích, {0} ngày trước"
+msgstr "Trạng thái tiện ích, {0} ngày trước"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Status from {0} to {1}"
-msgstr "Trạng thái Tiện ích từ {0} đến {1}"
+msgstr "Trạng thái tiện ích từ {0} đến {1}"
 
 #. L10n: {0} is an integer.
 msgid "Download Sources, last {0} days"

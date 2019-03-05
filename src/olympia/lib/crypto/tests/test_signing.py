@@ -192,13 +192,20 @@ class TestSigning(TestCase):
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
-        signing.sign_file(self.file_)
+        with self.assertRaises(signing.SigningError):
+            signing.sign_file(self.file_)
         assert not self.file_.is_signed
         assert not self.file_.cert_serial_num
         assert not self.file_.hash
         assert not signing.is_signed(self.file_.file_path)
 
-    def test_no_sign_again_mozilla_signed_extensions(self):
+    def test_dont_sign_search_plugins(self):
+        self.addon.update(type=amo.ADDON_SEARCH)
+        self.file_.update(is_webextension=False)
+        signing.sign_file(self.file_)
+        self.assert_not_signed()
+
+    def test_dont_sign_again_mozilla_signed_extensions(self):
         """Don't try to resign mozilla signed extensions."""
         self.file_.update(is_mozilla_signed_extension=True)
         signing.sign_file(self.file_)
@@ -222,7 +229,8 @@ class TestSigning(TestCase):
             self.file_.update(is_multi_package=True)
             self.assert_not_signed()
 
-            signing.sign_file(self.file_)
+            with self.assertRaises(signing.SigningError):
+                signing.sign_file(self.file_)
             self.assert_not_signed()
             # The multi-package itself isn't signed.
             assert not signing.is_signed(self.file_.file_path)

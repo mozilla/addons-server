@@ -7,8 +7,6 @@ import os
 import socket
 import json
 
-from django.urls import reverse_lazy
-
 import raven
 from kombu import Queue
 
@@ -62,6 +60,8 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
+    # AuthenticationMiddleware must be in MIDDLEWARE but we use a subclass
+    'admin.E408',
 )
 
 # LESS CSS OPTIONS (Debug only).
@@ -102,21 +102,6 @@ DRF_API_REGEX = r'^/?api/(?:v3|v4|v4dev)/'
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = DRF_API_REGEX
-
-
-# Sadly the term WHITELIST is used by the library
-# https://pypi.python.org/pypi/django-cors-headers-multi/1.2.0
-def cors_endpoint_overrides(whitelist_endpoints):
-    return [
-        ('%saccounts/login/?$' % DRF_API_REGEX, {
-            'CORS_ORIGIN_ALLOW_ALL': False,
-            'CORS_ORIGIN_WHITELIST': whitelist_endpoints,
-            'CORS_ALLOW_CREDENTIALS': True,
-        }),
-    ]
-
-
-CORS_ENDPOINT_OVERRIDES = []
 
 
 def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
@@ -160,10 +145,10 @@ DATABASES = {
 # the same connection as 'default' but that changes in prod/dev/stage.
 SERVICES_DATABASE = get_db_config('DATABASES_DEFAULT_URL')
 
-DATABASE_ROUTERS = ('multidb.PinningMasterSlaveRouter',)
+DATABASE_ROUTERS = ('multidb.PinningReplicaRouter',)
 
 # Put the aliases for your slave databases in this list.
-SLAVE_DATABASES = []
+REPLICA_DATABASES = []
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -414,7 +399,7 @@ MIDDLEWARE = (
     # CSP and CORS need to come before CommonMiddleware because they might
     # need to add headers to 304 responses returned by CommonMiddleware.
     'csp.middleware.CSPMiddleware',
-    'olympia.amo.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 
     # Enable conditional processing, e.g ETags.
     'django.middleware.http.ConditionalGetMiddleware',
@@ -474,7 +459,6 @@ INSTALLED_APPS = (
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
-    'olympia.legacy_api',
     'olympia.legacy_discovery',
     'olympia.lib.es',
     'olympia.lib.akismet',
@@ -1026,8 +1010,7 @@ SESSION_COOKIE_DOMAIN = ".%s" % DOMAIN  # bug 608797
 MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
 
 # These should have app+locale at the start to avoid redirects
-LOGIN_URL = reverse_lazy('users.login')
-LOGOUT_URL = reverse_lazy('users.logout')
+LOGIN_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # When logging in with browser ID, a username is created automatically.
@@ -1438,9 +1421,9 @@ def read_only_mode(env):
     env['READ_ONLY'] = True
 
     # Replace the default (master) db with a slave connection.
-    if not env.get('SLAVE_DATABASES'):
+    if not env.get('REPLICA_DATABASES'):
         raise Exception('We need at least one slave database.')
-    slave = env['SLAVE_DATABASES'][0]
+    slave = env['REPLICA_DATABASES'][0]
     env['DATABASES']['default'] = env['DATABASES'][slave]
 
     # No sessions without the database, so disable auth.
@@ -1850,3 +1833,5 @@ AKISMET_API_URL = 'https://{api_key}.rest.akismet.com/1.1/{action}'
 AKISMET_API_KEY = env('AKISMET_API_KEY', default=None)
 AKISMET_API_TIMEOUT = 5
 AKISMET_REAL_SUBMIT = False
+
+GEOIP_PATH = '/usr/local/share/GeoIP/GeoLite2-Country.mmdb'

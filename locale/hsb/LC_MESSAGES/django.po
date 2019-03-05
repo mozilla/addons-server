@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-11 16:09+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-26 07:47+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -162,15 +162,6 @@ msgstr "Prjedy hač swoju standardnu rěč změniće, dyrbiće mjeno, zjeće a w
 
 msgid "A license must be selected."
 msgstr "Dyrbiće licencu wubrać."
-
-msgid "Give Your Theme a Name."
-msgstr "Pomjenujće swoju drastu."
-
-msgid "Describe your Theme."
-msgstr "Wopisaj swoju drastu."
-
-msgid "Enter a new author's email address"
-msgstr "Zapodaj nowu e-mejlowu adresu awtora"
 
 msgid "Listed"
 msgstr "Nalistowane"
@@ -881,9 +872,6 @@ msgstr "Zběrki"
 msgid "Collections I've Made"
 msgstr "Zběrki, kotrež ja sym wutworił"
 
-msgid "My Favorite Add-ons"
-msgstr "Moje najlubše přidatki"
-
 msgid "More&hellip;"
 msgstr "Wjace&hellip;"
 
@@ -1217,6 +1205,9 @@ msgstr "Zběrki su skupiny přiwuznych přidatkow, kotrež kóždy móže wutwor
 #, python-format
 msgid "by %(author_link)s"
 msgstr "wot %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moje najlubše přidatki"
 
 msgid "Create a Collection"
 msgstr "Zběrku wutworić"
@@ -2539,12 +2530,6 @@ msgstr "Wužiwarske zběrki"
 msgid "User Reviews"
 msgstr "Wužiwarske pohódnoćenja"
 
-msgid "Changes successfully saved."
-msgstr "Změny su so wuspěšnje składowali."
-
-msgid "Please check the form for errors."
-msgstr "Prošu přepytujće formular za zmylkami."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Přidatk njeda so zhašeć. Znjemóžńće tutón přidatk město toho."
 
@@ -2568,6 +2553,9 @@ msgstr "Awtor ma rólu, kotraž je so za waš přidatk změniła"
 
 msgid "An author has been removed from your add-on"
 msgstr "Awtor je so z wašeho přidatka wotstronił"
+
+msgid "Changes successfully saved."
+msgstr "Změny su so wuspěšnje składowali."
 
 msgid "Validate Add-on"
 msgstr "Přidatk přepruwować"
@@ -2651,6 +2639,9 @@ msgstr "Tekst pólneho wobłuka symboloweje lajsty"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Tekstowa barba w polach w symbolowej lajsće, na př. w adresowym polu. Polo manifesta: toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Prošu přepytujće formular za zmylkami."
 
 msgid "Review requested."
 msgstr "Přepruwowanje je so požadało."
@@ -3977,11 +3968,21 @@ msgstr "Testowanje live"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Instalujće swoje rozšěrjenje nachwilu w Firefox, zo by jo live testował a za zmylkami přepruwował."
 
-msgid "Transfer ownership"
-msgstr "Wobsedźenstwo přenošować"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Wobdźěłowanje lochkich drastow je so znjemóžniło."
+
+msgid "Create a New Theme"
+msgstr "Wutworće nowu drastu"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Pozadkowe drasty wam zmóžnjeja, napohlad wašeho Firefox personalizować. Zapodajće deleka swój design abo <a href=\"%(submit_url)s\">zhońće, kak móžeće design wutworić</a>!"
 
 msgid "Theme Details"
 msgstr "Podrobnosće drasty"
+
+msgid "Give your Theme a name."
+msgstr "Pomjenujće swoju drastu."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Podajće rjany URL za swoju stronu podrobnosćow."
@@ -3992,59 +3993,20 @@ msgstr "Wubjerće kategoriju, kotraž wašu drastu najlěpje wopisuje."
 msgid "Add some tags to describe your Theme."
 msgstr "Přidajće někotre znački, zo byšće swoju drastu wopisał."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na stronje podrobnosćow wašeje drasty pokazuje."
+msgid "Describe your Theme."
+msgstr "Wopisaj swoju drastu."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na stronje podrobnosćow wašeje drasty pokazuje"
 
 msgid "Theme License"
 msgstr "Licenca drasty"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Smědźa druzy wašu drastu dźělić, jeli was jako awtora naspominaja?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć, tež za komercielne zaměry."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencydawar dowoluje druhim, dźěło jenož za njekomercielne zaměry kopěrować, rozdźělować, pokazować a wuwjesć."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Smědźa druzy wašu drastu komercielnje wužiwać?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Smědźa druzy z wašeje drasty wotwodźene dźěła wutworić?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencydawar dowoluje druhim, dźěło kopěrować, rozdźělować, pokazować a wuwjesć a swójske dźěła wutworić, kotrež na tutym dźěle bazuja."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencydawar dowoluje druhim, jenož njezměnjene kopije dźěła kopěrować, rozdźělować a dale dawać — žane dźěła, kotrež na tutym dźěle bazuja."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Waša drasta so pod slědowacej licencu wozjewi:"
 
 msgid "Select a license for your Theme."
 msgstr "Wubjerće licencu za swoju drastu."
 
 msgid "Theme Design"
 msgstr "Drastowy design"
-
-msgid "Upload New Design"
-msgstr "Nowy design nahrać"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Mjeztym zo nahrawaće a formular wotesyłaće, budźe team AMO waš zaktualizowany design přepruwować. Waš aktualny design mjeztym hišće zjawny wostanje."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Waš design znowa zapodaty do toho, kotryž na přepruwowanje čaka."
-
-msgid "Pending Header"
-msgstr "Wustejaca hłowa"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Móžeće tu swój drastowy design aktualizować, hdyž je so schwalił."
-
-msgid "Header"
-msgstr "Hłowa"
 
 msgid "Select colors for your Theme."
 msgstr "Wubjerće barby za swoju drastu."
@@ -4067,19 +4029,6 @@ msgstr "Mjeno wašeje drasty"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "wot <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Wutworće nowu drastu"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Pozadkowe drasty wam zmóžnjeja, napohlad wašeho Firefox personalizować. Zapodajće deleka swój design abo <a href=\"%(submit_url)s\">zhońće, kak móžeće design wutworić</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Pomjenujće swoju drastu."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krótke wujasnjenje zakładneje funkcionalnosće wašeje drasty, kotrež so w pytanskich a přehladowanskich lisćinowych zapiskach kaž tež horjeka na stronje podrobnosćow wašeje drasty pokazuje"
 
 #, python-format
 msgid ""
@@ -5763,12 +5712,6 @@ msgstr "Žane dataje w nahratej dataji."
 msgid "Fetching file."
 msgstr "Dataja so wobstaruje."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "API-wersija, {0:.1f}, kotruž wužiwaće, płaćiwa njeje. Prošu aktualizujće na aktualnu wersiju {1:.1f} API."
-
-msgid "Not implemented yet."
-msgstr "Hišće njeimplementowany."
-
 msgid "Shopping Made Easy"
 msgstr "Nakupowanje lochko činjene"
 
@@ -6970,8 +6913,8 @@ msgid "No reviews found for this period."
 msgstr "Žane pohódnoćenja za tutón čas namakane."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] je %(object)s %(date)s zdźělił"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(country_code)s] je %(object)s %(date)s zdźělił"
 
 msgid "Dismiss this announcement"
 msgstr "Tute připowědźenje zaćisnyć"
@@ -7791,9 +7734,6 @@ msgstr "nowe přidatki abo funkcije Firefox su k dispoziciji"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kompatibelnosć mojeho přidatka je so wuspěšnje zaktualizowała"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "mój přidatk, kotryž na SDK bazuje, je so wuspěšnje zaktualizował"
-
 msgid "someone writes a review of my add-on"
 msgstr "něchtó pohódnoćenje mojeho přidatka pisa"
 
@@ -7802,9 +7742,6 @@ msgstr "wostańće aktualny z powěsćemi a podawkami, kotrež su relewantne za 
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kompatibelnosć mojeho přidatka njeda so aktualizować"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "mój přidatk, kotryž na SDK bazuje, njeda so aktualizować"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mój přidatk je so wot přepruwowarja přepruwował"
@@ -7953,12 +7890,6 @@ msgstr "wšě"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Přidatki Mozilla nětko Firefox Accounts za přizjewjenja wužiwaja. Pokročujće, zo byšće jednory aktualizowanski proces dokónčił."
-
-msgid "User Login"
-msgstr "Wužiwarske přizjewjenje"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Z Firefox Accounts přizjewić"
 
 msgid "Password Reset"
 msgstr "Hesło wróćo stajić"

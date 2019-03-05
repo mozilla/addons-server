@@ -2,14 +2,74 @@
 from django.conf import settings
 from django.core import mail
 
+import mock
 import six
 
-from olympia.abuse.models import AbuseReport
+from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
 from olympia.amo.tests import TestCase
 
 
 class TestAbuse(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
+
+    def test_choices(self):
+        assert AbuseReport.ADDON_SIGNATURES.choices == ((None, 'None'),)
+        assert AbuseReport.ADDON_SIGNATURES.api_choices == ((None, None),)
+
+        assert AbuseReport.REASONS.choices == (
+            (None, 'None'),
+            (1, 'Malware'),
+            (2, 'Spam / Advertising'),
+            (3, 'Search takeover'),
+            (4, 'New tab takeover'),
+            (5, 'Breaks websites'),
+            (6, 'Offensive'),
+            (7, "Doesn't match description"),
+            (8, "Doesn't work"),
+        )
+        assert AbuseReport.REASONS.api_choices == (
+            (None, None),
+            (1, 'malware'),
+            (2, 'spam_or_advertising'),
+            (3, 'search_takeover'),
+            (4, 'new_tab_takeover'),
+            (5, 'breaks_websites'),
+            (6, 'offensive'),
+            (7, 'does_not_match_description'),
+            (8, 'does_not_work'),
+        )
+
+        assert AbuseReport.ADDON_INSTALL_METHODS.choices == (
+            (None, 'None'),
+            (1, 'Add-on Manager Web API'),
+            (2, 'Direct link'),
+            (3, 'Install Trigger'),
+            (4, 'From File'),
+            (5, 'Webext management API'),
+            (6, 'Drag & Drop'),
+            (7, 'Sideload'),
+        )
+        assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == (
+            (None, None),
+            (1, 'amwebapi'),
+            (2, 'link'),
+            (3, 'installtrigger'),
+            (4, 'install-from-file'),
+            (5, 'management-webext-api'),
+            (6, 'drag-and-drop'),
+            (7, 'sideload')
+        )
+
+        assert AbuseReport.REPORT_ENTRY_POINTS.choices == (
+            (None, 'None'),
+            (1, 'Uninstall'),
+            (2, 'Menu')
+        )
+        assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
+            (None, None),
+            (1, 'uninstall'),
+            (2, 'menu')
+        )
 
     def test_user(self):
         report = AbuseReport(user_id=999)
@@ -56,3 +116,20 @@ class TestAbuse(TestCase):
             mail.outbox[0].subject ==
             u'[Addon] Abuse Report for foo@bar.org')
         assert 'GUID not in database' in mail.outbox[0].body
+
+    @mock.patch('olympia.abuse.models.GeoIP2')
+    def test_lookup_country_code_from_ip(self, GeoIP2_mock):
+        GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
+        assert AbuseReport.lookup_country_code_from_ip('') == ''
+        assert AbuseReport.lookup_country_code_from_ip('notanip') == ''
+        assert GeoIP2_mock.return_value.country_code.call_count == 0
+
+        GeoIP2_mock.return_value.country_code.return_value = 'ZZ'
+        assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == 'ZZ'
+        assert AbuseReport.lookup_country_code_from_ip('::1') == 'ZZ'
+
+        GeoIP2_mock.return_value.country_code.side_effect = GeoIP2Exception
+        assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''
+
+        GeoIP2_mock.return_value.country_code.side_effect = GeoIP2Error
+        assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''

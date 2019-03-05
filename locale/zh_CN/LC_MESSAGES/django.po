@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 14:07+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-26 07:20+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -146,15 +146,6 @@ msgstr "在您更改您的默认语言之前，您必须为那个语言环境输
 
 msgid "A license must be selected."
 msgstr "必须选择一种许可协议。"
-
-msgid "Give Your Theme a Name."
-msgstr "为您的主题取个名字吧。"
-
-msgid "Describe your Theme."
-msgstr "描述您的主题。"
-
-msgid "Enter a new author's email address"
-msgstr "输入新的作者电子邮件地址"
 
 # Column name in a table.
 msgid "Listed"
@@ -825,9 +816,6 @@ msgstr "收藏集"
 msgid "Collections I've Made"
 msgstr "我建立的收藏集"
 
-msgid "My Favorite Add-ons"
-msgstr "我最爱的附加组件"
-
 msgid "More&hellip;"
 msgstr "更多 &hellip;"
 
@@ -1147,6 +1135,9 @@ msgstr "收藏集是相关附加组件的集合，任何人都可以创建与分
 #, python-format
 msgid "by %(author_link)s"
 msgstr "作者：%(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "我最爱的附加组件"
 
 msgid "Create a Collection"
 msgstr "创建收藏集"
@@ -2453,12 +2444,6 @@ msgstr "用户收藏集"
 msgid "User Reviews"
 msgstr "用户评价"
 
-msgid "Changes successfully saved."
-msgstr "更改已成功保存。"
-
-msgid "Please check the form for errors."
-msgstr "请检查表单中的错误。"
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "附加组件无法被删除，可以禁用。"
 
@@ -2482,6 +2467,9 @@ msgstr "您的附加组件的一个作者角色已更改"
 
 msgid "An author has been removed from your add-on"
 msgstr "一个作者已被从您的附加组件中移除"
+
+msgid "Changes successfully saved."
+msgstr "更改已成功保存。"
 
 msgid "Validate Add-on"
 msgstr "验证附加组件"
@@ -2565,6 +2553,9 @@ msgstr "工具栏文本框区域文本"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "工具栏中的文本框里面文字的颜色，例如网址栏。清单字段：toolbar_field_text。"
+
+msgid "Please check the form for errors."
+msgstr "请检查表单中的错误。"
 
 msgid "Review requested."
 msgstr "已请求审核。"
@@ -3830,11 +3821,21 @@ msgstr "实时测试"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "在 Firefox 中临时安装您的扩展以进行实时测试和调试。"
 
-msgid "Transfer ownership"
-msgstr "变更所有权"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "轻量级主题编辑已被禁用。"
+
+msgid "Create a New Theme"
+msgstr "创建新主题"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "你可以借助背景主题很容易地个性化你的 Firefox 外观。在下面提交你自己的设计，或者<a href=\"%(submit_url)s\">学习如何创建</a>！"
 
 msgid "Theme Details"
 msgstr "主题详情"
+
+msgid "Give your Theme a name."
+msgstr "给主题取个名字。"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "给你的详情页面设定一个好网址。"
@@ -3845,59 +3846,20 @@ msgstr "选择最适合描述您主题的类别。"
 msgid "Add some tags to describe your Theme."
 msgstr "用一些标签描述您的主题。"
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "对您的主题的基本功能的简短说明，显示在搜索和浏览列表页面，同样也显示在主题详情页面的顶端。"
+msgid "Describe your Theme."
+msgstr "描述您的主题。"
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "对您的主题的基本功能的简短说明，显示在搜索和浏览列表页面，同样也显示在主题详情页面的顶端"
 
 msgid "Theme License"
 msgstr "主题许可"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "其他人能在您给定的许可时间内分享您的主题吗？"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "许可方允许他人对作品进行复制、发行、展览和表演，包括商业性目的。"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "许可方允许他人对作品进行复制、发行、展览和表演，但仅限于非商业性目的。"
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "其他人能将您的主题用于商业上吗？"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "能使用您的主题创作衍生作品吗？"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "许可方允许他人对作品进行复制、发行、展览和表演，并且可以在原作的基础上进行演绎创作。"
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "许可方允许他人对作品原封不动地进行复制、发行和传播，但不得进行演绎创作。"
-
-msgid "Your Theme will be released under the following license:"
-msgstr "您的主题将在以下许可下发布："
 
 msgid "Select a license for your Theme."
 msgstr "为您的主题选择一个许可协议。"
 
 msgid "Theme Design"
 msgstr "主题设计"
-
-msgid "Upload New Design"
-msgstr "上传新的设计"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "上传并提交，AMO 团队会审核您更新的设计。在此期间，仍然会公开呈现现有的设计。"
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "您此前重新提交了设计，它正在等待审核。"
-
-msgid "Pending Header"
-msgstr "待定页眉"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "一旦通过审核，您就可以在此更新您的主题设计了。"
-
-msgid "Header"
-msgstr "页眉"
 
 msgid "Select colors for your Theme."
 msgstr "选择主题的颜色。"
@@ -3920,19 +3882,6 @@ msgstr "您的主题名"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "来自 <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "创建新主题"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "你可以借助背景主题很容易地个性化你的 Firefox 外观。在下面提交你自己的设计，或者<a href=\"%(submit_url)s\">学习如何创建</a>！"
-
-msgid "Give your Theme a name."
-msgstr "给主题取个名字。"
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "对您的主题的基本功能的简短说明，显示在搜索和浏览列表页面，同样也显示在主题详情页面的顶端"
 
 #, python-format
 msgid ""
@@ -5606,12 +5555,6 @@ msgstr "上传的文件中没有文件。"
 msgid "Fetching file."
 msgstr "正在获取文件。"
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "您使用的 API 版本 {0:.1f} 无效。请升级到当前版本 {1:.1f} 的 API。"
-
-msgid "Not implemented yet."
-msgstr "尚未完成。"
-
 msgid "Shopping Made Easy"
 msgstr "购物，轻而易举"
 
@@ -5709,17 +5652,17 @@ msgid "Get Started"
 msgstr "入门指南"
 
 msgid "Reported Status"
-msgstr "反馈状态"
+msgstr "报告状态"
 
 msgid "Reported Spam"
-msgstr "已反馈为垃圾留言"
+msgstr "已报告为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
-msgstr "已反馈为正常留言"
+msgstr "已报告为正常留言"
 
 msgid "Not Reported"
-msgstr "尚未反馈"
+msgstr "尚未报告"
 
 msgid "Content Submitted"
 msgstr "提交的内容"
@@ -5737,12 +5680,12 @@ msgstr "向 Akismet 反馈为垃圾留言"
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Ham reports submitted as Spam"
-msgstr "已将 %s 正常留言反馈提交为垃圾留言"
+msgstr "已将 %s 正常留言报告提交为垃圾留言"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
 msgid "%s Spam reports submitted as Ham"
-msgstr "已将 %s 垃圾留言反馈提交为正常留言"
+msgstr "已将 %s 垃圾留言报告提交为正常留言"
 
 msgid "About Mozilla Add-ons"
 msgstr "关于 Mozilla 附加组件"
@@ -6761,8 +6704,8 @@ msgid "No reviews found for this period."
 msgstr "在此时间段内没有审核。"
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] 于 %(date)s 报告了 %(object)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(country_code)s] 于 %(date)s 报告了 %(object)s"
 
 msgid "Dismiss this announcement"
 msgstr "忽略此公告"
@@ -7565,9 +7508,6 @@ msgstr "有新的附加组件或者 Firefox 特性现在可用"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "我的附加组件的兼容性升级成功"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "我的基于SDK的附加组件升级成功"
-
 msgid "someone writes a review of my add-on"
 msgstr "有人对我的附加组件写了评价"
 
@@ -7576,9 +7516,6 @@ msgstr "关注最新的有关附加组件开发者消息和事件（包括 about
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "我的附加组件的兼容性不能升级"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "我的基于SDK的附加组件不能升级"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "我的附加组件已被一名审核员审核"
@@ -7725,12 +7662,6 @@ msgstr "所有"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla 附加组件已转为采用 Firefox 账号进行登录。继续以完成登录过程。"
-
-msgid "User Login"
-msgstr "用户登录"
-
-msgid "Log in with Firefox Accounts"
-msgstr "使用 Firefox 账号登录"
 
 msgid "Password Reset"
 msgstr "密码重置"

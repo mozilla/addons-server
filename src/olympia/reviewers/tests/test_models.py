@@ -21,7 +21,7 @@ from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, RereviewQueueTheme, ReviewerScore,
+    AutoApprovalSummary, ReviewerScore,
     ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue,
     ViewUnlistedAllList, send_notifications, set_reviewing_cache)
 from olympia.users.models import UserProfile
@@ -859,33 +859,6 @@ class TestReviewerScore(TestCase):
             ReviewerScore.get_breakdown(self.user)
 
 
-class TestRereviewQueueTheme(TestCase):
-
-    def test_manager_soft_delete_addons(self):
-        """Test manager excludes soft delete add-ons."""
-        # Normal RQT object.
-        RereviewQueueTheme.objects.create(
-            theme=addon_factory(type=amo.ADDON_PERSONA).persona, header='')
-
-        # Deleted add-on RQT object.
-        addon = addon_factory(type=amo.ADDON_PERSONA)
-        RereviewQueueTheme.objects.create(theme=addon.persona, header='')
-        addon.delete()
-
-        assert RereviewQueueTheme.objects.count() == 1
-        assert RereviewQueueTheme.unfiltered.count() == 2
-
-    def test_filter_for_many_to_many(self):
-        # Check https://bugzilla.mozilla.org/show_bug.cgi?id=1142035.
-        addon = addon_factory(type=amo.ADDON_PERSONA)
-        rqt = RereviewQueueTheme.objects.create(theme=addon.persona)
-        assert addon.persona.rereviewqueuetheme_set.get() == rqt
-
-        # Delete the addon: it shouldn't be listed anymore.
-        addon.update(status=amo.STATUS_DELETED)
-        assert addon.persona.rereviewqueuetheme_set.all().count() == 0
-
-
 class TestAutoApprovalSummary(TestCase):
     def setUp(self):
         self.addon = addon_factory(
@@ -1569,6 +1542,10 @@ class TestAutoApprovalSummary(TestCase):
 
         set_reviewing_cache(self.version.addon.pk, settings.TASK_USER_ID + 42)
         assert AutoApprovalSummary.check_is_locked(self.version) is True
+
+        # Langpacks are never considered locked.
+        self.addon.update(type=amo.ADDON_LPAPP)
+        assert AutoApprovalSummary.check_is_locked(self.version) is False
 
     @mock.patch.object(AutoApprovalSummary, 'calculate_weight', spec=True)
     @mock.patch.object(AutoApprovalSummary, 'calculate_verdict', spec=True)

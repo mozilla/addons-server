@@ -501,17 +501,6 @@ class ManifestJSONExtractor(object):
             strict_max_version = (
                 self.strict_max_version or amo.DEFAULT_WEBEXT_MAX_VERSION)
 
-            # Don't attempt to add support for this app to the WebExtension
-            # if the `strict_min_version` is below the default minimum version
-            # that is required to run WebExtensions (48.* for Android and 42.*
-            # for Firefox).
-            skip_app = (
-                self.strict_min_version and vint(self.strict_min_version) <
-                vint(default_min_version)
-            )
-            if skip_app:
-                continue
-
             try:
                 min_appver, max_appver = get_appversions(
                     app, strict_min_version, strict_max_version)

@@ -1,4 +1,4 @@
-<form method="get" action="{{ url('users.admin_edit') }}"
+<form method="get" action="{{ url('users.admin_edit', '{id}') }}"
       data-search-url="{{ url('zadmin.search', 'users', 'userprofile') }}" data-no-csrf>
     <div>
         <input class="searchbar" type="text" value="" name="q" placeholder="id, username, or email">

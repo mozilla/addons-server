@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-01-31 09:20+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -153,15 +153,6 @@ msgid "Before changing your default locale you must have a name, summary, and de
 msgstr ""
 
 msgid "A license must be selected."
-msgstr ""
-
-msgid "Give Your Theme a Name."
-msgstr "Giv dit tema et navn."
-
-msgid "Describe your Theme."
-msgstr "Beskriv dit tema."
-
-msgid "Enter a new author's email address"
 msgstr ""
 
 # Column name in a table.
@@ -855,9 +846,6 @@ msgstr "Samlinger"
 msgid "Collections I've Made"
 msgstr "Samlinger jeg har lavet"
 
-msgid "My Favorite Add-ons"
-msgstr "Mine favorittilføjelser"
-
 msgid "More&hellip;"
 msgstr "Flere&hellip;"
 
@@ -1184,6 +1172,9 @@ msgstr "Samlinger er grupper af relaterede tilføjelser, som alle kan lave og de
 #, python-format
 msgid "by %(author_link)s"
 msgstr "af %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mine favorittilføjelser"
 
 msgid "Create a Collection"
 msgstr "Opret en samling"
@@ -2513,12 +2504,6 @@ msgstr "Brugersamlinger"
 msgid "User Reviews"
 msgstr "Brugeranmeldelser"
 
-msgid "Changes successfully saved."
-msgstr "Ændringer gemt korrekt."
-
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr ""
 
@@ -2542,6 +2527,9 @@ msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "Ændringer gemt korrekt."
 
 msgid "Validate Add-on"
 msgstr ""
@@ -2626,6 +2614,9 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Please check the form for errors."
 msgstr ""
 
 msgid "Review requested."
@@ -3922,11 +3913,22 @@ msgstr "View Listing"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Overfør ejerskab"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Letvægtstemaer"
+
+msgid "Create a New Theme"
+msgstr "Lav et nyt tema"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Med baggrundstemaer kan du nemt tilpasse udseendet på Firefox. Indsend dit design nedenunder eller <a href=\"%(submit_url)s\">lær hvordan du laver et</a>!"
 
 msgid "Theme Details"
 msgstr "Detaljer om temaet"
+
+msgid "Give your Theme a name."
+msgstr "Giv dit tema et navn."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -3937,59 +3939,20 @@ msgstr "Vælg den kategori, der bedst beskriver dit tema."
 msgid "Add some tags to describe your Theme."
 msgstr "Tilføj nogle mærkater for at beskrive dit tema."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Beskriv dit tema."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
 msgstr "Tema-licens"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr ""
-
-msgid "Can others create derivative works from your Theme?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Dit tema vil blive udgivet under følgende licens:"
 
 msgid "Select a license for your Theme."
 msgstr "Vælg en licens til dit tema."
 
 msgid "Theme Design"
 msgstr "Tema-design"
-
-msgid "Upload New Design"
-msgstr "Upload nyt design"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-
-msgid "Pending Header"
-msgstr ""
-
-msgid "You may update your theme design here once it has been approved."
-msgstr ""
-
-msgid "Header"
-msgstr ""
 
 msgid "Select colors for your Theme."
 msgstr "Vælg farver til dit tema."
@@ -4012,19 +3975,6 @@ msgstr "Dit temas navn"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "af <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Lav et nyt tema"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Med baggrundstemaer kan du nemt tilpasse udseendet på Firefox. Indsend dit design nedenunder eller <a href=\"%(submit_url)s\">lær hvordan du laver et</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Giv dit tema et navn."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5794,12 +5744,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "Endnu ikke implementeret."
-
 msgid "Shopping Made Easy"
 msgstr ""
 
@@ -7014,7 +6958,7 @@ msgid "No reviews found for this period."
 msgstr ""
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -7827,9 +7771,6 @@ msgstr "nye tilføjelser eller Firefox-funktioner er tilgængelige"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "min tilføjelses kompatibilitet er opgraderet"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "min sdk-baserede tilføjelse er opgraderet"
-
 msgid "someone writes a review of my add-on"
 msgstr "nogen skriver en anmeldelse af min tilføjelse"
 
@@ -7838,9 +7779,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "min tilføjelses kompatibilitet ikke kan opgraderes"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "min sdk-baserede tilføjelse ikke kan opgraderes"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "min tilføjelse er gennemgået af en redaktør"
@@ -7987,12 +7925,6 @@ msgstr "alle"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Mozilla-tilføjelser er gået over til Firefox-konti til login. Fortsæt for at fuldføre den enkle login-proces."
-
-msgid "User Login"
-msgstr "Bruger-login"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Log ind med Firefox-konti"
 
 msgid "Password Reset"
 msgstr "Nulstil adgangskode"

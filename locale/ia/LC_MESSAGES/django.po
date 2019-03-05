@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-12 23:38+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-03-04 22:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -152,15 +152,6 @@ msgstr "Ante de cambiar tu localisation predefinite tu debe haber un nomine, sum
 
 msgid "A license must be selected."
 msgstr "Un licentia debe esser eligite."
-
-msgid "Give Your Theme a Name."
-msgstr "Da a tu thema un nomine."
-
-msgid "Describe your Theme."
-msgstr "Describe tu thema."
-
-msgid "Enter a new author's email address"
-msgstr "Insere un nove adresse email de autor"
 
 msgid "Listed"
 msgstr "Listate"
@@ -572,11 +563,11 @@ msgid "This add-on has been disabled by an administrator."
 msgstr "Iste additivo ha essite disactivate per un administrator."
 
 msgid "Source Code License for {addon}"
-msgstr "Licentia de codice fonte pro {addon}"
+msgstr "Licentia de codification fonte pro {addon}"
 
 #. The License for this add-on.
 msgid "Source Code License"
-msgstr "Licentia de codice fonte"
+msgstr "Licentia de codification fonte"
 
 msgid "support section"
 msgstr "section supporto"
@@ -698,7 +689,7 @@ msgid "Error verifying input, please try again."
 msgstr "Error verificante le entrata, per favor prova ancora."
 
 msgid "This must be a valid hex color code, such as #000000."
-msgstr "Isto debe ser un codice hexadecimal de color valide, tal como #000000."
+msgstr "Isto debe ser un codification hexadecimal de color valide, tal como #000000."
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Alcun functionalitates es temporarimente disactivate durante que nos exeque le mantenentia del sito web. Nos tornara al plen capacitate a breve."
@@ -849,9 +840,6 @@ msgstr "Collectiones"
 
 msgid "Collections I've Made"
 msgstr "Collectiones que io ha create"
-
-msgid "My Favorite Add-ons"
-msgstr "Mi additivos favorite"
 
 msgid "More&hellip;"
 msgstr "Plus&hellip;"
@@ -1182,6 +1170,9 @@ msgstr "Le collectiones es gruppos de additivos correlate que quicunque pote cre
 #, python-format
 msgid "by %(author_link)s"
 msgstr "de %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Mi additivos favorite"
 
 msgid "Create a Collection"
 msgstr "Crear un collection"
@@ -1718,10 +1709,10 @@ msgid "Approval notes changed"
 msgstr "Notas de approbation cambiate"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Codice fonte cargate pro {addon} {version}."
+msgstr "Codification fonte cargate pro {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr "Codice fonte cargate"
+msgstr "Codification fonte cargate"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "Auto-approbation confirmate pro {addon} {version}."
@@ -2511,12 +2502,6 @@ msgstr "Collectiones del usator"
 msgid "User Reviews"
 msgstr "Revisiones del usator"
 
-msgid "Changes successfully saved."
-msgstr "Cambios salvate con successo."
-
-msgid "Please check the form for errors."
-msgstr "Per favor controla le formulario pro errores."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Le additivo non pote ser delite, disactiva lo, in vice."
 
@@ -2540,6 +2525,9 @@ msgstr "Un autor ha un rolo cambiate sur tu additivo"
 
 msgid "An author has been removed from your add-on"
 msgstr "Un autor ha essite removite ex tu additivo"
+
+msgid "Changes successfully saved."
+msgstr "Cambios salvate con successo."
 
 msgid "Validate Add-on"
 msgstr "Validar additivo"
@@ -2623,6 +2611,9 @@ msgstr "Texto in campos del barra del instrumentos"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Le color de texto in le campos del barra del instrumentos e in le barra del URL. Campo de manifesto:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Per favor controla le formulario pro errores."
 
 msgid "Review requested."
 msgstr "Revision demandate."
@@ -3009,10 +3000,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr "Si le fonte de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr "Le codice fonte de iste additivo es visibile publicamente."
+msgstr "Le codification fonte de iste additivo es visibile publicamente."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, le codice fonte de iste additivo non es publicamente visibile."
+msgstr "No, le codification fonte de iste additivo non es publicamente visibile."
 
 msgid "Public Stats?"
 msgstr "Statistica public?"
@@ -3338,7 +3329,7 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Si tu inviava codice fonte sin instructiones, tu debe fornir los ci. Insere gradualmente le instructiones de compilation pro crear un copia exacte del codice del additivo, secundo le "
+"Si tu inviava codification fonte sin instructiones, tu debe fornir los ci. Insere gradualmente le instructiones de compilation pro crear un copia exacte del codification del additivo, secundo le "
 "%(policy_requirements_open)srequisitos del politica%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
@@ -3417,13 +3408,13 @@ msgid "Go to My Submissions"
 msgstr "Ir a mi submissiones"
 
 msgid "Source Code Upload"
-msgstr "Cargamento de codice fonte"
+msgstr "Cargamento de codification fonte"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr "Ha tu besonio de inviar codice fonte?"
+msgstr "Ha tu besonio de inviar codification fonte?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Tu pote haber besonio de submitter codice fonte. Si tu non lo face, tu additivo pote ser removite ex iste sito!"
+msgstr "Tu pote haber besonio de submitter codification fonte. Si tu non lo face, tu additivo pote ser removite ex iste sito!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -3445,14 +3436,14 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr "Ulle altere application que prende codice o files, processa, e genera codice o file(s) a includer in le additivo"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr "Tu non necessita de inviar codice fonte, e tu es preste pro le grado successive."
+msgstr "Tu non necessita de inviar codification fonte, e tu es preste pro le grado successive."
 
 msgid "Your Submission Requires Source Code."
-msgstr "Tu submission require codice fonte."
+msgstr "Tu submission require codification fonte."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Le codice fonte debe concordar le <a %(a_attrs)s>requisitos del politica</a>, que include:"
+msgstr "Le codification fonte debe concordar le <a %(a_attrs)s>requisitos del politica</a>, que include:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Instructiones detaliate de compilation pro crear un copia exacte del codice del additivo."
@@ -3479,13 +3470,13 @@ msgid "How to Submit:"
 msgstr "Como submitter:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr "Includer le instructiones in un file README in le codice fonte,"
+msgstr "Includer le instructiones in un file README in le codification fonte,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "o in le notas de revisor sur le pagina successive (si applicabile)."
 
 msgid "Upload source code:"
-msgstr "Cargar codice fonte:"
+msgstr "Cargar codification fonte:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Accordo de distribution del additivo"
@@ -3724,13 +3715,13 @@ msgstr ""
 "additivos listate."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr "Si tu additivo contine codice binari o offuscate in ultra al note bibliothecas, carga su fontes pro le revision."
+msgstr "Si tu additivo contine codification binari o offuscate in ultra al note bibliothecas, carga su fontes pro le revision."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
 
 msgid "Read more about the source code review policy."
-msgstr "Leger plus circa le regulamento de revision del codice fonte."
+msgstr "Leger plus circa le regulamento de revision del codification fonte."
 
 msgid "Latest News"
 msgstr "Ultime novas"
@@ -3942,11 +3933,21 @@ msgstr "Test al vivo"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr "Installa temporarimente tu extension in Firefox pro test vive e depuration."
 
-msgid "Transfer ownership"
-msgstr "Transfere le proprietate"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Modification del themas legier disactivate."
+
+msgid "Create a New Theme"
+msgstr "Crear un nove thema"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Le themas de fundo te lassa personalisar facilemente le vista de tu Firefox. Invia tu proprie motivo infra, o <a href=\"%(submit_url)s\">apprende como crear uno</a>!"
 
 msgid "Theme Details"
 msgstr "Detalios de thema"
+
+msgid "Give your Theme a name."
+msgstr "Da un nomine a tu thema."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Forni un URL attrahente pro tu pagina del detalios."
@@ -3957,59 +3958,20 @@ msgstr "Elige le categoria que melio describe tu thema."
 msgid "Add some tags to describe your Theme."
 msgstr "Adde alcun tags pro describer tu thema."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "Un breve explanation del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema."
+msgid "Describe your Theme."
+msgstr "Describe tu thema."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Un breve explication del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema"
 
 msgid "Theme License"
 msgstr "Licentia del thema"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Pote alteres compartir tu thema, fin que tu ha date credito a illes?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar e exequer le labor, anque pro propositos commercial."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Le licentiante permitte al alteres de copiar, distribuer, monstrar e exequer le labor solo pro propositos non-commercial."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Pote alteres facer uso commercial de tu Thema?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Pote alteres crear labores derivative ex tu thema?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Le licentiante permitte a alteres de copiar, distribuer, monstrar e exequer le labor, tam ben como facer labores derivative basate sur illo."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Le licentiante permitte a alteres de copiar, distribuer e transmitter solo copias inalterate del labor — non labores derivative basate sur illo."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Tu thema sera publicate sub le sequente licentia:"
 
 msgid "Select a license for your Theme."
 msgstr "Elige un licentia pro tu thema."
 
 msgid "Theme Design"
 msgstr "Designo del thema"
-
-msgid "Upload New Design"
-msgstr "Cargar un nove motivo"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Un vice cargate tu designo actualisate e compilate le modulo de submission, le equipa de AMO lo revidera. Intertanto tu actual designo essera ancora public."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Tu motivo previemente re-submittite, que attende un revision."
-
-msgid "Pending Header"
-msgstr "Titulo que attende revision"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Tu potera actualisar ci tu motivo del thema, un vice que illo ha essite approbate."
-
-msgid "Header"
-msgstr "Titulo"
 
 msgid "Select colors for your Theme."
 msgstr "Elige le colores pro tu thema."
@@ -4032,19 +3994,6 @@ msgstr "Le nomine del thema"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "per <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Crear un nove thema"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Le themas de fundo te lassa personalisar facilemente le vista de tu Firefox. Invia tu proprie motivo infra, o <a href=\"%(submit_url)s\">apprende como crear uno</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Da un nomine a tu thema."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Un breve explication del functionalitates basic de tu thema que es displicate in le listas de recerca e navigation, tam ben como in le melior paginas de detalios de tu thema"
 
 #, python-format
 msgid ""
@@ -4120,10 +4069,10 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr "Optionalmente, insere tote le informationes que pote ser utile al revisor de iste additivo, tal como informationes del conto de test."
 
 msgid "Source code"
-msgstr "Codice fonte"
+msgstr "Codification fonte"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr "Si tu additivo contine codice binari o offuscate, rende ci disponibile le codice fonte pro le revisores."
+msgstr "Si tu additivo contine codification binari o offuscate, rende ci disponibile le codification fonte pro le revisores."
 
 msgid "File {file_id} ({platform})"
 msgstr "File {file_id} ({platform})"
@@ -5512,11 +5461,11 @@ msgstr "Recerca con plus securitate con le blocada del traciatores, un cryptogra
 
 #. editorial content for the discovery pane.
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Simplifica le recerca {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Simplifica le schedas {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "Gere tu schedas aperte in un barra lateral ordinate."
+msgstr "Gere tu schedas aperte in un barra lateral vertical."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5726,12 +5675,6 @@ msgstr "Nulle file in le archivo cargate."
 
 msgid "Fetching file."
 msgstr "Recuperante file."
-
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Le version de API, {0:.1f}, que tu usa non es valide. Per favor promove al actual version {1:.1f} de API."
-
-msgid "Not implemented yet."
-msgstr "Non ancora implementate."
 
 msgid "Shopping Made Easy"
 msgstr "Compras rendite facile"
@@ -6027,7 +5970,7 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "Usar profanitate, linguage sexual o linguage que pote ser interpretate como odiose."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Includer HTML, ligamines, codice fonte o fragmentos de codice. Les revisiones es intendite pro esser texto solmente."
+msgstr "Includer HTML, ligamines, codification fonte o fragmentos de codification. Les revisiones es intendite pro esser texto solmente."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Facer declarationes false, denigrar autores del additivos o insultar personalmente illes."
@@ -6817,7 +6760,7 @@ msgid "Download files"
 msgstr "Discargar files"
 
 msgid "The developer has provided source code."
-msgstr "Le disveloppator ha fornite le codice fonte."
+msgstr "Le disveloppator ha fornite le codification fonte."
 
 msgid "Weight:"
 msgstr "Peso:"
@@ -6916,8 +6859,8 @@ msgid "No reviews found for this period."
 msgstr "Nulle revisiones trovate pro iste periodo."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] reportava %(object)s le %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "%(user)s [%(country_code)s] reportava %(object)s le %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Dimitte iste annuncio"
@@ -7130,7 +7073,7 @@ msgid "Return To AMO is currently disabled"
 msgstr "Retornar a AMO es al momento disactivate"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Guida de retorno al AMO non valide (formato de url non in base 64?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
 msgstr "Return To AMO guid non valide (additivo non curate)"
@@ -7729,9 +7672,6 @@ msgstr "nove additivos o functionalitates de Firefox es disponibile"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "le compatibilitate de mi additivo es promovite con successo"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "mi additivo basate sur sdk esseva promovite con successo"
-
 msgid "someone writes a review of my add-on"
 msgstr "alicuno scribe un revision de mi additivo"
 
@@ -7740,9 +7680,6 @@ msgstr "remane ajornate con novas e eventos pertinente al disveloppatores de add
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "le compatibilitate de mi additivo non pote ser promovite"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "mi additivo basate sur sdk non pote ser promovite"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mi additivos es revidite per un revisor"
@@ -7892,12 +7829,6 @@ msgstr "toto"
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Le additivos de Mozilla ha transite al contos de Firefox pro connexion. Continuar pro completar le processo de connexion simple."
 
-msgid "User Login"
-msgstr "Connexion del usator"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Connecte te con le contos de Firefox"
-
 msgid "Password Reset"
 msgstr "Restabilir le contrasigno"
 
@@ -8039,7 +7970,7 @@ msgstr "Publicate le {0}"
 
 #, python-format
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Codice fonte disponibile sub <a href=\"%(url)s\">%(name)s</a>"
+msgstr "Codification fonte disponibile sub <a href=\"%(url)s\">%(name)s</a>"
 
 #. {0} is an add-on name.
 msgid "{0} Version History"

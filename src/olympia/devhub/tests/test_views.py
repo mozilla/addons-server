@@ -21,12 +21,13 @@ from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
 
 from olympia import amo, core
+from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonCategory, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.templatetags.jinja_helpers import (
-    format_date, url as url_reverse)
+    format_date, url as url_reverse, urlparams)
 from olympia.amo.tests import (
     TestCase, addon_factory, user_factory, version_factory)
 from olympia.amo.tests.test_helpers import get_image_path
@@ -42,6 +43,7 @@ from olympia.lib.akismet.models import AkismetReport
 from olympia.ratings.models import Rating
 from olympia.translations.models import Translation, delete_translation
 from olympia.users.models import UserProfile
+from olympia.users.tests.test_views import UserViewBase
 from olympia.versions.models import (
     ApplicationsVersions, Version, VersionPreview)
 from olympia.zadmin.models import set_config
@@ -1756,3 +1758,53 @@ class TestThemeBackgroundImage(TestCase):
         assert len(data.items()) == 1
         assert 'weta.png' in data
         assert len(data['weta.png']) == 168596  # base64-encoded size
+
+
+class TestLogout(UserViewBase):
+
+    def test_success(self):
+        user = UserProfile.objects.get(email='jbalogh@mozilla.com')
+        self.client.login(email=user.email)
+        response = self.client.get('/', follow=True)
+        assert (
+            pq(response.content.decode('utf-8'))('.account .user').text() ==
+            user.display_name)
+        assert (
+            pq(response.content)('.account .user').attr('title') == user.email)
+
+        response = self.client.get('/developers/logout', follow=True)
+        assert not pq(response.content)('.account .user')
+
+    def test_redirect(self):
+        self.client.login(email='jbalogh@mozilla.com')
+        self.client.get('/', follow=True)
+        url = '/en-US/about'
+        response = self.client.get(urlparams(reverse('devhub.logout'), to=url),
+                                   follow=True)
+        self.assert3xx(response, url, status_code=302)
+
+        url = urlparams(reverse('devhub.logout'), to='/addon/new',
+                        domain='builder')
+        response = self.client.get(url, follow=False)
+        self.assert3xx(
+            response, 'https://builder.addons.mozilla.org/addon/new',
+            status_code=302)
+
+        # Test an invalid domain
+        url = urlparams(reverse('devhub.logout'), to='/en-US/about',
+                        domain='http://evil.com')
+        response = self.client.get(url, follow=False)
+        self.assert3xx(response, '/en-US/about', status_code=302)
+
+    def test_session_cookie_deleted_on_logout(self):
+        self.client.login(email='jbalogh@mozilla.com')
+        self.client.cookies[API_TOKEN_COOKIE] = 'some.token.value'
+        response = self.client.get(reverse('devhub.logout'))
+        cookie = response.cookies[settings.SESSION_COOKIE_NAME]
+        cookie_date_string = u'Thu, 01 Jan 1970 00:00:00 GMT'
+        assert cookie.value == ''
+        # in django2.1+ changed to django.utils.http.http_date from cookie_date
+        assert cookie['expires'].replace('-', ' ') == cookie_date_string
+        jwt_cookie = response.cookies[API_TOKEN_COOKIE]
+        assert jwt_cookie.value == ''
+        assert jwt_cookie['expires'].replace('-', ' ') == cookie_date_string

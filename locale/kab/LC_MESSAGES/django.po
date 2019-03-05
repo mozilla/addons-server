@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-02-10 21:31+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,15 +152,6 @@ msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akke
 
 msgid "A license must be selected."
 msgstr "Yessefk ad tferneḍ turagt."
-
-msgid "Give Your Theme a Name."
-msgstr "Mudd isem i usentel inek."
-
-msgid "Describe your Theme."
-msgstr "Glem asentel inek."
-
-msgid "Enter a new author's email address"
-msgstr "Mud tansa imayl n umeskar amaynut"
 
 msgid "Listed"
 msgstr "Yettwabder"
@@ -846,9 +837,6 @@ msgstr "Tigrummiwin"
 msgid "Collections I've Made"
 msgstr "Tigrimmiwin i xedmeɣ"
 
-msgid "My Favorite Add-ons"
-msgstr "Izegrar inu inurifen"
-
 msgid "More&hellip;"
 msgstr "Ugar &hellip;"
 
@@ -1177,6 +1165,9 @@ msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen i yezmer yal yiwen ad
 #, python-format
 msgid "by %(author_link)s"
 msgstr "sγur %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Izegrar inu inurifen"
 
 msgid "Create a Collection"
 msgstr "Rnu tagrumma"
@@ -2498,12 +2489,6 @@ msgstr "Tigrummiwin n useqdac"
 msgid "User Reviews"
 msgstr "Iceggiren n useqdac"
 
-msgid "Changes successfully saved."
-msgstr "Isnifal ttwakelsen akken iwata."
-
-msgid "Please check the form for errors."
-msgstr "Ma ulac aɣilif senqed tafelwit inek ɣef tuccḍiwin."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Azegrir ur yezmir ara ad yettwakkes. Sens-it deg umḍiq n tukksa."
 
@@ -2527,6 +2512,9 @@ msgstr "Tamlilt n umeskar tettusnifel ɣef uzegri inek"
 
 msgid "An author has been removed from your add-on"
 msgstr "Ameskar yettwakkes seg uzegrir inek"
+
+msgid "Changes successfully saved."
+msgstr "Isnifal ttwakelsen akken iwata."
 
 msgid "Validate Add-on"
 msgstr "Sentem azegrir"
@@ -2613,6 +2601,9 @@ msgstr "Aḍris n wurtan n ufeggag n  yifecka"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Ini n uḍris n wurtan deg ufeggag n yifecka, am ufeggag n tensa. Urti n umeskan:   toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Ma ulac aɣilif senqed tafelwit inek ɣef tuccḍiwin."
 
 msgid "Review requested."
 msgstr "Aceggir yettwasuter."
@@ -3945,11 +3936,22 @@ msgstr "Asebter n usnas"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Beddel imawlan n uzegrir"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Aɣmis n ucegger n yIsental fessusen"
+
+msgid "Create a New Theme"
+msgstr "Rnu asentel amaynut"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Isental n ugilal ak-eǧǧen ad tmuddeɣ udem i Firefox inek. Azen ayla-k dagi, neɣ <a href=\"%(submit_url)s\">issin amek ad d-snulfuḍ yiwen</a> !"
 
 msgid "Theme Details"
 msgstr "Talqayt n usentel"
+
+msgid "Give your Theme a name."
+msgstr "Mudd isem i usentel inek."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Mudd-ad talnsa URL icebḥen i usebter inek n telqayt."
@@ -3960,59 +3962,21 @@ msgstr "Fren taggayt iwulmen i usentel inek."
 msgid "Add some tags to describe your Theme."
 msgstr "Rnu kra n tebzimin i usentel inek."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Glem asentel inek."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Asegzi awezlan n timahilin timezwura n usentel-ik, ayen ara d-yettwaseknen deg tebdart akked igmaḍ n unadi akked idis n ufella n usebter n telqayt."
 
 msgid "Theme License"
 msgstr "Turagt n usentel"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Wiyaḍ zemren ad bḍun asentel inek ma yella nan-d d kečč i d ameskar?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, ad d-seknen neɣ ad sqedcen axeddim, ladɣa  deg uḥric n tnezzut."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, ad d-seknen neɣ ad sqedcen axeddim, ladɣa  deg uḥric beṛṛa n tnezzut."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Zemren wiyaḍ ad zenzen asentel inek?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Zemren wiyaḍ ad sqedcen asentel inek akken ad d-snufun wiyaḍ?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, ad d-seknen neɣ ad sqedcen axeddim, ladɣa  akken ad d-yesnulfu ayen-nniḍen."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Bab n yizerfan ad imudd azref n wiyaḍ akken ad neɣlen, ad zuzren, daɣen ad neɣlen kan axeddi m akken yella."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Asentel inek ad d-yeffeɣ daw n turagt-agi:"
 
 msgid "Select a license for your Theme."
 msgstr "Fren turagt i usentel inek."
 
 msgid "Theme Design"
 msgstr "Afeṣṣel n usentel"
-
-msgid "Upload New Design"
-msgstr "Sali afeṣṣel nniḍen"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Tuzneḍ-d afessel, atan yettraǧu asenqed."
-
-msgid "Pending Header"
-msgstr "Aqeṛṛu yettṛagun"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Yessefk ad leqqmeḍ afeṣṣel n usentel inek dagi ticki yettwaqbel."
-
-msgid "Header"
-msgstr "Aqeṛṛu"
 
 msgid "Select colors for your Theme."
 msgstr "Fren initeni usentel inek."
@@ -4037,20 +4001,6 @@ msgstr "Isem n usentel inek"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "sɣuṛ <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Rnu asentel amaynut"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Isental n ugilal ak-eǧǧen ad tmuddeɣ udem i Firefox inek. Azen ayla-k dagi, neɣ <a href=\"%(submit_url)s\">issin amek ad d-snulfuḍ yiwen</a> !"
-
-msgid "Give your Theme a name."
-msgstr "Mudd isem i usentel inek."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Asegzi awezlan n timahilin timezwura n usentel-ik, ayen ara d-yettwaseknen deg tebdart akked igmaḍ n unadi akked idis n ufella n usebter n telqayt."
 
 #, python-format
 msgid ""
@@ -5882,12 +5832,6 @@ msgstr "Ulac ifuyla deg ufaylu yulin."
 msgid "Fetching file."
 msgstr "Awway n ufaylu."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "Ur yettwasebded ara yakan."
-
 msgid "Shopping Made Easy"
 msgstr "Tiɣin d ayen fessusen"
 
@@ -7065,8 +7009,8 @@ msgstr "Ffer iwenniten"
 msgid "No reviews found for this period."
 msgstr "Ulac iceggiren yettwafen di twala-agi."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] yemmela-d %(object)s di %(date)s"
 
 msgid "Dismiss this announcement"
@@ -7867,9 +7811,6 @@ msgstr "izegrar neɣ timahilin timaynutin n Firefox llant"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "amṣda n uzegrir-inu yettwalqem akken iwata"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "amṣada n uzegrir inu s useqdec n sdk yettwalqem akken iwata"
-
 msgid "someone writes a review of my add-on"
 msgstr "yella win yuran acegger ɣef uzegrir inu"
 
@@ -7878,9 +7819,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "amṣada n uzegrir-inu ur yettwalqem ara"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "amṣada n uzegrir inu s useqdec n sdk ur yettwalqem ara"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "azegrir-inu yettucegger sɣuṛ yiwen n imcegger."
@@ -8029,12 +7967,6 @@ msgstr "akk"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Asmel n izegrar n Mozilla iseqdac akka tura imiḍanen Firefox di tuqqna. Kemmel akken ad fakeḍ akala n uleqqem."
-
-msgid "User Login"
-msgstr "Tuqqna n useqdac"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Qqen s umiḍan Firefox"
 
 msgid "Password Reset"
 msgstr "Awal uffir ittuwennez"

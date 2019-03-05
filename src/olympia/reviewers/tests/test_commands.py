@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 from django.core.management import call_command
+from django.test.testcases import TransactionTestCase
 
 import mock
 import six
@@ -15,6 +16,8 @@ from olympia.addons.models import (
     AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.tests import (
     TestCase, addon_factory, file_factory, user_factory, version_factory)
+from olympia.amo.utils import days_ago
+from olympia.lib.crypto.signing import SigningError
 from olympia.files.models import FileValidation
 from olympia.files.utils import atomic_lock
 from olympia.reviewers.management.commands import auto_approve
@@ -23,7 +26,24 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore, get_reviewing_cache)
 
 
-class TestAutoApproveCommand(TestCase):
+class AutoApproveTestsMixin(object):
+    def setUp(self):
+        # Always mock log_final_summary() method so we can look at the stats
+        # easily.
+        patcher = mock.patch.object(auto_approve.Command, 'log_final_summary')
+        self.log_final_summary_mock = patcher.start()
+        self.addCleanup(patcher.stop)
+
+    def _check_stats(self, expected_stats):
+        # We abuse the fact that log_final_summary receives stats as positional
+        # argument to check what happened. Depends on setUp() patching
+        # auto_approve.Command.log_final_summary
+        assert self.log_final_summary_mock.call_count == 1
+        stats = self.log_final_summary_mock.call_args[0][0]
+        assert stats == expected_stats
+
+
+class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
     def setUp(self):
         self.user = user_factory(
             id=settings.TASK_USER_ID, username='taskuser',
@@ -37,19 +57,7 @@ class TestAutoApproveCommand(TestCase):
         self.file_validation = FileValidation.objects.create(
             file=self.version.all_files[0], validation=u'{}')
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
-
-        # Always mock log_final_summary() method so we can look at the stats
-        # easily.
-        patcher = mock.patch.object(auto_approve.Command, 'log_final_summary')
-        self.log_final_summary_mock = patcher.start()
-        self.addCleanup(patcher.stop)
-
-    def _check_stats(self, expected_stats):
-        # We abuse the fact that log_final_summary receives stats as positional
-        # argument to check what happened.
-        assert self.log_final_summary_mock.call_count == 1
-        stats = self.log_final_summary_mock.call_args[0][0]
-        assert stats == expected_stats
+        super(TestAutoApproveCommand, self).setUp()
 
     def test_fetch_candidates(self):
         # We already have an add-on with a version awaiting review that should
@@ -252,6 +260,15 @@ class TestAutoApproveCommand(TestCase):
         assert create_summary_for_version_mock.call_count == 1
         self._check_stats({'total': 1, 'error': 1})
 
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_signing_error(self, sign_file_mock):
+        sign_file_mock.side_effect = SigningError
+        call_command('auto_approve')
+        assert sign_file_mock.call_count == 1
+        assert get_reviewing_cache(self.addon.pk) is None
+        self._check_stats({'total': 1, 'error': 1, 'is_locked': 0,
+                           'has_auto_approval_disabled': 0})
+
     @mock.patch.object(auto_approve.Command, 'approve')
     @mock.patch.object(AutoApprovalSummary, 'create_summary_for_version')
     def test_successful_verdict_dry_run(
@@ -309,6 +326,72 @@ class TestAutoApproveCommand(TestCase):
 
         assert self.log_final_summary_mock.call_count == 0
         assert self.file.reload().status == amo.STATUS_AWAITING_REVIEW
+
+
+class TestAutoApproveCommandTransactions(
+        AutoApproveTestsMixin, TransactionTestCase):
+    def setUp(self):
+        user_factory(
+            id=settings.TASK_USER_ID, username='taskuser',
+            email='taskuser@mozilla.com')
+        self.addons = [
+            addon_factory(average_daily_users=666, users=[user_factory()]),
+            addon_factory(average_daily_users=999, users=[user_factory()]),
+        ]
+        self.versions = [
+            version_factory(
+                addon=self.addons[0], file_kw={
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                    'is_webextension': True}),
+            version_factory(
+                addon=self.addons[1], file_kw={
+                    'status': amo.STATUS_AWAITING_REVIEW,
+                    'is_webextension': True}),
+        ]
+        self.files = [
+            self.versions[0].all_files[0],
+            self.versions[1].all_files[0],
+        ]
+        self.versions[0].update(nomination=days_ago(1))
+        FileValidation.objects.create(
+            file=self.versions[0].all_files[0], validation=u'{}')
+        FileValidation.objects.create(
+            file=self.versions[1].all_files[0], validation=u'{}')
+        super(TestAutoApproveCommandTransactions, self).setUp()
+
+    @mock.patch('olympia.reviewers.utils.sign_file')
+    def test_signing_error_roll_back(self, sign_file_mock):
+        sign_file_mock.side_effect = [SigningError, None]
+        call_command('auto_approve')
+        # Make sure that the AutoApprovalSummary created for the first add-on
+        # was rolled back because of the signing error, and that it didn't
+        # affect the approval of the second one.
+        assert sign_file_mock.call_count == 2
+
+        for file_ in self.files:
+            file_.reload()
+        for addon in self.addons:
+            addon.reload()
+
+        assert not AutoApprovalSummary.objects.filter(
+            version=self.versions[0]).exists()
+        assert self.addons[0].status == amo.STATUS_PUBLIC  # It already was.
+        assert self.files[0].status == amo.STATUS_AWAITING_REVIEW
+        assert not self.files[0].reviewed
+
+        assert AutoApprovalSummary.objects.get(version=self.versions[1])
+        assert self.addons[1].status == amo.STATUS_PUBLIC
+        assert self.files[1].status == amo.STATUS_PUBLIC
+        assert self.files[1].reviewed
+
+        assert len(mail.outbox) == 1
+
+        assert get_reviewing_cache(self.addons[0].pk) is None
+        assert get_reviewing_cache(self.addons[1].pk) is None
+
+        self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
+                           'has_auto_approval_disabled': 0,
+                           'auto_approved': 1})
 
 
 class TestAwardPostReviewPoints(TestCase):

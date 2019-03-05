@@ -16,8 +16,7 @@ from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.addons.models import Addon, AddonCategory, Category
 from olympia.amo.templatetags.jinja_helpers import user_media_path
-from olympia.amo.tests import (
-    TestCase, addon_factory, formset, initial, req_factory_factory)
+from olympia.amo.tests import TestCase, formset, initial, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import image_size
@@ -25,7 +24,6 @@ from olympia.bandwagon.models import (
     Collection, CollectionAddon, FeaturedCollection)
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.devhub.forms import DescribeForm
-from olympia.devhub.views import edit_theme
 from olympia.lib.akismet.models import AkismetReport
 from olympia.lib.cache import memoize_key
 from olympia.tags.models import AddonTag, Tag
@@ -1774,58 +1772,3 @@ class TestEditTechnicalStaticThemeListed(StaticMixin,
 class TestEditTechnicalStaticThemeUnlisted(StaticMixin,
                                            TestEditTechnicalUnlisted):
     pass
-
-
-class TestThemeEdit(TestCase):
-    fixtures = ['base/user_999']
-
-    def setUp(self):
-        super(TestThemeEdit, self).setUp()
-        self.addon = addon_factory(type=amo.ADDON_PERSONA)
-        self.user = UserProfile.objects.get()
-        self.addon.addonuser_set.create(user=self.user)
-
-    @mock.patch('olympia.amo.messages.error')
-    def test_desc_too_long_error(self, message_mock):
-        data = {'description': 'a' * 501}
-        req = req_factory_factory(
-            self.addon.get_dev_url('edit'),
-            user=self.user, post=True, data=data, session={})
-        response = edit_theme(req, self.addon.slug)
-        doc = pq(response.content)
-        assert 'characters' in doc('#trans-description + ul li').text()
-
-    def test_no_reupload_on_pending(self):
-        self.addon.update(status=amo.STATUS_PENDING)
-        req = req_factory_factory(
-            self.addon.get_dev_url('edit'), user=self.user, session={})
-        response = edit_theme(req, self.addon.slug)
-        doc = pq(response.content)
-        assert not doc('a.reupload')
-
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        req = req_factory_factory(
-            self.addon.get_dev_url('edit'), user=self.user, session={})
-        response = edit_theme(req, self.addon.slug)
-        doc = pq(response.content)
-        assert doc('a.reupload')
-
-    def test_color_input_is_empty_at_creation(self):
-        self.client.login(email='regular@mozilla.com')
-        response = self.client.get(reverse('devhub.themes.submit'))
-        doc = pq(response.content)
-        el = doc('input.color-picker')
-        assert el.attr('type') == 'text'
-        assert not el.attr('value')
-
-    def test_color_input_is_not_empty_at_edit(self):
-        color = "123456"
-        self.addon.persona.accentcolor = color
-        self.addon.persona.save()
-        self.client.login(email='regular@mozilla.com')
-        url = reverse('devhub.themes.edit', args=(self.addon.slug, ))
-        response = self.client.get(url)
-        doc = pq(response.content)
-        el = doc('input#id_accentcolor')
-        assert el.attr('type') == 'text'
-        assert el.attr('value') == "#" + color

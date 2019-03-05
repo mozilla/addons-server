@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
-"PO-Revision-Date: 2019-02-11 16:12+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"PO-Revision-Date: 2019-02-26 17:07+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -157,15 +157,6 @@ msgstr "בטרם שינוי שפת ברירת המחדל שלך חייב להי�
 
 msgid "A license must be selected."
 msgstr "יש לבחור רישיון."
-
-msgid "Give Your Theme a Name."
-msgstr "תנו שם לערכת הנושא שלכם."
-
-msgid "Describe your Theme."
-msgstr "תארו את ערכת הנושא שלכם."
-
-msgid "Enter a new author's email address"
-msgstr "נא להקליד את כתובת הדוא״ל של היוצר החדש"
 
 # Column name in a table.
 msgid "Listed"
@@ -863,9 +854,6 @@ msgstr "אוספים"
 msgid "Collections I've Made"
 msgstr "האוספים שיצרתי"
 
-msgid "My Favorite Add-ons"
-msgstr "התוספות המועדפות עליי"
-
 msgid "More&hellip;"
 msgstr "עוד&hellip;"
 
@@ -1220,6 +1208,9 @@ msgstr "אוספים הם קבוצות של תוספות הקשורות זו ל�
 #, python-format
 msgid "by %(author_link)s"
 msgstr "מאת %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "התוספות המועדפות עליי"
 
 # 89%
 # 100%
@@ -2553,12 +2544,6 @@ msgstr "האוספים של המשתמש"
 msgid "User Reviews"
 msgstr "סקירות משתמשים"
 
-msgid "Changes successfully saved."
-msgstr "השינויים נשמרו בהצלחה."
-
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "לא ניתן למחוק את התוספת. ניתן לנטרל אותה במקום."
 
@@ -2582,6 +2567,9 @@ msgstr "התפקיד של אחד היוצרים השתנה בתוספת שלך"
 
 msgid "An author has been removed from your add-on"
 msgstr "אחד היוצרים הוסר מהתוספת שלך"
+
+msgid "Changes successfully saved."
+msgstr "השינויים נשמרו בהצלחה."
 
 msgid "Validate Add-on"
 msgstr "אימות תוספת"
@@ -2670,6 +2658,9 @@ msgstr "טקסט אזור השדות בסרגל הכלים"
 #, fuzzy
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "צבע הטקסט בשדות בסרגל הכלים, כמו שורת הכתובת"
+
+msgid "Please check the form for errors."
+msgstr ""
 
 msgid "Review requested."
 msgstr "נשלחה בקשה לסקירה."
@@ -3974,11 +3965,21 @@ msgstr "תצוגת רשימה"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "העברת בעלות"
+msgid "Lightweight Theme editing has been disabled."
+msgstr "האפשרות לעריכת ערכות נושא קלות משקל נוטרלה."
+
+msgid "Create a New Theme"
+msgstr "יצירת ערכת נושא חדשה"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "ערכות נושא רקע מאפשרות לך להתאים בקלות את המראה של ה־Firefox שלך. ניתן להגיש עיצוב משלך להלן, או <a href=\"%(submit_url)s\">ללמוד כיצד ליצור אחת כזאת</a>!"
 
 msgid "Theme Details"
 msgstr "פרטי ערכת נושא"
+
+msgid "Give your Theme a name."
+msgstr "תנו שם לערכת הנושא שלכם."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "ספקו כתובת קישור יפה לעמוד הפירוט שלך."
@@ -3989,59 +3990,20 @@ msgstr "בחרו בקטגוריה שמתארת את ערכת הנושא שלכם
 msgid "Add some tags to describe your Theme."
 msgstr "הוסיפו מספר תגים כדי לתאר את ערכת הנושא שלכם."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr "הסבר קצר על התכונות היסודיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשימות, כמו גם בראש עמוד הפירוט של ערכת הנושא שלך."
+msgid "Describe your Theme."
+msgstr "תארו את ערכת הנושא שלכם."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "הסבר קצר על התכונות הבסיסיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשומות, כמו גם בראש דף המוצר של ערכת הנושא שלך"
 
 msgid "Theme License"
 msgstr "רישיון ערכת נושא"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "האם אנשים אחרים יכולים לשתף את ערכת הנושא שלך, כל עוד יינתן לך קרדיט על כך?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "האם אנשים אחרים יכולים לעשות שימוש מסחרי בערכת הנושא שלך?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "האם אנשים אחרים יכולים ליצור עבודות הנגזרות מערכת הנושא שלך?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "מעניק הרישיון מתיר לאחרים להעתיק, להפיץ ולהעביר גרסאות ללא שינוי של היצירה — לא נגזרות שמבוססות עליה."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "ערכת הנושא שלך תופץ תחת תנאי הרישיון הבאים:"
 
 msgid "Select a license for your Theme."
 msgstr "בחרו רישיון עבור ערכת הנושא שלכם."
 
 msgid "Theme Design"
 msgstr "עיצוב ערכת נושא"
-
-msgid "Upload New Design"
-msgstr "העלאת עיצוב חדש"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "לאחר ההעלאה והגשת הטופס, הצוות של AMO יסקור את העיצוב העדכני שלך. העיצוב הנוכחי עדיין יהיה זמין לציבור בינתיים."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "כבר שלחת בעבר עיצוב פעם נוספת, העיצוב עדיין ממתין לסקירה."
-
-msgid "Pending Header"
-msgstr "כותרת עליונה ממתינה"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "תהיה לך אפשרות לעדכן כאן את עיצוב ערכת הנושא שלך לאחר אישורה."
-
-msgid "Header"
-msgstr "כותרת עליונה"
 
 msgid "Select colors for your Theme."
 msgstr "בחרו צבעים עבור ערכת הנושא שלכם."
@@ -4064,19 +4026,6 @@ msgstr "שם ערכת הנושא שלך"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "מאת <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "יצירת ערכת נושא חדשה"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "ערכות נושא רקע מאפשרות לך להתאים בקלות את המראה של ה־Firefox שלך. ניתן להגיש עיצוב משלך להלן, או <a href=\"%(submit_url)s\">ללמוד כיצד ליצור אחת כזאת</a>!"
-
-msgid "Give your Theme a name."
-msgstr "תנו שם לערכת הנושא שלכם."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "הסבר קצר על התכונות הבסיסיות של ערכת הנושא שלך כפי שיוצג בחיפוש וברשומות, כמו גם בראש דף המוצר של ערכת הנושא שלך"
 
 #, python-format
 msgid ""
@@ -5828,12 +5777,6 @@ msgstr "אין קבצים שהועלו עדיין."
 msgid "Fetching file."
 msgstr "הקובץ מתקבל."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "גרסת ה־API שבשימוש, {0:.1f}, אינה תקינה. נא לשדרג לגרסת ה־API העדכנית {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "לא הוטמע עדיין."
-
 msgid "Shopping Made Easy"
 msgstr "לערוך קניות בקלות"
 
@@ -7035,8 +6978,8 @@ msgid "No reviews found for this period."
 msgstr "לא נמצאו סקירות בטווח זה."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
-msgstr "המשתמש %(user)s ‏[%(ip_address)s] דיווח על %(object)s בתאריך %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
+msgstr "המשתמש %(user)s ‏[%(country_code)s] דיווח על %(object)s בתאריך %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "התעלמות מהכרזה זו"
@@ -7856,9 +7799,6 @@ msgstr "תוספות או תכונות Firefox חדשות זמינות"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "התאימות של התוספת שלי שודרגה בהצלחה"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "התוספת מבוססת ה־sdk שלי שודרגה בהצלחה"
-
 msgid "someone writes a review of my add-on"
 msgstr "מישהו כותב סקירה על התוספת שלי"
 
@@ -7867,9 +7807,6 @@ msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "לא ניתן לשדרג את התאימות של התוספת שלי"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "לא ניתן לשדרג את התוספת שלי המבוססת על sdk"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "התוספת שלי נסקרה על ידי סוקר"
@@ -8022,12 +7959,6 @@ msgstr "הכל"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "‏Mozilla Add-ons עבר ל־Firefox Accounts לצורך התחברות. יש להמשיך כדי להשלים את תהליך ההתחברות."
-
-msgid "User Login"
-msgstr "כניסת משתמש"
-
-msgid "Log in with Firefox Accounts"
-msgstr "התחברות באמצעות Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "איפוס ססמה"

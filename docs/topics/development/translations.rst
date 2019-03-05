@@ -57,7 +57,7 @@ Only those 2 languages are considered, and a double join + ``IF`` / ``ELSE`` is
 done every time, for each field.
 
 This query is then ran on the slave (``get_trans()`` gets a cursor using
-``connections[multidb.get_slave()]``) to fetch the translations, and some
+``connections[multidb.get_replica()]``) to fetch the translations, and some
 Translation objects are instantiated from the results and set on the
 instance(s) of the original query.
 

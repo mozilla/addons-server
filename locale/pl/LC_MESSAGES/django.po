@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -164,15 +164,6 @@ msgstr "Zanim zmienisz domyślną lokalizację na inną, musi być dla nowej lok
 
 msgid "A license must be selected."
 msgstr "Licencja musi być określona."
-
-msgid "Give Your Theme a Name."
-msgstr "Podaj nazwę swojego motywu"
-
-msgid "Describe your Theme."
-msgstr "Opisz swój motyw."
-
-msgid "Enter a new author's email address"
-msgstr "Wprowadź nowy adres e-mail autora"
 
 # Column name in a table.
 msgid "Listed"
@@ -881,9 +872,6 @@ msgstr "Kolekcje"
 msgid "Collections I've Made"
 msgstr "Moje kolekcje"
 
-msgid "My Favorite Add-ons"
-msgstr "Moje ulubione dodatki"
-
 msgid "More&hellip;"
 msgstr "Więcej&hellip;"
 
@@ -1215,6 +1203,9 @@ msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć 
 #, python-format
 msgid "by %(author_link)s"
 msgstr "autor: %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Moje ulubione dodatki"
 
 msgid "Create a Collection"
 msgstr "Utwórz kolekcję"
@@ -2547,12 +2538,6 @@ msgstr "Kolekcje użytkownika"
 msgid "User Reviews"
 msgstr "Opinie użytkownika"
 
-msgid "Changes successfully saved."
-msgstr "Zmiany zostały zapisane."
-
-msgid "Please check the form for errors."
-msgstr "Sprawdź błędy w formularzu."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Dodatek nie może zostać usunięty. Zamiast tego możesz go wyłączyć."
 
@@ -2576,6 +2561,9 @@ msgstr "Zmieniono rolę autora twojego dodatku"
 
 msgid "An author has been removed from your add-on"
 msgstr "sunięto autora twojego dodatku"
+
+msgid "Changes successfully saved."
+msgstr "Zmiany zostały zapisane."
 
 msgid "Validate Add-on"
 msgstr "Sprawdzanie dodatku"
@@ -2662,6 +2650,9 @@ msgstr "Tekst obszaru pól paska narzędzi"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Kolor tekstu w polach na pasku narzędzi, takich jak pasek adresu URL. Pole manifestu: toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Sprawdź błędy w formularzu."
 
 msgid "Review requested."
 msgstr "Poproszono o sprawdzenie."
@@ -4005,11 +3996,22 @@ msgstr "Strona dodatku"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Zmiana właściciela"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Dziennik sprawdzania lekkich motywów"
+
+msgid "Create a New Theme"
+msgstr "Utwórz nowy motyw"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr "Motywy tła pozwalają łatwo spersonalizować wygląd Firefoksa. Prześlij poniżej własny motyw lub <a href=\"%(submit_url)s\">dowiedz się, jak go stworzyć</a>!"
 
 msgid "Theme Details"
 msgstr "Szczegóły motywu"
+
+msgid "Give your Theme a name."
+msgstr "Podaj nazwę motywu"
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Podaj przyjazny adres URL dla strony ze szczegółami"
@@ -4020,59 +4022,21 @@ msgstr "Wybierz kategorię najlepiej opisującą twój motyw."
 msgid "Add some tags to describe your Theme."
 msgstr "Dodaj etykiety opisujące twój motyw."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Opisz swój motyw."
+
+#, fuzzy
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr "Krótkie wyjaśnienie podstawowej funkcjonalności twojego motywu, które jest wyświetlane w wyszukiwarce i na listach przeglądania, a także na górze strony ze szczegółami motywu."
 
 msgid "Theme License"
 msgstr "Licencja motywu"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Czy inni mogą udostępniać twój motyw, o ile podadzą autorstwo?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, włącznie z zastosowaniem w celach komercyjnych."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian tylko w celach niekomercyjnych."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Czy inni mogą używać komercyjnie twojego motywu?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Czy inni mogą tworzyć dzieła zależne z twojego motywu?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać, odtwarzać i dokonywać zmian, jak również tworzyć prace bazujące na minimotywie."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Licencjodawca zezwala kopiować, rozpowszechniać i odtwarzać prace tylko w niezmienionej postaci — nie prace pochodne bazujące na oryginale."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Twój motyw zostanie opublikowany na następującej licencji:"
 
 msgid "Select a license for your Theme."
 msgstr "Wybierz licencję swojego motywy."
 
 msgid "Theme Design"
 msgstr "Projekt motywu"
-
-msgid "Upload New Design"
-msgstr "Wgraj nowy projekt"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Po wgraniu i przesłaniu formularza zespół AMO sprawdzi zaktualizowany projekt. W tym czasie aktualny projekt będzie nadal publicznie dostępny."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Twój zgłoszony wcześniej projekt, który jest w trakcie przeglądu."
-
-msgid "Pending Header"
-msgstr "Oczekujący nagłówek"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Możesz tutaj zaktualizować projekt swojego motywu po jego zatwierdzeniu."
-
-msgid "Header"
-msgstr "Nagłówek"
 
 msgid "Select colors for your Theme."
 msgstr "Wybierz kolory swojego motywu."
@@ -4097,20 +4061,6 @@ msgstr "Nazwa twojego motywu"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "autor: <a href=\"%(profile_url)s\">%(user)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Utwórz nowy motyw"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Motywy tła pozwalają łatwo spersonalizować wygląd Firefoksa. Prześlij poniżej własny motyw lub <a href=\"%(submit_url)s\">dowiedz się, jak go stworzyć</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Podaj nazwę motywu"
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Krótkie wyjaśnienie podstawowej funkcjonalności twojego motywu, które jest wyświetlane w wyszukiwarce i na listach przeglądania, a także na górze strony ze szczegółami motywu."
 
 #, python-format
 msgid ""
@@ -5801,12 +5751,6 @@ msgstr "Brak plików w przesyłanym pliku."
 msgid "Fetching file."
 msgstr "Pobieranie pliku."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Używana przez Ciebie wersja API {0:.1f} jest nieprawidłowa. Zaktualizuj do bieżącej wersji API {1:.1f}."
-
-msgid "Not implemented yet."
-msgstr "Jeszcze niezaimplementowane."
-
 msgid "Shopping Made Easy"
 msgstr "Zakupy stają się proste"
 
@@ -7002,8 +6946,8 @@ msgstr "Ukryj komentarze"
 msgid "No reviews found for this period."
 msgstr "W tym okresie nie znaleziono żadnych zdarzeń."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] zgłosił(-a) %(object)s w dniu %(date)s"
 
 msgid "Dismiss this announcement"
@@ -7830,9 +7774,6 @@ msgstr "Dostępne są nowe dodatki lub funkcje Firefoksa"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "Kompatybilność mojego dodatku została zaktualizowana"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "Mój dodatek stworzony za pomocą SDK został zaktualizowany"
-
 msgid "someone writes a review of my add-on"
 msgstr "Ktoś napisał opinię o moim dodatku"
 
@@ -7841,9 +7782,6 @@ msgstr "pozostawaj na bieżąco z wiadomościami i wydarzeniami istotnymi dla tw
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "Nie można zaktualizować kompatybilności mojego dodatku"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "Nie można zaktualizować mojego dodatku stworzonego za pomocą SDK"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "mój dodatek został sprawdzony przez recenzenta"
@@ -7992,12 +7930,6 @@ msgstr "wszystkie"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Witryna Mozilla Add-ons przeszła na konta Firefoksa do obsługi logowania. Kontynuuj, aby wykonać prosty proces logowania."
-
-msgid "User Login"
-msgstr "Login użytkownika"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Zaloguj się przy użyciu konta Firefoksa"
 
 msgid "Password Reset"
 msgstr "Resetowanie hasła"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2019-01-20 16:48+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -150,15 +150,6 @@ msgstr "Sebelum mengubah kode pelokalan baku Anda harus menentukan nama, ringkas
 
 msgid "A license must be selected."
 msgstr "Sebuah lisensi harus dipilih."
-
-msgid "Give Your Theme a Name."
-msgstr "Beri Tema Anda Nama."
-
-msgid "Describe your Theme."
-msgstr "Jelaskan Tema anda."
-
-msgid "Enter a new author's email address"
-msgstr "Masukkan alamat surel penulis baru"
 
 # Column name in a table.
 msgid "Listed"
@@ -850,9 +841,6 @@ msgstr "Koleksi"
 msgid "Collections I've Made"
 msgstr "Koleksi yang Saya Buat"
 
-msgid "My Favorite Add-ons"
-msgstr "Pengaya Fovorit Saya"
-
 msgid "More&hellip;"
 msgstr "Selengkapnya&hellip;"
 
@@ -1180,6 +1168,9 @@ msgstr "Koleksi adalah sekelompok pengaya terkait yang dapat dibuat dan dibagi o
 #, python-format
 msgid "by %(author_link)s"
 msgstr "oleh %(author_link)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Pengaya Fovorit Saya"
 
 msgid "Create a Collection"
 msgstr "Membuat Koleksi"
@@ -2503,12 +2494,6 @@ msgstr "Koleksi Pengguna"
 msgid "User Reviews"
 msgstr "Ulasan Pengguna"
 
-msgid "Changes successfully saved."
-msgstr "Perubahan berhasil disimpan."
-
-msgid "Please check the form for errors."
-msgstr "Silahkan lihat formulirnya untuk kesalahan."
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Pengaya tidak dapat dihapus. Menonaktifkan pengaya ini sebagai gantinya."
 
@@ -2532,6 +2517,9 @@ msgstr "Seorang penulis telah diubah perannya pada pengaya anda"
 
 msgid "An author has been removed from your add-on"
 msgstr "Seorang penulis telah dihapus dari pengaya anda"
+
+msgid "Changes successfully saved."
+msgstr "Perubahan berhasil disimpan."
 
 msgid "Validate Add-on"
 msgstr "Pengaya Divalidasi"
@@ -2615,6 +2603,9 @@ msgstr "Teks area bidang bilah alat"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Warna teks pada bidang dalam bilah alat, misalnya bilah URL. Bidang tampil:  toolbar_field_text."
+
+msgid "Please check the form for errors."
+msgstr "Silahkan lihat formulirnya untuk kesalahan."
 
 msgid "Review requested."
 msgstr "Ulasan diminta."
@@ -3952,11 +3943,23 @@ msgstr "Pengujian Langsung"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
-msgstr "Pengalihan kepemilikan"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Log Tinjauan Tema Ringan"
+
+msgid "Create a New Theme"
+msgstr "Membuat Tema Baru"
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
+msgstr ""
+"Tema latar memungkinkan anda dengan mudah membuat tampilan Firefox anda lebih personal. Daftarkan rancangan anda sendiri di bawah ini, or <a href=\"%(submit_url)s\">pelajari cara membuatnya</a>!"
 
 msgid "Theme Details"
 msgstr "Detil Tema"
+
+msgid "Give your Theme a name."
+msgstr "Beri nama Tema Anda."
 
 msgid "Supply a pretty URL for your detail page."
 msgstr "Berikan URL yang cantik untuk laman rincian anda."
@@ -3967,63 +3970,20 @@ msgstr "Pilih kategori yang paling tepat menggambarkan Tema anda."
 msgid "Add some tags to describe your Theme."
 msgstr "Tambahkan beberapa tag untuk mendeskripsikan Tema anda."
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
-msgstr ""
-"Penjelasan pendek atas tema anda\n"
-"                                fungsi dasar yang ditampilkan di\n"
-"                                daftar pencarian dan penelusuran, termasuk di\n"
-"                                bagian atas laman rincian tema anda."
+msgid "Describe your Theme."
+msgstr "Jelaskan Tema anda."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
+msgstr "Penjelasan singkat tentang fungsionalitas dasar tema Anda yang ditampilkan dalam daftar pencarian dan penelusuran, serta di bagian atas laman rincian tema Anda"
 
 msgid "Theme License"
 msgstr "Lisensi Tema"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr "Dapatkah orang lain membagikan Tema anda, asalkan anda diberi kreditasi?"
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya, termasuk untuk tujuan komersial."
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya untuk tujuan non-komersial saja."
-
-msgid "Can others make commercial use of your Theme?"
-msgstr "Bisakah orang lain menggunakan Tema anda secara komersial?"
-
-msgid "Can others create derivative works from your Theme?"
-msgstr "Dapatkah orang lain membuat karya derivatif dari Tema anda?"
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan, memajang dan menampilkan karya, termasuk membuat karya turunan berdasarkan itu."
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr "Pemberi lisensi mengizinkan orang lain untuk menyalin, mendistribusikan dan memancarkan hanya salinan yang belum diubah dari karya — bukan karya turunan berdasarkan itu."
-
-msgid "Your Theme will be released under the following license:"
-msgstr "Tema anda akan dirilis di bawah lisensi berikut:"
 
 msgid "Select a license for your Theme."
 msgstr "Pilih lisensi untuk Tema anda."
 
 msgid "Theme Design"
 msgstr "Desain Tema"
-
-msgid "Upload New Design"
-msgstr "Unggah Desain Baru"
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr "Setelah mengunggah dan melakukan pendaftaran, tim AMO akan mengulas rancangan anda yang diperbarui. Rancangan saat ini akan bisa ditampilkan di publik sementara waktu."
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr "Rancangan yang anda masukkan ulang sebelumnya,  yang masih ditunda ulasannya."
-
-msgid "Pending Header"
-msgstr "Judul Tertunda"
-
-msgid "You may update your theme design here once it has been approved."
-msgstr "Anda bisa memperbarui tema desain anda di sini saat telah disetujui."
-
-msgid "Header"
-msgstr "Judul"
 
 msgid "Select colors for your Theme."
 msgstr "Pilih warna untuk Tema anda."
@@ -4046,20 +4006,6 @@ msgstr "Nama Tema Anda"
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "oleh <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-msgid "Create a New Theme"
-msgstr "Membuat Tema Baru"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-"Tema latar memungkinkan anda dengan mudah membuat tampilan Firefox anda lebih personal. Daftarkan rancangan anda sendiri di bawah ini, or <a href=\"%(submit_url)s\">pelajari cara membuatnya</a>!"
-
-msgid "Give your Theme a name."
-msgstr "Beri nama Tema Anda."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Penjelasan singkat tentang fungsionalitas dasar tema Anda yang ditampilkan dalam daftar pencarian dan penelusuran, serta di bagian atas laman rincian tema Anda"
 
 #, python-format
 msgid ""
@@ -5751,12 +5697,6 @@ msgstr "Tidak ada berkas dalam berkas yang diunggah."
 msgid "Fetching file."
 msgstr "Mengambil berkas."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr "Versi API {0:.1f}, yang Anda gunakan tidak valid. Harap tingkatkan ke versi terkini {1:.1f} API."
-
-msgid "Not implemented yet."
-msgstr "Belum diimplementasikan."
-
 msgid "Shopping Made Easy"
 msgstr "Berbelanja Semakin Mudah"
 
@@ -6932,8 +6872,8 @@ msgstr "Sembunyikan Komentar"
 msgid "No reviews found for this period."
 msgstr "Tidak ada ulasan ditemukan untuk rentang waktu ini."
 
-#, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+#, fuzzy, python-format
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr "%(user)s [%(ip_address)s] dilaporkan %(object)s pada %(date)s"
 
 msgid "Dismiss this announcement"
@@ -7746,9 +7686,6 @@ msgstr "pengaya baru atau fitur Firefox tersedia"
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr "kecocokan pengaya saya berhasil ditingkatkan"
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr "pengaya berdasarkan sdk saya berhasil ditingkatkan"
-
 msgid "someone writes a review of my add-on"
 msgstr "seseorang menulis ulasan pengaya saya"
 
@@ -7757,9 +7694,6 @@ msgstr "dapatkan kabar dan kegiatan terbaru tentang pengembang pengaya (termasuk
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "kecocokan pengaya saya tidak bisa ditingkatkan"
-
-msgid "my sdk-based add-on cannot be upgraded"
-msgstr "pengaya berdasarkan sdk saya tidak bisa ditingkatkan"
 
 msgid "my add-on is reviewed by a reviewer"
 msgstr "pengaya saya diulas oleh seorang penyunting"
@@ -7908,12 +7842,6 @@ msgstr "semua"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
 msgstr "Pengaya Mozilla telah dipindahkan ke Firefox Accounts untuk masuk. Lanjutkan untuk menyelesaikan proses masuk sederhana."
-
-msgid "User Login"
-msgstr "Masuk"
-
-msgid "Log in with Firefox Accounts"
-msgstr "Masuk dengan Firefox Accounts"
 
 msgid "Password Reset"
 msgstr "Setel Ulang Sandi"

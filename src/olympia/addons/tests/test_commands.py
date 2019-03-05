@@ -165,6 +165,8 @@ def test_approve_addons_approve_files_no_review_type():
     assert file_.reload().status == amo.STATUS_PUBLIC
 
 
+@pytest.mark.django_db
+@mock.patch('olympia.reviewers.utils.sign_file', lambda f: None)
 def test_approve_addons_approve_files(use_case, mozilla_user):
     """Files are approved using the correct review type.
 

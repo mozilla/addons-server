@@ -13,6 +13,7 @@ import olympia.core.logger
 
 from olympia import amo
 from olympia.files.utils import atomic_lock
+from olympia.lib.crypto.signing import SigningError
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, clear_reviewing_cache, set_reviewing_cache)
@@ -75,7 +76,6 @@ class Command(BaseCommand):
                 # We didn't get the lock...
                 log.error('auto-approve lock present, aborting.')
 
-    @transaction.atomic
     def process(self, version):
         """Process a single version, figuring out if it should be auto-approved
         and calling the approval code if necessary."""
@@ -88,26 +88,36 @@ class Command(BaseCommand):
             # our own.
             set_reviewing_cache(version.addon.pk, settings.TASK_USER_ID)
         try:
-            log.info('Processing %s version %s...',
-                     six.text_type(version.addon.name),
-                     six.text_type(version.version))
-            summary, info = AutoApprovalSummary.create_summary_for_version(
-                version, dry_run=self.dry_run)
-            log.info('Auto Approval for %s version %s: %s',
-                     six.text_type(version.addon.name),
-                     six.text_type(version.version),
-                     summary.get_verdict_display())
-            self.stats.update({k: int(v) for k, v in info.items()})
-            if summary.verdict == self.successful_verdict:
-                self.stats['auto_approved'] += 1
-                if summary.verdict == amo.AUTO_APPROVED:
-                    self.approve(version)
+            with transaction.atomic():
+                log.info('Processing %s version %s...',
+                         six.text_type(version.addon.name),
+                         six.text_type(version.version))
+                summary, info = AutoApprovalSummary.create_summary_for_version(
+                    version, dry_run=self.dry_run)
+                log.info('Auto Approval for %s version %s: %s',
+                         six.text_type(version.addon.name),
+                         six.text_type(version.version),
+                         summary.get_verdict_display())
+                self.stats.update({k: int(v) for k, v in info.items()})
+                if summary.verdict == self.successful_verdict:
+                    if summary.verdict == amo.AUTO_APPROVED:
+                        self.approve(version)
+                    self.stats['auto_approved'] += 1
 
+        # At this point, any exception should have rolled back the transaction,
+        # so even if we did create/update an AutoApprovalSummary instance that
+        # should have been rolled back. This ensures that, for instance, a
+        # signing error doesn't leave the version and its autoapprovalsummary
+        # in conflicting states.
         except (AutoApprovalNotEnoughFilesError,
                 AutoApprovalNoValidationResultError):
             log.info(
                 'Version %s was skipped either because it had no '
-                'file or because it had no validation attached.', version)
+                'files or because it had no validation attached.', version)
+            self.stats['error'] += 1
+        except SigningError:
+            log.info(
+                'Version %s was skipped because of a signing error', version)
             self.stats['error'] += 1
         finally:
             # Always clear our own lock no matter what happens (but only ours).
@@ -140,7 +150,8 @@ class Command(BaseCommand):
         if stats['error']:
             log.info(
                 '%d versions were skipped because they had no files or had '
-                'no validation attached to their files.', stats['error'])
+                'no validation attached to their files, or signing failed on '
+                'their files.', stats['error'])
         if self.dry_run:
             log.info('%d versions were marked as would have been approved.',
                      stats['auto_approved'])

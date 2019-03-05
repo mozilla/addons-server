@@ -2765,14 +2765,6 @@ class TestCompatOverride(TestCase):
             actual = getattr(obj, key)
             assert actual == expected
 
-    def test_is_hosted(self):
-        c = CompatOverride.objects.create(guid='a')
-        assert not c.is_hosted()
-
-        Addon.objects.create(type=1, guid='b')
-        c = CompatOverride.objects.create(guid='b')
-        assert c.is_hosted()
-
     def test_override_type(self):
         one = CompatOverride.objects.get(guid='one')
 

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-11 14:23+0000\n"
+"POT-Creation-Date: 2019-02-26 05:26+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -171,15 +171,6 @@ msgstr "Sular féidir leat an logchaighdeán réamhshocraithe a athrú, tá ainm
 
 msgid "A license must be selected."
 msgstr "Ní mór duit ceadúnas a roghnú."
-
-msgid "Give Your Theme a Name."
-msgstr "Cuir ainm ar do théama."
-
-msgid "Describe your Theme."
-msgstr "Déan cur síos ar do Théama."
-
-msgid "Enter a new author's email address"
-msgstr "Cuir isteach seoladh ríomhphoist an údair nua"
 
 msgid "Listed"
 msgstr "Liostaithe"
@@ -914,9 +905,6 @@ msgstr "Bailiúcháin"
 msgid "Collections I've Made"
 msgstr "Bailiúcháin a Chruthaigh Mé"
 
-msgid "My Favorite Add-ons"
-msgstr "Na Breiseáin Is Ansa Liom"
-
 msgid "More&hellip;"
 msgstr "Tuilleadh&hellip;"
 
@@ -1252,6 +1240,9 @@ msgstr ""
 #, fuzzy, python-format
 msgid "by %(author_link)s"
 msgstr "le %(users)s"
+
+msgid "My Favorite Add-ons"
+msgstr "Na Breiseáin Is Ansa Liom"
 
 msgid "Create a Collection"
 msgstr "Cruthaigh Bailiúchán"
@@ -2634,12 +2625,6 @@ msgstr "Bailiúcháin Úsáideoira"
 msgid "User Reviews"
 msgstr "Léirmheasanna ó Úsáideoirí"
 
-msgid "Changes successfully saved."
-msgstr "Sábháladh na hathruithe."
-
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Add-on cannot be deleted. Disable this add-on instead."
 msgstr "Ní féidir an breiseán a scriosadh. Ba chóir duit é a dhíchumasú."
 
@@ -2663,6 +2648,9 @@ msgstr ""
 
 msgid "An author has been removed from your add-on"
 msgstr ""
+
+msgid "Changes successfully saved."
+msgstr "Sábháladh na hathruithe."
 
 msgid "Validate Add-on"
 msgstr "Bailíochtaigh Breiseán"
@@ -2747,6 +2735,9 @@ msgid "Toolbar field area text"
 msgstr ""
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
+msgstr ""
+
+msgid "Please check the form for errors."
 msgstr ""
 
 #, fuzzy
@@ -4108,11 +4099,22 @@ msgstr "Féach ar Leathanach an Bhreiseáin"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-msgid "Transfer ownership"
+#, fuzzy
+msgid "Lightweight Theme editing has been disabled."
+msgstr "Téamaí Éadroma"
+
+msgid "Create a New Theme"
+msgstr ""
+
+#, python-format
+msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
 msgstr ""
 
 msgid "Theme Details"
 msgstr "Mionsonraí an Téama"
+
+msgid "Give your Theme a name."
+msgstr ""
 
 msgid "Supply a pretty URL for your detail page."
 msgstr ""
@@ -4123,59 +4125,20 @@ msgstr ""
 msgid "Add some tags to describe your Theme."
 msgstr ""
 
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page."
+msgid "Describe your Theme."
+msgstr "Déan cur síos ar do Théama."
+
+msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
 msgstr ""
 
 msgid "Theme License"
 msgstr "Ceadúnas an Téama"
-
-msgid "Can others share your Theme, as long as you're given credit?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work, including for commercial purposes."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display, and perform the work for non-commercial purposes only."
-msgstr ""
-
-msgid "Can others make commercial use of your Theme?"
-msgstr ""
-
-msgid "Can others create derivative works from your Theme?"
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute, display and perform the work, as well as make derivative works based on it."
-msgstr ""
-
-msgid "The licensor permits others to copy, distribute and transmit only unaltered copies of the work — not derivative works based on it."
-msgstr ""
-
-msgid "Your Theme will be released under the following license:"
-msgstr ""
 
 msgid "Select a license for your Theme."
 msgstr ""
 
 msgid "Theme Design"
 msgstr ""
-
-msgid "Upload New Design"
-msgstr ""
-
-msgid "Upon upload and form submission, the AMO Team will review your updated design. Your current design will still be public in the meantime."
-msgstr ""
-
-msgid "Your previously resubmitted design, which is under pending review."
-msgstr ""
-
-msgid "Pending Header"
-msgstr ""
-
-msgid "You may update your theme design here once it has been approved."
-msgstr ""
-
-msgid "Header"
-msgstr "Ceanntásc"
 
 msgid "Select colors for your Theme."
 msgstr ""
@@ -4200,19 +4163,6 @@ msgstr "Ainm do Théama"
 #, fuzzy, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
 msgstr "Ceadúnas: <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Create a New Theme"
-msgstr ""
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Give your Theme a name."
-msgstr ""
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
 
 #, python-format
 msgid ""
@@ -5901,12 +5851,6 @@ msgstr ""
 msgid "Fetching file."
 msgstr "Comhad á fháil."
 
-msgid "The API version, {0:.1f}, you are using is not valid. Please upgrade to the current version {1:.1f} API."
-msgstr ""
-
-msgid "Not implemented yet."
-msgstr "Níl sé seo ar fáil fós."
-
 msgid "Shopping Made Easy"
 msgstr ""
 
@@ -7166,7 +7110,7 @@ msgid "No reviews found for this period."
 msgstr "Níor aimsíodh aon rud sa tréimhse seo."
 
 #, python-format
-msgid "%(user)s [%(ip_address)s] reported %(object)s on %(date)s"
+msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
 msgstr ""
 
 msgid "Dismiss this announcement"
@@ -8003,9 +7947,6 @@ msgstr ""
 msgid "my add-on's compatibility is upgraded successfully"
 msgstr ""
 
-msgid "my sdk-based add-on is upgraded successfully"
-msgstr ""
-
 msgid "someone writes a review of my add-on"
 msgstr ""
 
@@ -8013,9 +7954,6 @@ msgid "stay up-to-date with news and events relevant to add-on developers (inclu
 msgstr ""
 
 msgid "my add-on's compatibility cannot be upgraded"
-msgstr ""
-
-msgid "my sdk-based add-on cannot be upgraded"
 msgstr ""
 
 msgid "my add-on is reviewed by a reviewer"
@@ -8164,12 +8102,6 @@ msgid "all"
 msgstr "uile"
 
 msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "User Login"
-msgstr "Logáil Isteach"
-
-msgid "Log in with Firefox Accounts"
 msgstr ""
 
 msgid "Password Reset"
