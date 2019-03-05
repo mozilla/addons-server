@@ -4,6 +4,7 @@ import sys
 
 from django import http
 from django.conf import settings
+from django.core.exceptions import ViewDoesNotExist
 from django.db.transaction import non_atomic_requests
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.cache import never_cache
@@ -116,3 +117,16 @@ def version(request):
     contents['python'] = '{major}.{minor}'.format(
         major=py_info.major, minor=py_info.minor)
     return HttpResponse(json.dumps(contents), content_type='application/json')
+
+
+def _frontend_view(*args, **kwargs):
+    """View has migrated to addons-frontend but we still have the url so we
+    can reverse() to it in addons-server code.
+    If you ever hit this url somethunk gun wrong!"""
+    raise ViewDoesNotExist()
+
+
+@non_atomic_requests
+def frontend_view(*args, **kwargs):
+    """Wrap _frontend_view so we can mock it in tests."""
+    return _frontend_view(*args, **kwargs)
