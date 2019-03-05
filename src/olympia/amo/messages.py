@@ -20,7 +20,7 @@ message title).
 """
 
 
-class DoubleSafe(safestring.SafeData, jinja2.Markup):
+class DoubleSafe(safestring.SafeText, jinja2.Markup):
     """Double safe all the way: marks safe for django and jinja2.
 
     Even though we're using jinja2 for most of the template rendering, we may
@@ -36,10 +36,11 @@ class DoubleSafe(safestring.SafeData, jinja2.Markup):
 
 def _make_message(title=None, message=None, title_safe=False,
                   message_safe=False):
-    c = {'title': title, 'message': message,
-         'title_safe': title_safe, 'message_safe': message_safe}
-    t = loader.get_template('message_content.html').render(c)
-    return DoubleSafe(t)
+    context = {
+        'title': title, 'message': message,
+        'title_safe': title_safe, 'message_safe': message_safe}
+    tpl = loader.get_template('message_content.html').render(context)
+    return DoubleSafe(tpl)
 
 
 def _is_dupe(msg, request):
