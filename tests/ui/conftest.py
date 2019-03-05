@@ -87,7 +87,7 @@ def fxa_account(request):
 @pytest.fixture
 def devhub_login(selenium, base_url, fxa_account):
     """Log into the devhub."""
-    selenium.get('http://olympia.test/developers')
+    selenium.get('{}/developers'.format(base_url))
     devhub = DevHub(selenium, base_url)
     return devhub.login(fxa_account.email, fxa_account.password)
 

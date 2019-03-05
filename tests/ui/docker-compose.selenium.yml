@@ -26,5 +26,4 @@ services:
       - "5900"
     shm_size: 2g
     links:
-      - "addons-frontend:olympia-frontend.test"
       - "nginx:olympia.test"

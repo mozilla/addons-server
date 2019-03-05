@@ -84,12 +84,13 @@ services:
     <<: *env
     environment:
       - HOSTNAME=uitests
-      - WEBPACK_SERVER_HOST=olympia-frontend.test
+      - WEBPACK_SERVER_HOST=olympia.test
+      - CSP=false
       - FXA_CONFIG=default
     image: addons/addons-frontend
     ports:
       - "3000:3000"
       - "3001:3001"
-    command: yarn amo:ui-tests
+    command: yarn amo
     links:
       - "nginx:olympia.test"
