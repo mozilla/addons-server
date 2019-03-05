@@ -30,7 +30,7 @@ and should be truncated by the client where necessary.
 
     :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
-    :<json string|null addon_install_entry_point: The add-on install entry point. Accepted values: ``uninstall`` and ``menu``.
+    :<json string|null report_entry_point: The report entry point. Accepted values: ``uninstall`` and ``menu``.
     :<json string|null addon_install_method: The add-on install method. Accepted values: ``amwebapi``, ``link``, ``installtrigger``, ``install-from-file``, ``management-webext-api``, ``drag-and-drop`` and ``sideload``.
     :<json string|null addon_install_origin: The add-on install origin.
     :<json string|null addon_name: The add-on name in the locale used by the client.
@@ -38,7 +38,7 @@ and should be truncated by the client where necessary.
     :<json string|null addon_summary: The add-on summary in the locale used by the client.
     :<json string|null addon_version: The add-on version string.
     :<json string|null app: The :ref:`application <addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
-    :<json string|null appversion: The application version used by the client.
+    :<json string|null appversion: The locale used by the client for the application.
     :<json string|null lang: The language code of the locale used by the client for the application.
     :<json string|null client_id: The client's hashed telemetry ID.
     :<json string|null install_date: The add-on install date.
@@ -55,7 +55,7 @@ and should be truncated by the client where necessary.
     :>json int|null addon.id: The add-on id on AMO. If the guid submitted didn't match a known add-on on AMO, then null.
     :>json string|null addon.slug: The add-on slug. If the guid submitted didn't match a known add-on on AMO, then null.
     :>json string message: The body/content of the abuse report.
-    :>json string|null addon_install_entry_point: The add-on install entry point.
+    :>json string|null report_entry_point: The report entry point.
     :>json string|null addon_install_method: The add-on install method.
     :>json string|null addon_install_origin: The add-on install origin.
     :>json string|null addon_name: The add-on name in the locale used by the client.
@@ -64,7 +64,7 @@ and should be truncated by the client where necessary.
     :>json string|null addon_version: The add-on version string.
     :>json string|null app: The application used by the client.
     :>json string|null appversion: The locale used by the client for the application.
-    :<json string|null lang: The language code of the locale used by the client for the application.
+    :>json string|null lang: The language code of the locale used by the client for the application.
     :>json string|null client_id: The client's hashed telemetry ID.
     :>json string|null install_date: The add-on install date.
     :>json string|null operating_system: The client's operating system.
