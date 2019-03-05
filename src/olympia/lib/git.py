@@ -395,10 +395,13 @@ class AddonGitRepository(object):
                     path=tree_entry.name)
 
     def get_diff(self, commit, parent=None):
-        """Get a diff from `commit` to `parent`.
+        """Get a diff from `parent` to `commit`.
 
         If `parent` is not given we assume it's the first commit and handle
         it accordingly.
+
+        We are resolving renames and copies according to a 50% similarity
+        threshold.
         """
         if parent is None:
             return self.get_diff_for_initial_commit(commit)
