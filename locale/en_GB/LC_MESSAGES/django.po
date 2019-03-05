@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 17:51+0000\n"
+"PO-Revision-Date: 2019-03-05 14:37+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -5463,7 +5463,7 @@ msgstr "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
-msgstr ""
+msgstr "Automatically delete unwanted cookies. Offers white and blacklist support."
 
 #. editorial content for the discovery pane.
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -7052,20 +7052,20 @@ msgstr "Invalid \"%s\" parameter."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Invalid combination of \"%s\" and \"%s\" parameters."
 
 msgid "Return To AMO is currently disabled"
 msgstr "Return To AMO is currently disabled"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Invalid Return To AMO guid (not in base64url format?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Invalid Return To AMO guid (not a curated add-on)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 
 msgid "Maximum query length exceeded."
 msgstr "Maximum query length exceeded."
