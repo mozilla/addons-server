@@ -19,7 +19,7 @@ def generate_addon_preview(addon):
     The fake image will be filled with a random color.
 
     """
-    color = random.choice(ImageColor.colormap.keys())
+    color = random.choice(list(ImageColor.colormap.keys()))
     im = Image.new('RGB', (320, 480), color)
     p = Preview.objects.create(addon=addon, caption='Screenshot 1', position=1)
     f = tempfile.NamedTemporaryFile(dir=settings.TMP_PATH)
@@ -33,7 +33,7 @@ def create_theme_images(theme, placement, hash_):
     user-media one. Both are needed to generate previews for themes.
 
     """
-    color = random.choice(ImageColor.colormap.keys())
+    color = random.choice(list(ImageColor.colormap.keys()))
     image = Image.new('RGB', (3000, 200), color)
     tmp_path = os.path.join(settings.TMP_PATH,
                             'persona_{placement}'.format(placement=placement))

@@ -357,7 +357,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         # temporary one to avoid the files get moved somewhere else and
         # deleted from source tree
         with copy_file_to_temp(file_path) as temporary_path:
-            data = open(temporary_path).read()
+            data = open(temporary_path, 'rb').read()
             filedata = SimpleUploadedFile(
                 file_to_upload,
                 data,
