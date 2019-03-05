@@ -37,7 +37,8 @@ from olympia.amo.utils import (
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.files.models import File, FileUpload, FileValidation
-from olympia.files.utils import parse_addon, SafeZip, UnsupportedFileType
+from olympia.files.utils import (
+    NoManifestFound, parse_addon, SafeZip, UnsupportedFileType)
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
 
@@ -207,11 +208,18 @@ def validate_file_path(path, channel):
         return json.dumps(results)
 
     # Annotate results with potential legacy add-ons restrictions.
-    data = parse_addon(path, minimal=True)
-    is_webextension = data.get('is_webextension') is True
-    is_mozilla_signed = data.get('is_mozilla_signed_extension', False)
+    try:
+        data = parse_addon(path, minimal=True)
+    except NoManifestFound:
+        # If no manifest is found, return empty data; the check below
+        # explicitly looks for is_webextension is False, so it will not be
+        # considered a legacy extension, and the linter will pick it up and
+        # will know what message to return to the developer.
+        data = {}
+    is_legacy_extension = data.get('is_webextension', None) is False
+    is_mozilla_signed = data.get('is_mozilla_signed_extension', None) is True
 
-    if not is_webextension:
+    if is_legacy_extension:
         results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
         annotations.annotate_legacy_addon_restrictions(
             path=path, results=results, parsed_data=data,
