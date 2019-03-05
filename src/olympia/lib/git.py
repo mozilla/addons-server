@@ -366,7 +366,7 @@ class AddonGitRepository(object):
 
         This doesn't contain the ``EXTRACTED_PREFIX`` prefix folder.
         """
-        if isinstance(commit, six.text_type):
+        if isinstance(commit, six.string_types):
             commit = self.git_repository[commit]
 
         return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]
