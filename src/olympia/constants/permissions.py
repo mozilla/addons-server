@@ -116,4 +116,6 @@ DJANGO_PERMISSIONS_MAPPING.update({
 
     'ratings.change_rating': RATINGS_MODERATE,
     'ratings.delete_rating': ADMIN_ADVANCED,
+
+    'versions.change_version': ADMIN_ADVANCED,
 })
