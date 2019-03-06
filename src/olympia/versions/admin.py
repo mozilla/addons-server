@@ -1,4 +1,3 @@
-from django import forms
 from django.contrib import admin
 
 from .models import License, Version
@@ -11,6 +10,12 @@ class LicenseAdmin(admin.ModelAdmin):
 
 
 class VersionAdmin(admin.ModelAdmin):
+    class Media:
+        css = {
+            'all': ('css/admin/l10n.css',)
+        }
+        js = ('js/admin/l10n.js',)
+
     view_on_site = False
     readonly_fields = ('version', 'channel')
 
@@ -26,13 +31,6 @@ class VersionAdmin(admin.ModelAdmin):
             'fields': ('deleted',)
         }),
     )
-
-    def formfield_for_dbfield(self, db_field, **kwargs):
-        formfield = super(VersionAdmin, self).formfield_for_dbfield(
-            db_field, **kwargs)
-        if db_field.name == 'release_notes':
-            formfield.widget = forms.Textarea(attrs=formfield.widget.attrs)
-        return formfield
 
 
 admin.site.register(License, LicenseAdmin)

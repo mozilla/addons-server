@@ -20,7 +20,7 @@ class TestVersionAdmin(TestCase):
         assert response.status_code == 200
 
         doc = pq(response.content)
-        assert doc('textarea#id_release_notes').length == 1
+        assert doc('textarea#id_release_notes_0').length == 1
 
     def test_unauthorized_user_has_no_access(self):
         addon = addon_factory()
