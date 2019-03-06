@@ -856,8 +856,9 @@ def image_status(request, addon_id, addon, theme=False):
             'previews': previews}
 
 
+@dev_required
 @json_view
-def ajax_upload_image(request, upload_type, addon_id=None):
+def upload_image(request, addon_id, addon, upload_type):
     errors = []
     upload_hash = ''
     if 'upload_image' in request.FILES:
@@ -955,11 +956,6 @@ def ajax_upload_image(request, upload_type, addon_id=None):
         upload_hash = ''
 
     return {'upload_hash': upload_hash, 'errors': errors}
-
-
-@dev_required
-def upload_image(request, addon_id, addon, upload_type):
-    return ajax_upload_image(request, upload_type)
 
 
 @dev_required
@@ -1611,49 +1607,6 @@ def submit_addon_finish(request, addon_id, addon):
 def submit_version_finish(request, addon_id, addon, version_id):
     version = get_object_or_404(Version, id=version_id)
     return _submit_finish(request, addon, version)
-
-
-@login_required
-def submit_theme(request):
-    if waffle.switch_is_active('disable-lwt-uploads'):
-        return redirect('devhub.submit.agreement')
-    else:
-        return submit_lwt_theme(request)
-
-
-def submit_lwt_theme(request):
-    data = {}
-    if request.method == 'POST':
-        data = request.POST.dict()
-        if 'unsaved_data' in request.session and data['unsaved_data'] == '{}':
-            # Restore unsaved data on second invalid POST..
-            data['unsaved_data'] = request.session['unsaved_data']
-
-    form = addon_forms.ThemeForm(data=data or None,
-                                 files=request.FILES or None,
-                                 request=request)
-
-    if request.method == 'POST':
-        if form.is_valid():
-            addon = form.save()
-            return redirect('devhub.themes.submit.done', addon.slug)
-        else:
-            # Stored unsaved data in request.session since it gets lost on
-            # second invalid POST.
-            messages.error(
-                request,
-                ugettext('Please check the form for errors.'))
-            request.session['unsaved_data'] = data['unsaved_data']
-
-    return render(request, 'devhub/personas/submit.html', dict(form=form))
-
-
-@dev_required(theme=True)
-def submit_theme_done(request, addon_id, addon, theme):
-    if addon.is_public():
-        return redirect(addon.get_url_path())
-    return render(request, 'devhub/personas/submit_done.html',
-                  dict(addon=addon))
 
 
 @dev_required(theme=True)
