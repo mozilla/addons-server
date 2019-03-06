@@ -53,7 +53,7 @@ from olympia.reviewers.models import (
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
     AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
-    DiffableVersionSerializer)
+    DiffableVersionSerializer, AddonCompareVersionSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
@@ -1215,12 +1215,10 @@ class AddonReviewerViewSet(GenericViewSet):
         return Response(serializer.data)
 
 
-class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
-                                GenericViewSet):
+class ReviewAddonVersionMixin(object):
     permission_classes = [AnyOf(
         AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
     )]
-    lookup_url_kwarg = 'version_pk'
 
     def get_queryset(self):
         # Permission classes disallow access to non-public/unlisted add-ons
@@ -1251,12 +1249,17 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
             Addon.objects.get_queryset().only_translations(),
             pk=self.kwargs.get('addon_pk'))
 
-    def get_object(self):
+    def get_version_object(self):
+        return self.get_object(pk=self.kwargs['version_pk'])
+
+    def get_object(self, **kwargs):
         qset = self.filter_queryset(self.get_queryset())
 
-        filter_kwargs = {self.lookup_field: self.kwargs[self.lookup_url_kwarg]}
+        kwargs.setdefault(
+            self.lookup_field,
+            self.kwargs[self.lookup_url_kwarg or self.lookup_field])
 
-        obj = get_object_or_404(qset, **filter_kwargs)
+        obj = get_object_or_404(qset, **kwargs)
 
         # If the instance is marked as deleted and the client is not allowed to
         # see deleted instances, we want to return a 404, behaving as if it
@@ -1278,15 +1281,19 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
             # So we're calling check_object_permission() ourselves,
             # which will pass down the addon object directly.
             return (
-                super(ReviewAddonVersionViewSet, self)
+                super(ReviewAddonVersionMixin, self)
                 .check_object_permissions(request, self.get_addon_object()))
 
-        super(ReviewAddonVersionViewSet, self).check_permissions(request)
+        super(ReviewAddonVersionMixin, self).check_permissions(request)
 
     def check_object_permissions(self, request, obj):
         """Check permissions against the parent add-on object."""
-        return super(ReviewAddonVersionViewSet, self).check_object_permissions(
+        return super(ReviewAddonVersionMixin, self).check_object_permissions(
             request, obj.addon)
+
+
+class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
+                                RetrieveModelMixin, GenericViewSet):
 
     def list(self, request, *args, **kwargs):
         """Return all (re)viewable versions for this add-on.
@@ -1307,4 +1314,18 @@ class ReviewAddonVersionViewSet(ListModelMixin, RetrieveModelMixin,
         serializer = AddonBrowseVersionSerializer(
             instance=self.get_object(),
             context={'file': self.request.GET.get('file', None)})
+        return Response(serializer.data)
+
+
+class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
+                                       RetrieveModelMixin, GenericViewSet):
+
+    def retrieve(self, request, *args, **kwargs):
+        serializer = AddonCompareVersionSerializer(
+            instance=self.get_object(),
+            context={
+                'file': self.request.GET.get('file', None),
+                'parent_version': self.get_version_object(),
+            })
+
         return Response(serializer.data)
