@@ -38,7 +38,7 @@ and should be truncated by the client where necessary.
     :<json string|null addon_summary: The add-on summary in the locale used by the client.
     :<json string|null addon_version: The add-on version string.
     :<json string|null app: The :ref:`application <addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
-    :<json string|null appversion: The locale used by the client for the application.
+    :<json string|null appversion: The application version used by the client.
     :<json string|null lang: The language code of the locale used by the client for the application.
     :<json string|null client_id: The client's hashed telemetry ID.
     :<json string|null install_date: The add-on install date.
@@ -63,7 +63,7 @@ and should be truncated by the client where necessary.
     :>json string|null addon_summary: The add-on summary in the locale used by the client.
     :>json string|null addon_version: The add-on version string.
     :>json string|null app: The application used by the client.
-    :>json string|null appversion: The locale used by the client for the application.
+    :>json string|null appversion: The application version used by the client.
     :>json string|null lang: The language code of the locale used by the client for the application.
     :>json string|null client_id: The client's hashed telemetry ID.
     :>json string|null install_date: The add-on install date.
