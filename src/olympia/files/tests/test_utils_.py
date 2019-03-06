@@ -41,8 +41,9 @@ class TestExtractor(TestCase):
     def test_no_manifest(self):
         fake_zip = utils.make_xpi({'dummy': 'dummy'})
 
-        with self.assertRaises(forms.ValidationError) as exc:
+        with self.assertRaises(utils.NoManifestFound) as exc:
             utils.Extractor.parse(fake_zip)
+        assert isinstance(exc.exception, forms.ValidationError)
         assert exc.exception.message == (
             'No install.rdf or manifest.json found')
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 import shutil
@@ -28,6 +29,7 @@ from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks, file_validation_annotations as annotations
 from olympia.files.models import File, FileUpload
+from olympia.files.utils import NoManifestFound
 from olympia.versions.models import Version
 
 
@@ -520,6 +522,18 @@ class TestValidateFilePath(ValidatorTestCase):
 
         expected = amo.VALIDATOR_SKELETON_RESULTS
         assert result == expected
+
+    @mock.patch('olympia.devhub.tasks.parse_addon')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_manifest_not_found_error(
+            self, run_addons_linter_mock, parse_addon_mock):
+        parse_addon_mock.side_effect = NoManifestFound(message=u'Fôo')
+        # When parse_addon() raises a NoManifestFound error, we should
+        # still call the linter to let it raise the appropriate error message.
+        tasks.validate_file_path(
+            None, get_addon_file('valid_webextension.xpi'),
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        assert run_addons_linter_mock.call_count == 1
 
 
 class TestWebextensionIncompatibilities(ValidatorTestCase):

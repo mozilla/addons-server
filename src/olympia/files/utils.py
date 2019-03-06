@@ -140,6 +140,10 @@ class UnsupportedFileType(forms.ValidationError):
     pass
 
 
+class NoManifestFound(forms.ValidationError):
+    pass
+
+
 class Extractor(object):
     """Extract add-on info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')
@@ -165,7 +169,7 @@ class Extractor(object):
             data = RDFExtractor(
                 zip_file, certinfo=certificate_info).parse(minimal=minimal)
         else:
-            raise forms.ValidationError(
+            raise NoManifestFound(
                 'No install.rdf or manifest.json found')
         return data
 
