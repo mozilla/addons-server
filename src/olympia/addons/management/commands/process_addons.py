@@ -10,6 +10,7 @@ from olympia.addons.tasks import (
     add_dynamic_theme_tag,
     add_firefox57_tag,
     bump_appver_for_legacy_addons,
+    delete_addons,
     disable_legacy_files,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
@@ -66,6 +67,12 @@ tasks = {
         'method': migrate_lwts_to_static_themes,
         'qs': [
             Q(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
+        ]
+    },
+    'delete_lwt': {
+        'method': delete_addons,
+        'qs': [
+            Q(type=amo.ADDON_PERSONA)
         ]
     },
     'recreate_previews': {
