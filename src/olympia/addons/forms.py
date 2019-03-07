@@ -1,12 +1,11 @@
 import os
-from datetime import datetime
 
 from django import forms
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.forms.formsets import BaseFormSet, formset_factory
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
+from django.utils.translation import ugettext, ungettext
 
 import waffle
 from six.moves.urllib_parse import urlsplit
@@ -16,13 +15,10 @@ import olympia.core.logger
 from olympia import amo
 from olympia.access import acl
 from olympia.addons import tasks as addons_tasks
-from olympia.addons.models import (
-    Addon, AddonCategory, Category, DeniedSlug, Persona)
+from olympia.addons.models import Addon, AddonCategory, Category, DeniedSlug
 from olympia.addons.widgets import CategoriesSelectMultiple, IconTypeSelect
 from olympia.addons.utils import verify_mozilla_trademark
-from olympia.amo.fields import (
-    ColorField, HttpHttpsOnlyURLField, ReCaptchaField)
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.utils import (
     remove_icons, slug_validator, slugify, sorted_groupby)
 from olympia.amo.validators import OneOrMoreLetterOrNumberCharacterValidator
@@ -34,7 +30,6 @@ from olympia.translations import LOCALES
 from olympia.translations.fields import TransField, TransTextarea
 from olympia.translations.forms import TranslationFormMixin
 from olympia.translations.models import Translation
-from olympia.versions.models import Version
 
 
 log = olympia.core.logger.getLogger('z.addons')
@@ -425,98 +420,3 @@ class AbuseForm(forms.Form):
         if (not self.request.user.is_anonymous or
                 not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
             del self.fields['recaptcha']
-
-
-class ThemeFormBase(AddonFormBase):
-
-    def __init__(self, *args, **kwargs):
-        super(ThemeFormBase, self).__init__(*args, **kwargs)
-        cats = Category.objects.filter(type=amo.ADDON_PERSONA, weight__gte=0)
-        cats = sorted(cats, key=lambda x: x.name)
-        self.fields['category'].choices = [(c.id, c.name) for c in cats]
-
-        for field in ('header', ):
-            self.fields[field].widget.attrs = {
-                'data-upload-url': reverse('devhub.personas.upload_persona',
-                                           args=['persona_%s' % field]),
-                'data-allowed-types': amo.SUPPORTED_IMAGE_TYPES
-            }
-
-
-class ThemeForm(ThemeFormBase):
-    name = forms.CharField(max_length=50)
-    slug = forms.CharField(max_length=30)
-    category = forms.ModelChoiceField(queryset=Category.objects.all(),
-                                      widget=forms.widgets.RadioSelect)
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows': 4}),
-                                  max_length=500, required=False)
-    tags = forms.CharField(required=False)
-
-    license = forms.TypedChoiceField(
-        choices=amo.PERSONA_LICENSES_CHOICES,
-        coerce=int, empty_value=None, widget=forms.HiddenInput,
-        error_messages={'required': _(u'A license must be selected.')})
-    header = forms.FileField(required=False)
-    header_hash = forms.CharField(widget=forms.HiddenInput)
-    # Native color picker doesn't allow real time tracking of user input
-    # and empty values, thus force the JavaScript color picker for now.
-    # See bugs 1005206 and 1003575.
-    accentcolor = ColorField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'color-picker'}),
-    )
-    textcolor = ColorField(
-        required=False,
-        widget=forms.TextInput(attrs={'class': 'color-picker'}),
-    )
-    agreed = forms.BooleanField()
-    # This lets us POST the data URIs of the unsaved previews so we can still
-    # show them if there were form errors. It's really clever.
-    unsaved_data = forms.CharField(required=False, widget=forms.HiddenInput)
-
-    class Meta:
-        model = Addon
-        fields = ('name', 'slug', 'description', 'tags')
-
-    def save(self, commit=False):
-        data = self.cleaned_data
-        addon = Addon.objects.create(
-            slug=data.get('slug'),
-            status=amo.STATUS_PENDING, type=amo.ADDON_PERSONA)
-        addon.name = {'en-US': data['name']}
-        if data.get('description'):
-            addon.description = data['description']
-        addon._current_version = Version.objects.create(addon=addon,
-                                                        version='0')
-        addon.save()
-
-        # Create Persona instance.
-        p = Persona()
-        p.persona_id = 0
-        p.addon = addon
-        p.header = 'header.png'
-        if data['accentcolor']:
-            p.accentcolor = data['accentcolor'].lstrip('#')
-        if data['textcolor']:
-            p.textcolor = data['textcolor'].lstrip('#')
-        p.license = data['license']
-        p.submit = datetime.now()
-        user = self.request.user
-        p.author = user.username
-        p.display_username = user.name
-        p.save()
-
-        # Save header and preview images.
-        addons_tasks.save_theme.delay(data['header_hash'], addon.pk)
-
-        # Save user info.
-        addon.addonuser_set.create(user=user, role=amo.AUTHOR_ROLE_OWNER)
-
-        # Save tags.
-        for t in data['tags']:
-            Tag(tag_text=t).save_tag(addon)
-
-        # Save categories.
-        AddonCategory(addon=addon, category=data['category']).save()
-
-        return addon

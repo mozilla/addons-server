@@ -5,7 +5,6 @@ import shutil
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
-from django.test.client import RequestFactory
 
 from mock import patch
 
@@ -16,7 +15,6 @@ from olympia.amo.tests import TestCase, addon_factory, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.tags.models import AddonTag, Tag
-from olympia.users.models import UserProfile
 
 
 class TestAdditionalDetailsForm(TestCase):
@@ -217,29 +215,3 @@ class TestCategoryForm(TestCase):
         form = forms.CategoryFormSet(addon=addon, request=request)
         apps = [f.app for f in form.forms]
         assert apps == [amo.FIREFOX]
-
-
-class TestThemeForm(TestCase):
-
-    # Don't save image, we use a fake one.
-    @patch('olympia.addons.forms.addons_tasks.save_theme')
-    def test_long_author_or_display_username(self, mock_save_theme):
-        # Bug 1181751.
-        user = UserProfile.objects.create(email='foo@bar.com',
-                                          username='a' * 255,
-                                          display_name='b' * 50)
-        request = RequestFactory()
-        request.user = user
-        cat = Category.objects.create(type=amo.ADDON_PERSONA)
-        form = forms.ThemeForm({
-            'name': 'my theme',
-            'slug': 'my-theme',
-            'category': cat.pk,
-            'header': 'some_file.png',
-            'agreed': True,
-            'header_hash': 'hash',
-            'license': 1}, request=request)
-        assert form.is_valid()
-        # Make sure there's no database issue, like too long data for the
-        # author or display_username fields.
-        form.save()

@@ -5,11 +5,9 @@ from django.core import exceptions
 from django.core.validators import RegexValidator, URLValidator
 from django.db import models
 from django.forms import fields
-from django.utils.translation import ugettext, ugettext_lazy as _
+from django.utils.translation import ugettext_lazy as _
 
 from nobot.fields import HumanCaptchaField
-
-from olympia.amo.widgets import ColorWidget
 
 
 class PositiveAutoField(models.AutoField):
@@ -65,19 +63,3 @@ class ReCaptchaField(HumanCaptchaField):
         'captcha_invalid': _('Incorrect, please try again.'),
         'captcha_error': _('Error verifying input, please try again.'),
     }
-
-
-class ColorField(fields.CharField):
-
-    widget = ColorWidget
-
-    def __init__(self, max_length=7, min_length=None, *args, **kwargs):
-        super(ColorField, self).__init__(
-            *args, max_length=max_length, min_length=min_length, **kwargs)
-
-    def clean(self, value):
-        super(ColorField, self).clean(value)
-        if value and not re.match(r'^\#([0-9a-fA-F]{6})$', value):
-            raise exceptions.ValidationError(ugettext(
-                u'This must be a valid hex color code, such as #000000.'))
-        return value

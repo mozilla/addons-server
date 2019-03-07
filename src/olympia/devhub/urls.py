@@ -14,10 +14,6 @@ theme_detail_patterns = [
     url(r'^$', lambda r,
         addon_id: redirect('devhub.themes.edit', addon_id, permanent=True)),
     url(r'^delete$', views.delete, name='devhub.themes.delete'),
-    # Upload url here to satisfy CSRF.
-    url(r'^edit/upload/'
-        '(?P<upload_type>persona_header)$',
-        views.ajax_upload_image, name='devhub.personas.reupload_persona'),
     url(r'^edit$', views.edit_theme, name='devhub.themes.edit'),
     url(r'^rmlocale$', views.remove_locale,
         name='devhub.themes.remove-locale'),
@@ -191,12 +187,8 @@ urlpatterns = decorate(use_primary_db, [
     url(r'^ajax/addon/%s/' % ADDON_ID, include(ajax_patterns)),
 
     # Themes submission.
-    url(r'^theme/submit/?$', views.submit_theme, name='devhub.themes.submit'),
-    url(r'^theme/%s/submit/done$' % ADDON_ID, views.submit_theme_done,
-        name='devhub.themes.submit.done'),
-    url(r'^theme/submit/upload/'
-        '(?P<upload_type>persona_header)$',
-        views.ajax_upload_image, name='devhub.personas.upload_persona'),
+    url(r'^theme/submit/?$', lambda r: redirect('devhub.submit.agreement'),
+        name='devhub.themes.submit'),
     url(r'^theme/%s/' % ADDON_ID, include(theme_detail_patterns)),
 
     # Add-on SDK page
