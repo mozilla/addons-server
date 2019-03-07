@@ -89,7 +89,7 @@ def test_source_with_wrong_unicode_get():
 
 
 def test_trailing_slash_middleware():
-    response = test.Client().get(u'/en-US/about/?xxx=\xC3\x83')
+    response = test.Client().get(u'/en-US/about/?xxx=\xc3')
     assert response.status_code == 301
     # Django's behaviour for URLs containing unicode characters is different
     # under Python 2 and 3. This is fine though, as browsers should send URLs
@@ -98,8 +98,7 @@ def test_trailing_slash_middleware():
     if six.PY2:
         assert response['Location'].endswith('/en-US/about?xxx=%C3%83')
     else:
-        assert response['Location'].endswith(
-            '/en-US/about?xxx=%C3%83%C2%83%C3%82%C2%83')
+        assert response['Location'].endswith('/en-US/about?xxx=%C3%83%C2%83')
 
 
 class AdminMessageTest(TestCase):
