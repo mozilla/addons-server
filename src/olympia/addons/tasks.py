@@ -955,3 +955,13 @@ def recreate_theme_previews(addon_ids, **kw):
             generate_static_theme_preview(theme_data, version.id)
         except IOError:
             pass
+
+
+@task
+@use_primary_db
+def delete_addons(addon_ids, **kw):
+    log.info('[%s@%s] Deleting addons starting at id: %s...'
+             % (len(addon_ids), delete_addons.rate_limit, addon_ids[0]))
+    addons = Addon.objects.filter(pk__in=addon_ids).no_transforms()
+    for addon in addons:
+        addon.delete(send_delete_email=False)
