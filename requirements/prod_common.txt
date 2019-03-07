@@ -38,8 +38,8 @@ MarkupSafe==1.1.1 \
 # maxminddb is required by geoip2
 maxminddb==1.4.1 \
     --hash=sha256:df1451bcd848199905ac0de4631b3d02d6a655ad28ba5e5a4ca29a23358db712
-mysqlclient==1.3.14 \
-    --hash=sha256:3981ae9ce545901a36a8b7aed76ed02960a429f75dc53b7ad77fb2f9ab7cd56b # pyup: <1.4
+mysqlclient==1.4.2.post1 \
+    --hash=sha256:f257d250f2675d0ef99bd318906f3cfc05cef4a2f385ea695ff32a3f04b9f9a7
 scandir==1.9.0 \
     --hash=sha256:f5c71e29b4e2af7ccdc03a020c626ede51da471173b4a6ad1e904f2b2e04b4bd \
     --hash=sha256:1b5c314e39f596875e5a95dd81af03730b338c277c54a454226978d5ba95dbb6 \
