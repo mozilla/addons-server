@@ -9,7 +9,7 @@ from django.forms import fields
 from django.utils.translation import ugettext_lazy as _
 from django.utils.functional import cached_property
 
-from nobot.fields import HumanCaptchaField
+from nobot.fields import HumanCaptchaField, HumanCaptchaWidget
 
 
 class PositiveAutoField(models.AutoField):
@@ -59,12 +59,19 @@ class HttpHttpsOnlyURLField(fields.URLField):
         ]
 
 
+class ReCaptchaWidget(HumanCaptchaWidget):
+    """Added to workaround to nobot0.5 not supporting django2.1"""
+    def render(self, name, value, attrs=None, renderer=None):
+        return super(ReCaptchaWidget, self).render(name, value, attrs=attrs)
+
+
 class ReCaptchaField(HumanCaptchaField):
     # Sub-class so we can translate the strings.
     default_error_messages = {
         'captcha_invalid': _('Incorrect, please try again.'),
         'captcha_error': _('Error verifying input, please try again.'),
     }
+    widget_class = ReCaptchaWidget
 
 
 class ManyToManyDescriptor(related_descriptors.ManyToManyDescriptor):
