@@ -72,24 +72,34 @@ def test_redirect_with_unicode_get():
     assert 'utm_term=Google+%E3%83%90%E3%82%BA' in response['Location']
 
 
-@pytest.mark.skipif(
-    six.PY3,
-    reason='Broken in Python 3, needs more investigation')
 def test_source_with_wrong_unicode_get():
     # The following url is a string (bytes), not unicode.
     response = test.Client().get('/firefox/collections/mozmj/autumn/'
                                  '?source=firefoxsocialmedia\x14\x85')
     assert response.status_code == 302
-    assert response['Location'].endswith('?source=firefoxsocialmedia%14')
+    # Django's behaviour for URLs containing unicode characters is different
+    # under Python 2 and 3. This is fine though, as browsers should send URLs
+    # urlencoded, and that's tested above in test_redirect_with_unicode_get().
+    # We just need to make sure we're not crashing on such URLs.
+    if six.PY2:
+        assert response['Location'].endswith('?source=firefoxsocialmedia%14')
+    else:
+        assert response['Location'].endswith(
+            '?source=firefoxsocialmedia%14%C3%82%C2%85')
 
 
-@pytest.mark.skipif(
-    six.PY3,
-    reason='Broken in Python 3, needs more investigation')
 def test_trailing_slash_middleware():
-    response = test.Client().get(u'/en-US/about/?xxx=\xc3')
+    response = test.Client().get(u'/en-US/about/?xxx=\xC3\x83')
     assert response.status_code == 301
-    assert response['Location'].endswith('/en-US/about?xxx=%C3%83')
+    # Django's behaviour for URLs containing unicode characters is different
+    # under Python 2 and 3. This is fine though, as browsers should send URLs
+    # urlencoded, and that's tested above in test_redirect_with_unicode_get().
+    # We just need to make sure we're not crashing on such URLs.
+    if six.PY2:
+        assert response['Location'].endswith('/en-US/about?xxx=%C3%83')
+    else:
+        assert response['Location'].endswith(
+            '/en-US/about?xxx=%C3%83%C2%83%C3%82%C2%83')
 
 
 class AdminMessageTest(TestCase):
