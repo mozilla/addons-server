@@ -231,6 +231,9 @@ class TestPrivacy(TestCase):
             assert response.status_code == 200
 
 
+@pytest.mark.skipif(
+    django.VERSION[0] >= 2,
+    reason='Legacy UI tests')
 class TestCRUD(TestCase):
     """Test the collection form."""
     fixtures = ('base/users', 'base/addon_3615', 'base/collections')

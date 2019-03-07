@@ -255,11 +255,10 @@ class TranslationTestCase(TestCase):
         assert sorted([c, a, b]) == [a, b, c]
 
     def test_sorting_en(self):
-        q = TranslatedModel.objects.all()
+        query = TranslatedModel.objects.all()
         expected = [4, 1, 3]
-
-        assert ids(order_by_translation(q, 'name')) == expected
-        assert ids(order_by_translation(q, '-name')) == (
+        assert ids(order_by_translation(query, 'name')) == expected
+        assert ids(order_by_translation(query, '-name')) == (
             list(reversed(expected)))
 
     def test_order_by_translations_query_uses_left_outer_join(self):

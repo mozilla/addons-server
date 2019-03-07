@@ -3,7 +3,7 @@ from django.urls import NoReverseMatch
 from django.utils.encoding import python_2_unicode_compatible
 
 from olympia import activity, amo
-from olympia.amo.fields import PositiveAutoField
+from olympia.amo.fields import ManyToManyField, PositiveAutoField
 from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.urlresolvers import reverse
 
@@ -21,8 +21,8 @@ class Tag(ModelBase):
     tag_text = models.CharField(max_length=128)
     denied = models.BooleanField(default=False)
     restricted = models.BooleanField(default=False)
-    addons = models.ManyToManyField('addons.Addon', through='AddonTag',
-                                    related_name='tags')
+    addons = ManyToManyField(
+        'addons.Addon', through='AddonTag', related_name='tags')
     num_addons = models.IntegerField(default=0)
 
     objects = TagManager()

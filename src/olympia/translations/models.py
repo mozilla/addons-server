@@ -78,6 +78,9 @@ class Translation(ModelBase):
         else:
             return self.localized_string == other
 
+    def __hash__(self):
+        return hash(self.localized_string)
+
     def clean(self):
         if self.localized_string:
             self.localized_string = self.localized_string.strip()

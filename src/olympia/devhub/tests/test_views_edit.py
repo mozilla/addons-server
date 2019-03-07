@@ -883,7 +883,7 @@ class TestEditMedia(BaseTestEdit):
         https://github.com/mozilla/addons-server/issues/8900"""
         doc = pq(self.client.get(self.media_edit_url).content)
 
-        labels = doc('#icons_default li label')
+        labels = doc('#icons_default li a~label')
 
         assert labels.length == 18
 

@@ -285,7 +285,7 @@ class ActivityLog(ModelBase):
         [(value.id, key)
          for key, value in constants.activity.LOG_BY_ID.items()])
     user = models.ForeignKey(
-        'users.UserProfile', null=True, on_delete=models.CASCADE)
+        'users.UserProfile', null=True, on_delete=models.SET_NULL)
     action = models.SmallIntegerField(choices=TYPES, db_index=True)
     _arguments = models.TextField(blank=True, db_column='arguments')
     _details = models.TextField(blank=True, db_column='details')

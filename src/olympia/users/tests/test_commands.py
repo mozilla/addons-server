@@ -77,9 +77,7 @@ class TestUpdateDeletedUsers(TestCase):
     def test_updates_deleted_metadata(self):
         user = user_factory(fxa_id='foobar', last_login_ip='192.168.1.1')
 
-        call_command(
-            'update_deleted_users',
-            interactive=False)
+        call_command('update_deleted_users')
 
         # Nothing happened, the user wasn't deleted
         user.refresh_from_db()
@@ -92,9 +90,7 @@ class TestUpdateDeletedUsers(TestCase):
         # Now set something and make sure `.delete` get's called again
         user.update(fxa_id='foobar', last_login_ip='192.168.1.1')
 
-        call_command(
-            'update_deleted_users',
-            interactive=False)
+        call_command('update_deleted_users')
 
         user.refresh_from_db()
         assert user.fxa_id is None

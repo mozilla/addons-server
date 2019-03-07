@@ -15,7 +15,7 @@ class IconTypeSelect(forms.RadioSelect):
         '<a href="#" class="{active}">'
         '<img src="{static}img/addon-icons/{icon_name}-32.png" alt="">'
         '</a>'
-        '<label for="{label_id}">{original_widget}</label>'
+        '{original_widget}'
         '</li>'
     )
 
@@ -34,14 +34,20 @@ class IconTypeSelect(forms.RadioSelect):
             if option_value.split('/')[0] == 'icon' or option_value == '':
                 icon_name = option['label']
 
+                original_widget = self._render(
+                    self.option_template_name, option)
+                if not original_widget.startswith('<label for='):
+                    # django2.2+ already wraps widget in a label
+                    original_widget = format_html(
+                        '<label for="{label_id}">{widget}</label>',
+                        label_id=option['widget']['attrs']['id'],
+                        widget=original_widget)
                 output.append(format_html(
                     self.base_html,
                     active='active' if option_value == value else '',
                     static=settings.STATIC_URL,
                     icon_name=icon_name,
-                    label_id=option['widget']['attrs']['id'],
-                    original_widget=self._render(
-                        self.option_template_name, option)
+                    original_widget=original_widget,
                 ))
             else:
                 output.append(format_html(

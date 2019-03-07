@@ -34,7 +34,7 @@ from olympia.access import acl
 from olympia.addons.utils import (
     generate_addon_guid, get_creatured_ids, get_featured_ids)
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.fields import PositiveAutoField
+from olympia.amo.fields import ManyToManyField, PositiveAutoField
 from olympia.amo.models import (
     BasePreview, BaseQuerySet, ManagerBase, ModelBase, OnChangeMixin,
     SaveUpdateMixin, SlugField, manual_order)
@@ -334,9 +334,9 @@ class Addon(OnChangeMixin, ModelBase):
 
     contributions = models.URLField(max_length=255, blank=True)
 
-    authors = models.ManyToManyField('users.UserProfile', through='AddonUser',
-                                     related_name='addons')
-    categories = models.ManyToManyField('Category', through='AddonCategory')
+    authors = ManyToManyField(
+        'users.UserProfile', through='AddonUser', related_name='addons')
+    categories = ManyToManyField('Category', through='AddonCategory')
 
     _current_version = models.ForeignKey(Version, db_column='current_version',
                                          related_name='+', null=True,
@@ -1902,7 +1902,7 @@ class Category(OnChangeMixin, ModelBase):
         default=0, help_text='Category weight used in sort ordering')
     misc = models.BooleanField(default=False)
 
-    addons = models.ManyToManyField(Addon, through='AddonCategory')
+    addons = ManyToManyField(Addon, through='AddonCategory')
 
     class Meta:
         db_table = 'categories'

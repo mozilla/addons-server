@@ -3,6 +3,7 @@ import json
 import random
 import re
 
+import django
 from django.conf import settings
 from django.core import mail
 from django.test.client import Client
@@ -1291,6 +1292,9 @@ class TestPrivacyPolicy(TestCase):
         check_cat_sidebar(self.url, self.addon)
 
 
+@pytest.mark.skipif(
+    django.VERSION[0] >= 2,
+    reason='Legacy UI tests')
 @patch.object(settings, 'NOBOT_RECAPTCHA_PRIVATE_KEY', 'something')
 class TestReportAbuse(TestCase):
     fixtures = ['addons/persona', 'base/addon_3615', 'base/users']

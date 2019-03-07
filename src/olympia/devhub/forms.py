@@ -12,7 +12,6 @@ from django.forms.widgets import RadioSelect
 from django.utils.safestring import mark_safe
 from django.utils.translation import ugettext, ugettext_lazy as _
 
-import jinja2
 import six
 import waffle
 
@@ -25,6 +24,7 @@ from olympia.addons.models import (
     Addon, AddonCategory, AddonReviewerFlags, AddonUser, Preview)
 from olympia.amo.fields import HttpHttpsOnlyURLField, ReCaptchaField
 from olympia.amo.forms import AMOModelForm
+from olympia.amo.messages import DoubleSafe
 from olympia.amo.templatetags.jinja_helpers import mark_safe_lazy
 from olympia.amo.urlresolvers import reverse
 from olympia.applications.models import AppVersion
@@ -561,7 +561,7 @@ class NewUploadForm(forms.Form):
                     elif version.unreviewed_files:
                         next_url = reverse('devhub.submit.version.details',
                                            args=[self.addon.slug, version.pk])
-                        msg = jinja2.Markup('%s <a href="%s">%s</a>' % (
+                        msg = DoubleSafe('%s <a href="%s">%s</a>' % (
                             ugettext(u'Version {version} already exists.'),
                             next_url,
                             ugettext(u'Continue with existing upload instead?')
