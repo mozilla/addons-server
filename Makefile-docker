@@ -189,8 +189,6 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py generate_themes $(NUM_THEMES)
 	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
 
-	# Now that addons have been generated, reindex.
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
 	# Also update category counts (denormalized field)
 	$(PYTHON_COMMAND) manage.py cron category_totals
 
