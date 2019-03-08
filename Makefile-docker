@@ -193,9 +193,7 @@ setup-ui-tests:
 
 .PHONY: run-ui-tests
 run-ui-tests:
-	# Generate test add-ons and force a reindex to make sure things are updated
-	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/uitests.txt
-	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
+	docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
 
 .PHONY: perf-tests
 perf-tests: setup-ui-tests
