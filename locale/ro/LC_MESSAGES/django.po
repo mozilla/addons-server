@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-28 12:00+0000\n"
-"Last-Translator: robbp <robbpaun@gmail.com>\n"
+"PO-Revision-Date: 2019-03-08 17:44+0000\n"
+"Last-Translator: Cristian Silaghi <cristian.silaghi@mozilla.ro>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -4051,7 +4051,7 @@ msgid ""
 "I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
 " and Cookies Privacy Notice%(link_close)s."
 msgstr ""
-"Agreez %(agreement_link_open)sAcordul de distribuție pentru suplimente Firefox%(link_close)s și sunt de acord ca informațiile mele să fie gestionate conform descrierii din "
+"Agreez %(agreement_link_open)sAcordul de distribuție pentru suplimente Firefox%(link_close)s și sunt de acord ca informațiile mele să fie prelucrate conform descrierii din "
 "%(privacy_notice_link_open)sPolitica de confidențialitate pentru site-uri web, comunicații și cookie-uri%(link_close)s."
 
 msgid "Submit Theme"
