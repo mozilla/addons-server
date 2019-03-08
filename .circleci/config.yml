@@ -112,6 +112,9 @@ jobs:
             docker-compose --version
       - run:
           name: Start container, verify it's running and start tests
+          environment:
+            UITEST_FXA_EMAIL: uitest-$(uuid)@restmail.net
+            MOZ_HEADLESS: 1
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
@@ -119,8 +122,6 @@ jobs:
             sudo apt-get update -qqy && sudo apt-get -qqy install uuid
             # Pull images
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml pull --quiet
-            #Set Fxa Username
-            export UITEST_FXA_EMAIL=uitest-$(uuid)@restmail.net
             # Start Containers
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
             sleep 20
