@@ -194,5 +194,4 @@ workflows:
               only: /.*/
             branches:
               ignore: /.*/
-      # Integration tests are disabled while they're broken with py3.
-      # - integration_test
+      - integration_test
