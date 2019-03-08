@@ -139,7 +139,7 @@ jobs:
             # mod user in firefox container
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox sudo usermod -u 1001 seluser
             # proper chown
-            sudo chown -R $USER .
+            sudo chown -R $USER:$USER .
             # Run Ui-tests setup
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec web make setup-ui-tests
             # Make sure everything is started
