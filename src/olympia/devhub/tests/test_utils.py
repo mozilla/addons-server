@@ -16,6 +16,7 @@ from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
+from olympia.applications.models import AppVersion
 from olympia.devhub import tasks, utils
 from olympia.files.models import FileUpload
 from olympia.lib.akismet.models import AkismetReport
@@ -421,6 +422,15 @@ class TestGetAddonAkismetReports(TestCase):
 
 @pytest.mark.django_db
 def test_extract_theme_properties():
+    versions = {
+        amo.DEFAULT_WEBEXT_MAX_VERSION,
+        amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+        amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+    }
+    for version in versions:
+        AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
+        AppVersion.objects.create(application=amo.ANDROID.id, version=version)
+
     addon = addon_factory(type=amo.ADDON_STATICTHEME)
     result = utils.extract_theme_properties(
         addon, addon.current_version.channel)

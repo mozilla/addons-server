@@ -914,16 +914,26 @@ class TestUpload(BaseUploadTest):
 class TestUploadDetail(BaseUploadTest):
     fixtures = ['base/appversion', 'base/users']
 
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            '51.0a1',
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_MAX_VERSION
+        }
+        for version in versions:
+            cls.create_appversion('firefox', version)
+            cls.create_appversion('android', version)
+
     def setUp(self):
         super(TestUploadDetail, self).setUp()
-        self.create_appversion('firefox', '*')
-        self.create_appversion('firefox', '51.0a1')
-
         assert self.client.login(email='regular@mozilla.com')
 
-    def create_appversion(self, name, version):
+    @classmethod
+    def create_appversion(cls, application_name, version):
         return AppVersion.objects.create(
-            application=amo.APPS[name].id, version=version)
+            application=amo.APPS[application_name].id, version=version)
 
     def post(self):
         # Has to be a binary, non xpi file.

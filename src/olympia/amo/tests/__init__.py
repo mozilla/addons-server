@@ -820,15 +820,22 @@ def developer_factory(**kw):
 
 
 def create_default_webext_appversion():
-    AppVersion.objects.get_or_create(
-        application=amo.ANDROID.id, version='48.0')
-    AppVersion.objects.get_or_create(
-        application=amo.ANDROID.id, version='*')
+    versions = {
+        amo.DEFAULT_WEBEXT_MIN_VERSION,
+        amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+        amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+        amo.DEFAULT_WEBEXT_MAX_VERSION,
+    }
+    for version in versions:
+        AppVersion.objects.create(application=amo.FIREFOX.id, version=version)
 
-    AppVersion.objects.get_or_create(
-        application=amo.FIREFOX.id, version='48.0')
-    AppVersion.objects.get_or_create(
-        application=amo.FIREFOX.id, version='*')
+    versions = {
+        amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+        amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+        amo.DEFAULT_WEBEXT_MAX_VERSION,
+    }
+    for version in versions:
+        AppVersion.objects.create(application=amo.ANDROID.id, version=version)
 
 
 def version_factory(file_kw=None, **kw):

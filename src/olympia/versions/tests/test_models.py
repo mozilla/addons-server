@@ -595,15 +595,28 @@ def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
 class TestVersionFromUpload(UploadTest, TestCase):
     fixtures = ['base/addon_3615', 'base/users']
 
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            '3.0',
+            '3.6.*',
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_MAX_VERSION
+        }
+        for version in versions:
+            AppVersion.objects.create(application=amo.FIREFOX.id,
+                                      version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id,
+                                      version=version)
+
     def setUp(self):
         super(TestVersionFromUpload, self).setUp()
         self.upload = self.get_upload(self.filename)
         self.addon = Addon.objects.get(id=3615)
         self.addon.update(guid='guid@xpi')
         self.selected_app = amo.FIREFOX.id
-        for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(
-                application=amo.FIREFOX.id, version=version)
         self.dummy_parsed_data = {'version': '0.1'}
 
 
@@ -934,6 +947,19 @@ class TestStatusFromUpload(TestVersionFromUpload):
 
 
 class TestStaticThemeFromUpload(UploadTest):
+
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_MAX_VERSION
+        }
+        for version in versions:
+            AppVersion.objects.create(application=amo.FIREFOX.id,
+                                      version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id,
+                                      version=version)
 
     def setUp(self):
         path = 'src/olympia/devhub/tests/addons/static_theme.zip'

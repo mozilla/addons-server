@@ -15,10 +15,21 @@ from olympia.users.models import UserProfile
 
 
 class TestWebextExtractPermissions(UploadTest):
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_MAX_VERSION
+        }
+        for version in versions:
+            AppVersion.objects.create(application=amo.FIREFOX.id,
+                                      version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id,
+                                      version=version)
+
     def setUp(self):
         super(TestWebextExtractPermissions, self).setUp()
-        for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
-            AppVersion(application=amo.FIREFOX.id, version=version).save()
         self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@jetpack',
                                           type=amo.ADDON_EXTENSION,

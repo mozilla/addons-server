@@ -150,6 +150,19 @@ class TestAddStaticThemeFromLwt(TestCase):
     modify_date = datetime(2008, 8, 8, 8, 8, 8)
     update_date = datetime(2009, 9, 9, 9, 9, 9)
 
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+        }
+        for version in versions:
+            AppVersion.objects.create(
+                application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(
+                application=amo.ANDROID.id, version=version)
+
     def setUp(self):
         super(TestAddStaticThemeFromLwt, self).setUp()
         self.call_signing_mock = self.patch(
@@ -158,10 +171,6 @@ class TestAddStaticThemeFromLwt(TestCase):
             'olympia.addons.tasks.build_static_theme_xpi_from_lwt')
         self.build_mock.side_effect = self._mock_xpi_side_effect
         self.call_signing_mock.return_value = 'abcdefg1234'
-        AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='53.0')
-        AppVersion.objects.get_or_create(
-            application=amo.FIREFOX.id, version='*')
         user_factory(id=settings.TASK_USER_ID, email='taskuser@mozilla.com')
 
     def _mock_xpi_side_effect(self, lwt, upload_path):

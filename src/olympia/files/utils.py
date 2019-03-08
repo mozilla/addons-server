@@ -467,6 +467,9 @@ class ManifestJSONExtractor(object):
                 amo.DEFAULT_WEBEXT_MIN_VERSION
                 if self.get('browser_specific_settings', None) is None
                 else amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC)
+            # amo.DEFAULT_WEBEXT_MIN_VERSION_BROWSER_SPECIFIC should be 48.0,
+            # which is the same as amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID, so
+            # no specific treatment for Android.
             apps = (
                 (amo.FIREFOX, webext_min),
                 (amo.ANDROID, amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID),
@@ -484,9 +487,7 @@ class ManifestJSONExtractor(object):
             )
 
         # If a minimum strict version is specified, it needs to be higher
-        # than the version when Firefox started supporting WebExtensions
-        # (We silently ignore apps that the add-on is not compatible with
-        # below, but we need to be at least compatible with Firefox...)
+        # than the version when Firefox started supporting WebExtensions.
         unsupported_no_matter_what = (
             self.strict_min_version and vint(self.strict_min_version) <
             vint(amo.DEFAULT_WEBEXT_MIN_VERSION))
@@ -499,19 +500,38 @@ class ManifestJSONExtractor(object):
                 strict_min_version = max(amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
                                          default_min_version)
             else:
-                strict_min_version = (
-                    self.strict_min_version or default_min_version)
+                # strict_min_version for this app shouldn't be lower than the
+                # default min version for this app.
+                strict_min_version = max(
+                    self.strict_min_version, default_min_version)
 
             strict_max_version = (
                 self.strict_max_version or amo.DEFAULT_WEBEXT_MAX_VERSION)
 
+            if vint(strict_max_version) < vint(strict_min_version):
+                strict_max_version = strict_min_version
+
+            qs = AppVersion.objects.filter(application=app.id)
             try:
-                min_appver, max_appver = get_appversions(
-                    app, strict_min_version, strict_max_version)
-                yield Extractor.App(
-                    appdata=app, id=app.id, min=min_appver, max=max_appver)
+                min_appver = qs.get(version=strict_min_version)
             except AppVersion.DoesNotExist:
-                continue
+                # If the specified strict_min_version can't be found, raise an
+                # error, we can't guess an appropriate one.
+                msg = ugettext(
+                    u'Unknown "strict_min_version" {appver} for {app}'.format(
+                        app=app.pretty, appver=strict_min_version))
+                raise forms.ValidationError(msg)
+
+            try:
+                max_appver = qs.get(version=strict_max_version)
+            except AppVersion.DoesNotExist:
+                # If the specified strict_max_version can't be found, this is
+                # less of a problem, ignore and replace with '*'.
+                # https://github.com/mozilla/addons-server/issues/7160
+                max_appver = qs.get(version=amo.DEFAULT_WEBEXT_MAX_VERSION)
+
+            yield Extractor.App(
+                appdata=app, id=app.id, min=min_appver, max=max_appver)
 
     def target_locale(self):
         """Guess target_locale for a dictionary from manifest contents."""
