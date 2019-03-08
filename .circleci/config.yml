@@ -111,6 +111,11 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
             docker-compose --version
       - run:
+          name: Set hosts
+          command: |
+            echo 127.0.0.1 olympia.test | sudo tee -a /etc/hosts
+            cat /etc/hosts
+      - run:
           name: Start container, verify it's running and start tests
           environment:
             UITEST_FXA_EMAIL: uitest-$(uuid)@restmail.net
