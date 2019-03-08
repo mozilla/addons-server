@@ -22,6 +22,7 @@ from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
+from rest_framework.generics import GenericAPIView
 from rest_framework.mixins import (
     DestroyModelMixin, ListModelMixin, RetrieveModelMixin, UpdateModelMixin)
 from rest_framework.permissions import (
@@ -41,7 +42,8 @@ from olympia.amo import messages
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.utils import fetch_subscribed_newsletters
 from olympia.api.authentication import (
-    JWTKeyAuthentication, WebTokenAuthentication)
+    JWTKeyAuthentication, UnsubscribeTokenAuthentication,
+    WebTokenAuthentication)
 from olympia.api.permissions import AnyOf, ByHttpMethod, GroupPermission
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
@@ -561,35 +563,19 @@ class AccountSuperCreate(APIView):
         }, status=201)
 
 
-class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
-    """Returns account notifications.
+class AccountNotificationMixin(object):
 
-    If not already set by the user, defaults will be returned.
-    """
-
-    permission_classes = [IsAuthenticated]
-    # We're pushing the primary permission checking to AccountViewSet for ease.
-    account_permission_classes = [
-        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))]
-    serializer_class = UserNotificationSerializer
-    paginator = None
-
-    def get_account_viewset(self):
-        if not hasattr(self, 'account_viewset'):
-            self.account_viewset = AccountViewSet(
-                request=self.request,
-                permission_classes=self.account_permission_classes,
-                kwargs={'pk': self.kwargs['user_pk']})
-        return self.account_viewset
+    def get_user(self):
+        raise NotImplementedError
 
     def _get_default_object(self, notification):
         return UserNotification(
-            user=self.get_account_viewset().get_object(),
+            user=self.get_user(),
             notification_id=notification.id,
             enabled=notification.default_checked)
 
-    def get_queryset(self):
-        user = self.get_account_viewset().get_object()
+    def get_queryset(self, dev=False):
+        user = self.get_user()
         queryset = UserNotification.objects.filter(user=user)
 
         # Fetch all `UserNotification` instances and then,
@@ -613,8 +599,9 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
             user_notification.enabled = basket_id in newsletters
             set_notifications[notification.short] = user_notification
 
+        include_dev = dev or user.is_developer
         for notification in NOTIFICATIONS_COMBINED:
-            if notification.group == 'dev' and not user.is_developer:
+            if notification.group == 'dev' and not include_dev:
                 # We only return dev notifications for developers.
                 continue
             out.append(set_notifications.get(
@@ -622,11 +609,36 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
                 self._get_default_object(notification)))  # Or, default.
         return out
 
+
+class AccountNotificationViewSet(AccountNotificationMixin, ListModelMixin,
+                                 GenericViewSet):
+    """Returns account notifications.
+
+    If not already set by the user, defaults will be returned.
+    """
+    permission_classes = [IsAuthenticated]
+    # We're pushing the primary permission checking to AccountViewSet for ease.
+    account_permission_classes = [
+        AnyOf(AllowSelf, GroupPermission(amo.permissions.USERS_EDIT))]
+    serializer_class = UserNotificationSerializer
+    paginator = None
+
+    def get_user(self):
+        return self.get_account_viewset().get_object()
+
+    def get_account_viewset(self):
+        if not hasattr(self, 'account_viewset'):
+            self.account_viewset = AccountViewSet(
+                request=self.request,
+                permission_classes=self.account_permission_classes,
+                kwargs={'pk': self.kwargs['user_pk']})
+        return self.account_viewset
+
     def create(self, request, *args, **kwargs):
         # Loop through possible notifications.
         queryset = self.get_queryset()
         for notification in queryset:
-            # Careful with ifs.  Enabled will be None|True|False.
+            # Careful with ifs.  `enabled` will be None|True|False.
             enabled = request.data.get(notification.notification.short)
             if enabled is not None:
                 serializer = self.get_serializer(
@@ -634,3 +646,28 @@ class AccountNotificationViewSet(ListModelMixin, GenericViewSet):
                 serializer.is_valid(raise_exception=True)
                 serializer.save()
         return Response(self.get_serializer(queryset, many=True).data)
+
+
+class AccountNotificationUnsubscribeView(AccountNotificationMixin,
+                                         GenericAPIView):
+    authentication_classes = (UnsubscribeTokenAuthentication,)
+    permission_classes = ()
+    serializer_class = UserNotificationSerializer
+
+    def get_user(self):
+        return self.request.user
+
+    def post(self, request):
+        notification_name = request.data.get('notification')
+        serializer = None
+        for notification in self.get_queryset(dev=True):
+            if notification_name == notification.notification.short:
+                serializer = self.get_serializer(
+                    notification, partial=True, data={'enabled': False})
+                serializer.is_valid(raise_exception=True)
+                serializer.save()
+
+        if not serializer:
+            raise serializers.ValidationError(
+                _('Notification [%s] does not exist') % notification_name)
+        return Response(serializer.data)

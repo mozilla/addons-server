@@ -232,6 +232,28 @@ Any number of notifications can be changed; only non-mandatory notifications can
     :<json boolean <name>: Is the notification enabled?
 
 
+------------------------
+Notification Unsubscribe
+------------------------
+
+.. _`notification-unsubscribe`:
+
+This special endpoint is used to handle notification update requests coming from email unsubscribe links.
+Only a single notification can be changed, and it will always be updated to `enabled = False`.
+Only non-mandatory notifications can be changed - attempting to set a mandatory notification will return an error.
+
+.. http:post:: /api/v4/accounts/unsubscribe/
+
+    .. _notification-unsubscribe-request:
+
+    :<json string hash: The generated hash of the token
+    :<json string notification: The short name of the notification that should be disabled
+    :<json string token: The base64 encoded email address of the account
+    :>json string name: The notification short name.
+    :>json boolean enabled: If the notification is enabled (should always be False).
+    :>json boolean mandatory: If the notification can be set by the user (should always be True, or an error would have been sent instead).
+
+
 --------------
 Super-creation
 --------------
