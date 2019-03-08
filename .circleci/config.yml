@@ -118,7 +118,6 @@ jobs:
       - run:
           name: Start container, verify it's running and start tests
           environment:
-            UITEST_FXA_EMAIL: uitest-$(uuid)@restmail.net
             MOZ_HEADLESS: 1
           command: |
             set -x
@@ -143,6 +142,9 @@ jobs:
             sudo chown -R $USER .
             # Run Ui-tests setup
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec web make setup-ui-tests
+            # Make sure everything is started
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
+            sleep 10
             # Start Test in Firefox docker container
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
       - store_artifacts:

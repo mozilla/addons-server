@@ -172,6 +172,9 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
 	./schematic --fake src/olympia/migrations/
 
+	# Reindex
+	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
+
 	# Let's load some initial data and import mozilla-product versions
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
