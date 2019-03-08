@@ -114,11 +114,9 @@ class Header(Region):
         # menu. It pauses between each action to account for lag.
         action = ActionChains(self.selenium)
         action.move_to_element(menu)
-        action.pause(2)
         action.click()
         action.pause(2)
         action.move_to_element(links[item])
-        action.pause(2)
         action.click()
         action.pause(2)
         action.perform()

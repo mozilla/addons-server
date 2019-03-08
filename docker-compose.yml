@@ -16,6 +16,8 @@ x-env-mapping: &env
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - TERM=xterm-256color
+    - UITEST_FXA_EMAIL
+    - UITEST_FXA_PASSWORD=uitester
 
 services:
   worker: &worker
@@ -39,6 +41,8 @@ services:
       - ./site-static:/srv/site-static
       - ./storage/shared_storage/uploads:/srv/user-media
       - ./storage/files:/srv/user-media/addons
+    ports:
+      - "80:80"
 
   memcached:
     image: memcached:1.4
@@ -83,11 +87,13 @@ services:
   addons-frontend:
     <<: *env
     environment:
+      - API_HOST=http://olympia.test
+      - PROXY_API_HOST=http://olympia.test
       - HOSTNAME=uitests
       - WEBPACK_SERVER_HOST=olympia.test
       - CSP=false
       - FXA_CONFIG=default
-    image: addons/addons-frontend
+    image: addons/addons-frontend:latest
     ports:
       - "3000:3000"
       - "3001:3001"

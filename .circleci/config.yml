@@ -115,22 +115,27 @@ jobs:
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
+            # Install UUID
+            sudo apt-get update -qqy && sudo apt-get -qqy install uuid
+            # Pull images
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml pull --quiet
+            #Set Fxa Username
+            export UITEST_FXA_EMAIL=uitest-$(uuid)@restmail.net
+            # Start Containers
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
             sleep 20
-            docker-compose ps
-            scripts/ui-test-hostname-setup.sh
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml ps
             # Make sure dependencies get updated in worker and web container
-            docker-compose exec worker make -f Makefile-docker update_deps update_assets
-            docker-compose restart worker
-            docker-compose exec web make -f Makefile-docker update_deps update_assets
-            docker-compose restart web
-            # Delete any existing uitest users within restmail. TEMP FIX: https://github.com/mozilla/addons-server/issues/8980
-            wget --method=DELETE http://restmail.net/mail/uitest
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec worker make -f Makefile-docker update_deps update_assets
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml restart worker
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec web make -f Makefile-docker update_deps update_assets
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml restart web
             # mod user in firefox container
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox sudo usermod -u 1001 seluser
             # proper chown
             sudo chown -R $USER .
+            # Run Ui-tests setup
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec web make setup-ui-tests
             # Start Test in Firefox docker container
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
       - store_artifacts:

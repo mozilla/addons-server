@@ -52,7 +52,7 @@ def test_devhub_logout(base_url, selenium, devhub_login):
 @pytest.mark.nondestructive
 def test_devhub_register(base_url, selenium):
     """Test register link loads register page."""
-    selenium.get('{}/en-US/developers/'.format(base_url))
+    selenium.get('{}/developers'.format(base_url))
     devhub = DevHub(selenium, base_url)
     assert not devhub.logged_in
     devhub.header.register()
