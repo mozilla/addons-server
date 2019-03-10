@@ -40,9 +40,9 @@ wcwidth==0.1.7 \
     --hash=sha256:3df37372226d6e63e1b1e1eda15c594bca98a22d33a23832a90998faa96bc65e
 simplegeneric==0.8.1 \
     --hash=sha256:dc972e06094b9af5b855b3df4a646395e43d1c9d0d39ed345b7393560d0b9173
-isort==4.3.13 \
-    --hash=sha256:38a74a5ccf3a15a7a99f975071164f48d4d10eed4154879009c18e6e8933e5aa \
-    --hash=sha256:abbb2684aa234d5eb8a67ef36d4aa62ea080d46c2eba36ad09e2990ae52e4305
+isort==4.3.14 \
+    --hash=sha256:473c458f279f1545fe80a4c901fe83681c27fb6969ae0bd2f1472143fc46eb1f \
+    --hash=sha256:7867309b5d81326e349e762dd4b4af364ff9cc48ac7e3d3e01f44d70684ae11a
 # meld3 is required by supervisor
 meld3==1.0.2 \
     --hash=sha256:b28a9bfac342aadb4557aa144bea9f8e6208bfb0596190570d10a892d35ff7dc
