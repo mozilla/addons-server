@@ -13,11 +13,15 @@ x-env-mapping: &env
     - PYTHONDONTWRITEBYTECODE=1
     - PYTHONUNBUFFERED=1
     - TERM=xterm-256color
+    - UITEST_FXA_EMAIL
+    - UITEST_FXA_PASSWORD=uitester
+    - MOZ_HEADLESS=1
+    - PYTEST_ADDOPTS=${PYTEST_ADDOPTS}
 
 services:
   selenium-firefox:
     <<: *env
-    image: b4handjr/selenium-firefox
+    image: b4handjr/selenium-firefox:python3-latest
     volumes:
       - .:/code
     expose:
@@ -25,5 +29,4 @@ services:
     ports:
       - "5900"
     shm_size: 2g
-    links:
-      - "nginx:olympia.test"
+    network_mode: host

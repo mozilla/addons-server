@@ -7,8 +7,8 @@ export PIP_COMMAND=pip${PYTHON_VERSION_MAJOR}
 export PYTHON_COMMAND=python${PYTHON_VERSION_MAJOR}
 
 # FXA username and password for ui-tests
-export FXA_EMAIL=uitest-$(shell uuid)@restmail.net
-export FXA_PASSWORD=uitester
+export FXA_EMAIL=${UITEST_FXA_EMAIL}
+export FXA_PASSWORD=${UITEST_FXA_PASSWORD}
 
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
@@ -172,24 +172,29 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
 	./schematic --fake src/olympia/migrations/
 
+	# Reindex
+	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
+
 	# Let's load some initial data and import mozilla-product versions
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py loaddata zadmin/users
 	$(PYTHON_COMMAND) manage.py loaddata src/olympia/access/fixtures/initial.json
-
 	$(PYTHON_COMMAND) manage.py import_prod_versions
 
 	# Create a proper superuser that can be used to access the API
 	$(PYTHON_COMMAND) manage.py waffle_switch super-create-accounts on --create
 	$(PYTHON_COMMAND) manage.py waffle_switch activate-autograph-signing on --create
+	$(PYTHON_COMMAND) manage.py generate_addons --app firefox $(NUM_ADDONS)
+	$(PYTHON_COMMAND) manage.py generate_addons --app android $(NUM_ADDONS)
+	$(PYTHON_COMMAND) manage.py generate_themes $(NUM_THEMES)
+	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
+
+	# Also update category counts (denormalized field)
+	$(PYTHON_COMMAND) manage.py cron category_totals
 
 .PHONY: run-ui-tests
-run-ui-tests: setup-ui-tests
-	# Generate test add-ons and force a reindex to make sure things are updated
-	$(PIP_COMMAND) install --progress-bar=off --no-deps -r requirements/uitests.txt
-	$(PYTHON_COMMAND) manage.py generate_default_addons_for_frontend
-	$(PYTHON_COMMAND) manage.py reindex --force --noinput --wipe
-	pytest --driver Firefox tests/ui/
+run-ui-tests:
+	docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
 
 .PHONY: perf-tests
 perf-tests: setup-ui-tests

@@ -33,7 +33,6 @@ def firefox_options(firefox_options):
     firefox_options.set_preference('extensions.webapi.testing', True)
     firefox_options.set_preference('ui.popup.disable_autohide', True)
     firefox_options.add_argument('-foreground')
-    firefox_options.add_argument('-headless')
     firefox_options.log.level = 'trace'
     return firefox_options
 
@@ -74,8 +73,8 @@ def fxa_account(request):
 
     """
     try:
-        fxa_account.email = os.environ['FXA_EMAIL']
-        fxa_account.password = os.environ['FXA_PASSWORD']
+        fxa_account.email = os.environ['UITEST_FXA_EMAIL']
+        fxa_account.password = os.environ['UITEST_FXA_PASSWORD']
     except KeyError:
         if request.node.get_closest_marker('fxa_login'):
             pytest.skip(
