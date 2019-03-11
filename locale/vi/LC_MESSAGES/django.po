@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-11 05:52+0000\n"
+"PO-Revision-Date: 2019-03-11 05:59+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
 "Language: vi\n"
@@ -16,13 +16,13 @@ msgstr ""
 "X-Generator: Pontoon\n"
 
 msgid "No links are allowed."
-msgstr ""
+msgstr "Không có liên kết được cho phép."
 
 msgid "This display name cannot be used."
 msgstr "Không thể sử dụng tên hiển thị này."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Trường trang chủ chỉ có thể được sử dụng để liên kết đến các trang web bên ngoài."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Hình ảnh phải là PNG hoặc JPG."
@@ -51,6 +51,7 @@ msgstr "Cần trợ giúp?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
+"Các nhà phát triển tiện ích hoặc chủ đề không thể xóa tài khoản của họ. Bạn phải xóa tất cả các tiện ích mở rộng và chủ đề được liên kết với tài khoản này hoặc chuyển chúng cho người dùng khác."
 
 msgid "Review"
 msgstr "Đánh giá"
@@ -62,7 +63,7 @@ msgid "Review note"
 msgstr "Ghi chú review"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "Chỉ các phiên bản mới nhất của tiện ích có thể có ghi chú được thêm vào."
 
 msgid "Ratings"
 msgstr "Xếp hạng"
@@ -123,7 +124,7 @@ msgid_plural "All tags must be at least {0} characters."
 msgstr[0] "Tất cả nhãn phải có ít nhất {0} kí tự."
 
 msgid "The text entered has been flagged as spam."
-msgstr "Các văn bản đã nhập vào đã được gắn cờ là thư rác."
+msgstr "Các văn bản đã nhập vào đã được gắn cờ là spam."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Danh mục không thể thay đổi trong khi tiện ích của bạn được giới thiệu cho ứng dụng này."
@@ -1162,13 +1163,13 @@ msgid "Collections make it easy to keep track of favorite add-ons and share your
 msgstr "Bộ sưu tập giúp dễ dàng theo dõi các tiện ích ưa thích và chia sẻ trình duyệt được tùy biến hoàn hảo của bạn với người khác."
 
 msgid "There are errors in this form.  Please correct them below."
-msgstr ""
+msgstr "Có lỗi trong biểu mẫu này.  Vui lòng sửa chúng bên dưới."
 
 msgid "Add-ons in Your Collection"
 msgstr "Tiện ích trong bộ sưu tập của bạn"
 
 msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
+msgstr "Để bao gồm một tiện ích trong bộ sưu tập này, hãy nhập tên của nó vào ô bên dưới và nhấn enter."
 
 msgid "Add-on"
 msgstr "Tiện ích"
@@ -1393,7 +1394,7 @@ msgstr "{0} chủ đề"
 
 #. {0} is a user's name.
 msgid "{0}'s Themes"
-msgstr ""
+msgstr "Chủ đề của {0}"
 
 msgid "View Profile"
 msgstr "Xem hồ sơ"
@@ -1436,7 +1437,7 @@ msgid "View All Up & Coming"
 msgstr "Hiển thị Tất cả Mới & Thú vị"
 
 msgid "No themes found"
-msgstr ""
+msgstr "Không tìm thấy chủ đề"
 
 msgid "{addon} was created."
 msgstr "{addon} đã được tạo."
@@ -1514,7 +1515,7 @@ msgid "{addon} {version} review requested."
 msgstr "{addon} {version} yêu cầu xét duyệt."
 
 msgid "Review requested"
-msgstr ""
+msgstr "Yêu cầu đánh giá"
 
 msgid "{addon} {version} more information requested."
 msgstr "Đã yêu cầu thêm thông tin về {addon} {version}."
@@ -1608,28 +1609,28 @@ msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
 msgid "Approved but waiting"
-msgstr ""
+msgstr "Đã phê duyệt nhưng đang chờ"
 
 msgid "Account updated."
-msgstr ""
+msgstr "Đã cập nhật tài khoản."
 
 msgid "Created: {0}."
 msgstr "Đã tạo: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "Trường đã chỉnh sửa: {2} được đặt thành: {0}."
 
 msgid "Deleted: {1}."
 msgstr "Đã xóa: {1}."
 
 msgid "User {user} edited, reason: {1}"
-msgstr ""
+msgstr "Người dùng {user} đã chỉnh sửa, lý do: {1}"
 
 msgid "User {user} anonymized."
 msgstr ""
 
 msgid "User {user} restricted."
-msgstr ""
+msgstr "Người dùng {user} đã bị hạn chế."
 
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
@@ -1638,19 +1639,19 @@ msgid "{rating} for {addon} updated."
 msgstr "{rating} cho {addon} đã cập nhật."
 
 msgid "{addon} reviewed."
-msgstr ""
+msgstr "{addon} đã xét duyệt."
 
 msgid "User {user} banned."
 msgstr "Người dùng {user} đã bị cấm."
 
 msgid "User {user} picture deleted."
-msgstr ""
+msgstr "Đã xóa hình ảnh người dùng {user}."
 
 msgid "User {0.name} added to {group}."
-msgstr ""
+msgstr "Đã thêm người dùng {0.name} vào {group}."
 
 msgid "User {0.name} removed from {group}."
-msgstr ""
+msgstr "Đã xóa người dùng {0.name} khỏi {group}."
 
 msgid "{addon} unlisted."
 msgstr ""
@@ -1660,13 +1661,13 @@ msgstr "{file} đã được ký."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "Addon id {0} với GUID {1} đã bị xóa"
 
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} đã di chuyển từ sơ bộ."
 
 msgid "Reply by developer on {addon} {version}."
-msgstr ""
+msgstr "Trả lời bởi nhà phát triển trên {addon} {version}."
 
 #, fuzzy
 msgid "Developer Reply"
@@ -1683,7 +1684,7 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr "Đã thay đổi các ghi chú phê duyệt cho {addon} {version}."
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "Ghi chú phê duyệt đã thay đổi"
 
 msgid "Source code uploaded for {addon} {version}."
 msgstr "Mã nguồn được tải lên cho {addon} {version}."
@@ -2360,7 +2361,7 @@ msgid "We allow and encourage an upgrade but you cannot reverse this process. On
 msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn không thể đảo ngược quá trình này. Một khi người dùng của bạn đã cài đặt WebExtension, họ sẽ không thể cài đặt tiện ích cũ."
 
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
-msgstr ""
+msgstr "[{field}] Văn bản trong trường \"{field}\" đã bị gắn cờ là spam."
 
 msgid "Must have at least one owner."
 msgstr "Phải có ít nhất một người sở hữu."
