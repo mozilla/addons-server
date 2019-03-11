@@ -481,10 +481,10 @@ class AddonGitRepository(object):
                     old_ending_new_line = new_ending_new_line = False
                     origin = ' '
                 elif origin == GIT_DIFF_LINE_ADD_EOFNL:
-                    old_ending_new_line = False  # noqa
+                    old_ending_new_line = False
                     origin = '+'
                 elif origin == GIT_DIFF_LINE_DEL_EOFNL:
-                    new_ending_new_line = False  # noqa
+                    new_ending_new_line = False
                     origin = '-'
 
                 changes.append({
