@@ -35,7 +35,9 @@ from olympia.api.authentication import WebTokenAuthentication
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.users.models import UserNotification, UserProfile
 from olympia.users.notifications import (
-    NOTIFICATIONS_BY_ID, REMOTE_NOTIFICATIONS_BY_BASKET_ID)
+    NOTIFICATIONS_BY_ID, NOTIFICATIONS_COMBINED,
+    REMOTE_NOTIFICATIONS_BY_BASKET_ID)
+from olympia.users.utils import UnsubscribeCode
 
 
 FXA_CONFIG = {
@@ -1781,3 +1783,94 @@ class TestAccountNotificationViewSetUpdate(TestCase):
             'post', 'unsubscribe',
             data={'newsletters': 'about-addons', 'email': self.user.email},
             token='123')
+
+
+class TestAccountNotificationUnsubscribe(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        self.user = user_factory()
+        self.url = reverse_ns('account-unsubscribe')
+        super(TestAccountNotificationUnsubscribe, self).setUp()
+
+    def test_unsubscribe_user(self):
+        notification_const = NOTIFICATIONS_COMBINED[0]
+        UserNotification.objects.create(
+            user=self.user, notification_id=notification_const.id,
+            enabled=True)
+        token, hash_ = UnsubscribeCode.create(self.user.email)
+        data = {
+            'token': token, 'hash': hash_,
+            'notification': notification_const.short}
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 200, response.content
+        assert response.data == {
+            'name': u'reply', 'enabled': False, 'mandatory': False}
+        ntn = UserNotification.objects.get(
+            user=self.user, notification_id=notification_const.id)
+        assert not ntn.enabled
+
+        ntn.delete()
+        assert not UserNotification.objects.filter(
+            user=self.user, notification_id=notification_const.id).exists()
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 200
+        assert UserNotification.objects.filter(
+            user=self.user, notification_id=notification_const.id,
+            enabled=False).exists()
+
+    def test_unsubscribe_dev_notification(self):
+        # Even if the user if not currently a developer they should be able to
+        # unsubscribe from the emails if they have the link.
+        assert not self.user.is_developer
+
+        notification_const = NOTIFICATIONS_BY_ID[7]
+        assert notification_const.group == 'dev'
+        assert not UserNotification.objects.filter(
+            user=self.user, notification_id=notification_const.id).exists()
+
+        token, hash_ = UnsubscribeCode.create(self.user.email)
+        data = {
+            'token': token, 'hash': hash_,
+            'notification': notification_const.short}
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 200, response.content
+        assert response.data == {
+            'name': u'new_review', 'enabled': False, 'mandatory': False}
+        ntn = UserNotification.objects.get(
+            user=self.user, notification_id=notification_const.id)
+        assert not ntn.enabled
+
+    def test_unsubscribe_invalid_notification(self):
+        token, hash_ = UnsubscribeCode.create(self.user.email)
+        data = {
+            'token': token, 'hash': hash_,
+            'notification': 'foobaa'}
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 400
+        assert response.content == b'["Notification [foobaa] does not exist"]'
+
+    def test_unsubscribe_invalid_token_or_hash(self):
+        token, hash_ = UnsubscribeCode.create(self.user.email)
+        data = {
+            'token': token, 'hash': hash_ + u'a',
+            'notification': 'reply'}
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 403
+        assert response.data == {'detail': 'Invalid token or hash.'}
+
+        data = {
+            'token': b'a' + token, 'hash': hash_,
+            'notification': 'reply'}
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 403
+        assert response.data == {'detail': 'Invalid token or hash.'}
+
+    def test_email_doesnt_exist(self):
+        token, hash_ = UnsubscribeCode.create('email@not-an-amo-user.com')
+        data = {
+            'token': token, 'hash': hash_,
+            'notification': 'reply'}
+        response = self.client.post(self.url, data=data)
+        assert response.status_code == 403
+        assert response.data == {'detail': 'Email address not found.'}

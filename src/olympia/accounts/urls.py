@@ -35,6 +35,8 @@ urlpatterns = [
     url(r'^profile/$', views.ProfileView.as_view(), name='account-profile'),
     url(r'^super-create/$', views.AccountSuperCreate.as_view(),
         name='accounts.super-create'),
+    url(r'^unsubscribe/$', views.AccountNotificationUnsubscribeView.as_view(),
+        name='account-unsubscribe'),
 
     url(r'', include(collections.urls)),
     url(r'', include(sub_collections.urls)),

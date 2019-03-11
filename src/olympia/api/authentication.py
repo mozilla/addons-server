@@ -18,6 +18,7 @@ from olympia import core
 from olympia.api import jwt_auth
 from olympia.api.models import APIKey
 from olympia.users.models import UserProfile
+from olympia.users.utils import UnsubscribeCode
 
 
 log = olympia.core.logger.getLogger('z.api.authentication')
@@ -252,3 +253,24 @@ class JWTKeyAuthentication(JSONWebTokenAuthentication):
             raise exceptions.AuthenticationFailed(msg)
 
         return auth[1]
+
+
+class UnsubscribeTokenAuthentication(BaseAuthentication):
+    """
+    DRF authentication class for email unsubscribe notifications - token and
+    hash should be provided in the POST data.  ONLY use this authentication for
+    account notifications.
+    """
+
+    def authenticate(self, request):
+        try:
+            email = UnsubscribeCode.parse(
+                request.data.get('token'), request.data.get('hash'))
+            user = UserProfile.objects.get(email=email)
+        except ValueError:
+            raise exceptions.AuthenticationFailed(
+                ugettext('Invalid token or hash.'))
+        except UserProfile.DoesNotExist:
+            raise exceptions.AuthenticationFailed(
+                ugettext('Email address not found.'))
+        return (user, None)
