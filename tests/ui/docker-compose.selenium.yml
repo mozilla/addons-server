@@ -16,6 +16,7 @@ x-env-mapping: &env
     - UITEST_FXA_EMAIL
     - UITEST_FXA_PASSWORD=uitester
     - MOZ_HEADLESS=1
+    - PYTEST_ADDOPTS=${PYTEST_ADDOPTS}
 
 services:
   selenium-firefox:
