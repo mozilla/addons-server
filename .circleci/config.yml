@@ -119,6 +119,7 @@ jobs:
           name: Start container, verify it's running and start tests
           environment:
             MOZ_HEADLESS: 1
+            PYTEST_ADDOPTS="--reruns 2"
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
@@ -147,7 +148,7 @@ jobs:
             sleep 10
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox sudo chown -R seluser:seluser .
             # Start Test in Firefox docker container
-            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -r -e ui-tests
       - store_artifacts:
           path: ui-test.html
       - save_cache:
