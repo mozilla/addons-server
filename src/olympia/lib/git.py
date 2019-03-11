@@ -493,7 +493,6 @@ class AddonGitRepository(object):
                     # Can be `-1` for additions
                     'old_line_number': line.old_lineno,
                     'new_line_number': line.new_lineno,
-                    'origin': line.origin,
                 })
 
             hunks.append({
