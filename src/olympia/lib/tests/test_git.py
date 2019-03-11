@@ -723,3 +723,96 @@ def test_get_diff_change_files_pathspec():
         'old_line_number': -1,
         'type': 'insert',
     }
+
+
+@pytest.mark.django_db
+def test_get_diff_newline_old_file():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    apply_changes(repo, version, '{"id": "random"}', 'manifest.json')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert len(changes) == 1
+
+    assert changes[0]['new_ending_new_line'] is False
+    assert changes[0]['old_ending_new_line'] is True
+
+
+@pytest.mark.django_db
+def test_get_diff_newline_new_file():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    parent_version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(parent_version)
+
+    # Let's remove the newline
+    apply_changes(repo, parent_version, '{"id": "random"}', 'manifest.json')
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    # Now we're adding it again
+    apply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=parent_version.git_hash)
+
+    assert len(changes) == 1
+
+    assert changes[0]['new_ending_new_line'] is True
+    assert changes[0]['old_ending_new_line'] is False
+
+
+@pytest.mark.django_db
+def test_get_diff_newline_both_no_newline():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    parent_version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(parent_version)
+
+    # Let's remove the newline
+    apply_changes(repo, parent_version, '{"id": "random"}', 'manifest.json')
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    # Now we're adding it again
+    apply_changes(repo, version, '{"id": "new random id"}', 'manifest.json')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=parent_version.git_hash)
+
+    assert len(changes) == 1
+
+    assert changes[0]['new_ending_new_line'] is False
+    assert changes[0]['old_ending_new_line'] is False
