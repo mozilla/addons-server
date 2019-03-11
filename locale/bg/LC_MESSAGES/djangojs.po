@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2018-07-12 10:19+0000\n"
+"PO-Revision-Date: 2019-03-11 12:49+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -211,52 +211,44 @@ msgstr "Използване на оригинала"
 msgid "Week of {0}"
 msgstr "Седмица от {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " изтегляния"
-msgstr[1] " изтегляния"
+msgstr[0] "{0} изтегляне"
+msgstr[1] "{0} изтегляния"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} потребители"
+msgstr[0] "{0} потребител"
 msgstr[1] "{0} потребители"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} добавки"
+msgstr[0] "{0} добавка"
 msgstr[1] "{0} добавки"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} списъци"
+msgstr[0] "{0} списък"
 msgstr[1] "{0} списъци"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} отзива"
+msgstr[0] "{0} отзив"
 msgstr[1] "{0} отзива"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} продажби"
+msgstr[0] "{0} продажба"
 msgstr[1] "{0} продажби"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} възстановявания"
+msgstr[0] "{0} възстановяване"
 msgstr[1] "{0} възстановявания"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} инсталации"
+msgstr[0] "{0} инсталация"
 msgstr[1] "{0} инсталации"
 
 msgid "Downloads"
@@ -771,18 +763,16 @@ msgid "Loading..."
 msgstr "Зареждане..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "остава <b>{0}</b> знак."
-msgstr[1] "остават <b>{0}</b> знака."
+msgstr[0] "<b>{0}</b> знак"
+msgstr[1] "<b>{0}</b> знака"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "остава <b>{0}</b> знак."
-msgstr[1] "остават <b>{0}</b> знака."
+msgstr[0] "остава <b>{0}</b> знак"
+msgstr[1] "остават <b>{0}</b> знака"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Това свойство е временно спряно, докато правим промени по сайта. Моля, проверете отново малко по-късно."
