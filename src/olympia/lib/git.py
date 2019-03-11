@@ -37,12 +37,18 @@ BRANCHES = {
 GIT_DIFF_LINE_CONTEXT = ' '
 GIT_DIFF_LINE_ADDITION = '+'
 GIT_DIFF_LINE_DELETION = '-'
+# Both files have no LF at end
+GIT_DIFF_LINE_CONTEXT_EOFNL = '='
+# Old has no LF at end, new does
+GIT_DIFF_LINE_ADD_EOFNL = '>'
+# Old has LF at end, new does not
+GIT_DIFF_LINE_DEL_EOFNL = '<'
 
 # This matches typing in addons-frontend
 GIT_DIFF_LINE_MAPPING = {
     GIT_DIFF_LINE_CONTEXT: 'normal',
     GIT_DIFF_LINE_ADDITION: 'insert',
-    GIT_DIFF_LINE_DELETION: 'delete'
+    GIT_DIFF_LINE_DELETION: 'delete',
 }
 
 # Prefix folder name we are using to store extracted add-on or source
@@ -451,29 +457,53 @@ class AddonGitRepository(object):
         return changes
 
     def _render_patch(self, patch, commit, parent):
-        # This will be moved to a proper drf serializer in the future
-        # but until the format isn't set we'll keep it like that to simplify
-        # experimentation.
-        hunks = [
-            {
+        """
+        This will be moved to a proper drf serializer in the future
+        but until the format isn't set we'll keep it like that to simplify
+        experimentation.
+        """
+        old_ending_new_line = True
+        new_ending_new_line = True
+
+        hunks = []
+
+        for hunk in patch.hunks:
+            changes = []
+
+            for line in hunk.lines:
+                # Properly set line ending changes. We can do it directly
+                # in the for-loop as line-ending changes should always be
+                # present at the very end of a file so there's no risk of
+                # these values being overwritten.
+                origin = line.origin
+
+                if origin == GIT_DIFF_LINE_CONTEXT_EOFNL:
+                    old_ending_new_line = new_ending_new_line = False
+                    origin = ' '
+                elif origin == GIT_DIFF_LINE_ADD_EOFNL:
+                    old_ending_new_line = False  # noqa
+                    origin = '+'
+                elif origin == GIT_DIFF_LINE_DEL_EOFNL:
+                    new_ending_new_line = False  # noqa
+                    origin = '-'
+
+                changes.append({
+                    'content': line.content,
+                    'type': GIT_DIFF_LINE_MAPPING[origin],
+                    # Can be `-1` for additions
+                    'old_line_number': line.old_lineno,
+                    'new_line_number': line.new_lineno,
+                    'origin': line.origin,
+                })
+
+            hunks.append({
                 'header': hunk.header,
                 'old_start': hunk.old_start,
                 'new_start': hunk.new_start,
                 'old_lines': hunk.old_lines,
                 'new_lines': hunk.new_lines,
-                'changes': [
-                    {
-                        'content': line.content,
-                        'type': GIT_DIFF_LINE_MAPPING[line.origin],
-                        # Can be `-1` for additions
-                        'old_line_number': line.old_lineno,
-                        'new_line_number': line.new_lineno,
-                    }
-                    for line in hunk.lines
-                ]
-            }
-            for hunk in patch.hunks
-        ]
+                'changes': changes
+            })
 
         entry = {
             'path': patch.delta.new_file.path,
@@ -486,6 +516,8 @@ class AddonGitRepository(object):
             'old_path': patch.delta.old_file.path,
             'parent': parent,
             'hash': commit,
+            'new_ending_new_line': new_ending_new_line,
+            'old_ending_new_line': old_ending_new_line,
         }
 
         return entry
