@@ -26,7 +26,7 @@ def _run_process(cmd, repo):
         universal_newlines=True)
 
 
-def appply_changes(repo, version, contents, path):
+def apply_changes(repo, version, contents, path):
     # Apply the requested change to the git repository
     branch_name = BRANCHES[version.channel]
     git_repo = repo.git_repository
@@ -459,7 +459,7 @@ def test_get_diff_add_new_file():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    appply_changes(repo, version, '{"id": "random"}\n', 'new_file.json')
+    apply_changes(repo, version, '{"id": "random"}\n', 'new_file.json')
 
     changes = repo.get_diff(
         commit=version.git_hash,
@@ -503,8 +503,8 @@ def test_get_diff_change_files():
 
     repo = AddonGitRepository.extract_and_commit_from_version(version)
 
-    appply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
-    appply_changes(repo, version, 'Updated readme\n', 'README.md')
+    apply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
+    apply_changes(repo, version, 'Updated readme\n', 'README.md')
 
     changes = repo.get_diff(
         commit=version.git_hash,
@@ -608,7 +608,7 @@ def test_get_diff_initial_commit():
 
     # It's all an insert
     assert all(
-        x['type'] == 'insert' for x in changes[0]['hunks'][0]['changes'])
+        x['type'] == 'insert' for x in changes[1]['hunks'][0]['changes'])
 
     assert changes[-1]['is_binary'] is False
     assert changes[-1]['lines_added'] == 32
@@ -632,6 +632,94 @@ def test_get_diff_initial_commit():
     assert changes[-2]['path'] == 'icons/link-48.png'
     assert changes[-2]['size'] == 596
 
+
+@pytest.mark.django_db
+def test_get_diff_initial_commit_pathspec():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    version = addon.current_version
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=None,
+        pathspec=['_locales/de/messages.json'])
+
+    assert len(changes) == 1
+    # This makes sure that sub-directories are diffed properly too
+    assert changes[0]['is_binary'] is False
+    assert changes[0]['lines_added'] == 27
+    assert changes[0]['lines_deleted'] == 0
+    assert changes[0]['mode'] == 'A'
+    assert changes[0]['old_path'] == '_locales/de/messages.json'
+    assert changes[0]['parent'] == version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+    assert changes[0]['path'] == '_locales/de/messages.json'
+    assert changes[0]['size'] == 658
+
     # It's all an insert
     assert all(
         x['type'] == 'insert' for x in changes[0]['hunks'][0]['changes'])
+
+
+@pytest.mark.django_db
+def test_get_diff_change_files_pathspec():
+    addon = addon_factory(file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'notify-link-clicks-i18n.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    apply_changes(repo, version, '{"id": "random"}\n', 'manifest.json')
+    apply_changes(repo, version, 'Updated readme\n', 'README.md')
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash,
+        pathspec=['README.md'])
+
+    assert len(changes) == 1
+
+    assert changes[0]
+    assert changes[0]['is_binary'] is False
+    assert changes[0]['lines_added'] == 1
+    assert changes[0]['lines_deleted'] == 25
+    assert changes[0]['mode'] == 'M'
+    assert changes[0]['old_path'] == 'README.md'
+    assert changes[0]['path'] == 'README.md'
+    assert changes[0]['size'] == 15
+    assert changes[0]['parent'] == original_version.git_hash
+    assert changes[0]['hash'] == version.git_hash
+
+    # There is actually just one big hunk in this diff since it's simply
+    # removing everything and adding new content
+    assert len(changes[0]['hunks']) == 1
+
+    assert changes[0]['hunks'][0]['header'] == '@@ -1,25 +1 @@\n'
+    assert changes[0]['hunks'][0]['old_start'] == 1
+    assert changes[0]['hunks'][0]['new_start'] == 1
+    assert changes[0]['hunks'][0]['old_lines'] == 25
+    assert changes[0]['hunks'][0]['new_lines'] == 1
+
+    hunk_changes = changes[0]['hunks'][0]['changes']
+
+    assert hunk_changes[0] == {
+        'content': '# notify-link-clicks-i18n\n',
+        'new_line_number': -1,
+        'old_line_number': 1,
+        'type': 'delete'
+    }
+
+    assert all(x['type'] == 'delete' for x in hunk_changes[:-1])
+
+    assert hunk_changes[-1] == {
+        'content': 'Updated readme\n',
+        'new_line_number': 1,
+        'old_line_number': -1,
+        'type': 'insert',
+    }

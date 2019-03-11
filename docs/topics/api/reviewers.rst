@@ -122,6 +122,8 @@ This endpoint allows you to browse through the contents of an Add-on version.
 
     Inherits most properties from :ref:`version detail <version-detail-object>` except ``files``.
 
+    .. _reviewers-versions-browse-detail:
+
     :param file: The specific file in the XPI to retrieve. Defaults to manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines.
     :>json string validation_url_json: The url to the addons-linter validation report, rendered as JSON.
     :>json string validation_url: The url to the addons-linter validation report, rendered as HTML.
@@ -139,3 +141,116 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json string files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int file.entries[].size: The size in bytes.
     :>json string file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
+
+
+-------
+Compare
+-------
+
+This endpoint allows you to compare two Add-on versions with each other.
+
+    .. note::
+        Requires authentication and the current user to have ``ReviewerTools:View``
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
+        unlisted add-ons. Additionally the current user can also be the owner
+        of the add-on.
+
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/compare_to/(int:version_id)/
+
+    Inherits most properties from :ref:`browse detail <reviewers-versions-browse-detail>` except ``file.content`` which is being
+    replaced by ``file.diff``.
+
+    Given the complexity of the format, let's see the inline comments.
+
+    The following output represents this git diff.
+
+    .. code:: diff
+
+        diff --git a/README.md b/README.md
+        index a37979d..b12683c 100644
+        --- a/README.md
+        +++ b/README.md
+        @@ -1 +1 @@
+        -# beastify
+        +Updated readme
+        diff --git a/manifest.json b/manifest.json
+        index aba695f..24f385f 100644
+        --- a/manifest.json
+        +++ b/manifest.json
+        @@ -1,36 +1 @@
+        -{
+        -
+        -  "manifest_version": 2,
+        -  "name": "Beastify",
+        -  "version": "1.0",
+        -
+        -  "permissions": [
+        -    "http://*/*",
+        -    "https://*/*",
+        -    "bookmarks",
+        -    "made up permission",
+        -    "https://google.com/"
+        -  ],
+        -
+        -  "content_scripts": [
+        -  {
+        -    "matches": ["*://*.mozilla.org/*"],
+        -    "js": ["borderify.js"]
+        -  },
+        -  {
+        -    "matches": ["*://*.mozilla.com/*", "https://*.mozillians.org/*"],
+        -    "js": ["borderify.js"]
+        -  }
+        -  ],
+        -
+        -  "browser_action": {
+        -    "default_icon": "button/beasts.png",
+        -    "default_title": "Beastify",
+        -    "default_popup": "popup/choose_beast.html"
+        -  },
+        -
+        -  "web_accessible_resources": [
+        -    "beasts/*.jpg"
+        -  ]
+        -
+        -}
+        +{"id": "random"}
+
+    .. code:: json
+
+        "diff": [
+            {
+                "path": "README.md",
+                "old_path": "README.md",
+                "size": 15,  # Size in bytes
+                "lines_added": 1,  # How many lines got added
+                "lines_deleted": 1,  # How many lines got deleted
+                "is_binary": false,  # Is this a binary file (as determined by git)
+                "mode": "M",  # Status of this file, see https://git-scm.com/docs/git-status#_short_format
+                "hunks": [
+                    {
+                        "header": "@@ -1 +1 @@\\n",
+                        "old_start": 1,
+                        "new_start": 1,
+                        "old_lines": 1,
+                        "new_lines": 1,
+                        "changes": [
+                            {
+                                "content": "# beastify\\n",
+                                "type": "delete",
+                                "old_line_number": 1,
+                                "new_line_number": -1
+                            },
+                            {
+                                "content": "Updated readme\\n",
+                                "type": "insert",
+                                "old_line_number": -1,
+                                "new_line_number": 1
+                            }
+                        ]
+                    }
+                ],
+                "parent": "075c5755198be472522477a1b396951b3b68ac18",
+                "hash": "00161dcf22afb7bab23cf205f0c903eb5aad5431"
+            }
+        ]

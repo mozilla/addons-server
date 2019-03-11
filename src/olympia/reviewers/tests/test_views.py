@@ -43,6 +43,8 @@ from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
 from olympia.zadmin.models import get_config
+from olympia.lib.git import AddonGitRepository
+from olympia.lib.tests.test_git import apply_changes
 
 
 class TestRedirectsOldPaths(TestCase):
@@ -5134,66 +5136,8 @@ class TestAddonReviewerViewSet(TestCase):
         assert activity_log.arguments[0] == self.addon
 
 
-class TestReviewAddonVersionViewSetDetail(TestCase):
-    client_class = APITestClient
-
-    def setUp(self):
-        super(TestReviewAddonVersionViewSetDetail, self).setUp()
-
-        # TODO: Most of the initial setup could be moved to
-        # setUpTestData but unfortunately paths are setup in pytest via a
-        # regular autouse fixture that has function-scope so functions in
-        # setUpTestData don't use proper paths (cgrebs)
-        self.addon = addon_factory(
-            name=u'My Addôn', slug='my-addon',
-            file_kw={'filename': 'webextension_no_id.xpi'})
-
-        extract_version_to_git(self.addon.current_version.pk)
-
-        self.version = self.addon.current_version
-        self.version.refresh_from_db()
-
-        self._set_tested_url()
-
-    def _test_url(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 200
-        result = json.loads(response.content)
-        assert result['id'] == self.version.pk
-        assert result['file']['id'] == self.version.current_file.pk
-
-        # part of manifest.json
-        assert '"name": "Beastify"' in result['file']['content']
-
-    def _set_tested_url(self):
-        self.url = reverse_ns('reviewers-versions-detail', kwargs={
-            'addon_pk': self.addon.pk,
-            'version_pk': self.version.pk})
-
-    def test_anonymous(self):
-        response = self.client.get(self.url)
-        assert response.status_code == 401
-
-    def test_requested_file(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-
-        response = self.client.get(self.url + '?file=README.md')
-        assert response.status_code == 200
-        result = json.loads(response.content)
-
-        assert result['file']['content'] == '# beastify\n'
-
-    def test_version_get_not_found(self):
-        user = UserProfile.objects.create(username='reviewer')
-        self.grant_permission(user, 'Addons:Review')
-        self.client.login_api(user)
-        self.url = reverse_ns('reviewers-versions-detail', kwargs={
-            'addon_pk': self.addon.pk,
-            'version_pk': self.version.current_file.pk + 42})
-        response = self.client.get(self.url)
-        assert response.status_code == 404
+class AddonReviewerViewSetPermissionMixin(object):
+    __test__ = False
 
     def test_disabled_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
@@ -5289,6 +5233,70 @@ class TestReviewAddonVersionViewSetDetail(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 404
 
+
+class TestReviewAddonVersionViewSetDetail(
+        TestCase, AddonReviewerViewSetPermissionMixin):
+    client_class = APITestClient
+    __test__ = True
+
+    def setUp(self):
+        super(TestReviewAddonVersionViewSetDetail, self).setUp()
+
+        # TODO: Most of the initial setup could be moved to
+        # setUpTestData but unfortunately paths are setup in pytest via a
+        # regular autouse fixture that has function-scope so functions in
+        # setUpTestData doesn't use proper paths (cgrebs)
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url()
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['id'] == self.version.pk
+        assert result['file']['id'] == self.version.current_file.pk
+
+        # part of manifest.json
+        assert '"name": "Beastify"' in result['file']['content']
+
+    def _set_tested_url(self):
+        self.url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk})
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=README.md')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['file']['content'] == '# beastify\n'
+
+    def test_version_get_not_found(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.url = reverse_ns('reviewers-versions-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.current_file.pk + 42})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
     def test_mixed_channel_only_listed_without_unlisted_perm(self):
         user = UserProfile.objects.create(username='admin')
 
@@ -5306,14 +5314,14 @@ class TestReviewAddonVersionViewSetDetail(TestCase):
         # to see them
         url = reverse_ns('reviewers-versions-detail', kwargs={
             'addon_pk': self.addon.pk,
-            'version_pk': self.version.pk})
+            'pk': self.version.pk})
 
         response = self.client.get(url)
         assert response.status_code == 200
 
         url = reverse_ns('reviewers-versions-detail', kwargs={
             'addon_pk': self.addon.pk,
-            'version_pk': unlisted_version.pk})
+            'pk': unlisted_version.pk})
 
         response = self.client.get(url)
         assert response.status_code == 404
@@ -5434,6 +5442,118 @@ class TestReviewAddonVersionViewSetList(TestCase):
                 'id': self.version.id,
                 'channel': u'listed'
             },
+        ]
+
+
+class TestReviewAddonVersionCompareViewSet(
+        TestCase, AddonReviewerViewSetPermissionMixin):
+    client_class = APITestClient
+    __test__ = True
+
+    def setUp(self):
+        super(TestReviewAddonVersionCompareViewSet, self).setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        # Default to initial commit for simplicity
+        self.compare_to_version = self.version
+
+        self._set_tested_url()
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['id'] == self.version.pk
+        assert result['file']['id'] == self.version.current_file.pk
+        assert result['file']['diff'][0]['path'] == 'manifest.json'
+
+        change = result['file']['diff'][0]['hunks'][0]['changes'][3]
+
+        assert '"name": "Beastify"' in change['content']
+        assert change['type'] == 'insert'
+
+    def _set_tested_url(self):
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': self.compare_to_version.pk})
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_requested_file(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=README.md')
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['file']['diff'][0]['path'] == 'README.md'
+
+        change = result['file']['diff'][0]['hunks'][0]['changes'][0]
+
+        assert change['content'] == '# beastify\n'
+        assert change['type'] == 'insert'
+
+    def test_version_get_not_found(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk + 42,
+            'pk': self.compare_to_version.pk})
+        response = self.client.get(self.url)
+        assert response.status_code == 404
+
+    def test_compare_basic(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, '{"id": "random"}\n', 'manifest.json')
+        apply_changes(repo, new_version, 'Updated readme\n', 'README.md')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url + '?file=README.md')
+        assert response.status_code == 200
+
+        result = json.loads(response.content)
+
+        assert result['file']['diff'][0]['path'] == 'README.md'
+        assert result['file']['diff'][0]['hunks'][0]['changes'] == [
+            {
+                'content': '# beastify\n',
+                'new_line_number': -1,
+                'old_line_number': 1,
+                'type': 'delete'
+            },
+            {
+                'content': 'Updated readme\n',
+                'new_line_number': 1,
+                'old_line_number': -1,
+                'type': 'insert'
+            }
         ]
 
 

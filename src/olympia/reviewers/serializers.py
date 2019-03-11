@@ -230,3 +230,36 @@ class DiffableVersionSerializer(VersionSerializer):
     class Meta:
         model = Version
         fields = ('id', 'channel', 'version')
+
+
+class FileEntriesDiffSerializer(FileEntriesSerializer):
+    diff = serializers.SerializerMethodField()
+    entries = serializers.SerializerMethodField()
+    selected_file = serializers.SerializerMethodField()
+
+    class Meta:
+        fields = FileSerializer.Meta.fields + (
+            'diff', 'entries', 'selected_file'
+        )
+        model = File
+
+    def get_diff(self, obj):
+        commit = obj.version.git_hash
+        parent = self.context['parent_version'].git_hash
+
+        # Initial commits have both set to the same version
+        parent = parent if parent != commit else None
+
+        diff = self.repo.get_diff(
+            commit=commit,
+            parent=parent,
+            pathspec=[self.get_selected_file(obj)])
+
+        return diff
+
+
+class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
+    file = FileEntriesDiffSerializer(source='current_file')
+
+    class Meta(AddonBrowseVersionSerializer.Meta):
+        pass

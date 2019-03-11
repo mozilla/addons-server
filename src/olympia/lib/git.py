@@ -369,7 +369,7 @@ class AddonGitRepository(object):
         # When `commit` is a commit hash, e.g passed to us through the API
         # serializers we have to fetch the actual commit object to proceed.
         if isinstance(commit, six.string_types):
-            commit = self.git_repository[commit]
+            commit = self.git_repository.revparse_single(commit)
 
         return self.git_repository[commit.tree[EXTRACTED_PREFIX].oid]
 
@@ -396,7 +396,7 @@ class AddonGitRepository(object):
                     tree_entry=tree_entry,
                     path=tree_entry.name)
 
-    def get_diff(self, commit, parent=None):
+    def get_diff(self, commit, parent=None, pathspec=None):
         """Get a diff from `parent` to `commit`.
 
         If `parent` is not given we assume it's the first commit and handle
@@ -404,9 +404,13 @@ class AddonGitRepository(object):
 
         We are resolving renames and copies according to a 50% similarity
         threshold.
+
+        :param pathspec: If a list of files is given we only retrieve a list
+                         for them.
         """
         if parent is None:
-            return self.get_diff_for_initial_commit(commit)
+            return self.get_diff_for_initial_commit(commit, pathspec=pathspec)
+
         changes = []
         diff = self.git_repository.diff(
             self.get_root_tree(parent),
@@ -415,24 +419,17 @@ class AddonGitRepository(object):
             context_lines=sys.maxsize,
             interhunk_lines=0)
 
-        opts = pygit2.GIT_DIFF_FIND_RENAMES | pygit2.GIT_DIFF_FIND_COPIES
-        diff.find_similar(opts, SIMILARITY_THRESHOLD, SIMILARITY_THRESHOLD)
-
-        # TODO (cgrebs): double-check if we are indeed processing files
-        # multiple times (e.g on renames, copies etc)
-        # I think this happens when renames are < similarity threshold or so
-        # needs some more tests though...
-        checked_paths = set()
-
         for patch in diff:
-            if patch.delta.new_file.path in checked_paths:
+            # Support for this hasn't been implemented upstream yet, we'll
+            # work on this upstream if needed but for now just selecting
+            # files based on `pathspec` works for us.
+            if pathspec and patch.delta.old_file.path not in pathspec:
                 continue
 
-            checked_paths.add(patch.delta.new_file.path)
             changes.append(self._render_patch(patch, commit, parent))
         return changes
 
-    def get_diff_for_initial_commit(self, commit):
+    def get_diff_for_initial_commit(self, commit, pathspec=None):
         # Initial commits are special since they're comparing against
         # an empty tree.
         diff = self.get_root_tree(commit).diff_to_tree(
@@ -440,9 +437,18 @@ class AddonGitRepository(object):
             interhunk_lines=1,
             swap=True)
 
-        return [
-            self._render_patch(patch, commit, commit)
-            for patch in diff]
+        changes = []
+
+        for patch in diff:
+            # Support for this hasn't been implemented upstream yet, we'll
+            # work on this upstream if needed but for now just selecting
+            # files based on `pathspec` works for us.
+            if pathspec and patch.delta.old_file.path not in pathspec:
+                continue
+
+            changes.append(self._render_patch(patch, commit, commit))
+
+        return changes
 
     def _render_patch(self, patch, commit, parent):
         # This will be moved to a proper drf serializer in the future
