@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-11 12:50+0000\n"
+"PO-Revision-Date: 2019-03-11 13:07+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -25,7 +25,7 @@ msgid "This display name cannot be used."
 msgstr "Това име не може да бъде използвано."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "Полето на начална страница може да се използва само за посочване на външни сайтове."
 
 msgid "Images must be either PNG or JPG."
 msgstr "Картинките трябва да са PNG или JPG."
@@ -130,7 +130,7 @@ msgstr[0] "Всички етикети трябва да са поне {0} зн�
 msgstr[1] "Всички етикети трябва да са поне {0} знака."
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "Въведеният текст е отбелязан като спам."
 
 msgid "Categories cannot be changed while your add-on is featured for this application."
 msgstr "Категориите не могат да бъдат променяни, докато добавката ви е препоръчана за това приложение."
@@ -184,9 +184,8 @@ msgstr "Виж правилата за поверителност"
 msgid "View End-User License Agreement"
 msgstr "Преглед на лицензионното споразумение на крайния потребител"
 
-#, fuzzy
 msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Тази добавка все още няма рецензии."
+msgstr "Тази добавка не е прегледана от Mozilla."
 
 msgid "This add-on has been marked as experimental by its developers."
 msgstr "Добавката е отбелязана като изпитателна от разработчиците ѝ."
@@ -684,11 +683,11 @@ msgid "Admin Tools"
 msgstr "Администраторски инструменти"
 
 msgid "Positive integer"
-msgstr ""
+msgstr "Положително цяло число"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "Полето може да се използва само за посочване на външни сайтове. Адреси от домейна %(domain)s са забранени."
 
 msgid "Incorrect, please try again."
 msgstr "Грешка, опитайте отново."
@@ -702,24 +701,20 @@ msgstr "Това трябва да е валиден шестнадесетич�
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
-#, fuzzy
 msgid "Must contain at least one printable character."
-msgstr "Трябва да има поне един собственик."
+msgstr "Трябва да съдържа поне един печатаем символ."
 
-#, fuzzy
 msgid "Ensure this field contains at least one letter or number character."
-msgstr "Трябва да има поне един собственик."
+msgstr "Уверете се, че полеto съдържа най-малко една буква или цифра."
 
 msgid "Not allowed"
 msgstr "Забранено"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "Забранено"
+msgstr "Ами сега! Не е позволено."
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>Оле! Забранено.</h1> <p>Опитахте да направите нещо, което не ви е разрешено.</p>"
+msgstr "Опитахте да направите нещо, което не ви е разрешено."
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
@@ -2365,7 +2360,7 @@ msgid "Defamatory content"
 msgstr ""
 
 msgid "Online gambling"
-msgstr ""
+msgstr "Онлайн хазарт"
 
 msgid "Spam content"
 msgstr ""
@@ -2678,7 +2673,7 @@ msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
 
 msgid "Accept"
-msgstr ""
+msgstr "Приемане"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "или <a href=\"{0}\">Отказ</a>"
@@ -2691,7 +2686,7 @@ msgid "{0} Add-ons"
 msgstr "Добавки за {0}"
 
 msgid "Return to the DevHub homepage"
-msgstr ""
+msgstr "Към началната страница на DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
@@ -3332,9 +3327,8 @@ msgstr "Добавката е изпитателна"
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "Изберете <b>до {0}</b> категория добавки за {1}:"
+msgstr "Изберете категория за добавката:"
 
 msgid "Support email:"
 msgstr "Имейл за поддръжка:"
@@ -3830,7 +3824,7 @@ msgid "Volunteer reviewers help keep add-ons safe and reliable to use. They enjo
 msgstr ""
 
 msgid "Join us!"
-msgstr ""
+msgstr "Станете част от нас!"
 
 msgid "Write Some Code"
 msgstr ""
@@ -3848,7 +3842,7 @@ msgid "You don't need coding skills to help keep Firefox the most customizable b
 msgstr ""
 
 msgid "See how"
-msgstr ""
+msgstr "Вижте как"
 
 msgid "Manage Your Add-on"
 msgstr ""
@@ -6085,7 +6079,7 @@ msgid "Other (please specify)"
 msgstr ""
 
 msgid "This field is required."
-msgstr ""
+msgstr "Това поле е задължително."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr ""
@@ -6240,13 +6234,13 @@ msgid "View entries between"
 msgstr ""
 
 msgid "and"
-msgstr ""
+msgstr "и"
 
 msgid "Filter by type/action"
 msgstr ""
 
 msgid "containing"
-msgstr ""
+msgstr "съдържащо"
 
 msgid "start"
 msgstr ""
@@ -7858,7 +7852,7 @@ msgid "Manage Firefox Account..."
 msgstr ""
 
 msgid "Profile"
-msgstr ""
+msgstr "Профил"
 
 msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
 msgstr "Напишете повече за себе си. Всички тези полета са пожелание, но информацията от тях ще помогне на другите потребители да ви опознаят по-добре."
@@ -7895,7 +7889,7 @@ msgid "Mozilla reserves the right to contact you individually about specific con
 msgstr ""
 
 msgid "Admin"
-msgstr ""
+msgstr "Администратор"
 
 msgid "Delete Account"
 msgstr "Изтриване на сметка"
