@@ -119,7 +119,7 @@ jobs:
           name: Start container, verify it's running and start tests
           environment:
             MOZ_HEADLESS: 1
-            PYTEST_ADDOPTS="--reruns 2"
+            PYTEST_ADDOPTS: "--reruns 2"
           command: |
             set -x
             sudo sysctl -w vm.max_map_count=262144
