@@ -251,7 +251,7 @@ Only non-mandatory notifications can be changed - attempting to set a mandatory 
     :<json string token: The base64 encoded email address of the account
     :>json string name: The notification short name.
     :>json boolean enabled: If the notification is enabled (should always be False).
-    :>json boolean mandatory: If the notification can be set by the user (should always be True, or an error would have been sent instead).
+    :>json boolean mandatory: If the notification can be set by the user (should always be False, or an error would have been sent instead).
 
 
 --------------
