@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-11 13:07+0000\n"
+"PO-Revision-Date: 2019-03-12 09:44+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -3597,7 +3597,7 @@ msgid "Finish Theme"
 msgstr "%s Теми"
 
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 msgid "API Credentials"
 msgstr "Удостоверителни данни за ППИ"
@@ -4111,7 +4111,7 @@ msgid "If your add-on contain binary or obfuscated code, make the source availab
 msgstr ""
 
 msgid "File {file_id} ({platform})"
-msgstr ""
+msgstr "Файл {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
@@ -5535,11 +5535,11 @@ msgid "There was an error accessing file %s."
 msgstr ""
 
 msgid "That file no longer exists."
-msgstr ""
+msgstr "Файлът вече не съществува."
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "Размерът на файла е по-голям от {0}."
 
 msgid "Problems decoding {0}."
 msgstr ""
@@ -5548,7 +5548,7 @@ msgid "This file is not viewable online. Please download the file to view the co
 msgstr ""
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "Този файл е папка."
 
 msgid "Cannot diff a version against itself"
 msgstr ""
@@ -5625,7 +5625,7 @@ msgid "Unsupported file type, please upload an a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "Неочаквана грешка."
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -5664,7 +5664,7 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "Файлове:"
 
 msgid "Deleted files:"
 msgstr "Изтрити файлове:"
@@ -6290,9 +6290,8 @@ msgstr "Приложения:"
 msgid "Require developer to respond in less than…"
 msgstr ""
 
-#, fuzzy
 msgid "days"
-msgstr "7 дена"
+msgstr "дни"
 
 msgid "Choose a canned response..."
 msgstr "Избор на шаблонен отговор…"
@@ -6731,7 +6730,7 @@ msgid "Your Reviews"
 msgstr "Вашите отзиви"
 
 msgid "By {user_name}"
-msgstr ""
+msgstr "От {user_name}"
 
 msgid "Total Reviews"
 msgstr "Общо рецензии"
@@ -6777,7 +6776,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "от %(user)s на %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -6998,10 +6997,10 @@ msgid "Review Date"
 msgstr ""
 
 msgid "Action"
-msgstr ""
+msgstr "Действие"
 
 msgid "Reason"
-msgstr ""
+msgstr "Причина"
 
 msgid "There are currently no reviews."
 msgstr "В момента няма рецензии."
@@ -7028,7 +7027,7 @@ msgid "Keyboard Shortcuts"
 msgstr ""
 
 msgid "Next Theme"
-msgstr ""
+msgstr "Следваща тема"
 
 msgid "Previous Theme"
 msgstr "Предишна тема"
@@ -7282,7 +7281,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "Невалиден GUID в URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
@@ -7342,13 +7341,13 @@ msgid "Custom Date Range"
 msgstr ""
 
 msgid "From"
-msgstr ""
+msgstr "От"
 
 msgid "To"
-msgstr ""
+msgstr "До"
 
 msgid "Update"
-msgstr ""
+msgstr "Обновяване"
 
 msgid "Export"
 msgstr "Изнасяне"
@@ -7463,7 +7462,7 @@ msgid "<b>{0}</b> Downloads"
 msgstr "<b>{0}</b> Изтегляния"
 
 msgid "Loading..."
-msgstr ""
+msgstr "Зареждане..."
 
 msgid "<b>{0}</b> Average Daily Users"
 msgstr "Средно <b>{0}</b> потребителя дневно"
@@ -7564,7 +7563,7 @@ msgid "Footer logo"
 msgstr ""
 
 msgid "Choose a category"
-msgstr ""
+msgstr "Изберете категория"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
@@ -7730,7 +7729,7 @@ msgid "To anonymize, enter a reason for the change but do not change any other f
 msgstr ""
 
 msgid "No user with that email."
-msgstr ""
+msgstr "Няма потребител с този имейл."
 
 #, fuzzy
 msgid "Firefox user {id}"
