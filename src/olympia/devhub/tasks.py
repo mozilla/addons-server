@@ -140,7 +140,7 @@ def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags, then
     parse and annotate the results before returning."""
 
-    @task(bind=True, ignore_result=False,  # Required for groups/chains.
+    @task(bind=True, ignore_result=False,  # We want to pass the results down.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
     @wraps(fn)
     def wrapper(task, id_or_path, *args, **kwargs):
@@ -161,9 +161,10 @@ def validation_task(fn):
             return results
         except Exception as exc:
             log.exception('Unhandled error during validation: %r' % exc)
-            return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+            results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+            return results
         finally:
-            # But we do want to return a result after that exception has
+            # But we do want to return the results after that exception has
             # been handled.
             task.ignore_result = False
     return wrapper
