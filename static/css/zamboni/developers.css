@@ -465,7 +465,7 @@ form.new-addon-file label[for=id_is_sideload] {
 }
 
 /* @group Ownership */
-#author_list .email-autocomplete {
+#author_list .author-email {
     width: 220px;
     padding-right:20px;
 }
@@ -499,7 +499,7 @@ form.new-addon-file label[for=id_is_sideload] {
 #author_list .blank * {
     display: none;
 }
-#author_list .blank .email-autocomplete {
+#author_list .blank .author-email {
     display: inline;
     margin-left: 23px;
 }

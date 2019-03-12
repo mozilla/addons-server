@@ -314,7 +314,7 @@ function addonFormSubmit() {
 }
 
 
-$("#user-form-template .email-autocomplete")
+$("#user-form-template .author-email")
     .attr("placeholder", gettext("Enter a new author's email address"));
 
 function initEditAddon() {
@@ -869,7 +869,7 @@ function initAuthorFields() {
 
     $(".author .errorlist").each(function() {
         $(this).parent()
-            .find(".email-autocomplete")
+            .find(".author-email")
             .addClass("tooltip")
             .addClass("invalid")
             .addClass("formerror")
@@ -877,8 +877,8 @@ function initAuthorFields() {
     });
 
     $("#author_list")
-        .on("keypress", ".email-autocomplete", validateUser)
-        .on("keyup", ".email-autocomplete", validateUser)
+        .on("keypress", ".author-email", validateUser)
+        .on("keyup", ".author-email", validateUser)
         .on("click", ".remove", function (e) {
             e.preventDefault();
             var tgt = $(this),
@@ -926,7 +926,7 @@ function initAuthorFields() {
         var numForms = author_list.children(".author").length;
         author_list.append(empty_form([numForms]))
                    .sortable("refresh");
-        author_list.find(".blank .email-autocomplete")
+        author_list.find(".blank .author-email")
                    .placeholder();
         manager.val(author_list.children(".author").length);
         renumberAuthors();
