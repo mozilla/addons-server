@@ -83,6 +83,9 @@ class UserEmailField(forms.EmailField):
         except UserProfile.DoesNotExist:
             raise forms.ValidationError(ugettext('No user with that email.'))
 
+    def widget_attrs(self, widget):
+        return {'class': 'author-email'}
+
 
 class UserManager(BaseUserManager, ManagerBase):
 
