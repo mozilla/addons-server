@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-12 01:47+0000\n"
+"PO-Revision-Date: 2019-02-01 12:50+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -5592,7 +5592,6 @@ msgstr "Anda tidak dapat memasukkan pengaya dengan akhiran guid %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak dapat mengajukan Ekstensi Resmi Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload an a supported file {extensions}."
 msgstr "Tipe file tidak didukung, silakan mengunggah file arsip {extensions}."
 
