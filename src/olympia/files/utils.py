@@ -1083,7 +1083,7 @@ def parse_addon(pkg, addon=None, user=None, minimal=False):
             amo.VALID_ADDON_FILE_EXTENSIONS)
         raise UnsupportedFileType(
             ugettext(
-                'Unsupported file type, please upload an a supported '
+                'Unsupported file type, please upload a supported '
                 'file {extensions}.'.format(
                     extensions=valid_extensions_string)))
 

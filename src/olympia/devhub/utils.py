@@ -6,7 +6,6 @@ from django.forms import ValidationError
 from django.utils.translation import ugettext
 
 import waffle
-from celery import chain
 from six import text_type
 
 import olympia.core.logger
@@ -271,18 +270,14 @@ class Validator(object):
 
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
-        on_error = save.subtask(
-            [amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT, file_.pk, channel,
-             is_mozilla_signed],
-            immutable=True)
+        on_error = self.error_handler(save, file_, channel, is_mozilla_signed)
 
         # When the validation jobs complete, pass the results to the
         # appropriate save task for the object type.
-        self.task = chain(
-            validate_task,
-            save.subtask(
-                [file_.pk, channel, is_mozilla_signed],
-                link_error=on_error))
+        self.task = (
+            validate_task.on_error(on_error) |
+            save.s(file_.pk, channel, is_mozilla_signed)
+        )
 
         # Create a cache key for the task, so multiple requests to
         # validate the same object do not result in duplicate tasks.
@@ -290,18 +285,28 @@ class Validator(object):
         self.cache_key = 'validation-task:{0}.{1}:{2}:{3}'.format(
             opts.app_label, opts.object_name, file_.pk, listed)
 
+    def get_task(self):
+        """Return task chain to execute to trigger validation."""
+        return self.task
+
+    @staticmethod
+    def error_handler(save_task, file_, channel, is_mozilla_signed):
+        """Return the task error handler."""
+        return save_task.si(
+            amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT, file_.pk, channel,
+            is_mozilla_signed)
+
     @staticmethod
     def validate_file(file):
         """Return a subtask to validate a File instance."""
-        return tasks.validate_file.subtask([file.pk])
+        return tasks.validate_file.si(file.pk)
 
     @staticmethod
     def validate_upload(upload, channel):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        kwargs = {'channel': channel}
-        return tasks.validate_file_path.subtask([upload.path], kwargs)
+        return tasks.validate_file_path.si(upload.path, channel=channel)
 
 
 def add_dynamic_theme_tag(version):

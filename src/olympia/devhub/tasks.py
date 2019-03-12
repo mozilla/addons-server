@@ -20,8 +20,6 @@ from django.template import loader
 from django.utils.encoding import force_text
 from django.utils.translation import ugettext
 
-import celery
-
 from celery.result import AsyncResult
 from django_statsd.clients import statsd
 
@@ -36,6 +34,7 @@ from olympia.amo.utils import (
     image_size, pngcrush_image, resize_image, send_html_mail_jinja, send_mail,
     utc_millesecs_from_epoch)
 from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
+from olympia.lib.akismet.models import AkismetReport
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     NoManifestFound, parse_addon, SafeZip, UnsupportedFileType)
@@ -65,23 +64,12 @@ def validate(file_, listed=None, subtask=None, synchronous=False,
     if not synchronous and task_id:
         return AsyncResult(task_id)
     else:
-        # celery.group() | validator.task returns a celery.chord - which works
-        # great in tests (meaning we don't have to rewrite existing tests) but
-        # in non-eager mode celery does nothing and just hangs the validation.
-        #
-        # Thankfully devhub.views.handle_upload now always passes along a value
-        # for pretask but if this is changed it WILL break on dev/stage/prod.
-        #
-        # We HAVE to have a task at the start of the chain that returns a
-        # result (ignore_result=False) as the result from pretask is passed
-        # down to the next task in the chain, validation.task, which is wrapped
-        # in validation_task.  If there no task then validation_task fails with
-        # mismatched arguments (same with something like an empty celery.group)
-        #
-        # In a ideal world this would all be rewritten with chords and
-        # parallel tasks in groups and magic.
-        chain = celery.group() if pretask is None else pretask
-        chain |= validator.task
+        # Note: pretask should never have ignore_result=False, as passing a
+        # result this would modify the arguments expected by the tasks
+        # afterwards and that would make @validation_task fail with mismatched
+        # arguments.
+        task = validator.get_task()
+        chain = task if pretask is None else pretask | task
         if subtask is not None:
             chain |= subtask
 
@@ -150,13 +138,12 @@ def create_version_for_upload(addon, upload, channel):
 
 def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags, then
-    parse and annotate the results before returning.
-    akismet_results is the return from the previous task."""
+    parse and annotate the results before returning."""
 
     @task(bind=True, ignore_result=False,  # Required for groups/chains.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
     @wraps(fn)
-    def wrapper(task, akismet_results, id_or_path, **kwargs):
+    def wrapper(task, id_or_path, *args, **kwargs):
         # This is necessary to prevent timeout exceptions from being set
         # as our result, and replacing the partial validation results we'd
         # prefer to return.
@@ -164,9 +151,6 @@ def validation_task(fn):
         try:
             data = fn(id_or_path, **kwargs)
             results = json.loads(force_text(data))
-            if akismet_results:
-                annotations.annotate_akismet_spam_check(
-                    results, akismet_results)
             return results
         except UnsupportedFileType as exc:
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
@@ -225,7 +209,6 @@ def validate_file_path(path, channel):
             path=path, results=results, parsed_data=data,
             error=not is_mozilla_signed)
         return json.dumps(results)
-
     return run_addons_linter(path, channel=channel)
 
 
@@ -246,7 +229,6 @@ def validate_file(file_id):
         # actual python-object, so we have to dump it as JSON for backwards
         # compatibility (something we may want to change at a later point)
         return json.dumps(validate_file_path(
-            akismet_results=[],
             id_or_path=file_.current_file_path,
             channel=file_.version.channel))
 
@@ -265,6 +247,12 @@ def handle_upload_validation_result(
         results = check_for_api_keys_in_file(results=results, upload=upload)
     except (ValidationError, BadZipfile, IOError):
         pass
+
+    # Annotate results with akismet reports results if there are any.
+    reports = AkismetReport.objects.filter(upload_instance=upload)
+    akismet_results = [
+        (report.comment_type, report.result) for report in reports]
+    annotations.annotate_akismet_spam_check(results, akismet_results)
 
     # Annotate results with potential webext warnings on new versions.
     if upload.addon_id and upload.version:
