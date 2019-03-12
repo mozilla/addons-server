@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-08 06:50+0000\n"
+"PO-Revision-Date: 2019-03-12 01:47+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -6857,9 +6857,9 @@ msgstr "Sembunyikan Komentar"
 msgid "No reviews found for this period."
 msgstr "Tidak ada ulasan ditemukan untuk rentang waktu ini."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "%(user)s [%(ip_address)s] dilaporkan %(object)s pada %(date)s"
+msgstr "%(user)s [%(country_code)s] dilaporkan %(object)s pada %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Abaikan pengumuman ini"
