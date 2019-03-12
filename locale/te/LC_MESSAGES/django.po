@@ -2170,9 +2170,8 @@ msgstr "అద్భుతం (3)"
 msgid "Manual Reviewer Points"
 msgstr "మానవీయ సమీక్షకుల బిందువులు"
 
-#, fuzzy
 msgid "New Legacy Add-on Review"
-msgstr "కొత్త పొడిగింత సమీక్ష"
+msgstr ""
 
 msgid "Preliminary Add-on Review"
 msgstr "ప్రాథమిక పొడగింత సమీక్ష"
