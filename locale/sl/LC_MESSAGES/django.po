@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-12 13:49+0000\n"
-"Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
+"PO-Revision-Date: 2019-03-13 16:01+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -1967,7 +1967,7 @@ msgid "Download Firefox extensions to browse privately and securely. This catego
 msgstr "Prenesite razširitve Firefox za zasebno in varno brskanje. Ta kategorija vključuje razširitve za zavračanje nadležnih oglasov, preprečevanje sledenja, upravljanje preusmeritev in drugo."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Prenesite razširitve Firefoxa za iskanje. Ta kategorija vključuje razširitve, ki iščejo in označujejo besedilo, iščejo naslove IP/domene in drugo."
 
 msgid "Shopping"
 msgstr "Nakupi"
@@ -2023,7 +2023,7 @@ msgid "Photos & Media"
 msgstr "Fotografije in predstavnost"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
-msgstr ""
+msgstr "Prenesite razširitve Firefox za izboljšanje fotografij in predstavnosti. Ta kategorija vključuje razširitve za povratno iskanje slik, zajemanje posnetkov celotne strani in drugo."
 
 msgid "Security & Privacy"
 msgstr "Varnost in zasebnost"
