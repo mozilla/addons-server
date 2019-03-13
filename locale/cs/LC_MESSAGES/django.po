@@ -3939,9 +3939,8 @@ msgstr "Testování naživo"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "Záznam kontrol lehkých vzhledů"
+msgstr ""
 
 msgid "Create a New Theme"
 msgstr "Vytvoření nového vzhledu"
@@ -3998,9 +3997,9 @@ msgstr "Jedná se o barvu panelů"
 msgid "Your Theme's Name"
 msgstr "Jméno vašeho vzhledu"
 
-#, fuzzy, python-format
+#, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "od <a href=\"%(profile_url)s\">%(user)s</a>"
+msgstr ""
 
 #, python-format
 msgid ""
@@ -5467,36 +5466,32 @@ msgid "Search with more security with tracker blocking, smarter encryption, priv
 msgstr "Vyhledávejte s bezpečným šifrováním a dalšími základy pro ochranu vašeho soukromí."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} zjednoduší vyhledávání"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Organize your many open tabs in a vertical sidebar."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} nechá cookies zmizet"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete unwanted cookies. Offers white and blacklist support."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "See the big picture {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyhledávejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} pro vás uloží vybraný text k přečtení později"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
@@ -5597,9 +5592,8 @@ msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
-#, fuzzy
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr "Nepodporovaný typ souboru. Nahrajte prosím soubor s archivem pro {extensions}."
+msgstr ""
 
 msgid "Unexpected error."
 msgstr "Neočekávaná chyba."
