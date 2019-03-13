@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-25 16:22+0000\n"
+"PO-Revision-Date: 2019-03-13 18:33+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3999,7 +3999,7 @@ msgstr "Jméno vašeho vzhledu"
 
 #, python-format
 msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr ""
+msgstr "od <a href=\"%(profile_url)s\">%(user_name)s</a>"
 
 #, python-format
 msgid ""
@@ -5593,14 +5593,14 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
 msgid "Unsupported file type, please upload an a supported file {extensions}."
-msgstr ""
+msgstr "Nepodporovaný typ souboru. Nahrajte prosím podporovaný soubor typu {extensions}."
 
 msgid "Unexpected error."
 msgstr "Neočekávaná chyba."
 
-#, fuzzy, python-format
+#, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
-msgstr "<em:type> v souboru install.rdf (%s) není stejného typu jako zde na AMO (%s)"
+msgstr "Typ (%s) neodpovídá typu doplňku zde na AMO (%s)"
 
 msgid "Back to review"
 msgstr "Zpět na recenzi"
@@ -6868,9 +6868,9 @@ msgstr "Skrýt komentáře"
 msgid "No reviews found for this period."
 msgstr "Za zvolenou dobu nebyly nalezeny žádné kontroly."
 
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s [%(country_code)s] reported %(object)s on %(date)s"
-msgstr "Uživatel %(user)s [%(ip_address)s] %(object)s nahlásil dne %(date)s"
+msgstr "Uživatel %(user)s [%(country_code)s] nahlásil %(object)s dne %(date)s"
 
 msgid "Dismiss this announcement"
 msgstr "Skrýt toto oznámení"
@@ -7075,9 +7075,9 @@ msgstr "Označeno"
 msgid "Updates"
 msgstr "Aktualizace"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "Neplatný rozsah verzí."
+msgstr ""
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
