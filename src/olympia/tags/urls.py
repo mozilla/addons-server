@@ -1,8 +1,8 @@
 from django.conf.urls import url
 
-from olympia.search.views import search
+from olympia.amo.views import frontend_view
 
 
 urlpatterns = [
-    url(r'^tag/(?P<tag_name>[^/]+)$', search, name='tags.detail'),
+    url(r'^tag/(?P<tag_name>[^/]+)$', frontend_view, name='tags.detail'),
 ]

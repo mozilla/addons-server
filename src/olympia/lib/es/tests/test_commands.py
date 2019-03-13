@@ -7,8 +7,8 @@ from django.test.testcases import TransactionTestCase
 
 import six
 
-from olympia.amo.tests import ESTestCase, addon_factory, create_switch
-from olympia.amo.urlresolvers import reverse
+from olympia.amo.tests import (
+    addon_factory, create_switch, ESTestCase, reverse_ns)
 from olympia.amo.utils import urlparams
 from olympia.lib.es.utils import is_reindexing_amo, unflag_reindexing_amo
 
@@ -19,7 +19,7 @@ class TestIndexCommand(ESTestCase):
         if is_reindexing_amo():
             unflag_reindexing_amo()
 
-        self.url = reverse('search.search')
+        self.url = reverse_ns('addon-search')
 
         # We store previously existing indices in order to delete the ones
         # created during this test run.
@@ -66,12 +66,8 @@ class TestIndexCommand(ESTestCase):
 
     def get_results(self, response):
         """Return pks of add-ons shown on search results page."""
-        pager = response.context['pager']
-        results = []
-        for page_num in range(pager.paginator.num_pages):
-            results.extend([item.pk for item
-                            in pager.paginator.page(page_num + 1)])
-        return results
+        results = response.data['results']
+        return [item['id'] for item in results]
 
     @classmethod
     def get_indices_aliases(cls):
