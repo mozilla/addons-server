@@ -104,9 +104,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_URLS_REGEX = DRF_API_REGEX
 
 
-def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
-    assert charset in ('utf8', 'utf8mb4')
-
+def get_db_config(environ_var, atomic_requests=True):
     values = env.db(
         var=environ_var,
         default='mysql://root:@localhost/olympia')
@@ -120,15 +118,13 @@ def get_db_config(environ_var, atomic_requests=True, charset='utf8'):
         'CONN_MAX_AGE': 300,
         'ENGINE': 'olympia.core.db.mysql',
         'OPTIONS': {
-            'charset': charset,
+            'charset': 'utf8mb4',
             'sql_mode': 'STRICT_ALL_TABLES',
             'isolation_level': 'read committed'
         },
         'TEST': {
-            'CHARSET': charset,
-            'COLLATION': (
-                'utf8_general_ci' if charset == 'utf8' else
-                'utf8mb4_general_ci')
+            'CHARSET': 'utf8mb4',
+            'COLLATION': 'utf8mb4_general_ci'
         },
     })
 
