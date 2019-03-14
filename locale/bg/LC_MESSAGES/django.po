@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-13 14:05+0000\n"
+"PO-Revision-Date: 2019-03-14 09:29+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -904,7 +904,7 @@ msgid "Wrong type for one or more keys in payload"
 msgstr ""
 
 msgid "Invalid JWT Token."
-msgstr ""
+msgstr "Недействителен токен на JWT."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -1478,9 +1478,8 @@ msgid "{addon} enabled."
 msgstr "{addon} активиран."
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "Състоянието на {addon} е променено на {0}."
+msgstr "Състоянието на {addon} е променено на {status}."
 
 msgid "{version} added to {addon}."
 msgstr "{version} добавена към {addon}."
@@ -1715,37 +1714,31 @@ msgstr ""
 msgid "Auto-Approval confirmed"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} отказана."
+msgstr "{addon} {version} е включена."
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} ескалирана."
+msgstr "{addon} {version} е изключена."
 
 #, fuzzy
 msgid "{addon} {version} content approved."
 msgstr "{addon} {version} одобрена."
 
-#, fuzzy
 msgid "Content approved"
-msgstr "{addon} {version} одобрена."
+msgstr "Съдържанието е одобрено"
 
 #, fuzzy
 msgid "{addon} {version} content rejected."
 msgstr "{addon} {version} отказана."
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "{addon} {version} отказана."
+msgstr "Съдържанието е отхвърлено"
 
-#, fuzzy
 msgid "{addon} information request altered or removed by admin."
-msgstr "Поискана е повече информация"
+msgstr ""
 
-#, fuzzy
 msgid "Information request altered"
-msgstr "Поискана е повече информация"
+msgstr "Искането за информация е променено"
 
 #, fuzzy
 msgid "Information request cleared by developer on {addon} {version}."
@@ -1759,9 +1752,8 @@ msgstr "Поискана е повече информация"
 msgid "{addon} {version} admin add-on-review requested."
 msgstr "поискана рецензия за {addon} {version}."
 
-#, fuzzy
 msgid "Admin add-on-review requested"
-msgstr "Супер рецензия заявена"
+msgstr ""
 
 #, fuzzy
 msgid "{addon} {version} admin content-review requested."
@@ -2195,9 +2187,8 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
-#, fuzzy
 msgid "Static Theme"
-msgstr "Изпращане"
+msgstr "Статична тема"
 
 msgid "Persona"
 msgstr "Декорация"
@@ -3317,9 +3308,8 @@ msgstr ""
 msgid "Summary:"
 msgstr "Обобщение:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "Описание"
+msgstr "Описание:"
 
 msgid "This add-on is experimental"
 msgstr "Добавката е изпитателна"
@@ -3610,10 +3600,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr "Пазете вашите ключове за ППИ в тайна и <strong>никога не ги споделяйте с никого</strong>, включително и със сътрудници на Mozilla."
 
 msgid "JWT issuer"
-msgstr "JWT issuer"
+msgstr "JWT издател"
 
 msgid "JWT secret"
-msgstr "JWT secret"
+msgstr "JWT тайна"
 
 #, python-format
 msgid ""
@@ -3861,9 +3851,8 @@ msgstr ""
 msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "Добре дошли, {0}"
+msgstr "Добре дошли"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -6043,13 +6032,11 @@ msgstr ""
 "В общия случай, не. Но ако отзива не отговаря на критериите по-горе може да изберете „Докладване на отзива“ и ще бъде редактиран. В случай, че той съдържа оплакване, причината за което е отстранена "
 "в ново издание на добавката, ще бъде разгледана и възможността за изтриването му."
 
-#, fuzzy
 msgid "User"
-msgstr "Потребителско име"
+msgstr "Потребител"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "Имейл адрес"
+msgstr "Адрес по IP"
 
 #, python-format
 msgid "Reviews for %s"
@@ -6458,9 +6445,8 @@ msgstr ""
 msgid "Static Themes and Legacy Add-ons"
 msgstr "Мои добавки"
 
-#, fuzzy
 msgid "Static Themes"
-msgstr "Препоръчани теми"
+msgstr "Статични теми"
 
 #, fuzzy
 msgid "Legacy Add-ons"
@@ -6820,7 +6806,7 @@ msgid "(Confirmed)"
 msgstr ""
 
 msgid "Compatibility:"
-msgstr ""
+msgstr "Съвместимост:"
 
 msgid "Additional sources:"
 msgstr ""
@@ -6903,7 +6889,7 @@ msgid "Clear Admin Static Theme Review Flag"
 msgstr "Административна рецензия"
 
 msgid "(admin)"
-msgstr ""
+msgstr "(администратор)"
 
 msgid "Admin Page"
 msgstr ""
@@ -7772,7 +7758,7 @@ msgid "A user with that email address does not exist."
 msgstr "Вече съществува потребител с този имейл адрес."
 
 msgid "Profile Deleted"
-msgstr ""
+msgstr "Профилът е изтрит"
 
 msgid "Photo Deleted"
 msgstr ""
@@ -7795,9 +7781,8 @@ msgstr ""
 msgid "Ban"
 msgstr ""
 
-#, fuzzy
 msgid "Delete picture"
-msgstr "Изтриване на рецензия"
+msgstr "Изтриване на снимка"
 
 msgid "Delete User Account"
 msgstr "Изтриване на потребителска сметка"
