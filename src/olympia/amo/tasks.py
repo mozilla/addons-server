@@ -16,11 +16,10 @@ from olympia.lib.akismet.models import AkismetReport
 log = olympia.core.logger.getLogger('z.task')
 
 
-@task
+@task(autoretry_for=(Exception,))
 def send_email(recipient, subject, message, from_email=None,
                html_message=None, attachments=None, real_email=False,
-               cc=None, headers=None, max_retries=3, reply_to=None,
-               **kwargs):
+               cc=None, headers=None, reply_to=None, **kwargs):
     backend = EmailMultiAlternatives if html_message else EmailMessage
     connection = get_email_backend(real_email)
 
@@ -30,12 +29,9 @@ def send_email(recipient, subject, message, from_email=None,
 
     if html_message:
         result.attach_alternative(html_message, 'text/html')
-    try:
-        result.send()
-        return True
-    except Exception as e:
-        log.exception('send_mail() failed with error: %s, retrying' % e)
-        return send_email.retry(exc=e, max_retries=max_retries)
+
+    result.send()
+    return True
 
 
 @task

@@ -4,13 +4,10 @@ import os.path
 from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
-from django.core.mail import EmailMessage
 from django.utils import translation
 
 import mock
 import six
-
-from celery.exceptions import Retry
 
 from olympia.amo.models import FakeEmail
 from olympia.amo.tests import TestCase
@@ -247,49 +244,3 @@ class TestSendMail(TestCase):
         headers = mail.outbox[0].extra_headers
         assert mail.outbox[0].reply_to == ['c@example.com']
         assert headers['Auto-Submitted'] == 'auto-generated'  # Still there.
-
-    def make_backend_class(self, error_order):
-        throw_error = iter(error_order)
-
-        def make_backend(*args, **kwargs):
-            if next(throw_error):
-                class BrokenMessage(object):
-                    def __init__(*args, **kwargs):
-                        pass
-
-                    def send(*args, **kwargs):
-                        raise RuntimeError('uh oh')
-
-                    def attach_alternative(*args, **kwargs):
-                        pass
-                backend = BrokenMessage()
-            else:
-                backend = EmailMessage(*args, **kwargs)
-            return backend
-        return make_backend
-
-    @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_will_retry_default(self, backend):
-        backend.side_effect = self.make_backend_class([True, True, False])
-        with self.assertRaises(Retry):
-            send_mail('test subject',
-                      'test body',
-                      recipient_list=['somebody@mozilla.org'])
-
-    @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_will_retry(self, backend):
-        backend.side_effect = self.make_backend_class([True, True, False])
-        with self.assertRaises(Retry):
-            send_mail('test subject',
-                      'test body',
-                      max_retries=2,
-                      recipient_list=['somebody@mozilla.org'])
-
-    @mock.patch('olympia.amo.tasks.EmailMessage')
-    def test_async_will_stop_retrying(self, backend):
-        backend.side_effect = self.make_backend_class([True, True])
-        with self.assertRaises(RuntimeError):
-            send_mail('test subject',
-                      'test body',
-                      max_retries=1,
-                      recipient_list=['somebody@mozilla.org'])
