@@ -535,18 +535,18 @@ def handle_upload(filedata, request, channel, addon=None, is_standalone=False,
             existing_data=existing_data)
     else:
         akismet_reports = []
-    # We HAVE to have a pretask here that returns a result, so we're always
-    # doing a comment_check task call even when it's pointless because
-    # there are no report ids in the list.  See tasks.validate for more.
-    akismet_checks = akismet_comment_check.si(
-        [report.id for _, report in akismet_reports])
+    if akismet_reports:
+        pretask = akismet_comment_check.si(
+            [report.id for _, report in akismet_reports])
+    else:
+        pretask = None
     if submit:
         tasks.validate_and_submit(
-            addon, upload, channel=channel, pretask=akismet_checks)
+            addon, upload, channel=channel, pretask=pretask)
     else:
         tasks.validate(
             upload, listed=(channel == amo.RELEASE_CHANNEL_LISTED),
-            pretask=akismet_checks)
+            pretask=pretask)
 
     return upload
 

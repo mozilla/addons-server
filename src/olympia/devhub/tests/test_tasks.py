@@ -28,8 +28,9 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks, file_validation_annotations as annotations
-from olympia.files.models import File, FileUpload
+from olympia.files.models import File
 from olympia.files.utils import NoManifestFound
+from olympia.files.tests.test_models import UploadTest
 from olympia.versions.models import Version
 
 
@@ -185,14 +186,15 @@ class ValidatorTestCase(TestCase):
             application=amo.APPS[name].id, version=version)
 
 
-class TestMeasureValidationTime(TestCase):
+class TestMeasureValidationTime(UploadTest, TestCase):
 
     def setUp(self):
         super(TestMeasureValidationTime, self).setUp()
         # Set created time back (just for sanity) otherwise the delta
         # would be in the microsecond range.
-        self.upload = FileUpload.objects.create(
-            path=get_addon_file('valid_webextension.xpi'))
+        self.upload = self.get_upload(
+            abspath=get_addon_file('valid_webextension.xpi'),
+            with_validation=False)
         assert not self.upload.valid
 
         self.upload.update(created=datetime.now() - timedelta(days=1))
@@ -341,7 +343,7 @@ class TestTrackValidatorStats(TestCase):
         )
 
 
-class TestRunAddonsLinter(ValidatorTestCase):
+class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
     mock_sign_addon_warning = json.dumps({
         "warnings": 1,
         "errors": 0,
@@ -366,56 +368,57 @@ class TestRunAddonsLinter(ValidatorTestCase):
     def setUp(self):
         super(TestRunAddonsLinter, self).setUp()
 
-        valid_path = get_addon_file('valid_webextension.xpi')
-        invalid_path = get_addon_file('invalid_webextension_invalid_id.xpi')
-
-        self.valid_upload = FileUpload.objects.create(path=valid_path)
-        self.invalid_upload = FileUpload.objects.create(path=invalid_path)
-
-    def get_upload(self, upload):
-        return FileUpload.objects.get(pk=upload.pk)
+        self.valid_path = get_addon_file('valid_webextension.xpi')
+        self.invalid_path = get_addon_file(
+            'invalid_webextension_invalid_id.xpi')
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_pass_validation(self, _mock):
         _mock.return_value = '{"errors": 0}'
-        tasks.validate(self.valid_upload, listed=True)
-        assert self.get_upload(self.valid_upload).valid
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        tasks.validate(upload, listed=True)
+        assert upload.reload().valid
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_fail_validation(self, _mock):
         _mock.return_value = '{"errors": 2}'
-        tasks.validate(self.valid_upload, listed=True)
-        assert not self.get_upload(self.valid_upload).valid
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        tasks.validate(upload, listed=True)
+        assert not upload.reload().valid
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_validation_error(self, _mock):
         _mock.side_effect = Exception
-
-        self.valid_upload.update(path=get_addon_file('valid_webextension.xpi'))
-
-        assert self.valid_upload.validation is None
-
-        tasks.validate(self.valid_upload, listed=True)
-        self.valid_upload.reload()
-        validation = self.valid_upload.processed_validation
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        tasks.validate(upload, listed=True)
+        upload.reload()
+        validation = upload.processed_validation
         assert validation
         assert validation['errors'] == 1
         assert validation['messages'][0]['id'] == ['validator',
                                                    'unexpected_exception']
-        assert not self.valid_upload.valid
+        assert not upload.valid
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
     def test_validation_signing_warning(self, _mock):
         """If we sign addons, warn on signed addon submission."""
         _mock.return_value = self.mock_sign_addon_warning
-        tasks.validate(self.valid_upload, listed=True)
-        validation = json.loads(self.get_upload(self.valid_upload).validation)
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        tasks.validate(upload, listed=True)
+        upload.reload()
+        validation = json.loads(upload.validation)
         assert validation['warnings'] == 1
         assert len(validation['messages']) == 1
 
     @mock.patch('olympia.devhub.tasks.statsd.incr')
     def test_track_validation_stats(self, mock_statsd_incr):
-        tasks.validate(self.valid_upload, listed=True)
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        tasks.validate(upload, listed=True)
         mock_statsd_incr.assert_has_calls((
             mock.call('devhub.linter.results.all.success'),
             mock.call('devhub.linter.results.listed.success')))
@@ -432,13 +435,13 @@ class TestRunAddonsLinter(ValidatorTestCase):
         assert self.file.has_been_validated
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_validates_search_plugins_inline(self, run_linter):
+    def test_validates_search_plugins_inline(self, run_addons_linter_mock):
         addon = addon_factory(file_kw={
             'filename': 'opensearch/sp_updateurl.xml'})
         file_ = addon.current_version.current_file
         tasks.validate(file_, synchronous=True).get()
 
-        assert not run_linter.called
+        assert not run_addons_linter_mock.called
 
         file_.refresh_from_db()
         validation = file_.validation.processed_validation
@@ -448,19 +451,21 @@ class TestRunAddonsLinter(ValidatorTestCase):
             'OpenSearch: &lt;updateURL&gt; elements')
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    def test_calls_run_linter(self, run_linter):
-        run_linter.return_value = '{"errors": 0}'
-
-        assert not self.valid_upload.valid
-
-        tasks.validate(self.valid_upload, listed=True)
-
-        upload = self.get_upload(self.valid_upload)
+    def test_calls_run_linter(self, run_addons_linter_mock):
+        run_addons_linter_mock.return_value = '{"errors": 0}'
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        assert not upload.valid
+        tasks.validate(upload, listed=True)
+        upload.reload()
         assert upload.valid, upload.validation
 
     def test_run_linter_fail(self):
-        tasks.validate(self.invalid_upload, listed=True)
-        assert not self.get_upload(self.invalid_upload).valid
+        upload = self.get_upload(
+            abspath=self.invalid_path, with_validation=False)
+        tasks.validate(upload, listed=True)
+        upload.reload()
+        assert not upload.valid
 
     def test_run_linter_path_doesnt_exist(self):
         with pytest.raises(ValueError) as exc:
@@ -493,7 +498,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_success(self):
         result = tasks.validate_file_path(
-            None, get_addon_file('valid_webextension.xpi'),
+            get_addon_file('valid_webextension.xpi'),
             channel=amo.RELEASE_CHANNEL_LISTED)
         assert result['success']
         assert not result['errors']
@@ -501,7 +506,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_fail_warning(self):
         result = tasks.validate_file_path(
-            None, get_addon_file('valid_webextension_warning.xpi'),
+            get_addon_file('valid_webextension_warning.xpi'),
             channel=amo.RELEASE_CHANNEL_LISTED)
         assert result['success']
         assert not result['errors']
@@ -509,7 +514,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_fail_error(self):
         result = tasks.validate_file_path(
-            None, get_addon_file('invalid_webextension_invalid_id.xpi'),
+            get_addon_file('invalid_webextension_invalid_id.xpi'),
             channel=amo.RELEASE_CHANNEL_LISTED)
         assert not result['success']
         assert result['errors']
@@ -517,7 +522,7 @@ class TestValidateFilePath(ValidatorTestCase):
 
     def test_returns_skeleton_for_search_plugin(self):
         result = tasks.validate_file_path(
-            None, get_addon_file('searchgeek-20090701.xml'),
+            get_addon_file('searchgeek-20090701.xml'),
             channel=amo.RELEASE_CHANNEL_LISTED)
 
         expected = amo.VALIDATOR_SKELETON_RESULTS
@@ -531,12 +536,12 @@ class TestValidateFilePath(ValidatorTestCase):
         # When parse_addon() raises a NoManifestFound error, we should
         # still call the linter to let it raise the appropriate error message.
         tasks.validate_file_path(
-            None, get_addon_file('valid_webextension.xpi'),
+            get_addon_file('valid_webextension.xpi'),
             channel=amo.RELEASE_CHANNEL_LISTED)
         assert run_addons_linter_mock.call_count == 1
 
 
-class TestWebextensionIncompatibilities(ValidatorTestCase):
+class TestWebextensionIncompatibilities(UploadTest, ValidatorTestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -559,9 +564,9 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
                    for f in self.addon.current_version.all_files)
 
         file_ = get_addon_file('valid_webextension.xpi')
-        upload = FileUpload.objects.create(
-            path=file_, addon=self.addon, version='0.1')
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon,
+            version='0.1')
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -580,9 +585,9 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         previous_file.save()
 
         file_ = get_addon_file('valid_webextension.xpi')
-        upload = FileUpload.objects.create(
-            path=file_, addon=self.addon, version='0.1')
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon,
+            version='0.1')
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -600,9 +605,9 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         previous_file.save()
 
         file_ = get_addon_file('valid_webextension.xpi')
-        upload = FileUpload.objects.create(
-            path=file_, addon=self.addon, version='0.1')
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon,
+            version='0.1')
         tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
@@ -617,9 +622,9 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
     def test_webextension_no_webext_no_warning(self):
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
-        upload = FileUpload.objects.create(
-            path=file_, addon=self.addon, version='0.1')
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon,
+            version='0.1')
         tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
@@ -634,8 +639,8 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon)
         tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
@@ -651,8 +656,8 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
 
         file_ = amo.tests.AMOPaths().file_fixture_path(
             'delicious_bookmarks-2.1.106-fx.xpi')
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon)
         tasks.validate(upload, listed=False)
         upload.refresh_from_db()
 
@@ -675,8 +680,8 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
             addon=self.addon, file_kw={'is_webextension': False})
         deleted_version.delete()
 
-        upload = FileUpload.objects.create(path=file_, addon=self.addon)
-
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=self.addon)
         tasks.validate(upload, listed=True)
         upload.refresh_from_db()
 
@@ -688,10 +693,10 @@ class TestWebextensionIncompatibilities(ValidatorTestCase):
         assert validation['messages'][0]['type'] == 'error'
 
 
-class TestLegacyAddonRestrictions(ValidatorTestCase):
+class TestLegacyAddonRestrictions(UploadTest, ValidatorTestCase):
     def test_legacy_submissions_disabled(self):
         file_ = get_addon_file('valid_firefox_addon.xpi')
-        upload = FileUpload.objects.create(path=file_)
+        upload = self.get_upload(abspath=file_, with_validation=False)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -705,7 +710,8 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
     def test_legacy_updates_disabled(self):
         file_ = get_addon_file('valid_firefox_addon.xpi')
         addon = addon_factory(version_kw={'version': '0.1'})
-        upload = FileUpload.objects.create(path=file_, addon=addon)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=addon)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -719,7 +725,8 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         file_ = get_addon_file('dictionary_targeting_57.xpi')
         addon = addon_factory(version_kw={'version': '0.1'},
                               type=amo.ADDON_DICT)
-        upload = FileUpload.objects.create(path=file_, addon=addon)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=addon)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -734,7 +741,8 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         # if the user submits a thunderbird/seamonkey extension.
         file_ = get_addon_file('valid_firefox_and_thunderbird_addon.xpi')
         addon = addon_factory(version_kw={'version': '0.0.1'})
-        upload = FileUpload.objects.create(path=file_, addon=addon)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=addon)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -753,7 +761,8 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
         # if the user submits a thunderbird/seamonkey extension.
         file_ = get_addon_file('valid_seamonkey_addon.xpi')
         addon = addon_factory(version_kw={'version': '0.0.1'})
-        upload = FileUpload.objects.create(path=file_, addon=addon)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, addon=addon)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -769,7 +778,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
 
     def test_submit_webextension(self):
         file_ = get_addon_file('valid_webextension.xpi')
-        upload = FileUpload.objects.create(path=file_)
+        upload = self.get_upload(abspath=file_, with_validation=False)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -780,7 +789,7 @@ class TestLegacyAddonRestrictions(ValidatorTestCase):
 
     def test_submit_search_plugin(self):
         file_ = get_addon_file('searchgeek-20090701.xml')
-        upload = FileUpload.objects.create(path=file_)
+        upload = self.get_upload(abspath=file_, with_validation=False)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -805,7 +814,7 @@ def test_send_welcome_email(send_html_mail_jinja_mock):
         perm_setting='individual_contact')
 
 
-class TestSubmitFile(TestCase):
+class TestSubmitFile(UploadTest, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -815,14 +824,11 @@ class TestSubmitFile(TestCase):
         self.create_version_for_upload = patcher.start()
         self.addCleanup(patcher.stop)
 
-    def create_upload(self, version='1.0'):
-        return FileUpload.objects.create(
-            addon=self.addon, version=version, validation='{"errors":0}',
-            automated_signing=False)
-
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations', True)
     def test_file_passed_all_validations(self):
-        upload = self.create_upload()
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, addon=self.addon, version='1.0')
         tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
         self.create_version_for_upload.assert_called_with(
             self.addon, upload, amo.RELEASE_CHANNEL_LISTED)
@@ -830,12 +836,14 @@ class TestSubmitFile(TestCase):
     @mock.patch('olympia.devhub.tasks.FileUpload.passed_all_validations',
                 False)
     def test_file_not_passed_all_validations(self):
-        upload = self.create_upload()
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, addon=self.addon, version='1.0')
         tasks.submit_file(self.addon.pk, upload.pk, amo.RELEASE_CHANNEL_LISTED)
         assert not self.create_version_for_upload.called
 
 
-class TestCreateVersionForUpload(TestCase):
+class TestCreateVersionForUpload(UploadTest, TestCase):
     fixtures = ['base/addon_3615']
 
     def setUp(self):
@@ -848,14 +856,12 @@ class TestCreateVersionForUpload(TestCase):
             self.addCleanup(patcher.stop)
         self.user = user_factory()
 
-    def create_upload(self, version='1.0'):
-        return FileUpload.objects.create(
-            addon=self.addon, version=version, user=self.user,
-            validation='{"errors":0}', automated_signing=False)
-
     def test_file_passed_all_validations_not_most_recent(self):
-        upload = self.create_upload()
-        newer_upload = self.create_upload()
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0')
+        newer_upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0')
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # Check that the older file won't turn into a Version.
@@ -872,7 +878,9 @@ class TestCreateVersionForUpload(TestCase):
             parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_version_exists(self):
-        upload = self.create_upload()
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0')
         Version.objects.create(addon=upload.addon, version=upload.version)
 
         # Check that the older file won't turn into a Version.
@@ -881,8 +889,11 @@ class TestCreateVersionForUpload(TestCase):
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent_failed(self):
-        upload = self.create_upload()
-        newer_upload = self.create_upload()
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0')
+        newer_upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0')
         newer_upload.update(created=datetime.today() + timedelta(hours=1),
                             valid=False,
                             validation=json.dumps({"errors": 5}))
@@ -892,8 +903,11 @@ class TestCreateVersionForUpload(TestCase):
         assert not self.mocks['Version.from_upload'].called
 
     def test_file_passed_all_validations_most_recent(self):
-        upload = self.create_upload(version='1.0')
-        newer_upload = self.create_upload(version='0.5')
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='1.0')
+        newer_upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon, version='0.5')
         newer_upload.update(created=datetime.today() + timedelta(hours=1))
 
         # The Version is created because the newer upload is for a different
@@ -908,7 +922,10 @@ class TestCreateVersionForUpload(TestCase):
             parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_beta_string(self):
-        upload = self.create_upload(version='1.0-beta1')
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon,
+            version='1.0beta1')
         tasks.create_version_for_upload(self.addon, upload,
                                         amo.RELEASE_CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(
@@ -919,7 +936,10 @@ class TestCreateVersionForUpload(TestCase):
             parsed_data=self.mocks['parse_addon'].return_value)
 
     def test_file_passed_all_validations_no_version(self):
-        upload = self.create_upload(version=None)
+        file_ = get_addon_file('valid_webextension.xpi')
+        upload = self.get_upload(
+            abspath=file_, user=self.user, addon=self.addon,
+            version=None)
         tasks.create_version_for_upload(self.addon, upload,
                                         amo.RELEASE_CHANNEL_LISTED)
         self.mocks['parse_addon'].assert_called_with(
@@ -930,7 +950,7 @@ class TestCreateVersionForUpload(TestCase):
             parsed_data=self.mocks['parse_addon'].return_value)
 
 
-class TestAPIKeyInSubmission(TestCase):
+class TestAPIKeyInSubmission(UploadTest, TestCase):
 
     def setUp(self):
         self.user = user_factory()
@@ -947,7 +967,9 @@ class TestAPIKeyInSubmission(TestCase):
         self.file = get_addon_file('webextension_containing_api_key.xpi')
 
     def test_api_key_in_new_submission_is_found(self):
-        upload = FileUpload.objects.create(path=self.file, user=self.user)
+        upload = self.get_upload(
+            abspath=self.file, with_validation=False, addon=self.addon,
+            user=self.user)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -972,8 +994,9 @@ class TestAPIKeyInSubmission(TestCase):
         assert mail.outbox[0].to[0] == self.user.email
 
     def test_api_key_in_submission_is_found(self):
-        upload = FileUpload.objects.create(path=self.file, addon=self.addon,
-                                           user=self.user)
+        upload = self.get_upload(
+            abspath=self.file, with_validation=False, addon=self.addon,
+            user=self.user)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -1001,8 +1024,9 @@ class TestAPIKeyInSubmission(TestCase):
     def test_coauthor_api_key_in_submission_is_found(self):
         coauthor = user_factory()
         AddonUser.objects.create(addon=self.addon, user_id=coauthor.id)
-        upload = FileUpload.objects.create(path=self.file, addon=self.addon,
-                                           user=coauthor)
+        upload = self.get_upload(
+            abspath=self.file, with_validation=False, addon=self.addon,
+            user=coauthor)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -1048,7 +1072,8 @@ class TestAPIKeyInSubmission(TestCase):
         mock_str = 'olympia.devhub.tasks.revoke_api_key'
         wrapped = tasks.revoke_api_key
         with mock.patch(mock_str, wraps=wrapped) as mock_revoke:
-            upload = FileUpload.objects.create(path=self.file, user=self.user)
+            upload = self.get_upload(
+                abspath=self.file, with_validation=False, user=self.user)
             tasks.validate(upload, listed=True)
             upload.refresh_from_db()
             mock_revoke.apply_async.assert_called_with(
@@ -1058,8 +1083,8 @@ class TestAPIKeyInSubmission(TestCase):
 
     def test_does_not_revoke_for_different_author(self):
         different_author = user_factory()
-        upload = FileUpload.objects.create(path=self.file,
-                                           user=different_author)
+        upload = self.get_upload(
+            abspath=self.file, with_validation=False, user=different_author)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -1069,7 +1094,8 @@ class TestAPIKeyInSubmission(TestCase):
 
     def test_does_not_revoke_safe_webextension(self):
         file_ = get_addon_file('valid_webextension.xpi')
-        upload = FileUpload.objects.create(path=file_, user=self.user)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, user=self.user)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -1080,7 +1106,8 @@ class TestAPIKeyInSubmission(TestCase):
 
     def test_validation_finishes_if_containing_binary_content(self):
         file_ = get_addon_file('webextension_containing_binary_files.xpi')
-        upload = FileUpload.objects.create(path=file_, user=self.user)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, user=self.user)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()
@@ -1091,7 +1118,8 @@ class TestAPIKeyInSubmission(TestCase):
 
     def test_validation_finishes_if_containing_invalid_filename(self):
         file_ = get_addon_file('invalid_webextension.xpi')
-        upload = FileUpload.objects.create(path=file_, user=self.user)
+        upload = self.get_upload(
+            abspath=file_, with_validation=False, user=self.user)
         tasks.validate(upload, listed=True)
 
         upload.refresh_from_db()

@@ -17,11 +17,11 @@ from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import (
     addon_factory, TestCase, user_factory, version_factory)
 from olympia.devhub import tasks, utils
-from olympia.files.models import FileUpload
+from olympia.files.tests.test_models import UploadTest
 from olympia.lib.akismet.models import AkismetReport
 
 
-class TestAddonsLinterBase(TestCase):
+class TestAddonsLinterListed(UploadTest, TestCase):
 
     def setUp(self):
         # Create File objects for version 1.0 and 1.1.
@@ -33,19 +33,19 @@ class TestAddonsLinterBase(TestCase):
         self.file = self.version.current_file
 
         # Create a FileUpload object for an XPI containing version 1.1.
-        self.file_upload = FileUpload.objects.create(
-            path=self.file.current_file_path)
+        self.file_upload = self.get_upload(
+            abspath=self.file.current_file_path, with_validation=False)
 
         # Patch validation tasks that we expect the validator to call.
         self.save_file = self.patch(
-            'olympia.devhub.tasks.handle_file_validation_result').subtask
+            'olympia.devhub.tasks.handle_file_validation_result').s
         self.save_upload = self.patch(
-            'olympia.devhub.tasks.handle_upload_validation_result').subtask
+            'olympia.devhub.tasks.handle_upload_validation_result').s
 
         self.validate_file = self.patch(
-            'olympia.devhub.tasks.validate_file').subtask
+            'olympia.devhub.tasks.validate_file').si
         self.validate_upload = self.patch(
-            'olympia.devhub.tasks.validate_file_path').subtask
+            'olympia.devhub.tasks.validate_file_path').si
 
     def patch(self, thing):
         """Patch the given "thing", and revert the patch on test teardown."""
@@ -58,77 +58,69 @@ class TestAddonsLinterBase(TestCase):
         # Run validator.
         utils.Validator(file_upload, listed=listed)
 
-        # We shouldn't be attempting to validate an existing file.
+        # We shouldn't be attempting to call validate_file task when dealing
+        # with an upload.
         assert not self.validate_file.called
 
         channel = (amo.RELEASE_CHANNEL_LISTED if listed
                    else amo.RELEASE_CHANNEL_UNLISTED)
 
-        # Make sure we run the correct validation task for the upload.
+        # Make sure we run the correct validation task for the upload and we
+        # set up an error handler.
         self.validate_upload.assert_called_once_with(
-            [file_upload.path],
-            {'channel': channel})
+            file_upload.path, channel=channel)
+        assert self.validate_upload.return_value.on_error.called
 
-        # Make sure we run the correct save validation task, with a
-        # fallback error handler.
-        self.save_upload.assert_has_calls([
-            mock.call([mock.ANY, file_upload.pk, channel, False],
-                      immutable=True),
-            mock.call([file_upload.pk, channel, False], link_error=mock.ANY)])
+        # Make sure we run the correct save validation task.
+        self.save_upload.assert_called_once_with(
+            file_upload.pk, channel, False)
 
     def check_file(self, file_):
         """Check that the given file is validated properly."""
         # Run validator.
         utils.Validator(file_)
 
-        # We shouldn't be attempting to validate a bare upload.
+        # We shouldn't be attempting to call validate_upload task when
+        # dealing with a file.
         assert not self.validate_upload.called
 
-        # Make sure we run the correct validation task.
-        self.validate_file.assert_called_once_with([file_.pk])
+        # Make sure we run the correct validation task and we set up an error
+        # handler.
+        self.validate_file.assert_called_once_with(file_.pk)
+        assert self.validate_file.return_value.on_error.called
 
-        # Make sure we run the correct save validation task, with a
-        # fallback error handler.
-        self.save_file.assert_has_calls([
-            mock.call([mock.ANY, file_.pk, file_.version.channel, False],
-                      immutable=True),
-            mock.call([file_.pk, file_.version.channel, False],
-                      link_error=mock.ANY)])
+        # Make sure we run the correct save validation task.
+        self.save_file.assert_called_once_with(
+            file_.pk, file_.version.channel, False)
 
-
-class TestAddonsLinterListed(TestAddonsLinterBase):
-    @mock.patch('celery.Signature.__or__')
-    def test_run_once_per_file(self, chain_mock):
+    @mock.patch.object(utils.Validator, 'get_task')
+    def test_run_once_per_file(self, get_task_mock):
         """Tests that only a single validation task is run for a given file."""
-        task = mock.Mock()
-        chain_mock.return_value = task
-        task.delay.return_value = mock.Mock(task_id='42')
+        get_task_mock.return_value.delay.return_value = mock.Mock(task_id='42')
 
         assert isinstance(tasks.validate(self.file), mock.Mock)
-        assert task.delay.call_count == 1
+        assert get_task_mock.return_value.delay.call_count == 1
 
         assert isinstance(tasks.validate(self.file), AsyncResult)
-        assert task.delay.call_count == 1
+        assert get_task_mock.return_value.delay.call_count == 1
 
         new_version = version_factory(addon=self.addon, version='0.0.2')
         assert isinstance(tasks.validate(new_version.current_file), mock.Mock)
-        assert task.delay.call_count == 2
+        assert get_task_mock.return_value.delay.call_count == 2
 
-    @mock.patch('celery.Signature.__or__')
-    def test_run_once_file_upload(self, chain_mock):
+    @mock.patch.object(utils.Validator, 'get_task')
+    def test_run_once_file_upload(self, get_task_mock):
         """Tests that only a single validation task is run for a given file
         upload."""
-        task = mock.Mock()
-        chain_mock.return_value = task
-        task.delay.return_value = mock.Mock(task_id='42')
+        get_task_mock.return_value.delay.return_value = mock.Mock(task_id='42')
 
         assert isinstance(
             tasks.validate(self.file_upload, listed=True), mock.Mock)
-        assert task.delay.call_count == 1
+        assert get_task_mock.return_value.delay.call_count == 1
 
         assert isinstance(
             tasks.validate(self.file_upload, listed=True), AsyncResult)
-        assert task.delay.call_count == 1
+        assert get_task_mock.return_value.delay.call_count == 1
 
     def test_cache_key(self):
         """Tests that the correct cache key is generated for a given object."""
@@ -142,7 +134,7 @@ class TestAddonsLinterListed(TestAddonsLinterBase):
 
     @mock.patch('olympia.devhub.utils.parse_addon')
     def test_search_plugin(self, parse_addon):
-        """Test that search plugins are handled correctly."""
+        """Test that search plugins are handled correctly (new upload)."""
         parse_addon.return_value = {
             'guid': None,
             'version': '20140103',
@@ -150,13 +142,19 @@ class TestAddonsLinterListed(TestAddonsLinterBase):
 
         addon = addon_factory(type=amo.ADDON_SEARCH,
                               version_kw={'version': '20140101'})
-
         assert addon.guid is None
         self.check_upload(self.file_upload)
 
-        self.validate_upload.reset_mock()
-        self.save_file.reset_mock()
+    @mock.patch('olympia.devhub.utils.parse_addon')
+    def test_search_plugin_file(self, parse_addon):
+        """Test that search plugins are handled correctly (existing file)."""
+        parse_addon.return_value = {
+            'guid': None,
+            'version': '20140103',
+        }
 
+        addon = addon_factory(type=amo.ADDON_SEARCH,
+                              version_kw={'version': '20140101'})
         version = version_factory(addon=addon, version='20140102')
         self.check_file(version.files.get())
 
@@ -274,7 +272,7 @@ class TestFixAddonsLinterOutput(TestCase):
 
 
 @override_switch('akismet-spam-check', active=True)
-class TestGetAddonAkismetReports(TestCase):
+class TestGetAddonAkismetReports(UploadTest, TestCase):
     def setUp(self):
         super(TestGetAddonAkismetReports, self).setUp()
 
@@ -293,7 +291,7 @@ class TestGetAddonAkismetReports(TestCase):
 
     def test_upload(self):
         user = user_factory()
-        upload = FileUpload.objects.create()
+        upload = self.get_upload('webextension.xpi')
         self.parse_addon_mock.return_value = {'description': u'fóó'}
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'
@@ -309,7 +307,7 @@ class TestGetAddonAkismetReports(TestCase):
         # Give addon some existing metadata.
         addon = addon_factory()
         user = user_factory()
-        upload = FileUpload.objects.create(addon=addon)
+        upload = self.get_upload('webextension.xpi', addon=addon)
         # summary is parsed but it's in existing_data - i.e. should have
         # been spam checked previous it so will be ignored.
         self.parse_addon_mock.return_value = {
@@ -329,7 +327,7 @@ class TestGetAddonAkismetReports(TestCase):
     def test_upload_locales(self):
         addon = addon_factory(summary=u'¡Ochó!', default_locale='es-AR')
         user = user_factory()
-        upload = FileUpload.objects.create(addon=addon)
+        upload = self.get_upload('webextension.xpi', addon=addon)
         existing_data = utils.fetch_existing_translations_from_addon(
             addon, ('summary', 'name', 'description'))
         # check fetch_existing_translations_from_addon worked okay
@@ -409,7 +407,7 @@ class TestGetAddonAkismetReports(TestCase):
 
     def test_broken_upload(self):
         user = user_factory()
-        upload = FileUpload.objects.create()
+        upload = self.get_upload('webextension.xpi')
         self.parse_addon_mock.side_effect = ValidationError('foo')
         user_agent = 'Mr User/Agent'
         referrer = 'http://foo.baa/'

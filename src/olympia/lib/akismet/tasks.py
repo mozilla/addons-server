@@ -13,11 +13,11 @@ def submit_to_akismet(report_ids, submit_spam):
         report.submit_spam() if submit_spam else report.submit_ham()
 
 
-@task(ignore_result=False)
+@task
 def akismet_comment_check(report_ids):
     reports = AkismetReport.objects.filter(id__in=report_ids)
-    return [
-        (report.comment_type, report.comment_check()) for report in reports]
+    for report in reports:
+        report.comment_check()
 
 
 @task
