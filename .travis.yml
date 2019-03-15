@@ -2,7 +2,7 @@ language: python
 dist: xenial
 
 python:
-  - 2.7
+  - 3.6
 
 jobs:
   fast_finish: true
@@ -17,17 +17,14 @@ jobs:
     - { env: TOXENV=accounts-users-and-ratings }
     - { env: TOXENV=amo-lib-locales-and-signing }
     - { env: TOXENV=main }
-    - { python: 3.6, env: TOXENV=codestyle}
-    - { python: 3.6, env: TOXENV=docs }
-    - { python: 3.6, env: TOXENV=assets }
-    - { python: 3.6, env: TOXENV=es }
-    - { python: 3.6, env: TOXENV=addons-versions-and-files }
-    - { python: 3.6, env: TOXENV=devhub }
-    - { python: 3.6, env: TOXENV=reviewers-and-zadmin }
-    - { python: 3.6, env: TOXENV=accounts-users-and-ratings }
-    - { python: 3.6, env: TOXENV=amo-lib-locales-and-signing }
-    - { python: 3.6, env: TOXENV=main }
-    - { python: 3.6, env: TOXENV=assets  DJANGO=django22 }
+    - { env: TOXENV=assets DJANGO=django22 }
+    - { env: TOXENV=es DJANGO=django22 }
+    - { env: TOXENV=addons-versions-and-files DJANGO=django22 }
+    - { env: TOXENV=devhub DJANGO=django22 }
+    - { env: TOXENV=reviewers-and-zadmin DJANGO=django22 }
+    - { env: TOXENV=accounts-users-and-ratings DJANGO=django22 }
+    - { env: TOXENV=amo-lib-locales-and-signing DJANGO=django22 }
+    - { env: TOXENV=main DJANGO=django22 }
 
 env:
   global:
