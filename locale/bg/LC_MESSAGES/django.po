@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-03-14 09:29+0000\n"
+"PO-Revision-Date: 2019-03-15 15:38+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
 "Language: bg\n"
@@ -2904,9 +2904,8 @@ msgid "Describe Add-on"
 msgstr "Описание"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "Описание"
+msgstr "Опишете {0}"
 
 #, fuzzy
 msgid "Name and Summary"
