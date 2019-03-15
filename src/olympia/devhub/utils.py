@@ -16,7 +16,6 @@ from olympia.addons.models import Addon
 from olympia.amo.urlresolvers import linkify_escape
 from olympia.files.models import File, FileUpload
 from olympia.files.utils import parse_addon, parse_xpi
-from olympia.files.tasks import repack_fileupload
 from olympia.lib.akismet.models import AkismetReport
 from olympia.tags.models import Tag
 from olympia.translations.models import Translation
@@ -221,7 +220,7 @@ class Validator(object):
     Class which handles creating or fetching validation results for File
     and FileUpload instances.
 
-    It forwards the actual validation to `devhub.tasks:validate_file_path`
+    It forwards the actual validation to `devhub.tasks:validate_upload`
     and `devhub.tasks:validate_file` but implements shortcuts for
     legacy add-ons and search plugins to avoid running the linter.
     """
@@ -308,11 +307,7 @@ class Validator(object):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        # For uploads we return a chain where we repack the upload first.
-        return (
-            repack_fileupload.si(str(upload.uuid)) |
-            tasks.validate_file_path.si(upload.path, channel=channel)
-        )
+        return tasks.validate_upload.si(upload.pk, channel=channel)
 
 
 def add_dynamic_theme_tag(version):

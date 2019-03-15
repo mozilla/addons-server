@@ -445,8 +445,8 @@ class TestValidateFile(BaseUploadTest):
         assert addon.binary
 
     @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_ending_tier_is_preserved(self, v):
-        v.return_value = json.dumps({
+    def test_ending_tier_is_preserved(self, validate_file_path_mock):
+        validate_file_path_mock.return_value = json.dumps({
             "errors": 0,
             "success": True,
             "warnings": 0,
@@ -470,8 +470,9 @@ class TestValidateFile(BaseUploadTest):
         assert data['validation']['ending_tier'] == 5
 
     @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_validator_sets_binary_flag_for_content(self, v):
-        v.return_value = json.dumps({
+    def test_validator_sets_binary_flag_for_content(
+            self, validate_file_path_mock):
+        validate_file_path_mock.return_value = json.dumps({
             "errors": 0,
             "success": True,
             "warnings": 0,
@@ -496,8 +497,8 @@ class TestValidateFile(BaseUploadTest):
         assert addon.binary
 
     @mock.patch('olympia.devhub.tasks.validate_file_path')
-    def test_linkify_validation_messages(self, v):
-        v.return_value = json.dumps({
+    def test_linkify_validation_messages(self, validate_file_path_mock):
+        validate_file_path_mock.return_value = json.dumps({
             "errors": 0,
             "success": True,
             "warnings": 1,

@@ -48,10 +48,13 @@ def extract_webext_permissions(ids, **kw):
 
 @task
 @use_primary_db
-def repack_fileupload(upload_uuid):
-    log.info('Starting task to repackage FileUpload %s', upload_uuid)
-    upload = FileUpload.objects.get(uuid=upload_uuid)
-    if upload.name.endswith(amo.VALID_ADDON_FILE_EXTENSIONS):
+def repack_fileupload(upload_pk):
+    log.info('Starting task to repackage FileUpload %s', upload_pk)
+    upload = FileUpload.objects.get(pk=upload_pk)
+    # When a FileUpload is created and a file added to it, if it's a xpi/zip,
+    # it should be move to upload.path, and it should have a .xpi extension,
+    # so we only need to care about that extension here.
+    if upload.path.endswith('.xpi'):
         try:
             tempdir = extract_zip(upload.path)
         except Exception:
@@ -59,15 +62,15 @@ def repack_fileupload(upload_uuid):
             # This task should have a on_error attached when called by
             # Validator(), so we can just raise and the developer will get a
             # generic error message.
-            log.exception('Could not extract %s for repack.', upload_uuid)
+            log.exception('Could not extract upload %s for repack.', upload_pk)
             raise
-        log.info('Zip from %s extracted, repackaging', upload_uuid)
+        log.info('Zip from upload %s extracted, repackaging', upload_pk)
         file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
         shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
         with open(file_.name, 'rb') as f:
             upload.hash = get_sha256(f)
-        log.info('Zip from %s repackaged, moving file back', upload_uuid)
+        log.info('Zip from upload %s repackaged, moving file back', upload_pk)
         move_stored_file(file_.name, upload.path)
         upload.save()
     else:
-        log.info('Not repackaging %s, it is not a xpi file.', upload_uuid)
+        log.info('Not repackaging upload %s, it is not a xpi file.', upload_pk)

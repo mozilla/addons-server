@@ -497,33 +497,33 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
 class TestValidateFilePath(ValidatorTestCase):
 
     def test_success(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('valid_webextension.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
         assert result['success']
         assert not result['errors']
         assert not result['warnings']
 
     def test_fail_warning(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('valid_webextension_warning.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
         assert result['success']
         assert not result['errors']
         assert result['warnings']
 
     def test_fail_error(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('invalid_webextension_invalid_id.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
 
     def test_returns_skeleton_for_search_plugin(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('searchgeek-20090701.xml'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
 
         expected = amo.VALIDATOR_SKELETON_RESULTS
         assert result == expected
