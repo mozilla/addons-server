@@ -467,7 +467,7 @@ def test_get_diff_add_new_file():
 
     assert changes[0]['hunks'] == [{
         'changes': [{
-            'content': '{"id": "random"}\n',
+            'content': '{"id": "random"}',
             'new_line_number': 1,
             'old_line_number': -1,
             'type': 'insert'
@@ -476,7 +476,7 @@ def test_get_diff_add_new_file():
         'new_start': 1,
         'old_lines': 0,
         'old_start': 0,
-        'header': '@@ -0,0 +1 @@\n',
+        'header': '@@ -0,0 +1 @@',
     }]
 
     assert changes[0]['is_binary'] is False
@@ -527,7 +527,7 @@ def test_get_diff_change_files():
     # removing everything and adding new content
     assert len(changes[0]['hunks']) == 1
 
-    assert changes[0]['hunks'][0]['header'] == '@@ -1,25 +1 @@\n'
+    assert changes[0]['hunks'][0]['header'] == '@@ -1,25 +1 @@'
     assert changes[0]['hunks'][0]['old_start'] == 1
     assert changes[0]['hunks'][0]['new_start'] == 1
     assert changes[0]['hunks'][0]['old_lines'] == 25
@@ -536,7 +536,7 @@ def test_get_diff_change_files():
     hunk_changes = changes[0]['hunks'][0]['changes']
 
     assert hunk_changes[0] == {
-        'content': '# notify-link-clicks-i18n\n',
+        'content': '# notify-link-clicks-i18n',
         'new_line_number': -1,
         'old_line_number': 1,
         'type': 'delete'
@@ -545,7 +545,7 @@ def test_get_diff_change_files():
     assert all(x['type'] == 'delete' for x in hunk_changes[:-1])
 
     assert hunk_changes[-1] == {
-        'content': 'Updated readme\n',
+        'content': 'Updated readme',
         'new_line_number': 1,
         'old_line_number': -1,
         'type': 'insert',
@@ -566,7 +566,7 @@ def test_get_diff_change_files():
     # removing everything and adding new content
     assert len(changes[1]['hunks']) == 1
 
-    assert changes[1]['hunks'][0]['header'] == '@@ -1,32 +1 @@\n'
+    assert changes[1]['hunks'][0]['header'] == '@@ -1,32 +1 @@'
     assert changes[1]['hunks'][0]['old_start'] == 1
     assert changes[1]['hunks'][0]['new_start'] == 1
     assert changes[1]['hunks'][0]['old_lines'] == 32
@@ -577,7 +577,7 @@ def test_get_diff_change_files():
     assert all(x['type'] == 'delete' for x in hunk_changes[:-1])
 
     assert hunk_changes[-1] == {
-        'content': '{"id": "random"}\n',
+        'content': '{"id": "random"}',
         'new_line_number': 1,
         'old_line_number': -1,
         'type': 'insert'
@@ -700,7 +700,7 @@ def test_get_diff_change_files_pathspec():
     # removing everything and adding new content
     assert len(changes[0]['hunks']) == 1
 
-    assert changes[0]['hunks'][0]['header'] == '@@ -1,25 +1 @@\n'
+    assert changes[0]['hunks'][0]['header'] == '@@ -1,25 +1 @@'
     assert changes[0]['hunks'][0]['old_start'] == 1
     assert changes[0]['hunks'][0]['new_start'] == 1
     assert changes[0]['hunks'][0]['old_lines'] == 25
@@ -709,7 +709,7 @@ def test_get_diff_change_files_pathspec():
     hunk_changes = changes[0]['hunks'][0]['changes']
 
     assert hunk_changes[0] == {
-        'content': '# notify-link-clicks-i18n\n',
+        'content': '# notify-link-clicks-i18n',
         'new_line_number': -1,
         'old_line_number': 1,
         'type': 'delete'
@@ -718,7 +718,7 @@ def test_get_diff_change_files_pathspec():
     assert all(x['type'] == 'delete' for x in hunk_changes[:-1])
 
     assert hunk_changes[-1] == {
-        'content': 'Updated readme\n',
+        'content': 'Updated readme',
         'new_line_number': 1,
         'old_line_number': -1,
         'type': 'insert',

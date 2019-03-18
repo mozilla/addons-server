@@ -5503,7 +5503,7 @@ class TestReviewAddonVersionCompareViewSet(
 
         change = result['file']['diff'][0]['hunks'][0]['changes'][0]
 
-        assert change['content'] == '# beastify\n'
+        assert change['content'] == '# beastify'
         assert change['type'] == 'insert'
 
     def test_version_get_not_found(self):
@@ -5543,13 +5543,13 @@ class TestReviewAddonVersionCompareViewSet(
         assert result['file']['diff'][0]['path'] == 'README.md'
         assert result['file']['diff'][0]['hunks'][0]['changes'] == [
             {
-                'content': '# beastify\n',
+                'content': '# beastify',
                 'new_line_number': -1,
                 'old_line_number': 1,
                 'type': 'delete'
             },
             {
-                'content': 'Updated readme\n',
+                'content': 'Updated readme',
                 'new_line_number': 1,
                 'old_line_number': -1,
                 'type': 'insert'

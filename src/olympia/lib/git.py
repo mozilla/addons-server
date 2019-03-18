@@ -488,7 +488,7 @@ class AddonGitRepository(object):
                     origin = '-'
 
                 changes.append({
-                    'content': line.content,
+                    'content': line.content.rstrip('\r\n'),
                     'type': GIT_DIFF_LINE_MAPPING[origin],
                     # Can be `-1` for additions
                     'old_line_number': line.old_lineno,
@@ -496,7 +496,7 @@ class AddonGitRepository(object):
                 })
 
             hunks.append({
-                'header': hunk.header,
+                'header': hunk.header.rstrip('\r\n'),
                 'old_start': hunk.old_start,
                 'new_start': hunk.new_start,
                 'old_lines': hunk.old_lines,
