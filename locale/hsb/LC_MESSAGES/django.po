@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 11:11+0000\n"
+"PO-Revision-Date: 2019-03-18 11:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -55,7 +55,7 @@ msgstr "Wuwiwarjo přidatkow abo drastow njemóža swoje konto zhašeć. Dyrbić
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr "Zdźělenja [%s] njeeksistuje"
+msgstr "Zdźělenka [%s] njeeksistuje"
 
 msgid "Review"
 msgstr "Pohódnoćenje"
@@ -5436,7 +5436,7 @@ msgstr "Zapopadńće web {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
-msgstr ""
+msgstr "Inteligentne rozšěrjenje, kotrež wam pomha, spěšnje rozumić, do čehož zwoliće."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
