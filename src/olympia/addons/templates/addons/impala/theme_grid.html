@@ -33,5 +33,11 @@
     {% endfor %}
   </ul>
 {% else %}
-  {% include "search/no_results.html" %}
+<div class="featured-inner">
+  <div class="listing-header">
+    <p class="no-results">
+      {{ _('No results found.') }}
+    </p>
+  </div>
+</div>
 {% endif %}

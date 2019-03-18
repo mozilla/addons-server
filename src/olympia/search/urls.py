@@ -1,11 +1,8 @@
 from django.conf.urls import url
 
-from . import views
+from olympia.amo.views import frontend_view
 
 
 urlpatterns = [
-    url(r'^(?:es)?$', views.search, name='search.search'),
-    url(r'^ajax$', views.ajax_search, name='search.ajax'),
-    url(r'^suggestions$', views.ajax_search_suggestions,
-        name='search.suggestions'),
+    url(r'^(?:es)?$', frontend_view, name='search.search'),
 ]

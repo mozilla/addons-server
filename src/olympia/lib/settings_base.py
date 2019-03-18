@@ -404,7 +404,6 @@ MIDDLEWARE = (
     'olympia.amo.middleware.NoVarySessionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'olympia.amo.middleware.AuthenticationMiddlewareWithoutAPI',
-    'olympia.search.middleware.ElasticsearchExceptionMiddleware',
 
     # Our middleware that adds additional information for the user
     # and API about our read-only status.
