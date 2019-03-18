@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 09:31+0000\n"
+"PO-Revision-Date: 2019-03-18 08:54+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -5398,7 +5398,6 @@ msgstr "您不得送出 GUID 結尾為「%s」的附加元件"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "您不能上傳已由 Mozilla 簽署過的擴充套件"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "不支援的檔案格式，請上傳支援的 {extensions} 格式檔案。"
 
