@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 12:51+0000\n"
+"PO-Revision-Date: 2019-03-18 12:52+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -5428,9 +5428,8 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "Dopołne boki - abo jano źele z nich - ako jadnučku HTML-dataju składowaś."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zapópadniśo web {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Pśeskócćo njezmysł {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
@@ -5531,7 +5530,6 @@ msgstr "Njamóžośo žeden dodank z GUID zapódaś, kótaryž kóńcy se na %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Njamóžośo signěrowane rozšyrjenje Mozilla zapódaś"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Njepódpěrany datajowy typ, pšosym nagrajśo pódpěranu dataju {extensions}."
 
