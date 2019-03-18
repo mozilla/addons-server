@@ -6,7 +6,6 @@ from django.conf import settings
 
 import olympia.core.logger
 
-from olympia import amo
 from olympia.amo.celery import task
 from olympia.amo.decorators import use_primary_db
 from olympia.amo.storage_utils import move_stored_file
@@ -54,6 +53,8 @@ def repack_fileupload(upload_pk):
     # When a FileUpload is created and a file added to it, if it's a xpi/zip,
     # it should be move to upload.path, and it should have a .xpi extension,
     # so we only need to care about that extension here.
+    # We don't trust upload.name: it's the original filename as used by the
+    # developer, so it could be something else.
     if upload.path.endswith('.xpi'):
         try:
             tempdir = extract_zip(upload.path)
@@ -68,7 +69,7 @@ def repack_fileupload(upload_pk):
         file_ = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
         shutil.make_archive(os.path.splitext(file_.name)[0], 'zip', tempdir)
         with open(file_.name, 'rb') as f:
-            upload.hash = get_sha256(f)
+            upload.hash = 'sha256:%s' % get_sha256(f)
         log.info('Zip from upload %s repackaged, moving file back', upload_pk)
         move_stored_file(file_.name, upload.path)
         upload.save()
