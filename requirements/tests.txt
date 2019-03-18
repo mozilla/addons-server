@@ -75,9 +75,8 @@ pluggy==0.9.0 \
 atomicwrites==1.3.0 \
     --hash=sha256:03472c30eb2c5d1ba9227e4c2ca66ab8287fbfbbda3888aa93dc2e28fc6811b4 \
     --hash=sha256:75a9445bac02d8d058d5e1fe689654ba5a6556a1dfd8ce6ec55a0ed79866cfa6
-PyFxA==0.6.0 \
-    --hash=sha256:d511b6f43a9445587c609a138636d378de76661561116e1f4259fcec9d09b42b \
-    --hash=sha256:e37149cf27e26eed2b321389d313c876ffbbdd7868ec7f0694a8989847b9c8da
+PyFxA==0.7.1 \
+    --hash=sha256:616689486d8d63956aa40836cffafde6e7590cdeb200badabaaf3c17d5b26cce
 PyBrowserID==0.14.0 \
     --hash=sha256:6c227669e87cc25796ae76f6a0ef65025528c8ad82d352679fa9a3e5663a71e3 \
     --hash=sha256:8e237d6a2bc9ead849a4472a84d3e6a9309bec99cf8e10d36213710dda8df8ca
