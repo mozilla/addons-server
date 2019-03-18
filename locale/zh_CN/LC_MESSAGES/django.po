@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 09:50+0000\n"
+"PO-Revision-Date: 2019-03-18 09:48+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5256,7 +5256,7 @@ msgstr "轻点鼠标，全屏看视频。"
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "留存记忆 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
@@ -5264,11 +5264,11 @@ msgstr "停止后台标签页，避免它们占用内存。"
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "保存网页内容 {start_sub_heading}就用 {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "将整个页面，或是页面局部，保存为单个 HTML 文件。"
 
 #. editorial content for the discovery pane.
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
