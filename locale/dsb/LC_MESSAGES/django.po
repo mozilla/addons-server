@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 11:16+0000\n"
+"PO-Revision-Date: 2019-03-18 12:51+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -941,13 +941,11 @@ msgstr "Wopacny typ za jaden kluc abo někotare kluce w nakładnej śěžy"
 msgid "Invalid JWT Token."
 msgstr "Njepłaśiwy JWT-token."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Njepłaśiwy abo wobškóźony archiw."
+msgstr "Njepłaśiwy token abo haš."
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "E-mailowa adresa"
+msgstr "E-mailowa adresa njejo se namakała."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Pólo musy nanejmjenjej {num} znamuškow dłujke byś."
@@ -5414,7 +5412,6 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Z kliknjenim myški móžośo se wideo w połnej kšasnosći na wobrazowce woglědaś."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Zažaŕśo skład {start_sub_heading}z {addon_name}{end_sub_heading}"
 
@@ -5423,9 +5420,8 @@ msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Njebrojśo gódnotny skład z inaktiwnymi rejtarkami."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Pytajśo wobraze {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Składujśo boki {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
