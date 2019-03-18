@@ -84,7 +84,7 @@ help_submake:
 .PHONY: initialize_db
 initialize_db:
 	rm -rf ./user-media/* ./tmp/*
-	$(PYTHON_COMMAND) manage.py reset_db
+	$(PYTHON_COMMAND) manage.py create_db --force
 	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
 	$(PYTHON_COMMAND) manage.py loaddata initial.json
 	$(PYTHON_COMMAND) manage.py import_prod_versions
@@ -168,7 +168,7 @@ reindex:
 setup-ui-tests:
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
-	$(PYTHON_COMMAND) manage.py reset_db --noinput
+	$(PYTHON_COMMAND) manage.py create_db --force
 	$(PYTHON_COMMAND) manage.py migrate --noinput --run-syncdb
 	./schematic --fake src/olympia/migrations/
 

@@ -59,7 +59,7 @@ AES_KEYS = {
 }
 
 DATABASES = {
-    'default': get_db_config('DATABASES_DEFAULT_URL', charset='utf8mb4'),
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
 }
 
 # FxA config for local development only.

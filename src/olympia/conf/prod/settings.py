@@ -34,10 +34,8 @@ INBOUND_EMAIL_DOMAIN = env('INBOUND_EMAIL_DOMAIN',
                            default='addons.mozilla.org')
 
 DATABASES = {
-    'default': get_db_config('DATABASES_DEFAULT_URL', charset='utf8mb4'),
-    'replica': get_db_config(
-        'DATABASES_REPLICA_URL', atomic_requests=False, charset='utf8mb4',
-    ),
+    'default': get_db_config('DATABASES_DEFAULT_URL'),
+    'replica': get_db_config('DATABASES_REPLICA_URL', atomic_requests=False),
 }
 
 SERVICES_DATABASE = get_db_config('SERVICES_DATABASE_URL')
