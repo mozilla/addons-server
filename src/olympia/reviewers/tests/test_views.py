@@ -5285,7 +5285,7 @@ class TestReviewAddonVersionViewSetDetail(
         assert response.status_code == 200
         result = json.loads(response.content)
 
-        assert result['file']['content'] == '# beastify'
+        assert result['file']['content'] == '# beastify\n'
 
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')
