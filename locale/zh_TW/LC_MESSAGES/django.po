@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-02-26 05:26+0000\n"
-"PO-Revision-Date: 2019-02-26 07:08+0000\n"
+"PO-Revision-Date: 2019-03-18 01:44+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -3732,7 +3732,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "登入後即可編輯並更新您的附加元件"
 
 msgid "Write one code base for many browsers"
-msgstr ""
+msgstr "寫一份 Code 就能給多套瀏覽器使用"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
@@ -3740,7 +3740,7 @@ msgid ""
 msgstr ""
 
 msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
+msgstr "閱讀跨瀏覽器開發的最佳實踐"
 
 msgid "Welcome Back"
 msgstr "歡迎回來"
@@ -3756,7 +3756,7 @@ msgid "You can help users gain confidence and trust in your extension by followi
 msgstr ""
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "參閱最佳實踐"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "通過程式碼審查後就會在本網站上架，自動更新機制也交給本網站處理。"
