@@ -60,8 +60,6 @@ SILENCED_SYSTEM_CHECKS = (
     # Recommendation to use OneToOneField instead of ForeignKey(unique=True)
     # but our translations are the way they are...
     'fields.W342',
-    # AuthenticationMiddleware must be in MIDDLEWARE but we use a subclass
-    'admin.E408',
 )
 
 # LESS CSS OPTIONS (Debug only).
