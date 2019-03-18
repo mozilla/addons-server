@@ -1144,7 +1144,7 @@ def write_crx_as_xpi(chunks, target):
     """
     # First we open the uploaded CRX so we can see how much we need
     # to trim from the header of the file to make it a valid ZIP.
-    with tempfile.NamedTemporaryFile('rwb+', dir=settings.TMP_PATH) as tmp:
+    with tempfile.NamedTemporaryFile('w+b', dir=settings.TMP_PATH) as tmp:
         for chunk in chunks:
             tmp.write(chunk)
 

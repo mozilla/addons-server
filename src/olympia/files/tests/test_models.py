@@ -994,6 +994,35 @@ class TestFileUpload(UploadTest):
         assert 'truncated' in validation['messages'][0]['message']
         assert validation['messages'][0]['type'] == 'error'
 
+    def test_webextension_zip(self):
+        """Test to ensure we accept ZIP uploads, but convert them into XPI
+        files ASAP to keep things simple.
+        """
+        upload = self.get_upload(filename='webextension_no_id.zip')
+        assert upload.path.endswith('.xpi')
+        storage.delete(upload.path)
+
+    def test_webextension_crx(self):
+        """Test to ensure we accept CRX uploads, but convert them into XPI
+        files ASAP to keep things simple.
+        """
+        upload = self.get_upload('webextension.crx')
+        assert upload.path.endswith('.xpi')
+        storage.delete(upload.path)
+
+    def test_webextension_crx_large(self):
+        """Test to ensure we accept large CRX uploads, because of how we
+        write them to storage.
+        """
+        upload = self.get_upload('https-everywhere.crx')
+        assert upload.path.endswith('.xpi')
+        storage.delete(upload.path)
+
+    def test_extension_zip(self):
+        upload = self.get_upload('recurse.zip')
+        assert upload.path.endswith('.xpi')
+        storage.delete(upload.path)
+
 
 def test_file_upload_passed_all_validations_processing():
     upload = FileUpload(valid=False, validation='')
@@ -1222,50 +1251,6 @@ class TestFileFromUpload(UploadTest):
             upload, self.version, self.platform,
             parsed_data={'is_webextension': True})
         assert file_.is_webextension
-
-    def test_webextension_zip(self):
-        """Test to ensure we accept ZIP uploads, but convert them into XPI
-        files ASAP to keep things simple.
-        """
-        upload = self.upload('webextension.zip')
-        file_ = File.from_upload(
-            upload, self.version, self.platform,
-            parsed_data={'is_webextension': True})
-        assert file_.filename.endswith('.xpi')
-        assert file_.is_webextension
-        storage.delete(upload.path)
-
-    def test_webextension_crx(self):
-        """Test to ensure we accept CRX uploads, but convert them into XPI
-        files ASAP to keep things simple.
-        """
-        upload = self.upload('webextension.crx')
-        file_ = File.from_upload(
-            upload, self.version, self.platform,
-            parsed_data={'is_webextension': True})
-        assert file_.filename.endswith('.xpi')
-        assert file_.is_webextension
-        storage.delete(upload.path)
-
-    def test_webextension_crx_large(self):
-        """Test to ensure we accept large CRX uploads, because of how we
-        write them to storage.
-        """
-        upload = self.upload('https-everywhere.crx')
-        file_ = File.from_upload(
-            upload, self.version, self.platform,
-            parsed_data={'is_webextension': True})
-        assert file_.filename.endswith('.xpi')
-        assert file_.is_webextension
-        storage.delete(upload.path)
-
-    def test_extension_zip(self):
-        upload = self.upload('recurse.zip')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        assert file_.filename.endswith('.xpi')
-        assert not file_.is_webextension
-        storage.delete(upload.path)
 
     def test_not_webextension(self):
         upload = self.upload('extension')
