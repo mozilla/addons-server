@@ -429,9 +429,9 @@ class ManifestJSONExtractor(object):
                 (amo.FIREFOX, amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX),
             )
         elif type_ == amo.ADDON_DICT:
-            # WebExt dicts are only compatible with Firefox desktop >= 61.
+            # WebExt dicts are only compatible with Thunderbird >= 60.5.
             apps = (
-                (amo.FIREFOX, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX),
+                (amo.THUNDERBIRD, amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD),
             )
         else:
             apps = (

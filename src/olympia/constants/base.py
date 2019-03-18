@@ -424,6 +424,8 @@ DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX = '53.0'
 # Dicts are not compatible with Firefox for Android, only desktop is relevant.
 DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX = '61.0'
 
+# The version of Thunderbird that first supported webext dictionaries.
+DEFAULT_WEBEXT_DICT_MIN_VERSION_THUNDERBIRD = '60.5.0'
 
 E10S_UNKNOWN = 0
 E10S_COMPATIBLE = 1
