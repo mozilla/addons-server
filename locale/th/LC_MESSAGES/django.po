@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2019-01-11 19:13+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
@@ -54,6 +54,10 @@ msgid "Need help?"
 msgstr "ต้องการความช่วยเหลือ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
+msgstr ""
+
+#, python-format
+msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
@@ -147,9 +151,6 @@ msgstr ""
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "ก่อนที่จะเปลี่ยนภาษาเริ่มต้นของคุณ คุณจะต้องมีชื่อ บทสรุป และคำอธิบายในภาษานั้น คุณยังขาด %s"
-
-msgid "A license must be selected."
-msgstr "ลิขสิทธิ์จะต้องถูกเลือก"
 
 msgid "Listed"
 msgstr "รายการ"
@@ -677,9 +678,6 @@ msgstr "ไม่ถูกต้อง โปรดลองอีกครั�
 msgid "Error verifying input, please try again."
 msgstr ""
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "สิ่งนี้ต้องเป็นโค้ดสี hex ที่ถูกต้อง เช่น #000000"
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
@@ -893,6 +891,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "โทเค็น JWT ไม่ถูกต้อง"
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "โทเค็น JWT ไม่ถูกต้อง"
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "ที่อยู่อีเมล"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -2624,9 +2630,6 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-msgid "Please check the form for errors."
-msgstr ""
-
 #, fuzzy
 msgid "Review requested."
 msgstr "บทวิจารณ์:"
@@ -3959,107 +3962,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "บทวิจารณ์ชุดตกแต่ง"
 
-msgid "Create a New Theme"
-msgstr "สร้างชุดตกแต่งใหม่"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Theme Details"
-msgstr "รายละเอียดชุดตกแต่ง"
-
-msgid "Give your Theme a name."
-msgstr ""
-
-msgid "Supply a pretty URL for your detail page."
-msgstr ""
-
-msgid "Select the category that best describes your Theme."
-msgstr ""
-
-msgid "Add some tags to describe your Theme."
-msgstr ""
-
-msgid "Describe your Theme."
-msgstr "อธิบายชุดตกแต่งของคุณ"
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
-
-msgid "Theme License"
-msgstr ""
-
-msgid "Select a license for your Theme."
-msgstr ""
-
-msgid "Theme Design"
-msgstr ""
-
-msgid "Select colors for your Theme."
-msgstr ""
-
-msgid "Foreground Text"
-msgstr ""
-
-msgid "This is the color of the tab text"
-msgstr ""
-
-msgid "Background"
-msgstr "พื้นหลัง"
-
-msgid "This is the color of the tabs"
-msgstr ""
-
-msgid "Your Theme's Name"
-msgstr "ชื่อชุดตกแต่งของคุณ"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "โดย <a href=\"%(profile_url)s\">%(user)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-
-msgid "Submit Theme"
-msgstr "ส่งชุดตกแต่ง"
-
-msgid "You're done!"
-msgstr "เสร็จแล้ว!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
-
-msgid "Next steps:"
-msgstr "ขั้นต่อไป:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr ""
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr ""
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
-
-msgid "Select a header image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 พิกเซล"
-
-msgid "300 KB max"
-msgstr "สูงสุด 300 KB"
-
-msgid "PNG or JPG"
-msgstr "PNG หรือ JPG"
-
 msgid "Manage Version {0}"
 msgstr "จัดการรุ่น {0}"
 
@@ -4770,14 +4672,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5497,11 +5391,27 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5599,7 +5509,7 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
@@ -6265,17 +6175,6 @@ msgstr ""
 msgid "Choose a canned response..."
 msgstr ""
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr ""
-
-msgid "Someone else is reviewing this theme."
-msgstr ""
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr ""
-
 msgid "Private Whiteboard"
 msgstr ""
 
@@ -6313,21 +6212,6 @@ msgid "Is locked by a reviewer."
 msgstr ""
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -6472,25 +6356,6 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] ""
 
-#, fuzzy
-msgid "New Themes ({0})"
-msgstr "ส่วนเสริมสำหรับ {0}"
-
-msgid "Themes Updates ({0})"
-msgstr "การอัปเดตชุดตกแต่ง ({0})"
-
-#, fuzzy
-msgid "Flagged Themes ({0})"
-msgstr "ชุดตกแต่งที่แนะนำ"
-
-#, fuzzy
-msgid "Lightweight Themes Review Log"
-msgstr "บทวิจารณ์ชุดตกแต่ง"
-
-#, fuzzy
-msgid "Deleted Themes Log"
-msgstr "ลบชุดตกแต่ง"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -6539,13 +6404,6 @@ msgstr ""
 #, fuzzy
 msgid "{addon} :: Privacy Policy"
 msgstr "นโยบายความเป็นส่วนตัว"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
 
 msgid "{addon} :: Abuse Reports"
 msgstr ""
@@ -6940,124 +6798,6 @@ msgstr ""
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr ""
 
-msgid "Date Deleted"
-msgstr ""
-
-msgid "No deleted themes found for this period."
-msgstr ""
-
-msgid "Theme Review History for {0}"
-msgstr ""
-
-msgid "Review Date"
-msgstr ""
-
-msgid "Action"
-msgstr ""
-
-msgid "Reason"
-msgstr ""
-
-msgid "There are currently no reviews."
-msgstr ""
-
-msgid "Flagged Themes"
-msgstr ""
-
-msgid "Theme Review Queue"
-msgstr ""
-
-msgid "Queues"
-msgstr ""
-
-msgid "Review Options"
-msgstr ""
-
-msgid "Auto-advance after review"
-msgstr ""
-
-msgid "Enable keyboard shortcuts"
-msgstr ""
-
-msgid "Keyboard Shortcuts"
-msgstr "ทางลัดบนแป้นพิมพ์"
-
-msgid "Next Theme"
-msgstr "ธีมถัดไป"
-
-msgid "Previous Theme"
-msgstr "ธีมก่อนหน้า"
-
-msgid "Your Review History"
-msgstr ""
-
-msgid "Commit Review"
-msgstr ""
-
-msgid "Commit Reviews"
-msgstr ""
-
-msgid "{0} out of {1} reviewed"
-msgstr ""
-
-msgid "There are currently no Themes to review."
-msgstr ""
-
-msgid "Clear Search"
-msgstr "ล้างการค้นหา"
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr ""
-
-msgid "Reviewers' Guide"
-msgstr ""
-
-msgid "Theme Review for {0}"
-msgstr ""
-
-msgid "Edit Listing"
-msgstr "แก้ไขรายการ"
-
-msgid "(Probable Duplicate Submission)"
-msgstr ""
-
-msgid "Submitted"
-msgstr "ส่งแล้ว"
-
-msgid "Past Review Notes"
-msgstr ""
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr ""
-
-msgid "Flagged: {0}"
-msgstr ""
-
-msgid "Approve Theme"
-msgstr ""
-
-msgid "Field required"
-msgstr ""
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr ""
-
-msgid "Select a reason for rejection"
-msgstr ""
-
-msgid "Describe your reason for rejection"
-msgstr ""
-
-msgid "Ask a question to the artist"
-msgstr ""
-
-msgid "Describe your reason for flagging"
-msgstr ""
-
 msgid "Rejected or Unreviewed"
 msgstr ""
 
@@ -7083,12 +6823,6 @@ msgstr[0] "ส่วนเสริมสำหรับ {0}"
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ข้อมูลพื้นฐาน"
-
-msgid "Flagged"
-msgstr ""
-
-msgid "Updates"
-msgstr ""
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7647,27 +7381,6 @@ msgstr ""
 msgid "Activity Logs"
 msgstr "กิจกรรม"
 
-msgid "Email must be {email}."
-msgstr ""
-
-msgid "Display Name"
-msgstr ""
-
-msgid "Location"
-msgstr "ตำแหน่งที่ตั้ง"
-
-msgid "Occupation"
-msgstr "อาชีพ"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr ""
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
-
 msgid "No user with that email."
 msgstr ""
 
@@ -7705,200 +7418,12 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-msgid "An email address is required."
-msgstr ""
-
-msgid "A user with that email address does not exist."
-msgstr ""
-
-msgid "Profile Deleted"
-msgstr "ลบโปรไฟล์แล้ว"
-
-msgid "Photo Deleted"
-msgstr ""
-
-msgid "Profile Updated"
-msgstr "อัปเดตโปรไฟล์แล้ว"
-
-msgid "Errors Found"
-msgstr ""
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
-
-msgid "User reported."
-msgstr ""
-
-msgid "new"
-msgstr "ใหม่"
-
 msgid "Ban"
 msgstr ""
 
 #, fuzzy
 msgid "Delete picture"
 msgstr "ลบการตอบกลับ"
-
-msgid "Delete User Account"
-msgstr "ลบบัญชีผู้ใช้"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
-
-msgid "Confirm account deletion"
-msgstr "ยืนยันการลบบัญชี"
-
-msgid "I understand this step cannot be undone."
-msgstr ""
-
-msgid "Delete my user account now"
-msgstr "ลบบัญชีผู้ใช้ของฉันตอนนี้"
-
-msgid "Delete User Photo"
-msgstr ""
-
-msgid "Delete my user picture now"
-msgstr ""
-
-msgid "Please set your display name"
-msgstr ""
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr ""
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
-
-msgid "Email Address"
-msgstr "ที่อยู่อีเมล"
-
-msgid "Manage Firefox Account..."
-msgstr "จัดการบัญชี Firefox..."
-
-msgid "Profile"
-msgstr "โปรไฟล์"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
-
-msgid "This URL will only be visible if you are a developer."
-msgstr ""
-
-msgid "Choose Photo&hellip;"
-msgstr ""
-
-msgid "Delete current photo"
-msgstr ""
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
-
-msgid "Decide what collections should be shown in your profile."
-msgstr ""
-
-msgid "Display the collections I have created"
-msgstr ""
-
-msgid "Notifications"
-msgstr "การแจ้งเตือน"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
-
-msgid "Admin"
-msgstr "ผู้ดูแล"
-
-msgid "Delete Account"
-msgstr "ลบบัญชี"
-
-msgid "Update Account"
-msgstr "อัปเดตบัญชี"
-
-msgid "none"
-msgstr ""
-
-msgid "all"
-msgstr ""
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "Password Reset"
-msgstr ""
-
-msgid "User Info for {0}"
-msgstr ""
-
-msgid "Edit profile"
-msgstr "แก้ไขโปรไฟล์"
-
-msgid "Manage user"
-msgstr "จัดการผู้ใช้"
-
-msgid "Report user"
-msgstr "รายงานผู้ใช้"
-
-msgid "Add-ons Developer"
-msgstr "นักพัฒนาส่วนเสริม"
-
-msgid "Themes Artist"
-msgstr ""
-
-msgid "About me"
-msgstr "เกี่ยวกับฉัน"
-
-msgid "In a little more detail..."
-msgstr ""
-
-msgid "Add-ons I've created"
-msgstr ""
-
-msgid "View all"
-msgstr "ดูทั้งหมด"
-
-msgid "My Most Popular Themes"
-msgstr ""
-
-msgid "Themes I've created"
-msgstr ""
-
-msgid "Created by Me"
-msgstr ""
-
-msgid "My Reviews"
-msgstr ""
-
-msgid "No add-on reviews yet."
-msgstr ""
-
-msgid "Report User"
-msgstr ""
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
-
-msgid "Report user {0}"
-msgstr ""
 
 msgid "Unsubscribe"
 msgstr ""
@@ -7924,37 +7449,6 @@ msgstr ""
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-
-msgid "Developer Information"
-msgstr ""
-
-msgid "User since"
-msgstr ""
-
-msgid "Time of last login"
-msgstr ""
-
-msgid "IP address of last login"
-msgstr ""
-
-msgid "Number of add-ons developed"
-msgstr ""
-
-msgid "{0} add-ons"
-msgstr "ส่วนเสริม {0}"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s ชุดตกแต่ง"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s ส่วนเสริม"
-
-msgid "Average rating of developer's add-ons"
 msgstr ""
 
 msgctxt "user_list_others"

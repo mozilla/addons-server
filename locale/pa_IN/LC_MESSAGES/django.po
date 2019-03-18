@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2019-02-22 14:40+0000\n"
 "Last-Translator: Sonia <soniasingla.1812@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,6 +51,10 @@ msgstr "ਮਦਦ ਚਾਹੀਦੀ ਹੈ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr "ਐਡ-ਆਨ ਜਾਂ ਥੀਮ ਦੇ ਡਿਵੈਲਪਰ ਆਪਣਾ ਖਾਤਾ ਨਹੀਂ ਮਿਟਾ ਸਕਦੇ। ਤੁਹਾਨੂੰ ਇਸ ਅਕਾਊਂਟ ਨਾਲ ਸਬੰਧਿਤ ਸਾਰੇ ਐਡ-ਆਨ ਅਤੇ ਥੀਮ ਨੂੰ ਮਿਟਾਉਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਾਂ ਉਨ੍ਹਾਂ ਨੂੰ ਦੂਜੇ ਉਪਭੋਗਤਾਵਾਂ ਨੂੰ ਟਰਾਂਸਫਰ ਕਰਨਾ ਚਾਹੀਦਾ ਹੈ।"
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "ਸਮੀਖਿਆ"
@@ -148,9 +152,6 @@ msgstr "URL ਡੋਮੇਨ [%s] ਵਿੱਚੋਂ ਇੱਕ, ਜਾਂ ਸਬ�
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "ਤੁਹਾਡਾ ਮੂਲ ਲੋਕੇਲ ਬਦਲਣ ਤੋਂ ਪਹਿਲਾਂ ਤੁਹਾਡੇ ਕੋਲ ਉਸ ਲੋਕੇਲ ਵਿੱਚ ਇੱਕ ਨਾਂ, ਸੰਖੇਪ ਖੁਲਾਸਾ, ਅਤੇ ਵੇਰਵਾ ਜ਼ਰੂਰ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ। ਤੁਸੀਂ %s ਭੁੱਲ ਗਏ ਹੋ।"
-
-msgid "A license must be selected."
-msgstr "ਇਕ ਲਾਇਸੰਸ ਚੁਣਿਆ ਜਾਣਾ ਚਾਹੀਦਾ ਹੈ।"
 
 msgid "Listed"
 msgstr "ਸੂਚੀਬੱਧ"
@@ -687,9 +688,6 @@ msgstr "ਗਲਤ, ਕਿਰਪਾ ਕਰ ਕੇ ਮੁੜ ਤੋਂ ਕੋਸ਼�
 msgid "Error verifying input, please try again."
 msgstr "ਇੰਪੁੱਟ ਦੀ ਪੁਸ਼ਟੀ ਕਰਨ ਵਿੱਚ ਗਲਤੀ ਹੋਏ, ਤੇ ਕਿਰਪਾ ਕਰਕੇ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।"
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "ਇਹ ਇੱਕ ਜਾਇਜ ਹੈਕਸ ਕਲਰ ਕੋਡ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ, ਜਿਵੇਂ ਕਿ #000000।"
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "ਕੁੱਝ ਗੁਣ ਅਸਥਾਈ ਤੌਰ ਤੇ ਬੰਦ ਹਨ ਜਦੋਂ ਤੱਕ ਅਸੀਂ ਵੈੱਬਸਾਈਟ ਦੀ ਸਾਂਭ-ਸੰਭਾਲ ਕਰ ਰਹੇ ਹਾਂ। ਅਸੀਂ ਥੋੜੇ ਸਮੇਂ ਵਿੱਚ ਪੂਰੀ ਸਮਰਥਾ ਨਾਲ ਵਾਪਸ ਆਵਾਂਗੇ।"
 
@@ -906,6 +904,14 @@ msgstr "ਗ਼ਲਤ ਕਿਸਮ ਲਈ ਪੇਇਲੋਡ ਵਿਚ ਇਕ ਜ
 
 msgid "Invalid JWT Token."
 msgstr "ਗੈਰ-ਪ੍ਰਮਾਣਿਤ JWT ਟੋਕਨ।"
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "ਅਵੈਧ ਜਾਂ ਖਰਾਬ ਆਰਕਾਈਵ।"
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "ਈਮੇਲ ਪਤਾ"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "ਖੇਤਰ ਵਿੱਚ ਅੱਖਰਾਂ ਦੀ ਗਿਣਤੀ ਘੱਟੋ ਘੱਟ {num} ਜ਼ਰੂਰ ਹੋਣੀ ਚਾਹੀਦੀ ਹੈ।"
@@ -2586,9 +2592,6 @@ msgstr "ਸੰਦ-ਪੱਟੀ ਇਲਾਕਾ ਖੇਤਰ ਲਿਖਤ"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "ਟੂਲਬਾਰ ਦੇ ਖੇਤਰਾਂ ਵਿੱਚ ਟੈਕਸਟ ਦਾ ਰੰਗ, ਜਿਵੇਂ ਕਿ URL ਬਾਰ। ਮੈਨੀਫੈਸਟ ਫੀਲਡ:  toolbar_field_text।"
 
-msgid "Please check the form for errors."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਗਲਤੀਆਂ ਲਈ ਫ਼ਾਰਮ ਦੀ ਪੜਤਾਲ ਕਰੋ।"
-
 msgid "Review requested."
 msgstr "ਸਮੀਖਿਆ ਦੀ ਬੇਨਤੀ ਕੀਤੀ ਗਈ।"
 
@@ -3883,109 +3886,6 @@ msgstr "ਲਾਈਵ ਟੈਸਟਿੰਗ ਅਤੇ ਡੀਬਗਿੰਗ ਲ�
 msgid "Lightweight Theme editing has been disabled."
 msgstr "ਲਾਈਟਵੇਟ ਥੀਮਜ਼ ਸਮੀਖਿਆ ਲਾਗ"
 
-msgid "Create a New Theme"
-msgstr "ਇੱਕ ਨਵਾਂ ਥੀਮ ਰਚੋ"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "ਬੈਕਗਰਾਂਊਡ ਥੀਮ ਤੁਹਾਨੂੰ ਤੁਹਾਡੀ ਫ਼ਾਇਰਫ਼ਾਕਸ ਦੀ ਦਿੱਖ ਅਸਾਨੀ ਨਾਲ ਬਦਲਣ ਦਿੰਦੇ ਹਨ। ਆਪਣਾ ਡਿਜ਼ਾਇਨ ਹੇਠ ਦਾਖਲ ਕਰੋ, ਜਾਂ <a href=\"%(submit_url)s\">ਜਾਣੋ ਇੱਕ ਕਿਵੇਂ ਰਚੀਏ</a>!"
-
-msgid "Theme Details"
-msgstr "ਥੀਮ ਵੇਰਵਾ"
-
-msgid "Give your Theme a name."
-msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਇੱਕ ਨਾਂ ਦਿਓ।"
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "ਆਪਣੀ ਵੇਰਵੇ ਸਫ਼ੇ ਲਈ ਇੱਕ ਵਧੀਆ URL ਦਿਓ।"
-
-msgid "Select the category that best describes your Theme."
-msgstr "ਸੰਗ੍ਰਹਿ ਚੁਣੋ ਜੋ ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਵਧੀਆ ਵੇਰਵਾ ਦੇਵੇ।"
-
-msgid "Add some tags to describe your Theme."
-msgstr "ਆਪਣੇ ਥੀਮ ਦੇ ਵੇਰਵੇ ਲਈ ਕੁੱਝ ਟੈਗ ਸ਼ਾਮਲ ਕਰੋ।"
-
-msgid "Describe your Theme."
-msgstr "ਤੁਹਾਡਾ ਥੀਮ ਦਾ ਵਰਣਨ ਕਰੋ।"
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦੀ ਬੁਨਿਆਦੀ ਕਾਰਜਕੁਸ਼ਲਤਾ ਦੀ ਛੋਟੀ ਵਿਆਖਿਆ ਜੋ ਖੋਜ ਅਤੇ ਸੂਚੀ ਝਲਕ, ਨਾਲ ਹੀ ਨਾਲ ਤੁਹਾਡੇ ਥੀਮ ਦੇ ਵੇਰਵੇ ਸਫ਼ੇ ਦੇ ਉੱਪਰ ਵਿਖਾਈ ਜਾਏਗੀ"
-
-msgid "Theme License"
-msgstr "ਥੀਮ ਲਾਇਸੰਸ"
-
-msgid "Select a license for your Theme."
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਲਾਇਸੰਸ ਚੁਣੋ।"
-
-msgid "Theme Design"
-msgstr "ਥੀਮ ਡਿਜਾਇਨ"
-
-msgid "Select colors for your Theme."
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਰੰਗ ਚੁਣੋ।"
-
-msgid "Foreground Text"
-msgstr "ਫ਼ੌਰਗਰਾਂਊਡ ਟੈਕਸਟ"
-
-msgid "This is the color of the tab text"
-msgstr "ਇਹ ਟੈਬ ਟੈਕਸਟ ਦਾ ਰੰਗ ਹੈ"
-
-msgid "Background"
-msgstr "ਬੈਕਗਰਾਂਊਡ"
-
-msgid "This is the color of the tabs"
-msgstr "ਇਹ ਟੈਬਾਂ ਦਾ ਰੰਗ ਹੈ"
-
-msgid "Your Theme's Name"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾ ਨਾਂ"
-
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "ਦੁਆਰਾ <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"ਮੈਂ %(agreement_link_open)sFirefox ਐਡ-ਆਨ ਡਿਸਟ੍ਰੀਬਿਊਸ਼ਨ ਐਗਰੀਮੈਂਟ %(link_close)s ਨਾਲ ਸਹਿਮਤ ਹਾਂ ਅਤੇ ਮੇਰੀ ਜਾਣਕਾਰੀ ਨੂੰ %(privacy_notice_link_open)sWebsites, ਸੰਚਾਰ ਅਤੇ ਕੁਕੀਜ਼ ਪਰਾਈਵੇਸੀ ਨੋਟਿਸ %(link_close)s ਵਿੱਚ ਦਰਸਾਏ ਅਨੁਸਾਰ "
-"ਵਿਹਾਰ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ।"
-
-msgid "Submit Theme"
-msgstr "ਥੀਮ ਦਾਖਲ ਕਰੋ"
-
-msgid "You're done!"
-msgstr "ਤੁਸੀਂ ਕਾਰਜ ਪੂਰਾ ਕੀਤਾ!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "ਤੁਹਾਡਾ ਥੀਮ ਸਮੀਖਿਆ ਕਤਾਰ ਵਿੱਚ ਦਾਖਲ ਹੋ ਚੁੱਕਿਆ। ਇਸ ਦੀ ਇੱਕ ਵਾਰ ਸਮੀਖਿਆ ਹੋਣ ਤੇ ਖਾਸ ਤੌਰ ਤੇ 24 ਘੰਟਿਆਂ ਵਿੱਚ, ਤੁਹਾਨੂੰ ਇੱਕ ਈਮੇਲ ਪ੍ਰਾਪਤ ਹੋਵੇਗੀ।"
-
-msgid "Next steps:"
-msgstr "ਅਗਲੇ ਕਦਮ:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "<a href=\"%(edit_url)s\">ਇਸ ਦੀ ਸੂਚੀ ਵਿੱਚ ਸੋਧ</a> ਦੁਆਰਾ ਆਪਣੇ ਥੀਮ ਬਾਰੇ ਹੋਰ ਵੇਰਵਾ ਮੁਹੱਈਆ ਕਰਵਾਓ।"
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "ਸਮੀਖਿਆਵਾਂ, ਸੰਗ੍ਰਹਿਾਂ ਅਤੇ ਹੋਰਾਂ ਦੀ ਤਾਜ਼ਾ ਜਾਣਕਾਰੀ ਲਈ ਆਪਣੇ ਥੀਮ ਦੀ <a href=\"%(feed_url)s\">ਸਰਗਰਮੀ ਫ਼ੀਡ</a> ਦੀ ਗਾਹਕੀ ਲਵੋ ਅਤੇ ਵੇਖੋ।"
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "ਸਾਡੀਆਂ <a href=\"%(forum_url)s\">ਫ਼ੋਰਮਾਂ</a> ਵਿੱਚ ਗੱਲਬਾਤ ਦਾ ਹਿੱਸਾ ਬਣੋ।"
-
-msgid "Select a header image for your Theme."
-msgstr "ਆਪਣੇ ਥੀਮ ਲਈ ਇੱਕ ਸਿਰਲੇਖ ਤਸਵੀਰ ਚੁਣੋ।"
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 ਪਿਕਸਲ"
-
-msgid "300 KB max"
-msgstr "300KB ਵੱਧ"
-
-msgid "PNG or JPG"
-msgstr "PNG ਜਾਂ JPG"
-
 msgid "Manage Version {0}"
 msgstr "ਵਰਜਨ {0} ਸੰਭਾਲ੍ਹੋ"
 
@@ -4696,14 +4596,6 @@ msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਆਪ
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr "ਆਪਣੀਆਂ ਪਸੰਦੀਦਾ ਟਾਇਲਾਂ, ਪਿਛੋਕੜ ਚਿੱਤਰ, ਅਤੇ ਹੋਰ ਚੀਜ਼ਾਂ ਨੂੰ ਪ੍ਰਦਰਸ਼ਿਤ ਕਰਨ ਲਈ ਨਵੀਂ ਟੈਬ ਸਫ਼ਾ ਸੰਪਾਦਿਤ ਕਰੋ।"
-
-#. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਤੇਜ਼ ਅਨੁਵਾਦ ਪ੍ਰਾਪਤ ਕਰੋ"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr "ਕਿਸੇ ਵੀ ਵੈਬਸਾਈਟ ਤੇ ਪਾਠ ਨੂੰ ਹਾਈਲਾਈਟ ਕਰੋ, ਸੱਜਾ ਕਲਿਕ ਕਰੋ ਅਤੇ ਤੁਰੰਤ ਅਨੁਵਾਦ ਕਰੋ।"
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5427,11 +5319,29 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਬਾਅਦ ਵਿੱਚ ਪਾਠ ਸੰਭਾਲੋ"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਚਿੱਤਰ ਖੋਜੋ"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name}ਦੇ ਨਾਲ {end_sub_heading} ਵੈਬ ਕੈਪਚਰ ਕਰੋ"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5530,7 +5440,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "ਤੁਸੀਂ Mozilla ਦਸਤਖਤ ਐਕਸਟੈਂਸ਼ਨ ਨੂੰ ਦਰਜ ਨਹੀਂ ਕਰ ਸਕਦੇ"
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "ਫ਼ਾਈਲ ਟਾਈਪ ਨੂੰ ਸਹਿਯੋਗ ਨਹੀਂ, ਕਿਰਪਾ ਕਰਕੇ ਇੱਕ ਅਕਾਈਵ ਫ਼ਾਈਲ {extensions} ਅੱਪਲੋਡ ਕਰੋ।"
 
 msgid "Unexpected error."
@@ -6205,17 +6115,6 @@ msgstr "ਦਿਨਾਂ"
 msgid "Choose a canned response..."
 msgstr "ਇੱਕ ਡਿੱਬਾਬੰਦ ਜਵਾਬ ਚੁਣੋ..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "ਥੀਮ ਨਾਂ"
-
-msgid "Someone else is reviewing this theme."
-msgstr "ਇਸ ਥੀਮ ਦੀ ਸਮੀਖਿਆ ਕੋਈ ਹੋਰ ਕਰ ਰਿਹਾ ਹੈ।"
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "ਐਪ, ਸਮੀਖਿਅਕ, ਜਾਂ ਟਿੱਪਣੀ"
-
 msgid "Private Whiteboard"
 msgstr "ਵਾਇਟਬੋਰਡ"
 
@@ -6251,21 +6150,6 @@ msgstr "ਇੱਕ ਸਮੀਖਿਅਕ ਦੁਆਰਾ ਲਾਕ ਕੀਤਾ �
 
 msgid "Has auto-approval disabled flag set."
 msgstr "ਸਵੈ-ਪ੍ਰਵਾਨਗੀ ਅਸਮਰਥਿਤ ਝੰਡੇ ਸੈਟ ਹੈ।"
-
-msgid "Duplicate Submission"
-msgstr "ਨਕਲ ਦਾਖਲ ਕੀਤੀ"
-
-msgid "Thanks for submitting your Theme"
-msgstr "ਆਪਣੇ ਥੀਮ ਨੂੰ ਦਾਖਲ ਕਰਨ ਲਈ ਧੰਨਵਾਦ"
-
-msgid "A problem with your Theme submission"
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਦਾਖਲ ਕਾਰਜ ਨਾਲ ਖਾਮੀ"
-
-msgid "Theme submission flagged for review"
-msgstr "ਦਾਖਲ ਥੀਮ ਤੇ ਸਮੀਖਿਆ ਲਈ ਝੰਡਾ ਲਗਾਇਆ"
-
-msgid "A question about your Theme submission"
-msgstr "ਤੁਹਾਡੇ ਦਾਖਲ ਕੀਤੇ ਥੀਮ ਬਾਰੇ ਇੱਕ ਸਵਾਲ"
 
 msgid "Type"
 msgstr "ਕਿਸਮ"
@@ -6398,21 +6282,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "ਸਮੱਗਰੀ ਸਮੀਖਿਆ({0})"
 msgstr[1] "ਸਮੱਗਰੀ ਸਮੀਖਿਆ ({0})"
 
-msgid "New Themes ({0})"
-msgstr "ਨਵੇਂ ਥੀਮ ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "ਥੀਮ ਅੱਪਡੇਟ ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ({0})"
-
-msgid "Lightweight Themes Review Log"
-msgstr "ਲਾਈਟਵੇਟ ਥੀਮਜ਼ ਸਮੀਖਿਆ ਲਾਗ"
-
-msgid "Deleted Themes Log"
-msgstr "ਹਟਾਇਆ ਗਿਆ ਥੀਮ ਲਾਗ"
-
 msgid "User Ratings Moderation"
 msgstr "ਯੂਜ਼ਰ ਰੇਟਿੰਗਸ ਸੰਚਾਲਨ"
 
@@ -6457,14 +6326,6 @@ msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: ਗੋਪਨੀਯਤਾ ਨੀਤੀ"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} ਥੀਮ ਸਮੀਖਿਆ ਤੇ ਸਫ਼ਲਤਾਪੂਰਵਕ ਕਾਰਵਾਈ ਹੋਈ (+{1} points, {2} total)।"
-msgstr[1] "{0} ਥੀਮ ਸਮੀਖਿਆਵਾਂ ਤੇ ਸਫ਼ਲਤਾਪੂਰਵਕ ਕਾਰਵਾਈ ਹੋਈ (+{1} points, {2} total)।"
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "ਤੁਹਾਡੇ ਥੀਮ ਲਾਕ ਸਫ਼ਲਤਾਪੂਰਵਕ ਜਾਰੀ ਕੀਤੇ ਗਏ। ਦੂਜੇ ਸਮੀਖਿਅਕ ਹੁਣ ਇਹਨਾਂ ਜਾਰੀ ਥੀਮਾਂ ਦੀ ਸਮੀਖਿਆ ਕਰ ਸਕਦੇ ਹਨ। ਹੇਠ ਦਿੱਤੇ ਟੇਬਲ ਵਿੱਚ ਹੋਏ ਬਦਲਾਵਾਂ ਨੂੰ ਵੇਖਣ ਲਈ ਹੋ ਸਕਦਾ ਤੁਹਾਨੂੰ ਸਫ਼ਾ ਮੁੜ-ਤਾਜ਼ਾ ਕਰਨਾ ਪਵੇ।"
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: ਬਦਸਲੂਕੀ ਸੂਚਨਾਵਾਂ"
@@ -6844,124 +6705,6 @@ msgstr "ਤੁਹਾਡੇ <span>{0}</span> ਅੰਕ ਹਨ।"
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s on %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "ਹਟਾਈ ਮਿਤੀ"
-
-msgid "No deleted themes found for this period."
-msgstr "ਇਸ ਮਿਆਦ ਲਈ ਕੋਈ ਹਟਾਇਆ ਥੀਮ ਨਹੀਂ ਮਿਲਿਆ।"
-
-msgid "Theme Review History for {0}"
-msgstr "{0} ਲਈ ਥੀਮ ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
-
-msgid "Review Date"
-msgstr "ਸਮੀਖਿਆ ਮਿਤੀ"
-
-msgid "Action"
-msgstr "ਕਾਰਵਾਈ"
-
-msgid "Reason"
-msgstr "ਦਲੀਲ"
-
-msgid "There are currently no reviews."
-msgstr "ਮੌਜੂਦਾ ਤੌਰ ਤੇ ਇੱਥੇ ਕੋਈ ਸਮੀਖਿਆ ਨਹੀਂ।"
-
-msgid "Flagged Themes"
-msgstr "ਫ਼ਲੈਗ ਕੀਤੇ ਥੀਮ"
-
-msgid "Theme Review Queue"
-msgstr "ਥੀਮ ਸਮੀਖਿਆ ਕਤਾਰ"
-
-msgid "Queues"
-msgstr "ਕਤਾਰਾਂ"
-
-msgid "Review Options"
-msgstr "ਸਮੀਖਿਆ ਚੋਣਾਂ"
-
-msgid "Auto-advance after review"
-msgstr "ਸਮੀਖਿਆ ਤੋਂ ਬਾਅਦ ਸਵੈ-ਤਰੱਕੀ"
-
-msgid "Enable keyboard shortcuts"
-msgstr "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟਾਂ ਨੂੰ ਯੋਗ ਕਰੋ"
-
-msgid "Keyboard Shortcuts"
-msgstr "ਕੀਬੋਰਡ ਸ਼ਾਰਟਕੱਟਾਂ"
-
-msgid "Next Theme"
-msgstr "ਅਗਲਾ ਥੀਮ"
-
-msgid "Previous Theme"
-msgstr "ਪਿਛਲਾ ਥੀਮ"
-
-msgid "Your Review History"
-msgstr "ਤੁਹਾਡਾ ਸਮੀਖਿਆ ਇਤਿਹਾਸ"
-
-msgid "Commit Review"
-msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
-
-msgid "Commit Reviews"
-msgstr "ਸਮੀਖਿਆ ਕਬੂਲੋ"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{1} ਵਿੱਚੋਂ {0} ਦੀ ਸਮੀਖਿਆ ਹੋਈ"
-
-msgid "There are currently no Themes to review."
-msgstr "ਮੌਜੂਦਾ ਤੌਰ ਤੇ ਸਮੀਖਿਆ ਲਈ ਇੱਥੇ ਕੋਈ ਥੀਮ ਨਹੀਂ।"
-
-msgid "Clear Search"
-msgstr "ਖੋਜ ਮਿਟਾਓ"
-
-msgid "Release My Theme Locks"
-msgstr "ਮੇਰੇ ਥੀਮ ਲਾਕ ਜਾਰੀ ਕਰੋ"
-
-msgid "Interactive Theme Queue"
-msgstr "ਪਰਸਪਰ ਥੀਮ ਕਤਾਰ"
-
-msgid "Reviewers' Guide"
-msgstr "ਸਮੀਖਿਅਕ ਗਾਈਡ"
-
-msgid "Theme Review for {0}"
-msgstr "{0} ਲਈ ਥੀਮ ਸਮੀਖਿਆ"
-
-msgid "Edit Listing"
-msgstr "ਸੂਚੀ ਸੋਧ"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(ਨਕਲ ਦਾਖਲ ਹੋਣ ਦੀ ਸੰਭਾਵਨਾ)"
-
-msgid "Submitted"
-msgstr "ਦਾਖਲ ਕੀਤੇ"
-
-msgid "Past Review Notes"
-msgstr "ਪਿਛਲੇ ਸਮੀਖਿਆ ਨੋਟ"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "ਹੋਰ ਜਾਣਕਾਰੀ ਦੀ ਬੇਨਤੀ ਕਰੋ: {0}"
-
-msgid "Flagged: {0}"
-msgstr "ਫ਼ਲੈਗ ਕੀਤਾ: {0}"
-
-msgid "Approve Theme"
-msgstr "ਥੀਮ ਮਨਜ਼ੂਰ"
-
-msgid "Field required"
-msgstr "ਲੋੜੀਂਂਦਾ ਖੇਤਰ"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "ਨਕਲ ਦੀ ID ਜਾਂ URL ਦਰਜ ਕਰੋ"
-
-msgid "Select a reason for rejection"
-msgstr "ਰੱਦ ਕਰਨ ਲਈ ਇੱਕ ਕਾਰਨ ਚੁਣੋ"
-
-msgid "Describe your reason for rejection"
-msgstr "ਰੱਦ ਕਰਨ ਲਈ ਆਪਣੇ ਕਾਰਨ ਦਾ ਵਰਣਨ ਕਰੋ"
-
-msgid "Ask a question to the artist"
-msgstr "ਕਲਾਕਾਰ ਤੋਂ ਇੱਕ ਸਵਾਲ ਪੁੱਛੋ"
-
-msgid "Describe your reason for flagging"
-msgstr "ਫ਼ਲੈਗ ਕਰਨ ਲਈ ਆਪਣੇ ਕਾਰਨ ਦਾ ਵਰਣਨ ਕਰੋ"
-
 msgid "Rejected or Unreviewed"
 msgstr "ਰੱਦ ਹੋਇਆ ਜਾਂ ਬਿਨਾਂ-ਸਮੀਖਿਆ"
 
@@ -6988,12 +6731,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ਮਿਆਦ ਪੁੱਗੀ ਜਾਣਕਾਰੀ ਬੇਨਤੀ ({0})"
 msgstr[1] "ਮਿਆਦ ਪੁੱਗ ਗਈ ਜਾਣਕਾਰੀ ਬੇਨਤੀਆਂ ({0})"
-
-msgid "Flagged"
-msgstr "ਨਿਸ਼ਾਨਬੱਧ"
-
-msgid "Updates"
-msgstr "ਅੱਪਡੇਟਾਂ"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7561,27 +7298,6 @@ msgstr "ਐਡਆਨ"
 msgid "Activity Logs"
 msgstr "ਸਰਗਰਮੀ ਲਾਗ"
 
-msgid "Email must be {email}."
-msgstr "ਈ-ਚਿੱਠੀ ਲਾਜ਼ਮੀ {email} ਹੋਵੇ।"
-
-msgid "Display Name"
-msgstr "ਨਾਂ ਵਿਖਾਓ"
-
-msgid "Location"
-msgstr "ਸਥਿਤੀ"
-
-msgid "Occupation"
-msgstr "ਕਿੱਤਾ"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "ਤੁਸੀਂ ਆਪਣਾ ਈ-ਚਿੱਠੀ ਪਤਾ Firefox ਖਾਤਿਆਂ ਤੇ ਬਦਲ ਸਕਦੇ ਹੋ।"
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "ਇਸ URL ਦਾ ਫ਼ਾਰਮੈਟ ਗਲਤ ਹੈ। ਸਹੀ URLs http://example.com/my_page ਦੀ ਤਰ੍ਹਾਂ ਵਿਖਾਈ ਦਿੰਦੀਆਂ ਹਨ।"
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "ਅਣਪਛਾਤਾ ਰੱਖਣ ਲਈ, ਬਦਲਾਅ ਲਈ ਇੱਕ ਕਾਰਨ ਦਿਓ ਪਰ ਕਿਸੇ ਵੀ ਹੋਰ ਖੇਤਰ ਨੂੰ ਨਾ ਬਦਲੋ।"
-
 msgid "No user with that email."
 msgstr "ਇਸ ਈਮੇਲ ਨਾਲ ਕੋਈ ਉਪਭੋਗੀ ਨਹੀਂ।"
 
@@ -7618,201 +7334,11 @@ msgstr "ਮੌਜੀਲਾ ਨੂੰ ਮੇਰੇ ਵਿਅਕਤੀਗਤ ਐ�
 msgid "User Notifications"
 msgstr "ਉਪਭੋਗੀ ਅਧਿਸੂਚਨਾਵਾਂ"
 
-msgid "An email address is required."
-msgstr "ਇੱਕ ਈਮੇਲ ਪਤੇ ਦੀ ਲੋੜ ਹੈ।"
-
-msgid "A user with that email address does not exist."
-msgstr "ਇਸ ਈਮੇਲ ਪਤੇ ਵਾਲਾ ਉਪਭੋਗੀ ਮੌਜੂਦ ਨਹੀਂ।"
-
-msgid "Profile Deleted"
-msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਹਟਾਈ"
-
-msgid "Photo Deleted"
-msgstr "ਫ਼ੋਟੋ ਹਟਾਈ"
-
-msgid "Profile Updated"
-msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਅੱਪਡੇਟ ਹੋਈ"
-
-msgid "Errors Found"
-msgstr "ਖਾਮੀਆਂ ਮਿਲੀਆਂ"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "ਤੁਹਾਡੇ ਕੀਤੇ ਬਦਲਾਅਾਂ ਵਿੱਚ ਖਾਮੀਆਂ ਸਨ। ਕਿਰਪਾ ਕਰਕੇ ਉਹਨਾਂ ਨੂੰ ਠੀਕ ਕਰੋ ਅਤੇ ਮੁੜ-ਭੇਜੋ।"
-
-msgid "User reported."
-msgstr "ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ ਮਿਲੀ।"
-
-msgid "new"
-msgstr "ਨਵਾਂ"
-
 msgid "Ban"
 msgstr "ਪਾਬੰਦੀ"
 
 msgid "Delete picture"
 msgstr "ਤਸਵੀਰ ਮਿਟਾਓ"
-
-msgid "Delete User Account"
-msgstr "ਉਪਭੋਗੀ ਖਾਤਾ ਹਟਾਓ"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"ਤੁਸੀਂ ਆਪਣਾ ਖਾਤਾ ਨਹੀਂ ਹਟਾ ਸਕਦੇ ਜੇਕਰ ਤੁਸੀਂ <a href=\"%(link)s\"> ਕਿਸੇ ਐਡ-ਆਨ ਦੇ ਲੇਖਕ</a>ਦੇ ਤੌਰ ਤੇ ਸੂਚੀਬੱਧ ਹੋਵੋ। ਆਪਣਾ ਖਾਤਾ ਹਟਾਉਣ ਲਈ, ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੇ ਵਿਕਾਸ ਗੁਰੱਪ ਵਿੱਚੋਂ ਕਿਸੇ ਨੂੰ ਤੁਹਾਡੇ ਐਡ-ਆਨ ਲੇਖਕਾਂ ਦੀ ਸੂਚੀ ਵਿੱਚੋਂ ਤੁਹਾਨੂੰ ਹਟਾਉਣ ਬਾਰੇ ਕਹੋ। ਇਸ ਤੋਂ "
-"ਬਾਅਦ ਤੁਸੀਂ ਇੱਥੇ ਆਪਣਾ ਖਾਤਾ ਹਟਾਉਣਯੋਗ ਹੋ ਜਾਵੋਗੇ।"
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "ਆਪਣਾ ਖਾਤਾ \"ਹਟਾਓ\" ਤੇ ਕਲਿੱਕ ਕਰਨ ਤੇ <strong>ਪੱਕੇ ਤੌਰ ਤੇ ਹਟਾਇਆ</strong> ਜਾਵੇਗਾ। ਇਸ ਤੋਂ ਭਾਵ:"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "ਇਸ ਈ-ਮੇਲ ਪਤੇ ਨਾਲ %(site)s ਦੇ ਵਿੱਚ ਦਾਖਲ ਹੋਵੋ ਇੱਕ ਨਵਾਂ ਖਾਤਾ ਬਣਾ ਦੇਵੇਗਾ ਜੋ ਕਿ ਇਸ ਖਾਤੇ ਨਾਲ ਕੋਈ ਸਬੰਧਿਤ ਨਹੀਂ ਹੈ।"
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "ਤੁਹਾਡੀਆਂ ਸਮੀਖਿਆਵਾਂ ਅਤੇ ਰੇਟਿੰਗਾਂ ਹਟਾਈਆਂ ਨਹੀਂ ਜਾਣਗੀਆਂ, ਪਰ ਹੁਣ ਉਹ ਤੁਹਾਡੇ ਨਾਲ ਸੰਬੰਧਤ ਨਹੀਂ ਰਹਿਣਗੀਆਂ।"
-
-msgid "Confirm account deletion"
-msgstr "ਖਾਤਾ ਹਟਾਉਣ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ"
-
-msgid "I understand this step cannot be undone."
-msgstr "ਮੈਨੂੰ ਪਤਾ ਹੈ ਇਹ ਕਦਮ ਵਾਪਸ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
-
-msgid "Delete my user account now"
-msgstr "ਮੇਰਾ ਉਪਭੋਗੀ ਖਾਤਾ ਹੁਣੇ ਹਟਾਓ"
-
-msgid "Delete User Photo"
-msgstr "ਉਪਭੋਗੀ ਫ਼ੋਟੋ ਹਟਾਓ"
-
-msgid "Delete my user picture now"
-msgstr "ਮੇਰੀ ਉਪਭੋਗੀ ਤਸਵੀਰ ਹੁਣੇ ਹਟਾਓ"
-
-msgid "Please set your display name"
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਆਪਣਾ ਵਿਖਾਇਆ ਜਾਣ ਵਾਲਾ ਨਾਮ ਪੱਕਾ ਕਰੋ"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "ਰਜਿਸਟਰੇਸ਼ਨ ਕਾਰਵਾਈ ਨੂੰ ਪੂਰਾ ਕਰਨ ਲਈ ਆਪਣਾ ਨਾਂ ਜਾਂ ਵਰਤੋਂਕਾਰ-ਨਾਂ ਨਿਯਤ ਕਰੋ।"
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "ਮੂਲ ਖਾਤਾ ਜਾਣਕਾਰੀ ਪ੍ਰਬੰਧਿਤ ਕਰੋ, ਜਿਵੇਂ ਕਿ ਤੁਹਾਡਾ ਯੂਜ਼ਰਨਾਮ ਅਤੇ ਫਾਇਰਫਾਕਸ ਅਕਾਊਂਟ ਸੈਟਿੰਗ।"
-
-msgid "Email Address"
-msgstr "ਈਮੇਲ ਪਤਾ"
-
-msgid "Manage Firefox Account..."
-msgstr "Firefox ਖਾਤੇ ਦਾ ਪ੍ਰਬੰਧਨ ਕਰੋ..."
-
-msgid "Profile"
-msgstr "ਪ੍ਰੋਫ਼ਾਈਲ"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "ਸਾਨੂੰ ਆਪਣੇ ਬਾਰੇ ਥੋੜੀ ਹੋਰ ਜਾਣਕਾਰੀ ਦਿਓ। ਇਹ ਸਾਰੇ ਖੇਤਰ ਚੋਣਵੇਂ ਹਨ, ਪਰ ਇਹ ਦੂਜੇ ਉਪਭੋਗੀਆਂ ਲਈ ਤੁਹਾਡੇ ਬਾਰੇ ਜਾਨਣ ਵਿੱਚ ਸਹਾਇਕ ਹੋਣਗੇ।"
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "ਇਹ URL ਕੇਵਲ ਤਾਂ ਹੀ ਦਿੱਸੇਗੀ ਜੇਕਰ ਤੁਸੀਂ ਇੱਕ ਡਿਵੈਲਪਰ ਹੋ।"
-
-msgid "Choose Photo&hellip;"
-msgstr "ਫ਼ੋਟੋ ਚੁਣੋ&hellip;"
-
-msgid "Delete current photo"
-msgstr "ਮੌਜੂਦਾ ਫ਼ੋਟੋ ਹਟਾਓ"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "ਭਾਈਚਾਰੇ ਨੂੰ ਆਪਣੇ ਆਪ ਤੋਂ ਜਾਣੂ ਕਰਵਾਓ, ਜੇਕਰ ਤੁਸੀਂ ਪਸੰਦ ਕਰੋ! ਇਹ ਟੈਕਸਟ ਤੁਹਾਡੇ ਉਪਭੋਗੀ ਇੰਫ਼ੋ ਸਫ਼ੇ ਤੇ ਜਨਤਕ ਰੂਪ ਵਿੱਚ ਵਿਖਾਈ ਦੇਵੇਗਾ।"
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "ਪ੍ਰਵਾਨਿਤ HTML: %(html)s। ਲਿੰਕਾਂ ਦੀ ਮਨਾਹੀ ਹੈ।"
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "ਦੱਸੋ ਤੁਹਾਡੀ ਪ੍ਰੋਫ਼ਾਈਲ ਵਿੱਚ ਕਿਹੜੇ ਸੰਗ੍ਰਹਿ ਵਿਖਾਏ ਜਾਣੇ ਚਾਹੀਦੇ ਹਨ।"
-
-msgid "Display the collections I have created"
-msgstr "ਸੰਗ੍ਰਹਿ ਵਿਖਾਓ ਜਿਹੜੇ ਮੈਂ ਰਚੇ ਹਨ"
-
-msgid "Notifications"
-msgstr "ਅਧਿਸੂਚਨਾਵਾਂ"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "ਸਮੇਂ-ਸਮੇ ਤੇ, ਮੌਜੀਲਾ ਆਉਣ ਵਾਲੀਆਂ ਰੀਲੀਜ਼ਾਂ ਅਤੇ ਐਡ-ਆਨ ਸਮਾਗਮਾਂ ਬਾਰੇ ਈਮੇਲ ਭੇਜਦਾ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਵਿਸ਼ਾ ਚੁਣੋ ਜਿਸ ਵਿੱਚ ਤੁਹਾਡੀ ਦਿਲਚਸਪੀ ਹੋਵੇ।"
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "ਮੌਜੀਲਾ ਕੋਲ ਤੁਹਾਡੇ ਵੱਲੋਂ ਮੇਜ਼ਬਾਨ ਐਡ-ਆਨ ਬਾਰੇ ਖਾਸ਼ ਤਸ਼ਵੀਸ਼ ਲਈ ਤੁਹਾਨੂੰ ਵਿਅਕਤੀਗਤ ਰੂਪ ਵਿੱਚ ਸੰਪਰਕ ਕਰਨ ਦਾ ਅਧਿਕਾਰ ਰਾਖਵਾਂ ਹੈ।"
-
-msgid "Admin"
-msgstr "ਪ੍ਰਬੰਧਕ"
-
-msgid "Delete Account"
-msgstr "ਖਾਤਾ ਹਟਾਓ"
-
-msgid "Update Account"
-msgstr "ਖਾਤਾ ਅੱਪਡੇਟ ਹਟਾਓ"
-
-msgid "none"
-msgstr "ਕੁੱਝ ਨਹੀਂ"
-
-msgid "all"
-msgstr "ਸਾਰੇ"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "ਲਾਗਇਨ ਵਾਸਤੇ Mozilla ਐਡ-ਆਨ Firefox ਖਾਤੇ ਵਿੱਚ ਤਬਦੀਲ ਹੋ ਗਿਆ ਹੈ। ਸਧਾਰਨ ਲਾਗਇਨ ਕਾਰਵਾਈ ਪੂਰੀ ਕਰਨ ਲਈ ਜਾਰੀ ਰੱਖੋ।"
-
-msgid "Password Reset"
-msgstr "ਪਾਸਵਰਡ ਰੀਸੈੱਟ"
-
-msgid "User Info for {0}"
-msgstr "{0} ਲਈ ਉਪਭੋਗੀ ਇੰਫ਼ੋ"
-
-msgid "Edit profile"
-msgstr "ਪ੍ਰੋਫ਼ਾਈਲ ਸੋਧ"
-
-msgid "Manage user"
-msgstr "ਉਪਭੋਗੀ ਸਾਂਭ-ਸੰਭਾਲ"
-
-msgid "Report user"
-msgstr "ਉਪਭੋਗੀ ਦੀ ਸੂਚਨਾ ਦਿਓ"
-
-msgid "Add-ons Developer"
-msgstr "ਐਡ-ਆਨ ਡਿਵੈਲਪਰ"
-
-msgid "Themes Artist"
-msgstr "ਥੀਮ ਕਲਾਕਾਰ"
-
-msgid "About me"
-msgstr "ਥੋੜੇ ਜਿਆਦਾ ਵੇਰਵੇ  ਵਿੱਚ..."
-
-msgid "In a little more detail..."
-msgstr "ਥੋੜੇ ਜਿਆਦਾ ਵੇਰਵੇ ਵਿੱਚ..."
-
-msgid "Add-ons I've created"
-msgstr "ਮੇਰੇ ਰਚੇ ਹੋਏ ਐਡ-ਆਨ"
-
-msgid "View all"
-msgstr "ਸੱਭ ਵੇਖੋ"
-
-msgid "My Most Popular Themes"
-msgstr "ਮੇਰੇ ਸੱਭ ਤੋ ਜਿਆਦਾ ਮਸ਼ਹੂਰ ਥੀਮ"
-
-msgid "Themes I've created"
-msgstr "ਮੇਰੇ ਰਚੇ ਹੋਏ ਥੀਮ"
-
-msgid "Created by Me"
-msgstr "ਮੇਰੇ ਵੱਲੋਂ ਰਚੇ ਗਏ"
-
-msgid "My Reviews"
-msgstr "ਮੇਰੀਆਂ ਸਮੀਖਿਆਵਾਂ"
-
-msgid "No add-on reviews yet."
-msgstr "ਅਜੇ ਤੱਕ ਕਿਸੇ ਐਡ-ਆਨ ਦੀ ਸਮੀਖਿਆ ਨਹੀਂ।"
-
-msgid "Report User"
-msgstr "ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "ਕਿਰਪਾ ਕਰਕੇ ਦੱਸੋ ਤੁਸੀਂ ਇਸ ਉਪਭੋਗੀ ਦੀ ਰਿਪੋਰਟ ਕਿਉਂ ਕਰ ਰਹੇ ਹੋ, ਜਿਵੇਂ ਕਿ ਸਪੈਸ ਜਾਂ ਇੱਕ ਅਨੁਚਿਤ ਤਸਵੀਰ ਲਈ।"
-
-msgid "Report user {0}"
-msgstr "ਉਪਭੋਗੀ {0} ਦੀ ਸੂਚਨਾ"
 
 msgid "Unsubscribe"
 msgstr "ਗਾਹਕੀ ਰੱਦ ਕਰੋ"
@@ -7839,39 +7365,6 @@ msgstr "ਅਸੀਂ ਤੁਹਾਡੀ ਗਾਹਕੀ ਰੱਦ ਨਹੀਂ �
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "ਬਦਕਿਸਮਤੀ ਨਾਲ, ਅਸੀਂ ਤੁਹਾਡੀ ਗਾਹਕੀ ਰੱਦ ਕਰਨਯੋਗ ਨਹੀਂ। ਤੁਹਾਡੇ ਵੱਲੋਂ ਕਲਿੱਕ ਕੀਤਾ ਲਿੰਕ ਗਲਤ ਹੈ। ਜਦਕਿ, ਤੁਸੀਂ <a href=\"%(edit_url)s\">ਪ੍ਰੋਫ਼ਾਈਲ ਸਫ਼ੇ ਵਿੱਚ ਸੋਧ</a>ਕਰਕੇ ਗਾਹਕੀ ਰੱਦ ਕਰ ਸਕਦੇ ਹੋ।"
-
-msgid "Developer Information"
-msgstr "ਡਿਵੈਲਪਰ ਜਾਣਕਾਰੀ"
-
-msgid "User since"
-msgstr "ਤੋਂ ਉਪਭੋਗੀ "
-
-msgid "Time of last login"
-msgstr "ਆਖਰੀ ਲਾਗਇਨ ਦਾ ਸਮਾਂ"
-
-msgid "IP address of last login"
-msgstr "ਆਖਰੀ ਲਾਗਇਨ ਦਾ IP ਪਤਾ"
-
-msgid "Number of add-ons developed"
-msgstr "ਉਸਾਰੇ ਗਏ ਐਡ-ਆਨਾਂ ਦੀ ਗਿਣਤੀ"
-
-msgid "{0} add-ons"
-msgstr "{0} ਐਡ-ਆਨ"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s ਥੀਮ"
-msgstr[1] "%(num)s ਥੀਮਾਂ"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s ਐਡ-ਆਨ"
-msgstr[1] "%(num)s ਐਡ-ਆਨਾਂ"
-
-msgid "Average rating of developer's add-ons"
-msgstr "ਡਿਵੈਲਪਰ ਦੇ ਐਡ-ਆਨਾਂ ਦੀ ਔਸਤ ਰੇਟਿੰਗ"
 
 msgctxt "user_list_others"
 msgid "others"

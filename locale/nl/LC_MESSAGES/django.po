@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2019-02-26 06:55+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -55,6 +55,10 @@ msgstr "Hulp nodig?"
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr ""
 "Ontwikkelaars van add-ons of thema’s kunnen hun account niet verwijderen. U moet alle add-ons en thema’s die aan deze account zijn gekoppeld verwijderen, of deze aan andere gebruikers overdragen."
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "Beoordeling"
@@ -152,9 +156,6 @@ msgstr "Domein van URL moet er een zijn van [%s], of een subdomein."
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Voordat u uw standaardlocale wijzigt, dient u een naam, samenvatting en beschrijving voor die locale in te geven. %s ontbreekt."
-
-msgid "A license must be selected."
-msgstr "U dient een licentie te selecteren."
 
 # Column name in a table.
 msgid "Listed"
@@ -372,8 +373,8 @@ msgid ""
 "If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
 "form for any other reason."
 msgstr ""
-"Als u vermoedt dat deze add-on in strijd is met %(amo_policy_link_open)sons beleid%(link_close)s of beveiligings- of privacyproblemen veroorzaakt, gebruik dan het onderstaande formulier om uw zorgen"
-" kenbaar te maken. Gebruik dit formulier niet voor iets anders."
+"Als u vermoedt dat deze add-on in strijd is met %(amo_policy_link_open)sons beleid%(link_close)s of beveiligings- of privacyproblemen veroorzaakt, gebruik dan het onderstaande formulier om uw "
+"zorgen kenbaar te maken. Gebruik dit formulier niet voor iets anders."
 
 msgid "Send Report"
 msgstr "Rapport verzenden"
@@ -549,11 +550,11 @@ msgid "Some add-ons ask for permission to perform certain functions (example: a 
 msgstr "Sommige add-ons vragen toestemming om bepaalde functies uit te voeren (voorbeeld: een tabblad-add-on vraagt toestemming voor toegang tot het tabbladensysteem van uw browser)."
 
 msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
+"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
+"some rare cases risk may be involved."
 msgstr ""
-"Aangezien u de controle over uw Firefox hebt, is de keuze om deze aanvragen toe te kennen of te weigeren aan u. Het accepteren van toestemmingen heeft in principe geen gevolgen voor de prestaties of"
-" beveiliging van uw browser, maar in zeldzame gevallen kan er sprake zijn van een risico."
+"Aangezien u de controle over uw Firefox hebt, is de keuze om deze aanvragen toe te kennen of te weigeren aan u. Het accepteren van toestemmingen heeft in principe geen gevolgen voor de prestaties "
+"of beveiliging van uw browser, maar in zeldzame gevallen kan er sprake zijn van een risico."
 
 #. This is a header of a list of things the add-on can do.
 msgid "This add-on can:"
@@ -697,9 +698,6 @@ msgstr "Onjuist, probeer het opnieuw."
 msgid "Error verifying input, please try again."
 msgstr "Fout bij controleren invoer, probeer het opnieuw."
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Dit dient een geldige hex-kleurcode te zijn, zoals #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Enkele functies zijn tijdelijk uitgeschakeld vanwege onderhoud aan de website. Binnenkort zijn we weer volledig beschikbaar."
 
@@ -727,8 +725,8 @@ msgstr ""
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
 msgstr ""
-"Als u uw browser zo hebt geconfigureerd dat ‘Referer’-headers zijn uitgeschakeld, schakel deze dan weer in, op zijn minst voor deze website, of voor HTTPS-verbindingen, of voor ‘same-"
-"origin’-aanvragen."
+"Als u uw browser zo hebt geconfigureerd dat ‘Referer’-headers zijn uitgeschakeld, schakel deze dan weer in, op zijn minst voor deze website, of voor HTTPS-verbindingen, of voor ‘same-origin’-"
+"aanvragen."
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -770,10 +768,10 @@ msgstr "Niet gevonden"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
 "<h1>Het spijt ons, maar we kunnen niet vinden waar u naar zoekt.</h1> <p>De door u aangevraagde pagina of bestand is niet op onze website aangetroffen. Mogelijk hebt u op een verouderde koppeling "
 "geklikt, of het adres verkeerd ingetypt.</p> <ul> <li>Als u het adres hebt ingetypt, controleer dan de spelling nog eens.</li> <li>Als u een koppeling ergens vandaan hebt gevolgd, "
@@ -826,8 +824,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Voer <strong>alle onderstaande woorden in</strong>, <strong>zo nodig gescheiden door een spatie</strong>. </p> <p> Als dit moeilijk leesbaar is, kunt u <a href=\"#\" "
-"id=\"recaptcha_different\">andere woorden proberen</a> of <a href=\"#\" id=\"recaptcha_audio\">een ander soort captcha proberen</a>. </p>"
+"<p> Voer <strong>alle onderstaande woorden in</strong>, <strong>zo nodig gescheiden door een spatie</strong>. </p> <p> Als dit moeilijk leesbaar is, kunt u <a href=\"#\" id=\"recaptcha_different"
+"\">andere woorden proberen</a> of <a href=\"#\" id=\"recaptcha_audio\">een ander soort captcha proberen</a>. </p>"
 
 msgid "Top Rated"
 msgstr "Hoogst gewaardeerd"
@@ -924,6 +922,14 @@ msgstr "Een of meer sleutels in de payload zijn van het verkeerde type"
 msgid "Invalid JWT Token."
 msgstr "Ongeldig JWT-token."
 
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Ongeldig of beschadigd archief."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "E-mailadres"
+
 msgid "The field must have a length of at least {num} characters."
 msgstr "Het veld dient ten minste {num} tekens te bevatten."
 
@@ -963,8 +969,8 @@ msgstr "Versies"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr ""
 "Als uw ondersteunde toepassing geen manifest-bestand vereist, moet u er toch één toevoegen met de vereiste eigenschappen zoals %(amo_manifests_mdn_link_open)shier%(amo_manifests_mdn_link_close)s "
 "gespecificeerd."
@@ -1117,12 +1123,12 @@ msgid ""
 "Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
 "from public view, click the button below to make it private."
 msgstr ""
-"Add-ons die u via de functie <b>Toevoegen aan favorieten</b> als favorieten markeert, verschijnen hieronder. Deze collectie is momenteel <b>openbaar</b>, wat inhoudt dat iedereen hem kan zien. Als u"
-" de collectie wilt verbergen, klik dan op de onderstaande knop om hem privé te maken."
+"Add-ons die u via de functie <b>Toevoegen aan favorieten</b> als favorieten markeert, verschijnen hieronder. Deze collectie is momenteel <b>openbaar</b>, wat inhoudt dat iedereen hem kan zien. Als "
+"u de collectie wilt verbergen, klik dan op de onderstaande knop om hem privé te maken."
 
 msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone to"
-" be able to see your favorites, click the button below to make it public."
+"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
+"to be able to see your favorites, click the button below to make it public."
 msgstr ""
 "Add-ons die u via de functie <b>Toevoegen aan favorieten</b> als favorieten markeert, verschijnen hieronder. Deze collectie is momenteel <b>privé</b>, wat betekent dat alleen u hem kunt zien. Als u "
 "wilt dat iedereen uw favorieten kan zien, klik dan op de onderstaande knop om de collectie openbaar te maken."
@@ -1308,8 +1314,8 @@ msgstr "Taalpakket installeren"
 
 #, python-format
 msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
+"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
+"of the entire application."
 msgstr ""
 "Het installeren van een woordenboek-add-on voegt een optie voor een nieuwe taal toe aan de spellingcontrole van uw %(app_name)s, die uw spelling controleert als u webformulieren invult. Taalpakket-"
 "add-ons wijzigen de taal van de hele toepassing."
@@ -2473,13 +2479,14 @@ msgid ""
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
 "Op deze website. <span class=\"helptext\">Na succesvolle beoordeling van de code wordt uw inzending voor miljoenen gebruikers op deze website en in de Add-onbeheerder van Firefox vermeld. "
-"Automatische updates worden door deze website verzorgd. Deze add-on komt tevens in aanmerking voor Mozilla-promoties en -wedstrijden. Eigen distributie van de beoordeelde bestanden is ook "
-"mogelijk.</span>"
+"Automatische updates worden door deze website verzorgd. Deze add-on komt tevens in aanmerking voor Mozilla-promoties en -wedstrijden. Eigen distributie van de beoordeelde bestanden is ook mogelijk."
+"</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Op die van uzelf. <span class=\"helptext\">Uw inzending wordt direct ondertekend voor eigen distributie. Updates dienen door uzelf te worden verzorgd via een updateURL of externe "
-"toepassingsupdates.</span>"
+"Op die van uzelf. <span class=\"helptext\">Uw inzending wordt direct ondertekend voor eigen distributie. Updates dienen door uzelf te worden verzorgd via een updateURL of externe toepassingsupdates."
+"</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Categorieën kunnen niet worden gewijzigd terwijl uw add-on wordt aanbevolen."
@@ -2625,9 +2632,6 @@ msgstr "Tekst van werkbalkveldgebied"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "De kleur van tekst in velden in de werkbalk, zoals de URL-balk. Manifestveld:  toolbar_field_text."
 
-msgid "Please check the form for errors."
-msgstr "Controleer het formulier op fouten."
-
 msgid "Review requested."
 msgstr "Beoordeling aangevraagd."
 
@@ -2647,8 +2651,8 @@ msgid "API key revoked"
 msgstr "API-sleutel ingetrokken"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Lees en accepteer voordat u begint onze Firefox-add-on-distributieovereenkomst, evenals onze Beoordelingsregels en -beleid. De Firefox-add-on-distributieovereenkomst verwijst tevens naar onze "
 "Privacyverklaring, die uitlegt hoe we met uw gegevens omgaan."
@@ -2772,7 +2776,9 @@ msgstr ""
 "versie van deze add-on te uploaden."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Compatibiliteit bijwerken</a> <a href=\"%(version_url)s\" class=\"button\">Nieuwe versie uploaden</a> of <a href=\"#\" "
 "class=\"close\">Negeren</a>"
@@ -2845,8 +2851,8 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Add-ons kunnen meerdere schrijvers hebben met twee mogelijke rollen:</p> <ul> <li><b>Eigenaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, inclusief toevoegen en verwijderen"
-" van andere schrijvers</li> <li><b>Ontwikkelaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, behalve toevoegen en verwijderen van andere schrijvers</li> </ul>"
+"<p>Add-ons kunnen meerdere schrijvers hebben met twee mogelijke rollen:</p> <ul> <li><b>Eigenaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, inclusief toevoegen en "
+"verwijderen van andere schrijvers</li> <li><b>Ontwikkelaar:</b> Kan alle aspecten van de lijstweergave van de add-on beheren, behalve toevoegen en verwijderen van andere schrijvers</li> </ul>"
 
 msgid "Additional Details"
 msgstr "Aanvullende details"
@@ -2955,7 +2961,8 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Categorieën zijn de voornaamste manier waarop gebruikers door add-ons bladeren. Kies er één die de functionaliteit van uw add-on in de meeste gevallen beschrijft."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Categorieën kunnen niet worden gewijzigd terwijl uw add-on voor deze toepassing wordt aanbevolen. Stuur een e-mailbericht naar <a href=\"mailto:%(email)s\">%(email)s</a> als u een reden hebt om uw "
 "categorieën aan te passen."
@@ -2970,8 +2977,8 @@ msgid "Email"
 msgstr "E-mailadres"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Als u een e-mailadres voor ondersteuningsvragen wilt weergeven, voer het hier dan in. Als u verschillende adressen voor elke taal heeft kunnen meerdere vertalingen van dit veld worden toegevoegd. "
 "Alleen relevant voor vermelde add-ons."
@@ -3003,8 +3010,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Alle informatie waar gebruikers mogelijk in zijn geïnteresseerd die niet noodzakelijkerwijs van toepassing is op de samenvatting of beschrijving van de add-on. Wordt vaak gebruikt voor een lijst met"
-" bekende bugs, informatie over hoe bugs gemeld kunnen worden, de verwachte publicatiedatum van een nieuwe versie, enz. Alleen relevant voor vermelde add-ons."
+"Alle informatie waar gebruikers mogelijk in zijn geïnteresseerd die niet noodzakelijkerwijs van toepassing is op de samenvatting of beschrijving van de add-on. Wordt vaak gebruikt voor een lijst "
+"met bekende bugs, informatie over hoe bugs gemeld kunnen worden, de verwachte publicatiedatum van een nieuwe versie, enz. Alleen relevant voor vermelde add-ons."
 
 msgid "View Source?"
 msgstr "Bron bekijken?"
@@ -3285,8 +3292,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
-"Waarschuwing: u hebt waarden voor naam/samenvatting in andere talen die automatisch tot de grens van %(max_length)s tekens zullen worden teruggebracht. Ga nadat het indieningsproces is voltooid naar"
-" Productpagina bewerken om deze te bewerken."
+"Waarschuwing: u hebt waarden voor naam/samenvatting in andere talen die automatisch tot de grens van %(max_length)s tekens zullen worden teruggebracht. Ga nadat het indieningsproces is voltooid "
+"naar Productpagina bewerken om deze te bewerken."
 
 msgid "Add-on URL:"
 msgstr "Add-on-URL:"
@@ -3469,8 +3476,8 @@ msgid "Operating system and build environment requirements."
 msgstr "Eisen voor het besturingssysteem en de buildomgeving."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 "Details (waaronder vereiste versie en installatie-instructies) van alle programma’s die in het buildproces worden gebruikt (voorbeeld: gebruikte versie van <span class=\"tech-emphasis\">node</span> "
 "en <span class=\"tech-emphasis\">npm</span>)."
@@ -3591,11 +3598,11 @@ msgstr "JWT-geheim"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
-"Stuur een <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> als de autorisatieheader om API-aanvragen te doen. U dient voor elke aanvraag een JWT te genereren, zoals uitgelegd in de <a "
-"href=\"%(docs_url)s\">API-documentatie</a>."
+"Stuur een <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> als de autorisatieheader om API-aanvragen te doen. U dient voor elke aanvraag een JWT te genereren, zoals uitgelegd in de <a href="
+"\"%(docs_url)s\">API-documentatie</a>."
 
 msgid "You don't have any API credentials."
 msgstr "U hebt geen API-referenties."
@@ -3898,11 +3905,11 @@ msgstr "Firefox aanpassen"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
-"Met add-ons kunnen miljoenen Firefox-gebruikers hun surfervaring verbeteren. Als u %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s en "
-"%(css_link_open)sCSS%(link_close)s kent, hebt u al de benodigde vaardigheden om een geweldige add-on te maken."
+"Met add-ons kunnen miljoenen Firefox-gebruikers hun surfervaring verbeteren. Als u %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s en %(css_link_open)sCSS"
+"%(link_close)s kent, hebt u al de benodigde vaardigheden om een geweldige add-on te maken."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Informatie over het maken van een add-on"
@@ -3952,114 +3959,11 @@ msgstr "Installeer uw extensie in Firefox tijdelijk voor live testen en debuggen
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Bewerking van lichtgewicht thema’s is uitgeschakeld."
 
-msgid "Create a New Theme"
-msgstr "Een nieuw thema maken"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Met achtergrondthema’s kunt u eenvoudig de uitstraling van uw Firefox personaliseren. Dien hieronder uw eigen ontwerp in, of <a href=\"%(submit_url)s\">lees hoe u er één kunt maken</a>!"
-
-msgid "Theme Details"
-msgstr "Thema-details"
-
-msgid "Give your Theme a name."
-msgstr "Geef uw thema een naam."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Geef een mooie URL voor uw detailpagina."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Selecteer de categorie die het beste bij uw thema past."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Voeg enkele labels toe die uw thema beschrijven."
-
-msgid "Describe your Theme."
-msgstr "Beschrijf uw thema."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Een korte uitleg van de basisfuncties van uw thema die wordt weergegeven in zoek- en navigatielijsten, evenals bovenaan de detailpagina van uw thema"
-
-msgid "Theme License"
-msgstr "Thema-licentie"
-
-msgid "Select a license for your Theme."
-msgstr "Selecteer een licentie voor uw thema."
-
-msgid "Theme Design"
-msgstr "Thema-ontwerp"
-
-msgid "Select colors for your Theme."
-msgstr "Selecteer kleuren voor uw thema."
-
-msgid "Foreground Text"
-msgstr "Voorgrondtekst"
-
-msgid "This is the color of the tab text"
-msgstr "Dit is de kleur van de tabbladtekst"
-
-msgid "Background"
-msgstr "Achtergrond"
-
-msgid "This is the color of the tabs"
-msgstr "Dit is de kleur van de tabbladen"
-
-msgid "Your Theme's Name"
-msgstr "Naam van uw thema"
-
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "door <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, Communications"
-" and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"Ik ga akkoord met de %(agreement_link_open)sFirefox-add-on-distributieovereenkomst%(link_close)s en verwerking van mijn gegevens, zoals beschreven in de %(privacy_notice_link_open)sPrivacyverklaring"
-" voor websites, communicatie en cookies%(link_close)s."
-
-msgid "Submit Theme"
-msgstr "Thema indienen"
-
-msgid "You're done!"
-msgstr "U bent klaar!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Uw thema is ingediend en staat in de beoordelingswachtrij. U ontvangt een e-mailbericht zodra het thema is beoordeeld, normaal gesproken binnen 24 uur."
-
-msgid "Next steps:"
-msgstr "Volgende stappen:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Geef meer details over uw thema door <a href=\"%(edit_url)s\">de lijstopname te bewerken</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Bekijk en abonneer u op de <a href=\"%(feed_url)s\">activiteitenfeed</a> van uw thema om op de hoogte te blijven van beoordelingen, collecties en meer."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Discussieer mee op onze <a href=\"%(forum_url)s\">forums</a>."
-
-msgid "Select a header image for your Theme."
-msgstr "Selecteer een headerafbeelding voor uw thema."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 pixels"
-
-msgid "300 KB max"
-msgstr "Maximaal 300 KB"
-
-msgid "PNG or JPG"
-msgstr "PNG of JPG"
-
 msgid "Manage Version {0}"
 msgstr "Versie {0} beheren"
 
-#. {0} is an add-on name.
 # {0} is the name of the collection
+#. {0} is an add-on name.
 msgid "Manage {0}"
 msgstr "{0} beheren"
 
@@ -4775,14 +4679,6 @@ msgstr "Pas uw nieuwe tabblad aan {start_sub_heading}met {addon_name}{end_sub_he
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr "Bewerk de nieuw-tabbladpagina zodat deze uw gewenste aantal tabbladen, een achtergrondafbeelding en meer weergeeft."
-
-#. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vind snelle vertalingen {start_sub_heading}met {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr "Markeer tekst op een website, klik met de rechtermuisknop, en vertaal direct."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5501,12 +5397,31 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "In een muisklik kunt u video’s in hun volle glorie op volledig scherm bekijken."
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bespaar geheugen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Stop met verkwisten van waardevolle geheugenruimte aan inactieve tabbladen."
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Zoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Leg het web vast {start_sub_heading}met {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
+msgstr ""
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5603,7 +5518,8 @@ msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
 
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+#, fuzzy
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een ondersteund bestand {extensions}."
 
 msgid "Unexpected error."
@@ -5885,7 +5801,8 @@ msgstr ""
 "codekwaliteit en stabiliteit."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Help deze website te verbeteren. Hij is open source, en u kunt bugs melden en patches indienen. <a href=\"%(url)s\"> GitHub</a> bevat al onze huidige bugs, oude bugs zijn nog in Bugzilla te vinden."
 
@@ -5929,8 +5846,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Veelgestelde vragen over beoordelingen"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Add-on-beoordelingen zijn een manier om uw meningen over de door u geïnstalleerde en gebruikte add-ons te geven. Ons evaluatieteam behoudt zich het recht voor om elke beoordeling die niet conform "
 "deze richtlijnen is te weigeren of te verwijderen."
@@ -6097,17 +6014,17 @@ msgstr "Een beoordeling voor {0} toevoegen"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Houd deze tips in gedachten</h2> <ul> <li> Schrijf alsof u een vriend over uw ervaring met de add-on vertelt. Geef specifieke en nuttige details, zoals welke functies u prettig en/of onprettig "
 "vond, hoe gemakkelijk het gebruik is, en eventuele nadelen. Vermijd algemene uitingen als ‘Geweldig’ of ‘Slecht’, tenzij u redenen kunt geven waarom u dit vindt. </li> <li> Meld hier geen bugs. We "
-"stellen uw e-mailadres niet beschikbaar aan ontwikkelaars van add-ons, waardoor geen contact met u kan worden opgenomen als ze uw probleem willen verhelpen. In de <a "
-"href=\"%(support)s\">ondersteuningssectie</a> vindt u waar u ondersteuning voor deze add-on kunt krijgen. U kunt ook proberen de <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on-gemeenschap</a> om hulp vragen.</li> <li>Houd beoordelingen netjes, vermijd grof taalgebruik en plaats geen persoonlijke gegevens. </li> </ul> <p>Lees de <a "
-"href=\"%(guide)s\">Beoordelingsrichtlijnen</a> voor meer details over add-on-beoordelingen door gebruikers.</p>"
+"stellen uw e-mailadres niet beschikbaar aan ontwikkelaars van add-ons, waardoor geen contact met u kan worden opgenomen als ze uw probleem willen verhelpen. In de <a href=\"%(support)s"
+"\">ondersteuningssectie</a> vindt u waar u ondersteuning voor deze add-on kunt krijgen. U kunt ook proberen de <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on-"
+"gemeenschap</a> om hulp vragen.</li> <li>Houd beoordelingen netjes, vermijd grof taalgebruik en plaats geen persoonlijke gegevens. </li> </ul> <p>Lees de <a href=\"%(guide)s"
+"\">Beoordelingsrichtlijnen</a> voor meer details over add-on-beoordelingen door gebruikers.</p>"
 
 msgid "Reply to review by {0}"
 msgstr "Beoordeling door {0} beantwoorden"
@@ -6283,17 +6200,6 @@ msgstr "dagen"
 msgid "Choose a canned response..."
 msgstr "Kies een voorgedefinieerd antwoord…"
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "themanaam"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Iemand anders beoordeelt dit thema."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "thema, beoordelaar of opmerking"
-
 msgid "Private Whiteboard"
 msgstr "Privénotitiebord"
 
@@ -6329,21 +6235,6 @@ msgstr "Is vergrendeld door een beoordelaar."
 
 msgid "Has auto-approval disabled flag set."
 msgstr "Heeft markering ‘automatische goedkeuring uitgeschakeld’."
-
-msgid "Duplicate Submission"
-msgstr "Dubbele inzending"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Bedankt voor het indienen van uw thema"
-
-msgid "A problem with your Theme submission"
-msgstr "Een probleem met de indiening van uw thema"
-
-msgid "Theme submission flagged for review"
-msgstr "Ingediend thema gemarkeerd voor beoordeling"
-
-msgid "A question about your Theme submission"
-msgstr "Een vraag over uw ingediende thema"
 
 msgid "Type"
 msgstr "Type"
@@ -6477,21 +6368,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Inhoudsbeoordeling ({0})"
 msgstr[1] "Inhoudsbeoordelingen ({0})"
 
-msgid "New Themes ({0})"
-msgstr "Nieuwe thema’s ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "Thema-updates ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "Gemarkeerde thema’s ({0})"
-
-msgid "Lightweight Themes Review Log"
-msgstr "Beoordelingslogboek van lichtgewicht thema’s"
-
-msgid "Deleted Themes Log"
-msgstr "Logboek van verwijderde thema’s"
-
 msgid "User Ratings Moderation"
 msgstr "Moderatie van gebruikerswaarderingen"
 
@@ -6536,16 +6412,6 @@ msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Privacybeleid"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} themabeoordeling met succes verwerkt (+{1} punten, {2} totaal)."
-msgstr[1] "{0} themabeoordelingen met succes verwerkt (+{1} punten, {2} totaal)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Uw themablokkades zijn met succes opgeheven. Andere beoordelaars kunnen nu die vrijgegevens thema’s beoordelen. U dient mogelijk de pagina te vernieuwen om de wijzigingen in onderstaande tabel te "
-"zien."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon}:: Misbruikmeldingen"
@@ -6927,124 +6793,6 @@ msgstr "U hebt <span>{0}</span> punten."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s op %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Verwijderingsdatum"
-
-msgid "No deleted themes found for this period."
-msgstr "Geen verwijderde thema’s gevonden in deze periode."
-
-msgid "Theme Review History for {0}"
-msgstr "Thema-beoordelingsgeschiedenis voor {0}"
-
-msgid "Review Date"
-msgstr "Beoordelingsdatum"
-
-msgid "Action"
-msgstr "Actie"
-
-msgid "Reason"
-msgstr "Reden"
-
-msgid "There are currently no reviews."
-msgstr "Er zijn momenteel geen beoordelingen."
-
-msgid "Flagged Themes"
-msgstr "Gemarkeerde thema’s"
-
-msgid "Theme Review Queue"
-msgstr "Thema-beoordelingswachtrij"
-
-msgid "Queues"
-msgstr "Wachtrijen"
-
-msgid "Review Options"
-msgstr "Beoordelingsopties"
-
-msgid "Auto-advance after review"
-msgstr "Automatisch doorzetten na beoordeling"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Sneltoetsen inschakelen"
-
-msgid "Keyboard Shortcuts"
-msgstr "Sneltoetsen"
-
-msgid "Next Theme"
-msgstr "Volgende thema"
-
-msgid "Previous Theme"
-msgstr "Vorige thema"
-
-msgid "Your Review History"
-msgstr "Uw beoordelingsgeschiedenis"
-
-msgid "Commit Review"
-msgstr "Beoordeling indienen"
-
-msgid "Commit Reviews"
-msgstr "Beoordelingen indienen"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} van {1} beoordeeld"
-
-msgid "There are currently no Themes to review."
-msgstr "Er zijn momenteel geen thema’s om te beoordelen."
-
-msgid "Clear Search"
-msgstr "Zoekveld leegmaken"
-
-msgid "Release My Theme Locks"
-msgstr "Mijn themablokkades verwijderen"
-
-msgid "Interactive Theme Queue"
-msgstr "Interactieve thema-wachtrij"
-
-msgid "Reviewers' Guide"
-msgstr "Beoordelingsrichtlijnen"
-
-msgid "Theme Review for {0}"
-msgstr "Thema-beoordeling voor {0}"
-
-msgid "Edit Listing"
-msgstr "Lijstvermelding bewerken"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Waarschijnlijk dubbel ingediend)"
-
-msgid "Submitted"
-msgstr "Ingediend"
-
-msgid "Past Review Notes"
-msgstr "Eerdere beoordelingsopmerkingen"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Meer informatie gevraagd: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Gemarkeerd: {0}"
-
-msgid "Approve Theme"
-msgstr "Thema goedkeuren"
-
-msgid "Field required"
-msgstr "Veld vereist"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Voer de ID of URL van het duplicaat in"
-
-msgid "Select a reason for rejection"
-msgstr "Selecteer een reden van afwijzing"
-
-msgid "Describe your reason for rejection"
-msgstr "Beschrijf uw reden van afwijzing"
-
-msgid "Ask a question to the artist"
-msgstr "Een vraag aan de kunstenaar stellen"
-
-msgid "Describe your reason for flagging"
-msgstr "Beschrijf uw reden voor markering"
-
 msgid "Rejected or Unreviewed"
 msgstr "Afgewezen of niet beoordeeld"
 
@@ -7071,12 +6819,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Verlopen verzoek om informatie ({0})"
 msgstr[1] "Verlopen verzoeken om informatie ({0})"
-
-msgid "Flagged"
-msgstr "Gemarkeerd"
-
-msgid "Updates"
-msgstr "Updates"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7444,18 +7186,18 @@ msgstr "Over volgen van externe bronnen…"
 # origineel is
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Volgen van externe bronnen</h2> <p> Als u vanaf een externe website een koppeling geeft naar de detailpagina van uw add-on of rechtstreeks naar het bestand, zoals uw blog of website, kunt u "
-"daaraan een parameter toevoegen die kan worden gevolgd als aanvullende downloadbron op deze pagina. Zo worden bijvoorbeeld de volgende koppelingen weergegeven als ontspringend aan uw blog: <dl> <dt"
-">Add-on-detailpagina</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Rechtstreekse bestandskoppeling</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Alleen src-parameters die met ‘external-’ beginnen worden gevolgd, tot 61 "
-"aanvullende tekens. U kunt willekeurige tekst na ‘external-’ gebruiken om de bron te beschrijven, zoals ‘external-blog’, ‘external-zijbalk’, ‘external-campagne225’, enz. De volgende URL-veilige "
-"tekens zijn toegestaan: <code>a-z A-Z - . _ ~ %% +</code>"
+"daaraan een parameter toevoegen die kan worden gevolgd als aanvullende downloadbron op deze pagina. Zo worden bijvoorbeeld de volgende koppelingen weergegeven als ontspringend aan uw blog: <dl> "
+"<dt>Add-on-detailpagina</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Rechtstreekse bestandskoppeling</dt> <dd>https://addons.mozilla.org/downloads/latest/"
+"%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Alleen src-parameters die met ‘external-’ beginnen worden gevolgd, tot 61 aanvullende tekens. U kunt willekeurige tekst na "
+"‘external-’ gebruiken om de bron te beschrijven, zoals ‘external-blog’, ‘external-zijbalk’, ‘external-campagne225’, enz. De volgende URL-veilige tekens zijn toegestaan: <code>a-z A-Z - . _ ~ %% +</"
+"code>"
 
 msgid "Add-on Status by Date"
 msgstr "Add-onstatus op datum"
@@ -7660,28 +7402,6 @@ msgstr "Add-ons"
 msgid "Activity Logs"
 msgstr "Activiteitenlogboeken"
 
-msgid "Email must be {email}."
-msgstr "E-mailadres dient {email} te zijn."
-
-# Is dit een werkwoord of een zelfstandig naamwoord?
-msgid "Display Name"
-msgstr "Naam weergeven"
-
-msgid "Location"
-msgstr "Locatie"
-
-msgid "Occupation"
-msgstr "Beroep"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "U kunt uw e-mailadres wijzigen bij Firefox Accounts."
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Deze URL heeft een ongeldige opmaak. Geldige URL’s lijken op http://voorbeeld.com/mijn_pagina."
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "Voer een reden voor de wijziging in om te anonimiseren, maar wijzig geen van de overige velden."
-
 msgid "No user with that email."
 msgstr "Er is geen gebruiker met dat e-mailadres."
 
@@ -7718,204 +7438,11 @@ msgstr "Mozilla dient contact met mij op te nemen over mijn individuele add-on"
 msgid "User Notifications"
 msgstr "Gebruikersnotificaties"
 
-msgid "An email address is required."
-msgstr "Een e-mailadres is vereist."
-
-msgid "A user with that email address does not exist."
-msgstr "Er bestaat geen gebruiker met dat e-mailadres."
-
-msgid "Profile Deleted"
-msgstr "Profiel verwijderd"
-
-msgid "Photo Deleted"
-msgstr "Foto verwijderd"
-
-msgid "Profile Updated"
-msgstr "Profiel bijgewerkt"
-
-msgid "Errors Found"
-msgstr "Fouten gevonden"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Er zijn fouten opgetreden in de door u aangebrachte wijzigingen. Corrigeer ze en dien het formulier opnieuw in."
-
-msgid "User reported."
-msgstr "Gebruiker gerapporteerd."
-
-msgid "new"
-msgstr "nieuw"
-
 msgid "Ban"
 msgstr "Verbannen"
 
 msgid "Delete picture"
 msgstr "Afbeelding verwijderen"
-
-msgid "Delete User Account"
-msgstr "Gebruikersaccount verwijderen"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"U kunt uw account niet verwijderen als u als een <a href=\"%(link)s\">schrijver van een add-on</a> bent vermeld. Vraag hiervoor iemand anders in uw ontwikkelingsgroep om u uit de lijst met "
-"schrijvers voor uw add-ons te verwijderen. Daarna kunt u hier terugkomen om uw account te verwijderen."
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Door op ‘verwijderen’ te klikken, wordt uw account <strong>definitief verwijderd</strong>. Dat betekent:"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "Als u zich opnieuw bij %(site)s aanmeldt met dit e-mailadres, wordt een nieuwe account aangemaakt die geen verband houdt met deze account."
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Uw beoordelingen en waarderingen worden niet verwijderd, maar ze zijn niet meer met u geassocieerd."
-
-msgid "Confirm account deletion"
-msgstr "Verwijdering van account bevestigen"
-
-msgid "I understand this step cannot be undone."
-msgstr "Ik begrijp dat deze stap niet ongedaan kan worden gemaakt."
-
-msgid "Delete my user account now"
-msgstr "Mijn gebruikersaccount nu verwijderen"
-
-msgid "Delete User Photo"
-msgstr "Gebruikersfoto verwijderen"
-
-msgid "Delete my user picture now"
-msgstr "Mijn gebruikersafbeelding nu verwijderen"
-
-msgid "Please set your display name"
-msgstr "Stel uw schermnaam in"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "Stel uw schermnaam of gebruikersnaam in om het registratieproces te voltooien."
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Basale accountgegevens beheren, zoals uw gebruikersnaam en instellingen van Firefox Accounts."
-
-msgid "Email Address"
-msgstr "E-mailadres"
-
-msgid "Manage Firefox Account..."
-msgstr "Firefox-account beheren…"
-
-msgid "Profile"
-msgstr "Profiel"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Geef ons wat meer informatie over uzelf. Al deze velden zijn optioneel, maar ze helpen andere gebruikers om u wat beter te leren kennen."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "Deze URL is alleen zichtbaar als u een ontwikkelaar bent."
-
-msgid "Choose Photo&hellip;"
-msgstr "Foto kiezen…"
-
-msgid "Delete current photo"
-msgstr "Huidige foto verwijderen"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Stel uzelf voor aan de gemeenschap als u dat wilt! Deze tekst verschijnt op uw publiek toegankelijke gebruikersinformatiepagina."
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Toegestane HTML: %(html)s. Koppelingen zijn niet toegestaan."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Beslis welke collecties in uw profiel moeten worden weergegeven."
-
-msgid "Display the collections I have created"
-msgstr "Door mij gemaakte collecties weergeven"
-
-msgid "Notifications"
-msgstr "Notificaties"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "Mozilla kan u af en toe een e-mailbericht sturen over aankomende uitgaven en add-on-gebeurtenissen. Selecteer de voor u interessante onderwerpen."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Mozilla behoudt zich het recht voor om individueel contact met u op te nemen over specifieke aangelegenheden met uw add-ons die worden gehost."
-
-msgid "Admin"
-msgstr "Beheer"
-
-msgid "Delete Account"
-msgstr "Account verwijderen"
-
-msgid "Update Account"
-msgstr "Account bijwerken"
-
-msgid "none"
-msgstr "geen"
-
-msgid "all"
-msgstr "alles"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla Add-ons is voor aanmelding overgegaan op Firefox Accounts. Ga verder om het eenvoudige aanmeldingsproces te voltooien."
-
-msgid "Password Reset"
-msgstr "Wachtwoord opnieuw instellen"
-
-msgid "User Info for {0}"
-msgstr "Gebruikersinformatie voor {0}"
-
-msgid "Edit profile"
-msgstr "Profiel bewerken"
-
-msgid "Manage user"
-msgstr "Gebruiker beheren"
-
-msgid "Report user"
-msgstr "Gebruiker rapporteren"
-
-# The title for a user if they are a developer
-msgid "Add-ons Developer"
-msgstr "Add-on-ontwikkelaar"
-
-msgid "Themes Artist"
-msgstr "Themakunstenaar"
-
-msgid "About me"
-msgstr "Over mij"
-
-msgid "In a little more detail..."
-msgstr "In wat meer detail…"
-
-msgid "Add-ons I've created"
-msgstr "Door mij gemaakte add-ons"
-
-msgid "View all"
-msgstr "Alles bekijken"
-
-msgid "My Most Popular Themes"
-msgstr "Mijn meest populaire thema’s"
-
-msgid "Themes I've created"
-msgstr "Door mij gemaakte thema’s"
-
-# "Me" in this context is the user shown on the User Info page
-msgid "Created by Me"
-msgstr "Gemaakt door mij"
-
-# "My" in this context is the logged in user who is reading the page
-msgid "My Reviews"
-msgstr "Mijn beoordelingen"
-
-msgid "No add-on reviews yet."
-msgstr "Nog geen add-on-beoordelingen."
-
-msgid "Report User"
-msgstr "Gebruiker rapporteren"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Beschrijf waarom u deze gebruiker rapporteert, zoals bijvoorbeeld voor spam of een ongepaste afbeelding."
-
-msgid "Report user {0}"
-msgstr "Gebruiker {0} rapporteren"
 
 msgid "Unsubscribe"
 msgstr "Abonnement opzeggen"
@@ -7943,39 +7470,6 @@ msgstr "We konden uw abonnement niet stopzetten"
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "We kunnen u helaas niet afmelden. De door u aangeklikte koppeling is niet geldig. U kunt zich echter nog steeds afmelden op uw <a href=\"%(edit_url)s\">profielpagina</a>."
 
-msgid "Developer Information"
-msgstr "Ontwikkelaarsinformatie"
-
-msgid "User since"
-msgstr "Gebruiker sinds"
-
-msgid "Time of last login"
-msgstr "Tijdstip laatste aanmelding"
-
-msgid "IP address of last login"
-msgstr "IP-adres bij laatste aanmelding"
-
-msgid "Number of add-ons developed"
-msgstr "Aantal ontwikkelde add-ons"
-
-msgid "{0} add-ons"
-msgstr "{0} add-ons"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s thema"
-msgstr[1] "%(num)s thema’s"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s add-on"
-msgstr[1] "%(num)s add-ons"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Gemiddelde waardering van add-ons van de ontwikkelaar"
-
 msgctxt "user_list_others"
 msgid "others"
 msgstr "overigen"
@@ -8001,8 +7495,8 @@ msgstr "Uitgegeven op {0}"
 msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
 msgstr "Broncode uitgegeven onder <a href=\"%(url)s\">%(name)s</a>"
 
-#. {0} is an add-on name.
 # {0} is the add-on name
+#. {0} is an add-on name.
 msgid "{0} Version History"
 msgstr "{0}-versiegeschiedenis"
 

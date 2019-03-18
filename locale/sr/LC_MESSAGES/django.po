@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -50,6 +50,10 @@ msgid "Need help?"
 msgstr ""
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
+msgstr ""
+
+#, python-format
+msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
@@ -150,9 +154,6 @@ msgstr ""
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Пре него што измените подразумевани простор, морате имати име, кратак преглед и опис у том простору. Недостаје Вам %s."
-
-msgid "A license must be selected."
-msgstr "Лиценца мора бити изабрана."
 
 # Column name in a table.
 msgid "Listed"
@@ -705,9 +706,6 @@ msgstr ""
 msgid "Error verifying input, please try again."
 msgstr ""
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Морате унети исправну хексадецималну шифру боје, као што је #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Неке функције су привремено онемогућене док вршимо одржавање веб сајта. Ми ћемо се вратити у пуном капацитету ускоро."
 
@@ -931,6 +929,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr ""
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Неважећа архива."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "Адреса е-поште"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -2708,9 +2714,6 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-msgid "Please check the form for errors."
-msgstr "Молимо Вас проверите да ли има грешака у форми."
-
 #, fuzzy
 msgid "Review requested."
 msgstr "Захтевана рецензија"
@@ -4113,110 +4116,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Рецензија теме"
 
-msgid "Create a New Theme"
-msgstr "Направи нову тему"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Теме позадине су лак начин да персонализујете Firefox. Доставите Ваш дизајн испод, или <a href=\"%(submit_url)s\">научите како да је направите</a>!"
-
-msgid "Theme Details"
-msgstr "Детаљи теме"
-
-msgid "Give your Theme a name."
-msgstr "Дајте назив Вашој теми."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Обезбеди лепу URL адресу за Вашу страницу са детаљима."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Изаберите категорију која најбоље описује Вашу тему."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Додајте неке ознаке да опишете Вашу тему."
-
-msgid "Describe your Theme."
-msgstr "Опишите Вашу тему."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Кратко објашњење основних фукционалности Ваше теме које је приказано у листама претраге и прегледавања, као и на врху странице са детаљима Ваше теме."
-
-msgid "Theme License"
-msgstr "Лиценца теме"
-
-msgid "Select a license for your Theme."
-msgstr "Изаберите лиценцу за Вашу тему."
-
-msgid "Theme Design"
-msgstr "Дизајн теме"
-
-msgid "Select colors for your Theme."
-msgstr "Одаберите боје за Вашу тему."
-
-msgid "Foreground Text"
-msgstr "Предњи текст"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "Ово је боја текста на језичку."
-
-msgid "Background"
-msgstr "Позадина"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "Ово је боја језичака."
-
-msgid "Your Theme's Name"
-msgstr "Име теме"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "Објављен под <a href=\"%(url)s\">%(name)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-
-msgid "Submit Theme"
-msgstr "Поднеси тему"
-
-msgid "You're done!"
-msgstr "Готови сте!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Ваша тема је достављена на разматрање. Ви ћете добити е-пошту након што је прегледана, обично у року од 24 сата."
-
-msgid "Next steps:"
-msgstr "Следећи кораци:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Пружите више детаља о Вашој теми тако што ћете<a href=\"%(edit_url)s\">уредити свој листинг</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Погледајте и претплатите се на <a href=\"%(feed_url)s\">Извор активности</a> Ваше теме да бисте остали информисани о критикама, колекцијама и још много тога."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Прикључи се разговору у нашим <a href=\"%(forum_url)s\">форумима</a>."
-
-msgid "Select a header image for your Theme."
-msgstr "Изаберите слику заглавља за Вашу тему."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 пиксела"
-
-msgid "300 KB max"
-msgstr "300 KB max"
-
-msgid "PNG or JPG"
-msgstr "PNG или JPG"
-
 msgid "Manage Version {0}"
 msgstr "Управљај верзијом {0}"
 
@@ -4948,14 +4847,6 @@ msgid "Edit the new tab page to display your preferred number of tiles, backgrou
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -5672,11 +5563,27 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5775,7 +5682,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Тип датотеке није подржан, молимо Вас да отпремите архиву датотеке {extensions}."
 
 msgid "Unexpected error."
@@ -6466,18 +6373,6 @@ msgstr "7 дана"
 msgid "Choose a canned response..."
 msgstr "Изабери готов одговор..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "назив теме"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Неко други прегледава ову тему."
-
-#. L10n: Description of what can be searched for.
-#, fuzzy
-msgid "theme, reviewer, or comment"
-msgstr "апликација, рецензент, или коментар"
-
 #, fuzzy
 msgid "Private Whiteboard"
 msgstr "Табла"
@@ -6518,21 +6413,6 @@ msgstr "mој додатак је прегледан од стране уред�
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
-
-msgid "Duplicate Submission"
-msgstr "Диплирано подношење"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Хвала Вам што сте поднели Вашу тему"
-
-msgid "A problem with your Theme submission"
-msgstr "Проблем са подношењем Ваше теме"
-
-msgid "Theme submission flagged for review"
-msgstr "Поднешење теме је означено за преглед"
-
-msgid "A question about your Theme submission"
-msgstr "Питање о Вашем подношењу теме"
 
 msgid "Type"
 msgstr "Тип"
@@ -6691,26 +6571,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Конторлисан преглед ({0})"
 msgstr[1] "Конторлисана прегледа ({0})"
 
-#, fuzzy
-msgid "New Themes ({0})"
-msgstr "Сви моји додаци"
-
-#, fuzzy
-msgid "Themes Updates ({0})"
-msgstr "Ажурирано {0}"
-
-#, fuzzy
-msgid "Flagged Themes ({0})"
-msgstr "Означене теме"
-
-#, fuzzy
-msgid "Lightweight Themes Review Log"
-msgstr "Рецензија теме"
-
-#, fuzzy
-msgid "Deleted Themes Log"
-msgstr "Избриши тему"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -6761,14 +6621,6 @@ msgstr "{addon} :: Извештаји злостављања"
 #, fuzzy
 msgid "{addon} :: Privacy Policy"
 msgstr "Овај додатак има Полису приватности"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} рецензија теме је успешно обрађена (+{1} поена, {2} укупно)."
-msgstr[1] "{0} рецензије теме су успешно обрађене (+{1} поена, {2} укупно)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Извештаји злостављања"
@@ -7174,124 +7026,6 @@ msgstr "Имате <span>{0}</span> поена."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s дана %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Датум брисања"
-
-msgid "No deleted themes found for this period."
-msgstr "Нема обрисаних тема пронађених за овај период."
-
-msgid "Theme Review History for {0}"
-msgstr "Историја прегледаних тема за {0}"
-
-msgid "Review Date"
-msgstr "Датум рецензије"
-
-msgid "Action"
-msgstr "Акција"
-
-msgid "Reason"
-msgstr "Разлог"
-
-msgid "There are currently no reviews."
-msgstr "Тренутно нема рецензија."
-
-msgid "Flagged Themes"
-msgstr "Означене теме"
-
-msgid "Theme Review Queue"
-msgstr "Ред прегледања тема"
-
-msgid "Queues"
-msgstr "Редови за чекање"
-
-msgid "Review Options"
-msgstr "Опције прегледа"
-
-msgid "Auto-advance after review"
-msgstr "Аутоматко-напредовање после прегледа"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Омогућити пречице на тастатури"
-
-msgid "Keyboard Shortcuts"
-msgstr "Пречице на тастатури"
-
-msgid "Next Theme"
-msgstr "Следећа тема"
-
-msgid "Previous Theme"
-msgstr "Претходна тема"
-
-msgid "Your Review History"
-msgstr "Ваша историја рецензија"
-
-msgid "Commit Review"
-msgstr "Извршити рецензију"
-
-msgid "Commit Reviews"
-msgstr "Извршити рецензије"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} од {1} прегледано"
-
-msgid "There are currently no Themes to review."
-msgstr "Тренутно нема тема за преглед."
-
-msgid "Clear Search"
-msgstr "Брисање претраге"
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr "Интерактивни ред тема"
-
-msgid "Reviewers' Guide"
-msgstr "Водич за рецензенте"
-
-msgid "Theme Review for {0}"
-msgstr "Преглед тема за {0}"
-
-msgid "Edit Listing"
-msgstr "Измени списак"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Вероватно дуплирана достављања)"
-
-msgid "Submitted"
-msgstr "Поднето"
-
-msgid "Past Review Notes"
-msgstr "Претходне белешке прегледа"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Више тражених информација: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Означено: {0}"
-
-msgid "Approve Theme"
-msgstr "Одобрити тему"
-
-msgid "Field required"
-msgstr "Обавезно поље"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Унесите ID или URL дупликата"
-
-msgid "Select a reason for rejection"
-msgstr "Одаберите разлог одбацивања"
-
-msgid "Describe your reason for rejection"
-msgstr "Објасните Ваш разлог за одбацивање"
-
-msgid "Ask a question to the artist"
-msgstr "Поставите питање аутору"
-
-msgid "Describe your reason for flagging"
-msgstr "Наведите Ваше разлоге за означавање"
-
 msgid "Rejected or Unreviewed"
 msgstr "Одбијено или непрегледано"
 
@@ -7322,12 +7056,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Више тражених информација: {0}"
 msgstr[1] "Више тражених информација: {0}"
-
-msgid "Flagged"
-msgstr "Означено"
-
-msgid "Updates"
-msgstr "Ажурирања"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7907,27 +7635,6 @@ msgstr ""
 msgid "Activity Logs"
 msgstr "Активност"
 
-msgid "Email must be {email}."
-msgstr ""
-
-msgid "Display Name"
-msgstr "Приказано име"
-
-msgid "Location"
-msgstr "Локација"
-
-msgid "Occupation"
-msgstr "Занимање"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr ""
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Овај URL је неисправног формата. Валидне URL адресе изгледају овако http://пример.com/моја_страна."
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "На анонимном, унесите разлог за промену али не мењајте било које друго поље."
-
 msgid "No user with that email."
 msgstr "Нема корисника са том адресом е-поште."
 
@@ -7966,33 +7673,6 @@ msgstr "Mozilla треба да ме контактирате у вези мог
 msgid "User Notifications"
 msgstr "Обавештења корисника"
 
-msgid "An email address is required."
-msgstr "Адреса е-поште је потребна."
-
-msgid "A user with that email address does not exist."
-msgstr "Корисник са том адресом е-поште не постоји."
-
-msgid "Profile Deleted"
-msgstr "Профил је избрисан"
-
-msgid "Photo Deleted"
-msgstr "Слика је избрисана"
-
-msgid "Profile Updated"
-msgstr "Профил је ажуриран"
-
-msgid "Errors Found"
-msgstr "Пронађене грешке"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Било је грешака у променама које сте поднели. Молимо исправите их и поново пошаљите."
-
-msgid "User reported."
-msgstr "Корисник је пријавњен."
-
-msgid "new"
-msgstr "нови"
-
 #, fuzzy
 msgid "Ban"
 msgstr "и"
@@ -8000,171 +7680,6 @@ msgstr "и"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Обриши моју корисничку слику"
-
-msgid "Delete User Account"
-msgstr "Избриши налог"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"Неможете избрисати Ваш налог ако сте пријављени као <a href=\"%(link)s\"> аутор било којег додатка </a>. Да би сте избрисали Ваш налог , замолите неког из ваше развојне групе да Вас избрише са "
-"листе аутора за Ваш додатак. Након тога ће те бити у могућности да избришете Ваш налог овде."
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Кликом на \"обриши\" Ваш налог ће бити <strong>трајно уклоњен</strong>. То значи:"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Ваше рецензије и оцене неће бити обрисане, али оне више неће бити повезане са Вама."
-
-msgid "Confirm account deletion"
-msgstr "Потврдите брисање налога"
-
-msgid "I understand this step cannot be undone."
-msgstr "Разумем да овај корак не може бити опозван."
-
-msgid "Delete my user account now"
-msgstr "Избриши мој налог сада"
-
-msgid "Delete User Photo"
-msgstr "Обриши корисничку слику"
-
-msgid "Delete my user picture now"
-msgstr "Обриши моју корисничку слику"
-
-msgid "Please set your display name"
-msgstr ""
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr ""
-
-#, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Управљајте са основним информацијама о налогу, као што су корисничко име и адреса е-поште."
-
-msgid "Email Address"
-msgstr "Адреса е-поште"
-
-msgid "Manage Firefox Account..."
-msgstr ""
-
-msgid "Profile"
-msgstr "Профил"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Дајте нам мало више информација о себи. Сва ова поља су опциона, али ће помоћи другим корисницима да Вас боље упознају."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "URL ће бити само видљив ако сте програмер."
-
-msgid "Choose Photo&hellip;"
-msgstr "Изабери слику&hellip;"
-
-msgid "Delete current photo"
-msgstr "Избриши тренутну слику"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Представите себе заједници, ако желите! Овај текст ће се појавити јавно на страници која садржи информација о кориснику."
-
-#, fuzzy, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Дозвољен HTML: {0}. Везе су забрањене."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Одлучите које колекције требају да буду приказане на Вашем профилу."
-
-msgid "Display the collections I have created"
-msgstr "Прикажи колекције које сам направио"
-
-msgid "Notifications"
-msgstr "Обавештења"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "Са времена на време, Mozilla Вам може послати е-пошту о предстојећим издањима и догађајима за додатке. Молимо Вас да изаберете теме за које сте заинтересовани."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Mozilla задржава право да Вас контактира о специфичним проблемима Ваших поднетих додатака."
-
-msgid "Admin"
-msgstr "Админ"
-
-msgid "Delete Account"
-msgstr "Избриши налог"
-
-msgid "Update Account"
-msgstr "Ажурирај налог"
-
-msgid "none"
-msgstr "ниједна"
-
-msgid "all"
-msgstr "све"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "Password Reset"
-msgstr "Ресетовање лозинке"
-
-msgid "User Info for {0}"
-msgstr "Информације корисника за {0}"
-
-msgid "Edit profile"
-msgstr "Уреди профил"
-
-msgid "Manage user"
-msgstr "Управљај корисником"
-
-msgid "Report user"
-msgstr "Пријавите корисника"
-
-# The title for a user if they are a developer
-msgid "Add-ons Developer"
-msgstr "Програмер додатака"
-
-msgid "Themes Artist"
-msgstr "Уметник за теме"
-
-msgid "About me"
-msgstr "О мени"
-
-msgid "In a little more detail..."
-msgstr "Мало детаљније..."
-
-msgid "Add-ons I've created"
-msgstr "Додаци које сам ја направио"
-
-msgid "View all"
-msgstr "Погледај све"
-
-msgid "My Most Popular Themes"
-msgstr "Мојe најпопуларнијe темe"
-
-msgid "Themes I've created"
-msgstr "Теме које сам ја направио"
-
-msgid "Created by Me"
-msgstr "Ја сам направио"
-
-msgid "My Reviews"
-msgstr "Моје рецензије"
-
-msgid "No add-on reviews yet."
-msgstr "Нема рецензија додатака."
-
-msgid "Report User"
-msgstr "Пријавите корисника"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Молимо опишите зашто пријављујете овог корисника, као што је за спам или неодговарајућег слику."
-
-msgid "Report user {0}"
-msgstr "Пријавите корисника {0}"
 
 msgid "Unsubscribe"
 msgstr "Откажи претплату"
@@ -8193,39 +7708,6 @@ msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked i
 msgstr ""
 "Нажалост, нисмо у могућности да Вам откажемо претплату. Веза на коју сте кликнули је неисправна. Међутим, Ви још увек можете да откажете претплату на Вашој <a href=\"%(edit_url)s\">страници за "
 "уређивања профила</a>."
-
-msgid "Developer Information"
-msgstr "Информације о програмеру"
-
-msgid "User since"
-msgstr "Корисник од"
-
-msgid "Time of last login"
-msgstr "Време последње пријаве"
-
-msgid "IP address of last login"
-msgstr "IP адреса последње пријаве"
-
-msgid "Number of add-ons developed"
-msgstr "Број развијених додатака"
-
-msgid "{0} add-ons"
-msgstr "{0} додаци"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s тема"
-msgstr[1] "%(num)s теме"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s додатак"
-msgstr[1] "%(num)s додатка"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Просечна оцена програмера додатака"
 
 msgctxt "user_list_others"
 msgid "others"

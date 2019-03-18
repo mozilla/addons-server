@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -54,6 +54,10 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 "Man yetikïr ta nikiyüj ri rub'i' ataqoya'l ri rub'anonela' tz'aqat o wachinel. K'o chi ye'ayüj ronojel ri taq tz'aqat chuqa' ximon taq wachinel rik'in re rub'i' taqoya'l re' o ye'aq'axaj chi ke "
 "ch'aqa' chik okisanela'."
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "Tzijoxïk"
@@ -151,9 +155,6 @@ msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Chuwäch najäl ri ach'ab'äl k'o wi, k'o chi k'o jun rub'i', jun ch'utitzijol chuqa' jun rucholaxik pa ri ch'ab'äl ri'. Nrajo' na %s."
-
-msgid "A license must be selected."
-msgstr "K'o chi nicha' jun ya'öl q'ij."
 
 msgid "Listed"
 msgstr "Cholajin"
@@ -690,9 +691,6 @@ msgstr "Man ütz ta, tatojtob'ej chik."
 msgid "Error verifying input, please try again."
 msgstr "Xsach toq yerujikib'a' taq tzij, tatojtob'ej chik."
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Re re' k'o chi jun b'itz'ib' okel waqlajuj rub'onil, achi'el #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Yechup jumej jujun taq b'anikil ruma yojsamäj richin niqachojmirisaj ri Ajk'amaya'l ruxaq. Xkojtikïr chik xtik'oje' ronojel ri quchuq'a'."
 
@@ -913,6 +911,14 @@ msgstr "Itzel ruwäch richin jun o ch'aqa' chik rupam"
 
 msgid "Invalid JWT Token."
 msgstr "Me'okel JWT Token."
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Man okel ta yakb'äl."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "Rochochib'al taqoya'l"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Ri k'ojlib'äl k'o chi ruk'wan jotöl chi re ri {num} tz'ib'."
@@ -2609,9 +2615,6 @@ msgstr "Kitz'ib'anik ruk'ojlib'al rukajtz'ik samajib'äl"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Ri rub'onil rutz'ib'anik ruk'ojlib'al rukajtz'ik samajib'äl, achi'el ri rukajtz'ik URL. Ruk'ojlib'al manifiesto:  toolbar:field_text."
 
-msgid "Please check the form for errors."
-msgstr "Tanik'oj ri kinojwuj sachoj."
-
 msgid "Review requested."
 msgstr "Xk'utüx nik'oxïk."
 
@@ -3941,112 +3944,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Kitz'ib'axik Kinik'oxik Anin taq Wachinel"
 
-msgid "Create a New Theme"
-msgstr "Titz'uk jun K'ak'a' Wachinel"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Ri taq ruwachinel rupam nuya' q'ij chawe richin chanin nab'än runuk'ulem ri ruwa Firefox. ¡Tataqa' ri awachib'enik ikim, o <a href=\"%(submit_url)s\">tawetanaj natz'ük jun</a>! "
-
-msgid "Theme Details"
-msgstr "Richinil Wachinel"
-
-msgid "Give your Theme a name."
-msgstr "Taya' jun Rub'i' ri Awachinel."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Tawokisaj jun jeb'ël URL pa rub'anikil ruxaq ak'amaya'l."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Tacha' ri ruwäch ri ütz nuchöl Awachinel."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Ke'atz'aqatisaj jujun taq etal richin nacholajij Awachinel."
-
-msgid "Describe your Theme."
-msgstr "Tatzijoj rij ri Awachinel."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Jun ko'öl rusolik ri rusamaj wachinel cholajin pa kanob'äl chuqa' okem pa k'amaya'l chuqa' pa jotöl chi re ri ruxaq rub'anikil wachinel."
-
-msgid "Theme License"
-msgstr "Ruya'oj Q'ij Wachinel"
-
-msgid "Select a license for your Theme."
-msgstr "Tacha' jun ya'oj ruq'ij Awachinel."
-
-msgid "Theme Design"
-msgstr "Kiwachib'enik Wachinel"
-
-msgid "Select colors for your Theme."
-msgstr "Ke'acha' taq rub'onil Awachinel."
-
-msgid "Foreground Text"
-msgstr "Rutz'ib'anik Nab'ey B'ey"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "Ja rub'onil re' ri rutz'ib'anik ruwi'."
-
-msgid "Background"
-msgstr "Rupam"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "Ja rub'onil re' ri ruwi'."
-
-msgid "Your Theme's Name"
-msgstr "Rub'i' Awachinel"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "ruma <a href=\"%(profile_url)s\">%(user)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"Ütz nintz'ët ri %(agreement_link_open)sFirefox Tunuj Runa'oj Kijachik Tz'aqat%(link_close)s chuqa' ninuk'samajïx ri wetamab'al achi'el nichol pa %(privacy_notice_link_open)sIchinan Kitzijol "
-"Ajk'amaya'l Ruxaq, Taq Tzijol chuqa' taq Kaxlanwäy%(link_close)s."
-
-msgid "Submit Theme"
-msgstr "Titaq Wachinel"
-
-msgid "You're done!"
-msgstr "¡Xk'achoj!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Xtaq ri awachinel pa cholaj richin Ninik'öx. Xtak'ül jun taqoya'l toq xtik'is runik'oxik, jutaqil pa 24 ramaj."
-
-msgid "Next steps:"
-msgstr "Ch'aqa' chik xak:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Tacholo' chik jub'a' chi rij ri awachinel <a href=\"%(edit_url)s\">ninuk' ri cholb'äl</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Tatz'eta' chuqa' tatz'ib'aj rub'i' pa <a href=\"%(feed_url)s\">taq ruk'exoj</a> awachinel richin man nasäch ta kib'anikil taq runik'oxik, molaj chuqa' ch'aqa' chik."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Kojawak'axaj pa <a href=\"%(forum_url)s\">qach'ob'omoloj</a>."
-
-msgid "Select a header image for your Theme."
-msgstr "Tacha' jun jub'i'aj ruwachib'al Awachinel."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 taq piksel"
-
-msgid "300 KB max"
-msgstr "300 KB nïm"
-
-msgid "PNG or JPG"
-msgstr "PNG o JPG"
-
 msgid "Manage Version {0}"
 msgstr "Tinuk'samajïx Ruwäch {0}"
 
@@ -4762,14 +4659,6 @@ msgstr "Tawichinaj ri k'ak'a' ruwi' awichin {start_sub_heading}rik'in {addon_nam
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr "Tanuk'u' ri ruxaq k'ak'a' ruwi' richin ye'ak'üt pe ri taq awajowab'al rik'in ri kajilab'al silonel taq wachib'äl, ri ruwachib'al rupam chuqa' ch'aqa' chik."
-
-#. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Anin ke'ak'ulu' taq tzalq'ominïk {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr "Tacha' xab'achike tz'ib'anïk pa xab'achike ajk'amaya'l ruxaq, tapitz'a' ri rajkiq'a' pitz'b'äl richin chanin natzalq'omij."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5493,11 +5382,29 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tayaka' jun tz'ib'anïk richin pa jumej {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Kekanöx wachib'äl {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Tawelesaj taq wachib'äl pan ajk'amaya'l {start_sub_heading}rik'in {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5596,7 +5503,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Man yatikïr ta natäq jun Juch'un Ruk'amal Mozilla"
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Man yek'ul ta re taq ruwäch yakb'äl re', tajotob'a' jun yakb'äl rik'in rub'anikil {extensions}."
 
 msgid "Unexpected error."
@@ -6281,17 +6188,6 @@ msgstr "taq q'ij"
 msgid "Choose a canned response..."
 msgstr "Ticha' jun k'o wi chi tzolin tzij..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "rub'i' wachinel"
-
-msgid "Someone else is reviewing this theme."
-msgstr "K'o chik jun nunik'oj re wachinel te'."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "wachinel, nuk'unel o ka'i' oxi' tzij"
-
 msgid "Private Whiteboard"
 msgstr "Ichinan Tz'ib'ab'äl"
 
@@ -6327,21 +6223,6 @@ msgstr "Q'aton ruma jun nik'onel."
 
 msgid "Has auto-approval disabled flag set."
 msgstr "Achupun retal ruyon-ütz-nitz'et."
-
-msgid "Duplicate Submission"
-msgstr "Kamulun Taqoj"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Matyox xatäq ri Awachinel"
-
-msgid "A problem with your Theme submission"
-msgstr "Jun k'ayewal rik'in rutaqik Awachinel"
-
-msgid "Theme submission flagged for review"
-msgstr "Rutaqik wachinel ya'on retal richin ninik'öx"
-
-msgid "A question about your Theme submission"
-msgstr "Jun k'utunïk chi rij ri rutaqik Awachinel"
 
 msgid "Type"
 msgstr "Ruwäch"
@@ -6474,21 +6355,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Runik'oxik Rupam ({0})"
 msgstr[1] "Runik'oxik Rupam ({0})"
 
-msgid "New Themes ({0})"
-msgstr "K'ak'a' Wachinel ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "Kik'exoj Wachinel ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "Wachinel ({0}) Ya'on Ketal"
-
-msgid "Lightweight Themes Review Log"
-msgstr "Kitz'ib'axik Kinik'oxik Anin taq Wachinel"
-
-msgid "Deleted Themes Log"
-msgstr "Xyuj ri Rutz'ib'axik Wachinel"
-
 msgid "User Ratings Moderation"
 msgstr "Kiwetwachinik ri Kejaqalem Okisanela'"
 
@@ -6533,16 +6399,6 @@ msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Runa'ojil Ichinanem"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} ütz xsamajib'ëx rejqalem wachinel (+ (1) taq retal, {2} ronojel."
-msgstr[1] "{0} ütz xesamajib'ëx ri taq rejqalem wachinel (+ (1) taq retal, {2} ronojel."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Ütz xelesäx rutzijol ri awachinel. Ch'aqa' chik nik'onela' yatikïr yekinik'oj wakami ri taq wachinel elesan kitzijol. Rik'in jub'a' k'o chi nak'ëx ri ruxaq richin natz'ët ri taq jaloj pa re "
-"kajtz'ik re'."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Kitzijol Tz'ilanem"
@@ -6923,124 +6779,6 @@ msgstr "K'o <span>{0}</span> taq awajil."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s pa %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Ruq'ijul Yujuj"
-
-msgid "No deleted themes found for this period."
-msgstr "Majun ruyujik wachinel xe'ilitäj pa re q'ijul re'."
-
-msgid "Theme Review History for {0}"
-msgstr "Runatab'al Runik'oxik Wachinel ruma {0}"
-
-msgid "Review Date"
-msgstr "Ruq'ijul Nik'oxïk"
-
-msgid "Action"
-msgstr "B'anoj"
-
-msgid "Reason"
-msgstr "Aruma"
-
-msgid "There are currently no reviews."
-msgstr "Wakami majun nik'oxïk."
-
-msgid "Flagged Themes"
-msgstr "Yaketan taq Wachinel"
-
-msgid "Theme Review Queue"
-msgstr "Rucholajem Runik'oxik Wachinel"
-
-msgid "Queues"
-msgstr "Cholaj"
-
-msgid "Review Options"
-msgstr "Taq Rucha'oj Nik'oxïk"
-
-msgid "Auto-advance after review"
-msgstr "Ruyon-q'axanïk chi rij nik'oxïk"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Titz'ij ruq'a' rub'ey pitz'b'äl"
-
-msgid "Keyboard Shortcuts"
-msgstr "Ruq'a' Rub'ey Keyboard"
-
-msgid "Next Theme"
-msgstr "Jun chik Wachinel"
-
-msgid "Previous Theme"
-msgstr "Jun kan Wachinel"
-
-msgid "Your Review History"
-msgstr "Runatab'al Anik'oxik"
-
-msgid "Commit Review"
-msgstr "Titaq Nik'oxïk"
-
-msgid "Commit Reviews"
-msgstr "Ketaq Nik'oxïk"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} richin {1} enik'on"
-
-msgid "There are currently no Themes to review."
-msgstr "Wakami majun Wachinel richin ninik'öx."
-
-msgid "Clear Search"
-msgstr "Tijosq'ïx Kanoxïk"
-
-msgid "Release My Theme Locks"
-msgstr "Ke'osq'opïx ri taq Ruq'atik Nuwachinel"
-
-msgid "Interactive Theme Queue"
-msgstr "Silonel Rucholajem Wachinel"
-
-msgid "Reviewers' Guide"
-msgstr "Kik'amöl Nik'onela'"
-
-msgid "Theme Review for {0}"
-msgstr "Runik'oxik Wachinel richin {0}"
-
-msgid "Edit Listing"
-msgstr "Tinuk' Rucholajil"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Rik'in Jub'a' Kamul Xtaq)"
-
-msgid "Submitted"
-msgstr "Taqon"
-
-msgid "Past Review Notes"
-msgstr "E'ik'owinäq Ruch'utitzijol Nik'oxïk"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Xk'utüx Ch'aqa' Chik Etamab'äl: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Ya'on retal: {0}"
-
-msgid "Approve Theme"
-msgstr "Ütz Titz'et Wachinel"
-
-msgid "Field required"
-msgstr "Rajowaxik k'ojlib'äl"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Tatz'ib'j ri ID o URL richin ri kamulun"
-
-msgid "Select a reason for rejection"
-msgstr "Tacha' jun aruma naxutüj"
-
-msgid "Describe your reason for rejection"
-msgstr "Tatzijoj rij jun aruma naxutüj"
-
-msgid "Ask a question to the artist"
-msgstr "Tab'ana' jun k'utunïk chi re ri ajb'anöy"
-
-msgid "Describe your reason for flagging"
-msgstr "Tatzijoj rij jun aruma naya' retal"
-
 msgid "Rejected or Unreviewed"
 msgstr "Exutun o Man Enik'on ta"
 
@@ -7067,12 +6805,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Xk'is Ruq'ijul Ruk'utuxik Etamab'äl ({0})"
 msgstr[1] "Xk'is Ruq'ijul ri Etamab'äl Xek'utüx ({0})"
-
-msgid "Flagged"
-msgstr "Xya' retal"
-
-msgid "Updates"
-msgstr "Taq K'exoj"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7639,27 +7371,6 @@ msgstr "Taq tz'aqat"
 msgid "Activity Logs"
 msgstr "Kitz'ib'axik Samaj"
 
-msgid "Email must be {email}."
-msgstr "Ri taqoya'l k'o chi {email}."
-
-msgid "Display Name"
-msgstr "Tik'ut B'i'aj"
-
-msgid "Location"
-msgstr "K'ojlib'äl"
-
-msgid "Occupation"
-msgstr "Samaj"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Yatikïr najäl rochochib'al ataqoya'l pan Rub'i' Ataqoya'l richin Firefox."
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Re URL re man okel ta ri rub'anikil. Ri okel URLs ke re' yetzu'un http://example.com/my_page."
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "Richin yak'oje' pan ewanïk, tatz'ib'aj jun aruma richin ri jaloj po majun chik achike k'ojlib'äl tajäl."
-
 msgid "No user with that email."
 msgstr "Majun okisanel rik'in ri taqoya'l ri' xilitäj."
 
@@ -7696,201 +7407,11 @@ msgstr "Mozilla nrajo' nitzijon wik'in ruma ri tz'aqat wichin"
 msgid "User Notifications"
 msgstr "Kitzijol Okisanel"
 
-msgid "An email address is required."
-msgstr "Najowäx jun rochochib'al taqoya'l."
-
-msgid "A user with that email address does not exist."
-msgstr "Majun okisanel rik'in ri rochochib'al taqoya'l ri'."
-
-msgid "Profile Deleted"
-msgstr "Yujun Ruwäch B'i'aj"
-
-msgid "Photo Deleted"
-msgstr "Yujun Wachib'äl"
-
-msgid "Profile Updated"
-msgstr "K'exon Ruwäch B'i'aj"
-
-msgid "Errors Found"
-msgstr "Taq Sachoj Xe'ilitäj"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "E k'o sachoj pa ri taq jaloj xab'än. Ke'achojmirisaj k'a ri ke'ataqa' chik."
-
-msgid "User reported."
-msgstr "Rutzijol okisanel."
-
-msgid "new"
-msgstr "k'ak'a'"
-
 msgid "Ban"
 msgstr "Tik'aq"
 
 msgid "Delete picture"
 msgstr "Tiyuj wachib'äl"
-
-msgid "Delete User Account"
-msgstr "Tiyuj Rub'i' Rutaqoya'l Okisanel"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"Man yatikïr ta nayüj ri rub'i' ataqoya'l we atcholajin achi'el jun <a href=\"%(link)s\"> rub'anel xab'achike tz'aqat</a>. Richin nayüj rub'i' ataqoya'l, tak'utuj chi re jun chik ruwinaq amolaj "
-"richin b'anonel chi karuyuju' el pa kicholajem kib'anonela' taq tz'aqat. K'a ri' yatikïr nayüj el ri rub'i' ataqoya'l wawe'."
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Toq napïtz \"tiyuj\" ri rub'i' ataqoya'l <strong>jumul xtiyuj</strong>. Re re' nuq'ajuj chi:"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "We natikirisaj chik molojri'ïl pa re rochochib'al taqoya'l %(site)s xtitz'ukutuj jun k'ak'a' rub'i' taqoya'l, ri majun xtuxïm ta ri' rik'in re rub'i' taqoya'l re'."
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Man xkeyuj ta el ri taq atzijol chuqa' taq awejqalem, po majun chik xtikixïm ta ki' awik'in."
-
-msgid "Confirm account deletion"
-msgstr "Tijikib'äx ruyujik rub'i' taqoya'l"
-
-msgid "I understand this step cannot be undone."
-msgstr "Niq'ax pa nuwi' chi man tikirel ta nitzolïx re re'."
-
-msgid "Delete my user account now"
-msgstr "Tiyuj ri rub'i' rutaqoyal wokisanel wakami"
-
-msgid "Delete User Photo"
-msgstr "Tiyuj Ruwachib'al Okisanel"
-
-msgid "Delete my user picture now"
-msgstr "Tiyuj ri rub'i' ruwachib'al wokisanel wakami"
-
-msgid "Please set your display name"
-msgstr "Tajikib'a' ri ab'i'"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "Tajikib'a' ri ab'i' o awokisanel richin nitz'aqatisäx rub'eyal tz'ib'anïk b'i'aj."
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Tinuk'samajïx retamab'al rub'i' taqoya'l, achi'el rub'i' okisanel chuqa' ri runuk'ulem Rub'i' Taqoya'l richin Firefox."
-
-msgid "Email Address"
-msgstr "Rochochib'al taqoya'l"
-
-msgid "Manage Firefox Account..."
-msgstr "Tinuk'samajïx Rub'i' Rutaqoya'l Firefox..."
-
-msgid "Profile"
-msgstr "Ruwäch B'i'aj"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Tatzijoj chi qe jub'a' chik chawij. Man e rajowaxik ta ri taq k'ojlib'äl, po xkeruto' ch'aqa' chik okisanela' richin niketamaj chik jub'a' awäch."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "Re URL re' xtiwachin we at b'anonel."
-
-msgid "Choose Photo&hellip;"
-msgstr "Tacha' Wachib'äl&hellip;"
-
-msgid "Delete current photo"
-msgstr "Tiyuj wachib'äl k'o wakami"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "¡We nawajo', tatzijoj awi' pa tinamït! Re re' konojel ri winaqi' xtikitz'ët pa ruxaq awetamab'al richin okisanel."
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Ya'on q'ij HTML: %(html)s. Eq'aton taq ximonel."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Tacha' achike taq mol xkek'ut pa ruwäch ab'i'."
-
-msgid "Display the collections I have created"
-msgstr "Kek'ut ri taq mol enutz'ukun"
-
-msgid "Notifications"
-msgstr "Taq rutzijol"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "K'o mul re', ri Mozilla xkerutäq taq taqoya'l chawe chi kij ri k'ak'a' taq ruwäch taq nimaq'ij kichin taq tz'aqat. Ke'acha' ri taq na'oj nawajo' nawetamaj."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Mozilla yatrumäj richin nitzijon awik'in chi kij taq kina'oj taq tz'aqat e'ayakon."
-
-msgid "Admin"
-msgstr "Tinuk'samajïx"
-
-msgid "Delete Account"
-msgstr "Tiyuj Rub'i' Taqoya'l"
-
-msgid "Update Account"
-msgstr "Tik'ex Rub'i' Taqoya'l"
-
-msgid "none"
-msgstr "majun"
-
-msgid "all"
-msgstr "ronojel"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Wakami yatok pa taq rutz'aqat Mozilla rik'in ri rub'i' rutaqoya'l Firefox. Tak'isa' richin natz'aqatisaj ri rutikirisanik molojri'ïl."
-
-msgid "Password Reset"
-msgstr "Titzolïx Ewan Tzij"
-
-msgid "User Info for {0}"
-msgstr "Retamab'al okisanel {0}"
-
-msgid "Edit profile"
-msgstr "Tinuk' ruwäch b'i'aj"
-
-msgid "Manage user"
-msgstr "Tinuk'samajïx okisanel"
-
-msgid "Report user"
-msgstr "Tiya' rutzijol okisanel"
-
-msgid "Add-ons Developer"
-msgstr "B'anöy Tz'aqat"
-
-msgid "Themes Artist"
-msgstr "B'anöy Wachinel"
-
-msgid "About me"
-msgstr "Chwij rïn"
-
-msgid "In a little more detail..."
-msgstr "Rik'in chik jub'a' taq b'anikil..."
-
-msgid "Add-ons I've created"
-msgstr "Taq tz'aqat enutz'ukun"
-
-msgid "View all"
-msgstr "Titz'et ronojel"
-
-msgid "My Most Popular Themes"
-msgstr "Taq Nuwachinel K'o Ruwinaq"
-
-msgid "Themes I've created"
-msgstr "Taq wachinel enutz'ukun"
-
-msgid "Created by Me"
-msgstr "Nuk'un Wuma"
-
-msgid "My Reviews"
-msgstr "Taq Nunik'oxik"
-
-msgid "No add-on reviews yet."
-msgstr "Majun kejqalem tz'aqat."
-
-msgid "Report User"
-msgstr "Tiya' Rutzijol Okisanel"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Tacholo' achike ruma natzijoj rij re okisanel re', rik'in jub'a' ruma seq'tzijol o jun tz'ilanel ruwachib'al."
-
-msgid "Report user {0}"
-msgstr "Tiya' rutzijol okisanel {0}"
 
 msgid "Unsubscribe"
 msgstr "Tiq'at rutz'ib'axik b'i'aj"
@@ -7917,39 +7438,6 @@ msgstr "Man xojtikïr ta xqaq'ät ri rutz'ib'axik ab'i'"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-
-msgid "Developer Information"
-msgstr "Retamab'al B'anonel"
-
-msgid "User since"
-msgstr "Okisanel pa"
-
-msgid "Time of last login"
-msgstr "Ruramaj ruk'isib'äl okem"
-
-msgid "IP address of last login"
-msgstr "IP rochochib'al ruk'isib'äl okem"
-
-msgid "Number of add-ons developed"
-msgstr "Kajilab'al taq tz'aqat eb'anon"
-
-msgid "{0} add-ons"
-msgstr "{0} taq tz'aqat"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s wachinel"
-msgstr[1] "%(num)s taq wachinel"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s tz'aqat"
-msgstr[1] "%(num)s taq tz'aqat"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Nik'aj kejqalem taq rutz'aqat b'anonel"
 
 msgctxt "user_list_others"
 msgid "others"
