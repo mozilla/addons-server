@@ -1,8 +1,8 @@
 -r prod_common.txt
 
-Django==2.2b1 \
-    --hash=sha256:58819ca72a13b963c16383687421261657abe5754aad9ad66166a921dd17559f \
-    --hash=sha256:62644444551e8e6fd36600e741a4d24dd2b4b58acf7bae8847a8da952468d771
+Django==2.2rc1 \
+    --hash=sha256:6cdb98d464e5ffc9cbe3d3ca5ca74d61e69ce1784d5e15b85ceb19dee939f650 \
+    --hash=sha256:b74420065c5a3f7bcb07c0811b1308239c05989e29963ff39f7b5e9c1cacc195
 # atpublic is required by flufl.lock
 atpublic==1.0 \
     --hash=sha256:7dca670499e9a9d3aae5a8914bc799475fe24be3bcd29c8129642dda665f7a44
