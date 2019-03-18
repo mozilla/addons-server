@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2019-02-08 00:00+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -55,6 +55,10 @@ msgstr "サポートが必要ですか？"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr "アドオンやテーマの開発者は自分のアカウントを削除できません。まずこのアカウントに関連付けられているすべてのアドオンとテーマを削除するか、他のユーザーへ移譲しなければなりません。"
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "レビュー"
@@ -148,9 +152,6 @@ msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメイ�
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "既定のロケールを変更する前に、そのロケールでアドオンの名前、要約、説明を入力する必要があります。%sが不足しています。"
-
-msgid "A license must be selected."
-msgstr "ライセンスを選択してください。"
 
 # Column name in a table.
 msgid "Listed"
@@ -684,9 +685,6 @@ msgstr "間違っています。再度お試しください。"
 msgid "Error verifying input, please try again."
 msgstr "入力内容を検証できませんでした。再度お試しください。"
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "#000000 のような 16 進数のカラーコードを入力してください。"
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "サイトメンテナンスの間、いくつかの機能が一時的に無効になっています。まもなく復旧する予定です。"
 
@@ -907,6 +905,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "JWT トークンが無効です。"
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "不正なアーカイブです。"
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "メールアドレス"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "この項目には最低 {num} 文字入力してください。"
@@ -2599,9 +2605,6 @@ msgstr "ツールバー入力領域の文字"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "アドレスバーなどツールバー上の入力欄の文字色。マニフェストの該当項目は toolbar_field_text です。"
 
-msgid "Please check the form for errors."
-msgstr "フォームの入力ミスを確認してください。"
-
 msgid "Review requested."
 msgstr "審査が申請されました。"
 
@@ -3925,112 +3928,6 @@ msgstr "実際の動作テストとデバッグを行うため、あなたの拡
 msgid "Lightweight Theme editing has been disabled."
 msgstr "軽量テーマの審査ログ"
 
-msgid "Create a New Theme"
-msgstr "新しいテーマを作成"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "背景テーマで Firefox の外観を簡単にパーソナライズできます。以下から独自のデザインを登録するか、<a href=\"%(submit_url)s\">作り方を学んでください</a>！"
-
-msgid "Theme Details"
-msgstr "テーマの詳細"
-
-msgid "Give your Theme a name."
-msgstr "テーマに名前を付けてください。"
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "詳細ページのシンプルな URL を設定してください。"
-
-msgid "Select the category that best describes your Theme."
-msgstr "このテーマが当てはまるカテゴリーを選択してください。"
-
-msgid "Add some tags to describe your Theme."
-msgstr "このテーマを説明するタグをいくつか追加してください。"
-
-msgid "Describe your Theme."
-msgstr "テーマの説明を記入してください。"
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "検索結果やカテゴリーなどのリスト、そしてテーマの詳細ページ最上部に表示される、このテーマの基本機能についての短い説明文。"
-
-msgid "Theme License"
-msgstr "テーマのライセンス"
-
-msgid "Select a license for your Theme."
-msgstr "テーマのライセンスを選択してください。"
-
-msgid "Theme Design"
-msgstr "テーマのデザイン"
-
-msgid "Select colors for your Theme."
-msgstr "テーマの配色を選択してください。"
-
-msgid "Foreground Text"
-msgstr "前景テキスト"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "これはタブ上の文字色です。"
-
-msgid "Background"
-msgstr "背景"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "これはタブの背景色です。"
-
-msgid "Your Theme's Name"
-msgstr "テーマの名前"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "作者: <a href=\"%(profile_url)s\">%(user)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"私は %(agreement_link_open)sFirefox アドオン配布規約%(link_close)s、および、私の情報が %(privacy_notice_link_open)sウェブサイト、通信および Cookie プライバシー通知%(link_close)s に基いて処理されるこ"
-"とに、同意します。"
-
-msgid "Submit Theme"
-msgstr "テーマを登録"
-
-msgid "You're done!"
-msgstr "完了！"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "テーマが審査待ちに送信されました。審査が終わったら (通常 24 時間以内) メールを送信いたします。"
-
-msgid "Next steps:"
-msgstr "次のステップ:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "<a href=\"%(edit_url)s\">詳細ページを編集して</a> このテーマに関する詳しい情報を追加してください。"
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "最新のレビューやコレクションなどを知るため、テーマの<a href=\"%(feed_url)s\">アクティビティフィード</a>を見て、購読しましょう。"
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "私たちの <a href=\"%(forum_url)s\">フォーラム</a> での議論に参加してください。"
-
-msgid "Select a header image for your Theme."
-msgstr "テーマのヘッダー画像を選択してください。"
-
-msgid "3000 &times; 200 pixels"
-msgstr "3,000 × 200 ピクセル"
-
-msgid "300 KB max"
-msgstr "最大 300 KB"
-
-msgid "PNG or JPG"
-msgstr "PNG または JPG 形式"
-
 msgid "Manage Version {0}"
 msgstr "バージョン {0}を管理"
 
@@ -4747,14 +4644,6 @@ msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}新しいタブをカ
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
 msgstr "新しいタブページを編集して、好きな数のタイルや背景画像などを表示。"
-
-#. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}すばやく翻訳"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr "ウェブサイトのテキストを強調表示して右クリックすれば、あっという間に翻訳できます。"
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5478,11 +5367,29 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}後で使用するためにテキストを保存しましょう"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ウェブを撮影しましょう"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5581,7 +5488,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "あなたは Mozilla Signed Extension を登録できません"
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "非対応のファイル形式です。アーカイブファイル {extensions} をアップロードしてください。"
 
 msgid "Unexpected error."
@@ -6257,17 +6164,6 @@ msgstr "日"
 msgid "Choose a canned response..."
 msgstr "返信の定型文を選んでください..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "テーマの名前"
-
-msgid "Someone else is reviewing this theme."
-msgstr "誰か他の担当者がこのテーマを審査しています"
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "テーマ、審査担当者またはコメント"
-
 msgid "Private Whiteboard"
 msgstr "個人用ホワイトボード"
 
@@ -6303,21 +6199,6 @@ msgstr "審査担当者によってロックされています。"
 
 msgid "Has auto-approval disabled flag set."
 msgstr "自動承認無効フラグが設定されています。"
-
-msgid "Duplicate Submission"
-msgstr "重複登録"
-
-msgid "Thanks for submitting your Theme"
-msgstr "テーマを登録いただきありがとうございます"
-
-msgid "A problem with your Theme submission"
-msgstr "あなたが登録したテーマに関する問題"
-
-msgid "Theme submission flagged for review"
-msgstr "登録されたテーマは追加審査のためフラグが付けられました"
-
-msgid "A question about your Theme submission"
-msgstr "あなたが登録したテーマに関する質問"
 
 msgid "Type"
 msgstr "種類"
@@ -6446,21 +6327,6 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "コンテンツ審査 ({0})"
 
-msgid "New Themes ({0})"
-msgstr "新しいテーマ ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "テーマの更新 ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "フラグ付きテーマ ({0})"
-
-msgid "Lightweight Themes Review Log"
-msgstr "軽量テーマの審査ログ"
-
-msgid "Deleted Themes Log"
-msgstr "削除されたテーマログ"
-
 msgid "User Ratings Moderation"
 msgstr "ユーザー評価管理"
 
@@ -6505,13 +6371,6 @@ msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: プライバシーポリシー"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0}個のテーマの審査が完了しました (+{1} ポイント、{2} 合計)。"
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "あなたのテーマロックが解放され、他の審査担当者がこれらの解放されたテーマを審査できるようになりました。以下の表に反映された変更を見るにはページを再読み込みする必要があります。"
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: 不正報告"
@@ -6892,124 +6751,6 @@ msgstr "あなたは <span>{0}</span> ポイント獲得しています。"
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s、%(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "削除された日"
-
-msgid "No deleted themes found for this period."
-msgstr "この期間に削除されたテーマはありません。"
-
-msgid "Theme Review History for {0}"
-msgstr "{0}のテーマ審査履歴"
-
-msgid "Review Date"
-msgstr "審査日時"
-
-msgid "Action"
-msgstr "処理"
-
-msgid "Reason"
-msgstr "理由"
-
-msgid "There are currently no reviews."
-msgstr "現在審査待ちはありません。"
-
-msgid "Flagged Themes"
-msgstr "フラグ付きテーマ"
-
-msgid "Theme Review Queue"
-msgstr "テーマの審査待ち"
-
-msgid "Queues"
-msgstr "審査待ち"
-
-msgid "Review Options"
-msgstr "審査方法"
-
-msgid "Auto-advance after review"
-msgstr "承認後に自動公開"
-
-msgid "Enable keyboard shortcuts"
-msgstr "キーボードショートカットを有効にする"
-
-msgid "Keyboard Shortcuts"
-msgstr "キーボードショートカット"
-
-msgid "Next Theme"
-msgstr "次のテーマ"
-
-msgid "Previous Theme"
-msgstr "前のテーマ"
-
-msgid "Your Review History"
-msgstr "あなたの審査履歴"
-
-msgid "Commit Review"
-msgstr "審査を実行"
-
-msgid "Commit Reviews"
-msgstr "審査を実行"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{1}個中 {0} 個が審査済みです"
-
-msgid "There are currently no Themes to review."
-msgstr "現在審査待ちのテーマはありません。"
-
-msgid "Clear Search"
-msgstr "検索をクリア"
-
-msgid "Release My Theme Locks"
-msgstr "自分のテーマのロックを解除"
-
-msgid "Interactive Theme Queue"
-msgstr "インタラクティブテーマの審査待ち"
-
-msgid "Reviewers' Guide"
-msgstr "審査担当者用ガイド"
-
-msgid "Theme Review for {0}"
-msgstr "{0}のテーマ審査"
-
-msgid "Edit Listing"
-msgstr "詳細ページを編集"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(重複登録の可能性)"
-
-msgid "Submitted"
-msgstr "送信完了"
-
-msgid "Past Review Notes"
-msgstr "過去の審査メモ"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "詳細情報請求済み: {0}"
-
-msgid "Flagged: {0}"
-msgstr "フラグ付き: {0}"
-
-msgid "Approve Theme"
-msgstr "テーマを承認"
-
-msgid "Field required"
-msgstr "必須項目"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "重複する ID または URL を入力"
-
-msgid "Select a reason for rejection"
-msgstr "却下する理由を選択"
-
-msgid "Describe your reason for rejection"
-msgstr "却下する理由を説明"
-
-msgid "Ask a question to the artist"
-msgstr "作者に質問する"
-
-msgid "Describe your reason for flagging"
-msgstr "フラグを立てる理由を説明"
-
 msgid "Rejected or Unreviewed"
 msgstr "却下もしくは未審査"
 
@@ -7032,12 +6773,6 @@ msgstr[0] "自動承認済み ({0})"
 msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "期限切れとなった情報請求 ({0})"
-
-msgid "Flagged"
-msgstr "フラグ付き"
-
-msgid "Updates"
-msgstr "更新"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7616,27 +7351,6 @@ msgstr "アドオン"
 msgid "Activity Logs"
 msgstr "アクティビティログ"
 
-msgid "Email must be {email}."
-msgstr "メールアドレスは {email} でなければなりません。"
-
-msgid "Display Name"
-msgstr "表示名"
-
-msgid "Location"
-msgstr "所在地"
-
-msgid "Occupation"
-msgstr "職業"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Firefox アカウントでメールアドレスを変更できます。"
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "この URL は不正な形式です。有効な URL は http://example.com/my_page のような形式です。"
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "匿名化するには、他の項目は変更せずに、変更の理由のみ記入してください。"
-
 msgid "No user with that email."
 msgstr "このメールアドレスを持つユーザーは存在しません。"
 
@@ -7673,204 +7387,11 @@ msgstr "自分の個別アドオンに関する Mozilla からのメールを受
 msgid "User Notifications"
 msgstr "ユーザー通知"
 
-msgid "An email address is required."
-msgstr "メールアドレスが必要です。"
-
-msgid "A user with that email address does not exist."
-msgstr "このメールアドレスを持つユーザーは存在しません。"
-
-msgid "Profile Deleted"
-msgstr "プロファイルが削除されました"
-
-msgid "Photo Deleted"
-msgstr "写真が削除されました"
-
-msgid "Profile Updated"
-msgstr "プロファイルが更新されました"
-
-msgid "Errors Found"
-msgstr "エラーが見つかりました"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "変更された内容にエラーがあります。確認の上、再度送信してください。"
-
-msgid "User reported."
-msgstr "ユーザーが報告されました。"
-
-msgid "new"
-msgstr "新規"
-
 msgid "Ban"
 msgstr "アカウントを停止"
 
 msgid "Delete picture"
 msgstr "写真を削除"
-
-msgid "Delete User Account"
-msgstr "ユーザーアカウントを削除"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"あなたが <a href=\"%(link)s\">アドオンの作者</a> として登録されている場合、アカウントを削除することはできません。アカウントを削除するには、開発グループに参加している他の人に頼んで、あなたをアドオン"
-"の作者から外してもらってください。そうすれば、ここでアカウントの削除が可能になります。"
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "「削除」をクリックすることで、あなたのアカウントは <strong>永久に削除</strong> されます。つまり、"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "このメールアドレスで %(site)s に再度ログインすると、このアカウントとは関連のない、まったく新しいアカウントが作成されます。"
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "あなたのレビューと評価は削除されませんが、あなたとの関連づけは失われます。"
-
-msgid "Confirm account deletion"
-msgstr "アカウントの削除を確認"
-
-msgid "I understand this step cannot be undone."
-msgstr "このステップは取り消せないことを了解しました。"
-
-msgid "Delete my user account now"
-msgstr "今すぐユーザーアカウントを削除"
-
-msgid "Delete User Photo"
-msgstr "ユーザーの写真を削除"
-
-msgid "Delete my user picture now"
-msgstr "今すぐユーザーの写真を削除"
-
-msgid "Please set your display name"
-msgstr "表示名を設定してください"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "登録プロセスを完了するには表示名もしくはユーザー名を設定してください。"
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "ユーザー名や Firefox アカウントの設定など、基本的なアカウント情報を管理します。"
-
-msgid "Email Address"
-msgstr "メールアドレス"
-
-msgid "Manage Firefox Account..."
-msgstr "Firefox アカウントを管理..."
-
-msgid "Profile"
-msgstr "プロファイル"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "あなたについてのもう少し詳しい情報を記入してください。すべての項目は任意ですが、他のユーザーがあなたを知る手がかりになるでしょう。"
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "この URL はあなたが開発者である場合のみ表示されます。"
-
-msgid "Choose Photo&hellip;"
-msgstr "写真を選択&hellip;"
-
-msgid "Delete current photo"
-msgstr "現在の写真を削除"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "もしよければ、コミュニティに向けて自己紹介してください！ ここに入力した文章はあなたのユーザー情報ページで公開されます。"
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "使用可能な HTML は %(html)s です。リンクは使用できません。"
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "あなたのプロファイルに表示されるコレクションを選んでください。"
-
-msgid "Display the collections I have created"
-msgstr "自分が作成したコレクションを表示"
-
-msgid "Notifications"
-msgstr "通知"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "Mozilla では時々、今後のリリースやアドオン関連のイベントに関するメールをお送りしています。興味のあるトピックを選択してください。"
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Mozilla は、このサイトで登録されたアドオンに関する具体的な事柄について、あなたに個別に連絡を取る権利を留保します。"
-
-msgid "Admin"
-msgstr "管理者"
-
-msgid "Delete Account"
-msgstr "アカウントを削除"
-
-msgid "Update Account"
-msgstr "アカウントを更新"
-
-msgid "none"
-msgstr "なし"
-
-msgid "all"
-msgstr "すべて"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "アドオンサイトは Firefox アカウントを使ったログイン方式に切り替わりました。引き続き簡単なアップグレード手順を完了してください。"
-
-msgid "Password Reset"
-msgstr "パスワードの変更"
-
-msgid "User Info for {0}"
-msgstr "{0}のユーザー情報"
-
-msgid "Edit profile"
-msgstr "プロファイルを編集"
-
-msgid "Manage user"
-msgstr "ユーザーを管理"
-
-msgid "Report user"
-msgstr "ユーザーを報告"
-
-# The title for a user if they are a developer
-msgid "Add-ons Developer"
-msgstr "アドオン開発者"
-
-msgid "Themes Artist"
-msgstr "テーマ作者"
-
-msgid "About me"
-msgstr "自己紹介"
-
-msgid "In a little more detail..."
-msgstr "もう少し詳しく..."
-
-msgid "Add-ons I've created"
-msgstr "作成したアドオン"
-
-msgid "View all"
-msgstr "すべて見る"
-
-msgid "My Most Popular Themes"
-msgstr "自分のお気に入りのテーマ"
-
-msgid "Themes I've created"
-msgstr "自分が作ったテーマ"
-
-# "Me" in this context is the user shown on the User Info page
-msgid "Created by Me"
-msgstr "自作のコレクション"
-
-# "My" in this context is the logged in user who is reading the page
-msgid "My Reviews"
-msgstr "自分のレビュー"
-
-msgid "No add-on reviews yet."
-msgstr "まだアドオンのレビューがありません。"
-
-msgid "Report User"
-msgstr "ユーザーを報告"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "スパムもしくは不適切な写真など、このユーザーを報告する理由を記入してください。"
-
-msgid "Report user {0}"
-msgstr "ユーザー {0}を報告"
 
 msgid "Unsubscribe"
 msgstr "購読解除"
@@ -7897,37 +7418,6 @@ msgstr "購読を解除できませんでした"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "申し訳ありませんが、購読を解除できませんでした。クリックされたリンクが正しくないようです。<a href=\"%(edit_url)s\">プロファイル編集ページ</a> から購読を解除してください。"
-
-msgid "Developer Information"
-msgstr "開発者情報"
-
-msgid "User since"
-msgstr "ユーザー登録日"
-
-msgid "Time of last login"
-msgstr "最終ログイン日時"
-
-msgid "IP address of last login"
-msgstr "最終ログイン IP アドレス"
-
-msgid "Number of add-ons developed"
-msgstr "開発したアドオンの数"
-
-msgid "{0} add-ons"
-msgstr "{0}個のアドオン"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s 個のテーマ"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s 個のアドオン"
-
-msgid "Average rating of developer's add-ons"
-msgstr "この開発者のアドオンの平均評価"
 
 msgctxt "user_list_others"
 msgid "others"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2018-11-02 15:00+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,6 +50,10 @@ msgid "Need help?"
 msgstr "সাহায্য প্রয়োজন?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
+msgstr ""
+
+#, python-format
+msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
@@ -149,9 +153,6 @@ msgstr ""
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "পূর্বনির্ধারিত লোকেল পরিবর্তন করার পূর্বে আপনার অবশ্যই ঐ লোকেলে একটি নাম, সারসংক্ষেপ ও বিবরণ থাকতে হবে। আপনার %s বাদ পরেছে।"
-
-msgid "A license must be selected."
-msgstr "একটি লাইসেন্স অবশ্যই নির্বাচন করতে হবে।"
 
 msgid "Listed"
 msgstr "তালিকাভুক্ত"
@@ -687,9 +688,6 @@ msgstr "ভূল, অনুগ্রহ করে পুনরায় চেষ�
 msgid "Error verifying input, please try again."
 msgstr "ইনপুট যাচাই করতে ব্যর্থ, অনুগ্রহ করে আবার চেস্টা করুন।"
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "অবশ্যই বৈধ হেক্স কালার কোড হতে হবে, যেমন #000000।"
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
@@ -899,6 +897,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "অবৈধ JWT টোকেন।"
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "অকার্যকর পদক্ষেপ।"
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "ইমেইল ঠিকানা"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "ফিল্ডের অবশ্যই ন্যূনতম {num} দৈর্ঘ্য আছে।"
@@ -2631,9 +2637,6 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-msgid "Please check the form for errors."
-msgstr ""
-
 msgid "Review requested."
 msgstr "পর্যালোচনার জন্য অনুরোধ করা হয়েছে।"
 
@@ -3960,109 +3963,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "থিম রিভিউ"
 
-msgid "Create a New Theme"
-msgstr "একটি নতুন থিম তৈরী করুন"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-
-msgid "Theme Details"
-msgstr "থিম এর বিস্তারিত"
-
-msgid "Give your Theme a name."
-msgstr "আপনার থিমের একটি নাম দিন।"
-
-msgid "Supply a pretty URL for your detail page."
-msgstr ""
-
-msgid "Select the category that best describes your Theme."
-msgstr ""
-
-msgid "Add some tags to describe your Theme."
-msgstr ""
-
-msgid "Describe your Theme."
-msgstr "আপনার থিমটির বর্ণনা দিন।"
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr ""
-
-msgid "Theme License"
-msgstr "থিম লাইসেন্স"
-
-msgid "Select a license for your Theme."
-msgstr ""
-
-msgid "Theme Design"
-msgstr "থিম ডিজাইন"
-
-msgid "Select colors for your Theme."
-msgstr "আপনার থিমের জন্য রঙ নির্বাচন করুন।"
-
-msgid "Foreground Text"
-msgstr "পিছনের টেক্স"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "এটি ট্যাবের রঙ"
-
-msgid "Background"
-msgstr "ব্যাকগ্রাউন্ড"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "এটি ট্যাবের রঙ"
-
-msgid "Your Theme's Name"
-msgstr "আপনার থিমের নাম"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "<a href=\"%(profile_url)s\"> %(user)s </a> দ্বারা"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-
-msgid "Submit Theme"
-msgstr "থিম সাবমিট করুন"
-
-msgid "You're done!"
-msgstr "আপনি সম্পূর্ণ করেছেন"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "আপনার থিমটি পর্যালোচনার সারিতে সাবমিট করা হয়েছে। আপনি একটি ইমেইল পাবেন যখনই তা রিভিউ হয়ে যাবে, সাধারণত ২৪ ঘন্টার মধ্যেই।"
-
-msgid "Next steps:"
-msgstr ""
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "আপনার <a href=\"%(edit_url)s\">থিমের তালিকা</a> পরিবর্তন করে এটি সম্বন্ধে আরও তথ্য দিন।"
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "আপনার থিমের রিভিউ, সংগ্রহ এবং আরও নানা ধরনের তথ্যের হালনাগাদ পেতে থিমটির <a href=\"%(feed_url)s\">activity feed</a> দেখুন বা সেখানে সাবস্ক্রাইব করে রাখুন।"
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr ""
-
-msgid "Select a header image for your Theme."
-msgstr ""
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 পিক্সেল"
-
-msgid "300 KB max"
-msgstr "সর্বোচ্চ 300 কেবি"
-
-msgid "PNG or JPG"
-msgstr "PNG অথবা JPG"
-
 msgid "Manage Version {0}"
 msgstr ""
 
@@ -4777,14 +4677,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5504,11 +5396,27 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5606,7 +5514,7 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
@@ -6280,17 +6188,6 @@ msgstr "7 দিন"
 msgid "Choose a canned response..."
 msgstr ""
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "থিমের নাম"
-
-msgid "Someone else is reviewing this theme."
-msgstr ""
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr ""
-
 #, fuzzy
 msgid "Private Whiteboard"
 msgstr "সাদা বোর্ড"
@@ -6329,21 +6226,6 @@ msgid "Is locked by a reviewer."
 msgstr ""
 
 msgid "Has auto-approval disabled flag set."
-msgstr ""
-
-msgid "Duplicate Submission"
-msgstr ""
-
-msgid "Thanks for submitting your Theme"
-msgstr ""
-
-msgid "A problem with your Theme submission"
-msgstr ""
-
-msgid "Theme submission flagged for review"
-msgstr ""
-
-msgid "A question about your Theme submission"
 msgstr ""
 
 msgid "Type"
@@ -6495,26 +6377,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 
-#, fuzzy
-msgid "New Themes ({0})"
-msgstr "নতুন অ্যাড-অন ({0})"
-
-#, fuzzy
-msgid "Themes Updates ({0})"
-msgstr "হালনাগাদ ({0})"
-
-#, fuzzy
-msgid "Flagged Themes ({0})"
-msgstr "নির্বাচিত থিমসমূহ"
-
-#, fuzzy
-msgid "Lightweight Themes Review Log"
-msgstr "থিম রিভিউ"
-
-#, fuzzy
-msgid "Deleted Themes Log"
-msgstr "থিম মুছে দিন"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -6563,14 +6425,6 @@ msgstr ""
 #, fuzzy
 msgid "{addon} :: Privacy Policy"
 msgstr "এই অ্যাড-অনের একটি গোপনীয়তার নীতি রয়েছে"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
 
 msgid "{addon} :: Abuse Reports"
 msgstr ""
@@ -6971,124 +6825,6 @@ msgstr ""
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr ""
 
-msgid "Date Deleted"
-msgstr ""
-
-msgid "No deleted themes found for this period."
-msgstr ""
-
-msgid "Theme Review History for {0}"
-msgstr ""
-
-msgid "Review Date"
-msgstr ""
-
-msgid "Action"
-msgstr "পদক্ষেপ"
-
-msgid "Reason"
-msgstr "কারন"
-
-msgid "There are currently no reviews."
-msgstr ""
-
-msgid "Flagged Themes"
-msgstr ""
-
-msgid "Theme Review Queue"
-msgstr ""
-
-msgid "Queues"
-msgstr "সারিগুলো"
-
-msgid "Review Options"
-msgstr ""
-
-msgid "Auto-advance after review"
-msgstr ""
-
-msgid "Enable keyboard shortcuts"
-msgstr ""
-
-msgid "Keyboard Shortcuts"
-msgstr ""
-
-msgid "Next Theme"
-msgstr "পরবর্তী থিম"
-
-msgid "Previous Theme"
-msgstr "আগের থিম"
-
-msgid "Your Review History"
-msgstr ""
-
-msgid "Commit Review"
-msgstr ""
-
-msgid "Commit Reviews"
-msgstr ""
-
-msgid "{0} out of {1} reviewed"
-msgstr ""
-
-msgid "There are currently no Themes to review."
-msgstr ""
-
-msgid "Clear Search"
-msgstr "সার্চ পরিষ্কার করুন"
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr ""
-
-msgid "Reviewers' Guide"
-msgstr ""
-
-msgid "Theme Review for {0}"
-msgstr ""
-
-msgid "Edit Listing"
-msgstr ""
-
-msgid "(Probable Duplicate Submission)"
-msgstr ""
-
-msgid "Submitted"
-msgstr "জমা হয়েছে"
-
-msgid "Past Review Notes"
-msgstr ""
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr ""
-
-msgid "Flagged: {0}"
-msgstr ""
-
-msgid "Approve Theme"
-msgstr ""
-
-msgid "Field required"
-msgstr "পূরণ করা প্রয়োজন"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr ""
-
-msgid "Select a reason for rejection"
-msgstr ""
-
-msgid "Describe your reason for rejection"
-msgstr ""
-
-msgid "Ask a question to the artist"
-msgstr ""
-
-msgid "Describe your reason for flagging"
-msgstr ""
-
 msgid "Rejected or Unreviewed"
 msgstr ""
 
@@ -7118,12 +6854,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "আরও তথ্য জানতে চাওয়া হয়েছে"
 msgstr[1] "আরও তথ্য জানতে চাওয়া হয়েছে"
-
-msgid "Flagged"
-msgstr "ফ্ল্যাগকৃত"
-
-msgid "Updates"
-msgstr "হালনাগাদগুলো"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7685,27 +7415,6 @@ msgstr ""
 msgid "Activity Logs"
 msgstr "কার্যকলাপ"
 
-msgid "Email must be {email}."
-msgstr ""
-
-msgid "Display Name"
-msgstr ""
-
-msgid "Location"
-msgstr "অবস্থান"
-
-msgid "Occupation"
-msgstr "পেশা"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr ""
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
-
 msgid "No user with that email."
 msgstr ""
 
@@ -7743,33 +7452,6 @@ msgstr ""
 msgid "User Notifications"
 msgstr ""
 
-msgid "An email address is required."
-msgstr ""
-
-msgid "A user with that email address does not exist."
-msgstr ""
-
-msgid "Profile Deleted"
-msgstr "প্রোফাইল মুছে ফেলা হয়েছে"
-
-msgid "Photo Deleted"
-msgstr "ছবি মুছে ফেলা হয়েছে"
-
-msgid "Profile Updated"
-msgstr ""
-
-msgid "Errors Found"
-msgstr ""
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
-
-msgid "User reported."
-msgstr ""
-
-msgid "new"
-msgstr "নতুন"
-
 #, fuzzy
 msgid "Ban"
 msgstr "এবং"
@@ -7777,167 +7459,6 @@ msgstr "এবং"
 #, fuzzy
 msgid "Delete picture"
 msgstr "উত্তরটি মুছুণ"
-
-msgid "Delete User Account"
-msgstr "ব্যবহারকরীর অ্যাকাউন্ট অপসারণ করুন"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr ""
-
-msgid "Confirm account deletion"
-msgstr ""
-
-msgid "I understand this step cannot be undone."
-msgstr ""
-
-msgid "Delete my user account now"
-msgstr ""
-
-msgid "Delete User Photo"
-msgstr ""
-
-msgid "Delete my user picture now"
-msgstr ""
-
-msgid "Please set your display name"
-msgstr ""
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr ""
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr ""
-
-msgid "Email Address"
-msgstr "ইমেইল ঠিকানা"
-
-msgid "Manage Firefox Account..."
-msgstr ""
-
-msgid "Profile"
-msgstr "প্রোফাইল"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr ""
-
-msgid "This URL will only be visible if you are a developer."
-msgstr ""
-
-msgid "Choose Photo&hellip;"
-msgstr ""
-
-msgid "Delete current photo"
-msgstr ""
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr ""
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr ""
-
-msgid "Decide what collections should be shown in your profile."
-msgstr ""
-
-msgid "Display the collections I have created"
-msgstr ""
-
-msgid "Notifications"
-msgstr "নোটিফিকেশনসমূহ"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr ""
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr ""
-
-msgid "Admin"
-msgstr "এডমিন"
-
-msgid "Delete Account"
-msgstr "অ্যাকাউন্ট মুছুন"
-
-msgid "Update Account"
-msgstr "অ্যাকাউন্ট আপডেট করুন"
-
-msgid "none"
-msgstr "কোনোটিই নয়"
-
-msgid "all"
-msgstr "সব"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "Password Reset"
-msgstr "পার্সওয়ার্ড পুনঃরুদ্ধার"
-
-msgid "User Info for {0}"
-msgstr ""
-
-msgid "Edit profile"
-msgstr "প্রোফাইল সম্পাদনা করুন"
-
-msgid "Manage user"
-msgstr "ব্যবহারকারীকে নিয়ন্ত্রণ করুন"
-
-msgid "Report user"
-msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
-
-msgid "Add-ons Developer"
-msgstr ""
-
-msgid "Themes Artist"
-msgstr ""
-
-msgid "About me"
-msgstr "আমার সম্বন্ধে"
-
-msgid "In a little more detail..."
-msgstr ""
-
-msgid "Add-ons I've created"
-msgstr ""
-
-msgid "View all"
-msgstr "সব দেখুন"
-
-msgid "My Most Popular Themes"
-msgstr ""
-
-msgid "Themes I've created"
-msgstr ""
-
-msgid "Created by Me"
-msgstr "আমার দ্বারা সৃষ্টিকৃত"
-
-msgid "My Reviews"
-msgstr "আমার পর্যালোচনা"
-
-msgid "No add-on reviews yet."
-msgstr ""
-
-msgid "Report User"
-msgstr "ব্যবহারকারীকে রিপোর্ট করুন"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr ""
-
-msgid "Report user {0}"
-msgstr ""
 
 msgid "Unsubscribe"
 msgstr "আনসাবস্ক্রাইব"
@@ -7963,39 +7484,6 @@ msgstr ""
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
-
-msgid "Developer Information"
-msgstr ""
-
-msgid "User since"
-msgstr "কবে থেকে ব্যবহারকারী"
-
-msgid "Time of last login"
-msgstr ""
-
-msgid "IP address of last login"
-msgstr ""
-
-msgid "Number of add-ons developed"
-msgstr ""
-
-msgid "{0} add-ons"
-msgstr "{0} এড-ওনস"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s থিম"
-msgstr[1] ""
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s এড-ওন"
-msgstr[1] ""
-
-msgid "Average rating of developer's add-ons"
 msgstr ""
 
 msgctxt "user_list_others"

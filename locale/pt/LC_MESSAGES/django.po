@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -47,6 +47,10 @@ msgid "Need help?"
 msgstr ""
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
+msgstr ""
+
+#, python-format
+msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
@@ -147,9 +151,6 @@ msgstr ""
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Antes de alterar o seu idioma por omissão tem de ter um nome, resumo e uma descrição nesse idioma. Falta %s."
-
-msgid "A license must be selected."
-msgstr "Tem de ser selecionada uma licença."
 
 msgid "Listed"
 msgstr "Listado"
@@ -698,9 +699,6 @@ msgstr ""
 msgid "Error verifying input, please try again."
 msgstr ""
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Tem de ser um código de cor hexadecimal válido, tal como #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Algumas funcionalidades estão temporariamente desativadas enquanto efetuamos uma manutenção ao sítio web. Voltamos em breve com todas as funcionalidades."
 
@@ -922,6 +920,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr ""
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Arquivo inválido."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "Endereço de email"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -2692,9 +2698,6 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-msgid "Please check the form for errors."
-msgstr "Por favor confirme se o formulário tem erros."
-
 #, fuzzy
 msgid "Review requested."
 msgstr "Solicitada análise"
@@ -4129,110 +4132,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Temas leves"
 
-msgid "Create a New Theme"
-msgstr "Criar um novo tema"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Os temas de fundo permitem-lhe personalizar facilmente a aparência do seu Firefox. Submeta o seu próprio design abaixo, ou <a href=\"%(submit_url)s\">aprenda a criar um</a>!"
-
-msgid "Theme Details"
-msgstr "Detalhes do tema"
-
-msgid "Give your Theme a name."
-msgstr "Dê um nome ao seu tema."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Forneça uma URL amigável para a sua página de detalhes."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Selecione a categoria que melhor descreve o seu tema."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Adicione algumas etiquetas para descrever o seu tema."
-
-msgid "Describe your Theme."
-msgstr "Descreva o seu tema."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Uma explicação curta das funcionalidades básicas do seu tema é apresentada nas listagens de pesquisa e de navegação, assim como no início da página de detalhes do seu tema."
-
-msgid "Theme License"
-msgstr "Licença do tema"
-
-msgid "Select a license for your Theme."
-msgstr "Selecione uma licença para o seu tema."
-
-msgid "Theme Design"
-msgstr "Design do tema"
-
-msgid "Select colors for your Theme."
-msgstr "Selecione as cores para o seu tema."
-
-msgid "Foreground Text"
-msgstr "Texto de primeiro plano"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "Esta é a cor do texto do separador."
-
-msgid "Background"
-msgstr "Fundo"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "Esta é a cor dos separadores."
-
-msgid "Your Theme's Name"
-msgstr "Nome do seu tema"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "Disponibilizado sob <a href=\"%(url)s\">%(name)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-
-msgid "Submit Theme"
-msgstr "Enviar tema"
-
-msgid "You're done!"
-msgstr "Está feito!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "O seu tema foi submetido para a fila de revisão. Irá receber um email assim que este estiver revisto, tipicamente num período de 24 horas."
-
-msgid "Next steps:"
-msgstr "Próximos passos:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Forneça mais detalhes sobre o seu tema <a href=\"%(edit_url)s\">editando a sua listagem</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Veja e subscreva o <a href=\"%(feed_url)s\">registo de atividade</a> do seu tema para se manter a par das revisões, coleções e muito mais."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Junte-se à conversa nos nossos <a href=\"%(forum_url)s\">fóruns</a>."
-
-msgid "Select a header image for your Theme."
-msgstr "Selecione uma imagem para o cabeçalho do seu tema."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 pixeis"
-
-msgid "300 KB max"
-msgstr "máximo de 300 KB"
-
-msgid "PNG or JPG"
-msgstr "PNG ou JPG"
-
 msgid "Manage Version {0}"
 msgstr "Gerir versão {0}"
 
@@ -4963,14 +4862,6 @@ msgid "Edit the new tab page to display your preferred number of tiles, backgrou
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -5687,11 +5578,27 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5790,7 +5697,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tipo de ficheiro não suportado, por favor envie um arquivo {extensions}."
 
 msgid "Unexpected error."
@@ -6493,18 +6400,6 @@ msgstr "7 dias"
 msgid "Choose a canned response..."
 msgstr "Escolha um modelo de resposta..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "nome do tema"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Este tema está a ser revisto por outra pessoa."
-
-#. L10n: Description of what can be searched for.
-#, fuzzy
-msgid "theme, reviewer, or comment"
-msgstr "aplicação, revisor ou comentário"
-
 #, fuzzy
 msgid "Private Whiteboard"
 msgstr "Quadro branco"
@@ -6545,21 +6440,6 @@ msgstr "o meu extra é revisto por um editor"
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
-
-msgid "Duplicate Submission"
-msgstr "Submissão duplicada"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Obrigado por submeter o seu tema"
-
-msgid "A problem with your Theme submission"
-msgstr "Um problema com a submissão do seu tema"
-
-msgid "Theme submission flagged for review"
-msgstr "Submissão de tema marcada para revisão"
-
-msgid "A question about your Theme submission"
-msgstr "Uma questão sobre a submissão do seu tema"
 
 msgid "Type"
 msgstr "Tipo"
@@ -6720,26 +6600,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Revisão moderada ({0})"
 msgstr[1] "Revisões moderadas ({0})"
 
-#, fuzzy
-msgid "New Themes ({0})"
-msgstr "Não listar extra"
-
-#, fuzzy
-msgid "Themes Updates ({0})"
-msgstr "Atualizado {0}"
-
-#, fuzzy
-msgid "Flagged Themes ({0})"
-msgstr "Temas marcados"
-
-#, fuzzy
-msgid "Lightweight Themes Review Log"
-msgstr "Temas leves"
-
-#, fuzzy
-msgid "Deleted Themes Log"
-msgstr "Eliminar tema"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -6790,15 +6650,6 @@ msgstr "{addon} :: Denúncias de abusos"
 #, fuzzy
 msgid "{addon} :: Privacy Policy"
 msgstr "Este extra tem uma política de privacidade"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} revisão de tema processada com sucesso (+{1} pontos, {2} total)."
-msgstr[1] "{0} revisões de temas processadas com sucesso (+{1} pontos, {2} total)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
-"Os bloqueios ao seu tema foram libertados com sucesso. Outros revisores podem agora rever os temas libertados. Pode ter de atualizar a página para ver as alterações refletidas na tabela em baixo."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Denúncias de abusos"
@@ -7204,124 +7055,6 @@ msgstr "Tem <span>{0}</span> pontos."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s em %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Data da eliminação"
-
-msgid "No deleted themes found for this period."
-msgstr "Não foram encontrados temas eliminados para este período."
-
-msgid "Theme Review History for {0}"
-msgstr "Histórico de revisões do tema {0}"
-
-msgid "Review Date"
-msgstr "Data da revisão"
-
-msgid "Action"
-msgstr "Ação"
-
-msgid "Reason"
-msgstr "Motivo"
-
-msgid "There are currently no reviews."
-msgstr "Atualmente não existem revisões."
-
-msgid "Flagged Themes"
-msgstr "Temas marcados"
-
-msgid "Theme Review Queue"
-msgstr "Fila de revisão do tema"
-
-msgid "Queues"
-msgstr "Filas"
-
-msgid "Review Options"
-msgstr "Opções de revisão"
-
-msgid "Auto-advance after review"
-msgstr "Avançar automaticamente após a revisão"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Ativar atalhos do teclado"
-
-msgid "Keyboard Shortcuts"
-msgstr "Atalhos de teclado"
-
-msgid "Next Theme"
-msgstr "Próximo tema"
-
-msgid "Previous Theme"
-msgstr "Tema anterior"
-
-msgid "Your Review History"
-msgstr "O seu histórico de revisões"
-
-msgid "Commit Review"
-msgstr "Submeter revisão"
-
-msgid "Commit Reviews"
-msgstr "Submeter revisões"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} de {1} revisto(s)"
-
-msgid "There are currently no Themes to review."
-msgstr "Atualmente não há temas para rever."
-
-msgid "Clear Search"
-msgstr "Limpar pesquisa"
-
-msgid "Release My Theme Locks"
-msgstr "Libertar os bloqueios do meu tema"
-
-msgid "Interactive Theme Queue"
-msgstr "Fila interativa de temas"
-
-msgid "Reviewers' Guide"
-msgstr "Guia dos revisores"
-
-msgid "Theme Review for {0}"
-msgstr "Revisão do tema para {0}"
-
-msgid "Edit Listing"
-msgstr "Editar listagem"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(provavelmente uma submissão duplicada)"
-
-msgid "Submitted"
-msgstr "Submetido"
-
-msgid "Past Review Notes"
-msgstr "Notas de revisão antigas"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Solicitadas mais informações: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Marcado: {0}"
-
-msgid "Approve Theme"
-msgstr "Aprovar tema"
-
-msgid "Field required"
-msgstr "Campo requerido"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Introduza o ID ou a URL do duplicado"
-
-msgid "Select a reason for rejection"
-msgstr "Selecione o motivo da rejeição"
-
-msgid "Describe your reason for rejection"
-msgstr "Descreva o motivo da rejeição"
-
-msgid "Ask a question to the artist"
-msgstr "Fazer uma pergunta ao artista"
-
-msgid "Describe your reason for flagging"
-msgstr "Descreva o motivo da marcação"
-
 msgid "Rejected or Unreviewed"
 msgstr "Rejeitado ou não revisto"
 
@@ -7352,12 +7085,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Solicitadas mais informações: {0}"
 msgstr[1] "Solicitadas mais informações: {0}"
-
-msgid "Flagged"
-msgstr "Marcado"
-
-msgid "Updates"
-msgstr "Atualizações"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7936,27 +7663,6 @@ msgstr ""
 msgid "Activity Logs"
 msgstr "Atividade"
 
-msgid "Email must be {email}."
-msgstr ""
-
-msgid "Display Name"
-msgstr "Nome a apresentar"
-
-msgid "Location"
-msgstr "Localização"
-
-msgid "Occupation"
-msgstr "Ocupação"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr ""
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Esta URL tem um formato inválido. URLs válidos são do tipo http://exemplo.com/minha_pagina."
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "Para ficar anónimo, escreva uma razão para a alteração mas não altere nenhum outro campo."
-
 msgid "No user with that email."
 msgstr "Nenhum utilizador com esse email."
 
@@ -7995,33 +7701,6 @@ msgstr "A Mozilla necessita de me contactar sobre o meu extra individual"
 msgid "User Notifications"
 msgstr "Notificações do utilizador"
 
-msgid "An email address is required."
-msgstr "É necessário um endereço de email."
-
-msgid "A user with that email address does not exist."
-msgstr "Não existe nenhum utilizador com esse endereço de email."
-
-msgid "Profile Deleted"
-msgstr "Perfil eliminado"
-
-msgid "Photo Deleted"
-msgstr "Fotografia eliminada"
-
-msgid "Profile Updated"
-msgstr "Perfil atualizado"
-
-msgid "Errors Found"
-msgstr "Erros encontrados"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Ocorreram erros nas alterações que efetuou. Corrija-os e volte a submeter."
-
-msgid "User reported."
-msgstr "Utilizador reportado."
-
-msgid "new"
-msgstr "novo"
-
 #, fuzzy
 msgid "Ban"
 msgstr "e"
@@ -8029,170 +7708,6 @@ msgstr "e"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Eliminar a minha fotografia de utilizador agora"
-
-msgid "Delete User Account"
-msgstr "Eliminar conta de utilizador"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"Não pode eliminar a sua conta se tiver listado como um <a href=\"%(link)s\">autor de extras</a>. Para eliminar a sua conta, peça a outra pessoa no seu grupo de desenvolvimento para o eliminar da "
-"lista de autores dos seus extras. Depois já poderá eliminar a sua conta aqui."
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Ao clicar em \"eliminar\" a sua conta será <strong>permanentemente removida</strong>. Isto significa:"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Os seus comentários e classificações não serão eliminados, mas deixaram de estar associados a si."
-
-msgid "Confirm account deletion"
-msgstr "Confirmar eliminação da conta"
-
-msgid "I understand this step cannot be undone."
-msgstr "Eu compreendo que este passo não pode ser anulado."
-
-msgid "Delete my user account now"
-msgstr "Eliminar a minha conta de utilizador agora"
-
-msgid "Delete User Photo"
-msgstr "Eliminar fotografia do utilizador"
-
-msgid "Delete my user picture now"
-msgstr "Eliminar a minha fotografia de utilizador agora"
-
-msgid "Please set your display name"
-msgstr ""
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr ""
-
-#, fuzzy
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Faça a gestão da informação da conta, como o nome de utilizador e o endereço de correio."
-
-msgid "Email Address"
-msgstr "Endereço de email"
-
-msgid "Manage Firefox Account..."
-msgstr ""
-
-msgid "Profile"
-msgstr "Perfil"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Dê-nos mais alguma informação sobre si. Todos estes campos são opcionais, mas ajudam outros a conhecê-lo melhor."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "Este endereço só será visível se for um programador."
-
-msgid "Choose Photo&hellip;"
-msgstr "Escolher foto&hellip;"
-
-msgid "Delete current photo"
-msgstr "Eliminar foto atual"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Se quiser, apresente-se à comunidade! Este texto irá aparecer publicamente na informação da sua página de utilizador."
-
-#, fuzzy, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTML permitido: {0}. Ligações são proibidas."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Decida que coleções são apresentadas no seu perfil."
-
-msgid "Display the collections I have created"
-msgstr "Apresentar as coleções que criei"
-
-msgid "Notifications"
-msgstr "Notificações"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "De tempos a tempos, a Mozilla poderá enviar-lhe uma mensagem de correio sobre os próximos lançamentos e eventos sobre extras. Por favor, selecione os tópicos em que está interessado."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "A Mozilla reserva o direito de o contactar individualmente sobre preocupações específicas sobre os seus extras alojados."
-
-msgid "Admin"
-msgstr "Administração"
-
-msgid "Delete Account"
-msgstr "Eliminar conta"
-
-msgid "Update Account"
-msgstr "Atualizar conta"
-
-msgid "none"
-msgstr "nenhum"
-
-msgid "all"
-msgstr "tudo"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr ""
-
-msgid "Password Reset"
-msgstr "Reposição da palavra-passe"
-
-msgid "User Info for {0}"
-msgstr "Informação do utilizador para {0}"
-
-msgid "Edit profile"
-msgstr "Editar perfil"
-
-msgid "Manage user"
-msgstr "Gerir utilizador"
-
-msgid "Report user"
-msgstr "Denunciar utilizador"
-
-msgid "Add-ons Developer"
-msgstr "Programador de extras"
-
-msgid "Themes Artist"
-msgstr "Artista de temas"
-
-msgid "About me"
-msgstr "Acerca de mim"
-
-msgid "In a little more detail..."
-msgstr "Um pouco mais em detalhe..."
-
-msgid "Add-ons I've created"
-msgstr "Extras que criei"
-
-msgid "View all"
-msgstr "Ver todos"
-
-msgid "My Most Popular Themes"
-msgstr "Os meus temas mais populares"
-
-msgid "Themes I've created"
-msgstr "Temas que criei"
-
-msgid "Created by Me"
-msgstr "Criado por mim."
-
-msgid "My Reviews"
-msgstr "Os meus comentários"
-
-msgid "No add-on reviews yet."
-msgstr "Sem comentários de extras ainda."
-
-msgid "Report User"
-msgstr "Denunciar utilizador"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Por favor, descreva porque está a denunciar este utilizador, como por exemplo, por spam ou uma imagem inapropriada."
-
-msgid "Report user {0}"
-msgstr "Denunciar utilizador {0}"
 
 msgid "Unsubscribe"
 msgstr "Anular subscrição"
@@ -8219,39 +7734,6 @@ msgstr "Não conseguimos anular a sua subscrição"
 #, fuzzy, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "Infelizmente não conseguimos cancelar sua subscrição. A ligação que clicou é inválida. No entanto, poderá ainda anular a sua subscrição na sua <a href=\"%(edit_url)s\">página do perfil</a>."
-
-msgid "Developer Information"
-msgstr "Informação do programador"
-
-msgid "User since"
-msgstr "Utilizador desde"
-
-msgid "Time of last login"
-msgstr "Último início de sessão"
-
-msgid "IP address of last login"
-msgstr "Endereço de IP do último início de sessão"
-
-msgid "Number of add-ons developed"
-msgstr "Número de extras desenvolvidos"
-
-msgid "{0} add-ons"
-msgstr "{0} extras"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s tema"
-msgstr[1] "%(num)s temas"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s extra"
-msgstr[1] "%(num)s extras"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Classificação média dos extras do programador"
 
 msgctxt "user_list_others"
 msgid "others"

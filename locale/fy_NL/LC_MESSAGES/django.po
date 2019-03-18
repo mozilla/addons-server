@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,6 +55,10 @@ msgstr "Help nedich?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr "Untwikkelers fan add-ons of tema’s kinne harren account net fuortsmite. Jo moatte alle add-ons en tema’s dy't oan dizze account keppele binne fuortsmite, of dizze oan oare brûkers oerdrage."
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "Beoardieling"
@@ -152,9 +156,6 @@ msgstr "URL-domein moat ta [%s] hearre of in subdomein wêze."
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Eardat jo jo standertlocale wizigje, moatte jo in namme, gearfetting en beskriuwing foar dy locale yn jaan. %s ûntbrekt."
-
-msgid "A license must be selected."
-msgstr "Jo moatte in lisinsje selektearje."
 
 # Column name in a table.
 msgid "Listed"
@@ -697,9 +698,6 @@ msgstr "Net krekt, probearje it opnij."
 msgid "Error verifying input, please try again."
 msgstr "Flater by kontrolearjen ynfier, probearje it opnij."
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Dit moat in jildige hex-kleurkoade wêze, lykas #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Inkelde funksjes binne tydlik útskeakele fanwegen ûnderhâld oan de website. Ynkoarten binne wy wer folslein beskikber."
 
@@ -918,6 +916,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Unjildich JWT-token."
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Unjildich argyf."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "E-mailadres"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Dit fjild moat op syn minst {num} tekens te befetsje."
@@ -2622,9 +2628,6 @@ msgstr "Tekst arkbalkefjildgebied"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "De kleur fan tekst yn fjilden yn de arkbalke, lykas de URL-balke. Manifestfjild: ·  · toolbar_field_text."
 
-msgid "Please check the form for errors."
-msgstr "Kontrolearje it formulier op flaters."
-
 msgid "Review requested."
 msgstr "Beoardieling oanfrege."
 
@@ -3965,113 +3968,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Beoardielingslochboek ljochtgewicht-tema’s"
 
-msgid "Create a New Theme"
-msgstr "In nij tema meitsje"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr ""
-"Mei eftergrûntema’s kinne jo ienfâldichwei de útstrieling fan jo Firefox personalisearje. Tsjinje hjirûnder jo eigen ûntwerp yn, of <a href=\"%(submit_url)s\">lês hoe't jo der ien meitsje kinne</a>!"
-
-msgid "Theme Details"
-msgstr "Tema-details"
-
-msgid "Give your Theme a name."
-msgstr "Jou jo tema in namme."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Jou in moaie URL foar jo detailside."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Selektearje de kategory dy't it bêste by jo tema past."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Foegje inkelde labels ta dy't jo tema beskriuwe."
-
-msgid "Describe your Theme."
-msgstr "Beskriuw jo tema."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "In koarte útlis fan de basisfunksjes fan jo tema dy't werjûn wurdt yn syk- en navigaasjelisten, lykas boppe oan de detailside fan jo tema."
-
-msgid "Theme License"
-msgstr "Tema-lisinsje"
-
-msgid "Select a license for your Theme."
-msgstr "Selektearje in lisinsje foar jo tema."
-
-msgid "Theme Design"
-msgstr "Tema-ûntwerp"
-
-msgid "Select colors for your Theme."
-msgstr "Selektearje kleuren foar jo tema."
-
-msgid "Foreground Text"
-msgstr "Foargrûntekst"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "Dit is de kleur fan de ljepblêdtekst."
-
-msgid "Background"
-msgstr "Eftergrûn"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "Dit is de kleur fan de ljepblêden."
-
-msgid "Your Theme's Name"
-msgstr "Namme fan jo tema"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "troch <a href=\"%(profile_url)s\">%(user)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"Ik akseptearje de %(agreement_link_open)sFirefox-add-on-ferspriedingsoerienkomst%(link_close)s en dat myn gegevens ferwurke wurde lykas beskreaun yn de "
-"%(privacy_notice_link_open)sPrivacyferklearring foar websites, kommunikaasje en cookies%(link_close)s."
-
-msgid "Submit Theme"
-msgstr "Tema yntsjinje"
-
-msgid "You're done!"
-msgstr "Jo binne klear!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Jo tema is yntsjinne en stiet yn de beoardielingswachtrige. Jo ûntfange in e-mailberjocht sa gau as it tema beoardiele is, normaal sprutsen binnen 24 oer."
-
-msgid "Next steps:"
-msgstr "Folgjende stappen:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Jou mear details oer jo tema troch <a href=\"%(edit_url)s\">de listopname te bewurkjen</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Besjoch en abonnearje jo op de <a href=\"%(feed_url)s\">aktiviteitenfeed</a> fan jo tema om op de hichte te bliuwen fan beoardielingen, kolleksjes en mear."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Diskusjearje mei op ús <a href=\"%(forum_url)s\">foarums</a>."
-
-msgid "Select a header image for your Theme."
-msgstr "Selektearje in headerôfbylding foar jo tema."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 pixels"
-
-msgid "300 KB max"
-msgstr "Maksimaal 300 KB"
-
-msgid "PNG or JPG"
-msgstr "PNG of JPG"
-
 msgid "Manage Version {0}"
 msgstr "Ferzje {0} beheare"
 
@@ -4796,14 +4692,6 @@ msgid "Edit the new tab page to display your preferred number of tiles, backgrou
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Krij flugge oersettingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
-
-#. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Behear jo wachturden {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
@@ -5524,11 +5412,29 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bewarje tekst foar letter {start_sub_heading}mei {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sykje ôfbyldingen {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Lis it web fêst {start_sub_heading}mei {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5627,7 +5533,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Jo kinne gjin troch Mozilla ûndertekene útwreidingen yntsjinje"
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Net-stipe bestânstype, laad in argyfbestân {extensions} op."
 
 msgid "Unexpected error."
@@ -6310,17 +6216,6 @@ msgstr "dagen"
 msgid "Choose a canned response..."
 msgstr "Kies in yn it foar definiearre antwurd…"
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "temanamme"
-
-msgid "Someone else is reviewing this theme."
-msgstr "In oar beoardielet dit tema."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "tema, beoardieler of opmerking"
-
 msgid "Private Whiteboard"
 msgstr "Priveenotysjeboerd"
 
@@ -6356,21 +6251,6 @@ msgstr "Is beskoattele troch in beoardieler."
 
 msgid "Has auto-approval disabled flag set."
 msgstr "Hat markearring ‘automatysk goedkarre útskeakelje’."
-
-msgid "Duplicate Submission"
-msgstr "Dûbele ynstjoering"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Tank foar it yntsjinjen fan jo tema"
-
-msgid "A problem with your Theme submission"
-msgstr "In probleem mei de yntsjinning fan jo tema"
-
-msgid "Theme submission flagged for review"
-msgstr "Yntsjinne tema labele foar beoardieling"
-
-msgid "A question about your Theme submission"
-msgstr "In fraach oer jo yntsjinne tema"
 
 msgid "Type"
 msgstr "Type"
@@ -6505,23 +6385,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Ynhâldsbeoardieling ({0})"
 msgstr[1] "Ynhâldsbeoardieling ({0})"
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "New Themes ({0})"
-msgstr "Nije tema’s ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "Tema-fernijingen ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "Markearre tema’s ({0})"
-
-msgid "Lightweight Themes Review Log"
-msgstr "Beoardielingslochboek ljochtgewicht-tema’s"
-
-msgid "Deleted Themes Log"
-msgstr "Lochboek fan fuortsmiten tema’s"
-
 msgid "User Ratings Moderation"
 msgstr "Moderaasje fan brûkerswurdearringen"
 
@@ -6566,14 +6429,6 @@ msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Privacybelied"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} temabeoardeling mei sukses ferwurke (+{1} punten, {2} totaal)."
-msgstr[1] "{0} temabeoardielingen mei sukses ferwurke (+{1} punten, {2} totaal)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "Jo temablokkades binne mei sukses opheven. Oare beoardielers kinne no dy frijjûne tema’s beoardiele. Jo moatte mooglik de side fernije om de wizigingen yn ûndersteande tabel te sjen."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon}:: Misbrûkmeldingen"
@@ -6956,124 +6811,6 @@ msgstr "Jo hawwe <span>{0}</span> punten."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s op %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Fuortsmytdatum"
-
-msgid "No deleted themes found for this period."
-msgstr "Gjin fuortsmiten tema’s fûn yn dizze perioade."
-
-msgid "Theme Review History for {0}"
-msgstr "Tema-beoardielingsskiednis foar {0}"
-
-msgid "Review Date"
-msgstr "Beoardielingsdatum"
-
-msgid "Action"
-msgstr "Aksje"
-
-msgid "Reason"
-msgstr "Reden"
-
-msgid "There are currently no reviews."
-msgstr "Der binne op dit stuit gjin beoardielingen."
-
-msgid "Flagged Themes"
-msgstr "Markearre tema’s"
-
-msgid "Theme Review Queue"
-msgstr "Tema-beoardielingswachtrige"
-
-msgid "Queues"
-msgstr "Wachtrigen"
-
-msgid "Review Options"
-msgstr "Beoardielingsopsjes"
-
-msgid "Auto-advance after review"
-msgstr "Automatysk trochsette nei beoardieling"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Fluchtoetsen ynskeakelje"
-
-msgid "Keyboard Shortcuts"
-msgstr "Fluchtoetsen"
-
-msgid "Next Theme"
-msgstr "Folgjende tema"
-
-msgid "Previous Theme"
-msgstr "Foarige tema"
-
-msgid "Your Review History"
-msgstr "Jo beoardielingsskiednis"
-
-msgid "Commit Review"
-msgstr "Beoardieling yntsjinje"
-
-msgid "Commit Reviews"
-msgstr "Beoardielingen yntsjinje"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} fan {1} beoardiele"
-
-msgid "There are currently no Themes to review."
-msgstr "Der binne op dit stuit gjin tema’s om te beoardielen."
-
-msgid "Clear Search"
-msgstr "Sykfjild leechmeitsje"
-
-msgid "Release My Theme Locks"
-msgstr "Myn temablokkades fuortsmite"
-
-msgid "Interactive Theme Queue"
-msgstr "Ynteraktive tema-wachtrige"
-
-msgid "Reviewers' Guide"
-msgstr "Beoardielingsrjochtlinen"
-
-msgid "Theme Review for {0}"
-msgstr "Tema-beoardieling foar {0}"
-
-msgid "Edit Listing"
-msgstr "Listfermelding bewurkje"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Wierskynlik dûbeld yntsjinne)"
-
-msgid "Submitted"
-msgstr "Yntsjinne"
-
-msgid "Past Review Notes"
-msgstr "Eardere beoardielingsopmerkingen"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Mear ynformaasje frege: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Labele: {0}"
-
-msgid "Approve Theme"
-msgstr "Tema goedkarre"
-
-msgid "Field required"
-msgstr "Fjild ferplicht"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Fier de ID of URL fan it duplikaat yn"
-
-msgid "Select a reason for rejection"
-msgstr "Selektearje in reden fan ôfwizing"
-
-msgid "Describe your reason for rejection"
-msgstr "Beskriuw jo reden fan ôfwizing"
-
-msgid "Ask a question to the artist"
-msgstr "In fraach oan de keunstner stelle"
-
-msgid "Describe your reason for flagging"
-msgstr "Beskriuw jo reden foar it label"
-
 msgid "Rejected or Unreviewed"
 msgstr "Ofwezen of net beoardield"
 
@@ -7100,12 +6837,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Ferrûn fersyk om ynformaasje ({0})"
 msgstr[1] "Ferrûne fersiken om ynformaasje ({0})"
-
-msgid "Flagged"
-msgstr "Markearre"
-
-msgid "Updates"
-msgstr "Fernijingen"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7687,27 +7418,6 @@ msgstr "Add-ons"
 msgid "Activity Logs"
 msgstr "Aktiviteitenlochboek"
 
-msgid "Email must be {email}."
-msgstr "E-mailadres moat {email} wêze."
-
-msgid "Display Name"
-msgstr "Namme werjaan"
-
-msgid "Location"
-msgstr "Lokaasje"
-
-msgid "Occupation"
-msgstr "Berop"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Jo kinne jo e-mailadres wizigje by Firefox Accounts."
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Dizze URL hat in ûnjildige opmaak. Jildige URL’s lykje op http://example.com/myn_side."
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "Fier in reden foar de wiziging yn om te anonimisearjen, mar wizigje gjin fan de oare fjilden."
-
 msgid "No user with that email."
 msgstr "Der is gjin brûker mei dat e-mailadres."
 
@@ -7744,204 +7454,11 @@ msgstr "Mozilla moat kontakt mei my opnimme oer myn yndividuele add-on"
 msgid "User Notifications"
 msgstr "Brûkersnotifikaasjes"
 
-msgid "An email address is required."
-msgstr "In e-mailadres is ferplicht."
-
-msgid "A user with that email address does not exist."
-msgstr "Der bestiet gjin brûker mei dat e-mailadres."
-
-msgid "Profile Deleted"
-msgstr "Profyl fuortsmiten"
-
-msgid "Photo Deleted"
-msgstr "Foto fuortsmiten"
-
-msgid "Profile Updated"
-msgstr "Profyl bywurke"
-
-msgid "Errors Found"
-msgstr "Flaters fûn"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Der binne flaters bard yn de troch jo oanbrochte wizigingen. Korrizjearje se en tsjinje it formulier opnij yn."
-
-msgid "User reported."
-msgstr "Brûker rapportearre."
-
-msgid "new"
-msgstr "nij"
-
 msgid "Ban"
 msgstr "Ferbalje"
 
 msgid "Delete picture"
 msgstr "Brûkersôfbylding fuortsmite"
-
-msgid "Delete User Account"
-msgstr "Brûkersaccount fuortsmite"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"Jo kinne jo account net fuortsmite as jo as in <a href=\"%(link)s\">skriuwer fan in add-on</a> fermeld binne. Freegje hjirfoar in oar yn jo ûntwikkelingsgroep om jo út de list mei skriuwers foar jo "
-"add-ons fuort te smiten. Dêrnei kinne jo hjir weromkomme om jo account fuort te smiten."
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr "Troch op ‘fuortsmite’ te klikken wurdt jo account <strong>permanint fuortsmiten</strong>. Dat betsjut:"
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr "As jo jo mei dit e-mailadres opnij oanmelde by %(site)s, wurdt in nij account oanmakke dy't gjin ferbân hâldt mei dizze account."
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Jo beoardielingen en wurdearringen wurde net fuortsmiten, mar se binne net mear mei jo assosjearre."
-
-msgid "Confirm account deletion"
-msgstr "Fuortsmiten fan account befêstigje"
-
-msgid "I understand this step cannot be undone."
-msgstr "Ik begryp dat dizze stap net ûngedien makke wurde kin."
-
-msgid "Delete my user account now"
-msgstr "Myn brûkersaccount no fuortsmite"
-
-msgid "Delete User Photo"
-msgstr "Brûkersfoto fuortsmite"
-
-msgid "Delete my user picture now"
-msgstr "Myn brûkersfoto no fuortsmite"
-
-msgid "Please set your display name"
-msgstr "Stel jo skermnamme yn"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "Stel jo skermnamme of brûkersnamme yn om it registraasjeproses te foltôgjen."
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Behear basale accountynformaasje, lykas jo brûkersnamme en ynstellingen fan Firefox Accounts."
-
-msgid "Email Address"
-msgstr "E-mailadres"
-
-msgid "Manage Firefox Account..."
-msgstr "Firefox-account beheare…"
-
-msgid "Profile"
-msgstr "Profyl"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Jou ús wat mear ynformaasje oer josels. Al dizze fjilden binne opsjoneel, mar se helpe oare brûkers om jo wat better kennen te learen."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "Dizze URL is allinnich sichtber as jo in ûntwikkeler binne."
-
-msgid "Choose Photo&hellip;"
-msgstr "Foto kieze…"
-
-msgid "Delete current photo"
-msgstr "Aktuele foto fuortsmite"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Stel josels foar oan de mienskip as jo dat wolle! Dizze tekst ferskynt op jo publyklik tagonklike brûkersynformaasjeside."
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Tastiene HTML: %(html)s. Keppelingen binne net tastien."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Beslis hokker kolleksjes yn jo profyl werjûn wurde moatte."
-
-msgid "Display the collections I have created"
-msgstr "Troch my makke kolleksjes werjaan"
-
-msgid "Notifications"
-msgstr "Notifikaasjes"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "Mozilla kin jo sa no en dan in e-mailberjocht stjoere oer oankommende útjeftes en add-on-barrens. Selektearje de foar jo ynteressante ûnderwerpen."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Mozilla behâldt harren it rjocht foar om yndividueel kontakt mei jo op te nimmen oer spesifike oangelegenheden mei jo add-ons dy't host wurde."
-
-msgid "Admin"
-msgstr "Behear"
-
-msgid "Delete Account"
-msgstr "Account fuortsmite"
-
-msgid "Update Account"
-msgstr "Account bywurkje"
-
-msgid "none"
-msgstr "gjin"
-
-msgid "all"
-msgstr "alles"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Mozilla Add-ons is foar oanmelding oergien op Firefox Accounts. Gean troch om it ienfâldige oanmeldingsproses te foltôgjen."
-
-msgid "Password Reset"
-msgstr "Wachtwurd opnij ynstelle"
-
-msgid "User Info for {0}"
-msgstr "Brûkersynformaasje foar {0}"
-
-msgid "Edit profile"
-msgstr "Profyl bewurkje"
-
-msgid "Manage user"
-msgstr "Brûker beheare"
-
-msgid "Report user"
-msgstr "Brûker rapportearje"
-
-# The title for a user if they are a developer
-msgid "Add-ons Developer"
-msgstr "Add-on-ûntwikkeler"
-
-msgid "Themes Artist"
-msgstr "Temakeunstner"
-
-msgid "About me"
-msgstr "Oer my"
-
-msgid "In a little more detail..."
-msgstr "Yn wat mear detail…"
-
-msgid "Add-ons I've created"
-msgstr "Troch my makke add-ons"
-
-msgid "View all"
-msgstr "Alles besjen"
-
-msgid "My Most Popular Themes"
-msgstr "Myn meast populêre tema’s"
-
-msgid "Themes I've created"
-msgstr "Troch my makke tema’s"
-
-# "Me" in this context is the user shown on the User Info page
-msgid "Created by Me"
-msgstr "Makke troch my"
-
-# "My" in this context is the logged in user who is reading the page
-msgid "My Reviews"
-msgstr "Myn beoardielingen"
-
-msgid "No add-on reviews yet."
-msgstr "Noch gjin add-on-beoardielingen."
-
-msgid "Report User"
-msgstr "Brûker rapportearje"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Beskriuw wêrom't jo dizze brûker rapportearje, lykas bygelyks foar spam of in net paste ôfbylding."
-
-msgid "Report user {0}"
-msgstr "Brûker {0} rapportearje"
 
 msgid "Unsubscribe"
 msgstr "Abonnemint opsizze"
@@ -7968,39 +7485,6 @@ msgstr "Wy kinne jo abonnemint net stopsette"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "Wy kinne jo spitigernôch net ôfmelde. De troch jo oanklikte keppeling is net jildich. Jo kinne jo echter noch hieltyd ôfmelde op jo <a href=\"%(edit_url)s\">profylside</a>."
-
-msgid "Developer Information"
-msgstr "Untwikkelersynformaasje"
-
-msgid "User since"
-msgstr "Brûker sûnt"
-
-msgid "Time of last login"
-msgstr "Tiid lêste oanmelding"
-
-msgid "IP address of last login"
-msgstr "IP-adres by lêste oanmelding"
-
-msgid "Number of add-ons developed"
-msgstr "Oantal ûntwikkele add-ons"
-
-msgid "{0} add-ons"
-msgstr "{0} add-ons"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s tema"
-msgstr[1] "%(num)s tema’s"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s add-on"
-msgstr[1] "%(num)s add-ons"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Gemiddelde wurdearring fan de add-ons fan de ûntwikkeler"
 
 msgctxt "user_list_others"
 msgid "others"

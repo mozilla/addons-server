@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2019-02-13 13:15+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -53,6 +53,10 @@ msgid "Developers of add-ons or themes cannot delete their account. You must del
 msgstr ""
 "Οι προγραμματιστές των προσθέτων ή των θεμάτων δεν μπορούν να διαγράψουν το λογαριασμό τους. Πρέπει να διαγράψετε όλα τα πρόσθετα και τα θέματα που έχουν συνδεθεί με αυτό το λογαριασμό, ή να τα "
 "μεταφέρετε σε άλλους χρήστες."
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "Αξιολόγηση"
@@ -150,9 +154,6 @@ msgstr "Ο τομέας του URL πρέπει να είναι ένας από 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Για να αλλάξετε την αρχική γλώσσα, θα πρέπει πρώτα να διαθέτετε το όνομα, την περιγραφή, και τη σύνοψη σ' αυτή τη γλώσσα. Σας λείπει %s."
-
-msgid "A license must be selected."
-msgstr "Πρέπει να επιλέξετε μια άδεια."
 
 # Column name in a table.
 msgid "Listed"
@@ -701,9 +702,6 @@ msgstr "Λάθος, παρακαλούμε δοκιμάστε ξανά."
 msgid "Error verifying input, please try again."
 msgstr "Σφάλμα επαλήθευσης εισόδου, παρακαλούμε δοκιμάστε ξανά."
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Αυτή πρέπει να είναι μια έγκυρη δεκαεξαδική τιμή χρώματος, όπως #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr "Μερικές λειτουργίες έχουν προς το παρόν απενεργοποιηθεί λόγω εργασιών συντήρησης. Η πλήρης λειτουργικότητα θα επανέλθει σύντομα."
 
@@ -931,6 +929,14 @@ msgstr "Λάθος τύπος για ένα ή περισσότερα κλειδ
 
 msgid "Invalid JWT Token."
 msgstr "Μη έγκυρο σύμβολο JWT."
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Άκυρο ή κατεστραμμένο αρχείο."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "Διεύθυνση email"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Το πεδίο πρέπει να αποτελείται από τουλάχιστον {num} χαρακτήρες."
@@ -2635,9 +2641,6 @@ msgstr "Κείμενο περιοχής πεδίου γραμμής εργαλε
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Το χρώμα του κειμένου στα πεδία της γραμμής εργαλείων, όπως η γραμμή URL. Πεδίο αρχείου manifest:  toolbar_field_text."
 
-msgid "Please check the form for errors."
-msgstr "Παρακαλώ ελέγξτε τη φόρμα για σφάλματα."
-
 msgid "Review requested."
 msgstr "Ζητήθηκε αξιολόγηση."
 
@@ -3952,109 +3955,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Αρχείο καταγραφής αξιολόγησης \"ελαφριών\" θεμάτων"
 
-msgid "Create a New Theme"
-msgstr "Δημιουργία νέου θέματος"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Τα θέματα παρασκηνίου σάς επιτρέπουν να εξατομικεύσετε εύκολα την εμφάνιση του Firefox. Υποβάλετε το δικό σας σχέδιο παρακάτω ή <a href=\"%(submit_url)s\">μάθετε πώς να δημιουργήσετε ένα</a>!"
-
-msgid "Theme Details"
-msgstr "Λεπτομέρειες θέματος"
-
-msgid "Give your Theme a name."
-msgstr "Δώστε ένα όνομα στο θέμα σας."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Παραθέστε ένα όμορφο URL για τη σελίδα λεπτομερειών σας."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Επιλέξτε την κατηγορία που περιγράφει καλύτερα το θέμα σας."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Προσθέστε μερικές ετικέτες για να περιγράψετε το θέμα σας."
-
-msgid "Describe your Theme."
-msgstr "Περιγράψτε το θέμα σας."
-
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Μια σύντομη εξήγηση των βασικών λειτουργιών του θέματός σας, που εμφανίζεται στην αναζήτηση και τις λίστες εξερεύνησης, καθώς και στο πάνω μέρος της σελίδας λεπτομερειών του θέματός σας"
-
-msgid "Theme License"
-msgstr "Άδεια θέματος"
-
-msgid "Select a license for your Theme."
-msgstr "Επιλέξτε μια άδεια για το θέμα σας."
-
-msgid "Theme Design"
-msgstr "Σχέδιο θέματος"
-
-msgid "Select colors for your Theme."
-msgstr "Επιλέξτε χρώματα για το θέμα σας."
-
-msgid "Foreground Text"
-msgstr "Κείμενο προσκηνίου"
-
-msgid "This is the color of the tab text"
-msgstr "Αυτό είναι το χρώμα του κειμένου καρτέλας"
-
-msgid "Background"
-msgstr "Παρασκήνιο"
-
-msgid "This is the color of the tabs"
-msgstr "Αυτό είναι το χρώμα των καρτελών"
-
-msgid "Your Theme's Name"
-msgstr "Το όνομα του θέματός σας"
-
-#, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "από <a href=\"%(profile_url)s\">%(user_name)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"Αποδέχομαι τη %(agreement_link_open)sσυμφωνία διανομής προσθέτων του Firefox%(link_close)s και συμφωνώ με τη μεταχείριση των πληροφοριών μου, όπως περιγράφεται στη "
-"%(privacy_notice_link_open)sσημείωση απορρήτου ιστοσελίδων, επικοινωνιών και cookies%(link_close)s."
-
-msgid "Submit Theme"
-msgstr "Υποβολή θέματος"
-
-msgid "You're done!"
-msgstr "Τελειώσατε!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr "Το θέμα σας έχει υποβληθεί στη σειρά αξιολόγησης. Θα λάβετε ένα email μόλις αξιολογηθεί, τυπικά μέσα σε 24 ώρες."
-
-msgid "Next steps:"
-msgstr "Επόμενα βήματα:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Παρέχετε περισσότερες λεπτομέρειες σχετικά με το θέμα σας <a href=\"%(edit_url)s\">τροποποιώντας την καταχώρηση</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Προβολή και εγγραφή στο <a href=\"%(feed_url)s\">αρχείο ροής δραστηριότητας</a> του θέματός σας, για να ενημερώνεστε για αξιολογήσεις, συλλογές και ακόμη περισσότερα."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Λάβετε μέρος στη συζήτηση του <a href=\"%(forum_url)s\">φόρουμ</a> μας."
-
-msgid "Select a header image for your Theme."
-msgstr "Επιλέξτε μια εικόνα επικεφαλίδας για το θέμα σας."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 εικονοστοιχεία"
-
-msgid "300 KB max"
-msgstr "Μεγ. 300 KB"
-
-msgid "PNG or JPG"
-msgstr "PNG ή JPG"
-
 msgid "Manage Version {0}"
 msgstr "Διαχείριση της έκδοσης {0}"
 
@@ -4775,14 +4675,6 @@ msgid "Edit the new tab page to display your preferred number of tiles, backgrou
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Γρήγορες μεταφράσεις {start_sub_heading}με το {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr "Επισημάνετε κείμενο σε οποιαδήποτε ιστοσελίδα, κάντε δεξί κλικ και δείτε άμεσα τη μετάφραση."
-
-#. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Διαχείριση κωδικών πρόσβασης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
@@ -5499,11 +5391,30 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+#, fuzzy
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Εξοικονόμηση μνήμης {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Αναζήτηση εικόνων {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Στιγμιότυπα στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5601,7 +5512,8 @@ msgstr ""
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
 
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+#, fuzzy
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Μη υποστηριζόμενος τύπος αρχείου, παρακαλούμε μεταφορτώστε ένα υποστηριζόμενο αρχείο {extensions}."
 
 msgid "Unexpected error."
@@ -6264,17 +6176,6 @@ msgstr "ημέρες"
 msgid "Choose a canned response..."
 msgstr "Επιλέξτε τυποποιημένη απάντηση..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "όνομα θέματος"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Κάποιος άλλος αξιολογεί αυτό το θέμα"
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "θέμα, κριτής ή σχόλιο"
-
 msgid "Private Whiteboard"
 msgstr "Ιδιωτικός λευκός πίνακας"
 
@@ -6310,21 +6211,6 @@ msgstr "Κλειδωμένο από αξιολογητή."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
-
-msgid "Duplicate Submission"
-msgstr "Διπλή υποβολή"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Ευχαριστούμε για την υποβολή του Θέματος σας"
-
-msgid "A problem with your Theme submission"
-msgstr "Κάποιο πρόβλημα με την υποβολή του Θέματος σας"
-
-msgid "Theme submission flagged for review"
-msgstr "Η υποβολή του Θέματος επισημάνθηκε για επιθεώρηση"
-
-msgid "A question about your Theme submission"
-msgstr "Μια ερώτηση για την υποβολή του Θέματος σας"
 
 msgid "Type"
 msgstr "Τύπος"
@@ -6463,24 +6349,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Αξιολόγηση περιεχομένου ({0})"
 msgstr[1] "Αξιολόγηση περιεχομένου ({0})"
 
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "New Themes ({0})"
-msgstr "Νέα θέματα ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "Ενημερώσεις θεμάτων ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "Επισημασμένα θέματα ({0})"
-
-msgid "Lightweight Themes Review Log"
-msgstr "Αρχείο καταγραφής αξιολόγησης \"ελαφριών\" θεμάτων"
-
-msgid "Deleted Themes Log"
-msgstr "Αρχείο διαγραμμένων θεμάτων"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -6525,14 +6393,6 @@ msgstr "{addon} :: EULA"
 
 msgid "{addon} :: Privacy Policy"
 msgstr "{addon} :: Πολιτική απορρήτου"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "Επεξεργάστηκε επιτυχώς {0} κριτική θέματος (+{1} πόντοι, {2} συνολικά)."
-msgstr[1] "Επεξεργάστηκαν επιτυχώς {0} κριτικές θέματος (+{1} πόντοι, {2} συνολικά)."
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr "Τα θέματα σας ξεκλειδώθηκαν επιτυχώς. Άλλοι επιθεωρητές μπορεί να μην τα επιθεωρήσουν. Χρειάζεται να ανανεώσετε τη σελίδα για να δείτε τις αλλαγές που εμφανίζονται στον παρακάτω πίνακα."
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Αναφορές κατάχρησης"
@@ -6912,124 +6772,6 @@ msgstr "Έχετε <span>{0}</span> πόντους."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s στις %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Ημερομηνία διαγραφής"
-
-msgid "No deleted themes found for this period."
-msgstr "Κανένα διαγραμμένο θέμα αυτής της περιόδου δε βρέθηκε."
-
-msgid "Theme Review History for {0}"
-msgstr "Ιστορικό επιθεωρήσεων θέματος για {0}"
-
-msgid "Review Date"
-msgstr "Ημερομηνία Επιθεώρησης"
-
-msgid "Action"
-msgstr "Ενέργεια"
-
-msgid "Reason"
-msgstr "Αιτιολόγηση"
-
-msgid "There are currently no reviews."
-msgstr "προς το παρόν δεν υπάρχουν επιθεωρήσεις."
-
-msgid "Flagged Themes"
-msgstr "Θέματα με επισήμανση"
-
-msgid "Theme Review Queue"
-msgstr "Ουρά επιθεωρήσεων θέματος"
-
-msgid "Queues"
-msgstr "Λίστες αναμονής"
-
-msgid "Review Options"
-msgstr "Επιλογές αξιολόγησης"
-
-msgid "Auto-advance after review"
-msgstr "Αυτόματη πρόοδος μετά την επιθεώρηση"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Ενεργοποίηση συντομέυσεων πληκτρολογίου"
-
-msgid "Keyboard Shortcuts"
-msgstr "Συντομεύσεις πληκτρολογίου"
-
-msgid "Next Theme"
-msgstr "Επόμενο Θέμα"
-
-msgid "Previous Theme"
-msgstr "Προηγούμενο Θέμα"
-
-msgid "Your Review History"
-msgstr "Ιστορικό Επιθεωρήσεων σας"
-
-msgid "Commit Review"
-msgstr "Υποβολή Επιθεώρησης"
-
-msgid "Commit Reviews"
-msgstr "Υποβολή Επιθεωρήσεων"
-
-msgid "{0} out of {1} reviewed"
-msgstr "Επιθεωρήθηκαν {0} από {1}"
-
-msgid "There are currently no Themes to review."
-msgstr "Δεν υπάρχουν προς το παρόν Θέματα για επιθεώρηση."
-
-msgid "Clear Search"
-msgstr "Καθαρισμός Αναζήτησης"
-
-msgid "Release My Theme Locks"
-msgstr "Ξεκλείδώμα του θέματος μου"
-
-msgid "Interactive Theme Queue"
-msgstr "Διαδραστική ουρά θεμάτων"
-
-msgid "Reviewers' Guide"
-msgstr "Οδηγός του κριτή"
-
-msgid "Theme Review for {0}"
-msgstr "Αξιολόγηση θέματος για {0}"
-
-msgid "Edit Listing"
-msgstr "Επεξεργασία καταχώρησης"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Πιθανή διπλή υποβολή)"
-
-msgid "Submitted"
-msgstr "Υποβλήθηκε"
-
-msgid "Past Review Notes"
-msgstr "Σημειώσης προηγούμενης αξιολόγησης"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Ζητήθηκαν περισσότερες πληροφορίες: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Επισημάνθηκε: {0}"
-
-msgid "Approve Theme"
-msgstr "Αποδοχή Θέματος"
-
-msgid "Field required"
-msgstr "Πεδίο απαραίτητο"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Εισάγετε το ID ή το URL του διπλότυπου"
-
-msgid "Select a reason for rejection"
-msgstr "Επιλέξτε μια αιτία για απορριψη"
-
-msgid "Describe your reason for rejection"
-msgstr "Περιγράψτε την αιτία της απόρριψης"
-
-msgid "Ask a question to the artist"
-msgstr "Κάντε μια ερώτηση στον καλλιτέχνη"
-
-msgid "Describe your reason for flagging"
-msgstr "Περιγράψτε την αιτία επισήμανσης"
-
 msgid "Rejected or Unreviewed"
 msgstr ""
 
@@ -7059,12 +6801,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Αίτημα πληροφοριών που έχει λήξει ({0})"
 msgstr[1] "Αιτήματα πληροφοριών που έχουν λήξει ({0})"
-
-msgid "Flagged"
-msgstr "Επισημάνθηκε"
-
-msgid "Updates"
-msgstr "Ενημερώσεις"
 
 #, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7636,27 +7372,6 @@ msgstr "Πρόσθετα"
 msgid "Activity Logs"
 msgstr "Αρχεία δραστηριότητας"
 
-msgid "Email must be {email}."
-msgstr "Το email πρέπει να είναι {email}."
-
-msgid "Display Name"
-msgstr "Όνομα προβολής"
-
-msgid "Location"
-msgstr "Τοποθεσία"
-
-msgid "Occupation"
-msgstr "Απασχόληση"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Μπορείτε να αλλάξετε τη διεύθυνση email σας στους Λογαριασμούς Firefox."
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr "Αυτό το  URL έχει μη έγκυρη μορφή. Τα έγκυρα URL έχουν τη μορφή http://example.com/my_page."
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr "Για ανωνυμία, εισάγετε ένα λόγο για την αλλαγή, αλλά μην αλλάξετε κάποιο άλλο πεδίο."
-
 msgid "No user with that email."
 msgstr "Κανένας χρήστης με αυτό το email."
 
@@ -7693,204 +7408,11 @@ msgstr "Η Mozilla πρέπει να επικοινωνήσει μαζί μου 
 msgid "User Notifications"
 msgstr "Ειδοποιήσεις χρήστη"
 
-msgid "An email address is required."
-msgstr "Απαιτείται μια διεύθυνση email."
-
-msgid "A user with that email address does not exist."
-msgstr "Δεν υπάρχει χρήστης με αυτή τη διεύθυνση email."
-
-msgid "Profile Deleted"
-msgstr "Το προφίλ διαγράφηκε"
-
-msgid "Photo Deleted"
-msgstr "Η φωτογραφία διαγράφηκε"
-
-msgid "Profile Updated"
-msgstr "Το προφίλ ενημερώθηκε"
-
-msgid "Errors Found"
-msgstr "Εντοπίστηκαν σφάλματα"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Υπάρχουν σφάλματα στις αλλαγές που κάνατε. Παρακαλούμε ελέγξτε τις και υποβάλετέ τες ξανά..."
-
-msgid "User reported."
-msgstr "Έγινε αναφορά χρήστη."
-
-msgid "new"
-msgstr "νέο"
-
 msgid "Ban"
 msgstr "Αποκλεισμός"
 
 msgid "Delete picture"
 msgstr "Διαγραφή εικόνας"
-
-msgid "Delete User Account"
-msgstr "Διαγραφή λογαριασμού χρήστη"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"Δεν μπορείτε να διαγράψετε τον λογαριασμό σας αν αναφέρεστε ανάμεσα στους <a href=\"%(link)s\"> δημιουργούς κάποιου πρόσθετου</a>. Για να διαγράψετε το λογαριασμό σας, θα πρέπει κάποιο άλλο μέλος "
-"της ομάδας ανάπτυξης του πρόσθετου να σας διαγράψει από τη λίστα των δημιουργών. Μετά θα μπορέσετε να διαγράψετε το λογαριασμό σας απ' αυτή τη σελίδα."
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Οι κριτικές και οι βαθμολογίες σας δεν θα διαγραφούν, αλλά δεν θα σχετίζονται με εσάς πλέον."
-
-msgid "Confirm account deletion"
-msgstr "Επιβεβαίωση διαγραφής λογαριασμού"
-
-msgid "I understand this step cannot be undone."
-msgstr "Κατανοώ ότι η ενέργεια αυτή δεν μπορεί να ανακληθεί."
-
-msgid "Delete my user account now"
-msgstr "Διαγραφή τώρα του λογαριασμού μου"
-
-msgid "Delete User Photo"
-msgstr "Διαγραφή φωτογραφίας χρήστη"
-
-msgid "Delete my user picture now"
-msgstr "Διαγραφή της φωτογραφίας μου τώρα"
-
-msgid "Please set your display name"
-msgstr "Παρακαλώ ορίστε το όνομα προβολής σας"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "Παρακαλώ ορίστε το όνομα προβολής ή το όνομα χρήστη σας για να ολοκληρώσετε τη διαδικασία εγγραφής."
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Διαχειριστείτε βασικές πληροφορίες λογαριασμού, όπως το όνομα χρήστη και οι ρυθμίσεις του Λογαριασμού Firefox."
-
-msgid "Email Address"
-msgstr "Διεύθυνση email"
-
-msgid "Manage Firefox Account..."
-msgstr "Διαχείριση λογαριασμού Firefox..."
-
-msgid "Profile"
-msgstr "Προφίλ"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Παραθέσετε λίγες ακόμη πληροφορίες σχετικά με εσάς. Όλα αυτά τα πεδία είναι προαιρετικά, αλλά θα βοηθήσουν τους άλλους χρήστες να σάς γνωρίσουν καλύτερα."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "Αυτό το URL θα είναι ορατό μόνο αν είστε προγραμματιστής."
-
-msgid "Choose Photo&hellip;"
-msgstr "Επιλογή φωτογραφίας&hellip;"
-
-msgid "Delete current photo"
-msgstr "Διαγραφή τρέχουσας φωτογραφίας"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Παρουσιάστε, αν θέλετε,τον εαυτό σας στην κοινότητα! Αυτό το κείμενο θα εμφανίζεται δημόσια στη σελίδα πληροφοριών χρήστη."
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Επιτρεπτό HTML: %(html)s. Απαγορεύονται οι σύνδεσμοι."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Αποφασίστε ποιες συλλογές θα εμφανίζονται στο προφίλ σας."
-
-msgid "Display the collections I have created"
-msgstr "Προβολή των συλλογών που έχω δημιουργήσει"
-
-msgid "Notifications"
-msgstr "Ειδοποιήσεις"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "Η Mozilla ενδέχεται να σάς στέλνει, περιστασιακά, email σχετικά με ανερχόμενες κυκλοφορίες και εκδηλώσεις προσθέτων. Παρακαλούμε επιλέξτε τα θέματα που σάς ενδιαφέρουν."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Η Mozilla διατηρεί το δικαίωμα να επικοινωνήσει προσωπικά μαζί σας για συγκεκριμένα θέματα σχετικά με το πρόσθετό σας."
-
-msgid "Admin"
-msgstr "Διαχειριστής"
-
-msgid "Delete Account"
-msgstr "Διαγραφή λογαριασμού"
-
-msgid "Update Account"
-msgstr "Ενημέρωση λογαριασμού"
-
-msgid "none"
-msgstr "κανένα"
-
-msgid "all"
-msgstr "όλα"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Τα Πρόσθετα Mozilla έχουν κάνει μετάβαση στους Λογαριασμούς Firefox για σύνδεση. Συνεχίστε για να ολοκληρώσετε την απλή διαδικασία σύνδεσης."
-
-msgid "Password Reset"
-msgstr "Επαναφορά κωδικού"
-
-msgid "User Info for {0}"
-msgstr "Πληροφορίες για το χρήστη: {0}"
-
-msgid "Edit profile"
-msgstr "Επεξεργασία προφίλ"
-
-msgid "Manage user"
-msgstr "Διαχείριση χρήστη"
-
-msgid "Report user"
-msgstr "Αναφορά χρήστη"
-
-# The title for a user if they are a developer
-msgid "Add-ons Developer"
-msgstr "Δημιουργός πρόσθετων"
-
-msgid "Themes Artist"
-msgstr "Καλλιτέχνης θεμάτων"
-
-msgid "About me"
-msgstr "Σχετικά με εμένα"
-
-msgid "In a little more detail..."
-msgstr "Με πιο πολλές λεπτομέρειες..."
-
-msgid "Add-ons I've created"
-msgstr "Πρόσθετα που έχω δημιουργήσει"
-
-msgid "View all"
-msgstr "Προβολή όλων"
-
-msgid "My Most Popular Themes"
-msgstr "Τα πιο δημοφιλή θέματά μου"
-
-msgid "Themes I've created"
-msgstr "Θέματα που έχω δημιουργήσει"
-
-# "Me" in this context is the user shown on the User Info page
-msgid "Created by Me"
-msgstr "Δημιουργήθηκε από εμένα"
-
-# "My" in this context is the logged in user who is reading the page
-msgid "My Reviews"
-msgstr "Οι κριτικές μου"
-
-msgid "No add-on reviews yet."
-msgstr "Δεν υπάρχουν ακόμη κριτικές προσθέτων."
-
-msgid "Report User"
-msgstr "Αναφορά χρήστη"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Σας παρακαλούμε να περιγράψετε γιατί αναφέρετε αυτόν τον χρήστη, όπως πχ για spam ή για ανάρμοστη φωτογραφία του."
-
-msgid "Report user {0}"
-msgstr "Αναφορά χρήστη {0}"
 
 msgid "Unsubscribe"
 msgstr "Κατάργηση συνδρομής"
@@ -7919,39 +7441,6 @@ msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked i
 msgstr ""
 "Δυστυχώς, δεν μπορέσαμε να καταργήσουμε τη συνδρομή σας. Ο σύνδεσμος που κάνετε κλικ είναι άκυρος. Ωστόσο, μπορείτε ακόμη να ακυρώσετε τη συνδρομή σας στη <a href=\"%(edit_url)s\">σελίδα "
 "επεξεργασίας του προφίλ</a> σας."
-
-msgid "Developer Information"
-msgstr "Πληροφορίες δημιουργού"
-
-msgid "User since"
-msgstr "Χρήστης από"
-
-msgid "Time of last login"
-msgstr "Χρόνος τελευταίας σύνδεσης"
-
-msgid "IP address of last login"
-msgstr "Διεύθυνση IP τελευταίας σύνδεσης"
-
-msgid "Number of add-ons developed"
-msgstr "Αριθμός αναπτυγμένων προσθέτων"
-
-msgid "{0} add-ons"
-msgstr "{0} πρόσθετα"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s θέμα"
-msgstr[1] "%(num)s θέματα"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s πρόσθετο"
-msgstr[1] "%(num)s πρόσθετα"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Μέση βαθμολογία προσθέτων προγραμματιστή"
 
 msgctxt "user_list_others"
 msgid "others"

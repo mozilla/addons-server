@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2019-02-10 21:31+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -52,6 +52,10 @@ msgstr "Tesriḍ tallalt?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
 msgstr "Ineflayen n izegrar naɣ n isental ur zmiren ara ad sefḍen amiḍan-nsen. Ilaq-awen usfaḍ n meṛṛa izegrar akked isental icudden ar umiḍan-agi, naɣ aceyyeɛ-nsen ɣar iseqdacen-nniḍen."
+
+#, python-format
+msgid "Notification [%s] does not exist"
+msgstr ""
 
 msgid "Review"
 msgstr "Acegger"
@@ -149,9 +153,6 @@ msgstr "Taɣult n URL yessefk ad tettekki ar [%s] neɣ yiwen seg tiɣula-is tisn
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
 msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akked uglam deg usideg agi aneggaru. Mazal xuṣṣen %s."
-
-msgid "A license must be selected."
-msgstr "Yessefk ad tferneḍ turagt."
 
 msgid "Listed"
 msgstr "Yettwabder"
@@ -688,9 +689,6 @@ msgstr "Mačči d ameɣtu, ma ulac aɣilif ɛreḍ tikelt nniḍen."
 msgid "Error verifying input, please try again."
 msgstr "Tuccḍa deg usenqed n unekcum. ma ulac aɣilif ɛreḍ tikelt nniḍen."
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Yessef k ad yili n tangalt n yini asedamrawan, am #000000."
-
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
 msgstr ""
 
@@ -905,6 +903,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr "Ajiṭun JWT mačči d ameɣtu."
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Yir aɣbaṛ"
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "Tansa imayl"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Urti-agi yessefk ad igber ɣarsum {num} n isekkilen."
@@ -2602,9 +2608,6 @@ msgstr "Aḍris n wurtan n ufeggag n  yifecka"
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr "Ini n uḍris n wurtan deg ufeggag n yifecka, am ufeggag n tensa. Urti n umeskan:   toolbar_field_text."
 
-msgid "Please check the form for errors."
-msgstr "Ma ulac aɣilif senqed tafelwit inek ɣef tuccḍiwin."
-
 msgid "Review requested."
 msgstr "Aceggir yettwasuter."
 
@@ -3940,112 +3943,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Aɣmis n ucegger n yIsental fessusen"
 
-msgid "Create a New Theme"
-msgstr "Rnu asentel amaynut"
-
-#, python-format
-msgid "Background themes let you easily personalize the look of your Firefox. Submit your own design below, or <a href=\"%(submit_url)s\">learn how to create one</a>!"
-msgstr "Isental n ugilal ak-eǧǧen ad tmuddeɣ udem i Firefox inek. Azen ayla-k dagi, neɣ <a href=\"%(submit_url)s\">issin amek ad d-snulfuḍ yiwen</a> !"
-
-msgid "Theme Details"
-msgstr "Talqayt n usentel"
-
-msgid "Give your Theme a name."
-msgstr "Mudd isem i usentel inek."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Mudd-ad talnsa URL icebḥen i usebter inek n telqayt."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Fren taggayt iwulmen i usentel inek."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Rnu kra n tebzimin i usentel inek."
-
-msgid "Describe your Theme."
-msgstr "Glem asentel inek."
-
-#, fuzzy
-msgid "A short explanation of your theme's basic functionality that is displayed in search and browse listings, as well as at the top of your theme's details page"
-msgstr "Asegzi awezlan n timahilin timezwura n usentel-ik, ayen ara d-yettwaseknen deg tebdart akked igmaḍ n unadi akked idis n ufella n usebter n telqayt."
-
-msgid "Theme License"
-msgstr "Turagt n usentel"
-
-msgid "Select a license for your Theme."
-msgstr "Fren turagt i usentel inek."
-
-msgid "Theme Design"
-msgstr "Afeṣṣel n usentel"
-
-msgid "Select colors for your Theme."
-msgstr "Fren initeni usentel inek."
-
-msgid "Foreground Text"
-msgstr "Aḍris n zdat"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "Wagi d ini n uḍris n yiccer."
-
-msgid "Background"
-msgstr "Agilal"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "Wagi d ini i yiccaren."
-
-msgid "Your Theme's Name"
-msgstr "Isem n usentel inek"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "sɣuṛ <a href=\"%(profile_url)s\">%(user)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement%(link_close)s and to my information being handled as described in the %(privacy_notice_link_open)sWebsites, "
-"Communications and Cookies Privacy Notice%(link_close)s."
-msgstr ""
-"Qebleɣ  <%(agreement_link_open)s Amtawat n uzuzer n izegrar Firefox %(link_close)s daɣen qebleɣ d akken talɣut icudden ɣur-s ad tettwasesfer am akken yettwammel di %(privacy_notice_link_open)s "
-"tserstit n tbadnit icudden ar ismal web, ar teɣwalt akked inagan n tuqqna%(link_close)s."
-
-msgid "Submit Theme"
-msgstr "Azen asentel"
-
-msgid "You're done!"
-msgstr "D ayen ifuk!"
-
-msgid "Your theme has been submitted to the Review Queue. You'll receive an email once it has been reviewed, typically within 24 hours."
-msgstr ""
-
-msgid "Next steps:"
-msgstr "Imecwaṛen d-iteddun:"
-
-#, python-format
-msgid "Provide more details about your theme by <a href=\"%(edit_url)s\">editing its listing</a>."
-msgstr "Mudd-d ugar n telqayt ɣef usentel s <a href=\"%(edit_url)s\"> teẓrigt n tebdart-is</a>."
-
-#, python-format
-msgid "View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</a> to stay updated on reviews, collections, and more."
-msgstr "Wali daɣen jerred ar <a href=\"%(feed_url)s\"> usuddem n urmud</a> n usentel-ik akken ad teqqimeḍ deg isallen n usentem-is, tigrummiwin d wayen-nniḍen."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Ddu ɣer usqerdec deg  <a href=\"%(forum_url)s\">inmagaren</a>-nneɣ."
-
-msgid "Select a header image for your Theme."
-msgstr "Fren tugna n uqeṛṛu i usentel inek."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &tikalt; 200 ipiksilen"
-
-msgid "300 KB max"
-msgstr "300 KAṬ adday"
-
-msgid "PNG or JPG"
-msgstr "PNG neɣ JPG"
-
 msgid "Manage Version {0}"
 msgstr "Sefrek lqem {0}"
 
@@ -4822,15 +4719,6 @@ msgstr "Mudd udem i yiccaren {start_sub_heading} s {addon_name} {end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
-
-#. editorial content for the discovery pane.
-#, fuzzy
-msgid "Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
 msgstr ""
 
 #. editorial content for the discovery pane.
@@ -5639,11 +5527,29 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 #, fuzzy
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Tuṭṭfiwin n ugdil {start_sub_heading} s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Sider tividyutin {start_sub_heading} s {addon_name} {end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+#, fuzzy
+msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Snerni tignitin n ucmumeḥ {start_sub_heading} s {addon_name} {end_sub_heading}"
+
+#. editorial content for the discovery pane.
+msgid "A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -5742,7 +5648,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Ur tezmireḍ ara ad tazneḍ asiɣzef yettwazemlen sɣur Mozilla"
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Anaw n ufaylu ur ittusefrak ara, ma ulac aɣilif sali afaylu n uḥraz {extensions}."
 
 msgid "Unexpected error."
@@ -6419,17 +6325,6 @@ msgstr "ussan"
 msgid "Choose a canned response..."
 msgstr "Fren tiririt yettwakelsen..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "isem n usentel"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Yella win nniden yettceggiren asentel-agi."
-
-#. L10n: Description of what can be searched for.
-msgid "theme, reviewer, or comment"
-msgstr "asentel, imcegger, neɣ awennit"
-
 msgid "Private Whiteboard"
 msgstr "Tafelwit tamellalt tusligt"
 
@@ -6465,21 +6360,6 @@ msgstr "Iwḥel sγur imcegger."
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
-
-msgid "Duplicate Submission"
-msgstr "Tuzna snat n tikal"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Tanemmirt ɣef tuzna n usentel"
-
-msgid "A problem with your Theme submission"
-msgstr "Ugur di tuzna n usentel inek"
-
-msgid "Theme submission flagged for review"
-msgstr "Tuzna n usentel tettwacreḍ i usezmel"
-
-msgid "A question about your Theme submission"
-msgstr "Asteqsi ɣef tuzna n usentel inek"
 
 msgid "Type"
 msgstr "Anaw"
@@ -6612,21 +6492,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Agbur ittwacegger ({0})"
 msgstr[1] "Agbur ittwacegger ({0})"
 
-msgid "New Themes ({0})"
-msgstr "Asentel amaynut ({0})"
-
-msgid "Themes Updates ({0})"
-msgstr "Ileqman n yisental ({0})"
-
-msgid "Flagged Themes ({0})"
-msgstr "Isental yettwacegren ({0})"
-
-msgid "Lightweight Themes Review Log"
-msgstr "Aɣmis n ucegger n yIsental fessusen"
-
-msgid "Deleted Themes Log"
-msgstr "Aɣmis n yisental yettwakksen"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -6673,14 +6538,6 @@ msgstr "{addon} :: Aneqqis n yir aseqdec"
 #, fuzzy
 msgid "{addon} :: Privacy Policy"
 msgstr "Azegrir-agi ɣur-s tasertit tabaḍnit"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural "{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Your theme locks have successfully been released. Other reviewers may now review those released themes. You may have to refresh the page to see the changes reflected in the table below."
-msgstr ""
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Aneqqis n yir aseqdec"
@@ -7061,124 +6918,6 @@ msgstr "Ɣur-k <span> {0} </span> n tneqqiḍin."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s di %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Azemz yettwakkes"
-
-msgid "No deleted themes found for this period."
-msgstr "Ulac isentall yettwakksen i yettwafen deg akud-agi."
-
-msgid "Theme Review History for {0}"
-msgstr "Amazray n ucegger n uselten i {0}"
-
-msgid "Review Date"
-msgstr "Azemz n ucegger"
-
-msgid "Action"
-msgstr "Tigawt"
-
-msgid "Reason"
-msgstr "Acuɣer"
-
-msgid "There are currently no reviews."
-msgstr "Ulac akka tura iceggiren."
-
-msgid "Flagged Themes"
-msgstr "Isental yettwacegren"
-
-msgid "Theme Review Queue"
-msgstr "Adras n yiceggiren n usentel"
-
-msgid "Queues"
-msgstr "Yettwarna ar udras"
-
-msgid "Review Options"
-msgstr "Iɣewwaṛen n ucegger"
-
-msgid "Auto-advance after review"
-msgstr ""
-
-msgid "Enable keyboard shortcuts"
-msgstr "Rmed inegzumen n unasiw"
-
-msgid "Keyboard Shortcuts"
-msgstr "Inegzumen n unasiw"
-
-msgid "Next Theme"
-msgstr "Asentel d-iteddun"
-
-msgid "Previous Theme"
-msgstr "Asentel yezrin"
-
-msgid "Your Review History"
-msgstr "Amazray-inek n ucegger"
-
-msgid "Commit Review"
-msgstr "Azen acegger"
-
-msgid "Commit Reviews"
-msgstr "Azen iceggeren"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} seg {1} ittwacegger"
-
-msgid "There are currently no Themes to review."
-msgstr "Ulac akka tura isental i ucegger."
-
-msgid "Clear Search"
-msgstr "Sfeḍ Anadi"
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr ""
-
-msgid "Reviewers' Guide"
-msgstr "Amnir n yimcegger"
-
-msgid "Theme Review for {0}"
-msgstr "Acegger n usentel i {0}"
-
-msgid "Edit Listing"
-msgstr "Ẓreg tabdart"
-
-msgid "(Probable Duplicate Submission)"
-msgstr ""
-
-msgid "Submitted"
-msgstr "Yettwazen"
-
-msgid "Past Review Notes"
-msgstr "Tizmilin n ucegger yezrin"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Ugar n telɣut tettusuter: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Yettwacreḍ: {0}"
-
-msgid "Approve Theme"
-msgstr "Qbel asentel"
-
-msgid "Field required"
-msgstr "Urti yettwasra"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Sekcem asumlay ID neɣ tansa URL n usilgen"
-
-msgid "Select a reason for rejection"
-msgstr "Fren acuɣer tugin"
-
-msgid "Describe your reason for rejection"
-msgstr "Mudd aglam n wacuqer tugin"
-
-msgid "Ask a question to the artist"
-msgstr "Steqsi anaẓuṛ"
-
-msgid "Describe your reason for flagging"
-msgstr "Ini-d acuɣer acraḍ"
-
 msgid "Rejected or Unreviewed"
 msgstr "Yettwagi neɣ ur ittucegger ara"
 
@@ -7205,12 +6944,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Asuter n telɣut yemmut {0}"
 msgstr[1] "Asuter n telɣut yemmut {0}"
-
-msgid "Flagged"
-msgstr "Yettwasezmel"
-
-msgid "Updates"
-msgstr "Ileqman"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -7771,27 +7504,6 @@ msgstr "Izegrar"
 msgid "Activity Logs"
 msgstr "Iɣmisen n urmud"
 
-msgid "Email must be {email}."
-msgstr "Yessefk imayl ad yili {email}."
-
-msgid "Display Name"
-msgstr "Isem ara d-sekneḍ"
-
-msgid "Location"
-msgstr "Adig"
-
-msgid "Occupation"
-msgstr "Axeddim"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr "Tzemreḍ ad tbeddleḍ imayl-ik di Firefox Accounts."
-
-msgid "This URL has an invalid format. Valid URLs look like http://example.com/my_page."
-msgstr ""
-
-msgid "To anonymize, enter a reason for the change but do not change any other field."
-msgstr ""
-
 msgid "No user with that email."
 msgstr "Ulac aseqdac s yimayl-agi."
 
@@ -7829,33 +7541,6 @@ msgstr "Mozilla yesra a yid-inermes ɣef uzegrir inu udmawan"
 msgid "User Notifications"
 msgstr "Alɣu n useqdac"
 
-msgid "An email address is required."
-msgstr "Tansa imayl tettwasra."
-
-msgid "A user with that email address does not exist."
-msgstr "Aseqdac s yimayl-agi ulac-it."
-
-msgid "Profile Deleted"
-msgstr "Amaɣnu yettwakkes"
-
-msgid "Photo Deleted"
-msgstr "Tawlaft tettwakkes"
-
-msgid "Profile Updated"
-msgstr "Amaɣnu yettusnifel"
-
-msgid "Errors Found"
-msgstr "Tattwaf-d tuccḍa"
-
-msgid "There were errors in the changes you made. Please correct them and resubmit."
-msgstr "Ḍrant-d tuccḍiwin deg usnifel yettwage. Ma ulac aɣlif̣ seɣti-tent daw-a sakin azen-d."
-
-msgid "User reported."
-msgstr "Aseqdac yettwammel."
-
-msgid "new"
-msgstr "amaynut"
-
 #, fuzzy
 msgid "Ban"
 msgstr "akked"
@@ -7863,167 +7548,6 @@ msgstr "akked"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Kkes tawlaft inu n useqdac tura"
-
-msgid "Delete User Account"
-msgstr "Kkes amiḍan n iuseqdac"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> author of any add-ons</a>. To delete your account, please have another person in your development group delete you from "
-"the list of authors for your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-
-msgid "By clicking \"delete\" your account is going to be <strong>permanently removed</strong>. That means:"
-msgstr ""
-
-#, python-format
-msgid "Logging in with this email address into %(site)s again will create a new account that is in no way associated with this account."
-msgstr ""
-
-msgid "Your reviews and ratings will not be deleted, but they will no longer be associated with you."
-msgstr "Iceggiren-ik akked tizmilin-ik ur ttwakkasen ara acu kan ur tezzin ara ad ttwacudden ɣur-k."
-
-msgid "Confirm account deletion"
-msgstr "Sentem tukksa n umiḍan"
-
-msgid "I understand this step cannot be undone."
-msgstr "Gziɣ d akken ulac tuɣalin ar deffir."
-
-msgid "Delete my user account now"
-msgstr "Kkes amiḍan inu n useqdac tura"
-
-msgid "Delete User Photo"
-msgstr "Kkes tawlaft n useqdac"
-
-msgid "Delete my user picture now"
-msgstr "Kkes tawlaft inu n useqdac tura"
-
-msgid "Please set your display name"
-msgstr "Ma ulac aɣilif fren isem ara d-sekneḍ"
-
-msgid "Please set your display name or username to complete the registration process."
-msgstr "Ma ulac aɣilif, mudd-d isem-ik neɣ isem n useqdac akken ad tfakeḍ akala n ujerred."
-
-msgid "Manage basic account information, such as your username and Firefox Accounts settings."
-msgstr "Sefrek talɣut tatzadurt n umiḍan, am yisem inek n useqdac akked iɣewwaṛen n imiḍanen Firefox."
-
-msgid "Email Address"
-msgstr "Tansa imayl"
-
-msgid "Manage Firefox Account..."
-msgstr "Seqdec amiḍan Firefox..."
-
-msgid "Profile"
-msgstr "Amaɣnu"
-
-msgid "Give us a bit more information about yourself. All these fields are optional, but they'll help other users get to know you better."
-msgstr "Meslay-aɣ-d cwiṭ fell-ak. Akk urtan d ifrayanen acu kan ad mlen i yiseqdacen nniḍen ayen tebɣiḍ akken ad k-issinen ugar."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "Tansa-agi URL ad d-ban kan ma d aneflay i telliḍ."
-
-msgid "Choose Photo&hellip;"
-msgstr "Fran tawlaft &hellip;"
-
-msgid "Delete current photo"
-msgstr "Kkes tawlaft tamirant"
-
-msgid "Introduce yourself to the community, if you like! This text will appear publicly on your user info page."
-msgstr "Mmeslay-d ɣef yiman-ik i yemdanen, ma tebɣiḍ! Aḍris-agi ad d-iban s wudem azayez."
-
-#, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "HTLM yettwasireg: %(html)s. Iseɣwan gedlen."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Ini-d anta tigrummiwin i tebɣiḍ ad d-banent deg umaɣnu inek."
-
-msgid "Display the collections I have created"
-msgstr "Sken tigrummiwin i rniɣ"
-
-msgid "Notifications"
-msgstr "Alɣu"
-
-msgid "From time to time, Mozilla may send you email about upcoming releases and add-on events. Please select the topics you are interested in."
-msgstr "Si sya ar da, Mozilla tezmer ak-d-azen imayl ɣef tuffɣiwin d-iteddun neɣ tidyanin ɣef izegrar. Tanemmirt ma temlid-d isental i tḥemleḍ."
-
-msgid "Mozilla reserves the right to contact you individually about specific concerns with your hosted add-ons."
-msgstr "Mozilla ad k-id-inermes ɣef uguren icudden ar izegrar inek izedɣen ɣur-s."
-
-msgid "Admin"
-msgstr "Anebdal"
-
-msgid "Delete Account"
-msgstr "Kkes amiḍan"
-
-msgid "Update Account"
-msgstr "Leqqem amiḍan"
-
-msgid "none"
-msgstr "ulac"
-
-msgid "all"
-msgstr "akk"
-
-msgid "Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to complete the simple login process."
-msgstr "Asmel n izegrar n Mozilla iseqdac akka tura imiḍanen Firefox di tuqqna. Kemmel akken ad fakeḍ akala n uleqqem."
-
-msgid "Password Reset"
-msgstr "Awal uffir ittuwennez"
-
-msgid "User Info for {0}"
-msgstr "Talɣut n useqdac i {0}"
-
-msgid "Edit profile"
-msgstr "Ẓreg amaɣnu"
-
-msgid "Manage user"
-msgstr "Sefrerk aseqdac"
-
-msgid "Report user"
-msgstr "Sefrek aseqdac"
-
-msgid "Add-ons Developer"
-msgstr "Aneflay n izegrar"
-
-msgid "Themes Artist"
-msgstr "Anaẓuṛ n usentel"
-
-msgid "About me"
-msgstr "Fell-i"
-
-msgid "In a little more detail..."
-msgstr "S talqayt..."
-
-msgid "Add-ons I've created"
-msgstr "Izegrar i rniɣ"
-
-msgid "View all"
-msgstr "Wali akk"
-
-msgid "My Most Popular Themes"
-msgstr "Isental-iw yettwasnen aṭas"
-
-msgid "Themes I've created"
-msgstr "Isental i rniɣ"
-
-msgid "Created by Me"
-msgstr "Rniɣ-ten"
-
-msgid "My Reviews"
-msgstr "Iceggiren-iw"
-
-msgid "No add-on reviews yet."
-msgstr "Ulac iceggiren n izegrar akka tura."
-
-msgid "Report User"
-msgstr "Sefrek aseqdac"
-
-msgid "Please describe why you are reporting this user, such as for spam or an inappropriate picture."
-msgstr "Ma ulac aɣilif, aru-d acuɣer i d-mmliḍ aseqdac-agi, amedya ma yella d aspam neɣ d yir tawlaft."
-
-msgid "Report user {0}"
-msgstr "Sefrek aseqdac {0}"
 
 msgid "Unsubscribe"
 msgstr "Ffeɣ seg ujerred"
@@ -8050,39 +7574,6 @@ msgstr "Ur nezmir ara ad k-nessuffeɣ seg ujerred"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-
-msgid "Developer Information"
-msgstr "Talɣut ɣef uneflay"
-
-msgid "User since"
-msgstr "D aseqdac si"
-
-msgid "Time of last login"
-msgstr "Akud n tuqqna taneggarut"
-
-msgid "IP address of last login"
-msgstr "Tansa IP n tuqqna taneggarut"
-
-msgid "Number of add-ons developed"
-msgstr "Amḍan n izegrar yuttusneflin"
-
-msgid "{0} add-ons"
-msgstr "{0} izegrar"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s asentel"
-msgstr[1] "%(num)s isental"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s azegrir"
-msgstr[1] "%(num)s izegrar"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Talemmast n tezmilin n izegrar n uneflay"
 
 msgctxt "user_list_others"
 msgid "others"

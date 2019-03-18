@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-02-26 05:26+0000\n"
+"POT-Creation-Date: 2019-03-18 07:57+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -53,6 +53,10 @@ msgid ""
 "Developers of add-ons or themes cannot delete their account. You must delete "
 "all add-ons and themes linked to this account, or transfer them to other "
 "users."
+msgstr ""
+
+#, python-format
+msgid "Notification [%s] does not exist"
 msgstr ""
 
 msgid "Review"
@@ -164,9 +168,6 @@ msgid ""
 msgstr ""
 "Pre nego što izmenite podrazumevani prostor, morate imati ime, kratak "
 "pregled i opis u tom prostoru. Nedostaje Vam %s."
-
-msgid "A license must be selected."
-msgstr "Licenca mora biti izabrana."
 
 # Column name in a table.
 msgid "Listed"
@@ -753,9 +754,6 @@ msgstr ""
 msgid "Error verifying input, please try again."
 msgstr ""
 
-msgid "This must be a valid hex color code, such as #000000."
-msgstr "Morate uneti ispravnu heksadecimalnu šifru boje, kao što je #000000."
-
 msgid ""
 "Some features are temporarily disabled while we perform website maintenance. "
 "We'll be back to full capacity shortly."
@@ -1043,6 +1041,14 @@ msgstr ""
 
 msgid "Invalid JWT Token."
 msgstr ""
+
+#, fuzzy
+msgid "Invalid token or hash."
+msgstr "Nevažeća arhiva."
+
+#, fuzzy
+msgid "Email address not found."
+msgstr "Adresa e-pošte"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -3029,9 +3035,6 @@ msgid ""
 "field:  toolbar_field_text."
 msgstr ""
 
-msgid "Please check the form for errors."
-msgstr "Molimo Vas proverite da li ima grešaka u formi."
-
 #, fuzzy
 msgid "Review requested."
 msgstr "Zahtevana recenzija"
@@ -4639,136 +4642,6 @@ msgstr ""
 msgid "Lightweight Theme editing has been disabled."
 msgstr "Recenzija teme"
 
-msgid "Create a New Theme"
-msgstr "Napravi novu temu"
-
-#, python-format
-msgid ""
-"Background themes let you easily personalize the look of your Firefox. "
-"Submit your own design below, or <a href=\"%(submit_url)s\">learn how to "
-"create one</a>!"
-msgstr ""
-"Teme pozadine su lak način da personalizujete Firefox. Dostavite Vaš dizajn "
-"ispod, ili <a href=\"%(submit_url)s\">naučite kako da je napravite</a>!"
-
-msgid "Theme Details"
-msgstr "Detalji teme"
-
-msgid "Give your Theme a name."
-msgstr "Dajte naziv Vašoj temi."
-
-msgid "Supply a pretty URL for your detail page."
-msgstr "Obezbedi lepu URL adresu za Vašu stranicu sa detaljima."
-
-msgid "Select the category that best describes your Theme."
-msgstr "Izaberite kategoriju koja najbolje opisuje Vašu temu."
-
-msgid "Add some tags to describe your Theme."
-msgstr "Dodajte neke oznake da opišete Vašu temu."
-
-msgid "Describe your Theme."
-msgstr "Opišite Vašu temu."
-
-#, fuzzy
-msgid ""
-"A short explanation of your theme's basic functionality that is displayed in "
-"search and browse listings, as well as at the top of your theme's details "
-"page"
-msgstr ""
-"Kratko objašnjenje osnovnih fukcionalnosti Vaše teme koje je prikazano u "
-"listama pretrage i pregledavanja, kao i na vrhu stranice sa detaljima Vaše "
-"teme."
-
-msgid "Theme License"
-msgstr "Licenca teme"
-
-msgid "Select a license for your Theme."
-msgstr "Izaberite licencu za Vašu temu."
-
-msgid "Theme Design"
-msgstr "Dizajn teme"
-
-msgid "Select colors for your Theme."
-msgstr "Odaberite boje za Vašu temu."
-
-msgid "Foreground Text"
-msgstr "Prednji tekst"
-
-#, fuzzy
-msgid "This is the color of the tab text"
-msgstr "Ovo je boja teksta na jezičku."
-
-msgid "Background"
-msgstr "Pozadina"
-
-#, fuzzy
-msgid "This is the color of the tabs"
-msgstr "Ovo je boja jezičaka."
-
-msgid "Your Theme's Name"
-msgstr "Ime teme"
-
-#, fuzzy, python-format
-msgid "by <a href=\"%(profile_url)s\">%(user_name)s</a>"
-msgstr "Objavljen pod <a href=\"%(url)s\">%(name)s</a>"
-
-#, python-format
-msgid ""
-"I agree to the %(agreement_link_open)sFirefox Add-on Distribution Agreement"
-"%(link_close)s and to my information being handled as described in the "
-"%(privacy_notice_link_open)sWebsites, Communications and Cookies Privacy "
-"Notice%(link_close)s."
-msgstr ""
-
-msgid "Submit Theme"
-msgstr "Podnesi temu"
-
-msgid "You're done!"
-msgstr "Gotovi ste!"
-
-msgid ""
-"Your theme has been submitted to the Review Queue. You'll receive an email "
-"once it has been reviewed, typically within 24 hours."
-msgstr ""
-"Vaša tema je dostavljena na razmatranje. Vi ćete dobiti e-poštu nakon što je "
-"pregledana, obično u roku od 24 sata."
-
-msgid "Next steps:"
-msgstr "Sledeći koraci:"
-
-#, python-format
-msgid ""
-"Provide more details about your theme by <a href=\"%(edit_url)s\">editing "
-"its listing</a>."
-msgstr ""
-"Pružite više detalja o Vašoj temi tako što ćete<a href=\"%(edit_url)s"
-"\">urediti svoj listing</a>."
-
-#, python-format
-msgid ""
-"View and subscribe to your theme's <a href=\"%(feed_url)s\">activity feed</"
-"a> to stay updated on reviews, collections, and more."
-msgstr ""
-"Pogledajte i pretplatite se na <a href=\"%(feed_url)s\">Izvor aktivnosti</a> "
-"Vaše teme da biste ostali informisani o kritikama, kolekcijama i još mnogo "
-"toga."
-
-#, python-format
-msgid "Join the conversation in our <a href=\"%(forum_url)s\">forums</a>."
-msgstr "Priključi se razgovoru u našim <a href=\"%(forum_url)s\">forumima</a>."
-
-msgid "Select a header image for your Theme."
-msgstr "Izaberite sliku zaglavlja za Vašu temu."
-
-msgid "3000 &times; 200 pixels"
-msgstr "3000 &times; 200 piksela"
-
-msgid "300 KB max"
-msgstr "300 KB max"
-
-msgid "PNG or JPG"
-msgstr "PNG ili JPG"
-
 msgid "Manage Version {0}"
 msgstr "Upravljaj verzijom {0}"
 
@@ -5648,15 +5521,6 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid ""
-"Get quick translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid "Highlight text on any website, right-click, and translate instantly."
-msgstr ""
-
-#. editorial content for the discovery pane.
-msgid ""
 "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
@@ -6504,11 +6368,30 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-msgid "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid "Save complete pages—or just portions—as a single HTML file."
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"Cut through the nonsense {start_sub_heading}with {addon_name}"
+"{end_sub_heading}"
+msgstr ""
+
+#. editorial content for the discovery pane.
+msgid ""
+"A clever extension that helps you quickly understand what you’re agreeing to."
 msgstr ""
 
 #, python-format
@@ -6621,7 +6504,7 @@ msgid "You cannot submit a Mozilla Signed Extension"
 msgstr ""
 
 #, fuzzy
-msgid "Unsupported file type, please upload an a supported file {extensions}."
+msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 "Tip datoteke nije podržan, molimo Vas da otpremite arhivu datoteke "
 "{extensions}."
@@ -7439,18 +7322,6 @@ msgstr "7 dana"
 msgid "Choose a canned response..."
 msgstr "Izaberi gotov odgovor..."
 
-#. L10n: Description of what can be searched for.
-msgid "theme name"
-msgstr "naziv teme"
-
-msgid "Someone else is reviewing this theme."
-msgstr "Neko drugi pregledava ovu temu."
-
-#. L10n: Description of what can be searched for.
-#, fuzzy
-msgid "theme, reviewer, or comment"
-msgstr "aplikacija, recenzent, ili komentar"
-
 #, fuzzy
 msgid "Private Whiteboard"
 msgstr "Tabla"
@@ -7491,21 +7362,6 @@ msgstr "moj dodatak je pregledan od strane urednika"
 
 msgid "Has auto-approval disabled flag set."
 msgstr ""
-
-msgid "Duplicate Submission"
-msgstr "Diplirano podnošenje"
-
-msgid "Thanks for submitting your Theme"
-msgstr "Hvala Vam što ste podneli Vašu temu"
-
-msgid "A problem with your Theme submission"
-msgstr "Problem sa podnošenjem Vaše teme"
-
-msgid "Theme submission flagged for review"
-msgstr "Podnešenje teme je označeno za pregled"
-
-msgid "A question about your Theme submission"
-msgstr "Pitanje o Vašem podnošenju teme"
 
 msgid "Type"
 msgstr "Tip"
@@ -7685,26 +7541,6 @@ msgid_plural "Content Review ({0})"
 msgstr[0] "Kontorlisan pregled ({0})"
 msgstr[1] "Kontorlisana pregleda ({0})"
 
-#, fuzzy
-msgid "New Themes ({0})"
-msgstr "Svi moji dodaci"
-
-#, fuzzy
-msgid "Themes Updates ({0})"
-msgstr "Ažurirano {0}"
-
-#, fuzzy
-msgid "Flagged Themes ({0})"
-msgstr "Označene teme"
-
-#, fuzzy
-msgid "Lightweight Themes Review Log"
-msgstr "Recenzija teme"
-
-#, fuzzy
-msgid "Deleted Themes Log"
-msgstr "Izbriši temu"
-
 msgid "User Ratings Moderation"
 msgstr ""
 
@@ -7755,18 +7591,6 @@ msgstr "{addon} :: Izveštaji zlostavljanja"
 #, fuzzy
 msgid "{addon} :: Privacy Policy"
 msgstr "Ovaj dodatak ima Polisu privatnosti"
-
-msgid "{0} theme review successfully processed (+{1} points, {2} total)."
-msgid_plural ""
-"{0} theme reviews successfully processed (+{1} points, {2} total)."
-msgstr[0] "{0} recenzija teme je uspešno obrađena (+{1} poena, {2} ukupno)."
-msgstr[1] "{0} recenzije teme su uspešno obrađene (+{1} poena, {2} ukupno)."
-
-msgid ""
-"Your theme locks have successfully been released. Other reviewers may now "
-"review those released themes. You may have to refresh the page to see the "
-"changes reflected in the table below."
-msgstr ""
 
 msgid "{addon} :: Abuse Reports"
 msgstr "{addon} :: Izveštaji zlostavljanja"
@@ -8196,124 +8020,6 @@ msgstr "Imate <span>{0}</span> poena."
 msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s dana %(date)s [%(ip_address)s]"
 
-msgid "Date Deleted"
-msgstr "Datum brisanja"
-
-msgid "No deleted themes found for this period."
-msgstr "Nema obrisanih tema pronađenih za ovaj period."
-
-msgid "Theme Review History for {0}"
-msgstr "Istorija pregledanih tema za {0}"
-
-msgid "Review Date"
-msgstr "Datum recenzije"
-
-msgid "Action"
-msgstr "Akcija"
-
-msgid "Reason"
-msgstr "Razlog"
-
-msgid "There are currently no reviews."
-msgstr "Trenutno nema recenzija."
-
-msgid "Flagged Themes"
-msgstr "Označene teme"
-
-msgid "Theme Review Queue"
-msgstr "Red pregledanja tema"
-
-msgid "Queues"
-msgstr "Redovi za čekanje"
-
-msgid "Review Options"
-msgstr "Opcije pregleda"
-
-msgid "Auto-advance after review"
-msgstr "Automatko-napredovanje posle pregleda"
-
-msgid "Enable keyboard shortcuts"
-msgstr "Omogućiti prečice na tastaturi"
-
-msgid "Keyboard Shortcuts"
-msgstr "Prečice na tastaturi"
-
-msgid "Next Theme"
-msgstr "Sledeća tema"
-
-msgid "Previous Theme"
-msgstr "Prethodna tema"
-
-msgid "Your Review History"
-msgstr "Vaša istorija recenzija"
-
-msgid "Commit Review"
-msgstr "Izvršiti recenziju"
-
-msgid "Commit Reviews"
-msgstr "Izvršiti recenzije"
-
-msgid "{0} out of {1} reviewed"
-msgstr "{0} od {1} pregledano"
-
-msgid "There are currently no Themes to review."
-msgstr "Trenutno nema tema za pregled."
-
-msgid "Clear Search"
-msgstr "Brisanje pretrage"
-
-msgid "Release My Theme Locks"
-msgstr ""
-
-msgid "Interactive Theme Queue"
-msgstr "Interaktivni red tema"
-
-msgid "Reviewers' Guide"
-msgstr "Vodič za recenzente"
-
-msgid "Theme Review for {0}"
-msgstr "Pregled tema za {0}"
-
-msgid "Edit Listing"
-msgstr "Izmeni spisak"
-
-msgid "(Probable Duplicate Submission)"
-msgstr "(Verovatno duplirana dostavljanja)"
-
-msgid "Submitted"
-msgstr "Podneto"
-
-msgid "Past Review Notes"
-msgstr "Prethodne beleške pregleda"
-
-#. {previous review action taken on theme}: {comment about review action}
-msgid "More Info Requested: {0}"
-msgstr "Više traženih informacija: {0}"
-
-msgid "Flagged: {0}"
-msgstr "Označeno: {0}"
-
-msgid "Approve Theme"
-msgstr "Odobriti temu"
-
-msgid "Field required"
-msgstr "Obavezno polje"
-
-msgid "Enter the ID or URL of the duplicate"
-msgstr "Unesite ID ili URL duplikata"
-
-msgid "Select a reason for rejection"
-msgstr "Odaberite razlog odbacivanja"
-
-msgid "Describe your reason for rejection"
-msgstr "Objasnite Vaš razlog za odbacivanje"
-
-msgid "Ask a question to the artist"
-msgstr "Postavite pitanje autoru"
-
-msgid "Describe your reason for flagging"
-msgstr "Navedite Vaše razloge za označavanje"
-
 msgid "Rejected or Unreviewed"
 msgstr "Odbijeno ili nepregledano"
 
@@ -8344,12 +8050,6 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "Više traženih informacija: {0}"
 msgstr[1] "Više traženih informacija: {0}"
-
-msgid "Flagged"
-msgstr "Označeno"
-
-msgid "Updates"
-msgstr "Ažuriranja"
 
 #, fuzzy, python-format
 msgid "Invalid \"%s\" parameter."
@@ -8984,35 +8684,6 @@ msgstr ""
 msgid "Activity Logs"
 msgstr "Aktivnost"
 
-msgid "Email must be {email}."
-msgstr ""
-
-msgid "Display Name"
-msgstr "Prikazano ime"
-
-msgid "Location"
-msgstr "Lokacija"
-
-msgid "Occupation"
-msgstr "Zanimanje"
-
-msgid "You can change your email address on Firefox Accounts."
-msgstr ""
-
-msgid ""
-"This URL has an invalid format. Valid URLs look like http://example.com/"
-"my_page."
-msgstr ""
-"Ovaj URL je neispravnog formata. Validne URL adrese izgledaju ovako http://"
-"primer.com/moja_strana."
-
-msgid ""
-"To anonymize, enter a reason for the change but do not change any other "
-"field."
-msgstr ""
-"Na anonimnom, unesite razlog za promenu ali ne menjajte bilo koje drugo "
-"polje."
-
 msgid "No user with that email."
 msgstr "Nema korisnika sa tom adresom e-pošte."
 
@@ -9053,36 +8724,6 @@ msgstr "Mozilla treba da me kontaktirate u vezi mog dodatka"
 msgid "User Notifications"
 msgstr "Obaveštenja korisnika"
 
-msgid "An email address is required."
-msgstr "Adresa e-pošte je potrebna."
-
-msgid "A user with that email address does not exist."
-msgstr "Korisnik sa tom adresom e-pošte ne postoji."
-
-msgid "Profile Deleted"
-msgstr "Profil je izbrisan"
-
-msgid "Photo Deleted"
-msgstr "Slika je izbrisana"
-
-msgid "Profile Updated"
-msgstr "Profil je ažuriran"
-
-msgid "Errors Found"
-msgstr "Pronađene greške"
-
-msgid ""
-"There were errors in the changes you made. Please correct them and resubmit."
-msgstr ""
-"Bilo je grešaka u promenama koje ste podneli. Molimo ispravite ih i ponovo "
-"pošaljite."
-
-msgid "User reported."
-msgstr "Korisnik je prijavnjen."
-
-msgid "new"
-msgstr "novi"
-
 #, fuzzy
 msgid "Ban"
 msgstr "i"
@@ -9090,214 +8731,6 @@ msgstr "i"
 #, fuzzy
 msgid "Delete picture"
 msgstr "Obriši moju korisničku sliku"
-
-msgid "Delete User Account"
-msgstr "Izbriši nalog"
-
-#, python-format
-msgid ""
-"You cannot delete your account if you are listed as an <a href=\"%(link)s\"> "
-"author of any add-ons</a>. To delete your account, please have another "
-"person in your development group delete you from the list of authors for "
-"your add-ons. Afterwards you will be able to delete your account here."
-msgstr ""
-"Nemožete izbrisati Vaš nalog ako ste prijavljeni kao <a href=\"%(link)s\"> "
-"autor bilo kojeg dodatka </a>. Da bi ste izbrisali Vaš nalog , zamolite "
-"nekog iz vaše razvojne grupe da Vas izbriše sa liste autora za Vaš dodatak. "
-"Nakon toga će te biti u mogućnosti da izbrišete Vaš nalog ovde."
-
-msgid ""
-"By clicking \"delete\" your account is going to be <strong>permanently "
-"removed</strong>. That means:"
-msgstr ""
-"Klikom na \"obriši\" Vaš nalog će biti <strong>trajno uklonjen</strong>. To "
-"znači:"
-
-#, python-format
-msgid ""
-"Logging in with this email address into %(site)s again will create a new "
-"account that is in no way associated with this account."
-msgstr ""
-
-msgid ""
-"Your reviews and ratings will not be deleted, but they will no longer be "
-"associated with you."
-msgstr ""
-"Vaše recenzije i ocene neće biti obrisane, ali one više neće biti povezane "
-"sa Vama."
-
-msgid "Confirm account deletion"
-msgstr "Potvrdite brisanje naloga"
-
-msgid "I understand this step cannot be undone."
-msgstr "Razumem da ovaj korak ne može biti opozvan."
-
-msgid "Delete my user account now"
-msgstr "Izbriši moj nalog sada"
-
-msgid "Delete User Photo"
-msgstr "Obriši korisničku sliku"
-
-msgid "Delete my user picture now"
-msgstr "Obriši moju korisničku sliku"
-
-msgid "Please set your display name"
-msgstr ""
-
-msgid ""
-"Please set your display name or username to complete the registration "
-"process."
-msgstr ""
-
-#, fuzzy
-msgid ""
-"Manage basic account information, such as your username and Firefox Accounts "
-"settings."
-msgstr ""
-"Upravljajte sa osnovnim informacijama o nalogu, kao što su korisničko ime i "
-"adresa e-pošte."
-
-msgid "Email Address"
-msgstr "Adresa e-pošte"
-
-msgid "Manage Firefox Account..."
-msgstr ""
-
-msgid "Profile"
-msgstr "Profil"
-
-msgid ""
-"Give us a bit more information about yourself. All these fields are "
-"optional, but they'll help other users get to know you better."
-msgstr ""
-"Dajte nam malo više informacija o sebi. Sva ova polja su opciona, ali će "
-"pomoći drugim korisnicima da Vas bolje upoznaju."
-
-msgid "This URL will only be visible if you are a developer."
-msgstr "URL će biti samo vidljiv ako ste programer."
-
-msgid "Choose Photo&hellip;"
-msgstr "Izaberi sliku&hellip;"
-
-msgid "Delete current photo"
-msgstr "Izbriši trenutnu sliku"
-
-msgid ""
-"Introduce yourself to the community, if you like! This text will appear "
-"publicly on your user info page."
-msgstr ""
-"Predstavite sebe zajednici, ako želite! Ovaj tekst će se pojaviti javno na "
-"stranici koja sadrži informacija o korisniku."
-
-#, fuzzy, python-format
-msgid "Allowed HTML: %(html)s. Links are forbidden."
-msgstr "Dozvoljen HTML: {0}. Veze su zabranjene."
-
-msgid "Decide what collections should be shown in your profile."
-msgstr "Odlučite koje kolekcije trebaju da budu prikazane na Vašem profilu."
-
-msgid "Display the collections I have created"
-msgstr "Prikaži kolekcije koje sam napravio"
-
-msgid "Notifications"
-msgstr "Obaveštenja"
-
-msgid ""
-"From time to time, Mozilla may send you email about upcoming releases and "
-"add-on events. Please select the topics you are interested in."
-msgstr ""
-"Sa vremena na vreme, Mozilla Vam može poslati e-poštu o predstojećim "
-"izdanjima i događajima za dodatke. Molimo Vas da izaberete teme za koje ste "
-"zainteresovani."
-
-msgid ""
-"Mozilla reserves the right to contact you individually about specific "
-"concerns with your hosted add-ons."
-msgstr ""
-"Mozilla zadržava pravo da Vas kontaktira o specifičnim problemima Vaših "
-"podnetih dodataka."
-
-msgid "Admin"
-msgstr "Admin"
-
-msgid "Delete Account"
-msgstr "Izbriši nalog"
-
-msgid "Update Account"
-msgstr "Ažuriraj nalog"
-
-msgid "none"
-msgstr "nijedna"
-
-msgid "all"
-msgstr "sve"
-
-msgid ""
-"Mozilla Add-ons has transitioned to Firefox Accounts for login. Continue to "
-"complete the simple login process."
-msgstr ""
-
-msgid "Password Reset"
-msgstr "Resetovanje lozinke"
-
-msgid "User Info for {0}"
-msgstr "Informacije korisnika za {0}"
-
-msgid "Edit profile"
-msgstr "Uredi profil"
-
-msgid "Manage user"
-msgstr "Upravljaj korisnikom"
-
-msgid "Report user"
-msgstr "Prijavite korisnika"
-
-# The title for a user if they are a developer
-msgid "Add-ons Developer"
-msgstr "Programer dodataka"
-
-msgid "Themes Artist"
-msgstr "Umetnik za teme"
-
-msgid "About me"
-msgstr "O meni"
-
-msgid "In a little more detail..."
-msgstr "Malo detaljnije..."
-
-msgid "Add-ons I've created"
-msgstr "Dodaci koje sam ja napravio"
-
-msgid "View all"
-msgstr "Pogledaj sve"
-
-msgid "My Most Popular Themes"
-msgstr "Moje najpopularnije teme"
-
-msgid "Themes I've created"
-msgstr "Teme koje sam ja napravio"
-
-msgid "Created by Me"
-msgstr "Ja sam napravio"
-
-msgid "My Reviews"
-msgstr "Moje recenzije"
-
-msgid "No add-on reviews yet."
-msgstr "Nema recenzija dodataka."
-
-msgid "Report User"
-msgstr "Prijavite korisnika"
-
-msgid ""
-"Please describe why you are reporting this user, such as for spam or an "
-"inappropriate picture."
-msgstr ""
-"Molimo opišite zašto prijavljujete ovog korisnika, kao što je za spam ili "
-"neodgovarajućeg sliku."
-
-msgid "Report user {0}"
-msgstr "Prijavite korisnika {0}"
 
 msgid "Unsubscribe"
 msgstr "Otkaži pretplatu"
@@ -9333,39 +8766,6 @@ msgstr ""
 "Nažalost, nismo u mogućnosti da Vam otkažemo pretplatu. Veza na koju ste "
 "kliknuli je neispravna. Međutim, Vi još uvek možete da otkažete pretplatu na "
 "Vašoj <a href=\"%(edit_url)s\">stranici za uređivanja profila</a>."
-
-msgid "Developer Information"
-msgstr "Informacije o programeru"
-
-msgid "User since"
-msgstr "Korisnik od"
-
-msgid "Time of last login"
-msgstr "Vreme poslednje prijave"
-
-msgid "IP address of last login"
-msgstr "IP adresa poslednje prijave"
-
-msgid "Number of add-ons developed"
-msgstr "Broj razvijenih dodataka"
-
-msgid "{0} add-ons"
-msgstr "{0} dodaci"
-
-#, python-format
-msgid "%(num)s theme"
-msgid_plural "%(num)s themes"
-msgstr[0] "%(num)s tema"
-msgstr[1] "%(num)s teme"
-
-#, python-format
-msgid "%(num)s add-on"
-msgid_plural "%(num)s add-ons"
-msgstr[0] "%(num)s dodatak"
-msgstr[1] "%(num)s dodatka"
-
-msgid "Average rating of developer's add-ons"
-msgstr "Prosečna ocena programera dodataka"
 
 msgctxt "user_list_others"
 msgid "others"
