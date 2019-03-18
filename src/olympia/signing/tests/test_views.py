@@ -19,9 +19,9 @@ from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
-    addon_factory, reverse_ns, TestCase, developer_factory)
+    addon_factory, create_default_webext_appversion, developer_factory,
+    reverse_ns, TestCase)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
-from olympia.applications.models import AppVersion
 from olympia.files.models import File, FileUpload
 from olympia.lib.akismet.models import AkismetReport
 from olympia.signing.views import VersionView
@@ -36,6 +36,9 @@ class SigningAPITestMixin(APIKeyAuthTestMixin):
 
 
 class BaseUploadVersionTestMixin(SigningAPITestMixin):
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
 
     def setUp(self):
         super(BaseUploadVersionTestMixin, self).setUp()
@@ -531,11 +534,6 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
 
 class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
-    def setUp(self):
-        super(TestUploadVersionWebextension, self).setUp()
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='42.0')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
-
     def test_addon_does_not_exist_webextension(self):
         response = self.request(
             'POST',

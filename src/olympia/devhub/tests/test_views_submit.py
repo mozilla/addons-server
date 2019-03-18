@@ -301,9 +301,12 @@ class TestAddonSubmitDistribution(TestCase):
 class TestAddonSubmitUpload(UploadTest, TestCase):
     fixtures = ['base/users']
 
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
+
     def setUp(self):
         super(TestAddonSubmitUpload, self).setUp()
-        create_default_webext_appversion()
         self.upload = self.get_upload('webextension_no_id.xpi')
         assert self.client.login(email='regular@mozilla.com')
         self.client.post(reverse('devhub.submit.agreement'))
@@ -478,7 +481,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.details', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 3
@@ -499,7 +502,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -526,7 +529,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.details', args=[addon.slug]))
         all_ = sorted([f.filename for f in addon.current_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         previews = list(addon.current_version.previews.all())
         assert len(previews) == 3
@@ -559,7 +562,7 @@ class TestAddonSubmitUpload(UploadTest, TestCase):
         self.assert3xx(
             response, reverse('devhub.submit.finish', args=[addon.slug]))
         all_ = sorted([f.filename for f in latest_version.all_files])
-        assert all_ == [u'weta_fade-1.0.xpi']  # One XPI for all platforms.
+        assert all_ == [u'weta_fade-1.0-an+fx.xpi']  # A single XPI for all.
         assert addon.type == amo.ADDON_STATICTHEME
         # Only listed submissions need a preview generated.
         assert latest_version.previews.all().count() == 0
@@ -1810,6 +1813,10 @@ class TestVersionSubmitAutoChannel(TestSubmitBase):
 class VersionSubmitUploadMixin(object):
     channel = None
     fixtures = ['base/users', 'base/addon_3615']
+
+    @classmethod
+    def setUpTestData(cls):
+        create_default_webext_appversion()
 
     def setUp(self):
         super(VersionSubmitUploadMixin, self).setUp()

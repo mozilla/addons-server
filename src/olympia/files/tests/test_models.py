@@ -362,11 +362,26 @@ class TestTrackFileStatusChange(TestCase):
 
 class TestParseXpi(TestCase):
 
-    def setUp(self):
-        super(TestParseXpi, self).setUp()
-        for version in ('3.0', '3.6.*'):
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            '3.0',
+            '3.6.*',
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_STATIC_THEME_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_DICT_MIN_VERSION_FIREFOX,
+            amo.DEFAULT_WEBEXT_MAX_VERSION
+        }
+        for version in versions:
             AppVersion.objects.create(application=amo.FIREFOX.id,
                                       version=version)
+            AppVersion.objects.create(application=amo.ANDROID.id,
+                                      version=version)
+
+    def setUp(self):
         self.user = user_factory()
 
     def parse(self, addon=None, filename='extension.xpi', **kwargs):
@@ -438,12 +453,15 @@ class TestParseXpi(TestCase):
     def test_parse_apps(self):
         expected = [Extractor.App(
             amo.FIREFOX, amo.FIREFOX.id,
-            AppVersion.objects.get(version='3.0'),
-            AppVersion.objects.get(version='3.6.*'))]
+            AppVersion.objects.get(
+                application=amo.FIREFOX.id, version='3.0'),
+            AppVersion.objects.get(
+                application=amo.FIREFOX.id, version='3.6.*'))]
         assert self.parse()['apps'] == expected
 
     def test_no_parse_apps_error_webextension(self):
-        AppVersion.objects.all().delete()
+        AppVersion.objects.create(application=amo.FIREFOX.id, version='57.0')
+        AppVersion.objects.create(application=amo.ANDROID.id, version='57.0')
         assert self.parse(filename='webextension_with_apps_targets.xpi')
 
         assert self.parse(
@@ -452,9 +470,7 @@ class TestParseXpi(TestCase):
 
     def test_parse_max_star(self):
         AppVersion.objects.create(application=amo.FIREFOX.id, version='56.*')
-        AppVersion.objects.create(application=amo.FIREFOX.id, version='*')
         AppVersion.objects.create(application=amo.FIREFOX.id, version='38.0a1')
-        AppVersion.objects.create(application=amo.ANDROID.id, version='*')
         AppVersion.objects.create(application=amo.ANDROID.id, version='56.*')
         AppVersion.objects.create(application=amo.ANDROID.id, version='38.0a1')
 
@@ -477,10 +493,6 @@ class TestParseXpi(TestCase):
         assert (
             set(self.parse(filename='jetpack_star.xpi')['apps']) ==
             set(expected))
-
-    def test_parse_apps_bad_appver(self):
-        AppVersion.objects.all().delete()
-        assert self.parse()['apps'] == []
 
     @mock.patch.object(amo.FIREFOX, 'guid', 'iamabadguid')
     def test_parse_apps_bad_guid(self):
@@ -1043,10 +1055,26 @@ def test_file_upload_passed_all_validations_invalid():
 
 class TestFileFromUpload(UploadTest):
 
+    @classmethod
+    def setUpTestData(cls):
+        versions = {
+            '3.0',
+            '3.6',
+            '3.6.*',
+            '4.0b6',
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID
+        }
+        for version in versions:
+            AppVersion.objects.create(
+                application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(
+                application=amo.ANDROID.id, version=version)
+
     def setUp(self):
         super(TestFileFromUpload, self).setUp()
-        for version in ('3.0', '3.6', '3.6.*', '4.0b6'):
-            AppVersion(application=amo.FIREFOX.id, version=version).save()
         self.platform = amo.PLATFORM_ALL.id
         self.addon = Addon.objects.create(guid='guid@xpi',
                                           type=amo.ADDON_EXTENSION,

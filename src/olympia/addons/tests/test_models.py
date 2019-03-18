@@ -2179,22 +2179,36 @@ class TestListedAddonTwoVersions(TestCase):
 class TestAddonFromUpload(UploadTest):
     fixtures = ['base/users']
 
+    @classmethod
+    def setUpTestData(self):
+        versions = {
+            '3.0',
+            '3.6.*',
+            amo.DEFAULT_WEBEXT_MIN_VERSION,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_ANDROID,
+            amo.DEFAULT_WEBEXT_MIN_VERSION_NO_ID,
+            amo.DEFAULT_WEBEXT_MAX_VERSION,
+        }
+        for version in versions:
+            AppVersion.objects.create(
+                application=amo.FIREFOX.id, version=version)
+            AppVersion.objects.create(
+                application=amo.ANDROID.id, version=version)
+
     def setUp(self):
         super(TestAddonFromUpload, self).setUp()
         u = UserProfile.objects.get(pk=999)
         core.set_user(u)
         self.selected_app = amo.FIREFOX.id
-        for version in ('3.0', '3.6.*'):
-            AppVersion.objects.create(application=1, version=version)
         self.addCleanup(translation.deactivate)
 
         def _app(application):
             return Extractor.App(
                 appdata=application, id=application.id,
-                min=AppVersion.objects.get_or_create(
-                    application=application.id, version='3.0')[0],
-                max=AppVersion.objects.get_or_create(
-                    application=application.id, version='3.6.*')[0])
+                min=AppVersion.objects.get(
+                    application=application.id, version='3.0'),
+                max=AppVersion.objects.get(
+                    application=application.id, version='3.6.*'))
 
         self.dummy_parsed_data = {
             'guid': 'guid@xpi',
