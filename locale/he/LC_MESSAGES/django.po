@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 09:31+0000\n"
+"PO-Revision-Date: 2019-03-18 09:37+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: Hebrew\n"
 "Language: he\n"
@@ -58,7 +58,7 @@ msgstr "מפתחי תוספות או ערכות נושא לא יכולים למ�
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "התראה [%s] לא קיימת"
 
 msgid "Review"
 msgstr "סקירה"
@@ -1657,7 +1657,7 @@ msgid "{user} approved {rating} for {addon}."
 msgstr "המשתמש {user} אישר את {rating} עבור התוספת {addon}."
 
 msgid "Review {rating} for {addon} deleted."
-msgstr ""
+msgstr "הסקירה {rating} עבור {addon} נמחקה."
 
 msgid "{user} deleted {rating} for {addon}."
 msgstr "המשתמש {user} מחק את {rating} עבור התוספת {addon}."
@@ -1696,7 +1696,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "המשתמש {user} נערך, סיבה: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "המשתמש {user} נהיה אנונימי."
 
 msgid "User {user} restricted."
 msgstr "המשתמש {user} הוגבל."
@@ -1730,7 +1730,7 @@ msgstr "הקובץ {file} נחתם."
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
-msgstr ""
+msgstr "מזהה תוספת {0} עם GUID‏ {1} נמחק"
 
 msgid "{addon} migrated from preliminary."
 msgstr ""
