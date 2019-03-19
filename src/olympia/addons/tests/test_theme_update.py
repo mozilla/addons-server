@@ -41,7 +41,7 @@ class TestWSGIApplication(TestCase):
         for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             response = theme_update.application(environ, self.start_response)
-            # gunicorn chokes on a unicode string response.
+            # wsgi expects a bytestring, rather than unicode response.
             assert response == [b'{"fo": "b\xc3\xa1"}']
             LWThemeUpdate_mock.assert_called_with(*call_args)
             MigratedUpdate_mock.assert_called_with(*call_args)
@@ -69,7 +69,7 @@ class TestWSGIApplication(TestCase):
         for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
             response = theme_update.application(environ, self.start_response)
-            # gunicorn chokes on a unicode string response.
+            # wsgi expects a bytestring, rather than unicode response.
             assert response == [b'{"fo\xc3\xb3": "ba"}']
             assert not LWThemeUpdate_mock.called
             MigratedUpdate_mock.assert_called_with(*call_args)
