@@ -38,6 +38,7 @@ from olympia.lib.akismet.models import AkismetReport
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
     NoManifestFound, parse_addon, SafeZip, UnsupportedFileType)
+from olympia.files.tasks import repack_fileupload
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
 
@@ -140,7 +141,7 @@ def validation_task(fn):
     """Wrap a validation task so that it runs with the correct flags, then
     parse and annotate the results before returning."""
 
-    @task(bind=True, ignore_result=False,  # Required for groups/chains.
+    @task(bind=True, ignore_result=False,  # We want to pass the results down.
           soft_time_limit=settings.VALIDATOR_TIMEOUT)
     @wraps(fn)
     def wrapper(task, id_or_path, *args, **kwargs):
@@ -161,20 +162,41 @@ def validation_task(fn):
             return results
         except Exception as exc:
             log.exception('Unhandled error during validation: %r' % exc)
-            return deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+            results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+            return results
         finally:
-            # But we do want to return a result after that exception has
+            # But we do want to return the results after that exception has
             # been handled.
             task.ignore_result = False
     return wrapper
 
 
 @validation_task
+@use_primary_db
+def validate_upload(upload_pk, channel):
+    """
+    Repack and then validate a FileUpload.
+
+    This only exists to get repack_fileupload() and validate_file_path()
+    into a single task that is wrapped by @validation_task. We do this because
+    with Celery < 4.2, on_error is never executed for task chains, so we use
+    a task decorated by @validation_task which takes care of it for us. Once
+    we upgrade to Celery 4.2, we stop calling repack_fileupload() here and just
+    have Validator.task return a chain with those 2 tasks when it's dealing
+    with a FileUpload.
+    https://github.com/mozilla/addons-server/issues/9068#issuecomment-473255011
+    """
+    upload = FileUpload.objects.get(pk=upload_pk)
+    repack_fileupload(upload.pk)
+    return validate_file_path(upload.path, channel)
+
+
 def validate_file_path(path, channel):
     """Run the validator against a file at the given path, and return the
-    results.
+    results, which should be a json string.
 
-    Should only be called directly by Validator or `validate_file` task.
+    Should only be called directly by `validate_upload` or `validate_file`
+    tasks.
 
     Search plugins don't call the linter but get linted by
     `annotate_search_plugin_validation`.
@@ -223,14 +245,8 @@ def validate_file(file_id):
     try:
         return file_.validation.validation
     except FileValidation.DoesNotExist:
-        # Calling `validate_file_path` looks particularly nasty because of
-        # @validation_task wrapping a lot of it's functionalities and
-        # ins particular it's signature. @validation_task also returns the
-        # actual python-object, so we have to dump it as JSON for backwards
-        # compatibility (something we may want to change at a later point)
-        return json.dumps(validate_file_path(
-            id_or_path=file_.current_file_path,
-            channel=file_.version.channel))
+        return validate_file_path(
+            file_.current_file_path, file_.version.channel)
 
 
 @task

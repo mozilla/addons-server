@@ -1,3 +1,4 @@
+import copy
 import uuid
 
 from django.conf import settings
@@ -219,7 +220,7 @@ class Validator(object):
     Class which handles creating or fetching validation results for File
     and FileUpload instances.
 
-    It forwards the actual validation to `devhub.tasks:validate_file_path`
+    It forwards the actual validation to `devhub.tasks:validate_upload`
     and `devhub.tasks:validate_file` but implements shortcuts for
     legacy add-ons and search plugins to avoid running the linter.
     """
@@ -270,12 +271,13 @@ class Validator(object):
 
         # Fallback error handler to save a set of exception results, in case
         # anything unexpected happens during processing.
-        on_error = self.error_handler(save, file_, channel, is_mozilla_signed)
+        self.on_error = self.error_handler(
+            save, file_, channel, is_mozilla_signed)
 
         # When the validation jobs complete, pass the results to the
         # appropriate save task for the object type.
         self.task = (
-            validate_task.on_error(on_error) |
+            validate_task.on_error(self.on_error) |
             save.s(file_.pk, channel, is_mozilla_signed)
         )
 
@@ -292,9 +294,8 @@ class Validator(object):
     @staticmethod
     def error_handler(save_task, file_, channel, is_mozilla_signed):
         """Return the task error handler."""
-        return save_task.si(
-            amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT, file_.pk, channel,
-            is_mozilla_signed)
+        results = copy.deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+        return save_task.si(results, file_.pk, channel, is_mozilla_signed)
 
     @staticmethod
     def validate_file(file):
@@ -306,7 +307,7 @@ class Validator(object):
         """Return a subtask to validate a FileUpload instance."""
         assert not upload.validation
 
-        return tasks.validate_file_path.si(upload.path, channel=channel)
+        return tasks.validate_upload.si(upload.pk, channel=channel)
 
 
 def add_dynamic_theme_tag(version):

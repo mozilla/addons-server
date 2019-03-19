@@ -28,7 +28,7 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.applications.models import AppVersion
 from olympia.constants.base import VALIDATOR_SKELETON_RESULTS
 from olympia.devhub import tasks, file_validation_annotations as annotations
-from olympia.files.models import File
+from olympia.files.models import File, FileValidation
 from olympia.files.utils import NoManifestFound
 from olympia.files.tests.test_models import UploadTest
 from olympia.versions.models import Version
@@ -493,37 +493,81 @@ class TestRunAddonsLinter(UploadTest, ValidatorTestCase):
             assert not result['warnings']
             assert not result['errors']
 
+    @mock.patch('olympia.devhub.tasks.repack_fileupload')
+    @mock.patch('olympia.devhub.tasks.parse_addon')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_upload_is_repacked_before_linter_runs(
+            self, run_addons_linter_mock, parse_addon_mock,
+            repack_fileupload_mock):
+        """When validating new uploads, we are repacking before handing the xpi
+        to the linter."""
+        run_addons_linter_mock.return_value = json.dumps(
+            {'errors': 0, 'warnings': 0, 'notices': 0}
+        )
+        parse_addon_mock.return_value = {
+            'is_webextension': True
+        }
+        upload = self.get_upload(
+            abspath=self.valid_path, with_validation=False)
+        assert not upload.valid
+        tasks.validate(upload, listed=True)
+        assert parse_addon_mock.called
+        assert repack_fileupload_mock.called
+        upload.reload()
+        assert upload.valid, upload.validation
+
+    @mock.patch('olympia.devhub.tasks.repack_fileupload')
+    @mock.patch('olympia.devhub.tasks.parse_addon')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_file_is_not_repacked_before_linter_runs(
+            self, run_addons_linter_mock, parse_addon_mock,
+            repack_fileupload_mock):
+        """When validating existing File instances, we are *not* repacking."""
+        run_addons_linter_mock.return_value = json.dumps(
+            {'errors': 0, 'warnings': 0, 'notices': 0}
+        )
+        parse_addon_mock.return_value = {
+            'is_webextension': True
+        }
+        addon = addon_factory()
+        file_ = addon.current_version.all_files[0]
+        assert not FileValidation.objects.filter(file=file_).exists()
+        tasks.validate(file_).get()
+        assert parse_addon_mock.called
+        assert not repack_fileupload_mock.called
+        assert FileValidation.objects.filter(file=file_).exists()
+
 
 class TestValidateFilePath(ValidatorTestCase):
 
     def test_success(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('valid_webextension.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
         assert result['success']
         assert not result['errors']
         assert not result['warnings']
 
     def test_fail_warning(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('valid_webextension_warning.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
         assert result['success']
         assert not result['errors']
         assert result['warnings']
 
     def test_fail_error(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('invalid_webextension_invalid_id.xpi'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
         assert not result['success']
         assert result['errors']
         assert not result['warnings']
 
     def test_returns_skeleton_for_search_plugin(self):
-        result = tasks.validate_file_path(
+        result = json.loads(tasks.validate_file_path(
             get_addon_file('searchgeek-20090701.xml'),
-            channel=amo.RELEASE_CHANNEL_LISTED)
+            channel=amo.RELEASE_CHANNEL_LISTED))
 
         expected = amo.VALIDATOR_SKELETON_RESULTS
         assert result == expected

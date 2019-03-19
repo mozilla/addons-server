@@ -849,9 +849,10 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         assert response.status_code == 200
         file_ = qs.get()
 
-        filename = self.xpi_filepath('@upload-version', version_string)
-        assert response.data['files'][0]['hash'] == \
-            file_.generate_hash(filename=filename)
+        # We're repackaging, so we can't compare the hash to an existing value.
+        expected_hash = file_.generate_hash(filename=file_.file_path)
+        assert file_.hash == expected_hash
+        assert response.data['files'][0]['hash'] == expected_hash
 
     def test_has_failed_upload(self):
         addon = Addon.objects.get(guid=self.guid)

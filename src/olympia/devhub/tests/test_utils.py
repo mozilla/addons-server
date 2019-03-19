@@ -46,7 +46,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         self.validate_file = self.patch(
             'olympia.devhub.tasks.validate_file').si
         self.validate_upload = self.patch(
-            'olympia.devhub.tasks.validate_file_path').si
+            'olympia.devhub.tasks.validate_upload').si
 
     def patch(self, thing):
         """Patch the given "thing", and revert the patch on test teardown."""
@@ -69,7 +69,7 @@ class TestAddonsLinterListed(UploadTest, TestCase):
         # Make sure we run the correct validation task for the upload and we
         # set up an error handler.
         self.validate_upload.assert_called_once_with(
-            file_upload.path, channel=channel)
+            file_upload.pk, channel=channel)
         assert self.validate_upload.return_value.on_error.called
 
         # Make sure we run the correct save validation task.
