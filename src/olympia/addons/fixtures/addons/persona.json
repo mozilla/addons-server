@@ -56,7 +56,7 @@
             "locale": "en-US",
             "modified": "2009-10-20 21:58:25",
             "id": 590878,
-            "localized_string": "My Persona"
+            "localized_string": "My Personâ"
         }
     },
     {
@@ -108,7 +108,7 @@
         "pk": 559,
         "model": "addons.persona",
         "fields": {
-            "display_username": "persona_author",
+            "display_username": "persona_author ®",
             "popularity": 100,
             "license": null,
             "footer": "BCBG_Persona_footer2.png",

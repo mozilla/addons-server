@@ -36,10 +36,13 @@ class TestWSGIApplication(TestCase):
     def test_wsgi_application_200(self, LWThemeUpdate_mock,
                                   MigratedUpdate_mock):
         MigratedUpdate_mock.return_value.is_migrated = False
+        LWThemeUpdate_mock.return_value.get_json.return_value = u'{"fo": "bá"}'
         # From AMO we consume the ID as the `addon_id`.
         for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
-            theme_update.application(environ, self.start_response)
+            response = theme_update.application(environ, self.start_response)
+            # wsgi expects a bytestring, rather than unicode response.
+            assert response == [b'{"fo": "b\xc3\xa1"}']
             LWThemeUpdate_mock.assert_called_with(*call_args)
             MigratedUpdate_mock.assert_called_with(*call_args)
 
@@ -60,10 +63,14 @@ class TestWSGIApplication(TestCase):
     def test_wsgi_application_200_migrated(self, LWThemeUpdate_mock,
                                            MigratedUpdate_mock):
         MigratedUpdate_mock.return_value.is_migrated = True
+        MigratedUpdate_mock.return_value.get_json.return_value = (
+            u'{"foó": "ba"}')
         # From AMO we consume the ID as the `addon_id`.
         for path_info, call_args in six.iteritems(self.urls):
             environ = dict(self.environ, PATH_INFO=path_info)
-            theme_update.application(environ, self.start_response)
+            response = theme_update.application(environ, self.start_response)
+            # wsgi expects a bytestring, rather than unicode response.
+            assert response == [b'{"fo\xc3\xb3": "ba"}']
             assert not LWThemeUpdate_mock.called
             MigratedUpdate_mock.assert_called_with(*call_args)
             self.start_response.assert_called_with('200 OK', mock.ANY)
@@ -126,8 +133,8 @@ class TestThemeUpdate(TestCase):
             'textcolor': '#ffffff',
             'id': '15663',
             'headerURL': '/15663/BCBG_Persona_header2.png?modified=fakehash',
-            'name': 'My Persona',
-            'author': 'persona_author',
+            'name': 'My Personâ',
+            'author': 'persona_author ®',
             'updateURL': (settings.VAMO_URL +
                           '/en-US/themes/update-check/15663'),
             'version': '0',
@@ -166,6 +173,9 @@ class TestThemeUpdate(TestCase):
         # Testing `addon_id` from AMO.
         self.check_good(
             json.loads(self.get_update('en-US', 15663).get_json()))
+
+        self.check_good(
+            json.loads(self.get_update('fr', 15663).get_json()))
 
         # Testing `persona_id` from GP.
         self.good.update({

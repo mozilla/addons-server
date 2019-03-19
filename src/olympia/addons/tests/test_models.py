@@ -2071,7 +2071,7 @@ class TestPersonaModel(TestCase):
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
             assert data['category'] == 'Abstract'
-            assert data['author'] == 'persona_author'
+            assert data['author'] == 'persona_author ®'
             assert data['description'] == six.text_type(self.addon.description)
 
             assert data['headerURL'].startswith(
@@ -2110,7 +2110,7 @@ class TestPersonaModel(TestCase):
             assert data['accentcolor'] == '#8d8d97'
             assert data['textcolor'] == '#ffffff'
             assert data['category'] == 'Abstract'
-            assert data['author'] == 'persona_author'
+            assert data['author'] == 'persona_author ®'
             assert data['description'] == six.text_type(self.addon.description)
 
             assert data['headerURL'].startswith(

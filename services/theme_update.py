@@ -92,8 +92,8 @@ class LWThemeUpdate(ThemeUpdate):
             # Otherwise, look up `addon_id`.
             'primary_key': 'persona_id' if self.from_gp else 'addon_id',
             'atype': base.ADDON_PERSONA,
-            'row': {}
         }
+        self.row = {}
 
     def get_update(self):
         """
@@ -141,16 +141,16 @@ class LWThemeUpdate(ThemeUpdate):
                 list(row)))
 
         if row:
-            self.data['row'] = row_to_dict(row)
+            self.row = row_to_dict(row)
 
             # Fall back to `en-US` if the name was null for our locale.
             # TODO: Write smarter SQL and don't rerun the whole query.
-            if not self.data['row']['name']:
+            if not self.row['name']:
                 self.data['locale'] = 'en-US'
                 self.cursor.execute(sql, self.data)
                 row = self.cursor.fetchone()
                 if row:
-                    self.data['row'] = row_to_dict(row)
+                    self.row = row_to_dict(row)
 
             return True
 
@@ -161,7 +161,7 @@ class LWThemeUpdate(ThemeUpdate):
             # Persona not found.
             return
 
-        row = self.data['row']
+        row = self.row
         accent = row.get('accentcolor')
         text = row.get('textcolor')
 
@@ -199,7 +199,7 @@ class LWThemeUpdate(ThemeUpdate):
         return json.dumps(data)
 
     def image_url(self, filename):
-        row = self.data['row']
+        row = self.row
 
         # Special cased for non-AMO-uploaded themes imported from getpersonas.
         if row['persona_id'] != 0:
@@ -234,7 +234,6 @@ def application(environ, start_response):
 
     """
 
-    status = '200 OK'
     with statsd.timer('services.theme_update'):
         try:
             locale, id_ = url_re.match(environ['PATH_INFO']).groups()
@@ -259,9 +258,9 @@ def application(environ, start_response):
             if not output:
                 start_response('404 Not Found', [])
                 return ['']
-            start_response(status, update.get_headers(len(output)))
+            start_response('200 OK', update.get_headers(len(output)))
         except Exception:
             log_exception(environ['PATH_INFO'])
             raise
 
-    return [output]
+    return [output.encode('utf-8')]
