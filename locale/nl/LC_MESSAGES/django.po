@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 09:58+0000\n"
+"PO-Revision-Date: 2019-03-19 08:07+0000\n"
 "Last-Translator: Mark Heijl <markh@babelzilla.org>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
 "Language: nl\n"
@@ -922,13 +922,11 @@ msgstr "Een of meer sleutels in de payload zijn van het verkeerde type"
 msgid "Invalid JWT Token."
 msgstr "Ongeldig JWT-token."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Ongeldig of beschadigd archief."
+msgstr "Ongeldig token of hash."
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "E-mailadres"
+msgstr "E-mailadres niet gevonden."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Het veld dient ten minste {num} tekens te bevatten."
@@ -5393,7 +5391,6 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "In een muisklik kunt u video’s in hun volle glorie op volledig scherm bekijken."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Bespaar geheugen {start_sub_heading}met {addon_name}{end_sub_heading}"
 
@@ -5402,22 +5399,20 @@ msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Stop met verkwisten van waardevolle geheugenruimte aan inactieve tabbladen."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zoek afbeeldingen {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Sla webpagina’s op {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr "Sla volledige pagina’s — of slechts delen — als één HTML-bestand."
+msgstr "Sla volledige pagina’s – of slechts delen – op als één HTML-bestand."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Leg het web vast {start_sub_heading}met {addon_name}{end_sub_heading}"
+msgstr "Negeer de onzin {start_sub_heading}met {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
-msgstr "Een slimme extensie die u snel helpt begrijpen waar u mee instemt."
+msgstr "Een slimme extensie die u snel helpt te begrijpen waarmee u akkoord gaat."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5514,7 +5509,6 @@ msgstr "U kunt geen add-on indienen met een GUID die op %s eindigt"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "U kunt geen door Mozilla ondertekende extensie indienen"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Niet-ondersteund bestandstype, upload een ondersteund bestand {extensions}."
 
