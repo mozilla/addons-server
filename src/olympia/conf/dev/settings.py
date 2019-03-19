@@ -139,5 +139,3 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-dev')
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
-
-MIGRATED_LWT_UPDATES_ENABLED = True  # flip on temporarily
