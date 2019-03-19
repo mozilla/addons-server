@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: messages\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 17:51+0000\n"
+"PO-Revision-Date: 2019-03-19 12:59+0000\n"
 "Last-Translator: avelper <avelper@mozilla-hispano.org>\n"
 "Language-Team: Español (España) <nave@elistas.net>\n"
 "Language: es\n"
@@ -927,13 +927,11 @@ msgstr "Tipo incorrecto para una o más claves del contenido"
 msgid "Invalid JWT Token."
 msgstr "Token JWT no válido."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Archivo no válido o efectivo."
+msgstr "Token o hash no válido."
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "Dirección de correo"
+msgstr "No se encontró la dirección de correo."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "El campo debe incluir al menos {num} caracteres."
@@ -5443,7 +5441,6 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Con solo un clic del ratón puedes ver vídeos a pantalla completa."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Ahorra memoria {start_sub_heading}con {addon_name}{end_sub_heading}"
 
@@ -5452,18 +5449,16 @@ msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Deja de malgastar espacio en la memoria con las pestañas inactivas."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Busca imágenes {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Guarda páginas web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "Guarda páginas al completo (o solo ciertas partes) como un único archivo HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Haz capturas de la web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Deja las tonterías a un lado {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
@@ -5564,7 +5559,6 @@ msgstr "No puedes enviar un complemento con un guid acabado en %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "No puedes enviar una extensión firmada de Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "No se admite ese tipo de archivo. Por favor, sube un archivo con formato {extensions}."
 
