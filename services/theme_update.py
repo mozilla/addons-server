@@ -199,7 +199,7 @@ class LWThemeUpdate(ThemeUpdate):
         return json.dumps(data)
 
     def image_url(self, filename):
-        row = row
+        row = self.row
 
         # Special cased for non-AMO-uploaded themes imported from getpersonas.
         if row['persona_id'] != 0:

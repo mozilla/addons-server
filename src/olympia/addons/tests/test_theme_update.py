@@ -126,8 +126,8 @@ class TestThemeUpdate(TestCase):
             'textcolor': '#ffffff',
             'id': '15663',
             'headerURL': '/15663/BCBG_Persona_header2.png?modified=fakehash',
-            'name': 'My Persona',
-            'author': 'persona_author',
+            'name': 'My Personâ',
+            'author': 'persona_author ®',
             'updateURL': (settings.VAMO_URL +
                           '/en-US/themes/update-check/15663'),
             'version': '0',
@@ -166,6 +166,10 @@ class TestThemeUpdate(TestCase):
         # Testing `addon_id` from AMO.
         self.check_good(
             json.loads(self.get_update('en-US', 15663).get_json()))
+
+        self.check_good(
+            json.loads(self.get_update('fr', 15663).get_json()))
+
 
         # Testing `persona_id` from GP.
         self.good.update({
