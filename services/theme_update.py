@@ -234,7 +234,6 @@ def application(environ, start_response):
 
     """
 
-    status = '200 OK'
     with statsd.timer('services.theme_update'):
         try:
             locale, id_ = url_re.match(environ['PATH_INFO']).groups()
@@ -259,9 +258,9 @@ def application(environ, start_response):
             if not output:
                 start_response('404 Not Found', [])
                 return ['']
-            start_response(status, update.get_headers(len(output)))
+            start_response('200 OK', update.get_headers(len(output)))
         except Exception:
             log_exception(environ['PATH_INFO'])
             raise
 
-    return [output]
+    return [output.encode('utf-8')]
