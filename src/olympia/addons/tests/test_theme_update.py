@@ -170,7 +170,6 @@ class TestThemeUpdate(TestCase):
         self.check_good(
             json.loads(self.get_update('fr', 15663).get_json()))
 
-
         # Testing `persona_id` from GP.
         self.good.update({
             'id': '813',
