@@ -8,12 +8,10 @@ Developer Resources
 
 To respond, please reply to this email or visit: {{ dev_versions_url }}
 
-You can also get in touch with us using these channels: https://developer.mozilla.org/Add-ons#Contact_us
+You can also get in touch with the Thunderbird Add-on Reviewer Team via IRC at #tb-addon-reviewer on irc.mozilla.org or by Emailing us at: Tb-addon-reviewers@lists.thunderbird.net
 
-For tips on how to attract more users by updating your add-on’s listing, please visit: https://developer.mozilla.org/Add-ons/Listing
-
-To learn more about the review process, please visit: https://developer.mozilla.org/en-US/Add-ons/AMO/Policy/Reviews
+For more information about the review process and policies, please visit https://thundernest.github.io/atn-review-policy/
 
 -- 
-Mozilla Add-ons Team
+Thunderbird Team
 {{ SITE_URL }}

@@ -3,5 +3,5 @@ Hi there,
 Your add-on, {{ name }}, has passed our automatic tests. Version {{ number }} is now signed and ready for you to download at {{ dev_versions_url }}. Note that you need to be logged in as a developer of the add-on before downloading.
 
 -- 
-Mozilla Add-ons Team
+Thunderbird Team
 {{ SITE_URL }}
