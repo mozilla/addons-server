@@ -847,31 +847,6 @@ class TestFileUpload(UploadTest):
             parsed_data=parsed_data)
         assert file_.binary
 
-    def test_validator_sets_require_chrome(self):
-        validation = json.dumps({
-            "errors": 0,
-            "success": True,
-            "warnings": 0,
-            "notices": 0,
-            "message_tree": {},
-            "messages": [],
-            "metadata": {
-                "version": "1.0",
-                "name": "gK0Bes Bot",
-                "id": "gkobes@gkobes",
-                "requires_chrome": True
-            }
-        })
-        upload = self.get_upload(filename='extension.xpi',
-                                 validation=validation)
-        addon = Addon.objects.get(pk=3615)
-        addon.update(guid='guid@xpi')
-        parsed_data = parse_addon(upload, addon=addon, user=user_factory())
-        file_ = File.from_upload(
-            upload, addon.current_version, amo.PLATFORM_ALL.id,
-            parsed_data=parsed_data)
-        assert file_.requires_chrome
-
     @override_settings(VALIDATOR_MESSAGE_LIMIT=10)
     def test_limit_validator_warnings(self):
         data = {

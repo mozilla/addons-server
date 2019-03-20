@@ -63,8 +63,6 @@ class File(OnChangeMixin, ModelBase):
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     is_restart_required = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
-    # The XPI contains JS that calls require("chrome").
-    requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True, blank=True)
     # The `binary` field is used to store the flags from amo-validator when it
     # finds files with binary extensions or files that may contain binary
@@ -172,13 +170,8 @@ class File(OnChangeMixin, ModelBase):
 
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
-
-        if upload.validation:
-            validation = json.loads(upload.validation)
-            if validation['metadata'].get('requires_chrome'):
-                file_.requires_chrome = True
-
         file_.save()
+
         if file_.is_webextension:
             permissions = list(parsed_data.get('permissions', []))
             # Add content_scripts host matches too.
@@ -194,6 +187,7 @@ class File(OnChangeMixin, ModelBase):
         copy_stored_file(upload_path, file_.current_file_path)
 
         if upload.validation:
+            validation = json.loads(upload.validation)
             FileValidation.from_json(file_, validation)
 
         return file_
