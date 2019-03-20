@@ -34,7 +34,7 @@ class TestFileEntriesSerializer(TestCase):
         extract_version_to_git(self.addon.current_version.pk)
         self.addon.current_version.refresh_from_db()
 
-    def serialize(self, obj, **extra_context):
+    def get_serializer(self, obj, **extra_context):
         api_version = api_settings.DEFAULT_VERSION
         request = APIRequestFactory().get('/api/%s/' % api_version)
         request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
@@ -42,7 +42,10 @@ class TestFileEntriesSerializer(TestCase):
         extra_context.setdefault('request', request)
 
         return FileEntriesSerializer(
-            instance=obj, context=extra_context).data
+            instance=obj, context=extra_context)
+
+    def serialize(self, obj, **extra_context):
+        return self.get_serializer(obj, **extra_context).data
 
     def test_basic(self):
         file = self.addon.current_version.current_file
@@ -101,7 +104,6 @@ class TestFileEntriesSerializer(TestCase):
         assert ja_locale_data['mimetype'] == 'application/octet-stream'
         assert ja_locale_data['path'] == u'_locales/ja'
         assert ja_locale_data['size'] is None
-        assert ja_locale_data['download_url'] is None
         assert isinstance(ja_locale_data['modified'], datetime)
 
         assert '"manifest_version": 2' in data['content']
@@ -140,7 +142,7 @@ class TestFileEntriesSerializer(TestCase):
 
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
-        serializer = FileEntriesSerializer(instance=file)
+        serializer = self.get_serializer(file)
 
         # start serialization
         data = serializer.data
@@ -237,9 +239,18 @@ class TestAddonBrowseVersionSerializer(TestCase):
         assert self.addon.current_version.release_notes
         self.version = self.addon.current_version
 
-    def serialize(self, **extra_context):
+    def get_serializer(self, **extra_context):
+        api_version = api_settings.DEFAULT_VERSION
+        request = APIRequestFactory().get('/api/%s/' % api_version)
+        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = api_version
+        extra_context.setdefault('request', request)
+
         return AddonBrowseVersionSerializer(
-            instance=self.version, context=extra_context).data
+            instance=self.version, context=extra_context)
+
+    def serialize(self, **extra_context):
+        return self.get_serializer(**extra_context).data
 
     def test_basic(self):
         # Overwritten partially to remove `files` related tests since we don't
