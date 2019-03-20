@@ -12,6 +12,7 @@ from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext
+from django.utils.http import urlquote
 from django.views.decorators.cache import never_cache
 
 import six
@@ -53,7 +54,8 @@ from olympia.reviewers.models import (
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
     AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
-    DiffableVersionSerializer, AddonCompareVersionSerializer)
+    DiffableVersionSerializer, AddonCompareVersionSerializer,
+    FileEntriesSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
@@ -1313,8 +1315,59 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
     def retrieve(self, request, *args, **kwargs):
         serializer = AddonBrowseVersionSerializer(
             instance=self.get_object(),
-            context={'file': self.request.GET.get('file', None)})
+            context={
+                'file': self.request.GET.get('file', None),
+                'request': self.request
+            }
+        )
         return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=['get'],
+        permission_classes=ReviewAddonVersionMixin.permission_classes,
+        url_path='download/(?P<filename>.*)')
+    def download(self, request, *args, **kwargs):
+        version = self.get_object()
+        file = version.current_file
+        file_param = kwargs['filename']
+
+        serializer = FileEntriesSerializer(
+            instance=file, context={
+                'file': file_param,
+                'request': request
+            }
+        )
+
+        commit = serializer._get_commit(file)
+        tree = serializer.repo.get_root_tree(commit)
+
+        try:
+            blob_or_tree = tree[serializer.get_selected_file(file)]
+
+            if blob_or_tree.type == 'tree':
+                return http.HttpResponseBadRequest('Can\'t serve directories')
+            selected_file = serializer.get_entries(file)[file_param]
+        except KeyError:
+            raise http.Http404()
+
+        actual_blob = serializer.git_repo[blob_or_tree.oid]
+        response = http.FileResponse(
+            memoryview(actual_blob),
+            content_type=selected_file['mimetype'])
+
+        # Backported from Django 2.1 to handle unicode filenames properly
+        filename = selected_file['filename']
+        try:
+            filename.encode('ascii')
+            file_expr = 'filename="{}"'.format(filename)
+        except UnicodeEncodeError:
+            file_expr = "filename*=utf-8''{}".format(urlquote(filename))
+
+        response['Content-Disposition'] = 'attachment; {}'.format(file_expr)
+        response['Content-Length'] = actual_blob.size
+
+        return response
 
 
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
@@ -1325,6 +1378,7 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
             instance=self.get_object(),
             context={
                 'file': self.request.GET.get('file', None),
+                'request': self.request,
                 'parent_version': self.get_version_object(),
             })
 

@@ -5287,6 +5287,16 @@ class TestReviewAddonVersionViewSetDetail(
 
         assert result['file']['content'] == '# beastify\n'
 
+        # make sure the correct download url is correctly generated
+        assert result['file']['download_url'] == reverse_ns(
+            'reviewers-versions-download',
+            kwargs={
+                'addon_pk': self.addon.pk,
+                'pk': self.version.pk,
+                'filename': 'README.md'
+            }
+        )
+
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
@@ -5322,6 +5332,61 @@ class TestReviewAddonVersionViewSetDetail(
         url = reverse_ns('reviewers-versions-detail', kwargs={
             'addon_pk': self.addon.pk,
             'pk': unlisted_version.pk})
+
+        response = self.client.get(url)
+        assert response.status_code == 404
+
+    def test_download_basic(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-download', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk,
+            'filename': 'manifest.json'
+        })
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert (
+            response['Content-Disposition'] ==
+            'attachment; filename="manifest.json"')
+
+    def test_download_emoji_filename(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, u'\n', u'😀❤.txt')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-download', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': new_version.pk,
+            'filename': u'😀❤.txt'
+        })
+
+        response = self.client.get(url)
+        assert response.status_code == 200
+        assert (
+            response['Content-Disposition'] ==
+            "attachment; filename*=utf-8''%F0%9F%98%80%E2%9D%A4.txt")
+
+    def test_download_notfound(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        url = reverse_ns('reviewers-versions-download', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk,
+            'filename': 'doesnotexist.json'
+        })
 
         response = self.client.get(url)
         assert response.status_code == 404
