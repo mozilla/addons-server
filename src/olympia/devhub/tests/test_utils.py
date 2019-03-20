@@ -419,7 +419,13 @@ class TestGetAddonAkismetReports(UploadTest, TestCase):
 
 
 @pytest.mark.django_db
-def test_extract_theme_properties():
+@pytest.mark.parametrize(
+    'zip_file', (
+        'src/olympia/devhub/tests/addons/static_theme.zip',
+        'src/olympia/devhub/tests/addons/static_theme_deprecated.zip',
+    )
+)
+def test_extract_theme_properties(zip_file):
     versions = {
         amo.DEFAULT_WEBEXT_MAX_VERSION,
         amo.DEFAULT_STATIC_THEME_MIN_VERSION_FIREFOX,
@@ -435,8 +441,7 @@ def test_extract_theme_properties():
     assert result == {}  # There's no file, but it be should safely handled.
 
     # Add the zip in the right place
-    zip_file = os.path.join(
-        settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+    zip_file = os.path.join(settings.ROOT, zip_file)
     copy_stored_file(zip_file, addon.current_version.all_files[0].file_path)
     result = utils.extract_theme_properties(
         addon, addon.current_version.channel)
@@ -446,7 +451,7 @@ def test_extract_theme_properties():
             "textcolor": "#000"
         },
         "images": {
-            "headerURL": "weta.png"
+            "theme_frame": "weta.png"
         }
     }
 
@@ -460,7 +465,7 @@ def test_wizard_unsupported_properties():
             'extracolor': 'rgb(1,2,3,0)',
         },
         'images': {
-            'headerURL': 'png.png',
+            'theme_frame': 'png.png',
             'additionalBackground': 'somethingelse.png',
         },
         'extrathing': {

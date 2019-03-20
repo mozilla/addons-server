@@ -83,7 +83,7 @@ $(document).ready(function() {
 
         function generateManifest() {
             var headerFile = getFile(),
-                headerURL = headerFile ? headerFile.name : "";
+                headerPath = headerFile ? headerFile.name : "";
 
             function colVal(id) {
                 return $wizard.find('#' + id).val();
@@ -105,7 +105,7 @@ $(document).ready(function() {
                 version: $wizard.data('version'),
                 theme: {
                     images: {
-                        headerURL: headerURL
+                        theme_frame: headerPath
                     },
                     colors: colors
                 }

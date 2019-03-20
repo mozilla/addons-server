@@ -79,7 +79,7 @@ def check_preview(preview_instance, theme_size_constant, write_svg_mock_args,
         ('transparent.svg', 1, 'xMaxYMin meet', 'image/svg+xml', True),
         ('missing_file.png', 0, 'xMaxYMin meet', '', False),
         ('empty-no-ext', 0, 'xMaxYMin meet', '', False),
-        (None, 0, 'xMaxYMin meet', '', False),  # i.e. no headerURL entry
+        (None, 0, 'xMaxYMin meet', '', False),  # i.e. no theme_frame entry
     )
 )
 def test_generate_static_theme_preview(
@@ -104,7 +104,7 @@ def test_generate_static_theme_preview(
         }
     }
     if header_url is not None:
-        theme_manifest['images']['headerURL'] = header_url
+        theme_manifest['images']['theme_frame'] = header_url
     addon = addon_factory()
     destination = addon.current_version.all_files[0].current_file_path
     zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
@@ -299,7 +299,7 @@ def test_generate_preview_with_additional_backgrounds(
 
     theme_manifest = {
         "images": {
-            "headerURL": "empty.png",
+            "theme_frame": "empty.png",
             "additional_backgrounds": ["weta_for_tiling.png"],
         },
         "colors": {

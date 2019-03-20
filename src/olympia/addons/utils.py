@@ -209,7 +209,7 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
         "version": '1.0',
         "theme": {
             "images": {
-                "headerURL": lwt_header
+                "theme_frame": lwt_header
             },
             "colors": {
                 "accentcolor": accentcolor,

@@ -1329,9 +1329,9 @@ def get_background_images(file_obj, theme_data, header_only=False):
             # If we can't parse the existing manifest safely return.
             return {}
     images_dict = theme_data.get('images', {})
-    # Get the reference in the manifest.  theme_frame is the Chrome variant.
+    # Get the reference in the manifest.  headerURL is the deprecated variant.
     header_url = images_dict.get(
-        'headerURL', images_dict.get('theme_frame'))
+        'theme_frame', images_dict.get('headerURL'))
     # And any additional backgrounds too.
     additional_urls = (
         images_dict.get('additional_backgrounds', []) if not header_only

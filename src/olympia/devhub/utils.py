@@ -383,6 +383,10 @@ def extract_theme_properties(addon, channel):
     theme_props['colors'] = dict(
         process_color_value(prop, color)
         for prop, color in theme_props.get('colors', {}).items())
+    # upgrade manifest from deprecated headerURL to theme_frame
+    if 'headerURL' in theme_props.get('images', {}):
+        url = theme_props['images'].pop('headerURL')
+        theme_props['images']['theme_frame'] = url
     return theme_props
 
 
@@ -395,6 +399,6 @@ def wizard_unsupported_properties(data, wizard_fields):
         key for key in data.get('colors', {}) if key not in wizard_fields]
     # and finally any 'images' properties (wizard only supports the background)
     unsupported += [
-        key for key in data.get('images', {}) if key != 'headerURL']
+        key for key in data.get('images', {}) if key != 'theme_frame']
 
     return unsupported

@@ -1952,7 +1952,7 @@ class VersionSubmitUploadMixin(object):
                     'textcolor': 'rgba(1,2,3,0.4)',
                 },
                 'images': {
-                    'headerURL': 'header.png',
+                    'theme_frame': 'header.png',
                 }
             }
             response = self.client.get(self.url)
