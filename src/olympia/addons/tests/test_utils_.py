@@ -314,7 +314,7 @@ class TestBuildStaticThemeXpiFromLwt(TestCase):
             assert manifest_json['theme']['images']['theme_frame'] == (
                 u'weta.png')
             assert manifest_json['theme']['colors']['frame'] == (
-                amo.THEME_ACCENTCOLOR_DEFAULT)
+                amo.THEME_FRAME_COLOR_DEFAULT)
             assert manifest_json['theme']['colors']['tab_background_text'] == (
                 u'#000')
             assert (xpi.read('weta.png') ==

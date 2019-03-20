@@ -254,7 +254,7 @@ THEME_PREVIEW_SIZES = {
         'full': _size_tuple(720, 92),
         'position': 2},
 }
-THEME_ACCENTCOLOR_DEFAULT = 'rgba(229,230,232,1)'
+THEME_FRAME_COLOR_DEFAULT = 'rgba(229,230,232,1)'
 THEME_PREVIEW_TOOLBAR_HEIGHT = 92  # The template toolbar is this height.
 
 # Persona image sizes [preview, full]

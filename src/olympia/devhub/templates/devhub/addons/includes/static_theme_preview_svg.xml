@@ -25,7 +25,7 @@
     </defs>
     <g transform="scale({{ svg_scale }})">
         <rect width="{{ browser_width }}" height="{{ amo.THEME_PREVIEW_TOOLBAR_HEIGHT }}"
-              class="frame" fill="{{ frame|d(amo.THEME_ACCENTCOLOR_DEFAULT) }}" data-fill="{{ amo.THEME_ACCENTCOLOR_DEFAULT }}"></rect>
+              class="frame" fill="{{ frame|d(amo.THEME_FRAME_COLOR_DEFAULT) }}" data-fill="{{ amo.THEME_FRAME_COLOR_DEFAULT }}"></rect>
         <image id="svg-header-img" width="{{ browser_width }}" height="{{ header_src_height|d(amo.THEME_PREVIEW_TOOLBAR_HEIGHT) }}" preserveAspectRatio="{{ preserve_aspect_ratio|d('xMaxYMin slice') }}"
                xlink:href="{{ header_src|d }}"></image>
         {% for background in additional_backgrounds %}

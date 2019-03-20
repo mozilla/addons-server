@@ -434,7 +434,7 @@ def test_generate_preview_with_additional_backgrounds(
 
     # These defaults are mostly defined in the xml template
     default_colors = {
-        "frame": "rgba(229,230,232,1)",  # amo.THEME_ACCENTCOLOR_DEFAULT
+        "frame": "rgba(229,230,232,1)",  # amo.THEME_FRAME_COLOR_DEFAULT
         "tab_background_text": "#123456",  # the only one defined in 'manifest'
         "bookmark_text": "#123456",  # should default to tab_background_text
         "toolbar_field": "rgba(255,255,255,1)",
