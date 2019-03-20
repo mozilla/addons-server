@@ -52,11 +52,6 @@ RUN apt-get update && apt-get install -y \
         libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get -t stretch-backports install -y \
-        # For git-based files storage backend
-        libgit2-dev \
-    && rm -rf /var/lib/apt/lists/*
-
 ADD http://geolite.maxmind.com/download/geoip/database/GeoLite2-Country.mmdb.gz /tmp
 
 RUN mkdir -p /usr/local/share/GeoIP \
