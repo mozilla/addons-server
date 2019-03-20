@@ -20,9 +20,8 @@ compare.register(
     r'compare_to', ReviewAddonVersionCompareViewSet,
     basename='reviewers-versions-compare')
 
-
 urlpatterns = [
     url(r'', include(addons.urls)),
     url(r'', include(versions.urls)),
-    url(r'', include(compare.urls))
+    url(r'', include(compare.urls)),
 ]

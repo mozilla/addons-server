@@ -132,6 +132,7 @@ This endpoint allows you to browse through the contents of an Add-on version.
     :>json object file: The file attached to this version. See :ref:`version detail -> files[] <version-detail-object>` for more details.
     :>json string file.content: Raw content of the requested file.
     :>json string file.selected_file: The selected file, either from the ``file`` parameter or the default (manifest.json, install.rdf or package.json for Add-ons as well as the XML file for search engines).
+    :>json string|null file.download_url: The download url of the selected file or ``null`` in case of a directory.
     :>json array file.entries[]: The complete file-tree of the extracted XPI.
     :>json int file.entries[].depth: Level of folder-tree depth, starting with 0.
     :>json string file.entries[].filename: The filename of the file.
@@ -254,3 +255,22 @@ This endpoint allows you to compare two Add-on versions with each other.
                 "hash": "00161dcf22afb7bab23cf205f0c903eb5aad5431"
             }
         ]
+
+
+--------
+Download
+--------
+
+This endpoint allows you to download files from an Add-on.
+
+    .. note::
+        Requires authentication and the current user to have ``ReviewerTools:View``
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
+        unlisted add-ons. Additionally the current user can also be the owner
+        of the add-on.
+
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/download/(str:filename)/
+
+    This will return a streaming response serving the file.
+
+    ``Content-Type``, ``Content-Disposition`` and ``Content-Length`` are correctly set.

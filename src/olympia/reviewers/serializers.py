@@ -9,12 +9,14 @@ import magic
 
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
+from rest_framework.reverse import reverse as drf_reverse
 
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
 
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
     VersionSerializer, FileSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
@@ -49,12 +51,13 @@ class AddonReviewerFlagsSerializer(serializers.ModelSerializer):
 
 class FileEntriesSerializer(FileSerializer):
     content = serializers.SerializerMethodField()
+    download_url = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'content', 'entries', 'selected_file'
+            'content', 'entries', 'selected_file', 'download_url'
         )
         model = File
 
@@ -193,6 +196,27 @@ class FileEntriesSerializer(FileSerializer):
             return unicodehelper.decode(
                 self.git_repo[blob_or_tree.oid].read_raw())
 
+    def get_download_url(self, obj):
+        request = self.context.get('request')
+
+        commit = self._get_commit(obj)
+        tree = self.repo.get_root_tree(commit)
+        selected_file = self.get_selected_file(obj)
+        blob_or_tree = tree[selected_file]
+
+        if blob_or_tree.type == 'tree':
+            return None
+
+        return drf_reverse(
+            'reviewers-versions-download',
+            request=request,
+            kwargs={
+                'addon_pk': self.get_instance().version.addon.pk,
+                'pk': self.get_instance().version.pk,
+                'filename': selected_file
+            }
+        )
+
 
 class AddonBrowseVersionSerializer(VersionSerializer):
     validation_url_json = serializers.SerializerMethodField()
@@ -236,10 +260,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
     diff = serializers.SerializerMethodField()
     entries = serializers.SerializerMethodField()
     selected_file = serializers.SerializerMethodField()
+    download_url = serializers.SerializerMethodField()
 
     class Meta:
         fields = FileSerializer.Meta.fields + (
-            'diff', 'entries', 'selected_file'
+            'diff', 'entries', 'selected_file', 'download_url'
         )
         model = File
 

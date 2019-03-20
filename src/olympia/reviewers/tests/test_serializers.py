@@ -6,6 +6,9 @@ import pytest
 
 from mock import MagicMock
 
+from rest_framework.test import APIRequestFactory
+from rest_framework.settings import api_settings
+
 from django.core.cache import cache
 from django.conf import settings
 from django.utils.encoding import force_bytes
@@ -14,7 +17,7 @@ from olympia import amo
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, FileEntriesSerializer)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory, reverse_ns
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.versions.tasks import extract_version_to_git
 from olympia.versions.models import License
@@ -32,6 +35,12 @@ class TestFileEntriesSerializer(TestCase):
         self.addon.current_version.refresh_from_db()
 
     def serialize(self, obj, **extra_context):
+        api_version = api_settings.DEFAULT_VERSION
+        request = APIRequestFactory().get('/api/%s/' % api_version)
+        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = api_version
+        extra_context.setdefault('request', request)
+
         return FileEntriesSerializer(
             instance=obj, context=extra_context).data
 
@@ -51,6 +60,14 @@ class TestFileEntriesSerializer(TestCase):
             '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
 
         assert data['selected_file'] == 'manifest.json'
+        assert data['download_url'] == reverse_ns(
+            'reviewers-versions-download',
+            kwargs={
+                'addon_pk': self.addon.pk,
+                'pk': self.addon.current_version.pk,
+                'filename': 'manifest.json'
+            }
+        )
 
         assert set(data['entries'].keys()) == {
             'README.md',
@@ -72,6 +89,7 @@ class TestFileEntriesSerializer(TestCase):
         assert manifest_data['mime_category'] == 'text'
         assert manifest_data['path'] == u'manifest.json'
         assert manifest_data['size'] == 622
+
         assert isinstance(manifest_data['modified'], datetime)
 
         ja_locale_data = data['entries']['_locales/ja']
@@ -83,6 +101,7 @@ class TestFileEntriesSerializer(TestCase):
         assert ja_locale_data['mimetype'] == 'application/octet-stream'
         assert ja_locale_data['path'] == u'_locales/ja'
         assert ja_locale_data['size'] is None
+        assert ja_locale_data['download_url'] is None
         assert isinstance(ja_locale_data['modified'], datetime)
 
         assert '"manifest_version": 2' in data['content']
@@ -110,6 +129,14 @@ class TestFileEntriesSerializer(TestCase):
         assert data['selected_file'] == 'icons/LICENSE'
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
+        assert data['download_url'] == reverse_ns(
+            'reviewers-versions-download',
+            kwargs={
+                'addon_pk': self.addon.pk,
+                'pk': self.addon.current_version.pk,
+                'filename': 'icons/LICENSE'
+            }
+        )
 
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
