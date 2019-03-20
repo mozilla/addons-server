@@ -212,8 +212,8 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
                 "theme_frame": lwt_header
             },
             "colors": {
-                "accentcolor": accentcolor,
-                "textcolor": textcolor
+                "frame": accentcolor,
+                "tab_background_text": textcolor
             }
         }
     }

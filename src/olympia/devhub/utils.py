@@ -379,7 +379,7 @@ def extract_theme_properties(addon, channel):
         # If we can't parse the existing manifest safely return.
         return {}
     theme_props = parsed_data.get('theme', {})
-    # pre-process colors to convert chrome style colors and strip spaces
+    # pre-process colors to deprecated colors; strip spaces.
     theme_props['colors'] = dict(
         process_color_value(prop, color)
         for prop, color in theme_props.get('colors', {}).items())

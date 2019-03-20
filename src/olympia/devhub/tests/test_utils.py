@@ -447,8 +447,8 @@ def test_extract_theme_properties(zip_file):
         addon, addon.current_version.channel)
     assert result == {
         "colors": {
-            "accentcolor": "#adb09f",
-            "textcolor": "#000"
+            "frame": "#adb09f",
+            "tab_background_text": "#000"
         },
         "images": {
             "theme_frame": "weta.png"
