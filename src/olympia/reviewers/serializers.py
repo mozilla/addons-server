@@ -16,7 +16,6 @@ from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
 
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
     VersionSerializer, FileSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags

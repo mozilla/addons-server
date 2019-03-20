@@ -10,7 +10,6 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
-from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext
 from django.utils.http import urlquote
