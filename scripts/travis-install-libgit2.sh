@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -o errexit -o nounset
 
-LIBGIT2_VERSION="0.27.4"
+LIBGIT2_VERSION="0.28.1"
 
 if [ -d "libgit2" ]; then
     rm -rf libgit2/
