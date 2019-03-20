@@ -35,7 +35,7 @@ class FileAdmin(admin.ModelAdmin):
         }),
         ('Details', {
             'fields': (
-                'jetpack_version', 'cert_serial_num', 'original_status'),
+                'cert_serial_num', 'original_status'),
         }),
         ('Flags', {
             'fields': (

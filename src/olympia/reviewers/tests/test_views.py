@@ -1227,21 +1227,6 @@ class TestQueueBasics(QueueTest):
             assert response.status_code == 200
             assert pq(response.content)('th.ordered a').text() == text
 
-    def test_flags_jetpack(self):
-        addon = addon_factory(
-            status=amo.STATUS_NOMINATED, name='Jetpack',
-            version_kw={'version': '0.1'},
-            file_kw={'status': amo.STATUS_AWAITING_REVIEW,
-                     'jetpack_version': 1.2})
-
-        r = self.client.get(reverse('reviewers.queue_nominated'))
-
-        rows = pq(r.content)('#addon-queue tr.addon-row')
-        assert rows.length == 1
-        assert rows.attr('data-addon') == str(addon.id)
-        assert rows.find('td').eq(1).text() == 'Jetpack 0.1'
-        assert rows.find('.ed-sprite-jetpack').length == 1
-
     def test_flags_is_restart_required(self):
         addon = addon_factory(
             status=amo.STATUS_NOMINATED, name='Some Add-on',
@@ -1255,7 +1240,6 @@ class TestQueueBasics(QueueTest):
         assert rows.length == 1
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Some Add-on 0.1'
-        assert rows.find('.ed-sprite-jetpack').length == 0
         assert rows.find('.ed-sprite-is_restart_required').length == 1
 
     def test_flags_is_restart_required_false(self):
@@ -1271,7 +1255,6 @@ class TestQueueBasics(QueueTest):
         assert rows.length == 1
         assert rows.attr('data-addon') == str(addon.id)
         assert rows.find('td').eq(1).text() == 'Restartless 0.1'
-        assert rows.find('.ed-sprite-jetpack').length == 0
         assert rows.find('.ed-sprite-is_restart_required').length == 0
 
     def test_tabnav_permissions(self):

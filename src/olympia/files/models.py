@@ -58,7 +58,6 @@ class File(OnChangeMixin, ModelBase):
     # The original hash of the file, before we sign it, or repackage it in
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
-    jetpack_version = models.CharField(max_length=10, null=True, blank=True)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
@@ -499,12 +498,6 @@ def track_status_change(old_attr=None, new_attr=None, **kwargs):
 
 def track_file_status_change(file_):
     statsd.incr('file_status_change.all.status_{}'.format(file_.status))
-
-    if (file_.jetpack_version and
-            not file_.is_restart_required and
-            not file_.requires_chrome):
-        statsd.incr('file_status_change.jetpack_sdk_only.status_{}'
-                    .format(file_.status))
 
 
 @python_2_unicode_compatible

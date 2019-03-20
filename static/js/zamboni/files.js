@@ -525,11 +525,6 @@ function bind_viewer(nodes) {
                 this.known_files = {};
                 var metadata = data.validation.metadata;
                 if (metadata) {
-                    if (metadata.jetpack_sdk_version) {
-                        $('#jetpack-version').show()
-                            .find('span').text(metadata.jetpack_sdk_version);
-                    }
-
                     var identified_files = {};
                     (function process_files(prefix, metadata) {
                         if (metadata.identified_files) {

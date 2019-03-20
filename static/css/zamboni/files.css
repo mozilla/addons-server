@@ -123,7 +123,6 @@
 
 .collapsed-files .command,
 .collapsed-files #toggle-known-container,
-.collapsed-files #jetpack-version,
 .collapsed-files #tab-stops-container {
     display: none !important;
 }
@@ -631,11 +630,6 @@ a.selected > span {
 #toggle-known-container {
     margin-top: .3em;
 }
-
-#jetpack-version {
-    margin: .5em 0;
-}
-
 
 option.status-public {
     font-weight: bold;
