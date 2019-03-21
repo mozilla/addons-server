@@ -791,25 +791,6 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         with storage.open(files[0].file_path) as f:
             assert uploaded_hash == hashlib.sha256(f.read()).hexdigest()
 
-    def test_file_multi_package(self):
-        self.upload = self.get_upload('multi-package.xpi')
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        files = version.all_files
-        assert files[0].is_multi_package
-
-    def test_file_not_multi_package(self):
-        parsed_data = parse_addon(self.upload, self.addon, user=mock.Mock())
-        version = Version.from_upload(
-            self.upload, self.addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
-        files = version.all_files
-        assert not files[0].is_multi_package
-
     def test_track_upload_time(self):
         # Set created time back (just for sanity) otherwise the delta
         # would be in the microsecond range.

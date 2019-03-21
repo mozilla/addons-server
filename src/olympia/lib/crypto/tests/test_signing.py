@@ -2,7 +2,6 @@
 import hashlib
 import os
 import shutil
-import tempfile
 import zipfile
 import collections
 import datetime
@@ -23,7 +22,6 @@ from waffle.testutils import override_sample
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
-from olympia.files.utils import extract_xpi
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int
 
@@ -222,30 +220,6 @@ class TestSigning(TestCase):
         signed_size = storage.size(self.file_.file_path)
         assert self.file_.size == signed_size
         assert unsigned_size < signed_size
-
-    def test_sign_file_multi_package(self):
-        fpath = 'src/olympia/files/fixtures/files/multi-package.xpi'
-        with amo.tests.copy_file(fpath, self.file_.file_path, overwrite=True):
-            self.file_.update(is_multi_package=True)
-            self.assert_not_signed()
-
-            with self.assertRaises(signing.SigningError):
-                signing.sign_file(self.file_)
-            self.assert_not_signed()
-            # The multi-package itself isn't signed.
-            assert not signing.is_signed(self.file_.file_path)
-            # The internal extensions aren't either.
-            folder = tempfile.mkdtemp(dir=settings.TMP_PATH)
-            try:
-                extract_xpi(self.file_.file_path, folder)
-                # The extension isn't.
-                assert not signing.is_signed(
-                    os.path.join(folder, 'random_extension.xpi'))
-                # And the theme isn't either.
-                assert not signing.is_signed(
-                    os.path.join(folder, 'random_theme.xpi'))
-            finally:
-                amo.utils.rm_local_tmp_dir(folder)
 
     def test_call_signing(self):
         assert signing.sign_file(self.file_)
