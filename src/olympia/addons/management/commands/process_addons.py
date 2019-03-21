@@ -8,7 +8,6 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
-    add_firefox57_tag,
     bump_appver_for_legacy_addons,
     delete_addons,
     disable_legacy_files,
@@ -43,14 +42,6 @@ tasks = {
     'sign_addons': {
         'method': sign_addons,
         'qs': []},
-    'add_firefox57_tag_to_webextensions': {
-        'method': add_firefox57_tag,
-        'qs': [
-            Q(status=amo.STATUS_PUBLIC) & (
-                Q(_current_version__files__is_webextension=True) |
-                Q(_current_version__files__is_mozilla_signed_extension=True)
-            )
-        ]},
     'bump_appver_for_legacy_addons': {
         'method': bump_appver_for_legacy_addons,
         'qs': [

@@ -299,13 +299,18 @@ class AddonTagQueryParam(AddonQueryParam):
     # even with the custom get_value() implementation.
     query_param = 'tag'
 
+    # These tags are tags that used to exist but don't any more, filtering
+    # on them would find nothing, so they are ignored.
+    ignored = ('jetpack', 'firefox57')
+
     def get_value(self):
         return self.request.GET.get(self.query_param, '').split(',')
 
     def get_es_query(self):
         # Just using 'terms' would not work, as it would return any tag match
         # in the list, but we want to exactly match all of them.
-        return [Q('term', tags=tag) for tag in self.get_value()]
+        return [Q('term', tags=tag) for tag in self.get_value()
+                if tag not in self.ignored]
 
 
 class AddonExcludeAddonsQueryParam(AddonQueryParam):

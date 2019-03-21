@@ -455,24 +455,6 @@ def find_inconsistencies_between_es_and_db(ids, **kw):
 
 @task
 @use_primary_db
-def add_firefox57_tag(ids, **kw):
-    """Add firefox57 tag to addons with the specified ids."""
-    log.info(
-        'Adding firefox57 tag to addons %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
-
-    addons = Addon.objects.filter(id__in=ids)
-    for addon in addons:
-        # This will create a couple extra queries to check for tag/addontag
-        # existence, and then trigger update_tag_stat tasks. But the
-        # alternative is adding activity log manually, making sure we don't
-        # add duplicate tags, manually updating the tag stats, so it's ok for
-        # a one-off task.
-        Tag(tag_text='firefox57').save_tag(addon)
-
-
-@task
-@use_primary_db
 def add_dynamic_theme_tag(ids, **kw):
     """Add dynamic theme tag to addons with the specified ids."""
     log.info(
