@@ -35,14 +35,14 @@ class FileAdmin(admin.ModelAdmin):
         }),
         ('Details', {
             'fields': (
-                'jetpack_version', 'cert_serial_num', 'original_status'),
+                'cert_serial_num', 'original_status'),
         }),
         ('Flags', {
             'fields': (
                 'is_restart_required', 'strict_compatibility',
-                'requires_chrome', 'binary', 'binary_components',
-                'is_signed', 'is_multi_package', 'is_experiment',
-                'is_webextension', 'is_mozilla_signed_extension')
+                'binary', 'binary_components', 'is_signed', 'is_multi_package',
+                'is_experiment', 'is_webextension',
+                'is_mozilla_signed_extension')
         }),
     )
 

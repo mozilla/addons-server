@@ -420,8 +420,6 @@
     "platform": 1,
     "version": 1,
     "reviewed": null,
-    "jetpack_version": null,
-    "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:39:45",
     "is_restart_required": true,
     "size": 0
@@ -442,8 +440,6 @@
     "platform": 1,
     "version": 2,
     "reviewed": null,
-    "jetpack_version": null,
-    "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:07",
     "is_restart_required": true,
     "size": 0
@@ -464,8 +460,6 @@
     "platform": 1,
     "version": 3,
     "reviewed": null,
-    "jetpack_version": null,
-    "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:16",
     "is_restart_required": true,
     "size": 0
@@ -486,8 +480,6 @@
     "platform": 1,
     "version": 4,
     "reviewed": null,
-    "jetpack_version": null,
-    "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:23",
     "is_restart_required": true,
     "size": 0
@@ -508,8 +500,6 @@
     "platform": 1,
     "version": 5,
     "reviewed": null,
-    "jetpack_version": null,
-    "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:24",
     "is_restart_required": true,
     "size": 0
@@ -530,8 +520,6 @@
     "platform": 1,
     "version": 6,
     "reviewed": null,
-    "jetpack_version": null,
-    "requires_chrome": false,
     "datestatuschanged": "2014-12-08T06:40:25",
     "is_restart_required": true,
     "size": 0

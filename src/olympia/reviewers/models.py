@@ -43,7 +43,6 @@ VIEW_QUEUE_FLAGS = (
         _('Needs Admin Content Review')),
     ('needs_admin_theme_review', 'needs-admin-theme-review',
         _('Needs Admin Static Theme Review')),
-    ('is_jetpack', 'jetpack', _('Jetpack Add-on')),
     ('is_restart_required', 'is_restart_required', _('Requires Restart')),
     ('pending_info_request', 'info', _('More Information Requested')),
     ('expired_info_request', 'expired-info', _('Expired Information Request')),
@@ -112,7 +111,6 @@ class ViewQueue(RawSQLModel):
     needs_admin_content_review = models.NullBooleanField()
     needs_admin_theme_review = models.NullBooleanField()
     is_restart_required = models.BooleanField()
-    is_jetpack = models.BooleanField()
     source = models.CharField(max_length=100)
     is_webextension = models.BooleanField()
     latest_version = models.CharField(max_length=255)
@@ -142,7 +140,6 @@ class ViewQueue(RawSQLModel):
                 ('expired_info_request', (
                     'TIMEDIFF(addons_addonreviewerflags.pending_info_request,'
                     'NOW()) < 0')),
-                ('is_jetpack', 'MAX(files.jetpack_version IS NOT NULL)'),
                 ('is_restart_required', 'MAX(files.is_restart_required)'),
                 ('source', 'versions.source'),
                 ('is_webextension', 'MAX(files.is_webextension)'),

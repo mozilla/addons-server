@@ -31,7 +31,7 @@ class TestWebextExtractPermissions(UploadTest):
     def setUp(self):
         super(TestWebextExtractPermissions, self).setUp()
         self.platform = amo.PLATFORM_ALL.id
-        self.addon = Addon.objects.create(guid='guid@jetpack',
+        self.addon = Addon.objects.create(guid='guid@webext',
                                           type=amo.ADDON_EXTENSION,
                                           name='xxx')
         self.version = Version.objects.create(addon=self.addon)

@@ -329,7 +329,9 @@ VALIDATOR_SKELETON_RESULTS = {
     "notices": 0,
     "success": True,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
-    "metadata": {"requires_chrome": False, "listed": True},
+    "metadata": {
+        "listed": True,
+    },
     "messages": [],
     "message_tree": {},
     "ending_tier": 5,
@@ -343,9 +345,8 @@ VALIDATOR_SKELETON_EXCEPTION_WEBEXT = {
     "success": False,
     "compatibility_summary": {"notices": 0, "errors": 0, "warnings": 0},
     "metadata": {
-        "requires_chrome": False,
         "listed": True,
-        "is_webextension": True
+        "is_webextension": True,
     },
     "messages": [
         {"id": ["validator", "unexpected_exception"],

@@ -58,14 +58,11 @@ class File(OnChangeMixin, ModelBase):
     # The original hash of the file, before we sign it, or repackage it in
     # any other way.
     original_hash = models.CharField(max_length=255, default='')
-    jetpack_version = models.CharField(max_length=10, null=True, blank=True)
     status = models.PositiveSmallIntegerField(
         choices=STATUS_CHOICES.items(), default=amo.STATUS_AWAITING_REVIEW)
     datestatuschanged = models.DateTimeField(null=True, auto_now_add=True)
     is_restart_required = models.BooleanField(default=False)
     strict_compatibility = models.BooleanField(default=False)
-    # The XPI contains JS that calls require("chrome").
-    requires_chrome = models.BooleanField(default=False)
     reviewed = models.DateTimeField(null=True, blank=True)
     # The `binary` field is used to store the flags from amo-validator when it
     # finds files with binary extensions or files that may contain binary
@@ -173,13 +170,8 @@ class File(OnChangeMixin, ModelBase):
 
         file_.hash = file_.generate_hash(upload_path)
         file_.original_hash = file_.hash
-
-        if upload.validation:
-            validation = json.loads(upload.validation)
-            if validation['metadata'].get('requires_chrome'):
-                file_.requires_chrome = True
-
         file_.save()
+
         if file_.is_webextension:
             permissions = list(parsed_data.get('permissions', []))
             # Add content_scripts host matches too.
@@ -195,6 +187,7 @@ class File(OnChangeMixin, ModelBase):
         copy_stored_file(upload_path, file_.current_file_path)
 
         if upload.validation:
+            validation = json.loads(upload.validation)
             FileValidation.from_json(file_, validation)
 
         return file_
@@ -499,12 +492,6 @@ def track_status_change(old_attr=None, new_attr=None, **kwargs):
 
 def track_file_status_change(file_):
     statsd.incr('file_status_change.all.status_{}'.format(file_.status))
-
-    if (file_.jetpack_version and
-            not file_.is_restart_required and
-            not file_.requires_chrome):
-        statsd.incr('file_status_change.jetpack_sdk_only.status_{}'
-                    .format(file_.status))
 
 
 @python_2_unicode_compatible

@@ -136,13 +136,6 @@ class TestPendingQueue(TestQueue):
         queue = self.Queue.objects.get()
         assert queue.flags == [('info', 'More Information Requested')]
 
-    def test_flags_jetpack(self):
-        self.new_addon().find_latest_version(self.channel).all_files[0].update(
-            jetpack_version='1.8')
-
-        queue = self.Queue.objects.get()
-        assert queue.flags == [('jetpack', 'Jetpack Add-on')]
-
     def test_flags_is_restart_required(self):
         self.new_addon().find_latest_version(self.channel).all_files[0].update(
             is_restart_required=True)
