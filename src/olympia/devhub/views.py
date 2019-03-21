@@ -1239,26 +1239,26 @@ def submit_version_distribution(request, addon_id, addon):
 
 
 WIZARD_COLOR_FIELDS = [
-    ('accentcolor',
+    ('frame',
      _(u'Header area background'),
      _(u'The color of the header area background, displayed in the part of '
        u'the header not covered or visible through the header image. Manifest '
-       u'field:  accentcolor.'),
+       u'field:  frame.'),
      'rgba(229,230,232,1)'),
-    ('textcolor',
+    ('tab_background_text',
      _(u'Header area text and icons'),
      _(u'The color of the text and icons in the header area, except the '
-       u'active tab. Manifest field:  textcolor.'),
+       u'active tab. Manifest field:  tab_background_text.'),
      'rgba(0,0,0,1'),
     ('toolbar',
      _(u'Toolbar area background'),
      _(u'The background color for the navigation bar, the bookmarks bar, and '
        u'the selected tab.  Manifest field:  toolbar.'),
      False),
-    ('toolbar_text',
+    ('bookmark_text',
      _(u'Toolbar area text and icons'),
      _(u'The color of the text and icons in the toolbar and the active tab. '
-       u'Manifest field:  toolbar_text.'),
+       u'Manifest field:  bookmark_text.'),
      False),
     ('toolbar_field',
      _(u'Toolbar field area background'),

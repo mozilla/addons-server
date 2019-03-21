@@ -132,15 +132,17 @@ def test_additional_background(
 
 
 @pytest.mark.parametrize(
-    'chrome_prop, chrome_color, firefox_prop, css_color', (
-        ('bookmark_text', [2, 3, 4], 'toolbar_text', u'rgb(2,3,4)'),
-        ('frame', [12, 13, 14], 'accentcolor', u'rgb(12,13,14)'),
-        ('frame_inactive', [22, 23, 24], 'accentcolor', u'rgb(22,23,24)'),
-        ('tab_background_text', [32, 33, 34], 'textcolor', u'rgb(32,33,34)'),
-        ('accentcolor', u'rgb(32, 33,  34)', 'accentcolor', u'rgb(32,33,34)'),
+    'manifest_property, manifest_color, firefox_prop, css_color', (
+        ('bookmark_text', [2, 3, 4], 'bookmark_text', 'rgb(2,3,4)'),
+        ('frame', [12, 13, 14], 'frame', 'rgb(12,13,14)'),
+        ('frame_inactive', [122, 123, 124], 'frame', 'rgb(122,123,124)'),
+        ('textcolor', 'rgb(32,33,34)', 'tab_background_text', 'rgb(32,33,34)'),
+        ('accentcolor', 'rgb(42, 43, 44)', 'frame', 'rgb(42,43,44)'),
+        ('toolbar_text', 'rgb(42,43,44)', 'bookmark_text', 'rgb(42,43,44)'),
+        ('frame_inactive', 'rgb(42, 43,  44)', 'frame', 'rgb(42,43,44)'),
     )
 )
-def test_process_color_value(chrome_prop, chrome_color, firefox_prop,
+def test_process_color_value(manifest_property, manifest_color, firefox_prop,
                              css_color):
     assert (firefox_prop, css_color) == (
-        process_color_value(chrome_prop, chrome_color))
+        process_color_value(manifest_property, manifest_color))

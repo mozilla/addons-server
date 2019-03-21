@@ -34,8 +34,7 @@ def _build_static_theme_preview_context(theme_manifest, file_):
         process_color_value(prop, color)
         for prop, color in theme_manifest.get('colors', {}).items()))
     images_dict = theme_manifest.get('images', {})
-    header_url = images_dict.get(
-        'headerURL', images_dict.get('theme_frame', ''))
+    header_url = images_dict.get('theme_frame', '')
     file_ext = os.path.splitext(header_url)[1]
     backgrounds = get_background_images(file_, theme_manifest)
     header_src, header_width, header_height = encode_header(

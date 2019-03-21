@@ -636,7 +636,7 @@ class TestManifestJSONExtractorStaticTheme(TestManifestJSONExtractor):
 
     def test_theme_json_extracted(self):
         # Check theme data is extracted from the manifest and returned.
-        data = {'theme': {'colors': {'textcolor': "#3deb60"}}}
+        data = {'theme': {'colors': {'tab_background_text': "#3deb60"}}}
         assert self.parse(data)['theme'] == data['theme']
 
     def test_unknown_strict_max_version(self):
@@ -1092,11 +1092,22 @@ class TestXMLVulnerabilities(TestCase):
 class TestGetBackgroundImages(TestCase):
     file_obj = os.path.join(
         settings.ROOT, 'src/olympia/devhub/tests/addons/static_theme.zip')
+    file_obj_dep = os.path.join(
+        settings.ROOT,
+        'src/olympia/devhub/tests/addons/static_theme_deprecated.zip')
 
     def test_get_background_images(self):
-        data = {'images': {'headerURL': 'weta.png'}}
+        data = {'images': {'theme_frame': 'weta.png'}}
 
         images = utils.get_background_images(self.file_obj, data)
+        assert 'weta.png' in images
+        assert len(images.items()) == 1
+        assert len(images['weta.png']) == 126447
+
+    def test_get_background_deprecated(self):
+        data = {'images': {'headerURL': 'weta.png'}}
+
+        images = utils.get_background_images(self.file_obj_dep, data)
         assert 'weta.png' in images
         assert len(images.items()) == 1
         assert len(images['weta.png']) == 126447
@@ -1108,7 +1119,7 @@ class TestGetBackgroundImages(TestCase):
         assert len(images['weta.png']) == 126447
 
     def test_get_background_images_missing(self):
-        data = {'images': {'headerURL': 'missing_file.png'}}
+        data = {'images': {'theme_frame': 'missing_file.png'}}
 
         images = utils.get_background_images(self.file_obj, data)
         assert not images
@@ -1117,7 +1128,7 @@ class TestGetBackgroundImages(TestCase):
         self.file_obj = os.path.join(
             settings.ROOT,
             'src/olympia/devhub/tests/addons/static_theme_non_image.zip')
-        data = {'images': {'headerURL': 'not_an_image.js'}}
+        data = {'images': {'theme_frame': 'not_an_image.js'}}
 
         images = utils.get_background_images(self.file_obj, data)
         assert not images
@@ -1127,7 +1138,7 @@ class TestGetBackgroundImages(TestCase):
             settings.ROOT,
             'src/olympia/devhub/tests/addons/static_theme_tiled.zip')
         data = {'images': {
-            'headerURL': 'empty.png',
+            'theme_frame': 'empty.png',
             'additional_backgrounds': [
                 'transparent.gif', 'missing_&_ignored.png',
                 'weta_for_tiling.png']

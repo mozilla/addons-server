@@ -31,7 +31,7 @@
           <input type="text" id="theme-name"/>
         {% endif %}
     </div>
-    <div id="theme-header" class="row" data-existing-header="{{ existing_properties.get('images', {}).get('headerURL','') }}">
+    <div id="theme-header" class="row" data-existing-header="{{ existing_properties.get('images', {}).get('theme_frame','') }}">
       <label class="row" for="header-img">
         <h3>{{ _('Select a header image for your theme') }}<span class="req" title="{{ _('required') }}">*</span></h3>
       </label>
@@ -51,7 +51,7 @@
     <div class="colors">
       <h3>{{ _('Select colors for your theme') }}</h3>
       <ul class="colors">
-        {% set property_list_left = ['textcolor','toolbar_text', 'toolbar_field_text'] %}
+        {% set property_list_left = ['tab_background_text','bookmark_text', 'toolbar_field_text'] %}
         {% set existing_colors = existing_properties['colors'] or {} %}
         {% for (property, label, tip, val_default) in colors %}
           {% if property in property_list_left  %}

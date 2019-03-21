@@ -198,7 +198,7 @@ MULTIPLE_STOPS_REGEX = re.compile(r'\.{2,}')
 def build_static_theme_xpi_from_lwt(lwt, upload_zip):
     # create manifest
     accentcolor = (('#%s' % lwt.persona.accentcolor) if lwt.persona.accentcolor
-                   else amo.THEME_ACCENTCOLOR_DEFAULT)
+                   else amo.THEME_FRAME_COLOR_DEFAULT)
     textcolor = '#%s' % (lwt.persona.textcolor or '000')
 
     lwt_header = MULTIPLE_STOPS_REGEX.sub(
@@ -209,11 +209,11 @@ def build_static_theme_xpi_from_lwt(lwt, upload_zip):
         "version": '1.0',
         "theme": {
             "images": {
-                "headerURL": lwt_header
+                "theme_frame": lwt_header
             },
             "colors": {
-                "accentcolor": accentcolor,
-                "textcolor": textcolor
+                "frame": accentcolor,
+                "tab_background_text": textcolor
             }
         }
     }

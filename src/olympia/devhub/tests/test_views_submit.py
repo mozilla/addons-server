@@ -1948,11 +1948,11 @@ class VersionSubmitUploadMixin(object):
         with mock.patch(mock_point) as extract_theme_properties_mock:
             extract_theme_properties_mock.return_value = {
                 'colors': {
-                    'accentcolor': '#123456',
-                    'textcolor': 'rgba(1,2,3,0.4)',
+                    'frame': '#123456',
+                    'tab_background_text': 'rgba(1,2,3,0.4)',
                 },
                 'images': {
-                    'headerURL': 'header.png',
+                    'theme_frame': 'header.png',
                 }
             }
             response = self.client.get(self.url)
@@ -1964,8 +1964,8 @@ class VersionSubmitUploadMixin(object):
         assert doc('input#theme-name').attr('value') == (
             six.text_type(self.addon.name))
         # Existing colors should be the default values for the fields
-        assert doc('#accentcolor').attr('value') == '#123456'
-        assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        assert doc('#frame').attr('value') == '#123456'
+        assert doc('#tab_background_text').attr('value') == 'rgba(1,2,3,0.4)'
         # And the theme header url is there for the JS to load
         assert doc('#theme-header').attr('data-existing-header') == (
             'header.png')
@@ -2007,8 +2007,8 @@ class VersionSubmitUploadMixin(object):
         with mock.patch(mock_point) as extract_theme_properties_mock:
             extract_theme_properties_mock.return_value = {
                 'colors': {
-                    'accentcolor': '#123456',
-                    'textcolor': 'rgba(1,2,3,0.4)',
+                    'frame': '#123456',
+                    'tab_background_text': 'rgba(1,2,3,0.4)',
                     'tab_line': '#123',
                 },
                 'images': {
@@ -2025,8 +2025,8 @@ class VersionSubmitUploadMixin(object):
         assert doc('input#theme-name').attr('value') == (
             six.text_type(self.addon.name))
         # Existing colors should be the default values for the fields
-        assert doc('#accentcolor').attr('value') == '#123456'
-        assert doc('#textcolor').attr('value') == 'rgba(1,2,3,0.4)'
+        assert doc('#frame').attr('value') == '#123456'
+        assert doc('#tab_background_text').attr('value') == 'rgba(1,2,3,0.4)'
         # Warning about extra properties this time:
         assert b'are unsupported in this wizard' in response.content
         unsupported_list = doc('.notification-box.error ul.note li')

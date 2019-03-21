@@ -83,18 +83,18 @@ $(document).ready(function() {
 
         function generateManifest() {
             var headerFile = getFile(),
-                headerURL = headerFile ? headerFile.name : "";
+                headerPath = headerFile ? headerFile.name : "";
 
             function colVal(id) {
                 return $wizard.find('#' + id).val();
             }
 
             var colors = {
-                "accentcolor": colVal('accentcolor'),
-                "textcolor": colVal('textcolor'),
+                "frame": colVal('frame'),
+                "tab_background_text": colVal('tab_background_text'),
                 "toolbar": colVal('toolbar'),
                 "toolbar_text": colVal('toolbar_text'),
-                "toolbar_field": colVal('toolbar_field'),
+                "bookmark_text": colVal('bookmark_text'),
                 "toolbar_field_text": colVal('toolbar_field_text')
             };
             colors = _.omit(colors, function(value) {return value === "";});
@@ -105,7 +105,7 @@ $(document).ready(function() {
                 version: $wizard.data('version'),
                 theme: {
                     images: {
-                        headerURL: headerURL
+                        theme_frame: headerPath
                     },
                     colors: colors
                 }
@@ -236,8 +236,8 @@ $(document).ready(function() {
         function required_fields_present() {
             return $wizard.find('#theme-name').val() !== "" &&
                    getFile() &&
-                   $wizard.find('#accentcolor').val() !== "" &&
-                   $wizard.find('#textcolor').val() !== "";
+                   $wizard.find('#frame').val() !== "" &&
+                   $wizard.find('#tab_background_text').val() !== "";
         }
     }
 
