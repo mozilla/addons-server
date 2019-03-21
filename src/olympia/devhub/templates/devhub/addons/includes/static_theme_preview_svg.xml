@@ -42,9 +42,9 @@
               class="toolbar_field" fill="{{ toolbar_field|d('rgba(255,255,255,1)') }}" data-fill="rgba(255,255,255,1)"/>
         <rect id="svg-url-field-text" width="{{ browser_width - 330 }}" height="5" x="96" y="61" rx="2.5"
               class="toolbar_field_text" fill="{{ toolbar_field_text|d }}"/>
-        <circle cx="27" cy="63" r="7" class="bookmark_text" fill="{{ bookmark_text|d(tab_background_text, true)|d }}" data-fallback="tab_background_text" />
-        <circle cx="55" cy="63" r="7" class="bookmark_text" fill="{{ bookmark_text|d(tab_background_text, true)|d }}" data-fallback="tab_background_text" />
-        <g transform="translate({{ browser_width - 34 }} 54)" class="bookmark_text" fill="{{ bookmark_text|d(tab_background_text, true)|d }}" data-fallback="tab_background_text">
+        <circle cx="27" cy="63" r="7" class="bookmark_text" fill="{{ icons|d(bookmark_text)|d(tab_background_text)|d }}" data-fallback="tab_background_text" />
+        <circle cx="55" cy="63" r="7" class="bookmark_text" fill="{{ icons|d(bookmark_text)|d(tab_background_text)|d }}" data-fallback="tab_background_text" />
+        <g transform="translate({{ browser_width - 34 }} 54)" class="bookmark_text" fill="{{ icons|d(bookmark_text)|d(tab_background_text)|d }}" data-fallback="tab_background_text">
           <rect width="18" height="2.667" rx="1.333"/>
           <rect width="18" height="2.667" y="6.667" rx="1.333"/>
           <rect width="18" height="2.667" y="13.333" rx="1.333"/>
