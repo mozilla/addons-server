@@ -214,11 +214,6 @@ def sign_file(file_obj):
                  u'signed'.format(file_obj.pk))
         return file_obj
 
-    # Don't sign multi-package XPIs. Their inner add-ons need to be signed.
-    if file_obj.is_multi_package:
-        raise SigningError(u'Not signing file {0}: multi-package XPI'.format(
-            file_obj.pk))
-
     # We only sign files that are compatible with Firefox.
     if not supports_firefox(file_obj):
         raise SigningError(

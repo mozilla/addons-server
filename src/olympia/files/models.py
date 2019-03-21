@@ -76,9 +76,6 @@ class File(OnChangeMixin, ModelBase):
     cert_serial_num = models.TextField(blank=True)
     # Is the file signed by Mozilla?
     is_signed = models.BooleanField(default=False)
-    # Is the file a multi-package?
-    #     https://developer.mozilla.org/en-US/docs/Multiple_Item_Packaging
-    is_multi_package = models.BooleanField(default=False)
     # Is the file an experiment (see bug 1220097)?
     is_experiment = models.BooleanField(default=False)
     # Is the file a WebExtension?
@@ -162,7 +159,6 @@ class File(OnChangeMixin, ModelBase):
             'is_restart_required', False)
         file_.strict_compatibility = parsed_data.get(
             'strict_compatibility', False)
-        file_.is_multi_package = parsed_data.get('is_multi_package', False)
         file_.is_experiment = parsed_data.get('is_experiment', False)
         file_.is_webextension = parsed_data.get('is_webextension', False)
         file_.is_mozilla_signed_extension = parsed_data.get(

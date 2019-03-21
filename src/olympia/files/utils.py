@@ -248,7 +248,6 @@ class RDFExtractor(object):
                     self.find('bootstrap') != 'true' and
                     self.find('type') not in self.ALWAYS_RESTARTLESS_TYPES),
                 'apps': self.apps(),
-                'is_multi_package': self.package_type == '32',
             })
 
             # We used to simply use the value of 'strictCompatibility' in the

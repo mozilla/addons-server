@@ -1207,19 +1207,6 @@ class TestFileFromUpload(UploadTest):
         assert file_.filename.endswith('.xml')
         assert not file_.is_restart_required
 
-    def test_multi_package(self):
-        upload = self.upload('multi-package')
-        file_ = File.from_upload(
-            upload, self.version, self.platform,
-            parsed_data={'is_multi_package': True})
-        assert file_.is_multi_package
-
-    def test_not_multi_package(self):
-        upload = self.upload('extension')
-        file_ = File.from_upload(
-            upload, self.version, self.platform, parsed_data={})
-        assert not file_.is_multi_package
-
     def test_experiment(self):
         upload = self.upload('experiment_inside_webextension')
         file_ = File.from_upload(
