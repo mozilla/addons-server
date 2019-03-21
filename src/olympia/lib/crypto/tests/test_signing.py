@@ -2,7 +2,6 @@
 import hashlib
 import os
 import shutil
-import tempfile
 import zipfile
 import collections
 import datetime
@@ -23,7 +22,6 @@ from waffle.testutils import override_sample
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
-from olympia.files.utils import extract_xpi
 from olympia.lib.crypto import signing, tasks
 from olympia.versions.compare import version_int
 
