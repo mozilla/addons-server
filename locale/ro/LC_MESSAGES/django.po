@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-21 07:28+0000\n"
+"PO-Revision-Date: 2019-03-21 07:43+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -54,7 +54,7 @@ msgstr "Dezvoltatorii de suplimente sau de teme nu își pot șterge conturile. 
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Notificarea [%s] nu există"
 
 msgid "Review"
 msgstr "Scrie o recenzie"
@@ -5444,7 +5444,7 @@ msgstr "Caută imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Salvează pagini complete—sau numai părți din ele—într-un singur fișier HTML."
 
 #. editorial content for the discovery pane.
 #, fuzzy
