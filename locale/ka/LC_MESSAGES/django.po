@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-21 15:09+0000\n"
+"PO-Revision-Date: 2019-03-21 15:19+0000\n"
 "Last-Translator: G12r <georgianization@outlook.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ka\n"
@@ -5389,13 +5389,12 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "შეინახეთ სრული გვერდები — ან მისი ნაწილები — ერთიან HTML-ფაილად."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "გადაუღეთ გვერდებს სურათები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
+msgstr "მარტივად გადაწყვიტეთ გაუგებრობები {start_sub_heading}{addon_name} დამატების დახმარებით{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
-msgstr ""
+msgstr "ჭკვიანი გაფართოება, რომელიც დაგეხმარებათ სწრაფად გაარკვიოთ რას ეთანხმებით და რას არა."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -5492,9 +5491,8 @@ msgstr "არ შეგიძლიათ დამატების წარ
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Mozilla-ს მიერ დამოწმებული გაფართოების წარდგენა არ შეგიძლიათ"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "მხარდაუჭერელი სახის ფაილი, გთხოვთ ატვირთოთ მხარდაჭერილი სახის ფაილი {extensions}."
+msgstr "მხარდაუჭერელი სახის ფაილი, გთხოვთ ატვირთოთ მხარდაჭერილი გაფართოებით {extensions}."
 
 msgid "Unexpected error."
 msgstr "მოულოდნელი შეცდომა."
