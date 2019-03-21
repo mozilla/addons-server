@@ -253,49 +253,6 @@ def test_process_addons_limit_addons():
         assert calls[0]['kwargs']['args'] == [addon_ids[:2]]
 
 
-class AddFirefox57TagTestCase(TestCase):
-    def test_affects_only_public_webextensions(self):
-        addon_factory()
-        addon_factory(file_kw={'is_webextension': True,
-                               'status': amo.STATUS_AWAITING_REVIEW},
-                      status=amo.STATUS_NOMINATED)
-        public_webextension = addon_factory(file_kw={'is_webextension': True})
-        public_mozilla_signed = addon_factory(file_kw={
-            'is_mozilla_signed_extension': True})
-
-        with count_subtask_calls(pa.add_firefox57_tag) as calls:
-            call_command(
-                'process_addons', task='add_firefox57_tag_to_webextensions')
-
-        assert len(calls) == 1
-        assert calls[0]['kwargs']['args'] == [
-            [public_webextension.pk, public_mozilla_signed.pk]
-        ]
-
-    def test_tag_added_for_is_webextension(self):
-        self.addon = addon_factory(file_kw={'is_webextension': True})
-        assert self.addon.tags.all().count() == 0
-
-        call_command(
-            'process_addons', task='add_firefox57_tag_to_webextensions')
-
-        assert (
-            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
-            set(['firefox57']))
-
-    def test_tag_added_for_is_mozilla_signed_extension(self):
-        self.addon = addon_factory(
-            file_kw={'is_mozilla_signed_extension': True})
-        assert self.addon.tags.all().count() == 0
-
-        call_command(
-            'process_addons', task='add_firefox57_tag_to_webextensions')
-
-        assert (
-            set(self.addon.tags.all().values_list('tag_text', flat=True)) ==
-            set(['firefox57']))
-
-
 class TestAddDynamicThemeTagForThemeApiCommand(TestCase):
     def test_affects_only_public_webextensions(self):
         addon_factory()

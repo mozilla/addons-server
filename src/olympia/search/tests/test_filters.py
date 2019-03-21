@@ -664,6 +664,19 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert {'term': {'tags': 'foo'}} in filter_
         assert {'term': {'tags': 'bar'}} in filter_
 
+    def test_search_by_tag_ignored(self):
+        # firefox57 is in the ignore list, we shouldn't filter the query with
+        # it.
+        qs = self._filter(data={'tag': 'firefox57'})
+        assert 'bool' not in qs['query']
+
+        qs = self._filter(data={'tag': 'foo,firefox57'})
+        assert 'must' not in qs['query']['bool']
+        assert 'must_not' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'term': {'tags': 'foo'}} in filter_
+        assert {'term': {'tags': 'firefox57'}} not in filter_
+
     def test_search_by_author(self):
         qs = self._filter(data={'author': 'fooBar'})
         assert 'must' not in qs['query']['bool']
