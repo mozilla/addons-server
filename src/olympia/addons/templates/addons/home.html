@@ -72,14 +72,6 @@
         {{ personas|impala_persona_grid }}
       </div>
     {% endif %}
-    {% if collections %}
-      <div id="featured-collections" class="island">
-        <h2>{{ _('Featured Collections') }}
-          <a class="seeall" href="{{ url('collections.list')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ collections|collection_grid }}
-      </div>
-    {% endif %}
   </section>
 </section>
 

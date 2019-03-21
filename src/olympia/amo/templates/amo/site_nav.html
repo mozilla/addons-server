@@ -49,21 +49,8 @@
       {% endif %}
     </li>
 
-    {% set collection_extras = (
-        ('featured', _('Featured')),
-    ) %}
     <li id="collections">
-      {% with base_url = url('collections.list') %}
-      <a href="{{ base_url }}">{{ _('Collections') }}</a>
-      <ul>
-        {% for sort, title in collection_extras %}
-          <li><em><a href="{{ base_url|urlparams(sort=sort) }}">{{ title }}</a></em></li>
-        {% endfor %}
-        <hr>
-        <li><a href="{{ url('collections.list') }}">
-          {{ _("Collections I've Made") }}</a></li>
-      </ul>
-      {% endwith %}
+      <a href="{{ url('collections.list') }}">{{ _('Collections') }}</a>
     </li>
     <li id="more">
       <a href="#">{{ _('More&hellip;') }}</a>

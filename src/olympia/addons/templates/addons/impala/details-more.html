@@ -45,14 +45,8 @@
   {{ tags_box(addon=addon, tags=tags) }}
 </aside>
 
-{% if collections or author_addons %}
+{% if author_addons %}
   <section class="primary island c">
-    {% if collections %}
-      <section id="collections-grid">
-        <h2>{{ _('Part of these Collections') }}</h2>
-        {{ collections|collection_grid(cols=3) }}
-      </section>
-      {% endif %}
     {% if author_addons %}
       <section id="author-addons">
         <h2>

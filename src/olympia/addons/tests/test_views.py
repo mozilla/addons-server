@@ -36,7 +36,7 @@ from olympia.amo.tests import (
     APITestClient, ESTestCase, TestCase, addon_factory, collection_factory,
     reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import get_outgoing_url, reverse
-from olympia.bandwagon.models import Collection, FeaturedCollection
+from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.licenses import LICENSES_BY_BUILTIN
 from olympia.discovery.models import DiscoveryItem
@@ -142,23 +142,6 @@ class TestHomepageFeatures(TestCase):
         for key in addon_lists:
             for addon in response.context[key]:
                 assert addon.status != amo.STATUS_NOMINATED
-
-    def test_seeall(self):
-        Collection.objects.update(type=amo.COLLECTION_FEATURED)
-        doc = pq(self.client.get(self.url).content)
-        browse_extensions = reverse('browse.extensions')
-        browse_personas = reverse('browse.personas')
-        browse_collections = reverse('collections.list')
-        sections = {
-            '#popular-extensions': browse_extensions + '?sort=users',
-            '#featured-extensions': browse_extensions + '?sort=featured',
-            '#upandcoming': browse_extensions + '?sort=hotness',
-            '#featured-themes': browse_personas,
-            '#featured-collections': browse_collections + '?sort=featured',
-        }
-        for id_, url in six.iteritems(sections):
-            # Check that the "See All" link points to the correct page.
-            assert doc.find('%s .seeall' % id_).attr('href') == url
 
 
 class TestOldContributionRedirects(TestCase):

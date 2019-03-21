@@ -131,21 +131,6 @@
         <span></span>
       </div>
       <div id="popup-staging">
-        <div id="add-to-collection" class="popup">
-          <div class="collection-add-login">
-            <p>{% trans %}
-              To create your own collections, you must have a Mozilla Add-ons account.
-            {% endtrans %}</p>
-            <p class="register-button">
-              <a class="button" href="{{ register_link() }}">{{ _('Create an Add-ons Account') }}</a>
-            </p>
-            <p>
-              {% trans login=login_link() %}
-                or <a href="{{ login }}">log in to your current account</a>
-              {% endtrans %}
-            </p>
-          </div>
-        </div>
         {% block popups %}
         {% endblock %}
       </div>

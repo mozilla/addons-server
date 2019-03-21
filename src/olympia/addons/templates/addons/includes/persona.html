@@ -25,11 +25,6 @@
             {{ _('Approve / Reject') if addon.is_pending() else _('Review History') }}</a>
         {% endif %}
 
-        <div class="widgets">
-          {{ favorites_widget(addon) }}
-          {% include 'addons/includes/collection_add_widget.html' %}
-        </div>
-
      </div>
    </div>{# /addon-summary and -wrapper #}
   </div>

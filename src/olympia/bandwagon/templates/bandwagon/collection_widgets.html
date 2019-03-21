@@ -1,6 +1,0 @@
-<div class="collection_widgets{{ ' condensed' if condensed }} widgets">
-{% if request.user.is_authenticated and condensed and request.check_ownership(c, require_owner=False) %}
-  <a title="{{ _('Edit this Collection') }}"
-     class="widget edit tooltip condensed" href="{{ c.edit_url() }}"></a>
-{% endif %}
-</div>

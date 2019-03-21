@@ -150,22 +150,6 @@ class Collection(ModelBase):
     def get_abs_url(self):
         return absolutify(self.get_url_path())
 
-    def edit_url(self):
-        return reverse('collections.edit',
-                       args=[self.author_id, self.slug])
-
-    def delete_url(self):
-        return reverse('collections.delete',
-                       args=[self.author_id, self.slug])
-
-    def share_url(self):
-        return reverse('collections.share',
-                       args=[self.author_id, self.slug])
-
-    def stats_url(self):
-        return reverse('collections.stats',
-                       args=[self.author_id, self.slug])
-
     @classmethod
     def get_fallback(cls):
         return cls._meta.get_field('default_locale')

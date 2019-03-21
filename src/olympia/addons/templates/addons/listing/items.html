@@ -1,18 +1,11 @@
 {% from "addons/listing/macros.html" import heading, item_info %}
-{% set collection = collection or None %}
 {% set userpk = request.user.pk if request.user.is_authenticated else '' %}
 {% for addon in addons %}
   <div class="item">
-    {{ heading(addon, amo, collection=collection) }}
+    {{ heading(addon, amo) }}
     <div class="item-info">
-      {{ install_button(addon, collection=collection) }}
+      {{ install_button(addon) }}
       {{ item_info(addon, amo, show_date, show_downloads) }}
-      {% if request.user.is_authenticated %}
-        <div class="collection_widgets widgets condensed">
-          {{ favorites_widget(addon, condensed=True) }}
-          {{ collection_add_widget(addon, condensed=True) }}
-        </div>
-      {% endif %}
     </div>
     <blockquote>
       {% if addon.is_persona() %}
@@ -21,11 +14,5 @@
         <div>{{ addon.summary|truncate(250)|nl2br }}</div>
       {% endif %}
     </blockquote>
-    {% if notes and notes[addon.id] %}
-    <blockquote class="collector-note">
-      <strong>{{ _("Collector's Note") }}</strong>
-      {{ notes[addon.id] }}
-    </blockquote>
-    {% endif %}
   </div>
 {% endfor %}
