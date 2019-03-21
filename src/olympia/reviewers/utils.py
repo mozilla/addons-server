@@ -28,7 +28,6 @@ from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
     ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList,
     get_flags, get_flags_for_row)
-from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 
 

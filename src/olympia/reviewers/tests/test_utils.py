@@ -27,7 +27,6 @@ from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
 from olympia.reviewers.utils import (
     PENDING_STATUSES, ReviewAddon, ReviewFiles, ReviewHelper,
     ViewPendingQueueTable, ViewUnlistedAllListTable)
-from olympia.tags.models import Tag
 from olympia.users.models import UserProfile
 
 
