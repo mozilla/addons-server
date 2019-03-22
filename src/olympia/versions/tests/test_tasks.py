@@ -174,22 +174,62 @@ def test_generate_static_theme_preview(
 @mock.patch('olympia.versions.tasks.pngcrush_image')
 @mock.patch('olympia.versions.tasks.resize_image')
 @mock.patch('olympia.versions.tasks.write_svg_to_png')
-def test_generate_static_theme_preview_with_chrome_colors(
+@pytest.mark.parametrize(
+    'manifest_images, manifest_colors, svg_colors', (
+        (  # deprecated properties
+            {"headerURL": "transparent.gif"},
+            {
+                "accentcolor": "#918e43",  # frame
+                "textcolor": "#3deb60",  # tab_background_text
+                "toolbar_text": "#b5ba5b",  # bookmark_text
+            },
+            {
+                "frame": "#918e43",
+                "tab_background_text": "#3deb60",
+                "bookmark_text": "#b5ba5b",
+            }
+        ),
+        (  # defaults and fallbacks
+            {"theme_frame": "transparent.gif"},
+            {
+                "icons": "#348923",  # icons have class bookmark_text
+            },
+            {
+                "frame": amo.THEME_FRAME_COLOR_DEFAULT,
+                "toolbar": "rgba(255,255,255,0.6)",
+                "toolbar_field": "rgba(255,255,255,1)",
+                "tab_selected": "rgba(0,0,0,0)",
+                "tab_line": "rgba(0,0,0,0.25)",
+                "tab_background_text": "",
+                "bookmark_text": "#348923",  # icons have class bookmark_text
+            },
+        ),
+        (  # chrome colors
+            {"theme_frame": "transparent.gif"},
+            {
+                "frame": [123, 45, 67],
+                "tab_background_text": [9, 87, 65],
+                "bookmark_text": [0, 0, 0],
+            },
+            {
+                "frame": "rgb(123,45,67)",
+                "tab_background_text": "rgb(9,87,65)",
+                "bookmark_text": "rgb(0,0,0)",
+            },
+        ),
+    )
+)
+def test_generate_static_theme_preview_with_alternative_properties(
         write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
-        extract_colors_from_image_mock, index_addons_mock):
+        extract_colors_from_image_mock, index_addons_mock,
+        manifest_images, manifest_colors, svg_colors):
     write_svg_to_png_mock.return_value = True
     extract_colors_from_image_mock.return_value = [
         {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
     ]
     theme_manifest = {
-        "images": {
-            "theme_frame": "transparent.gif"
-        },
-        "colors": {
-            "frame": [123, 45, 67],
-            "tab_background_text": [9, 87, 65],
-            "bookmark_text": [0, 0, 0],
-        }
+        "images": manifest_images,
+        "colors": manifest_colors,
     }
     addon = addon_factory()
     destination = addon.current_version.all_files[0].current_file_path
@@ -231,96 +271,8 @@ def test_generate_static_theme_preview_with_chrome_colors(
         resize_image_mock.call_args_list[2][0],
         pngcrush_image_mock.call_args_list[2][0])
 
-    colors = []
-    # check each of our colors above was converted to css codes
-    for (prop, color_list) in theme_manifest['colors'].items():
-        color = 'rgb(%s,%s,%s)' % tuple(color_list)
-        colors.append('class="%s" fill="%s"' % (prop, color))
-
-    header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
-    list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
-    single_svg = write_svg_to_png_mock.call_args_list[2][0][0]
-    check_render(force_text(header_svg), 'transparent.gif', 1,
-                 'xMaxYMin meet', 'image/gif', True, colors, 680, 92, 680)
-    check_render(force_text(list_svg), 'transparent.gif', 1,
-                 'xMaxYMin meet', 'image/gif', True, colors, 760, 92, 760)
-    check_render(force_text(single_svg), 'transparent.gif', 1,
-                 'xMaxYMin meet', 'image/gif', True, colors, 720, 92, 720)
-
-
-@pytest.mark.django_db
-@mock.patch('olympia.addons.tasks.index_addons.delay')
-@mock.patch('olympia.versions.tasks.extract_colors_from_image')
-@mock.patch('olympia.versions.tasks.pngcrush_image')
-@mock.patch('olympia.versions.tasks.resize_image')
-@mock.patch('olympia.versions.tasks.write_svg_to_png')
-def test_generate_static_theme_preview_with_deprecated_properties(
-        write_svg_to_png_mock, resize_image_mock, pngcrush_image_mock,
-        extract_colors_from_image_mock, index_addons_mock):
-    write_svg_to_png_mock.return_value = True
-    extract_colors_from_image_mock.return_value = [
-        {'h': 9, 's': 8, 'l': 7, 'ratio': 0.6}
-    ]
-    theme_manifest = {
-        "images": {
-            "theme_frame": "transparent.gif"
-        },
-        "colors": {
-            "accentcolor": "#918e43",  # frame
-            "textcolor": "#3deb60",  # tab_background_text
-            "toolbar_text": "#b5ba5b",  # bookmark_text
-        }
-    }
-    addon = addon_factory()
-    destination = addon.current_version.all_files[0].current_file_path
-    zip_file = os.path.join(HEADER_ROOT, 'theme_images.zip')
-    copy_stored_file(zip_file, destination)
-    generate_static_theme_preview(theme_manifest, addon.current_version.pk)
-
-    assert resize_image_mock.call_count == 3
-    assert write_svg_to_png_mock.call_count == 3
-    assert pngcrush_image_mock.call_count == 3
-
-    # First check the header Preview is good
-    header_preview = VersionPreview.objects.get(
-        version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['header']['position'])
-    check_preview(
-        header_preview, amo.THEME_PREVIEW_SIZES['header'],
-        write_svg_to_png_mock.call_args_list[0][0],
-        resize_image_mock.call_args_list[0][0],
-        pngcrush_image_mock.call_args_list[0][0])
-
-    # Then the list Preview
-    list_preview = VersionPreview.objects.get(
-        version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['list']['position'])
-    check_preview(
-        list_preview, amo.THEME_PREVIEW_SIZES['list'],
-        write_svg_to_png_mock.call_args_list[1][0],
-        resize_image_mock.call_args_list[1][0],
-        pngcrush_image_mock.call_args_list[1][0])
-
-    # And finally the new single Preview
-    single_preview = VersionPreview.objects.get(
-        version=addon.current_version,
-        position=amo.THEME_PREVIEW_SIZES['single']['position'])
-    check_preview(
-        single_preview, amo.THEME_PREVIEW_SIZES['single'],
-        write_svg_to_png_mock.call_args_list[2][0],
-        resize_image_mock.call_args_list[2][0],
-        pngcrush_image_mock.call_args_list[2][0])
-
-    colors = []
-    # check each of our colors above was converted to new property name
-    deprecated_colors = {
-        'toolbar_text': 'bookmark_text',
-        'accentcolor': 'frame',
-        'textcolor': 'tab_background_text',
-    }
-    for (dep_prop, firefox_prop) in deprecated_colors.items():
-        color = theme_manifest['colors'][dep_prop]
-        colors.append('class="%s" fill="%s"' % (firefox_prop, color))
+    colors = ['class="%s" fill="%s"' % (key, color)
+              for (key, color) in svg_colors.items()]
 
     header_svg = write_svg_to_png_mock.call_args_list[0][0][0]
     list_svg = write_svg_to_png_mock.call_args_list[1][0][0]
