@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-01-17 16:25+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"PO-Revision-Date: 2019-03-22 11:30+0000\n"
+"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -25,9 +25,8 @@ msgstr "เกิดปัญหาในการติดต่อกับเ
 msgid "Select a file..."
 msgstr "เลือกไฟล์…"
 
-#, fuzzy
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .xpi .jar หรือ .xml"
+msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .zip .xpi .crx .jar หรือ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -48,7 +47,7 @@ msgid "Error with {0}"
 msgstr "เกิดข้อผิดพลาดกับ {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "โปรดตรวจสอบให้แน่ใจว่าได้รายงานปัญหาที่เกี่ยวข้องกับ linting บน GitHub แล้ว"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -65,7 +64,7 @@ msgid "Validating {0}"
 msgstr "กำลังตรวจสอบ {0}"
 
 msgid "Your add-on exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ส่วนเสริมของคุณเกินขนาดสูงสุด {0}"
 
 msgid "Received an empty response from the server; status: {0}"
 msgstr "ได้รับการตอบสนองที่ว่างเปล่าจากแม่ข่าย; สถานะ: {0}"
@@ -77,30 +76,30 @@ msgid "Finished validating {0}"
 msgstr "เสร็จสิ้นการตรวจสอบ {0}"
 
 msgid "Your add-on validation timed out, it will be manually reviewed."
-msgstr ""
+msgstr "หยุดพักการตรวจสอบส่วนเสริมของคุณชั่วคราว ส่วนเสริมของคุณจะถูกตรวจสอบแบบแมนนวล"
 
 msgid "Your add-on was validated with no errors and {0} warning."
 msgid_plural "Your add-on was validated with no errors and {0} warnings."
-msgstr[0] ""
+msgstr[0] "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} คำเตือนใด"
 
 msgid "Your add-on was validated with no errors and {0} message."
 msgid_plural "Your add-on was validated with no errors and {0} messages."
-msgstr[0] ""
+msgstr[0] "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดและ {0} ข้อความใด"
 
 msgid "Your add-on was validated with no errors or warnings."
-msgstr ""
+msgstr "ส่วนเสริมของคุณผ่านการตรวจสอบโดยไม่มีข้อผิดพลาดหรือคำเตือนใด"
 
 msgid "Your submission will be automatically signed."
-msgstr ""
+msgstr "การส่งข้อมูลของคุณจะได้รับการลงทะเบียนไว้โดยอัตโนมัติ"
 
 msgid "WebExtension upgrade"
 msgstr "การอัปเกรด WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr ""
+msgstr "เราอนุญาตและสนับสนุนให้อัปเกรด แต่คุณจะไม่สามารถย้อนกลับไปได้อีก เมื่อคุณติดตั้ง WebExtension คุณจะไม่สามารถติดตั้งส่วนเสริมแบบเดิมได้อีก"
 
 msgid "Porting a legacy Firefox add-on on MDN"
-msgstr ""
+msgstr "การโอนย้ายส่วนเสริม Firefox แบบเก่าบน MDN"
 
 msgid "Include detailed version notes (this can be done in the next step)."
 msgstr ""
