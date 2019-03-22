@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-20 14:37+0000\n"
+"PO-Revision-Date: 2019-03-22 13:28+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -3909,7 +3909,7 @@ msgstr "Veja as melhores práticas de desenvolvimento para vários navegadores"
 
 # %s is the user's name
 msgid "Welcome Back"
-msgstr "Bem-vinda(o), {0}"
+msgstr "Bom ter você de volta"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -7413,7 +7413,7 @@ msgstr "Minha conta"
 
 # %s is the user's name
 msgid "Welcome, {0}"
-msgstr "Bem-vindo(a), {0}"
+msgstr "Boas-vindas, {0}"
 
 # %1 is the URL to the registration page
 # %2 is the URL to the login page
@@ -7427,7 +7427,7 @@ msgstr "Para experimentar ass milhares de extensões disponíveis aqui, baixe o 
 
 #. {0} is an application, such as Firefox.
 msgid "Welcome to {0} Add-ons."
-msgstr "Bem-vindo as Extensões para o {0}."
+msgstr "Boas-vindas às extensões do {0}."
 
 msgid "Choose from thousands of extra features and styles to make Firefox your own."
 msgstr "Escolha entre milhares de recursos extras e estilos para tornar o Firefox só seu."
