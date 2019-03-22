@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 09:01+0000\n"
-"Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
+"PO-Revision-Date: 2019-03-22 21:30+0000\n"
+"Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -945,9 +945,8 @@ msgstr "Napačen tip enega ali več ključev koristne vsebine"
 msgid "Invalid JWT Token."
 msgstr "Neveljaven žeton JWT."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Neveljaven ali pokvarjen arhiv."
+msgstr "Neveljaven žeton ali razpršena vrednost."
 
 msgid "Email address not found."
 msgstr "E-poštni naslov ni najden."
@@ -5444,9 +5443,8 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Ujemite splet v objektiv {start_sub_heading}z {addon_name}{end_sub_heading}"
+msgstr "Prebijte se skozi navlako {start_sub_heading}z {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
