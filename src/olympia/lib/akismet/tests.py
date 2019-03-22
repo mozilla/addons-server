@@ -155,8 +155,8 @@ class TestAkismetReportsRating(BaseAkismetReportsModelTest, TestCase):
         rating = Rating.objects.create(
             addon=addon, user=user, rating=4, body='spám?',
             ip_address='1.23.45.67')
-        ua = 'foo/baa'
-        referrer = 'https://mozilla.org/'
+        ua = '👻' * 256
+        referrer = '%s%s' % ('http://fâr.away', '👽' * 241)
         report = AkismetReport.create_for_rating(rating, ua, referrer)
 
         assert report.rating_instance == rating
@@ -165,8 +165,8 @@ class TestAkismetReportsRating(BaseAkismetReportsModelTest, TestCase):
         assert data == {
             'blog': settings.SITE_URL,
             'user_ip': rating.ip_address,
-            'user_agent': ua,
-            'referrer': referrer,
+            'user_agent': ua[:255],
+            'referrer': referrer[:255],
             'permalink': addon.get_url_path(),
             'comment_type': 'user-review',
             'comment_author': user.name,
@@ -205,8 +205,8 @@ class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
         user = user_factory(homepage='https://spam.spam/')
         addon = addon_factory(name=u'100% génuine spamm')
         upload = FileUpload.objects.create(addon=addon)
-        ua = 'foo/baa'
-        referrer = 'https://mozilla.org/'
+        ua = '🦊' * 256
+        referrer = '%s%s' % ('http://fâr.away', '👿' * 241)
         with freeze_time('2017-07-27 07:00'):
             time_now = datetime.now()
             report = AkismetReport.create_for_addon(
@@ -219,8 +219,8 @@ class TestAkismetReportsAddon(BaseAkismetReportsModelTest, TestCase):
         assert data == {
             'blog': settings.SITE_URL,
             'user_ip': user.last_login_ip,
-            'user_agent': ua,
-            'referrer': referrer,
+            'user_agent': ua[:255],
+            'referrer': referrer[:255],
             'comment_type': 'product-name',
             'comment_author': user.name,
             'comment_author_email': user.email,
