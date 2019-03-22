@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-18 08:55+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"PO-Revision-Date: 2019-03-22 11:31+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -61,7 +61,7 @@ msgstr "Les développeurs de modules ou de thèmes ne peuvent pas supprimer leur
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "La notification [%s] n’existe pas"
 
 msgid "Review"
 msgstr "Critique"
@@ -935,7 +935,7 @@ msgid "Invalid token or hash."
 msgstr ""
 
 msgid "Email address not found."
-msgstr ""
+msgstr "Adresse électronique introuvable."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Ce champ doit comporter au moins {num} caractères."
