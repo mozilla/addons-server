@@ -1,102 +1,67 @@
 <h1 class="site-title prominent">
-  <a
-    href="{{ url('devhub.index') }}"
-    title="{{ _('Return to the DevHub homepage') }}"
-  >
-    {# L10n: Text in small tag is smaller and on its own line. #} {% trans %}
-    <small>Add-on</small> Developer Hub {% endtrans %}
+  <a href="{{ url('devhub.index') }}" title="{{ _('Return to the DevHub homepage') }}">
+    {# L10n: Text in small tag is smaller and on its own line. #}
+    {% trans %}
+    <small>Add-on</small> Developer Hub
+    {% endtrans %}
   </a>
 </h1>
 <nav id="site-nav" class="menu-nav no-img c">
   <ul>
     {% if request.user.is_authenticated and request.user.is_developer %}
-    <li class="top">
-      <a href="{{ url('devhub.addons') }}" class="controller">
-        {{ _("My Add-ons") }}</a
-      >
-      <ul>
-        {% set my_addons = request.user.my_addons() %} {% for addon in my_addons
-        %} {% if loop.index == 8 %}
-        <li>
-          <a href="{{ url('devhub.addons') }}"> {{ _("more add-ons...") }}</a>
-        </li>
-        {% else %}
-        <li>
-          <a href="{{ addon.get_dev_url() }}"> {{ addon.name }}</a>
-        </li>
-        {% endif %} {% endfor %}
-        <li>
-          <em
-            ><a href="{{ url('devhub.submit.agreement') }}">
-              {{ _("Submit a New Add-on") }}</a
-            ></em
-          >
-        </li>
-      </ul>
-    </li>
+      <li class="top">
+        <a href="{{ url('devhub.addons') }}" class="controller">
+            {{ _('My Add-ons') }}</a>
+        <ul>
+          {% set my_addons = request.user.my_addons() %}
+          {% for addon in my_addons %}
+            {% if loop.index == 8 %}
+              <li><a href="{{ url('devhub.addons') }}">
+                {{ _('more add-ons...') }}</a></li>
+            {% else %}
+              <li><a href="{{ addon.get_dev_url() }}">
+                {{ addon.name }}</a></li>
+            {% endif %}
+          {% endfor %}
+          <li><em><a href="{{ url('devhub.submit.agreement') }}">
+              {{ _('Submit a New Add-on') }}</a></em></li>
+        </ul>
+      </li>
     {% endif %}
     <li>
       <a href="https://extensionworkshop.com/?utm_source=addons.mozilla.org&utm_medium=referral&utm_content=devhub-menu-link">
         Extension Workshop
-        </a>
+      </a>
     </li>
     <li>
-      <a href="#" class="controller">{{ _("Documentation") }}</a>
+      <a href="#" class="controller">{{ _('Documentation') }}</a>
       <ul>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/Add-ons">
-            {{ _("Extension Development") }}</a
-          >
-        </li>
-        <li>
-          <a
-            href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Themes"
-          >
-            {{ _("Lightweight Themes") }}</a
-          >
-        </li>
-        <li>
-          <a href="{{ url('devhub.docs', 'policies') }}">
-            {{ _("Developer Policies") }}</a
-          >
-        </li>
+        <li><a href="https://developer.mozilla.org/en-US/Add-ons">
+          {{ _('Extension Development') }}</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/Themes">
+          {{ _('Lightweight Themes') }}</a></li>
+        <li><a href="{{ url('devhub.docs', 'policies') }}">
+          {{ _('Developer Policies') }}</a></li>
       </ul>
     </li>
     <li>
-      <a href="#" class="controller">{{ _("Tools") }}</a>
+      <a href="#" class="controller">{{ _('Tools') }}</a>
       <ul>
-        <li>
-          <a href="{{ url('devhub.validate_addon') }}">
-            {{ _("Add-on Validator") }}</a
-          >
-        </li>
-        <li>
-          <a href="/firefox/collections/mozilla/webdeveloper">
-            {{ _("Development Add-ons") }}</a
-          >
-        </li>
+        <li><a href="{{ url('devhub.validate_addon') }}">
+          {{ _('Add-on Validator') }}</a></li>
+        <li><a href="/firefox/collections/mozilla/webdeveloper">
+          {{ _('Development Add-ons') }}</a></li>
       </ul>
     </li>
     <li>
-      <a href="#" class="controller">{{
-        _("Community & Support") | forceescape
-      }}</a>
+      <a href="#" class="controller">{{ _('Community & Support')|forceescape }}</a>
       <ul>
-        <li>
-          <a href="https://blog.mozilla.com/addons/">
-            {{ _("Add-ons Blog") }}</a
-          >
-        </li>
-        <li>
-          <a href="https://discourse.mozilla-community.org/c/add-ons">
-            {{ _("Add-ons Forum") }}</a
-          >
-        </li>
-        <li>
-          <a href="https://developer.mozilla.org/en-US/Add-ons">
-            {{ _("More Resources") }}</a
-          >
-        </li>
+        <li><a href="https://blog.mozilla.com/addons/">
+          {{ _('Add-ons Blog') }}</a></li>
+        <li><a href="https://discourse.mozilla-community.org/c/add-ons">
+          {{ _('Add-ons Forum') }}</a></li>
+        <li><a href="https://developer.mozilla.org/en-US/Add-ons">
+          {{ _('More Resources') }}</a></li>
       </ul>
     </li>
   </ul>
