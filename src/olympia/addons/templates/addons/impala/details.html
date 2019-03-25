@@ -73,10 +73,6 @@
       </div>
     {% endif %}
 
-    <div class="widgets">
-      {{ favorites_widget(addon) }}
-      {% include 'addons/includes/collection_add_widget.html' %}
-    </div>
     {% if is_author %}
       <p class="manage-button"><a href="{{ addon.get_dev_url() }}" class="button developer prominent"><span>{{ _('Manage') }}</span></a></p>
     {% endif %}

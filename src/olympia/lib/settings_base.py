@@ -602,7 +602,6 @@ MINIFY_BUNDLES = {
             'css/impala/listing.less',
             'css/impala/versions.less',
             'css/impala/users.less',
-            'css/impala/collections.less',
             'css/impala/tooltips.less',
             'css/impala/search.less',
             'css/impala/suggestions.less',
@@ -738,12 +737,8 @@ MINIFY_BUNDLES = {
             'js/zamboni/personas_core.js',
             'js/zamboni/personas.js',
 
-            # Unicode: needs to be loaded after collections.js which listens to
-            # an event fired in this file.
+            # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
-
-            # Collections
-            'js/zamboni/collections.js',
 
             # Users
             'js/zamboni/users.js',

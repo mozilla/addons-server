@@ -35,7 +35,6 @@ from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
-from olympia.bandwagon.models import Collection
 from olympia.constants.categories import CATEGORIES_BY_ID
 from olympia.ratings.forms import RatingForm
 from olympia.ratings.models import GroupedRating, Rating
@@ -112,10 +111,6 @@ def extension_detail(request, addon):
         prefixer.app = list(comp_apps.keys())[0].short
         return redirect('addons.detail', addon.slug, permanent=True)
 
-    # Popular collections this addon is part of.
-    collections = Collection.objects.listed().filter(
-        addons=addon, application=request.APP.id)
-
     ctx = {
         'addon': addon,
         'src': request.GET.get('src', 'dp-btn-primary'),
@@ -126,7 +121,6 @@ def extension_detail(request, addon):
         'reviews': Rating.without_replies.all().filter(
             addon=addon, is_latest=True).exclude(body=None),
         'get_replies': Rating.get_replies,
-        'collections': collections[:3],
         'abuse_form': AbuseForm(request=request),
     }
 
@@ -302,16 +296,10 @@ def home(request):
     # Most Popular extensions is a simple links list, we display slightly more.
     popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
 
-    # We want a maximum of 6 Featured Collections as well (though we may get
-    # fewer than that).
-    collections = Collection.objects.filter(listed=True,
-                                            application=request.APP.id,
-                                            type=amo.COLLECTION_FEATURED)[:6]
-
     return render(request, 'addons/home.html',
                   {'popular': popular, 'featured': featured,
                    'hotness': hotness, 'personas': personas,
-                   'src': 'homepage', 'collections': collections})
+                   'src': 'homepage'})
 
 
 @non_atomic_requests
