@@ -22,7 +22,7 @@ x-env-mapping: &env
 services:
   worker: &worker
     <<: *env
-    image: addons/addons-server:latest-py3
+    image: addons/addons-server:latest
     command: supervisord -n -c /code/docker/supervisor-celery.conf
     entrypoint: ./scripts/start-docker.sh
     volumes:
