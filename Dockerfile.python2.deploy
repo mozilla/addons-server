@@ -54,11 +54,6 @@ RUN apt-get update && apt-get install -y \
         libmaxminddb-dev                 \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get -t stretch-backports install -y \
-        # For git-based files storage backend
-        libgit2-dev \
-    && rm -rf /var/lib/apt/lists/*
-
 # Compile required locale
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LANG en_US.UTF-8
