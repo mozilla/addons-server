@@ -16,8 +16,11 @@ class Extensions(Base):
     def wait_for_page_to_load(self):
         self.wait.until(
             lambda _: self.is_element_displayed(*self._title_locator))
-        element = self.find_element(*self._title_locator)
-        return element
+        return self
+
+    @property
+    def title(self):
+        return self.find_element(*self._title_locator).text
 
     @property
     def extension_header(self):

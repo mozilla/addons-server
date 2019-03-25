@@ -1,7 +1,6 @@
 import pytest
 
 from pages.desktop.categories import Categories
-from pages.desktop.extensions import Extensions
 from pages.desktop.home import Home
 
 
@@ -21,12 +20,12 @@ def test_there_are_6_theme_categories(base_url, selenium):
 def test_extensions_section_load_correctly(base_url, selenium):
     page = Home(selenium, base_url).open()
     ext_page = page.header.click_extensions()
-    assert 'Extensions' in ext_page.text
+    assert 'Extensions' in ext_page.title
 
 
 @pytest.mark.nondestructive
 def test_explore_section_loads(base_url, selenium):
-    page = Extensions(selenium, base_url).open()
+    page = Home(selenium, base_url).open()
     page.header.click_explore()
     assert 'firefox/' in selenium.current_url
 
@@ -76,7 +75,7 @@ def test_category_section_loads_correct_category(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_title_routes_to_home(base_url, selenium):
-    page = Extensions(selenium, base_url).open()
+    page = Home(selenium, base_url).open()
     home = page.header.click_title()
     assert home.hero_banner.is_displayed()
 
