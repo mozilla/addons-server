@@ -26,7 +26,8 @@ def test_extensions_section_load_correctly(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_explore_section_loads(base_url, selenium):
-    page = Extensions(selenium, base_url).open()
+    page = Home(selenium, base_url).open()
+    import time
     page.header.click_explore()
     assert 'firefox/' in selenium.current_url
 
@@ -76,7 +77,7 @@ def test_category_section_loads_correct_category(base_url, selenium):
 
 @pytest.mark.nondestructive
 def test_title_routes_to_home(base_url, selenium):
-    page = Extensions(selenium, base_url).open()
+    page = Home(selenium, base_url).open()
     home = page.header.click_title()
     assert home.hero_banner.is_displayed()
 
