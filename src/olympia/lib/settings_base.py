@@ -836,13 +836,8 @@ MINIFY_BUNDLES = {
             'js/node_lib/jquery.minicolors.js',
             'js/impala/persona_creation.js',
 
-            # Unicode: needs to be loaded after collections.js which listens to
-            # an event fired in this file.
+            # Unicode letters for our makeslug function
             'js/zamboni/unicode.js',
-
-            # Collections
-            'js/zamboni/collections.js',
-            'js/impala/collections.js',
 
             # Users
             'js/zamboni/users.js',
