@@ -3,8 +3,8 @@ pyinotify==0.9.6 \
 # ipython / ipdb for easier debugging, supervisor to run services
 # Remove ipython<6 version restriction when we move to python 3, see
 # https://github.com/mozilla/addons-server/issues/5380
-ipdb==0.11 \
-    --hash=sha256:7081c65ed7bfe7737f83fa4213ca8afd9617b42ff6b3f1daf9a3419839a2a00a
+ipdb==0.12 \
+    --hash=sha256:dce2112557edfe759742ca2d0fee35c59c97b0cc7a05398b791079d78f1519ce
 ipython==5.8.0 \
     --hash=sha256:37101b8cbe072fe17bff100bc03d096404e4a9a0357097aeb5b61677c042cab1 \
     --hash=sha256:0371b7e4bd74954a35086eac949beeac5b1c9f5ce231e2e77df2286a293765e3 \
