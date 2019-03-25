@@ -1,7 +1,6 @@
 import pytest
 
 from pages.desktop.categories import Categories
-from pages.desktop.extensions import Extensions
 from pages.desktop.home import Home
 
 
@@ -27,7 +26,6 @@ def test_extensions_section_load_correctly(base_url, selenium):
 @pytest.mark.nondestructive
 def test_explore_section_loads(base_url, selenium):
     page = Home(selenium, base_url).open()
-    import time
     page.header.click_explore()
     assert 'firefox/' in selenium.current_url
 
