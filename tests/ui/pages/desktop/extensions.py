@@ -19,6 +19,10 @@ class Extensions(Base):
         return self
 
     @property
+    def title(self):
+        return self.find_element(*self._title_locator).text
+
+    @property
     def extension_header(self):
         return self.ExtensionHeader(self)
 

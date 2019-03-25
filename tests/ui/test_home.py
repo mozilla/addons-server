@@ -21,7 +21,7 @@ def test_there_are_6_theme_categories(base_url, selenium):
 def test_extensions_section_load_correctly(base_url, selenium):
     page = Home(selenium, base_url).open()
     ext_page = page.header.click_extensions()
-    assert 'Extensions' in ext_page.text
+    assert 'Extensions' in ext_page.title
 
 
 @pytest.mark.nondestructive
