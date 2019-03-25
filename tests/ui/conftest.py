@@ -46,7 +46,7 @@ def firefox_notifications(notifications):
 
 @pytest.fixture(scope='session')
 def django_db_setup():
-    print(settings.DATABASES)
+    # print(settings.DATABASES)
     settings.DATABASES['default'] = {
         'ENGINE': 'olympia.core.db.mysql',
         'HOST': 'mysqld',
