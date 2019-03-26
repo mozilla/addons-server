@@ -2,6 +2,7 @@ import subprocess
 import time
 
 
+# Script for running the auto approve command every 10 seconds for 5 minutes.
 def approve_addons():
     start_time = time.time()
     # run for 5 minutes max
