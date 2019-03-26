@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-03-11 12:57+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -143,15 +143,6 @@ msgstr "Изображенията трябва да са PNG или JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Видеото трябва да е във формат WebM."
-
-msgid "Follow this Collection"
-msgstr "Следване на списъка"
-
-msgid "Stop Following"
-msgstr "Отказ от следване"
-
-msgid "Following"
-msgstr "Следва"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -694,45 +685,6 @@ msgstr "Само с Firefox — Изтеглете Firefox сега!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "За съжаление, трябва да имате четец на основата на Mozilla (като Firefox), за да инсталирате търсеща добавка."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Добавяне към Любими&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Премахване от Любими&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Добавяне към Любими"
-
-msgid "Remove from Favorites"
-msgstr "Премахване от любими"
-
-msgid "Pending"
-msgstr "Чакащ"
-
-msgid "Add a comment"
-msgstr "Добавяне на коментар"
-
-msgid "Comment"
-msgstr "Коментар"
-
-msgid "Remove this add-on from the collection"
-msgstr "Премахване на добавката от списъка"
-
-msgid "Remove"
-msgstr "Премахване"
-
-msgid "Add to favorites"
-msgstr "Добавяне към любими"
-
-msgid "Remove from favorites"
-msgstr "Премахване от любими"
-
-msgid "Stop following"
-msgstr "Отказ от следване"
-
-msgid "Your browser does not support the video tag"
-msgstr "Браузърът ви не поддържа video тага"
 
 msgid "Changes Saved"
 msgstr "Промените са запазени"

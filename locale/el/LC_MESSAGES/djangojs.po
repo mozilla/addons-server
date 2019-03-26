@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-11-15 19:47+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
@@ -146,15 +146,6 @@ msgstr "Οι εικόνες πρέπει να είναι είτε PNG είτε J
 
 msgid "Videos must be in WebM."
 msgstr "Τα βίντεο πρέπει να είναι τύπου WebM."
-
-msgid "Follow this Collection"
-msgstr "Παρακολούθηση της συλλογής"
-
-msgid "Stop Following"
-msgstr "Διακοπή παρακολούθησης"
-
-msgid "Following"
-msgstr "Παρακολούθηση"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -697,45 +688,6 @@ msgstr "Μόνο με το Firefox — Λήψη του Firefox τώρα!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Λυπούμαστε, θα χρειαστείτε ένα πρόγραμμα περιήγησης με βάση τα προϊόντα Mozilla (όπως το Firefox) για να εγκαταστήσετε αρθρώματα αναζήτησης."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Γίνεται προσθήκη στις αγαπημένες&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Γίνεται αφαίρεση από τις αγαπημένες&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Προσθήκη στις αγαπημένες"
-
-msgid "Remove from Favorites"
-msgstr "Αφαίρεση απ' τις αγαπημένες"
-
-msgid "Pending"
-msgstr "Σε αναμονή"
-
-msgid "Add a comment"
-msgstr "Προσθήκη σχολίου"
-
-msgid "Comment"
-msgstr "Σχόλιο"
-
-msgid "Remove this add-on from the collection"
-msgstr "Αφαίρεση αυτού του πρόσθετου από τη συλλογή"
-
-msgid "Remove"
-msgstr "Αφαίρεση"
-
-msgid "Add to favorites"
-msgstr "Προσθήκη στα αγαπημένα"
-
-msgid "Remove from favorites"
-msgstr "Αφαίρεση απ' τα αγαπημένα"
-
-msgid "Stop following"
-msgstr "Διακοπή παρακολούθησης"
-
-msgid "Your browser does not support the video tag"
-msgstr "Ο περιηγητής σας δεν υποστηρίζει την οδηγία video."
 
 msgid "Changes Saved"
 msgstr "Οι αλλαγές αποθηκεύτηκαν"

@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-08-10 18:00+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -240,9 +240,6 @@ msgstr "Najczęściej używane rozszerzenia"
 
 msgid "Featured Themes"
 msgstr "Polecane motywy"
-
-msgid "Featured Collections"
-msgstr "Polecane kolekcje"
 
 msgid "Sort by:"
 msgstr "Sortuj wg:"
@@ -479,9 +476,6 @@ msgstr "Napisz opinię"
 msgid "Related Categories"
 msgstr "Powiązane kategorie"
 
-msgid "Part of these Collections"
-msgstr "Wchodzi w skład poniższych kolekcji"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -619,14 +613,14 @@ msgstr "Nie napisano jeszcze żadnej opinii o tym dodatku."
 msgid "Be the first!"
 msgstr "Napisz pierwszą opinię!"
 
+msgid "No results found."
+msgstr "Nic nie znaleziono."
+
 msgid "{0} users"
 msgstr "{0} użytkowników"
 
 msgid "More"
 msgstr "Więcej"
-
-msgid "Add to collection"
-msgstr "Dodaj do kolekcji"
 
 msgid "My Add-ons"
 msgstr "Moje dodatki"
@@ -652,9 +646,6 @@ msgstr "Przepraszamy, ten motyw jest oczekujący. Wróć ponownie później."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Ten motyw jest oczekujący. Jest niewidoczny dla wszystkich oprócz ciebie."
-
-msgid "Collector's Note"
-msgstr "Informacje twórcy kolekcji"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -867,9 +858,6 @@ msgstr "Chcesz więcej opcji dostosowania? Wypróbuj <b>kompletne motywy</b>"
 msgid "Collections"
 msgstr "Kolekcje"
 
-msgid "Collections I've Made"
-msgstr "Moje kolekcje"
-
 msgid "More&hellip;"
 msgstr "Więcej&hellip;"
 
@@ -990,38 +978,14 @@ msgstr ""
 "Jeśli obsługiwana aplikacja nie wymaga pliku manifest, nadal należy dołączyć taki plik z wymaganymi właściwościami, które określono %(amo_manifests_mdn_link_open)stutaj"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Only I can view this collection."
-msgstr "Tylko ja mogę oglądać tę kolekcję."
-
-msgid "Anybody can view this collection."
-msgstr "Każdy może oglądać tę kolekcję."
-
-msgid "Give your collection a name."
-msgstr "Podaj nazwę kolekcji."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Opis swoją kolekcją (odnośniki nie są dozwolone)"
-
-msgid "Privacy:"
-msgstr "Prywatność:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Nie wypełniaj tego pola, jest ono używane do wychwytywania botów"
-
-msgid "This name cannot be used."
-msgstr "Nie można użyć tej nazwy"
-
-msgid "This url is already in use by another collection"
-msgstr "Ten adres url jest już używany przez inną kolekcję"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Ten niestandardowy adres URL już używany przez inną Twoją kolekcję."
 
 msgid "Name cannot be empty."
 msgstr "Nazwa nie może być pusta."
+
+msgid "This name cannot be used."
+msgstr "Nie można użyć tej nazwy"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Niestandardowy adres URL musi składać się z liter, cyfr, podkreślników lub myślników."
@@ -1031,229 +995,6 @@ msgstr "Nie można użyć tego niestandardowego adresu URL."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Ten dodatek już należy do kolekcji"
-
-msgid "Added"
-msgstr "Dodano"
-
-msgid "Popularity"
-msgstr "Popularność"
-
-msgid "Name"
-msgstr "Nazwa"
-
-msgid "Collection created!"
-msgstr "Kolekcja została utworzona!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Poniżej znajduje się twoja nowa kolekcja. Jeśli chcesz, możesz <a href=\"%(url)s\">edytować dodatkowe ustawienia</a>."
-
-msgid "Collection updated!"
-msgstr "Kolekcja została zaktualizowana!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Zobacz swoją kolekcję</a>, by zobaczyć zmiany."
-
-msgid "Create a New Collection"
-msgstr "Utwórz nową kolekcję"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Jak opisano w naszych <a href=\"%(legal)s\">Informacjach prawnych</a>, tworzenie poszczególnych kolekcji reguluje licencja Creative Commons Attribution Share-Alike."
-
-msgid "Create Collection"
-msgstr "Utwórz kolekcję"
-
-msgid "View this collection"
-msgstr "Zobacz tę kolekcję"
-
-msgid "Start a new collection..."
-msgstr "Utwórz nową kolekcję…"
-
-msgid "Start a New Collection"
-msgstr "Utwórz nową kolekcję"
-
-msgid "Name:"
-msgstr "Nazwa:"
-
-msgid "(optional)"
-msgstr "(opcjonalne)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "lub <a id=\"collections-new-cancel\" href=\"#\">Anuluj</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Kolekcje"
-
-msgid "private"
-msgstr "prywatna"
-
-msgid "About this Collection"
-msgstr "O tej kolekcji"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Dodatki zsynchronizowane z moim Firefoksem na telefonie"
-
-msgid "Make this Collection Private"
-msgstr "Określ tę kolekcję jako prywatną"
-
-msgid "Make this Collection Public"
-msgstr "Upublicznij tę kolekcję"
-
-msgid "More Options:"
-msgstr "Więcej opcji:"
-
-msgid "Edit Collection"
-msgstr "Edytuj kolekcję"
-
-msgid "Delete Collection"
-msgstr "Usuń kolekcję"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s motyw w tej kolekcji"
-msgstr[1] "%(num)s motywy w tej kolekcji"
-msgstr[2] "%(num)s motywy w tej kolekcji"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "W tej kolekcji znajduje się %(num)s dodatek"
-msgstr[1] "W tej kolekcji znajdują się %(num)s dodatki"
-msgstr[2] "W tej kolekcji znajdują się %(num)s dodatki"
-
-msgid "Go"
-msgstr "Przejdź"
-
-msgid "What are Collections?"
-msgstr "Co to są kolekcje?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć i udostępniać."
-
-msgid "Explore Collections"
-msgstr "Przejrzyj kolekcje"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-"Dodatki dodane za pomocą przycisku <b>Dodaj do ulubionych</b> ukażą się poniżej. Obecnie ta kolekcja ma status <b>publiczna</b>, co oznacza, że jest widoczna dla wszystkich. Jeśli chcesz, by nie "
-"była ona dostępna dla innych, naciśnij przycisk znajdujący się poniżej, by ją określić jako prywatną."
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Dodatki dodane za pomocą przycisku <b>Dodaj do ulubionych</b> pojawią się poniżej. Obecnie ta kolekcja ma status <b>prywatna</b>, co oznacza, że jest widoczna tylko dla Ciebie. Jeśli chcesz, by "
-"była dostępna dla wszystkich, kliknij przycisk znajdujący się poniżej, by ją upublicznić."
-
-msgid "My favorite add-ons"
-msgstr "Moje ulubione dodatki"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> dodatek"
-msgstr[1] "<span>%(addons)s</span> dodatki"
-msgstr[2] "<span>%(addons)s</span> dodatki"
-
-msgid "by {0}"
-msgstr "autor: {0}"
-
-msgid "Edit this Collection"
-msgstr "Edytuj tę kolekcję"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Usuń {0}"
-
-msgid "Are you sure?"
-msgstr "Czy na pewno chcesz to zrobić?"
-
-msgid "Yes"
-msgstr "Tak"
-
-msgid "No"
-msgstr "Nie"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Edytuj {0}"
-
-msgid "Description"
-msgstr "Opis"
-
-msgid "Save Changes"
-msgstr "Zapisz zmiany"
-
-msgid "Remove from favorites"
-msgstr "Usuń z ulubionych"
-
-msgid "Add to favorites"
-msgstr "Dodaj do ulubionych"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Kolekcje autorstwa {0}"
-
-msgid "No collections found."
-msgstr "Nie znaleziono kolekcji."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Kolekcje są grupami pokrewnych dodatków, które każdy może tworzyć i udostępniać. Wypróbuj kolekcje utworzone przez innych użytkowników lub <a href=\"%(url)s\">utwórz własną</a>."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "autor: %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Moje ulubione dodatki"
-
-msgid "Create a Collection"
-msgstr "Utwórz kolekcję"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Kolekcje ułatwiają obserwację ulubionych dodatków i dzielenie się z innymi perfekcyjną konfiguracją swojej przeglądarki."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "Znaleziono błędy w formularzu. Popraw je poniżej."
-
-msgid "Add-ons in Your Collection"
-msgstr "Dodatki w tej kolekcji"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "Aby dołączyć dodatek do tej kolekcji, wprowadź jego nazwę w poniższym polu i naciśnij klawisz Enter."
-
-msgid "Add-on"
-msgstr "Dodatek"
-
-msgid "Comment"
-msgstr "Komentarz"
-
-msgid "Remove"
-msgstr "Usuń"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Aby dodać dodatek, podaj jego nazwę"
-
-msgid "Add to Collection"
-msgstr "Dodaj do kolekcji"
-
-msgid "Pending"
-msgstr "Oczekujące"
-
-msgid "Add a comment"
-msgstr "Dodaj komentarz"
-
-msgid "Remove this add-on from the collection"
-msgstr "Usuń ten dodatek z kolekcji"
-
-msgid "Favorite"
-msgstr "Ulubione"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1287,6 +1028,9 @@ msgstr "Narzędzia wyszukiwania"
 
 msgid "Most Users"
 msgstr "Najwięcej użytkowników"
+
+msgid "Name"
+msgstr "Nazwa"
 
 msgid "Weekly Downloads"
 msgstr "Tygodniowe pobrania"
@@ -2223,6 +1967,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Dodatek"
+
 msgid "Static Theme"
 msgstr "Motyw statyczny"
 
@@ -2487,6 +2234,12 @@ msgstr "Wersja {version} już istnieje."
 msgid "Continue with existing upload instead?"
 msgstr "Czy zamiast tego kontynuować z istniejącym przesłanym plikiem?"
 
+msgid "Yes"
+msgstr "Tak"
+
+msgid "No"
+msgstr "Nie"
+
 #, fuzzy
 msgid "You have not uploaded a source file."
 msgstr "Nie można przetworzyć przesłanego pliku."
@@ -2624,13 +2377,15 @@ msgstr "Nie powiodła się weryfikacja tego zgłoszenia i może brakować pełny
 msgid "Header area background"
 msgstr "Tło obszaru nagłówka"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Kolor tła obszaru nagłówka, wyświetlany w części nagłówka, która nie jest zakryta lub widoczna poprzez obraz nagłówka. Pole manifestu: accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Tekst i ikony w obszarze nagłówka"
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Kolor tekstu i ikon w obszarze nagłówka z wyjątkiem aktywnej karty. Pole manifestu: textcolor."
 
 msgid "Toolbar area background"
@@ -2642,7 +2397,8 @@ msgstr "Kolor tła paska nawigacji, paska zakładek i wybranej karty. Pole manif
 msgid "Toolbar area text and icons"
 msgstr "Tekst i ikony w obszarze paska narzędzi"
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Kolor tekstu i ikon na pasku narzędzi i aktywnej karcie. Pole manifestu: toolbar_text."
 
 msgid "Toolbar field area background"
@@ -2714,14 +2470,16 @@ msgstr "Strefa autora <small>dodatków</small>"
 msgid "more add-ons..."
 msgstr "więcej dodatków…"
 
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "Rozszerzenia"
+
 msgid "Documentation"
 msgstr "Dokumentacja"
 
 msgid "Extension Development"
 msgstr "Tworzenie rozszerzeń"
-
-msgid "Lightweight Themes"
-msgstr "Lekkie motywy"
 
 #, fuzzy
 msgid "Developer Policies"
@@ -2781,9 +2539,6 @@ msgstr "Ostatnia aktywność dla dodatku {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> przez użytkownika %(user)s"
 
-msgid "No results found."
-msgstr "Nic nie znaleziono."
-
 msgid "Refine Activity"
 msgstr "Oczyść czynności"
 
@@ -2829,8 +2584,14 @@ msgstr "Program"
 msgid "Supported Versions"
 msgstr "Obsługiwane wersje"
 
+msgid "Remove"
+msgstr "Usuń"
+
 msgid "Add Another Application&hellip;"
 msgstr "Dodaj następny program&hellip;"
+
+msgid "Save Changes"
+msgstr "Zapisz zmiany"
 
 msgid "Close"
 msgstr "Zamknij"
@@ -2964,6 +2725,9 @@ msgstr "Zobacz profil"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "To podsumowanie powinno jasno wyjaśniać, co robi dodatek. Podsumowanie będzie wyświetlane w spisach i wyszukiwarce, a także będzie używane przez recenzentów podczas testowania dodatku."
+
+msgid "Description"
+msgstr "Opis"
 
 msgid "Experimental?"
 msgstr "Eksperymentalny?"
@@ -3339,6 +3103,9 @@ msgstr "Adres URL dodatku:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "W adresie URL użyj tylko liter, cyfr, znaków podkreślenie i myślników."
+
+msgid "Name:"
+msgstr "Nazwa:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Nazwa w spisie w tej witrynie. Może się różnić od nazwy w dodatku, która jest wyświetlana w Firefoksie"
@@ -5505,6 +5272,9 @@ msgstr "GUID jest wymagany przez Firefoksa 47 lub nowszego."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Najniższa obsługiwana „strict_min_version” to 42.0."
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Nie można przetworzyć przesłanego pliku, brak elementu <%s> lub jest on pusty"
@@ -5604,6 +5374,9 @@ msgstr "Zawartość pliku nie jest obsługiwana na potrzeby wyróżniania skład
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "Dane wyjściowe mogą być uszkodzone. Zachowaj ostrożność i natychmiast %(link_start)szgłoś problem%(link_end)s!"
 
+msgid "Go"
+msgstr "Przejdź"
+
 msgid "Add-on file being processed, please wait."
 msgstr "Plik dodatku jest przetwarzany. Proszę czekać."
 
@@ -5618,9 +5391,6 @@ msgstr "Usunięte pliki:"
 
 msgid "Hide known files"
 msgstr "Ukryj znane pliki"
-
-msgid "Add-on SDK Version:"
-msgstr "Wersja SDK dodatków:"
 
 msgid "Tab stops:"
 msgstr "Tabulator:"
@@ -6273,9 +6043,6 @@ msgstr "Wymaga sprawdzenia zawartości przez administratora"
 msgid "Needs Admin Static Theme Review"
 msgstr "Wymaga sprawdzenia motywu statycznego przez administratora"
 
-msgid "Jetpack Add-on"
-msgstr "Dodatek Jetpack"
-
 msgid "More Information Requested"
 msgstr "Poproszono o więcej informacji"
 
@@ -6374,6 +6141,9 @@ msgstr "Sprawdzenie specjalne"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "Jeśli masz obawy dotyczące tego dodatku, którymi powinien się zająć administrator, wprowadź swoje komentarze w poniższym obszarze. Komentarze nie zostaną wysłane do autora."
+
+msgid "Comment"
+msgstr "Komentarz"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Skomentuj tę wersję. Twój komentarz nie będzie widoczny dla autora."
@@ -6910,98 +6680,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr "Przekroczono maksymalna długość zapytania."
 
-msgid "search for add-ons"
-msgstr "szukaj dodatków"
-
-msgid "search for themes"
-msgstr "wyszukiwanie motywów"
-
-msgid "search for apps"
-msgstr "szukaj aplikacji"
-
-msgid "Relevance"
-msgstr "Ważność"
-
-msgid "All Add-ons"
-msgstr "Wszystkie dodatki"
-
-msgid "Any {0}"
-msgstr "Każda wersja programu {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Wszystkie systemy"
-
-msgid "All Tags"
-msgstr "Wszystkie etykiety"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Wyniki wyszukiwania dla {0}"
-
-msgid "Collection Search Results"
-msgstr "Wyniki wyszukiwania kolekcji"
-
-msgid "Search Results"
-msgstr "Wyniki wyszukiwania"
-
-msgid "Search Unavailable"
-msgstr "Wyszukiwanie niedostępne"
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Wyszukiwanie jest czasowo niedostępne. Spróbuj ponownie za kilka minut."
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr "Wyniki wyszukiwania motywów dla {0}"
-
-msgid "Themes Search Results"
-msgstr "Wyniki wyszukiwania motywów"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Wyszukiwanie"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Wyniki wyszukiwania dla „{0}”"
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} :: Etykieta"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Wyniki wyszukiwania dla etykiety „{0}”"
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> pasujący wynik"
-msgstr[1] "<b>{0}</b> pasujące wyniki"
-msgstr[2] "<b>{0}</b> pasujących wyników"
-
-msgid "Filter Results"
-msgstr "Filtruj wyniki"
-
-msgid "Category"
-msgstr "Kategoria"
-
-msgid "Tag"
-msgstr "Etykieta"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Wyświetlone jest {0} — {1} z {2} wyników dla <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Wyświetlone jest {0} — {1} z {2} wyników"
-
 #, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Nie można znaleźć dodatku o identyfikatorze „{}”."
@@ -7311,16 +6989,6 @@ msgstr "AMO otrzyma nowy wygląd. Czy chcesz go zobaczyć?"
 msgid "Visit the new site"
 msgstr "Odwiedź nową witrynę"
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Aby tworzyć własne kolekcje, musisz mieć konto na witrynie Mozilla Add-ons."
-
-msgid "Create an Add-ons Account"
-msgstr "Utwórz konto"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "lub <a href=\"%(login)s\">zaloguj się na swoje obecne konto</a>"
-
 msgid "Footer logo"
 msgstr "Logo stopki"
 
@@ -7414,6 +7082,9 @@ msgstr "Dodatki dla Androida"
 msgid "Required fields"
 msgstr "Wymagane pola"
 
+msgid "(optional)"
+msgstr "(opcjonalne)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7476,6 +7147,9 @@ msgstr "Firefox dla Androida"
 
 msgid "My Mobile Add-ons"
 msgstr "Moje dodatki do Firefoksa na telefon"
+
+msgid "My Favorite Add-ons"
+msgstr "Moje ulubione dodatki"
 
 msgid "an add-on developer replies to my review"
 msgstr "Autor dodatku odpowiedział na moją opinię"

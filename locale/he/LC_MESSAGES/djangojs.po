@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-01 13:16+0000\n"
 "Last-Translator: ItielMaN <itiel_yn8@walla.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,15 +140,6 @@ msgstr "תמונות יכולות להיות בתבנית PNG או JPG."
 
 msgid "Videos must be in WebM."
 msgstr "וידאו חייב להיות בתבנית WebM."
-
-msgid "Follow this Collection"
-msgstr "מעקב אחרי אוסף זה"
-
-msgid "Stop Following"
-msgstr "הפסקת מעקב"
-
-msgid "Following"
-msgstr "במעקב"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -691,45 +682,6 @@ msgstr "רק עם Firefox — קבלו את Firefox כעת!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "מצטערים, אבל נדרש דפדפן ממשפחת Mozilla (כגון Firefox) כדי להתקין תוספת חיפוש."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "הוספה למועדפים&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "הסרת מועדף&hellip;"
-
-msgid "Add to Favorites"
-msgstr "הוספה למועדפים"
-
-msgid "Remove from Favorites"
-msgstr "הסרה מהמועדפים"
-
-msgid "Pending"
-msgstr "בהמתנה"
-
-msgid "Add a comment"
-msgstr "הוספת תגובה"
-
-msgid "Comment"
-msgstr "תגובה"
-
-msgid "Remove this add-on from the collection"
-msgstr "הסרת תוספת זו מהאוסף"
-
-msgid "Remove"
-msgstr "הסרה"
-
-msgid "Add to favorites"
-msgstr "הוספה למועדפים"
-
-msgid "Remove from favorites"
-msgstr "הסרה מהמועדפים"
-
-msgid "Stop following"
-msgstr "הפסקת מעקב"
-
-msgid "Your browser does not support the video tag"
-msgstr "הדפדפן שלך אינו תומך בתג video"
 
 msgid "Changes Saved"
 msgstr "השינויים נשמרו"

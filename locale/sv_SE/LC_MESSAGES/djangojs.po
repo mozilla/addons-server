@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-01 13:27+0000\n"
 "Last-Translator: Luna Jernberg <bittin@cafe8bitar.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
@@ -142,15 +142,6 @@ msgstr "Bilder måste vara antingen PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videor måste vara i WebM."
-
-msgid "Follow this Collection"
-msgstr "Följ denna samling"
-
-msgid "Stop Following"
-msgstr "Sluta följa"
-
-msgid "Following"
-msgstr "Följer"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -693,45 +684,6 @@ msgstr "Endast med Firefox — Hämta Firefox nu!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Tyvärr, du behöver en Mozillabaserad webbläsare (som Firefox) för att installera ett söktillägg."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Lägger till i favoriter&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Tar bort favorit&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Lägg till i favoriter"
-
-msgid "Remove from Favorites"
-msgstr "Ta bort från favoriter"
-
-msgid "Pending"
-msgstr "Väntande"
-
-msgid "Add a comment"
-msgstr "Lägg till en kommentar"
-
-msgid "Comment"
-msgstr "Kommentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Ta bort detta tillägg från samlingen"
-
-msgid "Remove"
-msgstr "Ta bort"
-
-msgid "Add to favorites"
-msgstr "Lägg till i favoriter"
-
-msgid "Remove from favorites"
-msgstr "Ta bort från favoriter"
-
-msgid "Stop following"
-msgstr "Sluta följa"
-
-msgid "Your browser does not support the video tag"
-msgstr "Din webbläsare stöder inte videotaggen"
 
 msgid "Changes Saved"
 msgstr "Ändringar sparade"

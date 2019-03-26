@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-03-26 16:11+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,15 +135,6 @@ msgstr "รูปภาพต้องเป็น PNG หรือไม่ก�
 
 msgid "Videos must be in WebM."
 msgstr "วิดีโอต้องเป็นแบบ WebM"
-
-msgid "Follow this Collection"
-msgstr "ติดตามชุดสะสมนี้"
-
-msgid "Stop Following"
-msgstr "หยุดการติดตาม"
-
-msgid "Following"
-msgstr "กำลังติดตาม"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -685,45 +676,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งปลั๊กอินการค้นหา"
-
-msgid "Adding to Favorites&hellip;"
-msgstr "เพิ่มเข้ารายการโปรด&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "เอาออกจากรายการโปรด&hellip;"
-
-msgid "Add to Favorites"
-msgstr "เพิ่มเข้ารายการโปรด"
-
-msgid "Remove from Favorites"
-msgstr "เอาออกจากรายการโปรด"
-
-msgid "Pending"
-msgstr "กำลังรอ"
-
-msgid "Add a comment"
-msgstr "แสดงความคิดเห็น"
-
-msgid "Comment"
-msgstr "ความคิดเห็น"
-
-msgid "Remove this add-on from the collection"
-msgstr "เอาส่วนเสริมนี้ออกจากชุดสะสม"
-
-msgid "Remove"
-msgstr "เอาออก"
-
-msgid "Add to favorites"
-msgstr "เพิ่มไปยังรายการโปรด"
-
-msgid "Remove from favorites"
-msgstr "เอาออกจากรายการโปรด"
-
-msgid "Stop following"
-msgstr "หยุดการติดตาม"
-
-msgid "Your browser does not support the video tag"
-msgstr "เบราว์เซอร์ของคุณไม่รองรับป้ายกำกับวิดีโอ"
 
 msgid "Changes Saved"
 msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"

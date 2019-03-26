@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-01 17:20+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -146,15 +146,6 @@ msgstr "Grafiken müssen entweder PNG oder JPG sein."
 
 msgid "Videos must be in WebM."
 msgstr "Videos müssen im WebM-Format sein."
-
-msgid "Follow this Collection"
-msgstr "Dieser Sammlung folgen"
-
-msgid "Stop Following"
-msgstr "Nicht mehr folgen"
-
-msgid "Following"
-msgstr "Folgen"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -697,45 +688,6 @@ msgstr "Nur in Firefox – Laden Sie Firefox jetzt herunter!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Es tut uns leid, Sie benötigen einen Mozilla-basierten Browser (wie Firefox), um ein Such-Plugin zu installieren."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Wird zu Favoriten hinzugefügt …"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Favorit wird entfernt …"
-
-msgid "Add to Favorites"
-msgstr "Zu Favoriten hinzufügen"
-
-msgid "Remove from Favorites"
-msgstr "Aus Favoriten entfernen"
-
-msgid "Pending"
-msgstr "Ausstehend"
-
-msgid "Add a comment"
-msgstr "Einen Kommentar hinzufügen"
-
-msgid "Comment"
-msgstr "Kommentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Dieses Add-on aus der Sammlung entfernen"
-
-msgid "Remove"
-msgstr "Entfernen"
-
-msgid "Add to favorites"
-msgstr "Zu Favoriten hinzufügen"
-
-msgid "Remove from favorites"
-msgstr "Aus Favoriten entfernen"
-
-msgid "Stop following"
-msgstr "Nicht mehr folgen"
-
-msgid "Your browser does not support the video tag"
-msgstr "Ihr Browser unterstützt den Video-Tag nicht"
 
 msgid "Changes Saved"
 msgstr "Änderungen gespeichert"

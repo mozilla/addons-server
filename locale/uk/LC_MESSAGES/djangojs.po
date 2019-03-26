@@ -1,9 +1,9 @@
-# 
+#
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-03-26 07:24+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -147,15 +147,6 @@ msgstr "Зображення повинні бути в форматі PNG аб�
 
 msgid "Videos must be in WebM."
 msgstr "Відео повинні бути у форматі WebM."
-
-msgid "Follow this Collection"
-msgstr "Стежити за цією збіркою"
-
-msgid "Stop Following"
-msgstr "Більше не стежити"
-
-msgid "Following"
-msgstr "Стеження"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -708,45 +699,6 @@ msgstr "Лише з Firefox — Отримайте Firefox зараз!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Вибачте, але щоб встановити пошуковий плагін вам потрібен браузер на основі Mozilla (наприклад, Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Додається до вподобань&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Вилучається з вподобань&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Додати до вподобань"
-
-msgid "Remove from Favorites"
-msgstr "Вилучити з вподобань"
-
-msgid "Pending"
-msgstr "В очікуванні"
-
-msgid "Add a comment"
-msgstr "Прокоментувати"
-
-msgid "Comment"
-msgstr "Коментар"
-
-msgid "Remove this add-on from the collection"
-msgstr "Вилучити цей додаток зі збірки"
-
-msgid "Remove"
-msgstr "Вилучити"
-
-msgid "Add to favorites"
-msgstr "Додати до вподобань"
-
-msgid "Remove from favorites"
-msgstr "Вилучити з вподобань"
-
-msgid "Stop following"
-msgstr "Більше не стежити"
-
-msgid "Your browser does not support the video tag"
-msgstr "Ваш браузер не підтримує тег відео"
 
 msgid "Changes Saved"
 msgstr "Зміни збережено"

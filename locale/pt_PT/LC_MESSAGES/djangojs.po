@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-23 04:58+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: \n"
@@ -143,15 +143,6 @@ msgstr "As imagens devem de ser PNG ou JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Os vídeos devem de estar no formato WebM."
-
-msgid "Follow this Collection"
-msgstr "Seguir esta coleção"
-
-msgid "Stop Following"
-msgstr "Deixar de seguir"
-
-msgid "Following"
-msgstr "A seguir"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -694,45 +685,6 @@ msgstr "Apenas com o Firefox — Obter o Firefox agora!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Desculpe, mas precisa de um navegador baseado na Mozilla (como o Firefox) para instalar um plugin de pesquisa."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "A adicionar aos favoritos&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "A remover favoritos&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Adicionar aos favoritos"
-
-msgid "Remove from Favorites"
-msgstr "Remover dos favoritos"
-
-msgid "Pending"
-msgstr "Em espera"
-
-msgid "Add a comment"
-msgstr "Adicionar um comentário"
-
-msgid "Comment"
-msgstr "Comentário"
-
-msgid "Remove this add-on from the collection"
-msgstr "Remover este extra da coleção"
-
-msgid "Remove"
-msgstr "Remover"
-
-msgid "Add to favorites"
-msgstr "Adicionar aos favoritos"
-
-msgid "Remove from favorites"
-msgstr "Remover dos favoritos"
-
-msgid "Stop following"
-msgstr "Deixar de seguir"
-
-msgid "Your browser does not support the video tag"
-msgstr "O seu navegador não suporta a etiqueta de vídeo"
 
 msgid "Changes Saved"
 msgstr "Alterações guardadas"

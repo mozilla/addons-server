@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-11-02 15:00+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,9 +226,6 @@ msgstr "আসন্ন এক্সটেনশন সমূহ"
 
 msgid "Featured Themes"
 msgstr "নির্বাচিত থিমসমূহ"
-
-msgid "Featured Collections"
-msgstr "নির্বাচিত সংগ্রহসমূহ"
 
 msgid "Sort by:"
 msgstr "বাছাই দ্বারা:"
@@ -456,9 +453,6 @@ msgstr "একটি পর্যালোচনা লিখুন"
 msgid "Related Categories"
 msgstr "সম্পর্কিত বিষয়শ্রেণী"
 
-msgid "Part of these Collections"
-msgstr "এই সংগ্রহের অংশ"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -590,14 +584,14 @@ msgstr "অ্যাড-অনটি এখনও পর্যালোচনা
 msgid "Be the first!"
 msgstr "প্রথম পর্যালোচনাকারী হোন!"
 
+msgid "No results found."
+msgstr "ফলাফল পাওয়া যায় নি।"
+
 msgid "{0} users"
 msgstr "{0} জন ব্যবহারকারী"
 
 msgid "More"
 msgstr "আরও"
-
-msgid "Add to collection"
-msgstr "সংগ্রহে যোগ করুন"
 
 msgid "My Add-ons"
 msgstr "আমার অ্যাড-অনসমূহ"
@@ -623,9 +617,6 @@ msgstr "দুঃখিত, থিমটি পেন্ডিং অবস্�
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "থিমটি পেন্ডিং অবস্থায় আছে। এটি আপনি ছাড়া আর কেউ দেখতে পাবে না।"
-
-msgid "Collector's Note"
-msgstr "সংগ্রাহকের টীকা"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -826,9 +817,6 @@ msgstr ""
 msgid "Collections"
 msgstr "সংগ্রহ"
 
-msgid "Collections I've Made"
-msgstr "আমার তৈরি সংগ্রহসমূহ"
-
 msgid "More&hellip;"
 msgstr "More&hellip;"
 
@@ -947,39 +935,15 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "Only I can view this collection."
-msgstr "শুধু আমি এই সংগ্রহটি দেখতে পারব।"
-
-msgid "Anybody can view this collection."
-msgstr "যেকেউ এই সংগ্রহটি দেখতে পারব।"
-
-msgid "Give your collection a name."
-msgstr "আপনার সংগ্রহের নাম দিন।"
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "আপনার সংগ্রহের বর্ণনা দিন (লিন্ক দেওয়া যাবে না)।"
-
-msgid "Privacy:"
-msgstr "গোপনীয়তা:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
-
-msgid "This name cannot be used."
-msgstr "এই নামটি ব্যবহার করা যাবে না।"
-
-msgid "This url is already in use by another collection"
-msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "এই ইউআরএলটি অন্য একটি সংগ্রহে ব্যবহৃত হচ্ছে"
 
 #, fuzzy
 msgid "Name cannot be empty."
+msgstr "এই নামটি ব্যবহার করা যাবে না।"
+
+msgid "This name cannot be used."
 msgstr "এই নামটি ব্যবহার করা যাবে না।"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -991,222 +955,6 @@ msgstr "এই নামটি ব্যবহার করা যাবে ন�
 
 msgid "This add-on already belongs to the collection"
 msgstr "অ্যাড-অনটি ইতোমধ্যেই সংগ্রহে আছে"
-
-msgid "Added"
-msgstr "যুক্ত করা হয়েছে"
-
-msgid "Popularity"
-msgstr "জনপ্রিয়তা"
-
-msgid "Name"
-msgstr "নাম"
-
-msgid "Collection created!"
-msgstr "সংগ্রহ তৈরি করা হয়েছে!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "আপনার নতুন সংগ্রহ নীচে দেখান হল। আপনি যদি চান <a href=\"%(url)s\">অতিরিক্ত সেটিংস সম্পাদনা</a> করতে পারেন।"
-
-msgid "Collection updated!"
-msgstr "সংগ্রহ হালনাগাদ করা হয়েছে!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "পরিবর্তন দেখতে <a href=\"%(url)s\">আপনার সংগ্রহ দেখুন</a>।"
-
-msgid "Create a New Collection"
-msgstr "নতুন সংগ্রহ তৈরি করুন"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
-
-msgid "Create Collection"
-msgstr "সংগ্রহ তৈরি করুন"
-
-msgid "View this collection"
-msgstr "সংগ্রহ দেখুন"
-
-msgid "Start a new collection..."
-msgstr "নতুন সংগ্রহ শুরু করুন..."
-
-msgid "Start a New Collection"
-msgstr "নতুন সংগ্রহ শুরু করুন"
-
-msgid "Name:"
-msgstr "নাম:"
-
-msgid "(optional)"
-msgstr "(ঐচ্ছিক)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "অথবা <a id=\"collections-new-cancel\" href=\"#\">বাতিল</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: সংগ্রহ"
-
-msgid "private"
-msgstr "ব্যক্তিগত"
-
-msgid "About this Collection"
-msgstr "এই সংগ্রহ সম্বন্ধে"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "আমার মোবাইল ফায়ারফক্স হতে অ্যাড-অনস সিঙ্ক করা হয়েছে"
-
-msgid "Make this Collection Private"
-msgstr "এই সংগ্রহ নিজস্ব করুন"
-
-msgid "Make this Collection Public"
-msgstr "এই সংগ্রহ সর্বজনীন করুন"
-
-msgid "More Options:"
-msgstr "আরও অপশন:"
-
-msgid "Edit Collection"
-msgstr "সংগ্রহ সম্পাদনা"
-
-msgid "Delete Collection"
-msgstr "সংগ্রহ মুছে ফেলুন"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "এই সংগ্রহের %(num)s থিম"
-msgstr[1] "এই সংগ্রহের %(num)s থিম"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "এই সংগ্রহের %(num)s অ্যাড-অনস"
-msgstr[1] "এই সংগ্রহের %(num)s অ্যাড-অনস"
-
-msgid "Go"
-msgstr "চলুন"
-
-msgid "What are Collections?"
-msgstr "সংগ্রহ কী?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr ""
-
-msgid "Explore Collections"
-msgstr "সংগ্রহ ঘুরে দেখুন"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-
-msgid "My favorite add-ons"
-msgstr "আমার পছন্দের অ্যাড-অন"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> এড-অন"
-msgstr[1] "<span>%(addons)s</span> এড-অন সূমহ"
-
-msgid "by {0}"
-msgstr "{0} দ্বারা"
-
-msgid "Edit this Collection"
-msgstr "সংগ্রহটি সম্পাদনা করুন"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "{0} মুছে ফেলুন"
-
-msgid "Are you sure?"
-msgstr "আপনি নিশ্চিত?"
-
-msgid "Yes"
-msgstr "হ্যাঁ"
-
-msgid "No"
-msgstr "না"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "{0} সম্পাদনা করুন"
-
-msgid "Description"
-msgstr "বর্ণনা"
-
-msgid "Save Changes"
-msgstr "পরিবর্তন সংরক্ষণ"
-
-msgid "Remove from favorites"
-msgstr "পছন্দের তালিকা হতে অপসারণ করুন"
-
-msgid "Add to favorites"
-msgstr "পছন্দের তালিকায় যুক্ত করুন"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "{0} দ্বারা সংগ্রহসূমহ"
-
-msgid "No collections found."
-msgstr "কোন সংগ্রহ পাওয়া যায়নি"
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "%(author_link)s দ্বারা"
-
-msgid "My Favorite Add-ons"
-msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
-
-msgid "Create a Collection"
-msgstr "সংগ্রহ তৈরি করুন"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
-
-msgid "Add-ons in Your Collection"
-msgstr "আপনার সংগ্রহের অ্যাড-অনগুলো"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
-
-msgid "Add-on"
-msgstr "অ্যাড-অন"
-
-msgid "Comment"
-msgstr "মন্তব্য করুন"
-
-msgid "Remove"
-msgstr "অপসারণ করুন"
-
-msgid "Enter the name of the add-on to include"
-msgstr "অন্তর্ভুক্ত করার জন্য অ্যাড-অনের নামটি প্রবেশ করান"
-
-msgid "Add to Collection"
-msgstr "সংগ্রহে যুক্ত করুন"
-
-msgid "Pending"
-msgstr "অনিষ্পন্ন"
-
-msgid "Add a comment"
-msgstr "মন্তব্য করুন"
-
-msgid "Remove this add-on from the collection"
-msgstr "সংগ্রহ হতে অ্যাড-অনটি অপসারণ করুন"
-
-msgid "Favorite"
-msgstr "পছন্দ"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1240,6 +988,9 @@ msgstr "সন্ধান উপকরণ"
 
 msgid "Most Users"
 msgstr "অধিকাংশ ব্যবহারকারী"
+
+msgid "Name"
+msgstr "নাম"
 
 msgid "Weekly Downloads"
 msgstr "সাপ্তাহিক ডাউনলোড"
@@ -2204,6 +1955,9 @@ msgstr "সোলারিস"
 msgid "Android"
 msgstr "এনড্রয়েড"
 
+msgid "Add-on"
+msgstr "অ্যাড-অন"
+
 #, fuzzy
 msgid "Static Theme"
 msgstr "থিম সাবমিট করুন"
@@ -2471,6 +2225,12 @@ msgstr "{addon} এর {version} অনুমোদিত হয়েছে।"
 msgid "Continue with existing upload instead?"
 msgstr ""
 
+msgid "Yes"
+msgstr "হ্যাঁ"
+
+msgid "No"
+msgstr "না"
+
 #, fuzzy
 msgid "You have not uploaded a source file."
 msgstr "আপনি এই সংস্করণের জন্য আর কোন ফাইল আপলোড করতে পারবেন না।"
@@ -2603,14 +2363,15 @@ msgstr ""
 msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
+msgstr "টুলবারের টেক্সটের রং।"
 
 msgid "Toolbar area background"
 msgstr ""
@@ -2622,7 +2383,7 @@ msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "টুলবারের টেক্সটের রং।"
 
 msgid "Toolbar field area background"
@@ -2692,13 +2453,14 @@ msgstr ""
 msgid "more add-ons..."
 msgstr ""
 
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "এক্সটেনশন"
+
 msgid "Documentation"
 msgstr ""
 
 msgid "Extension Development"
-msgstr ""
-
-msgid "Lightweight Themes"
 msgstr ""
 
 #, fuzzy
@@ -2759,9 +2521,6 @@ msgstr ""
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\"> %(ago)s </time> দ্বারা %(user)s"
 
-msgid "No results found."
-msgstr "ফলাফল পাওয়া যায় নি।"
-
 msgid "Refine Activity"
 msgstr ""
 
@@ -2801,8 +2560,14 @@ msgstr "অ্যাপ্লিকেশন"
 msgid "Supported Versions"
 msgstr ""
 
+msgid "Remove"
+msgstr "অপসারণ করুন"
+
 msgid "Add Another Application&hellip;"
 msgstr ""
+
+msgid "Save Changes"
+msgstr "পরিবর্তন সংরক্ষণ"
 
 msgid "Close"
 msgstr "বন্ধ"
@@ -2932,6 +2697,9 @@ msgstr "প্রোফাইল দেখুন"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "বর্ণনা"
 
 msgid "Experimental?"
 msgstr "পরীক্ষামূলক?"
@@ -3287,6 +3055,9 @@ msgstr "এড-অন URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+
+msgid "Name:"
+msgstr "নাম:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -5452,6 +5223,9 @@ msgstr ""
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
@@ -5550,6 +5324,9 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "Go"
+msgstr "চলুন"
+
 msgid "Add-on file being processed, please wait."
 msgstr ""
 
@@ -5563,9 +5340,6 @@ msgid "Deleted files:"
 msgstr ""
 
 msgid "Hide known files"
-msgstr ""
-
-msgid "Add-on SDK Version:"
 msgstr ""
 
 msgid "Tab stops:"
@@ -6206,9 +5980,6 @@ msgstr "পর্যালোচিত হয় নি"
 msgid "Needs Admin Static Theme Review"
 msgstr "এডমিন পর্যালোচনা"
 
-msgid "Jetpack Add-on"
-msgstr ""
-
 msgid "More Information Requested"
 msgstr ""
 
@@ -6310,6 +6081,9 @@ msgstr ""
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
+
+msgid "Comment"
+msgstr "মন্তব্য করুন"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -6879,90 +6653,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "search for add-ons"
-msgstr "এড-অনস অনুসন্ধান করুন"
-
-msgid "search for themes"
-msgstr ""
-
-msgid "search for apps"
-msgstr "অ্যাপ অনুসন্ধান করুন"
-
-msgid "Relevance"
-msgstr ""
-
-msgid "All Add-ons"
-msgstr "সব এড-অনস"
-
-msgid "Any {0}"
-msgstr "যেকোন {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr ""
-
-msgid "All Tags"
-msgstr "সব ট্যাগগুলো"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr ""
-
-msgid "Collection Search Results"
-msgstr ""
-
-msgid "Search Results"
-msgstr "অনুসন্ধানের ফলাফল"
-
-msgid "Search Unavailable"
-msgstr ""
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr ""
-
-msgid "Themes Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr ""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} ট্যাগ ::"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr ""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Filter Results"
-msgstr ""
-
-msgid "Category"
-msgstr "ক্যাটাগরি"
-
-msgid "Tag"
-msgstr "ট্যাগ"
-
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr ""
-
 msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
@@ -7258,16 +6948,6 @@ msgstr ""
 msgid "Visit the new site"
 msgstr ""
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "নিজের সংগ্রহ তৈরির জন্য, আপনার অবশ্যই একটি অ্যাড-অন অ্যাকাউন্ট থাকতে হবে।"
-
-msgid "Create an Add-ons Account"
-msgstr "অ্যাড-অন অ্যাকাউন্ট তৈরি করুন"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "অথবা <a href=\"%(login)s\">অপনার বর্তমান অ্যাকাউন্টে লগ ইন করুন</a>"
-
 msgid "Footer logo"
 msgstr "ফুটার লগো"
 
@@ -7361,6 +7041,9 @@ msgstr "অ্যান্ড্রয়েড অ্যাড-অন"
 msgid "Required fields"
 msgstr "প্রয়োজনীয় স্থানসমুহ"
 
+msgid "(optional)"
+msgstr "(ঐচ্ছিক)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7424,6 +7107,9 @@ msgstr "অ্যান্ড্রয়েড এর জন্য ফায়
 
 msgid "My Mobile Add-ons"
 msgstr ""
+
+msgid "My Favorite Add-ons"
+msgstr "আমার পছন্দের অ্যাড-অনসমূহ"
 
 msgid "an add-on developer replies to my review"
 msgstr ""

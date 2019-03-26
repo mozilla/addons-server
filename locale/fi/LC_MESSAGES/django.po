@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-03-03 20:26+0000\n"
 "Last-Translator: Lasse Liehu <lasse.liehu@iki.fi>\n"
 "Language-Team: Finnish <yllapito@mozilla.fi>\n"
@@ -238,11 +238,6 @@ msgstr "Lupaavat laajennukset"
 msgid "Featured Themes"
 msgstr "Suositellut teemat"
 
-# 80%
-# 100%
-msgid "Featured Collections"
-msgstr "Suositellut kokoelmat"
-
 msgid "Sort by:"
 msgstr "Järjestys:"
 
@@ -470,9 +465,6 @@ msgstr "Kirjoita arvio"
 msgid "Related Categories"
 msgstr "Lisäosaan liittyvät luokat"
 
-msgid "Part of these Collections"
-msgstr "Osana näissä kokoelmissa"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -606,16 +598,14 @@ msgstr "Tällä lisäosalla ei ole vielä yhtään käyttäjäarviota."
 msgid "Be the first!"
 msgstr "Ole ensimmäinen!"
 
+msgid "No results found."
+msgstr "Osumia ei löytynyt."
+
 msgid "{0} users"
 msgstr "{0} käyttäjää"
 
 msgid "More"
 msgstr "Lisää"
-
-# 94%
-# 100%
-msgid "Add to collection"
-msgstr "Lisää kokoelmaan"
 
 msgid "My Add-ons"
 msgstr "Lisäosani"
@@ -640,9 +630,6 @@ msgid "Sorry, this theme is pending. Please come back later."
 msgstr ""
 
 msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
-
-msgid "Collector's Note"
 msgstr ""
 
 #. {0} is the number of downloads.
@@ -846,9 +833,6 @@ msgstr ""
 msgid "Collections"
 msgstr "Kokoelmat"
 
-msgid "Collections I've Made"
-msgstr "Tekemäni kokoelmat"
-
 msgid "More&hellip;"
 msgstr "Lisää&hellip;"
 
@@ -968,38 +952,14 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "Only I can view this collection."
-msgstr "Vain minä voin nähdä tämän kokoelman."
-
-msgid "Anybody can view this collection."
-msgstr "Kuka tahansa voi nähdä tämän kokoelman."
-
-msgid "Give your collection a name."
-msgstr "Anna kokoelmallesi nimi."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Kuvaile kokoelmaasi (linkit eivät ole sallittuja)."
-
-msgid "Privacy:"
-msgstr "Yksityisyys:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Älä täytä tätä kenttää, sen on tarkoitus paljastaa botit"
-
-msgid "This name cannot be used."
-msgstr "Tätä nimeä ei voi käyttää."
-
-msgid "This url is already in use by another collection"
-msgstr "Tämä osoite on jo toisen kokoelman käytössä"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tämä osoitemuoto on jo käytössä jossakin toisessa kokoelmassasi."
 
 msgid "Name cannot be empty."
 msgstr "Nimi ei voi olla tyhjä."
+
+msgid "This name cannot be used."
+msgstr "Tätä nimeä ei voi käyttää."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -1009,261 +969,6 @@ msgstr "Tätä muokattua URL:ää ei voida käyttää."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Tämä lisäosa kuuluu jo kokoelmaan"
-
-msgid "Added"
-msgstr "Lisäyspäivä"
-
-# 100%
-msgid "Popularity"
-msgstr "Suosio"
-
-msgid "Name"
-msgstr "Nimi"
-
-msgid "Collection created!"
-msgstr "Kokoelma luotu!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
-
-msgid "Collection updated!"
-msgstr "Kokoelma päivitetty!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "Näe muutokset <a href=\"%(url)s\">katsomalla kokoelmaasi</a>."
-
-# 89%
-# 82%
-# 100%
-msgid "Create a New Collection"
-msgstr "Luo uusi kokoelma"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr ""
-
-# 89%
-# 100%
-msgid "Create Collection"
-msgstr "Luo kokoelma"
-
-# 76%
-# 75%
-# 100%
-msgid "View this collection"
-msgstr "Näytä tämä kokoelma"
-
-# 89%
-# 82%
-# 78%
-# 80%
-msgid "Start a new collection..."
-msgstr "Aloita uusi kokoelma..."
-
-# 89%
-# 82%
-# 78%
-# 100%
-msgid "Start a New Collection"
-msgstr "Aloita uusi kokoelma"
-
-msgid "Name:"
-msgstr "Nimi:"
-
-msgid "(optional)"
-msgstr "(valinnainen)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "tai <a id=\"collections-new-cancel\" href=\"#\">Peru</a>"
-
-# ikkunan otsikko
-msgid "{0} :: Collections"
-msgstr "{0} :: Kokoelmat"
-
-msgid "private"
-msgstr "yksityinen"
-
-# 76%
-# 100%
-msgid "About this Collection"
-msgstr "Tietoja tästä kokoelmasta"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
-
-msgid "Make this Collection Private"
-msgstr "Tee tämä kokoelma yksityiseksi"
-
-msgid "Make this Collection Public"
-msgstr "Tee tämä kokoelma julkiseksi"
-
-msgid "More Options:"
-msgstr "Lisäasetukset:"
-
-# 76%
-# 100%
-msgid "Edit Collection"
-msgstr "Muokkaa kokoelmaa"
-
-# 78%
-# 100%
-msgid "Delete Collection"
-msgstr "Poista kokoelma"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s teema tässä kokoelmassa"
-msgstr[1] "%(num)s teemaa tässä kokoelmassa"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s lisäosa tässä kokoelmassa"
-msgstr[1] "%(num)s lisäosaa tässä kokoelmassa"
-
-# 100%
-msgid "Go"
-msgstr "Mene"
-
-msgid "What are Collections?"
-msgstr "Mitä kokoelmat ovat?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Kokoelmat ovat toisiinsa liittyvien lisäosien ryhmiä, joita kuka tahansa voi luoda ja jakaa."
-
-msgid "Explore Collections"
-msgstr "Selaa kokoelmia"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-
-# 89%
-# 100%
-msgid "My favorite add-ons"
-msgstr "Suosikkilisäosani"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> lisäosa"
-msgstr[1] "<span>%(addons)s</span> lisäosaa"
-
-msgid "by {0}"
-msgstr "tekijänä {0}"
-
-# 76%
-# 100%
-msgid "Edit this Collection"
-msgstr "Muokkaa kokoelmaa"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Poista {0}"
-
-msgid "Are you sure?"
-msgstr "Oletko varma?"
-
-msgid "Yes"
-msgstr "Kyllä"
-
-msgid "No"
-msgstr "Ei"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Muokkaa kokoelmaa {0}"
-
-msgid "Description"
-msgstr "Kuvaus"
-
-msgid "Save Changes"
-msgstr "Tallenna muutokset"
-
-# 95%
-# 100%
-msgid "Remove from favorites"
-msgstr "Poista suosikeista"
-
-# 93%
-# 100%
-msgid "Add to favorites"
-msgstr "Lisää suosikkeihin"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Käyttäjän {0} tekemät kokoelmat"
-
-msgid "No collections found."
-msgstr "Kokoelmia ei löytynyt."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Kokoelmat ovat toisiinsa liittyvien lisäosien ryhmiä, joita kuka tahansa voi luoda ja jakaa. Selaa muiden käyttäjien luomia kokoelmia tai <a href=\"%(url)s\">luo oma</a> kokoelma."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "tekijältä %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Suosikkilisäosani"
-
-# 89%
-# 100%
-msgid "Create a Collection"
-msgstr "Luo kokoelma"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Kokoelmien avulla on helppo seurata suosituimpia lisäosia ja jakaa täydellisesti mukautettu selaimesi muiden kanssa."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "Lomakkeessa on virheitä. Korjaa ne alapuolella."
-
-msgid "Add-ons in Your Collection"
-msgstr "Kokoelmasi lisäosat"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
-
-# 85%
-# 100%
-msgid "Add-on"
-msgstr "Lisäosa"
-
-# 87%
-# 100%
-msgid "Comment"
-msgstr "Kommentoi"
-
-msgid "Remove"
-msgstr "Poista"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Anna lisättävän lisäosan nimi"
-
-msgid "Add to Collection"
-msgstr "Lisää kokoelmaan"
-
-msgid "Pending"
-msgstr "Odottaa"
-
-msgid "Add a comment"
-msgstr "Lisää kommentti"
-
-msgid "Remove this add-on from the collection"
-msgstr "Poista lisäosa kokoelmasta"
-
-msgid "Favorite"
-msgstr "Suosikki"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1299,6 +1004,9 @@ msgstr "Hakutyökalut"
 
 msgid "Most Users"
 msgstr "Eniten käyttäjiä"
+
+msgid "Name"
+msgstr "Nimi"
 
 msgid "Weekly Downloads"
 msgstr "Viikon ladatuimmat"
@@ -2257,6 +1965,11 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+# 85%
+# 100%
+msgid "Add-on"
+msgstr "Lisäosa"
+
 msgid "Static Theme"
 msgstr "Staattinen teema"
 
@@ -2527,6 +2240,12 @@ msgstr "Versio {version} on jo olemassa."
 msgid "Continue with existing upload instead?"
 msgstr ""
 
+msgid "Yes"
+msgstr "Kyllä"
+
+msgid "No"
+msgstr "Ei"
+
 msgid "You have not uploaded a source file."
 msgstr "Et ole lähettänyt lähdetiedostoa."
 
@@ -2663,13 +2382,13 @@ msgstr ""
 msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -2681,7 +2400,7 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr "Työkalupalkin teksti ja kuvakkeet"
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
 
 msgid "Toolbar field area background"
@@ -2755,14 +2474,16 @@ msgstr "<small>Lisäosien</small> kehityskeskus"
 msgid "more add-ons..."
 msgstr "lisää lisäosia..."
 
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "Laajennukset"
+
 msgid "Documentation"
 msgstr "Dokumentaatio"
 
 msgid "Extension Development"
 msgstr "Laajennusten kehittäminen"
-
-msgid "Lightweight Themes"
-msgstr "Kevyet teemat"
 
 msgid "Developer Policies"
 msgstr "Kehittäjän säännöt"
@@ -2821,9 +2542,6 @@ msgstr ""
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr ""
 
-msgid "No results found."
-msgstr "Osumia ei löytynyt."
-
 msgid "Refine Activity"
 msgstr ""
 
@@ -2865,8 +2583,14 @@ msgstr "Sovellus"
 msgid "Supported Versions"
 msgstr "Tuetut versiot"
 
+msgid "Remove"
+msgstr "Poista"
+
 msgid "Add Another Application&hellip;"
 msgstr ""
+
+msgid "Save Changes"
+msgstr "Tallenna muutokset"
 
 # 80%
 msgid "Close"
@@ -3002,6 +2726,9 @@ msgstr "Näytä tuotesivu"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Kuvaus"
 
 msgid "Experimental?"
 msgstr "Onko kokeellinen?"
@@ -3361,6 +3088,9 @@ msgstr "Lisäosan osoite:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+
+msgid "Name:"
+msgstr "Nimi:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -5546,6 +5276,9 @@ msgstr ""
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
@@ -5647,6 +5380,10 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+# 100%
+msgid "Go"
+msgstr "Mene"
+
 msgid "Add-on file being processed, please wait."
 msgstr ""
 
@@ -5661,9 +5398,6 @@ msgstr "Poistetut tiedostot:"
 
 msgid "Hide known files"
 msgstr "Piilota tunnetut tiedostot"
-
-msgid "Add-on SDK Version:"
-msgstr ""
 
 msgid "Tab stops:"
 msgstr ""
@@ -6304,9 +6038,6 @@ msgstr "Ei tarkastettu"
 msgid "Needs Admin Static Theme Review"
 msgstr "Ei vielä lisäosa-arvioita."
 
-msgid "Jetpack Add-on"
-msgstr ""
-
 msgid "More Information Requested"
 msgstr ""
 
@@ -6407,6 +6138,11 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 "Jos uskot, että ylläpitäjän tulisi tarkistaa tämä lisäosa turvallisuus-, tekijänoikeus- tai muiden ongelmien takia, kirjoita tästä kommentteihin alle. Kommentteja ei lähetetä lisäosan tekijälle "
 "vaan vain ylläpidolle."
+
+# 87%
+# 100%
+msgid "Comment"
+msgstr "Kommentoi"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -6994,99 +6730,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "search for add-ons"
-msgstr "etsi lisäosista"
-
-msgid "search for themes"
-msgstr "etsi teemoista"
-
-msgid "search for apps"
-msgstr "etsi sovelluksista"
-
-msgid "Relevance"
-msgstr "Täsmäävyys"
-
-msgid "All Add-ons"
-msgstr "Kaikki lisäosat"
-
-msgid "Any {0}"
-msgstr ""
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Kaikki järjestelmät"
-
-msgid "All Tags"
-msgstr "Kaikki avainsanat"
-
-# 75%
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Kokoelmien hakutulokset haulle: {0}"
-
-msgid "Collection Search Results"
-msgstr "Kokoelmien hakutulokset"
-
-msgid "Search Results"
-msgstr "Hakutulokset"
-
-msgid "Search Unavailable"
-msgstr ""
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr ""
-
-msgid "Themes Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr ""
-
-# 85%
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Hakutulokset avainsanalle \"{0}\""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr ""
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Hakutulokset avainsanalle \"{0}\""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> täsmäävä tulos"
-msgstr[1] "<b>{0}</b> täsmäävää tulosta"
-
-msgid "Filter Results"
-msgstr "Suodata tuloksia"
-
-msgid "Category"
-msgstr "Luokka"
-
-msgid "Tag"
-msgstr "Avainsana"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Näytetään tulokset {0} - {1} / {2} haulle <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Näytetään tulokset {0} - {1} / {2}"
-
 msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
@@ -7395,16 +7038,6 @@ msgstr ""
 msgid "Visit the new site"
 msgstr ""
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Jotta voisit luoda omia kokoelmia, sinulla pitää olla käyttäjätili Mozilla Lisäosat -palvelussa."
-
-msgid "Create an Add-ons Account"
-msgstr "Luo tili Lisäosat-palveluun"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "tai <a href=\"%(login)s\">kirjaudu sisään käyttäjätilillesi</a>"
-
 msgid "Footer logo"
 msgstr ""
 
@@ -7499,6 +7132,9 @@ msgstr "Android-lisäosat"
 msgid "Required fields"
 msgstr "Vaaditut kentät"
 
+msgid "(optional)"
+msgstr "(valinnainen)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7564,6 +7200,9 @@ msgstr "Firefox Androidille"
 # 100%
 msgid "My Mobile Add-ons"
 msgstr "Mobiililisäosani"
+
+msgid "My Favorite Add-ons"
+msgstr "Suosikkilisäosani"
 
 msgid "an add-on developer replies to my review"
 msgstr ""

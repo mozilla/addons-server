@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2016-04-01 10:09+0000\n"
 "Last-Translator: galleteroion1 <galleteroion1@gmail.com>\n"
 "Language-Team: librezale@librezale.org\n"
@@ -140,15 +140,6 @@ msgstr ""
 
 msgid "Videos must be in WebM."
 msgstr "Bideoek WebM formatua izan behar dute."
-
-msgid "Follow this Collection"
-msgstr "Jarraitu bilduma hau"
-
-msgid "Stop Following"
-msgstr "Utzi jarraitzeari"
-
-msgid "Following"
-msgstr "Jarraitzen"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -696,45 +687,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Mozillan oinarritutako nabigatzailea behar duzu (Firefox, adibidez) bilaketa-motorra instalatzeko."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Gogokoetara gehitzen&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Gogokoa kentzen&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Gehitu gogokoetara"
-
-msgid "Remove from Favorites"
-msgstr "Kendu gogokoetatik"
-
-msgid "Pending"
-msgstr "Zain"
-
-msgid "Add a comment"
-msgstr "Gehitu iruzkina"
-
-msgid "Comment"
-msgstr "Iruzkina"
-
-msgid "Remove this add-on from the collection"
-msgstr "Kendu gehigarri hau bildumatik"
-
-msgid "Remove"
-msgstr "Kendu"
-
-msgid "Add to favorites"
-msgstr "Gehitu gogokoetara"
-
-msgid "Remove from favorites"
-msgstr "Kendu gogokoetatik"
-
-msgid "Stop following"
-msgstr "Utzi jarraitzeari"
-
-msgid "Your browser does not support the video tag"
-msgstr "Zure nabigatzaileak ez du 'video' etiketa onartzen"
 
 msgid "Changes Saved"
 msgstr "Aldaketak gordeta"

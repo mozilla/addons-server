@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-10 21:31+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,9 +225,6 @@ msgstr "Isiγzaf yettnernin"
 
 msgid "Featured Themes"
 msgstr "Isental itran"
-
-msgid "Featured Collections"
-msgstr "Tigrummiwin itran"
 
 msgid "Sort by:"
 msgstr "Smizzwer s:"
@@ -455,9 +452,6 @@ msgstr "Aru aɛiwed n tmuɣli"
 msgid "Related Categories"
 msgstr "Taggayin i ilan assaɣ"
 
-msgid "Part of these Collections"
-msgstr "Iḥricen si tegrummiwin-agi"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -591,14 +585,14 @@ msgstr "Azegrir-agi ur yettwacegger ara yakan."
 msgid "Be the first!"
 msgstr "Ili-k d amezwaru!"
 
+msgid "No results found."
+msgstr "Ulac igmad yettwafen."
+
 msgid "{0} users"
 msgstr "{0} n iseqdacen"
 
 msgid "More"
 msgstr "Ugar"
-
-msgid "Add to collection"
-msgstr "Rnu ɣer tagrumma"
 
 msgid "My Add-ons"
 msgstr "Izegrar-iw"
@@ -624,9 +618,6 @@ msgstr "Suref-aɣ, asentel-agi yettṛagu. Ma ulac aɣilif uɣal-d ticki."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Asentel-agi yettṛaǧu. Ur d-yettban ara i yemdanen. Ala kečč ara t-iwalin."
-
-msgid "Collector's Note"
-msgstr "Tazmilt n uleqqad"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -832,9 +823,6 @@ msgstr "Tebɣiḍ ad terreḍ iminig inek d udmawan ugar? Ɛreḍ <b>isental umm
 msgid "Collections"
 msgstr "Tigrummiwin"
 
-msgid "Collections I've Made"
-msgstr "Tigrimmiwin i xedmeɣ"
-
 msgid "More&hellip;"
 msgstr "Ugar &hellip;"
 
@@ -955,38 +943,14 @@ msgstr ""
 "Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel %(amo_manifests_mdn_link_open)sdagi"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Only I can view this collection."
-msgstr "Ala nek i yezmren ad iwali tagrumma-agi."
-
-msgid "Anybody can view this collection."
-msgstr "Yal yiwen yezmer ad iwali tagrumma-agi."
-
-msgid "Give your collection a name."
-msgstr "Mudd isem i tegrumma inek."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Seglem tagrumma inek (ulac iseɣwan)."
-
-msgid "Privacy:"
-msgstr "Tabaḍnit:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Ma ulac aɣilif ččaṛ urti-agi, wagi ad yettwaseqdec akken ad yendi i yiṛubuten"
-
-msgid "This name cannot be used."
-msgstr "Isem agi ur yettwaseqdac ara."
-
-msgid "This url is already in use by another collection"
-msgstr "Tansa-agi tseqdac-itt yakan tagrumma nniḍen"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tansa-agi URLA tudmawant tesseqdac-itt yakan yiwet seg tigrummiwin-ik."
 
 msgid "Name cannot be empty."
 msgstr "Isem ur yezmir ara ad yili d ilem."
+
+msgid "This name cannot be used."
+msgstr "Isem agi ur yettwaseqdac ara."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Yessefk tansa URL ad tegber kan isekkilen, iwzilen, ijerriḍ nwadda neɣ tizdit."
@@ -996,226 +960,6 @@ msgstr "Tansa-agi URL ur tezmir ara ad tettwaseqdec."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Azegrir-agi ittekkayakan ar tegrumma"
-
-msgid "Added"
-msgstr "Yettwarna"
-
-msgid "Popularity"
-msgstr "Ttwasnen aṭas"
-
-msgid "Name"
-msgstr "Isem"
-
-msgid "Collection created!"
-msgstr "Tagrumma tettwarna!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Tagrumma yinek tamaynut tettwasken-d daw-a. Tzemreḍ ad <a href=\"%(url)s\">tesnifleḍ iɣewwaṛen nniḍen </a> ma tebɣiḍ."
-
-msgid "Collection updated!"
-msgstr "Tagrumma tettwaleqqem!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Wzli tagrumma yinek</a> akken ad twaliḍ isnifal."
-
-msgid "Create a New Collection"
-msgstr "Rnu tagrumma tamaynut"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Akken twalaḍ deg <a href=\"%(legal)s\">tezmilin tusḍifin</a>, tigrummiwin tisufin llant daw n turagt Creative Commons Attribution Share-Alike License"
-
-msgid "Create Collection"
-msgstr "Rnu tagrumma"
-
-msgid "View this collection"
-msgstr "Sken tagrumma agi"
-
-msgid "Start a new collection..."
-msgstr "Senker tagrumma tamaynut..."
-
-msgid "Start a New Collection"
-msgstr "Senker tagrumma tamaynut"
-
-msgid "Name:"
-msgstr "Isem:"
-
-msgid "(optional)"
-msgstr "(afrayan)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "neɣ <a id=\"collections-new-cancel\" href=\"#\">Sefsex</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Tigrummiwin"
-
-msgid "private"
-msgstr "uslig"
-
-msgid "About this Collection"
-msgstr "Γef tagrumma-agi"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Izegrar mtawin ar Firefox aziraz"
-
-msgid "Make this Collection Private"
-msgstr "Err tagrumma-agi d tusligt"
-
-msgid "Make this Collection Public"
-msgstr "Err tagrumma-agi d tazayezt"
-
-msgid "More Options:"
-msgstr "Ugar n iɣewwaṛen:"
-
-msgid "Edit Collection"
-msgstr "Ẓreg tagrumma"
-
-msgid "Delete Collection"
-msgstr "Kkes tagrumma"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s asentel di tagrumma-agi"
-msgstr[1] "%(num)s n isental di tagrumma-agi"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s azegrir di tagrumma-agi"
-msgstr[1] "%(num)s izegrar di tagrumma-agi"
-
-msgid "Go"
-msgstr "Bdu"
-
-msgid "What are Collections?"
-msgstr "D acu-tent tigrummiwin?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen, yal yiwen yezmer ad ten-yernu neɣ ad ten-yebḍu."
-
-msgid "Explore Collections"
-msgstr "Snirem tigrummiwin"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-"Izegrar i tceṛḍeḍ d inuraf s tmahilt <b>Rnu ar inuraf</b> ad d-banen daw-a. Tagrumma-agi tura yakan d <b>tazayezt</b>. Ihi yal yiwen yezmer ad ten-iwali. Ma yella tebɣiḍ ad ten-tefreḍ ur ten-"
-"ttwalin ara yemdanen, sit ɣef tqeffalt daw-a akken ad ten-terreḍ d usligen."
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Izegrar yettwabezmen d inurifen s useqdec n  tmahilt <b>Rnu ar inurifen</b> ad d-banen daw-a. Tagrumma-agi akka tura d <b>tusligt</b>, ayen d-immalen d akken ala kečč i yezmren ad tt-waliḍ. Ma "
-"tebɣiḍ akken yal yiwen ad tt-iwali, sit ɣef tqeffalt daw-a akken ad tt-terreḍ d tazayezt."
-
-msgid "My favorite add-ons"
-msgstr "Izegrar-inu inuraf"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> azegrir"
-msgstr[1] "<span>%(addons)s</span> izegrar"
-
-msgid "by {0}"
-msgstr "sɣur {0}"
-
-msgid "Edit this Collection"
-msgstr "Ẓreg tagrumma agi"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Kkes {0}"
-
-msgid "Are you sure?"
-msgstr "S tidett?"
-
-msgid "Yes"
-msgstr "Ih"
-
-msgid "No"
-msgstr "Ala"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Ẓreg {0}"
-
-msgid "Description"
-msgstr "Aglam"
-
-msgid "Save Changes"
-msgstr "Sekles asnifel"
-
-msgid "Remove from favorites"
-msgstr "Kkes seg inurifen"
-
-msgid "Add to favorites"
-msgstr "Rnu ɣer inurifen"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Tigrummiwin sɣuṛ {0}"
-
-msgid "No collections found."
-msgstr "Ulac tigrummiwin yettwafen."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Tigrummiwin d igrawen n izegrar yemcudden gar-asen i yezmer yal yiwen ad yernu neɣ ad yebḍu. Snirem tigrummiwin i rnan iseqdacen nniḍen neɣ <a href=\"%(url)s\">rnu ayala-k</a>."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "sγur %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Izegrar inu inurifen"
-
-msgid "Create a Collection"
-msgstr "Rnu tagrumma"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Tigrummiwin ttaǧant lǧeṛṛat s wudem fessusen n izegrar inek inuraf udi q ad bḍun aggan inek n iminig akked yemdanen nniḍen."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "Llan tuccḍiwin di tfelwit-agi.  Ma ulac aqlif̣ seɣti-tent daw-a."
-
-msgid "Add-ons in Your Collection"
-msgstr "Izegrar di tagrumma yinek"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "Akken ad ternuḍ azgrir di tagrumma-agi, sekcem isem deg urti-agi sakin senned ɣef Kcem."
-
-msgid "Add-on"
-msgstr "Azegrir"
-
-msgid "Comment"
-msgstr "Awennit"
-
-msgid "Remove"
-msgstr "Kkes"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Sekcem isem n uzegrir ara tsedduḍ"
-
-msgid "Add to Collection"
-msgstr "Rnu ɣer tagrumma"
-
-msgid "Pending"
-msgstr "Yettraǧu"
-
-msgid "Add a comment"
-msgstr "Rnu awennit"
-
-msgid "Remove this add-on from the collection"
-msgstr "Kkes azegrir-agi si tagrumma"
-
-msgid "Favorite"
-msgstr "Anurif"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1249,6 +993,9 @@ msgstr "Ifecka n unadi"
 
 msgid "Most Users"
 msgstr "Yettwaseqdac aṭas"
+
+msgid "Name"
+msgstr "Isem"
 
 msgid "Weekly Downloads"
 msgstr "Isidar yal dduṛt"
@@ -2177,6 +1924,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Azegrir"
+
 msgid "Static Theme"
 msgstr "Asentel usbiḍ"
 
@@ -2439,6 +2189,12 @@ msgstr "Lqem {version} yella yakan."
 msgid "Continue with existing upload instead?"
 msgstr "Kemmel s tuzna yellan?"
 
+msgid "Yes"
+msgstr "Ih"
+
+msgid "No"
+msgstr "Ala"
+
 #, fuzzy
 msgid "You have not uploaded a source file."
 msgstr "Ur izmir ara ad isleḍ afaylu yulin."
@@ -2575,13 +2331,15 @@ msgstr "Tuzna-agi ur teddi ara deg usentem, ihi tezmer akken ur yelli ara ɣur-s
 msgid "Header area background"
 msgstr "Tallunt n ugerru"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Initen n ugilal n uqeṛṛu, i d-yettwaseknen deg uḥric n uqerru ur neffir ara neɣ win yettbanen s tugna n uqerru. Urti n umeskan: accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Aḍris akked tignitin n uqerru"
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Ini n uḍris akked tignitin deg tjumma n uqerru, anagar iccer urmid. Urti n umeskan:  textcolor."
 
 msgid "Toolbar area background"
@@ -2593,7 +2351,8 @@ msgstr "Ini n ugilal i ufeggag n tunigin, afeggag udmawan akked yiccer yettwafer
 msgid "Toolbar area text and icons"
 msgstr "Aḍris akked tignitin n ufeggag n yifecka"
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Ini n uḍris akked tignitin def ufeggag n yifecka akked yiccer urmid. Urti n umeskan:   toolbar_text."
 
 msgid "Toolbar field area background"
@@ -2665,14 +2424,15 @@ msgstr "Ammas n ineflayen <small>izegrar</small>"
 msgid "more add-ons..."
 msgstr "ugar n izegrar..."
 
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "Isiɣzaf"
+
 msgid "Documentation"
 msgstr "Tasemlit"
 
 msgid "Extension Development"
 msgstr "Taneflit n isiɣzaf"
-
-msgid "Lightweight Themes"
-msgstr "Isental fessusen"
 
 #, fuzzy
 msgid "Developer Policies"
@@ -2732,9 +2492,6 @@ msgstr "Armud n melmi kan i {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> sɣuṛ %(user)s"
 
-msgid "No results found."
-msgstr "Ulac igmad yettwafen."
-
 msgid "Refine Activity"
 msgstr "Armud aleqqay"
 
@@ -2777,8 +2534,14 @@ msgstr "Asnas"
 msgid "Supported Versions"
 msgstr "Ileqman yettwasefraken"
 
+msgid "Remove"
+msgstr "Kkes"
+
 msgid "Add Another Application&hellip;"
 msgstr "Rnu asnas nniḍen&hellip;"
+
+msgid "Save Changes"
+msgstr "Sekles asnifel"
 
 msgid "Close"
 msgstr "Mdel"
@@ -2912,6 +2675,9 @@ msgstr "Sken amaɣnu"
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
 "Agzul-agi yessefk ad d-imudd talqayt n timahilin n uzegrir. Ad d-iban deg unadi i d-iteddun akked di tebdarin n yizegrar. Ad yettwaseqdec daɣen  sɣur iseqdacen akken ad yettwasentem uzegrir-ik."
+
+msgid "Description"
+msgstr "Aglam"
 
 msgid "Experimental?"
 msgstr "Armitan?"
@@ -3287,6 +3053,9 @@ msgstr "Tansa URL n uzegrir:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Ma ulac aɣilif sekcem kan isekkilen, izwilen, tizdit n uderrer, tizdit di tensa inek URL."
+
+msgid "Name:"
+msgstr "Isem:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -5585,6 +5354,9 @@ msgstr "GUID yettwasra i Firefox 47 neɣ daw."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Ur izmir ara ad isleḍ afaylu yulin, aferdis <%s>ulac-it neɣ d ilem"
@@ -5684,6 +5456,9 @@ msgstr "Agbur n ufaylu ur yettwasefrak ara i usebṛureq n tseddast"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "Go"
+msgstr "Bdu"
+
 msgid "Add-on file being processed, please wait."
 msgstr "Asesfer n ufaylu n uzegrir iteddu, ma ulac aɣilif, ṛǧu."
 
@@ -5698,9 +5473,6 @@ msgstr "Kkes ifuyla:"
 
 msgid "Hide known files"
 msgstr "Ffer ifuyla yettwasnen"
-
-msgid "Add-on SDK Version:"
-msgstr "Lqem n SDK n uzegrir:"
 
 msgid "Tab stops:"
 msgstr "Aseḥbes n usiẓi:"
@@ -6340,9 +6112,6 @@ msgstr "Yesra acegger n ugbur n unedbal"
 msgid "Needs Admin Static Theme Review"
 msgstr "Yesra acegger n usentel usbiḍ n unedbal"
 
-msgid "Jetpack Add-on"
-msgstr "Azegrir Jetpack"
-
 msgid "More Information Requested"
 msgstr "Ugar n telɣut tettusuter"
 
@@ -6438,6 +6207,9 @@ msgstr "Suter acegger meqqren"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
+
+msgid "Comment"
+msgstr "Awennit"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -6969,90 +6741,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr "Teɣzi tafellayt n usuter iɛeddan."
 
-msgid "search for add-ons"
-msgstr "nadi izegrar"
-
-msgid "search for themes"
-msgstr "nadi isental"
-
-msgid "search for apps"
-msgstr "nadi isnasen"
-
-msgid "Relevance"
-msgstr "Amsami"
-
-msgid "All Add-ons"
-msgstr "Akk izegrar"
-
-msgid "Any {0}"
-msgstr "Yiwen si {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Akk inagrawen"
-
-msgid "All Tags"
-msgstr "Akk tibzimin"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Igmaḍ n unadi n tegrummiwin i {0}"
-
-msgid "Collection Search Results"
-msgstr "Igmaḍ n unadi n tegrummiwin"
-
-msgid "Search Results"
-msgstr "Igmaḍ n unadi"
-
-msgid "Search Unavailable"
-msgstr "Ulac anadi"
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Anadi yeḥbes akka tura. Ɛreḍ tikelt-nniden di kra n tesdatin."
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr "Igmaḍ n unadi n isental i {0}"
-
-msgid "Themes Search Results"
-msgstr "Igmaḍ n unadi n isental"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Anadi"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Igmaḍ n unadi i \"{0}\""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} :: Tabzimt"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Igmaḍ n unadi ,n tebzimin i \"{0}\""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> igemmad imasaḍan"
-msgstr[1] ""
-
-msgid "Filter Results"
-msgstr "Igmaḍ n imzizdig"
-
-msgid "Category"
-msgstr "Taggayt"
-
-msgid "Tag"
-msgstr "Tabzimt"
-
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Askan {0} - {1} si {2} igmaḍ i <strong>{3}</strong>"
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Askan {0} - {1} n {2} n igmaḍ"
-
 #, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "UR izmir ara ad d-yaf azegrir s usulay id \"{}\"."
@@ -7349,16 +7037,6 @@ msgstr "AMOibddel udem, tebɣiḍ ad tegreḍ tiḍt?"
 msgid "Visit the new site"
 msgstr "Rzu ar usmel amaynut"
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Akken ad ternuḍ tigrummiwin inek, yessefk ad yili ɣur-k umiḍan n izegrar Mozilla."
-
-msgid "Create an Add-ons Account"
-msgstr "Rnu amiḍan n izigrar"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "neɣ <a href=\"%(login)s\">kcem s umiḍan inek amiran</a>"
-
 msgid "Footer logo"
 msgstr "Alugu n uḍaṛ"
 
@@ -7451,6 +7129,9 @@ msgstr "Izegrar Android"
 msgid "Required fields"
 msgstr "Urtan yettwasran"
 
+msgid "(optional)"
+msgstr "(afrayan)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7513,6 +7194,9 @@ msgstr "Firefox i Android"
 
 msgid "My Mobile Add-ons"
 msgstr "Izegrarèiw izirazen"
+
+msgid "My Favorite Add-ons"
+msgstr "Izegrar inu inurifen"
 
 msgid "an add-on developer replies to my review"
 msgstr "aneflay n uzegrir yerra-d i ucegger inu"
