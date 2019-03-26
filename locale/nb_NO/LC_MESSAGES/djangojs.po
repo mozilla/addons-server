@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-08-21 11:18+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -702,45 +702,6 @@ msgstr "Kun for Firefox — Last ned Firefox nå!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du trenger en Mozilla-basert nettleser (som Firefox) for å installere et søketillegg."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Legg til i favoritter &hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Fjerner favoritt &hellip;"
-
-msgid "Add to Favorites"
-msgstr "Legg til i favoritter"
-
-msgid "Remove from Favorites"
-msgstr "Fjern fra favoritter"
-
-msgid "Pending"
-msgstr "Under behandling"
-
-msgid "Add a comment"
-msgstr "Legg til kommentar"
-
-msgid "Comment"
-msgstr "Kommentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Fjern denne utvidelsen fra samlingen"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Add to favorites"
-msgstr "Legg til i favoritter"
-
-msgid "Remove from favorites"
-msgstr "Fjern fra favoritter"
-
-msgid "Stop following"
-msgstr "Slutt å følge"
-
-msgid "Your browser does not support the video tag"
-msgstr "Nettleseren din støtter ikke video-taggen"
 
 msgid "Changes Saved"
 msgstr "Endringer lagret"

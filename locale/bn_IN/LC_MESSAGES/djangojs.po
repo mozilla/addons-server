@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-12-03 14:35+0000\n"
 "Last-Translator: Ayan Choudhury <ping2ayan@gmail.com>\n"
 "Language-Team: Bengali\n"
@@ -698,45 +698,6 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
-msgid "Adding to Favorites&hellip;"
-msgstr ""
-
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-msgid "Add to Favorites"
-msgstr "পছন্দসইতে নিয়োজন"
-
-msgid "Remove from Favorites"
-msgstr "পছন্দসই থেকে অপসারণ করুন"
-
-msgid "Pending"
-msgstr "স্থগিত"
-
-msgid "Add a comment"
-msgstr "মন্তব্য যোগ করুন"
-
-msgid "Comment"
-msgstr "মন্তব্য"
-
-msgid "Remove this add-on from the collection"
-msgstr ""
-
-msgid "Remove"
-msgstr "সরিয়ে ফেলুন"
-
-msgid "Add to favorites"
-msgstr "পছন্দসইতে নিয়োজন"
-
-msgid "Remove from favorites"
-msgstr "পছন্দসই থেকে অপসারণ করুন"
-
-msgid "Stop following"
-msgstr "অনুসরণ করা বন্ধ করুন"
-
-msgid "Your browser does not support the video tag"
 msgstr ""
 
 msgid "Changes Saved"

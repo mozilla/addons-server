@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-01-22 13:07+0000\n"
 "Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
@@ -710,45 +710,6 @@ msgstr "Pouze pro Firefox — získejte Firefox nyní!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Omlouváme se, ale pro instalaci vyhledávacího modulu potřebujete prohlížeč postavený na Mozille (jako například Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Přidání k oblíbeným&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Odebrání z oblíbených&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Přidat k oblíbeným"
-
-msgid "Remove from Favorites"
-msgstr "Odebrat z oblíbených"
-
-msgid "Pending"
-msgstr "Čekající"
-
-msgid "Add a comment"
-msgstr "Přidat komentář"
-
-msgid "Comment"
-msgstr "Komentář"
-
-msgid "Remove this add-on from the collection"
-msgstr "Odebrat tento doplněk z kolekce"
-
-msgid "Remove"
-msgstr "Odebrat"
-
-msgid "Add to favorites"
-msgstr "Přidat k oblíbeným"
-
-msgid "Remove from favorites"
-msgstr "Odebrat z oblíbených"
-
-msgid "Stop following"
-msgstr "Ukončit sledování"
-
-msgid "Your browser does not support the video tag"
-msgstr "Váš prohlížeč nepodporuje značku video"
 
 msgid "Changes Saved"
 msgstr "Změny uloženy"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-01 12:52+0000\n"
 "Last-Translator: Balázs Meskó <meskobalazs@gmail.com>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -696,45 +696,6 @@ msgstr "Csak a Firefoxszal – szerezze be a Firefoxot most!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "A keresőszolgáltatások telepítéséhez szükség van egy Mozilla-alapú böngészőre (pl. Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Hozzáadás a Kedvencekhez&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Eltávolítás a Kedvencekből&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Hozzáadás a Kedvencekhez"
-
-msgid "Remove from Favorites"
-msgstr "Eltávolítás a Kedvencekből"
-
-msgid "Pending"
-msgstr "Folyamatban"
-
-msgid "Add a comment"
-msgstr "Megjegyzés hozzáadása"
-
-msgid "Comment"
-msgstr "Megjegyzés"
-
-msgid "Remove this add-on from the collection"
-msgstr "Kiegészítő eltávolítása a gyűjteményből"
-
-msgid "Remove"
-msgstr "Eltávolítás"
-
-msgid "Add to favorites"
-msgstr "Hozzáadás a kedvencekhez"
-
-msgid "Remove from favorites"
-msgstr "Eltávolítás a kedvencekből"
-
-msgid "Stop following"
-msgstr "Követés megszüntetése"
-
-msgid "Your browser does not support the video tag"
-msgstr "A böngésző nem támogatja a video elemet"
 
 msgid "Changes Saved"
 msgstr "Változások lementve"

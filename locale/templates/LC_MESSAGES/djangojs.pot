@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Videos must be in WebM."
 msgstr ""
 
-#: static/js/impala/collections.js:10 static/js/zamboni/collections.js:527
+#: static/js/impala/collections.js:10
 msgid "Follow this Collection"
 msgstr ""
 
@@ -837,7 +837,7 @@ msgstr ""
 msgid "Other"
 msgstr ""
 
-#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1177
+#: static/js/zamboni/admin_validation.js:24 static/js/zamboni/devhub.js:1142
 #: static/js/zamboni/reviewers.js:445
 msgid "Select an application first"
 msgstr ""
@@ -903,83 +903,31 @@ msgid ""
 " plugin."
 msgstr ""
 
-#: static/js/zamboni/collections.js:229
-msgid "Adding to Favorites&hellip;"
-msgstr ""
-
-#: static/js/zamboni/collections.js:232
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-#: static/js/zamboni/collections.js:235
-msgid "Add to Favorites"
-msgstr ""
-
-#: static/js/zamboni/collections.js:238
-msgid "Remove from Favorites"
-msgstr ""
-
-#: static/js/zamboni/collections.js:303
-msgid "Pending"
-msgstr ""
-
-#: static/js/zamboni/collections.js:304
-msgid "Add a comment"
-msgstr ""
-
-#: static/js/zamboni/collections.js:304
-msgid "Comment"
-msgstr ""
-
-#: static/js/zamboni/collections.js:305
-msgid "Remove this add-on from the collection"
-msgstr ""
-
-#: static/js/zamboni/collections.js:305
-msgid "Remove"
-msgstr ""
-
-#: static/js/zamboni/collections.js:505
-msgid "Add to favorites"
-msgstr ""
-
-#: static/js/zamboni/collections.js:509
-msgid "Remove from favorites"
-msgstr ""
-
-#: static/js/zamboni/collections.js:536
-msgid "Stop following"
-msgstr ""
-
-#: static/js/zamboni/devhub.js:66
-msgid "Your browser does not support the video tag"
-msgstr ""
-
-#: static/js/zamboni/devhub.js:302
+#: static/js/zamboni/devhub.js:267
 msgid "Changes Saved"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:318
+#: static/js/zamboni/devhub.js:283
 msgid "Enter a new author's email address"
 msgstr ""
 
-#: static/js/zamboni/devhub.js:437
+#: static/js/zamboni/devhub.js:402
 msgid "There was an error uploading your file."
 msgstr ""
 
-#: static/js/zamboni/devhub.js:582
+#: static/js/zamboni/devhub.js:547
 msgid "{files} file"
 msgid_plural "{files} files"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:585
+#: static/js/zamboni/devhub.js:550
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 msgstr[1] ""
 
-#: static/js/zamboni/devhub.js:1078
+#: static/js/zamboni/devhub.js:1043
 msgid "Image changes being processed"
 msgstr ""
 

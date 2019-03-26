@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-18 14:48+0000\n"
 "Last-Translator: Mimo <mimopn@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -710,45 +710,6 @@ msgstr "Len pre Firefox — získajte Firefox teraz!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ak chcete nainštalovať vyhľadávací modul, potrebujete prehliadač založený na kóde Mozilla (napríklad Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Pridať medzi obľúbené&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Odstraňuje sa zo zoznamu obľúbených&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Pridať medzi obľúbené"
-
-msgid "Remove from Favorites"
-msgstr "Odstrániť z obľúbených"
-
-msgid "Pending"
-msgstr "Čakajúci"
-
-msgid "Add a comment"
-msgstr "Pridať komentár"
-
-msgid "Comment"
-msgstr "Komentár"
-
-msgid "Remove this add-on from the collection"
-msgstr "Odstrániť tento doplnok z kolekcie"
-
-msgid "Remove"
-msgstr "Odstrániť"
-
-msgid "Add to favorites"
-msgstr "Pridať medzi obľúbené"
-
-msgid "Remove from favorites"
-msgstr "Odstrániť z obľúbených"
-
-msgid "Stop following"
-msgstr "Zastaviť odber"
-
-msgid "Your browser does not support the video tag"
-msgstr "Váš prehliadač nepodporuje HTML značku video"
 
 msgid "Changes Saved"
 msgstr "Zmeny boli uložené"

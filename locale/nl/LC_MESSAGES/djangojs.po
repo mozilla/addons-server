@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-01 14:32+0000\n"
 "Last-Translator: Ton <tonnes.mb@gmail.com>\n"
 "Language-Team: DUTCH <LL@li.org>\n"
@@ -699,45 +699,6 @@ msgstr "Alleen bij Firefox – Download Firefox nu!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sorry, u hebt een op Mozilla gebaseerde browser (zoals Firefox) nodig om een zoekplug-in te kunnen installeren."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Wordt toegevoegd aan Favorieten…"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Favoriet wordt verwijderd…"
-
-msgid "Add to Favorites"
-msgstr "Toevoegen aan Favorieten"
-
-msgid "Remove from Favorites"
-msgstr "Verwijderen uit Favorieten"
-
-msgid "Pending"
-msgstr "In behandeling"
-
-msgid "Add a comment"
-msgstr "Opmerking toevoegen"
-
-msgid "Comment"
-msgstr "Opmerking"
-
-msgid "Remove this add-on from the collection"
-msgstr "Deze add-on uit de collectie verwijderen"
-
-msgid "Remove"
-msgstr "Verwijderen"
-
-msgid "Add to favorites"
-msgstr "Toevoegen aan favorieten"
-
-msgid "Remove from favorites"
-msgstr "Verwijderen uit favorieten"
-
-msgid "Stop following"
-msgstr "Volgen stoppen"
-
-msgid "Your browser does not support the video tag"
-msgstr "Uw browser ondersteunt het videolabel niet"
 
 msgid "Changes Saved"
 msgstr "Wijzigingen opgeslagen"

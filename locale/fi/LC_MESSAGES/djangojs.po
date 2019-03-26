@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-12 08:09+0000\n"
 "Last-Translator: Mikko <mikko.alafossi@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -693,45 +693,6 @@ msgstr "Vain Firefoxissa — Hanki Firefox nyt!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Pahoittelut, voit asentaa hakulisäosan vain Mozilla-pohjaisiin selaimiin (kuten Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Lisätään suosikkeihin &hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Poistetaan suosikki&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Lisää suosikkeihin"
-
-msgid "Remove from Favorites"
-msgstr "Poista suosikeista"
-
-msgid "Pending"
-msgstr "Odottaa"
-
-msgid "Add a comment"
-msgstr "Lisää kommentti"
-
-msgid "Comment"
-msgstr "Kommentti"
-
-msgid "Remove this add-on from the collection"
-msgstr "Poista tämä lisäosa kokoelmasta"
-
-msgid "Remove"
-msgstr "Poista"
-
-msgid "Add to favorites"
-msgstr "Lisää suosikkeihin"
-
-msgid "Remove from favorites"
-msgstr "Poista suosikeista"
-
-msgid "Stop following"
-msgstr "Lopeta seuraaminen"
-
-msgid "Your browser does not support the video tag"
-msgstr "Selaimesi ei tue video-tagia"
 
 msgid "Changes Saved"
 msgstr "Muutokset tallennettiin"

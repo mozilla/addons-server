@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-04 03:49+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -696,45 +696,6 @@ msgstr "Solo con Firefox — Discarga lo subito!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Tu debe usar un navigator basate sur Mozilla (como Firefox) pro installar un plugin de recerca."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Addition a Favoritos&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Remotion de Favorite&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Adder al favoritos"
-
-msgid "Remove from Favorites"
-msgstr "Remover del favoritos"
-
-msgid "Pending"
-msgstr "Pendente"
-
-msgid "Add a comment"
-msgstr "Adde un commento"
-
-msgid "Comment"
-msgstr "Commento"
-
-msgid "Remove this add-on from the collection"
-msgstr "Remover iste additivo del collection"
-
-msgid "Remove"
-msgstr "Remover"
-
-msgid "Add to favorites"
-msgstr "Adder al favoritos"
-
-msgid "Remove from favorites"
-msgstr "Remover del favoritos"
-
-msgid "Stop following"
-msgstr "Non plus sequer"
-
-msgid "Your browser does not support the video tag"
-msgstr "Tu navigator non supporta le etiquetta video"
 
 msgid "Changes Saved"
 msgstr "Cambios salvate"

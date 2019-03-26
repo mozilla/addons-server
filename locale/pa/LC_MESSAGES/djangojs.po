@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2015-06-29 22:55+0000\n"
 "Last-Translator: jimidar <jimidar@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -702,45 +702,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ਖਿਮਾ ਕਰੋ, ਤੁਹਾਨੂੰ ਖੋਜ ਪਲੱਗਇਨ ਨੂੰ ਇੰਸਟਾਲ ਕਰਨ ਲਈ ਮੌਜੀਲਾ-ਅਧਾਰਿਤ ਬਰਾਊਜ਼ਰ ਦੀ ਲੋੜ ਹੈ।"
-
-msgid "Adding to Favorites&hellip;"
-msgstr "ਪਸੰਦ ਜੋੜ ਰਿਹਾ &hellip;                "
-
-msgid "Removing Favorite&hellip;"
-msgstr "ਪਸੰਦੀਦਾ ਹਟਾ ਰਿਹਾ&hellip;"
-
-msgid "Add to Favorites"
-msgstr "ਪਸੰਦ ਵਿਚ ਸ਼ਾਮਲ ਕਰੋ"
-
-msgid "Remove from Favorites"
-msgstr "ਪਸੰਦ ਵਿਚੋਂ ਹਟਾਓ"
-
-msgid "Pending"
-msgstr "ਬਕਾਇਆ"
-
-msgid "Add a comment"
-msgstr "ਕਾਮੈਂਟ ਸ਼ਾਮਲ"
-
-msgid "Comment"
-msgstr "ਕਾਮੈਂਟ"
-
-msgid "Remove this add-on from the collection"
-msgstr "ਭੰਡਾਰ ਵਿੱਚੋਂ ਇਹ ਐਡ-ਆਨ ਹਟਾਓ"
-
-msgid "Remove"
-msgstr "ਹਟਾਓ"
-
-msgid "Add to favorites"
-msgstr "ਪਸੰਦ ਵਿੱਚ ਸ਼ਾਮਿਲ ਕਰੋ"
-
-msgid "Remove from favorites"
-msgstr "ਪਸੰਦ ਵਿੱਚੋਂ ਹਟਾਓ"
-
-msgid "Stop following"
-msgstr "ਨਿਮਨ ਲਿਖਤ ਰੋਕੋ"
-
-msgid "Your browser does not support the video tag"
-msgstr "ਤੁਹਾਡਾ ਬਰਾਊਜਰ ਵੀਡੀਓ ਟੈਗ ਦਾ ਸਮਰਥਨ ਨਹੀ ਕਰਦਾ"
 
 msgid "Changes Saved"
 msgstr "ਬਦਲਾਅ ਸੰਭਾਲੇ"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-10 21:30+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -695,45 +695,6 @@ msgstr "Ala s Firefox — Awi-d Firefox tura!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Suref-aɣ, tesriḍ iminig yebnan ɣef Mozilla (am Firfefox) akken ad tesbeddeḍ azegrir n unadi."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Timerna ɣer inurifen &hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Tukksa n unirif &hellip;"
-
-msgid "Add to Favorites"
-msgstr "Rnu ɣer inurifen"
-
-msgid "Remove from Favorites"
-msgstr "Kkes seg inurifen"
-
-msgid "Pending"
-msgstr "Yettṛaǧu"
-
-msgid "Add a comment"
-msgstr "Rnu awennit"
-
-msgid "Comment"
-msgstr "Awennit"
-
-msgid "Remove this add-on from the collection"
-msgstr "Kkes azegrir agi si tagrumma"
-
-msgid "Remove"
-msgstr "Kkes"
-
-msgid "Add to favorites"
-msgstr "Rnu ɣer inurifen"
-
-msgid "Remove from favorites"
-msgstr "Kkes seg inurifen"
-
-msgid "Stop following"
-msgstr "Seḥbes aḍfaṛ"
-
-msgid "Your browser does not support the video tag"
-msgstr "Iminig agi ur issefrak ara terekkizt n tvidyut"
 
 msgid "Changes Saved"
 msgstr "Isnifal ttwakelsen"

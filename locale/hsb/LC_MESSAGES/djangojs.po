@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-01 14:23+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -724,45 +724,6 @@ msgstr "Jenož z Firefox – Wobstarajće sej nětko Firefox!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bohužel trjebaće wobhladowak Mozilla (na přikład Firefox), zo byšće pytanski tykač instalował."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Přidawa so faworitam&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Faworit so wotstronja&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Faworitam přidać"
-
-msgid "Remove from Favorites"
-msgstr "Z faworitow wotstronić"
-
-msgid "Pending"
-msgstr "Wustejacy"
-
-msgid "Add a comment"
-msgstr "Komentar přidać"
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Tutón přidatk ze zběrki wotstronić"
-
-msgid "Remove"
-msgstr "Wotstronić"
-
-msgid "Add to favorites"
-msgstr "Faworitam přidać"
-
-msgid "Remove from favorites"
-msgstr "Z faworitow wotstronić"
-
-msgid "Stop following"
-msgstr "Hižo njeslědować"
-
-msgid "Your browser does not support the video tag"
-msgstr "Waš wobhladowak značku video njepodpěruje"
 
 msgid "Changes Saved"
 msgstr "Změny su so składowali"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-10-29 11:19+0000\n"
 "Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
@@ -678,45 +678,6 @@ msgstr "Firefox 限定 — 今すぐ Firefox をダウンロード！"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "申し訳ありませんが、検索プラグインをインストールするには (Firefox など) Mozilla ベースのブラウザーが必要です。"
-
-msgid "Adding to Favorites&hellip;"
-msgstr "お気に入りへ追加..."
-
-msgid "Removing Favorite&hellip;"
-msgstr "お気に入りから削除..."
-
-msgid "Add to Favorites"
-msgstr "お気に入りへ追加"
-
-msgid "Remove from Favorites"
-msgstr "お気に入りから削除"
-
-msgid "Pending"
-msgstr "保留中"
-
-msgid "Add a comment"
-msgstr "コメントを追加"
-
-msgid "Comment"
-msgstr "コメント"
-
-msgid "Remove this add-on from the collection"
-msgstr "このアドオンをコレクションから削除"
-
-msgid "Remove"
-msgstr "削除"
-
-msgid "Add to favorites"
-msgstr "お気に入りへ追加"
-
-msgid "Remove from favorites"
-msgstr "お気に入りから削除"
-
-msgid "Stop following"
-msgstr "フォローをやめる"
-
-msgid "Your browser does not support the video tag"
-msgstr "お使いのブラウザーは video タグに対応していません"
 
 msgid "Changes Saved"
 msgstr "変更が保存されました"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-28 09:58+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,45 +708,6 @@ msgstr "Numai cu Firefox — Descarcă Firefox acum!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ne pare rău, dar ai nevoie de un browser bazat pe Mozilla (cum ar fi Firefox) pentru a instala un plugin de căutare."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Se adaugă la favorite&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Se elimină din favorite&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Adaugă la favorite"
-
-msgid "Remove from Favorites"
-msgstr "Elimină de la favorite"
-
-msgid "Pending"
-msgstr "În curs"
-
-msgid "Add a comment"
-msgstr "Adaugă un comentariu"
-
-msgid "Comment"
-msgstr "Comentariu"
-
-msgid "Remove this add-on from the collection"
-msgstr "Elimină acest supliment din colecție"
-
-msgid "Remove"
-msgstr "Elimină"
-
-msgid "Add to favorites"
-msgstr "Adaugă la favorite"
-
-msgid "Remove from favorites"
-msgstr "Șterge din favorite"
-
-msgid "Stop following"
-msgstr "Nu mai urmări"
-
-msgid "Your browser does not support the video tag"
-msgstr "Browserul nu suportă etichetarea de videoclipuri"
 
 msgid "Changes Saved"
 msgstr "Modificări salvate"

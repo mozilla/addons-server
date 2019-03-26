@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2015-02-01 09:53+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -703,45 +703,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Žao nam je, treba Vam pregledač baziran na tehnologiji Mozilla fondacije (kao što je Firefox) da biste instalirali priključak za pretraživanje."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Dodajem u Omiljeno&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Brišem iz Omiljenih&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Dodaj u Omiljene"
-
-msgid "Remove from Favorites"
-msgstr "Izbriši iz Omiljenih"
-
-msgid "Pending"
-msgstr "Na čekanju"
-
-msgid "Add a comment"
-msgstr "Dodaj komentar"
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Izbriši ovaj dodatak iz kolekcije"
-
-msgid "Remove"
-msgstr "Izbriši"
-
-msgid "Add to favorites"
-msgstr "Dodaj u omiljene"
-
-msgid "Remove from favorites"
-msgstr "Izbriši iz omiljenih"
-
-msgid "Stop following"
-msgstr "Prekini praćenje"
-
-msgid "Your browser does not support the video tag"
-msgstr "Vaš pregledač ne podržava oznake video snimaka"
 
 msgid "Changes Saved"
 msgstr "Izmene sačuvane"

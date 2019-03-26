@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-01 22:14+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -724,45 +724,6 @@ msgstr "Jano z Firefox – Wobstarajśo se něnto Firefox!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bóžko trjebaśo wobglědowak Mozilla (na pśikład Firefox), aby pytański tykac instalěrował."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Pśidawa se faworitam&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Faworit se wótpórajo&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Faworitam pśidaś"
-
-msgid "Remove from Favorites"
-msgstr "Z faworitow wótpóraś"
-
-msgid "Pending"
-msgstr "Felujucy"
-
-msgid "Add a comment"
-msgstr "Komentar pśidaś"
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Toś ten dodank ze zběrki wótpóraś"
-
-msgid "Remove"
-msgstr "Wótpóraś"
-
-msgid "Add to favorites"
-msgstr "Faworitam pśidaś"
-
-msgid "Remove from favorites"
-msgstr "Z faworitow wótpóraś"
-
-msgid "Stop following"
-msgstr "Wěcej njeslědowaś"
-
-msgid "Your browser does not support the video tag"
-msgstr "Waš wobglědowak njepódpěra wobznamjenje video"
 
 msgid "Changes Saved"
 msgstr "Změny su se składli"

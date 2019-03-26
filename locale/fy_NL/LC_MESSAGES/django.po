@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-09-03 12:22+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -231,9 +231,6 @@ msgstr "Oankommende útwreidingen"
 
 msgid "Featured Themes"
 msgstr "Oanrekommandearre tema’s"
-
-msgid "Featured Collections"
-msgstr "Oanrekommandearre kolleksjes"
 
 msgid "Sort by:"
 msgstr "Sortearje op:"
@@ -464,9 +461,6 @@ msgstr "Skriuw in beoardieling"
 msgid "Related Categories"
 msgstr "Sibbe kategoryen"
 
-msgid "Part of these Collections"
-msgstr "Underdiel fan dizze kolleksjes"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -600,14 +594,14 @@ msgstr "Dizze add-on is noch net beoardiele."
 msgid "Be the first!"
 msgstr "Wês de earste!"
 
+msgid "No results found."
+msgstr "Gjin resultaten fûn."
+
 msgid "{0} users"
 msgstr "{0} brûkers"
 
 msgid "More"
 msgstr "Mear"
-
-msgid "Add to collection"
-msgstr "Tafoegje oan kolleksje"
 
 msgid "My Add-ons"
 msgstr "Myn add-ons"
@@ -633,9 +627,6 @@ msgstr "Sorry, dit tema stiet yn de wachtrige. Probearje it letter nochris."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Dit tema stiet yn de wachtrige. It is net sichtber foar elkenien útein jo."
-
-msgid "Collector's Note"
-msgstr "Opmerking sammeler"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -845,9 +836,6 @@ msgstr "Wolle jo mear oanpassingen? Probearje <b>Folsleine tema’s</b>"
 msgid "Collections"
 msgstr "Kolleksjes"
 
-msgid "Collections I've Made"
-msgstr "Myn kolleksjes"
-
 msgid "More&hellip;"
 msgstr "Mear…"
 
@@ -970,38 +958,14 @@ msgstr ""
 "As jo stipe tapassing gjin manifest-bestân fereasket, dan moatte jo der noch hieltyd ien tafoegje mei de fereaske eigenskippen lykas %(amo_manifests_mdn_link_open)shjir"
 "%(amo_manifests_mdn_link_close)s spesifisearre."
 
-msgid "Only I can view this collection."
-msgstr "Allinnich ik kin dizze kolleksje besjen."
-
-msgid "Anybody can view this collection."
-msgstr "Elkenien kin dizze kolleksje besjen."
-
-msgid "Give your collection a name."
-msgstr "Jou jo kolleksje in namme."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Beskriuw jo kolleksje (keppelingen net tastien)."
-
-msgid "Privacy:"
-msgstr "Privacy:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Folje dit fjild net yn, it wurdt brûkt om bots te fangen"
-
-msgid "This name cannot be used."
-msgstr "Dizze namme kin net brûkt wurde."
-
-msgid "This url is already in use by another collection"
-msgstr "Dizze URL wurdt al troch in oare kolleksje brûkt"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Dizze oanpaste URL wurdt al troch ien fan jo oare kolleksje brûkt."
 
 msgid "Name cannot be empty."
 msgstr "Namme kin net leech wêze."
+
+msgid "This name cannot be used."
+msgstr "Dizze namme kin net brûkt wurde."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Fier in oanpaste URL yn dy't út letters, sifers, lizzende streepkes of ôfbrektekens bestiet."
@@ -1011,226 +975,6 @@ msgstr "Dizze oanpaste URL kin net brûkt wurde."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Dizze add-on heart al by de kolleksje"
-
-msgid "Added"
-msgstr "Tafoege"
-
-msgid "Popularity"
-msgstr "Populariteit"
-
-msgid "Name"
-msgstr "Namme"
-
-msgid "Collection created!"
-msgstr "Kolleksje oanmakke!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Jo nije kolleksje wurdt hjirûnder werjûn. Jo kinne as it winske wurdt <a href=\"%(url)s\">mear ynstellingen bewurkje</a>."
-
-msgid "Collection updated!"
-msgstr "Kolleksje bywurke!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Besjoch jo kolleksje</a> om de wizigingen te sjen."
-
-msgid "Create a New Collection"
-msgstr "In nije kolleksje oanmeitsje"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Lykas fermeld yn ús <a href=\"%(legal)s\">juridyske kennisjouwingen</a> falle yndividuele kolleksjes ûnder de Creative Commons Attribution Share-Alike License"
-
-msgid "Create Collection"
-msgstr "Kolleksje oanmeitsje"
-
-msgid "View this collection"
-msgstr "Dizze kolleksje besjen"
-
-msgid "Start a new collection..."
-msgstr "In nije kolleksje starte…"
-
-msgid "Start a New Collection"
-msgstr "In nije kolleksje starte"
-
-msgid "Name:"
-msgstr "Namme:"
-
-msgid "(optional)"
-msgstr "(opsjoneel)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "of <a id=\"collections-new-cancel\" href=\"#\">Annulearje</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Kolleksjes"
-
-msgid "private"
-msgstr "privee"
-
-msgid "About this Collection"
-msgstr "Oer dizze kolleksje"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Add-ons syngronisearre mei myn mobile Firefox"
-
-msgid "Make this Collection Private"
-msgstr "Dizze kolleksje privee meitsje"
-
-msgid "Make this Collection Public"
-msgstr "Dizze kolleksje iepenbier meitsje"
-
-msgid "More Options:"
-msgstr "Mear opsjes:"
-
-msgid "Edit Collection"
-msgstr "Kolleksje bewurkje"
-
-msgid "Delete Collection"
-msgstr "Kolleksje fuortsmite"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s tema yn dizze kolleksje"
-msgstr[1] "%(num)s tema’s yn dizze kolleksje"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s add-on in dizze kolleksje"
-msgstr[1] "%(num)s add-ons yn dizze kolleksje"
-
-msgid "Go"
-msgstr "Start"
-
-msgid "What are Collections?"
-msgstr "Wat binne kolleksjes?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Kolleksjes binne groepen besibbe add-ons dy't elkenien oanmeitsje en diele kin."
-
-msgid "Explore Collections"
-msgstr "Kolleksjes ferkenne"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-"Add-ons dy't jo as favoriten markearje fia de funksje <b>Tafoegje oan favoriten</b> ferskine hjirûnder. Dizze kolleksje is op dit stuit <b>publyklik</b>, wat betsjut dat elkenien dit sjen kin. As "
-"jo dit ferstopje wolle, klik dan op ûndersteande knop om dit privee te meitsjen."
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Mei de funksje <b>Oan Favoriten tafoegje</b> as favoryt markearre add-ons ferskine hjirûnder. Dizze kolleksje is op dit stuit <b>privee</b>, wat betsjut dat allinnich jo dit sjen kinne. As jo wolle "
-"dat elkenien jo favoriten sjen kin, klik dan op ûndersteande knop om de kolleksje iepenbier te meitsjen."
-
-msgid "My favorite add-ons"
-msgstr "Myn favorite add-ons"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> add-on"
-msgstr[1] "<span>%(addons)s</span> add-ons"
-
-msgid "by {0}"
-msgstr "troch {0}"
-
-msgid "Edit this Collection"
-msgstr "Dizze kolleksje bewurkje"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "{0} fuortsmite"
-
-msgid "Are you sure?"
-msgstr "Binne jo wis?"
-
-msgid "Yes"
-msgstr "Ja"
-
-msgid "No"
-msgstr "Nee"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "{0} bewurkje"
-
-msgid "Description"
-msgstr "Beskriuwing"
-
-msgid "Save Changes"
-msgstr "Wizigingen bewarje"
-
-msgid "Remove from favorites"
-msgstr "Fuortsmite út favoriten"
-
-msgid "Add to favorites"
-msgstr "Tafoegje oan favoriten"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Kolleksjes fan {0}"
-
-msgid "No collections found."
-msgstr "Gjin kolleksjes fûn."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Kolleksjes binne groepen relatearre add-ons dy't elkenien meitsje en diele kin. Ferken kolleksjes fan oare brûkers of <a href=\"%(url)s\">meitsje jo eigen kolleksje</a>."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "troch %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Myn favorite add-ons"
-
-msgid "Create a Collection"
-msgstr "In kolleksje meitsje"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Kolleksjes meitsje it ienfâldich om favorite add-ons te folgjen en jo perfekt oanpaste browser mei oaren te dielen."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "Der sitte flaters yn dit formulier. Korrizjearje se hjirûnder."
-
-msgid "Add-ons in Your Collection"
-msgstr "Add-ons yn jo kolleksje"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "Fier om in add-on yn dizze kolleksje op te nimmen de namme yn ûndersteand fjild yn en druk op Enter."
-
-msgid "Add-on"
-msgstr "Add-on"
-
-msgid "Comment"
-msgstr "Opmerking"
-
-msgid "Remove"
-msgstr "Fuortsmite"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Fier de namme fan de op te nimmen add-on yn"
-
-msgid "Add to Collection"
-msgstr "Tafoegje oan kolleksje"
-
-msgid "Pending"
-msgstr "Yn behanneling"
-
-msgid "Add a comment"
-msgstr "Opmerking tafoegje"
-
-msgid "Remove this add-on from the collection"
-msgstr "Dizze add-on út de kolleksje fuortsmite"
-
-msgid "Favorite"
-msgstr "Favoryt"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1264,6 +1008,9 @@ msgstr "Sykark"
 
 msgid "Most Users"
 msgstr "Measte brûkers"
+
+msgid "Name"
+msgstr "Namme"
 
 msgid "Weekly Downloads"
 msgstr "Wyklikse downloads"
@@ -2200,6 +1947,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Add-on"
+
 msgid "Static Theme"
 msgstr "Statysk tema"
 
@@ -2458,6 +2208,12 @@ msgstr "Ferzje {version} bestiet al."
 msgid "Continue with existing upload instead?"
 msgstr "Trochgean mei besteande oplaad?"
 
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nee"
+
 msgid "You have not uploaded a source file."
 msgstr "Jo hawwe gjin boarnebestân opladen."
 
@@ -2595,13 +2351,15 @@ msgstr "De falidaasje fan dizze oplaad is mislearre en der ûntbrekke mooglik fo
 msgid "Header area background"
 msgstr "Eftergrûn fan headergebied"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "De kleur fan de eftergrûn fan it headergebied, werjaan yn it part fan de header dat net ôfdekt wurdt of sichtber is fia de headerôfbylding. Manifestfjild: ·  ·  · accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Tekst en piktogrammen fan headergebied"
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "De kleur fan de tekst en de piktogrammen yn it headergebied, behalve it aktive ljepblêd. Manifestfjild:   textcolor."
 
 msgid "Toolbar area background"
@@ -2613,7 +2371,8 @@ msgstr "De eftergrûnkleur foar de navigaasjebalke, de blêdwizerarkbalke en it 
 msgid "Toolbar area text and icons"
 msgstr "Tekst en piktogrammen fan it arkbalkegebied"
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "De kleur fan tekst en piktogrammen yn de arkbalke en it aktive ljepblêd. Manifestfjild:  toolbar_text."
 
 msgid "Toolbar field area background"
@@ -2752,9 +2511,6 @@ msgstr "Resinte aktiviteit foar {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> troch %(user)s"
 
-msgid "No results found."
-msgstr "Gjin resultaten fûn."
-
 msgid "Refine Activity"
 msgstr "Aktiviteit ferfynje"
 
@@ -2799,8 +2555,14 @@ msgstr "Tapassing"
 msgid "Supported Versions"
 msgstr "Stipe ferzjes"
 
+msgid "Remove"
+msgstr "Fuortsmite"
+
 msgid "Add Another Application&hellip;"
 msgstr "Noch in tapassing tafoegje…"
+
+msgid "Save Changes"
+msgstr "Wizigingen bewarje"
 
 msgid "Close"
 msgstr "Slute"
@@ -2933,6 +2695,9 @@ msgstr "Profyl besjen"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Dizze gearfetting moat dúdlik útlizze wat jo add-on docht. Dizze ferskynt yn listen en sykopdrachten, en wurdt troch beoardielers brûkt om jo add-on te testen."
+
+msgid "Description"
+msgstr "Beskriuwing"
 
 msgid "Experimental?"
 msgstr "Eksperiminteel?"
@@ -3309,6 +3074,9 @@ msgstr "Add-on-URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Brûk útslutend letters, sifers, lizzende streepkes en streepkes yn jo URL."
+
+msgid "Name:"
+msgstr "Namme:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Namme yn fermelding op dizze website. Kin oars wêze as de namme binnen de add-on, dy’t binnen Firefox toand wurdt"
@@ -5470,6 +5238,9 @@ msgstr "Foar Firefox 47 en leger is in GUID ferplicht."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Leechste stipe ‘strict_min_version’ is 42.0."
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Koe oplade bestân net útpakke; ûntbrekkend of leech <%s>-elemint"
@@ -5569,6 +5340,9 @@ msgstr "Bestânsynhâld wurdt net stipe foar syntaksismarkearring"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "De útfier kin skansearre wêze, wês foarsichtich en %(link_start)smeld in probleem%(link_end)s daliks!"
 
+msgid "Go"
+msgstr "Start"
+
 msgid "Add-on file being processed, please wait."
 msgstr "Add-onbestân wurdt ferwurke, in momint geduld."
 
@@ -5583,9 +5357,6 @@ msgstr "Fuortsmiten bestannen:"
 
 msgid "Hide known files"
 msgstr "Bekende bestannen ferstopje"
-
-msgid "Add-on SDK Version:"
-msgstr "Add-on SDK-ferzje:"
 
 msgid "Tab stops:"
 msgstr "Tabstops:"
@@ -6231,9 +6002,6 @@ msgstr "Ynhâldsbeoardieling troch behearder fereaske"
 msgid "Needs Admin Static Theme Review"
 msgstr "Beoardieling statysk tema troch behearder fereaske"
 
-msgid "Jetpack Add-on"
-msgstr "Jetpack-add-on"
-
 msgid "More Information Requested"
 msgstr "Mear ynformaasje frege"
 
@@ -6329,6 +6097,9 @@ msgstr "Superbeoardieling oanfreegje"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "As jo fraachtekens by dizze add-on hawwe wêr in behearder nei sjen moatte soe, fier dan hjirûnder jo opmerkingen yn. Dizze wurde net nei de ûntwikkeler stjoerd."
+
+msgid "Comment"
+msgstr "Opmerking"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Meitsje in opmerking by dizze ferzje. De skriuwer kin dit net sjen."
@@ -6862,97 +6633,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr "Maksimale lingte fan sykopdracht oerskreaun."
 
-msgid "search for add-ons"
-msgstr "sykje nei add-ons"
-
-msgid "search for themes"
-msgstr "sykje nei tema’s"
-
-msgid "search for apps"
-msgstr "sykje nei apps"
-
-msgid "Relevance"
-msgstr "Relevânsje"
-
-msgid "All Add-ons"
-msgstr "Alle add-ons"
-
-msgid "Any {0}"
-msgstr "Alle {0}-ferzjes"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Alle systemen"
-
-msgid "All Tags"
-msgstr "Alle labels"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Sykresultaten kolleksjes foar {0}"
-
-msgid "Collection Search Results"
-msgstr "Sykresultaten kolleksjes"
-
-msgid "Search Results"
-msgstr "Sykresultaten"
-
-msgid "Search Unavailable"
-msgstr "Sykjen net beskikber"
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "De sykmasine is tydlik net beskikber. Probearje it oer in pear minuten nochris."
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr "Sykresultaten tema’s foar {0}"
-
-msgid "Themes Search Results"
-msgstr "Sykresultaten tema’s"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Sykje"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Sykresultaten foar ‘{0}’"
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} :: Label"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Sykresultaten foar label ‘{0}’"
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> resultaat fûn"
-msgstr[1] "<b>{0}</b> resultaten fûn"
-
-msgid "Filter Results"
-msgstr "Resultaten filterje"
-
-msgid "Category"
-msgstr "Kategory"
-
-msgid "Tag"
-msgstr "Label"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Werjûn: {0} - {1} fan {2} resultaten foar <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Werjûn: {0} - {1} fan {2} resultaten"
-
 #, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Koe gjin add-on mei id ‘{}’ fine."
@@ -7262,16 +6942,6 @@ msgstr "AMO krijt in nij úterlik. Wolle jo it sjen?"
 msgid "Visit the new site"
 msgstr "De nije website besykje"
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Om jo eigen kolleksjes oan te meitsjen moatte jo in Mozilla-add-ons-account hawwe."
-
-msgid "Create an Add-ons Account"
-msgstr "Add-ons-account oanmeitsje"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "of <a href=\"%(login)s\">meld jo oan by jo account</a>"
-
 msgid "Footer logo"
 msgstr "Foettekstlogo"
 
@@ -7365,6 +7035,9 @@ msgstr "Android-add-ons"
 msgid "Required fields"
 msgstr "Ferplichte fjilden"
 
+msgid "(optional)"
+msgstr "(opsjoneel)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7426,6 +7099,9 @@ msgstr "Firefox-brûker {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Myn Mobyl-add-ons"
+
+msgid "My Favorite Add-ons"
+msgstr "Myn favorite add-ons"
 
 msgid "an add-on developer replies to my review"
 msgstr "in add-on-ûntwikkeler beäntwurdet myn beoardieling"

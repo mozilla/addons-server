@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-08-21 11:20+0000\n"
 "Last-Translator: Håvar Henriksen <havar@firefox.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -228,9 +228,6 @@ msgstr "Fremgangsrike utvidelser"
 
 msgid "Featured Themes"
 msgstr "Fremhevede temaer"
-
-msgid "Featured Collections"
-msgstr "Fremhevede samlinger"
 
 msgid "Sort by:"
 msgstr "Sorter etter:"
@@ -461,9 +458,6 @@ msgstr "Skriv en anmeldelse"
 msgid "Related Categories"
 msgstr "Relaterte kategorier"
 
-msgid "Part of these Collections"
-msgstr "Del av disse samlingene"
-
 #, fuzzy, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -600,14 +594,14 @@ msgstr "Denne utvidelsen har ennå ikke blitt anmeldt."
 msgid "Be the first!"
 msgstr "Vær først!"
 
+msgid "No results found."
+msgstr "Ingen resultater."
+
 msgid "{0} users"
 msgstr "{0} brukere"
 
 msgid "More"
 msgstr "Mer"
-
-msgid "Add to collection"
-msgstr "Legg til i samling"
 
 msgid "My Add-ons"
 msgstr "Mine utvidelser"
@@ -633,9 +627,6 @@ msgstr "Beklager, dette temaet er under utarbeidelse. Kom tilbake senere."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Dette temaet er under utarbeidelse. Det er usynlig til alle andre enn deg."
-
-msgid "Collector's Note"
-msgstr "Samlers merknad"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -847,9 +838,6 @@ msgstr ""
 msgid "Collections"
 msgstr "Samlinger"
 
-msgid "Collections I've Made"
-msgstr "Samlinger jeg har laget"
-
 msgid "More&hellip;"
 msgstr "Mer &hellip;"
 
@@ -967,39 +955,15 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
-msgid "Only I can view this collection."
-msgstr "Bare jeg kan vise denne samlingen."
-
-msgid "Anybody can view this collection."
-msgstr "Hvem som helst kan vise denne samlingen."
-
-msgid "Give your collection a name."
-msgstr "Gi samlingen et navn."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr ""
-
-msgid "Privacy:"
-msgstr "Personvern:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
-
-msgid "This name cannot be used."
-msgstr "Dette navnet kan ikke brukes."
-
-msgid "This url is already in use by another collection"
-msgstr "Denne url-en er allerede i bruk av en annen samling"
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne url-en er allerede i bruk av en annen samling"
 
 msgid "Name cannot be empty."
 msgstr "Navn kan ikke være tomt."
+
+msgid "This name cannot be used."
+msgstr "Dette navnet kan ikke brukes."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -1011,227 +975,6 @@ msgstr "\"{0}\" er en reservert tagg og kan ikke brukes."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "Denne url-en er allerede i bruk av en annen samling"
-
-msgid "Added"
-msgstr "Lagt til"
-
-msgid "Popularity"
-msgstr "Popularitet"
-
-msgid "Name"
-msgstr "Navn"
-
-msgid "Collection created!"
-msgstr "Samling opprettet!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
-
-msgid "Collection updated!"
-msgstr "Samling oppdatert!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Vi samlingen</a> for å se endringer."
-
-msgid "Create a New Collection"
-msgstr "Lag en ny samling"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Som nevnt i våre <a href=\"%(legal)s\">juridiske merknader</a> er avtaler på individuelle samlinger styrt av  Creative Commons Attribution Share-Alike-lisensen."
-
-msgid "Create Collection"
-msgstr "Opprett samling"
-
-msgid "View this collection"
-msgstr "Vis denne samlingen"
-
-msgid "Start a new collection..."
-msgstr "Start en ny samling ..."
-
-msgid "Start a New Collection"
-msgstr "Start en ny samling"
-
-msgid "Name:"
-msgstr "Navn:"
-
-msgid "(optional)"
-msgstr "(valgfritt)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "eller <a id=\"collections-new-cancel\" href=\"#\">Avbryt</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Samlinger"
-
-msgid "private"
-msgstr "privat"
-
-msgid "About this Collection"
-msgstr "Om denne samlingen"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Utvidelser synkronisert til min mobile Firefox"
-
-msgid "Make this Collection Private"
-msgstr "Gjør denne samlingen privat"
-
-msgid "Make this Collection Public"
-msgstr "Gjør denne samlingen offentlig"
-
-msgid "More Options:"
-msgstr "Flere innstillinger"
-
-msgid "Edit Collection"
-msgstr "Rediger samling"
-
-msgid "Delete Collection"
-msgstr "Slett samling"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s tema i denne samlingen"
-msgstr[1] "%(num)s temaer i denne samlingen"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s utvidelse i denne samlingen"
-msgstr[1] "%(num)s utvidelser i denne samlingen"
-
-msgid "Go"
-msgstr "Gå"
-
-msgid "What are Collections?"
-msgstr "Hva er samlinger?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Samlinger er grupper av relaterte utvidelser som hvem som helst kan opprette og dele."
-
-msgid "Explore Collections"
-msgstr "Utforsk samlinger"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-"Utvidelser som du markerer som favoritter med <b>Legg til i favoritter</b> vises nedenfor. Denne samlingen er akkurat nå <b>offentlig</b>, som betyr at alle kan se den. Dersom du ønsker å skjule "
-"den fra offentligheten, trykk på knappen nedenfor for å gjøre den privat."
-
-#, fuzzy
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Utvidelser som du markerer som favoritter med <b>Legg til i favoritter</b> vises nedenfor. Denne samlingen er akkurat nå <b>offentlig</b>, som betyr at alle kan se den. Dersom du ønsker å skjule "
-"den fra offentligheten, trykk på knappen nedenfor for å gjøre den privat."
-
-msgid "My favorite add-ons"
-msgstr "Mine favorittutvidelser"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> utvidelse"
-msgstr[1] "<span>%(addons)s</span> utvidelser"
-
-msgid "by {0}"
-msgstr "av {0}"
-
-msgid "Edit this Collection"
-msgstr "Rediger denne samlingen"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Slett {0}"
-
-msgid "Are you sure?"
-msgstr "Er du sikker?"
-
-msgid "Yes"
-msgstr "Ja"
-
-msgid "No"
-msgstr "Nei"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Rediger {0}"
-
-msgid "Description"
-msgstr "Beskrivelse"
-
-msgid "Save Changes"
-msgstr "Lagre endringer"
-
-msgid "Remove from favorites"
-msgstr "Fjern fra favoritter"
-
-msgid "Add to favorites"
-msgstr "Legg til i favoritter"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Samlinger av {0}"
-
-msgid "No collections found."
-msgstr "Ingen samlinger funnet."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Samlinger er grupper av relaterte utvidelser som hvem som helst kan lage og dele. Utforsk samlinger laget av andre brukere eller <a href=\"%(url)s\">lag din egen</a>."
-
-#, fuzzy, python-format
-msgid "by %(author_link)s"
-msgstr "av %(users)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Mine favorittutvidelser"
-
-msgid "Create a Collection"
-msgstr "Lag en samling"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Samlinger gjør det enkelt å følge med på favorittutvidelsene dine, og dele din perfekt tilpassede nettleser med andre."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
-
-msgid "Add-ons in Your Collection"
-msgstr "Utvidelser i samlingen din"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
-
-msgid "Add-on"
-msgstr "Utvidelse"
-
-msgid "Comment"
-msgstr "Kommentar"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Skriv inn navnet på utvidelsen du vil ta med"
-
-msgid "Add to Collection"
-msgstr "Legg til i samling"
-
-msgid "Pending"
-msgstr "Venter behandling"
-
-msgid "Add a comment"
-msgstr "Legg til kommentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Fjern denne utvidelsen fra denne samlingen"
-
-msgid "Favorite"
-msgstr "Favoritt"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1265,6 +1008,9 @@ msgstr "Søkeverktøy"
 
 msgid "Most Users"
 msgstr "Flest brukere"
+
+msgid "Name"
+msgstr "Navn"
 
 msgid "Weekly Downloads"
 msgstr "Ukentlige nedlastinger"
@@ -2240,6 +1986,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Utvidelse"
+
 #, fuzzy
 msgid "Static Theme"
 msgstr "Rediger tema"
@@ -2511,6 +2260,12 @@ msgstr "{addon} {version} godkjent."
 msgid "Continue with existing upload instead?"
 msgstr ""
 
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nei"
+
 #, fuzzy
 msgid "You have not uploaded a source file."
 msgstr "Du kan ikke laste opp flere filer for denne versjonen."
@@ -2643,13 +2398,13 @@ msgstr ""
 msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
 msgid "Toolbar area background"
@@ -2661,7 +2416,7 @@ msgstr ""
 msgid "Toolbar area text and icons"
 msgstr ""
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
 
 msgid "Toolbar field area background"
@@ -2800,9 +2555,6 @@ msgstr "Nylig aktivitet for {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> av %(user)s"
 
-msgid "No results found."
-msgstr "Ingen resultater."
-
 msgid "Refine Activity"
 msgstr ""
 
@@ -2842,8 +2594,14 @@ msgstr "Program"
 msgid "Supported Versions"
 msgstr "Støttede versjoner"
 
+msgid "Remove"
+msgstr "Fjern"
+
 msgid "Add Another Application&hellip;"
 msgstr "Legg til en annen applikasjon&hellip;"
+
+msgid "Save Changes"
+msgstr "Lagre endringer"
 
 msgid "Close"
 msgstr "Lukk"
@@ -2975,6 +2733,9 @@ msgstr "Vis profil"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Beskrivelse"
 
 msgid "Experimental?"
 msgstr "Eksperimentell?"
@@ -3334,6 +3095,9 @@ msgstr "Utvidelse"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+
+msgid "Name:"
+msgstr "Navn:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -5514,6 +5278,9 @@ msgstr ""
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
@@ -5613,6 +5380,9 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "Go"
+msgstr "Gå"
+
 msgid "Add-on file being processed, please wait."
 msgstr ""
 
@@ -5626,9 +5396,6 @@ msgid "Deleted files:"
 msgstr ""
 
 msgid "Hide known files"
-msgstr ""
-
-msgid "Add-on SDK Version:"
 msgstr ""
 
 msgid "Tab stops:"
@@ -6262,9 +6029,6 @@ msgstr "Ingen anmeldelser"
 msgid "Needs Admin Static Theme Review"
 msgstr "Full gjennomgang av utvidelse"
 
-msgid "Jetpack Add-on"
-msgstr ""
-
 msgid "More Information Requested"
 msgstr ""
 
@@ -6366,6 +6130,9 @@ msgstr ""
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
+
+msgid "Comment"
+msgstr "Kommentar"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -6931,90 +6698,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "search for add-ons"
-msgstr ""
-
-msgid "search for themes"
-msgstr ""
-
-msgid "search for apps"
-msgstr ""
-
-msgid "Relevance"
-msgstr ""
-
-msgid "All Add-ons"
-msgstr "Alle utvidelser"
-
-msgid "Any {0}"
-msgstr ""
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr ""
-
-msgid "All Tags"
-msgstr ""
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr ""
-
-msgid "Collection Search Results"
-msgstr ""
-
-msgid "Search Results"
-msgstr "Søkeresultater"
-
-msgid "Search Unavailable"
-msgstr ""
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr ""
-
-msgid "Themes Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Søk"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Søkeresultater for \"{0}\""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr ""
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr ""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Filter Results"
-msgstr ""
-
-msgid "Category"
-msgstr ""
-
-msgid "Tag"
-msgstr ""
-
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr ""
-
 msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
@@ -7310,16 +6993,6 @@ msgstr ""
 msgid "Visit the new site"
 msgstr ""
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr ""
-
-msgid "Create an Add-ons Account"
-msgstr "Opprett en utvidelseskonto"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "eller <a href=\"%(login)s\">logg inn på en eksisterende konto</a>"
-
 msgid "Footer logo"
 msgstr ""
 
@@ -7413,6 +7086,9 @@ msgstr ""
 msgid "Required fields"
 msgstr ""
 
+msgid "(optional)"
+msgstr "(valgfritt)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7475,6 +7151,9 @@ msgstr "Firefox for Android"
 
 msgid "My Mobile Add-ons"
 msgstr ""
+
+msgid "My Favorite Add-ons"
+msgstr "Mine favorittutvidelser"
 
 msgid "an add-on developer replies to my review"
 msgstr ""

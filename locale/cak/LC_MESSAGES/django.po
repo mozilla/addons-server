@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -227,9 +227,6 @@ msgstr "Ajsik' &amp; Yewachin yan taq K'amal"
 
 msgid "Featured Themes"
 msgstr "Wachinïk Ya'on Kiq'ij"
-
-msgid "Featured Collections"
-msgstr "Talun taq Mol"
 
 msgid "Sort by:"
 msgstr "Tichol chi:"
@@ -457,9 +454,6 @@ msgstr "Tatz'ib'aj jun tzijoxïk"
 msgid "Related Categories"
 msgstr "Taq Ruwäch Kiximon Ki'"
 
-msgid "Part of these Collections"
-msgstr "Taq ruperaj re taq Mol re'"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -593,14 +587,14 @@ msgstr "K'a man tzijon ta rij re tz'aqat re'."
 msgid "Be the first!"
 msgstr "¡Kanab'eyin!"
 
+msgid "No results found."
+msgstr "Majun achike xilitäj."
+
 msgid "{0} users"
 msgstr "{0} okisanela'"
 
 msgid "More"
 msgstr "Ch'aqa' chik"
-
-msgid "Add to collection"
-msgstr "Titz'aqatisäx pa mol"
 
 msgid "My Add-ons"
 msgstr "Taq Nutz'aqat"
@@ -626,9 +620,6 @@ msgstr "Kojakuyu', k'a k'o na chi rij re wachinïk re'. Katzolin pe jub'a' chik 
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "K'a k'o na nrajo' chi rij re wachinïk re'. Man wachel ta man ke ta ri' chawäch rat."
-
-msgid "Collector's Note"
-msgstr "Ruch'utitzijol Molonel"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -840,9 +831,6 @@ msgstr "¿La nawajo' nawichinaj ch'aqa' chik? Ke'atojtob'ej <b>Chijun taq Wachin
 msgid "Collections"
 msgstr "Taq mol"
 
-msgid "Collections I've Made"
-msgstr "Taq Mol Enutz'ukun"
-
 msgid "More&hellip;"
 msgstr "Ch'aqa' chik&hellip;"
 
@@ -963,38 +951,14 @@ msgstr ""
 "Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Only I can view this collection."
-msgstr "Xa xe yitikïr nintz'ët re mol re'."
-
-msgid "Anybody can view this collection."
-msgstr "Xab'achike nitikïr nutz'ët re mol re'."
-
-msgid "Give your collection a name."
-msgstr "Taya' jun rub'i' ri amol."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Tacholo' rij ri amol (man ya'on ta q'ij chi ke ximonel)."
-
-msgid "Privacy:"
-msgstr "Ichinanem:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Man tatz'aqatisaj re k'ojlib'äl re', tawokisaj richin ye'achäp ta wot"
-
-msgid "This name cannot be used."
-msgstr "Man tikirel ta nokisäx re b'i'aj re'."
-
-msgid "This url is already in use by another collection"
-msgstr "Re url re nokisäx chik ruma jun chik mol"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
 
 msgid "Name cannot be empty."
 msgstr "Man tikirel ta majun b'i'aj."
+
+msgid "This name cannot be used."
+msgstr "Man tikirel ta nokisäx re b'i'aj re'."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Ri ichinan URL k'o chi yeruk'waj taq tz'ib', taq ajilab'äl, ko'öl taq juch' o nïm taq juch'."
@@ -1004,227 +968,6 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
-
-msgid "Added"
-msgstr "Tz'aqatisan"
-
-msgid "Popularity"
-msgstr "K'ïy winaqilal"
-
-msgid "Name"
-msgstr "B'i'aj"
-
-msgid "Collection created!"
-msgstr "¡Xtz'uk ri mol!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Q'aläj ikim ri k'ak'a' amol. Yatikïr <a href=\"%(url)s\">ye'anük' ri taq runuk'ulem</a> we nawajo'."
-
-msgid "Collection updated!"
-msgstr "¡Xk'ex ri mol!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Tatz'eta' ri amol</a> richin ye'atzu' ri taq jaloj."
-
-msgid "Create a New Collection"
-msgstr "Titz'uk jun K'ak'a' Mol"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Achi'el niq'alajisäx pa ri <a href=\"%(legal)s\">Rutzijol Ruchojmil Tzij</a>, ri ruyon mol rojqan jun Creative Commons Attribution Share-Alike Ya'oj Q'ij"
-
-msgid "Create Collection"
-msgstr "Titz'uk Mol"
-
-msgid "View this collection"
-msgstr "Titz'et re mol re'"
-
-msgid "Start a new collection..."
-msgstr "Titikirisäx jun k'ak'a' mol..."
-
-msgid "Start a New Collection"
-msgstr "Titikirisäx jun K'ak'a' Mol"
-
-msgid "Name:"
-msgstr "B'i'aj:"
-
-msgid "(optional)"
-msgstr "(cha'el)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Tiq'at</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Taq mol"
-
-msgid "private"
-msgstr "ichinan"
-
-msgid "About this Collection"
-msgstr "Chi rij re Mol re'"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Taq tz'aqat eximon pa woyonib'al Firefox"
-
-msgid "Make this Collection Private"
-msgstr "Ti'ichinäx re Mol re'"
-
-msgid "Make this Collection Public"
-msgstr "Tib'an Saqil re Mol re'"
-
-msgid "More Options:"
-msgstr "Ch'aqa' chik taq Cha'oj:"
-
-msgid "Edit Collection"
-msgstr "Tinuk' ri Mol"
-
-msgid "Delete Collection"
-msgstr "Tiyuj ri Mol"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s Wachinel pa re Mol re'"
-msgstr[1] "%(num)s Taq Wachinel pa re Mol re'"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s Tz'aqat pa re Mol re'"
-msgstr[1] "%(num)s Taq Tz'aqat pa re Mol re'"
-
-msgid "Go"
-msgstr "Jo'"
-
-msgid "What are Collections?"
-msgstr "¿E achike ri taq Mol?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Ri taq mol e rumolaj taq tz'aqat kiximon ki', ri xab'achike nitikïr yerutz'ük chuqa' yerukomonij."
-
-msgid "Explore Collections"
-msgstr "Kekanöx taq Mol"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-"Ri taq tz'aqat naya' ketal achi'el e ajowab'äl rik'in ri <b>Titz'aqatisäx pa Ajowab'äl</b> b'anikil xkeb'eq'alajin pe ikim. Wakami re mol re' k'o pa rub'anikil <b>aj winaqil</b>, ruma ri' toq "
-"konojel yetikïr nikitz'ët. We nawajo' ye'awewaj pa ri aj winaqil tz'etoj, tapitz'a' ri pitz'b'äl ikim richin nawichinaj."
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Ri taq tz'aqat naya' ketal achi'el e ajowab'äl rik'in ri cha'oj <b>Titz'aqatisäx pa Ajowab'äl</b> xkeb'eq'alajin pe ikim. Wakami re mol re' k'o pa rub'anikil <b>ichinan</b>, ruma ri' toq xa xe rat "
-"yatikïr yatz'eto. We nawajo' chi konojel yetz'eto ri taq awajowab'al, tapitz'a' ri pitz'b'äl ikim richin nib'an aj winaqil chi ke."
-
-msgid "My favorite add-ons"
-msgstr "Taq tz'aqat ewajowan"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> tz'aqat"
-msgstr[1] "<span>%(addons)s</span> taq tz'aqat"
-
-msgid "by {0}"
-msgstr "ruma {0}"
-
-msgid "Edit this Collection"
-msgstr "Tinuk' re Mol re'"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Tiyuj {0}"
-
-msgid "Are you sure?"
-msgstr "¿Kan at jikïl?"
-
-msgid "Yes"
-msgstr "Ja'"
-
-msgid "No"
-msgstr "Mani"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Tinuk' {0}"
-
-msgid "Description"
-msgstr "Tzijoxkil"
-
-msgid "Save Changes"
-msgstr "Keyak Jaloj"
-
-msgid "Remove from favorites"
-msgstr "Tisilöx el pa taq ajowab'äl"
-
-msgid "Add to favorites"
-msgstr "Ketz'aqatisäx pa ajowab'äl"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Taq rumol {0}"
-
-msgid "No collections found."
-msgstr "Majun mol xe'ilitäj."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr ""
-"Ri taq mol e jun molaj tz'aqat kiximon ki', ri xab'achike nitikïr yerutz'ük o yerukomonij. Ke'akanoj ri emolon enuk'un kuma ch'aqa' chik okisanela' o <a href=\"%(url)s\">tatz'uku' ri awichin</a>."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "ruma %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Taq Tz'aqat Ewajowan"
-
-msgid "Create a Collection"
-msgstr "Titz'uk jun Mol"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Ri taq mol nikito' kojqaxik ri ajowab'äl taq tz'aqat chuqa' nuya' q'ij chawe richin ütz ichinan nakomonij ri awokik'amaya'l kik'in ch'aqa' chik."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "E k'o sachoj pa ri nojwuj.  Ikim ke'achojmirisaj."
-
-msgid "Add-ons in Your Collection"
-msgstr "Taq Tz'aqat pan Amol"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "Richin natz'aqatisaj jun tz'aqat pa re mol re', tatz'ib'aj ri rub'i' k'a ri' tapitz'a' enter."
-
-msgid "Add-on"
-msgstr "Tz'aqat"
-
-msgid "Comment"
-msgstr "Tzijoxïk"
-
-msgid "Remove"
-msgstr "Tiyuj"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Titz'ib'äx rub'i' tz'aqat xtitz'aqatisäx"
-
-msgid "Add to Collection"
-msgstr "Titz'aqatisäx pa Mol"
-
-msgid "Pending"
-msgstr "Oyob'en"
-
-msgid "Add a comment"
-msgstr "Titz'aqatisäx jun tzijoxïk"
-
-msgid "Remove this add-on from the collection"
-msgstr "Tisilöx re tz'aqat re' pa ri mol"
-
-msgid "Favorite"
-msgstr "Ajowab'äl"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1258,6 +1001,9 @@ msgstr "Kekanöx samajib'äl"
 
 msgid "Most Users"
 msgstr "Ch'aqa' Okisanela'"
+
+msgid "Name"
+msgstr "B'i'aj"
 
 msgid "Weekly Downloads"
 msgstr "Wuqq'ijul taq Qasanïk"
@@ -2192,6 +1938,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Tz'aqat"
+
 msgid "Static Theme"
 msgstr "Mesilon Wachinel"
 
@@ -2448,6 +2197,12 @@ msgstr "Ri ruwäch {version} k'o chik."
 msgid "Continue with existing upload instead?"
 msgstr "¿La k'a nasamajij ri rujotob'axik k'o?"
 
+msgid "Yes"
+msgstr "Ja'"
+
+msgid "No"
+msgstr "Mani"
+
 msgid "You have not uploaded a source file."
 msgstr "Man ajotob'an ta jun ruxe'el yakb'äl."
 
@@ -2582,13 +2337,15 @@ msgstr "Re jotonem re' xuyüj ri junamanem ruma ri' toq rik'in jub'a' man tz'aq�
 msgid "Header area background"
 msgstr "Rupam ruk'ojlib'al jub'i'aj"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Ri rub'onil rupam ruk'ojlib'al b'i'aj, ri k'o pa ruk'ojlib'al b'i'an, ri man nojinäq ta o man tz'etel ta rik'in ri wachib'äl. Ruk'ojlib'al manifiesto:  accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj"
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al b'i'aj, man ke ta ri' ri tzijïl ruwi'. Ruk'ojlib'al Manifiesto:  textcolor."
 
 msgid "Toolbar area background"
@@ -2600,7 +2357,8 @@ msgstr "Ri rub'onil rupam rukajtz'ik okem pa k'amaya'l, kikajtz'ik yaketal chuqa
 msgid "Toolbar area text and icons"
 msgstr "Rutz'ib'anïk chuqa' ruwachib'al ruk'ojlib'al rukajtz'ik samajib'äl"
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Ri rub'onil tz'ib'anïk chuqa' ruwachib'al pa ri rukajtz'ik samajib'äl chuqa' ri tzijïl ruwi'. Ruk'ojlib'al Manifiesto:  toolbar_text."
 
 msgid "Toolbar field area background"
@@ -2739,9 +2497,6 @@ msgstr "K'ak'a' Samaj richin {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ruma %(user)s"
 
-msgid "No results found."
-msgstr "Majun achike xilitäj."
-
 msgid "Refine Activity"
 msgstr "Tutziläx Samaj"
 
@@ -2786,8 +2541,14 @@ msgstr "Chokoy"
 msgid "Supported Versions"
 msgstr "K'amonel taq Ruwäch"
 
+msgid "Remove"
+msgstr "Tiyuj"
+
 msgid "Add Another Application&hellip;"
 msgstr "Titz'aqatisäx Jun Chik Chokoy&hellip;"
+
+msgid "Save Changes"
+msgstr "Keyak Jaloj"
 
 msgid "Close"
 msgstr "Titz'apïx"
@@ -2920,6 +2681,9 @@ msgstr "Titz'et Ruwäch B'i'aj"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Wawe' k'o ta chi naya' rutzijol rusamaj nub'än ri achokoy. Xtiwachin pa taq cholb'äl chuqa' pa taq kanoxïk chuqa' xtikokisaj ri nik'onela' richin nikitojtob'ej ri achokoy."
+
+msgid "Description"
+msgstr "Tzijoxkil"
 
 msgid "Experimental?"
 msgstr "¿La soltojtob'enel?"
@@ -3294,6 +3058,9 @@ msgstr "Tz'aqat URL:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Tawokisaj xa xe tz'ib', ajilab'äl, ikim juch' chuqa' juch' pa ri URL."
+
+msgid "Name:"
+msgstr "B'i'aj:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Ri b'i'aj pa ri rucholb'al re ruxaq k'amaya'l re' tikirel jun wi ri rub'i' rik'in ri niq'alajin pa ri tz'aqat pa Firefox."
@@ -5440,6 +5207,9 @@ msgstr "GUID k'atzinel pa Firefox 47 chuqa' ch'aqa' chik nima'q ruwäch."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Ri \"strict_min_version\" ojer nik'ul ja ri 42.0."
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Man xnik'öx ta ri yakb'äl xjotob'äx, nrajo' na ruchakulal %s o majun rupam"
@@ -5539,6 +5309,9 @@ msgstr "Man nik'am ta ri rupam yakb'äl richin niya' retal cholb'ab'"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "¡Rik'in jub'a' xk'apïx ri niq'i': tachajij awi' chuqa' %(link_start)stataqa' jun rutzijol%(link_end)s chanin!"
 
+msgid "Go"
+msgstr "Jo'"
+
 msgid "Add-on file being processed, please wait."
 msgstr "Xsamajïx ri tz'aqat yakb'äl, tawoyob'ej."
 
@@ -5553,9 +5326,6 @@ msgstr "Keyuj taq yakb'äl:"
 
 msgid "Hide known files"
 msgstr "Ke'ewäx taq yakb'äl etaman kiwa"
-
-msgid "Add-on SDK Version:"
-msgstr "Tz'aqat Ruwäch SDK:"
 
 msgid "Tab stops:"
 msgstr "Rukojol ruchi':"
@@ -6203,9 +5973,6 @@ msgstr "Nrajo' Runik'oxik Ka'i' Oxi' Rutzij Nuk'samajel"
 msgid "Needs Admin Static Theme Review"
 msgstr "K'atzinel Ninik'öx ri Mesilon Wachinel Ruma ri Nuk'samajel"
 
-msgid "Jetpack Add-on"
-msgstr "Jetpack Tz'aqat"
-
 msgid "More Information Requested"
 msgstr "Xk'utüx Ch'aqa' chik Etamab'äl"
 
@@ -6301,6 +6068,9 @@ msgstr "Tik'utüx nimanik'oxïk"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "We nana'ojij chi ri nuk'samajel k'o ta chi nunik'oj re tz'aqat re', katzib'an kan pa xulan. Man xtiqatäq ta chi re ri b'anonel."
+
+msgid "Comment"
+msgstr "Tzijoxïk"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Tatzijoj rij re ruwäch re'. Man xtitikïr ta xtutz'ët ri b'anonel."
@@ -6830,90 +6600,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr "Xq'i' ri nïm raqän k'ulub'enïk."
 
-msgid "search for add-ons"
-msgstr "kekanöx taq tz'aqat"
-
-msgid "search for themes"
-msgstr "kekanöx taq wachinel"
-
-msgid "search for apps"
-msgstr "kekanöx taq chokoy"
-
-msgid "Relevance"
-msgstr "K'o ruq'ij"
-
-msgid "All Add-ons"
-msgstr "Ronojel ri taq Tz'aqat"
-
-msgid "Any {0}"
-msgstr "Xab'achike {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Ronojel taq Q'inoj"
-
-msgid "All Tags"
-msgstr "Ronojel taq Yaketal"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Taq Ruq'i'oj Kikanoxik taq Rumol {0}"
-
-msgid "Collection Search Results"
-msgstr "Taq Ruq'i'oj Kikanoxik taq Mol"
-
-msgid "Search Results"
-msgstr "Taq Ruq'i'oj Kanoxïk"
-
-msgid "Search Unavailable"
-msgstr "Man Wachel ta ri Kanoxïk"
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Wakami man wachel ta ri kanoxïk. Tatojtob'ej chik pa jun ka'i' oxi' ch'utiramaj."
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr "Taq Ruq'i'oj Kikanoxik taq Ruwachinel {0}"
-
-msgid "Themes Search Results"
-msgstr "Taq Kiq'i'oj Kanoxïk Wachinel"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Kanoxïk"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Kiq'i'oj Rukanoxik \"{0}\""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} :: Yaketal"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Kiq'i'oj Rukanoxik yaketal \"{0}\""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> junam kiwa q'i'oj"
-msgstr[1] "<b>{0}</b> junam kiwa taq q'i'oj"
-
-msgid "Filter Results"
-msgstr "Kichayub'al Q'i'oj"
-
-msgid "Category"
-msgstr "Ruwäch"
-
-msgid "Tag"
-msgstr "Etal"
-
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Kik'utuik {0} - {1} richin {2} ruq'i'oj <strong>{3}</strong>"
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Kik'utuik {0} - {1} kichin {2} taq q'i'oj"
-
 #, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Man xilitäj ta tz'aqat rik'in ri id \"{}\"."
@@ -7216,16 +6902,6 @@ msgstr "AMO xujäl rub'anikil. ¿La nawajo' natz'ët?"
 msgid "Visit the new site"
 msgstr "Tib'etz'et ri k'ak'a' ruxaq"
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Richin natz'ük amol, k'o chi k'o jun rub'i' ataqoya'l richin Mozilla Add-on."
-
-msgid "Create an Add-ons Account"
-msgstr "Titz'uk jun Add-on Rub'i' Taqoya'l"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "o <a href=\"%(login)s\">katok pa rub'i' ataqoya'l k'o wakami</a>"
-
 msgid "Footer logo"
 msgstr "Ruwachib'al kamuluntzij"
 
@@ -7318,6 +6994,9 @@ msgstr "Taq rutz'aqat Android"
 msgid "Required fields"
 msgstr "Rajowaxik taq k'ojlib'äl"
 
+msgid "(optional)"
+msgstr "(cha'el)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7379,6 +7058,9 @@ msgstr "Firefox okisanel {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Oyonib'äl Taq Nutz'aqat"
+
+msgid "My Favorite Add-ons"
+msgstr "Taq Tz'aqat Ewajowan"
 
 msgid "an add-on developer replies to my review"
 msgstr "jun b'anonel tz'aqat nutzolij tzij chi rij ri nunik'oxïk"

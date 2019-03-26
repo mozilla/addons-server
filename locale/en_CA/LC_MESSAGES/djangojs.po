@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-01 13:15+0000\n"
 "Last-Translator: Kohei Yoshino <kohei.yoshino@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -694,45 +694,6 @@ msgstr "Only with Firefox — Get Firefox Now!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Adding to Favourites&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Removing Favourite&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Add to Favourites"
-
-msgid "Remove from Favorites"
-msgstr "Remove from Favourites"
-
-msgid "Pending"
-msgstr "Pending"
-
-msgid "Add a comment"
-msgstr "Add a comment"
-
-msgid "Comment"
-msgstr "Comment"
-
-msgid "Remove this add-on from the collection"
-msgstr "Remove this add-on from the collection"
-
-msgid "Remove"
-msgstr "Remove"
-
-msgid "Add to favorites"
-msgstr "Add to favourites"
-
-msgid "Remove from favorites"
-msgstr "Remove from favourites"
-
-msgid "Stop following"
-msgstr "Stop following"
-
-msgid "Your browser does not support the video tag"
-msgstr "Your browser does not support the video tag"
 
 msgid "Changes Saved"
 msgstr "Changes Saved"

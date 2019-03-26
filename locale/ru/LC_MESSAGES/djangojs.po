@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-03-10 15:29+0000\n"
 "Last-Translator: Alexander Slovesnik <unghost@mozilla-russia.org>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -709,45 +709,6 @@ msgstr "Только в Firefox — Загрузить Firefox сейчас!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Извините, для установки поискового плагина вам нужен браузер из семейства Mozilla (например, Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Добавляю в Избранное&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Удаляю из Избранного&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Добавить в избранное"
-
-msgid "Remove from Favorites"
-msgstr "Удалить из избранного"
-
-msgid "Pending"
-msgstr "В ожидании"
-
-msgid "Add a comment"
-msgstr "Добавить комментарий"
-
-msgid "Comment"
-msgstr "Комментарий"
-
-msgid "Remove this add-on from the collection"
-msgstr "Удалить это дополнение из подборки"
-
-msgid "Remove"
-msgstr "Удалить"
-
-msgid "Add to favorites"
-msgstr "Добавить в избранное"
-
-msgid "Remove from favorites"
-msgstr "Удалить из избранного"
-
-msgid "Stop following"
-msgstr "Перестать следовать"
-
-msgid "Your browser does not support the video tag"
-msgstr "Ваш браузер не поддерживает тег видео"
 
 msgid "Changes Saved"
 msgstr "Изменения сохранены"

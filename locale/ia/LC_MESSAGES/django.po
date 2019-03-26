@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-03-04 22:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -225,9 +225,6 @@ msgstr "Super &amp; Extensiones a venir"
 
 msgid "Featured Themes"
 msgstr "Themas favorite"
-
-msgid "Featured Collections"
-msgstr "Collectiones in evidentia"
 
 msgid "Sort by:"
 msgstr "Ordinar per:"
@@ -455,9 +452,6 @@ msgstr "Scribe un revision"
 msgid "Related Categories"
 msgstr "Categorias associate"
 
-msgid "Part of these Collections"
-msgstr "Presente in iste collectiones"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -591,14 +585,14 @@ msgstr "Iste additivo non ha essite ancora revidite."
 msgid "Be the first!"
 msgstr "Sia tu le prime!"
 
+msgid "No results found."
+msgstr "Nulle resultatos trovate."
+
 msgid "{0} users"
 msgstr "{0} usatores"
 
 msgid "More"
 msgstr "Plus"
-
-msgid "Add to collection"
-msgstr "Adder al collection"
 
 msgid "My Add-ons"
 msgstr "Mi additivos"
@@ -624,9 +618,6 @@ msgstr "Pardono, iste thema es pendente. Per favor reveni plus tarde."
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Iste thema es pendente. Illo es invisibile a omnes salvo a te."
-
-msgid "Collector's Note"
-msgstr "Nota del collector"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -836,9 +827,6 @@ msgstr "Desira tu plus personalisationes? Prova <b>Themas complete</b>"
 msgid "Collections"
 msgstr "Collectiones"
 
-msgid "Collections I've Made"
-msgstr "Collectiones que io ha create"
-
 msgid "More&hellip;"
 msgstr "Plus&hellip;"
 
@@ -960,38 +948,14 @@ msgstr ""
 "Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Only I can view this collection."
-msgstr "Solmente io pote vider iste collection."
-
-msgid "Anybody can view this collection."
-msgstr "Totes pote vider iste collection."
-
-msgid "Give your collection a name."
-msgstr "Da un nomine a tu collection."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Describe tu collection (non es permittite includer ligamines)."
-
-msgid "Privacy:"
-msgstr "Confidentialitate:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Per favor non plenar iste campo, illo es usate pro trappar bots"
-
-msgid "This name cannot be used."
-msgstr "Iste nomine non pote ser usate."
-
-msgid "This url is already in use by another collection"
-msgstr "Iste adresse es ja in uso per un altere collection"
-
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste adresse personalisate es ja in uso per un altere de tu collectiones."
 
 msgid "Name cannot be empty."
 msgstr "Le nomine non pote ser vacue."
+
+msgid "This name cannot be used."
+msgstr "Iste nomine non pote ser usate."
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr "Le URL personalisate debe consister de litteras, numeros, lineettas basse o lineettas."
@@ -1001,226 +965,6 @@ msgstr "Iste URL personalisate non pote ser usate."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
-
-msgid "Added"
-msgstr "Addite"
-
-msgid "Popularity"
-msgstr "Popularitate"
-
-msgid "Name"
-msgstr "Nomine"
-
-msgid "Collection created!"
-msgstr "Collection create!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Tu nove collection es monstrate a basso. Tu pote <a href=\"%(url)s\">editar parametros additional</a> si tu vole."
-
-msgid "Collection updated!"
-msgstr "Collection actualisate!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Vide tu collection</a> pro reguardar le cambiamentos."
-
-msgid "Create a New Collection"
-msgstr "Crear un nove collection"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Como indicate in nostre <a href=\"%(legal)s\">Notas Legal</a>, le arrangiamentos de collectiones individual es regite per le licentia Creative Commons Attribution Share-Alike"
-
-msgid "Create Collection"
-msgstr "Crear un collection"
-
-msgid "View this collection"
-msgstr "Vider iste collection"
-
-msgid "Start a new collection..."
-msgstr "Comenciar un nove collection..."
-
-msgid "Start a New Collection"
-msgstr "Comencia un nove collection"
-
-msgid "Name:"
-msgstr "Nomine:"
-
-msgid "(optional)"
-msgstr "(optional)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancella</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Collectiones"
-
-msgid "private"
-msgstr "private"
-
-msgid "About this Collection"
-msgstr "A proposito de iste collection"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Additivos synchronisate a mi Mobile Firefox"
-
-msgid "Make this Collection Private"
-msgstr "Render iste collection private"
-
-msgid "Make this Collection Public"
-msgstr "Render iste collection public"
-
-msgid "More Options:"
-msgstr "Plus de optiones:"
-
-msgid "Edit Collection"
-msgstr "Editar le collection"
-
-msgid "Delete Collection"
-msgstr "Deler le collection"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s thema in iste collection"
-msgstr[1] "%(num)s themas in iste collection"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s additivo in iste collection"
-msgstr[1] "%(num)s additivos in iste collection"
-
-msgid "Go"
-msgstr "Ir"
-
-msgid "What are Collections?"
-msgstr "Que es le collectiones?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Le collectiones es gruppos de additivos correlate que quicunque pote crear e compartir."
-
-msgid "Explore Collections"
-msgstr "Explorar le collectiones"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-"Le additivos que tu marca como favoritos per le functionalitate <b>Adder a Favoritos</b> appare infra. Iste collection es actualmente <b>public</b>, significa que totes pote vider illo. Si tu "
-"desira celar illo ab le vista public, clicca le button infra pro render illo private."
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Le additivos que tu marca como favoritos per le functionalitate <b>Adder a Favoritos</b> appare infra. Iste collection es actualmente <b>private</b>, significa que solmente tu pote vide illo. Si tu "
-"desira que totes pote vider tu favoritos, clicca le button infra pro render illos public."
-
-msgid "My favorite add-ons"
-msgstr "Mi additivos favorite"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> additivo"
-msgstr[1] "<span>%(addons)s</span> additivos"
-
-msgid "by {0}"
-msgstr "per {0}"
-
-msgid "Edit this Collection"
-msgstr "Rediger iste collection"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Deler {0}"
-
-msgid "Are you sure?"
-msgstr "Es tu secur?"
-
-msgid "Yes"
-msgstr "Si"
-
-msgid "No"
-msgstr "No"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Editar {0}"
-
-msgid "Description"
-msgstr "Description"
-
-msgid "Save Changes"
-msgstr "Salvar le cambiamentos"
-
-msgid "Remove from favorites"
-msgstr "Remover ab le favoritos"
-
-msgid "Add to favorites"
-msgstr "Adder al favoritos"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Collectiones de {0}"
-
-msgid "No collections found."
-msgstr "Nulle collectiones trovate."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Le collectiones es gruppos de additivos correlate que quicunque pote crear e compartir. Explora collectiones create per altere usatores o <a href=\"%(url)s\">crear tu proprie</a>."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "de %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Mi additivos favorite"
-
-msgid "Create a Collection"
-msgstr "Crear un collection"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Le collectiones rende facile tener tracia del additivos favorite e compartir tu navigator perfectemente personalisate con alteres."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "Il ha errores in iste forma. Per favor corrige illos infra."
-
-msgid "Add-ons in Your Collection"
-msgstr "Additivos in tu collection"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "Pro includer un additivo in iste collection, scribe su nomine in le cassa a basso e pulsa Enter."
-
-msgid "Add-on"
-msgstr "Additivo"
-
-msgid "Comment"
-msgstr "Commento"
-
-msgid "Remove"
-msgstr "Remover"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Insere le nomine del additivos a includer"
-
-msgid "Add to Collection"
-msgstr "Adder al collection"
-
-msgid "Pending"
-msgstr "Pendente"
-
-msgid "Add a comment"
-msgstr "Adde un commento"
-
-msgid "Remove this add-on from the collection"
-msgstr "Remover iste additivo del collection"
-
-msgid "Favorite"
-msgstr "Favorite"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1254,6 +998,9 @@ msgstr "Utensiles de recerca"
 
 msgid "Most Users"
 msgstr "Le major parte del usatores"
+
+msgid "Name"
+msgstr "Nomine"
 
 msgid "Weekly Downloads"
 msgstr "Discargamentos septimanal"
@@ -2198,6 +1945,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Additivo"
+
 msgid "Static Theme"
 msgstr "Thema static"
 
@@ -2453,6 +2203,12 @@ msgstr "Le version {version} ja existe."
 msgid "Continue with existing upload instead?"
 msgstr "Continuar in vice con le cargamento existente?"
 
+msgid "Yes"
+msgstr "Si"
+
+msgid "No"
+msgstr "No"
+
 msgid "You have not uploaded a source file."
 msgstr "Tu non ha cargate un file fonte."
 
@@ -2586,13 +2342,15 @@ msgstr "Iste cargamento ha mancate de validation, e pote mancar de resultatos co
 msgid "Header area background"
 msgstr "Fundo del area del titulo"
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+#, fuzzy
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr "Le color del fundo del area de titulo,displicate in le parte del titulo non coperite o visibile per le imagine del titulo. Campo de manifesto: accentcolor."
 
 msgid "Header area text and icons"
 msgstr "Texto e icones del area de titulo"
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr "Le color del texto e le icones in le area del titulo, a exception del scheda active. Campo de manifesto:  textcolor."
 
 msgid "Toolbar area background"
@@ -2604,7 +2362,8 @@ msgstr "Le color de fundo pro le barra de navigation, le barra del marcapaginas,
 msgid "Toolbar area text and icons"
 msgstr "Barra del instrumentos area texto e icones"
 
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+#, fuzzy
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Le color del texto e del icones in le barra del instrumentos e le scheda active. Campo de manifesto:  toolbar_text."
 
 msgid "Toolbar field area background"
@@ -2742,9 +2501,6 @@ msgstr "Recente activitate pro {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> per %(user)s"
 
-msgid "No results found."
-msgstr "Nulle resultatos trovate."
-
 msgid "Refine Activity"
 msgstr "Affinar activitate"
 
@@ -2788,8 +2544,14 @@ msgstr "Application"
 msgid "Supported Versions"
 msgstr "Versiones supportate"
 
+msgid "Remove"
+msgstr "Remover"
+
 msgid "Add Another Application&hellip;"
 msgstr "Adder un altere application&hellip;"
+
+msgid "Save Changes"
+msgstr "Salvar le cambiamentos"
 
 msgid "Close"
 msgstr "Clauder"
@@ -2919,6 +2681,9 @@ msgstr "Vide le pagina de producto"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr "Iste summario debe explicar clarmente lo que tu additivo face. Illo sera monstrate in listas e recercas, e illo sera usate per le revisores pro testar tu additivo."
+
+msgid "Description"
+msgstr "Description"
 
 msgid "Experimental?"
 msgstr "Experimental?"
@@ -3287,6 +3052,9 @@ msgstr "URL del additivo:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Per favor usa solo litteras, numeros, lineettas basse e lineettas in tu URL."
+
+msgid "Name:"
+msgstr "Nomine:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Nomine sur le lista de presentation sur iste sito. Pote ser differente al nomine intra le additivo, que es monstrate intra Firefox"
@@ -5439,6 +5207,9 @@ msgstr "Un GUID es obligatori pro le versiones 47 e precedente de Firefox."
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Le version compatibile minus recente, “strict_min_version”, es le 42.0."
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Impossibile tractar le file cargate, elemento <%s> mancante o vacue"
@@ -5538,6 +5309,9 @@ msgstr "Impossibile evidentiar le syntaxe de iste typo de file"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "Le egresso pote ser corrupte, per favor que tu sia attente e %(link_start)sreporta un problema%(link_end)s immediatemente!"
 
+msgid "Go"
+msgstr "Ir"
+
 msgid "Add-on file being processed, please wait."
 msgstr "Le file del additivo es processate, per favor attende."
 
@@ -5552,9 +5326,6 @@ msgstr "Files delite:"
 
 msgid "Hide known files"
 msgstr "Celar le files note"
-
-msgid "Add-on SDK Version:"
-msgstr "Version SDK del additivo:"
 
 msgid "Tab stops:"
 msgstr "Punctos de tabulation:"
@@ -6202,9 +5973,6 @@ msgstr "Il es necesse revision de contento per administrator"
 msgid "Needs Admin Static Theme Review"
 msgstr "Il es necesse revision de thema static per administrator"
 
-msgid "Jetpack Add-on"
-msgstr "Additivo de Jetpack"
-
 msgid "More Information Requested"
 msgstr "Altere informationes demandate"
 
@@ -6300,6 +6068,9 @@ msgstr "Requesta de super-revision"
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr "Si tu ha anxietates circa iste additivo que un administrator revisor debe reguardar, insere tu commentos in le area infra. Illos non sera inviate al disveloppator."
+
+msgid "Comment"
+msgstr "Commento"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr "Face un commento sur iste version. The disveloppator non potera vider lo."
@@ -6828,90 +6599,6 @@ msgstr "Combination de parametros \"%s\", \"%s\" e \"%s\" non valide."
 msgid "Maximum query length exceeded."
 msgstr "Maxime longitude del consulta excedite."
 
-msgid "search for add-ons"
-msgstr "cercar additivos"
-
-msgid "search for themes"
-msgstr "cercar themas"
-
-msgid "search for apps"
-msgstr "cercar applicationes"
-
-msgid "Relevance"
-msgstr "Relevantia"
-
-msgid "All Add-ons"
-msgstr "Tote le additivos"
-
-msgid "Any {0}"
-msgstr "Ulle {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Tote le systemas"
-
-msgid "All Tags"
-msgstr "Tote le tags"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Resultatos de recerca del collection pro {0}"
-
-msgid "Collection Search Results"
-msgstr "Resultatos de recerca del collection"
-
-msgid "Search Results"
-msgstr "Resultatos del recerca"
-
-msgid "Search Unavailable"
-msgstr "Recerca non disponibile"
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr "Le recerca es temporarimente indisponibile. Per favor prova de novo post poc minutas."
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr "Resultatos de recerca del themas pro {0}"
-
-msgid "Themes Search Results"
-msgstr "Resultatos de recerca del themas"
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Recerca"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Resultatos de recerca pro \"{0}\""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} :: Tag"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Resultatos de recerca pro le tag \"{0}\""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> resultato concordante"
-msgstr[1] "<b>{0}</b> resultatos concordante"
-
-msgid "Filter Results"
-msgstr "Filtrar le resultatos"
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Tag"
-msgstr "Tag"
-
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "Monstra de {0} - {1} de {2} resultatos pro <strong>{3}</strong>"
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr "Monstra de {0} - {1} de {2} resultatos"
-
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Impossibile trovar un additivo con id \"{}\"."
 
@@ -7221,16 +6908,6 @@ msgstr "AMO va crear se un nove apparentia. Desira tu vider lo?"
 msgid "Visit the new site"
 msgstr "Visita le nove sito"
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Pro crear tu proprie collectiones, tu debe haber un del additivos de Mozilla."
-
-msgid "Create an Add-ons Account"
-msgstr "Crea un Conto del additivos"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "o <a href=\"%(login)s\">connecte te a tu conto actual</a>"
-
 msgid "Footer logo"
 msgstr "Logo de pede de pagina"
 
@@ -7323,6 +7000,9 @@ msgstr "Additivos pro Android"
 msgid "Required fields"
 msgstr "Campos obligatori"
 
+msgid "(optional)"
+msgstr "(optional)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7384,6 +7064,9 @@ msgstr "Usator de Firefox {id}"
 
 msgid "My Mobile Add-ons"
 msgstr "Mi additivos mobile"
+
+msgid "My Favorite Add-ons"
+msgstr "Mi additivos favorite"
 
 msgid "an add-on developer replies to my review"
 msgstr "un disveloppator de additivos replica a mi revision"

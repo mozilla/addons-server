@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-01 13:19+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
@@ -676,45 +676,6 @@ msgstr "只在 Firefox 上才有，快來安裝！"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要 Mozilla 系列的瀏覽器 (像是 Firefox) 才能安裝此搜尋外掛。"
-
-msgid "Adding to Favorites&hellip;"
-msgstr "加入至我的最愛&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "從我的最愛中移除&hellip;"
-
-msgid "Add to Favorites"
-msgstr "加入至我的最愛"
-
-msgid "Remove from Favorites"
-msgstr "從我的最愛中移除"
-
-msgid "Pending"
-msgstr "擱置"
-
-msgid "Add a comment"
-msgstr "新增一個意見"
-
-msgid "Comment"
-msgstr "意見"
-
-msgid "Remove this add-on from the collection"
-msgstr "從收藏集中移除此附加元件"
-
-msgid "Remove"
-msgstr "移除"
-
-msgid "Add to favorites"
-msgstr "加入至我的最愛"
-
-msgid "Remove from favorites"
-msgstr "從我的最愛移除"
-
-msgid "Stop following"
-msgstr "停止追蹤"
-
-msgid "Your browser does not support the video tag"
-msgstr "您的瀏覽器不支援此視訊標籤"
 
 msgid "Changes Saved"
 msgstr "修改已儲存"

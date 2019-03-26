@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-10-27 08:57+0000\n"
 "Last-Translator: Mohammad Yahya <mohmmadyahyam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -701,45 +701,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "માફ કરશો, શોધ પ્લગઇન સ્થાપિત કરવા માટે તમને Mozilla-આધારિત બ્રાઉઝર (જેમ કે Firefox) ની જરૂર છે."
-
-msgid "Adding to Favorites&hellip;"
-msgstr ""
-
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-msgid "Add to Favorites"
-msgstr ""
-
-msgid "Remove from Favorites"
-msgstr ""
-
-msgid "Pending"
-msgstr ""
-
-msgid "Add a comment"
-msgstr ""
-
-msgid "Comment"
-msgstr ""
-
-msgid "Remove this add-on from the collection"
-msgstr ""
-
-msgid "Remove"
-msgstr ""
-
-msgid "Add to favorites"
-msgstr ""
-
-msgid "Remove from favorites"
-msgstr ""
-
-msgid "Stop following"
-msgstr ""
-
-msgid "Your browser does not support the video tag"
-msgstr ""
 
 msgid "Changes Saved"
 msgstr ""

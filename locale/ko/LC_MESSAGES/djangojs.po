@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-08-23 01:19+0000\n"
 "Last-Translator: Hyeonseok Shin <hyeonseok@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -686,45 +686,6 @@ msgstr "오직 Firefox에서만 — 지금 Firefox를 받으세요!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "죄송합니다. 검색 플러그인을 설치하려면 Mozilla 기반 브라우저(Firefox 같은)가 필요합니다."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "선호 목록에 추가중&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "선호 목록에서 삭제중&hellip;"
-
-msgid "Add to Favorites"
-msgstr "즐겨찾기에 추가"
-
-msgid "Remove from Favorites"
-msgstr "즐겨찾기에서 삭제"
-
-msgid "Pending"
-msgstr "대기중"
-
-msgid "Add a comment"
-msgstr "코멘트 추가"
-
-msgid "Comment"
-msgstr "코멘트"
-
-msgid "Remove this add-on from the collection"
-msgstr "모음집에서 이 부가 기능 삭제"
-
-msgid "Remove"
-msgstr "삭제"
-
-msgid "Add to favorites"
-msgstr "선호 목록에 추가"
-
-msgid "Remove from favorites"
-msgstr "선호 목록에서 삭제"
-
-msgid "Stop following"
-msgstr "팔로우 중단"
-
-msgid "Your browser does not support the video tag"
-msgstr "이 웹 브라우저는 비디오 태그를 지원하지 않습니다"
 
 msgid "Changes Saved"
 msgstr "변경 사항이 저장되었습니다"

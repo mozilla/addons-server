@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-02-02 13:38+0000\n"
 "Last-Translator: Dag7 <dag7@protonmail.com>\n"
 "Language-Team: Mozilla Italia\n"
@@ -701,45 +701,6 @@ msgstr "Solo con Firefox — Scaricalo subito!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Bisogna utilizzare un browser, come Firefox, basato su Mozilla per installare un plugin di ricerca."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Aggiunta ai Preferiti in corso&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Eliminazione preferito&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Aggiungi a Preferiti"
-
-msgid "Remove from Favorites"
-msgstr "Elimina da Preferiti"
-
-msgid "Pending"
-msgstr "In attesa"
-
-msgid "Add a comment"
-msgstr "Aggiungi un commento"
-
-msgid "Comment"
-msgstr "Commento"
-
-msgid "Remove this add-on from the collection"
-msgstr "Rimuovi questo componente aggiuntivo dalla raccolta"
-
-msgid "Remove"
-msgstr "Elimina"
-
-msgid "Add to favorites"
-msgstr "Aggiungi ai preferiti"
-
-msgid "Remove from favorites"
-msgstr "Elimina dai preferiti"
-
-msgid "Stop following"
-msgstr "Non seguire più"
-
-msgid "Your browser does not support the video tag"
-msgstr "Il browser in uso non supporta il tag video"
 
 msgid "Changes Saved"
 msgstr "Modifiche salvate"

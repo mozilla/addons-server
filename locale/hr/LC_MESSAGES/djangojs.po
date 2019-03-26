@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2019-03-22 09:12+0000\n"
 "Last-Translator: Mikeyy <mihovil@miho.im>\n"
 "Language-Team: Croatian\n"
@@ -711,45 +711,6 @@ msgstr "Samo sa Firefoxom — Nabavite Firefox odmah!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Žao nam je, potreban vam je Mozillin preglednik (kao što je Firefox) da biste instalirali priključak za tražilicu."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Dodavanje u favorite&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Uklanjanje favorita&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Dodaj u favorite"
-
-msgid "Remove from Favorites"
-msgstr "Ukloni iz favorita"
-
-msgid "Pending"
-msgstr "Na čekanju"
-
-msgid "Add a comment"
-msgstr "Dodaj komentar"
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Ukloni ovaj dodatak iz zbirke"
-
-msgid "Remove"
-msgstr "Ukloni"
-
-msgid "Add to favorites"
-msgstr "Dodaj u favorite"
-
-msgid "Remove from favorites"
-msgstr "Ukloni iz favorita"
-
-msgid "Stop following"
-msgstr "Prestani slijediti"
-
-msgid "Your browser does not support the video tag"
-msgstr "Vaš preglednik ne podržava video tag"
 
 msgid "Changes Saved"
 msgstr "Izmjene spremljene"

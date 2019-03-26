@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-08-10 17:55+0000\n"
 "Last-Translator: Piotr Drąg <piotrdrag@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -718,45 +718,6 @@ msgstr "Tylko w Firefoksie — pobierz Firefoksa teraz!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Przepraszamy. Aby zainstalować wtyczkę wyszukiwarki, potrzebna jest przeglądarka zbudowana w oparciu o technologię Mozilli — taka jak np. Firefox."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Dodawanie do ulubionych&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Usuwanie z ulubionych&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Dodaj do ulubionych"
-
-msgid "Remove from Favorites"
-msgstr "Usuń z ulubionych"
-
-msgid "Pending"
-msgstr "Oczekujące"
-
-msgid "Add a comment"
-msgstr "Dodaj komentarz"
-
-msgid "Comment"
-msgstr "Komentarz"
-
-msgid "Remove this add-on from the collection"
-msgstr "Usuń ten dodatek z kolekcji"
-
-msgid "Remove"
-msgstr "Usuń"
-
-msgid "Add to favorites"
-msgstr "Dodaj do ulubionych"
-
-msgid "Remove from favorites"
-msgstr "Usuń z ulubionych"
-
-msgid "Stop following"
-msgstr "Zaprzestań obserwacji"
-
-msgid "Your browser does not support the video tag"
-msgstr "Twoja przeglądarka nie obsługuje znacznika video"
 
 msgid "Changes Saved"
 msgstr "Zmiany zostały zapisane"

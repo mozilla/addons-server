@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 14:55+0000\n"
 "PO-Revision-Date: 2018-09-06 08:37+0000\n"
 "Last-Translator: صفا الفليج <safa1996alfulaij@gmail.com>\n"
 "Language-Team: <doc@arabeyes.org>\n"
@@ -755,45 +755,6 @@ msgstr "فقط في فَيَرفُكس — نزّله الآن!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "نأسف، تحتاجُ متفصحًا من موزيلا (مثل متصفح فَيَرفُكس) لتثبيت ملحقات البحث."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "يُضيف إلى المفضلة&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-msgid "Add to Favorites"
-msgstr "أضِف إلى المفضلة"
-
-msgid "Remove from Favorites"
-msgstr "أزِل من المفضلة"
-
-msgid "Pending"
-msgstr ""
-
-msgid "Add a comment"
-msgstr "أضِف تعليقًا"
-
-msgid "Comment"
-msgstr ""
-
-msgid "Remove this add-on from the collection"
-msgstr "أزِل هذه الإضافة من المجموعة"
-
-msgid "Remove"
-msgstr "أزِل"
-
-msgid "Add to favorites"
-msgstr "أضِف إلى المفضلة"
-
-msgid "Remove from favorites"
-msgstr "أزِل من المفضلة"
-
-msgid "Stop following"
-msgstr "أوقِف المتابعة"
-
-msgid "Your browser does not support the video tag"
-msgstr "لا يدعم المتصفح لديك وسم الڤديوهات"
 
 msgid "Changes Saved"
 msgstr "حُفظت التغييرات"
