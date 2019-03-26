@@ -118,7 +118,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://amo.addons-dev.allizom.org/fxa-authenticate',
+        'redirect_url': 'https://addons-dev.allizom.org/api/v3/accounts/authenticate/?config=amo', # noqa
         'scope': 'profile',
     },
     'local': {
@@ -127,7 +127,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/fxa-authenticate',
+        'redirect_url': 'https://addons-dev.allizom.org/api/v3/accounts/authenticate/?config=local', # noqa
         'scope': 'profile',
     },
     'code-manager': {
@@ -136,7 +136,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://code.addons-dev.allizom.org/fxa-authenticate',
+        'redirect_url': 'https://addons-dev.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
         'scope': 'profile',
     },
 }

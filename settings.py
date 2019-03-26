@@ -83,7 +83,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/fxa-authenticate',
+        'redirect_url': 'http://olympia.test/api/v3/accounts/authenticate/',
         'scope': 'profile',
     },
     'local': {
@@ -94,16 +94,18 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/',
+        'redirect_url': 'http://olympia.test/api/v3/accounts/authenticate/?config=local', # noqa
         'scope': 'profile',
     },
     'code-manager': {
-        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID', default='CHANGE_ME'),
-        'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET', default='CHANGE_ME'), # noqa
+        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID', default='a98b671fdd3dfcea'), # noqa
+        'client_secret': env(
+            'CODE_MANAGER_FXA_CLIENT_SECRET',
+            default='d9934865e34bed4739a2dc60046a90d09a5d8336cf92809992dec74a4cff4665'),  # noqa
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/fxa-authenticate',
+        'redirect_url': 'http://olympia.test/api/v4/accounts/authenticate/?config=code-manager', # noqa
         'scope': 'profile',
     },
 }
