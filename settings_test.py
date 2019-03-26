@@ -29,6 +29,37 @@ STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
 # We are setting memcached here to make sure our test setup is as close
+# -*- coding: utf-8 -*-
+from settings import *  # noqa
+
+# Make sure the apps needed to test translations and core are present.
+INSTALLED_APPS += (
+    'olympia.translations.tests.testapp',
+    'olympia.core.tests.db_tests_testapp',
+)
+# Make sure the debug toolbar isn't used during the tests.
+INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'debug_toolbar']
+
+# See settings.py for documentation:
+IN_TEST_SUITE = True
+
+# Don't call out to persona in tests.
+AUTHENTICATION_BACKENDS = (
+    'olympia.users.backends.TestUserBackend',
+)
+
+CELERY_TASK_ALWAYS_EAGER = True
+DEBUG = False
+
+# We won't actually send an email.
+SEND_REAL_EMAIL = True
+
+SITE_URL = CDN_HOST = 'http://testserver'
+
+STATIC_URL = '%s/static/' % CDN_HOST
+MEDIA_URL = '%s/user-media/' % CDN_HOST
+
+# We are setting memcached here to make sure our test setup is as close
 # to our production system as possible.
 CACHES = {
     'default': {
@@ -55,9 +86,13 @@ ES_DEFAULT_NUM_SHARDS = 1
 # Set to True if we're allowed to use X-SENDFILE.
 XSENDFILE = True
 
+# Don't enable the signing by default in tests, many would fail trying to sign
+# empty or bad zip files, or try posting to the endpoints. We don't want that.
+SIGNING_SERVER = ''
+
 # Disable addon signing for unittests, too many would fail trying to sign
 # corrupt/bad zip files. These will be enabled explicitly for unittests.
-ENABLE_ADDON_SIGNING = True
+ENABLE_ADDON_SIGNING = False
 
 # Limit logging in tests.
 LOGGING['loggers'] = {

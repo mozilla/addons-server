@@ -68,22 +68,9 @@ def test_incompative_extensions_show_as_incompatible(base_url, selenium):
 @pytest.mark.nondestructive
 def test_search_suggestion_term_is_higher(base_url, selenium):
     page = Home(selenium, base_url).open()
-    term = 'Ui-Addon'
+    term = 'Ui-Addon-Install'
     suggestions = page.search.search_for(term, execute=False)
     assert suggestions[0].name == term
-
-
-@pytest.mark.nondestructive
-def test_search_suggestion_term_loads_correct_suggestions(base_url, selenium):
-    page = Home(selenium, base_url).open()
-    term = 'Ui-Addon'
-    suggestions = page.search.search_for(term, execute=False)
-    assert term == suggestions[0].name
-    term = '-Install'
-    suggestions = page.search.search_for(term, execute=False)
-    # Sleep to let autocomplete update.
-    time.sleep(2)
-    assert term in suggestions[0].name
 
 
 @pytest.mark.nondestructive
