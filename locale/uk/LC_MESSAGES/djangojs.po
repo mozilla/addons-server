@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2018-10-30 11:12+0000\n"
+"PO-Revision-Date: 2019-03-26 07:24+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
@@ -49,7 +49,7 @@ msgid "Error with {0}"
 msgstr "Помилка з {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr ""
+msgstr "Будь ласка, повідомляйте про будь-які проблеми з лінтингом на GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."

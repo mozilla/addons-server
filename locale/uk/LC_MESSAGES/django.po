@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-21 08:58+0000\n"
+"PO-Revision-Date: 2019-03-26 07:25+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -61,7 +61,7 @@ msgstr "Розробники додатків чи тем не можуть ви
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "Сповіщення [%s] не існує"
 
 msgid "Review"
 msgstr "Відгук"
@@ -2570,7 +2570,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "Піктограма повинна бути принаймні {0} пікселів завширшки і заввишки."
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "Піктограма повинна бути квадратною (однакова висота і ширина)."
 
 msgid "There was an error uploading your preview."
 msgstr "При вивантаженні вашого попереднього перегляду сталася помилка."
