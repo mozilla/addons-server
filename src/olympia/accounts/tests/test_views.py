@@ -153,7 +153,7 @@ class TestLoginStartView(TestCase):
     def test_default_config_is_used(self):
         assert views.LoginStartView.DEFAULT_FXA_CONFIG_NAME == 'default'
         assert views.LoginStartView.ALLOWED_FXA_CONFIGS == (
-            ['default', 'amo', 'local'])
+            ['default', 'amo', 'local', 'code-manager'])
 
 
 class TestLoginUserAndRegisterUser(TestCase):
