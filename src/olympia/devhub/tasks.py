@@ -160,6 +160,12 @@ def validation_task(fn):
                 results, type_='error',
                 message=exc.message, msg_id='unsupported_filetype')
             return results
+        except BadZipfile:
+            results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+            annotations.insert_validation_message(
+                results, type_='error',
+                message=ugettext('Invalid or corrupt add-on file.'))
+            return results
         except Exception as exc:
             log.exception('Unhandled error during validation: %r' % exc)
             results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)

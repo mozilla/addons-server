@@ -1078,7 +1078,8 @@ class TestUploadDetail(BaseUploadTest):
         # We do raise a specific error message explaining that the archive is
         # not valid instead of a generic exception.
         assert message == [
-            (u'Invalid or corrupt add-on file.', True)
+            ('Invalid or corrupt add-on file.', False),
+            ('Sorry, we couldn&#39;t load your WebExtension.', True),
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
