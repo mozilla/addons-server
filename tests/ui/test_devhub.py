@@ -35,15 +35,6 @@ def test_devhub_addon_edit_link_works(base_url, selenium, devhub_login):
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
 @pytest.mark.allow_external_http_requests
-def test_devhub_addon_upload(base_url, selenium, devhub_upload):
-    """Test uploading an addon via devhub."""
-    'ui-test-addon-2' in devhub_upload.addons[-1].name
-
-
-@pytest.mark.fxa_login
-@pytest.mark.desktop_only
-@pytest.mark.nondestructive
-@pytest.mark.allow_external_http_requests
 @pytest.mark.withoutresponses
 def test_devhub_logout(base_url, selenium, devhub_login):
     """Logging out from devhub."""
@@ -66,7 +57,7 @@ def test_devhub_register(base_url, selenium):
 @pytest.mark.fxa_login
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
-@pytest.mark.withoutresponses
+@pytest.mark.allow_external_http_requests
 def test_devhub_addon_upload_approve_install(
         base_url, selenium, devhub_upload, firefox, firefox_notifications):
     """Test uploading an addon via devhub."""
