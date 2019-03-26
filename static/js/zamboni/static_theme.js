@@ -93,8 +93,8 @@ $(document).ready(function() {
                 "frame": colVal('frame'),
                 "tab_background_text": colVal('tab_background_text'),
                 "toolbar": colVal('toolbar'),
-                "toolbar_text": colVal('toolbar_text'),
                 "bookmark_text": colVal('bookmark_text'),
+                "toolbar_field": colVal('toolbar_field'),
                 "toolbar_field_text": colVal('toolbar_field_text')
             };
             colors = _.omit(colors, function(value) {return value === "";});
