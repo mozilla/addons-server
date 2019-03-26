@@ -1,7 +1,5 @@
 import time
 
-from django.core.management import call_command
-from django.conf import settings
 import pytest
 import requests
 
