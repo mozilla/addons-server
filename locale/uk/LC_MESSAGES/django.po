@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-26 07:25+0000\n"
+"PO-Revision-Date: 2019-03-26 07:50+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2907,6 +2907,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Опис повинен чітко і зрозуміло пояснювати призначення вашого додатка. Назва та опис з'являтимуться на сторінці вашого додатка і в результатах пошуку. Їх спільна довжина не повинна перевищувати 70 "
+"символів, а мінімальна довжина - 2 символи для кожного."
 
 msgid "Summary"
 msgstr "Звіт"
@@ -3087,7 +3089,7 @@ msgstr "Використовується на сторінках опису до
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr "В майбутньому буде стандартом для сторінок опису додатків."
@@ -3096,7 +3098,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Вивантажити власну іконку..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "Підтримуються PNG та JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
