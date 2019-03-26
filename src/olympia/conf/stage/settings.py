@@ -122,7 +122,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://addons.allizom.org/api/v3/accounts/authenticate/?config=local', # noqa
+        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
         'scope': 'profile',
     },
     'code-manager': {
