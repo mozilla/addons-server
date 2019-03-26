@@ -91,7 +91,7 @@ class DevHub(Base):
         ).wait_for_page_to_load()
         devhub_source.dont_submit_source_code()
         from pages.desktop.devhub_submission import DevhubSubmission
-        
+
         devhub = DevhubSubmission(self.selenium, self.base_url)
         return devhub.wait_for_page_to_load()
 
