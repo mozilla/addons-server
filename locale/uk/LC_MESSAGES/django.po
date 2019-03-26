@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-26 11:29+0000\n"
+"PO-Revision-Date: 2019-03-26 11:38+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -3846,9 +3846,11 @@ msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
 "between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
+"За допомогою WebExtensions API дуже легко створювати розширення, що можуть працювати в Firefox, Chrome, Opera та Edge лише з кількома незначними змінами. Дізнайтеся, чим відрізняється розробка "
+"розширень між чотирма основними браузерами і як ви можете зробити свої розширення сумісними з цими браузерами."
 
 msgid "View Best Practices for Cross-Browser Development"
-msgstr ""
+msgstr "Перегляньте кращі рішення для кросбраузерної розробки"
 
 msgid "Welcome Back"
 msgstr "З поверненням"
@@ -3861,10 +3863,10 @@ msgid "Learn More"
 msgstr "Дізнатись більше"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "Ви можете допомогти користувачам довіряти вашим розширенням, керуючись нашими рішеннями для залучення нових користувачів."
 
 msgid "See Best Practices"
-msgstr ""
+msgstr "Переглянути кращі рішення"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
 msgstr "Опубліковано на цьому сайті після проходження перевірки коду. Автоматичні оновлення забезпечуються цим сайтом."
@@ -5453,16 +5455,16 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr "Не вдалося розібрати завантажений файл, елемент <%s> відсутній або порожній"
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: Помилка безпеки XML."
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: Помилка парсингу XML."
 
 msgid "Could not parse uploaded file."
 msgstr "Не вдалося розібрати завантажений файл."
 
 msgid "Unsupported archive type."
-msgstr ""
+msgstr "Непідтримуваний тип архіву."
 
 #. L10n: {0} is the name of the invalid file.
 msgid "Invalid file name in archive. Please make sure all filenames are utf-8 or latin1 encoded."
@@ -6422,7 +6424,7 @@ msgid "Add-on ID"
 msgstr "ID додатка"
 
 msgid "Internal AMO ID"
-msgstr ""
+msgstr "Внутрішній ID AMO"
 
 #. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
@@ -6827,20 +6829,20 @@ msgstr "Неправильний параметр \"%s\"."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Неправильна комбінація параметрів \"%s\" і \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Повернення на AMO зараз вимкнено"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Неправильне повернення на AMO guid (не в форматі base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Неправильне повернення на AMO guid (не керований додаток)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Неправильна комбінація параметрів \"%s\", \"%s\" і \"%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "Перевищена максимальна довжина запиту."
