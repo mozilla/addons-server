@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-12-06 00:28+0000\n"
 "Last-Translator: Björn I. <bjorni.svindseth@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,15 +143,6 @@ msgstr "Bilde må vere anten PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoar må vere i formatet WebM."
-
-msgid "Follow this Collection"
-msgstr "Følg denne samlinga"
-
-msgid "Stop Following"
-msgstr "Slutt å følgje"
-
-msgid "Following"
-msgstr "Følgjer"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -694,45 +685,6 @@ msgstr "Berre med Firefox — Last ned Firefox no!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklagar, du må ha ein Mozilla-basert nettlesar (som Firefox) for å installera eit søkjetillegg."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Legg til i favorittar&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Fjernar favoritt&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Legg til i favorittar"
-
-msgid "Remove from Favorites"
-msgstr "Fjern frå favorittar"
-
-msgid "Pending"
-msgstr "Ventande"
-
-msgid "Add a comment"
-msgstr "Legg til ein kommentar"
-
-msgid "Comment"
-msgstr "Kommentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Fjern denne utvidinga frå samlinga"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Add to favorites"
-msgstr "Legg til i favorittar"
-
-msgid "Remove from favorites"
-msgstr "Fjern frå favorittar"
-
-msgid "Stop following"
-msgstr "Slutt å følgje"
-
-msgid "Your browser does not support the video tag"
-msgstr "Nettlesaren din støttar ikkje videotaggen"
 
 msgid "Changes Saved"
 msgstr "Endringane lagra"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2017-07-04 16:04+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -155,15 +155,6 @@ msgstr "Ní mór d'íomhánna a bheith PNG nó JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Níl cead agat ach físeán WebM a úsáid."
-
-msgid "Follow this Collection"
-msgstr "Lean an Bailiúchán seo"
-
-msgid "Stop Following"
-msgstr "Ná lean a thuilleadh"
-
-msgid "Following"
-msgstr "Á Leanúint"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -743,45 +734,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Tá brabhsálaí de chuid Mozilla (mar shampla Firefox) de dhíth ort chun breiseán cuardaigh a shuiteáil."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Á chur leis na Ceanáin&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Ceanán á bhaint&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Cuir leis na Ceanáin"
-
-msgid "Remove from Favorites"
-msgstr "Bain ó na Ceanáin"
-
-msgid "Pending"
-msgstr "Ar Feitheamh"
-
-msgid "Add a comment"
-msgstr "Cuir nóta leis"
-
-msgid "Comment"
-msgstr "Nóta"
-
-msgid "Remove this add-on from the collection"
-msgstr "Bain an breiseán seo ón bhailiúchán"
-
-msgid "Remove"
-msgstr "Bain"
-
-msgid "Add to favorites"
-msgstr "Cuir leis na ceanáin"
-
-msgid "Remove from favorites"
-msgstr "Bain ó na ceanáin"
-
-msgid "Stop following"
-msgstr "Ná bí dá leanúint"
-
-msgid "Your browser does not support the video tag"
-msgstr "Ní thacaíonn do bhrabhsálaí leis an gclib 'video'"
 
 msgid "Changes Saved"
 msgstr "Sábháladh na hAthruithe"

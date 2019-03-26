@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-10-20 11:02+0000\n"
 "Last-Translator: Lan Glad <upwinxp@gmail.com>\n"
 "Language-Team: Slovenian\n"
@@ -152,15 +152,6 @@ msgstr "Slike morajo biti PNG ali JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoposnetki morajo biti WebM."
-
-msgid "Follow this Collection"
-msgstr "Sledi tej zbirki"
-
-msgid "Stop Following"
-msgstr "Nehaj slediti"
-
-msgid "Following"
-msgstr "Sledeno"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -723,45 +714,6 @@ msgstr "Samo pri Firefoxu – namestite ga!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Oprostite, za namestitev vtičnika za iskanje potrebujete brskalnik na osnovi Mozille (kot je Firefox)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Dodajanje med priljubljene &hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Odstranjevanje priljubljene &hellip;"
-
-msgid "Add to Favorites"
-msgstr "Dodaj med priljubljene"
-
-msgid "Remove from Favorites"
-msgstr "Odstrani iz priljubljenih"
-
-msgid "Pending"
-msgstr "V čakanju"
-
-msgid "Add a comment"
-msgstr "Dodaj komentar"
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Odstrani ta dodatek iz zbirke"
-
-msgid "Remove"
-msgstr "Odstrani"
-
-msgid "Add to favorites"
-msgstr "Dodaj med priljubljene"
-
-msgid "Remove from favorites"
-msgstr "Odstrani iz priljubljenih"
-
-msgid "Stop following"
-msgstr "Nehaj slediti"
-
-msgid "Your browser does not support the video tag"
-msgstr "Vaš brskalnik ne podpira oznake video"
 
 msgid "Changes Saved"
 msgstr "Spremembe shranjene"

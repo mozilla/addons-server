@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ad-dons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-12-12 14:11+0000\n"
 "Last-Translator: Joergen <joergenr@stofanet.dk>\n"
 "Language-Team: MozillaDanmark <joergenr@stofanet.dk>\n"
@@ -140,15 +140,6 @@ msgstr "Billeder skal enten være i formatet PNG eller JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videoer skal være i formatet WebM."
-
-msgid "Follow this Collection"
-msgstr "Følg denne samling"
-
-msgid "Stop Following"
-msgstr "Stop med at følge"
-
-msgid "Following"
-msgstr "Følg"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -691,45 +682,6 @@ msgstr "Kun med Firefox — Hent Firefox nu!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Beklager, du behøver en Mozilla-baseret browser (såsom Firefox) for at installere et søge-plugin."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Føjer til favoritter&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Fjerner fra favoritter&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Føj til favoritter"
-
-msgid "Remove from Favorites"
-msgstr "Fjern fra favoritter"
-
-msgid "Pending"
-msgstr "Afventer"
-
-msgid "Add a comment"
-msgstr "Tilføj en kommentar"
-
-msgid "Comment"
-msgstr "Kommentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Fjern denne tilføjelse fra samlingen"
-
-msgid "Remove"
-msgstr "Fjern"
-
-msgid "Add to favorites"
-msgstr "Føj til favoritter"
-
-msgid "Remove from favorites"
-msgstr "Fjern fra favoritter"
-
-msgid "Stop following"
-msgstr "Stop med at følge"
-
-msgid "Your browser does not support the video tag"
-msgstr "Din browser understøtter ikke denne video-tag"
 
 msgid "Changes Saved"
 msgstr "Ændringer gemt"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-01-04 17:45+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -142,15 +142,6 @@ msgstr "Resimler PNG veya JPG olmalıdır."
 
 msgid "Videos must be in WebM."
 msgstr "Videolar WebM olmalıdır."
-
-msgid "Follow this Collection"
-msgstr "Bu Koleksiyonu İzle"
-
-msgid "Stop Following"
-msgstr "Takip etmeyi bırak"
-
-msgid "Following"
-msgstr "Takip ediliyor"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -693,45 +684,6 @@ msgstr "Yalnızca Firefox ile — Firefox'u hemen indirin!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Üzgünüz, arama eklentisi yükleyebilmeniz için Mozilla tabanlı (örn. Firefox) bir tarayıcıya ihtiyacınız var."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Favorilere ekleniyor&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Favorilerden kaldırılıyor&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Favorilere Ekle"
-
-msgid "Remove from Favorites"
-msgstr "Favorilerden Kaldır"
-
-msgid "Pending"
-msgstr "Beklemede"
-
-msgid "Add a comment"
-msgstr "Yorum ekle"
-
-msgid "Comment"
-msgstr "Yorum"
-
-msgid "Remove this add-on from the collection"
-msgstr "Bu eklentiyi koleksiyondan kaldır"
-
-msgid "Remove"
-msgstr "Kaldır"
-
-msgid "Add to favorites"
-msgstr "Favorilerime ekle"
-
-msgid "Remove from favorites"
-msgstr "Favorilerimden kaldır"
-
-msgid "Stop following"
-msgstr "İzlemeyi durdur"
-
-msgid "Your browser does not support the video tag"
-msgstr "Tarayıcınız video etiketini desteklemiyor"
 
 msgid "Changes Saved"
 msgstr "Değişiklikler kaydedildi"

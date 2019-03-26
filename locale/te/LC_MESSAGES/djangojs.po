@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-12-27 08:58+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
@@ -140,15 +140,6 @@ msgstr "చిత్రాలు తప్పనిసరిగా PNG లేద
 
 msgid "Videos must be in WebM."
 msgstr "వీడియోలు తప్పనిసరిగా WebM లో ఉండాలి."
-
-msgid "Follow this Collection"
-msgstr "ఈ సేకరణను అనుసరించండి"
-
-msgid "Stop Following"
-msgstr "అనుసరించడం ఆపండి"
-
-msgid "Following"
-msgstr "అనుసరించండి"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -691,45 +682,6 @@ msgstr "Firefox తో మాత్రమే — ఇప్పుడు Firefox �
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr ""
-
-msgid "Adding to Favorites&hellip;"
-msgstr "ఇష్టాంశాలకు జొదించి &hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "ఇష్టాంశాన్ని తొలగిస్తున్నాం& hellip;"
-
-msgid "Add to Favorites"
-msgstr "ఇష్టాంశాలకు జోడించు"
-
-msgid "Remove from Favorites"
-msgstr "ఇష్టాంశాల నుంచి తీసివేయి"
-
-msgid "Pending"
-msgstr "వాయిదావున్న"
-
-msgid "Add a comment"
-msgstr "వ్యాఖ్యను జోడించండి"
-
-msgid "Comment"
-msgstr "వ్యాఖ్య"
-
-msgid "Remove this add-on from the collection"
-msgstr "సేకరణ నుండి ఈ పొడిగింతను తీసివేయండి"
-
-msgid "Remove"
-msgstr "తొలగించు"
-
-msgid "Add to favorites"
-msgstr "ఇష్టాంశాలకు జోడించు"
-
-msgid "Remove from favorites"
-msgstr "ఇష్టాంశాల నుంచి తీసివేయి"
-
-msgid "Stop following"
-msgstr "అనుసరించడం ఆపివేయండి"
-
-msgid "Your browser does not support the video tag"
-msgstr "మీ విహారిణి వీడియో ట్యాగ్కు మద్దతు ఇవ్వదు"
 
 msgid "Changes Saved"
 msgstr "మార్పులు భద్రపరచండి"

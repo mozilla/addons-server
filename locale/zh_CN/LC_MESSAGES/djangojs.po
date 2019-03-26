@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-01 13:40+0000\n"
 "Last-Translator: 우믿트 <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
@@ -135,15 +135,6 @@ msgstr "图像必须为 PNG 或 JPG 格式。"
 
 msgid "Videos must be in WebM."
 msgstr "视频必须是 WebM 格式。"
-
-msgid "Follow this Collection"
-msgstr "关注这个收藏集"
-
-msgid "Stop Following"
-msgstr "停止关注"
-
-msgid "Following"
-msgstr "正在关注"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -676,45 +667,6 @@ msgstr "只能用于 Firefox — 获取 Firefox！"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "抱歉，您需要一个基于 Mozilla 的浏览器（例如 Firefox）才能安装此搜索插件。"
-
-msgid "Adding to Favorites&hellip;"
-msgstr "正在添加到我最喜爱&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "正在从我最喜爱中移除&hellip;"
-
-msgid "Add to Favorites"
-msgstr "添加到我最喜爱"
-
-msgid "Remove from Favorites"
-msgstr "从我最喜爱中移除"
-
-msgid "Pending"
-msgstr "即将"
-
-msgid "Add a comment"
-msgstr "添加评论"
-
-msgid "Comment"
-msgstr "评论"
-
-msgid "Remove this add-on from the collection"
-msgstr "从收藏集中移除此附加组件"
-
-msgid "Remove"
-msgstr "移除"
-
-msgid "Add to favorites"
-msgstr "添加到我最喜爱"
-
-msgid "Remove from favorites"
-msgstr "从我最喜爱中移除"
-
-msgid "Stop following"
-msgstr "停止关注"
-
-msgid "Your browser does not support the video tag"
-msgstr "您的浏览器不支持此视频标签"
 
 msgid "Changes Saved"
 msgstr "更改已保存"

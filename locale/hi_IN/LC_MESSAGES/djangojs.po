@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-10-20 14:13+0000\n"
 "Last-Translator: Mahtab Alam <mahtab.ceh@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -143,15 +143,6 @@ msgstr "इमेज या तो PNG या JPG होने चाहिए .
 
 msgid "Videos must be in WebM."
 msgstr "वीडियोस WebM में होना चाहिए."
-
-msgid "Follow this Collection"
-msgstr "इस संग्रह का पालन करें"
-
-msgid "Stop Following"
-msgstr "पालन करना ​​बंद करें"
-
-msgid "Following"
-msgstr "अनुसरण"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -694,45 +685,6 @@ msgstr "केवल Firefox के साथ - Firefox अभी प्रा�
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "क्षमा करें, आपको एक खोज प्लगइन स्थापित करने के लिए Mozilla-आधारित ब्राउज़र (जैसे Firefox) की आवश्यकता है।"
-
-msgid "Adding to Favorites&hellip;"
-msgstr ""
-
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-msgid "Add to Favorites"
-msgstr "पसंदीदा में जोड़े"
-
-msgid "Remove from Favorites"
-msgstr "पसंदीदा से हटाएँ"
-
-msgid "Pending"
-msgstr "अपूर्ण"
-
-msgid "Add a comment"
-msgstr "टिप्पणी जोड़ें"
-
-msgid "Comment"
-msgstr "टिप्पणी"
-
-msgid "Remove this add-on from the collection"
-msgstr "इस ऐड-ऑन को संग्रह से निकालें"
-
-msgid "Remove"
-msgstr "हटाएँ"
-
-msgid "Add to favorites"
-msgstr "पसंदीदा सूची में जोड़ें"
-
-msgid "Remove from favorites"
-msgstr "पसंदीदा सूची से निकालें"
-
-msgid "Stop following"
-msgstr ""
-
-msgid "Your browser does not support the video tag"
-msgstr "आपके ब्राउज़र में वीडियो टैग समर्थित नहीं है"
 
 msgid "Changes Saved"
 msgstr "परिवर्तन सहेजे गए"

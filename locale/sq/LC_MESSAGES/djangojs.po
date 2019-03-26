@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-04 09:45+0000\n"
 "Last-Translator: Besnik Bleta <besnik@programeshqip.org>\n"
 "Language-Team: Albanian <besnik@programeshqip.org>\n"
@@ -147,15 +147,6 @@ msgstr "Figurat duhet të jenë ose PNG, ose JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Videot duhet të jenë në formatin WebM."
-
-msgid "Follow this Collection"
-msgstr "Ndiqe këtë Koleksion"
-
-msgid "Stop Following"
-msgstr "Resht Së Ndjekuri"
-
-msgid "Following"
-msgstr "Po e Ndiqni"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -698,45 +689,6 @@ msgstr "Vetëm me Firefox  — Merreni Firefox-in Tani!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Na ndjeni, për të instaluar një shtojcë kërkimi lypset të kini një shfletues me bazë Mozilla (si Firefox-i)."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Po shtohet te Të parapëlqyerit&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Po hiqet prej Të parapëlqyerve&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Shtoje te Të parapëlqyerit"
-
-msgid "Remove from Favorites"
-msgstr "Hiqe prej Të parapëlqyerve"
-
-msgid "Pending"
-msgstr "Në pritje"
-
-msgid "Add a comment"
-msgstr "Shtoni një koment"
-
-msgid "Comment"
-msgstr "Koment"
-
-msgid "Remove this add-on from the collection"
-msgstr "Hiqe këtë shtesë prej koleksionit"
-
-msgid "Remove"
-msgstr "Hiqe"
-
-msgid "Add to favorites"
-msgstr "Shtojeni te të parapëlqyerit"
-
-msgid "Remove from favorites"
-msgstr "Hiqe prej të parapëlqyerve"
-
-msgid "Stop following"
-msgstr "Resht së ndjekuri"
-
-msgid "Your browser does not support the video tag"
-msgstr "Shfletuesi juaj nuk e mbulon etiketën video"
 
 msgid "Changes Saved"
 msgstr "Ndryshimet u Ruajtën"

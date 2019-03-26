@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-10-26 12:37+0000\n"
 "Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,15 +139,6 @@ msgstr "Gambar harus dalam PNG atau JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Video harus dalam WebM."
-
-msgid "Follow this Collection"
-msgstr "Ikuti Koleksi Ini"
-
-msgid "Stop Following"
-msgstr "Berhenti mengikuti"
-
-msgid "Following"
-msgstr "Mengikuti"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -680,45 +671,6 @@ msgstr "Hanya dengan Firefox — Dapatkan Firefox Sekarang!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Maaf, Anda membutuhkan peramban berbasis Mozilla (seperti Firefox) untuk memasang plugin pencari."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Tambahkan ke Favorit&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Hapus Favorit&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Tambah ke Favorit"
-
-msgid "Remove from Favorites"
-msgstr "Hapus dari Favorit"
-
-msgid "Pending"
-msgstr "Tertunda"
-
-msgid "Add a comment"
-msgstr "Tambahkan komentar"
-
-msgid "Comment"
-msgstr "Komentar"
-
-msgid "Remove this add-on from the collection"
-msgstr "Hapus pengaya ini dari koleksi"
-
-msgid "Remove"
-msgstr "Hapus"
-
-msgid "Add to favorites"
-msgstr "Tambah ke favorit"
-
-msgid "Remove from favorites"
-msgstr "Hapus dari favorit"
-
-msgid "Stop following"
-msgstr "Berhenti mengikuti"
-
-msgid "Your browser does not support the video tag"
-msgstr "Peramban Anda tidak mendukung tag video"
 
 msgid "Changes Saved"
 msgstr "Perubahan Disimpan"

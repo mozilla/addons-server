@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-22 11:23+0000\n"
 "Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
@@ -150,15 +150,6 @@ msgstr "Les images doivent être au format PNG ou JPG."
 
 msgid "Videos must be in WebM."
 msgstr "Les vidéos doivent être au format WebM."
-
-msgid "Follow this Collection"
-msgstr "Suivre cette collection"
-
-msgid "Stop Following"
-msgstr "Ne plus suivre"
-
-msgid "Following"
-msgstr "Suivie"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -701,45 +692,6 @@ msgstr "Uniquement disponible sur Firefox — Obtenez Firefox dès maintenant !
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Désolé, vous devez utiliser un navigateur Mozilla (tel que Firefox) pour installer un moteur de recherche."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "Ajouter aux favoris…"
-
-msgid "Removing Favorite&hellip;"
-msgstr "Retirer des favoris…"
-
-msgid "Add to Favorites"
-msgstr "Ajouter aux favoris"
-
-msgid "Remove from Favorites"
-msgstr "Supprimer des favoris"
-
-msgid "Pending"
-msgstr "En attente"
-
-msgid "Add a comment"
-msgstr "Ajouter un commentaire"
-
-msgid "Comment"
-msgstr "Commentaire"
-
-msgid "Remove this add-on from the collection"
-msgstr "Retirer ce module de la collection"
-
-msgid "Remove"
-msgstr "Retirer"
-
-msgid "Add to favorites"
-msgstr "Ajouter aux favoris"
-
-msgid "Remove from favorites"
-msgstr "Supprimer des favoris"
-
-msgid "Stop following"
-msgstr "Ne plus suivre"
-
-msgid "Your browser does not support the video tag"
-msgstr "Votre navigateur ne prend pas en charge la balise vidéo"
 
 msgid "Changes Saved"
 msgstr "Changements enregistrés"

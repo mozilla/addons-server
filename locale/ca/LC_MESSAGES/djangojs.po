@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-10-02 15:44+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,15 +140,6 @@ msgstr "Les imatges han de ser PNG o JPG."
 
 msgid "Videos must be in WebM."
 msgstr ""
-
-msgid "Follow this Collection"
-msgstr "Segueix aquesta col·lecció"
-
-msgid "Stop Following"
-msgstr "Deixa de seguir"
-
-msgid "Following"
-msgstr "S'està seguint"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -691,45 +682,6 @@ msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "Ho sentim, necessiteu un navegador basat en Mozilla (com ara el Firefox) per instal·lar un connector de cerca."
-
-msgid "Adding to Favorites&hellip;"
-msgstr "S'està afegint als preferits&hellip;"
-
-msgid "Removing Favorite&hellip;"
-msgstr "S'està eliminant el preferit&hellip;"
-
-msgid "Add to Favorites"
-msgstr "Afegeix als preferits"
-
-msgid "Remove from Favorites"
-msgstr "Suprimeix dels preferits"
-
-msgid "Pending"
-msgstr "Pendent"
-
-msgid "Add a comment"
-msgstr "Afegeix un comentari"
-
-msgid "Comment"
-msgstr "Comentari"
-
-msgid "Remove this add-on from the collection"
-msgstr "Suprimeix aquest complement de la col·lecció"
-
-msgid "Remove"
-msgstr "Suprimeix"
-
-msgid "Add to favorites"
-msgstr "Afegeix als preferits"
-
-msgid "Remove from favorites"
-msgstr "Suprimeix dels preferits"
-
-msgid "Stop following"
-msgstr "Deixa de seguir"
-
-msgid "Your browser does not support the video tag"
-msgstr "El vostre navegador no admet l'etiqueta de vídeo"
 
 msgid "Changes Saved"
 msgstr "S'han desat els canvis"

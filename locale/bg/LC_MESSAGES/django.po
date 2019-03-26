@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-03-15 15:38+0000\n"
 "Last-Translator: :stoyan <stoyan@gmx.com>\n"
 "Language-Team: none\n"
@@ -231,9 +231,6 @@ msgstr "Нови и свежи добавки"
 
 msgid "Featured Themes"
 msgstr "Препоръчани теми"
-
-msgid "Featured Collections"
-msgstr "Препоръчани списъци"
 
 msgid "Sort by:"
 msgstr "Подреждане по:"
@@ -462,9 +459,6 @@ msgstr "Писане на рецензия"
 msgid "Related Categories"
 msgstr "Подобни категории"
 
-msgid "Part of these Collections"
-msgstr "Част от тези списъци"
-
 #, python-format
 msgid "Other add-ons by %(author)s"
 msgid_plural "Other add-ons by these authors"
@@ -598,14 +592,14 @@ msgstr "Тази добавка все още няма рецензии."
 msgid "Be the first!"
 msgstr "Бъдете първи!"
 
+msgid "No results found."
+msgstr "Няма резултати."
+
 msgid "{0} users"
 msgstr "{0} потребители"
 
 msgid "More"
 msgstr "Още"
-
-msgid "Add to collection"
-msgstr "Добавяне към списък"
 
 msgid "My Add-ons"
 msgstr "Мои добавки"
@@ -631,9 +625,6 @@ msgstr "За съжаление, тази тема очаква одобрени
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr "Темата очаква одобрение. Тя е невидима за всички освен вас."
-
-msgid "Collector's Note"
-msgstr "Бележки на събирача"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -832,9 +823,6 @@ msgstr "Искате повече персонализиране? Опитайт
 msgid "Collections"
 msgstr "Списъци"
 
-msgid "Collections I've Made"
-msgstr "Списъци, които съм създал"
-
 msgid "More&hellip;"
 msgstr "Още&hellip;"
 
@@ -953,39 +941,15 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr "Ако поддържаното приложение не изисква файл-манифест, все пак трябва да включите такъв с нужните свойства, както е %(amo_manifests_mdn_link_open)sописано тук%(amo_manifests_mdn_link_close)s."
 
-msgid "Only I can view this collection."
-msgstr "Само аз мога да виждам този списък."
-
-msgid "Anybody can view this collection."
-msgstr "Всеки може да разглежда този списък."
-
-msgid "Give your collection a name."
-msgstr "Именувайте списъка си."
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr "Опишете списъка си (без външни препратки)."
-
-msgid "Privacy:"
-msgstr "Поверителност:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr "Моля не попълвайте това поле, то се използва за улов на роботи"
-
-msgid "This name cannot be used."
-msgstr "Това име не може да бъде използвано."
-
-msgid "This url is already in use by another collection"
-msgstr "Това URL вече се използва от друг списък"
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Това име вече се използва от друг ваш списък."
 
 msgid "Name cannot be empty."
 msgstr "Името не може да е празно."
+
+msgid "This name cannot be used."
+msgstr "Това име не може да бъде използвано."
 
 #, fuzzy
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
@@ -997,222 +961,6 @@ msgstr "Това потребителско име не може да бъде �
 
 msgid "This add-on already belongs to the collection"
 msgstr "Добавката вече се принадлежи към този списък"
-
-msgid "Added"
-msgstr "Добавено"
-
-msgid "Popularity"
-msgstr "Популярност"
-
-msgid "Name"
-msgstr "Име"
-
-msgid "Collection created!"
-msgstr "Списъкът е създаден!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr "Новият ви списък се вижда по-долу. Ако желаете може да <a href=\"%(url)s\">промените допълнителните настройки</a>."
-
-msgid "Collection updated!"
-msgstr "Списъкът е обновен!"
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Вижте списъка си</a>, за да видите промените."
-
-msgid "Create a New Collection"
-msgstr "Създаване на списък"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "Както е отбелязано в <a href=\"%(legal)s\">правните бележки</a>, отделните списъци се управляват от Creative Commons Attribution Share-Alike лиценз"
-
-msgid "Create Collection"
-msgstr "Нов списък"
-
-msgid "View this collection"
-msgstr "Преглед на списъка"
-
-msgid "Start a new collection..."
-msgstr "Започване на нов списък..."
-
-msgid "Start a New Collection"
-msgstr "Започване на нов списък"
-
-msgid "Name:"
-msgstr "Име:"
-
-msgid "(optional)"
-msgstr "(незадължително)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "или <a id=\"collections-new-cancel\" href=\"#\">Отказване</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Списъци"
-
-msgid "private"
-msgstr "лична"
-
-msgid "About this Collection"
-msgstr "Относно списъка"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr "Добавки, синхронизирани с моя мобилен Firefox"
-
-msgid "Make this Collection Private"
-msgstr "Този списък да бъде личен"
-
-msgid "Make this Collection Public"
-msgstr "Този списък да бъде общодостъпен"
-
-msgid "More Options:"
-msgstr "Повече настройки:"
-
-msgid "Edit Collection"
-msgstr "Промяна на списъка"
-
-msgid "Delete Collection"
-msgstr "Изтриване на списъка"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] "%(num)s тема в списъка"
-msgstr[1] "%(num)s теми в списъка"
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s добавка в списъка"
-msgstr[1] "%(num)s добавки в списъка"
-
-msgid "Go"
-msgstr "Давай"
-
-msgid "What are Collections?"
-msgstr "Какво е списъкът?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя."
-
-msgid "Explore Collections"
-msgstr "Разглеждане на списъци"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-
-msgid "My favorite add-ons"
-msgstr "Моите любими добавки"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> добавка"
-msgstr[1] "<span>%(addons)s</span> добавки"
-
-msgid "by {0}"
-msgstr "от {0}"
-
-msgid "Edit this Collection"
-msgstr "Промяна на списъка"
-
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Изтриване на {0}"
-
-msgid "Are you sure?"
-msgstr "Сигурни ли сте?"
-
-msgid "Yes"
-msgstr "Да"
-
-msgid "No"
-msgstr "Не"
-
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Промяна на {0}"
-
-msgid "Description"
-msgstr "Описание"
-
-msgid "Save Changes"
-msgstr "Запазване"
-
-msgid "Remove from favorites"
-msgstr "Премахване от любими"
-
-msgid "Add to favorites"
-msgstr "Добавяне към любими"
-
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Списъци на {0}"
-
-msgid "No collections found."
-msgstr "Няма намерени списъци."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Списъкът е набор от сродни добавки, който всеки може да създава и споделя. Разгледайте списъци, създадени от други потребители или <a href=\"%(url)s\">създайте ваш собствен</a>."
-
-#, python-format
-msgid "by %(author_link)s"
-msgstr "от %(author_link)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Моите любими добавки"
-
-msgid "Create a Collection"
-msgstr "Създаване на списък"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr "Списъците ви помагат да следите любимите си добавки и да споделяте персонализирания си четец с другите."
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr "В тази форма има грешки. Моля, поправете ги."
-
-msgid "Add-ons in Your Collection"
-msgstr "Добавки в списъка ви"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr "За да включите добавка в този списък, въведете името му в полето по-долу и натиснете Enter."
-
-msgid "Add-on"
-msgstr "Добавка"
-
-msgid "Comment"
-msgstr "Коментар"
-
-msgid "Remove"
-msgstr "Премахни"
-
-msgid "Enter the name of the add-on to include"
-msgstr "Въведете името на добавката, която да включите"
-
-msgid "Add to Collection"
-msgstr "Добавяне в списъка"
-
-msgid "Pending"
-msgstr "Висяща"
-
-msgid "Add a comment"
-msgstr "Добави коментар"
-
-msgid "Remove this add-on from the collection"
-msgstr "Премахване на добавката от списъка"
-
-msgid "Favorite"
-msgstr "Любим"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1246,6 +994,9 @@ msgstr "Инструменти за търсене"
 
 msgid "Most Users"
 msgstr "Най-много потребители"
+
+msgid "Name"
+msgstr "Име"
 
 msgid "Weekly Downloads"
 msgstr "Изтегляния седмично"
@@ -2193,6 +1944,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Добавка"
+
 msgid "Static Theme"
 msgstr "Статична тема"
 
@@ -2462,6 +2216,12 @@ msgstr "Версия {version} вече съществува."
 msgid "Continue with existing upload instead?"
 msgstr ""
 
+msgid "Yes"
+msgstr "Да"
+
+msgid "No"
+msgstr "Не"
+
 #, fuzzy
 msgid "You have not uploaded a source file."
 msgstr "Няма файлове в качения файл."
@@ -2600,14 +2360,15 @@ msgstr ""
 msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
+msgstr "Това е цветът на текста в раздела."
 
 msgid "Toolbar area background"
 msgstr ""
@@ -2619,7 +2380,7 @@ msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Това е цветът на текста в раздела."
 
 msgid "Toolbar field area background"
@@ -2690,14 +2451,16 @@ msgstr "Център за разработчици <small>на добавки</s
 msgid "more add-ons..."
 msgstr "още добавки..."
 
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "Разширения"
+
 msgid "Documentation"
 msgstr "Документация"
 
 msgid "Extension Development"
 msgstr "Разработка на разширения"
-
-msgid "Lightweight Themes"
-msgstr "Леки теми"
 
 #, fuzzy
 msgid "Developer Policies"
@@ -2757,9 +2520,6 @@ msgstr "Последни дейности по {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> от %(user)s"
 
-msgid "No results found."
-msgstr "Няма резултати."
-
 msgid "Refine Activity"
 msgstr "Преглед на действията"
 
@@ -2804,8 +2564,14 @@ msgstr "Приложение"
 msgid "Supported Versions"
 msgstr "Поддържани версии"
 
+msgid "Remove"
+msgstr "Премахни"
+
 msgid "Add Another Application&hellip;"
 msgstr "Добавяне на приложение&hellip;"
+
+msgid "Save Changes"
+msgstr "Запазване"
 
 msgid "Close"
 msgstr "Затваряне"
@@ -2942,6 +2708,9 @@ msgstr "Преглед на сметка"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Описание"
 
 msgid "Experimental?"
 msgstr "Изпитателна?"
@@ -3309,6 +3078,9 @@ msgstr "Адрес на добавката:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Моля, използвайте само букви, цифри, долна черта и тире в адреса."
+
+msgid "Name:"
+msgstr "Име:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -5461,6 +5233,9 @@ msgstr ""
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
@@ -5559,6 +5334,9 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "Go"
+msgstr "Давай"
+
 msgid "Add-on file being processed, please wait."
 msgstr ""
 
@@ -5573,9 +5351,6 @@ msgstr "Изтрити файлове:"
 
 msgid "Hide known files"
 msgstr "Скриване на известните файлове"
-
-msgid "Add-on SDK Version:"
-msgstr "Издание на Add-on SDK:"
 
 msgid "Tab stops:"
 msgstr "Табулатори:"
@@ -6215,9 +5990,6 @@ msgstr "Изпращане на рецензия"
 msgid "Needs Admin Static Theme Review"
 msgstr "Административна рецензия"
 
-msgid "Jetpack Add-on"
-msgstr ""
-
 msgid "More Information Requested"
 msgstr ""
 
@@ -6318,6 +6090,9 @@ msgstr ""
 
 msgid "If you have concerns about this add-on that an admin reviewer should look into, enter your comments in the area below. They will not be sent to the developer."
 msgstr ""
+
+msgid "Comment"
+msgstr "Коментар"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -6885,90 +6660,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "search for add-ons"
-msgstr "търсене на добавки"
-
-msgid "search for themes"
-msgstr "търсене на теми"
-
-msgid "search for apps"
-msgstr "търсене на приложения"
-
-msgid "Relevance"
-msgstr "Уместност"
-
-msgid "All Add-ons"
-msgstr "Всички добавки"
-
-msgid "Any {0}"
-msgstr "Всеки {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Всички ОС"
-
-msgid "All Tags"
-msgstr "Всички етикети"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr ""
-
-msgid "Collection Search Results"
-msgstr ""
-
-msgid "Search Results"
-msgstr "Резултати от търсенето"
-
-msgid "Search Unavailable"
-msgstr ""
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr ""
-
-msgid "Themes Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Търсене"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Резултати от търсенето за \"{0}\""
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr "{0} :: Етикет"
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr "Резултати от търсенето на етикета \"{0}\""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] "<b>{0}</b> резултат"
-msgstr[1] "<b>{0}</b> резултата"
-
-msgid "Filter Results"
-msgstr "Филтри за резултатите"
-
-msgid "Category"
-msgstr "Категория"
-
-msgid "Tag"
-msgstr "Етикет"
-
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr ""
-
-msgid "Showing {0} - {1} of {2} results"
-msgstr ""
-
 #, fuzzy
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Не може да публикувате добавки с guid, завършващ на „@mozilla.org“"
@@ -7265,16 +6956,6 @@ msgstr ""
 msgid "Visit the new site"
 msgstr ""
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "За да създадете собствен списък, трябва да имате сметка в Mozilla Добавки."
-
-msgid "Create an Add-ons Account"
-msgstr "Създаване на сметка за Добавки"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "или <a href=\"%(login)s\">влезте в текущата сметка</a>"
-
 msgid "Footer logo"
 msgstr ""
 
@@ -7370,6 +7051,9 @@ msgstr "Добавки за Andorid"
 msgid "Required fields"
 msgstr "Задължителни полета"
 
+msgid "(optional)"
+msgstr "(незадължително)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7432,6 +7116,9 @@ msgstr "Firefox за Android"
 
 msgid "My Mobile Add-ons"
 msgstr ""
+
+msgid "My Favorite Add-ons"
+msgstr "Моите любими добавки"
 
 msgid "an add-on developer replies to my review"
 msgstr ""

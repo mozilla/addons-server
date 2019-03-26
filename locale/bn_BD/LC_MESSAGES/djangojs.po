@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2018-12-15 11:16+0000\n"
 "Last-Translator: Belayet Hossain <bellayet@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -140,15 +140,6 @@ msgstr "চিত্রগুলি অবশ্যই PNG বা JPG হতে 
 
 msgid "Videos must be in WebM."
 msgstr "ভিডিও গুলো অবশ্যই WebM তে হতে হবে।"
-
-msgid "Follow this Collection"
-msgstr "সংগ্রহটি অনুসরণ করুন"
-
-msgid "Stop Following"
-msgstr "ফলো করা বন্ধ করুন"
-
-msgid "Following"
-msgstr "ফলো করুন"
 
 #. L10n: {0} is an app name.
 msgid "This theme is incompatible with your version of {0}"
@@ -696,45 +687,6 @@ msgid "Only with Firefox — Get Firefox Now!"
 msgstr ""
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
-msgstr ""
-
-msgid "Adding to Favorites&hellip;"
-msgstr ""
-
-msgid "Removing Favorite&hellip;"
-msgstr ""
-
-msgid "Add to Favorites"
-msgstr "পছন্দের তালিকায় যুক্ত করুন"
-
-msgid "Remove from Favorites"
-msgstr "পছন্দের তালিকা হতে অপসারণ করুন"
-
-msgid "Pending"
-msgstr "পেন্ডিং"
-
-msgid "Add a comment"
-msgstr "মন্তব্য যোগ করুন"
-
-msgid "Comment"
-msgstr "মন্তব্য"
-
-msgid "Remove this add-on from the collection"
-msgstr ""
-
-msgid "Remove"
-msgstr "দূর করুন"
-
-msgid "Add to favorites"
-msgstr "পছন্দের তালিকায় যুক্ত করুন"
-
-msgid "Remove from favorites"
-msgstr "পছন্দের তালিকা হতে অপসারণ করুন"
-
-msgid "Stop following"
-msgstr "ফলো করা বন্ধ করুন"
-
-msgid "Your browser does not support the video tag"
 msgstr ""
 
 msgid "Changes Saved"

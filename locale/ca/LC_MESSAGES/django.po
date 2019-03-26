@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: c\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-18 07:57+0000\n"
+"POT-Creation-Date: 2019-03-26 19:08+0000\n"
 "PO-Revision-Date: 2019-02-10 15:36+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: Catalan <mozilla@llistes.softcatala.org>\n"
@@ -245,9 +245,6 @@ msgstr "Properes extensions"
 
 msgid "Featured Themes"
 msgstr "Temes destacats"
-
-msgid "Featured Collections"
-msgstr "Col·leccions destacades"
 
 msgid "Sort by:"
 msgstr "Ordenat per:"
@@ -485,9 +482,6 @@ msgstr "Escriviu una valoració"
 msgid "Related Categories"
 msgstr "Categories relacionades"
 
-msgid "Part of these Collections"
-msgstr "Forma part d'aquestes col·leccions"
-
 # {0} is either an author's name or a comma separated list of authors. Using
 # the list doesn't make sense in the English plural form so we ignore the
 # variable.
@@ -627,6 +621,9 @@ msgstr "Aquest complement encara no ha estat valorat."
 msgid "Be the first!"
 msgstr "Sigueu el primer!"
 
+msgid "No results found."
+msgstr "No s'han trobat resultats."
+
 msgid "{0} users"
 msgstr "{0} usuaris"
 
@@ -634,9 +631,6 @@ msgstr "{0} usuaris"
 # graphical [download now] button
 msgid "More"
 msgstr "Més"
-
-msgid "Add to collection"
-msgstr "Afegeix a la col·lecció"
 
 msgid "My Add-ons"
 msgstr "Els meus complements"
@@ -662,9 +656,6 @@ msgstr ""
 
 msgid "This theme is pending. It is invisible to everyone but you."
 msgstr ""
-
-msgid "Collector's Note"
-msgstr "Nota de l'autor de la col·lecció"
 
 #. {0} is the number of downloads.
 msgid "<strong>{0}</strong> weekly download"
@@ -876,9 +867,6 @@ msgstr ""
 msgid "Collections"
 msgstr "Col·leccions"
 
-msgid "Collections I've Made"
-msgstr "Les meves col·leccions"
-
 msgid "More&hellip;"
 msgstr "Més&hellip;"
 
@@ -1000,33 +988,6 @@ msgstr ""
 "Si la vostra aplicació no requereix un fitxer de manifest, n'haureu d'incloure un igualment amb les propietats obligatòries, tal com s'especifica %(amo_manifests_mdn_link_open)saquí"
 "%(amo_manifests_mdn_link_close)s."
 
-msgid "Only I can view this collection."
-msgstr "Només puc veure aquesta col·lecció."
-
-msgid "Anybody can view this collection."
-msgstr "Tothom pot veure aquesta col·lecció"
-
-msgid "Give your collection a name."
-msgstr "Doneu un nom a la col·lecció"
-
-msgid "URL:"
-msgstr "URL:"
-
-msgid "Describe your collection (no links allowed)."
-msgstr ""
-
-msgid "Privacy:"
-msgstr "Privadesa:"
-
-msgid "Please don't fill out this field, it's used to catch bots"
-msgstr ""
-
-msgid "This name cannot be used."
-msgstr ""
-
-msgid "This url is already in use by another collection"
-msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
-
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
@@ -1034,6 +995,9 @@ msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
 #, fuzzy
 msgid "Name cannot be empty."
 msgstr "Les imatges no poden ser animades."
+
+msgid "This name cannot be used."
+msgstr ""
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -1045,228 +1009,6 @@ msgstr "«{0}» és una etiqueta reservada i no es pot fer servir."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "L'URL ja s'està utilitzant en una altra col·lecció"
-
-msgid "Added"
-msgstr "S'ha afegit"
-
-msgid "Popularity"
-msgstr "Popularitat"
-
-msgid "Name"
-msgstr "Nom"
-
-msgid "Collection created!"
-msgstr "S'ha creat la col·lecció!"
-
-#, python-format
-msgid "Your new collection is shown below. You can <a href=\"%(url)s\">edit additional settings</a> if you'd like."
-msgstr ""
-
-msgid "Collection updated!"
-msgstr "La col·lecció s'ha actualitzat."
-
-#, python-format
-msgid "<a href=\"%(url)s\">View your collection</a> to see the changes."
-msgstr "<a href=\"%(url)s\">Mostra la vostra col·lecció</a> per veure'n els canvis."
-
-msgid "Create a New Collection"
-msgstr "Crea una nova col·lecció"
-
-#, python-format
-msgid "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-msgstr "As noted in our <a href=\"%(legal)s\">Legal Notices</a>, individual collection arrangements are governed by the Creative Commons Attribution Share-Alike License"
-
-msgid "Create Collection"
-msgstr "Crea una col·lecció"
-
-msgid "View this collection"
-msgstr "Mostra aquesta col·lecció"
-
-msgid "Start a new collection..."
-msgstr "Comença una col·lecció nova..."
-
-msgid "Start a New Collection"
-msgstr "Comenceu una nova col·lecció"
-
-msgid "Name:"
-msgstr "Nom:"
-
-msgid "(optional)"
-msgstr "(opcional)"
-
-msgid "or <a id=\"collections-new-cancel\" href=\"#\">Cancel</a>"
-msgstr "o <a id=\"collections-new-cancel\" href=\"#\">Cancel·la</a>"
-
-msgid "{0} :: Collections"
-msgstr "{0} :: Col·leccions"
-
-msgid "private"
-msgstr "privat"
-
-msgid "About this Collection"
-msgstr "Quant a aquesta col·lecció"
-
-msgid "Add-ons synced to my Mobile Firefox"
-msgstr ""
-
-msgid "Make this Collection Private"
-msgstr "Fes que aquesta col·lecció sigui privada"
-
-msgid "Make this Collection Public"
-msgstr "Fes que aquesta col·lecció sigui pública"
-
-msgid "More Options:"
-msgstr "Més opcions"
-
-msgid "Edit Collection"
-msgstr "Edita la col·lecció"
-
-msgid "Delete Collection"
-msgstr "Suprimeix la col·lecció"
-
-#, python-format
-msgid "%(num)s Theme in this Collection"
-msgid_plural "%(num)s Themes in this Collection"
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
-msgid "%(num)s Add-on in this Collection"
-msgid_plural "%(num)s Add-ons in this Collection"
-msgstr[0] "%(num)s complement en aquesta col·lecció"
-msgstr[1] "%(num)s complements en aquesta col·lecció"
-
-msgid "Go"
-msgstr "D'acord"
-
-msgid "What are Collections?"
-msgstr "Què són les col·leccions?"
-
-msgid "Collections are groups of related add-ons that anyone can create and share."
-msgstr "Les col·leccions són grups de complements relacionats que qualsevol persona pot fer i compartir."
-
-msgid "Explore Collections"
-msgstr "Explora les col·leccions"
-
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-msgstr ""
-
-#, fuzzy
-msgid ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>private</b>, which means only you can see it. If you would like everyone "
-"to be able to see your favorites, click the button below to make it public."
-msgstr ""
-"Add-ons that you mark as favorites using the <b>Add to Favorites</b> feature appear below. This collection is currently <b>public</b>, which means everyone can see it. If you would like to hide it "
-"from public view, click the button below to make it private."
-
-msgid "My favorite add-ons"
-msgstr "Els meus complements preferits"
-
-#, python-format
-msgid "<span>%(addons)s</span> add-on"
-msgid_plural "<span>%(addons)s</span> add-ons"
-msgstr[0] "<span>%(addons)s</span> complement"
-msgstr[1] "<span>%(addons)s</span> complements"
-
-msgid "by {0}"
-msgstr "per {0}"
-
-msgid "Edit this Collection"
-msgstr "Edita aquesta col·lecció"
-
-# {0} is a a person's name
-#. %s is the name of the collection.
-msgid "Delete {0}"
-msgstr "Suprimeix {0}"
-
-msgid "Are you sure?"
-msgstr "Esteu segur?"
-
-msgid "Yes"
-msgstr "Sí"
-
-msgid "No"
-msgstr "No"
-
-# %s is the add-on name.
-#. {0} is the name of the collection.
-msgid "Edit {0}"
-msgstr "Edita {0}"
-
-msgid "Description"
-msgstr "Descripció"
-
-msgid "Save Changes"
-msgstr "Desa els canvis"
-
-msgid "Remove from favorites"
-msgstr "Suprimeix dels preferits"
-
-msgid "Add to favorites"
-msgstr "Afegeix a les preferides"
-
-# {0} is an add-on's name
-#. {0} is a the user's name.
-msgid "Collections by {0}"
-msgstr "Col·leccions d'en/la {0}"
-
-msgid "No collections found."
-msgstr "No s'ha trobat cap col·lecció."
-
-#, python-format
-msgid "Collections are groups of related add-ons that anyone can create and share. Explore collections created by other users or <a href=\"%(url)s\">create your own</a>."
-msgstr "Les col·leccions són agrupacions de complements que qualsevol persona pot fer-se i compartir. Exploreu les col·leccions que ha creat la gent o bé <a href=\"%(url)s\">creeu-ne una</a>."
-
-#, fuzzy, python-format
-msgid "by %(author_link)s"
-msgstr "per %(users)s"
-
-msgid "My Favorite Add-ons"
-msgstr "Els meus complements preferits"
-
-msgid "Create a Collection"
-msgstr "Crea una col·lecció"
-
-msgid "Collections make it easy to keep track of favorite add-ons and share your perfectly customized browser with others."
-msgstr ""
-
-msgid "There are errors in this form.  Please correct them below."
-msgstr ""
-
-msgid "Add-ons in Your Collection"
-msgstr "Complements de la vostra col·lecció"
-
-msgid "To include an add-on in this collection, enter its name in the box below and hit enter."
-msgstr ""
-
-msgid "Add-on"
-msgstr "Complement"
-
-msgid "Comment"
-msgstr "Comentari"
-
-msgid "Remove"
-msgstr "Suprimeix"
-
-msgid "Enter the name of the add-on to include"
-msgstr ""
-
-msgid "Add to Collection"
-msgstr "Afegeix a la col·lecció"
-
-msgid "Pending"
-msgstr "Pending"
-
-msgid "Add a comment"
-msgstr "Afegeix un comentari"
-
-msgid "Remove this add-on from the collection"
-msgstr "Elimina aquest complement de la col·lecció"
-
-msgid "Favorite"
-msgstr "Preferides"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1300,6 +1042,9 @@ msgstr "Eines de cerca"
 
 msgid "Most Users"
 msgstr "Amb més usuaris"
+
+msgid "Name"
+msgstr "Nom"
 
 msgid "Weekly Downloads"
 msgstr "Baixades setmanals"
@@ -2272,6 +2017,9 @@ msgstr "Solaris"
 msgid "Android"
 msgstr "Android"
 
+msgid "Add-on"
+msgstr "Complement"
+
 #, fuzzy
 msgid "Static Theme"
 msgstr "Temes destacats"
@@ -2544,6 +2292,12 @@ msgstr "S'ha aprovat el complement {addon} {version}"
 msgid "Continue with existing upload instead?"
 msgstr ""
 
+msgid "Yes"
+msgstr "Sí"
+
+msgid "No"
+msgstr "No"
+
 #, fuzzy
 msgid "You have not uploaded a source file."
 msgstr "No s'ha trobat cap fitxer per pujar"
@@ -2679,14 +2433,15 @@ msgstr ""
 msgid "Header area background"
 msgstr ""
 
-msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  accentcolor."
+msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
 msgstr ""
 
-msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  textcolor."
-msgstr ""
+#, fuzzy
+msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
+msgstr "Aquest és el color del text de la pestanya."
 
 msgid "Toolbar area background"
 msgstr ""
@@ -2698,7 +2453,7 @@ msgid "Toolbar area text and icons"
 msgstr ""
 
 #, fuzzy
-msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr "Aquest és el color del text de la pestanya."
 
 msgid "Toolbar field area background"
@@ -2770,13 +2525,15 @@ msgstr "<small>Centre de desenvolupadors</small> de complements"
 msgid "more add-ons..."
 msgstr "més complements..."
 
+# Plural in this context means many of the add-on type
+#, fuzzy
+msgid "Extension Workshop"
+msgstr "Extensions"
+
 msgid "Documentation"
 msgstr "Documentació"
 
 msgid "Extension Development"
-msgstr ""
-
-msgid "Lightweight Themes"
 msgstr ""
 
 #, fuzzy
@@ -2837,9 +2594,6 @@ msgstr "Activitat recent del complement {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> per %(user)s"
 
-msgid "No results found."
-msgstr "No s'han trobat resultats."
-
 msgid "Refine Activity"
 msgstr "Afina l'activitat"
 
@@ -2886,8 +2640,14 @@ msgstr "Aplicació"
 msgid "Supported Versions"
 msgstr "Versions disponibles"
 
+msgid "Remove"
+msgstr "Suprimeix"
+
 msgid "Add Another Application&hellip;"
 msgstr "Afegeix una altra aplicació&hellip;"
+
+msgid "Save Changes"
+msgstr "Desa els canvis"
 
 msgid "Close"
 msgstr "Tanca"
@@ -3021,6 +2781,9 @@ msgstr "Voleu veure'n el codi?"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
+
+msgid "Description"
+msgstr "Descripció"
 
 #, fuzzy
 msgid "Experimental?"
@@ -3387,6 +3150,9 @@ msgstr "URL del complement"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
+
+msgid "Name:"
+msgstr "Nom:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
@@ -5601,6 +5367,9 @@ msgstr ""
 msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr ""
 
+msgid "Unknown \"strict_min_version\" {appver} for {app}"
+msgstr ""
+
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
@@ -5704,6 +5473,9 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "Go"
+msgstr "D'acord"
+
 msgid "Add-on file being processed, please wait."
 msgstr "S'està processant el fitxer del complement. Espereu-vos."
 
@@ -5717,9 +5489,6 @@ msgid "Deleted files:"
 msgstr "Fitxers eliminats:"
 
 msgid "Hide known files"
-msgstr ""
-
-msgid "Add-on SDK Version:"
 msgstr ""
 
 msgid "Tab stops:"
@@ -6365,9 +6134,6 @@ msgstr "No s'ha revisat"
 msgid "Needs Admin Static Theme Review"
 msgstr "Revisió d'admin"
 
-msgid "Jetpack Add-on"
-msgstr ""
-
 msgid "More Information Requested"
 msgstr ""
 
@@ -6475,6 +6241,9 @@ msgid "If you have concerns about this add-on that an admin reviewer should look
 msgstr ""
 "Si teniu cap queixa del complement pel què fa a seguretat, copyright o altres temes on calgui l'atenció d'un administrador, introduïu els vostres comentaris al quadre següent. Aquests comentaris "
 "s'enviaran als administradors i no a als autors."
+
+msgid "Comment"
+msgstr "Comentari"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
 msgstr ""
@@ -7058,97 +6827,6 @@ msgstr ""
 msgid "Maximum query length exceeded."
 msgstr ""
 
-msgid "search for add-ons"
-msgstr "cerca complements"
-
-msgid "search for themes"
-msgstr ""
-
-msgid "search for apps"
-msgstr "cerca aplicacions"
-
-msgid "Relevance"
-msgstr "Rellevància"
-
-msgid "All Add-ons"
-msgstr "Tots els complements"
-
-msgid "Any {0}"
-msgstr "Qualsevol {0}"
-
-#. L10n: "All Systems" means show everything regardless of platform.
-msgid "All Systems"
-msgstr "Tots els sistemes"
-
-msgid "All Tags"
-msgstr "Totes les etiquetes"
-
-#. {0} is the string the user was searching for
-msgid "Collection Search Results for {0}"
-msgstr "Resultats de la cerca de col·leccions «{0}»"
-
-msgid "Collection Search Results"
-msgstr "Resultats de la cerca de col·leccions"
-
-msgid "Search Results"
-msgstr "Resultats de cerca"
-
-msgid "Search Unavailable"
-msgstr ""
-
-msgid "Search is temporarily unavailable. Please try again in a few minutes."
-msgstr ""
-
-#. {0} is the string the user was searching for
-msgid "Themes Search Results for {0}"
-msgstr ""
-
-msgid "Themes Search Results"
-msgstr ""
-
-#. {0} is a search term, such as Firebug.
-msgid "{0} :: Search"
-msgstr "{0} :: Cerca"
-
-#. {0} is a search term, such as Firebug.
-msgid "Search Results for \"{0}\""
-msgstr "Resultats de cerca de «{0}»"
-
-#. {0} is a tag, such as jetpack.
-msgid "{0} :: Tag"
-msgstr ""
-
-#. {0} is a tag, such as jetpack.
-msgid "Search Results for tag \"{0}\""
-msgstr ""
-
-msgid "<b>{0}</b> matching result"
-msgid_plural "<b>{0}</b> matching results"
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "Filter Results"
-msgstr "Filtra els resultats"
-
-msgid "Category"
-msgstr "Categoria"
-
-msgid "Tag"
-msgstr "Etiqueta"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-# {3} is the word the person is searching for
-msgid "Showing {0} - {1} of {2} results for <strong>{3}</strong>"
-msgstr "S'estan mostrant {0} - {1} dels {2} resultats per a <strong>{3}</strong>"
-
-# {0} is a number
-# {1} is a number
-# {2} is a number
-msgid "Showing {0} - {1} of {2} results"
-msgstr "S'estan mostrant {0} - {1} dels {2} resultats"
-
 msgid "Could not find add-on with guid \"{}\"."
 msgstr ""
 
@@ -7444,16 +7122,6 @@ msgstr ""
 msgid "Visit the new site"
 msgstr ""
 
-msgid "To create your own collections, you must have a Mozilla Add-ons account."
-msgstr "Per crear les vostres pròpies col·leccions, heu de tenir un compte al Mozilla Add-ons."
-
-msgid "Create an Add-ons Account"
-msgstr "Crea un compte de complements"
-
-#, python-format
-msgid "or <a href=\"%(login)s\">log in to your current account</a>"
-msgstr "o <a href=\"%(login)s\">inicieu una sessió amb el vostre compte</a>"
-
 msgid "Footer logo"
 msgstr ""
 
@@ -7553,6 +7221,9 @@ msgstr ""
 msgid "Required fields"
 msgstr "Camps obligatoris"
 
+msgid "(optional)"
+msgstr "(opcional)"
+
 #. {0} is a language name, like 'French'
 #, python-format
 msgid "Localize for: <a id=\"change-locale\" href=\"#\">%(dl)s</a>"
@@ -7616,6 +7287,9 @@ msgstr "Denuncia l'usuari {0}"
 
 msgid "My Mobile Add-ons"
 msgstr "Els meus complements per a mòbils"
+
+msgid "My Favorite Add-ons"
+msgstr "Els meus complements preferits"
 
 msgid "an add-on developer replies to my review"
 msgstr ""
