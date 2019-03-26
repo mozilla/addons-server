@@ -1,8 +1,11 @@
+import datetime
 import subprocess
 import time
 
 def approve_addons():
-    while True:
+    start_time = time.time()
+    # run for 5 minutes max
+    while time.time() != start_time + 300:
         subprocess.call(["python", "manage.py", "auto_approve"])
         time.sleep(10)
 

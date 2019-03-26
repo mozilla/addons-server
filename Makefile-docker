@@ -193,7 +193,7 @@ setup-ui-tests:
 	$(PYTHON_COMMAND) manage.py cron category_totals
 
 run-auto-approve:
-	$(PYTHON_COMMAND) run_auto_approve.py
+	$(PYTHON_COMMAND) tests/ui/run_auto_approve.py
 
 .PHONY: run-ui-tests
 run-ui-tests:

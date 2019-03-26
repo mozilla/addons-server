@@ -72,15 +72,8 @@ def test_devhub_register(base_url, selenium):
 def test_devhub_addon_upload(base_url, selenium, devhub_upload, firefox, firefox_notifications):
     """Test uploading an addon via devhub."""
     'ui-test-addon-2' in devhub_upload.addons[-1].name
+    # We have to wait for approval
     time.sleep(15)
-    # call_command('approve_addons',
-    #    'uitest_install@webextension-guid',
-    #    accept_bulk_sign=True)
-    # time.sleep(15)
-    # from django.conf import settings
-
-    # print(settings.DATABASES)
-
     selenium.get('{}/addon/{}'.format(base_url, 'ui-test_devhub_ext/'))
     addon = Detail(selenium, base_url)
     assert 'UI-Test_devhub_ext' in addon.name
