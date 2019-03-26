@@ -73,7 +73,7 @@ def test_devhub_addon_upload_approve_install(
     'ui-test-addon-2' in devhub_upload.addons[-1].name
     # We have to wait for approval
     time.sleep(15)
-    selenium.get('{}/addon/{}'.format(base_url, 'ui-test_devhub_ext/'))
+    selenium.get('{}/addon/ui-test_devhub_ext/'.format(base_url))
     addon = Detail(selenium, base_url)
     assert 'UI-Test_devhub_ext' in addon.name
     addon.install()
