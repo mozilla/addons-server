@@ -61,4 +61,7 @@ urlpatterns = (
     url(r'^theme_background_images/(?P<version_id>[^ /]+)?$',
         views.theme_background_images,
         name='reviewers.theme_background_images'),
+    url(r'^download-git-file/(?P<version_id>\d+)/(?P<filename>.*)/',
+        views.download_git_stored_file,
+        name='reviewers.download_git_file'),
 )

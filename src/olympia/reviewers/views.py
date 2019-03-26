@@ -30,7 +30,8 @@ from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
 from olympia.activity.models import ActivityLog, AddonLog, CommentLog
-from olympia.addons.decorators import addon_view, addon_view_factory
+from olympia.addons.decorators import (
+    addon_view, addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags)
 from olympia.amo.decorators import (
@@ -1161,6 +1162,63 @@ def theme_background_images(request, version_id):
     return version.get_background_images_encoded(header_only=False)
 
 
+@login_required
+def download_git_stored_file(request, version_id, filename):
+    version = get_object_or_404(Version.unfiltered, id=int(version_id))
+
+    try:
+        addon = version.addon
+    except Addon.DoesNotExist:
+        raise http.Http404
+
+    if version.channel == amo.RELEASE_CHANNEL_LISTED:
+        is_owner = acl.check_addon_ownership(request, addon, dev=True)
+        if not (acl.is_reviewer(request, addon) or is_owner):
+            raise PermissionDenied
+    else:
+        if not owner_or_unlisted_reviewer(request, addon):
+            raise http.Http404
+
+    file = version.current_file
+
+    serializer = FileEntriesSerializer(
+        instance=file, context={
+            'file': filename,
+            'request': request
+        }
+    )
+
+    commit = serializer._get_commit(file)
+    tree = serializer.repo.get_root_tree(commit)
+
+    try:
+        blob_or_tree = tree[serializer.get_selected_file(file)]
+
+        if blob_or_tree.type == 'tree':
+            return http.HttpResponseBadRequest('Can\'t serve directories')
+        selected_file = serializer.get_entries(file)[filename]
+    except KeyError:
+        raise http.Http404()
+
+    actual_blob = serializer.git_repo[blob_or_tree.oid]
+    response = http.FileResponse(
+        memoryview(actual_blob),
+        content_type=selected_file['mimetype'])
+
+    # Backported from Django 2.1 to handle unicode filenames properly
+    selected_filename = selected_file['filename']
+    try:
+        selected_filename.encode('ascii')
+        file_expr = 'filename="{}"'.format(selected_filename)
+    except UnicodeEncodeError:
+        file_expr = "filename*=utf-8''{}".format(urlquote(selected_filename))
+
+    response['Content-Disposition'] = 'attachment; {}'.format(file_expr)
+    response['Content-Length'] = actual_blob.size
+
+    return response
+
+
 class AddonReviewerViewSet(GenericViewSet):
     log = olympia.core.logger.getLogger('z.reviewers')
 
@@ -1321,53 +1379,6 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
             }
         )
         return Response(serializer.data)
-
-    @action(
-        detail=True,
-        methods=['get'],
-        permission_classes=ReviewAddonVersionMixin.permission_classes,
-        url_path='download/(?P<filename>.*)')
-    def download(self, request, *args, **kwargs):
-        version = self.get_object()
-        file = version.current_file
-        file_param = kwargs['filename']
-
-        serializer = FileEntriesSerializer(
-            instance=file, context={
-                'file': file_param,
-                'request': request
-            }
-        )
-
-        commit = serializer._get_commit(file)
-        tree = serializer.repo.get_root_tree(commit)
-
-        try:
-            blob_or_tree = tree[serializer.get_selected_file(file)]
-
-            if blob_or_tree.type == 'tree':
-                return http.HttpResponseBadRequest('Can\'t serve directories')
-            selected_file = serializer.get_entries(file)[file_param]
-        except KeyError:
-            raise http.Http404()
-
-        actual_blob = serializer.git_repo[blob_or_tree.oid]
-        response = http.FileResponse(
-            memoryview(actual_blob),
-            content_type=selected_file['mimetype'])
-
-        # Backported from Django 2.1 to handle unicode filenames properly
-        filename = selected_file['filename']
-        try:
-            filename.encode('ascii')
-            file_expr = 'filename="{}"'.format(filename)
-        except UnicodeEncodeError:
-            file_expr = "filename*=utf-8''{}".format(urlquote(filename))
-
-        response['Content-Disposition'] = 'attachment; {}'.format(file_expr)
-        response['Content-Length'] = actual_blob.size
-
-        return response
 
 
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,

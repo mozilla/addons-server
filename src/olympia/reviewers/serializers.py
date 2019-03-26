@@ -9,7 +9,6 @@ import magic
 
 from rest_framework import serializers
 from rest_framework.exceptions import NotFound
-from rest_framework.reverse import reverse as drf_reverse
 
 from django.utils.functional import cached_property
 from django.utils.encoding import force_text
@@ -206,12 +205,11 @@ class FileEntriesSerializer(FileSerializer):
         if blob_or_tree.type == 'tree':
             return None
 
-        return drf_reverse(
-            'reviewers-versions-download',
+        return reverse(
+            'reviewers.download_git_file',
             request=request,
             kwargs={
-                'addon_pk': self.get_instance().version.addon.pk,
-                'pk': self.get_instance().version.pk,
+                'version_id': self.get_instance().version.pk,
                 'filename': selected_file
             }
         )
