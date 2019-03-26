@@ -120,7 +120,7 @@ install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${PYTHON_VERSION_MAJOR}${DJANGO}.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${PYTHON_VERSION_MAJOR}${DJANGO_VERSION}.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
 .PHONY: install_python_dev_dependencies
