@@ -18,21 +18,12 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('addon_guid', nargs='+')
 
-        parser.add_argument(
-            '--accept-bulk-sign',
-            action='store_true',
-            dest='bulk_sign',
-            default=False,
-            help='Bulk sign addons',
-        )
-
     def handle(self, *args, **options):
-        if not options.get('bulk_sign', True):
-            confirm = raw_input(
-                u'Are you sure you want to bulk approve and sign all those {0} '
-                u'addons? (yes/no)'.format(len(args)))
-            if confirm != 'yes':
-                raise CommandError(u'Aborted.')
+        confirm = input(
+            u'Are you sure you want to bulk approve and sign all those {0} '
+            u'addons? (yes/no)'.format(len(args)))
+        if confirm != 'yes':
+            raise CommandError(u'Aborted.')
 
         for chunk in chunked(options['addon_guid'], 100):
             files = get_files(chunk)
