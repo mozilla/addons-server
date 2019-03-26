@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-18 07:57+0000\n"
-"PO-Revision-Date: 2019-03-26 07:50+0000\n"
+"PO-Revision-Date: 2019-03-26 07:57+0000\n"
 "Last-Translator: Artem Polivanchuk <artem@mozilla.org.ua>\n"
 "Language-Team: \n"
 "Language: uk\n"
@@ -2468,7 +2468,7 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Вихідний файл вивантажено, але ви зазначили, що джерело не потрібне."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Переконайтеся, що назва та опис разом не перевищують {limit_value} символів (зараз {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
@@ -3101,7 +3101,7 @@ msgid "PNG and JPG supported."
 msgstr "Підтримуються PNG та JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr ""
+msgstr "Піктограми повинні бути квадратними з мінімальним розміром 128х128 пікселів."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Розмір піктограм буде змінено на 128x128 пікселів, якщо вони більші."
@@ -3119,13 +3119,13 @@ msgid "Add a Screenshot..."
 msgstr "Додати знімок екрана..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr ""
+msgstr "Підтримуються PNG та JPG. Рекомендовано PNG. Максимальний та рекомендований розмір для знімків екрану 2400х1800 пікселів."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
-msgstr ""
+msgstr "Мінімальний розмір 1000х750. Обов'язкове співвідношення сторін 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Наявність знімків екрану на вашій сторінці додатка підвищує його шанси бути встановленим, а також відібраним на домівці."
 
 msgid "Continue"
 msgstr "Продовжити"
