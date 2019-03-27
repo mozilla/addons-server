@@ -35,6 +35,7 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
@@ -5271,13 +5272,13 @@ class TestReviewAddonVersionViewSetDetail(
         assert result['file']['content'] == '# beastify\n'
 
         # make sure the correct download url is correctly generated
-        assert result['file']['download_url'] == reverse(
+        assert result['file']['download_url'] == absolutify(reverse(
             'reviewers.download_git_file',
             kwargs={
                 'version_id': self.version.pk,
                 'filename': 'README.md'
             }
-        )
+        ))
 
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')

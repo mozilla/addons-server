@@ -63,13 +63,13 @@ class TestFileEntriesSerializer(TestCase):
             '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
 
         assert data['selected_file'] == 'manifest.json'
-        assert data['download_url'] == reverse(
+        assert data['download_url'] == absolutify(reverse(
             'reviewers.download_git_file',
             kwargs={
                 'version_id': self.addon.current_version.pk,
                 'filename': 'manifest.json'
             }
-        )
+        ))
 
         assert set(data['entries'].keys()) == {
             'README.md',
@@ -130,13 +130,13 @@ class TestFileEntriesSerializer(TestCase):
         assert data['selected_file'] == 'icons/LICENSE'
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
-        assert data['download_url'] == reverse(
+        assert data['download_url'] == absolutify(reverse(
             'reviewers.download_git_file',
             kwargs={
                 'version_id': self.addon.current_version.pk,
                 'filename': 'icons/LICENSE'
             }
-        )
+        ))
 
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
