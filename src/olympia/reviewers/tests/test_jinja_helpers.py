@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import pytest
 
+from django.test.utils import override_settings
 from mock import Mock
 
 from olympia import amo
@@ -83,3 +84,15 @@ def test_file_review_status_handles_invalid_status_id():
     # 99 isn't a valid status, so return the status code for reference.
     status = jinja_helpers.file_review_status(None, File(status=99))
     assert u'[status:99]' == status
+
+
+def test_create_a_code_manager_url():
+    with override_settings(CODE_MANAGER_URL='http://code-manager'):
+        assert jinja_helpers.code_manager_url('/some/path') == (
+            'http://code-manager/en-US/some/path'
+        )
+
+
+def test_code_manager_url_expects_a_relative_path():
+    with pytest.raises(ValueError):
+        jinja_helpers.code_manager_url('http://code-manager/some/path')

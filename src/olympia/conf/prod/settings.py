@@ -133,3 +133,5 @@ FXA_SQS_AWS_QUEUE_URL = (
 
 DRF_API_VERSIONS = ['v3', 'v4']
 DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
+
+CODE_MANAGER_URL = 'https://code.addons.mozilla.org'

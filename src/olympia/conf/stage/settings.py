@@ -149,3 +149,5 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-stage')
 
 VAMO_URL = 'https://versioncheck.allizom.org'
+
+CODE_MANAGER_URL = 'https://code.addons.allizom.org'
