@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-26 19:08+0000\n"
-"PO-Revision-Date: 2019-03-27 00:07+0000\n"
+"PO-Revision-Date: 2019-03-27 00:16+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -2288,16 +2288,14 @@ msgstr "本次上传校验失败，可能缺少完整校验结果。请在检查
 msgid "Header area background"
 msgstr "标题区域背景色"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "标题区域背景的颜色，显示在标题区域或标题图像未覆盖的部分。清单字段：accentcolor。"
+msgstr "标题区域背景的颜色，显示在标题区域或标题图像未覆盖的部分。清单字段：frame。"
 
 msgid "Header area text and icons"
 msgstr "标题区域文本和图标"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "标题区域所显示文字和图标的颜色。清单字段：textcolor。"
+msgstr "标题区域所显示文字和图标的颜色。清单字段：tab_background_text。"
 
 msgid "Toolbar area background"
 msgstr "工具栏区域背景色"
@@ -2308,9 +2306,8 @@ msgstr "导航栏、书签栏和已选标签页的背景颜色。清单字段：
 msgid "Toolbar area text and icons"
 msgstr "工具栏区域文本和图标"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：toolbar_text。"
+msgstr "工具栏和活跃标签页中的文字和图标的颜色。清单字段：bookmark_text。"
 
 msgid "Toolbar field area background"
 msgstr "工具栏文本框区域背景颜色"
