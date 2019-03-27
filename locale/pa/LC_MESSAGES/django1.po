@@ -17,3 +17,6 @@ msgstr ""
 
 msgid "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr "WebExtensions API ਦੇ ਨਾਲ, ਐਕਸਟੈਂਸ਼ਨਾਂ ਨੂੰ ਬਣਾਉਣਾ ਅਸਾਨ ਹੁੰਦਾ ਹੈ ਜੋ ਫਾਇਰਫਾਕਸ, ਕਰੋਮ, ਓਪੇਰਾ ਅਤੇ ਐਜ ਤੇ ਸਿਰਫ ਕੁਝ ਛੋਟੇ ਬਦਲਾਅ ਦੇ ਨਾਲ ਆਉਂਦੇ ਹਨ|ਚਾਰ ਮੁੱਖ ਬ੍ਰਾਉਜ਼ਰਸ ਅਤੇ ਐਕਸਟੇਂਸ਼ਨ ਵਿਕਾਸ ਦੇ ਅੰਤਰ ਬਾਰੇ ਹੋਰ ਜਾਣੋ ਅਤੇ ਕਿਵੇਂ ਤੁਸੀਂ ਆਪਣੇ ਐਕਸਟੇਂਸ਼ਨ ਕਰੌਸ-ਬ੍ਰਾਊਜ਼ਰ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾ ਸਕਦੇ ਹੋ|"
+
+msgid "Please make sure to report any linting related issues on GitHub."
+msgstr "ਕਿਰਪਾ ਕਰਕੇ ਯਕੀਨੀ ਬਣਾਉ ਕਿ GitHub ਤੇ ਕਿਸੇ ਸਤਰ ਸਬੰਧਿਤ ਮੁੱਦਿਆਂ ਦੀ ਰਿਪੋਰਟ ਕਰੋ|"
