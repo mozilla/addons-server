@@ -1,8 +1,10 @@
 import os
+import zipfile
 from base64 import b64encode
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.core.files import temp
 from django.utils.encoding import force_text
 
 import mock
@@ -11,8 +13,13 @@ import pytest
 from olympia import amo
 from olympia.amo.storage_utils import copy_stored_file
 from olympia.amo.tests import addon_factory
+from olympia.addons.cron import hide_disabled_files
+from olympia.files.utils import id_to_path
 from olympia.versions.models import VersionPreview
-from olympia.versions.tasks import generate_static_theme_preview
+from olympia.versions.tasks import (
+    generate_static_theme_preview, extract_version_to_git,
+    extract_version_source_to_git)
+from olympia.lib.git import AddonGitRepository
 
 
 HEADER_ROOT = os.path.join(
@@ -405,3 +412,80 @@ def test_generate_preview_with_additional_backgrounds(
     check_render_additional(force_text(single_svg), 720, colors)
 
     index_addons_mock.assert_called_with([addon.id])
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    extract_version_to_git(addon.current_version.pk)
+
+    repo = AddonGitRepository(addon.pk)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+def test_extract_version_to_git_deleted_version():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    version = addon.current_version
+    version.delete()
+
+    hide_disabled_files()
+
+    extract_version_to_git(version.pk)
+
+    repo = AddonGitRepository(addon.pk)
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'addon')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+def test_extract_version_source_to_git():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    # Generate source file
+    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
+    with zipfile.ZipFile(source, 'w') as zip_file:
+        zip_file.writestr('manifest.json', '{}')
+    source.seek(0)
+
+    addon.current_version.update(source=source)
+
+    extract_version_source_to_git(addon.current_version.pk)
+
+    repo = AddonGitRepository(addon.pk, package_type='source')
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
+    assert os.listdir(repo.git_repository_path) == ['.git']
+
+
+@pytest.mark.django_db
+def test_extract_version_source_to_git_deleted_version():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    version = addon.current_version
+    version.delete()
+
+    hide_disabled_files()
+
+    # Generate source file
+    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
+    with zipfile.ZipFile(source, 'w') as zip_file:
+        zip_file.writestr('manifest.json', '{}')
+    source.seek(0)
+    version.update(source=source)
+
+    extract_version_source_to_git(version.pk)
+
+    repo = AddonGitRepository(addon.pk, package_type='source')
+
+    assert repo.git_repository_path == os.path.join(
+        settings.GIT_FILE_STORAGE_PATH, id_to_path(addon.id), 'source')
+    assert os.listdir(repo.git_repository_path) == ['.git']
