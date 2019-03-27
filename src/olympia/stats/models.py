@@ -105,18 +105,6 @@ class ThemeUpdateCountBulk(models.Model):
         db_table = 'theme_update_counts_bulk'
 
 
-class GlobalStat(models.Model):
-    id = PositiveAutoField(primary_key=True)
-    name = models.CharField(max_length=255)
-    count = models.IntegerField()
-    date = models.DateField()
-
-    class Meta:
-        db_table = 'global_stats'
-        unique_together = ('name', 'date')
-        get_latest_by = 'date'
-
-
 class ThemeUserCount(StatsSearchMixin, models.Model):
     """Theme popularity (weekly average of users).
 

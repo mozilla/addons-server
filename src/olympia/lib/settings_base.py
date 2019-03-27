@@ -1179,7 +1179,6 @@ CELERY_TASK_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
 
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
@@ -1777,7 +1776,6 @@ CRON_JOBS = {
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
 
-    'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',

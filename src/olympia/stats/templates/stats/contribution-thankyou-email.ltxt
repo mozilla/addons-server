@@ -1,5 +1,0 @@
-{# L10n: This is an email.  Whitespace matters! #}
-{{ thankyou_note }}
-
-{% trans %}Learn more about the future of {{ addon_name }} by clicking here:{% endtrans %}
-{{ learn_url }}
