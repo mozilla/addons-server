@@ -17,7 +17,7 @@ from olympia import amo
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, FileEntriesSerializer)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.tests import TestCase, addon_factory, reverse_ns
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.versions.tasks import extract_version_to_git
 from olympia.versions.models import License
@@ -63,14 +63,13 @@ class TestFileEntriesSerializer(TestCase):
             '/notify-link-clicks-i18n.xpi?src=').format(file.pk)
 
         assert data['selected_file'] == 'manifest.json'
-        assert data['download_url'] == reverse_ns(
-            'reviewers-versions-download',
+        assert data['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
             kwargs={
-                'addon_pk': self.addon.pk,
-                'pk': self.addon.current_version.pk,
+                'version_id': self.addon.current_version.pk,
                 'filename': 'manifest.json'
             }
-        )
+        ))
 
         assert set(data['entries'].keys()) == {
             'README.md',
@@ -131,14 +130,13 @@ class TestFileEntriesSerializer(TestCase):
         assert data['selected_file'] == 'icons/LICENSE'
         assert data['content'].startswith(
             'The "link-48.png" icon is taken from the Geomicons')
-        assert data['download_url'] == reverse_ns(
-            'reviewers-versions-download',
+        assert data['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
             kwargs={
-                'addon_pk': self.addon.pk,
-                'pk': self.addon.current_version.pk,
+                'version_id': self.addon.current_version.pk,
                 'filename': 'icons/LICENSE'
             }
-        )
+        ))
 
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
