@@ -118,7 +118,7 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'https://amo.addons-dev.allizom.org/fxa-authenticate',
+        'redirect_url': 'https://addons-dev.allizom.org/api/v3/accounts/authenticate/?config=amo', # noqa
         'scope': 'profile',
     },
     'local': {
@@ -127,12 +127,21 @@ FXA_CONFIG = {
         'content_host': 'https://stable.dev.lcip.org',
         'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
         'profile_host': 'https://stable.dev.lcip.org/profile/v1',
-        'redirect_url': 'http://localhost:3000/fxa-authenticate',
+        'redirect_url': 'http://localhost:3000/api/v3/accounts/authenticate/?config=local', # noqa
+        'scope': 'profile',
+    },
+    'code-manager': {
+        'client_id': env('CODE_MANAGER_FXA_CLIENT_ID'),
+        'client_secret': env('CODE_MANAGER_FXA_CLIENT_SECRET'),
+        'content_host': 'https://stable.dev.lcip.org',
+        'oauth_host': 'https://oauth-stable.dev.lcip.org/v1',
+        'profile_host': 'https://stable.dev.lcip.org/profile/v1',
+        'redirect_url': 'https://addons-dev.allizom.org/api/v4/accounts/authenticate/?config=code-manager', # noqa
         'scope': 'profile',
     },
 }
 DEFAULT_FXA_CONFIG_NAME = 'default'
-ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local']
+ALLOWED_FXA_CONFIGS = ['default', 'amo', 'local', 'code-manager']
 
 FXA_SQS_AWS_QUEUE_URL = (
     'https://sqs.us-east-1.amazonaws.com/927034868273/'
