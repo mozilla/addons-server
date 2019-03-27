@@ -789,7 +789,8 @@ def migrate_legacy_dictionary_to_webextension(addon):
 @task(rate_limit='1/m')
 def migrate_webextensions_to_git_storage(ids, **kw):
     # recursive imports...
-    from olympia.versions.tasks import extract_version_to_git
+    from olympia.versions.tasks import (
+        extract_version_to_git, extract_version_source_to_git)
 
     log.info(
         'Migrating add-ons to git storage %d-%d [%d].',
@@ -835,6 +836,9 @@ def migrate_webextensions_to_git_storage(ids, **kw):
                     file_id=file_id))
 
                 extract_version_to_git(version.pk)
+
+                if version.source:
+                    extract_version_source_to_git(version.pk)
 
                 log.info(
                     'Extraction of file {file_id} into git storage succeeded'
