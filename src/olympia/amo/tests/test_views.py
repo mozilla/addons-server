@@ -4,6 +4,7 @@ import sys
 
 from datetime import datetime, timedelta
 
+import django
 from django import test
 from django.conf import settings
 from django.test.utils import override_settings
@@ -484,3 +485,5 @@ class TestVersion(TestCase):
         content = json.loads(force_text(res.content))
         assert content['python'] == '%s.%s' % (
             sys.version_info.major, sys.version_info.minor)
+        assert content['django'] == '%s.%s' % (
+            django.VERSION[0], django.VERSION[1])

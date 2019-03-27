@@ -17,14 +17,14 @@ jobs:
     - { env: TOXENV=accounts-users-and-ratings }
     - { env: TOXENV=amo-lib-locales-and-signing }
     - { env: TOXENV=main }
-    - { env: TOXENV=assets DJANGO=django22 }
-    - { env: TOXENV=es DJANGO=django22 }
-    - { env: TOXENV=addons-versions-and-files DJANGO=django22 }
-    - { env: TOXENV=devhub DJANGO=django22 }
-    - { env: TOXENV=reviewers-and-zadmin DJANGO=django22 }
-    - { env: TOXENV=accounts-users-and-ratings DJANGO=django22 }
-    - { env: TOXENV=amo-lib-locales-and-signing DJANGO=django22 }
-    - { env: TOXENV=main DJANGO=django22 }
+    - { env: TOXENV=assets DJANGO_VERSION=django22 }
+    - { env: TOXENV=es DJANGO_VERSION=django22 }
+    - { env: TOXENV=addons-versions-and-files DJANGO_VERSION=django22 }
+    - { env: TOXENV=devhub DJANGO_VERSION=django22 }
+    - { env: TOXENV=reviewers-and-zadmin DJANGO_VERSION=django22 }
+    - { env: TOXENV=accounts-users-and-ratings DJANGO_VERSION=django22 }
+    - { env: TOXENV=amo-lib-locales-and-signing DJANGO_VERSION=django22 }
+    - { env: TOXENV=main DJANGO_VERSION=django22 }
 
 env:
   global:

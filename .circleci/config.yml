@@ -31,6 +31,8 @@ jobs:
   build:
     machine: true
     working_directory: ~/addons-server
+    environment:
+        DJANGO_VERSION: "django22"
     steps:
       - checkout
       - build_and_push_container_image:

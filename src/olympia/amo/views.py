@@ -2,6 +2,7 @@ import json
 import os
 import sys
 
+import django
 from django import http
 from django.conf import settings
 from django.core.exceptions import ViewDoesNotExist
@@ -116,6 +117,8 @@ def version(request):
         contents = json.loads(f.read())
     contents['python'] = '{major}.{minor}'.format(
         major=py_info.major, minor=py_info.minor)
+    contents['django'] = '{major}.{minor}'.format(
+        major=django.VERSION[0], minor=django.VERSION[1])
     return HttpResponse(json.dumps(contents), content_type='application/json')
 
 
