@@ -2,6 +2,9 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHON_VERSION_MAJOR 3
 
+ARG DJANGO_VERSION=""
+ENV DJANGO_VERSION=$DJANGO_VERSION
+
 # need to compile swig
 ENV SWIG_FEATURES="-D__x86_64__"
 
