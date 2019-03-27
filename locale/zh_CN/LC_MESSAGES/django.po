@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-26 19:08+0000\n"
-"PO-Revision-Date: 2019-03-27 00:16+0000\n"
+"PO-Revision-Date: 2019-03-27 02:41+0000\n"
 "Last-Translator: passionforlife <eloli@foxmail.com>\n"
 "Language-Team: Chinese Simplified, China <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -5085,7 +5085,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "支持的最低 \"strict_min_version\" 为 42.0。"
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "{app} 的“strict_min_version”版本 {appver} 未知"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
