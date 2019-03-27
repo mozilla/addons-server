@@ -144,6 +144,10 @@ class NoManifestFound(forms.ValidationError):
     pass
 
 
+class InvalidManifest(forms.ValidationError):
+    pass
+
+
 class Extractor(object):
     """Extract add-on info from a manifest file."""
     App = collections.namedtuple('App', 'appdata id min max')
@@ -394,7 +398,11 @@ class ManifestJSONExtractor(object):
             if name not in ('blockcomment', 'linecomment'):
                 json_string += token
 
-        self.data = json.loads(json_string)
+        try:
+            self.data = json.loads(json_string)
+        except Exception:
+            raise InvalidManifest(
+                ugettext('Could not parse the manifest file.'))
 
     def get(self, key, default=None):
         return self.data.get(key, default)
@@ -983,9 +991,13 @@ def parse_xpi(xpi, addon=None, minimal=False, user=None):
         else:
             err, strerror = e.args
         log.error('I/O error({0}): {1}'.format(err, strerror))
+        # Note: we don't really know what happened, so even though we return a
+        # generic message about the manifest, don't raise InvalidManifest. We
+        # want the validation to stop there.
         raise forms.ValidationError(ugettext(
             'Could not parse the manifest file.'))
     except Exception:
+        # As above, don't raise InvalidManifest here.
         log.error('XPI parse error', exc_info=True)
         raise forms.ValidationError(ugettext(
             'Could not parse the manifest file.'))

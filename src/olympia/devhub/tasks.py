@@ -37,7 +37,8 @@ from olympia.api.models import SYMMETRIC_JWT_TYPE, APIKey
 from olympia.lib.akismet.models import AkismetReport
 from olympia.files.models import File, FileUpload, FileValidation
 from olympia.files.utils import (
-    NoManifestFound, parse_addon, SafeZip, UnsupportedFileType)
+    InvalidManifest, NoManifestFound, parse_addon, SafeZip,
+    UnsupportedFileType)
 from olympia.files.tasks import repack_fileupload
 from olympia.versions.models import Version
 from olympia.devhub import file_validation_annotations as annotations
@@ -157,8 +158,13 @@ def validation_task(fn):
             results = deepcopy(amo.VALIDATOR_SKELETON_RESULTS)
             annotations.insert_validation_message(
                 results, type_='error',
-                message=exc.message, msg_id='unsupported_filetype',
-                compatibility_type=None)
+                message=exc.message, msg_id='unsupported_filetype')
+            return results
+        except BadZipfile:
+            results = deepcopy(amo.VALIDATOR_SKELETON_EXCEPTION_WEBEXT)
+            annotations.insert_validation_message(
+                results, type_='error',
+                message=ugettext('Invalid or corrupt add-on file.'))
             return results
         except Exception as exc:
             log.exception('Unhandled error during validation: %r' % exc)
@@ -221,6 +227,10 @@ def validate_file_path(path, channel):
         # explicitly looks for is_webextension is False, so it will not be
         # considered a legacy extension, and the linter will pick it up and
         # will know what message to return to the developer.
+        data = {}
+    except InvalidManifest:
+        # Similarly, if we can't parse the manifest, let the linter pick that
+        # up.
         data = {}
     is_legacy_extension = data.get('is_webextension', None) is False
     is_mozilla_signed = data.get('is_mozilla_signed_extension', None) is True

@@ -584,6 +584,18 @@ class TestValidateFilePath(ValidatorTestCase):
             channel=amo.RELEASE_CHANNEL_LISTED)
         assert run_addons_linter_mock.call_count == 1
 
+    @mock.patch('olympia.devhub.tasks.parse_addon')
+    @mock.patch('olympia.devhub.tasks.run_addons_linter')
+    def test_invalid_json_manifest_error(
+            self, run_addons_linter_mock, parse_addon_mock):
+        parse_addon_mock.side_effect = NoManifestFound(message=u'Fôo')
+        # When parse_addon() raises a InvalidManifest error, we should
+        # still call the linter to let it raise the appropriate error message.
+        tasks.validate_file_path(
+            get_addon_file('invalid_manifest_webextension.xpi'),
+            channel=amo.RELEASE_CHANNEL_LISTED)
+        assert run_addons_linter_mock.call_count == 1
+
 
 class TestWebextensionIncompatibilities(UploadTest, ValidatorTestCase):
     fixtures = ['base/addon_3615']

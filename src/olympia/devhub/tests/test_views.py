@@ -15,7 +15,6 @@ from django.utils.translation import trim_whitespace
 import mock
 import pytest
 import responses
-import waffle
 
 from pyquery import PyQuery as pq
 from waffle.testutils import override_switch
@@ -1062,19 +1061,25 @@ class TestUploadDetail(BaseUploadTest):
         assert message == expected
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
-    @mock.patch.object(waffle, 'flag_is_active')
-    def test_unparsable_xpi(self, flag_is_active, v):
-        flag_is_active.return_value = True
-        v.return_value = json.dumps(self.validation_ok())
+    def test_not_a_valid_xpi(self, run_addons_linter_mock):
+        run_addons_linter_mock.return_value = json.dumps(self.validation_ok())
         self.upload_file('unopenable.xpi')
+        # We never even reach the linter (we can't: because we're repacking
+        # zip files, we should raise an error if the zip is invalid before
+        # calling the linter, even though the linter has a perfectly good error
+        # message for this kind of situation).
+        assert not run_addons_linter_mock.called
         upload = FileUpload.objects.get()
         response = self.client.get(
             reverse('devhub.upload_detail', args=[upload.uuid.hex, 'json']))
         data = json.loads(force_text(response.content))
         message = [(m['message'], m.get('fatal', False))
                    for m in data['validation']['messages']]
+        # We do raise a specific error message explaining that the archive is
+        # not valid instead of a generic exception.
         assert message == [
-            (u'Sorry, we couldn&#39;t load your WebExtension.', True)
+            ('Invalid or corrupt add-on file.', False),
+            ('Sorry, we couldn&#39;t load your WebExtension.', True),
         ]
 
     @mock.patch('olympia.devhub.tasks.run_addons_linter')
