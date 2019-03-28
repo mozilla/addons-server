@@ -4389,6 +4389,7 @@ class TestReview(ReviewBase):
                     args=[self.addon.current_version.id])
         )
 
+
 @override_flag('code-manager', active=True)
 class TestCodeManagerLinks(ReviewBase):
 
