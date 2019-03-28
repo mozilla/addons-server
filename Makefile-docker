@@ -7,8 +7,8 @@ export PIP_COMMAND=pip${PYTHON_VERSION_MAJOR}
 export PYTHON_COMMAND=python${PYTHON_VERSION_MAJOR}
 
 # FXA username and password for ui-tests
-export FXA_EMAIL=${UITEST_FXA_EMAIL}
-export FXA_PASSWORD=${UITEST_FXA_PASSWORD}
+export UITEST_FXA_EMAIL := uitest-$(shell uuid)@restmail.net
+export UITEST_FXA_PASSWORD := uitester
 
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
