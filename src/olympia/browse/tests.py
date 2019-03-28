@@ -83,14 +83,6 @@ class TestListing(TestCase):
         super(TestListing, self).setUp()
         self.url = reverse('browse.extensions')
 
-    def test_try_new_frontend_banner_presence(self):
-        response = self.client.get(self.url)
-        assert b'AMO is getting a new look.' not in response.content
-
-        with override_switch('try-new-frontend', active=True):
-            response = self.client.get(self.url)
-            assert b'AMO is getting a new look.' in response.content
-
     def test_default_sort(self):
         r = self.client.get(self.url)
         assert r.context['sorting'] == 'featured'
@@ -1069,14 +1061,6 @@ class TestPersonas(TestCase):
             a._current_version = v
             a.status = amo.STATUS_PUBLIC
             a.save()
-
-    def test_try_new_frontend_banner_presence(self):
-        response = self.client.get(self.landing_url)
-        assert b'AMO is getting a new look.' not in response.content
-
-        with override_switch('try-new-frontend', active=True):
-            response = self.client.get(self.landing_url)
-            assert b'AMO is getting a new look.' in response.content
 
     def test_does_not_500_in_development(self):
         with self.settings(DEBUG=True):

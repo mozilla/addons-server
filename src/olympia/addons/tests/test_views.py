@@ -105,22 +105,6 @@ class TestHomepage(TestCase):
         assert response.status_code == 200
         assert response.content
 
-    def test_welcome_msg(self):
-        response = self.client.get('/en-US/firefox/')
-        welcome = pq(response.content)('#site-welcome').remove('a.close')
-        assert welcome.text() == (
-            'Welcome to Firefox Add-ons.\nChoose from thousands of extra '
-            'features and styles to make Firefox your own.')
-
-    def test_try_new_frontend_banner_presence(self):
-        self.url = '/en-US/firefox/'
-        response = self.client.get(self.url)
-        assert b'AMO is getting a new look.' not in response.content
-
-        with override_switch('try-new-frontend', active=True):
-            response = self.client.get(self.url)
-            assert b'AMO is getting a new look.' in response.content
-
 
 class TestHomepageFeatures(TestCase):
     fixtures = ['base/appversion',
@@ -304,14 +288,6 @@ class TestDetailPage(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.url = self.addon.get_url_path()
         self.more_url = self.addon.get_url_path(more=True)
-
-    def test_try_new_frontend_banner_presence(self):
-        response = self.client.get(self.url)
-        assert b'AMO is getting a new look.' not in response.content
-
-        with override_switch('try-new-frontend', active=True):
-            response = self.client.get(self.url)
-            assert b'AMO is getting a new look.' in response.content
 
     @pytest.mark.xfail(reason=(
         'ETags currently don\'t work for add-on detail page. This is testing '

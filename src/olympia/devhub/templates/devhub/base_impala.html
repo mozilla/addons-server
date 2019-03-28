@@ -1,7 +1,7 @@
 {% extends "impala/base.html" %}
- 
+
 {% block user_login_include %}
-  {% with devhub_backlink="True" %} 
+  {% with devhub_backlink="True" %}
     {% include "impala/user_login.html" %}
   {% endwith %}
 {% endblock %}
@@ -19,12 +19,6 @@
 
 {% block extrahead %}
   {{ css('zamboni/devhub_impala') }}
-{% endblock %}
-
-{% block aux_nav %}
-  <li class="nomenu">
-    <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
-  </li>
 {% endblock %}
 
 {% block site_header_title %}
