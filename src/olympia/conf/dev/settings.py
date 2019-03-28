@@ -36,6 +36,8 @@ SERVER_EMAIL = 'zdev@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
                    default='https://services.addons-dev.allizom.org')
+CODE_MANAGER_URL = env('CODE_MANAGER_URL',
+                       default='https://code.addons-dev.allizom.org')
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
@@ -148,5 +150,3 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-dev')
 
 VAMO_URL = 'https://versioncheck-dev.allizom.org'
-
-CODE_MANAGER_URL = 'https://code.addons-dev.allizom.org'

@@ -24,6 +24,8 @@ SERVER_EMAIL = 'zprod@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
                    default='https://services.addons.mozilla.org')
+CODE_MANAGER_URL = env('CODE_MANAGER_URL',
+                       default='https://code.addons.mozilla.org')
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
@@ -133,5 +135,3 @@ FXA_SQS_AWS_QUEUE_URL = (
 
 DRF_API_VERSIONS = ['v3', 'v4']
 DRF_API_REGEX = r'^/?api/(?:v3|v4)/'
-
-CODE_MANAGER_URL = 'https://code.addons.mozilla.org'

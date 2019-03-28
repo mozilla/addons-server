@@ -34,6 +34,8 @@ SERVER_EMAIL = 'zstage@addons.mozilla.org'
 SITE_URL = 'https://' + DOMAIN
 SERVICES_URL = env('SERVICES_URL',
                    default='https://services.addons.allizom.org')
+CODE_MANAGER_URL = env('CODE_MANAGER_URL',
+                       default='https://code.addons.allizom.org')
 STATIC_URL = '%s/static/' % CDN_HOST
 MEDIA_URL = '%s/user-media/' % CDN_HOST
 
@@ -149,5 +151,3 @@ FXA_SQS_AWS_QUEUE_URL = (
     'amo-account-change-stage')
 
 VAMO_URL = 'https://versioncheck.allizom.org'
-
-CODE_MANAGER_URL = 'https://code.addons.allizom.org'

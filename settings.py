@@ -43,6 +43,8 @@ SITE_URL = os.environ.get('OLYMPIA_SITE_URL') or 'http://localhost:8000'
 DOMAIN = SERVICES_DOMAIN = urlparse(SITE_URL).netloc
 SERVICES_URL = SITE_URL
 
+CODE_MANAGER_URL = os.environ.get('CODE_MANAGER_URL') or 'http://localhost:3000'
+
 ALLOWED_HOSTS = ALLOWED_HOSTS + [SERVICES_DOMAIN]
 
 # Default AMO user id to use for tasks (from users.json fixture in zadmin).
@@ -123,8 +125,6 @@ CSP_SCRIPT_SRC += (HTTP_GA_SRC, "'self'")
 INBOUND_EMAIL_SECRET_KEY = 'totally-unsecure-secret-string'
 # Validation key we need to send in POST response.
 INBOUND_EMAIL_VALIDATION_KEY = 'totally-unsecure-validation-string'
-
-CODE_MANAGER_URL = 'http://localhost:3000'
 
 # If you have settings you want to overload, put them in a local_settings.py.
 try:
