@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-26 19:08+0000\n"
-"PO-Revision-Date: 2019-03-28 09:51+0000\n"
+"PO-Revision-Date: 2019-03-28 09:52+0000\n"
 "Last-Translator: Ian Neal <iann_bugzilla@blueyonder.co.uk>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: en_GB\n"
@@ -2333,9 +2333,8 @@ msgstr "The background colour for the navigation bar, the bookmarks bar, and the
 msgid "Toolbar area text and icons"
 msgstr "Toolbar area text and icons"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "The colour of the text and icons in the toolbar and the active tab. Manifest field:  toolbar_text."
+msgstr "The colour of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Toolbar field area background"
@@ -2406,9 +2405,8 @@ msgstr "<small>Add-on</small> Developer Hub"
 msgid "more add-ons..."
 msgstr "more add-ons..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Extensions"
+msgstr "Extension Workshop"
 
 msgid "Documentation"
 msgstr "Documentation"
@@ -5131,27 +5129,24 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "With a mouse click you can watch videos in full screen glory."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Save memory with {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Stop wasting valuable memory space with inactive tabs."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "Save complete pages—or just portions—as a single HTML file."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
+msgstr "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
@@ -5255,9 +5250,8 @@ msgstr "You cannot submit an add-on with a guid ending %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "You cannot submit a Mozilla Signed Extension"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Unsupported file type, please upload an a supported file {extensions}."
+msgstr "Unsupported file type, please upload a supported file {extensions}."
 
 msgid "Unexpected error."
 msgstr "Unexpected error."
