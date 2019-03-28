@@ -94,7 +94,7 @@ services:
       - WEBPACK_SERVER_HOST=olympia.test
       - CSP=false
       - FXA_CONFIG=default
-    image: addons/addons-frontend:latest
+    image: mozilla/addons-frontend:latest
     ports:
       - "3000:3000"
       - "3001:3001"
