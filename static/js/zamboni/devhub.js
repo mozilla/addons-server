@@ -563,11 +563,10 @@ function initVersions() {
             if (note["highlight"] == true) {
                 clone.addClass("new");
             }
-            clone.find('span.action')[0].textContent = note["action_label"];
-            var user = clone.find('a:contains("$user_name")');
+            clone.find('.action')[0].textContent = note["action_label"];
+            var user = clone.find('.user_name');
             user[0].textContent = note["user"]["name"];
-            user.attr('href', note["user"]["url"]);
-            var date = clone.find('time.timeago');
+            var date = clone.find('.timeago');
             date[0].textContent = note["date"];
             date.attr('datetime', note["date"]);
             date.attr('title', note["date"]);

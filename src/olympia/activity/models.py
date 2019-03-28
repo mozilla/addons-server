@@ -479,6 +479,17 @@ class ActivityLog(ModelBase):
     def __html__(self):
         return self
 
+    @property
+    def author_name(self):
+        """Name of the user that triggered the activity.
+
+        If it's a reviewer action that will be shown to developers, the
+        `reviewer_name` property is used if present, otherwise `name` is
+        used."""
+        if self.action in constants.activity.LOG_REVIEW_QUEUE_DEVELOPER:
+            return self.user.reviewer_name or self.user.name
+        return self.user.name
+
     @classmethod
     def create(cls, action, *args, **kw):
         """

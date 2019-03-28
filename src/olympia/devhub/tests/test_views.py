@@ -647,6 +647,8 @@ class TestActivityFeed(TestCase):
         assert self.client.login(email='del@icio.us')
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.versions.first()
+        self.action_user = UserProfile.objects.get(
+            email='reviewer@mozilla.com')
 
     def test_feed_for_all(self):
         response = self.client.get(reverse('devhub.feed_all'))
@@ -675,7 +677,7 @@ class TestActivityFeed(TestCase):
         assert response.status_code == 302
 
     def add_log(self, action=amo.LOG.ADD_RATING):
-        core.set_user(UserProfile.objects.get(email='del@icio.us'))
+        core.set_user(self.action_user)
         ActivityLog.create(action, self.addon, self.version)
 
     def add_hidden_log(self, action=amo.LOG.COMMENT_VERSION):
@@ -727,6 +729,32 @@ class TestActivityFeed(TestCase):
         res = self.client.get(reverse('devhub.feed', args=[self.addon.slug]))
         doc = pq(res.content)
         assert len(doc('#recent-activity .item')) == 1
+
+    def test_reviewer_name_is_used_for_reviewer_actions(self):
+        self.action_user.update(display_name='HîdeMe', reviewer_name='ShöwMe')
+        self.add_log(action=amo.LOG.APPROVE_VERSION)
+        response = self.client.get(
+            reverse('devhub.feed', args=[self.addon.slug]))
+        doc = pq(response.content)
+        assert len(doc('#recent-activity .item')) == 1
+
+        content = force_text(response.content)
+        assert self.action_user.reviewer_name in content
+        assert self.action_user.name not in content
+
+    def test_regular_name_is_used_for_non_reviewer_actions(self):
+        # Fields are inverted compared to the test above.
+        self.action_user.update(reviewer_name='HîdeMe', display_name='ShöwMe')
+        self.add_log(action=amo.LOG.ADD_RATING)  # not a reviewer action.
+        response = self.client.get(
+            reverse('devhub.feed', args=[self.addon.slug]))
+        doc = pq(response.content)
+        assert len(doc('#recent-activity .item')) == 1
+
+        content = force_text(response.content)
+        # Assertions are inverted compared to the test above.
+        assert self.action_user.reviewer_name not in content
+        assert self.action_user.name in content
 
 
 class TestAPIAgreement(TestCase):

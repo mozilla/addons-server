@@ -4,7 +4,6 @@ from rest_framework.test import APIRequestFactory
 from olympia import amo
 from olympia.activity.models import ActivityLog
 from olympia.activity.serializers import ActivityLogSerializer
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, addon_factory, user_factory
 
 
@@ -24,16 +23,16 @@ class LogMixin(object):
 class TestReviewNotesSerializerOutput(TestCase, LogMixin):
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.user = user_factory()
+        self.user = user_factory(reviewer_name='fôo')
         self.addon = addon_factory()
         self.now = self.days_ago(0)
-        self.entry = self.log(u'Oh nÃ´es!', amo.LOG.REJECT_VERSION, self.now)
+        self.entry = self.log(u'Oh nøes!', amo.LOG.REJECT_VERSION, self.now)
 
     def serialize(self, context=None):
         if context is None:
             context = {}
         context['request'] = self.request
-        serializer = ActivityLogSerializer(context=context)
+        serializer = ActivityLogSerializer(self.entry, context=context)
         return serializer.to_representation(self.entry)
 
     def test_basic(self):
@@ -43,33 +42,32 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['date'] == self.now.isoformat() + 'Z'
         assert result['action'] == 'rejected'
         assert result['action_label'] == 'Rejected'
-        assert result['comments'] == u'Oh nÃ´es!'
+        assert result['comments'] == u'Oh nøes!'
+        # To allow reviewers to stay anonymous the user object only contains
+        # the "activity name", which uses the reviewer name alias if present.
         assert result['user'] == {
-            'id': self.user.pk,
-            'name': self.user.name,
+            'id': None,
+            'name': 'fôo',
             'url': None,
-            'username': self.user.username,
+            'username': None,
         }
 
     def test_url_for_yourself(self):
-        # should include account profile url for your own requests
         self.request.user = self.user
         result = self.serialize()
-        assert result['user']['url'] == absolutify(self.user.get_url_path())
+        assert result['user']['url'] is None
 
     def test_url_for_developers(self):
-        # should include account profile url for a developer
         addon_factory(users=[self.user])
         result = self.serialize()
-        assert result['user']['url'] == absolutify(self.user.get_url_path())
+        assert result['user']['url'] is None
 
     def test_url_for_admins(self):
-        # should include account profile url for admins
         admin = user_factory()
         self.grant_permission(admin, 'Users:Edit')
         self.request.user = admin
         result = self.serialize()
-        assert result['user']['url'] == absolutify(self.user.get_url_path())
+        assert result['user']['url'] is None
 
     def test_should_highlight(self):
         result = self.serialize(context={'to_highlight': [self.entry]})

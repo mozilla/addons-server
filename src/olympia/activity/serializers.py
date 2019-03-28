@@ -2,7 +2,6 @@ from django.utils.translation import ugettext
 
 from rest_framework import serializers
 
-from olympia.accounts.serializers import BaseUserSerializer
 from olympia.activity.models import ActivityLog
 
 
@@ -11,7 +10,7 @@ class ActivityLogSerializer(serializers.ModelSerializer):
     action_label = serializers.SerializerMethodField()
     comments = serializers.SerializerMethodField()
     date = serializers.DateTimeField(source='created')
-    user = BaseUserSerializer()
+    user = serializers.SerializerMethodField()
     highlight = serializers.SerializerMethodField()
 
     class Meta:
@@ -37,3 +36,16 @@ class ActivityLogSerializer(serializers.ModelSerializer):
 
     def get_highlight(self, obj):
         return obj in self.to_highlight
+
+    def get_user(self, obj):
+        """Return minimal user information using ActivityLog.author_name to
+        avoid revealing actual name of reviewers for their review actions if
+        they have set an alias.
+
+        id, username and url are present for backwards-compatibility only."""
+        return {
+            'id': None,
+            'username': None,
+            'url': None,
+            'name': obj.author_name,
+        }

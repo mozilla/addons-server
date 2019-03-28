@@ -78,18 +78,27 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     picture_upload = serializers.ImageField(use_url=True, write_only=True)
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
+    reviewer_name = serializers.CharField(
+        min_length=2, max_length=50,
+        validators=[OneOrMorePrintableCharacterAPIValidator()])
 
     class Meta(PublicUserProfileSerializer.Meta):
         fields = PublicUserProfileSerializer.Meta.fields + (
-            'display_name', 'email', 'deleted', 'last_login', 'picture_upload',
-            'last_login_ip', 'read_dev_agreement', 'permissions',
-            'fxa_edit_email_url', 'username',
+            'deleted', 'display_name', 'email', 'fxa_edit_email_url',
+            'last_login', 'last_login_ip', 'permissions', 'picture_upload',
+            'read_dev_agreement', 'reviewer_name', 'username'
         )
         writeable_fields = (
             'biography', 'display_name', 'homepage', 'location', 'occupation',
-            'picture_upload',
+            'picture_upload', 'reviewer_name',
         )
         read_only_fields = tuple(set(fields) - set(writeable_fields))
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if (not self.instance or
+                not acl.is_user_any_kind_of_reviewer(self.instance)):
+            self.fields.pop('reviewer_name', None)
 
     def get_fxa_edit_email_url(self, user):
         base_url = '{}/settings'.format(
@@ -109,6 +118,12 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if DeniedName.blocked(value):
             raise serializers.ValidationError(
                 ugettext(u'This display name cannot be used.'))
+        return value
+
+    def validate_reviewer_name(self, value):
+        if DeniedName.blocked(value):
+            raise serializers.ValidationError(
+                ugettext(u'This reviewer name cannot be used.'))
         return value
 
     def validate_homepage(self, value):
