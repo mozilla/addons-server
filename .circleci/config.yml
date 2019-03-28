@@ -132,6 +132,8 @@ jobs:
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
             sleep 10
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox sudo chown -R seluser:seluser .
+            # Start auto approve script
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec -T web make -f Makefile-docker run-auto-approve &
             # Start Test in Firefox docker container
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -r -e ui-tests
       - store_artifacts:

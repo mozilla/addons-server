@@ -192,6 +192,9 @@ setup-ui-tests:
 	# Also update category counts (denormalized field)
 	$(PYTHON_COMMAND) manage.py cron category_totals
 
+run-auto-approve:
+	$(PYTHON_COMMAND) tests/ui/run_auto_approve.py
+
 .PHONY: run-ui-tests
 run-ui-tests:
 	docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -e ui-tests
