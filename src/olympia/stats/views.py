@@ -2,14 +2,11 @@ import csv
 import json
 import time
 
-from collections import OrderedDict
-from datetime import date, timedelta
+from datetime import timedelta
 
 from django import http
-from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.core.files.storage import get_storage_class
-from django.db import connection
 from django.db.transaction import non_atomic_requests
 from django.utils.cache import add_never_cache_headers, patch_cache_control
 from django.utils.encoding import force_text
@@ -27,7 +24,6 @@ from olympia.amo.decorators import allow_cross_site_request
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import AMOJSONEncoder, render
 from olympia.core.languages import ALL_LANGUAGES
-from olympia.lib.cache import memoize
 from olympia.stats.decorators import addon_view_stats
 from olympia.stats.forms import DateForm
 
@@ -42,21 +38,9 @@ SERIES_GROUPS_DATE = ('date', 'week', 'month')  # Backwards compat.
 SERIES_FORMATS = ('json', 'csv')
 SERIES = ('downloads', 'usage', 'overview', 'sources', 'os',
           'locales', 'statuses', 'versions', 'apps')
-GLOBAL_SERIES = ('addons_in_use', 'addons_updated', 'addons_downloaded',
-                 'collections_created', 'reviews_created', 'addons_created',
-                 'users_created', 'my_apps')
 
 
 storage = get_storage_class()()
-
-
-@non_atomic_requests
-def dashboard(request):
-    stats_base_url = reverse('stats.dashboard')
-    view = get_report_view(request)
-    return render(request, 'stats/dashboard.html',
-                  {'report': 'site', 'view': view,
-                   'stats_base_url': stats_base_url})
 
 
 def get_series(model, extra_field=None, source=None, **filters):
@@ -341,15 +325,6 @@ def stats_report(request, addon, report):
                    'stats_base_url': stats_base_url})
 
 
-@non_atomic_requests
-def site_stats_report(request, report):
-    stats_base_url = reverse('stats.dashboard')
-    view = get_report_view(request)
-    return render(request, 'stats/reports/%s.html' % report,
-                  {'report': report, 'view': view,
-                   'stats_base_url': stats_base_url})
-
-
 def get_report_view(request):
     """Parse and validate a pair of YYYMMDD date strings."""
     dates = DateForm(data=request.GET)
@@ -385,101 +360,6 @@ def get_daterange_or_404(start, end):
         dates.cleaned_data['start'],
         dates.cleaned_data['end']
     )
-
-
-def daterange(start_date, end_date):
-    for n in range((end_date - start_date).days):
-        yield start_date + timedelta(n)
-
-
-# Cached lookup of the keys and the SQL.
-# Taken from remora, a mapping of the old values.
-_KEYS = {
-    'addon_downloads_new': 'addons_downloaded',
-    'addon_total_updatepings': 'addons_in_use',
-    'addon_count_new': 'addons_created',
-    'version_count_new': 'addons_updated',
-    'user_count_new': 'users_created',
-    'review_count_new': 'reviews_created',
-    'collection_count_new': 'collections_created',
-}
-_ALL_KEYS = list(_KEYS)
-
-_CACHED_KEYS = sorted(_KEYS.values())
-
-
-@memoize(prefix='global_stats', timeout=60 * 60)
-def _site_query(period, start, end, field=None, request=None):
-    with connection.cursor() as cursor:
-        # Let MySQL make this fast. Make sure we prevent SQL injection with the
-        # assert.
-        if period not in SERIES_GROUPS_DATE:
-            raise AssertionError('%s period is not valid.' % period)
-
-        sql = ("SELECT name, MIN(date), SUM(count) "
-               "FROM global_stats "
-               "WHERE date > %%s AND date <= %%s "
-               "AND name IN (%s) "
-               "GROUP BY %s(date), name "
-               "ORDER BY %s(date) DESC;"
-               % (', '.join(['%s' for key in _ALL_KEYS]), period, period))
-        cursor.execute(sql, [start, end] + _ALL_KEYS)
-
-        # Process the results into a format that is friendly for render_*.
-        default = {k: 0 for k in _CACHED_KEYS}
-        result = OrderedDict()
-        for name, date_, count in cursor.fetchall():
-            date_ = date_.strftime('%Y-%m-%d')
-            if date_ not in result:
-                result[date_] = default.copy()
-                result[date_]['date'] = date_
-                result[date_]['data'] = {}
-            result[date_]['data'][_KEYS[name]] = int(count)
-
-    return list(result.values()), _CACHED_KEYS
-
-
-@non_atomic_requests
-def site(request, format, group, start=None, end=None):
-    """Site data from the global_stats table."""
-    if not start and not end:
-        start = (date.today() - timedelta(days=365)).strftime('%Y%m%d')
-        end = date.today().strftime('%Y%m%d')
-
-    group = 'date' if group == 'day' else group
-    start, end = get_daterange_or_404(start, end)
-    series, keys = _site_query(group, start, end, request)
-
-    if format == 'csv':
-        return render_csv(request, None, series, ['date'] + keys,
-                          title='addons.mozilla.org week Site Statistics',
-                          show_disclaimer=True)
-
-    return render_json(request, None, series)
-
-
-@non_atomic_requests
-def site_series(request, format, group, start, end, field):
-    """Pull a single field from the site_query data"""
-    start, end = get_daterange_or_404(start, end)
-    group = 'date' if group == 'day' else group
-    series = []
-    full_series, keys = _site_query(group, start, end, field, request)
-    for row in full_series:
-        if field in row['data']:
-            series.append({
-                'date': row['date'],
-                'count': row['data'][field],
-                'data': {},
-            })
-    # TODO: (dspasovski) check whether this is the CSV data we really want
-    if format == 'csv':
-        series, fields = csv_fields(series)
-        return render_csv(request, None, series,
-                          ['date', 'count'] + list(fields),
-                          title='%s week Site Statistics' % settings.DOMAIN,
-                          show_disclaimer=True)
-    return render_json(request, None, series)
 
 
 def fudge_headers(response, stats):

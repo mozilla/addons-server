@@ -93,7 +93,7 @@ class Test404(TestCase):
 
 
 class TestCommon(TestCase):
-    fixtures = ('base/users', 'base/global-stats', 'base/addon_3615')
+    fixtures = ('base/users', 'base/addon_3615')
 
     def setUp(self):
         super(TestCommon, self).setUp()

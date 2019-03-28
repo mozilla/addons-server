@@ -127,7 +127,6 @@ class TestHomepageFeatures(TestCase):
                 'base/users',
                 'base/addon_3615',
                 'base/collections',
-                'base/global-stats',
                 'base/featured',
                 'addons/featured',
                 'bandwagon/featured_collections']
