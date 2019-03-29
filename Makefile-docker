@@ -6,10 +6,6 @@ export PYTHON_VERSION_MAJOR ?= $(shell python -c 'import sys; print(sys.version_
 export PIP_COMMAND=pip${PYTHON_VERSION_MAJOR}
 export PYTHON_COMMAND=python${PYTHON_VERSION_MAJOR}
 
-# FXA username and password for ui-tests
-export UITEST_FXA_EMAIL := uitest-$(shell uuid)@restmail.net
-export UITEST_FXA_PASSWORD := uitester
-
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
 
@@ -94,6 +90,10 @@ initialize_db:
 
 .PHONY: populate_data
 populate_data:
+	# FXA username and password for ui-tests
+	export UITEST_FXA_EMAIL := uitest-$(shell uuid)@restmail.net
+	export UITEST_FXA_PASSWORD := uitester
+
 	# reindex --wipe will force the ES mapping to be re-installed. Useful to
 	# make sure the mapping is correct before adding a bunch of add-ons.
 	$(PYTHON_COMMAND) manage.py reindex --wipe --force --noinput
