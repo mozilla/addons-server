@@ -31,6 +31,7 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
+from six.moves.urllib_parse import urlparse
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
@@ -86,8 +87,20 @@ LOGIN_ERROR_MESSAGES = {
 API_TOKEN_COOKIE = 'frontend_auth_token'
 
 
-def safe_redirect(url, action):
-    if not is_safe_url(url, allowed_hosts=(settings.DOMAIN,)):
+def _is_safe_url(url, request):
+    """Override the Django `is_safe_url()` to pass a configured list of allowed
+    hosts and enforce HTTPS."""
+    allowed_hosts = (
+        settings.DOMAIN,
+        urlparse(settings.CODE_MANAGER_URL).netloc,
+    )
+    require_https = request.is_secure() if request else False
+    return is_safe_url(url, allowed_hosts=allowed_hosts,
+                       require_https=require_https)
+
+
+def safe_redirect(url, action, request):
+    if not _is_safe_url(url, request):
         url = reverse('home')
     log.info(u'Redirecting after {} to: {}'.format(action, url))
     return HttpResponseRedirect(url)
@@ -175,7 +188,7 @@ def render_error(request, error, next_path=None, format=None):
         status = ERROR_STATUSES.get(error, 422)
         response = Response({'error': error}, status=status)
     else:
-        if not is_safe_url(next_path, allowed_hosts=(settings.DOMAIN,)):
+        if not _is_safe_url(next_path, request):
             next_path = None
         messages.error(
             request,
@@ -188,7 +201,7 @@ def render_error(request, error, next_path=None, format=None):
     return response
 
 
-def parse_next_path(state_parts):
+def parse_next_path(state_parts, request=None):
     next_path = None
     if len(state_parts) == 2:
         # The = signs will be stripped off so we need to add them back
@@ -201,7 +214,7 @@ def parse_next_path(state_parts):
             log.info('Error decoding next_path {}'.format(
                 encoded_path))
             pass
-    if not is_safe_url(next_path, allowed_hosts=(settings.DOMAIN,)):
+    if not _is_safe_url(next_path, request):
         next_path = None
     return next_path
 
@@ -228,7 +241,7 @@ def with_user(format, config=None):
 
             state_parts = data.get('state', '').split(':', 1)
             state = state_parts[0]
-            next_path = parse_next_path(state_parts)
+            next_path = parse_next_path(state_parts, request)
             if not data.get('code'):
                 log.info('No code provided.')
                 return render_error(
@@ -366,13 +379,12 @@ class AuthenticateView(FxAConfigMixin, APIView):
         if user is None:
             user = register_user(self.__class__, request, identity)
             fxa_config = self.get_fxa_config(request)
-            if fxa_config.get('skip_register_redirect'):
-                response = safe_redirect(next_path, 'register')
-            else:
-                response = safe_redirect(reverse('users.edit'), 'register')
+            if fxa_config.get('skip_register_redirect') is not True:
+                next_path = reverse('users.edit')
+            response = safe_redirect(next_path, 'register', request)
         else:
             login_user(self.__class__, request, user, identity)
-            response = safe_redirect(next_path, 'login')
+            response = safe_redirect(next_path, 'login', request)
         add_api_token_to_response(response, user)
         return response
 
