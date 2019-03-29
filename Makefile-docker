@@ -166,10 +166,6 @@ reindex:
 
 .PHONY: setup-ui-tests
 setup-ui-tests:
-	# FXA username and password for ui-tests
-	export UITEST_FXA_EMAIL := uitest-$(shell uuid)@restmail.net
-	export UITEST_FXA_PASSWORD := uitester
-
 	rm -rf ./user-media/* ./tmp/*
 	# Reset the database and fake database migrations
 	$(PYTHON_COMMAND) manage.py create_db --force
