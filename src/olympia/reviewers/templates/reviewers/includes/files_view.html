@@ -21,5 +21,28 @@
     {% endif %}
   </span>
 </li>
+{% if waffle.flag('code-manager') %}
+  <li class="code-manager-links">
+    <div>
+      <strong>Code Manager</strong>
+      <img width="25" height="9" src="{{ static('img/reviewers/new.gif') }}">
+    </div>
+    <a
+      href="{{ code_manager_url('/browse/{}/versions/{}/'.format(addon.pk, version.pk)) }}"
+      title="Browse all files in this version"
+    >
+      {{ _('Contents') }}
+    </a>
+    {% if show_diff and version == latest_version_in_channel %}
+      &middot;
+      <a
+        href="{{ code_manager_url('/compare/{}/versions/{}...{}/'.format(addon.pk, show_diff.pk, version.pk)) }}"
+        title="Compare this version to the last reviewed version"
+      >
+        {{ _('Compare') }}
+      </a>
+    {% endif %}
+  </li>
+{% endif %}
 {% endfor %}
 </ul>
