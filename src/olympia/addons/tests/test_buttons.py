@@ -223,7 +223,6 @@ class TestButton(ButtonTest):
 
     def test_file_details(self):
         file = self.get_file(amo.PLATFORM_ALL.id)
-        self.addon.meet_the_dev_url.return_value = 'meet.dev'
         b = self.get_button()
 
         # Normal.
@@ -314,7 +313,6 @@ class TestButtonHtml(ButtonTest):
         a = self.addon
         a.id = '12345'
         a.get_icon_url.return_value = 'icon url'
-        a.meet_the_dev_url.return_value = 'meet.dev'
         a.name = 'addon name'
         self.file.hash = 'file hash'
 
@@ -328,7 +326,6 @@ class TestButtonHtml(ButtonTest):
         install = doc('.install')
         assert '12345' == install.attr('data-addon')
         assert 'icon url' == install.attr('data-icon')
-        assert 'meet.dev' == install.attr('data-developers')
         assert reverse('addons.versions', args=[a.id]) == (
             install.attr('data-versions'))
         assert 'addon name' == install.attr('data-name')
@@ -347,14 +344,6 @@ class TestButtonHtml(ButtonTest):
         assert ['install', 'featuredaddon'] == (
             doc('.install').attr('class').split())
         assert 'Featured' == doc('.install strong:last-child').text()
-
-    def test_detailed_privacy_policy(self):
-        policy = self.render(detailed=True)('.install-shell .privacy-policy')
-        assert policy.length == 0
-
-        self.addon.privacy_policy = 'privacy!'
-        policy = self.render(detailed=True)('.install-shell .privacy-policy')
-        assert policy.text() == 'View privacy policy'
 
     def test_experimental_detailed_warning(self):
         self.addon.status = amo.STATUS_PUBLIC
@@ -467,16 +456,3 @@ class TestButtonHtml(ButtonTest):
 
         doc = self.render(impala=True, show_download_anyway=True)
         assert doc('.download-anyway')
-
-
-@pytest.mark.skipif(
-    django.VERSION[0] >= 2,
-    reason='Legacy UI tests')
-class TestViews(TestCase):
-    fixtures = ['addons/eula+contrib-addon']
-
-    def test_eula_with_contrib_roadblock(self):
-        url = reverse('addons.eula', args=[11730, 53612])
-        response = self.client.get(url, follow=True)
-        doc = PyQuery(response.content)
-        assert doc('[data-search]').attr('class') == 'install '

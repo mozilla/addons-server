@@ -100,14 +100,6 @@ urlpatterns = [
     url(r'^pages/about$',
         lambda r: redirect('pages.about', permanent=True)),
 
-    # Redirect persona/xxx
-    url(r'^getpersonas$',
-        lambda r: redirect('http://www.getpersonas.com/gallery/All/Popular',
-                           permanent=True)),
-
-    url(r'^persona/(?P<persona_id>\d+)',
-        addons_views.persona_redirect, name='persona'),
-
     url(r'^personas/film and tv/?$',
         lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
 

@@ -5,7 +5,6 @@
 <div class="install {{ button.install_class|join(' ') }}"
      data-addon="{{ addon.id }}"
      data-icon="{{ addon.get_icon_url(32) }}"
-     data-developers="{{ addon.meet_the_dev_url() }}"
      data-versions="{{ url('addons.versions', addon.id) }}"
      data-name="{{ addon.name }}"
      {{ button.attrs()|xmlattr }}
@@ -54,16 +53,6 @@
 </div> {# install #}
 
 {% if button.detailed %}
-  {% if addon.privacy_policy %}
-    <a class="privacy-policy" href="{{ url('addons.privacy', addon.slug) }}">
-      <strong>{{ _('View privacy policy') }}</strong>
-    </a>
-  {% endif %}
-  {% if addon.eula %}
-    <a class="eula" href="{{ url('addons.eula', addon.slug) }}">
-      <strong>{{ _('View End-User License Agreement') }}</strong>
-    </a>
-  {% endif %}
 
   {% if addon.is_unreviewed() %}
     <p class="warning">{% trans %}

@@ -395,7 +395,6 @@ class TestCreate(ReviewTest):
         self.addon = Addon.objects.get(pk=1865)
         self.user = UserProfile.objects.get(email='root_x@ukr.net')
         self.qs = Rating.objects.filter(addon=self.addon)
-        self.more_url = self.addon.get_url_path(more=True)
         self.list_url = jinja_helpers.url(
             'addons.ratings.list', self.addon.slug)
 
@@ -495,40 +494,6 @@ class TestCreate(ReviewTest):
         self.assertRedirects(response, self.list_url, status_code=302)
         review = Rating.objects.latest('pk')
         assert six.text_type(review.body) == "foo\nbar"
-
-    def test_add_link_visitor(self):
-        """
-        Ensure non-logged user can see Add Review links on details page
-        and Reviews listing page.
-        """
-        self.client.logout()
-        r = self.client.get_ajax(self.more_url)
-        assert pq(r.content)('#add-review').length == 1
-        r = self.client.get(jinja_helpers.url(
-            'addons.ratings.list', self.addon.slug))
-        doc = pq(r.content)
-        assert doc('#add-review').length == 1
-        assert doc('#add-first-review').length == 0
-
-    def test_add_link_logged(self):
-        """Ensure logged user can see Add Review links."""
-        r = self.client.get_ajax(self.more_url)
-        assert pq(r.content)('#add-review').length == 1
-        r = self.client.get(self.list_url)
-        doc = pq(r.content)
-        assert doc('#add-review').length == 1
-        assert doc('#add-first-review').length == 0
-
-    def test_add_link_dev(self):
-        """Ensure developer cannot see Add Review links."""
-        self.login_dev()
-        r = self.client.get_ajax(self.more_url)
-        assert pq(r.content)('#add-review').length == 0
-        r = self.client.get(jinja_helpers.url(
-            'addons.ratings.list', self.addon.slug))
-        doc = pq(r.content)
-        assert doc('#add-review').length == 0
-        assert doc('#add-first-review').length == 0
 
     def test_list_none_add_review_link_visitor(self):
         """If no reviews, ensure visitor user cannot see Add Review link."""
