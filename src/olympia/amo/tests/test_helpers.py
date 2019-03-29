@@ -10,7 +10,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import NoReverseMatch
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils import translation
 from django.utils.encoding import force_bytes
 
 import pytest
