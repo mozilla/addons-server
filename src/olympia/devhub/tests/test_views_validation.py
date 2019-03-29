@@ -221,6 +221,7 @@ class TestFileValidation(TestCase):
         assert response['Access-Control-Allow-Origin'] == code_manager_url
         assert response['Access-Control-Allow-Methods'] == 'GET, OPTIONS'
         assert response['Access-Control-Allow-Headers'] == 'Content-Type'
+        assert response['Access-Control-Allow-Credentials'] == 'true'
 
 
 class TestValidateAddon(TestCase):
