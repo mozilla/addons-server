@@ -251,16 +251,12 @@ class TestOtherStuff(TestCase):
         response = self.client.get('/en-US/firefox/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 0
-        assert doc('#site-nonfx').length == 1
-        assert doc('#site-welcome').length == 1
 
     @mock.patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
         response = self.client.get('/en-US/firefox/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
-        assert doc('#site-nonfx').length == 1
-        assert doc('#site-welcome').length == 1
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_android_balloons_no_readonly(self):
@@ -274,9 +270,6 @@ class TestOtherStuff(TestCase):
         response = self.client.get('/en-US/android/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
-        assert doc('#site-nonfx').length == 0, (
-            'This balloon should appear for Firefox only')
-        assert doc('#site-welcome').length == 1
 
     def test_heading(self):
         def title_eq(url, alt, text):
@@ -343,23 +336,6 @@ class TestOtherStuff(TestCase):
         for content in (en, fr):
             assert 'django.catalog = ' in content
             assert '/* gettext identity library */' not in content
-
-    def test_dictionaries_link(self):
-        doc = pq(test.Client().get('/', follow=True).content)
-        assert doc('#site-nav #more .more-lang a').attr('href') == (
-            reverse('browse.language-tools'))
-
-    def test_no_dictionaries_link_when_not_firefox(self):
-        doc = pq(test.Client().get('/android', follow=True).content)
-        assert doc('#site-nav #more .more-lang').length == 0
-
-    def test_mobile_link_firefox(self):
-        doc = pq(test.Client().get('/firefox', follow=True).content)
-        assert doc('#site-nav #more .more-mobile a').length == 1
-
-    def test_mobile_link_nonfirefox(self):
-        doc = pq(test.Client().get('/android', follow=True).content)
-        assert doc('#site-nav #more .more-mobile').length == 0
 
     def test_opensearch(self):
         client = test.Client()

@@ -10,7 +10,6 @@ from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import NoReverseMatch
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
-from django.utils import translation
 from django.utils.encoding import force_bytes
 
 import pytest
@@ -446,26 +445,6 @@ class TestAnimatedImages(TestCase):
         assert not img.is_image()
         img = ImageCheck(open(get_image_path('non-animated.gif'), mode='rb'))
         assert img.is_image()
-
-
-@pytest.mark.needs_locales_compilation
-def test_site_nav():
-    request = Mock()
-    request.APP = amo.FIREFOX
-    request.LANG = 'en-US'
-    content = jinja_helpers.site_nav({'request': request})
-    assert 'id="site-nav"' in content
-
-    assert 'Extensions' in content
-
-    with translation.override('de'):
-        request.LANG = 'de'
-        content_de = jinja_helpers.site_nav({'request': request})
-        assert 'id="site-nav"' in content_de
-
-    assert content_de != content
-
-    assert 'Erweiterungen' in content_de
 
 
 def test_jinja_trans_monkeypatch():

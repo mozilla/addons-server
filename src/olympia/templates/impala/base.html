@@ -57,17 +57,8 @@
                        {% endblock %}
                     {% endif %}
                     {% block aux_nav %}
-                      <li>
-                        <a href="#" id="other-apps" title="{{ _('Find add-ons for other applications') }}">{{ _('Other Applications') }}</a>
-                        <ul class="other-apps">
-                          {% for app in amo.APP_USAGE %}
-                            {% if app != request.APP %}
-                              <li id="app-{{ app.short }}" class="{{ app.short }}">
-                                <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                              </li>
-                            {% endif %}
-                          {% endfor %}
-                        </ul>
+                      <li class="nomenu">
+                        <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
                       </li>
                     {% endblock aux_nav %}
                   </ul>
@@ -75,7 +66,6 @@
                 <div id="masthead">
                   {% block site_header_title %}
                   {% include "impala/header_title.html" %}
-                  {{ site_nav() }}
                   {% endblock %}
                 </div>
                 {% set admin_message = get_config('site_notice') %}
@@ -94,62 +84,10 @@
                 {% endif %}
                 {# outer_content is for something you want above content on every page. #}
                 {% block outer_content %}{% include "messages.html" %}{% endblock %}
-                {% block amo_balloons %}
-                  {% if APP == amo.FIREFOX %}
-                    <div class="site-balloon" id="site-nonfx">
-                      <p>
-                        {% trans url='http://mozilla.org/firefox/?src=amo' %}
-                          To try the thousands of add-ons available here, download
-                          <a href="{{ url }}">Mozilla Firefox</a>,
-                          a fast, free way to surf the Web!
-                        {% endtrans %}
-                      </p>
-                      <a href="#" class="close">{{ _('Close') }}</a>
-                    </div>
-                  {% endif %}
-                  <div class="site-balloon" id="site-welcome">
-                    {# L10n: {0} is an application, such as Firefox. #}
-                    <h3>{{ _('Welcome to {0} Add-ons.')|format_html(APP.pretty) }}</h3>
-                    <p>
-                      {% if APP == amo.FIREFOX %}
-                        {% trans %}
-                          Choose from thousands of extra features and styles to make
-                          Firefox your own.
-                        {% endtrans %}
-                      {% else %}
-                        {% trans app=APP.pretty %}
-                          Add extra features and styles to make {{ app }} your own.
-                        {% endtrans %}
-                      {% endif %}
-                    </p>
-                    <a href="#" class="close">{{ _('Close') }}</a>
-                  </div>
-                  <div class="site-balloon" id="mobile-banner">
-                    <h3>{{ _('On the go?') }}</h3>
-                    <p>
-                      {% trans %}
-                        Check out our
-                        <a class="mobile-link" href="#">Mobile Add-ons site</a>.
-                      {% endtrans %}
-                    </p>
-                    <a href="#" class="close">{{ _('Close') }}</a>
-                  </div>
-                {% endblock %}
                 {% block header_content %}{% endblock header_content %}
               </div>
             </div> {# .header-bg #}
           </div> {# .amo-header-wrapper #}
-          {% if APP == amo.FIREFOX and waffle.switch('try-new-frontend') %}
-            <div class="site-balloon" id="try-new-frontend">
-              <p>
-                {{ _('AMO is getting a new look. Would you like to see it?') }}
-              </p>
-              <p>
-                <a href="#" class="mobile-link">{{ _('Visit the new site') }}</a>
-              </p>
-              <a href="#" class="close">{{ _('Close') }}</a>
-            </div>
-          {% endif %}
         {% endblock site_header %}
 
         {# Overridden in base_side_categories, which expands categories
