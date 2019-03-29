@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
 from django.utils.http import is_safe_url
@@ -615,7 +616,6 @@ def file_validation(request, addon_id, addon, file_id):
     return render(request, 'devhub/validation.html', context)
 
 
-@json_view
 @csrf_exempt
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
@@ -631,7 +631,15 @@ def json_file_validation(request, addon_id, addon, file_id):
         pk = tasks.validate(file, synchronous=True).get()
         result = FileValidation.objects.get(pk=pk)
 
-    return {'validation': result.processed_validation, 'error': None}
+    response = JsonResponse({
+        'validation': result.processed_validation,
+        'error': None,
+    })
+    # See: https://github.com/mozilla/addons-server/issues/11048
+    response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
+    response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+    response['Access-Control-Allow-Headers'] = 'Content-Type'
+    return response
 
 
 @json_view
