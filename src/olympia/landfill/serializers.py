@@ -18,7 +18,6 @@ import olympia.core.logger
 
 from olympia.amo.tests import user_factory, addon_factory, copy_file_to_temp
 from olympia import amo
-from olympia.addons.forms import icons
 from olympia.addons.models import AddonUser, Preview, Addon
 from olympia.addons.utils import generate_addon_guid
 from olympia.constants.applications import APPS, FIREFOX
@@ -27,6 +26,7 @@ from olympia.constants.base import (
     ADDON_PERSONA,
     STATUS_PUBLIC
 )
+from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
 from olympia.landfill.generators import generate_themes
 from olympia.landfill.user import generate_user

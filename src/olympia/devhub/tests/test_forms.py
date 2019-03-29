@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 import shutil
+import tempfile
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
@@ -12,13 +13,15 @@ import six
 
 from waffle.testutils import override_switch
 
-from olympia import amo
-from olympia.addons.models import Addon
-from olympia.amo.tests import TestCase, req_factory_factory
+from olympia import amo, core
+from olympia.addons.models import Addon, Category
+from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
 from olympia.amo.tests.test_helpers import get_image_path
+from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
+from olympia.tags.models import AddonTag, Tag
 
 
 class TestNewUploadForm(TestCase):
@@ -586,3 +589,203 @@ class TestDescribeForm(TestCase):
         assert form.cleaned_data['summary']['en-us'] == u'c' * 20  # no change
         assert form.cleaned_data['name']['fr'] == u'b' * 50  # 69 to 50
         assert 'fr' not in form.cleaned_data['summary']
+
+
+class TestAdditionalDetailsForm(TestCase):
+    fixtures = ['base/addon_3615', 'base/users']
+
+    def setUp(self):
+        super(TestAdditionalDetailsForm, self).setUp()
+        self.addon = Addon.objects.get(pk=3615)
+
+        self.data = {
+            'default_locale': 'en-US',
+            'homepage': str(self.addon.homepage),
+        }
+
+        self.user = self.addon.authors.all()[0]
+        core.set_user(self.user)
+        self.request = req_factory_factory('/')
+
+    def test_locales(self):
+        form = forms.AdditionalDetailsForm(
+            request=self.request, instance=self.addon)
+        assert form.fields['default_locale'].choices[0][0] == 'af'
+
+    def add_tags(self, tags):
+        data = self.data.copy()
+        data.update({'tags': tags})
+        form = forms.AdditionalDetailsForm(
+            data=data, request=self.request, instance=self.addon)
+        assert form.is_valid()
+        form.save(self.addon)
+        return form
+
+    def get_tag_text(self):
+        return [t.tag_text for t in self.addon.tags.all()]
+
+    def test_tags(self):
+        self.add_tags('foo, bar')
+        assert self.get_tag_text() == ['bar', 'foo']
+
+    def test_tags_xss(self):
+        self.add_tags('<script>alert("foo")</script>, bar')
+        assert self.get_tag_text() == ['bar', 'scriptalertfooscript']
+
+    def test_tags_case_spaces(self):
+        self.add_tags('foo, bar')
+        self.add_tags('foo,    bar   , Bar, BAR, b a r ')
+        assert self.get_tag_text() == ['b a r', 'bar', 'foo']
+
+    def test_tags_spaces(self):
+        self.add_tags('foo, bar beer')
+        assert self.get_tag_text() == ['bar beer', 'foo']
+
+    def test_tags_unicode(self):
+        self.add_tags(u'Österreich')
+        assert self.get_tag_text() == [u'Österreich'.lower()]
+
+    def add_restricted(self, *args):
+        if not args:
+            args = ['i_am_a_restricted_tag']
+        for arg in args:
+            tag = Tag.objects.create(tag_text=arg, restricted=True)
+            AddonTag.objects.create(tag=tag, addon=self.addon)
+
+    def test_tags_restricted(self):
+        self.add_restricted()
+        self.add_tags('foo, bar')
+        form = forms.AdditionalDetailsForm(
+            data=self.data, request=self.request, instance=self.addon)
+
+        assert form.fields['tags'].initial == 'bar, foo'
+        assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
+        self.add_tags('')
+        assert self.get_tag_text() == ['i_am_a_restricted_tag']
+
+    def test_tags_error(self):
+        self.add_restricted('i_am_a_restricted_tag', 'sdk')
+        data = self.data.copy()
+        data.update({'tags': 'i_am_a_restricted_tag'})
+        form = forms.AdditionalDetailsForm(
+            data=data, request=self.request, instance=self.addon)
+        assert form.errors['tags'][0] == (
+            '"i_am_a_restricted_tag" is a reserved tag and cannot be used.')
+        data.update({'tags': 'i_am_a_restricted_tag, sdk'})
+        form = forms.AdditionalDetailsForm(
+            data=data, request=self.request, instance=self.addon)
+        assert form.errors['tags'][0] == (
+            '"i_am_a_restricted_tag", "sdk" are reserved tags and'
+            ' cannot be used.')
+
+    @mock.patch('olympia.access.acl.action_allowed')
+    def test_tags_admin_restricted(self, action_allowed):
+        action_allowed.return_value = True
+        self.add_restricted('i_am_a_restricted_tag')
+        self.add_tags('foo, bar')
+        assert self.get_tag_text() == ['bar', 'foo']
+        self.add_tags('foo, bar, i_am_a_restricted_tag')
+
+        assert self.get_tag_text() == ['bar', 'foo', 'i_am_a_restricted_tag']
+        form = forms.AdditionalDetailsForm(
+            data=self.data, request=self.request, instance=self.addon)
+        assert form.fields['tags'].initial == 'bar, foo, i_am_a_restricted_tag'
+
+    @mock.patch('olympia.access.acl.action_allowed')
+    def test_tags_admin_restricted_count(self, action_allowed):
+        action_allowed.return_value = True
+        self.add_restricted()
+        self.add_tags('i_am_a_restricted_tag, %s' % (', '.join('tag-test-%s' %
+                                                     i for i in range(0, 20))))
+
+    def test_tags_restricted_count(self):
+        self.add_restricted()
+        self.add_tags(', '.join('tag-test-%s' % i for i in range(0, 20)))
+
+    def test_tags_slugified_count(self):
+        self.add_tags(', '.join('tag-test' for i in range(0, 21)))
+        assert self.get_tag_text() == ['tag-test']
+
+    def test_tags_limit(self):
+        self.add_tags(' %s' % ('t' * 128))
+
+    def test_tags_long(self):
+        tag = ' -%s' % ('t' * 128)
+        data = self.data.copy()
+        data.update({"tags": tag})
+        form = forms.AdditionalDetailsForm(
+            data=data, request=self.request, instance=self.addon)
+        assert not form.is_valid()
+        assert form.errors['tags'] == [
+            'All tags must be 128 characters or less after invalid characters'
+            ' are removed.']
+
+    def test_bogus_homepage(self):
+        form = forms.AdditionalDetailsForm(
+            {'homepage': 'javascript://something.com'}, request=self.request,
+            instance=self.addon)
+        assert not form.is_valid()
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
+
+    def test_ftp_homepage(self):
+        form = forms.AdditionalDetailsForm(
+            {'homepage': 'ftp://foo.com'}, request=self.request,
+            instance=self.addon)
+        assert not form.is_valid()
+        assert form.errors['homepage'] == [u'Enter a valid URL.']
+
+    def test_homepage_is_not_required(self):
+        form = forms.AdditionalDetailsForm(
+            {'default_locale': 'en-US'},
+            request=self.request, instance=self.addon)
+        assert form.is_valid()
+
+
+class TestIconForm(TestCase):
+    fixtures = ['base/addon_3615']
+
+    def setUp(self):
+        super(TestIconForm, self).setUp()
+        self.temp_dir = tempfile.mkdtemp(dir=settings.TMP_PATH)
+        self.addon = Addon.objects.get(pk=3615)
+
+        class DummyRequest:
+            FILES = None
+        self.request = DummyRequest()
+        self.icon_path = os.path.join(settings.TMP_PATH, 'icon')
+        if not os.path.exists(self.icon_path):
+            os.makedirs(self.icon_path)
+
+    def tearDown(self):
+        rm_local_tmp_dir(self.temp_dir)
+        super(TestIconForm, self).tearDown()
+
+    def get_icon_paths(self):
+        path = os.path.join(self.addon.get_icon_dir(), str(self.addon.id))
+        return ['%s-%s.png' % (path, size) for size in amo.ADDON_ICON_SIZES]
+
+    @mock.patch('olympia.amo.models.ModelBase.update')
+    def test_icon_modified(self, update_mock):
+        name = 'transparent.png'
+        form = forms.AddonFormMedia({'icon_upload_hash': name},
+                                    request=self.request,
+                                    instance=self.addon)
+
+        dest = os.path.join(self.icon_path, name)
+        with storage.open(dest, 'wb') as f:
+            shutil.copyfileobj(open(get_image_path(name), 'rb'), f)
+        assert form.is_valid()
+        form.save(addon=self.addon)
+        assert update_mock.called
+
+
+class TestCategoryForm(TestCase):
+
+    def test_no_possible_categories(self):
+        Category.objects.create(type=amo.ADDON_SEARCH,
+                                application=amo.FIREFOX.id)
+        addon = addon_factory(type=amo.ADDON_SEARCH)
+        request = req_factory_factory('/')
+        form = forms.CategoryFormSet(addon=addon, request=request)
+        apps = [f.app for f in form.forms]
+        assert apps == [amo.FIREFOX]
