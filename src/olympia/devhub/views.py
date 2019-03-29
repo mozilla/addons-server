@@ -639,7 +639,7 @@ def json_file_validation(request, addon_id, addon, file_id):
     response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
     response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
     response['Access-Control-Allow-Headers'] = 'Content-Type'
-    response['Access-Control-Allow-Credentials'] = True
+    response['Access-Control-Allow-Credentials'] = 'true'
     return response
 
 
