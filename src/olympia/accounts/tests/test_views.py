@@ -898,6 +898,73 @@ class TestAuthenticateView(BaseAuthenticationView):
             views.AuthenticateView, mock.ANY, user, identity)
         assert not self.register_user.called
 
+    def test_log_in_redirects_to_absolute_url(self):
+        email = 'real@yeahoo.com'
+        UserProfile.objects.create(email=email)
+        self.fxa_identify.return_value = {'email': email, 'uid': '9001'}
+        domain = 'example.org'
+        next_path = 'https://{}/path'.format(domain)
+        with override_settings(DOMAIN=domain):
+            response = self.client.get(self.url, {
+                'code': 'code',
+                'state': ':'.join([
+                    self.fxa_state,
+                    force_text(base64.urlsafe_b64encode(next_path.encode())),
+                ]),
+            })
+        self.assertRedirects(response, next_path,
+                             fetch_redirect_response=False)
+
+    def test_log_in_redirects_to_code_manager(self):
+        email = 'real@yeahoo.com'
+        UserProfile.objects.create(email=email)
+        self.fxa_identify.return_value = {'email': email, 'uid': '9001'}
+        code_manager_url = 'https://example.org'
+        next_path = '{}/path'.format(code_manager_url)
+        with override_settings(CODE_MANAGER_URL=code_manager_url):
+            response = self.client.get(self.url, {
+                'code': 'code',
+                'state': ':'.join([
+                    self.fxa_state,
+                    force_text(base64.urlsafe_b64encode(next_path.encode())),
+                ]),
+            })
+        self.assertRedirects(response, next_path,
+                             fetch_redirect_response=False)
+
+    def test_log_in_requires_https_when_request_is_secure(self):
+        email = 'real@yeahoo.com'
+        UserProfile.objects.create(email=email)
+        self.fxa_identify.return_value = {'email': email, 'uid': '9001'}
+        domain = 'example.org'
+        next_path = 'https://{}/path'.format(domain)
+        with override_settings(DOMAIN=domain):
+            response = self.client.get(self.url, secure=True, data={
+                'code': 'code',
+                'state': ':'.join([
+                    self.fxa_state,
+                    force_text(base64.urlsafe_b64encode(next_path.encode())),
+                ]),
+            })
+        self.assertRedirects(response, next_path,
+                             fetch_redirect_response=False)
+
+    def test_log_in_redirects_to_home_when_request_is_secure_but_next_path_is_not(self): # noqa
+        email = 'real@yeahoo.com'
+        UserProfile.objects.create(email=email)
+        self.fxa_identify.return_value = {'email': email, 'uid': '9001'}
+        domain = 'example.org'
+        next_path = 'http://{}/path'.format(domain)
+        with override_settings(DOMAIN=domain):
+            response = self.client.get(self.url, secure=True, data={
+                'code': 'code',
+                'state': ':'.join([
+                    self.fxa_state,
+                    force_text(base64.urlsafe_b64encode(next_path.encode())),
+                ]),
+            })
+        self.assertRedirects(response, reverse('home'))
+
 
 class TestAccountViewSet(TestCase):
     client_class = APITestClient
