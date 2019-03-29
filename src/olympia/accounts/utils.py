@@ -11,10 +11,22 @@ from django.utils.http import is_safe_url
 
 import boto3
 import six
-from six.moves.urllib_parse import urlencode
+from six.moves.urllib_parse import urlencode, urlparse
 
 from olympia.accounts.tasks import primary_email_change_event
 from olympia.core.logger import getLogger
+
+
+def _is_safe_url(url, request):
+    """Override the Django `is_safe_url()` to pass a configured list of allowed
+    hosts and enforce HTTPS."""
+    allowed_hosts = (
+        settings.DOMAIN,
+        urlparse(settings.CODE_MANAGER_URL).netloc,
+    )
+    require_https = request.is_secure() if request else False
+    return is_safe_url(url, allowed_hosts=allowed_hosts,
+                       require_https=require_https)
 
 
 def fxa_config(request):
@@ -28,9 +40,9 @@ def fxa_config(request):
     return config
 
 
-def fxa_login_url(
-        config, state, next_path=None, action=None, force_two_factor=False):
-    if next_path and is_safe_url(next_path, allowed_hosts=(settings.DOMAIN,)):
+def fxa_login_url(config, state, next_path=None, action=None,
+                  force_two_factor=False, request=None):
+    if next_path and _is_safe_url(next_path, request):
         state += u':' + force_text(
             urlsafe_b64encode(next_path.encode('utf-8'))).rstrip(u'=')
     query = {
