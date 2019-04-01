@@ -15,6 +15,10 @@ first, and then clone that. GitHub also has great instructions for
 
 Follow the instructions found [here][addons-server-docs].
 
+### Server setup for tests
+
+The instructions to setup addons-server for selenium integration tests are found [here][addons-server-selenium-testing].
+
 ### Run the tests
 
 The selenium tests can be run in a separate docker-compose file, specifically ``tests/ui/docker-compose.selenium.yml``. This image contains Firefox Nightly. [tox][Tox]
@@ -100,6 +104,7 @@ Whether a test passes or fails will result in a HTML report being created. This 
 [amo]: https://addons.mozilla.org
 [addons-frontend]: https://github.com/mozilla/addons-frontend/
 [addons-server-docs]: https://addons-server.readthedocs.io/en/latest/topics/install/docker.html
+[addons-server-selenium-testing]: https://addons-server.readthedocs.io/en/latest/topics/development/testing.html#selenium-integration-tests
 [flake8]: http://flake8.pycqa.org/en/latest/
 [git-clone]: https://help.github.com/articles/cloning-a-repository/
 [git-fork]: https://help.github.com/articles/fork-a-repo/
