@@ -456,7 +456,6 @@ INSTALLED_APPS = (
     'olympia.devhub',
     'olympia.discovery',
     'olympia.files',
-    'olympia.legacy_discovery',
     'olympia.lib.es',
     'olympia.lib.akismet',
     'olympia.pages',
@@ -727,7 +726,6 @@ MINIFY_BUNDLES = {
             'js/zamboni/debouncer.js',
 
             # Homepage
-            'js/impala/promos.js',
             'js/zamboni/homepage.js',
 
             # Add-ons details page
@@ -818,7 +816,6 @@ MINIFY_BUNDLES = {
             'js/impala/forms.js',
 
             # Homepage
-            'js/impala/promos.js',
             'js/impala/homepage.js',
 
             # Add-ons details page
@@ -882,7 +879,6 @@ MINIFY_BUNDLES = {
             'js/lib/truncate.js',
             'js/zamboni/truncation.js',
 
-            'js/impala/promos.js',
             'js/zamboni/discovery_addons.js',
             'js/zamboni/discovery_pane.js',
         ),

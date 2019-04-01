@@ -68,7 +68,7 @@ class TestHomeAndIndex(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         modules = [x.text for x in doc('a.section')]
-        assert len(modules) == 18  # Increment as we add new admin modules.
+        assert len(modules) == 17  # Increment as we add new admin modules.
 
         # Redirected because no permissions if not logged in.
         self.client.logout()
@@ -560,7 +560,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
-        self.assert_status('discovery.module_admin', 200)
 
     def test_staff_user(self):
         # Staff users have some privileges.
@@ -576,7 +575,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.addon-search', 200)
         self.assert_status('zadmin.monthly_pick', 200)
         self.assert_status('zadmin.features', 200)
-        self.assert_status('discovery.module_admin', 200)
 
     def test_unprivileged_user(self):
         # Unprivileged user.
@@ -589,7 +587,6 @@ class TestPerms(TestCase):
         self.assert_status('zadmin.addon-search', 403)
         self.assert_status('zadmin.monthly_pick', 403)
         self.assert_status('zadmin.features', 403)
-        self.assert_status('discovery.module_admin', 403)
         # Anonymous users should also get a 403.
         self.client.logout()
         self.assertLoginRedirects(

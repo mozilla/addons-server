@@ -18,14 +18,6 @@
 %}
 
 {% block header_content %}
-  {% if request.APP in (amo.FIREFOX, amo.ANDROID) %}
-    <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
-      <div>
-        <ul class="slider">
-        </ul>
-      </div>
-    </section>
-  {% endif %}
 {% endblock header_content %}
 
 
