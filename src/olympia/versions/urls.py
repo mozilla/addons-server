@@ -1,16 +1,13 @@
 from django.conf.urls import url
 
 from olympia.addons.urls import ADDON_ID
-from olympia.versions.feeds import VersionsRss
+from olympia.amo.views import frontend_view
 
 from . import views
 
 
 urlpatterns = [
-    url(r'^$',
-        views.version_list, name='addons.versions'),
-    url(r'^format:rss$',
-        VersionsRss(), name='addons.versions.rss'),
+    url(r'^$', frontend_view, name='addons.versions'),
     url(r'^(?P<version_num>[^/]+)/updateinfo/$', views.update_info,
         name='addons.versions.update_info'),
 ]
