@@ -1,4 +1,3 @@
-import collections
 import json as jsonlib
 import os
 import random
@@ -122,39 +121,6 @@ def paginator(pager):
 def impala_paginator(pager):
     t = loader.get_template('amo/impala/paginator.html')
     return jinja2.Markup(t.render({'pager': pager}))
-
-
-@library.global_function
-def sidebar(app):
-    """Populates the sidebar with (categories, types)."""
-    from olympia.addons.models import Category
-    if app is None:
-        return [], []
-
-    # Fetch categories...
-    qs = Category.objects.filter(application=app.id, weight__gte=0,
-                                 type=amo.ADDON_EXTENSION)
-    # Now sort them in python according to their name property (which looks up
-    # the translated name using gettext + our constants)
-    categories = sorted(qs, key=attrgetter('weight', 'name'))
-
-    Type = collections.namedtuple('Type', 'id name url')
-    base = urlresolvers.reverse('home')
-    types = [Type(99, ugettext('Collections'), base + 'collections/')]
-
-    shown_types = {
-        amo.ADDON_PERSONA: urlresolvers.reverse('browse.personas'),
-        amo.ADDON_DICT: urlresolvers.reverse('browse.language-tools'),
-        amo.ADDON_SEARCH: urlresolvers.reverse('browse.search-tools'),
-        amo.ADDON_THEME: urlresolvers.reverse('browse.themes'),
-    }
-    titles = dict(amo.ADDON_TYPES)
-    titles[amo.ADDON_DICT] = ugettext('Dictionaries & Language Packs')
-    for type_, url in shown_types.items():
-        if type_ in app.types:
-            types.append(Type(type_, titles[type_], url))
-
-    return categories, sorted(types, key=lambda x: x.name)
 
 
 class PaginationRenderer(object):
