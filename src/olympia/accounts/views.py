@@ -12,7 +12,6 @@ from django.http import Http404, HttpResponseRedirect
 from django.urls import reverse
 from django.utils.encoding import force_bytes, force_text
 from django.utils.html import format_html
-from django.utils.http import is_safe_url
 from django.utils.translation import ugettext, ugettext_lazy as _
 
 import six
@@ -31,7 +30,6 @@ from rest_framework.response import Response
 from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
-from six.moves.urllib_parse import urlparse
 from waffle.decorators import waffle_switch
 
 import olympia.core.logger
@@ -54,7 +52,7 @@ from . import verify
 from .serializers import (
     AccountSuperCreateSerializer, PublicUserProfileSerializer,
     UserNotificationSerializer, UserProfileSerializer)
-from .utils import fxa_login_url, generate_fxa_state
+from .utils import _is_safe_url, fxa_login_url, generate_fxa_state
 
 
 log = olympia.core.logger.getLogger('accounts')
@@ -85,18 +83,6 @@ LOGIN_ERROR_MESSAGES = {
 # since sending multiple Set-Cookie headers with the same name is not allowed
 # by the spec, even if they have a distinct domain attribute.
 API_TOKEN_COOKIE = 'frontend_auth_token'
-
-
-def _is_safe_url(url, request):
-    """Override the Django `is_safe_url()` to pass a configured list of allowed
-    hosts and enforce HTTPS."""
-    allowed_hosts = (
-        settings.DOMAIN,
-        urlparse(settings.CODE_MANAGER_URL).netloc,
-    )
-    require_https = request.is_secure() if request else False
-    return is_safe_url(url, allowed_hosts=allowed_hosts,
-                       require_https=require_https)
 
 
 def safe_redirect(url, action, request):
@@ -292,7 +278,8 @@ def with_user(format, config=None):
                             state=request.session['fxa_state'],
                             next_path=next_path,
                             action='signin',
-                            force_two_factor=True
+                            force_two_factor=True,
+                            request=request,
                         )
                     )
                 return fn(
@@ -357,7 +344,10 @@ class LoginStartBaseView(FxAConfigMixin, APIView):
                 config=self.get_fxa_config(request),
                 state=request.session['fxa_state'],
                 next_path=request.GET.get('to'),
-                action=request.GET.get('action', 'signin')))
+                action=request.GET.get('action', 'signin'),
+                request=request,
+            )
+        )
 
 
 class LoginStartView(LoginStartBaseView):

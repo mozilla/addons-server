@@ -141,6 +141,32 @@ class TestLoginStartBaseView(WithDynamicEndpoints, TestCase):
         query = parse_qs(url.query)
         assert ':' not in query['state'][0]
 
+    def test_allows_code_manager_url(self):
+        self.initialize_session({})
+        code_manager_url = 'https://code.example.org'
+        to = '{}/foobar'.format(code_manager_url)
+        with override_settings(CODE_MANAGER_URL=code_manager_url):
+            response = self.client.get(
+                '{url}?to={to}'.format(to=to, url=self.url)
+            )
+        url = urlparse(response['location'])
+        query = parse_qs(url.query)
+        state_parts = query['state'][0].split(':')
+        assert base64.urlsafe_b64decode(state_parts[1] + '====') == to.encode()
+
+    def test_allows_absolute_urls(self):
+        self.initialize_session({})
+        domain = 'example.org'
+        to = 'https://{}/foobar'.format(domain)
+        with override_settings(DOMAIN=domain):
+            response = self.client.get(
+                '{url}?to={to}'.format(to=to, url=self.url)
+            )
+        url = urlparse(response['location'])
+        query = parse_qs(url.query)
+        state_parts = query['state'][0].split(':')
+        assert base64.urlsafe_b64decode(state_parts[1] + '====') == to.encode()
+
 
 def has_cors_headers(response, origin='https://addons-frontend'):
     return (
