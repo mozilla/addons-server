@@ -166,10 +166,14 @@ def all_distinct_files(context, version):
         else:
             hashes_to_file[file_.original_hash] = [file_, display_name]
     return new_context(dict(
+        # This allows the template to call static().
+        BUILD_ID_IMG=context.get('BUILD_ID_IMG'),
         # We don't need the hashes in the template.
         distinct_files=hashes_to_file.values(),
         amo=context.get('amo'),
         addon=context.get('addon'),
+        # This allows the template to call waffle.flag().
+        request=context.get('request'),
         show_diff=context.get('show_diff'),
         version=version))
 
@@ -216,3 +220,13 @@ def get_position(addon):
 @jinja2.contextfunction
 def is_expired_lock(context, lock):
     return lock.expiry < datetime.datetime.now()
+
+
+@library.global_function
+def code_manager_url(path):
+    if not path.startswith('/'):
+        raise ValueError(
+            'Expected a relative path; got: "{}"'.format(path)
+        )
+    # Always return URLs in en-US because the Code Manager is not localized.
+    return '{}/en-US{}'.format(settings.CODE_MANAGER_URL, path)

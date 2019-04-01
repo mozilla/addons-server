@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 import csv
-import datetime
 import json
 
 from django.http import Http404
 from django.test.client import RequestFactory
 from django.utils.encoding import force_text
 
-import mock
 import six
 
 from pyquery import PyQuery as pq
@@ -18,8 +16,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.stats import tasks, views
-from olympia.stats.models import (
-    DownloadCount, GlobalStat, ThemeUserCount, UpdateCount)
+from olympia.stats.models import DownloadCount, ThemeUserCount, UpdateCount
 from olympia.users.models import UserProfile
 
 
@@ -718,82 +715,6 @@ class TestResponses(ESStatsTest):
                                  2009-06-12,10,2,3
                                  2009-06-07,10,2,3
                                  2009-06-01,10,2,3""")
-
-
-# Test the SQL query by using known dates, for weeks and months etc.
-class TestSiteQuery(TestCase):
-
-    def setUp(self):
-        super(TestSiteQuery, self).setUp()
-        self.start = datetime.date(2012, 1, 1)
-        self.end = datetime.date(2012, 1, 31)
-        for k in range(0, 15):
-            for name in ['addon_count_new', 'version_count_new']:
-                date_ = self.start + datetime.timedelta(days=k)
-                GlobalStat.objects.create(date=date_, name=name, count=k)
-
-    def test_day_grouping(self):
-        res = views._site_query('date', self.start, self.end)[0]
-        assert len(res) == 14
-        assert res[0]['data']['addons_created'] == 14
-        # Make sure we are returning counts as integers, otherwise
-        # DjangoJSONSerializer will map them to strings.
-        assert type(res[0]['data']['addons_created']) == int
-        assert res[0]['date'] == '2012-01-15'
-
-    def test_week_grouping(self):
-        res = views._site_query('week', self.start, self.end)[0]
-        assert len(res) == 3
-        assert res[1]['data']['addons_created'] == 70
-        assert res[1]['date'] == '2012-01-08'
-
-    def test_month_grouping(self):
-        res = views._site_query('month', self.start, self.end)[0]
-        assert len(res) == 1
-        assert res[0]['data']['addons_created'] == (14 * (14 + 1)) / 2
-        assert res[0]['date'] == '2012-01-02'
-
-    def test_period(self):
-        self.assertRaises(AssertionError, views._site_query, 'not_period',
-                          self.start, self.end)
-
-
-@mock.patch('olympia.stats.views._site_query')
-class TestSite(TestCase):
-
-    def tests_period(self, _site_query):
-        _site_query.return_value = ['.', '.']
-        for period in ['date', 'week', 'month']:
-            self.client.get(reverse('stats.site', args=['json', period]))
-            assert _site_query.call_args[0][0] == period
-
-    def tests_period_day(self, _site_query):
-        _site_query.return_value = ['.', '.']
-        start = (datetime.date.today() - datetime.timedelta(days=3))
-        end = datetime.date.today()
-        self.client.get(reverse('stats.site.new',
-                        args=['day', start.strftime('%Y%m%d'),
-                              end.strftime('%Y%m%d'), 'json']))
-        assert _site_query.call_args[0][0] == 'date'
-        assert _site_query.call_args[0][1] == start
-        assert _site_query.call_args[0][2] == end
-
-    def test_csv(self, _site_query):
-        _site_query.return_value = [[], []]
-        res = self.client.get(reverse('stats.site', args=['csv', 'date']))
-        assert res._headers['content-type'][1].startswith('text/csv')
-
-    def test_json(self, _site_query):
-        _site_query.return_value = [[], []]
-        res = self.client.get(reverse('stats.site', args=['json', 'date']))
-        assert res._headers['content-type'][1].startswith('application/json')
-
-    def tests_no_date(self, _site_query):
-        _site_query.return_value = ['.', '.']
-        self.client.get(reverse('stats.site', args=['json', 'date']))
-        assert _site_query.call_args[0][1] == (
-            datetime.date.today() - datetime.timedelta(days=365))
-        assert _site_query.call_args[0][2] == datetime.date.today()
 
 
 class TestXss(amo.tests.TestXss):

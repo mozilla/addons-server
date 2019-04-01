@@ -1,5 +1,4 @@
 from django.conf.urls import url
-from django.shortcuts import redirect
 
 from . import views
 
@@ -10,31 +9,6 @@ range_re = r'(?P<start>\d{8})-(?P<end>\d{8})'
 format_re = r'(?P<format>' + '|'.join(views.SERIES_FORMATS) + ')'
 series_re = r'%s-%s\.%s$' % (group_re, range_re, format_re)
 series = dict((type, r'%s-%s' % (type, series_re)) for type in views.SERIES)
-global_series = dict((type, r'%s-%s' % (type, series_re))
-                     for type in views.GLOBAL_SERIES)
-
-
-urlpatterns = [
-    url(r'^$', lambda r: redirect('stats.addons_in_use', permanent=False),
-        name='stats.dashboard'),
-    url(r'^site%s/%s$' % (format_re, group_date_re),
-        views.site, name='stats.site'),
-    url(r'^site-%s' % series_re, views.site, name='stats.site.new'),
-]
-
-# These are the front end pages, so that when you click the links on the
-# navigation page, you end up on the correct stats page for AMO.
-keys = ['addons_in_use', 'addons_updated', 'addons_downloaded',
-        'addons_created', 'collections_created',
-        'reviews_created', 'users_created']
-
-for key in keys:
-    urlpatterns.append(url(
-        r'^%s/$' % key, views.site_stats_report,
-        name='stats.%s' % key, kwargs={'report': key}))
-    urlpatterns.append(url(
-        global_series[key], views.site_series,
-        kwargs={'field': key}))
 
 
 # Addon specific stats.

@@ -23,7 +23,7 @@ commands:
           name: Build docker image and push to repo
           command: |
             docker version
-            docker build -t app:build -f << parameters.dockerfile >> .
+            docker build -t app:build --build-arg DJANGO_VERSION -f << parameters.dockerfile >> .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
@@ -132,6 +132,8 @@ jobs:
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml up -d
             sleep 10
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox sudo chown -R seluser:seluser .
+            # Start auto approve script
+            docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec -T web make -f Makefile-docker run-auto-approve &
             # Start Test in Firefox docker container
             docker-compose -f docker-compose.yml -f tests/ui/docker-compose.selenium.yml exec selenium-firefox tox -r -e ui-tests
       - store_artifacts:

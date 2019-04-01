@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-26 19:08+0000\n"
-"PO-Revision-Date: 2019-03-26 16:11+0000\n"
+"PO-Revision-Date: 2019-03-30 19:56+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -111,7 +111,7 @@ msgid "Add-on submission checklist"
 msgstr ""
 
 msgid "Please verify the following points before finalizing your submission. This will minimize delays or misunderstanding during the review process:"
-msgstr ""
+msgstr "โปรดตรวจสอบหัวข้อต่าง ๆ ก่อนส่งข้อมูลในขั้นสุดท้าย จะช่วยลดความล่าช้าหรือความเข้าใจผิดที่อาจเกิดขึ้นระหว่างทำการตรวจสอบ:"
 
 msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
@@ -131,7 +131,7 @@ msgid "You cancelled the upload."
 msgstr "คุณได้ยกเลิกการอัปโหลด"
 
 msgid "Images must be either PNG or JPG."
-msgstr "รูปภาพต้องเป็น PNG หรือไม่ก็ JPG"
+msgstr "ภาพจะต้องเป็น PNG หรือ JPG"
 
 msgid "Videos must be in WebM."
 msgstr "วิดีโอต้องเป็นแบบ WebM"
@@ -678,7 +678,7 @@ msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a se
 msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งปลั๊กอินการค้นหา"
 
 msgid "Changes Saved"
-msgstr "การเปลี่ยนแปลงถูกบันทึกแล้ว"
+msgstr "บันทึกการเปลี่ยนแปลงแล้ว"
 
 msgid "Enter a new author's email address"
 msgstr ""
@@ -695,7 +695,7 @@ msgid_plural "{reviews} user reviews"
 msgstr[0] ""
 
 msgid "Image changes being processed"
-msgstr "รูปภาพที่เปลี่ยนกำลังดำเนินการอยู่"
+msgstr "ภาพที่เปลี่ยนกำลังดำเนินการอยู่"
 
 msgid "No results found."
 msgstr "ไม่พบผลลัพธ์"
@@ -758,7 +758,7 @@ msgid "Number of Reviews"
 msgstr "จำนวนคำวิจารณ์"
 
 msgid "Maximum upload size is {0} - choose a smaller background image."
-msgstr ""
+msgstr "ขนาดการอัปโหลดสูงสุดคือ {0} - เลือกภาพพื้นหลังที่เล็กกว่า"
 
 msgid "Requested Info"
 msgstr "ข้อมูลที่ร้องขอ"

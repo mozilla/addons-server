@@ -84,10 +84,7 @@ urlpatterns = [
     # API v3+.
     url(r'^api/', include('olympia.api.urls')),
 
-    # Site statistics that we are going to catch, the rest will fall through.
-    url(r'^statistics/', include('olympia.stats.urls')),
-
-    # Fall through for any URLs not matched above stats dashboard.
+    # Redirect for all global stats URLs.
     url(r'^statistics/', lambda r: redirect('/'), name='statistics.dashboard'),
 
     # Redirect patterns.

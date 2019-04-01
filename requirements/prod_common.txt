@@ -128,15 +128,15 @@ billiard==3.5.0.5 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.9.122 \
-    --hash=sha256:9e5ad47cb55768e23dbe3c56f83c4a31a937d5f9f130d8291d9e219e718dedb7 \
-    --hash=sha256:fff5ec5c97ed26fec46ebe01a8454630150f2f25b0669f23aba365fba33438b1
+boto3==1.9.125 \
+    --hash=sha256:479e7a805ad436d8511293ac85b5fdaaa44e245952d6acf4f2d273c2a21ac654 \
+    --hash=sha256:a791e676b2c43e49ecaf43961156a11dbb59a7ead07c1c80cf7237ec7608a6fa
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.122 \
-    --hash=sha256:aeed0874594c143867ec10f2be9b2b9f523f2e0768eaf3f627924d36c7b2e7c1 \
-    --hash=sha256:c33273422c24a072562caeccac2ce1e0ba96dafb2b9bd9e61dbe9eb329ceb1cf
+botocore==1.12.125 \
+    --hash=sha256:2c071fb9f3cd71d792846e18e2c650f2985b822c552514ea6f27e44764d45a0a \
+    --hash=sha256:ac9585c2afdf81929ccb69b8e6919ec64f3693cc7d3f4f216f292f63312111cf
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -251,9 +251,9 @@ jmespath==0.9.4 \
     --hash=sha256:3720a4b1bd659dd2eecad0666459b9788813e032b83e7ba58578e48254e0a0e6 \
     --hash=sha256:bde2aef6f44302dfb30320115b17d030798de8c4110e28d5cf6cf91a7a31074c
 # kombu is required by celery
-kombu==4.4.0 \
-    --hash=sha256:750579c10e4ce82636cebdaad3cfc96970b4c7c483a040bb94fb52040bc53a48 \
-    --hash=sha256:b1a68fe8a1144eab0359be6bbae5e03b6684c98b9b53de7a17ce6d64ef24e4ea
+kombu==4.5.0 \
+    --hash=sha256:389ba09e03b15b55b1a7371a441c894fd8121d174f5583bbbca032b9ea8c9edd \
+    --hash=sha256:7b92303af381ef02fad6899fd5f5a9a96031d781356cd8e505fa54ae5ddee181
 # lxml is required by pyquery
 lxml==4.3.3 \
     --hash=sha256:03984196d00670b2ab14ae0ea83d5cc0cfa4f5a42558afa9ab5fa745995328f5 \
@@ -292,8 +292,8 @@ python-memcached==1.59 \
 mock==2.0.0 \
     --hash=sha256:5ce3c71c5545b472da17b72268978914d0252980348636840bd34a00b5cc96c1 \
     --hash=sha256:b158b6df76edd239b8208d481dc46b6afd45a846b7812ff0ce58971cf5bc8bba
-newrelic==4.16.0.116 \
-    --hash=sha256:1d08248dee0d33116a145de723a2ae86e57a10674145ce4c8af3c316423bd140
+newrelic==4.16.1.117 \
+    --hash=sha256:23aead34b5ea4d0492d65069d3ab41eb1c276b3b237d0d0c2c213fbb4e1b32b6
 nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5

@@ -1,7 +1,10 @@
+import time
+
 import pytest
 import requests
 
 from pages.desktop.devhub import DevHub
+from pages.desktop.details import Detail
 
 
 @pytest.mark.fxa_login
@@ -32,15 +35,7 @@ def test_devhub_addon_edit_link_works(base_url, selenium, devhub_login):
 @pytest.mark.desktop_only
 @pytest.mark.nondestructive
 @pytest.mark.allow_external_http_requests
-def test_devhub_addon_upload(base_url, selenium, devhub_upload):
-    """Test uploading an addon via devhub."""
-    'ui-test-addon-2' in devhub_upload.addons[-1].name
-
-
-@pytest.mark.fxa_login
-@pytest.mark.desktop_only
-@pytest.mark.nondestructive
-@pytest.mark.allow_external_http_requests
+@pytest.mark.withoutresponses
 def test_devhub_logout(base_url, selenium, devhub_login):
     """Logging out from devhub."""
     assert devhub_login.logged_in
@@ -57,3 +52,28 @@ def test_devhub_register(base_url, selenium):
     assert not devhub.logged_in
     devhub.header.register()
     assert 'signup' in selenium.current_url
+
+
+@pytest.mark.fxa_login
+@pytest.mark.desktop_only
+@pytest.mark.nondestructive
+@pytest.mark.allow_external_http_requests
+def test_devhub_addon_upload_approve_install(
+        base_url, selenium, devhub_upload, firefox, firefox_notifications):
+    """Test uploading an addon via devhub."""
+    'ui-test-addon-2' in devhub_upload.addons[-1].name
+    # We have to wait for approval
+    time.sleep(15)
+    selenium.get('{}/addon/ui-test_devhub_ext/'.format(base_url))
+    addon = Detail(selenium, base_url)
+    assert 'UI-Test_devhub_ext' in addon.name
+    addon.install()
+    firefox.browser.wait_for_notification(
+        firefox_notifications.AddOnInstallBlocked
+    ).allow()
+    firefox.browser.wait_for_notification(
+        firefox_notifications.AddOnInstallConfirmation
+    ).install()
+    firefox.browser.wait_for_notification(
+        firefox_notifications.AddOnInstallComplete
+    ).close()

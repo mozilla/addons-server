@@ -10,6 +10,7 @@ from django.core.exceptions import PermissionDenied
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
 from django.db.models import Count
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
 from django.utils.http import is_safe_url
@@ -30,7 +31,6 @@ from olympia.accounts.utils import redirect_for_login
 from olympia.accounts.views import API_TOKEN_COOKIE, logout_user
 from olympia.activity.models import ActivityLog, VersionLog
 from olympia.activity.utils import log_and_notify
-from olympia.addons import forms as addon_forms
 from olympia.addons.models import Addon, AddonReviewerFlags, AddonUser
 from olympia.addons.views import BaseFilter
 from olympia.amo import messages, utils as amo_utils
@@ -40,7 +40,6 @@ from olympia.amo.urlresolvers import get_url_prefix, reverse
 from olympia.amo.utils import MenuItem, escape_all, render, send_mail
 from olympia.api.models import APIKey
 from olympia.devhub.decorators import dev_required, no_admin_disabled
-from olympia.devhub.forms import AgreementForm, SourceForm
 from olympia.devhub.models import BlogPost, RssKey
 from olympia.devhub.utils import (
     add_dynamic_theme_tag, extract_theme_properties,
@@ -615,7 +614,6 @@ def file_validation(request, addon_id, addon, file_id):
     return render(request, 'devhub/validation.html', context)
 
 
-@json_view
 @csrf_exempt
 @dev_required(allow_reviewers=True)
 def json_file_validation(request, addon_id, addon, file_id):
@@ -631,7 +629,16 @@ def json_file_validation(request, addon_id, addon, file_id):
         pk = tasks.validate(file, synchronous=True).get()
         result = FileValidation.objects.get(pk=pk)
 
-    return {'validation': result.processed_validation, 'error': None}
+    response = JsonResponse({
+        'validation': result.processed_validation,
+        'error': None,
+    })
+    # See: https://github.com/mozilla/addons-server/issues/11048
+    response['Access-Control-Allow-Origin'] = settings.CODE_MANAGER_URL
+    response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+    response['Access-Control-Allow-Headers'] = 'Content-Type'
+    response['Access-Control-Allow-Credentials'] = 'true'
+    return response
 
 
 @json_view
@@ -730,17 +737,17 @@ def addons_section(request, addon_id, addon, section, editable=False):
         models.update({
             'describe': (forms.DescribeForm if not content_waffle
                          else forms.DescribeFormContentOptimization),
-            'additional_details': addon_forms.AdditionalDetailsForm,
-            'technical': addon_forms.AddonFormTechnical
+            'additional_details': forms.AdditionalDetailsForm,
+            'technical': forms.AddonFormTechnical
         })
         if not static_theme:
-            models.update({'media': addon_forms.AddonFormMedia})
+            models.update({'media': forms.AddonFormMedia})
     else:
         models.update({
             'describe': (forms.DescribeFormUnlisted if not content_waffle
                          else forms.DescribeFormUnlistedContentOptimization),
-            'additional_details': addon_forms.AdditionalDetailsFormUnlisted,
-            'technical': addon_forms.AddonFormTechnicalUnlisted
+            'additional_details': forms.AdditionalDetailsFormUnlisted,
+            'technical': forms.AddonFormTechnicalUnlisted
         })
 
     if section not in models:
@@ -752,7 +759,7 @@ def addons_section(request, addon_id, addon, section, editable=False):
 
     if section == 'describe' and show_listed:
         category_form_class = (forms.SingleCategoryForm if static_theme else
-                               addon_forms.CategoryFormSet)
+                               forms.CategoryFormSet)
         cat_form = category_form_class(
             request.POST or None, addon=addon, request=request)
 
@@ -1402,7 +1409,7 @@ def _submit_source(request, addon, version, next_view):
         return redirect(next_view, *redirect_args)
     latest_version = version or addon.find_latest_version(channel=None)
 
-    form = SourceForm(
+    form = forms.SourceForm(
         request.POST or None,
         request.FILES or None,
         instance=latest_version,
@@ -1493,7 +1500,7 @@ def _submit_details(request, addon, version):
         else:
             describe_form = forms.DescribeForm(
                 post_data, instance=addon, request=request, version=version)
-        cat_form_class = (addon_forms.CategoryFormSet if not static_theme
+        cat_form_class = (forms.CategoryFormSet if not static_theme
                           else forms.SingleCategoryForm)
         cat_form = cat_form_class(post_data, addon=addon, request=request)
         policy_form = forms.PolicyForm(post_data, addon=addon)
@@ -1676,7 +1683,7 @@ def api_key_agreement(request):
 
 def render_agreement(
         request, template, next_step, render_captcha=False, **extra_context):
-    form = AgreementForm(
+    form = forms.AgreementForm(
         request.POST if request.method == 'POST' else None,
         render_captcha=render_captcha)
     if request.method == 'POST' and form.is_valid():

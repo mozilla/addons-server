@@ -15,7 +15,7 @@ x-env-mapping: &env
     - TERM=xterm-256color
     - UITEST_FXA_EMAIL
     - UITEST_FXA_PASSWORD=uitester
-    - MOZ_HEADLESS=1
+    - MOZ_HEADLESS
     - PYTEST_ADDOPTS=${PYTEST_ADDOPTS}
 
 services:

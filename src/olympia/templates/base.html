@@ -78,19 +78,8 @@
                       {% endblock %}
                     {% endif %}
                     {% block aux_nav %}
-                      <li>
-                        <a href="#" id="other-apps"
-                           title="{{ _('Find add-ons for other applications') }}">
-                          {{ _('Other Applications') }}</a>
-                        <ul class="other-apps">
-                          {% for app in amo.APP_USAGE %}
-                            {% if app != request.APP %}
-                              <li id="app-{{ app.short }}" class="{{ app.short }}">
-                                <a href="{{ locale_url(app.short) }}">{{ app.pretty }}</a>
-                              </li>
-                            {% endif %}
-                          {% endfor %}
-                        </ul>
+                      <li class="nomenu">
+                        <a class="return" href="{{ url('home') }}">{{ _('Back to Add-ons') }}</a>
                       </li>
                     {% endblock aux_nav %}
                   </ul>
@@ -98,7 +87,6 @@
                 <div id="masthead">
                   {% block site_header_title %}
                   {% include "impala/header_title.html" %}
-                  {{ site_nav() }}
                   {% endblock %}
                   {% block navbar %}{% endblock %}
                   {% block site_stats %}{% endblock %}
@@ -106,17 +94,6 @@
               </div>
             </div> {# .header-bg #}
           </div> {# .amo-header-wrapper #}
-          {% if APP == amo.FIREFOX and waffle.switch('try-new-frontend') %}
-            <div class="site-balloon" id="try-new-frontend">
-              <p>
-                {{ _('AMO is getting a new look. Would you like to see it?') }}
-              </p>
-              <p>
-                <a href="#" class="mobile-link">{{ _('Visit the new site') }}</a>
-              </p>
-              <a href="#" class="close">{{ _('Close') }}</a>
-            </div>
-          {% endif %}
         {% endblock site_header %}
 
         {# Overridden in base_side_categories, which expands categories

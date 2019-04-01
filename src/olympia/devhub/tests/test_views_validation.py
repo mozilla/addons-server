@@ -3,6 +3,7 @@ import json
 import shutil
 
 from django.core.files.storage import default_storage as storage
+from django.test.utils import override_settings
 
 import mock
 import waffle
@@ -211,6 +212,16 @@ class TestFileValidation(TestCase):
         assert not self.file.has_been_validated
 
         assert self.client.get(self.json_url).status_code == 405
+
+    def test_cors_headers_are_sent(self):
+        code_manager_url = 'https://my-code-manager-url.example.org'
+        with override_settings(CODE_MANAGER_URL=code_manager_url):
+            response = self.client.get(self.json_url)
+
+        assert response['Access-Control-Allow-Origin'] == code_manager_url
+        assert response['Access-Control-Allow-Methods'] == 'GET, OPTIONS'
+        assert response['Access-Control-Allow-Headers'] == 'Content-Type'
+        assert response['Access-Control-Allow-Credentials'] == 'true'
 
 
 class TestValidateAddon(TestCase):

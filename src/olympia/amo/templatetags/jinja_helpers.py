@@ -399,33 +399,6 @@ def _side_nav(context, addon_type, cat):
 
 
 @library.global_function
-@jinja2.contextfunction
-def site_nav(context):
-    app = context['request'].APP.id
-    cache_key = make_key('site-nav-%s' % app, normalize=True)
-    return cache_get_or_set(cache_key, lambda: _site_nav(context))
-
-
-def _site_nav(context):
-    # Prevent helpers from generating circular imports.
-    from olympia.addons.models import Category
-    request = context['request']
-
-    def sorted_cats(qs):
-        return sorted(qs, key=attrgetter('weight', 'name'))
-
-    extensions = Category.objects.filter(
-        application=request.APP.id, weight__gte=0, type=amo.ADDON_EXTENSION)
-    personas = Category.objects.filter(weight__gte=0, type=amo.ADDON_PERSONA)
-
-    ctx = dict(request=request, amo=amo,
-               extensions=sorted_cats(extensions),
-               personas=sorted_cats(personas))
-    template = loader.get_template('amo/site_nav.html')
-    return jinja2.Markup(template.render(ctx))
-
-
-@library.global_function
 def loc(s):
     """A noop function for strings that are not ready to be localized."""
     return trim_whitespace(s)

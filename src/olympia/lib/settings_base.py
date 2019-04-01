@@ -206,6 +206,10 @@ SERVICES_DOMAIN = 'services.%s' % DOMAIN
 #   Example: https://services.addons.mozilla.org
 SERVICES_URL = 'http://%s' % SERVICES_DOMAIN
 
+# URL of the code-manager site, see:
+# https://github.com/mozilla/addons-code-manager
+CODE_MANAGER_URL = 'https://code.{}'.format(DOMAIN)
+
 # Filter IP addresses of allowed clients that can post email through the API.
 ALLOWED_CLIENTS_EMAIL_API = env.list('ALLOWED_CLIENTS_EMAIL_API', default=[])
 # Auth token required to authorize inbound email.
@@ -1179,7 +1183,6 @@ CELERY_TASK_ROUTES = {
     'olympia.stats.tasks.index_download_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_theme_user_counts': {'queue': 'stats'},
     'olympia.stats.tasks.index_update_counts': {'queue': 'stats'},
-    'olympia.stats.tasks.update_global_totals': {'queue': 'stats'},
 
     # Tags
     'olympia.tags.tasks.update_all_tag_stats': {'queue': 'tags'},
@@ -1777,7 +1780,6 @@ CRON_JOBS = {
     'cleanup_extracted_file': 'olympia.files.cron',
     'cleanup_validation_results': 'olympia.files.cron',
 
-    'update_global_totals': 'olympia.stats.cron',
     'index_latest_stats': 'olympia.stats.cron',
 
     'update_user_ratings': 'olympia.users.cron',

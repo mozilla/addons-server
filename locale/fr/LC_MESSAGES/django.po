@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-03-26 19:08+0000\n"
-"PO-Revision-Date: 2019-03-26 13:04+0000\n"
-"Last-Translator: Benoit Leseul <benoit.leseul@gmail.com>\n"
+"PO-Revision-Date: 2019-03-28 18:02+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -2389,16 +2389,14 @@ msgstr "Cet envoi a échoué à la validation, et pourrait n’avoir aucun résu
 msgid "Header area background"
 msgstr "Arrière-plan de l’en-tête"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "La couleur de l’arrière-plan de l’en-tête, affiché dans la partie de l’en-tête qui n’est pas couverte ou visible à travers l’image de l’en-tête. Champ du manifeste : accentcolor."
+msgstr "La couleur de l’arrière-plan de l’en-tête, affiché dans la partie de l’en-tête qui n’est pas couverte ou qui est visible à travers l’image de l’en-tête. Champ du manifeste : frame."
 
 msgid "Header area text and icons"
 msgstr "Texte et icônes de l’en-tête"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "La couleur du texte affiché dans la zone d’en-tête, sauf pour l’onglet actif. Champ du manifeste : textcolor."
+msgstr "La couleur du texte affiché dans la zone d’en-tête, sauf pour l’onglet actif. Champ du manifeste : tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Arrière-plan de la barre d’outils"
@@ -2409,9 +2407,8 @@ msgstr "La couleur d’arrière-plan pour la barre de navigation, la barre perso
 msgid "Toolbar area text and icons"
 msgstr "Texte et icônes de la barre d’outils"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "La couleur du texte et des icônes de la barre d’outils et pour l’onglet actif. Champ du manifeste : toolbar_text."
+msgstr "La couleur du texte et des icônes de la barre d’outils et de l’onglet actif. Champ du manifeste : bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Arrière-plan des champs de la barre d’outils"
@@ -5267,7 +5264,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "La plus basse valeur prise en charge pour « strict_min_version » est 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "{app} : « strict_min_version » {appver} inconnu"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
