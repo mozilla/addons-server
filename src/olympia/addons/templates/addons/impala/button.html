@@ -22,16 +22,6 @@
 
 {% if button.detailed %}
   <div class="detailed">
-  {% if addon.privacy_policy %}
-    <a class="privacy-policy badge" href="{{ url('addons.privacy', addon.slug) }}">
-      {{ _('Privacy Policy') }}
-    </a>
-  {% endif %}
-  {% if addon.eula %}
-    <a class="eula badge" href="{{ url('addons.eula', addon.slug) }}">
-      {{ _('End-User License Agreement') }}
-    </a>
-  {% endif %}
   {% if addon.should_show_permissions(version) %}
     <a class="webext-permissions badge" href="#">
       {% if not version.all_files[0].is_webextension %}

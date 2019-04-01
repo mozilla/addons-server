@@ -194,10 +194,6 @@ class TestFile(TestCase, amo.tests.AMOPaths):
             '/firefox/downloads/latest/a3615/type:attachment/'
             'addon-3615-latest.xpi')
 
-    def test_eula_url(self):
-        f = File.objects.get(id=67442)
-        assert f.eula_url() == '/en-US/firefox/addon/3615/eula/67442'
-
     def test_generate_filename(self):
         f = File.objects.get(id=67442)
         assert f.generate_filename() == 'delicious_bookmarks-2.1.072-fx.xpi'

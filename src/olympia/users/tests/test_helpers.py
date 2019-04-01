@@ -9,8 +9,7 @@ from pyquery import PyQuery as pq
 from six.moves.urllib_parse import parse_qs, urlparse
 
 from olympia import amo
-from olympia.addons.models import Addon
-from olympia.addons.tests.test_views import TestPersonas
+from olympia.addons.models import Addon, AddonUser
 from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
 from olympia.users.templatetags.jinja_helpers import (
@@ -110,13 +109,17 @@ def test_user_link_unicode():
                                              u.display_name))
 
 
-class TestAddonUsersList(TestPersonas, TestCase):
+class TestAddonUsersList(TestCase):
+    fixtures = ['addons/persona', 'base/users']
 
     def setUp(self):
         super(TestAddonUsersList, self).setUp()
         self.addon = Addon.objects.get(id=15663)
         self.persona = self.addon.persona
         self.create_addon_user(self.addon)
+
+    def create_addon_user(self, addon):
+        return AddonUser.objects.create(addon=addon, user_id=999)
 
     def test_by(self):
         """Test that the by... bit works."""

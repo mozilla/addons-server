@@ -1867,11 +1867,6 @@ class TestAddonGetURLPath(TestCase):
         addon = addon_factory(slug='woo')
         assert addon.get_url_path() == '/en-US/firefox/addon/woo/'
 
-    def test_get_url_path_more(self):
-        addon = addon_factory(slug='yeah')
-        assert addon.get_url_path(more=True) == (
-            '/en-US/firefox/addon/yeah/more')
-
     def test_unlisted_addon_get_url_path(self):
         addon = addon_factory(
             slug='woo', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED})

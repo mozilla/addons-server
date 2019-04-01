@@ -243,9 +243,6 @@ class File(OnChangeMixin, ModelBase):
         return os.path.join(reverse('downloads.latest', kwargs=kw),
                             'addon-%s-latest%s' % (addon.pk, self.extension))
 
-    def eula_url(self):
-        return reverse('addons.eula', args=[self.version.addon_id, self.id])
-
     @property
     def file_path(self):
         return os.path.join(user_media_path('addons'),

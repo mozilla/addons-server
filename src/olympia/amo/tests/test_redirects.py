@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 """Check all our redirects from remora to zamboni."""
-from django.db import connection
 
 from olympia import amo
 from olympia.addons.models import Category
@@ -15,20 +14,6 @@ class TestRedirects(TestCase):
         r = self.client.get('/personas/film and tv', follow=True)
         assert r.redirect_chain[-1][0].endswith(
             '/en-US/firefox/themes/film-and-tv/')
-
-    def test_contribute_installed(self):
-        r"""`/addon/\d+/about` should go to
-            `/addon/\d+/contribute/installed`."""
-        r = self.client.get(u'/addon/5326/about', follow=True)
-        redirect = r.redirect_chain[-1][0]
-        assert redirect.endswith(
-            '/en-US/firefox/addon/5326/')
-
-    def test_contribute(self):
-        """`/addons/contribute/$id` should go to `/addon/$id/contribute`."""
-        response = self.client.get(u'/addon/5326/contribute', follow=True)
-        redirect = response.redirect_chain[-1][0]
-        assert redirect.endswith('/en-US/firefox/addon/5326/')
 
     def test_reviews(self):
         response = self.client.get('/reviews/display/4', follow=True)
@@ -137,32 +122,3 @@ class TestRedirects(TestCase):
         r = self.client.get('/addons/reviews/4/format:rss', follow=True)
         self.assert3xx(r, '/en-US/firefox/addon/4/reviews/format:rss',
                        status_code=302)
-
-
-class TestPersonaRedirect(TestCase):
-    fixtures = ['addons/persona']
-
-    def test_persona_redirect(self):
-        r"""`/persona/\d+` should go to `/addon/\d+`."""
-        r = self.client.get('/persona/813', follow=True)
-        self.assert3xx(r, '/en-US/firefox/addon/a15663/', status_code=302)
-
-    def test_persona_redirect_addon_no_exist(self):
-        """When the persona exists but not its addon, throw a 404."""
-        # Got get shady to separate Persona/Addons.
-        try:
-            with connection.cursor() as cursor:
-                cursor.execute("""
-                    SET FOREIGN_KEY_CHECKS = 0;
-                    UPDATE personas SET addon_id=123 WHERE persona_id=813;
-                    SET FOREIGN_KEY_CHECKS = 1;
-                """)
-            r = self.client.get('/persona/813', follow=True)
-            assert r.status_code == 404
-        finally:
-            with connection.cursor() as cursor:
-                cursor.execute("""
-                    SET FOREIGN_KEY_CHECKS = 0;
-                    UPDATE personas SET addon_id=15663 WHERE persona_id=813;
-                    SET FOREIGN_KEY_CHECKS = 1;
-                """)

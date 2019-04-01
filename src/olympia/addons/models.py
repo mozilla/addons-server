@@ -664,13 +664,11 @@ class Addon(OnChangeMixin, ModelBase):
 
         return data
 
-    def get_url_path(self, more=False, add_prefix=True):
+    def get_url_path(self, add_prefix=True):
         if not self.current_version:
             return ''
-        # If more=True you get the link to the ajax'd middle chunk of the
-        # detail page.
-        view = 'addons.detail_more' if more else 'addons.detail'
-        return reverse(view, args=[self.slug], add_prefix=add_prefix)
+        return reverse(
+            'addons.detail', args=[self.slug], add_prefix=add_prefix)
 
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         args = args or []
@@ -686,9 +684,6 @@ class Addon(OnChangeMixin, ModelBase):
         if args is None:
             args = []
         return reverse('addons.%s' % action, args=[self.slug] + args)
-
-    def meet_the_dev_url(self):
-        return reverse('addons.meet', args=[self.slug])
 
     @property
     def ratings_url(self):

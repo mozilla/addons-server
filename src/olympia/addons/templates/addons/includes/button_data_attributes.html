@@ -1,7 +1,6 @@
 {# these are custom attributes on <div class="install ..."> found in src/olympia/addons/templates/addons/impala/button.html #}
   data-addon="{{ addon.id }}"
   data-icon="{{ addon.get_icon_url(32) }}"
-  data-developers="{{ addon.meet_the_dev_url() }}"
   data-versions="{{ url('addons.versions', addon.id) }}"
   data-name="{{ addon.name }}"
   {{ button.attrs()|xmlattr }}
