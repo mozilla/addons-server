@@ -64,6 +64,10 @@ debug:
 shell:
 	docker-compose exec web bash
 
+.PHONY: setup-ui-tests
+setup-ui-tests:
+	docker-compose exec web make setup-ui-tests
+
 .PHONY: djshell
 djshell:
 	docker-compose exec web ./manage.py shell_plus
