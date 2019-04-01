@@ -44,30 +44,39 @@ class TestReviewNotesSerializerOutput(TestCase, LogMixin):
         assert result['action_label'] == 'Rejected'
         assert result['comments'] == u'Oh nøes!'
         # To allow reviewers to stay anonymous the user object only contains
-        # the "activity name", which uses the reviewer name alias if present.
+        # the author name, which can use the reviewer name alias if present
+        # depending on the action.
         assert result['user'] == {
-            'id': None,
-            'name': 'fôo',
-            'url': None,
-            'username': None,
+            'name': self.user.reviewer_name,
         }
 
-    def test_url_for_yourself(self):
-        self.request.user = self.user
+    def test_basic_v3(self):
+        self.request.version = 'v3'
         result = self.serialize()
-        assert result['user']['url'] is None
 
-    def test_url_for_developers(self):
-        addon_factory(users=[self.user])
-        result = self.serialize()
-        assert result['user']['url'] is None
+        assert result['id'] == self.entry.pk
+        assert result['date'] == self.now.isoformat() + 'Z'
+        assert result['action'] == 'rejected'
+        assert result['action_label'] == 'Rejected'
+        assert result['comments'] == u'Oh nøes!'
+        # For backwards-compatibility in API v3 the id, url and username are
+        # present but empty - we still don't want to reveal the actual reviewer
+        # info.
+        assert result['user'] == {
+            'id': None,
+            'url': None,
+            'username': None,
+            'name': self.user.reviewer_name,
+        }
 
-    def test_url_for_admins(self):
-        admin = user_factory()
-        self.grant_permission(admin, 'Users:Edit')
-        self.request.user = admin
+    def test_basic_somehow_not_a_reviewer_action(self):
+        """Like test_basic(), but somehow the action is not a reviewer action
+        and therefore shouldn't use the reviewer_name."""
+        self.entry.update(action=amo.LOG.ADD_RATING.id)
         result = self.serialize()
-        assert result['user']['url'] is None
+        assert result['user'] == {
+            'name': self.user.name,
+        }
 
     def test_should_highlight(self):
         result = self.serialize(context={'to_highlight': [self.entry]})

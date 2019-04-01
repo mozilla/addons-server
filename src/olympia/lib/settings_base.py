@@ -1654,6 +1654,7 @@ DRF_API_GATES = {
         'del-accounts-fxa-edit-email-url',
         'del-version-license-is-custom',
         'del-ratings-flags',
+        'activity-user-shim',
     ),
     'v4': (
         'l10n_flat_input_output',

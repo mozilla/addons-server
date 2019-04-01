@@ -3,6 +3,7 @@ from django.utils.translation import ugettext
 from rest_framework import serializers
 
 from olympia.activity.models import ActivityLog
+from olympia.api.utils import is_gate_active
 
 
 class ActivityLogSerializer(serializers.ModelSerializer):
@@ -42,10 +43,16 @@ class ActivityLogSerializer(serializers.ModelSerializer):
         avoid revealing actual name of reviewers for their review actions if
         they have set an alias.
 
-        id, username and url are present for backwards-compatibility only."""
-        return {
-            'id': None,
-            'username': None,
-            'url': None,
+        id, username and url are present for backwards-compatibility in v3 API
+        only."""
+        data = {
             'name': obj.author_name,
         }
+        request = self.context.get('request')
+        if request and is_gate_active(request, 'activity-user-shim'):
+            data.update({
+                'id': None,
+                'username': None,
+                'url': None
+            })
+        return data
