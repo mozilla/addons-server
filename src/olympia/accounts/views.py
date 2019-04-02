@@ -393,7 +393,12 @@ def logout_user(request, response):
 # This view is not covered by the CORS middleware, see:
 # https://github.com/mozilla/addons-server/issues/11100
 class SessionView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [
+        ByHttpMethod({
+            'options': AllowAny,  # Needed for CORS.
+            'delete': IsAuthenticated,
+        }),
+    ]
 
     def options(self, request, *args, **kwargs):
         response = Response()

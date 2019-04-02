@@ -1611,13 +1611,9 @@ class TestSessionView(TestCase):
         assert not response.has_header('Access-Control-Allow-Credentials')
 
     def test_responds_to_cors_preflight_requests(self):
-        user = user_factory(fxa_id='123123412')
-        token = self.login_user(user)
-        authorization = 'Bearer {token}'.format(token=token)
         origin = 'http://example.org'
         response = self.client.options(
             reverse_ns('accounts.session'),
-            HTTP_AUTHORIZATION=authorization,
             HTTP_ORIGIN=origin,
         )
         assert response['Content-Length'] == '0'
@@ -1629,13 +1625,7 @@ class TestSessionView(TestCase):
         assert response['Access-Control-Allow-Origin'] == origin
 
     def test_options_omits_cors_headers_when_there_is_no_origin(self):
-        user = user_factory(fxa_id='123123412')
-        token = self.login_user(user)
-        authorization = 'Bearer {token}'.format(token=token)
-        response = self.client.options(
-            reverse_ns('accounts.session'),
-            HTTP_AUTHORIZATION=authorization,
-        )
+        response = self.client.options(reverse_ns('accounts.session'))
         assert not response.has_header('Access-Control-Allow-Credentials')
         assert not response.has_header('Access-Control-Allow-Headers')
         assert not response.has_header('Access-Control-Allow-Methods')

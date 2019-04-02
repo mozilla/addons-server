@@ -17,6 +17,7 @@ import pytest
 from lxml import etree
 from mock import patch
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import urlparse
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -381,7 +382,7 @@ class TestCORS(TestCase):
     def test_cors_excludes_accounts_session_endpoint(self):
         assert re.match(
             settings.CORS_URLS_REGEX,
-            reverse('v4:accounts.session'),
+            urlparse(reverse_ns('accounts.session')).path,
         ) is None
 
 
