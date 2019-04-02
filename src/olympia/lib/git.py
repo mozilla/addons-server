@@ -425,18 +425,6 @@ class AddonGitRepository(object):
             context_lines=sys.maxsize,
             interhunk_lines=0)
 
-        # Find potential renames and copy operations
-        opts = (
-            # pygit2.GIT_DIFF_FIND_RENAMES |
-            pygit2.GIT_DIFF_FIND_COPIES |
-            pygit2.GIT_DIFF_INCLUDE_UNMODIFIED |
-            pygit2.GIT_DIFF_FIND_COPIES_FROM_UNMODIFIED |
-            # GIT_DIFF_FIND_REMOVE_UNMODIFIED but that's not exposed in pygit2
-            # and needs upstream patch.
-            1 << 16)
-
-        diff.find_similar(0x0ff)
-
         for patch in diff:
             # Support for this hasn't been implemented upstream yet, we'll
             # work on this upstream if needed but for now just selecting
