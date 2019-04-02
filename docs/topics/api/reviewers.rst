@@ -217,17 +217,17 @@ This endpoint allows you to compare two Add-on versions with each other.
         -}
         +{"id": "random"}
 
-    .. code:: json
+    .. code:: javascript
 
         "diff": [
             {
                 "path": "README.md",
                 "old_path": "README.md",
-                "size": 15,  # Size in bytes
-                "lines_added": 1,  # How many lines got added
-                "lines_deleted": 1,  # How many lines got deleted
-                "is_binary": false,  # Is this a binary file (as determined by git)
-                "mode": "M",  # Status of this file, see https://git-scm.com/docs/git-status#_short_format
+                "size": 15,  // Size in bytes
+                "lines_added": 1,  // How many lines got added
+                "lines_deleted": 1,  // How many lines got deleted
+                "is_binary": false,  // Is this a binary file (as determined by git)
+                "mode": "M",  // Status of this file, see https://git-scm.com/docs/git-status#_short_format
                 "hunks": [
                     {
                         "header": "@@ -1 +1 @@\\n",
