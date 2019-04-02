@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+import re
 import sys
 
 from datetime import datetime, timedelta
@@ -376,6 +377,12 @@ class TestCORS(TestCase):
         assert response.status_code == 200
         assert not response.has_header('Access-Control-Allow-Credentials')
         assert response['Access-Control-Allow-Origin'] == '*'
+
+    def test_cors_excludes_accounts_session_endpoint(self):
+        assert re.match(
+            settings.CORS_URLS_REGEX,
+            reverse('v4:accounts.session'),
+        ) is None
 
 
 class TestContribute(TestCase):

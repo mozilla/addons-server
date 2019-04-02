@@ -2,10 +2,10 @@
 # Django settings for addons-server project.
 
 import environ
+import json
 import logging
 import os
 import socket
-import json
 
 import raven
 from kombu import Queue
@@ -99,7 +99,9 @@ DRF_API_REGEX = r'^/?api/(?:v3|v4|v4dev)/'
 # Add Access-Control-Allow-Origin: * header for the new API with
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
-CORS_URLS_REGEX = DRF_API_REGEX
+# Exclude the `accounts/session` endpoint, see:
+# https://github.com/mozilla/addons-server/issues/11100
+CORS_URLS_REGEX = r'{}(?!accounts/session/)'.format(DRF_API_REGEX)
 
 
 def get_db_config(environ_var, atomic_requests=True):
