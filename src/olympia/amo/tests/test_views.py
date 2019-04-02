@@ -351,9 +351,10 @@ class TestOtherStuff(TestCase):
 
 class TestCORS(TestCase):
     fixtures = ('base/addon_3615',)
+    origin = 'http://example.org'
 
     def get(self, url, **headers):
-        return self.client.get(url, HTTP_ORIGIN='testserver', **headers)
+        return self.client.get(url, HTTP_ORIGIN=self.origin, **headers)
 
     def test_no_cors(self):
         response = self.get(reverse('home'))
@@ -366,16 +367,16 @@ class TestCORS(TestCase):
         assert '/api/v3/' in url
         response = self.get(url)
         assert response.status_code == 200
-        assert not response.has_header('Access-Control-Allow-Credentials')
-        assert response['Access-Control-Allow-Origin'] == '*'
+        assert response['Access-Control-Allow-Credentials'] == 'true'
+        assert response['Access-Control-Allow-Origin'] == self.origin
 
     def test_cors_api_v4(self):
         url = reverse_ns('addon-detail', api_version='v4', args=(3615,))
         assert '/api/v4/' in url
         response = self.get(url)
         assert response.status_code == 200
-        assert not response.has_header('Access-Control-Allow-Credentials')
-        assert response['Access-Control-Allow-Origin'] == '*'
+        assert response['Access-Control-Allow-Credentials'] == 'true'
+        assert response['Access-Control-Allow-Origin'] == self.origin
 
 
 class TestContribute(TestCase):

@@ -96,9 +96,13 @@ ABUSE_EMAIL = 'amo-admins+ivebeenabused@mozilla.org'
 DRF_API_VERSIONS = ['v3', 'v4', 'v4dev']
 DRF_API_REGEX = r'^/?api/(?:v3|v4|v4dev)/'
 
-# Add Access-Control-Allow-Origin: * header for the new API with
+# Add Access-Control-Allow-Origin: <origin> header for the new API with
 # django-cors-headers.
 CORS_ORIGIN_ALLOW_ALL = True
+# Allow cookies to be included in cross-site requests. This changes the
+# `Access-Control-Allow-Origin` value from `*` (wildcard) to the origin of the
+# request.
+CORS_ALLOW_CREDENTIALS = True
 CORS_URLS_REGEX = DRF_API_REGEX
 
 
