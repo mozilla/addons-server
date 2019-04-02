@@ -13,6 +13,8 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 
 import six
 
+from django_extensions.db.fields.json import JSONField
+
 import olympia.core.logger
 
 from olympia import amo
@@ -792,6 +794,7 @@ class AutoApprovalSummary(ModelBase):
         choices=amo.AUTO_APPROVAL_VERDICT_CHOICES,
         default=amo.NOT_AUTO_APPROVED)
     weight = models.IntegerField(default=0)
+    weight_info = JSONField(default={}, null=True)
     confirmed = models.NullBooleanField(default=None)
 
     class Meta:
@@ -802,19 +805,16 @@ class AutoApprovalSummary(ModelBase):
 
     def calculate_weight(self):
         """Calculate the weight value for this version according to various
-        risk factors, setting the weight property on the instance and returning
-        a dict of risk factors.
+        risk factors, setting the weight (an integer) and weight_info (a dict
+        of risk factors strings -> integer values) properties on the instance.
 
-        That value is then used in reviewer tools to prioritize add-ons in the
-        auto-approved queue."""
-        # Note: for the moment, some factors are in direct contradiction with
-        # the rules determining whether or not an add-on can be auto-approved
-        # in the first place, but we'll relax those rules as we move towards
-        # post-review.
+        The weight value is then used in reviewer tools to prioritize add-ons
+        in the auto-approved queue, the weight_info shown to reviewers in the
+        review page."""
         addon = self.version.addon
         one_year_ago = (self.created or datetime.now()) - timedelta(days=365)
         six_weeks_ago = (self.created or datetime.now()) - timedelta(days=42)
-        factors = {
+        self.weight_info = {
             # Add-ons under admin code review: 100 added to weight.
             'admin_code_review': 100 if addon.needs_admin_code_review else 0,
             # Each abuse reports for the add-on or one of the listed developers
@@ -850,9 +850,10 @@ class AutoApprovalSummary(ModelBase):
                         files__status=amo.STATUS_DISABLED)
                 .distinct().count() * 10, 100),
         }
-        factors.update(self.calculate_static_analysis_weight_factors())
-        self.weight = sum(factors.values())
-        return factors
+        self.weight_info.update(
+            self.calculate_static_analysis_weight_factors())
+        self.weight = sum(self.weight_info.values())
+        return self.weight_info
 
     def calculate_static_analysis_weight_factors(self):
         """Calculate the static analysis risk factors, returning a dict of
@@ -912,6 +913,15 @@ class AutoApprovalSummary(ModelBase):
                 'no_validation_result': 500,
             }
         return factors
+
+    def get_pretty_weight_info(self):
+        """Returns a list of strings containing weight information."""
+        if self.weight_info:
+            weight_info = sorted(['%s: %d' % (k, v)
+                                 for k, v in self.weight_info.items() if v])
+        else:
+            weight_info = [ugettext('Risk breakdown not available.')]
+        return weight_info
 
     def find_previous_confirmed_version(self):
         """Return the most recent version in the add-on history that has been
@@ -1106,6 +1116,7 @@ class AutoApprovalSummary(ModelBase):
         # calculated in data and use update_or_create().
         data['verdict'] = instance.verdict
         data['weight'] = instance.weight
+        data['weight_info'] = instance.weight_info
         instance, _ = cls.objects.update_or_create(
             version=version, defaults=data)
         return instance, verdict_info

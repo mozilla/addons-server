@@ -101,7 +101,7 @@
                   </div>
               {% endif %}
               {% if version.autoapprovalsummary %}
-                <div class="file-weight"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
+                <div class="file-weight" title="{{ version.autoapprovalsummary.get_pretty_weight_info()|join('\n') }}"><strong>{{ _('Weight:') }}</strong> {{ version.autoapprovalsummary.weight }}</div>
               {% endif %}
             {% else %}
               <ul>
