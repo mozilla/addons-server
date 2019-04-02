@@ -1586,6 +1586,37 @@ class TestSessionView(TestCase):
         response = self.client.delete(reverse_ns('accounts.session'))
         assert response.status_code == 401
 
+    def test_cors_headers_are_exposed(self):
+        user = user_factory(fxa_id='123123412')
+        token = self.login_user(user)
+        authorization = 'Bearer {token}'.format(token=token)
+        origin = 'http://example.org'
+        response = self.client.delete(
+            reverse_ns('accounts.session'),
+            HTTP_AUTHORIZATION=authorization,
+            HTTP_ORIGIN=origin,
+        )
+        assert response['Access-Control-Allow-Origin'] == origin
+        assert response['Access-Control-Allow-Credentials'] == 'true'
+
+    def test_responds_to_cors_preflight_requests(self):
+        user = user_factory(fxa_id='123123412')
+        token = self.login_user(user)
+        authorization = 'Bearer {token}'.format(token=token)
+        origin = 'http://example.org'
+        response = self.client.options(
+            reverse_ns('accounts.session'),
+            HTTP_AUTHORIZATION=authorization,
+            HTTP_ORIGIN=origin,
+        )
+        assert response['Content-Length'] == '0'
+        assert response['Access-Control-Allow-Credentials'] == 'true'
+        assert response.has_header('Access-Control-Allow-Headers')
+        assert response.has_header('Access-Control-Allow-Methods')
+        assert 'DELETE' in response['Access-Control-Allow-Methods']
+        assert response.has_header('Access-Control-Max-Age')
+        assert response['Access-Control-Allow-Origin'] == origin
+
 
 class TestAccountNotificationViewSetList(TestCase):
     client_class = APITestClient

@@ -17,6 +17,11 @@ from django.utils.translation import ugettext, ugettext_lazy as _
 import six
 import waffle
 
+from corsheaders.conf import conf as corsheaders_conf
+from corsheaders.middleware import (
+    ACCESS_CONTROL_ALLOW_ORIGIN, ACCESS_CONTROL_ALLOW_CREDENTIALS,
+    ACCESS_CONTROL_ALLOW_HEADERS, ACCESS_CONTROL_ALLOW_METHODS,
+    ACCESS_CONTROL_MAX_AGE)
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
@@ -385,12 +390,36 @@ def logout_user(request, response):
         API_TOKEN_COOKIE, domain=settings.SESSION_COOKIE_DOMAIN)
 
 
+# This view is not covered by the CORS middleware, see:
+# https://github.com/mozilla/addons-server/issues/11100
 class SessionView(APIView):
     permission_classes = [IsAuthenticated]
+
+    def add_common_cors_headers(self, request, response):
+        origin = request.META.get('HTTP_ORIGIN')
+        response[ACCESS_CONTROL_ALLOW_ORIGIN] = origin
+        response[ACCESS_CONTROL_ALLOW_CREDENTIALS] = 'true'
+
+    def options(self, request, *args, **kwargs):
+        response = Response()
+        response['Content-Length'] = '0'
+        self.add_common_cors_headers(request, response)
+        # Mimics the django-cors-headers middleware.
+        response[ACCESS_CONTROL_ALLOW_HEADERS] = ', '.join(
+            corsheaders_conf.CORS_ALLOW_HEADERS
+        )
+        response[ACCESS_CONTROL_ALLOW_METHODS] = ', '.join(
+            corsheaders_conf.CORS_ALLOW_METHODS
+        )
+        if corsheaders_conf.CORS_PREFLIGHT_MAX_AGE:
+            response[ACCESS_CONTROL_MAX_AGE] = (
+                corsheaders_conf.CORS_PREFLIGHT_MAX_AGE)
+        return response
 
     def delete(self, request, *args, **kwargs):
         response = Response({'ok': True})
         logout_user(request, response)
+        self.add_common_cors_headers(request, response)
         return response
 
 
