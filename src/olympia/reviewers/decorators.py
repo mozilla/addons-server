@@ -17,26 +17,18 @@ def _view_on_get(request):
             acl.action_allowed(request, permissions.REVIEWER_TOOLS_VIEW))
 
 
-def legacy_addons_or_themes_reviewer_required(f):
-    """Require a legacy reviewer or static themes reviewer user.
-
-    The user logged in must be an addons reviewer or admin, or have the
-    'ReviewerTools:View' permission for GET requests.
-
-    A legacy addons reviewer is someone who is in the group with the following
-    permission: 'Addons:Review';
-    a static themes reviewer is someone who is in the group with the following
-    permission: 'Addons:ThemeReview'
-    """
-    @login_required
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if (_view_on_get(request) or
-                acl.action_allowed(request, permissions.ADDONS_REVIEW) or
-                acl.check_static_theme_reviewer(request)):
-            return f(request, *args, **kw)
-        raise PermissionDenied
-    return wrapper
+def permission_or_tools_view_required(permission):
+    def decorator(f):
+        @functools.wraps(f)
+        @login_required
+        def wrapper(request, *args, **kw):
+            view_on_get = _view_on_get(request)
+            if view_on_get or acl.action_allowed(request, permission):
+                return f(request, *args, **kw)
+            else:
+                raise PermissionDenied
+        return wrapper
+    return decorator
 
 
 def unlisted_addons_reviewer_required(f):
@@ -51,26 +43,6 @@ def unlisted_addons_reviewer_required(f):
     @functools.wraps(f)
     def wrapper(request, *args, **kw):
         if acl.check_unlisted_addons_reviewer(request):
-            return f(request, *args, **kw)
-        raise PermissionDenied
-    return wrapper
-
-
-def ratings_moderator_required(f):
-    """Require a ratings moderator user.
-
-    The user logged in must be a ratings moderator or admin, or have the
-    'ReviewerTools:View' permission for GET requests.
-
-    A ratings moderator is someone who is in the group with the following
-    permission: 'Ratings:Moderate'.
-
-    """
-    @login_required
-    @functools.wraps(f)
-    def wrapper(request, *args, **kw):
-        if _view_on_get(request) or acl.action_allowed(
-                request, permissions.RATINGS_MODERATE):
             return f(request, *args, **kw)
         raise PermissionDenied
     return wrapper

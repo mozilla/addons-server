@@ -22,7 +22,8 @@ from olympia.ratings.models import Rating
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
     AutoApprovalSummary, ReviewerScore,
-    ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue,
+    ReviewerSubscription, ViewExtensionFullReviewQueue,
+    ViewExtensionPendingQueue, ViewThemeFullReviewQueue, ViewThemePendingQueue,
     ViewUnlistedAllList, send_notifications, set_reviewing_cache)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
@@ -90,9 +91,9 @@ class TestQueue(TestCase):
         assert self.Queue.objects.all().count() == 2
 
 
-class TestPendingQueue(TestQueue):
+class TestExtensionPendingQueue(TestQueue):
     __test__ = True
-    Queue = ViewPendingQueue
+    Queue = ViewExtensionPendingQueue
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def new_addon(self, name=u'Pending', version=u'1.0'):
@@ -164,9 +165,13 @@ class TestPendingQueue(TestQueue):
         assert queue.flags == []
 
 
-class TestFullReviewQueue(TestQueue):
+class TestThemePendingQueue(TestQueue):
+    Queue = ViewThemePendingQueue
+
+
+class TestExtensionFullReviewQueue(TestQueue):
     __test__ = True
-    Queue = ViewFullReviewQueue
+    Queue = ViewExtensionFullReviewQueue
     channel = amo.RELEASE_CHANNEL_LISTED
 
     def new_addon(self, name=u'Nominated', version=u'1.0',
@@ -191,6 +196,10 @@ class TestFullReviewQueue(TestQueue):
         assert row.waiting_time_days == 0
         # Time zone will be off, hard to test this.
         assert row.waiting_time_hours is not None
+
+
+class TestThemeFullReviewQueue(TestQueue):
+    Queue = ViewThemeFullReviewQueue
 
 
 class TestUnlistedAllList(TestCase):
