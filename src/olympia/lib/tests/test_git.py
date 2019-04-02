@@ -816,34 +816,3 @@ def test_get_diff_newline_both_no_newline():
 
     assert changes[0]['new_ending_new_line'] is False
     assert changes[0]['old_ending_new_line'] is False
-
-
-@pytest.mark.django_db
-def test_get_diff_detect_copy():
-    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
-
-    original_version = addon.current_version
-
-    AddonGitRepository.extract_and_commit_from_version(original_version)
-
-    new_version = version_factory(
-        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
-
-    repo = AddonGitRepository.extract_and_commit_from_version(new_version)
-
-    zip_file = zipfile.ZipFile(new_version.current_file.current_file_path)
-    manifest = zip_file.read('manifest.json')
-
-    # Let's copy the contents of manifest.json to a different file
-    apply_changes(repo, new_version, manifest, 'manifest2.json')
-    # apply_changes(repo, new_version, manifest.decode('utf-8') + '\n', 'manifest.json')
-
-    changes = repo.get_diff(
-        commit=new_version.git_hash,
-        parent=original_version.git_hash)
-
-    import pprint; pprint.pprint(changes)
-    assert len(changes) == 1
-
-    assert changes[0]['new_ending_new_line'] is True
-    assert changes[0]['old_ending_new_line'] is False
