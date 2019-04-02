@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-01-31 09:20+0000\n"
 "Last-Translator: Jakob Kappel <jakobkpetersen@gmail.com>\n"
 "Language-Team: MozillaDanmark\n"
@@ -100,62 +100,6 @@ msgstr "Eksperimentel"
 msgid "Add to {0}"
 msgstr "Føj til {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Denne slug bruges allerede. Vælg en anden."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Denne slug kan ikke være \"%(slug)s\". Vælg en anden."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Ugyldigt mærkat: {0}"
-msgstr[1] "Ugyldige mærkater: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" er et reserveret mærkat og kan ikke benyttes."
-msgstr[1] "\"{0}\" er reserverede mærkater og kan ikke benyttes."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] ""
-msgstr[1] ""
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr ""
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] ""
-msgstr[1] ""
-
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr ""
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Du kan kun have {0} kategori."
-msgstr[1] "Du kan kun have {0} kategorier."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr ""
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr ""
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Listet"
@@ -168,9 +112,6 @@ msgstr ""
 
 msgid "Abuse reported."
 msgstr "Misbrug rapporteret."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr ""
 
 msgid "No compatible versions"
 msgstr "Ingen kompatible versioner"
@@ -818,32 +759,6 @@ msgstr "Nyeste"
 msgid "Explore"
 msgstr "Udforsk"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Udvidelser"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Temaer"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Vil du have mere tilpasning? Prøv <b>udvidede temaer</b>"
-
-msgid "Collections"
-msgstr "Samlinger"
-
-msgid "More&hellip;"
-msgstr "Flere&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Tilføjelser til Mobilen"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Ordbøger & sprogpakker"
-
-msgid "Search Tools"
-msgstr "Søgeværktøjer"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -863,6 +778,12 @@ msgstr "Hop til sidste side"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Viser <b>%(begin)s</b>&ndash;<b>%(end)s</b> af <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Samlinger"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Ordbøger & sprogpakker"
 
 msgid "Add-ons"
 msgstr "Tilføjelser"
@@ -950,6 +871,9 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+msgid "The text entered has been flagged as spam."
+msgstr ""
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Denne url anvendes allerede af en anden af dine samlinger."
 
@@ -968,10 +892,18 @@ msgstr "Denne URL kan ikke bruges."
 msgid "This add-on already belongs to the collection"
 msgstr "Denne tilføjelse er allerede en del af samlingen"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Udvidelser"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "Tilføjelser i kategorien %s "
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Temaer"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -996,6 +928,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Søgeværktøjer og søgerelaterede udvidelser"
 
 msgid "Search tools"
+msgstr "Søgeværktøjer"
+
+msgid "Search Tools"
 msgstr "Søgeværktøjer"
 
 msgid "Most Users"
@@ -2139,6 +2074,59 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Denne slug bruges allerede. Vælg en anden."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Denne slug kan ikke være \"%(slug)s\". Vælg en anden."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Ugyldigt mærkat: {0}"
+msgstr[1] "Ugyldige mærkater: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" er et reserveret mærkat og kan ikke benyttes."
+msgstr[1] "\"{0}\" er reserverede mærkater og kan ikke benyttes."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr ""
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr ""
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Du kan kun have {0} kategori."
+msgstr[1] "Du kan kun have {0} kategorier."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr ""
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr ""
+
 msgid "Must have at least one owner."
 msgstr ""
 
@@ -2234,6 +2222,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Ugyldigt eller ødelagt arkiv."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2397,6 +2389,9 @@ msgstr "Ny API-nøgle oprettet"
 msgid "API key revoked"
 msgstr "API-nøglen er tilbagekaldt"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr ""
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2416,9 +2411,6 @@ msgstr "Accepter"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "eller <a href=\"{0}\">Annuller</a>"
-
-msgid "Back to Add-ons"
-msgstr "Tilbage til tilføjelser"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5266,6 +5258,9 @@ msgstr ""
 msgid "Cannot diff a version against itself"
 msgstr ""
 
+msgid "Could not parse the manifest file."
+msgstr ""
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
@@ -5304,9 +5299,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Ugyldig arkiv."
-
-msgid "Could not parse the manifest file."
-msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr ""
@@ -6748,33 +6740,6 @@ msgstr "efter platform"
 msgid "by Add-on Status"
 msgstr "efter status"
 
-msgid "Add-on Statistics"
-msgstr "Tilføjelser statistik"
-
-msgid "Add-ons in Use"
-msgstr ""
-
-msgid "Add-ons Created"
-msgstr ""
-
-msgid "Add-ons Downloaded"
-msgstr ""
-
-msgid "Add-ons Updated"
-msgstr ""
-
-msgid "Collections Created"
-msgstr ""
-
-msgid "Reviews Written"
-msgstr ""
-
-msgid "User Signups"
-msgstr ""
-
-msgid "Archived Data"
-msgstr ""
-
 msgid "Custom Date Range"
 msgstr "Tilpas datointerval"
 
@@ -6862,23 +6827,8 @@ msgstr "Dette panel er i øjeblikket <b>privat</b>."
 msgid "Change settings."
 msgstr "Skift indstillinger."
 
-msgid "Add-ons Created by Date"
-msgstr ""
-
-msgid "Add-ons Downloaded by Date"
-msgstr ""
-
-msgid "Add-ons in Use by Date"
-msgstr ""
-
-msgid "Add-ons Updated by Date"
-msgstr ""
-
 msgid "Application usage by Date"
 msgstr "Programbrug efter dato"
-
-msgid "Collections Created by Date"
-msgstr ""
 
 msgid "Downloaded by Date"
 msgstr "Hentede, efter dato"
@@ -6924,12 +6874,6 @@ msgstr "Topplatforme"
 msgid "See more platforms&hellip;"
 msgstr "Se flere platforme&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Bedømmelser efter dato"
-
-msgid "Reviews Created by Date"
-msgstr ""
-
 msgid "Download sources by Date"
 msgstr "Filhentningskilder, efter dato"
 
@@ -6948,9 +6892,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Status efter dato"
 
-msgid "Subscribers by Date"
-msgstr "Abonnenter efter dato"
-
 msgid "Daily Users by Date"
 msgstr "Daglige brugere efter dato"
 
@@ -6967,26 +6908,14 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
-msgid "User Signups by Date"
-msgstr ""
-
 msgid "Application versions by Date"
 msgstr "Programversioner efter dato"
 
 msgid "Mozilla Add-ons"
 msgstr "Mozilla-tilføjelser"
 
-msgid "Find add-ons for other applications"
-msgstr "Find tilføjelser til andre programmer"
-
-msgid "Other Applications"
-msgstr "Andre programmer"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO får et nyt udseende. Har du lyst til at se det?"
-
-msgid "Visit the new site"
-msgstr "Besøg det nye websted"
+msgid "Back to Add-ons"
+msgstr "Tilbage til tilføjelser"
 
 msgid "Footer logo"
 msgstr ""
@@ -7053,27 +6982,6 @@ msgstr "Velkommen, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registrer dig</a> eller <a href=\"%(login)s\">Log ind</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Hvis du vil prøve de tusindvis af tilføjelser der er tilgængelige her, hent <a href=\"%(url)s\">Mozilla Firefox</a>, en hurtig, gratis måde at surfe på nettet!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Velkommen til tilføjelser til {0}."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Vælg mellem tusindvis af yderligere funktioner og temaer, som kan gøre Firefox til din egen."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Tilføj yderligere funktioner og temaer for at gøre %(app)s til din helt egen."
-
-msgid "On the go?"
-msgstr "På farten?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Tjek vores <a class=\"mobile-link\" href=\"#\">tilføjelsesside til Mobilen</a>."
 
 msgid "Android Add-ons"
 msgstr "Tilføjelser til Android"

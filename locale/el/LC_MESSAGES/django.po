@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-03-22 00:03+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
@@ -99,62 +99,6 @@ msgstr "Πειραματικά"
 msgid "Add to {0}"
 msgstr "Προσθήκη στο {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Το slug δεν μπορεί να είναι \"%(slug)s\". Παρακαλώ επιλέξτε κάποιο άλλο."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Μη έγκυρη ετικέτα: {0}"
-msgstr[1] "Μη έγκυρες ετικέτες: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "Το «{0}» είναι δεσμευμένη ετικέτα και δεν μπορεί να χρησιμοποιηθεί."
-msgstr[1] "Τα «{0}» είναι δεσμευμένες ετικέτες και δεν μπορούν να χρησιμοποιηθούν."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Έχετε  {0} πλεονάζουσα ετικέτα"
-msgstr[1] "Έχετε {0} πλεονάζουσες ετικέτες."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Όλες οι ετικέτες θα πρέπει να έχουν %s χαρακτήρες ή λιγότερους μετά την αφαίρεση των μη αποδεκτών χαρακτήρων."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρα."
-msgstr[1] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρες."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Το εισηγμένο κείμενο έχει αναφερθεί ως ανεπιθύμητο."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Μπορείτε να έχετε μόνο {0} κατηγορία."
-msgstr[1] "Μπορείτε να έχετε μόνο {0} κατηγορίες."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Αυτή η κατηγορία δεν μπορεί να συνδυαστεί με άλλες κατηγορίες."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [%s] ή υπό-τομέας."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Για να αλλάξετε την αρχική γλώσσα, θα πρέπει πρώτα να διαθέτετε το όνομα, την περιγραφή, και τη σύνοψη σ' αυτή τη γλώσσα. Σας λείπει %s."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Δηλωμένοι"
@@ -167,9 +111,6 @@ msgstr "Τα ονόματα προσθέτων δεν μπορούν να περ
 
 msgid "Abuse reported."
 msgstr "Αναφέρθηκε κατάχρηση."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Το πρόσθετο μου δεν περιέχεται σε καμία από τις κατηγορίες"
 
 msgid "No compatible versions"
 msgstr "Δεν υπάρχουν συμβατές εκδόσεις"
@@ -834,32 +775,6 @@ msgstr "Νεότερα"
 msgid "Explore"
 msgstr "Εξερεύνηση"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Επεκτάσεις"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Θέματα"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Θέλετε περισσότερη εξατομίκευση; Δείτε τα <b>Πλήρη Θέματα</b>"
-
-msgid "Collections"
-msgstr "Συλλογές"
-
-msgid "More&hellip;"
-msgstr "Περισσότερα&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Πρόσθετα για κινητά"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Λεξικά & πακέτα γλωσσών"
-
-msgid "Search Tools"
-msgstr "Εργαλεία αναζήτησης"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -879,6 +794,12 @@ msgstr "Μετάβαση στην τελευταία σελίδα"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Προβολή <b>%(begin)s</b>&ndash;<b>%(end)s</b> από <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Συλλογές"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Λεξικά & πακέτα γλωσσών"
 
 # Χωρίς τόνο λόγω του text-transform: uppercase
 msgid "Add-ons"
@@ -971,6 +892,9 @@ msgstr ""
 "Αν η υποστηριζόμενη εφαρμογή σας δεν απαιτεί ένα αρχείο manifest, πρέπει ακόμη να περιλάβετε ένα με τις απαιτούμενες ιδιότητες, όπως περιγράφεται %(amo_manifests_mdn_link_open)sεδώ"
 "%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Το εισηγμένο κείμενο έχει αναφερθεί ως ανεπιθύμητο."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Αυτό το προσαρμοσμένο URL χρησιμοποιείται ήδη από κάποιο άλλο στις συλλογές σας."
 
@@ -989,10 +913,18 @@ msgstr "Αυτό το προσαρμοσμένο URL δεν μπορεί να χ
 msgid "This add-on already belongs to the collection"
 msgstr "Αυτό το πρόσθετο ανήκει ήδη σε άλλη συλλογή"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Επεκτάσεις"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "Πρόσθετα \"%s\""
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Θέματα"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1017,6 +949,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Εργαλεία αναζήτησης και επεκτάσεις σχετικές με αναζήτηση"
 
 msgid "Search tools"
+msgstr "Εργαλεία αναζήτησης"
+
+msgid "Search Tools"
 msgstr "Εργαλεία αναζήτησης"
 
 msgid "Most Users"
@@ -2154,6 +2089,59 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Το κείμενο στο πεδίο \"{field}\" έχει επισημανθεί ως ανεπιθύμητο."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Αυτό το slug χρησιμοποιείται ήδη. Παρακαλώ διαλέξτε κάποιο άλλο."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Το slug δεν μπορεί να είναι \"%(slug)s\". Παρακαλώ επιλέξτε κάποιο άλλο."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Μη έγκυρη ετικέτα: {0}"
+msgstr[1] "Μη έγκυρες ετικέτες: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "Το «{0}» είναι δεσμευμένη ετικέτα και δεν μπορεί να χρησιμοποιηθεί."
+msgstr[1] "Τα «{0}» είναι δεσμευμένες ετικέτες και δεν μπορούν να χρησιμοποιηθούν."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Έχετε  {0} πλεονάζουσα ετικέτα"
+msgstr[1] "Έχετε {0} πλεονάζουσες ετικέτες."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Όλες οι ετικέτες θα πρέπει να έχουν %s χαρακτήρες ή λιγότερους μετά την αφαίρεση των μη αποδεκτών χαρακτήρων."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρα."
+msgstr[1] "Όλες οι ετικέτες θα πρέπει να έχουν τουλάχιστον {0} χαρακτήρες."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Δε μπορείτε να αλλάξετε κατηγορίες καθώς το πρόσθετο σας προβάλλεται για αυτή την εφαρμογή."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Μπορείτε να έχετε μόνο {0} κατηγορία."
+msgstr[1] "Μπορείτε να έχετε μόνο {0} κατηγορίες."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Αυτή η κατηγορία δεν μπορεί να συνδυαστεί με άλλες κατηγορίες."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Ο τομέας του URL πρέπει να είναι ένας από τους [%s] ή υπό-τομέας."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Για να αλλάξετε την αρχική γλώσσα, θα πρέπει πρώτα να διαθέτετε το όνομα, την περιγραφή, και τη σύνοψη σ' αυτή τη γλώσσα. Σας λείπει %s."
+
 msgid "Must have at least one owner."
 msgstr "Θα πρέπει να υπάρχει τουλάχιστον ένας ιδιοκτήτης"
 
@@ -2252,6 +2240,10 @@ msgstr "Μόνοι σας. <span class=\"helptext\">Η υποβολή σας θ�
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Δεν είναι δυνατή η αλλαγή κατηγορίας, όσο το πρόσθετο σας είναι στα προτεινόμενα."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Άκυρο ή κατεστραμμένο αρχείο."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Το κλειδί API προγραμματιστή σας βρέθηκε στο υποβεβλημένο αρχείο. Για να προστατεύσετε το λογαριασμό σας, το κλειδί θα ανακληθεί."
@@ -2415,6 +2407,9 @@ msgstr "Δημιουργήθηκε νέο κλειδί API"
 msgid "API key revoked"
 msgstr "Ανακλήθηκε κλειδί API"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Το πρόσθετο μου δεν περιέχεται σε καμία από τις κατηγορίες"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2436,9 +2431,6 @@ msgstr "Αποδοχή"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ή <a href=\"{0}\">Ακύρωση</a>"
-
-msgid "Back to Add-ons"
-msgstr "Πίσω στα πρόσθετα"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5211,6 +5203,9 @@ msgstr "Αυτό το αρχείο είναι κατάλογος."
 msgid "Cannot diff a version against itself"
 msgstr "Αδυναμία διαφοροποίησης έκδοσης με τον εαυτό της"
 
+msgid "Could not parse the manifest file."
+msgstr "Αδυναμία λήψης αρχείου manifest."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Το GUID απαιτείται για το Firefox 47 και παλαιότερα."
 
@@ -5249,9 +5244,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Μη έγκυρο συμπιεσμένο αρχείο."
-
-msgid "Could not parse the manifest file."
-msgstr "Αδυναμία λήψης αρχείου manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "Αδυναμία εύρεσης ID προσθέτου."
@@ -6652,33 +6644,6 @@ msgstr "κατά πλατφόρμα"
 msgid "by Add-on Status"
 msgstr "κατά κατάσταση πρόσθετου"
 
-msgid "Add-on Statistics"
-msgstr "Στατιστικές προσθέτου"
-
-msgid "Add-ons in Use"
-msgstr "Πρόσθετα σε χρήση"
-
-msgid "Add-ons Created"
-msgstr "Δημιουργημένα πρόσθετα"
-
-msgid "Add-ons Downloaded"
-msgstr "Ληφθέντα πρόσθετα"
-
-msgid "Add-ons Updated"
-msgstr "Ενημερωμένα πρόσθετα"
-
-msgid "Collections Created"
-msgstr "Δημιουργημένες συλλογές"
-
-msgid "Reviews Written"
-msgstr "Γραπτές αξιολογήσεις"
-
-msgid "User Signups"
-msgstr "Εγγραφές χρηστών"
-
-msgid "Archived Data"
-msgstr "Αρχειοθετημένα δεδομένα"
-
 msgid "Custom Date Range"
 msgstr "Προσαρμοσμένο εύρος ημερομηνιών"
 
@@ -6765,23 +6730,8 @@ msgstr "Αυτός ο πίνακας είναι <b>ιδιωτικός</b>."
 msgid "Change settings."
 msgstr "Αλλαγή ρυθμίσεων."
 
-msgid "Add-ons Created by Date"
-msgstr "Δημιουργία προσθέτων κατά ημερομηνία"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Λήψεις προσθέτων κατά ημερομηνία"
-
-msgid "Add-ons in Use by Date"
-msgstr "Πρόσθετα σε χρήση κατά ημερομηνία"
-
-msgid "Add-ons Updated by Date"
-msgstr "Ενημερωμένα πρόσθετα κατά ημερομηνία"
-
 msgid "Application usage by Date"
 msgstr "Χρήση εφαρμογής κατά ημερομηνία"
-
-msgid "Collections Created by Date"
-msgstr "Δημιουργία συλλογών κατά ημερομηνία"
 
 msgid "Downloaded by Date"
 msgstr "Λήψεις κατά ημερομηνία"
@@ -6829,12 +6779,6 @@ msgstr "Κορυφαίες πλατφόρμες"
 msgid "See more platforms&hellip;"
 msgstr "Προβολή περισσότερων πλατφορμών&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Κριτικές κατά ημερομηνία"
-
-msgid "Reviews Created by Date"
-msgstr ""
-
 msgid "Download sources by Date"
 msgstr "Λήψη πηγαίου κώδικα κατά ημερομηνία"
 
@@ -6853,9 +6797,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Κατάσταση πρόσθετου κατά ημερομηνία"
 
-msgid "Subscribers by Date"
-msgstr "Συνδρομητές κατά ημερομηνία"
-
 msgid "Daily Users by Date"
 msgstr "Ημερήσιοι χρήστες κατά ημερομηνία"
 
@@ -6872,26 +6813,14 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
-msgid "User Signups by Date"
-msgstr ""
-
 msgid "Application versions by Date"
 msgstr "Έκδοση εφαρμογής κατά ημερομηνία"
 
 msgid "Mozilla Add-ons"
 msgstr "Πρόσθετα Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Αναζήτηση πρόσθετων για άλλα προγράμματα"
-
-msgid "Other Applications"
-msgstr "Άλλα προγράμματα"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "Το AMO αποκτά νέα εμφάνιση. Θέλετε να τη δείτε;"
-
-msgid "Visit the new site"
-msgstr "Επίσκεψη στη νέα ιστοσελίδα"
+msgid "Back to Add-ons"
+msgstr "Πίσω στα πρόσθετα"
 
 msgid "Footer logo"
 msgstr "Λογότυπο υποσέλιδου"
@@ -6960,27 +6889,6 @@ msgstr "Καλώς ορίσατε, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Εγγραφή</a> ή <a href=\"%(login)s\">Σύνδεση</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Για να δοκιμάσετε τα χιλιάδες διαθέσιμα πρόσθετα που είναι διαθέσιμα εδώ, κάντε λήψη του <a href=\"%(url)s\">Mozilla Firefox</a>, ενός γρήγορου, ελεύθερου τρόπου για πλοήγηση στο διαδίκτυο!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Καλώς ορίσατε στα πρόσθετα {0}."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Διαλέξτε μεταξύ χιλιάδων επιπλέον χαρακτηριστικών και στυλ για να κάνετε τον Firefox δικό σας."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Προσθέστε επιπλέον χαρακτηριστικά και στυλ για κάνετε το %(app)s δικό σας."
-
-msgid "On the go?"
-msgstr "Στο δρόμο;"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Ελέγξτε τη σελίδα μας <a class=\"mobile-link\" href=\"#\">Mobile Πρόσθετα</a>."
 
 msgid "Android Add-ons"
 msgstr "Πρόσθετα Android"

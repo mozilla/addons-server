@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-03-21 07:43+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
@@ -97,67 +97,6 @@ msgstr "Experimental"
 msgid "Add to {0}"
 msgstr "Adaugă la {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Slugul nu poate fi „%(slug)s”. Te rugăm să alegi altul."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Etichetă nevalidă: {0}"
-msgstr[1] "Etichete nevalide: {0}"
-msgstr[2] "Etichete nevalide: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "„{0}\" este o etichetă rezervată și nu poate fi utilizată."
-msgstr[1] "„{0}\" sunt etichete rezervate și nu pot fi utilizate."
-msgstr[2] "„{0}\" sunt etichete rezervate și nu pot fi utilizate."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Ai {0} etichetă în plus."
-msgstr[1] "Ai {0} etichete în plus."
-msgstr[2] "Ai {0} de etichete în plus."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Toate etichetele trebuie să fie alcătuite din %s de caractere sau mai puțin după eliminarea caracterelor invalide."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Toate etichetele trebuie să aibă cel puțin {0} caracter."
-msgstr[1] "Toate etichetele trebuie să aibă cel puțin {0} caractere."
-msgstr[2] "Toate etichetele trebuie să aibă cel puțin {0} de caractere."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Textul introdus a fost semnalat ca spam."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat pentru această aplicație."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Poți avea doar {0} categorie."
-msgstr[1] "Poți avea doar {0} categorii."
-msgstr[2] "Poți avea doar {0} de categorii."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezumat și o descriere în limba respectivă. Îți lipsește %s."
-
 msgid "Listed"
 msgstr "Listat"
 
@@ -169,9 +108,6 @@ msgstr "Denumirile suplimentelor nu pot conține mărci comerciale Mozilla sau F
 
 msgid "Abuse reported."
 msgstr "Abuz raportat."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii"
 
 msgid "No compatible versions"
 msgstr "Nicio versiune compatibilă"
@@ -840,32 +776,6 @@ msgstr "Cele mai noi"
 msgid "Explore"
 msgstr "Explorează"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Extensii"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Teme"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Vrei mai multe opțiuni de personalizare? Încearcă <b>temele complete</b>"
-
-msgid "Collections"
-msgstr "Colecții"
-
-msgid "More&hellip;"
-msgstr "Mai multe&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Suplimente pentru mobil"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Dicționare și pachete lingvistice"
-
-msgid "Search Tools"
-msgstr "Instrumente pentru căutare"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -885,6 +795,12 @@ msgstr "Sari la ultima pagină"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Se afișează <b>%(begin)s</b>&ndash;<b>%(end)s</b> din <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Colecții"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Dicționare și pachete lingvistice"
 
 msgid "Add-ons"
 msgstr "Suplimente"
@@ -976,6 +892,9 @@ msgstr ""
 "Dacă aplicația ta suportată nu necesită un fișier manifest, tot trebuie să incluzi unul care să aibă proprietățile obligatorii, conform specificațiilor%(amo_manifests_mdn_link_open)sde aici"
 "%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Textul introdus a fost semnalat ca spam."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Acest URL personalizat este deja utilizat de una dintre celelalte colecții ale tale."
 
@@ -994,10 +913,18 @@ msgstr "Acest URL personalizat nu poate fi folosit."
 msgid "This add-on already belongs to the collection"
 msgstr "Acest supliment deja face parte din colecție"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Extensii"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "Suplimente %s"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Teme"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1023,6 +950,9 @@ msgstr "Caută unelte și extensii legate de căutare"
 
 msgid "Search tools"
 msgstr "Caută unelte"
+
+msgid "Search Tools"
+msgstr "Instrumente pentru căutare"
 
 msgid "Most Users"
 msgstr "Cu cei mai mulți utilizatori"
@@ -2169,6 +2099,64 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Textul din câmpul \"{field}\" a fost semnalat ca spam."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Slugul este deja utilizat. Te rugăm să alegi altul."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Slugul nu poate fi „%(slug)s”. Te rugăm să alegi altul."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Etichetă nevalidă: {0}"
+msgstr[1] "Etichete nevalide: {0}"
+msgstr[2] "Etichete nevalide: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "„{0}\" este o etichetă rezervată și nu poate fi utilizată."
+msgstr[1] "„{0}\" sunt etichete rezervate și nu pot fi utilizate."
+msgstr[2] "„{0}\" sunt etichete rezervate și nu pot fi utilizate."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Ai {0} etichetă în plus."
+msgstr[1] "Ai {0} etichete în plus."
+msgstr[2] "Ai {0} de etichete în plus."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Toate etichetele trebuie să fie alcătuite din %s de caractere sau mai puțin după eliminarea caracterelor invalide."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Toate etichetele trebuie să aibă cel puțin {0} caracter."
+msgstr[1] "Toate etichetele trebuie să aibă cel puțin {0} caractere."
+msgstr[2] "Toate etichetele trebuie să aibă cel puțin {0} de caractere."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat pentru această aplicație."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Poți avea doar {0} categorie."
+msgstr[1] "Poți avea doar {0} categorii."
+msgstr[2] "Poți avea doar {0} de categorii."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Categoria de diverse nu poate fi combinată cu categorii suplimentare."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Domeniul URL trebuie să fie unul dintre domeniile [%s] sau un subdomeniu."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Înainte de a schimba limba implicită, trebuie să ai un nume, un rezumat și o descriere în limba respectivă. Îți lipsește %s."
+
 msgid "Must have at least one owner."
 msgstr "Trebuie să aibă cel puțin un proprietar."
 
@@ -2269,6 +2257,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Arhivă invalidă sau coruptă."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru a-ți proteja contul, cheia va fi revocată."
@@ -2432,6 +2424,9 @@ msgstr "Cheie API nouă creată"
 msgid "API key revoked"
 msgstr "Cheie API revocată"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Suplimentul meu nu se încadrează în niciuna dintre categorii"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2453,9 +2448,6 @@ msgstr "Accept"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "sau <a href=\"{0}\">Anulează</a>"
-
-msgid "Back to Add-ons"
-msgstr "Înapoi la Suplimente"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5252,6 +5244,9 @@ msgstr "Acest fișier este un director."
 msgid "Cannot diff a version against itself"
 msgstr "Nu poți compara o versiune cu ea însăși"
 
+msgid "Could not parse the manifest file."
+msgstr "Nu s-a reușit analizarea fișierului manifest."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Ai nevoie de GUID pentru Firefox 47 și versiuni anterioare."
 
@@ -5290,9 +5285,6 @@ msgstr "Fișier care depășește limita de mărime în arhiva: {0}"
 
 msgid "Invalid archive."
 msgstr "Arhivă invalidă."
-
-msgid "Could not parse the manifest file."
-msgstr "Nu s-a reușit analizarea fișierului manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "Nu s-a găsit un ID al suplimentului."
@@ -6729,33 +6721,6 @@ msgstr "după platformă"
 msgid "by Add-on Status"
 msgstr "după starea suplimentului"
 
-msgid "Add-on Statistics"
-msgstr "Statistici supliment"
-
-msgid "Add-ons in Use"
-msgstr "Suplimente în uz"
-
-msgid "Add-ons Created"
-msgstr "Suplimente create"
-
-msgid "Add-ons Downloaded"
-msgstr "Suplimente descărcate"
-
-msgid "Add-ons Updated"
-msgstr "Suplimente actualizate"
-
-msgid "Collections Created"
-msgstr "Colecții create"
-
-msgid "Reviews Written"
-msgstr "Recenzii scrise"
-
-msgid "User Signups"
-msgstr "Înregistrări de utilizatori"
-
-msgid "Archived Data"
-msgstr "Date arhivate"
-
 msgid "Custom Date Range"
 msgstr "Interval de perioadă personalizat"
 
@@ -6843,23 +6808,8 @@ msgstr "Acest tablou de bord este în prezent <b>privat</b>."
 msgid "Change settings."
 msgstr "Modifică setările."
 
-msgid "Add-ons Created by Date"
-msgstr "Suplimente create după dată"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Suplimente descărcate după dată"
-
-msgid "Add-ons in Use by Date"
-msgstr "Suplimente în utilizare după dată"
-
-msgid "Add-ons Updated by Date"
-msgstr "Suplimente actualizate după dată"
-
 msgid "Application usage by Date"
 msgstr "Utilizarea aplicației după dată"
-
-msgid "Collections Created by Date"
-msgstr "Colecții create în funcție de dată"
 
 msgid "Downloaded by Date"
 msgstr "Descărcări în funcție de dată"
@@ -6907,12 +6857,6 @@ msgstr "Platforme de top"
 msgid "See more platforms&hellip;"
 msgstr "Vezi mai multe platforme&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Evaluări în funcție de dată"
-
-msgid "Reviews Created by Date"
-msgstr "Recenzii create în funcție de dată"
-
 msgid "Download sources by Date"
 msgstr "Surse de descărcare în funcție de dată"
 
@@ -6937,9 +6881,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Starea suplimentului după dată"
 
-msgid "Subscribers by Date"
-msgstr "Abonați în funcție de dată"
-
 msgid "Daily Users by Date"
 msgstr "Utilizatori zilnici în funcție de dată"
 
@@ -6960,26 +6901,14 @@ msgstr ""
 "<h2>Ce înseamnă utilizatori zilnici?</h2> <p> Suplimentele descărcate de pe acest site verifică pentru actualizări o dată pe zi. Numărul total al acestor pinguri de actualizare poartă denumirea de "
 "„utilizatori zilnici”. Utilizatorii zilnici pot fi defalcați după versiunea suplimentului, sistemul de operare, starea suplimentului, aplicație și limbă. </p>"
 
-msgid "User Signups by Date"
-msgstr "Înscrieri ale utilizatorilor în funcție de dată"
-
 msgid "Application versions by Date"
 msgstr "Versiunile aplicației în funcție de dată"
 
 msgid "Mozilla Add-ons"
 msgstr "Suplimente Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Găsește suplimente pentru alte aplicații"
-
-msgid "Other Applications"
-msgstr "Alte aplicații"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO ia haină nouă. Vrei să o vezi?"
-
-msgid "Visit the new site"
-msgstr "Vizitează-ne noul site"
+msgid "Back to Add-ons"
+msgstr "Înapoi la Suplimente"
 
 msgid "Footer logo"
 msgstr "Logo la subsol"
@@ -7046,27 +6975,6 @@ msgstr "Bine ai venit, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Înregistrează-te</a> sau <a href=\"%(login)s\">Autentifică-te</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Pentru a încerca mii de suplimente disponibile aici, descarcă <a href=\"%(url)s\">Mozilla Firefox</a>, o modalitate rapidă și gratuită de a naviga pe web!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Bine ai revenit la {0} Suplimente."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Alege din mii de funcționalități și stiluri suplimentare ca să faci Firefox pe stilul tău."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Adaugă funcționalități și stiluri suplimentare ca să faci %(app)s pe stilul tău."
-
-msgid "On the go?"
-msgstr ""
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Vezi <a class=\"mobile-link\" href=\"#\">site-ul nostru de suplimente pentru dispozitive mobile</a>."
 
 msgid "Android Add-ons"
 msgstr "Suplimente pentru Android"

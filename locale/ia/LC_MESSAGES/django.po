@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-03-04 22:28+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,62 +98,6 @@ msgstr "Experimental"
 msgid "Add to {0}"
 msgstr "Adder a {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Iste supernomine es ja in uso. Per favor elige un altero."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Le supernomine non pote ser \"%(slug)s\". Per favor elige un altero."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Tag non valide: {0}"
-msgstr[1] "Tags non valide: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" es un tag reservate e non pote ser usate."
-msgstr[1] "\"{0}\" es tags reservate e non pote ser usate."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Tu ha {0} tag de troppo."
-msgstr[1] "Tu ha {0} tags de troppo."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Tote le tags debe esser de %s characteres o minus, postea la characteres non valide es removite."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Tote le tags debe ser al minus de {0} character."
-msgstr[1] "Tote le tags debe ser al minus de {0} characteres."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Le texto inserite esseva signalate como spam."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Tu pote haber solo {0} categoria."
-msgstr[1] "Tu pote haber solo {0} categorias."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Le categoria miscellanea non pote ser combinate con le altere categorias."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Le dominio del URL debe esser un del [%s], o un sub-dominio."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Ante de cambiar tu localisation predefinite tu debe haber un nomine, summario, e description in ille localisation. Tu manca de %s."
-
 msgid "Listed"
 msgstr "Listate"
 
@@ -165,9 +109,6 @@ msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o 
 
 msgid "Abuse reported."
 msgstr "Abuso signalate."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Mi additivo non entra in ulle del categorias"
 
 msgid "No compatible versions"
 msgstr "Nulle compatibile versiones"
@@ -814,31 +755,6 @@ msgstr "Le plus recente"
 msgid "Explore"
 msgstr "Explorar"
 
-msgid "Extensions"
-msgstr "Extensiones"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Themas"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Desira tu plus personalisationes? Prova <b>Themas complete</b>"
-
-msgid "Collections"
-msgstr "Collectiones"
-
-msgid "More&hellip;"
-msgstr "Plus&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Additivos pro mobile"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Dictionarios e pacchettos de lingua"
-
-msgid "Search Tools"
-msgstr "Applicationes de recerca"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -858,6 +774,12 @@ msgstr "Saltar al ultime pagina"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Monstrante <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Collectiones"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Dictionarios e pacchettos de lingua"
 
 msgid "Add-ons"
 msgstr "Additivos"
@@ -948,6 +870,9 @@ msgstr ""
 "Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per %(amo_manifests_mdn_link_open)shere"
 "%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Le texto inserite esseva signalate como spam."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Iste adresse personalisate es ja in uso per un altere de tu collectiones."
 
@@ -966,10 +891,17 @@ msgstr "Iste URL personalisate non pote ser usate."
 msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
 
+msgid "Extensions"
+msgstr "Extensiones"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%s Additivos"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Themas"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -995,6 +927,9 @@ msgstr "Applicationes de recerca e extensiones correlate al recerca"
 
 msgid "Search tools"
 msgstr "Utensiles de recerca"
+
+msgid "Search Tools"
+msgstr "Applicationes de recerca"
 
 msgid "Most Users"
 msgstr "Le major parte del usatores"
@@ -2134,6 +2069,59 @@ msgstr "Nos consenti e incoragia un promotion, ma tu non pote inverter iste proc
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Le texto inserite in le campo \"{field}\" esseva signalate como spam."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Iste supernomine es ja in uso. Per favor elige un altero."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Le supernomine non pote ser \"%(slug)s\". Per favor elige un altero."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Tag non valide: {0}"
+msgstr[1] "Tags non valide: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" es un tag reservate e non pote ser usate."
+msgstr[1] "\"{0}\" es tags reservate e non pote ser usate."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Tu ha {0} tag de troppo."
+msgstr[1] "Tu ha {0} tags de troppo."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Tote le tags debe esser de %s characteres o minus, postea la characteres non valide es removite."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Tote le tags debe ser al minus de {0} character."
+msgstr[1] "Tote le tags debe ser al minus de {0} characteres."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Tu pote haber solo {0} categoria."
+msgstr[1] "Tu pote haber solo {0} categorias."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Le categoria miscellanea non pote ser combinate con le altere categorias."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Le dominio del URL debe esser un del [%s], o un sub-dominio."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Ante de cambiar tu localisation predefinite tu debe haber un nomine, summario, e description in ille localisation. Tu manca de %s."
+
 msgid "Must have at least one owner."
 msgstr "Debe haber al minus un proprietario."
 
@@ -2233,6 +2221,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Le categorias non pote ser cambiate durante que tu additivos es consiliate."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Archivo non valide o rupte."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tu clave API de disveloppator esseva trovate in le file inviate. Pro proteger tu conto, le clave essera revocate."
@@ -2396,6 +2388,9 @@ msgstr "Nove clave API create"
 msgid "API key revoked"
 msgstr "Clave API revocate"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Mi additivo non entra in ulle del categorias"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2417,9 +2412,6 @@ msgstr "Acceptar"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Cancellar</a>"
-
-msgid "Back to Add-ons"
-msgstr "Retro al additivos"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5202,6 +5194,9 @@ msgstr "Iste file es un directorio."
 msgid "Cannot diff a version against itself"
 msgstr "Impossibile comparar un version contra se mesme"
 
+msgid "Could not parse the manifest file."
+msgstr "Impossibile tractar le file manifesto."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Un GUID es obligatori pro le versiones 47 e precedente de Firefox."
 
@@ -5240,9 +5235,6 @@ msgstr "File excedente le dimension limite in le archivo: {0}"
 
 msgid "Invalid archive."
 msgstr "Archivo non valide."
-
-msgid "Could not parse the manifest file."
-msgstr "Impossibile tractar le file manifesto."
 
 msgid "Could not find an add-on ID."
 msgstr "Impossibile trovar le ID del additivo."
@@ -6656,33 +6648,6 @@ msgstr "per systema operative"
 msgid "by Add-on Status"
 msgstr "per stato del additivo"
 
-msgid "Add-on Statistics"
-msgstr "Statistica del additivos"
-
-msgid "Add-ons in Use"
-msgstr "Additivos in uso"
-
-msgid "Add-ons Created"
-msgstr "Additivos create"
-
-msgid "Add-ons Downloaded"
-msgstr "Additivos discargate"
-
-msgid "Add-ons Updated"
-msgstr "Additivos actualisate"
-
-msgid "Collections Created"
-msgstr "Collectiones create"
-
-msgid "Reviews Written"
-msgstr "Revisiones scribite"
-
-msgid "User Signups"
-msgstr "Registrationes de usatores"
-
-msgid "Archived Data"
-msgstr "Datos archivate"
-
 msgid "Custom Date Range"
 msgstr "Intervallo de datas personalisate"
 
@@ -6771,23 +6736,8 @@ msgstr "Iste pannello de controlo es actualmente <b>private</b>."
 msgid "Change settings."
 msgstr "Cambiar le parametros."
 
-msgid "Add-ons Created by Date"
-msgstr "Additivos per data de creation"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Additivos per data de discargamento"
-
-msgid "Add-ons in Use by Date"
-msgstr "Additivos per data de uso"
-
-msgid "Add-ons Updated by Date"
-msgstr "Additivos per data de actualisation"
-
 msgid "Application usage by Date"
 msgstr "Application per data de uso"
-
-msgid "Collections Created by Date"
-msgstr "Collectiones per data de creation"
 
 msgid "Downloaded by Date"
 msgstr "Discargate per data"
@@ -6835,12 +6785,6 @@ msgstr "Systemas operative principal"
 msgid "See more platforms&hellip;"
 msgstr "Vide altere systemas operative&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Valutationes per data"
-
-msgid "Reviews Created by Date"
-msgstr "Revisiones per data de creation"
-
 msgid "Download sources by Date"
 msgstr "Fontes de discargamento per data"
 
@@ -6865,9 +6809,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Stato del additivos per data"
 
-msgid "Subscribers by Date"
-msgstr "Subscriptores per data"
-
 msgid "Daily Users by Date"
 msgstr "Usatores per die per data"
 
@@ -6888,26 +6829,14 @@ msgstr ""
 "<h2>Que es le Usatores per die?</h2> <p> Le additivos discargate ex iste sito es controlate pro lor actualisationes un vice per die. Le numero total de iste test de actualisation es note como "
 "Usatores active per die. Le Usatores per die pote ser subdividite per version del additivo, systema operative, stato del additivo, application e localisation. </p>"
 
-msgid "User Signups by Date"
-msgstr "Registrationes de usatores per data"
-
 msgid "Application versions by Date"
 msgstr "Versiones del application per data"
 
 msgid "Mozilla Add-ons"
 msgstr "Additivos de Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Trovar additivos pro altere applicationes"
-
-msgid "Other Applications"
-msgstr "Altere applicationes"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO va crear se un nove apparentia. Desira tu vider lo?"
-
-msgid "Visit the new site"
-msgstr "Visita le nove sito"
+msgid "Back to Add-ons"
+msgstr "Retro al additivos"
 
 msgid "Footer logo"
 msgstr "Logo de pede de pagina"
@@ -6973,27 +6902,6 @@ msgstr "Benvenite, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registra te</a> o <a href=\"%(login)s\">accede</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Pro provar le milles de additivos disponibile ci, discargar <a href=\"%(url)s\">Mozilla Firefox</a>, un rapide, libere maniera pro navigar trans le web!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Benvenite in {0} Additivos."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Elige ex milles de functionalitates e stilos extra pro personalisar Firefox."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Adde functionalitates e stilos extra pro personalisar %(app)s."
-
-msgid "On the go?"
-msgstr "In movimento?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Controla nostre <a class=\"mobile-link\" href=\"#\">sito del additivos pro mobile</a>."
 
 msgid "Android Add-ons"
 msgstr "Additivos pro Android"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-02-10 21:31+0000\n"
 "Last-Translator: ybouhamam <ybouhamam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -98,62 +98,6 @@ msgstr "Armitan"
 msgid "Add to {0}"
 msgstr "Rnu γer {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Anegzum-agi  yettwaseqdec yakan. Ma ulac aɣilif ɛreḍ wayeḍ."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Anegzum-agi ur yizmir ara ad yili d \"%(slug)s\". Ma ulac aγilif fren wayeḍ."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Tabzimt d tarameγut: {0}"
-msgstr[1] "Tibzimin mačči d timeɣtutin: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" d taṛekkizt yettuḥeṛṛen, ur tezmir  ara ad tettwaseqdec"
-msgstr[1] "\"{0}\" d tiṛekkizin yettuḥeṛṛen, ur zmirent  ara ad tettwaseqdec"
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Γur-k {0} ugar n tebzimin."
-msgstr[1] "Γur-wen {0} ugar n tebzimin."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Yessef akk tibzimin ad ilint ma yella aṭaṣ s  %s n isekkkilen ticki ttwakksen wid ur nelli ara d imeγta."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Yessefk akk tibzimint ad gebrent ma drus {0} n usekkil."
-msgstr[1] "Yessefk akk tibzimint ad gebrent ma drus {0} n isekkilen."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas-agi."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Tzemreḍ kan ad tesɛuḍ {0} n taggayt."
-msgstr[1] "Tzemreḍ kan ad tesɛuḍ {0} n taggayin."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Taggayt Ayen nniḍen ur tezmir ara ad tettwaseqdec akked tiyaḍ."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Taɣult n URL yessefk ad tettekki ar [%s] neɣ yiwen seg tiɣula-is tisnawanin."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akked uglam deg usideg agi aneggaru. Mazal xuṣṣen %s."
-
 msgid "Listed"
 msgstr "Yettwabder"
 
@@ -165,9 +109,6 @@ msgstr "ISmawen n yizegrar ur zmiren ara ad gebren ticraḍ yettwasersen n Mozil
 
 msgid "Abuse reported."
 msgstr "Yir aseqdec yettwammel."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Izegrar inu ur d-uzgin ula deg yiwet n taggayt"
 
 msgid "No compatible versions"
 msgstr "Ulac ileqman yemṣadan"
@@ -810,31 +751,6 @@ msgstr "Amaynut"
 msgid "Explore"
 msgstr "Snirem"
 
-msgid "Extensions"
-msgstr "Isiɣzaf"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Isental"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Tebɣiḍ ad terreḍ iminig inek d udmawan ugar? Ɛreḍ <b>isental ummiden</b>"
-
-msgid "Collections"
-msgstr "Tigrummiwin"
-
-msgid "More&hellip;"
-msgstr "Ugar &hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Izegrar i uziraz"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Imawalen & ikemmusen n tutlayin"
-
-msgid "Search Tools"
-msgstr "Ifecka n unadi"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -854,6 +770,12 @@ msgstr "Ddu ɣer usebter aneggaur"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Askan <b>%(begin)s</b>&ndash;<b>%(end)s</b> si <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Tigrummiwin"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Imawalen & ikemmusen n tutlayin"
 
 msgid "Add-ons"
 msgstr "Izegrar"
@@ -943,6 +865,9 @@ msgstr ""
 "Γas ulama aseɣzan inek ur yesri ara afaylu ameskan, yessefk ad t-id-sedduḍ yal tikelt akked tmeẓliyin ilaqen am akken id-yettwammel %(amo_manifests_mdn_link_open)sdagi"
 "%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Tansa-agi URLA tudmawant tesseqdac-itt yakan yiwet seg tigrummiwin-ik."
 
@@ -961,10 +886,17 @@ msgstr "Tansa-agi URL ur tezmir ara ad tettwaseqdec."
 msgid "This add-on already belongs to the collection"
 msgstr "Azegrir-agi ittekkayakan ar tegrumma"
 
+msgid "Extensions"
+msgstr "Isiɣzaf"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%s izegrar"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Isental"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -989,6 +921,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Ifecka n unadi akked isiɣzaf icudden ar unadi"
 
 msgid "Search tools"
+msgstr "Ifecka n unadi"
+
+msgid "Search Tools"
 msgstr "Ifecka n unadi"
 
 msgid "Most Users"
@@ -2118,6 +2053,59 @@ msgstr "Nessirig udiɣ nettmuddu tabɣest n uleqqem-agi, acukan ulac tuɣalin ar
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "Aḍris id-tmuddeḍ yettwacreḍ d aspam."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Anegzum-agi  yettwaseqdec yakan. Ma ulac aɣilif ɛreḍ wayeḍ."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Anegzum-agi ur yizmir ara ad yili d \"%(slug)s\". Ma ulac aγilif fren wayeḍ."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Tabzimt d tarameγut: {0}"
+msgstr[1] "Tibzimin mačči d timeɣtutin: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" d taṛekkizt yettuḥeṛṛen, ur tezmir  ara ad tettwaseqdec"
+msgstr[1] "\"{0}\" d tiṛekkizin yettuḥeṛṛen, ur zmirent  ara ad tettwaseqdec"
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Γur-k {0} ugar n tebzimin."
+msgstr[1] "Γur-wen {0} ugar n tebzimin."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Yessef akk tibzimin ad ilint ma yella aṭaṣ s  %s n isekkkilen ticki ttwakksen wid ur nelli ara d imeγta."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Yessefk akk tibzimint ad gebrent ma drus {0} n usekkil."
+msgstr[1] "Yessefk akk tibzimint ad gebrent ma drus {0} n isekkilen."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Taggayint ur zmirent ara ad ttwasniflent ticki azegrir inek yettwammel s yetran deg usnas-agi."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Tzemreḍ kan ad tesɛuḍ {0} n taggayt."
+msgstr[1] "Tzemreḍ kan ad tesɛuḍ {0} n taggayin."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Taggayt Ayen nniḍen ur tezmir ara ad tettwaseqdec akked tiyaḍ."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Taɣult n URL yessefk ad tettekki ar [%s] neɣ yiwen seg tiɣula-is tisnawanin."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Send asnifel n usideg inek amezwer yessefk ad tmuddeḍ isem, agzul akked uglam deg usideg agi aneggaru. Mazal xuṣṣen %s."
+
 msgid "Must have at least one owner."
 msgstr "Yessefk ad yegber xaṛsum yiwen n bab."
 
@@ -2219,6 +2207,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Taggayint ur zmirent ara ad beddlent ticki azegrir-ik d itri."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Yir aɣbaṛ"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tasarut-ik API n tneflit tettwaf deg ufaylu yettwaznen. Akken ad tḥerzeḍ amiḍan-ik, tasarutt ad tattwaḥwi."
@@ -2385,6 +2377,9 @@ msgstr "Tasarutt API tamaynut tettwarna"
 msgid "API key revoked"
 msgstr "Tasarutt API tettwaḥwi"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Izegrar inu ur d-uzgin ula deg yiwet n taggayt"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2406,9 +2401,6 @@ msgstr "Qbel"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "neɣ <a href=\"{0}\">Sefsex</a>"
-
-msgid "Back to Add-ons"
-msgstr "Uɣal ar izegrar"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5348,6 +5340,9 @@ msgstr "Afaylu-agi d akaram."
 msgid "Cannot diff a version against itself"
 msgstr "Ur izmir ara ad isiḍen amgired gar sin ileqman yettemcabin"
 
+msgid "Could not parse the manifest file."
+msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID yettwasra i Firefox 47 neɣ daw."
 
@@ -5386,9 +5381,6 @@ msgstr "Afaylu yezger talast n teɣzi deg uɣbaṛ: {0}"
 
 msgid "Invalid archive."
 msgstr "Yir aɣbaṛ"
-
-msgid "Could not parse the manifest file."
-msgstr "Ur izmir ara ad isleḍ afaylu ameskan."
 
 msgid "Could not find an add-on ID."
 msgstr "Ur izmir ara ad d-yaf asulay ID n uzegrir."
@@ -6798,33 +6790,6 @@ msgstr "s Twennaṭ"
 msgid "by Add-on Status"
 msgstr "s waddad n uzegrir"
 
-msgid "Add-on Statistics"
-msgstr "Tiddadanin n uzegrir"
-
-msgid "Add-ons in Use"
-msgstr "Izegrar ittuseqdacen"
-
-msgid "Add-ons Created"
-msgstr "Izegrar ttwarnan"
-
-msgid "Add-ons Downloaded"
-msgstr "Izegrar ttwasiren-d"
-
-msgid "Add-ons Updated"
-msgstr "Izegrar yettwaleqmen"
-
-msgid "Collections Created"
-msgstr "Tagrumma tettwarna"
-
-msgid "Reviews Written"
-msgstr "Tizmilin ttunefkent"
-
-msgid "User Signups"
-msgstr "Tuqqniwin n useqdac"
-
-msgid "Archived Data"
-msgstr "Isefka ttwaḥerzen"
-
 msgid "Custom Date Range"
 msgstr "Azilal n isefka udmawan"
 
@@ -6911,23 +6876,8 @@ msgstr ""
 msgid "Change settings."
 msgstr "Iɣewwaṛen n usnifel."
 
-msgid "Add-ons Created by Date"
-msgstr "Izegrar yettwarnan s wazemz"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Izegrar yettwasidren s wazemz"
-
-msgid "Add-ons in Use by Date"
-msgstr "Izegrar ittuseqdacen s wazemz"
-
-msgid "Add-ons Updated by Date"
-msgstr "Izegrar yettusniflen s wazemz"
-
 msgid "Application usage by Date"
 msgstr "Aseqdec n usnas s wazemz"
-
-msgid "Collections Created by Date"
-msgstr "Tigrummiwin yettwarnan s wazemz"
 
 msgid "Downloaded by Date"
 msgstr "Isidar s wazemz"
@@ -6973,12 +6923,6 @@ msgstr "Tiwennadin timezwura"
 msgid "See more platforms&hellip;"
 msgstr "Wali ugar n twannadin&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Tizmilin s wazemz"
-
-msgid "Reviews Created by Date"
-msgstr "Iceggiren yettwarnan s wazemz"
-
 msgid "Download sources by Date"
 msgstr "Iɣbula n usider s wazemz"
 
@@ -6997,9 +6941,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Addad n uzegrir s wazemz"
 
-msgid "Subscribers by Date"
-msgstr "Imeltaɣen s wazemz"
-
 msgid "Daily Users by Date"
 msgstr "Iseqdacen n yal ass s wazemz"
 
@@ -7016,26 +6957,14 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
-msgid "User Signups by Date"
-msgstr "Tuqqniwin n useqdac s wazemz"
-
 msgid "Application versions by Date"
 msgstr "Ileqman n usnas s wazemz"
 
 msgid "Mozilla Add-ons"
 msgstr "Izegrar n Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Af-d izegrar i yesnasen nniḍen"
-
-msgid "Other Applications"
-msgstr "Isnasen nniḍen"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMOibddel udem, tebɣiḍ ad tegreḍ tiḍt?"
-
-msgid "Visit the new site"
-msgstr "Rzu ar usmel amaynut"
+msgid "Back to Add-ons"
+msgstr "Uɣal ar izegrar"
 
 msgid "Footer logo"
 msgstr "Alugu n uḍaṛ"
@@ -7101,27 +7030,6 @@ msgstr "Anṣuf, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Jerred</a> neɣ <a href=\"%(login)s\">Kcem</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "I usekyed n wagimen n izegrar yellan dagi, sider <a href=\"%(url)s\">Mozilla Firefox</a>, abrid aruradabrid n baṭel i tunigin di Web!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Anṣuf ar {0} n izegrar."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Fren seg agimen n tmahilin akked iɣunab nniḍen akken ad terreḍ Firefox d ayla-k."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Rnu timahilin neɣ iɣunab nniḍen akken ad terreḍ %(app)s d ayla-k."
-
-msgid "On the go?"
-msgstr "D ayen ara tawiḍ?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Ddu ad twaliḍ <a class=\"mobile-link\" href=\"#\">Asmel-neɣ n izegrar izirazen</a>."
 
 msgid "Android Add-ons"
 msgstr "Izegrar Android"
