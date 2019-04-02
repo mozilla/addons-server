@@ -395,15 +395,14 @@ def logout_user(request, response):
 class SessionView(APIView):
     permission_classes = [IsAuthenticated]
 
-    def add_common_cors_headers(self, request, response):
-        origin = request.META.get('HTTP_ORIGIN')
-        response[ACCESS_CONTROL_ALLOW_ORIGIN] = origin
-        response[ACCESS_CONTROL_ALLOW_CREDENTIALS] = 'true'
-
     def options(self, request, *args, **kwargs):
         response = Response()
         response['Content-Length'] = '0'
-        self.add_common_cors_headers(request, response)
+        origin = request.META.get('HTTP_ORIGIN')
+        if not origin:
+            return response
+        response[ACCESS_CONTROL_ALLOW_ORIGIN] = origin
+        response[ACCESS_CONTROL_ALLOW_CREDENTIALS] = 'true'
         # Mimics the django-cors-headers middleware.
         response[ACCESS_CONTROL_ALLOW_HEADERS] = ', '.join(
             corsheaders_conf.CORS_ALLOW_HEADERS
@@ -419,7 +418,11 @@ class SessionView(APIView):
     def delete(self, request, *args, **kwargs):
         response = Response({'ok': True})
         logout_user(request, response)
-        self.add_common_cors_headers(request, response)
+        origin = request.META.get('HTTP_ORIGIN')
+        if not origin:
+            return response
+        response[ACCESS_CONTROL_ALLOW_ORIGIN] = origin
+        response[ACCESS_CONTROL_ALLOW_CREDENTIALS] = 'true'
         return response
 
 
