@@ -169,12 +169,10 @@ ADDON_ICONS = {
 # We use these slugs in browse page urls.
 ADDON_SLUGS = {
     ADDON_EXTENSION: 'extensions',
-    ADDON_THEME: 'themes',
     ADDON_DICT: 'language-tools',
     ADDON_LPAPP: 'language-tools',
-    ADDON_PERSONA: 'personas',
     ADDON_SEARCH: 'search-tools',
-    ADDON_STATICTHEME: 'static-themes',
+    ADDON_STATICTHEME: 'themes',
 }
 
 # These are used in the update API.

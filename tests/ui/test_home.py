@@ -96,6 +96,7 @@ def test_more_dropdown_navigates_correctly(base_url, selenium, i, page_url):
     enumerate([
         'about',
         'blog.mozilla.org',
+        'extensionworkshop',
         'developers',
         'AMO/Policy',
         'discourse',

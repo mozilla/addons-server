@@ -147,13 +147,6 @@ class TestVersion(TestCase):
         assert ActivityLog.objects.filter(
             action=amo.LOG.DELETE_VERSION.id).count() == 1
 
-    def test_delete_version_then_detail(self):
-        version, file = self._extra_version_and_file(amo.STATUS_PUBLIC)
-        self.client.post(self.delete_url, self.delete_data)
-        response = self.client.get(
-            reverse('addons.detail', args=[self.addon.slug]))
-        assert response.status_code == 200
-
     def test_version_delete_version_deleted(self):
         self.version.delete()
         response = self.client.post(self.delete_url, self.delete_data)

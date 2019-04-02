@@ -1,27 +1,7 @@
 from django import forms
-from django.conf import settings
 
-from olympia.amo.fields import ReCaptchaField
 from olympia.translations.fields import TranslatedField
 from django.utils.functional import cached_property
-
-
-class AbuseForm(forms.Form):
-    recaptcha = ReCaptchaField(label='')
-    text = forms.CharField(required=True,
-                           label='',
-                           widget=forms.Textarea())
-
-    def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop('request')
-        self.has_recaptcha = True
-
-        super(AbuseForm, self).__init__(*args, **kwargs)
-
-        if (not self.request.user.is_anonymous or
-                not settings.NOBOT_RECAPTCHA_PRIVATE_KEY):
-            del self.fields['recaptcha']
-            self.has_recaptcha = False
 
 
 class AMOModelForm(forms.ModelForm):

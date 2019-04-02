@@ -26,28 +26,6 @@ addon_view = addon_view_factory(Addon.objects.valid)
 log = olympia.core.logger.getLogger('z.versions')
 
 
-def _version_list_qs(addon):
-    # We only show versions that have files with the right status.
-    if addon.is_unreviewed():
-        status = amo.STATUS_AWAITING_REVIEW
-    else:
-        status = amo.STATUS_PUBLIC
-    return (addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED)
-                          .filter(files__status=status)
-                          .distinct().order_by('-created'))
-
-
-@addon_view
-@non_atomic_requests
-def version_list(request, addon):
-    qs = _version_list_qs(addon)
-    versions = amo.utils.paginate(request, qs, PER_PAGE)
-    versions.object_list = list(versions.object_list)
-    Version.transformer(versions.object_list)
-    return render(request, 'versions/version_list.html', {
-        'addon': addon, 'versions': versions})
-
-
 @addon_view
 @non_atomic_requests
 def update_info(request, addon, version_num):

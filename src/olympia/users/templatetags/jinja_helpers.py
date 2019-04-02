@@ -85,16 +85,6 @@ def _user_link(user, max_text_length=None):
 
 
 @library.global_function
-@library.render_with('users/report_abuse.html')
-@jinja2.contextfunction
-def user_report_abuse(context, hide, profile):
-    new = dict(context.items())
-    new.update({'hide': hide, 'profile': profile,
-                'abuse_form': context['abuse_form']})
-    return new
-
-
-@library.global_function
 @jinja2.contextfunction
 def manage_fxa_link(context):
     user = context['user']

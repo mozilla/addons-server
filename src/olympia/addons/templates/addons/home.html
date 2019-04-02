@@ -4,19 +4,6 @@
 
 {% block bodyclass %}home{% endblock %}
 
-{% set ext, extrss = url('browse.extensions'), url('browse.extensions.rss') %}
-{% set view_all = {
-  'featured': {
-    'text': _('Featured Extensions'),
-    'feed': url('browse.featured.rss'),
-  },
-  'popular': {
-    'text': _('Popular Extensions'),
-    'feed': extrss|urlparams(sort='users'),
-  }
-}
-%}
-
 {% block header_content %}
   {% if request.APP in (amo.FIREFOX, amo.ANDROID) %}
     <section class="island" id="promos" data-promo-url="{{ url('addons.homepage_promos') }}">
@@ -32,54 +19,7 @@
 {% block content %}
 {# IT looks for this comment with nagios, don't remove it. #}
 <!-- aww yeah -->
-
-<section class="secondary">
-  {{ side_nav(amo.ADDON_EXTENSION) }}
-</section>
-
-<section class="primary" id="homepage">
-  <section id="popular-extensions" class="secondary">
-    <h2>{{ _('Most Popular') }}
-      <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='users') }}">{{ _('All »') }}</a>
-    </h2>
-    {{ popular|addon_toplist(src='hp-dl-mostpopular') }}
-  </section>
-
-  <section class="primary">
-    {% if featured %}
-      <div id="featured-extensions" class="island">
-        <h2>{{ _('Featured Extensions') }}
-          <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='featured') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ featured|addon_grid(src='hp-hc-featured',
-                               dl_src='hp-dl-featured') }}
-      </div>
-    {% endif %}
-    {% if hotness %}
-      <div id="upandcoming" class="island">
-        <h2>{{ _('Up &amp; Coming Extensions') }}
-          <a class="seeall" href="{{ url('browse.extensions')|urlparams(sort='hotness') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ hotness|addon_grid(src='hp-hc-upandcoming',
-                              dl_src='hp-dl-upandcoming') }}
-      </div>
-    {% endif %}
-    {% if personas %}
-      <div id="featured-themes" class="island">
-        <h2>{{ _('Featured Themes') }}
-          <a class="seeall" href="{{ url('browse.personas') }}">{{ _('See all »') }}</a>
-        </h2>
-        {{ personas|impala_persona_grid }}
-      </div>
-    {% endif %}
-  </section>
-</section>
-
 {% endblock content %}
 
 {% block extrahead %}
-{% for feed in view_all.values() %}
-  <link rel="alternate" type="application/rss+xml" title="{{ feed['text'] }}"
-        href="{{ feed['feed'] }}">
-{% endfor %}
 {% endblock %}

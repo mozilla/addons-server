@@ -3,14 +3,10 @@ from collections import OrderedDict
 from django import http
 from django.db.models import Prefetch
 from django.db.transaction import non_atomic_requests
-from django.shortcuts import get_list_or_404, get_object_or_404, redirect
+from django.shortcuts import redirect
 from django.utils.cache import patch_cache_control
 from django.utils.decorators import method_decorator
-from django.utils.translation import ugettext
-from django.views.decorators.cache import cache_control, cache_page
-from django.views.decorators.vary import vary_on_headers
-
-import waffle
+from django.views.decorators.cache import cache_page
 
 from elasticsearch_dsl import Q, query, Search
 from rest_framework import exceptions, serializers
@@ -24,20 +20,15 @@ from rest_framework.viewsets import GenericViewSet
 import olympia.core.logger
 
 from olympia import amo
-from olympia.abuse.models import send_abuse_report
 from olympia.access import acl
-from olympia.amo import messages
-from olympia.amo.forms import AbuseForm
 from olympia.amo.models import manual_order
-from olympia.amo.urlresolvers import get_outgoing_url, get_url_prefix, reverse
-from olympia.amo.utils import randslice, render
+from olympia.amo.urlresolvers import get_outgoing_url
+from olympia.amo.utils import render
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
     AllowReviewer, AllowReviewerUnlisted, AnyOf, GroupPermission)
 from olympia.constants.categories import CATEGORIES_BY_ID
-from olympia.ratings.forms import RatingForm
-from olympia.ratings.models import GroupedRating, Rating
 from olympia.search.filters import (
     AddonAppQueryParam, AddonAppVersionQueryParam, AddonAuthorQueryParam,
     AddonCategoryQueryParam, AddonGuidQueryParam, AddonTypeQueryParam,
@@ -45,12 +36,10 @@ from olympia.search.filters import (
     SortingFilter)
 from olympia.translations.query import order_by_translation
 from olympia.versions.models import Version
-from olympia.lib.cache import make_key, cache_get_or_set
 
 from .decorators import addon_view_factory
 from .indexers import AddonIndexer
-from .models import (
-    Addon, CompatOverride, FrozenAddon, Persona, ReplacementAddon)
+from .models import Addon, CompatOverride, ReplacementAddon
 from .serializers import (
     AddonEulaPolicySerializer,
     AddonSerializer, AddonSerializerWithUnlistedData, CompatOverrideSerializer,
@@ -65,129 +54,6 @@ log = olympia.core.logger.getLogger('z.addons')
 addon_view = addon_view_factory(qs=Addon.objects.valid)
 addon_valid_disabled_pending_view = addon_view_factory(
     qs=Addon.objects.valid_and_disabled_and_pending)
-
-
-@addon_valid_disabled_pending_view
-@non_atomic_requests
-def addon_detail(request, addon):
-    """Add-ons details page dispatcher."""
-    if addon.is_deleted or (addon.is_pending() and not addon.is_persona()):
-        # Allow pending themes to be listed.
-        raise http.Http404
-    if addon.is_disabled:
-        return render(request, 'addons/impala/disabled.html',
-                      {'addon': addon}, status=404)
-
-    # addon needs to have a version and be valid for this app.
-    if addon.type in request.APP.types:
-        if addon.type == amo.ADDON_PERSONA:
-            return persona_detail(request, addon)
-        else:
-            if not addon.current_version:
-                raise http.Http404
-            return extension_detail(request, addon)
-    else:
-        # Redirect to an app that supports this type.
-        try:
-            new_app = [a for a in amo.APP_USAGE if addon.type
-                       in a.types][0]
-        except IndexError:
-            raise http.Http404
-        else:
-            prefixer = get_url_prefix()
-            prefixer.app = new_app.short
-            return http.HttpResponsePermanentRedirect(reverse(
-                'addons.detail', args=[addon.slug]))
-
-
-@vary_on_headers('X-Requested-With')
-@non_atomic_requests
-def extension_detail(request, addon):
-    """Extensions details page."""
-    # If current version is incompatible with this app, redirect.
-    comp_apps = addon.compatible_apps
-    if comp_apps and request.APP not in comp_apps:
-        prefixer = get_url_prefix()
-        prefixer.app = list(comp_apps.keys())[0].short
-        return redirect('addons.detail', addon.slug, permanent=True)
-
-    ctx = {
-        'addon': addon,
-        'src': request.GET.get('src', 'dp-btn-primary'),
-        'version_src': request.GET.get('src', 'dp-btn-version'),
-        'tags': addon.tags.not_denied(),
-        'grouped_ratings': GroupedRating.get(addon.id),
-        'review_form': RatingForm(),
-        'reviews': Rating.without_replies.all().filter(
-            addon=addon, is_latest=True).exclude(body=None),
-        'get_replies': Rating.get_replies,
-        'abuse_form': AbuseForm(request=request),
-    }
-
-    # details.html just returns the top half of the page for speed. The bottom
-    # does a lot more queries we don't want on the initial page load.
-    if request.is_ajax():
-        # Other add-ons/apps from the same author(s).
-        ctx['author_addons'] = addon.authors_other_addons(app=request.APP)[:6]
-        return render(request, 'addons/impala/details-more.html', ctx)
-    else:
-        return render(request, 'addons/impala/details.html', ctx)
-
-
-def _category_personas(qs, limit):
-    def fetch_personas():
-        return randslice(qs, limit=limit)
-    key = make_key('cat-personas:' + str(qs.query), normalize=True)
-    return cache_get_or_set(key, fetch_personas)
-
-
-@non_atomic_requests
-def persona_detail(request, addon):
-    """Details page for Personas."""
-    if not (addon.is_public() or addon.is_pending()):
-        raise http.Http404
-
-    try:
-        persona = addon.persona
-    except Persona.DoesNotExist:
-        raise http.Http404
-
-    # This persona's categories.
-    categories = addon.categories.all()
-    category_personas = None
-    if categories.exists():
-        qs = Addon.objects.public().filter(categories=categories[0])
-        category_personas = _category_personas(qs, limit=6)
-
-    data = {
-        'addon': addon,
-        'persona': persona,
-        'categories': categories,
-        'author_personas': persona.authors_other_addons()[:3],
-        'category_personas': category_personas,
-    }
-
-    try:
-        author = addon.authors.all()[0]
-    except IndexError:
-        author = None
-    else:
-        author = author.get_url_path(src='addon-detail')
-    data['author_gallery'] = author
-
-    dev_tags, user_tags = addon.tags_partitioned_by_developer
-    data.update({
-        'dev_tags': dev_tags,
-        'user_tags': user_tags,
-        'review_form': RatingForm(),
-        'reviews': Rating.without_replies.all().filter(
-            addon=addon, is_latest=True),
-        'get_replies': Rating.get_replies,
-        'search_cat': 'themes',
-        'abuse_form': AbuseForm(request=request),
-    })
-
-    return render(request, 'addons/persona_detail.html', data)
 
 
 class BaseFilter(object):
@@ -277,29 +143,7 @@ class BaseFilter(object):
 
 @non_atomic_requests
 def home(request):
-    addons = Addon.objects
-
-    # Add-ons.
-    base = addons.listed(request.APP).filter(type=amo.ADDON_EXTENSION)
-
-    # This is lame for performance. Kill it with ES.
-    frozen = list(FrozenAddon.objects.values_list('addon', flat=True))
-
-    # We want to display 6 Featured Extensions, Up & Coming Extensions and
-    # Featured Themes.
-    featured = addons.featured(
-        request.APP, request.LANG, amo.ADDON_EXTENSION)[:6]
-    hotness = base.exclude(id__in=frozen).order_by('-hotness')[:6]
-    personas = addons.featured(
-        request.APP, request.LANG, amo.ADDON_PERSONA)[:6]
-
-    # Most Popular extensions is a simple links list, we display slightly more.
-    popular = base.exclude(id__in=frozen).order_by('-average_daily_users')[:10]
-
-    return render(request, 'addons/home.html',
-                  {'popular': popular, 'featured': featured,
-                   'hotness': hotness, 'personas': personas,
-                   'src': 'homepage'})
+    return render(request, 'addons/home.html')
 
 
 @non_atomic_requests
@@ -309,88 +153,6 @@ def homepage_promos(request):
     if not (platform or version):
         raise http.Http404
     return promos(request, 'home', version, platform)
-
-
-@addon_view
-@non_atomic_requests
-def eula(request, addon, file_id=None):
-    if not addon.eula:
-        return http.HttpResponseRedirect(addon.get_url_path())
-    if file_id:
-        version = get_object_or_404(addon.versions, files__id=file_id)
-    else:
-        version = addon.current_version
-    return render(request, 'addons/eula.html',
-                  {'addon': addon, 'version': version})
-
-
-@addon_view
-@non_atomic_requests
-def privacy(request, addon):
-    if not addon.privacy_policy:
-        return http.HttpResponseRedirect(addon.get_url_path())
-
-    return render(request, 'addons/privacy.html', {'addon': addon})
-
-
-@addon_view
-@non_atomic_requests
-def license(request, addon, version=None):
-    if version is not None:
-        qs = addon.versions.filter(channel=amo.RELEASE_CHANNEL_LISTED,
-                                   files__status__in=amo.VALID_FILE_STATUSES)
-        version = get_list_or_404(qs, version=version)[0]
-    else:
-        version = addon.current_version
-    if not (version and version.license):
-        raise http.Http404
-    return render(request, 'addons/impala/license.html',
-                  dict(addon=addon, version=version))
-
-
-@non_atomic_requests
-def license_redirect(request, version):
-    version = get_object_or_404(Version.objects, pk=version)
-    return redirect(version.license_url(), permanent=True)
-
-
-@addon_view
-@non_atomic_requests
-def report_abuse(request, addon):
-    form = AbuseForm(request.POST or None, request=request)
-    if request.method == "POST" and form.is_valid():
-        send_abuse_report(request, addon, form.cleaned_data['text'])
-        messages.success(request, ugettext('Abuse reported.'))
-        return http.HttpResponseRedirect(addon.get_url_path())
-    else:
-        return render(request, 'addons/report_abuse_full.html',
-                      {'addon': addon, 'abuse_form': form})
-
-
-@cache_control(max_age=60 * 60 * 24)
-@non_atomic_requests
-def persona_redirect(request, persona_id):
-    if persona_id == 0:
-        # Newer themes have persona_id == 0, doesn't mean anything.
-        return http.HttpResponseNotFound()
-
-    persona = get_object_or_404(Persona.objects, persona_id=persona_id)
-    try:
-        to = reverse('addons.detail', args=[persona.addon.slug])
-    except Addon.DoesNotExist:
-        # Would otherwise throw 500. Something funky happened during GP
-        # migration which caused some Personas to be without Addons (problem
-        # with cascading deletes?). Tell GoogleBot these are dead with a 404.
-        return http.HttpResponseNotFound()
-    return http.HttpResponsePermanentRedirect(to)
-
-
-@non_atomic_requests
-def icloud_bookmarks_redirect(request):
-    if (waffle.switch_is_active('icloud_bookmarks_redirect')):
-        return redirect('/blocked/i1214/', permanent=False)
-    else:
-        return addon_detail(request, 'icloud-bookmarks')
 
 
 DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'

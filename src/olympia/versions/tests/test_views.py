@@ -10,7 +10,6 @@ from django.test.utils import override_settings
 from django.utils.http import urlquote
 
 import mock
-import pytest
 
 from pyquery import PyQuery
 
@@ -19,7 +18,7 @@ from olympia.access import acl
 from olympia.access.models import Group, GroupUser
 from olympia.addons.models import Addon
 from olympia.amo.templatetags.jinja_helpers import user_media_url
-from olympia.amo.tests import TestCase, addon_factory, version_factory
+from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlencode, urlparams
 from olympia.files.models import File
@@ -47,82 +46,6 @@ class TestViews(TestCase):
             version_kw={'version': '1.0'})
         self.version = self.addon.current_version
         self.addon.current_version.update(created=self.days_ago(3))
-        self.url_list = reverse('addons.versions', args=[self.addon.slug])
-
-    def get_content(self):
-        response = self.client.get(self.url_list)
-        assert response.status_code == 200
-        return PyQuery(response.content)
-
-    @pytest.mark.xfail(reason='Temporarily hidden, #5431')
-    def test_version_source(self):
-        self.addon.update(view_source=True)
-        assert len(self.get_content()('a.source-code')) == 1
-
-    def test_version_no_source_one(self):
-        self.addon.update(view_source=False)
-        assert len(self.get_content()('a.source-code')) == 0
-
-    def test_version_addon_not_public(self):
-        self.addon.update(view_source=True, status=amo.STATUS_NULL)
-        response = self.client.get(self.url_list)
-        assert response.status_code == 404
-
-    def test_version_link(self):
-        version = self.addon.current_version.version
-        doc = self.get_content()
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    def test_version_list_button_shows_download_anyway(self):
-        first_version = self.addon.current_version
-        first_version.update(created=self.days_ago(1))
-        first_file = first_version.files.all()[0]
-        second_version = version_factory(addon=self.addon, version='2.0')
-        second_file = second_version.files.all()[0]
-        doc = self.get_content()
-        links = doc('.download-anyway a')
-        assert links
-        assert links[0].attrib['href'] == second_file.get_url_path(
-            'version-history', attachment=True)
-        assert links[1].attrib['href'] == first_file.get_url_path(
-            'version-history', attachment=True)
-
-    def test_version_list_doesnt_show_unreviewed_versions_public_addon(self):
-        version = self.addon.current_version.version
-        version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_AWAITING_REVIEW},
-            version='2.1')
-        doc = self.get_content()
-        assert len(doc('.version')) == 1
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    def test_version_list_does_show_unreviewed_versions_unreviewed_addon(self):
-        version = self.addon.current_version.version
-        file_ = self.addon.current_version.files.all()[0]
-        file_.update(status=amo.STATUS_AWAITING_REVIEW)
-        doc = self.get_content()
-        assert len(doc('.version')) == 1
-        assert doc('.version').attr('id') == 'version-%s' % version
-
-    def test_version_list_for_unlisted_addon_returns_404(self):
-        """Unlisted addons are not listed and have no version list."""
-        self.make_addon_unlisted(self.addon)
-        assert self.client.get(self.url_list).status_code == 404
-
-    def test_version_list_file_size_uses_binary_prefix(self):
-        response = self.client.get(self.url_list)
-        assert b'1.0 KiB' in response.content
-
-    def test_version_list_no_compat_displayed_if_not_necessary(self):
-        doc = self.get_content()
-        compat_info = doc('.compat').text()
-        assert compat_info
-        assert 'Firefox 4.0.99 and later' in compat_info
-
-        self.addon.update(type=amo.ADDON_DICT)
-        doc = self.get_content()
-        compat_info = doc('.compat').text()
-        assert not compat_info
 
     def test_version_update_info(self):
         self.version.release_notes = {

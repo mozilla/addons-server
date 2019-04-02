@@ -2,9 +2,6 @@
 User-agent: *
 Allow: /
 
-{# Due to URL changes we have to use * here and hope most crawlers respect it #}
-Disallow: /*{{ url('addons.contribute', 0, add_prefix=False)|replace('0', '*') }}
-
 {# The downloads live at locale-agnostic URLs now. #}
 {% for app in apps -%}
 Disallow: /{{ app.short }}/downloads/
