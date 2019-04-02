@@ -100,9 +100,6 @@ urlpatterns = [
     url(r'^pages/about$',
         lambda r: redirect('pages.about', permanent=True)),
 
-    url(r'^personas/film and tv/?$',
-        lambda r: redirect('browse.personas', 'film-and-tv', permanent=True)),
-
     url(r'^addons/versions/(\d+)/?$',
         lambda r, id: redirect('addons.versions', id, permanent=True)),
 
@@ -122,13 +119,6 @@ urlpatterns = [
 
     url(r'^addons/contribute/(\d+)/?$',
         lambda r, id: redirect('addons.contribute', id, permanent=True)),
-
-    url(r'^recommended$',
-        lambda r: redirect(reverse('browse.extensions') + '?sort=featured',
-                           permanent=True)),
-
-    url(r'^recommended/format:rss$',
-        lambda r: redirect('browse.featured.rss', permanent=True)),
 ]
 
 if settings.DEBUG:
