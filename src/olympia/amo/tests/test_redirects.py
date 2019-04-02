@@ -61,3 +61,10 @@ class TestRedirects(TestCase):
         r = self.client.get('/addons/reviews/4/format:rss', follow=True)
         self.assert3xx(r, '/en-US/firefox/addon/4/reviews/format:rss',
                        status_code=302)
+
+    def test_legacy_discovery_to_mozilla_new_page(self):
+        response = self.client.get('/en-US/firefox/discovery/', follow=False)
+        self.assertRedirects(
+            response,
+            'https://www.mozilla.org/firefox/new/',
+            status_code=301, fetch_redirect_response=False)

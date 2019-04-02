@@ -22,7 +22,8 @@ handler500 = 'olympia.amo.views.handler500'
 
 urlpatterns = [
     # Legacy Discovery pane is first for undetectable efficiency wins.
-    url(r'^discovery/', include('olympia.legacy_discovery.urls')),
+    url(r'^discovery/.*', lambda request: redirect(
+        'https://www.mozilla.org/firefox/new/', permanent=True)),
 
     # Home.
     url(r'^$', addons_views.home, name='home'),

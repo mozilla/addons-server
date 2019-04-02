@@ -146,15 +146,6 @@ def home(request):
     return render(request, 'addons/home.html')
 
 
-@non_atomic_requests
-def homepage_promos(request):
-    from olympia.legacy_discovery.views import promos
-    version, platform = request.GET.get('version'), request.GET.get('platform')
-    if not (platform or version):
-        raise http.Http404
-    return promos(request, 'home', version, platform)
-
-
 DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'
 FIND_REPLACEMENT_SRC = 'find-replacement'
 

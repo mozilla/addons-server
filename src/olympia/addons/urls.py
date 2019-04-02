@@ -21,9 +21,6 @@ detail_patterns = [
 
 
 urlpatterns = [
-    # Promo modules for the homepage
-    url(r'^i/promos$', views.homepage_promos, name='addons.homepage_promos'),
-
     # URLs for a single add-on.
     url(r'^addon/%s/' % ADDON_ID, include(detail_patterns)),
 
