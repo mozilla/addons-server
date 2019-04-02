@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2015-10-15 01:01+0000\n"
 "Last-Translator: Cláudio <cesperanc@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,62 +96,6 @@ msgstr ""
 msgid "Add to {0}"
 msgstr "Adicionar a {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Este identificador já está a ser utilizado. Por favor escolha outro."
-
-#, fuzzy, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "O identificador não pode ser \"%s\". Por favor escolha outro."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Etiqueta inválida: {0}"
-msgstr[1] "Etiquetas inválidas: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" é uma etiqueta reservada e não pode ser utilizada."
-msgstr[1] "\"{0}\" são etiquetas reservadas e não podem ser utilizadas."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Tem {0} etiqueta a mais."
-msgstr[1] "Tem {0} etiquetas a mais."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Todas as etiquetas têm de ter %s caracteres ou menos depois dos caracteres inválidos serem removidos ."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
-msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
-
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver a ser destacado para esta aplicação."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Apenas pode ter {0} categoria."
-msgstr[1] "Apenas pode ter {0} categorias."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "A categoria diversos não pode ser combinada com categorias adicionais."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Antes de alterar o seu idioma por omissão tem de ter um nome, resumo e uma descrição nesse idioma. Falta %s."
-
 msgid "Listed"
 msgstr "Listado"
 
@@ -163,9 +107,6 @@ msgstr ""
 
 msgid "Abuse reported."
 msgstr "Abuso reportado."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "O meu extra não se enquadra em nenhuma das categorias"
 
 msgid "No compatible versions"
 msgstr "Sem versões compatíveis"
@@ -827,31 +768,6 @@ msgstr "Mais recente"
 msgid "Explore"
 msgstr "Explorar"
 
-msgid "Extensions"
-msgstr "Extensões"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Temas"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
-
-msgid "Collections"
-msgstr "Coleções"
-
-msgid "More&hellip;"
-msgstr "Mais&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Extras para o móvel"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Dicionários e pacotes de idioma"
-
-msgid "Search Tools"
-msgstr "Ferramentas de pesquisa"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -871,6 +787,12 @@ msgstr "Saltar para a última página"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "A mostrar <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Coleções"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Dicionários e pacotes de idioma"
 
 msgid "Add-ons"
 msgstr "Extras"
@@ -958,6 +880,9 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+msgid "The text entered has been flagged as spam."
+msgstr ""
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Esta url já está a ser utilizada por outra coleção"
@@ -981,10 +906,17 @@ msgstr "Este nome de utilizador não pode ser utilizado."
 msgid "This add-on already belongs to the collection"
 msgstr "Esta url já está a ser utilizada por outra coleção"
 
+msgid "Extensions"
+msgstr "Extensões"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "Extras de %s"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Temas"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1009,6 +941,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Ferramentas de pesquisa e extensões relacionadas com pesquisas"
 
 msgid "Search tools"
+msgstr "Ferramentas de pesquisa"
+
+msgid "Search Tools"
 msgstr "Ferramentas de pesquisa"
 
 msgid "Most Users"
@@ -2206,6 +2141,59 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Este identificador já está a ser utilizado. Por favor escolha outro."
+
+#, fuzzy, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "O identificador não pode ser \"%s\". Por favor escolha outro."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Etiqueta inválida: {0}"
+msgstr[1] "Etiquetas inválidas: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" é uma etiqueta reservada e não pode ser utilizada."
+msgstr[1] "\"{0}\" são etiquetas reservadas e não podem ser utilizadas."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Tem {0} etiqueta a mais."
+msgstr[1] "Tem {0} etiquetas a mais."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Todas as etiquetas têm de ter %s caracteres ou menos depois dos caracteres inválidos serem removidos ."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Todas as etiquetas têm de ter pelo menos {0} caracter."
+msgstr[1] "Todas as etiquetas têm de ter pelo menos {0} caracteres."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver a ser destacado para esta aplicação."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Apenas pode ter {0} categoria."
+msgstr[1] "Apenas pode ter {0} categorias."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "A categoria diversos não pode ser combinada com categorias adicionais."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Antes de alterar o seu idioma por omissão tem de ter um nome, resumo e uma descrição nesse idioma. Falta %s."
+
 msgid "Must have at least one owner."
 msgstr "Tem de ter pelo menos um proprietário."
 
@@ -2306,6 +2294,10 @@ msgstr ""
 #, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "As categorias não podem ser alteradas enquanto o seu extra estiver a ser destacado para esta aplicação."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Arquivo inválido."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2472,6 +2464,9 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "O meu extra não se enquadra em nenhuma das categorias"
+
 #, fuzzy
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
@@ -2493,9 +2488,6 @@ msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "ou <a href=\"{0}\">Cancelar</a>"
-
-msgid "Back to Add-ons"
-msgstr "Voltar aos extras"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5393,6 +5385,9 @@ msgstr "Este ficheiro é um diretório."
 msgid "Cannot diff a version against itself"
 msgstr "Não é possível comparar uma versão consigo própria"
 
+msgid "Could not parse the manifest file."
+msgstr ""
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
@@ -5431,9 +5426,6 @@ msgstr "Ficheiro que excede o limite de tamanho no arquivo: {0}"
 
 msgid "Invalid archive."
 msgstr "Arquivo inválido."
-
-msgid "Could not parse the manifest file."
-msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr "Não foi possível encontrar um ID do extra."
@@ -6935,33 +6927,6 @@ msgstr "por Plataforma"
 msgid "by Add-on Status"
 msgstr "por Estado do extra"
 
-msgid "Add-on Statistics"
-msgstr "Estatísticas do extra"
-
-msgid "Add-ons in Use"
-msgstr "Extras em utilização"
-
-msgid "Add-ons Created"
-msgstr "Extras criados"
-
-msgid "Add-ons Downloaded"
-msgstr "Extras transferidos"
-
-msgid "Add-ons Updated"
-msgstr "Extras atualizados"
-
-msgid "Collections Created"
-msgstr "Coleções criadas"
-
-msgid "Reviews Written"
-msgstr "Comentários escritos"
-
-msgid "User Signups"
-msgstr "Registo de utilizadores"
-
-msgid "Archived Data"
-msgstr ""
-
 msgid "Custom Date Range"
 msgstr "Intervalo de data personalizado"
 
@@ -7048,23 +7013,8 @@ msgstr "Este painel está atualmente <b>privado</b>."
 msgid "Change settings."
 msgstr "Alterar definições."
 
-msgid "Add-ons Created by Date"
-msgstr "Extras criados por data"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Extras transferidos por data"
-
-msgid "Add-ons in Use by Date"
-msgstr "Extras em utilização por data"
-
-msgid "Add-ons Updated by Date"
-msgstr "Extras atualizados por data"
-
 msgid "Application usage by Date"
 msgstr "Utilização da aplicação por data"
-
-msgid "Collections Created by Date"
-msgstr "Coleções criadas por data"
 
 msgid "Downloaded by Date"
 msgstr "Transferências por data"
@@ -7112,12 +7062,6 @@ msgstr "Top de plataformas"
 msgid "See more platforms&hellip;"
 msgstr "Ver mais plataformas&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Classificações por data"
-
-msgid "Reviews Created by Date"
-msgstr "Comentários criados por data"
-
 msgid "Download sources by Date"
 msgstr "Transferência de fontes por data"
 
@@ -7142,9 +7086,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Estado do extra por data"
 
-msgid "Subscribers by Date"
-msgstr "Subscritores por data"
-
 msgid "Daily Users by Date"
 msgstr "Utilizadores diários por data"
 
@@ -7165,26 +7106,14 @@ msgstr ""
 "<h2>O que são utilizadores diários?</h2> <p> Os extras instalados a partir deste site procuram por atualizações diariamente. O número total destas verificações por atualizações são conhecidas como "
 "utilizadores diários ativos. Os utilizadores diários podem ser decompostos por versão do extra, sistema operativo, estado do extra, aplicação e idioma. </p>"
 
-msgid "User Signups by Date"
-msgstr "Registos de utilizador por data"
-
 msgid "Application versions by Date"
 msgstr "Versões da aplicação por data"
 
 msgid "Mozilla Add-ons"
 msgstr "Extras da Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Procure extras para outras aplicações"
-
-msgid "Other Applications"
-msgstr "Outras aplicações"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
-
-msgid "Visit the new site"
-msgstr ""
+msgid "Back to Add-ons"
+msgstr "Voltar aos extras"
 
 msgid "Footer logo"
 msgstr "Logótipo do rodapé"
@@ -7255,27 +7184,6 @@ msgstr "Bem vindo, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Registe-se</a> ou <a href=\"%(login)s\">Inicie sessão</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Para experimentar as centenas de extras disponíveis aqui, transfira o <a href=\"%(url)s\">Mozilla Firefox</a>, uma maneira rápida e gratuita de navegar na Web!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Bem-vindo aos extras do {0}."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Escolha a partir de centenas de funcionalidades e estilos adicionais para tornar o Firefox só seu."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Adicione funcionalidades e estilos adicionais para tornar o %(app)s só seu."
-
-msgid "On the go?"
-msgstr "Em qualquer lugar?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Consulte o nosso <a class=\"mobile-link\" href=\"#\">sítio de extras para dispositivos móveis</a>."
 
 msgid "Android Add-ons"
 msgstr "Extras para o Android"

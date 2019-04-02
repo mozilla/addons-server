@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-02-08 00:00+0000\n"
 "Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
 "Language-Team: Japanese\n"
@@ -102,57 +102,6 @@ msgstr "実験的"
 msgid "Add to {0}"
 msgstr "{0}へ追加"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "このスラグは既に使われています。別のスラグを付けてください。"
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "スラグを「%(slug)s」にすることはできません。別のスラグを付けてください。"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "無効なタグ: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "「{0}」は予約されたタグ名なので使用できません。"
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "タグの数が上限を {0}個超えています。"
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "すべてのタグは無効な文字を除き %s文字以下でなければなりません。"
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "すべてのタグは {0}文字以上でなければなりません。"
-
-msgid "The text entered has been flagged as spam."
-msgstr "入力されたテキストはスパムとして扱われています。"
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "カテゴリーは {0}個までしか設定できません。"
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "既定のロケールを変更する前に、そのロケールでアドオンの名前、要約、説明を入力する必要があります。%sが不足しています。"
-
 # Column name in a table.
 msgid "Listed"
 msgstr "表示"
@@ -165,9 +114,6 @@ msgstr "アドオン名には Mozilla または Firefox の商標を含めるこ
 
 msgid "Abuse reported."
 msgstr "不正報告が送信されました。"
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "このアドオンはどのカテゴリーにも当てはまりません"
 
 msgid "No compatible versions"
 msgstr "互換性のあるバージョンはありません"
@@ -811,32 +757,6 @@ msgstr "新着"
 msgid "Explore"
 msgstr "アドオンを探す"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "拡張機能"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "テーマ"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "もっとカスタマイズしたいですか？ <b>完全テーマ</b> を試してください"
-
-msgid "Collections"
-msgstr "コレクション"
-
-msgid "More&hellip;"
-msgstr "その他&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "モバイル向けアドオン"
-
-msgid "Dictionaries & Language Packs"
-msgstr "スペルチェック辞書と言語パック"
-
-msgid "Search Tools"
-msgstr "検索ツール"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -856,6 +776,12 @@ msgstr "最後のページへ移動"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
+
+msgid "Collections"
+msgstr "コレクション"
+
+msgid "Dictionaries & Language Packs"
+msgstr "スペルチェック辞書と言語パック"
 
 msgid "Add-ons"
 msgstr "アドオン"
@@ -947,6 +873,9 @@ msgstr ""
 "対応アプリケーションが マニフェストファイルを必要としない場合でも、ファイルを同梱する必要があります。必要なプロパティは %(amo_manifests_mdn_link_open)sこちら%(amo_manifests_mdn_link_close)s で指定さ"
 "れています。"
 
+msgid "The text entered has been flagged as spam."
+msgstr "入力されたテキストはスパムとして扱われています。"
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "このカスタム URL はあなたの他のコレクションで既に使われています。"
 
@@ -965,10 +894,18 @@ msgstr "このカスタム URL は使用できません。"
 msgid "This add-on already belongs to the collection"
 msgstr "このアドオンは既にコレクションに含まれています"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "拡張機能"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%sカテゴリーのアドオン"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "テーマ"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -993,6 +930,9 @@ msgid "Search tools and search-related extensions"
 msgstr "検索ツールと検索関連の拡張機能"
 
 msgid "Search tools"
+msgstr "検索ツール"
+
+msgid "Search Tools"
 msgstr "検索ツール"
 
 msgid "Most Users"
@@ -2119,6 +2059,54 @@ msgstr "私たちはアップグレードを許容し推奨していますが、
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "入力されたテキストはスパムとして扱われています。"
 
+msgid "This slug is already in use. Please choose another."
+msgstr "このスラグは既に使われています。別のスラグを付けてください。"
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "スラグを「%(slug)s」にすることはできません。別のスラグを付けてください。"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "無効なタグ: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "「{0}」は予約されたタグ名なので使用できません。"
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "タグの数が上限を {0}個超えています。"
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "すべてのタグは無効な文字を除き %s文字以下でなければなりません。"
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "すべてのタグは {0}文字以上でなければなりません。"
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "アドオンがこのアプリケーションのおすすめに設定されている間はカテゴリーを変更できません。"
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "カテゴリーは {0}個までしか設定できません。"
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "「その他」カテゴリーを他のカテゴリーと組み合わせることはできません。"
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL ドメインは [%s] のいずれか、もしくはサブドメインでなければなりません。"
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "既定のロケールを変更する前に、そのロケールでアドオンの名前、要約、説明を入力する必要があります。%sが不足しています。"
+
 msgid "Must have at least one owner."
 msgstr "オーナーが最低 1 人は必要です。"
 
@@ -2218,6 +2206,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "アドオンがおすすめに設定されている間はカテゴリーを変更できません。"
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "不正なアーカイブです。"
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "あなたの開発者 API キーが送信したファイル内に見つかりました。アカウントを保護するため、そのキーは破棄されます。"
@@ -2384,6 +2376,9 @@ msgstr "新しい API キーが作成されました"
 msgid "API key revoked"
 msgstr "API キーが無効化されました"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "このアドオンはどのカテゴリーにも当てはまりません"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2404,9 +2399,6 @@ msgstr "承認"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "または <a href=\"{0}\">キャンセル</a>"
-
-msgid "Back to Add-ons"
-msgstr "アドオンのページへ戻る"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5191,6 +5183,9 @@ msgstr "このファイルはディレクトです。"
 msgid "Cannot diff a version against itself"
 msgstr "同じバージョンの差分を取ることはできません"
 
+msgid "Could not parse the manifest file."
+msgstr "マニフェストファイルを解析できませんでした。"
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Firefox 47 以前では GUID が必要です。"
 
@@ -5229,9 +5224,6 @@ msgstr "アーカイブ内のファイルがサイズ制限を超えています
 
 msgid "Invalid archive."
 msgstr "不正なアーカイブです。"
-
-msgid "Could not parse the manifest file."
-msgstr "マニフェストファイルを解析できませんでした。"
 
 msgid "Could not find an add-on ID."
 msgstr "アドオンの ID を見つけられませんでした。"
@@ -6630,33 +6622,6 @@ msgstr "OS 別"
 msgid "by Add-on Status"
 msgstr "アドオンのステータス別"
 
-msgid "Add-on Statistics"
-msgstr "アドオンの統計情報"
-
-msgid "Add-ons in Use"
-msgstr "使われているアドオン"
-
-msgid "Add-ons Created"
-msgstr "作成されたアドオン"
-
-msgid "Add-ons Downloaded"
-msgstr "ダウンロードされたアドオン"
-
-msgid "Add-ons Updated"
-msgstr "更新されたアドオン"
-
-msgid "Collections Created"
-msgstr "作成されたコレクション"
-
-msgid "Reviews Written"
-msgstr "書かれたレビュー"
-
-msgid "User Signups"
-msgstr "ログインしたユーザー"
-
-msgid "Archived Data"
-msgstr "アーカイブされたデータ"
-
 msgid "Custom Date Range"
 msgstr "期間の指定"
 
@@ -6743,23 +6708,8 @@ msgstr "このダッシュボードは現在 <b>非公開</b> です。"
 msgid "Change settings."
 msgstr "設定を変更"
 
-msgid "Add-ons Created by Date"
-msgstr "日別アドオン作成回数"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "日別アドオンダウンロード回数"
-
-msgid "Add-ons in Use by Date"
-msgstr "日別アドオン使用回数"
-
-msgid "Add-ons Updated by Date"
-msgstr "日別アドオン更新回数"
-
 msgid "Application usage by Date"
 msgstr "日別アプリケーション使用回数"
-
-msgid "Collections Created by Date"
-msgstr "日別コレクション作成回数"
 
 msgid "Downloaded by Date"
 msgstr "日別ダウンロード回数"
@@ -6806,12 +6756,6 @@ msgstr "上位のプラットフォーム"
 msgid "See more platforms&hellip;"
 msgstr "他のプラットフォームを表示&hellip;"
 
-msgid "Ratings by Date"
-msgstr "日別評価回数"
-
-msgid "Reviews Created by Date"
-msgstr "日別レビュー投稿回数"
-
 msgid "Download sources by Date"
 msgstr "日別ダウンロード参照元数"
 
@@ -6835,9 +6779,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "日別アドオンステータス"
 
-msgid "Subscribers by Date"
-msgstr "日別購読者数"
-
 msgid "Daily Users by Date"
 msgstr "日別ユーザー数"
 
@@ -6858,26 +6799,14 @@ msgstr ""
 "<h2>日別ユーザー数とは？</h2> <p> このサイトからダウンロードされたアドオンは、1 日に 1 回更新を確認します。これらの更新 ping の総数は、1 日のアクティブユーザー数として知られています。日別ユーザー数"
 "は、アドオンのバージョン、オペレーティングシステム、アドオンの状況、アプリケーション、ロケールによって分類できます。</p>"
 
-msgid "User Signups by Date"
-msgstr "日別ユーザー登録者数"
-
 msgid "Application versions by Date"
 msgstr "日別アプリケーションバージョン"
 
 msgid "Mozilla Add-ons"
 msgstr "Mozilla アドオン"
 
-msgid "Find add-ons for other applications"
-msgstr "他のアプリケーション用のアドオンを探す"
-
-msgid "Other Applications"
-msgstr "他のアプリケーション"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO は近く新デザインに切り替わります。一足先に見てみたいですか？"
-
-msgid "Visit the new site"
-msgstr "新しいサイトを見る"
+msgid "Back to Add-ons"
+msgstr "アドオンのページへ戻る"
 
 msgid "Footer logo"
 msgstr "フッターロゴ"
@@ -6945,27 +6874,6 @@ msgstr "ようこそ {0}さん"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">ユーザー登録</a> / <a href=\"%(login)s\">ログイン</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "ここで公開されている数千ものアドオンを試すには、無料の高速ウェブブラウザー <a href=\"%(url)s\">Mozilla Firefox</a> をダウンロードしましょう！"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "{0}アドオンサイトへようこそ。"
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "数千もの追加機能やデザインから好きなものを選んで、Firefox を自分のものにしましょう。"
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "機能を追加したりデザインを変えたりして、%(app)s を自分のものにしましょう。"
-
-msgid "On the go?"
-msgstr "外出先ですか？"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "<a class=\"mobile-link\" href=\"#\">モバイル向けアドオンサイト</a> を見る"
 
 msgid "Android Add-ons"
 msgstr "Android 向けアドオン"

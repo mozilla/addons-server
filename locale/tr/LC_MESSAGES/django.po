@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-03-21 17:32+0000\n"
 "Last-Translator: Selim Şumlu <selim@sum.lu>\n"
 "Language-Team: Turkish (Türkçe)\n"
@@ -103,62 +103,6 @@ msgstr "Deneysel"
 msgid "Add to {0}"
 msgstr "{0}’a ekle"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Bu kısa ad zaten kullanımda. Lütfen başka bir kısa ad seçin."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Kısa ad \"%(slug)s\" olmaz. Lütfen başka bir kısa ad seçin."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Geçersiz etiket: {0}"
-msgstr[1] "Geçersiz etiketler: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" rezerve bir etikettir ve kullanılamaz."
-msgstr[1] "\"{0}\" rezerve etiketlerdir ve kullanılamazlar."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "{0} fazla etiketiniz var."
-msgstr[1] "{0} fazla etiketiniz var."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Geçersiz karakterler çıkarıldıktan sonra tüm etiketler %s veya daha az karakter olmalıdır."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Tüm etiketler en az {0} karakter olmalıdır."
-msgstr[1] "Tüm etiketler en az {0} karakter olmalıdır."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Girilen metin spam olarak işaretlendi."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Eklentiniz bu uygulama için öne çıkanlardayken kategoriler değiştirilemez."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Yalnızca {0} kategoriniz olabilir."
-msgstr[1] "Yalnızca {0} kategoriniz olabilir."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Diğer kategorisi ekstra kategorilerle birlikte kullanılamaz."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL alan adı [%s] seçeneklerinden birisi veya alt alan adı olmalıdır."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Varsaılan dilinizi değiştirmek için o dilde bir adınız, özetiniz ve açıklamanız olmalıdır. %s mevcut değil."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Listelenen"
@@ -171,9 +115,6 @@ msgstr "Eklenti adlarında Mozilla ve Firefox tescilli markaları kullanılamaz.
 
 msgid "Abuse reported."
 msgstr "İhlal rapor edildi."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Eklentim bu kategorilerden hiçbirine uymuyor"
 
 msgid "No compatible versions"
 msgstr "Uyumlu sürüm yok"
@@ -835,32 +776,6 @@ msgstr "En Yeni"
 msgid "Explore"
 msgstr "Keşfedin"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Eklentiler"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Temalar"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Daha çok özelleştirme mi istiyorsunuz? <b>Tam temaları</b> deneyin"
-
-msgid "Collections"
-msgstr "Koleksiyonlar"
-
-msgid "More&hellip;"
-msgstr "Daha fazlası&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Mobil Eklentiler"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Sözlükler ve Dil Paketleri"
-
-msgid "Search Tools"
-msgstr "Arama Araçları"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -880,6 +795,12 @@ msgstr "Son sayfaya atla"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> sonuçtan <b>%(begin)s</b>&ndash;<b>%(end)s</b> arasındakiler gösteriliyor"
+
+msgid "Collections"
+msgstr "Koleksiyonlar"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Sözlükler ve Dil Paketleri"
 
 msgid "Add-ons"
 msgstr "Eklentiler"
@@ -967,6 +888,9 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+msgid "The text entered has been flagged as spam."
+msgstr "Girilen metin spam olarak işaretlendi."
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Bu kısa ad başka bir koleksiyonunuz tarafından kullanılıyor."
@@ -989,10 +913,18 @@ msgstr "Bu kullanıcı adı kullanılamaz."
 msgid "This add-on already belongs to the collection"
 msgstr "Bu adres başka bir koleksiyon tarafından kullanılıyor"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Eklentiler"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%s Eklentileri"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Temalar"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1018,6 +950,9 @@ msgstr "Arama araçları ve aramayla ilgili eklentiler"
 
 msgid "Search tools"
 msgstr "Arama araçları"
+
+msgid "Search Tools"
+msgstr "Arama Araçları"
 
 msgid "Most Users"
 msgstr "Çoğu Kullanıcı"
@@ -2182,6 +2117,59 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "Girilen metin spam olarak işaretlendi."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Bu kısa ad zaten kullanımda. Lütfen başka bir kısa ad seçin."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Kısa ad \"%(slug)s\" olmaz. Lütfen başka bir kısa ad seçin."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Geçersiz etiket: {0}"
+msgstr[1] "Geçersiz etiketler: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" rezerve bir etikettir ve kullanılamaz."
+msgstr[1] "\"{0}\" rezerve etiketlerdir ve kullanılamazlar."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "{0} fazla etiketiniz var."
+msgstr[1] "{0} fazla etiketiniz var."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Geçersiz karakterler çıkarıldıktan sonra tüm etiketler %s veya daha az karakter olmalıdır."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Tüm etiketler en az {0} karakter olmalıdır."
+msgstr[1] "Tüm etiketler en az {0} karakter olmalıdır."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Eklentiniz bu uygulama için öne çıkanlardayken kategoriler değiştirilemez."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Yalnızca {0} kategoriniz olabilir."
+msgstr[1] "Yalnızca {0} kategoriniz olabilir."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Diğer kategorisi ekstra kategorilerle birlikte kullanılamaz."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL alan adı [%s] seçeneklerinden birisi veya alt alan adı olmalıdır."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Varsaılan dilinizi değiştirmek için o dilde bir adınız, özetiniz ve açıklamanız olmalıdır. %s mevcut değil."
+
 msgid "Must have at least one owner."
 msgstr "En az bir sahibi olmalı."
 
@@ -2282,6 +2270,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Eklentiniz öne çıkanlardayken kategoriler değiştirilemez."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Geçersiz arşiv."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2447,6 +2439,9 @@ msgstr "Yeni API anahtarı oluşturuldu"
 msgid "API key revoked"
 msgstr "API anahtarı iptal edildi"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Eklentim bu kategorilerden hiçbirine uymuyor"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2466,9 +2461,6 @@ msgstr "Kabul et"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "veya <a href=\"{0}\">vazgeç</a>"
-
-msgid "Back to Add-ons"
-msgstr "Eklentilere dön"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5280,6 +5272,9 @@ msgstr "Bu dosya bir dizindir."
 msgid "Cannot diff a version against itself"
 msgstr ""
 
+msgid "Could not parse the manifest file."
+msgstr "Manifest dosyası ayrıştırılamadı."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID Firefox 47 ve altı için gereklidir."
 
@@ -5318,9 +5313,6 @@ msgstr "Arşivde boyut sınırını aşan dosya: {0}"
 
 msgid "Invalid archive."
 msgstr "Geçersiz arşiv."
-
-msgid "Could not parse the manifest file."
-msgstr "Manifest dosyası ayrıştırılamadı."
 
 msgid "Could not find an add-on ID."
 msgstr "Eklenti kimliği bulunamadı."
@@ -6804,39 +6796,6 @@ msgstr "Platforma göre"
 msgid "by Add-on Status"
 msgstr "Eklenti durumuna göre"
 
-msgid "Add-on Statistics"
-msgstr "Eklenti istatistikleri"
-
-#, fuzzy
-msgid "Add-ons in Use"
-msgstr "Eklentiler"
-
-#, fuzzy
-msgid "Add-ons Created"
-msgstr "{addon} oluşturuldu."
-
-# 88%
-# 100%
-#, fuzzy
-msgid "Add-ons Downloaded"
-msgstr "İndirme"
-
-msgid "Add-ons Updated"
-msgstr "Güncellenmiş Eklentiler"
-
-msgid "Collections Created"
-msgstr "Oluşturalan Koleksiyonlar"
-
-#, fuzzy
-msgid "Reviews Written"
-msgstr "İnceleme notu"
-
-msgid "User Signups"
-msgstr "Kullanıcı kayıtları"
-
-msgid "Archived Data"
-msgstr "Arşivlenmiş Veri"
-
 msgid "Custom Date Range"
 msgstr "Özel Tarih Aralığı"
 
@@ -6928,26 +6887,8 @@ msgid "Change settings."
 msgstr "Ayarları değiştir."
 
 #, fuzzy
-msgid "Add-ons Created by Date"
-msgstr "Eklenti Uyumluluk Merkezi"
-
-msgid "Add-ons Downloaded by Date"
-msgstr ""
-
-msgid "Add-ons in Use by Date"
-msgstr ""
-
-#, fuzzy
-msgid "Add-ons Updated by Date"
-msgstr "Eklenti Uyumluluk Merkezi"
-
-#, fuzzy
 msgid "Application usage by Date"
 msgstr "Uygulama Yapısı"
-
-#, fuzzy
-msgid "Collections Created by Date"
-msgstr "Koleksiyon oluşturuldu!"
 
 msgid "Downloaded by Date"
 msgstr "Tarihe göre indirmeler"
@@ -6996,13 +6937,6 @@ msgstr "Öne çıkan platformlar"
 msgid "See more platforms&hellip;"
 msgstr "Daha fazla platform gör&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Tarihe göre puanlar"
-
-#, fuzzy
-msgid "Reviews Created by Date"
-msgstr "İnceleme talep edildi"
-
 msgid "Download sources by Date"
 msgstr ""
 
@@ -7021,10 +6955,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr ""
 
-# 100%
-msgid "Subscribers by Date"
-msgstr "Tarihe göre aboneler"
-
 msgid "Daily Users by Date"
 msgstr "Tarihe göre günlük kullanıcı"
 
@@ -7041,9 +6971,6 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
-msgid "User Signups by Date"
-msgstr "Tarihe göre kullanıcı kayıtları"
-
 msgid "Application versions by Date"
 msgstr "Tarihe göre uygulama sürümleri"
 
@@ -7052,17 +6979,8 @@ msgstr "Tarihe göre uygulama sürümleri"
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Eklentileri"
 
-msgid "Find add-ons for other applications"
-msgstr "Diğer uygulamalar için eklenti bul"
-
-msgid "Other Applications"
-msgstr "Diğer uygulamalar"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO yeni bir görünüm kazanıyor. Görmek ister misiniz?"
-
-msgid "Visit the new site"
-msgstr "Yeni siteye git"
+msgid "Back to Add-ons"
+msgstr "Eklentilere dön"
 
 msgid "Footer logo"
 msgstr "Altbilgi logosu"
@@ -7128,27 +7046,6 @@ msgstr "Hoş geldin {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Kaydol</a> veya <a href=\"%(login)s\">giriş yap</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Burada gördüğünüz binlerce eklentiyi denemek için, hızlı ve ücretsiz web tarayıcısı <a href=\"%(url)s\">Mozilla Firefox</a>'u indirin!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "{0} Eklentileri'ne hoş geldiniz."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Firefox'unuzu kişiselleştirmek için binlerce ekstra özellik ve stilden istediklerinizi seçin."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "%(app)s uygulamanızı kişiselleştirmek için ekstra özellikler ve stiller ekleyin."
-
-msgid "On the go?"
-msgstr "Yolda mısınız?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "<a class=\"mobile-link\" href=\"#\">Mobil Eklentiler sitemize</a> göz atın."
 
 msgid "Android Add-ons"
 msgstr "Android Eklentileri"

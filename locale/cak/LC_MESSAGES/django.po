@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2018-11-24 21:09+0000\n"
 "Last-Translator: Juan Sián <ajtzibsyan@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,62 +100,6 @@ msgstr "Soltojtob'enel"
 msgid "Add to {0}"
 msgstr "Titz'aqatisäx chi re: {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Nokisäx re slug re'. Tacha' jun chik."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Re slug re' man tikirel ta nok \"%(slug)s\". Tacha' jun chik."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Man okel ta ri etal: {0}"
-msgstr[1] "Man e okel ta ri taq etal: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" jun q'atapun etal chuqa' man tikirel ta nokisäx."
-msgstr[1] "\"{0}\" eq'atapun taq etal chuqa' man tikirel ta ye'okisäx."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "E k'o {0} taq etal ruwi'."
-msgstr[1] "E k'o {0} taq etal ruwi'."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Ronojel ri taq etal k'o chi kik'wan %s taq tz'ib' o qajinäq toq xeyuj ri taq tz'ib' man e okel ta."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Ronojel etal k'o chi nik'o chi re {0} tz'ib'."
-msgstr[1] "Konojel taq etal k'o chi ye'ik'o chi re {0} taq tz'ib'."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Man tikirel ta yejal ri taq ruwäch toq ri tz'aqat ya'on ruq'ij pa re chokoy re'."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Tikirel xa xe k'o {0} ruwäch awik'in."
-msgstr[1] "Tikirel xa xe e k'o {0} taq ruwäch awik'in."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Man tikirel ta yetun ri xolwachinäq taq ruwäch kik'in tz'aqatel taq ruwäch."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Chuwäch najäl ri ach'ab'äl k'o wi, k'o chi k'o jun rub'i', jun ch'utitzijol chuqa' jun rucholaxik pa ri ch'ab'äl ri'. Nrajo' na %s."
-
 msgid "Listed"
 msgstr "Cholajin"
 
@@ -167,9 +111,6 @@ msgstr "Ri kib'i' tz'aqat man tikirel ta nikik'waj ketal ri Mozilla chuqa' Firef
 
 msgid "Abuse reported."
 msgstr "Tz'ilanem xya' rutzijol."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Ri nutz'aqat man nuk'äm ta ri pa majun ruwäch"
 
 msgid "No compatible versions"
 msgstr "Majun k'amonel taq ruwäch"
@@ -818,31 +759,6 @@ msgstr "K'ak'a'"
 msgid "Explore"
 msgstr "Tikanöx"
 
-msgid "Extensions"
-msgstr "Taq k'amal"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Taq wachinel"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "¿La nawajo' nawichinaj ch'aqa' chik? Ke'atojtob'ej <b>Chijun taq Wachinel</b>"
-
-msgid "Collections"
-msgstr "Taq mol"
-
-msgid "More&hellip;"
-msgstr "Ch'aqa' chik&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Kitz'aqat Oyonib'äl"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Taq Soltzij & Tanaj taq Ch'ab'äl"
-
-msgid "Search Tools"
-msgstr "Kekanöx Samajib'äl"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -862,6 +778,12 @@ msgstr "Tib'iyin pa ruk'isib'äl ruxaq"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Nik'ut <b>%(begin)s</b>&ndash;<b>%(end)s</b> richin <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Taq mol"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Taq Soltzij & Tanaj taq Ch'ab'äl"
 
 msgid "Add-ons"
 msgstr "Taq tz'aqat"
@@ -951,6 +873,9 @@ msgstr ""
 "Estape' ri chokoy k'ulun ruma ri atz'aqat man nuk'utuj ta jun tzijoxïk yakb'äl, k'o chi natz'aqatisaj jun rik'in ri taq richinil najowäx, achi'el nichol %(amo_manifests_mdn_link_open)swawe"
 "%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Re ichinan URL re' nokisäx chik pa jun chi ke ri amol."
 
@@ -969,10 +894,17 @@ msgstr "Man tikirel ta nokisäx re ichinan URL re'."
 msgid "This add-on already belongs to the collection"
 msgstr "Re tz'aqat re' k'o chi pa ri mol"
 
+msgid "Extensions"
+msgstr "Taq k'amal"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%s Taq tz'aqat"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Taq wachinel"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -998,6 +930,9 @@ msgstr "Kekanöx taq samajib'äl chuqa' taq k'amal kiximon ki'"
 
 msgid "Search tools"
 msgstr "Kekanöx samajib'äl"
+
+msgid "Search Tools"
+msgstr "Kekanöx Samajib'äl"
 
 msgid "Most Users"
 msgstr "Ch'aqa' Okisanela'"
@@ -2126,6 +2061,59 @@ msgstr "Niqaya' q'ij chuqa' niqaya' kitzijol ri taq k'exoj, xa xe man tikirel ta
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "Ri tz'ib'anïk xtz'ib'äx ya'on retal achi'el seq'tzijol."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Nokisäx re slug re'. Tacha' jun chik."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Re slug re' man tikirel ta nok \"%(slug)s\". Tacha' jun chik."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Man okel ta ri etal: {0}"
+msgstr[1] "Man e okel ta ri taq etal: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" jun q'atapun etal chuqa' man tikirel ta nokisäx."
+msgstr[1] "\"{0}\" eq'atapun taq etal chuqa' man tikirel ta ye'okisäx."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "E k'o {0} taq etal ruwi'."
+msgstr[1] "E k'o {0} taq etal ruwi'."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Ronojel ri taq etal k'o chi kik'wan %s taq tz'ib' o qajinäq toq xeyuj ri taq tz'ib' man e okel ta."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Ronojel etal k'o chi nik'o chi re {0} tz'ib'."
+msgstr[1] "Konojel taq etal k'o chi ye'ik'o chi re {0} taq tz'ib'."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Man tikirel ta yejal ri taq ruwäch toq ri tz'aqat ya'on ruq'ij pa re chokoy re'."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Tikirel xa xe k'o {0} ruwäch awik'in."
+msgstr[1] "Tikirel xa xe e k'o {0} taq ruwäch awik'in."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Man tikirel ta yetun ri xolwachinäq taq ruwäch kik'in tz'aqatel taq ruwäch."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "URL ajk'amal k'o chi jun [%s], o jun achajk'amal."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Chuwäch najäl ri ach'ab'äl k'o wi, k'o chi k'o jun rub'i', jun ch'utitzijol chuqa' jun rucholaxik pa ri ch'ab'äl ri'. Nrajo' na %s."
+
 msgid "Must have at least one owner."
 msgstr "K'o chi k'o jun rajaw."
 
@@ -2225,6 +2213,10 @@ msgstr "Awuma rat. <span class=\"helptext\">Re ruwäch re' xtijuch' richin nital
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Man tikirel ta yejal ri taq ruwäch toq ri atz'aqat ya'on ruq'ij."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Man okel ta yakb'äl."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Xilitäj ri API ewan atzij richin b'anonel pa ri yakb'äl xtaq. Richin nichajïx ri rub'i' ataqoya'l, xtiyuj ri ewan tzij."
@@ -2391,6 +2383,9 @@ msgstr "K'ak'a' API k'uxatzij xtz'uk"
 msgid "API key revoked"
 msgstr "API k'uxatzij xxutüx"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Ri nutz'aqat man nuk'äm ta ri pa majun ruwäch"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2412,9 +2407,6 @@ msgstr "Tik'ul"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "o <a href=\"{0}\">Tiq'at</a>"
-
-msgid "Back to Add-ons"
-msgstr "Titzolin pa Taq Tz'aqat"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5202,6 +5194,9 @@ msgstr "Re yakb'äl re' jun cholb'äl."
 msgid "Cannot diff a version against itself"
 msgstr "Man tikirel ta nijunamäx ruwäch rik'in rija'"
 
+msgid "Could not parse the manifest file."
+msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID k'atzinel pa Firefox 47 chuqa' ch'aqa' chik nima'q ruwäch."
 
@@ -5240,9 +5235,6 @@ msgstr "Nik'o runimilem yakb'äl pa yakb'äl: {0}"
 
 msgid "Invalid archive."
 msgstr "Man okel ta yakb'äl."
-
-msgid "Could not parse the manifest file."
-msgstr "Man niq'ax ta ri runa'oj ri ruyakb'al tzijoxïk."
 
 msgid "Could not find an add-on ID."
 msgstr "Man xilitäj ta jun rub'anikil ri tz'aqat."
@@ -6658,33 +6650,6 @@ msgstr "chi Nuk'uche'el"
 msgid "by Add-on Status"
 msgstr "chi Kib'anikilTz'aqat"
 
-msgid "Add-on Statistics"
-msgstr "Kimolob'a' Tz'aqat"
-
-msgid "Add-ons in Use"
-msgstr "Taq Tz'aqat Ye'okisäx"
-
-msgid "Add-ons Created"
-msgstr "Taq Tz'aqat Etz'ukun"
-
-msgid "Add-ons Downloaded"
-msgstr "Taq Tz'aqat Eqasan"
-
-msgid "Add-ons Updated"
-msgstr "Taq Tz'aqat Xek'ex"
-
-msgid "Collections Created"
-msgstr "Taq Mol Xetz'uk"
-
-msgid "Reviews Written"
-msgstr "Taq Tzijoxïk Etz'ib'an"
-
-msgid "User Signups"
-msgstr "Rutz'ib'axik Kib'i' Okisanela'"
-
-msgid "Archived Data"
-msgstr "Yakon Etamab'äl"
-
 msgid "Custom Date Range"
 msgstr "Kajlab'al Ichinan Q'ijul"
 
@@ -6771,23 +6736,8 @@ msgstr "Wakami re pas re' <b>ichinan</b>."
 msgid "Change settings."
 msgstr "Kejal taq nuk'ulem."
 
-msgid "Add-ons Created by Date"
-msgstr "Taq Tz'aqat Etz'ukun chi Q'ij"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Taq Tz'aqat Eqasan chi Q'ij"
-
-msgid "Add-ons in Use by Date"
-msgstr "Taq Tz'aqat E'okisan chi Q'ij"
-
-msgid "Add-ons Updated by Date"
-msgstr "Taq Tz'aqat Ejotob'an chi Q'ij"
-
 msgid "Application usage by Date"
 msgstr "Rokisaxik chokoy chi Q'ijul"
-
-msgid "Collections Created by Date"
-msgstr "Taq Mol Xetz'uk chi Q'ijul"
 
 msgid "Downloaded by Date"
 msgstr "Niqasäx chi Q'ijul"
@@ -6835,12 +6785,6 @@ msgstr "Ütz taq Nuk'uch'e'el"
 msgid "See more platforms&hellip;"
 msgstr "Ketz'et ch'aqa' chik taq nuk'uche'el&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Taq ajil chi Q'ijul"
-
-msgid "Reviews Created by Date"
-msgstr "Taq Nik'oxïk Etz'ukun chi Q'ij"
-
 msgid "Download sources by Date"
 msgstr "Kixe'el qasanïk chi Q'ijul"
 
@@ -6858,9 +6802,6 @@ msgstr ""
 
 msgid "Add-on Status by Date"
 msgstr "Rub'anikil Tz'aqat chi Q'ij"
-
-msgid "Subscribers by Date"
-msgstr "Tz'ib'anela' b'i'aj chi Q'ijul"
 
 msgid "Daily Users by Date"
 msgstr "Q'ij Q'ij Okisanela' chi Q'ijul"
@@ -6882,26 +6823,14 @@ msgstr ""
 "<h2>¿Achike ri q'ij q'ij okisanela'?</h2> <p> Ri taq tz'aqat eqasan rik'in re ruxaq re' nunik'oj we e k'o jun k'exoj pa jun q'ij. Ri kajilab'al re taq qasanïk re' etaman kiwäch achi'el Tzijïl Q'ij "
 "Q'ij Okisanela'. Ri q'ij q'ij taq okisanela' yetikïr nikijäch chi ruwäch ri tz'aqat, samajel q'inoj, rub'anikil tz'aqat, chokoy chuqa' ch'ab'äl.</p>"
 
-msgid "User Signups by Date"
-msgstr "Kitz'ib'axik Okisanela' chi Q'ijul"
-
 msgid "Application versions by Date"
 msgstr "Taq Ruwäch chokoy chi Q'ijul"
 
 msgid "Mozilla Add-ons"
 msgstr "Rutz'aqat Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Ke'awila' taq kitz'aqat ch'aqa' chik taq chokoy"
-
-msgid "Other Applications"
-msgstr "Ch'aqa' chik taq Chokoy"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO xujäl rub'anikil. ¿La nawajo' natz'ët?"
-
-msgid "Visit the new site"
-msgstr "Tib'etz'et ri k'ak'a' ruxaq"
+msgid "Back to Add-ons"
+msgstr "Titzolin pa Taq Tz'aqat"
 
 msgid "Footer logo"
 msgstr "Ruwachib'al kamuluntzij"
@@ -6967,27 +6896,6 @@ msgstr "Ütz Apetik, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Rutz'ib'axik b'i'aj</a></a> o <a href=\"%(login)s\">Titikirisäx molojri'ïl</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Richin yetojtob'ëx ri janila chi tz'aqat e k'o wawe', taqasaj <a href=\"%(url)s\">Mozilla Firefox</a>, ¡jun aninäq chuqa' sipan rub'anikil richin yatok pan Ajk'amaya'l!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Ütz apetik pa {0} Taq Tz'aqat."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Ke'acha' chi kikojol k'ïy taq samaj chuqa' b'anikil richin nab'än awichin ri Firefox."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Ke'atz'aqatisaj taq samaj chuqa' taq b'anikil pan %(app)s awichin."
-
-msgid "On the go?"
-msgstr "¿La at mitij?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Tanik'oj ri <a class=\"mobile-link\" href=\"#\">Ruxaq Kitz'aqat Oyonib'äl</a>."
 
 msgid "Android Add-ons"
 msgstr "Taq rutz'aqat Android"

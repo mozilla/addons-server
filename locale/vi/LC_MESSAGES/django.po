@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-03-18 09:03+0000\n"
 "Last-Translator: Quế Tùng <best.cloney.1301@gmail.com>\n"
 "Language-Team: Vietnamese <LL@li.org>\n"
@@ -98,57 +98,6 @@ msgstr "Thử nghiệm"
 msgid "Add to {0}"
 msgstr "Thêm vào {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Slug không thể là \"%(slug)s\". Vui lòng chọn cái khác."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Nhãn không hợp lệ: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\"\\ là nhãn dự phòng và không thể dùng."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Bạn có {0} quá nhiều nhãn."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Tất cả nhãn phải có %s kí tự hoặc ít hơn sau khi kí tự bất hợp lệ bị xóa."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Tất cả nhãn phải có ít nhất {0} kí tự."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Các văn bản đã nhập vào đã được gắn cờ là spam."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Danh mục không thể thay đổi trong khi tiện ích của bạn được giới thiệu cho ứng dụng này."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Bạn chỉ có thể có {0} phân mục."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Phân mục linh tinh không thể được kết hợp với các phân mục phụ."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Tên miền URL phải là một trong [%s], hoặc tên miền phụ."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Trước khi thay đổi bản địa mặc định, bạn phải có tên, tóm tắt và mô tả trong bản địa đó. Bạn đang thiếu %s."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Liệt kê"
@@ -161,9 +110,6 @@ msgstr "Tên tiện ích không thể chứa nhãn hiệu Mozilla hoặc Firefox
 
 msgid "Abuse reported."
 msgstr "Sự lạm dụng đã báo cáo."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Tiện ích của tôi không khớp bất kì phân mục nào"
 
 msgid "No compatible versions"
 msgstr "Không có phiên bản tương thích"
@@ -801,32 +747,6 @@ msgstr "Mới nhất"
 msgid "Explore"
 msgstr "Khám phá"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Tiện ích mở rộng"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Giao diện"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
-
-msgid "Collections"
-msgstr "Bộ sưu tập"
-
-msgid "More&hellip;"
-msgstr "Thêm&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Tiện ích cho di động"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Gói Ngôn ngữ & Từ điển"
-
-msgid "Search Tools"
-msgstr "Công cụ tìm kiếm"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -846,6 +766,12 @@ msgstr "Chuyển đến trang cuối cùng"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Đang hiện <b>%(begin)s</b>&ndash;<b>%(end)s</b> trên tổng <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Bộ sưu tập"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Gói Ngôn ngữ & Từ điển"
 
 msgid "Add-ons"
 msgstr "Tiện ích"
@@ -933,6 +859,9 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+msgid "The text entered has been flagged as spam."
+msgstr "Các văn bản đã nhập vào đã được gắn cờ là spam."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Một bộ sưu tập khác của bạn đã được sử dụng URL tùy chỉnh này."
 
@@ -951,10 +880,18 @@ msgstr "Không thể sử dụng URL tùy chỉnh này."
 msgid "This add-on already belongs to the collection"
 msgstr "Tiện ích này đã ở trong bộ sưu tập"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Tiện ích mở rộng"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "Tiện ích %s"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Giao diện"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -979,6 +916,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Công cụ tìm kiếm và tiện ích liên quan đến tìm kiếm"
 
 msgid "Search tools"
+msgstr "Công cụ tìm kiếm"
+
+msgid "Search Tools"
 msgstr "Công cụ tìm kiếm"
 
 msgid "Most Users"
@@ -2122,6 +2062,54 @@ msgstr "Chúng tôi cho phép và khuyến khích nâng cấp nhưng bạn khôn
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Văn bản trong trường \"{field}\" đã bị gắn cờ là spam."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Slug này đã được sử dụng. Vui lòng chọn cái khác."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Slug không thể là \"%(slug)s\". Vui lòng chọn cái khác."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Nhãn không hợp lệ: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\"\\ là nhãn dự phòng và không thể dùng."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Bạn có {0} quá nhiều nhãn."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Tất cả nhãn phải có %s kí tự hoặc ít hơn sau khi kí tự bất hợp lệ bị xóa."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Tất cả nhãn phải có ít nhất {0} kí tự."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Danh mục không thể thay đổi trong khi tiện ích của bạn được giới thiệu cho ứng dụng này."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Bạn chỉ có thể có {0} phân mục."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Phân mục linh tinh không thể được kết hợp với các phân mục phụ."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Tên miền URL phải là một trong [%s], hoặc tên miền phụ."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Trước khi thay đổi bản địa mặc định, bạn phải có tên, tóm tắt và mô tả trong bản địa đó. Bạn đang thiếu %s."
+
 msgid "Must have at least one owner."
 msgstr "Phải có ít nhất một người sở hữu."
 
@@ -2217,6 +2205,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr ""
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Gói lưu trữ không hợp lệ hoặc bị hỏng."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2377,6 +2369,9 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Tiện ích của tôi không khớp bất kì phân mục nào"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2396,9 +2391,6 @@ msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "hoặc <a href=\"{0}\">Hủy bỏ</a>"
-
-msgid "Back to Add-ons"
-msgstr "Trở lại Tiện ích"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5137,6 +5129,9 @@ msgstr ""
 msgid "Cannot diff a version against itself"
 msgstr ""
 
+msgid "Could not parse the manifest file."
+msgstr ""
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "GUID phải có với Firefox 47 và thấp hơn."
 
@@ -5175,9 +5170,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Gói nén bất hợp lệ."
-
-msgid "Could not parse the manifest file."
-msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr ""
@@ -6564,33 +6556,6 @@ msgstr "theo Nền tảng"
 msgid "by Add-on Status"
 msgstr "theo Trạng thái Tiện ích"
 
-msgid "Add-on Statistics"
-msgstr ""
-
-msgid "Add-ons in Use"
-msgstr ""
-
-msgid "Add-ons Created"
-msgstr ""
-
-msgid "Add-ons Downloaded"
-msgstr "Tiện ích đã tải xuống"
-
-msgid "Add-ons Updated"
-msgstr ""
-
-msgid "Collections Created"
-msgstr ""
-
-msgid "Reviews Written"
-msgstr ""
-
-msgid "User Signups"
-msgstr ""
-
-msgid "Archived Data"
-msgstr ""
-
 msgid "Custom Date Range"
 msgstr "Khoảng Thời gian Tùy biến"
 
@@ -6677,23 +6642,8 @@ msgstr "Bảng điều khiển này hiện đang <b>riêng tư</b>."
 msgid "Change settings."
 msgstr "Thay đổi cài đặt."
 
-msgid "Add-ons Created by Date"
-msgstr ""
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Tiện ích đã tải xuống theo ngày"
-
-msgid "Add-ons in Use by Date"
-msgstr ""
-
-msgid "Add-ons Updated by Date"
-msgstr ""
-
 msgid "Application usage by Date"
 msgstr "Sử dụng ứng dụng theo Ngày"
-
-msgid "Collections Created by Date"
-msgstr ""
 
 msgid "Downloaded by Date"
 msgstr "Tải xuống theo ngày"
@@ -6739,12 +6689,6 @@ msgstr "Nền tảng Hạng nhất"
 msgid "See more platforms&hellip;"
 msgstr "Xem thêm nền tảng&hellip;"
 
-msgid "Ratings by Date"
-msgstr ""
-
-msgid "Reviews Created by Date"
-msgstr ""
-
 msgid "Download sources by Date"
 msgstr "Nguồn tải theo ngày"
 
@@ -6763,9 +6707,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Trạng thái Tiện ích theo Ngày"
 
-msgid "Subscribers by Date"
-msgstr ""
-
 msgid "Daily Users by Date"
 msgstr "Người dùng Hàng ngày theo Ngày"
 
@@ -6782,26 +6723,14 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
-msgid "User Signups by Date"
-msgstr ""
-
 msgid "Application versions by Date"
 msgstr "Phiên bản ứng dụng theo Ngày"
 
 msgid "Mozilla Add-ons"
 msgstr "Tiện ích Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Tìm tiện ích cho các ứng dụng khác"
-
-msgid "Other Applications"
-msgstr "Ứng dụng Khác"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
-
-msgid "Visit the new site"
-msgstr ""
+msgid "Back to Add-ons"
+msgstr "Trở lại Tiện ích"
 
 msgid "Footer logo"
 msgstr ""
@@ -6866,27 +6795,6 @@ msgstr "Xin chào, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Đăng ký</a> hoặc <a href=\"%(login)s\">Đăng nhập</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr ""
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Chào mừng đến với tiện ích {0}."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Chọn từ hàng ngàn tính năng và phong cách để biến thành Firefox của riêng bạn."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr ""
-
-msgid "On the go?"
-msgstr ""
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr ""
 
 msgid "Android Add-ons"
 msgstr ""

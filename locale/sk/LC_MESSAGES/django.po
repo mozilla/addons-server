@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-03-15 17:33+0000\n"
 "Last-Translator: Juraj Cigáň <kusavica@gmail.com>\n"
 "Language-Team: Mozilla.sk <l10n@mozilla.sk>\n"
@@ -99,67 +99,6 @@ msgstr "Experimentálne"
 msgid "Add to {0}"
 msgstr "Pridať do programu {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Táto URL adresa sa už používa. Vyberte inú."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "URL adresa nemôže byť „%(slug)s“. Prosím, vyberte inú."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Neplatná značka: {0}"
-msgstr[1] "Neplatné značky: {0}"
-msgstr[2] "Neplatné značky: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" je rezervovaná značka a nie je možné ju použiť."
-msgstr[1] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
-msgstr[2] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Máte o {0} značku naviac."
-msgstr[1] "Máte o {0} značky naviac."
-msgstr[2] "Máte o {0} značiek naviac."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Po odstránení neplatných znakov musia mať všetky značka najviac %s znakov."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Každá značka musí mať aspoň {0} znak."
-msgstr[1] "Každá značka musí mať aspoň {0} znaky."
-msgstr[2] "Každá značka musí mať aspoň {0} znakov."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Zadaný text bol označený ako spam."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Môžete mať len {0} kategóriu."
-msgstr[1] "Môžete mať len {0} kategórie."
-msgstr[2] "Môžete mať len {0} kategórií."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Doména v URL adrese musí byť jedna z týchto [%s], alebo ich subdoména."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v tomto jazyku. Zatiaľ nemáte vyplnené: %s."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "V zozname"
@@ -172,9 +111,6 @@ msgstr "Názov doplnku nemôže obsahovať ochranné známky Mozilla alebo Firef
 
 msgid "Abuse reported."
 msgstr "Zneužitie nahlásené."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Môj doplnok nespadá ani do jednej z kategórií"
 
 msgid "No compatible versions"
 msgstr "Žiadne kompatibilné verzie"
@@ -828,32 +764,6 @@ msgstr "Najnovšie"
 msgid "Explore"
 msgstr "Pozrite si"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Rozšírenia"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Témy"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Chcete viac prispôsobenia? Skúste <b>plné témy vzhľadu</b>"
-
-msgid "Collections"
-msgstr "Kolekcie"
-
-msgid "More&hellip;"
-msgstr "Ďalšie&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Doplnky pre mobilný Firefox"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Slovníky a jazykové balíky"
-
-msgid "Search Tools"
-msgstr "Vyhľadávacie nástroje"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -873,6 +783,12 @@ msgstr "Skok na poslednú stranu"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Zobrazujú sa výsledky <b>%(begin)s</b>&ndash;<b>%(end)s</b> z celkového počtu <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Kolekcie"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Slovníky a jazykové balíky"
 
 msgid "Add-ons"
 msgstr "Doplnky"
@@ -960,6 +876,9 @@ msgstr ""
 "Ak vaša podporovaná aplikácia nevyžaduje súbor manifest, aj tak musíte zahrnúť tento súbor a uviesť požadované informácie tak ako je popísané %(amo_manifests_mdn_link_open)stu"
 "%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Zadaný text bol označený ako spam."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Táto adresa URL je už používaná inou vašou kolekciou."
 
@@ -978,10 +897,18 @@ msgstr "Túto vlastnú URL adresu nie je možné použiť."
 msgid "This add-on already belongs to the collection"
 msgstr "Tento doplnok už v kolekcii je"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Rozšírenia"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "Doplnky pre %s"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Témy"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1006,6 +933,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Vyhľadávacie nástroje alebo rozšírenia vzťahujúce k vyhľadávaniu"
 
 msgid "Search tools"
+msgstr "Vyhľadávacie nástroje"
+
+msgid "Search Tools"
 msgstr "Vyhľadávacie nástroje"
 
 msgid "Most Users"
@@ -2134,6 +2064,64 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Táto URL adresa sa už používa. Vyberte inú."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "URL adresa nemôže byť „%(slug)s“. Prosím, vyberte inú."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Neplatná značka: {0}"
+msgstr[1] "Neplatné značky: {0}"
+msgstr[2] "Neplatné značky: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" je rezervovaná značka a nie je možné ju použiť."
+msgstr[1] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
+msgstr[2] "\"{0}\" sú rezervované značky a nie je možné ich použiť."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Máte o {0} značku naviac."
+msgstr[1] "Máte o {0} značky naviac."
+msgstr[2] "Máte o {0} značiek naviac."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Po odstránení neplatných znakov musia mať všetky značka najviac %s znakov."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Každá značka musí mať aspoň {0} znak."
+msgstr[1] "Každá značka musí mať aspoň {0} znaky."
+msgstr[2] "Každá značka musí mať aspoň {0} znakov."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Môžete mať len {0} kategóriu."
+msgstr[1] "Môžete mať len {0} kategórie."
+msgstr[2] "Môžete mať len {0} kategórií."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Kategória Rôzne nemôže byť kombinovaná s inými kategóriami."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Doména v URL adrese musí byť jedna z týchto [%s], alebo ich subdoména."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Pred zmenou predvoleného jazyka musíte mať vyplnený názov, súhrn a popis v tomto jazyku. Zatiaľ nemáte vyplnené: %s."
+
 msgid "Must have at least one owner."
 msgstr "Musí mať aspoň jedného vlastníka."
 
@@ -2229,6 +2217,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Pokiaľ je doplnok v zozname odporúčaných, nie je možné zmeniť jeho kategórie."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Neplatný alebo poškodený archív."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2389,6 +2381,9 @@ msgstr "Nový kľúč API bol vytvorený."
 msgid "API key revoked"
 msgstr "Kľúč API bol zneplatnený"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Môj doplnok nespadá ani do jednej z kategórií"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2408,9 +2403,6 @@ msgstr "Prijať"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "alebo <a href=\"{0}\">Zrušiť</a>"
-
-msgid "Back to Add-ons"
-msgstr "Naspäť na Doplnky"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5164,6 +5156,9 @@ msgstr "Tento súbor je priečinok."
 msgid "Cannot diff a version against itself"
 msgstr "Nie je možné porovnávať verziu s ňou samotnou"
 
+msgid "Could not parse the manifest file."
+msgstr ""
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Pre Firefox 47 a starší je vyžadované GUID."
 
@@ -5202,9 +5197,6 @@ msgstr ""
 
 msgid "Invalid archive."
 msgstr "Neplatný archív."
-
-msgid "Could not parse the manifest file."
-msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr ""
@@ -6615,33 +6607,6 @@ msgstr "podľa platformy"
 msgid "by Add-on Status"
 msgstr "podľa stavu doplnku"
 
-msgid "Add-on Statistics"
-msgstr "Štatistiky doplnku"
-
-msgid "Add-ons in Use"
-msgstr "Používané doplnky"
-
-msgid "Add-ons Created"
-msgstr "Vytvorené doplnky"
-
-msgid "Add-ons Downloaded"
-msgstr "Prevzaté doplnky"
-
-msgid "Add-ons Updated"
-msgstr "Aktualizované doplnky"
-
-msgid "Collections Created"
-msgstr "Vytvorené kolekcie"
-
-msgid "Reviews Written"
-msgstr "Napísané recenzie"
-
-msgid "User Signups"
-msgstr "Prihlásení používatelia"
-
-msgid "Archived Data"
-msgstr "Archivované údaje"
-
 msgid "Custom Date Range"
 msgstr "Vlastný rozsah"
 
@@ -6728,23 +6693,8 @@ msgstr "Táto štatistika je momentálne <b>súkromná</b>."
 msgid "Change settings."
 msgstr "Zmeniť nastavenie"
 
-msgid "Add-ons Created by Date"
-msgstr "Vytvorené doplnky podľa dátumu"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Prevzaté doplnky podľa dátumu"
-
-msgid "Add-ons in Use by Date"
-msgstr "Používané doplnky podľa dátumu"
-
-msgid "Add-ons Updated by Date"
-msgstr "Aktualizované doplnky podľa dátumu"
-
 msgid "Application usage by Date"
 msgstr "Používanie aplikácie podľa dátumu"
-
-msgid "Collections Created by Date"
-msgstr "Vytvorené kolekcie podľa dátumu"
 
 msgid "Downloaded by Date"
 msgstr "Prevzatia podľa dátumu"
@@ -6792,12 +6742,6 @@ msgstr "Top platformy"
 msgid "See more platforms&hellip;"
 msgstr "Ďalšie platformy&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Hodnotenia podľa dátumu"
-
-msgid "Reviews Created by Date"
-msgstr "Vytvorené recenzie podľa dátumu"
-
 msgid "Download sources by Date"
 msgstr "Zdroje prevzatí podľa dátumu"
 
@@ -6821,9 +6765,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Stav doplnku podľa dátumu"
 
-msgid "Subscribers by Date"
-msgstr "Odberatelia podľa dátumu"
-
 msgid "Daily Users by Date"
 msgstr "Denní používatelia podľa dátumu"
 
@@ -6840,26 +6781,14 @@ msgid ""
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
 
-msgid "User Signups by Date"
-msgstr "Prihlásení používatelia podľa dátumu"
-
 msgid "Application versions by Date"
 msgstr "Verzie aplikácií podľa dátumu"
 
 msgid "Mozilla Add-ons"
 msgstr "Mozilla Add-ons"
 
-msgid "Find add-ons for other applications"
-msgstr "Hľadať doplnky pre iné aplikácie"
-
-msgid "Other Applications"
-msgstr "Ďalšie programy"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO čoskoro dostane nový vzhľad. Chceli by ste si ho pozrieť už teraz?"
-
-msgid "Visit the new site"
-msgstr "Navštívte novú stránku"
+msgid "Back to Add-ons"
+msgstr "Naspäť na Doplnky"
 
 msgid "Footer logo"
 msgstr "Logo v päte"
@@ -6926,27 +6855,6 @@ msgstr "Vitajte, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Zaregistrujte</a> alebo <a href=\"%(login)s\">prihláste sa</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Ak chcete vyskúšať tisíce doplnkov dostupných na tejto stránke, nainštalujte si <a href=\"%(url)s\">Mozilla Firefox</a>, rýchly a jednoduchý prehliadač webu."
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Vitajte na stránke Doplnky pre {0}."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Vyberte si z tisícov extra funkcií a štýlov a prispôsobte si tak svoj Firefox."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Pridajte si vlastné funkcie a štýly, pomocou ktorých si %(app)s prispôsobíte podľa seba."
-
-msgid "On the go?"
-msgstr "Čo sa deje?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Pozrite si našu <a class=\"mobile-link\" href=\"#\">stránku doplnkov pre mobilný Firefox</a>."
 
 msgid "Android Add-ons"
 msgstr "Doplnky pre Android"

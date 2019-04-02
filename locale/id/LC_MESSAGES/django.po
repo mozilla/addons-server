@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2019-04-01 13:20+0000\n"
 "Last-Translator: Ringgo <armen.ringgo@yahoo.de>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
@@ -101,57 +101,6 @@ msgstr "Eksperimental"
 msgid "Add to {0}"
 msgstr "Tambahkan ke {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Slug ini sudah dipakai. Silakan pilih yang lain."
-
-#, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Slug ini tidak dapat \"%(slug)s\". Silakan pilih yang lain."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Tag tidak valid: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" adalah tag yang sudah dicadangkan dan tidak bisa digunakan."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Tagnya terlalu banyak {0} buah."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Seluruh tag harus berjumlah %s karakter atau kurang setelah karakter yang tidak valid dibuang."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Semua tag panjangnya paling sedikit harus {0} karakter."
-
-msgid "The text entered has been flagged as spam."
-msgstr "Teks yang dimasukkan telah ditandai sebagai spam."
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Anda hanya diperbolehkan memiliki {0} kategori."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Kategori lain-lain tidak dapat digabungkan dengan kategori lainnya."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "Domain URL harus merupakan salah satu dari [%s], atau sebuah subdomain."
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Sebelum mengubah kode pelokalan baku Anda harus menentukan nama, ringkasan, dan deskripsi pada kode pelokalan tersebut. Anda masih belum menentukan %s."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Terdaftar"
@@ -164,9 +113,6 @@ msgstr "Nama pengaya tidak boleh mengandung merek dagang Mozilla atau Firefox."
 
 msgid "Abuse reported."
 msgstr "Penyalahgunaan dilaporkan."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Pengaya saya tidak cocok ke kategori apa pun"
 
 msgid "No compatible versions"
 msgstr "Tidak ada versi yang kompatibel"
@@ -812,32 +758,6 @@ msgstr "Terbaru"
 msgid "Explore"
 msgstr "Jelajahi"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Ekstensi"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Tema"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr "Ingin lebih banyak penyesuaian? ? Cobalah <b>Tema Komplet</b>"
-
-msgid "Collections"
-msgstr "Koleksi"
-
-msgid "More&hellip;"
-msgstr "Selengkapnya&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Pengaya untuk Seluler"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Kamus & Paket Bahasa"
-
-msgid "Search Tools"
-msgstr "Perangkat Pencarian"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -857,6 +777,12 @@ msgstr "Menuju laman terakhir"
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Menampilkan <b>%(begin)s</b>&ndash;<b>%(end)s</b> dari <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Koleksi"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Kamus & Paket Bahasa"
 
 msgid "Add-ons"
 msgstr "Pengaya"
@@ -946,6 +872,9 @@ msgstr ""
 "Jika aplikasi Anda yang didukung tidak memerlukan berkas maklumat, Anda masih harus memasukkan satu dengan properti yang dibutuhkan sebagaimana dijelaskan %(amo_manifests_mdn_link_open)sdi "
 "sini%(amo_manifests_mdn_link_close)s."
 
+msgid "The text entered has been flagged as spam."
+msgstr "Teks yang dimasukkan telah ditandai sebagai spam."
+
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "URL ubahsuai ini telah dipakai oleh koleksi Anda yang lain."
 
@@ -964,10 +893,18 @@ msgstr "URL ubahsuai ini tidak dapat digunakan."
 msgid "This add-on already belongs to the collection"
 msgstr "Pengaya ini sudah termasuk dalam koleksi ini"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Ekstensi"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%s Pengaya"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Tema"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -993,6 +930,9 @@ msgstr "Perangkat pencarian dan ekstensi terkait pencarian"
 
 msgid "Search tools"
 msgstr "Perangkat pencarian"
+
+msgid "Search Tools"
+msgstr "Perangkat Pencarian"
 
 msgid "Most Users"
 msgstr "Sebagian Besar Pengguna"
@@ -2124,6 +2064,54 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr "[{field}] Teks dalam bidang \"{field}\" telah ditandai sebagai spam."
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Slug ini sudah dipakai. Silakan pilih yang lain."
+
+#, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Slug ini tidak dapat \"%(slug)s\". Silakan pilih yang lain."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Tag tidak valid: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" adalah tag yang sudah dicadangkan dan tidak bisa digunakan."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Tagnya terlalu banyak {0} buah."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Seluruh tag harus berjumlah %s karakter atau kurang setelah karakter yang tidak valid dibuang."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Semua tag panjangnya paling sedikit harus {0} karakter."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Kategori tidak bisa diubah saat pengaya anda ditampilkan untuk aplikasi ini."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Anda hanya diperbolehkan memiliki {0} kategori."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Kategori lain-lain tidak dapat digabungkan dengan kategori lainnya."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr "Domain URL harus merupakan salah satu dari [%s], atau sebuah subdomain."
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Sebelum mengubah kode pelokalan baku Anda harus menentukan nama, ringkasan, dan deskripsi pada kode pelokalan tersebut. Anda masih belum menentukan %s."
+
 msgid "Must have at least one owner."
 msgstr "Harus punya sekurangnya satu pemilik."
 
@@ -2222,6 +2210,10 @@ msgstr ""
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Arsip rusak atau tidak valid."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kunci API pengembang Anda ditemukan dalam berkas terkirim. Untuk melindungi akun Anda, kunci itu akan dicabut."
@@ -2385,6 +2377,9 @@ msgstr "Kunci API baru dibuat"
 msgid "API key revoked"
 msgstr "Kunci API dicabut"
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Pengaya saya tidak cocok ke kategori apa pun"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
@@ -2406,9 +2401,6 @@ msgstr "Setuju"
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "or <a href=\"{0}\">Batal</a>"
-
-msgid "Back to Add-ons"
-msgstr "Kembali ke Pengaya"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5205,6 +5197,9 @@ msgstr "Berkas ini adalah direktori."
 msgid "Cannot diff a version against itself"
 msgstr "Tidak bisa melakukan diff sebuah versi atas dirinya sendiri"
 
+msgid "Could not parse the manifest file."
+msgstr "Tidak bisa mengurai berkas manifest."
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr "Dibutuhkan GUID pada Firefox 47 dan versi sebelumnya."
 
@@ -5243,9 +5238,6 @@ msgstr "Berkas melebihi batas ukuran dalam arsip: {0}"
 
 msgid "Invalid archive."
 msgstr "Arsip tidak sah."
-
-msgid "Could not parse the manifest file."
-msgstr "Tidak bisa mengurai berkas manifest."
 
 msgid "Could not find an add-on ID."
 msgstr "Tidak bisa menemukan ID pengaya."
@@ -6646,33 +6638,6 @@ msgstr "berdasarkan Platform"
 msgid "by Add-on Status"
 msgstr "berdasarkan Status Pengaya"
 
-msgid "Add-on Statistics"
-msgstr "Statistik Pengaya"
-
-msgid "Add-ons in Use"
-msgstr "Pengaya sedang Digunakan"
-
-msgid "Add-ons Created"
-msgstr "Pengaya yang Dibuat"
-
-msgid "Add-ons Downloaded"
-msgstr "Pengaya yang Diunduh"
-
-msgid "Add-ons Updated"
-msgstr "Pengaya yang Diperbarui"
-
-msgid "Collections Created"
-msgstr "Koleksi Dibuat"
-
-msgid "Reviews Written"
-msgstr "Ulasan Ditulis"
-
-msgid "User Signups"
-msgstr "Pengguna Mendaftar"
-
-msgid "Archived Data"
-msgstr "Data Diarsipkan"
-
 msgid "Custom Date Range"
 msgstr "Rentang Tanggal Khusus"
 
@@ -6759,23 +6724,8 @@ msgstr "Papan saat ini dalam keadaan <b>privat</b>."
 msgid "Change settings."
 msgstr "Ubah pengaturan."
 
-msgid "Add-ons Created by Date"
-msgstr "Pengaya Dibuat berdasarkan Tanggal"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Pengaya Diunduh berdasarkan Tanggal"
-
-msgid "Add-ons in Use by Date"
-msgstr "Pengaya Digunakan sebelum Tanggal"
-
-msgid "Add-ons Updated by Date"
-msgstr "Pengaya Diperbarui sebelum Tanggal"
-
 msgid "Application usage by Date"
 msgstr "Penggunaan aplikasi berdasarkan Tanggal"
-
-msgid "Collections Created by Date"
-msgstr "Koleksi Dibuat berdasarkan Tanggal"
 
 msgid "Downloaded by Date"
 msgstr "Diunduh berdasarkan Tanggal"
@@ -6823,12 +6773,6 @@ msgstr "Platform Teratas"
 msgid "See more platforms&hellip;"
 msgstr "Lihat platform lainnya&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Peringkat berdasarkan Tanggal"
-
-msgid "Reviews Created by Date"
-msgstr "Ulasan Dibuat berdasarkan Tanggal"
-
 msgid "Download sources by Date"
 msgstr "Sumber unduhan berdasarkan Tanggal"
 
@@ -6852,9 +6796,6 @@ msgstr ""
 msgid "Add-on Status by Date"
 msgstr "Status Pengaya berdasarkan Tanggal"
 
-msgid "Subscribers by Date"
-msgstr "Pelanggan berdasarkan Tanggal"
-
 msgid "Daily Users by Date"
 msgstr "Pengguna Harian berdasarkan Tanggal"
 
@@ -6875,26 +6816,14 @@ msgstr ""
 "<h2>Apakah pengguna harian itu?</h2> <p> Pengaya yang diunduh dari situs ini dicek pembaruannya sekali setiap hari. Jumlah total pembaruan pin ini diketahui sebagai Pengguna Aktif Harian. Pengguna "
 "harian bisa dijabarkan berdasarkan versi pengaya, sistem operasi, status pengaya, aplikasi dan kode pelokalan. </p>"
 
-msgid "User Signups by Date"
-msgstr "Pendaftaran Pengguna berdasarkan Tanggal"
-
 msgid "Application versions by Date"
 msgstr "Versi aplikasi berdasarkan Tanggal"
 
 msgid "Mozilla Add-ons"
 msgstr "Pengaya Mozilla"
 
-msgid "Find add-ons for other applications"
-msgstr "Temukan pengaya untuk aplikasi lainnya"
-
-msgid "Other Applications"
-msgstr "Aplikasi Lainnya"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr "AMO mendapatkan tampilan baru. Anda ingin melihatnya?"
-
-msgid "Visit the new site"
-msgstr "Kunjungi situs baru"
+msgid "Back to Add-ons"
+msgstr "Kembali ke Pengaya"
 
 msgid "Footer logo"
 msgstr "Logo catatan kaki"
@@ -6961,27 +6890,6 @@ msgstr "Selamat Datang {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Daftar</a> atau <a href=\"%(login)s\">Masuk</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Cobalah ribuan pengaya yang tersedia di sini, unduh <a href=\"%(url)s\">Mozilla Firefox</a>, cara cepat dan bebas untuk menjelajahi Web!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Selamat datang ke Pengaya {0}."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Pilih dari ribuan fitur tambahan dan gayakan untuk membuat Firefox jadi milik anda."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Tambahkan fitur ekstra dan gaya untuk membuat %(app)s milik anda."
-
-msgid "On the go?"
-msgstr "Dalam perjalanan?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Periksa <a class=\"mobile-link\" href=\"#\">situs Pengaya Bergerak</a>."
 
 msgid "Android Add-ons"
 msgstr "Pengaya Android"

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-03-26 19:08+0000\n"
+"POT-Creation-Date: 2019-04-02 14:07+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -99,62 +99,6 @@ msgstr ""
 msgid "Add to {0}"
 msgstr "Додај у {0}"
 
-msgid "This slug is already in use. Please choose another."
-msgstr "Назив url адресе је у употреби. Молимо Вас изаберите други."
-
-#, fuzzy, python-format
-msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr "Назив url адресе не може бити \"%s\". Молимо Вас изаберите други."
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "Invalid tag: {0}"
-msgid_plural "Invalid tags: {0}"
-msgstr[0] "Неисправна ознака: {0}"
-msgstr[1] "Неисправне ознаке: {0}"
-
-#. L10n: {0} is a single tag or a comma-separated list of tags.
-msgid "\"{0}\" is a reserved tag and cannot be used."
-msgid_plural "\"{0}\" are reserved tags and cannot be used."
-msgstr[0] "\"{0}\" је резервисана ознака која се не може користити."
-msgstr[1] "\"{0}\" су резервисане ознаке које се не могу користити."
-
-msgid "You have {0} too many tags."
-msgid_plural "You have {0} too many tags."
-msgstr[0] "Имате {0} превише ознака."
-msgstr[1] "Имате {0} превише ознака."
-
-#, python-format
-msgid "All tags must be %s characters or less after invalid characters are removed."
-msgstr "Све ознаке морају бити од %s катактера или мање након што су неисправни карактери уклоњени."
-
-msgid "All tags must be at least {0} character."
-msgid_plural "All tags must be at least {0} characters."
-msgstr[0] "Све ознаке морају садржати најмање {0} карактер."
-msgstr[1] "Све ознаке морају садржати најмање {0} карактера."
-
-msgid "The text entered has been flagged as spam."
-msgstr ""
-
-msgid "Categories cannot be changed while your add-on is featured for this application."
-msgstr "Категорије се не могу изменити док је Ваш додатак издвојен за ову апликацију."
-
-#. L10n: {0} is the number of categories.
-msgid "You can have only {0} category."
-msgid_plural "You can have only {0} categories."
-msgstr[0] "Можете имати само {0} категорију."
-msgstr[1] "Можете имати само {0} категорије."
-
-msgid "The miscellaneous category cannot be combined with additional categories."
-msgstr "Категорија Остало се не може спојити са додатним категоријама."
-
-#, python-format
-msgid "URL domain must be one of [%s], or a subdomain."
-msgstr ""
-
-#, python-format
-msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
-msgstr "Пре него што измените подразумевани простор, морате имати име, кратак преглед и опис у том простору. Недостаје Вам %s."
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Наведене"
@@ -167,9 +111,6 @@ msgstr ""
 
 msgid "Abuse reported."
 msgstr "Злостављање је пријављено."
-
-msgid "My add-on doesn't fit into any of the categories"
-msgstr "Мој додатак не одговара ни једној категорији"
 
 msgid "No compatible versions"
 msgstr "Нема компатибилних верзија"
@@ -835,32 +776,6 @@ msgstr "Најновије"
 msgid "Explore"
 msgstr "Истражи"
 
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Екстензије"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Теме"
-
-msgid "Want more customization? Try <b>Complete Themes</b>"
-msgstr ""
-
-msgid "Collections"
-msgstr "Колекције"
-
-msgid "More&hellip;"
-msgstr "Још&hellip;"
-
-msgid "Add-ons for Mobile"
-msgstr "Додаци за мобилни"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Речници и језички пакети"
-
-msgid "Search Tools"
-msgstr "Алати за претрагу"
-
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
 msgid "Page <a href=\"%(current_pg_url)s\">%(current_pg)s</a> of <a href=\"%(last_pg_url)s\">%(last_pg)s</a>"
@@ -880,6 +795,12 @@ msgstr ""
 #, python-format
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Приказано <b>%(begin)s</b>&ndash;<b>%(end)s</b> од <b>%(count)s</b>"
+
+msgid "Collections"
+msgstr "Колекције"
+
+msgid "Dictionaries & Language Packs"
+msgstr "Речници и језички пакети"
 
 msgid "Add-ons"
 msgstr "Додаци"
@@ -967,6 +888,9 @@ msgid ""
 "%(amo_manifests_mdn_link_close)s."
 msgstr ""
 
+msgid "The text entered has been flagged as spam."
+msgstr ""
+
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
 msgstr "Овај url је у употреби од стране друге колекције"
@@ -990,10 +914,18 @@ msgstr "Ово корисничко име не може да се корист�
 msgid "This add-on already belongs to the collection"
 msgstr "Овај url је у употреби од стране друге колекције"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Екстензије"
+
 #. L10n: %s is a category name.
 #, python-format
 msgid "%s Add-ons"
 msgstr "%s додаци"
+
+#. {0} is a category name. Ex: "Sports"
+msgid "Themes"
+msgstr "Теме"
 
 #. L10n: %s is a category name.
 #, python-format
@@ -1018,6 +950,9 @@ msgid "Search tools and search-related extensions"
 msgstr "Алати за претрагу и њима сродна проширења"
 
 msgid "Search tools"
+msgstr "Алати за претрагу"
+
+msgid "Search Tools"
 msgstr "Алати за претрагу"
 
 msgid "Most Users"
@@ -2222,6 +2157,59 @@ msgstr ""
 msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
+msgid "This slug is already in use. Please choose another."
+msgstr "Назив url адресе је у употреби. Молимо Вас изаберите други."
+
+#, fuzzy, python-format
+msgid "The slug cannot be \"%(slug)s\". Please choose another."
+msgstr "Назив url адресе не може бити \"%s\". Молимо Вас изаберите други."
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "Invalid tag: {0}"
+msgid_plural "Invalid tags: {0}"
+msgstr[0] "Неисправна ознака: {0}"
+msgstr[1] "Неисправне ознаке: {0}"
+
+#. L10n: {0} is a single tag or a comma-separated list of tags.
+msgid "\"{0}\" is a reserved tag and cannot be used."
+msgid_plural "\"{0}\" are reserved tags and cannot be used."
+msgstr[0] "\"{0}\" је резервисана ознака која се не може користити."
+msgstr[1] "\"{0}\" су резервисане ознаке које се не могу користити."
+
+msgid "You have {0} too many tags."
+msgid_plural "You have {0} too many tags."
+msgstr[0] "Имате {0} превише ознака."
+msgstr[1] "Имате {0} превише ознака."
+
+#, python-format
+msgid "All tags must be %s characters or less after invalid characters are removed."
+msgstr "Све ознаке морају бити од %s катактера или мање након што су неисправни карактери уклоњени."
+
+msgid "All tags must be at least {0} character."
+msgid_plural "All tags must be at least {0} characters."
+msgstr[0] "Све ознаке морају садржати најмање {0} карактер."
+msgstr[1] "Све ознаке морају садржати најмање {0} карактера."
+
+msgid "Categories cannot be changed while your add-on is featured for this application."
+msgstr "Категорије се не могу изменити док је Ваш додатак издвојен за ову апликацију."
+
+#. L10n: {0} is the number of categories.
+msgid "You can have only {0} category."
+msgid_plural "You can have only {0} categories."
+msgstr[0] "Можете имати само {0} категорију."
+msgstr[1] "Можете имати само {0} категорије."
+
+msgid "The miscellaneous category cannot be combined with additional categories."
+msgstr "Категорија Остало се не може спојити са додатним категоријама."
+
+#, python-format
+msgid "URL domain must be one of [%s], or a subdomain."
+msgstr ""
+
+#, python-format
+msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
+msgstr "Пре него што измените подразумевани простор, морате имати име, кратак преглед и опис у том простору. Недостаје Вам %s."
+
 msgid "Must have at least one owner."
 msgstr "Мора имати најмање једног власника."
 
@@ -2322,6 +2310,10 @@ msgstr ""
 #, fuzzy
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Категорије се не могу изменити док је Ваш додатак издвојен за ову апликацију."
+
+#, fuzzy
+msgid "Invalid or corrupt add-on file."
+msgstr "Неважећа архива."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr ""
@@ -2488,6 +2480,9 @@ msgstr ""
 msgid "API key revoked"
 msgstr ""
 
+msgid "My add-on doesn't fit into any of the categories"
+msgstr "Мој додатак не одговара ни једној категорији"
+
 msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
 "Notice which explains how we handle your information."
@@ -2508,9 +2503,6 @@ msgstr ""
 
 msgid "or <a href=\"{0}\">Cancel</a>"
 msgstr "или <a href=\"{0}\">Откажи</a>"
-
-msgid "Back to Add-ons"
-msgstr "Назад на додатке"
 
 #. {0} is an application, like Firefox.
 msgid "{0} Add-ons"
@@ -5379,6 +5371,9 @@ msgstr "Ова датотека је директоријум."
 msgid "Cannot diff a version against itself"
 msgstr ""
 
+msgid "Could not parse the manifest file."
+msgstr ""
+
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
 
@@ -5417,9 +5412,6 @@ msgstr "Величина прелази ограничење величине у
 
 msgid "Invalid archive."
 msgstr "Неважећа архива."
-
-msgid "Could not parse the manifest file."
-msgstr ""
 
 msgid "Could not find an add-on ID."
 msgstr ""
@@ -6906,33 +6898,6 @@ msgstr "по платформи"
 msgid "by Add-on Status"
 msgstr "по статусу додатка"
 
-msgid "Add-on Statistics"
-msgstr "Статистике додатка"
-
-msgid "Add-ons in Use"
-msgstr "Додаци који се користе"
-
-msgid "Add-ons Created"
-msgstr "Додатака направљено"
-
-msgid "Add-ons Downloaded"
-msgstr "Додатака преузето"
-
-msgid "Add-ons Updated"
-msgstr "Додатака ажурирано"
-
-msgid "Collections Created"
-msgstr "Колекција је креирана"
-
-msgid "Reviews Written"
-msgstr "Написано рецензија"
-
-msgid "User Signups"
-msgstr "Пријава корисника"
-
-msgid "Archived Data"
-msgstr ""
-
 msgid "Custom Date Range"
 msgstr "Период по избору"
 
@@ -7019,23 +6984,8 @@ msgstr "Ова контролна табла је тренутно <b>прива
 msgid "Change settings."
 msgstr "Промени поставке."
 
-msgid "Add-ons Created by Date"
-msgstr "Направњени додаци по датуму"
-
-msgid "Add-ons Downloaded by Date"
-msgstr "Преузети додаци по датуму"
-
-msgid "Add-ons in Use by Date"
-msgstr "Додаци који се користе по датуму"
-
-msgid "Add-ons Updated by Date"
-msgstr "Отпремљени додаци по датуму"
-
 msgid "Application usage by Date"
 msgstr "Коришћење апликације по датуму"
-
-msgid "Collections Created by Date"
-msgstr "Колекција направљено по датуму"
 
 msgid "Downloaded by Date"
 msgstr "Преузимања по датуму"
@@ -7083,12 +7033,6 @@ msgstr "Најпопуларније платформе"
 msgid "See more platforms&hellip;"
 msgstr "Погледајте више платформи&hellip;"
 
-msgid "Ratings by Date"
-msgstr "Оцене по датуму"
-
-msgid "Reviews Created by Date"
-msgstr "Направљено рецензија по датуму"
-
 msgid "Download sources by Date"
 msgstr "Извори за преузимање по датуму"
 
@@ -7106,9 +7050,6 @@ msgstr ""
 
 msgid "Add-on Status by Date"
 msgstr "Статус додатка по датуму"
-
-msgid "Subscribers by Date"
-msgstr "Претплатника по датуму"
 
 msgid "Daily Users by Date"
 msgstr "Дневних корисника по датуму"
@@ -7130,26 +7071,14 @@ msgstr ""
 "<h2>Шта су дневни корисници?</h2> <p> Додаци који су инсталирани са овог сајта проверавају надоградње једном дневно. Укупан број провера је познат као број Активних дневних корисника. Дневни "
 "корисници се могу распоредити по верзији додатка, оперативном систему, статуса додатка, апликацији и локалу. </p>"
 
-msgid "User Signups by Date"
-msgstr "Број регистрованих корисника по датуму"
-
 msgid "Application versions by Date"
 msgstr "Верзије апликација по датуму"
 
 msgid "Mozilla Add-ons"
 msgstr "Mozilla додаци"
 
-msgid "Find add-ons for other applications"
-msgstr "Пронађите додатке за остале апликације"
-
-msgid "Other Applications"
-msgstr "Остале апликације"
-
-msgid "AMO is getting a new look. Would you like to see it?"
-msgstr ""
-
-msgid "Visit the new site"
-msgstr ""
+msgid "Back to Add-ons"
+msgstr "Назад на додатке"
 
 msgid "Footer logo"
 msgstr ""
@@ -7221,27 +7150,6 @@ msgstr "Добродошли, {0}"
 #, python-format
 msgid "<a href=\"%(reg)s\">Register</a> or <a href=\"%(login)s\">Log in</a>"
 msgstr "<a href=\"%(reg)s\">Региструјте налог</a> или се <a href=\"%(login)s\">пријавите</a>"
-
-#, python-format
-msgid "To try the thousands of add-ons available here, download <a href=\"%(url)s\">Mozilla Firefox</a>, a fast, free way to surf the Web!"
-msgstr "Да бисте испробали хиљаде додатака доступних овде, преузмите <a href=\"%(url)s\">Mozilla Firefox</a>, брз и бесплатан начин да сурфујете вебом!"
-
-#. {0} is an application, such as Firefox.
-msgid "Welcome to {0} Add-ons."
-msgstr "Добродошли на {0} додатке."
-
-msgid "Choose from thousands of extra features and styles to make Firefox your own."
-msgstr "Изаберите из хиљаде додатних могућности и стилова како би Firefox учинили својим."
-
-#, python-format
-msgid "Add extra features and styles to make %(app)s your own."
-msgstr "Додајте додатне могућности и стилове како би направили %(app)s на свој начин."
-
-msgid "On the go?"
-msgstr "У покрету сте?"
-
-msgid "Check out our <a class=\"mobile-link\" href=\"#\">Mobile Add-ons site</a>."
-msgstr "Проверите наш <a class=\"mobile-link\" href=\"#\">сајт за мобилне екстензије</a>."
 
 msgid "Android Add-ons"
 msgstr "Додаци за Android"
