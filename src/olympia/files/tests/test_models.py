@@ -21,6 +21,7 @@ from mock import patch
 
 from olympia import amo
 from olympia.addons.models import Addon
+from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import TestCase, user_factory
 from olympia.amo.utils import chunked
 from olympia.applications.models import AppVersion
@@ -77,8 +78,8 @@ class TestFile(TestCase, amo.tests.AMOPaths):
 
     def test_get_url_path(self):
         file_ = File.objects.get(id=67442)
-        assert file_.get_url_path('src') == \
-            file_.get_absolute_url(src='src')
+        assert absolutify(file_.get_url_path('src')) == (
+            file_.get_absolute_url(src='src'))
 
     def test_get_url_path_attachment(self):
         file_ = File.objects.get(id=67442)
