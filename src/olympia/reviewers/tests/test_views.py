@@ -2934,7 +2934,7 @@ class TestReview(ReviewBase):
         """ Make sure the weight is shown on the review page"""
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED,
-            weight=284)
+            weight=284, weight_info={'fôo': 200, 'bär': 84})
         self.grant_permission(self.reviewer, 'Addons:PostReview')
         url = reverse('reviewers.review', args=[self.addon.slug])
         response = self.client.get(url)
@@ -2942,6 +2942,7 @@ class TestReview(ReviewBase):
         doc = pq(response.content)
         risk = doc('.listing-body .file-weight')
         assert risk.text() == "Weight: 284"
+        assert risk.attr['title'] == 'bär: 84\nfôo: 200'
 
     def test_item_history_notes(self):
         version = self.addon.versions.all()[0]
