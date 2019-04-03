@@ -191,7 +191,7 @@ class TestFileEntriesDiffSerializer(TestCase):
 
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
-        apply_changes(repo, new_version, 'Updated readme\n', 'README.md')
+        apply_changes(repo, new_version, 'Updated test file\n', 'test.txt')
 
         file = self.addon.current_version.current_file
 
@@ -216,7 +216,8 @@ class TestFileEntriesDiffSerializer(TestCase):
             }
         ))
 
-        assert set(data['entries'].keys()) == {'manifest.json', 'README.md'}
+        assert set(data['entries'].keys()) == {
+            'manifest.json', 'README.md', 'test.txt'}
 
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
@@ -230,16 +231,16 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert manifest_data['status'] == ''
         assert isinstance(manifest_data['modified'], datetime)
 
-        readme_data = data['entries']['README.md']
+        readme_data = data['entries']['test.txt']
         assert readme_data['depth'] == 0
-        assert readme_data['filename'] == u'README.md'
+        assert readme_data['filename'] == u'test.txt'
         assert readme_data['sha256'] == (
-            '4c6b084648e57b59785efc604f43ddeb4aef73672798025dd2b9621cf111f66c')
-        assert readme_data['mimetype'] == 'text/markdown'
+            'f8b40fc302692ea4f552cb3d60bc89dd8b4616e398de5585e471cee73e2c0618')
+        assert readme_data['mimetype'] == 'text/plain'
         assert readme_data['mime_category'] == 'text'
-        assert readme_data['path'] == u'README.md'
-        assert readme_data['size'] == 15
-        assert readme_data['status'] == 'M'
+        assert readme_data['path'] == u'test.txt'
+        assert readme_data['size'] == 18
+        assert readme_data['status'] == 'A'
 
 
 @pytest.mark.parametrize(
