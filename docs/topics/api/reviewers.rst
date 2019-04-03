@@ -158,12 +158,14 @@ This endpoint allows you to compare two Add-on versions with each other.
 
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/compare_to/(int:version_id)/
 
-    Inherits most properties from :ref:`browse detail <reviewers-versions-browse-detail>` except ``file.content`` which is being
-    replaced by ``file.diff``.
+    Inherits most properties from :ref:`browse detail <reviewers-versions-browse-detail>`.
 
-    Given the complexity of the format, let's see the inline comments.
+    Properties specific to this endpoint:
 
-    The following output represents this git diff.
+    :>json string files.entries[].status: Status of this file, see https://git-scm.com/docs/git-status#_short_format
+    :>json object diff: See the following output with inline comments for a complete description.
+
+    Git patch we're talking about:
 
     .. code:: diff
 
@@ -216,6 +218,9 @@ This endpoint allows you to compare two Add-on versions with each other.
         -
         -}
         +{"id": "random"}
+
+
+    The following represents the git patch from above.
 
     .. code:: javascript
 

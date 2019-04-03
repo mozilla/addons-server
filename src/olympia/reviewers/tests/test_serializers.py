@@ -15,12 +15,15 @@ from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer, FileEntriesSerializer)
+    AddonBrowseVersionSerializer, FileEntriesSerializer,
+    FileEntriesDiffSerializer)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.versions.tasks import extract_version_to_git
 from olympia.versions.models import License
+from olympia.lib.git import AddonGitRepository
+from olympia.lib.tests.test_git import apply_changes
 
 
 class TestFileEntriesSerializer(TestCase):
@@ -150,6 +153,93 @@ class TestFileEntriesSerializer(TestCase):
 
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
         assert cache.get(key) == data['entries']
+
+
+class TestFileEntriesDiffSerializer(TestCase):
+    def setUp(self):
+        super(TestFileEntriesDiffSerializer, self).setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+        self.addon.current_version.refresh_from_db()
+
+    def get_serializer(self, obj, **extra_context):
+        api_version = api_settings.DEFAULT_VERSION
+        request = APIRequestFactory().get('/api/%s/' % api_version)
+        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = api_version
+        extra_context.setdefault('request', request)
+
+        return FileEntriesDiffSerializer(
+            instance=obj, context=extra_context)
+
+    def serialize(self, obj, **extra_context):
+        return self.get_serializer(obj, **extra_context).data
+
+    def test_basic(self):
+        parent_version = self.addon.current_version
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, 'Updated readme\n', 'README.md')
+
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, parent_version=parent_version)
+
+        assert data['id'] == file.pk
+        assert data['status'] == 'public'
+        assert data['hash'] == ''
+        assert data['is_webextension'] is True
+        assert data['created'] == (
+            file.created.replace(microsecond=0).isoformat() + 'Z')
+        assert data['url'] == (
+            'http://testserver/firefox/downloads/file/{}'
+            '/webextension_no_id.xpi?src=').format(file.pk)
+
+        assert data['selected_file'] == 'manifest.json'
+        assert data['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.addon.current_version.pk,
+                'filename': 'manifest.json'
+            }
+        ))
+
+        assert set(data['entries'].keys()) == {'manifest.json', 'README.md'}
+
+        manifest_data = data['entries']['manifest.json']
+        assert manifest_data['depth'] == 0
+        assert manifest_data['filename'] == u'manifest.json'
+        assert manifest_data['sha256'] == (
+            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631')
+        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['mime_category'] == 'text'
+        assert manifest_data['path'] == u'manifest.json'
+        assert manifest_data['size'] == 621
+        assert manifest_data['status'] == ''
+        assert isinstance(manifest_data['modified'], datetime)
+
+        readme_data = data['entries']['README.md']
+        assert readme_data['depth'] == 0
+        assert readme_data['filename'] == u'README.md'
+        assert readme_data['sha256'] == (
+            '4c6b084648e57b59785efc604f43ddeb4aef73672798025dd2b9621cf111f66c')
+        assert readme_data['mimetype'] == 'text/markdown'
+        assert readme_data['mime_category'] == 'text'
+        assert readme_data['path'] == u'README.md'
+        assert readme_data['size'] == 15
+        assert readme_data['status'] == 'M'
 
 
 @pytest.mark.parametrize(
