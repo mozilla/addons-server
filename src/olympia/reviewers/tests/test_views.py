@@ -5330,13 +5330,13 @@ class TestReviewAddonVersionViewSetDetail(
         assert result['file']['content'] == '# beastify\n'
 
         # make sure the correct download url is correctly generated
-        assert result['file']['download_url'] == absolutify(reverse(
+        assert result['file']['download_url'] == reverse(
             'reviewers.download_git_file',
             kwargs={
                 'version_id': self.version.pk,
                 'filename': 'README.md'
             }
-        ))
+        )
 
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')

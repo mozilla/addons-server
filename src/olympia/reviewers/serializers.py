@@ -15,7 +15,6 @@ from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
 
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.addons.serializers import (
     VersionSerializer, FileSerializer, SimpleAddonSerializer)
 from olympia.addons.models import AddonReviewerFlags
@@ -204,13 +203,10 @@ class FileEntriesSerializer(FileSerializer):
         if blob_or_tree.type == 'tree':
             return None
 
-        return absolutify(reverse(
-            'reviewers.download_git_file',
-            kwargs={
-                'version_id': self.get_instance().version.pk,
-                'filename': selected_file
-            }
-        ))
+        return reverse('reviewers.download_git_file', kwargs={
+            'version_id': self.get_instance().version.pk,
+            'filename': selected_file
+        })
 
 
 class AddonBrowseVersionSerializer(VersionSerializer):
