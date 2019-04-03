@@ -23,7 +23,7 @@ from olympia.files.utils import atomic_lock
 from olympia.reviewers.management.commands import auto_approve
 from olympia.reviewers.models import (
     AutoApprovalNotEnoughFilesError, AutoApprovalNoValidationResultError,
-    AutoApprovalSummary, ReviewerScore, get_reviewing_cache)
+    AutoApprovalSummary, get_reviewing_cache)
 
 
 class AutoApproveTestsMixin(object):
@@ -392,83 +392,6 @@ class TestAutoApproveCommandTransactions(
         self._check_stats({'total': 2, 'error': 1, 'is_locked': 0,
                            'has_auto_approval_disabled': 0,
                            'auto_approved': 1})
-
-
-class TestAwardPostReviewPoints(TestCase):
-    def setUp(self):
-        self.user1 = user_factory()
-        self.user2 = user_factory()
-        self.user3 = user_factory()
-        self.addon1 = addon_factory()
-        self.addon2 = addon_factory()
-        # First user approved content of addon1.
-        ActivityLog.create(
-            amo.LOG.APPROVE_CONTENT, self.addon1,
-            self.addon1.current_version, user=self.user1)
-        # Second user confirmed auto-approved of addon2.
-        ActivityLog.create(
-            amo.LOG.CONFIRM_AUTO_APPROVED, self.addon2,
-            self.addon2.current_version, user=self.user2)
-        # Third user approved content of addon2.
-        ActivityLog.create(
-            amo.LOG.APPROVE_CONTENT, self.addon2,
-            self.addon2.current_version, user=self.user3,)
-
-    def test_missing_auto_approval_summary(self):
-        assert ReviewerScore.objects.count() == 0
-        call_command('award_post_review_points')
-        assert ReviewerScore.objects.count() == 3
-        first_score = ReviewerScore.objects.filter(user=self.user1).get()
-        assert first_score.addon == self.addon1
-        assert first_score.note == (
-            'Retroactively awarded for past post/content review approval.')
-        assert first_score.note_key == amo.REVIEWED_CONTENT_REVIEW
-
-        second_score = ReviewerScore.objects.filter(user=self.user2).get()
-        assert second_score.addon == self.addon2
-        assert second_score.note == (
-            'Retroactively awarded for past post/content review approval.')
-        assert second_score.note_key == amo.REVIEWED_EXTENSION_LOW_RISK
-
-        third_score = ReviewerScore.objects.filter(user=self.user3).get()
-        assert third_score.addon == self.addon2
-        assert third_score.note == (
-            'Retroactively awarded for past post/content review approval.')
-        assert third_score.note_key == amo.REVIEWED_CONTENT_REVIEW
-
-    def test_full(self):
-        AutoApprovalSummary.objects.create(
-            version=self.addon2.current_version, verdict=amo.AUTO_APPROVED,
-            weight=151, confirmed=True)
-        assert ReviewerScore.objects.count() == 0
-        call_command('award_post_review_points')
-        assert ReviewerScore.objects.count() == 3
-        first_score = ReviewerScore.objects.filter(user=self.user1).get()
-        assert first_score.addon == self.addon1
-        assert first_score.note == (
-            'Retroactively awarded for past post/content review approval.')
-        assert first_score.note_key == amo.REVIEWED_CONTENT_REVIEW
-
-        second_score = ReviewerScore.objects.filter(user=self.user2).get()
-        assert second_score.addon == self.addon2
-        assert second_score.note == (
-            'Retroactively awarded for past post/content review approval.')
-        assert second_score.note_key == amo.REVIEWED_EXTENSION_MEDIUM_RISK
-
-        third_score = ReviewerScore.objects.filter(user=self.user3).get()
-        assert third_score.addon == self.addon2
-        assert third_score.note == (
-            'Retroactively awarded for past post/content review approval.')
-        assert third_score.note_key == amo.REVIEWED_CONTENT_REVIEW
-
-    def test_run_twice(self):
-        # Running twice should only generate the scores once.
-        AutoApprovalSummary.objects.create(
-            version=self.addon2.current_version, verdict=amo.AUTO_APPROVED,
-            weight=151, confirmed=True)
-        call_command('award_post_review_points')
-        call_command('award_post_review_points')
-        assert ReviewerScore.objects.count() == 3
 
 
 class TestRecalculatePostReviewWeightsCommand(TestCase):

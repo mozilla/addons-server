@@ -91,8 +91,8 @@ def get_new_version_number(version):
 def sign_addons(addon_ids, force=False, **kw):
     """Used to sign all the versions of an addon.
 
-    This is used in the 'sign_addons' and 'process_addons --task sign_addons'
-    management commands.
+    This is used in the 'process_addons --task sign_addons' management
+    command.
 
     It also bumps the version number of the file and the Version, so the
     Firefox extension update mechanism picks this new signed version and
