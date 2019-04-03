@@ -448,7 +448,10 @@ class AddonGitRepository(object):
             if pathspec and patch.delta.old_file.path not in pathspec:
                 continue
 
-            changes.append(self._render_patch(patch, commit, parent))
+            if parent is None:
+                changes.append(self._render_patch(patch, commit, commit))
+            else:
+                changes.append(self._render_patch(patch, commit, parent))
         return changes
 
     def _render_patch(self, patch, commit, parent):
