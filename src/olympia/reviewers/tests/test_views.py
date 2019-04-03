@@ -36,7 +36,6 @@ from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
