@@ -5636,6 +5636,10 @@ class TestDownloadGitFileView(TestCase):
             response['Content-Disposition'] ==
             'attachment; filename="manifest.json"')
 
+        content = b''.join(response.streaming_content).decode('utf-8')
+        assert content.startswith('{')
+        assert '"manifest_version": 2' in content
+
     def test_download_emoji_filename(self):
         new_version = version_factory(
             addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
@@ -5680,6 +5684,10 @@ class TestDownloadGitFileView(TestCase):
 
         response = self.client.get(url)
         assert response.status_code == 200
+
+        content = b''.join(response.streaming_content).decode('utf-8')
+        assert content.startswith('{')
+        assert '"manifest_version": 2' in content
 
     def test_disabled_version_reviewer(self):
         user = UserProfile.objects.create(username='reviewer')
