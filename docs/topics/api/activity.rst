@@ -39,6 +39,11 @@ Review Notes Detail
 
 This endpoint allows you to fetch a single review note for a specific version of an add-on.
 
+    .. note::
+        To allow reviewers to stay anonymous if they wish, the ``user`` object
+        only contains the name of the reviewer or author. That name may, for
+        some actions, be an alias and not the usual name of the user.
+
 .. http:get:: /api/v4/addons/addon/(int:addon_id|string:addon_slug|string:addon_guid)/versions/(int:id)/reviewnotes/(int:id)/
 
     .. _review-notes-version-detail-object:
@@ -46,10 +51,7 @@ This endpoint allows you to fetch a single review note for a specific version of
     :>json int id: The id for a review note.
     :>json string action: The :ref:`type of review note<review-note-action>`.
     :>json string action_label: The text label of the action.
-    :>json int user.id: The id of the reviewer or author who left the review note.
     :>json string user.name: The name of the reviewer or author.
-    :>json string user.url: The link to the profile page for of the reviewer or author.
-    :>json string user.username: The username of the reviewer or author.
     :>json string comments: The text content of the review note.
     :>json string date: The date the review note was created.
 

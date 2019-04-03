@@ -48,8 +48,8 @@ class UserAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': ('id', 'email', 'fxa_id', 'username', 'display_name',
-                       'biography', 'homepage', 'location', 'occupation',
-                       'picture_img'),
+                       'reviewer_name', 'biography', 'homepage', 'location',
+                       'occupation', 'picture_img'),
         }),
         ('Flags', {
             'fields': ('display_collections', 'deleted', 'is_public'),

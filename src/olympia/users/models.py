@@ -166,6 +166,10 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
     # newsletter
     basket_token = models.CharField(blank=True, default='', max_length=128)
 
+    reviewer_name = models.CharField(
+        max_length=50, default='', null=True, blank=True,
+        validators=[validators.MinLengthValidator(2)])
+
     class Meta:
         db_table = 'users'
 

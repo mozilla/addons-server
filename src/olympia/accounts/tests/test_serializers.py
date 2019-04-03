@@ -28,7 +28,8 @@ class TestBaseUserSerializer(TestCase):
     def serialize(self):
         # Manually reload the user first to clear any cached properties.
         self.user = UserProfile.objects.get(pk=self.user.pk)
-        serializer = self.serializer_class(context={'request': self.request})
+        serializer = self.serializer_class(
+            self.user, context={'request': self.request})
         return serializer.to_representation(self.user)
 
     def test_basic(self):
@@ -67,14 +68,19 @@ class TestPublicUserProfileSerializer(TestCase):
     user_kwargs = {
         'username': 'amo',
         'biography': 'stuff', 'homepage': 'http://mozilla.org/',
-        'location': 'everywhere', 'occupation': 'job'}
+        'location': 'everywhere', 'occupation': 'job',
+    }
+    user_private_kwargs = {
+        'reviewer_name': 'batman',
+    }
 
     def setUp(self):
         self.request = APIRequestFactory().get('/')
-        self.user = user_factory(**self.user_kwargs)
+        self.user = user_factory(
+            **self.user_kwargs, **self.user_private_kwargs)
 
     def serialize(self):
-        return (self.serializer(context={'request': self.request})
+        return (self.serializer(self.user, context={'request': self.request})
                 .to_representation(self.user))
 
     def test_picture(self):
@@ -92,6 +98,8 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         for prop, val in self.user_kwargs.items():
             assert data[prop] == six.text_type(val), prop
+        for prop, val in self.user_private_kwargs.items():
+            assert prop not in data
         return data
 
     def test_addons(self):
@@ -141,6 +149,11 @@ class TestPublicUserProfileSerializer(TestCase):
         data = self.serialize()
         assert data['has_anonymous_username'] is False
         assert data['has_anonymous_display_name'] is False
+
+    def test_is_reviewer(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        # private data should still be absent, this is a public serializer
+        self.test_basic()
 
 
 class PermissionsTestMixin(object):
@@ -193,6 +206,15 @@ class TestUserProfileSerializer(TestPublicUserProfileSerializer,
         assert data['last_login'] == (
             self.now.replace(microsecond=0).isoformat() + 'Z')
         assert data['read_dev_agreement'] == data['last_login']
+
+    def test_is_reviewer(self):
+        self.grant_permission(self.user, 'Addons:PostReview')
+        data = self.serialize()
+        for prop, val in self.user_kwargs.items():
+            assert data[prop] == six.text_type(val), prop
+        # We can also see private stuff, it's the same user.
+        for prop, val in self.user_private_kwargs.items():
+            assert data[prop] == six.text_type(val), prop
 
     def test_expose_fxa_edit_email_url(self):
         fxa_host = 'http://example.com'

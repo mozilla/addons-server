@@ -242,7 +242,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
     author_context_dict = {
         'name': addon.name,
         'number': version.version,
-        'author': note.user.name,
+        'author': note.author_name,
         'comments': comments,
         'url': absolutify(addon.get_dev_url('versions')),
         'SITE_URL': settings.SITE_URL,
@@ -279,7 +279,7 @@ def notify_about_activity_log(addon, version, note, perm_setting=None,
                 addon.name, version.version)
     # Build and send the mail for authors.
     template = template_from_user(note.user, version)
-    from_email = formataddr((note.user.name, NOTIFICATIONS_FROM_EMAIL))
+    from_email = formataddr((note.author_name, NOTIFICATIONS_FROM_EMAIL))
     send_activity_mail(
         subject, template.render(author_context_dict),
         version, addon_authors, from_email, note.id, perm_setting)
