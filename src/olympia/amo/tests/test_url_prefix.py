@@ -194,13 +194,19 @@ class TestPrefixer(TestCase):
         assert urlresolvers.reverse('home') == '/en-US/firefox/'
 
     def test_resolve(self):
+        # 'home' is now a frontend view
         func, args, kwargs = urlresolvers.resolve('/')
-        assert func.__name__ == 'home'
+        assert func.__name__ == 'frontend_view'
+
+        # a django view works too
+        func, args, kwargs = urlresolvers.resolve('/developers/')
+        assert func.__name__ == 'index'
 
         # With a request with locale and app prefixes, it still works.
         Client().get('/')
-        func, args, kwargs = urlresolvers.resolve('/en-US/firefox/')
-        assert func.__name__ == 'home'
+        func, args, kwargs = urlresolvers.resolve(
+            '/en-US/firefox/pages/appversions/')
+        assert func.__name__ == 'appversions'
 
     def test_script_name(self):
         rf = RequestFactory()
