@@ -281,10 +281,11 @@ class TestAddonBrowseVersionSerializer(TestCase):
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
 
         # Custom fields
-        validation_url_json = reverse('devhub.json_file_validation', args=[
-            self.addon.slug, self.version.current_file.id])
-        validation_url = reverse('devhub.file_validation', args=[
-            self.addon.slug, self.version.current_file.id])
+        validation_url_json = absolutify(reverse(
+            'devhub.json_file_validation', args=[
+                self.addon.slug, self.version.current_file.id]))
+        validation_url = absolutify(reverse('devhub.file_validation', args=[
+            self.addon.slug, self.version.current_file.id]))
 
         assert data['validation_url_json'] == validation_url_json
         assert data['validation_url'] == validation_url
