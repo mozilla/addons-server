@@ -1,6 +1,6 @@
 from pypom import Region
 from selenium.webdriver.common.by import By
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as expected
 from olympia.files.tests.test_file_viewer import get_file
 
@@ -88,12 +88,15 @@ class DevHub(Base):
         upload_finished = False
         while upload_finished is not True:
             try:
-                upload = self.selenium.find_element(*self._upload_addon_locator)
+                upload = self.selenium.find_element(
+                    *self._upload_addon_locator)
                 upload.send_keys(file_path)
                 self.wait.until(
-                    expected.element_to_be_clickable(self._submit_upload_btn_locator)
+                    expected.element_to_be_clickable(
+                        self._submit_upload_btn_locator)
                 )
-                self.selenium.find_element(*self._submit_upload_btn_locator).click()
+                self.selenium.find_element(
+                    *self._submit_upload_btn_locator).click()
             except TimeoutException:
                 upload_finished = False
             except Exception:
