@@ -23,7 +23,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url
-from olympia.amo.utils import render
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
@@ -139,11 +138,6 @@ class BaseFilter(object):
 
     def filter_name(self):
         return order_by_translation(self.base_queryset.all(), 'name')
-
-
-@non_atomic_requests
-def home(request):
-    return render(request, 'addons/home.html')
 
 
 DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'
