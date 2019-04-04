@@ -6,9 +6,9 @@ from django.views.decorators.cache import cache_page
 from django.views.i18n import JavaScriptCatalog
 from django.views.static import serve as serve_static
 
-from olympia.addons import views as addons_views
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import urlparams
+from olympia.amo.views import frontend_view
 from olympia.versions import views as version_views
 from olympia.versions.urls import download_patterns
 
@@ -26,7 +26,7 @@ urlpatterns = [
         'https://www.mozilla.org/firefox/new/', permanent=True)),
 
     # Home.
-    url(r'^$', addons_views.home, name='home'),
+    url(r'^$', frontend_view, name='home'),
 
     # Add-ons.
     url(r'', include('olympia.addons.urls')),

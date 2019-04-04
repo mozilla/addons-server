@@ -749,6 +749,10 @@ class TestFxAConfigMixin(TestCase):
         assert config == {'BAZ': 789}
 
 
+def empty_view(*args, **kwargs):
+    return http.HttpResponse()
+
+
 class TestAuthenticateView(BaseAuthenticationView):
     view_name = 'accounts.authenticate'
 
@@ -817,10 +821,6 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.test_success_no_account_registers()
 
     def test_register_redirects_edit(self):
-
-        def empty_view(*args, **kwargs):
-            return http.HttpResponse()
-
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
@@ -870,9 +870,10 @@ class TestAuthenticateView(BaseAuthenticationView):
             username='foobar', email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(
-            self.url, {'code': 'code', 'state': self.fxa_state})
-        self.assertRedirects(response, reverse('home'))
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(
+                self.url, {'code': 'code', 'state': self.fxa_state})
+            self.assertRedirects(response, reverse('home'))
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == user
@@ -989,7 +990,8 @@ class TestAuthenticateView(BaseAuthenticationView):
                     force_text(base64.urlsafe_b64encode(next_path.encode())),
                 ]),
             })
-        self.assertRedirects(response, reverse('home'))
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            self.assertRedirects(response, reverse('home'))
 
 
 class TestAccountViewSet(TestCase):
