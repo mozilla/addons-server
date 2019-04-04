@@ -5637,7 +5637,7 @@ class TestDownloadGitFileView(TestCase):
             response['Content-Disposition'] ==
             'attachment; filename="manifest.json"')
 
-        content = b''.join(response.streaming_content).decode('utf-8')
+        content = response.content.decode('utf-8')
         assert content.startswith('{')
         assert '"manifest_version": 2' in content
 
@@ -5686,7 +5686,7 @@ class TestDownloadGitFileView(TestCase):
         response = self.client.get(url)
         assert response.status_code == 200
 
-        content = b''.join(response.streaming_content).decode('utf-8')
+        content = response.content.decode('utf-8')
         assert content.startswith('{')
         assert '"manifest_version": 2' in content
 
