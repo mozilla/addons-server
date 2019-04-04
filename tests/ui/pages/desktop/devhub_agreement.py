@@ -6,14 +6,14 @@ from pages.desktop.base import Base
 class DevHubAgreement(Base):
 
     _accept_button_locator = (By.ID, 'accept-agreement')
-    _addon_submission_locator = (By.CLASS_NAME, 'addon-submission-process')
+    _addon_agreement_links_locator = (By.CLASS_NAME, 'agreement-links')
     _distribution_agreement_locator = (By.ID, 'id_distribution_agreement')
     _review_policy_locator = (By.ID, 'id_review_policy')
 
     def wait_for_page_to_load(self):
         self.wait.until(
             lambda _: self.is_element_displayed(
-                *self._addon_submission_locator
+                *self._addon_agreement_links_locator
             )
         )
         return self
