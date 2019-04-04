@@ -5589,6 +5589,47 @@ class TestReviewAddonVersionCompareViewSet(
         assert change['content'] == '# beastify'
         assert change['type'] == 'insert'
 
+    def test_supports_search_plugins(self):
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'search.xml'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'search.xml'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, '<xml></xml>\n', 'search.xml')
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        changes = result['file']['diff'][0]['hunks'][0]['changes']
+
+        assert result['file']['diff'][0]['path'] == 'search.xml'
+        assert changes[-1] == {
+            'content': '<xml></xml>',
+            'new_line_number': 1,
+            'old_line_number': -1,
+            'type': 'insert'
+        }
+
+        assert all(x['type'] == 'delete' for x in changes[:-1])
+
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
