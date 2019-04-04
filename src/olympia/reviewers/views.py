@@ -1,6 +1,5 @@
 import json
 import time
-import io
 
 from collections import OrderedDict, defaultdict
 from datetime import date, datetime, timedelta
@@ -1203,8 +1202,8 @@ def download_git_stored_file(request, version_id, filename):
 
     actual_blob = serializer.git_repo[blob_or_tree.oid]
 
-    response = http.FileResponse(
-        io.BytesIO(memoryview(actual_blob)),
+    response = http.HttpResponse(
+        content=actual_blob.data,
         content_type=selected_file['mimetype'])
 
     # Backported from Django 2.1 to handle unicode filenames properly
