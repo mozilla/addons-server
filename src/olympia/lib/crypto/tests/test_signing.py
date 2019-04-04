@@ -17,13 +17,15 @@ import pytest
 import responses
 import pytz
 
-from waffle.testutils import override_sample
+from waffle.testutils import override_sample, override_switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
 from olympia.amo.tests import TestCase
 from olympia.lib.crypto import signing, tasks
+from olympia.lib.git import AddonGitRepository
 from olympia.versions.compare import version_int
+from olympia.lib.tests.test_git import _run_process
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)
@@ -307,6 +309,29 @@ class TestSigning(TestCase):
             'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n')
+
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_runs_git_extraction_after_signing(self):
+        # Make sure the initial version is already extracted, simulating
+        # a regular upload.
+        AddonGitRepository.extract_and_commit_from_version(self.version)
+        self.version.refresh_from_db()
+
+        old_git_hash = self.version.git_hash
+
+        signing.sign_file(self.file_)
+
+        self.version.refresh_from_db()
+        assert self.version.git_hash != old_git_hash
+
+        repo = AddonGitRepository(self.addon)
+
+        output = _run_process('git log listed', repo)
+        assert output.count('Create new version') == 2
+        assert '(after successful signing)' in output
+
+        # 2 actual commits, including the repo initialization
+        assert output.count('Mozilla Add-ons Robot') == 3
 
 
 @override_settings(ENABLE_ADDON_SIGNING=True)

@@ -23,7 +23,6 @@ import olympia.core.logger
 
 from olympia import amo
 
-
 log = olympia.core.logger.getLogger('z.crypto')
 
 
@@ -191,6 +190,8 @@ def sign_file(file_obj):
 
     Otherwise proceed with signing and return the signed file.
     """
+    from olympia.versions.tasks import extract_version_to_git
+
     if (file_obj.version.addon.type == amo.ADDON_SEARCH and
             file_obj.version.is_webextension is False):
         # Those aren't meant to be signed, we shouldn't be here.
@@ -232,6 +233,11 @@ def sign_file(file_obj):
                     is_signed=True,
                     size=size)
     log.info(u'Signing complete for file {0}'.format(file_obj.pk))
+
+    if waffle.switch_is_active('enable-uploads-commit-to-git-storage'):
+        extract_version_to_git.delay(
+            version_id=file_obj.version.pk, note='after successful signing')
+
     return file_obj
 
 

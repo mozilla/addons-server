@@ -113,7 +113,7 @@ def delete_preview_files(pk, **kw):
 
 @task
 @use_primary_db
-def extract_version_to_git(version_id, author_id=None):
+def extract_version_to_git(version_id, author_id=None, note=None):
     """Extract a `File` into our git storage backend."""
     # We extract deleted or disabled versions as well so we need to make sure
     # we can access them.
@@ -128,7 +128,7 @@ def extract_version_to_git(version_id, author_id=None):
         version_id=version_id))
 
     repo = AddonGitRepository.extract_and_commit_from_version(
-        version=version, author=author)
+        version=version, author=author, note=note)
 
     log.info('Extracted {version} into {git_path}'.format(
         version=version_id, git_path=repo.git_repository_path))
