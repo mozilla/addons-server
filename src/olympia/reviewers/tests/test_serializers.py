@@ -138,6 +138,27 @@ class TestFileEntriesSerializer(TestCase):
             }
         ))
 
+    def test_supports_search_plugin(self):
+        self.addon = addon_factory(file_kw={'filename': 'search.xml'})
+        extract_version_to_git(self.addon.current_version.pk)
+        self.addon.current_version.refresh_from_db()
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file)
+
+        assert data['id'] == file.pk
+        assert set(data['entries'].keys()) == {'search.xml'}
+        assert data['selected_file'] == 'search.xml'
+        assert data['content'].startswith(
+            '<?xml version="1.0" encoding="utf-8"?>')
+        assert data['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.addon.current_version.pk,
+                'filename': 'search.xml'
+            }
+        ))
+
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
         serializer = self.get_serializer(file)
