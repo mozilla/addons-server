@@ -200,6 +200,10 @@ DOMAIN = HOSTNAME
 #   Example: https://addons.mozilla.org
 SITE_URL = 'http://%s' % DOMAIN
 
+# The base URL for the external user-facing frontend.  Only really useful for
+# the internal admin instances of addons-server that don't run addons-frontend.
+EXTERNAL_SITE_URL = env('EXTERNAL_SITE_URL', default=SITE_URL)
+
 # Domain of the services site.  This is where your API, and in-product pages
 # live.
 SERVICES_DOMAIN = 'services.%s' % DOMAIN
