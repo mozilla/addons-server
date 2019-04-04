@@ -192,6 +192,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         repo = AddonGitRepository.extract_and_commit_from_version(new_version)
 
         apply_changes(repo, new_version, 'Updated test file\n', 'test.txt')
+        apply_changes(repo, new_version, '', 'README.md', delete=True)
 
         file = self.addon.current_version.current_file
 
@@ -219,6 +220,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert set(data['entries'].keys()) == {
             'manifest.json', 'README.md', 'test.txt'}
 
+        # Unmodified file
         manifest_data = data['entries']['manifest.json']
         assert manifest_data['depth'] == 0
         assert manifest_data['filename'] == u'manifest.json'
@@ -231,16 +233,31 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert manifest_data['status'] == ''
         assert isinstance(manifest_data['modified'], datetime)
 
-        readme_data = data['entries']['test.txt']
-        assert readme_data['depth'] == 0
-        assert readme_data['filename'] == u'test.txt'
-        assert readme_data['sha256'] == (
+        # Added a new file
+        test_txt_data = data['entries']['test.txt']
+        assert test_txt_data['depth'] == 0
+        assert test_txt_data['filename'] == u'test.txt'
+        assert test_txt_data['sha256'] == (
             'f8b40fc302692ea4f552cb3d60bc89dd8b4616e398de5585e471cee73e2c0618')
-        assert readme_data['mimetype'] == 'text/plain'
-        assert readme_data['mime_category'] == 'text'
-        assert readme_data['path'] == u'test.txt'
-        assert readme_data['size'] == 18
-        assert readme_data['status'] == 'A'
+        assert test_txt_data['mimetype'] == 'text/plain'
+        assert test_txt_data['mime_category'] == 'text'
+        assert test_txt_data['path'] == u'test.txt'
+        assert test_txt_data['size'] == 18
+        assert test_txt_data['status'] == 'A'
+
+        # Deleted file
+        readme_data = data['entries']['README.md']
+        assert readme_data['status'] == 'D'
+        assert readme_data['depth'] == 0
+        assert readme_data['filename'] == 'README.md'
+        assert readme_data['sha256'] is None
+        # Not testing mimetype as text/markdown is missing in travis mimetypes
+        # database. But it doesn't matter much here since we're primarily
+        # after the git status.
+        assert readme_data['mime_category'] is None
+        assert readme_data['path'] == u'README.md'
+        assert readme_data['size'] is None
+        assert readme_data['modified'] is None
 
 
 @pytest.mark.parametrize(

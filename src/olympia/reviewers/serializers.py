@@ -301,7 +301,28 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
         # Now let's overwrite that with data from the actual patch
         for patch in diff:
-            entries[patch['path']]['status'] = patch['mode']
+            path = patch['path']
+
+            if path not in entries:
+                # File got deleted, let's mimic the original data-structure
+                # for better modeling on the client.
+                # Most of the actual data is not present though so we set
+                # it to `None`.
+                filename = os.path.basename(path)
+                mime, _ = mimetypes.guess_type(filename)
+                entries[path] = {
+                    'depth': path.count(os.sep),
+                    'filename': filename,
+                    'sha256': None,
+                    'mime_category': None,
+                    'mimetype': mime,
+                    'path': path,
+                    'size': None,
+                    'modified': None,
+                }
+
+            # Now we can set the git-status.
+            entries[path]['status'] = patch['mode']
 
         return entries
 

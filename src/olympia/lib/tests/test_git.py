@@ -26,7 +26,7 @@ def _run_process(cmd, repo):
         universal_newlines=True)
 
 
-def apply_changes(repo, version, contents, path):
+def apply_changes(repo, version, contents, path, delete=False):
     # Apply the requested change to the git repository
     branch_name = BRANCHES[version.channel]
     git_repo = repo.git_repository
@@ -40,8 +40,11 @@ def apply_changes(repo, version, contents, path):
 
     # Add / update the index
     path = os.path.join(EXTRACTED_PREFIX, path)
-    entry = pygit2.IndexEntry(path, blob_id, pygit2.GIT_FILEMODE_BLOB)
-    index.add(entry)
+    if delete:
+        index.remove(path)
+    else:
+        entry = pygit2.IndexEntry(path, blob_id, pygit2.GIT_FILEMODE_BLOB)
+        index.add(entry)
 
     tree = index.write_tree()
 
