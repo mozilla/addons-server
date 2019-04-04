@@ -173,7 +173,10 @@ class FileEntriesSerializer(FileSerializer):
         if requested_file is None:
             files = self.get_entries(obj)
 
-            for manifest in ('manifest.json', 'install.rdf', 'package.json'):
+            default_files = (
+                'manifest.json', 'install.rdf', 'package.json', 'search.xml')
+
+            for manifest in default_files:
                 if manifest in files:
                     requested_file = manifest
                     break

@@ -5338,6 +5338,38 @@ class TestReviewAddonVersionViewSetDetail(
             }
         ))
 
+    def test_supports_search_plugins(self):
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'search.xml'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+
+        self.version = self.addon.current_version
+        self.version.refresh_from_db()
+
+        self._set_tested_url()
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+
+        assert result['file']['content'].startswith(
+            '<?xml version="1.0" encoding="utf-8"?>')
+
+        # make sure the correct download url is correctly generated
+        assert result['file']['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.version.pk,
+                'filename': 'search.xml'
+            }
+        ))
+
     def test_version_get_not_found(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')
