@@ -1,22 +1,53 @@
+import copy
+import json
 import os
 import subprocess
 import tempfile
+import uuid
+import zipfile
 
 from base64 import b64encode
+from datetime import datetime
 
 from django.conf import settings
+from django.db import transaction
 from django.utils.encoding import force_text
 
 import six
 
+from django_statsd.clients import statsd
 from PIL import Image
 
-import olympia.core.logger
-
+from olympia import amo
+from olympia.amo.templatetags.jinja_helpers import user_media_path
+from olympia.amo.utils import StopWatch
+from olympia.core import get_user, logger
+from olympia.files.models import FileUpload
+from olympia.files.utils import get_filepath, parse_addon
+from olympia.lib.crypto.signing import sign_file
 from olympia.lib.safe_xml import lxml
 
+from . import compare
+from .models import Version
 
-log = olympia.core.logger.getLogger('z.versions.utils')
+
+log = logger.getLogger('z.versions.utils')
+
+
+def get_next_version_number(addon):
+    if not addon:
+        return '1.0'
+    last_version = Version.unfiltered.filter(addon=addon).last()
+    version_int_parts = compare.dict_from_int(last_version.version_int)
+
+    version_counter = 1
+    while True:
+        next_version = '%s.0' % (version_int_parts['major'] + version_counter)
+        if not Version.unfiltered.filter(addon=addon,
+                                         version=next_version).exists():
+            return next_version
+        else:
+            version_counter += 1
 
 
 def write_svg_to_png(svg_content, out):
@@ -131,3 +162,76 @@ def process_color_value(prop, value):
         return prop, u'rgb(%s,%s,%s)' % tuple(value)
     # strip out spaces because jquery.minicolors chokes on them
     return prop, six.text_type(value).replace(' ', '')
+
+
+def new_69_theme_properties_from_old(original):
+    manifest = copy.deepcopy(original)
+    # colors first
+    colors = original.get('theme', {}).get('colors', {})
+    for prop, value in colors.items():
+        new_color_prop = DEPRECATED_COLOR_TO_CSS.get(prop)
+        if new_color_prop and new_color_prop not in colors:
+            manifest['theme']['colors'].pop(prop)
+            manifest['theme']['colors'][new_color_prop] = value
+    # the background image property changed too
+    images = original.get('theme', {}).get('images', {})
+    if 'headerURL' in images and 'theme_frame' not in images:
+        manifest['theme']['images'].pop('headerURL')
+        manifest['theme']['images']['theme_frame'] = images.get('headerURL')
+    return manifest
+
+
+def build_69_compatible_theme(old_xpi, new_xpi, new_version_number):
+    if not os.path.exists(os.path.dirname(new_xpi)):
+        os.makedirs(os.path.dirname(new_xpi))
+    with zipfile.ZipFile(old_xpi, 'r') as src:
+        with zipfile.ZipFile(new_xpi, 'w') as dest:
+            for entry in src.infolist():
+                if entry.filename == 'manifest.json':
+                    old_manifest = json.loads(src.read(entry))
+                    manifest = new_69_theme_properties_from_old(old_manifest)
+                    # bump the version number
+                    manifest['version'] = new_version_number
+                    # write replacement manifest
+                    dest.writestr('manifest.json', json.dumps(manifest))
+                else:
+                    dest.writestr(entry.filename, src.read(entry))
+
+
+@transaction.atomic
+@statsd.timer('versions.utils.new_theme_version_with_69_properties')
+def new_theme_version_with_69_properties(old_version):
+    timer = StopWatch(
+        'addons.tasks.repack_themes_for_69.new_theme_version.')
+    timer.start()
+
+    author = get_user()
+    # Wrap zip in FileUpload for Version from_upload to consume.
+    upload = FileUpload.objects.create(user=author, valid=True)
+    filename = uuid.uuid4().hex + '.xpi'
+    destination = os.path.join(user_media_path('addons'), 'temp', filename)
+    old_xpi = get_filepath(old_version.all_files[0])
+    build_69_compatible_theme(
+        old_xpi, destination, get_next_version_number(old_version.addon))
+    upload.update(path=destination, name=filename)
+    timer.log_interval('1.build_xpi')
+
+    # Create addon + version
+    parsed_data = parse_addon(upload, user=author)
+    timer.log_interval('2.parse_addon')
+
+    version = Version.from_upload(
+        upload, old_version.addon, selected_apps=[amo.FIREFOX.id],
+        channel=amo.RELEASE_CHANNEL_LISTED,
+        parsed_data=parsed_data)
+    timer.log_interval('3.initialize_version')
+
+    # And finally sign the files (actually just one)
+    for file_ in version.all_files:
+        sign_file(file_)
+        file_.update(
+            reviewed=datetime.now(),
+            status=amo.STATUS_PUBLIC)
+    timer.log_interval('4.sign_files')
+
+    return version

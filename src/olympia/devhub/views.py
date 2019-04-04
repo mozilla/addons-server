@@ -53,9 +53,9 @@ from olympia.reviewers.models import Whiteboard
 from olympia.reviewers.templatetags.jinja_helpers import get_position
 from olympia.reviewers.utils import ReviewHelper
 from olympia.users.models import UserProfile
-from olympia.versions import compare
-from olympia.versions.tasks import extract_version_source_to_git
 from olympia.versions.models import Version
+from olympia.versions.tasks import extract_version_source_to_git
+from olympia.versions.utils import get_next_version_number
 from olympia.zadmin.models import get_config
 
 from . import feeds, forms, signals, tasks
@@ -1175,22 +1175,6 @@ def version_stats(request, addon_id, addon):
         data[id_]['files'] = file_count
         data[id_]['reviews'] = data[id_].pop('review_count')
     return data
-
-
-def get_next_version_number(addon):
-    if not addon:
-        return '1.0'
-    last_version = Version.unfiltered.filter(addon=addon).last()
-    version_int_parts = compare.dict_from_int(last_version.version_int)
-
-    version_counter = 1
-    while True:
-        next_version = '%s.0' % (version_int_parts['major'] + version_counter)
-        if not Version.unfiltered.filter(addon=addon,
-                                         version=next_version).exists():
-            return next_version
-        else:
-            version_counter += 1
 
 
 @login_required
