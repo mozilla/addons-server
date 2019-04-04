@@ -1,4 +1,3 @@
-from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db.models import Q
 
@@ -8,16 +7,12 @@ from olympia import amo
 from olympia.addons.models import Addon
 from olympia.addons.tasks import (
     add_dynamic_theme_tag,
-    bump_appver_for_legacy_addons,
     delete_addons,
-    disable_legacy_files,
     extract_colors_from_static_themes,
     find_inconsistencies_between_es_and_db,
-    migrate_legacy_dictionaries_to_webextension,
     migrate_lwts_to_static_themes,
     migrate_webextensions_to_git_storage,
-    recreate_theme_previews,
-    remove_amo_links_in_url_fields)
+    recreate_theme_previews)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -42,18 +37,6 @@ tasks = {
     'sign_addons': {
         'method': sign_addons,
         'qs': []},
-    'bump_appver_for_legacy_addons': {
-        'method': bump_appver_for_legacy_addons,
-        'qs': [
-            Q(
-                type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME),
-                _current_version__files__is_webextension=False,
-                _current_version__apps__max__version_int__lt=firefox_56_star,
-                _current_version__apps__application__in=(
-                    amo.FIREFOX.id, amo.ANDROID.id))
-        ],
-        'pre': lambda values_qs: values_qs.distinct(),
-    },
     'migrate_lwt': {
         'method': migrate_lwts_to_static_themes,
         'qs': [
@@ -95,15 +78,6 @@ tasks = {
               _current_version__files__is_webextension=True)
         ]
     },
-    'migrate_legacy_dictionaries_to_webextension': {
-        'method': migrate_legacy_dictionaries_to_webextension,
-        'qs': [
-            Q(type=amo.ADDON_DICT,
-              status=amo.STATUS_PUBLIC,
-              disabled_by_user=False,
-              _current_version__files__is_webextension=False),
-        ],
-    },
     'extract_webextensions_to_git_storage': {
         'method': migrate_webextensions_to_git_storage,
         'qs': [
@@ -114,24 +88,6 @@ tasks = {
                   amo.ADDON_DICT, amo.ADDON_LPAPP)) |
             Q(type=amo.ADDON_SEARCH)
         ]
-    },
-    'disable_legacy_files': {
-        'method': disable_legacy_files,
-        'qs': [
-            Q(type__in=(amo.ADDON_EXTENSION, amo.ADDON_THEME, amo.ADDON_LPAPP),
-              versions__files__is_webextension=False,
-              versions__files__is_mozilla_signed_extension=False)
-        ],
-        'pre': lambda values_qs: values_qs.distinct(),
-    },
-    'remove_amo_links_in_url_fields': {
-        'method': remove_amo_links_in_url_fields,
-        'qs': [
-            Q(homepage__localized_string__icontains=settings.DOMAIN) |
-            Q(support_url__localized_string__icontains=settings.DOMAIN) |
-            Q(contributions__icontains=settings.DOMAIN)
-        ],
-        'pre': lambda values_qs: values_qs.distinct(),
     },
     'extract_colors_from_static_themes': {
         'method': extract_colors_from_static_themes,
