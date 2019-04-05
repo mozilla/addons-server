@@ -79,7 +79,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
     permissions = serializers.SerializerMethodField()
     fxa_edit_email_url = serializers.SerializerMethodField()
     reviewer_name = serializers.CharField(
-        min_length=2, max_length=50,
+        min_length=2, max_length=50, allow_blank=True,
         validators=[OneOrMorePrintableCharacterAPIValidator()])
 
     class Meta(PublicUserProfileSerializer.Meta):
