@@ -4,9 +4,9 @@ pip==19.0.3 \
 wheel==0.33.1 \
     --hash=sha256:66a8fd76f28977bb664b098372daef2b27f60dc4d1688cfab7b37a09448f0e9d \
     --hash=sha256:8eb4a788b3aec8abf5ff68d4165441bc57420c9f64ca5f471f58c3969fe08668
-setuptools==40.9.0 \
-    --hash=sha256:06ebb20a85510e7184a5bd9b0f45c8c104dfe656464d70ecd9b7a0154eb915ae \
-    --hash=sha256:a96b1bef41915307025ae357fde45c1ccbd2bb0d37b3a8bc239dddd55bd01ca3
+setuptools==41.0.0 \
+    --hash=sha256:79d30254b6fe7a8e672e43cd85f13a9f3f2a50080bc81d851143e2219ef0dcb1 \
+    --hash=sha256:e67486071cd5cdeba783bd0b64f5f30784ff855b35071c8670551fd7fc52d4a1
 tox==3.8.6 \
     --hash=sha256:69620e19de33a6b7ee8aeda5478791b3618ff58f0b869dbd0319fb71aa903deb \
     --hash=sha256:e5cdb1653aa27b3e46b5c390de6b6d51d31afcfdbd9d1222d82d76b82ad03d9b
