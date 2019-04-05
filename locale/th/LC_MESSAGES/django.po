@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-04-04 18:00+0000\n"
+"PO-Revision-Date: 2019-04-05 18:33+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -92,7 +92,7 @@ msgstr "แนะนำ"
 
 msgctxt "install_button"
 msgid "Not Reviewed"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "ยังไม่ได้รับการตรวจทาน"
 
 msgctxt "install_button"
 msgid "Experimental"
@@ -515,7 +515,7 @@ msgid_plural "See all %(cnt)s user reviews"
 msgstr[0] "ดู %(cnt)s บทวิจารณ์ของผู้ใช้ทั้งหมด"
 
 msgid "This add-on has not yet been reviewed."
-msgstr "ส่วนเสริมนี้ยังไม่ถูกตรวจสอบ"
+msgstr "ส่วนเสริมนี้ยังไม่ได้รับการตรวจทาน"
 
 msgid "Be the first!"
 msgstr "เป็นคนแรก!"
@@ -560,7 +560,7 @@ msgid_plural "<strong>{0}</strong> weekly downloads"
 msgstr[0] "<strong>{0}</strong> ดาวน์โหลดต่อสัปดาห์"
 
 msgid "Not Reviewed"
-msgstr "ยังไม่ถูกตรวจสอบ"
+msgstr "ยังไม่ได้รับการตรวจทาน"
 
 msgid "Tools"
 msgstr "เครื่องมือ"
@@ -812,9 +812,8 @@ msgstr "โทเค็น JWT ไม่ถูกต้อง"
 msgid "Invalid token or hash."
 msgstr "โทเค็น JWT ไม่ถูกต้อง"
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "ที่อยู่อีเมล"
+msgstr "ไม่พบที่อยู่อีเมล"
 
 msgid "The field must have a length of at least {num} characters."
 msgstr ""
@@ -943,9 +942,8 @@ msgid "Created"
 msgstr "สร้างเมื่อ"
 
 # 88%
-#, fuzzy
 msgid "Downloads"
-msgstr "ดาวน์โหลด"
+msgstr "การดาวน์โหลด"
 
 #. {0} is the category name. Ex: Sports
 msgid "{0}: Featured Add-ons"
