@@ -156,7 +156,7 @@ class AddonGitRepository(object):
         return git_repository
 
     @classmethod
-    def extract_and_commit_from_version(cls, version, author=None):
+    def extract_and_commit_from_version(cls, version, author=None, note=None):
         """Extract the XPI from `version` and comit it.
 
         This is doing the following:
@@ -227,16 +227,18 @@ class AddonGitRepository(object):
             repo = cls(version.addon.id, package_type='addon')
             file_obj = version.all_files[0]
             branch = repo.find_or_create_branch(BRANCHES[version.channel])
+            note = ' ({})'.format(note) if note else ''
 
             commit = repo._commit_through_worktree(
                 path=file_obj.current_file_path,
                 message=(
                     'Create new version {version} ({version_id}) for '
-                    '{addon} from {file_obj}'.format(
+                    '{addon} from {file_obj}{note}'.format(
                         version=repr(version),
                         version_id=version.id,
                         addon=repr(version.addon),
-                        file_obj=repr(file_obj))),
+                        file_obj=repr(file_obj),
+                        note=note)),
                 author=author,
                 branch=branch)
 
@@ -345,11 +347,11 @@ class AddonGitRepository(object):
             # Now create an commit directly on top of the respective branch
             oid = worktree.repo.create_commit(
                 None,
-                # author, using the actual uploading user
+                # author, using the actual uploading user if possible.
                 self.get_author(author),
                 # committer, using addons-robot because that's the user
                 # actually doing the commit.
-                self.get_author(),  # commiter, using addons-robot
+                self.get_author(),
                 message,
                 tree,
                 # Set the current branch HEAD as the parent of this commit

@@ -258,6 +258,25 @@ def test_extract_and_commit_from_version_use_addons_robot_default():
 
 
 @pytest.mark.django_db
+def test_extract_and_commit_from_version_support_custom_note():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(
+        version=addon.current_version,
+        note='via signing')
+
+    output = _run_process('git log --format=full listed', repo)
+    print(output)
+
+    expected = (
+        'Create new version {} ({}) for {} from {} (via signing)'
+        .format(
+            repr(addon.current_version), addon.current_version.id, repr(addon),
+            repr(addon.current_version.all_files[0])))
+    assert expected in output
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize('filename', [
     'webextension_no_id.xpi',
     'webextension_no_id.zip',
