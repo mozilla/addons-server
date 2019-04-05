@@ -169,7 +169,7 @@ This endpoint allows you to compare two Add-on versions with each other.
     :>json string file.entries[].filename: The filename of the file.
     :>json string file.entries[].path: The absolute path (from the root of the XPI) of the file.
     :>json string|null file.entries[].sha256: SHA256 hash.
-    :>json string|null file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined.
+    :>json string|null file.entries[].mimetype: The determined mimetype of the file or ``application/octet-stream`` if none could be determined. Can be ``null`` in case of a deleted file.
     :>json string|null files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int|null file.entries[].size: The size in bytes.
     :>json string|null file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
