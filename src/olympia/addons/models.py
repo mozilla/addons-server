@@ -1463,6 +1463,19 @@ class Addon(OnChangeMixin, ModelBase):
         info_request = self.pending_info_request
         return info_request and info_request < datetime.now()
 
+    @classmethod
+    def get_lookup_field(cls, identifier):
+        lookup_field = 'pk'
+        if identifier and not identifier.isdigit():
+            # If the identifier contains anything other than a digit, it's
+            # either a slug or a guid. guids need to contain either {} or @,
+            # which are invalid in a slug.
+            if amo.ADDON_GUID_PATTERN.match(identifier):
+                lookup_field = 'guid'
+            else:
+                lookup_field = 'slug'
+        return lookup_field
+
 
 dbsignals.pre_save.connect(save_signal, sender=Addon,
                            dispatch_uid='addon_translations')

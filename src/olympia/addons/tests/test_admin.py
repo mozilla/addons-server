@@ -177,6 +177,32 @@ class TestAddonAdmin(TestCase):
         addon.reload()
         assert addon.guid == '@foo'
 
+    def test_access_using_slug(self):
+        addon = addon_factory(guid='@foo')
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.slug,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
+    def test_access_using_guid(self):
+        addon = addon_factory(guid='@foo')
+        self.detail_url = reverse(
+            'admin:addons_addon_change', args=(addon.guid,)
+        )
+        user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Addons:Edit')
+        self.client.login(email=user.email)
+        response = self.client.get(self.detail_url, follow=True)
+        assert response.status_code == 200
+        assert addon.guid in response.content.decode('utf-8')
+
 
 class TestReplacementAddonList(TestCase):
     def setUp(self):

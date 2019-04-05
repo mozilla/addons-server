@@ -197,16 +197,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         return self.serializer_class
 
     def get_lookup_field(self, identifier):
-        lookup_field = 'pk'
-        if identifier and not identifier.isdigit():
-            # If the identifier contains anything other than a digit, it's
-            # either a slug or a guid. guids need to contain either {} or @,
-            # which are invalid in a slug.
-            if amo.ADDON_GUID_PATTERN.match(identifier):
-                lookup_field = 'guid'
-            else:
-                lookup_field = 'slug'
-        return lookup_field
+        return Addon.get_lookup_field(identifier)
 
     def get_object(self):
         identifier = self.kwargs.get('pk')
