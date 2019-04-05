@@ -173,8 +173,7 @@ class FileEntriesSerializer(FileSerializer):
         if requested_file is None:
             files = self.get_entries(obj)
 
-            default_files = (
-                'manifest.json', 'install.rdf', 'package.json', 'search.xml')
+            default_files = ('manifest.json', 'install.rdf', 'package.json')
 
             for manifest in default_files:
                 if manifest in files:
@@ -182,7 +181,7 @@ class FileEntriesSerializer(FileSerializer):
                     break
             else:
                 # This could be a search engine
-                requested_file = files.keys()[0]
+                requested_file = list(files.keys())[0]
 
         return requested_file
 
