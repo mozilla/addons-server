@@ -115,6 +115,16 @@ class AllowOwner(BasePermission):
                 (getattr(obj, 'user', None) == request.user))
 
 
+class AllowNotOwner(AllowOwner):
+    """
+    Permission class to use when you are dealing with a model instance that has
+    a "user" FK pointing to an UserProfile, and you want only the corresponding
+    user to be able to access your instance.
+    """
+    def has_object_permission(self, request, view, obj):
+        return not super().has_object_permission(request, view, obj)
+
+
 class AllowReviewer(BasePermission):
     """Allow reviewers to access add-ons with listed versions.
 

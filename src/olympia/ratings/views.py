@@ -1,233 +1,29 @@
-from django import http
-from django.core.exceptions import PermissionDenied as DjangoPermissionDenied
 from django.db.models import Prefetch, Q
-from django.db.transaction import non_atomic_requests
-from django.shortcuts import get_object_or_404, redirect
 from django.utils.encoding import force_text
-from django.utils.translation import ugettext
 
 from rest_framework import serializers
 from rest_framework.decorators import action
 from rest_framework.exceptions import (
     NotAuthenticated, ParseError, PermissionDenied)
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.status import HTTP_202_ACCEPTED
 from rest_framework.viewsets import ModelViewSet
-
-import olympia.core.logger
 
 from olympia import amo
 from olympia.access import acl
-from olympia.addons.decorators import addon_view_factory
-from olympia.addons.models import Addon
 from olympia.addons.views import AddonChildMixin
-from olympia.amo.decorators import json_view, login_required, post_required
-from olympia.amo.templatetags import jinja_helpers
-from olympia.amo.utils import paginate, render
 from olympia.api.pagination import OneOrZeroPageNumberPagination
 from olympia.api.permissions import (
-    AllowAddonAuthor, AllowIfPublic, AllowOwner, AllowRelatedObjectPermissions,
-    AnyOf, ByHttpMethod, GroupPermission)
+    AllowAddonAuthor, AllowIfPublic, AllowNotOwner, AllowOwner,
+    AllowRelatedObjectPermissions, AnyOf, ByHttpMethod, GroupPermission)
 from olympia.api.throttling import GranularUserRateThrottle
 from olympia.api.utils import is_gate_active
 
-from . import forms
 from .models import GroupedRating, Rating, RatingFlag
-from .permissions import CanDeleteRatingPermission, user_can_delete_rating
-from .serializers import RatingSerializer, RatingSerializerReply
-from .utils import maybe_check_with_akismet
-
-
-log = olympia.core.logger.getLogger('z.ratings')
-addon_view = addon_view_factory(qs=Addon.objects.valid)
-
-
-@addon_view
-@non_atomic_requests
-def review_list(request, addon, review_id=None, user_id=None):
-    qs = Rating.without_replies.all().filter(
-        addon=addon).order_by('-created')
-
-    ctx = {'addon': addon,
-           'grouped_ratings': GroupedRating.get(addon.id)}
-
-    ctx['form'] = forms.RatingForm(None)
-    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-
-    if review_id is not None:
-        ctx['page'] = 'detail'
-        # If this is a dev reply, find the first msg for context.
-        review = get_object_or_404(Rating.objects.all(), pk=review_id)
-        if review.reply_to_id:
-            review_id = review.reply_to_id
-            ctx['reply'] = review
-        qs = qs.filter(pk=review_id)
-    elif user_id is not None:
-        ctx['page'] = 'user'
-        qs = qs.filter(user=user_id)
-        if not qs:
-            raise http.Http404()
-    else:
-        ctx['page'] = 'list'
-        qs = qs.filter(is_latest=True)
-        # Don't filter out empty reviews for admins.
-        if not is_admin:
-            # But otherwise, filter out everyone elses empty reviews.
-            user_filter = (Q(user=request.user.pk)
-                           if request.user.is_authenticated else Q())
-            qs = qs.filter(~Q(body=None) | user_filter)
-
-    ctx['reviews'] = reviews = paginate(request, qs)
-    ctx['replies'] = Rating.get_replies(reviews.object_list)
-    if request.user.is_authenticated:
-        ctx['review_perms'] = {
-            'is_admin': is_admin,
-            'is_reviewer': acl.action_allowed(
-                request, amo.permissions.RATINGS_MODERATE),
-            'is_author': acl.check_addon_ownership(request, addon, dev=True),
-        }
-        ctx['flags'] = get_flags(request, reviews.object_list)
-    else:
-        ctx['review_perms'] = {}
-    return render(request, 'ratings/review_list.html', ctx)
-
-
-def get_flags(request, reviews):
-    reviews = [r.id for r in reviews]
-    qs = RatingFlag.objects.filter(rating__in=reviews, user=request.user.id)
-    return {obj.rating_id: obj for obj in qs}
-
-
-@addon_view
-@post_required
-@login_required(redirect=False)
-@json_view
-def flag(request, addon, review_id):
-    review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    if review.user_id == request.user.id:
-        raise DjangoPermissionDenied
-    if not review.body:
-        return {'msg': ugettext('This rating can\'t be flagged because it has '
-                                'no review text.')}
-    data = {'rating': review_id, 'user': request.user.id}
-    try:
-        instance = RatingFlag.objects.get(**data)
-    except RatingFlag.DoesNotExist:
-        instance = None
-    data = dict(request.POST.items(), **data)
-    form = forms.RatingFlagForm(data, instance=instance)
-    if form.is_valid():
-        form.save()
-        Rating.objects.filter(id=review_id).update(editorreview=True)
-        return {'msg': ugettext('Thanks; this review has been flagged '
-                                'for reviewer approval.')}
-    else:
-        return json_view.error(form.errors)
-
-
-@addon_view
-@post_required
-@login_required(redirect=False)
-def delete(request, addon, review_id):
-    review = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    if not user_can_delete_rating(request, review):
-        raise DjangoPermissionDenied
-    review.delete(user_responsible=request.user)
-    return http.HttpResponse()
-
-
-def _review_details(request, addon, form, create=True):
-    data = {
-        # Always set deleted: False because when replying, you're actually
-        # editing the previous reply if it existed, even if it had been
-        # deleted.
-        'deleted': False,
-
-        # This field is not saved, but it helps the model know that the action
-        # should be logged.
-        'user_responsible': request.user,
-    }
-    if create:
-        # These fields should be set at creation time.
-        data['addon'] = addon
-        data['user'] = request.user
-        data['version'] = addon.current_version
-        data['ip_address'] = request.META.get('REMOTE_ADDR', '')
-    data.update(**form.cleaned_data)
-    return data
-
-
-@addon_view
-@login_required
-def reply(request, addon, review_id):
-    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-    is_author = acl.check_addon_ownership(request, addon, dev=True)
-    if not (is_admin or is_author):
-        raise DjangoPermissionDenied
-
-    rating = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    form = forms.RatingReplyForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        kwargs = {
-            'reply_to': rating,
-            'addon': addon,
-            'defaults': _review_details(request, addon, form)
-        }
-        reply, created = Rating.unfiltered.update_or_create(**kwargs)
-        return redirect(jinja_helpers.url(
-            'addons.ratings.detail', addon.slug, review_id))
-    ctx = {
-        'review': rating,
-        'form': form,
-        'addon': addon
-    }
-    return render(request, 'ratings/reply.html', ctx)
-
-
-@addon_view
-@login_required
-def add(request, addon):
-    if addon.has_author(request.user):
-        raise DjangoPermissionDenied
-    form = forms.RatingForm(request.POST or None)
-    if (request.method == 'POST' and form.is_valid() and
-            not request.POST.get('detailed')):
-        details = _review_details(request, addon, form)
-        rating = Rating.objects.create(**details)
-        maybe_check_with_akismet(request, rating, None)
-        if 'flag' in form.cleaned_data and form.cleaned_data['flag']:
-            rf = RatingFlag(rating=rating,
-                            user_id=request.user.id,
-                            flag=RatingFlag.OTHER,
-                            note='URLs')
-            rf.save()
-        return redirect(jinja_helpers.url('addons.ratings.list', addon.slug))
-    return render(request, 'ratings/add.html', {'addon': addon, 'form': form})
-
-
-@addon_view
-@json_view
-@login_required(redirect=False)
-@post_required
-def edit(request, addon, review_id):
-    rating = get_object_or_404(Rating.objects, pk=review_id, addon=addon)
-    is_admin = acl.action_allowed(request, amo.permissions.ADDONS_EDIT)
-    if not (request.user.id == rating.user.id or is_admin):
-        raise DjangoPermissionDenied
-    cls = forms.RatingReplyForm if rating.reply_to else forms.RatingForm
-    form = cls(request.POST)
-    if form.is_valid():
-        pre_save_body = rating.body
-        data = _review_details(request, addon, form, create=False)
-        for field, value in data.items():
-            setattr(rating, field, value)
-        # Resist the temptation to use rating.update(): it'd be more direct but
-        # doesn't work with extra fields that are not meant to be saved like
-        # 'user_responsible'.
-        rating.save()
-        maybe_check_with_akismet(request, rating, pre_save_body)
-        return {}
-    else:
-        return json_view.error(form.errors)
+from .permissions import CanDeleteRatingPermission
+from .serializers import (
+    RatingFlagSerializer, RatingSerializer, RatingSerializerReply)
 
 
 class RatingThrottle(GranularUserRateThrottle):
@@ -273,6 +69,7 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
         AllowRelatedObjectPermissions('addon', [AllowAddonAuthor]),
     )]
     reply_serializer_class = RatingSerializerReply
+    flag_permission_classes = [AllowNotOwner]
     throttle_classes = (RatingThrottle,)
 
     def set_addon_object_from_rating(self, rating):
@@ -548,25 +345,33 @@ class RatingViewSet(AddonChildMixin, ModelViewSet):
             return self.partial_update(*args, **kwargs)
         return self.create(*args, **kwargs)
 
-    @action(detail=True, methods=['post'], throttle_classes=[])
+    @action(
+        detail=True, methods=['post'],
+        permission_classes=flag_permission_classes,
+        throttle_classes=[])
     def flag(self, request, *args, **kwargs):
         # We load the add-on object from the rating to trigger permission
         # checks.
         self.rating_object = self.get_object()
         self.set_addon_object_from_rating(self.rating_object)
 
-        # Re-use flag view since it's already returning json. We just need to
-        # pass it the addon slug (passing it the PK would result in a redirect)
-        # and make sure request.POST is set with whatever data was sent to the
-        # DRF view.
-        request._request.POST = request.data
-        request = request._request
-        response = flag(request, self.addon_object.slug, kwargs.get('pk'))
-        if response.status_code == 200:
-            # 202 is a little better than 200: we're accepting the request, but
-            # make no promises to act on it :)
-            response.status_code = 202
-        return response
+        try:
+            flag_instance = RatingFlag.objects.get(
+                rating=self.rating_object, user=self.request.user)
+        except RatingFlag.DoesNotExist:
+            flag_instance = None
+        if flag_instance is None:
+            serializer = RatingFlagSerializer(
+                data=request.data, context=self.get_serializer_context())
+        else:
+            serializer = RatingFlagSerializer(
+                flag_instance, data=request.data, partial=False,
+                context=self.get_serializer_context())
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        headers = self.get_success_headers(serializer.data)
+        return Response(
+            serializer.data, status=HTTP_202_ACCEPTED, headers=headers)
 
     def perform_destroy(self, instance):
         instance.delete(user_responsible=self.request.user)

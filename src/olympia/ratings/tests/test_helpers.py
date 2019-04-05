@@ -5,8 +5,6 @@ from pyquery import PyQuery as pq
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase, addon_factory
 from olympia.amo.urlresolvers import reverse
-from olympia.ratings.forms import RatingForm
-from olympia.ratings.models import RatingFlag
 
 
 class HelpersTest(TestCase):
@@ -84,17 +82,3 @@ class HelpersTest(TestCase):
             '{{ impala_reviews_link(myaddon) }}',
             {'myaddon': a})
         assert pq(s)('a').attr('href') == u
-
-    def test_report_review_popup(self):
-        doc = pq(self.render('{{ report_review_popup() }}'))
-        assert doc('.popup.review-reason').length == 1
-        for flag, text in RatingFlag.FLAGS:
-            assert doc('li a[href$=%s]' % flag).text() == text
-        assert doc('form input[name=note]').length == 1
-
-    def test_edit_review_form(self):
-        doc = pq(self.render('{{ edit_review_form() }}'))
-        assert doc('#review-edit-form').length == 1
-        assert doc('p.req').length == 1
-        for name in RatingForm().fields.keys():
-            assert doc('[name=%s]' % name).length == 1
