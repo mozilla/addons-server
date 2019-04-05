@@ -197,7 +197,7 @@ class PendingQueueMixin:
 class ExtensionQueueMixin:
 
     def base_query(self):
-        query= super().base_query()
+        query = super().base_query()
         types = (str(id_) for id_ in amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME])
         query['where'].append('addons.addontype_id IN (%s)' % ','.join(types))
         return query
