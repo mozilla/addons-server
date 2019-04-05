@@ -23,10 +23,11 @@ from olympia.amo.tests import TestCase, file_factory, version_factory
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import send_mail
 from olympia.files.models import File
-from olympia.reviewers.models import AutoApprovalSummary, ReviewerScore
+from olympia.reviewers.models import (
+    AutoApprovalSummary, ReviewerScore, ViewExtensionPendingQueue)
 from olympia.reviewers.utils import (
     PENDING_STATUSES, ReviewAddon, ReviewFiles, ReviewHelper,
-    ViewPendingQueueTable, ViewUnlistedAllListTable)
+    ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 
 
@@ -40,7 +41,7 @@ class TestViewPendingQueueTable(TestCase):
 
     def setUp(self):
         super(TestViewPendingQueueTable, self).setUp()
-        self.table = ViewPendingQueueTable([])
+        self.table = view_table_factory(ViewExtensionPendingQueue)([])
 
     def test_addon_name(self):
         row = Mock()
@@ -239,18 +240,18 @@ class TestReviewHelper(TestCase):
         assert helper.actions == {}
 
     def test_type_nominated(self):
-        assert self.setup_type(amo.STATUS_NOMINATED) == 'nominated'
+        assert self.setup_type(amo.STATUS_NOMINATED) == 'extension_nominated'
 
     def test_type_pending(self):
-        assert self.setup_type(amo.STATUS_PENDING) == 'pending'
-        assert self.setup_type(amo.STATUS_NULL) == 'pending'
-        assert self.setup_type(amo.STATUS_PUBLIC) == 'pending'
-        assert self.setup_type(amo.STATUS_DISABLED) == 'pending'
+        assert self.setup_type(amo.STATUS_PENDING) == 'extension_pending'
+        assert self.setup_type(amo.STATUS_NULL) == 'extension_pending'
+        assert self.setup_type(amo.STATUS_PUBLIC) == 'extension_pending'
+        assert self.setup_type(amo.STATUS_DISABLED) == 'extension_pending'
 
     def test_no_version(self):
         helper = ReviewHelper(
             request=self.request, addon=self.addon, version=None)
-        assert helper.handler.review_type == 'pending'
+        assert helper.handler.review_type == 'extension_pending'
 
     def test_review_files(self):
         version_factory(addon=self.addon,
@@ -383,8 +384,14 @@ class TestReviewHelper(TestCase):
         reply_email = (
             'reviewreply+%s@%s' % (uuid, settings.INBOUND_EMAIL_DOMAIN))
 
-        for template in ('nominated_to_sandbox', 'pending_to_public',
-                         'pending_to_sandbox',):
+        templates = (
+            'extension_nominated_to_approved',
+            'extension_nominated_to_rejected',
+            'extension_pending_to_rejected',
+            'theme_nominated_to_approved',
+            'theme_nominated_to_rejected',
+            'theme_pending_to_rejected',)
+        for template in templates:
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
@@ -403,11 +410,17 @@ class TestReviewHelper(TestCase):
 
     def test_email_links(self):
         expected = {
-            'nominated_to_public': 'addon_url',
-            'nominated_to_sandbox': 'dev_versions_url',
+            'extension_nominated_to_approved': 'addon_url',
+            'extension_nominated_to_rejected': 'dev_versions_url',
 
-            'pending_to_public': 'addon_url',
-            'pending_to_sandbox': 'dev_versions_url',
+            'extension_pending_to_approved': 'addon_url',
+            'extension_pending_to_rejected': 'dev_versions_url',
+
+            'theme_nominated_to_approved': 'addon_url',
+            'theme_nominated_to_rejected': 'dev_versions_url',
+
+            'theme_pending_to_approved': 'addon_url',
+            'theme_pending_to_rejected': 'dev_versions_url',
 
             'unlisted_to_reviewed_auto': 'dev_versions_url',
         }

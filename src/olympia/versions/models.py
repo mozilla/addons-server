@@ -325,27 +325,6 @@ class Version(OnChangeMixin, ModelBase):
                 file.update(status=file.original_status,
                             original_status=amo.STATUS_NULL)
 
-    @property
-    def current_queue(self):
-        """Return the current queue, or None if not in a queue."""
-        from olympia.reviewers.models import (
-            ViewFullReviewQueue, ViewPendingQueue)
-
-        if self.channel == amo.RELEASE_CHANNEL_UNLISTED:
-            # Unlisted add-ons and their updates are automatically approved so
-            # they don't get a queue.
-            # TODO: when we've finished with unlisted/listed versions the
-            # status of an all-unlisted addon will be STATUS_NULL so we won't
-            # need this check.
-            return None
-
-        if self.addon.status == amo.STATUS_NOMINATED:
-            return ViewFullReviewQueue
-        elif self.addon.status == amo.STATUS_PUBLIC:
-            return ViewPendingQueue
-
-        return None
-
     @cached_property
     def all_activity(self):
         from olympia.activity.models import VersionLog  # yucky

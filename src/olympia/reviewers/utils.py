@@ -26,8 +26,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import to_language
 from olympia.lib.crypto.signing import sign_file
 from olympia.reviewers.models import (
-    ReviewerScore, ViewFullReviewQueue, ViewPendingQueue, ViewUnlistedAllList,
-    get_flags, get_flags_for_row)
+    ReviewerScore, ViewUnlistedAllList, get_flags, get_flags_for_row)
 from olympia.users.models import UserProfile
 
 
@@ -163,16 +162,14 @@ class ViewUnlistedAllListTable(tables.Table, ItemStateTable):
         return '-version_date'
 
 
-class ViewPendingQueueTable(ReviewerQueueTable):
+def view_table_factory(viewqueue):
 
-    class Meta(ReviewerQueueTable.Meta):
-        model = ViewPendingQueue
+    class ViewQueueTable(ReviewerQueueTable):
 
+        class Meta(ReviewerQueueTable.Meta):
+            model = viewqueue
 
-class ViewFullReviewQueueTable(ReviewerQueueTable):
-
-    class Meta(ReviewerQueueTable.Meta):
-        model = ViewFullReviewQueue
+    return ViewQueueTable
 
 
 class ModernAddonQueueTable(ReviewerQueueTable):
@@ -476,7 +473,9 @@ class ReviewBase(object):
             self.user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
         self.addon = addon
         self.version = version
-        self.review_type = review_type
+        self.review_type = (
+            ('theme_%s' if addon.type == amo.ADDON_STATICTHEME
+             else 'extension_%s') % review_type)
         self.files = self.version.unreviewed_files if self.version else []
         self.content_review_only = content_review_only
 
@@ -503,7 +502,7 @@ class ReviewBase(object):
     def log_action(self, action, version=None, files=None,
                    timestamp=None):
         details = {'comments': self.data['comments'],
-                   'reviewtype': self.review_type}
+                   'reviewtype': self.review_type.split('_')[1]}
         if files is None and self.files:
             files = self.files
         if files is not None:
@@ -613,10 +612,10 @@ class ReviewBase(object):
 
         log.info(u'Sending reviewer reply for %s to authors and other'
                  u'recipients' % self.addon)
-        log_and_notify(action, self.data['comments'],
-                       self.user, self.version,
-                       perm_setting='individual_contact',
-                       detail_kwargs={'reviewtype': self.review_type})
+        log_and_notify(
+            action, self.data['comments'], self.user, self.version,
+            perm_setting='individual_contact',
+            detail_kwargs={'reviewtype': self.review_type.split('_')[1]})
 
     def process_comment(self):
         self.log_action(amo.LOG.COMMENT_VERSION)
@@ -659,8 +658,8 @@ class ReviewBase(object):
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        template = u'%s_to_public' % self.review_type
-        if self.review_type == 'pending':
+        template = u'%s_to_approved' % self.review_type
+        if self.review_type in ['extension_pending', 'theme_pending']:
             subject = u'Mozilla Add-ons: %s %s Updated'
         else:
             subject = u'Mozilla Add-ons: %s %s Approved'
@@ -693,7 +692,7 @@ class ReviewBase(object):
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        template = u'%s_to_sandbox' % self.review_type
+        template = u'%s_to_rejected' % self.review_type
         subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
         self.notify_email(template, subject)
 

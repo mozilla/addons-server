@@ -26,8 +26,7 @@ from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.lib.git import AddonGitRepository
-from olympia.reviewers.models import (
-    AutoApprovalSummary, ViewFullReviewQueue, ViewPendingQueue)
+from olympia.reviewers.models import AutoApprovalSummary
 from olympia.users.models import UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import (
@@ -451,20 +450,6 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(pk=3615)
         version_factory(addon=addon)
         assert inv_mock.called
-
-    def test_current_queue(self):
-        queue_to_status = {
-            ViewFullReviewQueue: amo.STATUS_NOMINATED,
-            ViewPendingQueue: amo.STATUS_PUBLIC
-        }
-
-        for queue, status in six.iteritems(queue_to_status):  # Listed queues.
-            self.version.addon.update(status=status)
-            assert self.version.current_queue == queue
-
-        self.make_addon_unlisted(self.version.addon)  # Unlisted: no queue.
-        self.version.reload()
-        assert self.version.current_queue is None
 
     def test_get_url_path(self):
         assert self.version.get_url_path() == (

@@ -50,8 +50,9 @@ from olympia.reviewers.forms import (
     WhiteboardForm)
 from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph, ReviewerScore,
-    ReviewerSubscription, ViewFullReviewQueue, ViewPendingQueue, Whiteboard,
-    clear_reviewing_cache, get_flags, get_reviewing_cache,
+    ReviewerSubscription, ViewExtensionFullReviewQueue,
+    ViewExtensionPendingQueue, ViewThemeFullReviewQueue, ViewThemePendingQueue,
+    Whiteboard, clear_reviewing_cache, get_flags, get_reviewing_cache,
     get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
     AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
@@ -59,16 +60,14 @@ from olympia.reviewers.serializers import (
     FileEntriesSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
-    ReviewHelper, ViewFullReviewQueueTable, ViewPendingQueueTable,
-    ViewUnlistedAllListTable)
+    ReviewHelper, ViewUnlistedAllListTable, view_table_factory)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version
 from olympia.zadmin.models import get_config, set_config
 
 from .decorators import (
     any_reviewer_or_moderator_required, any_reviewer_required,
-    legacy_addons_or_themes_reviewer_required, ratings_moderator_required,
-    unlisted_addons_reviewer_required)
+    permission_or_tools_view_required, unlisted_addons_reviewer_required)
 
 
 def base_context(**kw):
@@ -79,20 +78,14 @@ def base_context(**kw):
 
 def context(request, **kw):
     admin_reviewer = is_admin_reviewer(request)
-    extension_reviews = acl.action_allowed(
-        request, amo.permissions.ADDONS_REVIEW)
-    theme_reviews = acl.action_allowed(
-        request, amo.permissions.STATIC_THEMES_REVIEW)
     ctx = {
-        'queue_counts': queue_counts(admin_reviewer=admin_reviewer,
-                                     extension_reviews=extension_reviews,
-                                     theme_reviews=theme_reviews),
+        'queue_counts': queue_counts(admin_reviewer=admin_reviewer),
     }
     ctx.update(base_context(**kw))
     return ctx
 
 
-@ratings_moderator_required
+@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
 def ratings_moderation_log(request):
     form = RatingModerationLogForm(request.GET)
     mod_log = ActivityLog.objects.moderation_events()
@@ -112,7 +105,7 @@ def ratings_moderation_log(request):
     return render(request, 'reviewers/moderationlog.html', data)
 
 
-@ratings_moderator_required
+@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
 def ratings_moderation_log_detail(request, id):
     log = get_object_or_404(ActivityLog.objects.moderation_events(), pk=id)
 
@@ -152,51 +145,33 @@ def dashboard(request):
     sections = OrderedDict()
     view_all = acl.action_allowed(request, amo.permissions.REVIEWER_TOOLS_VIEW)
     admin_reviewer = is_admin_reviewer(request)
-    extension_reviewer = acl.action_allowed(
-        request, amo.permissions.ADDONS_REVIEW)
-    theme_reviewer = acl.action_allowed(
-        request, amo.permissions.STATIC_THEMES_REVIEW)
-    if view_all or extension_reviewer or theme_reviewer:
-        full_review_queue = ViewFullReviewQueue.objects
-        pending_queue = ViewPendingQueue.objects
+    if view_all or acl.action_allowed(
+            request, amo.permissions.ADDONS_REVIEW):
+        full_review_queue = ViewExtensionFullReviewQueue.objects
+        pending_queue = ViewExtensionPendingQueue.objects
         if not admin_reviewer:
             full_review_queue = filter_admin_review_for_legacy_queue(
                 full_review_queue)
             pending_queue = filter_admin_review_for_legacy_queue(
                 pending_queue)
-        if not view_all:
-            full_review_queue = filter_static_themes(
-                full_review_queue, extension_reviewer, theme_reviewer)
-            pending_queue = filter_static_themes(
-                pending_queue, extension_reviewer, theme_reviewer)
 
-        header = (
-            ugettext('Static Themes and Legacy Add-ons')
-            if extension_reviewer and theme_reviewer
-            else ugettext('Static Themes') if theme_reviewer
-            else ugettext('Legacy Add-ons'))
-        sections[header] = [(
+        sections[ugettext('Pre-Approval Add-ons')] = [(
             ugettext('New ({0})').format(full_review_queue.count()),
-            reverse('reviewers.queue_nominated')
+            reverse('reviewers.queue_extension_nominated')
         ), (
             ugettext('Updates ({0})').format(pending_queue.count()),
-            reverse('reviewers.queue_pending')
+            reverse('reviewers.queue_extension_pending')
         ), (
             ugettext('Performance'),
             reverse('reviewers.performance')
         ), (
             ugettext('Review Log'),
             reverse('reviewers.reviewlog')
-        )]
-        if view_all or extension_reviewer:
-            sections[header].append(
-                (ugettext('Add-on Review Guide'),
-                 'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'))
-        if view_all or theme_reviewer:
-            sections[header].append(
-                (ugettext('Theme Review Guide'),
-                 'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/'
-                 'Guidelines'))
+        ), (
+            ugettext('Add-on Review Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
+        ),
+        ]
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
@@ -225,6 +200,33 @@ def dashboard(request):
             ugettext('Performance'),
             reverse('reviewers.performance')
         )]
+    if view_all or acl.action_allowed(
+            request, amo.permissions.STATIC_THEMES_REVIEW):
+        full_review_queue = ViewThemeFullReviewQueue.objects
+        pending_queue = ViewThemePendingQueue.objects
+        if not admin_reviewer:
+            full_review_queue = filter_admin_review_for_legacy_queue(
+                full_review_queue)
+            pending_queue = filter_admin_review_for_legacy_queue(
+                pending_queue)
+
+        sections[ugettext('Themes')] = [(
+            ugettext('New ({0})').format(full_review_queue.count()),
+            reverse('reviewers.queue_theme_nominated')
+        ), (
+            ugettext('Updates ({0})').format(pending_queue.count()),
+            reverse('reviewers.queue_theme_pending')
+        ), (
+            ugettext('Performance'),
+            reverse('reviewers.performance')
+        ), (
+            ugettext('Review Log'),
+            reverse('reviewers.reviewlog')
+        ), (
+            ugettext('Theme Review Guide'),
+            'https://wiki.mozilla.org/Add-ons/Reviewers/Themes/Guidelines'
+        ),
+        ]
     if view_all or acl.action_allowed(
             request, amo.permissions.RATINGS_MODERATE):
         sections[ugettext('User Ratings Moderation')] = [(
@@ -443,17 +445,6 @@ def filter_admin_review_for_legacy_queue(qs):
         Q(needs_admin_theme_review=None) | Q(needs_admin_theme_review=False))
 
 
-def filter_static_themes(qs, extension_reviewer, theme_reviewer):
-    if extension_reviewer:
-        types_to_include = amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME]
-    else:
-        types_to_include = []
-    if theme_reviewer:
-        types_to_include.append(amo.ADDON_STATICTHEME)
-    return (qs.filter_raw('addontype_id IN', types_to_include)
-            if types_to_include else qs)
-
-
 def _queue(request, TableObj, tab, qs=None, unlisted=False,
            SearchForm=QueueSearchForm):
     if qs is None:
@@ -478,10 +469,6 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
         if not unlisted:
-            qs = filter_static_themes(
-                qs, acl.action_allowed(request, amo.permissions.ADDONS_REVIEW),
-                acl.action_allowed(
-                    request, amo.permissions.STATIC_THEMES_REVIEW))
             # Most WebExtensions are picked up by auto_approve cronjob, they
             # don't need to appear in the queues, unless auto approvals have
             # been disabled for them.  Webextension static themes aren't auto
@@ -512,13 +499,12 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
                           unlisted=unlisted))
 
 
-def queue_counts(admin_reviewer, extension_reviews, theme_reviews):
+def queue_counts(admin_reviewer):
     def construct_query_from_sql_model(sqlmodel):
         qs = sqlmodel.objects
 
         if not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
-        qs = filter_static_themes(qs, extension_reviews, theme_reviews)
         return qs.count
 
     expired = (
@@ -529,8 +515,14 @@ def queue_counts(admin_reviewer, extension_reviews, theme_reviews):
         .order_by('addonreviewerflags__pending_info_request'))
 
     counts = {
-        'pending': construct_query_from_sql_model(ViewPendingQueue),
-        'nominated': construct_query_from_sql_model(ViewFullReviewQueue),
+        'extension_pending': construct_query_from_sql_model(
+            ViewExtensionPendingQueue),
+        'extension_nominated': construct_query_from_sql_model(
+            ViewExtensionFullReviewQueue),
+        'theme_pending': construct_query_from_sql_model(
+            ViewThemePendingQueue),
+        'theme_nominated': construct_query_from_sql_model(
+            ViewThemeFullReviewQueue),
         'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue(
@@ -543,22 +535,35 @@ def queue_counts(admin_reviewer, extension_reviews, theme_reviews):
     return {queue: count() for (queue, count) in six.iteritems(counts)}
 
 
-@legacy_addons_or_themes_reviewer_required
-def queue(request):
-    return redirect(reverse('reviewers.queue_pending'))
+@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+def queue_extension_nominated(request):
+    return _queue(
+        request, view_table_factory(ViewExtensionFullReviewQueue),
+        'extension_nominated')
 
 
-@legacy_addons_or_themes_reviewer_required
-def queue_nominated(request):
-    return _queue(request, ViewFullReviewQueueTable, 'nominated')
+@permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
+def queue_extension_pending(request):
+    return _queue(
+        request, view_table_factory(ViewExtensionPendingQueue),
+        'extension_pending')
 
 
-@legacy_addons_or_themes_reviewer_required
-def queue_pending(request):
-    return _queue(request, ViewPendingQueueTable, 'pending')
+@permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
+def queue_theme_nominated(request):
+    return _queue(
+        request, view_table_factory(ViewThemeFullReviewQueue),
+        'theme_nominated')
 
 
-@ratings_moderator_required
+@permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
+def queue_theme_pending(request):
+    return _queue(
+        request, view_table_factory(ViewThemePendingQueue),
+        'theme_pending')
+
+
+@permission_or_tools_view_required(amo.permissions.RATINGS_MODERATE)
 def queue_moderated(request):
     qs = Rating.objects.all().to_moderate().order_by('ratingflag__created')
     page = paginate(request, qs, per_page=20)
@@ -601,7 +606,7 @@ def application_versions_json(request):
     return {'choices': form.version_choices_for_app_id(app_id)}
 
 
-@permission_required(amo.permissions.ADDONS_CONTENT_REVIEW)
+@permission_or_tools_view_required(amo.permissions.ADDONS_CONTENT_REVIEW)
 def queue_content_review(request):
     admin_reviewer = is_admin_reviewer(request)
     qs = (
@@ -614,7 +619,7 @@ def queue_content_review(request):
                   qs=qs, SearchForm=None)
 
 
-@permission_required(amo.permissions.ADDONS_POST_REVIEW)
+@permission_or_tools_view_required(amo.permissions.ADDONS_POST_REVIEW)
 def queue_auto_approved(request):
     admin_reviewer = is_admin_reviewer(request)
     qs = (
@@ -783,7 +788,7 @@ def review(request, addon, channel=None):
     if not settings.ALLOW_SELF_REVIEWS and addon.has_author(request.user):
         amo.messages.warning(
             request, ugettext('Self-reviews are not allowed.'))
-        return redirect(reverse('reviewers.queue'))
+        return redirect(reverse('reviewers.dashboard'))
 
     # Get the current info request state to set as the default.
     form_initial = {'info_request': addon.pending_info_request}

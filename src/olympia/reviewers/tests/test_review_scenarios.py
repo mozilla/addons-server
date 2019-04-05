@@ -44,21 +44,21 @@ def addon_with_files(db):
         # New addon request full.
         # scenario0: should succeed, files approved.
         ('process_public', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-         ReviewAddon, 'nominated', amo.STATUS_PUBLIC,
+         ReviewAddon, 'extension_nominated', amo.STATUS_PUBLIC,
          amo.STATUS_PUBLIC),
         # scenario1: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
-         ReviewAddon, 'nominated', amo.STATUS_NULL,
+         ReviewAddon, 'extension_nominated', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
 
         # Approved addon with a new file.
         # scenario2: should succeed, files approved.
         ('process_public', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         ReviewFiles, 'pending', amo.STATUS_PUBLIC,
+         ReviewFiles, 'extension_pending', amo.STATUS_PUBLIC,
          amo.STATUS_PUBLIC),
         # scenario3: should succeed, files rejected.
         ('process_sandbox', amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-         ReviewFiles, 'pending', amo.STATUS_NULL,
+         ReviewFiles, 'extension_pending', amo.STATUS_NULL,
          amo.STATUS_DISABLED),
     ])
 def test_review_scenario(mock_request, addon_with_files, review_action,

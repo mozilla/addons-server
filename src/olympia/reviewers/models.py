@@ -181,20 +181,56 @@ class ViewQueue(RawSQLModel):
         return get_flags_for_row(self)
 
 
-class ViewFullReviewQueue(ViewQueue):
+class FullReviewQueueMixin:
+    def base_query(self):
+        query = super().base_query()
+        query['where'].append('addons.status = %s' % amo.STATUS_NOMINATED)
+        return query
+
+
+class PendingQueueMixin:
 
     def base_query(self):
-        q = super(ViewFullReviewQueue, self).base_query()
-        q['where'].append('addons.status = %s' % amo.STATUS_NOMINATED)
-        return q
+        query = super().base_query()
+        query['where'].append('addons.status = %s' % amo.STATUS_PUBLIC)
+        return query
 
 
-class ViewPendingQueue(ViewQueue):
+class ExtensionQueueMixin:
 
     def base_query(self):
-        q = super(ViewPendingQueue, self).base_query()
-        q['where'].append('addons.status = %s' % amo.STATUS_PUBLIC)
-        return q
+        query = super().base_query()
+        types = (str(id_) for id_ in amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME])
+        query['where'].append('addons.addontype_id IN (%s)' % ','.join(types))
+        return query
+
+
+class ThemeQueueMixin:
+
+    def base_query(self):
+        query = super().base_query()
+        query['where'].append(
+            'addons.addontype_id = %s' % amo.ADDON_STATICTHEME)
+        return query
+
+
+class ViewExtensionFullReviewQueue(ExtensionQueueMixin, FullReviewQueueMixin,
+                                   ViewQueue):
+    pass
+
+
+class ViewExtensionPendingQueue(ExtensionQueueMixin, PendingQueueMixin,
+                                ViewQueue):
+    pass
+
+
+class ViewThemeFullReviewQueue(ThemeQueueMixin, FullReviewQueueMixin,
+                               ViewQueue):
+    pass
+
+
+class ViewThemePendingQueue(ThemeQueueMixin, PendingQueueMixin, ViewQueue):
+    pass
 
 
 class ViewUnlistedAllList(RawSQLModel):
