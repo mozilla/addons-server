@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-04-06 03:58+0000\n"
+"PO-Revision-Date: 2019-04-06 04:29+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1789,7 +1789,7 @@ msgid "Download Firefox themes with animals and natural landscapes. This categor
 msgstr ""
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "Κάντε λήψη ενδιαφερόντων, δημιουργικών και μοναδικών θεμάτων του Firefox."
 
 msgid "Scenery"
 msgstr "Τοπία"
@@ -4651,7 +4651,7 @@ msgstr "Ξεκουράστε τα μάτια σας {start_sub_heading}με το
 
 #. editorial content for the discovery pane.
 msgid "Enable night mode for a better viewing experience."
-msgstr ""
+msgstr "Ενεργοποιήστε τη νυχτερινή λειτουργία για καλύτερη εμπειρία θέασης."
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -6553,7 +6553,7 @@ msgstr "Άκυρη παράμετρος \"%s\"."
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Άκυρος συνδυασμός των παραμέτρων \"%s\" και \"%s\"."
 
 msgid "Return To AMO is currently disabled"
 msgstr ""
