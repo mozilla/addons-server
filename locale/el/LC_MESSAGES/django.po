@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-04-03 15:56+0000\n"
+"PO-Revision-Date: 2019-04-06 03:58+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -839,9 +839,8 @@ msgstr "Λάθος τύπος για ένα ή περισσότερα κλειδ
 msgid "Invalid JWT Token."
 msgstr "Μη έγκυρο σύμβολο JWT."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Άκυρο ή κατεστραμμένο αρχείο."
+msgstr "Άκυρο token ή hash."
 
 msgid "Email address not found."
 msgstr "Η διεύθυνση email δεν βρέθηκε."
@@ -3700,9 +3699,8 @@ msgstr "\"Ζωντανή\" δοκιμή"
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "Αρχείο καταγραφής αξιολόγησης \"ελαφριών\" θεμάτων"
+msgstr "Η επεξεργασία \"ελαφριών\" θεμάτων έχει απενεργοποιηθεί."
 
 msgid "Manage Version {0}"
 msgstr "Διαχείριση της έκδοσης {0}"
@@ -5156,9 +5154,8 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Στιγμιότυπα στο διαδίκτυο {start_sub_heading}με το {addon_name}{end_sub_heading}"
+msgstr "Ξεφορτωθείτε άχρηστα πράγματα {start_sub_heading}με το {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
