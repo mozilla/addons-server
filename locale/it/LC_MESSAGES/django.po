@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-03-23 16:26+0000\n"
+"PO-Revision-Date: 2019-04-07 16:21+0000\n"
 "Last-Translator: Sara Todaro <sara.todaro@mozillaitalia.org>\n"
 "Language-Team: Mozilla Italia\n"
 "Language: it\n"
@@ -2391,13 +2391,13 @@ msgid "Header area background"
 msgstr "Sfondo testata"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr ""
+msgstr "Il colore di sfondo della testata, visibile nelle aree non coperte dall’immagine o attraverso le trasparenze. Campo nel manifesto: frame."
 
 msgid "Header area text and icons"
 msgstr "Testo e icone dell'intestazione"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr ""
+msgstr "Il colore del testo e delle icone nell’intestazione, eccetto per la scheda attiva. Campo del manifesto: tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Sfondo barra degli strumenti"
@@ -2409,7 +2409,7 @@ msgid "Toolbar area text and icons"
 msgstr "Icone e caselle di testo della barra degli strumenti"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr ""
+msgstr "Il colore del testo e delle icone nella barra degli strumenti e nella scheda attiva. Campo nel manifesto: bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Sfondo campo barra degli strumenti"
@@ -2482,7 +2482,7 @@ msgstr "altri componenti aggiuntivi…"
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Laboratorio estensioni"
 
 msgid "Documentation"
 msgstr "Documentazione"
@@ -5280,7 +5280,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "La versione meno recente compatibile, “strict_min_version”, è la 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "“strict_min_version” {appver} sconosciuta per {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
