@@ -30,6 +30,12 @@ class TestAddonView(TestCase):
         res = self.view(self.request, str(self.addon.id))
         self.assert3xx(res, self.slug_path, 301)
 
+    def test_301_by_guid(self):
+        self.request.path = (
+            u'http://testserver/addon/%s/reviews' % self.addon.guid)
+        res = self.view(self.request, str(self.addon.guid))
+        self.assert3xx(res, self.slug_path, 301)
+
     def test_slug_replace_no_conflict(self):
         path = u'http://testserver/addon/{id}/reviews/{id}345/path'
         self.request.path = path.format(id=self.addon.id)

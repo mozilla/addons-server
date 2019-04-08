@@ -19,20 +19,27 @@ def addon_view(f, qs=Addon.objects.all):
     @functools.wraps(f)
     def wrapper(request, addon_id=None, *args, **kw):
         """Provides an addon instance to the view given addon_id, which can be
-        an Addon pk or a slug."""
-        assert addon_id, 'Must provide addon id or slug'
+        an Addon pk, guid or a slug."""
+        assert addon_id, 'Must provide addon id, guid or slug'
 
-        if addon_id and addon_id.isdigit():
-            addon = get_object_or_404(qs(), id=addon_id)
+        lookup_field = Addon.get_lookup_field(addon_id)
+        if lookup_field == 'slug':
+            addon = get_object_or_404(qs(), slug=addon_id)
+        else:
+            try:
+                if lookup_field == 'pk':
+                    addon = qs().get(id=addon_id)
+                elif lookup_field == 'guid':
+                    addon = qs().get(guid=addon_id)
+            except Addon.DoesNotExist:
+                raise http.Http404
             # Don't get in an infinite loop if addon.slug.isdigit().
             if addon.slug and addon.slug != addon_id:
                 url = request.path.replace(addon_id, addon.slug, 1)
-
                 if request.GET:
                     url += '?' + request.GET.urlencode()
                 return http.HttpResponsePermanentRedirect(url)
-        else:
-            addon = get_object_or_404(qs(), slug=addon_id)
+
         # If the addon is unlisted it needs either an owner/viewer/dev/support,
         # or an unlisted addon reviewer.
         if not (addon.has_listed_versions() or
