@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
 "PO-Revision-Date: 2015-02-07 12:40+0000\n"
 "Last-Translator: Vanja <tumbas93@gmail.com>\n"
 "Language-Team: sr\n"
@@ -20,6 +20,10 @@ msgstr "Везе нису дозвољене."
 
 msgid "This display name cannot be used."
 msgstr "Име не може да се користи."
+
+#, fuzzy
+msgid "This reviewer name cannot be used."
+msgstr "Ово име не може бити употребљено."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -78,27 +82,6 @@ msgstr "Статус"
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-msgid "Download Now"
-msgstr "Преузми одмах"
-
-msgid "Download"
-msgstr "Преузми"
-
-msgid "Featured"
-msgstr "Издвојено"
-
-#, fuzzy
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "Није оцењено"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr ""
-
-msgid "Add to {0}"
-msgstr "Додај у {0}"
-
 # Column name in a table.
 msgid "Listed"
 msgstr "Наведене"
@@ -109,151 +92,6 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-msgid "Abuse reported."
-msgstr "Злостављање је пријављено."
-
-msgid "No compatible versions"
-msgstr "Нема компатибилних верзија"
-
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "за {0}"
-
-msgid "View privacy policy"
-msgstr "Погледај полису приватности"
-
-msgid "View End-User License Agreement"
-msgstr "Погледајте Уговор о лиценци софтвера за крајњег корисника"
-
-#, fuzzy
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Овај додатак још нема рецензију."
-
-#, fuzzy
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "Овај додатак је уклоњен од стране његовог аутора."
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "Уговор о лиценци софтвера за крајњег корисника (EULA) за {0}"
-
-msgid "End-User License Agreement"
-msgstr "Уговор о лиценци софтвера за крајњег корисника (EULA)"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s захтева да одобрите следећи Уговор о лиценци софтвера за крајњег корисника (EULA) пре него што се инсталација настави:"
-
-msgid "Back to {0}…"
-msgstr "Назад на {0}…"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "Add-ons for {0}"
-msgstr "Додаци за {0}"
-
-msgid "Featured Extensions"
-msgstr "Истакнуте екстензије"
-
-msgid "Popular Extensions"
-msgstr "Популарне екстензије"
-
-msgid "Most Popular"
-msgstr "Најпопуларније"
-
-msgid "All »"
-msgstr "Све »"
-
-msgid "See all »"
-msgstr "Види све »"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "Надолазеће екстензије"
-
-msgid "Featured Themes"
-msgstr "Истакнуте теме"
-
-msgid "Sort by:"
-msgstr "Поређај по:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "Ажурирано {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "Додато {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s седмично преузимање"
-msgstr[1] "%(num)s седмична преузимања"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s корисник"
-msgstr[1] "%(num)s корисника"
-
-#, fuzzy
-msgid "Requires Restart"
-msgstr "Потребна поља"
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
-
-msgid "Compatible with Firefox 57+"
-msgstr ""
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} преузимање недељно"
-msgstr[1] "{0} преузимања недељно"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0} корисник"
-msgstr[1] "{0} корисника"
-
-msgid "by"
-msgstr "од"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr "Још тема у категорији {0}"
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr "Погледај све теме у категорији {0}"
-
-msgid "More by this Artist"
-msgstr "Још од овог уметника"
-
-msgid "See all Themes by this Artist"
-msgstr "Погледајте све теме овог уметника"
-
-msgid "Categories"
-msgstr "Категорије"
-
-msgid "Updated"
-msgstr "Ажурирано"
-
-msgid "Artist"
-msgstr "Уметник"
-
-msgid "Rating"
-msgstr "Оцене"
-
-msgid "Daily Users"
-msgstr "Дневни корисници"
-
-msgid "License"
-msgstr "Лиценца"
-
 msgid "Awaiting Review"
 msgstr "Чекам оцену"
 
@@ -262,6 +100,9 @@ msgstr "Одбијено"
 
 msgid "Approved"
 msgstr "Одобрено"
+
+msgid "Added {0}"
+msgstr "Додато {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -289,6 +130,9 @@ msgstr "Није још оцењено"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> корисници"
 
+msgid "by"
+msgstr "од"
+
 #. {0} is the number of users.
 #, fuzzy
 msgid "{0} Daily User"
@@ -296,257 +140,8 @@ msgid_plural "{0} Daily Users"
 msgstr[0] "Дневни корисници"
 msgstr[1] "Дневни корисници"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "Полиса приватности за {0}"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "Полиса приватности"
-
-msgid "Report Abuse"
-msgstr "Пријави злоупотребу"
-
-#, fuzzy, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"Ако сумњате да овај додатак крши <a href=\"%(url)s\">наше полисе</a> или да има проблема у безбедности и приватности, молимо Вас употребите доњу форму како бисте описали Ваше бриге. Молимо Вас да "
-"не користите ову форму за било које друге разлоге."
-
-msgid "Send Report"
-msgstr "Пошаљи пријаву"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "или"
-
-msgid "Cancel"
-msgstr "Откажи"
-
-msgid "What do you think?"
-msgstr "Шта мислите?"
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Молимо Вас, <a href=\"%(login)s\">пријавите се</a> како бисте послали коментар"
-
-msgid "Review:"
-msgstr "Коментар:"
-
-msgid "Rating:"
-msgstr "Оцена:"
-
-msgid "Submit review"
-msgstr "Пошаљи коментар"
-
-#, fuzzy
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Молимо не постављајте извештаје грешака у рецензијама. Вашу адресу е-поште не достављамо програмерима додатка и они можда буду морали да Вас контактирају како би решили Ваш проблем."
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-
-msgid "Review Guidelines"
-msgstr "Смернице за рецензирање"
-
-msgid "Reviews"
-msgstr "Прегледа"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "од %(user)s дана %(date)s"
-
-msgid "Show the developer's reply to this review"
-msgstr "Прикажи одговор програмера на ову рецензију"
-
-#, fuzzy, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Погледајте све рецензије овог додатка"
-msgstr[1] "Погледајте све %(cnt)s рецензије овог додатка"
-
-msgid "Tags"
-msgstr "Ознаке"
-
-msgid "Icon for {0}"
-msgstr ""
-
-#, python-format
-msgid "by %(users)s"
-msgstr "од %(users)s"
-
-msgid "Download Anyway"
-msgstr ""
-
-# {0} is a number
-#, fuzzy
-msgid "[Warning]"
-msgstr "{0} упозорење"
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Верзије"
-
-#, fuzzy
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "Овај додатак је уклоњен од стране његовог аутора."
-
-msgid "Average"
-msgstr "Просек"
-
-msgid "Write a review"
-msgstr "Напиши рецензију"
-
-msgid "Related Categories"
-msgstr "Сродне категорије"
-
-#, fuzzy, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Други додаци од %(author)s"
-msgstr[1] "Други додаци од ових аутора"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> рецензија корисника"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> рецензије корисника"
-
-msgid "View statistics"
-msgstr "Преглед статистике"
-
-msgid "Manage"
-msgstr "Управљај"
-
-#, fuzzy
-msgid "Add-on Review"
-msgstr "Пуна рецензија додатка"
-
-#, fuzzy
-msgid "Admin Manage"
-msgstr "Админ страница"
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr "Иконица од {0}"
-
-msgid "Contribute"
-msgstr "Приложи"
-
-msgid "Enjoy this add-on?"
-msgstr "Свиђа Вам се овај додатак?"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Програмер овог додатка пита да помогнете његовом даљем развоју тако што ћете направити мали прилог."
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr "Слика екрана додатка #{0}"
-
-msgid "Add-on home page"
-msgstr "Почетна страница додатка"
-
-msgid "Support site"
-msgstr "Сајт подршке"
-
-msgid "Support E-mail"
-msgstr "Е-пошта подршке"
-
-msgid "Info"
-msgstr "Информације"
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr "Последње ажурирање:"
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Објављен под <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Custom License"
-msgstr "Прилагођена лиценца"
-
-msgid "About this Add-on"
-msgstr "О додатку"
-
-msgid "Developer’s Comments"
-msgstr "Коментари програмера"
-
-msgid "Version Information"
-msgstr "Информације о верзији"
-
-msgid "See complete version history"
-msgstr "Погледај пуну историју верзија"
-
-msgid "close"
-msgstr "затвори"
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
-msgstr ""
-
-#. This is a header of a list of things the add-on can do.
-#, fuzzy
-msgid "This add-on can:"
-msgstr "Овај додатак захтева спољашњи софтвер."
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
-
-msgid "This add-on has been removed by its author."
-msgstr "Овај додатак је уклоњен од стране његовог аутора."
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "Овај додатак је онемогућен од стране администратора."
-
-msgid "Source Code License for {addon}"
-msgstr "Лиценца изворног кода за {addon}"
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr "Лиценца изворног кода"
-
-#, fuzzy
-msgid "support section"
-msgstr "Сајт подршке"
-
-#, fuzzy
-msgid "support email"
-msgstr "Е-пошта подршке"
-
-msgid "permalink"
-msgstr "трајна веза"
-
-#, fuzzy, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Погледајте све рецензије корисника"
-msgstr[1] "Погледајте све рецензије корисника"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Овај додатак још нема рецензију."
-
-msgid "Be the first!"
-msgstr "Будите први!"
-
-msgid "No results found."
-msgstr "Нема пронађених резултата."
-
-msgid "{0} users"
-msgstr "{0} корисника"
+msgid "Sort by:"
+msgstr "Поређај по:"
 
 msgid "More"
 msgstr "Још"
@@ -556,34 +151,6 @@ msgstr "Моји додаци"
 
 msgid "My Themes"
 msgstr "Моје теме"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Информације о {0} додатку"
-
-msgid "Edit Theme"
-msgstr "Измени тему"
-
-msgid "Approve / Reject"
-msgstr "Дозволи / одбиј"
-
-msgid "Review History"
-msgstr "Историја рецензија"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Извињавамо се, ова тема је у току. Молимо Вас, вратите се касније."
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "Ова тема је у току. Невидљива је свима сем Вама."
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> преузимање недељно"
-msgstr[1] "<strong>{0}</strong> преузимања недељно"
-
-msgid "Not Reviewed"
-msgstr "Није оцењено"
 
 msgid "Tools"
 msgstr "Алати"
@@ -767,14 +334,23 @@ msgstr ""
 "<p> Молимо Вас унесите <strong>све речи</strong> испод, <strong>раздвојене размаком ако је неопходно</strong>. </p> <p> Ако је ово тешко за читање, можете <a href=\"#\" id=\"recaptcha_different"
 "\">испробати различите речи</a> или <a href=\"#\" id=\"recaptcha_audio\">покушајте различите врсте изазова</a> уместо. </p>"
 
+msgid "Most Popular"
+msgstr "Најпопуларније"
+
 msgid "Top Rated"
 msgstr "Најбоље оцењено"
 
 msgid "Newest"
 msgstr "Најновије"
 
+msgid "Featured"
+msgstr "Издвојено"
+
 msgid "Explore"
 msgstr "Истражи"
+
+msgid "Categories"
+msgstr "Категорије"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -796,14 +372,16 @@ msgstr ""
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Приказано <b>%(begin)s</b>&ndash;<b>%(end)s</b> од <b>%(count)s</b>"
 
-msgid "Collections"
-msgstr "Колекције"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Речници и језички пакети"
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+msgid "Add-ons for {0}"
+msgstr "Додаци за {0}"
 
 msgid "Add-ons"
 msgstr "Додаци"
+
+msgid "Custom License"
+msgstr "Прилагођена лиценца"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -913,262 +491,6 @@ msgstr "Ово корисничко име не може да се корист�
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "Овај url је у употреби од стране друге колекције"
-
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "Екстензије"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr "%s додаци"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Теме"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr "%s теме"
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr "Истакнути додаци :: %s"
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %s-а."
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr "Алати за претрагу сродни за %s"
-
-msgid "Search tools and search-related extensions"
-msgstr "Алати за претрагу и њима сродна проширења"
-
-msgid "Search tools"
-msgstr "Алати за претрагу"
-
-msgid "Search Tools"
-msgstr "Алати за претрагу"
-
-msgid "Most Users"
-msgstr "Већина корисника"
-
-msgid "Name"
-msgstr "Име"
-
-msgid "Weekly Downloads"
-msgstr "Седмична преузимања"
-
-msgid "Recently Updated"
-msgstr "Недавно ажурирано"
-
-msgid "Up & Coming"
-msgstr "Надолазеће"
-
-msgid "Recently Added"
-msgstr "Недавно додато"
-
-msgid "Created"
-msgstr "Креирано"
-
-msgid "Downloads"
-msgstr "Преузимања"
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr "{0}: Истакнути додаци"
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr "Нема истакнутих додатака у категорији {0}."
-
-msgid "Subscribe"
-msgstr "Претплати се"
-
-msgid "Featured Add-ons"
-msgstr "Истакнути додаци"
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Ово су неки од наших омиљених додатака који Вам могу помоћи да почнете персоналзицију %(app)s -а."
-
-msgid "Install Dictionary"
-msgstr "Инсталирај речник"
-
-msgid "Install Language Pack"
-msgstr "Инсталирај језички пакет"
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
-msgstr ""
-
-msgid "Available in your locale"
-msgstr "Доступно у Вашем локалу"
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr "Списак језичких пакета и речника је доступна у Вашем локалу."
-
-msgid "Language"
-msgstr "Језик"
-
-msgid "Dictionary"
-msgstr "Речник"
-
-msgid "Language Pack"
-msgstr "Језички пакет"
-
-msgid "All locales"
-msgstr "Сви локали"
-
-msgid "List of language packs and dictionaries."
-msgstr "Списак језичких пакета и речника."
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr "{0} :: Алати за претрагу"
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> додатак"
-msgstr[1] "<b>{0}</b> додатака"
-
-msgid "Search Extensions"
-msgstr "Претражи екстензије"
-
-msgid "Add search-related functionality to Firefox"
-msgstr "Додајте функционалности претраживања у Firefox"
-
-msgid "Search Providers"
-msgstr "Претраживачи"
-
-msgid "Find new providers for your search bar"
-msgstr "Пронађите нове претраживаче за Вашу траку за претрагу"
-
-msgid "Additional Resources"
-msgstr "Додатни извори"
-
-#. {0} is an app name, like Firefox.
-#, fuzzy
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Сазнајте више о <a href=\"http://support.mozilla.com/kb/Search+bar\">траци за претрагу</a> за {0}"
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
-
-msgid "Most Popular Extensions"
-msgstr "Најпопуларнија проширења"
-
-msgid "Top-Rated Extensions"
-msgstr "Проширења са највећом оценом"
-
-msgid "Newest Extensions"
-msgstr "Најновија проширења"
-
-msgid "Extensions by Name"
-msgstr "Проширења по називу"
-
-msgid "Extensions by Weekly Downloads"
-msgstr "Проширења по седмичним преузимањима"
-
-msgid "Recently Updated Extensions"
-msgstr "Недавно ажурирана проширења"
-
-msgid "Up & Coming Extensions"
-msgstr "Надолазећа проширења"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr "Истакнуте комплетне теме"
-
-msgid "Most Popular Complete Themes"
-msgstr "Најпопуларније комплетне теме"
-
-msgid "Top-Rated Complete Themes"
-msgstr "Најјаче оцењене комплетне теме"
-
-msgid "Newest Complete Themes"
-msgstr "Најновије комплетне теме"
-
-msgid "Complete Themes by Name"
-msgstr "Комплетне теме по називу"
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr "Комплетне теме по седничним презимањима"
-
-msgid "Recently Updated Complete Themes"
-msgstr "Недавно ажуриране комплетне теме"
-
-msgid "Up & Coming Complete Themes"
-msgstr "Надолазеће комплетне теме"
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Погледајте свакo %(cnt)s проширење у %(name)s &raquo;"
-msgstr[1] "Погледајте свака %(cnt)s проширења у %(name)s &raquo;"
-
-msgid "{0} Themes"
-msgstr "{0} теме"
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr "Теме корисника {0}"
-
-msgid "View Profile"
-msgstr "Погледај профил"
-
-msgid "Create Your Own Theme"
-msgstr "Направите властиту тему"
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "Ваш прегледач, Ваш стил! Обуците га властитим дизајном!"
-
-msgid "Learn more"
-msgstr "Сазнајте више"
-
-msgid "View All Recently Added"
-msgstr "Погледајте све недавно додате"
-
-msgid "View All Most Popular"
-msgstr "Погледајте све најпопуларније"
-
-msgid "View All Top Rated"
-msgstr "Погледајте све најјаче оцењене"
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Преко 300,000 дизајна за персонализацију Вашег прегледача! Ставите курсор преко позадинске теме да бисте је испробали. <a href=\"%(url)s\" class=\"more-info\">Почните истраживати</a>"
-
-msgid "Want more personalization?"
-msgstr "Желите више персонализације?"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Комплетне теме трансформишу изглед Вашег прегледача са стиловима за оквир прозора, адресне страке, дугмиће, језичке и меније. <a href=\"%(url)s\" class=\"more-info\">Почните истраживати</a>"
-
-msgid "Up & Coming Themes"
-msgstr "Надолазеће теме"
-
-msgid "View All Up & Coming"
-msgstr "Погледајте све надолазеће теме"
-
-msgid "No themes found"
-msgstr "Нема нађених тема"
 
 msgid "{addon} was created."
 msgstr "{addon} је креиран."
@@ -1571,6 +893,9 @@ msgstr "Проширење"
 msgid "Complete Theme"
 msgstr "Потпуна тема"
 
+msgid "Dictionary"
+msgstr "Речник"
+
 msgid "Search Engine"
 msgstr "Претраживач"
 
@@ -1590,12 +915,19 @@ msgstr "Тема"
 msgid "Theme (Static)"
 msgstr "Детаљи теме"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "Екстензије"
+
 msgid "Complete Themes"
 msgstr "Комплетне теме"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
 msgstr "Речници"
+
+msgid "Search Tools"
+msgstr "Алати за претрагу"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
@@ -1606,6 +938,9 @@ msgstr "Language Packs (додатак)"
 
 msgid "Plugins"
 msgstr "Прикључци"
+
+msgid "Themes"
+msgstr "Теме"
 
 #, fuzzy
 msgid "Themes (Static)"
@@ -2328,6 +1663,21 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Овера је створила превише грешака/упозорења па је %s порука скраћено. Након обраћања видљивим порукама, бићете у могућности да погледате остале."
 
+msgid "Updated"
+msgstr "Ажурирано"
+
+msgid "Name"
+msgstr "Име"
+
+msgid "Created"
+msgstr "Креирано"
+
+msgid "Downloads"
+msgstr "Преузимања"
+
+msgid "Rating"
+msgstr "Оцене"
+
 msgid "All My Add-ons"
 msgstr "Сви моји додаци"
 
@@ -2587,6 +1937,9 @@ msgstr "Скорашња активност за {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> од стране %(user)s"
 
+msgid "No results found."
+msgstr "Нема пронађених резултата."
+
 msgid "Refine Activity"
 msgstr "Детаљнија активност"
 
@@ -2640,8 +1993,22 @@ msgstr "Додај другу апликацију&hellip;"
 msgid "Save Changes"
 msgstr "Сачувај измене"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "или"
+
+msgid "Cancel"
+msgstr "Откажи"
+
 msgid "Close"
 msgstr "Затвори"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> додатак"
+msgstr[1] "<b>{0}</b> додатака"
 
 msgid "Recent Activity"
 msgstr "Скорашња активност"
@@ -2700,6 +2067,9 @@ msgstr "Детаљи додатка"
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Детаљи додатка за {0}"
+
+msgid "Tags"
+msgstr "Ознаке"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -3124,6 +2494,12 @@ msgstr "Онемогућен"
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr "<b>Ред позиције:</b> %(pos)s од %(total)s"
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "<strong>{0}</strong> преузимање недељно"
+msgstr[1] "<strong>{0}</strong> преузимања недељно"
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3528,6 +2904,10 @@ msgid "Created:"
 msgstr "Направљено:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "Последње ажурирање:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -3580,6 +2960,10 @@ msgstr "Контролисан дневник прегледа"
 msgid "Unlisted Review Page"
 msgstr "Рецензије корисника"
 
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Админ страница"
+
 msgid "View Statistics Dashboard"
 msgstr "Погледај контролну таблу статистика"
 
@@ -3596,6 +2980,9 @@ msgstr "Захтеване додатне информације"
 #, fuzzy
 msgid "This request for information has been resolved"
 msgstr "Ова верзија није прегледана."
+
+msgid "License"
+msgstr "Лиценца"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3618,10 +3005,16 @@ msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] "Изаберите <b>до {0}</b> {1} категорију за овај додатак:"
 msgstr[1] "Изаберите <b>до {0}</b> {1} категорије за овај додатак:"
 
+msgid "End-User License Agreement"
+msgstr "Уговор о лиценци софтвера за крајњег корисника (EULA)"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Полиса приватности"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3701,6 +3094,9 @@ msgstr "Пријави злоупотребу"
 
 msgid "Legal Notices"
 msgstr "Правна обавештења"
+
+msgid "Contribute"
+msgstr "Приложи"
 
 #, fuzzy
 msgid "Review Add-ons"
@@ -3934,6 +3330,9 @@ msgstr "0 датотека"
 #, fuzzy
 msgid "Re-enable Version"
 msgstr "Верзија за штампање"
+
+msgid "Review History"
+msgstr "Историја рецензија"
 
 #, fuzzy
 msgid "Close Review History"
@@ -5482,6 +4881,9 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "close"
+msgstr "затвори"
+
 msgid "Go"
 msgstr "Крени"
 
@@ -5535,103 +4937,6 @@ msgstr "Нема датотека из отпремљене датотеке."
 
 msgid "Fetching file."
 msgstr "Преузимање датотеке."
-
-msgid "Shopping Made Easy"
-msgstr "Куповина учињена једноставном"
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr "Сачувајте Ваше омиљене ствари из удобности Вашег прегледача."
-
-msgid "Build the perfect website"
-msgstr "Направи савршен сајт"
-
-msgid "First time with Add-ons?"
-msgstr "Ваш први пут са додацима?"
-
-msgid "Not to worry, here are three to get started."
-msgstr "Без бриге, ево три корака да започнете."
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr "Преведи садржај на мрежи са и на преко 40 језика."
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr "Једноставно се повежите на Ваше друштвене мреже, и делите или коментаришите на страницама које посећујете."
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "Брз начин да погледате цене када купујете online или претражујете летове."
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Теме за дан St. Patrick"
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Декориши свој прегледач за прославу дана St. Patrick."
-
-msgid "A+ add-ons for School"
-msgstr "5* додаци за школу"
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "Додаци за учитеље, родитеље, и ученике који иду у школу."
-
-msgid "Would you like to know which websites you can trust?"
-msgstr "Да ли би сте волели да знате којим сајтовима можете да верујете?"
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks је #1 додатак за забележивање."
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr "Сајт и текст преводилац, речник, и још!"
-
-msgid "Love is in the Air"
-msgstr "Љубав је у ваздуху"
-
-msgid "Add some romance to your Firefox."
-msgstr "Додај мало романтике у свој Firefox."
-
-msgid "Get up and move!"
-msgstr "Устани и покрени се!"
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Инсталирајте ове додатке за фитнес да бисте остали активни и здрави."
-
-msgid "New &amp; Now"
-msgstr "Ново и актуелно"
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr "Набавите најновије, и тренутно најтраженије додатке."
-
-msgid "Worry-free browsing"
-msgstr "Безбрижно прегледање"
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Заштитите Вашу приватност на интернету са додацима из ове колекције."
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "Одлични додаци за посао, забаву, приватност, продуктивност&hellip; малтене за све!"
-
-msgid "Games!"
-msgstr ""
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
-
-msgid "Must-Have Media"
-msgstr ""
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Mozilla-ин избор месеца!"
-
-msgid "Become a Test Pilot"
-msgstr ""
-
-msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-#, fuzzy
-msgid "Get Started"
-msgstr "Како почети"
 
 #, fuzzy
 msgid "Reported Status"
@@ -5775,6 +5080,9 @@ msgid "Over the years, many people have contributed to this website, including b
 msgstr ""
 "Током година, многи људи су допринели овој интернет страници, укључујући и волонтере из заједнице и посвећени АМО тим. Листу наших значајних сарадника можете пронаћи на <a href=\"%(url)s\"> "
 "Заслуге</a> страници."
+
+msgid "Review Guidelines"
+msgstr "Смернице за рецензирање"
 
 msgid "Sections"
 msgstr "Секције"
@@ -5957,6 +5265,9 @@ msgid ""
 "for more detail about user add-on reviews.</p>"
 msgstr ""
 
+msgid "Submit review"
+msgstr "Пошаљи коментар"
+
 msgid "Reply to review by {0}"
 msgstr "Одговор на рецензију од {0}"
 
@@ -5977,6 +5288,13 @@ msgstr "Изаберите разлог:"
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "од %(user)s <b>(Програмер)</b> датума %(date)s"
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr "од %(user)s дана %(date)s"
+
+msgid "permalink"
+msgstr "трајна веза"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -6048,6 +5366,9 @@ msgstr "Напиши нову рецензију"
 
 msgid "Be the first to write a review."
 msgstr "Будите први да напишете рецензију."
+
+msgid "This add-on has not yet been reviewed."
+msgstr "Овај додатак још нема рецензију."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -6152,6 +5473,10 @@ msgstr "Извршити рецензију"
 msgid "Needs Admin Static Theme Review"
 msgstr "Рецензија администратора"
 
+#, fuzzy
+msgid "Requires Restart"
+msgstr "Потребна поља"
+
 msgid "More Information Requested"
 msgstr "Захтеване додатне информације"
 
@@ -6163,6 +5488,9 @@ msgid "Sources provided"
 msgstr "Пружени извори"
 
 msgid "WebExtension"
+msgstr ""
+
+msgid "Risk breakdown not available."
 msgstr ""
 
 #, fuzzy
@@ -6276,16 +5604,8 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Static Themes and Legacy Add-ons"
-msgstr "Моји додаци"
-
-#, fuzzy
-msgid "Static Themes"
-msgstr "Истакнуте теме"
-
-#, fuzzy
-msgid "Legacy Add-ons"
-msgstr "Моји додаци"
+msgid "Pre-Approval Add-ons"
+msgstr "Додаци за Android"
 
 #, fuzzy
 msgid "New ({0})"
@@ -6302,10 +5622,6 @@ msgstr "Датум рецензије"
 #, fuzzy
 msgid "Add-on Review Guide"
 msgstr "Пуна рецензија додатка"
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Ред прегледања тема"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6331,6 +5647,10 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Конторлисан преглед ({0})"
 msgstr[1] "Конторлисана прегледа ({0})"
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Ред прегледања тема"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6390,6 +5710,10 @@ msgstr "{addon} :: Извештаји злостављања"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Извештаји о злостављању за {addon} ({num})"
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "Информације о {0} додатку"
+
 #, fuzzy
 msgid "Add-on ID"
 msgstr "Додатак"
@@ -6397,7 +5721,6 @@ msgstr "Додатак"
 msgid "Internal AMO ID"
 msgstr ""
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "Ради са"
 
@@ -6422,6 +5745,9 @@ msgstr "Потребна поља"
 
 msgid "EULA"
 msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr "Погледајте Уговор о лиценци софтвера за крајњег корисника"
 
 #, fuzzy
 msgid "Last Approval Date"
@@ -6630,6 +5956,9 @@ msgstr "Програмер је пружио изворни код."
 
 msgid "Weight:"
 msgstr ""
+
+msgid "Download"
+msgstr "Преузми"
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -6883,6 +6212,9 @@ msgstr "Преглед"
 msgid "by Source"
 msgstr "по извору"
 
+msgid "Daily Users"
+msgstr "Дневни корисници"
+
 msgid "by Add-on Version"
 msgstr "по верзији додатка"
 
@@ -7083,9 +6415,6 @@ msgstr "Назад на додатке"
 msgid "Footer logo"
 msgstr ""
 
-msgid "Choose a category"
-msgstr "Изаберите категорију"
-
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
@@ -7207,6 +6536,9 @@ msgstr ""
 msgid "Profile Photo"
 msgstr "Профилна слика"
 
+msgid "Collections"
+msgstr "Колекције"
+
 msgid "Addons"
 msgstr ""
 
@@ -7291,49 +6623,16 @@ msgstr ""
 "Нажалост, нисмо у могућности да Вам откажемо претплату. Веза на коју сте кликнули је неисправна. Међутим, Ви још увек можете да откажете претплату на Вашој <a href=\"%(edit_url)s\">страници за "
 "уређивања профила</a>."
 
+#, python-format
+msgid "by %(users)s"
+msgstr "од %(users)s"
+
 msgctxt "user_list_others"
 msgid "others"
 msgstr "остали"
 
-# {0} is the add-on name
-#, python-format
-msgid "%s Version History"
-msgstr "%s историјат верзије"
-
-msgid "Version History with Changelogs"
-msgstr "Историјат верзија са променама"
-
 msgid "{app} {min} and later"
 msgstr "{app} {min} и касније"
-
-msgid "Permanent link to this version"
-msgstr "Стална веза ка овој верзији"
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr "Објављено {0}"
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Изворни код објављен од стране <a href=\"%(url)s\">%(name)s</a>"
-
-# {0} is the add-on name
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr "Историјат верзија за {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> верзија"
-msgstr[1] "<b>{0}</b> верзије"
-
-msgid "Be careful with old versions!"
-msgstr "Будите опрезни са старим верзијама!"
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "Ове верзије су приказани за сврхе референце и тестирање. Увек би требало да користите <a href=\"%(url)s\">најновију верзију</a> додатка."
 
 msgid "Deleted versions can`t be changed."
 msgstr ""

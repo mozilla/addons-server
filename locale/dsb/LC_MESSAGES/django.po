@@ -1,10 +1,10 @@
-# 
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
 "PO-Revision-Date: 2019-04-02 18:45+0000\n"
 "Last-Translator: Michael Wolf <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,6 +21,10 @@ msgstr "Wótkaze njejsu dowólone."
 
 msgid "This display name cannot be used."
 msgstr "Tós to pokazane mě njedajo se wužywaś."
+
+#, fuzzy
+msgid "This reviewer name cannot be used."
+msgstr "Toś to mě njedajo se wužywaś."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Pólo startowego boka dajo se jano wužywaś, aby z eksternymi websedłami zwězało."
@@ -78,26 +82,6 @@ msgstr "Status"
 msgid "- Add-on not on AMO -"
 msgstr "- Dodank njejo na AMO -"
 
-msgid "Download Now"
-msgstr "Něnto ześěgnuś"
-
-msgid "Download"
-msgstr "Ześěgnuś"
-
-msgid "Featured"
-msgstr "Psédstajone"
-
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "Njepśeglědany"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr "Eksperimentelny"
-
-msgid "Add to {0}"
-msgstr "K {0} pśidaś"
-
 msgid "Listed"
 msgstr "W lisćinje"
 
@@ -107,154 +91,6 @@ msgstr "Sćažki dodankow a zběrkow muse se na \"/\" kóńcyś"
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Mjenja dodankow njamógu wikowu marku Mozilla abo Firefox wopśimowaś."
 
-msgid "Abuse reported."
-msgstr "Znjewužywanje jo se k wěsći dało."
-
-msgid "No compatible versions"
-msgstr "Žedne kompatibelne wersije"
-
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "za {0}"
-
-msgid "View privacy policy"
-msgstr "Pšawidła priwatnosći pokazaś"
-
-msgid "View End-User License Agreement"
-msgstr "Licencne dojadnanje za kóńcne wužywarje pokazaś"
-
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Toś ten dodank hyšći njejo se pśeglědał wót Mozilla."
-
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "Toś ten dodank jo se wót swójich wuwijarjow ako eksperimentelny markěrował."
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "Licencne dojadnanje za kóńcne wužywarje (EULA) za {0}"
-
-msgid "End-User License Agreement"
-msgstr "Licencne dojadnanje za kóńcne wužywarje"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s se pomina, až akceptěrujośo slědujuce licencne dojadnanje za kóńcne wužywarje (EULA), nježli až pókšacujośo z instalěrowanim:"
-
-msgid "Back to {0}…"
-msgstr "Slědk k {0}…"
-
-msgid "Add-ons for {0}"
-msgstr "Dodanki za {0}"
-
-msgid "Featured Extensions"
-msgstr "Pśedstajone rozšyrjenja"
-
-msgid "Popular Extensions"
-msgstr "Woblubowane rozšyrjenja"
-
-msgid "Most Popular"
-msgstr "Nejwěcej woblubowane"
-
-msgid "All »"
-msgstr "Wšykne »"
-
-msgid "See all »"
-msgstr "Wšykne pokazaś »"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "Rozmógujuce rozšyrjenja"
-
-msgid "Featured Themes"
-msgstr "Pśedstajone drastwy"
-
-msgid "Sort by:"
-msgstr "Sortěrowaś:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "Aktualizěrowany: {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "Pśidany: {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s tyźeńske ześěgnjenje"
-msgstr[1] "%(num)s tyźeńskej ześěgnjeni"
-msgstr[2] "%(num)s tyźeńske ześěgnjenja"
-msgstr[3] "%(num)s tyźeńskich ześěgnjenjow"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s wužywaŕ"
-msgstr[1] "%(num)s wužywarja"
-msgstr[2] "%(num)s wužywarje"
-msgstr[3] "%(num)s wužywarjow"
-
-msgid "Requires Restart"
-msgstr "Trjeba znowegostartowanje"
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "Toś ten dodank jo se z noweju technologiju wuwił, kótaraž jo kompatibelna z Firefox 57 a nowšym."
-
-msgid "Compatible with Firefox 57+"
-msgstr "Kompatibelny z Firefox 57+"
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} tyźeńske ześěgnjenje"
-msgstr[1] "{0} tyźeńskej ześěgnjeni"
-msgstr[2] "{0} tyźeńske ześěgnjenja"
-msgstr[3] "{0} tyźeńskich ześěgnjenjow"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0} wužywaŕ"
-msgstr[1] "{0} wužywarja"
-msgstr[2] "{0} wužywarje"
-msgstr[3] "{0} wužywarjow"
-
-msgid "by"
-msgstr "wót"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr "Dalšne drastwy kategorije {0}"
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr "Wšykne drastwy kategorije {0} pokazaś"
-
-msgid "More by this Artist"
-msgstr "Wěcej wót toś togo wuměłca"
-
-msgid "See all Themes by this Artist"
-msgstr "Wšykne drastwy wót toś togo wuměłca pokazaś"
-
-msgid "Categories"
-msgstr "Kategorije"
-
-msgid "Updated"
-msgstr "Aktualizěrowane"
-
-msgid "Artist"
-msgstr "Wuměłc"
-
-msgid "Rating"
-msgstr "Pógódnośenje"
-
-msgid "Daily Users"
-msgstr "Wšedne wužywarje"
-
-msgid "License"
-msgstr "Licenca"
-
 msgid "Awaiting Review"
 msgstr "Caka na pśeglědanje"
 
@@ -263,6 +99,9 @@ msgstr "Wótpokazany"
 
 msgid "Approved"
 msgstr "Pśizwólony"
+
+msgid "Added {0}"
+msgstr "Pśidany: {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -292,6 +131,9 @@ msgstr "Hyšći njepógódnośone"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> wužywarjow"
 
+msgid "by"
+msgstr "wót"
+
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
@@ -300,257 +142,8 @@ msgstr[1] "{0} wšednej wužywarja"
 msgstr[2] "{0} wšedne wužywarje"
 msgstr[3] "{0} wšednych wužywarjow"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "Pšawidła priwatnosći za {0}"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "Pšawidła priwatnosći"
-
-msgid "Report Abuse"
-msgstr "Znjewužywanje k wěsći daś"
-
-#, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"Jolic se mysliśo, až toś ten dodank pśejźo pśeśiwo %(amo_policy_link_open)snašym pšawidłam%(link_close)s abo ma problemy wěstoty a priwatnosći, wužywajśo pšosym slědujucy formular, aby swóje "
-"wobmyslenja wopisał. Pšosym njewužywajśo toś ten formular z drugeje pśicyny."
-
-msgid "Send Report"
-msgstr "Rozpšawu pósłaś"
-
-msgid "or"
-msgstr "abo"
-
-msgid "Cancel"
-msgstr "Pśetergnuś"
-
-msgid "What do you think?"
-msgstr "Co mysliśo?"
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Pšosym <a href=\"%(login)s\">pśizjawśo se</a>, aby pógódnośenje zapódał"
-
-msgid "Review:"
-msgstr "Pógódnośenje:"
-
-msgid "Rating:"
-msgstr "Pógódnośenje:"
-
-msgid "Submit review"
-msgstr "Pógódnośenje wótpósłaś"
-
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Pšosym njesćelśo how rozpšawy wó zmólkach. Njestajamy wuwijarjam dodankow wašu e-mailowu adresu k dispoziciji a njamógu se togodla z wami do zwiska stajiś, aby waš problem rozwězali."
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-"Cytajśo <a href=\"%(support)s\">wótrězk pomocy</a> toś togo dodanka, aby wuslěźił, lěc pódpěra jo k dispoziciji. Móžośo teke <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">dodankowe zgromaźeństwo</a> wó pomoc pšosyś."
-
-msgid "Review Guidelines"
-msgstr "Pógódnośeńske směrnice"
-
-msgid "Reviews"
-msgstr "Pógódnośenja"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "wót %(user)s dnja %(date)s"
-
-msgid "Show the developer's reply to this review"
-msgstr "Wótegrono wuwijarja na toś to pógódnośenje pokazaś"
-
-#, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Wšykne pógódnośenja toś togo dodanka pokazaś"
-msgstr[1] "Wšykne %(cnt)s pógódnośeni toś togo dodanka pokazaś"
-msgstr[2] "Wšykne %(cnt)s pógódnośenja toś togo dodanka pokazaś"
-msgstr[3] "Wšykne %(cnt)s pógódnośenjow toś togo dodanka pokazaś"
-
-msgid "Tags"
-msgstr "Wobznamjenja"
-
-msgid "Icon for {0}"
-msgstr "Symbol za {0}"
-
-#, python-format
-msgid "by %(users)s"
-msgstr "wót %(users)s"
-
-msgid "Download Anyway"
-msgstr "Weto ześěgnuś"
-
-msgid "[Warning]"
-msgstr "[Warnowanje]"
-
-msgid "Permissions"
-msgstr "Pšawa"
-
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "Toś ten dodank jo se wót swójich wuwijarjow ako eksperimentelny markěrował"
-
-msgid "Average"
-msgstr "Pśerězk"
-
-msgid "Write a review"
-msgstr "Napišćo pógódnośenje"
-
-msgid "Related Categories"
-msgstr "Pśiswójźbne kategorije"
-
-#, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Druge dodanki wót %(author)s"
-msgstr[1] "Druge dodanki wót toś teju awtorowu"
-msgstr[2] "Druge dodanki wót toś tych awtorow"
-msgstr[3] "Druge dodanki wót toś tych awtorow"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> wužywarske pógódnośenje"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> wužywarskej pógódnośeni"
-msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> wužywarske pógódnośenja"
-msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> wužywarskich pógódnośenjow"
-
-msgid "View statistics"
-msgstr "Statistiku pokazaś"
-
-msgid "Manage"
-msgstr "Zastojaś"
-
-msgid "Add-on Review"
-msgstr "Pśeglědanje dodanka"
-
-msgid "Admin Manage"
-msgstr "Zastojanje administratora"
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr "Symbol za {0}"
-
-msgid "Contribute"
-msgstr "Pósćiś"
-
-msgid "Enjoy this add-on?"
-msgstr "Spódoba se wam toś ten dodank?"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Wuwijaŕ toś togo dodanka was pšosy, aby wy jogo dalšne wuwijanje pśez mału pósćiwanku pódprěł."
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr "Foto wobrazowki dodanka #{0}"
-
-msgid "Add-on home page"
-msgstr "Startowy bok dodanka"
-
-msgid "Support site"
-msgstr "Sedło pomocy"
-
-msgid "Support E-mail"
-msgstr "E-mailowa adresa pomocy"
-
-msgid "Info"
-msgstr "Informacije"
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr "Slědna aktualizacija:"
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Wózjawjony pód <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Custom License"
-msgstr "Swójska licenca"
-
-msgid "About this Add-on"
-msgstr "Wó toś tom dodanku"
-
-msgid "Developer’s Comments"
-msgstr "Komentary wuwijarja"
-
-msgid "Version Information"
-msgstr "Wersijowe informacije"
-
-msgid "See complete version history"
-msgstr "Dopołnu wersijowu historiju pokazaś"
-
-msgid "close"
-msgstr "zacyniś"
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Někotare dodanki pšose wó pšawo, aby wěste funkcije wuwjadli (na pśikład: dodank za zastojanje rejtarkow pšosy wó pśistup k rejtarkowemu systemoju wašogo wobglědowaka)."
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
-msgstr ""
-"Dokulaž maśo kontrolu nad swójim Firefox, móžośo wy toś tym pšosbam wótpowědowaś daś abo pšosby wótpokazaś. Gaž dajośo pšawa, se zasadnje wugbaśe abo wěstota wašogo wobglědowaka nje¨kazy, ale w "
-"rědkich padach jo wěste riziko."
-
-#. This is a header of a list of things the add-on can do.
-msgid "This add-on can:"
-msgstr "Toś ten dodank móžo:"
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Někotare dodanki pšose wó pšawo, aby wěste funkcije wuwjadli. Dokulaž wy kontrolu nad swójim Firefox maśo, lažy na was, lěc toś te napšašowanja pśizwólujośo abo wótpokazujośo."
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "Pšosym źiwajśo na to, až toś ten dodank zestarjonu technologiju wužywa, kótaraž jomu pśistup k wšyknym funkcijam wobglědowaka a daty dawa, bźez togo, aby wó wašu dowolnosć pšosył."
-
-msgid "This add-on has been removed by its author."
-msgstr "Toś ten dodank jo se wót swójogo awtora wótpórał."
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "Toś ten dodank jo se wót administratora znjemóžnił."
-
-msgid "Source Code License for {addon}"
-msgstr "Licenca žrědłowego koda za {addon}"
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr "Licenca žrědłowego koda"
-
-msgid "support section"
-msgstr "wótrězk pomocy"
-
-msgid "support email"
-msgstr "e-mailowa adresa pomocy"
-
-msgid "permalink"
-msgstr "trajny wótkaz"
-
-#, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Wšykne wužywarske pógódnośenja pokazaś"
-msgstr[1] "Wšykne %(cnt)s wužywarskej pógódnośeni pokazaś"
-msgstr[2] "Wšykne %(cnt)s wužywarske pógódnośenja pokazaś"
-msgstr[3] "Wšykne %(cnt)s wužywarskich pógódnośenjow pokazaś"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Toś ten dodank hyšći njejo se pógódnił."
-
-msgid "Be the first!"
-msgstr "Buźćo prědny!"
-
-msgid "No results found."
-msgstr "Žedne wuslědki namakane."
-
-msgid "{0} users"
-msgstr "{0} wužywarjow"
+msgid "Sort by:"
+msgstr "Sortěrowaś:"
 
 msgid "More"
 msgstr "Wěcej"
@@ -560,36 +153,6 @@ msgstr "Móje dodanki"
 
 msgid "My Themes"
 msgstr "Móje drastwy"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Dodankowe informacije za {0}"
-
-msgid "Edit Theme"
-msgstr "Drastwu wobźěłas"
-
-msgid "Approve / Reject"
-msgstr "Pśizwóliś / Wótpokazaś"
-
-msgid "Review History"
-msgstr "Historija pógódnośenjow"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Toś ta drastwa bóžko caka na pśizwólenje. Pšosym pśiźćo pózdźej hyšći raz."
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "Toś ta drastwa hyšći caka na pśizwólenje. Jo njewidobna za wšykne mimo tebje."
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> tyźeńske ześěgnjenje"
-msgstr[1] "<strong>{0}</strong> tyźeńskej ześěgnjeni"
-msgstr[2] "<strong>{0}</strong> tyźeńske ześěgnjenja"
-msgstr[3] "<strong>{0}</strong> tyźeńskich ześěgnjenjow"
-
-msgid "Not Reviewed"
-msgstr "Njepśeglědany"
 
 msgid "Tools"
 msgstr "Rědy"
@@ -711,16 +274,16 @@ msgstr "Njenamakany"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
-"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
-"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
-"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
+"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
+"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
+"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Bóžko njamóžomy namakaś, což pytaśo.</h1> <p> Bok abo dataja, wó kótaruž sćo pšosył, njejo se na našom sedle namakała. Jo móžno, až sćo na zestarjony wótkaz kliknuł abo adresu wopak zapisał. "
-"</p> <ul> <li>Jolic sćo adresu zapisał, klikniśo dwójcy, aby pšawopis kontrolěrował.</li> <li> Jolic sćo wótkazoju wót něźi slědował, %(open_bug_link)spišćo pšosym zmólkowu "
-"rozpšawu%(close_bug_link)s. Dajśo nam k wěsći, wótkulž sćo pśišeł a za cymž sćo pytał, a my buźomy našo nejlěpše cyniś, aby problem rozwězali. </li> </ul> <p>Abo móžośo jadnorje k někotarym z "
-"woblubowanych bokow na našom websedle skócyś.</p> <ul> <li>Zajmujośo se za <a href=\"%(rec)s\">lisćinu pśedstajonych dodankow</a>?</li> <li> Cośo <a href=\"%(search)s\">dodanki pytaś</a>? Móžośo k "
-"<a href=\"%(search)s\">pytańskemu bokoju</a> pśejś abo jadnorje pytańske pólo górjejce wužywaś. </li> <li> Jolic cośo lubjej znowego zachopiś, źiśo jadnorje k <a href=\"%(home)s\">startowemu bokoju "
+"<h1>Bóžko njamóžomy namakaś, což pytaśo.</h1> <p> Bok abo dataja, wó kótaruž sćo pšosył, njejo se na našom sedle namakała. Jo móžno, až sćo na zestarjony wótkaz kliknuł abo adresu wopak zapisał. </"
+"p> <ul> <li>Jolic sćo adresu zapisał, klikniśo dwójcy, aby pšawopis kontrolěrował.</li> <li> Jolic sćo wótkazoju wót něźi slědował, %(open_bug_link)spišćo pšosym zmólkowu rozpšawu"
+"%(close_bug_link)s. Dajśo nam k wěsći, wótkulž sćo pśišeł a za cymž sćo pytał, a my buźomy našo nejlěpše cyniś, aby problem rozwězali. </li> </ul> <p>Abo móžośo jadnorje k někotarym z woblubowanych "
+"bokow na našom websedle skócyś.</p> <ul> <li>Zajmujośo se za <a href=\"%(rec)s\">lisćinu pśedstajonych dodankow</a>?</li> <li> Cośo <a href=\"%(search)s\">dodanki pytaś</a>? Móžośo k <a href="
+"\"%(search)s\">pytańskemu bokoju</a> pśejś abo jadnorje pytańske pólo górjejce wužywaś. </li> <li> Jolic cośo lubjej znowego zachopiś, źiśo jadnorje k <a href=\"%(home)s\">startowemu bokoju "
 "dodankow</a>. </li> </ul>"
 
 msgid "Oops"
@@ -766,8 +329,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p>Pšosym zapódajśo <strong>wšykne slědujuce słowa</strong>, <strong>źělone pśez prozne znamje, jolic trěbne</strong>. </p> <p> Jolic to jo lěbda cytajobne, móžośo <a href=\"#\" "
-"id=\"recaptcha_different\">druge słowa wopytowaś</a> abo <a href=\"#\" id=\"recaptcha_audio\">drugi typ nadawka</a> město togo wopytaś. </p>"
+"<p>Pšosym zapódajśo <strong>wšykne slědujuce słowa</strong>, <strong>źělone pśez prozne znamje, jolic trěbne</strong>. </p> <p> Jolic to jo lěbda cytajobne, móžośo <a href=\"#\" id="
+"\"recaptcha_different\">druge słowa wopytowaś</a> abo <a href=\"#\" id=\"recaptcha_audio\">drugi typ nadawka</a> město togo wopytaś. </p>"
+
+msgid "Most Popular"
+msgstr "Nejwěcej woblubowane"
 
 msgid "Top Rated"
 msgstr "Nejwušej pógódnośone"
@@ -775,8 +341,14 @@ msgstr "Nejwušej pógódnośone"
 msgid "Newest"
 msgstr "Nejnowše"
 
+msgid "Featured"
+msgstr "Psédstajone"
+
 msgid "Explore"
 msgstr "Wuslěźiś"
+
+msgid "Categories"
+msgstr "Kategorije"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -798,14 +370,14 @@ msgstr "K slědnemu bokoju skócyś"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Pokazuju se <b>%(begin)s</b>&ndash;<b>%(end)s</b> z <b>%(count)s</b>"
 
-msgid "Collections"
-msgstr "Zběrki"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Słowniki a rěcne pakśiki"
+msgid "Add-ons for {0}"
+msgstr "Dodanki za {0}"
 
 msgid "Add-ons"
 msgstr "Dodanki"
+
+msgid "Custom License"
+msgstr "Swójska licenca"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -885,8 +457,8 @@ msgstr "Wersije"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
-"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
+"%(amo_manifests_mdn_link_close)s."
 msgstr "Jolic wašo pódprěte nałoženje njetrjeba manifestowu dataju, musyśo hyšći jadnu z trěbnymi kakosćami pśidaś, ako su %(amo_manifests_mdn_link_open)show%(amo_manifests_mdn_link_close)s pódane."
 
 msgid "The text entered has been flagged as spam."
@@ -909,266 +481,6 @@ msgstr "Toś ten swójski URL njedajo se wužywaś."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Toś ten dodank južo k zběrce słuša"
-
-msgid "Extensions"
-msgstr "Rozšyrjenja"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr "Dodanki kategorije %s"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Drastwy"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr "Drastwy kategorije %s"
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr "Pśedstajone dodanki :: %s"
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "How su někotare z našych nejlubšych dodankow, aby my wam pśiměrjenje dodanki %s wólažcyli."
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr "Pytańske rědy za kategoriju %s"
-
-msgid "Search tools and search-related extensions"
-msgstr "Pytańske rědy a pytańske rozšyrjenja"
-
-msgid "Search tools"
-msgstr "Pytańske rědy"
-
-msgid "Search Tools"
-msgstr "Pytańske rědy"
-
-msgid "Most Users"
-msgstr "Nejwěcej wužywarjow"
-
-msgid "Name"
-msgstr "Mě"
-
-msgid "Weekly Downloads"
-msgstr "Tyźeńske ześěgnjenja"
-
-msgid "Recently Updated"
-msgstr "Njedawno nagrate"
-
-msgid "Up & Coming"
-msgstr "Rozmógujuce"
-
-msgid "Recently Added"
-msgstr "Njedawno pśidane"
-
-msgid "Created"
-msgstr "Napórane"
-
-msgid "Downloads"
-msgstr "Ześěgnjenja"
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr "{0}: Pśedstajone dodanki"
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr "Žedne pśedstajone dodanki w {0}."
-
-msgid "Subscribe"
-msgstr "Aboněrowaś"
-
-msgid "Featured Add-ons"
-msgstr "Pśedstajone dodanki"
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "How su někotare z našych nejlubšych dodankow, aby my wam pśiměrjenje %(app)s wólažcyli."
-
-msgid "Install Dictionary"
-msgstr "Słownik instalěrowaś"
-
-msgid "Install Language Pack"
-msgstr "Rěcny pakśik instalěrowaś"
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
-msgstr ""
-"Instalěrowanje słownikowego dodanka pšawopisnej kontroli %(app_name)s nowe rěcne nastajenje pśidawa, kótarež waš pšawopis kontrolěrujo, gaž formulary wupołnjujośo. Rěcne pakśiki rěc cełego nałoženja"
-" změniju."
-
-msgid "Available in your locale"
-msgstr "We wašej rěcy k dispoziciji"
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr "Lisćina rěcnych pakśikow a słownikow, kótarež su we wašej rěcy k dispoziciji."
-
-msgid "Language"
-msgstr "Rěc"
-
-msgid "Dictionary"
-msgstr "Słownik"
-
-msgid "Language Pack"
-msgstr "Rěcny pakśik"
-
-msgid "All locales"
-msgstr "Wšykne rěcy"
-
-msgid "List of language packs and dictionaries."
-msgstr "Lisćina rěcnych pakśikow a słownikow."
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr "{0} :: Pytańske rědy"
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> dodank"
-msgstr[1] "<b>{0}</b> dodanka"
-msgstr[2] "<b>{0}</b> dodanki"
-msgstr[3] "<b>{0}</b> dodankow"
-
-msgid "Search Extensions"
-msgstr "Pytańske rozšyrjenja"
-
-msgid "Add search-related functionality to Firefox"
-msgstr "Firefox pytańsku funkcionalnosć pśidaś"
-
-msgid "Search Providers"
-msgstr "Pytańske póbitowarje"
-
-msgid "Find new providers for your search bar"
-msgstr "Nowe póbitowarje za pytańske pólo pytaś"
-
-msgid "Additional Resources"
-msgstr "Pśidatne resurse"
-
-#. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Zgóńśo wěcej wó <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">pytańskem pólu</a> w {0}"
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "Pśepytujśo dalšne pytańske póbitowarje na <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr "%(amo_mdn_link_open)sWuwijśo swójski%(amo_mdn_link_close)s pytański rěd"
-
-msgid "Most Popular Extensions"
-msgstr "Nejwěcej woblubowane rozšyrjenja"
-
-msgid "Top-Rated Extensions"
-msgstr "Nejwušej pógódnośone rozšyrjenja"
-
-msgid "Newest Extensions"
-msgstr "Nejnowše rozšyrjenja"
-
-msgid "Extensions by Name"
-msgstr "Rozšyrjenja pó mjenju"
-
-msgid "Extensions by Weekly Downloads"
-msgstr "Rozšyrjenja pó tyźeńskich ześěgnjenjach"
-
-msgid "Recently Updated Extensions"
-msgstr "Njedawno aktualizěrowane rozšyrjenja"
-
-msgid "Up & Coming Extensions"
-msgstr "Rozmógujuce rozšyrjenja"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr "Pśedstajone dopołne drastwy"
-
-msgid "Most Popular Complete Themes"
-msgstr "Nejwěcej woblubowane dopołne drastwy"
-
-msgid "Top-Rated Complete Themes"
-msgstr "Nejwušej pógódnośone dopołne drastwy"
-
-msgid "Newest Complete Themes"
-msgstr "Nejnowše dopołne drastwy"
-
-msgid "Complete Themes by Name"
-msgstr "Dopołne drastwy pó mjenju"
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr "Dopołne drastwy pó tyźeńskich ześěgnjenjach"
-
-msgid "Recently Updated Complete Themes"
-msgstr "Njedawno aktualizěrowane dopołne drastwy"
-
-msgid "Up & Coming Complete Themes"
-msgstr "Rozmógujuce dopołne drastwy"
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Glejśo %(cnt)s rozšyrjenje w kategoriji %(name)s &raquo;"
-msgstr[1] "Glejśo %(cnt)s rozšyrjeni w kategoriji %(name)s &raquo;"
-msgstr[2] "Glejśo %(cnt)s rozšyrjenja w kategoriji %(name)s &raquo;"
-msgstr[3] "Glejśo %(cnt)s rozšyrjenjow w kategoriji %(name)s &raquo;"
-
-msgid "{0} Themes"
-msgstr "{0} drastwy"
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr "Drastwy awtora {0}"
-
-msgid "View Profile"
-msgstr "Profil pokazaś"
-
-msgid "Create Your Own Theme"
-msgstr "Napórajśo swójsku drastwu"
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "Waš wobglědowak, waš stil! Wupyšniśo jen pśez swójski design!"
-
-msgid "Learn more"
-msgstr "Dalšne informacije"
-
-msgid "View All Recently Added"
-msgstr "Wšykne njedawno pśidane pokazaś"
-
-msgid "View All Most Popular"
-msgstr "Wšykne nejwěcej woblubowane pokazaś"
-
-msgid "View All Top Rated"
-msgstr "Wšykne nejwušej pógódnośone pokazaś"
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Wěcej ako 300,000 designow, aby wy swój wobglědowak personalizěrował! Gibniśo swóju myšku nad slězonowu drastwu, aby ju wopytował. <a href=\"%(url)s\" class=\"more-info\">Rozglědujśo se</a>"
-
-msgid "Want more personalization?"
-msgstr "Cośo wěcej personalizacije?"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Dopołne drastwy změnjaju wenkowny naglěd wašogo wobglědowaka pśez stile za woknowy wocerk, adresowu rědku, tłocaška, rejtarki a menije. <a href=\"%(url)s\" class=\"more-info\">Rozglědujśo se</a>"
-
-msgid "Up & Coming Themes"
-msgstr "Rozmógujuce drastwy"
-
-msgid "View All Up & Coming"
-msgstr "Wšykne rozmógujuce pokazaś"
-
-msgid "No themes found"
-msgstr "Žedne drastwy namakane"
 
 msgid "{addon} was created."
 msgstr "{addon} jo se napórał."
@@ -1534,6 +846,9 @@ msgstr "Rozšyrjenje"
 msgid "Complete Theme"
 msgstr "Dopołna drastwa"
 
+msgid "Dictionary"
+msgstr "Słownik"
+
 msgid "Search Engine"
 msgstr "Pytnica"
 
@@ -1552,11 +867,17 @@ msgstr "Drastwa"
 msgid "Theme (Static)"
 msgstr "Drastwa (statiska)"
 
+msgid "Extensions"
+msgstr "Rozšyrjenja"
+
 msgid "Complete Themes"
 msgstr "Dopołne drastwy"
 
 msgid "Dictionaries"
 msgstr "Słowniki"
+
+msgid "Search Tools"
+msgstr "Pytańske rědy"
 
 msgid "Language Packs (Application)"
 msgstr "Rěcne pakśiki (nałoženje)"
@@ -1566,6 +887,9 @@ msgstr "Rěcne pakśiki (dodank)"
 
 msgid "Plugins"
 msgstr "Tykace"
+
+msgid "Themes"
+msgstr "Drastwy"
 
 msgid "Themes (Static)"
 msgstr "Drastwy (statiske)"
@@ -2237,7 +1561,8 @@ msgstr ""
 "Na toś tom sedle. <span class=\"helptext\">Wašo zapódaśe nalicyjo se na toś tom sedle a w zastojniku dodankow Firefox za miliony wužywarjow, za tym až jo pśeglědowanje žrědłowego koda wobstał. "
 "Awtomatiske aktualizacije zastoje se pśez toś to sedło. Toś ten dodank dajo se teke za wabjenje a wuběźowanja Mozilla wužywaś. Samorozdźělenje pśeglědanych datajow jo teke móžne.</span>"
 
-msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid ""
+"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr "Samostatny. <span class=\"helptext\">Wašo zapódaśe buźo se ned za samorozdźělenje signěrowaś. Aktualizacije by měli se pśez updateURL abo eksterne nałožeńske aktualizacije zastojaś.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
@@ -2258,6 +1583,21 @@ msgstr "Wěstotna powěźeńka Mozilla: Waše pśizjawjeńske daty za API AMO su
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Pśeglědanje jo pśewjele zmólkow/warnowanjow wunjasło, togodla jo se %s powěsćow wótdźěliło. Pó wobźěłowanju widobnych powěsćow móžośo druge wiźeś."
+
+msgid "Updated"
+msgstr "Aktualizěrowane"
+
+msgid "Name"
+msgstr "Mě"
+
+msgid "Created"
+msgstr "Napórane"
+
+msgid "Downloads"
+msgstr "Ześěgnjenja"
+
+msgid "Rating"
+msgstr "Pógódnośenje"
 
 msgid "All My Add-ons"
 msgstr "Wšykne móje dodanki"
@@ -2409,8 +1749,8 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr "Mój dodank njegóźi se do žedneje kategorije"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
-" which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
+"Notice which explains how we handle your information."
 msgstr ""
 "Nježli až zachopijośo, cytajśo a akceptěrujśo pšosym našo dojadnanje wó rozdźělowanju a naše pśeglědowańske zasady a pšawidła. Dojadnanje wó rozdźělowanju Firefox teke wótkazujo k našomu pokazoju "
 "priwatnosći, kótaraž wujasnjujo, kak z wašymi informacijami wobchadamy."
@@ -2510,6 +1850,9 @@ msgstr "Nejnowša aktiwita za {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> wót %(user)s"
 
+msgid "No results found."
+msgstr "Žedne wuslědki namakane."
+
 msgid "Refine Activity"
 msgstr "Aktiwitu pólěpšyś"
 
@@ -2528,10 +1871,12 @@ msgstr ""
 "nowšeje wersije toś togo dodanka."
 
 #, python-format
-msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
+msgid ""
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
+"\"close\">Ignore</a>"
 msgstr ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizěrowaś</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nagraś</a> abo <a "
-"href=\"#\" class=\"close\">Ignorěrowaś</a>"
+"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Kompatibelnosć aktualizěrowaś</a> <a href=\"%(version_url)s\" class=\"button\">Nowu wersiju nagraś</a> abo <a href=\"#"
+"\" class=\"close\">Ignorěrowaś</a>"
 
 msgid "View and update application compatibility ranges"
 msgstr "Wobcerki kompatibelnosći z nałoženjami pokazaś a aktualizěrowaś"
@@ -2560,8 +1905,22 @@ msgstr "Druge nałoženje pśidaś&hellip;"
 msgid "Save Changes"
 msgstr "Změny składowaś"
 
+msgid "or"
+msgstr "abo"
+
+msgid "Cancel"
+msgstr "Pśetergnuś"
+
 msgid "Close"
 msgstr "Zacyniś"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> dodank"
+msgstr[1] "<b>{0}</b> dodanka"
+msgstr[2] "<b>{0}</b> dodanki"
+msgstr[3] "<b>{0}</b> dodankow"
 
 msgid "Recent Activity"
 msgstr "Nejnowša aktiwita"
@@ -2617,6 +1976,9 @@ msgstr "Dalšne drobnostki"
 
 msgid "Additional Details for {0}"
 msgstr "Dalšne drobnostki za {0}"
+
+msgid "Tags"
+msgstr "Wobznamjenja"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Wobznamjenja pomagaju wužywarjam, waš dodank namakaś a by dejali krotke pomjenjenja ako „rejtarki“, „symbolowa rědka“ abo „Twitter“ byś. Móžośo maksimalnje {0} wobznamjenjow měś."
@@ -2728,21 +2090,23 @@ msgstr ""
 "publikum pśigronił."
 
 #, python-format
-msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid ""
+"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Kategorije njedaju se změniś, tak dłujko ako waš dodank se za toś to nałoženje pśedstaja. Pšosym pósćelśo mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jolic jo pśicyna, aby wy swóje "
 "kategorije změnił."
 
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
-msgstr "Kategorije njedaju se změniś, tak dłujko ako se waš dodank se pśedstaja. Pšosym pósćelśo mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jolic jo pśicyna, aby wy swóje kategorije změnił."
+msgstr ""
+"Kategorije njedaju se změniś, tak dłujko ako se waš dodank se pśedstaja. Pšosym pósćelśo mejlku na <a href=\"mailto:%(email)s\">%(email)s</a>, jolic jo pśicyna, aby wy swóje kategorije změnił."
 
 msgid "Email"
 msgstr "E-mailowa adresa"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
-" for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
+"relevant for listed add-ons."
 msgstr ""
 "Jolic cośo e-mailowu adresu za napšašowanja pomocy pokazaś, zapódajśo ju how. Jolic maśo rozdźělne adrese za kuždy rěc, móžośo někotare pśełožki toś togo póla pśidaś. To jo jano za nalicone dodanki "
 "relewantne."
@@ -3036,6 +2400,14 @@ msgstr "Znjemóžnjony"
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr "<b>Pozicija w cakańskem rěźe:</b> %(pos)s z %(total)s"
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "<strong>{0}</strong> tyźeńske ześěgnjenje"
+msgstr[1] "<strong>{0}</strong> tyźeńskej ześěgnjeni"
+msgstr[2] "<strong>{0}</strong> tyźeńske ześěgnjenja"
+msgstr[3] "<strong>{0}</strong> tyźeńskich ześěgnjenjow"
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3245,16 +2617,16 @@ msgid "Operating system and build environment requirements."
 msgstr "Źěłowy system a pominanja twórjeńskeje wokoliny."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
-"emphasis\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
+"\">npm</span> version used)."
 msgstr ""
 "Drobnostki (inkluziwnje trěbnu wersiju a instalaciske instrukcije) programow, kótarež se w twórjeńskim procesu wužywaju (na pśikład: wužyta wersija <span class=\"tech-emphasis\">node</span> a <span "
 "class=\"tech-emphasis\">npm</span>)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
-"<span class=\"instruction-emphasis\">Glědajśo:</span> Žrědłowe dataje (mimo bibliotekow wótwórjonego žrědła tśeśich póbitowarjow) njedaju se transkompilěrowaś, zamazaś, pómjeńšyś abo na drugu wašnju"
-" pśez mnašinu napóraś."
+"<span class=\"instruction-emphasis\">Glědajśo:</span> Žrědłowe dataje (mimo bibliotekow wótwórjonego žrědła tśeśich póbitowarjow) njedaju se transkompilěrowaś, zamazaś, pómjeńšyś abo na drugu "
+"wašnju pśez mnašinu napóraś."
 
 msgid "How to Submit:"
 msgstr "Kak zapódaś:"
@@ -3367,8 +2739,8 @@ msgstr "JWT-kluc"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
-"href=\"%(docs_url)s\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
+"\">API documentation</a>."
 msgstr ""
 "Aby API-napšašowanja stajił, pósćelśo <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> ako awtorizěrowańsku głowu. Musyśo JWT za kužde napšašowanje twóriś, ako se to w<a href=\"%(docs_url)s\">API-"
 "dokumentaciji</a> wujasnjujo."
@@ -3406,6 +2778,10 @@ msgstr "Waš dodank njepokažo se w pytańskich wuslědkach, a jogo lisćinowy b
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Napórany:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "Slědna aktualizacija:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -3454,6 +2830,9 @@ msgstr "Pśeglědowański bok za nalicone dodanki"
 msgid "Unlisted Review Page"
 msgstr "Pśeglědowański bok za njenalicone dodanki"
 
+msgid "Admin Manage"
+msgstr "Zastojanje administratora"
+
 msgid "View Statistics Dashboard"
 msgstr "Pśeglěd statistiki pokazaś"
 
@@ -3468,6 +2847,9 @@ msgstr "Pšosba wó informacije hyšći felujo:"
 
 msgid "This request for information has been resolved"
 msgstr "Toś ta pšosba wó informacije jo se rozwězała"
+
+msgid "License"
+msgstr "Licenca"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Pšosym wubjeŕśo licencu, kótaryž jo pśigódna za pšawa, kótarež dajośo za swój žrědłowy kod. To jo jano za nalicone dodanki relewantne."
@@ -3492,12 +2874,18 @@ msgstr[1] "Wubjeŕśo <b>až do {0}</b> kategorijowu nałoženja {1} za toś ten
 msgstr[2] "Wubjeŕśo <b>až do {0}</b> kategorijow nałoženja {1} za toś ten dodank:"
 msgstr[3] "Wubjeŕśo <b>až do {0}</b> kategorijow nałoženja {1} za toś ten dodank:"
 
+msgid "End-User License Agreement"
+msgstr "Licencne dojadnanje za kóńcne wužywarje"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
 "Wuyiwarje muse slědujuce licencne dojadnanje za kóńcne wužywarje (EULA) akceptěrowaś, nježli až mógu waš dodank instalěrowaś. EULA ma rozsudny wliw na licbu ześěgnjenjow dodanka. Pšosym źiwajśo na "
 "to, až EULA jo něco druge ako kodowa licenca, ako na pśikład GPL abo MPL. Jo jano za nalicone dodanki wažne."
+
+msgid "Privacy Policy"
+msgstr "Pšawidła priwatnosći"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr "Jolic waš dodank pśenosujo daty z licadła wužywarja, su pšawidła priwatnosći trěbne, kótarež wujasnjaju, kótare daty se sćelu a kak se wužywaju. To jo jano za nalicone dodanki relewantne."
@@ -3567,6 +2955,9 @@ msgstr "Znjewužywanje wikoweje marki k wěsći daś"
 
 msgid "Legal Notices"
 msgstr "Pšawniske informacije"
+
+msgid "Contribute"
+msgstr "Pósćiś"
 
 msgid "Review Add-ons"
 msgstr "Dodanki pśeglědowaś"
@@ -3670,8 +3061,8 @@ msgstr "Firefox pśiměriś"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
-"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
+"%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Dodanki zmóžnjaju milionam wužywarjow Firefox jich pśeglědowańske dožywjenje pólěpšyś. Jolic se w %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s a "
 "%(css_link_open)sCSS%(link_close)s wuznawaśo, maśo južo trěbne znajobnosći, aby wjelicny dodank wuwijał."
@@ -3781,6 +3172,9 @@ msgstr "0 datajow"
 
 msgid "Re-enable Version"
 msgstr "Wersiju zasej zmóžniś"
+
+msgid "Review History"
+msgstr "Historija pógódnośenjow"
 
 msgid "Close Review History"
 msgstr "Historiju pśeglědanjow zacyniś"
@@ -5319,6 +4713,9 @@ msgstr "Datajowe wopśimjeśe njepódpěra se za syntaksowe wuzwignjenje"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "Wudaśe móžo zmólki wopśimowaś, pšosym buźćo wobglědniwy a %(link_start)sdajśo problem%(link_end)s něd k wěsći!"
 
+msgid "close"
+msgstr "zacyniś"
+
 msgid "Go"
 msgstr "Start"
 
@@ -5372,102 +4769,6 @@ msgstr "Žedne dataje w nagratej dataji."
 
 msgid "Fetching file."
 msgstr "Dataja se wótwołujo."
-
-msgid "Shopping Made Easy"
-msgstr "Nakupowanje lažko cynjone"
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr "Žaŕśo na swójich woblubowanych zapiskach direktnje z wobglědowaka."
-
-msgid "Build the perfect website"
-msgstr "Napórajśo perfektne websedło"
-
-msgid "First time with Add-ons?"
-msgstr "Su dodanki nowe za was?"
-
-msgid "Not to worry, here are three to get started."
-msgstr "Njestarajśo se, how su tśi za zachopjeńk."
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr "Pśełožćo wopśimjeśe weba z a do wěcej ako 40 rěcow."
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr "Zwězajśo se lažko ze swójimi socialnymi seśami a źělśo abo komentěrujśo bok, ku kótaremuž se woglědujośo."
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "Malsny pśeglěd za pśirownowanje płaśiznow, gaž online nakupujośo abo za lětami pytaśo."
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Drastwy k dnju Swětego Patricka"
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Pyšniśo swój wobglědowak, aby źeń Swj. Patricka swěśił."
-
-msgid "A+ add-ons for School"
-msgstr "Dodanki 1+ za šulu"
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "Dodanki za wucabniki, starše a studenty, kótarež zasej do šule chojźe."
-
-msgid "Would you like to know which websites you can trust?"
-msgstr "Cośo wěźeś, kótarymž websedłam móžośo dowěriś?"
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks jo dodank numer 1 za cytańske znamjenja."
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr "Pśełožowak webbokow a tekstow, słownik a wěcej!"
-
-msgid "Love is in the Air"
-msgstr "Lubosć jo w pówětšu"
-
-msgid "Add some romance to your Firefox."
-msgstr "Pśidajśo swójomu Firefox pitśku romantiki."
-
-msgid "Get up and move!"
-msgstr "Stańśo a gibniśo se!"
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Instalěrujśo toś te fitnesowe dodanki, aby se aktiwny a strowy źaržał."
-
-msgid "New &amp; Now"
-msgstr "Nowy a něnto"
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr "Wobstarajśo se nejnowše dodanki, kótarež musyśo měś."
-
-msgid "Worry-free browsing"
-msgstr "Pśeglědowanje bźez starosćow"
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Šćitajśo swóju priwatnosć online z dodankami w toś tej zběrce."
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "Wjelicne dodanki za źěło, wjaselo, priwatnosć, produktiwnosć&hellip; za pśisamem wšykno!"
-
-msgid "Games!"
-msgstr "Graśa!"
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr "Pśidajśo wašomu Firefox wěcej wjasela. Grajśo dwanastki graśow direktnje ze swójogo wobglědowaka — puzzle, klasiske arkadowe graśa, actiongraśa a wěcej!"
-
-msgid "Must-Have Media"
-msgstr "Medijowe dodanki, kótarež dejśo měś"
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Cyńśo lěpše fota wobrazowki, pólěpšćo swóje wideodožywjenje online, wukniśo skóńcnje, kak se GIF-wobraze napóraju a dalšne wjelicne medijowe rědy."
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Wuběrk mjaseca Mozilla!"
-
-msgid "Become a Test Pilot"
-msgstr "Buźćo testowy pilot"
-
-msgid "Unlock early access to experimental browser features."
-msgstr "Dowólśo rany pśistup k eksperimentelnym funkcijam wobglědowaka."
-
-msgid "Get Started"
-msgstr "Prědne kšace"
 
 msgid "Reported Status"
 msgstr "Pśizjawjony status"
@@ -5565,7 +4866,8 @@ msgstr ""
 "kodoweju kwalitu a stabilnosću."
 
 #, python-format
-msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid ""
+"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Pomagajśo toś to websedło pólěpšaś. Jo wótwórjone žrědło a móžośo rozpšawy wó programowych zmólkach pisaś a dopórěźanja zapódaś. <a href=\"%(url)s\">GitHub</a> wopśimujo wšykne aktualne rozpšawy wó "
 "programowych zmólkach, zestarjone móžośo hyšći w Bugzilla namakaś."
@@ -5600,6 +4902,9 @@ msgstr "Chto źěła na toś tom websedle?"
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr "Za lěta jo wjele luźi k toś tomu websedłoju pśinosowało, dobrowólniki ze zgromaźeństwa ako teke AMO-team."
 
+msgid "Review Guidelines"
+msgstr "Pógódnośeńske směrnice"
+
 msgid "Sections"
 msgstr "Wótrězki"
 
@@ -5610,8 +4915,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Ceste pšašanja wó pógódnośenjach"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
-" with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
+"comply with these guidelines."
 msgstr ""
 "Pógódnośenja wó dodankach su móžnosć za was, waše měnjenja wó dodankach k wěsći daś, kótarež sćo zainstalěrował a wužywał. Naš moderaciski team za pógódnośenja wuměnja sebje pšawa, pógódnośenja "
 "wótpokazaś abo wótpóraś, kótarež njewótpowěduju toś tym směrnicam."
@@ -5656,8 +4961,8 @@ msgid ""
 "Post technical issues, support requests, or feature suggestions. Use the available support options for each add-on, if available. You can find them in the side column next to the About this Add-on "
 "section."
 msgstr ""
-"Njepišćo wó techniskich problemach, njepšosćo wó pomoc a njenaraźćo nowe funkcije. Wužywajśo k dispoziciji stojece móžnosći pomocy kuždego dodanka. Móžośo je w słupje na pšawej kšomje pódla wótrězka"
-" „Wó toś tom dodanku“ namakaś."
+"Njepišćo wó techniskich problemach, njepšosćo wó pomoc a njenaraźćo nowe funkcije. Wužywajśo k dispoziciji stojece móžnosći pomocy kuždego dodanka. Móžośo je w słupje na pšawej kšomje pódla "
+"wótrězka „Wó toś tom dodanku“ namakaś."
 
 msgid "Write reviews for add-ons which you have not personally used."
 msgstr "Njepišćo pógódnośenja za dodanki, kótarež njejsćo sam wužył."
@@ -5779,17 +5084,20 @@ msgstr "Pógódnośenje za {0} pśidaś"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
-"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
-"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
-"Guidelines</a> for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
+"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
+"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
+"for more detail about user add-on reviews.</p>"
 msgstr ""
 "<h2>Spomnjejśo toś te pokaze:</h2> <ul> <li> Pišćo tak, ako by wy pśijaśeloju swóje nazgónjenja z dodankom wulicował. Pódajśo specifiske a wužytne drobnostki, ako na pśikład kótare funkcije se wam "
 "spódobaju a/abo njespódobaju, kak lažko dajo se wužywaś a kótare njelěpšyny ma. Njewužywajśo powšyknu rěc, ako na pśikład „Wjelicne“ abo „Špatne“, snaźkuli móžośo pśicyny pódaś, cogoždla tomu tak "
 "jo. </li> <li> Pšosym njesćelćo how rozpšawy wó programowych zmólkach. Njestajamy wuwijarjam dodankow wašu e-mailowy adresu k dispoziciji, tak až njemógu se z wami do zwiska stajiś, aby waš problem "
 "rozwězali. Glejśo <a href=\"%(support)s\">wótrězk pomocy</a>, zoś togo dodanka, aby pódpěru za toś ten dodank dostał. Móžośo teke <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">dodankowe zgromaźeństwo</a> wó pomoc pšosyś. </li> <li>Pšosym źaržćo pógódnośenja cyste, njewužywajśo njepśigódnu rěc a njesćelśo wósobinske daty. </li> </ul> <p> Pšosym cytajśo <a "
-"href=\"%(guide)s\">Pógódnośeńske směrnice</a> za dalšne drobnostki wó wužywarskich pógódnośenjach dodankow.</p>"
+"support\">dodankowe zgromaźeństwo</a> wó pomoc pšosyś. </li> <li>Pšosym źaržćo pógódnośenja cyste, njewužywajśo njepśigódnu rěc a njesćelśo wósobinske daty. </li> </ul> <p> Pšosym cytajśo <a href="
+"\"%(guide)s\">Pógódnośeńske směrnice</a> za dalšne drobnostki wó wužywarskich pógódnośenjach dodankow.</p>"
+
+msgid "Submit review"
+msgstr "Pógódnośenje wótpósłaś"
 
 msgid "Reply to review by {0}"
 msgstr "Na pógódnośenje wót {0} wótegroniś"
@@ -5811,6 +5119,13 @@ msgstr "Wubjeŕśo pšosym pśicynu:"
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "wót %(user)s <b>(wuwijaŕ)</b> %(date)s"
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr "wót %(user)s dnja %(date)s"
+
+msgid "permalink"
+msgstr "trajny wótkaz"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -5888,6 +5203,9 @@ msgstr "Napišćo nowe pógódnośenje"
 
 msgid "Be the first to write a review."
 msgstr "Buźćo prědny, kótaryž pišo pógódnośenje."
+
+msgid "This add-on has not yet been reviewed."
+msgstr "Toś ten dodank hyšći njejo se pógódnił."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5988,6 +5306,9 @@ msgstr "¨Wopśimjeśe musy se wót administratora pśeglědowaś"
 msgid "Needs Admin Static Theme Review"
 msgstr "Statiska drastwa musy se wót administratora pśeglědowaś"
 
+msgid "Requires Restart"
+msgstr "Trjeba znowegostartowanje"
+
 msgid "More Information Requested"
 msgstr "Dalšne informacije pominane"
 
@@ -5999,6 +5320,9 @@ msgstr "Pódane žredła"
 
 msgid "WebExtension"
 msgstr "WebExtension"
+
+msgid "Risk breakdown not available."
+msgstr ""
 
 msgid "Is locked by a reviewer."
 msgstr "Jo wót pśeglědowarja zastajony."
@@ -6102,14 +5426,9 @@ msgstr "Wopśimjeśe pśizwóliś"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "To wašo pśizwólenje wopśimjeśe nejnowšeje zjawneje wersije registrěrujo, mimo aby se wuwijaŕ informěrował."
 
-msgid "Static Themes and Legacy Add-ons"
-msgstr "Statiske drastwy a zestarjone dodanki"
-
-msgid "Static Themes"
-msgstr "Statiske drastwy"
-
-msgid "Legacy Add-ons"
-msgstr "Zesttarjone dodanki"
+#, fuzzy
+msgid "Pre-Approval Add-ons"
+msgstr "Awtomatiski pśizwólone dodanki"
 
 msgid "New ({0})"
 msgstr "Nowy ({0})"
@@ -6122,9 +5441,6 @@ msgstr "Protokol pśeglědanjow"
 
 msgid "Add-on Review Guide"
 msgstr "Rozpokazanje za pśeglědowanje dodankow"
-
-msgid "Theme Review Guide"
-msgstr "Rozpokazanje za seglědowanje drastwow"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Awtomatiski pśizwólone dodanki"
@@ -6147,6 +5463,9 @@ msgstr[0] "Pśeglědanje wopśimjeśa ({0})"
 msgstr[1] "Pśeglědani wopśimjeśa ({0})"
 msgstr[2] "Pśeglědanja wopśimjeśa ({0})"
 msgstr[3] "Pśeglědanjow wopśimjeśa ({0})"
+
+msgid "Theme Review Guide"
+msgstr "Rozpokazanje za seglědowanje drastwow"
 
 msgid "User Ratings Moderation"
 msgstr "Moderacija wužywarskich pógódnośenjow"
@@ -6199,13 +5518,16 @@ msgstr "{addon} :: Znjewužywańske rozpšawy"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Znjewužywańske rozpšawy za {addon} a jogo wuwijarje ({num})"
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "Dodankowe informacije za {0}"
+
 msgid "Add-on ID"
 msgstr "ID dodanka"
 
 msgid "Internal AMO ID"
 msgstr "Nutśkowny ID AMO"
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "Funkcioněrujo z"
 
@@ -6229,6 +5551,9 @@ msgstr "Płaśenje trěbne"
 
 msgid "EULA"
 msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr "Licencne dojadnanje za kóńcne wužywarje pokazaś"
 
 msgid "Last Approval Date"
 msgstr "Datum slědnego pśizwólenja"
@@ -6425,6 +5750,9 @@ msgstr "Wuwijaŕ jo žrědłowy kod k dispoziciji stajił."
 
 msgid "Weight:"
 msgstr "Wažnosć:"
+
+msgid "Download"
+msgstr "Ześěgnuś"
 
 msgid "Not Auto Approved Because"
 msgstr "Njejo awtomatiski pśizwólony, dokulaž"
@@ -6672,6 +6000,9 @@ msgstr "Pśeglěd"
 msgid "by Source"
 msgstr "pó žrědle"
 
+msgid "Daily Users"
+msgstr "Wšedne wužywarje"
+
 msgid "by Add-on Version"
 msgstr "pó dodankowej wersiji"
 
@@ -6786,8 +6117,8 @@ msgid ""
 "<h2>How are downloads counted?</h2> <p> Download counts are updated every evening and only include original add-on downloads, not updates. Downloads can be broken down by the specific source "
 "referring the download. </p>"
 msgstr ""
-"<h2>Kak se ześěgnjenja lice?</h2> <p> Ześěgnjeńske licby aktualizěruju se kuždy wjacor a wopśimuju jano originalne ześěgnjenja dodanki, žedne aktualizacije. Ześěgnjenja daju se pó jadnotliwem žrědle"
-" rozdźěliś, na kótarež se ześěgnjenja póśěgaju.</p>"
+"<h2>Kak se ześěgnjenja lice?</h2> <p> Ześěgnjeńske licby aktualizěruju se kuždy wjacor a wopśimuju jano originalne ześěgnjenja dodanki, žedne aktualizacije. Ześěgnjenja daju se pó jadnotliwem "
+"žrědle rozdźěliś, na kótarež se ześěgnjenja póśěgaju.</p>"
 
 msgid "User languages by Date"
 msgstr "Wužywarske rěcy pó datumje"
@@ -6830,18 +6161,17 @@ msgstr "Wó slědowanju eksternych žrědłow..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
-" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
-"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
-"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
-"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
+"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
+"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
+"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
+"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Slědowanje eksternych žrědłow</h2> <p> Jolic pokazujośo k bokoju drobnostkow swójogo dodanka abo direktnje k jogo dataji na eksternem sedle, ako na pśikład k wašomu blogoju abo websedłoju, "
 "móžośo parameter pśipowjesyś, aby se to ako pśidatne ześěgnjeńske žrědło na toś tom boku slědowało. Slědujuce wótkaze na pśikład by se w žrědłowem koźe wašogo bloga pokazowali: <dl> <dt>Bok "
-"drobnostkow dodanka</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direktny datajowy wótkaz</dt> "
-"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Jano parametry „src“, kótarež zachopinaju se z „external-“, se slědujo, až k 61 "
-"dalšnym znamuškam. Tekst za „external-“ dajo se wužywaś, aby žrědło wopisował, na pśikład „external-blog“, „external-sidebar“, „external-campaign 225“ atd. Slědujuce znamuška, kótarež su wěste "
-"znamuška za URL, su dowólone: <code>a-z A-Z -._~ %% +</code>"
+"drobnostkow dodanka</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direktny datajowy wótkaz</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-"
+"%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p>Jano parametry „src“, kótarež zachopinaju se z „external-“, se slědujo, až k 61 dalšnym znamuškam. Tekst za „external-“ dajo se wužywaś, aby "
+"žrědło wopisował, na pśikład „external-blog“, „external-sidebar“, „external-campaign 225“ atd. Slědujuce znamuška, kótarež su wěste znamuška za URL, su dowólone: <code>a-z A-Z -._~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Status dodanka pó datumje"
@@ -6856,15 +6186,15 @@ msgid ""
 "<h2>What are daily users?</h2> <p> Themes installed from this site check for updates once per day. The total number of these update pings is known as Active Daily Users, or the total number of "
 "people using your theme by day. </p>"
 msgstr ""
-"<h2>Co su wšedne wužywarje?</h2> <p> Drastwy, kótarež su se wót toś togo sedła instalěrowali, pytaju jaden raz wob źeń za aktualizacijami. Cełkowna licba toś tych aktualizěrowańskich pingow groni se"
-" „Aktiwne wšedne wužywarje“, abo cełkowna licba luźi, kótarež wužywaju wašu drastwu kuždy źeń. </p>"
+"<h2>Co su wšedne wužywarje?</h2> <p> Drastwy, kótarež su se wót toś togo sedła instalěrowali, pytaju jaden raz wob źeń za aktualizacijami. Cełkowna licba toś tych aktualizěrowańskich pingow groni "
+"se „Aktiwne wšedne wužywarje“, abo cełkowna licba luźi, kótarež wužywaju wašu drastwu kuždy źeń. </p>"
 
 msgid ""
 "<h2>What are daily users?</h2> <p> Add-ons downloaded from this site check for updates once per day. The total number of these update pings is known as Active Daily Users. Daily users can be broken "
 "down by add-on version, operating system, add-on status, application, and locale. </p>"
 msgstr ""
-"<h2>Co su wšdnei wuyiwarje?</h2> <p> Dodanki, kótarež su se wót toś togo sedła ześěgnuli, pytaju jaden raz wob źeń za aktualizacijami. Cełkowna licba toś tych aktualizěrowańskich pingow jo znata ako"
-" „Aktiwne wšedne wužywarje“. Wšedni wužywarje daju se pó dodankowej wersiji, źěłowem systemje, dodankowem statusu, nałoženju a rěcy rozklucyś. </p>"
+"<h2>Co su wšdnei wuyiwarje?</h2> <p> Dodanki, kótarež su se wót toś togo sedła ześěgnuli, pytaju jaden raz wob źeń za aktualizacijami. Cełkowna licba toś tych aktualizěrowańskich pingow jo znata "
+"ako „Aktiwne wšedne wužywarje“. Wšedni wužywarje daju se pó dodankowej wersiji, źěłowem systemje, dodankowem statusu, nałoženju a rěcy rozklucyś. </p>"
 
 msgid "Application versions by Date"
 msgstr "Nałožeńske wersije pó datumje"
@@ -6877,9 +6207,6 @@ msgstr "Slědk k dodankam"
 
 msgid "Footer logo"
 msgstr "Logo nogi"
-
-msgid "Choose a category"
-msgstr "Wubjeŕśo kategoriju"
 
 msgid "The new website supports mobile and desktop clients"
 msgstr "Nowe websedło mobilne a desktopowe klienty pódpěra"
@@ -6996,6 +6323,9 @@ msgstr "Wubrane wužywarje wugnaś"
 msgid "Profile Photo"
 msgstr "Profilowe foto"
 
+msgid "Collections"
+msgstr "Zběrki"
+
 msgid "Addons"
 msgstr "Dodanki"
 
@@ -7072,52 +6402,19 @@ msgstr "Njejsmy mógli waš abonement wótskazaś"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-"Bóžko njejsmy mógli waš abonement wótskazaś. Wótkaz, na kótaryž sćo kliknuł, jo njepłaśiwy. Móžośo pak město togo swój abonement na swójom <a href=\"%(edit_url)s\">profilowem wobźěłowańskem boku</a>"
-" wótskazaś."
+"Bóžko njejsmy mógli waš abonement wótskazaś. Wótkaz, na kótaryž sćo kliknuł, jo njepłaśiwy. Móžośo pak město togo swój abonement na swójom <a href=\"%(edit_url)s\">profilowem wobźěłowańskem boku</"
+"a> wótskazaś."
+
+#, python-format
+msgid "by %(users)s"
+msgstr "wót %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"
 msgstr "druge"
 
-#, python-format
-msgid "%s Version History"
-msgstr "Wersijowa historija %s"
-
-msgid "Version History with Changelogs"
-msgstr "Wersijowa historija ze změnowymi protokolami"
-
 msgid "{app} {min} and later"
 msgstr "{app} {min} a nowšymi"
-
-msgid "Permanent link to this version"
-msgstr "Trajny wótkaz k toś tej wersiji"
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr "Wózjawjony: {0}"
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Žrědłowy kod jo se pód slědujuceju licencu wózjawił: <a href=\"%(url)s\">%(name)s</a>"
-
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr "Wersijowa historija {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> wersija"
-msgstr[1] "<b>{0}</b> wersiji"
-msgstr[2] "<b>{0}</b> wersije"
-msgstr[3] "<b>{0}</b> wersijow"
-
-msgid "Be careful with old versions!"
-msgstr "Buźćo wobglědniwy ze starymi wersijami!"
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "Toś te wersije pokazuju se za referencne a testowańske zaměry. Wužywajśo pśecej <a href=\"%(url)s\">nejnowšu wersiju</a> dodanka."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Wulašowane wersije njedaju změniś."

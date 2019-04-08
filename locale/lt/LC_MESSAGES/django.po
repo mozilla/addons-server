@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
 "PO-Revision-Date: 2017-08-10 14:20+0000\n"
 "Last-Translator: Paulius <paulius@mozilla.lt>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,10 @@ msgstr ""
 
 msgid "This display name cannot be used."
 msgstr ""
+
+#, fuzzy
+msgid "This reviewer name cannot be used."
+msgstr "„{0}“ yra rezervuota gairė ir negali būti naudojama."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -78,27 +82,6 @@ msgstr ""
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-msgid "Download Now"
-msgstr "Parsisiųsti"
-
-msgid "Download"
-msgstr "Siųstis"
-
-msgid "Featured"
-msgstr "Rekomenduojamas"
-
-#, fuzzy
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "Neperžiūrėtas"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr ""
-
-msgid "Add to {0}"
-msgstr "Pridėti į {0}"
-
 msgid "Listed"
 msgstr "Išvardinta"
 
@@ -108,152 +91,6 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-msgid "Abuse reported."
-msgstr "Pranešta apie piktnaudžiavimą."
-
-msgid "No compatible versions"
-msgstr "Jokių suderinamų versijų"
-
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "skirta {0}"
-
-msgid "View privacy policy"
-msgstr "Peržiūrėti privatumo nuostatus"
-
-msgid "View End-User License Agreement"
-msgstr ""
-
-#, fuzzy
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Autorius pašalino šį priedą."
-
-#, fuzzy
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "Autorius pašalino šį priedą."
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "Galutinio naudotojo licencijos sutikimas (EULA), skirtas {0}"
-
-msgid "End-User License Agreement"
-msgstr "Galutinio naudotojo licencijos sutikimas (EULA)"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s prašo, kad sutiktumėte su toliau pateikiama galutinio naudotojo licencija prieš pradedant diegimą:"
-
-msgid "Back to {0}…"
-msgstr "Grįžti į {0}…"
-
-msgid "Add-ons for {0}"
-msgstr "Priedai, skirti {0}"
-
-msgid "Featured Extensions"
-msgstr "Rekomenduojami plėtiniai"
-
-msgid "Popular Extensions"
-msgstr "Populiarūs plėtiniai"
-
-msgid "Most Popular"
-msgstr "Populiariausi"
-
-msgid "All »"
-msgstr "Visi"
-
-msgid "See all »"
-msgstr "Rodyti visus »"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "Up &amp; Coming plėtiniai"
-
-msgid "Featured Themes"
-msgstr ""
-
-msgid "Sort by:"
-msgstr "Rušiuoti pagal:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "Atnaujinta {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "Pridėta {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s parsisiuntimas per savaitę"
-msgstr[1] "%(num)s parsisiuntimai per savaitę"
-msgstr[2] "%(num)s parsisiuntimų per savaitę"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s naudotojas"
-msgstr[1] "%(num)s naudotojai"
-msgstr[2] "%(num)s naudotojų"
-
-msgid "Requires Restart"
-msgstr ""
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
-
-msgid "Compatible with Firefox 57+"
-msgstr ""
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} parsisiuntimas per savaitę"
-msgstr[1] "{0} parsisiuntimai per savaitę"
-msgstr[2] "{0} parsisiuntimų per savaitę"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0} naudotojas"
-msgstr[1] "{0} naudotojai"
-msgstr[2] "{0} naudotojų"
-
-msgid "by"
-msgstr "sukūrė"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr ""
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr ""
-
-msgid "More by this Artist"
-msgstr "Daugiau  šio kūrėjo darbų"
-
-msgid "See all Themes by this Artist"
-msgstr ""
-
-msgid "Categories"
-msgstr "Kategorijos"
-
-msgid "Updated"
-msgstr "Atnaujinta"
-
-msgid "Artist"
-msgstr "Kūrėjas"
-
-msgid "Rating"
-msgstr ""
-
-msgid "Daily Users"
-msgstr "Kasdienių naudotojų"
-
-msgid "License"
-msgstr "Licencija"
-
 msgid "Awaiting Review"
 msgstr ""
 
@@ -262,6 +99,9 @@ msgstr ""
 
 msgid "Approved"
 msgstr ""
+
+msgid "Added {0}"
+msgstr "Pridėta {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -290,6 +130,9 @@ msgstr "Dar neįvertintas"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> naudotojų"
 
+msgid "by"
+msgstr "sukūrė"
+
 #. {0} is the number of users.
 #, fuzzy
 msgid "{0} Daily User"
@@ -298,253 +141,8 @@ msgstr[0] "Kasdienių naudotojų"
 msgstr[1] "Kasdienių naudotojų"
 msgstr[2] "Kasdienių naudotojų"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "{0} privatumo politika"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "Privatumo politika"
-
-msgid "Report Abuse"
-msgstr "Pranešti apie piktnaudžiavimą"
-
-#, fuzzy, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"Jeigu įtariate, kad šis priedas pažeidžia <a href=\"%(url)s\">mūsų taisykles</a> arba turi saugumo ar privatumo problemų, prašome pranešti apie savo susirūpinimą naudojantis žemiau esančia forma. "
-"Prašome nenaudoti jos jokiems kitiems dalykams."
-
-msgid "Send Report"
-msgstr "Siųsti pranešimą"
-
-msgid "or"
-msgstr "arba"
-
-msgid "Cancel"
-msgstr ""
-
-msgid "What do you think?"
-msgstr ""
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr ""
-
-msgid "Review:"
-msgstr ""
-
-msgid "Rating:"
-msgstr ""
-
-msgid "Submit review"
-msgstr ""
-
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-
-msgid "Review Guidelines"
-msgstr ""
-
-msgid "Reviews"
-msgstr ""
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr ""
-
-msgid "Show the developer's reply to this review"
-msgstr ""
-
-#, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Tags"
-msgstr ""
-
-msgid "Icon for {0}"
-msgstr ""
-
-#, python-format
-msgid "by %(users)s"
-msgstr "sukūrė %(users)s"
-
-msgid "Download Anyway"
-msgstr ""
-
-msgid "[Warning]"
-msgstr ""
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Versijos"
-
-#, fuzzy
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "Autorius pašalino šį priedą."
-
-msgid "Average"
-msgstr ""
-
-msgid "Write a review"
-msgstr ""
-
-msgid "Related Categories"
-msgstr ""
-
-#, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Kiti priedai, kuriuos sukūrė %(author)s"
-msgstr[1] "Kiti šių autorių priedai"
-msgstr[2] "Kiti šių autorių priedai"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "View statistics"
-msgstr ""
-
-msgid "Manage"
-msgstr ""
-
-#, fuzzy
-msgid "Add-on Review"
-msgstr "Neperžiūrėtas"
-
-msgid "Admin Manage"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr ""
-
-msgid "Contribute"
-msgstr "Paaukoti"
-
-msgid "Enjoy this add-on?"
-msgstr ""
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Šio priedo kūrėjas prašo padėti užtikrinti tolimesnį jo plėtojimą paremiant nedidele auka."
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr ""
-
-msgid "Add-on home page"
-msgstr ""
-
-msgid "Support site"
-msgstr ""
-
-msgid "Support E-mail"
-msgstr ""
-
-msgid "Info"
-msgstr ""
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr ""
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
-
-msgid "Custom License"
-msgstr ""
-
-msgid "About this Add-on"
-msgstr ""
-
-msgid "Developer’s Comments"
-msgstr ""
-
-msgid "Version Information"
-msgstr ""
-
-msgid "See complete version history"
-msgstr ""
-
-msgid "close"
-msgstr ""
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
-msgstr ""
-
-#. This is a header of a list of things the add-on can do.
-#, fuzzy
-msgid "This add-on can:"
-msgstr "Autorius pašalino šį priedą."
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
-
-msgid "This add-on has been removed by its author."
-msgstr "Autorius pašalino šį priedą."
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "Administratorius apribojo šį priedą"
-
-msgid "Source Code License for {addon}"
-msgstr ""
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr ""
-
-msgid "support section"
-msgstr ""
-
-msgid "support email"
-msgstr ""
-
-msgid "permalink"
-msgstr ""
-
-#, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "This add-on has not yet been reviewed."
-msgstr ""
-
-msgid "Be the first!"
-msgstr ""
-
-msgid "No results found."
-msgstr ""
-
-msgid "{0} users"
-msgstr ""
+msgid "Sort by:"
+msgstr "Rušiuoti pagal:"
 
 msgid "More"
 msgstr ""
@@ -554,35 +152,6 @@ msgstr ""
 
 msgid "My Themes"
 msgstr ""
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr " Priedo {0} indormacija"
-
-msgid "Edit Theme"
-msgstr "Keisti grafinį apvalkalą"
-
-msgid "Approve / Reject"
-msgstr "Patvirtinti / atmesti"
-
-msgid "Review History"
-msgstr "Apžvalgų žurnalas"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr ""
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr ""
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Not Reviewed"
-msgstr "Neperžiūrėtas"
 
 msgid "Tools"
 msgstr "Priemonės"
@@ -753,14 +322,23 @@ msgid ""
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
 
+msgid "Most Popular"
+msgstr "Populiariausi"
+
 msgid "Top Rated"
 msgstr ""
 
 msgid "Newest"
 msgstr "Naujausi"
 
+msgid "Featured"
+msgstr "Rekomenduojamas"
+
 msgid "Explore"
 msgstr "Atraskite"
+
+msgid "Categories"
+msgstr "Kategorijos"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -782,14 +360,14 @@ msgstr ""
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr ""
 
-msgid "Collections"
-msgstr "Rinkiniai"
-
-msgid "Dictionaries & Language Packs"
-msgstr ""
+msgid "Add-ons for {0}"
+msgstr "Priedai, skirti {0}"
 
 msgid "Add-ons"
 msgstr "Priedai"
+
+msgid "Custom License"
+msgstr ""
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -892,262 +470,6 @@ msgid "This custom URL cannot be used."
 msgstr "„{0}“ yra rezervuota gairė ir negali būti naudojama."
 
 msgid "This add-on already belongs to the collection"
-msgstr ""
-
-msgid "Extensions"
-msgstr "Plėtiniai"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr ""
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Temos"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr ""
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr ""
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr ""
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr ""
-
-msgid "Search tools and search-related extensions"
-msgstr ""
-
-msgid "Search tools"
-msgstr ""
-
-msgid "Search Tools"
-msgstr "Paieškos priemonės"
-
-msgid "Most Users"
-msgstr ""
-
-msgid "Name"
-msgstr ""
-
-msgid "Weekly Downloads"
-msgstr "Atsiuntimai per savaitę"
-
-msgid "Recently Updated"
-msgstr "Neseniai atnaujintas"
-
-msgid "Up & Coming"
-msgstr ""
-
-msgid "Recently Added"
-msgstr "Neseniai pridėtas"
-
-msgid "Created"
-msgstr ""
-
-msgid "Downloads"
-msgstr ""
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr ""
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr ""
-
-msgid "Subscribe"
-msgstr ""
-
-msgid "Featured Add-ons"
-msgstr ""
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr ""
-
-msgid "Install Dictionary"
-msgstr ""
-
-msgid "Install Language Pack"
-msgstr ""
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
-msgstr ""
-
-msgid "Available in your locale"
-msgstr ""
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr ""
-
-msgid "Language"
-msgstr ""
-
-msgid "Dictionary"
-msgstr ""
-
-msgid "Language Pack"
-msgstr ""
-
-msgid "All locales"
-msgstr ""
-
-msgid "List of language packs and dictionaries."
-msgstr ""
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr ""
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Search Extensions"
-msgstr ""
-
-msgid "Add search-related functionality to Firefox"
-msgstr ""
-
-msgid "Search Providers"
-msgstr ""
-
-msgid "Find new providers for your search bar"
-msgstr ""
-
-msgid "Additional Resources"
-msgstr ""
-
-#. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr ""
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
-
-msgid "Most Popular Extensions"
-msgstr ""
-
-msgid "Top-Rated Extensions"
-msgstr ""
-
-msgid "Newest Extensions"
-msgstr ""
-
-msgid "Extensions by Name"
-msgstr ""
-
-msgid "Extensions by Weekly Downloads"
-msgstr ""
-
-msgid "Recently Updated Extensions"
-msgstr ""
-
-msgid "Up & Coming Extensions"
-msgstr ""
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr ""
-
-msgid "Most Popular Complete Themes"
-msgstr ""
-
-msgid "Top-Rated Complete Themes"
-msgstr ""
-
-msgid "Newest Complete Themes"
-msgstr ""
-
-msgid "Complete Themes by Name"
-msgstr ""
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr ""
-
-msgid "Recently Updated Complete Themes"
-msgstr ""
-
-msgid "Up & Coming Complete Themes"
-msgstr ""
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "{0} Themes"
-msgstr ""
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr ""
-
-msgid "View Profile"
-msgstr ""
-
-msgid "Create Your Own Theme"
-msgstr ""
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
-
-msgid "Learn more"
-msgstr ""
-
-msgid "View All Recently Added"
-msgstr ""
-
-msgid "View All Most Popular"
-msgstr ""
-
-msgid "View All Top Rated"
-msgstr ""
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-
-msgid "Want more personalization?"
-msgstr ""
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-
-msgid "Up & Coming Themes"
-msgstr ""
-
-msgid "View All Up & Coming"
-msgstr ""
-
-msgid "No themes found"
 msgstr ""
 
 msgid "{addon} was created."
@@ -1528,6 +850,9 @@ msgstr ""
 msgid "Complete Theme"
 msgstr ""
 
+msgid "Dictionary"
+msgstr ""
+
 msgid "Search Engine"
 msgstr ""
 
@@ -1546,11 +871,17 @@ msgstr ""
 msgid "Theme (Static)"
 msgstr ""
 
+msgid "Extensions"
+msgstr "Plėtiniai"
+
 msgid "Complete Themes"
 msgstr ""
 
 msgid "Dictionaries"
 msgstr ""
+
+msgid "Search Tools"
+msgstr "Paieškos priemonės"
 
 msgid "Language Packs (Application)"
 msgstr ""
@@ -1560,6 +891,9 @@ msgstr ""
 
 msgid "Plugins"
 msgstr ""
+
+msgid "Themes"
+msgstr "Temos"
 
 msgid "Themes (Static)"
 msgstr ""
@@ -2256,6 +1590,21 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Updated"
+msgstr "Atnaujinta"
+
+msgid "Name"
+msgstr ""
+
+msgid "Created"
+msgstr ""
+
+msgid "Downloads"
+msgstr ""
+
+msgid "Rating"
+msgstr ""
+
 msgid "All My Add-ons"
 msgstr ""
 
@@ -2509,6 +1858,9 @@ msgstr ""
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr ""
 
+msgid "No results found."
+msgstr ""
+
 msgid "Refine Activity"
 msgstr ""
 
@@ -2557,8 +1909,21 @@ msgstr ""
 msgid "Save Changes"
 msgstr ""
 
+msgid "or"
+msgstr "arba"
+
+msgid "Cancel"
+msgstr ""
+
 msgid "Close"
 msgstr ""
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 msgid "Recent Activity"
 msgstr ""
@@ -2613,6 +1978,9 @@ msgstr ""
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Priedai, skirti {0}"
+
+msgid "Tags"
+msgstr ""
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -3016,6 +2384,13 @@ msgstr ""
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr ""
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3395,6 +2770,10 @@ msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr ""
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -3444,6 +2823,9 @@ msgstr "Neperžiūrėtas"
 msgid "Unlisted Review Page"
 msgstr ""
 
+msgid "Admin Manage"
+msgstr ""
+
 msgid "View Statistics Dashboard"
 msgstr ""
 
@@ -3458,6 +2840,9 @@ msgstr ""
 
 msgid "This request for information has been resolved"
 msgstr ""
+
+msgid "License"
+msgstr "Licencija"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3481,10 +2866,16 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
+msgid "End-User License Agreement"
+msgstr "Galutinio naudotojo licencijos sutikimas (EULA)"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Privatumo politika"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3558,6 +2949,9 @@ msgstr "Pranešti apie piktnaudžiavimą"
 
 msgid "Legal Notices"
 msgstr ""
+
+msgid "Contribute"
+msgstr "Paaukoti"
 
 #, fuzzy
 msgid "Review Add-ons"
@@ -3773,6 +3167,9 @@ msgstr ""
 
 msgid "Re-enable Version"
 msgstr ""
+
+msgid "Review History"
+msgstr "Apžvalgų žurnalas"
 
 #, fuzzy
 msgid "Close Review History"
@@ -5313,6 +4710,9 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+msgid "close"
+msgstr ""
+
 msgid "Go"
 msgstr ""
 
@@ -5365,102 +4765,6 @@ msgid "No files in the uploaded file."
 msgstr ""
 
 msgid "Fetching file."
-msgstr ""
-
-msgid "Shopping Made Easy"
-msgstr ""
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
-
-msgid "Build the perfect website"
-msgstr ""
-
-msgid "First time with Add-ons?"
-msgstr ""
-
-msgid "Not to worry, here are three to get started."
-msgstr ""
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr ""
-
-msgid "A+ add-ons for School"
-msgstr ""
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
-
-msgid "Would you like to know which websites you can trust?"
-msgstr ""
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
-
-msgid "Love is in the Air"
-msgstr ""
-
-msgid "Add some romance to your Firefox."
-msgstr ""
-
-msgid "Get up and move!"
-msgstr ""
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
-
-msgid "New &amp; Now"
-msgstr ""
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
-
-msgid "Worry-free browsing"
-msgstr ""
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
-
-msgid "Games!"
-msgstr ""
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
-
-msgid "Must-Have Media"
-msgstr ""
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
-
-msgid "Become a Test Pilot"
-msgstr ""
-
-msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-msgid "Get Started"
 msgstr ""
 
 #, fuzzy
@@ -5590,6 +4894,9 @@ msgid "Who works on this website?"
 msgstr ""
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
+msgstr ""
+
+msgid "Review Guidelines"
 msgstr ""
 
 msgid "Sections"
@@ -5766,6 +5073,9 @@ msgid ""
 "for more detail about user add-on reviews.</p>"
 msgstr ""
 
+msgid "Submit review"
+msgstr ""
+
 msgid "Reply to review by {0}"
 msgstr ""
 
@@ -5785,6 +5095,13 @@ msgstr ""
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
+msgstr ""
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr ""
+
+msgid "permalink"
 msgstr ""
 
 #. {0} is a version number (like 1.01)
@@ -5859,6 +5176,9 @@ msgid "Write a New Review"
 msgstr ""
 
 msgid "Be the first to write a review."
+msgstr ""
+
+msgid "This add-on has not yet been reviewed."
 msgstr ""
 
 msgid "{num} review"
@@ -5962,6 +5282,9 @@ msgstr "Neperžiūrėtas"
 msgid "Needs Admin Static Theme Review"
 msgstr "Neperžiūrėtas"
 
+msgid "Requires Restart"
+msgstr ""
+
 msgid "More Information Requested"
 msgstr ""
 
@@ -5973,6 +5296,9 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
+msgstr ""
+
+msgid "Risk breakdown not available."
 msgstr ""
 
 msgid "Is locked by a reviewer."
@@ -6078,15 +5404,7 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Static Themes and Legacy Add-ons"
-msgstr "Daugiau priedų"
-
-#, fuzzy
-msgid "Static Themes"
-msgstr "Temos"
-
-#, fuzzy
-msgid "Legacy Add-ons"
+msgid "Pre-Approval Add-ons"
 msgstr "Daugiau priedų"
 
 #, fuzzy
@@ -6104,10 +5422,6 @@ msgstr "Apžvalgų žurnalas"
 #, fuzzy
 msgid "Add-on Review Guide"
 msgstr "Neperžiūrėtas"
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Plėtojimo kanalas"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6133,6 +5447,10 @@ msgid_plural "Content Review ({0})"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Plėtojimo kanalas"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6189,6 +5507,10 @@ msgstr ""
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr " Priedo {0} indormacija"
+
 #, fuzzy
 msgid "Add-on ID"
 msgstr "Priedai"
@@ -6196,7 +5518,6 @@ msgstr "Priedai"
 msgid "Internal AMO ID"
 msgstr ""
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "Veikia su"
 
@@ -6221,6 +5542,9 @@ msgstr ""
 
 msgid "EULA"
 msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr ""
 
 msgid "Last Approval Date"
 msgstr ""
@@ -6424,6 +5748,9 @@ msgstr ""
 
 msgid "Weight:"
 msgstr ""
+
+msgid "Download"
+msgstr "Siųstis"
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -6675,6 +6002,9 @@ msgstr ""
 msgid "by Source"
 msgstr ""
 
+msgid "Daily Users"
+msgstr "Kasdienių naudotojų"
+
 msgid "by Add-on Version"
 msgstr ""
 
@@ -6869,9 +6199,6 @@ msgstr ""
 msgid "Footer logo"
 msgstr ""
 
-msgid "Choose a category"
-msgstr ""
-
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
@@ -6987,6 +6314,9 @@ msgstr ""
 msgid "Profile Photo"
 msgstr ""
 
+msgid "Collections"
+msgstr "Rinkiniai"
+
 msgid "Addons"
 msgstr ""
 
@@ -7064,47 +6394,15 @@ msgstr ""
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 
+#, python-format
+msgid "by %(users)s"
+msgstr "sukūrė %(users)s"
+
 msgctxt "user_list_others"
 msgid "others"
 msgstr ""
 
-#, python-format
-msgid "%s Version History"
-msgstr ""
-
-msgid "Version History with Changelogs"
-msgstr ""
-
 msgid "{app} {min} and later"
-msgstr ""
-
-msgid "Permanent link to this version"
-msgstr ""
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr ""
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr ""
-
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr ""
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-msgid "Be careful with old versions!"
-msgstr ""
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
 msgstr ""
 
 msgid "Deleted versions can`t be changed."
