@@ -461,6 +461,24 @@ class ReviewHelper(object):
 
 
 class ReviewBase(object):
+    SUBJECTS = {
+        'extension_pending_to_approved':
+            'Mozilla Add-ons: %s %s Updated',
+        'extension_nominated_to_approved':
+            'Mozilla Add-ons: %s %s Approved',
+        'extension_pending_to_rejected':
+            'Mozilla Add-ons: %s %s didn\'t pass review',
+        'extension_nominated_to_rejected':
+            'Mozilla Add-ons: %s %s didn\'t pass review',
+        'theme_pending_to_approved':
+            'Success! Your theme %s %s is available on {site_url}',
+        'theme_nominated_to_approved':
+            'Success! Your theme %s %s is available on {site_url}',
+        'theme_pending_to_rejected':
+            'Firefox themes: unable to add %s %s to {site_url}',
+        'theme_nominated_to_rejected':
+            'Firefox themes: unable to add %s %s to {site_url}',
+    }
 
     def __init__(self, request, addon, version, review_type,
                  content_review_only=False):
@@ -536,8 +554,9 @@ class ReviewBase(object):
             data['tested'] = 'Tested on %s' % os
         elif not os and app:
             data['tested'] = 'Tested with %s' % app
-        subject = subject % (data['name'],
-                             self.version.version if self.version else '')
+        subject = subject % (
+            data['name'], self.version.version if self.version else '')
+        subject.format(site_url=settings.SITE_URL)
         unique_id = (self.log_entry.id if hasattr(self, 'log_entry')
                      else random.randrange(100000))
 
@@ -658,15 +677,11 @@ class ReviewBase(object):
             AddonApprovalsCounter.reset_for_addon(addon=self.addon)
 
         self.log_action(amo.LOG.APPROVE_VERSION)
-        template = u'%s_to_approved' % self.review_type
-        if self.review_type in ['extension_pending', 'theme_pending']:
-            subject = u'Mozilla Add-ons: %s %s Updated'
-        else:
-            subject = u'Mozilla Add-ons: %s %s Approved'
-        self.notify_email(template, subject)
+        template = '%s_to_approved' % self.review_type
+        self.notify_email(template, self.SUBJECTS.get(template))
 
         self.log_public_message()
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info('Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
         if self.request:
@@ -692,12 +707,12 @@ class ReviewBase(object):
                        hide_disabled_file=True)
 
         self.log_action(amo.LOG.REJECT_VERSION)
-        template = u'%s_to_rejected' % self.review_type
-        subject = u'Mozilla Add-ons: %s %s didn\'t pass review'
-        self.notify_email(template, subject)
+        template = '%s_to_rejected' % self.review_type
+
+        self.notify_email(template, self.SUBJECTS.get(template))
 
         self.log_sandbox_message()
-        log.info(u'Sending email for %s' % (self.addon))
+        log.info('Sending email for %s' % (self.addon))
 
         # Assign reviewer incentive scores.
         if self.request:

@@ -1,3 +1,12 @@
-{% extends "reviewers/emails/base.ltxt" %}{% block content %}
-Your add-on, {{ name }} {{ number }}, has been approved and is now available for download in our gallery at {{ addon_url }}
-{% endblock %}
+Hi {{ name }},
+
+Thanks for submitting your theme to {{ site_url }}! Your theme {{ name }} has been approved and is now available in our gallery at {{ addon_url }}.
+
+If you have any questions or want more information, please stop by the forum at https://discourse.mozilla-community.org/c/add-ons/themes and tell us what’s on your mind.
+
+Best wishes,
+
+The Mozilla Add-ons Team
+
+--
+https://addons.mozilla.org

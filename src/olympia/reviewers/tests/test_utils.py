@@ -377,7 +377,7 @@ class TestReviewHelper(TestCase):
 
     def test_notify_email(self):
         self.helper.set_data(self.get_data())
-        base_fragment = 'To respond, please reply to this email or visit'
+        base_fragment = 'please reply to this email or visit'
         user = self.addon.listed_authors[0]
         ActivityLogToken.objects.create(version=self.version, user=user)
         uuid = self.version.token.get(user=user).uuid.hex
@@ -388,14 +388,25 @@ class TestReviewHelper(TestCase):
             'extension_nominated_to_approved',
             'extension_nominated_to_rejected',
             'extension_pending_to_rejected',
-            'theme_nominated_to_approved',
+            'extension_pending_to_approved',
             'theme_nominated_to_rejected',
-            'theme_pending_to_rejected',)
+            'theme_pending_to_rejected',
+        )
         for template in templates:
             mail.outbox = []
             self.helper.handler.notify_email(template, 'Sample subject %s, %s')
             assert len(mail.outbox) == 1
             assert base_fragment in mail.outbox[0].body
+            assert mail.outbox[0].reply_to == [reply_email]
+
+        # theme approval emails are slightly different
+        for template in ('theme_nominated_to_approved',
+                         'theme_pending_to_approved'):
+            mail.outbox = []
+            self.helper.handler.notify_email(template, 'Sample subject %s, %s')
+            assert len(mail.outbox) == 1
+            assert 'want more information, please stop by the forum' in (
+                mail.outbox[0].body)
             assert mail.outbox[0].reply_to == [reply_email]
 
         mail.outbox = []
