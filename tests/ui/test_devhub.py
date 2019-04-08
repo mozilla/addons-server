@@ -2,6 +2,7 @@ import time
 
 import pytest
 import requests
+from selenium.common.exceptions import NoSuchElementException
 
 from pages.desktop.devhub import DevHub
 from pages.desktop.details import Detail
@@ -64,9 +65,19 @@ def test_devhub_addon_upload_approve_install(
     'ui-test-addon-2' in devhub_upload.addons[-1].name
     # We have to wait for approval
     time.sleep(15)
-    selenium.get('{}/addon/ui-test_devhub_ext/'.format(base_url))
-    addon = Detail(selenium, base_url)
-    assert 'UI-Test_devhub_ext' in addon.name
+    page_loaded = False
+    while page_loaded is not True:
+        try:
+            selenium.get('{}/addon/ui-test_devhub_ext/'.format(base_url))
+            addon = Detail(selenium, base_url)
+            'UI-Test_devhub_ext' in addon.name
+        except NoSuchElementException:
+            pass
+        except Exception:
+            raise Exception
+        else:
+            page_loaded = True
+            return page_loaded
     addon.install()
     firefox.browser.wait_for_notification(
         firefox_notifications.AddOnInstallBlocked
