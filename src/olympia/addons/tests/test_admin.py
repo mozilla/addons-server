@@ -179,29 +179,33 @@ class TestAddonAdmin(TestCase):
 
     def test_access_using_slug(self):
         addon = addon_factory(guid='@foo')
-        self.detail_url = reverse(
+        detail_url_by_slug = reverse(
             'admin:addons_addon_change', args=(addon.slug,)
+        )
+        detail_url_final = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
-        response = self.client.get(self.detail_url, follow=True)
-        assert response.status_code == 200
-        assert addon.guid in response.content.decode('utf-8')
+        response = self.client.get(detail_url_by_slug, follow=False)
+        self.assert3xx(response, detail_url_final, 301)
 
     def test_access_using_guid(self):
         addon = addon_factory(guid='@foo')
-        self.detail_url = reverse(
+        detail_url_by_guid = reverse(
             'admin:addons_addon_change', args=(addon.guid,)
+        )
+        detail_url_final = reverse(
+            'admin:addons_addon_change', args=(addon.pk,)
         )
         user = user_factory()
         self.grant_permission(user, 'Admin:Tools')
         self.grant_permission(user, 'Addons:Edit')
         self.client.login(email=user.email)
-        response = self.client.get(self.detail_url, follow=True)
-        assert response.status_code == 200
-        assert addon.guid in response.content.decode('utf-8')
+        response = self.client.get(detail_url_by_guid, follow=True)
+        self.assert3xx(response, detail_url_final, 301)
 
 
 class TestReplacementAddonList(TestCase):
