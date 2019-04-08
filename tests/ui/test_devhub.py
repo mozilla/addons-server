@@ -66,7 +66,7 @@ def test_devhub_addon_upload_approve_install(
     # We have to wait for approval
     time.sleep(15)
     page_loaded = False
-    while page_loaded != True:
+    while page_loaded is not True:
         try:
             selenium.get('{}/addon/ui-test_devhub_ext/'.format(base_url))
             addon = Detail(selenium, base_url)
