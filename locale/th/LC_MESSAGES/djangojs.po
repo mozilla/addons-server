@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-03-30 19:56+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"PO-Revision-Date: 2019-04-05 18:33+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -195,42 +195,34 @@ msgstr "ใช้ต้นฉบับ"
 msgid "Week of {0}"
 msgstr "สัปดาห์ที่ {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " การดาวน์โหลด"
+msgstr[0] "{0} การดาวน์โหลด"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
 msgstr[0] "{0} ผู้ใช้"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
 msgstr[0] "{0} ส่วนเสริม"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
 msgstr[0] "{0} ชุดสะสม"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
 msgstr[0] "{0} บทวิจารณ์"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
 msgstr[0] "{0} การขาย"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
 msgstr[0] "{0} การคืนเงิน"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
 msgstr[0] "{0} การติดตั้ง"
@@ -704,10 +696,9 @@ msgid "Loading..."
 msgstr "กำลังโหลด…"
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
+msgstr[0] "<b>{0}</b> ตัวอักษร"
 
 #. L10n: {0} is the number of characters left.
 #, fuzzy
@@ -782,7 +773,7 @@ msgid "Theme"
 msgstr "ชุดตกแต่ง"
 
 msgid "Reviewer"
-msgstr "ผู้รีวิว"
+msgstr "ผู้ตรวจทาน"
 
 msgid "Status"
 msgstr "สถานะ"

@@ -141,6 +141,27 @@ class TestFileEntriesSerializer(TestCase):
             }
         ))
 
+    def test_supports_search_plugin(self):
+        self.addon = addon_factory(file_kw={'filename': 'search_20190331.xml'})
+        extract_version_to_git(self.addon.current_version.pk)
+        self.addon.current_version.refresh_from_db()
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file)
+
+        assert data['id'] == file.pk
+        assert set(data['entries'].keys()) == {'search_20190331.xml'}
+        assert data['selected_file'] == 'search_20190331.xml'
+        assert data['content'].startswith(
+            '<?xml version="1.0" encoding="utf-8"?>')
+        assert data['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.addon.current_version.pk,
+                'filename': 'search_20190331.xml'
+            }
+        ))
+
     def test_get_entries_cached(self):
         file = self.addon.current_version.current_file
         serializer = self.get_serializer(file)
@@ -389,10 +410,11 @@ class TestAddonBrowseVersionSerializer(TestCase):
             self.version.reviewed.replace(microsecond=0).isoformat() + 'Z')
 
         # Custom fields
-        validation_url_json = reverse('devhub.json_file_validation', args=[
-            self.addon.slug, self.version.current_file.id])
-        validation_url = reverse('devhub.file_validation', args=[
-            self.addon.slug, self.version.current_file.id])
+        validation_url_json = absolutify(reverse(
+            'devhub.json_file_validation', args=[
+                self.addon.slug, self.version.current_file.id]))
+        validation_url = absolutify(reverse('devhub.file_validation', args=[
+            self.addon.slug, self.version.current_file.id]))
 
         assert data['validation_url_json'] == validation_url_json
         assert data['validation_url'] == validation_url

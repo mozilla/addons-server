@@ -2,10 +2,13 @@ import contextlib
 import os
 import time
 
+from urllib.parse import urljoin
+
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import models
 from django.db.models.query import ModelIterable
+from django.urls.exceptions import Resolver404
 from django.utils import timezone, translation
 
 import elasticsearch
@@ -13,6 +16,7 @@ import multidb.pinning
 
 import olympia.core.logger
 
+from olympia.amo.urlresolvers import resolve
 from olympia.translations.hold import save_translations
 
 from . import search
@@ -369,7 +373,15 @@ class ModelBase(SearchMixin, SaveUpdateMixin, models.Model):
         base_manager_name = 'objects'
 
     def get_absolute_url(self, *args, **kwargs):
-        return self.get_url_path(*args, **kwargs)
+        from olympia.amo.views import frontend_view  # circular import
+
+        relative_url = self.get_url_path(*args, **kwargs)
+        try:
+            is_frontend = resolve(relative_url).func == frontend_view
+        except Resolver404:
+            is_frontend = False
+        site = settings.EXTERNAL_SITE_URL if is_frontend else settings.SITE_URL
+        return urljoin(site, relative_url)
 
     def serializable_reference(self):
         """Return a tuple with app label, model name and pk to be used when we

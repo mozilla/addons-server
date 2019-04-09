@@ -5,7 +5,7 @@ class TestSecurityHeaders(TestCase):
 
     def test_for_security_headers(self):
         """Test that security headers are set."""
-        response = self.client.get('/en-US/firefox/')
+        response = self.client.get('/en-US/developers/')
         assert response.status_code == 200
         assert response['x-xss-protection'] == '1; mode=block'
         assert response['x-content-type-options'] == 'nosniff'

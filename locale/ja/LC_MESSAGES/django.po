@@ -6,9 +6,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-02-08 00:00+0000\n"
-"Last-Translator: dskmori <ghoti.fish.dsk@gmail.com>\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"PO-Revision-Date: 2019-04-04 14:11+0000\n"
+"Last-Translator: marsf <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: Japanese\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
@@ -23,6 +23,10 @@ msgstr "リンクの使用は許可されていません。"
 
 msgid "This display name cannot be used."
 msgstr "この表示名は使用できません。"
+
+#, fuzzy
+msgid "This reviewer name cannot be used."
+msgstr "この名前は使えません。"
 
 #, fuzzy
 msgid "The homepage field can only be used to link to external websites."
@@ -81,27 +85,6 @@ msgstr "ステータス"
 msgid "- Add-on not on AMO -"
 msgstr "- AMO 非掲載アドオン -"
 
-msgid "Download Now"
-msgstr "今すぐダウンロード"
-
-msgid "Download"
-msgstr "ダウンロード"
-
-# いろいろな所で使われてるので注意
-msgid "Featured"
-msgstr "おすすめ"
-
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "未審査"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr "実験的"
-
-msgid "Add to {0}"
-msgstr "{0}へ追加"
-
 # Column name in a table.
 msgid "Listed"
 msgstr "表示"
@@ -112,146 +95,6 @@ msgstr "アドオンとコレクションのパスは「/」で終わってい�
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "アドオン名には Mozilla または Firefox の商標を含めることはできません。"
 
-msgid "Abuse reported."
-msgstr "不正報告が送信されました。"
-
-msgid "No compatible versions"
-msgstr "互換性のあるバージョンはありません"
-
-# ダウンロードボタン
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "({0}用)"
-
-msgid "View privacy policy"
-msgstr "プライバシーポリシーを表示"
-
-msgid "View End-User License Agreement"
-msgstr "エンドユーザー使用許諾契約書を表示"
-
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "このアドオンはまだ Mozilla による審査を受けていません。"
-
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "このアドオンは作者によって実験的とされています。"
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "{0}のエンドユーザー使用許諾契約書"
-
-msgid "End-User License Agreement"
-msgstr "エンドユーザー使用許諾契約書"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s のインストールを続けるには、以下のエンドユーザー使用許諾契約書に同意する必要があります:"
-
-msgid "Back to {0}…"
-msgstr "{0}のページへ戻る…"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird,
-# Firefox,
-# Sunbird
-msgid "Add-ons for {0}"
-msgstr "{0}向けアドオン"
-
-msgid "Featured Extensions"
-msgstr "おすすめの拡張機能"
-
-msgid "Popular Extensions"
-msgstr "人気の拡張機能"
-
-msgid "Most Popular"
-msgstr "最も人気"
-
-msgid "All »"
-msgstr "すべて&nbsp;»"
-
-msgid "See all »"
-msgstr "すべて見る&nbsp;»"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "注目の拡張機能"
-
-msgid "Featured Themes"
-msgstr "おすすめのテーマ"
-
-msgid "Sort by:"
-msgstr "並べ替え:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "更新日: {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "追加日: {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s 週間ダウンロード"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s ユーザー"
-
-msgid "Requires Restart"
-msgstr "要再起動"
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "このアドオンは、Firefox 57 以降で互換性のある新しい技術で作成されています。"
-
-msgid "Compatible with Firefox 57+"
-msgstr "Firefox 57 以上に対応"
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "週間ダウンロード数 {0}"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0}ユーザー"
-
-msgid "by"
-msgstr "作者:"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr "{0}カテゴリーの他のテーマ"
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr "{0}カテゴリーのすべてのテーマ"
-
-msgid "More by this Artist"
-msgstr "この作者が公開している他のテーマ"
-
-msgid "See all Themes by this Artist"
-msgstr "この作者が公開しているすべてのテーマ"
-
-msgid "Categories"
-msgstr "カテゴリー"
-
-msgid "Updated"
-msgstr "更新日"
-
-msgid "Artist"
-msgstr "作者"
-
-msgid "Rating"
-msgstr "評価"
-
-msgid "Daily Users"
-msgstr "日別ユーザー数"
-
-msgid "License"
-msgstr "ライセンス"
-
 msgid "Awaiting Review"
 msgstr "審査待ち"
 
@@ -260,6 +103,9 @@ msgstr "却下済み"
 
 msgid "Approved"
 msgstr "承認済み"
+
+msgid "Added {0}"
+msgstr "追加日: {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -286,253 +132,16 @@ msgstr "まだ評価されていません"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> ユーザー"
 
+msgid "by"
+msgstr "作者:"
+
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "{0}人の日別ユーザー"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "{0}のプライバシーポリシー"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "プライバシーポリシー"
-
-msgid "Report Abuse"
-msgstr "不正報告"
-
-#, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"このアドオンが %(amo_policy_link_open)sポリシー%(link_close)s に違反していたり、セキュリティやプライバシーの問題があると疑われる場合は、以下のフォームに懸念事項を記入し、送信してください。その他の理"
-"由でこのフォームを使用しないでください。"
-
-msgid "Send Report"
-msgstr "レポートを送信"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "または"
-
-msgid "Cancel"
-msgstr "キャンセル"
-
-msgid "What do you think?"
-msgstr "あなたのご意見をお聞かせください"
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "レビューを投稿するには <a href=\"%(login)s\">ログイン</a> してください"
-
-msgid "Review:"
-msgstr "レビュー:"
-
-msgid "Rating:"
-msgstr "評価:"
-
-msgid "Submit review"
-msgstr "レビューを投稿"
-
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "バグ報告をここに投稿しないでください。あなたのメールアドレスはアドオン作者に公開されないので、問題解決のため作者があなたに協力をお願いしたいと思っても、連絡を取ることができません。"
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-"このアドオンの <a href=\"%(support)s\">サポートセクション</a> をご覧になり、支援を利用できるか確認してください。または、<a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">"
-"アドオンコミュニティ</a> で手助けを得られるか尋ねてみてください。"
-
-msgid "Review Guidelines"
-msgstr "レビューガイドライン"
-
-msgid "Reviews"
-msgstr "レビュー"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "投稿者: %(user)s - %(date)s"
-
-msgid "Show the developer's reply to this review"
-msgstr "このレビューに対する作者の返信を表示"
-
-#, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "このアドオンの %(cnt)s 件のレビューをすべて見る"
-
-msgid "Tags"
-msgstr "タグ"
-
-msgid "Icon for {0}"
-msgstr "{0}のアイコン"
-
-#, python-format
-msgid "by %(users)s"
-msgstr "作者: %(users)s"
-
-msgid "Download Anyway"
-msgstr "強制ダウンロード"
-
-# {0} is a number
-msgid "[Warning]"
-msgstr "[警告]"
-
-msgid "Permissions"
-msgstr "許可設定"
-
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "このアドオンは作者によって実験的とされています"
-
-msgid "Average"
-msgstr "平均評価"
-
-msgid "Write a review"
-msgstr "レビューを書く"
-
-msgid "Related Categories"
-msgstr "関連カテゴリー"
-
-#, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "これらの作者が公開している他のアドオン"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> 件のユーザーレビュー"
-
-msgid "View statistics"
-msgstr "統計情報を表示"
-
-msgid "Manage"
-msgstr "管理"
-
-msgid "Add-on Review"
-msgstr "アドオンの審査"
-
-msgid "Admin Manage"
-msgstr "管理者管理"
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr "{0}のアイコン"
-
-msgid "Contribute"
-msgstr "寄付"
-
-msgid "Enjoy this add-on?"
-msgstr "このアドオンが気に入りましたか？"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "このアドオンの作者は、開発を続けていくため、少額の寄付による支援を求めています。"
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr "アドオンのスクリーンショット #{0}"
-
-msgid "Add-on home page"
-msgstr "アドオンのホームページ"
-
-msgid "Support site"
-msgstr "サポートサイト"
-
-msgid "Support E-mail"
-msgstr "サポートメールアドレス"
-
-msgid "Info"
-msgstr "情報"
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr "最終更新日:"
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "<a href=\"%(url)s\">%(name)s</a> の下で公開されています"
-
-msgid "Custom License"
-msgstr "独自ライセンス"
-
-msgid "About this Add-on"
-msgstr "このアドオンについて"
-
-msgid "Developer’s Comments"
-msgstr "作者のコメント"
-
-msgid "Version Information"
-msgstr "バージョン情報"
-
-msgid "See complete version history"
-msgstr "すべてのバージョン履歴を見る"
-
-msgid "close"
-msgstr "閉じる"
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "特定の機能を実行するため、許可を要求するアドオンがあります (例: タブを管理するアドオンは、ブラウザーのタブシステムへのアクセス許可を要求します)。"
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
-msgstr ""
-"Firefox を制御するのは利用者です。そのため、これらの要求を承諾するか拒否するかはあなた自身の選択です。許可を承諾することは、本質的にはブラウザーのパフォーマンスやセキュリティについて妥協することでは"
-"ありません。しかし、リスクを伴う場合もあります。"
-
-#. This is a header of a list of things the add-on can do.
-msgid "This add-on can:"
-msgstr "このアドオンの許可設定:"
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "一部のアドオンは特定の機能を実行するための許可設定を求めます。Firefox はあなた自身が管理者なので、そうしたリクエストを受け入れるかどうかはあなたが決められます。"
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "このアドオンは従来の技術を使用しているため、あなたに許可設定を求めることなくブラウザーのすべての機能やデータにアクセスできることに注意してください。"
-
-msgid "This add-on has been removed by its author."
-msgstr "このアドオンは作者によって削除されました。"
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "このアドオンは管理者によって無効化されています。"
-
-msgid "Source Code License for {addon}"
-msgstr "{addon} のソースコードライセンス"
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr "ソースコードライセンス"
-
-msgid "support section"
-msgstr "サポートセクション"
-
-msgid "support email"
-msgstr "サポートメールアドレス"
-
-msgid "permalink"
-msgstr "固定リンク"
-
-#, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "%(cnt)s 件のユーザーレビューをすべて見る"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "このアドオンはまだレビューされていません。"
-
-msgid "Be the first!"
-msgstr "最初の一人になりましょう！"
-
-msgid "No results found."
-msgstr "該当するアドオンはありません。"
-
-msgid "{0} users"
-msgstr "{0}ユーザー"
+msgid "Sort by:"
+msgstr "並べ替え:"
 
 msgid "More"
 msgstr "その他"
@@ -542,33 +151,6 @@ msgstr "自分のアドオン"
 
 msgid "My Themes"
 msgstr "自分のテーマ"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "{0}のアドオン情報"
-
-msgid "Edit Theme"
-msgstr "テーマを編集"
-
-msgid "Approve / Reject"
-msgstr "承認 / 却下"
-
-msgid "Review History"
-msgstr "審査履歴"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr "申し訳ありませんが、このテーマは公開が保留されています。また後で見に来てください。"
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "このテーマは公開が保留されています。あなた以外には誰も見ることはできません。"
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "週間ダウンロード数 <strong>{0}</strong>"
-
-msgid "Not Reviewed"
-msgstr "未審査"
 
 msgid "Tools"
 msgstr "ツール"
@@ -748,14 +330,24 @@ msgstr ""
 "<p>以下に <strong>すべての単語</strong> を <strong>必要に応じ空白で区切って</strong> 入力してください。 </p> <p> もしこれが読みづらければ、<a href=\"#\" id=\"recaptcha_different\">他の単語に変える</"
 "a> か、代わりに <a href=\"#\" id=\"recaptcha_audio\">別の種類の課題を試す</a> こともできます。</p>"
 
+msgid "Most Popular"
+msgstr "最も人気"
+
 msgid "Top Rated"
 msgstr "高評価"
 
 msgid "Newest"
 msgstr "新着"
 
+# いろいろな所で使われてるので注意
+msgid "Featured"
+msgstr "おすすめ"
+
 msgid "Explore"
 msgstr "アドオンを探す"
+
+msgid "Categories"
+msgstr "カテゴリー"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -777,14 +369,17 @@ msgstr "最後のページへ移動"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(count)s</b> 件中 <b>%(begin)s</b> から <b>%(end)s</b> 件目までを表示しています"
 
-msgid "Collections"
-msgstr "コレクション"
-
-msgid "Dictionaries & Language Packs"
-msgstr "スペルチェック辞書と言語パック"
+# {0} is the application the user is browsing.  Examples:  Thunderbird,
+# Firefox,
+# Sunbird
+msgid "Add-ons for {0}"
+msgstr "{0}向けアドオン"
 
 msgid "Add-ons"
 msgstr "アドオン"
+
+msgid "Custom License"
+msgstr "独自ライセンス"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -893,263 +488,6 @@ msgstr "このカスタム URL は使用できません。"
 
 msgid "This add-on already belongs to the collection"
 msgstr "このアドオンは既にコレクションに含まれています"
-
-# Plural in this context means many of the add-on type
-msgid "Extensions"
-msgstr "拡張機能"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr "%sカテゴリーのアドオン"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "テーマ"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr "%sカテゴリーのテーマ"
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr "おすすめのアドオン :: %s"
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "%sを初めてカスタマイズする人に役立つおすすめのアドオンをいくつかご紹介しましょう。"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr "%s関連の検索ツール"
-
-msgid "Search tools and search-related extensions"
-msgstr "検索ツールと検索関連の拡張機能"
-
-msgid "Search tools"
-msgstr "検索ツール"
-
-msgid "Search Tools"
-msgstr "検索ツール"
-
-msgid "Most Users"
-msgstr "人気"
-
-msgid "Name"
-msgstr "タイトル"
-
-msgid "Weekly Downloads"
-msgstr "週間ダウンロード数"
-
-msgid "Recently Updated"
-msgstr "最近更新"
-
-msgid "Up & Coming"
-msgstr "注目"
-
-msgid "Recently Added"
-msgstr "新着"
-
-msgid "Created"
-msgstr "新着"
-
-msgid "Downloads"
-msgstr "ダウンロード数"
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr "{0}: おすすめのアドオン"
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr "{0}カテゴリーにおすすめのアドオンはありません。"
-
-msgid "Subscribe"
-msgstr "購読"
-
-msgid "Featured Add-ons"
-msgstr "おすすめのアドオン"
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "%(app)s を初めてカスタマイズする人に役立つおすすめのアドオンをいくつかご紹介しましょう。"
-
-msgid "Install Dictionary"
-msgstr "辞書をインストール"
-
-msgid "Install Language Pack"
-msgstr "言語パックをインストール"
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
-msgstr ""
-"辞書アドオンをインストールすると、ウェブフォームへの入力時に単語の綴りを確認してくれる %(app_name)s のスペルチェッカーに新しい言語オプションを追加できます。 言語パックアドオンはアプリケーション全体"
-"の言語を変更します。"
-
-msgid "Available in your locale"
-msgstr "あなたのロケールに対応しているもの"
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr "あなたのロケールで利用可能な言語パックとスペルチェック辞書の一覧です。"
-
-msgid "Language"
-msgstr "言語"
-
-msgid "Dictionary"
-msgstr "スペルチェック辞書"
-
-msgid "Language Pack"
-msgstr "言語パック"
-
-msgid "All locales"
-msgstr "すべてのロケール"
-
-msgid "List of language packs and dictionaries."
-msgstr "言語パックとスペルチェック辞書の一覧です。"
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr "{0}:: 検索ツール"
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> 個のアドオン"
-
-msgid "Search Extensions"
-msgstr "検索拡張機能"
-
-msgid "Add search-related functionality to Firefox"
-msgstr "Firefox に検索関連の機能を追加します"
-
-msgid "Search Providers"
-msgstr "検索エンジン"
-
-msgid "Find new providers for your search bar"
-msgstr "検索バーへ追加する新しい検索エンジンを探す"
-
-msgid "Additional Resources"
-msgstr "関連情報"
-
-#. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "{0}の <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">検索バー</a> について詳しく知る"
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "その他の検索プロバイダーは、<a href=\"http://mycroftproject.com/\">mycroftproject.com</a> で見つけてください"
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr "%(amo_mdn_link_open)s独自の検索ツール%(amo_mdn_link_close)s を作成"
-
-msgid "Most Popular Extensions"
-msgstr "最も人気の拡張機能"
-
-msgid "Top-Rated Extensions"
-msgstr "評価の高い拡張機能"
-
-msgid "Newest Extensions"
-msgstr "最新の拡張機能"
-
-msgid "Extensions by Name"
-msgstr "名前順の拡張機能"
-
-msgid "Extensions by Weekly Downloads"
-msgstr "週間ダウンロード数順の拡張機能"
-
-msgid "Recently Updated Extensions"
-msgstr "最近更新された拡張機能"
-
-msgid "Up & Coming Extensions"
-msgstr "注目の拡張機能"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr "おすすめの完全テーマ"
-
-msgid "Most Popular Complete Themes"
-msgstr "最も人気の完全テーマ"
-
-msgid "Top-Rated Complete Themes"
-msgstr "評価の高い完全テーマ"
-
-msgid "Newest Complete Themes"
-msgstr "最新の完全テーマ"
-
-msgid "Complete Themes by Name"
-msgstr "名前順の完全テーマ"
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr "週間ダウンロード数順の完全テーマ"
-
-msgid "Recently Updated Complete Themes"
-msgstr "最近更新された完全テーマ"
-
-msgid "Up & Coming Complete Themes"
-msgstr "注目の完全テーマ"
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "%(name)s カテゴリーの %(cnt)s 個の拡張機能を見る &raquo;"
-
-msgid "{0} Themes"
-msgstr "{0}カテゴリーのテーマ"
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr "{0}さんのテーマ"
-
-msgid "View Profile"
-msgstr "プロファイルを見る"
-
-msgid "Create Your Own Theme"
-msgstr "自分のテーマを作る"
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "あなたのブラウザーをあなたのスタイルに！ オリジナルのデザインに着せ替えましょう！"
-
-msgid "Learn more"
-msgstr "詳細"
-
-msgid "View All Recently Added"
-msgstr "最近追加されたテーマをすべて見る"
-
-msgid "View All Most Popular"
-msgstr "人気のテーマをすべて見る"
-
-msgid "View All Top Rated"
-msgstr "評価の高いテーマをすべて見る"
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "30 万種類を超えるデザインでブラウザーをカスタマイズ！ 背景テーマにマウスを乗せるとプレビューできます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す</a>"
-
-msgid "Want more personalization?"
-msgstr "もっとカスタマイズしたい？"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"完全テーマを使えば、ウィンドウの枠からアドレスバー、ボタン、タブ、メニューに至るまで、ブラウザーの見た目を完全に変えることができます。<a href=\"%(url)s\" class=\"more-info\">お気に入りのテーマを探す"
-"</a>"
-
-msgid "Up & Coming Themes"
-msgstr "注目のテーマ"
-
-msgid "View All Up & Coming"
-msgstr "注目のテーマをすべて見る"
-
-msgid "No themes found"
-msgstr "テーマが見つかりませんでした"
 
 msgid "{addon} was created."
 msgstr "{addon} が作成されました。"
@@ -1514,6 +852,9 @@ msgstr "拡張機能"
 msgid "Complete Theme"
 msgstr "完全テーマ"
 
+msgid "Dictionary"
+msgstr "スペルチェック辞書"
+
 msgid "Search Engine"
 msgstr "検索エンジン"
 
@@ -1532,12 +873,19 @@ msgstr "テーマ"
 msgid "Theme (Static)"
 msgstr "テーマ (静的)"
 
+# Plural in this context means many of the add-on type
+msgid "Extensions"
+msgstr "拡張機能"
+
 msgid "Complete Themes"
 msgstr "完全テーマ"
 
 # Plural in this context means many of the add-on type
 msgid "Dictionaries"
 msgstr "スペルチェック辞書"
+
+msgid "Search Tools"
+msgstr "検索ツール"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
@@ -1548,6 +896,9 @@ msgstr "言語パック (アドオン)"
 
 msgid "Plugins"
 msgstr "プラグイン"
+
+msgid "Themes"
+msgstr "テーマ"
 
 msgid "Themes (Static)"
 msgstr "テーマ (静的)"
@@ -2224,6 +1575,21 @@ msgstr "Mozilla セキュリティ通知: AMO API 認証情報が取り消され
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "検証の結果、多数のエラーや警告が見つかったため、%s個のメッセージが省略されました。表示されているメッセージを解決すると、他のメッセージも表示されます。"
 
+msgid "Updated"
+msgstr "更新日"
+
+msgid "Name"
+msgstr "タイトル"
+
+msgid "Created"
+msgstr "新着"
+
+msgid "Downloads"
+msgstr "ダウンロード数"
+
+msgid "Rating"
+msgstr "評価"
+
 msgid "All My Add-ons"
 msgstr "自分のすべてのアドオン"
 
@@ -2482,6 +1848,9 @@ msgstr "{0}の最近のアクティビティ"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 
+msgid "No results found."
+msgstr "該当するアドオンはありません。"
+
 msgid "Refine Activity"
 msgstr "アクティビティを整理"
 
@@ -2533,8 +1902,21 @@ msgstr "別のアプリケーションを追加&hellip;"
 msgid "Save Changes"
 msgstr "変更を保存"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "または"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
 msgid "Close"
 msgstr "閉じる"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> 個のアドオン"
 
 msgid "Recent Activity"
 msgstr "最近のアクティビティ"
@@ -2587,6 +1969,9 @@ msgstr "アドオンの詳細"
 
 msgid "Additional Details for {0}"
 msgstr "アドオン {0} の詳細"
+
+msgid "Tags"
+msgstr "タグ"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "タグはユーザーがアドオンを探すのに役立つ、タブ、ツールバー、Twitter といった短いキーワードです。最大で {0}個のタグを指定できます。"
@@ -3008,6 +2393,11 @@ msgstr "無効"
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr "<b>審査待ちの順番:</b> %(total)s 個中 %(pos)s 個目"
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "週間ダウンロード数 <strong>{0}</strong>"
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3373,6 +2763,10 @@ msgid "Created:"
 msgstr "作成日:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "最終更新日:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
 #, fuzzy
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "コード審査を通った後、当サイトに掲載されます。自動更新は当サイトによって処理されます。"
@@ -3423,6 +2817,9 @@ msgstr "掲載アドオンの審査ページ"
 msgid "Unlisted Review Page"
 msgstr "非掲載アドオンの審査ページ"
 
+msgid "Admin Manage"
+msgstr "管理者管理"
+
 msgid "View Statistics Dashboard"
 msgstr "統計ダッシュボードを表示"
 
@@ -3437,6 +2834,9 @@ msgstr "詳細情報請求済み"
 
 msgid "This request for information has been resolved"
 msgstr "この情報請求は解決しました"
+
+msgid "License"
+msgstr "ライセンス"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "あなたのソースコードに付与する権利のための適切なライセンスを選んでください。これは、掲載中のアドオンにのみ関連付けられます。"
@@ -3458,12 +2858,18 @@ msgid "Select <b>up to {0}</b> {1} category for this add-on:"
 msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] "このアドオンの {1}用カテゴリーを <b>{0} 個まで</b> 選択してください:"
 
+msgid "End-User License Agreement"
+msgstr "エンドユーザー使用許諾契約書"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
 "ユーザーは、あなたのアドオンをインストールする前に、次のエンドユーザ使用許諾契約書 (EULA) に同意する必要があります。EULA の存在は、アドオンのダウンロード数に大きく影響します。EULA が、GPL や MPL な"
 "どのソースコードのライセンスと同じにならないよう注意してください。これは、掲載中のアドオンにのみ関連付けられます。"
+
+msgid "Privacy Policy"
+msgstr "プライバシーポリシー"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3536,6 +2942,9 @@ msgstr "商標の不正利用を報告"
 
 msgid "Legal Notices"
 msgstr "法的通知"
+
+msgid "Contribute"
+msgstr "寄付"
 
 msgid "Review Add-ons"
 msgstr "アドオンを審査"
@@ -3748,6 +3157,9 @@ msgstr "0 個のファイル"
 
 msgid "Re-enable Version"
 msgstr "バージョンを再度有効化"
+
+msgid "Review History"
+msgstr "審査履歴"
 
 msgid "Close Review History"
 msgstr "審査履歴を閉じる"
@@ -4371,7 +3783,7 @@ msgstr "マウスジェスチャーでタブを閉じたり、ページを戻っ
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}画像を検索結果に追加"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}画像を検索しましょう"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
@@ -4387,7 +3799,7 @@ msgstr "ディスプレイを暗くすることで、ウェブを目に優しく
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}ポップアップを停止"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ポップアップを止めましょう"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
@@ -4395,7 +3807,7 @@ msgstr "初期設定ですべてのポップアップをブロックして、開
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}お気に入りのウェブサイトをカスタマイズ"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}お気に入りのウェブサイトをカスタマイズ"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
@@ -4403,7 +3815,7 @@ msgstr "色やページの背景などを変えて、好きなウェブサイト
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}新しいタブをカスタマイズ"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}新しいタブをカスタマイズ"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
@@ -4411,7 +3823,7 @@ msgstr "新しいタブページを編集して、好きな数のタイルや背
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}パスワードを管理"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}パスワードを管理しましょう"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -4419,7 +3831,7 @@ msgstr "パスワードを安全に保管して、複数のデバイスからア
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}ウェブ上での移動先を確認"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}ウェブ上の行く先を確認しましょう"
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
@@ -4443,7 +3855,7 @@ msgstr "新しいタブで開きたいリンクを右クリックしてドラッ
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{addon_name}{end_sub_heading}で{start_sub_heading}タブを取得"
+msgstr "{start_sub_heading}{addon_name} で{end_sub_heading}タブを取得"
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
@@ -5291,6 +4703,9 @@ msgstr "ファイルの内容が構文の強調表示に対応していません
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "出力が壊れる可能性がありますので気をつけて、至急%(link_start)s問題を報告%(link_end)sしてください。"
 
+msgid "close"
+msgstr "閉じる"
+
 msgid "Go"
 msgstr "移動"
 
@@ -5344,102 +4759,6 @@ msgstr "アップロードされたファイルにはファイルが含まれて
 
 msgid "Fetching file."
 msgstr "ファイルを取得しています。"
-
-msgid "Shopping Made Easy"
-msgstr "お手軽ショッピング"
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr "快適なブラウザーからお気に入りのアイテムを保存します。"
-
-msgid "Build the perfect website"
-msgstr "完璧なウェブサイトを作成"
-
-msgid "First time with Add-ons?"
-msgstr "アドオンを使うのは初めてですか？"
-
-msgid "Not to worry, here are three to get started."
-msgstr "ご安心ください。始めるための 3 つのポイントがこちらです。"
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr "ウェブのコンテンツを 40 以上の言語間で翻訳。"
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr "ソーシャルネットワークに手軽に接続して、閲覧しているページを共有したりコメントをつける。"
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "オンラインでの買物やフライト検索に、価格を比較できるクイックビュー。"
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "聖パトリック祭のテーマ"
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "聖パトリック祭を祝ってブラウザーを飾りましょう。"
-
-msgid "A+ add-ons for School"
-msgstr "学校用の A+ アドオン"
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "新学期を迎える教職員、保護者、生徒・学生向けのアドオン。"
-
-msgid "Would you like to know which websites you can trust?"
-msgstr "信頼できるウェブサイトを知りたい？"
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks は No.1 のブックマークアドオンです。"
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr "ウェブページとテキストの翻訳や辞書など、豊富な機能。"
-
-msgid "Love is in the Air"
-msgstr "Love is in the Air"
-
-msgid "Add some romance to your Firefox."
-msgstr "Firefox にちょっとしたロマンスを追加してみませんか。"
-
-msgid "Get up and move!"
-msgstr "起き上がって行動しよう！"
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "フィットネスアドオンをインストールして、アクティブで健康な毎日を送りましょう。"
-
-msgid "New &amp; Now"
-msgstr "New &amp; Now"
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr "最新の、今最も旬なアドオンをゲットしよう。"
-
-msgid "Worry-free browsing"
-msgstr "心配いらずのブラウジング"
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "このコレクションのアドオンで、オンラインのプライバシーを保護しましょう。"
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "仕事、娯楽、プライバシー、生産性... 何でもそろった便利なアドオン。"
-
-msgid "Games!"
-msgstr "ゲーム！"
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr "Firefox にもっと楽しさを追加しましょう。パズル、クラシックアーケード、アクションゲームなど、豊富なゲームをブラウザーからプレイできます！"
-
-msgid "Must-Have Media"
-msgstr "必須メディア"
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "便利にスクリーンショットを撮ったり、オンライン動画体験を改善したり、GIF やその他の素晴らしいメディアツールを作成する方法を学んだりできます。"
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Mozilla が選ぶ今月のアドオン"
-
-msgid "Become a Test Pilot"
-msgstr "テストパイロットになる"
-
-msgid "Unlock early access to experimental browser features."
-msgstr "実験的なブラウザー機能をいち早く試してみましょう。"
-
-msgid "Get Started"
-msgstr "ここからスタート"
 
 msgid "Reported Status"
 msgstr "報告されたステータス"
@@ -5569,6 +4888,9 @@ msgstr "誰がこのウェブサイトで働いているの？"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr "長年の間、コミュニティーのボランティアと AMO 専属チームを含む、多くの人々がこのウェブサイトに貢献してきました。"
+
+msgid "Review Guidelines"
+msgstr "レビューガイドライン"
 
 msgid "Sections"
 msgstr "セクション"
@@ -5760,6 +5082,9 @@ msgstr ""
 "ビューは簡潔に書き、不適切な表現の使用は避けてください。また、個人情報も投稿しないでください。 </li> </ul> <p>アドオンのユーザーレビューについての詳細な情報は <a href=\"%(guide)s\">レビューガイドラ"
 "イン</a> をご覧ください。</p>"
 
+msgid "Submit review"
+msgstr "レビューを投稿"
+
 msgid "Reply to review by {0}"
 msgstr "{0}のレビューへの返信"
 
@@ -5780,6 +5105,13 @@ msgstr "理由を選択してください:"
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "投稿者: %(user)s <b>(開発者)</b> - %(date)s"
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr "投稿者: %(user)s - %(date)s"
+
+msgid "permalink"
+msgstr "固定リンク"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -5849,6 +5181,9 @@ msgstr "新しいレビューを書く"
 
 msgid "Be the first to write a review."
 msgstr "ぜひ、最初のレビューを書いてください。"
+
+msgid "This add-on has not yet been reviewed."
+msgstr "このアドオンはまだレビューされていません。"
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5946,6 +5281,9 @@ msgstr "管理者コンテンツ審査が必要"
 msgid "Needs Admin Static Theme Review"
 msgstr "管理者静的テーマ審査が必要"
 
+msgid "Requires Restart"
+msgstr "要再起動"
+
 msgid "More Information Requested"
 msgstr "詳しい情報が求められています"
 
@@ -5957,6 +5295,9 @@ msgstr "ソース提供あり"
 
 msgid "WebExtension"
 msgstr "WebExtension"
+
+msgid "Risk breakdown not available."
+msgstr ""
 
 msgid "Is locked by a reviewer."
 msgstr "審査担当者によってロックされています。"
@@ -6051,14 +5392,9 @@ msgstr "コンテンツを承認"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "これによって、開発者に通知することなく、最新の公開バージョンの内容を承認したことが記録されます。"
 
-msgid "Static Themes and Legacy Add-ons"
-msgstr "静的テーマと旧式アドオン"
-
-msgid "Static Themes"
-msgstr "静的テーマ"
-
-msgid "Legacy Add-ons"
-msgstr "旧式アドオン"
+#, fuzzy
+msgid "Pre-Approval Add-ons"
+msgstr "自動承認されたアドオン"
 
 msgid "New ({0})"
 msgstr "新規 ({0})"
@@ -6071,9 +5407,6 @@ msgstr "審査ログ"
 
 msgid "Add-on Review Guide"
 msgstr "アドオン審査ガイド"
-
-msgid "Theme Review Guide"
-msgstr "テーマ審査ガイド"
 
 msgid "Auto-Approved Add-ons"
 msgstr "自動承認されたアドオン"
@@ -6093,6 +5426,9 @@ msgstr "コンテンツ審査"
 msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "コンテンツ審査 ({0})"
+
+msgid "Theme Review Guide"
+msgstr "テーマ審査ガイド"
 
 msgid "User Ratings Moderation"
 msgstr "ユーザー評価管理"
@@ -6145,6 +5481,10 @@ msgstr "{addon} :: 不正報告"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "{addon} とその開発者に関する不正報告 ({num})"
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "{0}のアドオン情報"
+
 #, fuzzy
 msgid "Add-on ID"
 msgstr "アドオン"
@@ -6152,7 +5492,6 @@ msgstr "アドオン"
 msgid "Internal AMO ID"
 msgstr "内部 AMO ID"
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "動作環境:"
 
@@ -6176,6 +5515,9 @@ msgstr "課金あり"
 
 msgid "EULA"
 msgstr "エンドユーザー使用許諾契約書 (EULA)"
+
+msgid "View End-User License Agreement"
+msgstr "エンドユーザー使用許諾契約書を表示"
 
 msgid "Last Approval Date"
 msgstr "最終承認日"
@@ -6372,6 +5714,9 @@ msgstr "開発者がソースコードを提供しています。"
 
 msgid "Weight:"
 msgstr "重み:"
+
+msgid "Download"
+msgstr "ダウンロード"
 
 msgid "Not Auto Approved Because"
 msgstr "自動承認されなかった理由"
@@ -6607,6 +5952,9 @@ msgstr "概要"
 msgid "by Source"
 msgstr "参照元別"
 
+msgid "Daily Users"
+msgstr "日別ユーザー数"
+
 msgid "by Add-on Version"
 msgstr "アドオンのバージョン別"
 
@@ -6811,9 +6159,6 @@ msgstr "アドオンのページへ戻る"
 msgid "Footer logo"
 msgstr "フッターロゴ"
 
-msgid "Choose a category"
-msgstr "カテゴリーを選択"
-
 msgid "The new website supports mobile and desktop clients"
 msgstr "新しいウェブサイトはモバイルとデスクトップのクライアントに対応"
 
@@ -6931,6 +6276,9 @@ msgstr "選択したユーザーのアカウントを停止"
 msgid "Profile Photo"
 msgstr "プロファイル写真"
 
+msgid "Collections"
+msgstr "コレクション"
+
 msgid "Addons"
 msgstr "アドオン"
 
@@ -7008,48 +6356,16 @@ msgstr "購読を解除できませんでした"
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr "申し訳ありませんが、購読を解除できませんでした。クリックされたリンクが正しくないようです。<a href=\"%(edit_url)s\">プロファイル編集ページ</a> から購読を解除してください。"
 
+#, python-format
+msgid "by %(users)s"
+msgstr "作者: %(users)s"
+
 msgctxt "user_list_others"
 msgid "others"
 msgstr "その他"
 
-# {0} is the add-on name
-#, python-format
-msgid "%s Version History"
-msgstr "%sのバージョン履歴"
-
-msgid "Version History with Changelogs"
-msgstr "バージョン履歴・変更点"
-
 msgid "{app} {min} and later"
 msgstr "{app} {min} 以降"
-
-msgid "Permanent link to this version"
-msgstr "このバージョンへの固定リンク"
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr "リリース日: {0}"
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "ソースコードは <a href=\"%(url)s\">%(name)s</a> の下で公開されています"
-
-# {0} is the add-on name
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr "{0}のバージョン履歴"
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> 個のバージョンがあります"
-
-msgid "Be careful with old versions!"
-msgstr "古いバージョンにご注意！"
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "これらは、参考またはテストのために表示されているバージョンです。常に <a href=\"%(url)s\">最新バージョン</a> のアドオンを使用してください。"
 
 msgid "Deleted versions can`t be changed."
 msgstr "削除したバージョンは変更できません。"

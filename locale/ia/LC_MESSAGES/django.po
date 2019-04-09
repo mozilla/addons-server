@@ -1,11 +1,11 @@
-#
+# 
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-03-04 22:28+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"PO-Revision-Date: 2019-04-09 00:15+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -21,6 +21,9 @@ msgstr "Nulle ligamines es consentite."
 
 msgid "This display name cannot be used."
 msgstr "Iste nomine de schermo non pote ser usate."
+
+msgid "This reviewer name cannot be used."
+msgstr "Iste nomine de revisor non pote ser usate."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Le campo del pagina principal pote esser usate solo pro ligamine a sitos web externe."
@@ -78,26 +81,6 @@ msgstr "Stato"
 msgid "- Add-on not on AMO -"
 msgstr "- Additivos externe -"
 
-msgid "Download Now"
-msgstr "Discargar ora"
-
-msgid "Download"
-msgstr "Discargar"
-
-msgid "Featured"
-msgstr "Favorite"
-
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "Non revidite"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr "Experimental"
-
-msgid "Add to {0}"
-msgstr "Adder a {0}"
-
 msgid "Listed"
 msgstr "Listate"
 
@@ -107,146 +90,6 @@ msgstr "Le percursos del additivo e del collectiones debe finir con \"/\""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Le nomines de additivo non pote continer le marcas de fabrica Mozilla o Firefox."
 
-msgid "Abuse reported."
-msgstr "Abuso signalate."
-
-msgid "No compatible versions"
-msgstr "Nulle compatibile versiones"
-
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "pro {0}"
-
-msgid "View privacy policy"
-msgstr "Vide le politica de confidentialitate"
-
-msgid "View End-User License Agreement"
-msgstr "Vide End-User License Agreement"
-
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Iste additivo non ha essite revidite per Mozilla."
-
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "Iste additivo ha essite marcate como experimental per su disveloppatores."
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "End-User License Agreement pro {0}"
-
-msgid "End-User License Agreement"
-msgstr "End-User License Agreement"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s necessita que tu accepta le sequente End-User Licence Agreement ante que le installation pote continuar:"
-
-msgid "Back to {0}…"
-msgstr "Retro a {0}…"
-
-msgid "Add-ons for {0}"
-msgstr "Additivos pro {0}"
-
-msgid "Featured Extensions"
-msgstr "Extensiones favorite"
-
-msgid "Popular Extensions"
-msgstr "Extensiones popular"
-
-msgid "Most Popular"
-msgstr "Plus popular"
-
-msgid "All »"
-msgstr "Tote le »"
-
-msgid "See all »"
-msgstr "Vide tote le »"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "Super &amp; Extensiones a venir"
-
-msgid "Featured Themes"
-msgstr "Themas favorite"
-
-msgid "Sort by:"
-msgstr "Ordinar per:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "Actualisate {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "Addite {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s discargamento septimanal"
-msgstr[1] "%(num)s discargamentos septimanal"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s usator"
-msgstr[1] "%(num)s usatores"
-
-msgid "Requires Restart"
-msgstr "Il necesse reinitiar"
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "Iste additivo es integrate con le nove technologias que es compatibile con Firefox 57 e superior."
-
-msgid "Compatible with Firefox 57+"
-msgstr "Compatibile con Firefox 57+"
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} discargamento septimanal"
-msgstr[1] "{0} discargamentos septimanal"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0} usator"
-msgstr[1] "{0} usatores"
-
-msgid "by"
-msgstr "per"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr "Plus de {0} themas"
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr "Vider tote le {0} themas"
-
-msgid "More by this Artist"
-msgstr "Plus de iste artista"
-
-msgid "See all Themes by this Artist"
-msgstr "Vide tote le themas de iste artista"
-
-msgid "Categories"
-msgstr "Categorias"
-
-msgid "Updated"
-msgstr "Actualisate"
-
-msgid "Artist"
-msgstr "Artista"
-
-msgid "Rating"
-msgstr "Valutation"
-
-msgid "Daily Users"
-msgstr "Usatores per die"
-
-msgid "License"
-msgstr "Licentias"
-
 msgid "Awaiting Review"
 msgstr "Attendente revision"
 
@@ -255,6 +98,9 @@ msgstr "Rejectate"
 
 msgid "Approved"
 msgstr "Approbate"
+
+msgid "Added {0}"
+msgstr "Addite {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -282,255 +128,17 @@ msgstr "Nondum valutate"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> usatores"
 
+msgid "by"
+msgstr "per"
+
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "{0} Usator per die"
 msgstr[1] "{0} Usatores per die"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "Politica de confidentialitate pro {0}"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "Politica de confidentialitate"
-
-msgid "Report Abuse"
-msgstr "Reporto de abuso"
-
-#, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"Si tu suspecta que iste additivo viola %(amo_policy_link_open)snostre politicas%(link_close)s o ha problemas de securitate o de confidentialitate, per favor usa le modulo infra pro describer tu "
-"anxietates. Per favor non usar iste modulo pro ulle altere ration."
-
-msgid "Send Report"
-msgstr "Inviar le reporto"
-
-msgid "or"
-msgstr "o"
-
-msgid "Cancel"
-msgstr "Cancellar"
-
-msgid "What do you think?"
-msgstr "Que pensa tu?"
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "Per favor <a href=\"%(login)s\">authentica te</a> pro inviar un revision"
-
-msgid "Review:"
-msgstr "Revision:"
-
-msgid "Rating:"
-msgstr "Valutation:"
-
-msgid "Submit review"
-msgstr "Inviar revision"
-
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Per favor non postar reportos de defecto ci. Nos non rende tu adresse de email disponibile pro le disveloppatores additivos, assi illos non pote continger tu pro resolver tu problema."
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-"Vide le <a href=\"%(support)s\">section de supporto</a> de iste additivo pro trovar si es disponibile assistentia. Tu pote alsi provar demandar al <a href=\"https://discourse.mozilla-community.org/"
-"c/add-ons/add-on-support\">communitate de additivos</a> pro auxilio."
-
-msgid "Review Guidelines"
-msgstr "Lineas guida del revisiones"
-
-msgid "Reviews"
-msgstr "Revisiones"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "per %(user)s sur %(date)s"
-
-msgid "Show the developer's reply to this review"
-msgstr "Monstrar le replicas del developpatores a iste revision"
-
-#, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Vide tote le revisiones de iste additivo"
-msgstr[1] "Vide tote le %(cnt)s revisiones a iste additivo"
-
-msgid "Tags"
-msgstr "Tags"
-
-msgid "Icon for {0}"
-msgstr "Icone pro {0}"
-
-#, python-format
-msgid "by %(users)s"
-msgstr "per %(users)s"
-
-msgid "Download Anyway"
-msgstr "Discargar comocunque"
-
-msgid "[Warning]"
-msgstr "[Aviso]"
-
-msgid "Permissions"
-msgstr "Permissiones"
-
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "Iste additivo ha essite marcate como experimental per su disveloppatores"
-
-msgid "Average"
-msgstr "Media"
-
-msgid "Write a review"
-msgstr "Scribe un revision"
-
-msgid "Related Categories"
-msgstr "Categorias associate"
-
-#, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Altere additivos per %(author)s"
-msgstr[1] "Altere additivos per iste autores"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> recension del usatores"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> revisiones de usator"
-
-msgid "View statistics"
-msgstr "Vider statistica"
-
-msgid "Manage"
-msgstr "Gerer"
-
-msgid "Add-on Review"
-msgstr "Revision de additivo"
-
-msgid "Admin Manage"
-msgstr "Gestion de Administrator"
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr "Icone de {0}"
-
-msgid "Contribute"
-msgstr "Contribuer"
-
-msgid "Enjoy this add-on?"
-msgstr "Gaude tu de iste additivo?"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Le disveloppator de iste additivo te demanda adjuta pro supportar su continuation del disveloppamento per un micre donation."
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr "Instantaneo de additivo #{0}"
-
-msgid "Add-on home page"
-msgstr "Pagina principal del additivo"
-
-msgid "Support site"
-msgstr "Sito de supporto"
-
-msgid "Support E-mail"
-msgstr "Email de supporto"
-
-msgid "Info"
-msgstr "Informationes"
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr "Ultime actualisation:"
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Publicate sub <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Custom License"
-msgstr "Licentia personal"
-
-msgid "About this Add-on"
-msgstr "A proposito de iste additivo"
-
-msgid "Developer’s Comments"
-msgstr "Commentos del disveloppator"
-
-msgid "Version Information"
-msgstr "Informationes del version"
-
-msgid "See complete version history"
-msgstr "Vide le chronologia complete del version"
-
-msgid "close"
-msgstr "clauder"
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Alcun additivos demanda pro permission pro exequer certe functiones (exemplo: un additivo de gestion del scheda demandara permission pro acceder al systema de schedas de tu navigator)."
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
-msgstr ""
-"Pois que tu controla tu Firefox, le selection pro accordar o negar iste requestas es tue. Le acceptation del permissos non compromitte implicitemente performance o securitate de tu navigator, ma in "
-"alcun rar casos pote ser implicate risco."
-
-#. This is a header of a list of things the add-on can do.
-msgid "This add-on can:"
-msgstr "Iste additivo pote:"
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Alcun additivos demanda permisso pro exequer certe functiones. Pois que tu controla tu Firefox, le selection pro accordar o negar iste requestas es tue."
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "Per favor nota que iste additivo usa technologia legate, que da illo accesso pro tote functiones e datos del navigator sin requirer tu permisso."
-
-msgid "This add-on has been removed by its author."
-msgstr "Iste additivo ha essite removite per su autor."
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "Iste additivo ha essite disactivate per un administrator."
-
-msgid "Source Code License for {addon}"
-msgstr "Licentia de codification fonte pro {addon}"
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr "Licentia de codification fonte"
-
-msgid "support section"
-msgstr "section supporto"
-
-msgid "support email"
-msgstr "email pro supporto"
-
-msgid "permalink"
-msgstr "ligamine permanente"
-
-#, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Vide tote le revisiones de usator"
-msgstr[1] "Vide tote le %(cnt)s revisiones de usator"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Iste additivo non ha essite ancora revidite."
-
-msgid "Be the first!"
-msgstr "Sia tu le prime!"
-
-msgid "No results found."
-msgstr "Nulle resultatos trovate."
-
-msgid "{0} users"
-msgstr "{0} usatores"
+msgid "Sort by:"
+msgstr "Ordinar per:"
 
 msgid "More"
 msgstr "Plus"
@@ -540,34 +148,6 @@ msgstr "Mi additivos"
 
 msgid "My Themes"
 msgstr "Mi themas"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Informationes de additivo pro {0}"
-
-msgid "Edit Theme"
-msgstr "Modificar thema"
-
-msgid "Approve / Reject"
-msgstr "Approbar / rejectar"
-
-msgid "Review History"
-msgstr "Chronologia del revision"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Pardono, iste thema es pendente. Per favor reveni plus tarde."
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "Iste thema es pendente. Illo es invisibile a omnes salvo a te."
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> discargamento septimanal"
-msgstr[1] "<strong>{0}</strong> discargamentos septimanal"
-
-msgid "Not Reviewed"
-msgstr "Non revidite"
 
 msgid "Tools"
 msgstr "Instrumentos"
@@ -653,8 +233,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
-"Tu vide iste message pois que iste sito necessita un cookie CSRF al invio de formas. Iste cookie es requirite pro rationes de securitate, pro assecurar te que tu navigator non es piratate per "
-"tertie partes."
+"Tu vide iste message pois que iste sito necessita un cookie CSRF al invio de formas. Iste cookie es requirite pro rationes de securitate, pro assecurar te que tu navigator non es piratate per tertie"
+" partes."
 
 msgid "Page Not Found"
 msgstr "Pagina non trovate"
@@ -688,17 +268,17 @@ msgstr "Non trovate"
 #, python-format
 msgid ""
 "<h1>We're sorry, but we can't find what you're looking for.</h1> <p> The page or file you requested wasn't found on our site. It's possible that you clicked a link that's out of date, or typed in "
-"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an issue"
-"%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our website."
-"</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a href=\"%(search)s"
-"\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
+"the address incorrectly. </p> <ul> <li>If you typed in the address, please double check the spelling.</li> <li> If you followed a link from somewhere, please %(open_bug_link)sfile an "
+"issue%(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it. </li> </ul> <p>Or you can just jump over to some of the popular pages on our "
+"website.</p> <ul> <li>Are you interested in a <a href=\"%(rec)s\">list of featured add-ons</a>?</li> <li> Do you want to <a href=\"%(search)s\">search for add-ons</a>? You may go to the <a "
+"href=\"%(search)s\">search page</a> or just use the search field above. </li> <li> If you prefer to start over, just go to the <a href=\"%(home)s\">add-ons front page</a>. </li> </ul>"
 msgstr ""
-"<h1>Nos lo regretta, ma nos non pote trovar lo que tu recerca.</h1> <p> Le pagina o file que tu requireva non esseva trovate sur nostre sito. Il es possibile que tu cliccava un ligamine que es "
-"foras de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor "
+"<h1>Nos lo regretta, ma nos non pote trovar lo que tu recerca.</h1> <p> Le pagina o file que tu requireva non esseva trovate sur nostre sito. Il es possibile que tu cliccava un ligamine que es foras"
+" de data, o insereva le adresse incorrectemente. </p> <ul> <li>Si tu insereva le adresse, per favor duple controla le orthographia.</li> <li> Si tu sequeva un ligamine ab alicubi, per favor "
 "%(open_bug_link)ssignala un problema%(close_bug_link)s. Conta nos ab ubi tu veniva e lo que tu cercava, e nos facera nostre melio pro lo reparar. </li> </ul> <p>O tu pote justo saltar super alcun "
-"del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a href=\"%(search)s\">cercar pro additivos</"
-"a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a href=\"%(home)s\">pagina de prime plan del "
-"additivos</a>. </li> </ul>"
+"del paginas popular sur nostre sito web.</p> <ul> <li>Es tu interessate a un <a href=\"%(rec)s\">lista de additivos consiliate</a>?</li> <li> Desira tu <a href=\"%(search)s\">cercar pro "
+"additivos</a>? Tu pote ir al <a href=\"%(search)s\">pagina de recerca</a> o justo usar le campo de recerca supra. </li> <li> Si tu prefere comenciar, va justo al <a href=\"%(home)s\">pagina de prime"
+" plan del additivos</a>. </li> </ul>"
 
 msgid "Oops"
 msgstr "Ups"
@@ -743,8 +323,11 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
-"<p> Per favor insere <strong>tote le parolas</strong> infra, <strong>separate per un spatio si necessari</strong>. </p> <p> Si isto es dur a leger, tu pote <a href=\"#\" id=\"recaptcha_different"
-"\">provar differente parolas</a> o <a href=\"#\" id=\"recaptcha_audio\"> provar un differente typo de defia</a> in vice. </p>"
+"<p> Per favor insere <strong>tote le parolas</strong> infra, <strong>separate per un spatio si necessari</strong>. </p> <p> Si isto es dur a leger, tu pote <a href=\"#\" "
+"id=\"recaptcha_different\">provar differente parolas</a> o <a href=\"#\" id=\"recaptcha_audio\"> provar un differente typo de defia</a> in vice. </p>"
+
+msgid "Most Popular"
+msgstr "Plus popular"
 
 msgid "Top Rated"
 msgstr "Los melio valutate"
@@ -752,8 +335,14 @@ msgstr "Los melio valutate"
 msgid "Newest"
 msgstr "Le plus recente"
 
+msgid "Featured"
+msgstr "Favorite"
+
 msgid "Explore"
 msgstr "Explorar"
+
+msgid "Categories"
+msgstr "Categorias"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -775,14 +364,14 @@ msgstr "Saltar al ultime pagina"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Monstrante <b>%(begin)s</b>&ndash;<b>%(end)s</b> de <b>%(count)s</b>"
 
-msgid "Collections"
-msgstr "Collectiones"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Dictionarios e pacchettos de lingua"
+msgid "Add-ons for {0}"
+msgstr "Additivos pro {0}"
 
 msgid "Add-ons"
 msgstr "Additivos"
+
+msgid "Custom License"
+msgstr "Licentia personal"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -822,9 +411,8 @@ msgstr "Jeton JWT non valide."
 msgid "Invalid token or hash."
 msgstr "Archivo non valide o rupte."
 
-#, fuzzy
 msgid "Email address not found."
-msgstr "Adresse de email"
+msgstr "Adresse de email non trovate."
 
 msgid "The field must have a length of at least {num} characters."
 msgstr "Le campo debe haber un longitude de al minus {num} characteres."
@@ -864,11 +452,11 @@ msgstr "Versiones"
 
 #, python-format
 msgid ""
-"If your supported application does not require a manifest file, you still must include one with the required properties as specified %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"If your supported application does not require a manifest file, you still must include one with the required properties as specified "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 msgstr ""
-"Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per %(amo_manifests_mdn_link_open)shere"
-"%(amo_manifests_mdn_link_close)s."
+"Si tu application supportate non require un file manifesto, tu debe includer comocunque uno con le proprietates requirite como specificate per "
+"%(amo_manifests_mdn_link_open)shere%(amo_manifests_mdn_link_close)s."
 
 msgid "The text entered has been flagged as spam."
 msgstr "Le texto inserite esseva signalate como spam."
@@ -890,264 +478,6 @@ msgstr "Iste URL personalisate non pote ser usate."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Iste additivo pertine ja al collection"
-
-msgid "Extensions"
-msgstr "Extensiones"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr "%s Additivos"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Themas"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr "%s Themas"
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr "Additivos favorite :: %s"
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Ecce un poc de nostre favorite additivos pro te adjutar a comenciar a personalisar %s."
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr "Applicationes de recerca correlate a %s"
-
-msgid "Search tools and search-related extensions"
-msgstr "Applicationes de recerca e extensiones correlate al recerca"
-
-msgid "Search tools"
-msgstr "Utensiles de recerca"
-
-msgid "Search Tools"
-msgstr "Applicationes de recerca"
-
-msgid "Most Users"
-msgstr "Le major parte del usatores"
-
-msgid "Name"
-msgstr "Nomine"
-
-msgid "Weekly Downloads"
-msgstr "Discargamentos septimanal"
-
-msgid "Recently Updated"
-msgstr "Recentemente actualisate"
-
-msgid "Up & Coming"
-msgstr "Emergentias"
-
-msgid "Recently Added"
-msgstr "Addite recentemente"
-
-msgid "Created"
-msgstr "Create"
-
-msgid "Downloads"
-msgstr "Discargamentos"
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr "{0}: Additivos preferite"
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr "Nulle additivos consiliate in {0}."
-
-msgid "Subscribe"
-msgstr "Subscriber"
-
-msgid "Featured Add-ons"
-msgstr "Additivos consiliate"
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Ecce alcun de nostre favorite additivos pro te adjutar a comenciar a personalisar %(app)s."
-
-msgid "Install Dictionary"
-msgstr "Installar un dictionario"
-
-msgid "Install Language Pack"
-msgstr "Installar un pacchetto de lingua"
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
-msgstr ""
-"Installar un additivo de dictionario addera un nove option de lingua pro tu %(app_name)s controlator orthographic, que controla tu orthographia quando tu plena le modulos de web. Le additivos "
-"Pacchetto de lingua cambia le lingua del integre application."
-
-msgid "Available in your locale"
-msgstr "Disponibile in tu localisation"
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr "Lista del pacchettos de lingua e dictionarios disponibile in tu local."
-
-msgid "Language"
-msgstr "Lingua"
-
-msgid "Dictionary"
-msgstr "Dictionario"
-
-msgid "Language Pack"
-msgstr "Pacchetto de lingua"
-
-msgid "All locales"
-msgstr "Tote le linguas"
-
-msgid "List of language packs and dictionaries."
-msgstr "Lista de pacchettos de lingua e dictionarios."
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr "{0} :: Applicationes de recerca"
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> additivo"
-msgstr[1] "<b>{0}</b> additivos"
-
-msgid "Search Extensions"
-msgstr "Extensiones de recerca"
-
-msgid "Add search-related functionality to Firefox"
-msgstr "Adder functionalitates correlate al recerca a Firefox"
-
-msgid "Search Providers"
-msgstr "Providitores de recerca"
-
-msgid "Find new providers for your search bar"
-msgstr "Trova nove providitores pro tu barra de recerca"
-
-msgid "Additional Resources"
-msgstr "Altere ressources"
-
-#. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Saper plus re le <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">barra de recerca</a> in {0}"
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "Naviga per mesmo plus fornitores de recercas a <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr "%(amo_mdn_link_open)sCrea tu proprie%(amo_mdn_link_close)s application de recerca"
-
-msgid "Most Popular Extensions"
-msgstr "Extensiones plus popular"
-
-msgid "Top-Rated Extensions"
-msgstr "Extensiones melio valutate"
-
-msgid "Newest Extensions"
-msgstr "Extensiones plus recente"
-
-msgid "Extensions by Name"
-msgstr "Extensiones per nomine"
-
-msgid "Extensions by Weekly Downloads"
-msgstr "Extensiones per files discargate septimanalmente"
-
-msgid "Recently Updated Extensions"
-msgstr "Extensiones recentemente actualisate"
-
-msgid "Up & Coming Extensions"
-msgstr "Extensiones emergente"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr "Themas complete consiliate"
-
-msgid "Most Popular Complete Themes"
-msgstr "Themas complete plus popular"
-
-msgid "Top-Rated Complete Themes"
-msgstr "Themas complete melio valutate"
-
-msgid "Newest Complete Themes"
-msgstr "Themas complete plus recente"
-
-msgid "Complete Themes by Name"
-msgstr "Themas complete per nomine"
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr "Themas complete per numero de discargamentos septimanal"
-
-msgid "Recently Updated Complete Themes"
-msgstr "Themas complete plus recentemente actualisate"
-
-msgid "Up & Coming Complete Themes"
-msgstr "Themas complete emergente"
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Vide le %(cnt)s extension in %(name)s &raquo;"
-msgstr[1] "Vide tote le %(cnt)s extensiones in %(name)s &raquo;"
-
-msgid "{0} Themes"
-msgstr "{0} Themas"
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr "Themas de {0}"
-
-msgid "View Profile"
-msgstr "Vider le profilo"
-
-msgid "Create Your Own Theme"
-msgstr "Crea tu proprie thema"
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "Tu navigator, tu stilo! Vesti lo con un designo tu proprie!"
-
-msgid "Learn more"
-msgstr "Saper plus"
-
-msgid "View All Recently Added"
-msgstr "Vide tote les recentemente addite"
-
-msgid "View All Most Popular"
-msgstr "Vide tote los plus popular"
-
-msgid "View All Top Rated"
-msgstr "Vide tote les melio classificate"
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Plus de 300.000 designos pro personalisar tu navigator! Move tu mus super un thema de fundo pro lo provar. <a href=\"%(url)s\" class=\"more-info\">Comencia a explorar</a>"
-
-msgid "Want more personalization?"
-msgstr "Desira tu plus personalisation?"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-"Le themas complete transforma le vision de tu navigator con stilos pro le quadro de fenestra, barra de adresse, buttones, schedas, e menus. <a href=\"%(url)s\" class=\"more-info\">Comencia a "
-"explorar</a>"
-
-msgid "Up & Coming Themes"
-msgstr "Themas emergente"
-
-msgid "View All Up & Coming"
-msgstr "Vide tote los emergente"
-
-msgid "No themes found"
-msgstr "Nulle themas trovate"
 
 msgid "{addon} was created."
 msgstr "{addon} esseva create."
@@ -1513,6 +843,9 @@ msgstr "Extension"
 msgid "Complete Theme"
 msgstr "Thema complete"
 
+msgid "Dictionary"
+msgstr "Dictionario"
+
 msgid "Search Engine"
 msgstr "Motor de recerca"
 
@@ -1531,11 +864,17 @@ msgstr "Thema"
 msgid "Theme (Static)"
 msgstr "Thema (Static)"
 
+msgid "Extensions"
+msgstr "Extensiones"
+
 msgid "Complete Themes"
 msgstr "Themas complete"
 
 msgid "Dictionaries"
 msgstr "Dictionarios"
+
+msgid "Search Tools"
+msgstr "Applicationes de recerca"
 
 msgid "Language Packs (Application)"
 msgstr "Pacchettos de lingua (Application)"
@@ -1545,6 +884,9 @@ msgstr "Pacchettos de lingua (Additivo)"
 
 msgid "Plugins"
 msgstr "Plugins"
+
+msgid "Themes"
+msgstr "Themas"
 
 msgid "Themes (Static)"
 msgstr "Themas (Static)"
@@ -2213,8 +1555,7 @@ msgstr ""
 "Sur iste sito. <span class=\"helptext\">Tu submission essera listate sur iste sito e le Gestor de additivos de Firefox pro milliones de usatores, post que illo passa le revision del codice. Le "
 "actualisationes automatic es tractate per iste sito. Iste additivo essera alsi considerate pro promotiones e contextos de Mozilla. Le auto-distribution del files revidite es alsi possibile.</span>"
 
-msgid ""
-"On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
+msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
 "Sur tu proprie. <span class=\"helptext\">Tu submission essera immediatemente signate pro auto-distribution. Le actualisationes debe esser tractate per te per un updateURL o per un application "
 "externe dedicate.</span>"
@@ -2238,6 +1579,21 @@ msgstr "Aviso de securitate de Mozilla: Tu credentiales API de AMO ha essite rev
 #, python-format
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Le validation generava trop errores//avisos assi le messages de %s esseva truncate. Post haber affrontate le messages visibile, tu potera vider los altere."
+
+msgid "Updated"
+msgstr "Actualisate"
+
+msgid "Name"
+msgstr "Nomine"
+
+msgid "Created"
+msgstr "Create"
+
+msgid "Downloads"
+msgstr "Discargamentos"
+
+msgid "Rating"
+msgstr "Valutation"
 
 msgid "All My Add-ons"
 msgstr "Tote mi additivos"
@@ -2392,8 +1748,8 @@ msgid "My add-on doesn't fit into any of the categories"
 msgstr "Mi additivo non entra in ulle del categorias"
 
 msgid ""
-"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy "
-"Notice which explains how we handle your information."
+"Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
+" which explains how we handle your information."
 msgstr ""
 "Ante de initiar, per favor leger e acceptar nostre Accordo de distribution del additivos de Firefox tam ben como nostre Politicas e regulas de revision. Le Accordo de distribution del additivos de "
 "Firefox alsi se refere a nostre Aviso de confidentialitate que explica como nos gere tu informationes."
@@ -2494,6 +1850,9 @@ msgstr "Recente activitate pro {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> per %(user)s"
 
+msgid "No results found."
+msgstr "Nulle resultatos trovate."
+
 msgid "Refine Activity"
 msgstr "Affinar activitate"
 
@@ -2512,9 +1871,7 @@ msgstr ""
 "le cargamento de un version plus recente de iste additivo."
 
 #, python-format
-msgid ""
-"<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class="
-"\"close\">Ignore</a>"
+msgid "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Update Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Upload New Version</a> or <a href=\"#\" class=\"close\">Ignore</a>"
 msgstr ""
 "<a href=\"#\" class=\"button compat-update\" data-updateurl=\"%(update_url)s\">Actualisar Compatibility</a> <a href=\"%(version_url)s\" class=\"button\">Cargar nove version</a> o <a href=\"#\" "
 "class=\"close\">Ignorar</a>"
@@ -2546,8 +1903,20 @@ msgstr "Adder un altere application&hellip;"
 msgid "Save Changes"
 msgstr "Salvar le cambiamentos"
 
+msgid "or"
+msgstr "o"
+
+msgid "Cancel"
+msgstr "Cancellar"
+
 msgid "Close"
 msgstr "Clauder"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> additivo"
+msgstr[1] "<b>{0}</b> additivos"
 
 msgid "Recent Activity"
 msgstr "Recente activitate"
@@ -2593,14 +1962,17 @@ msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
-"<p>Le additivos pote haber ulle numeros de autores con 2 possibile rolos:</p><ul><li><b>Proprietario:</b> Pote gerer tote le aspectos del visualisation del additivo, includite addition e remotion "
-"de altere autores</li><li><b>Disveloppator:</b> Pote gerer tote le aspectos del visualisation del additivo, totos minus illo del addition e remotion de altere autores</li></ul>"
+"<p>Le additivos pote haber ulle numeros de autores con 2 possibile rolos:</p><ul><li><b>Proprietario:</b> Pote gerer tote le aspectos del visualisation del additivo, includite addition e remotion de"
+" altere autores</li><li><b>Disveloppator:</b> Pote gerer tote le aspectos del visualisation del additivo, totos minus illo del addition e remotion de altere autores</li></ul>"
 
 msgid "Additional Details"
 msgstr "Detalios additional"
 
 msgid "Additional Details for {0}"
 msgstr "Detalios additional pro {0}"
+
+msgid "Tags"
+msgstr "Tags"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Le tags adjuta le usatores a trovar tu additivo e debe esser breve descriptores tal como schedas, barra de instrumentos, o twitter. Tu pote haber un maximo de {0} tags."
@@ -2706,8 +2078,7 @@ msgid "Categories are the primary way users browse through add-ons. Choose any t
 msgstr "Le categorias es le maniera primari pro le usatores de navigar per le additivos. Elige lo que adhere al functionalitate de tu additivo pro le melior visibilitate."
 
 #, python-format
-msgid ""
-"Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
+msgid "Categories cannot be changed while your add-on is featured for this application. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
 "Le categorias non pote ser cambiate durante que tu additivo es in evidentia pro iste application. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu "
 "necessita de modificar tu categorias."
@@ -2715,18 +2086,18 @@ msgstr ""
 #, python-format
 msgid "Categories cannot be changed while your add-on is featured. Please email <a href=\"mailto:%(email)s\">%(email)s</a> if there is a reason you need to modify your categories."
 msgstr ""
-"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar "
-"tu categorias."
+"Le categorias non pote ser cambiate durante que tu additivos es consiliate. Per favor invia un email <a href=\"mailto:%(email)s\">%(email)s</a> si il ha un ration proque tu necessita de modificar tu"
+" categorias."
 
 msgid "Email"
 msgstr "Email"
 
 msgid ""
-"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only "
-"relevant for listed add-ons."
+"If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
+" for listed add-ons."
 msgstr ""
-"Si tu vole monstrar un adresse email pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua le multiple traductiones de iste campo pote esser addite. Illo es "
-"pertinente solo pro le additivos listate."
+"Si tu vole monstrar un adresse email pro demandas de supporto, insere lo ci. Si tu ha differente adresses pro cata lingua le multiple traductiones de iste campo pote esser addite. Illo es pertinente"
+" solo pro le additivos listate."
 
 msgid "Website"
 msgstr "Sito web"
@@ -2755,8 +2126,8 @@ msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
 "anticipated release date of a new version, etc. It is only relevant for listed add-ons."
 msgstr ""
-"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos "
-"note, informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
+"Tote le informationes que le usatores final pote desirar saper que non es necessarimente applicabile al summario o al description del additivo. Le usos commun include listas del major defectos note,"
+" informationes sur como reportar defectos, data de publication anticipate de un nove version, et cetera. Illo es pertinente solo pro le additivos listate."
 
 msgid "View Source?"
 msgstr "Vider le fonte?"
@@ -2798,8 +2169,8 @@ msgid ""
 "The whiteboard is the place to provide information relevant to your addon, whatever the version, to the reviewers. Use it to provide ways to test the addon, and any additional information that may "
 "help. This whiteboard is also editable by reviewers."
 msgstr ""
-"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que "
-"pote adjutar. Iste tabula blanc es alsi modificabile per le revisores."
+"Le tabula blanc es le loco pro fornir al revisores informationes pertinente a tu additivo, qualcunque version. Usa lo pro fornir manieras pro testar le additivo, e ulle altere informationes que pote"
+" adjutar. Iste tabula blanc es alsi modificabile per le revisores."
 
 msgid "Add-on Media for {0}"
 msgstr "Medios de additivo pro {0}"
@@ -3017,6 +2388,12 @@ msgstr "Disactivate"
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr "<b>Position in cauda:</b> %(pos)s de %(total)s"
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "<strong>{0}</strong> discargamento septimanal"
+msgstr[1] "<strong>{0}</strong> discargamentos septimanal"
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3223,11 +2600,11 @@ msgid "Operating system and build environment requirements."
 msgstr "Requisitos de systema operative e ambiente de compilation."
 
 msgid ""
-"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-emphasis"
-"\">npm</span> version used)."
+"Details (including required version and installation instructions), of any programs used in the build process (for example: <span class=\"tech-emphasis\">node</span> and <span class=\"tech-"
+"emphasis\">npm</span> version used)."
 msgstr ""
-"Detalios (includite version requirite e instructiones de installation), de ulle programmas usate in le processo de compilation (per exemplo: <span class=\"tech-emphasis\">nodo</span> e <span class="
-"\"tech-emphasis\">npm</span> version usate)."
+"Detalios (includite version requirite e instructiones de installation), de ulle programmas usate in le processo de compilation (per exemplo: <span class=\"tech-emphasis\">nodo</span> e <span class"
+"=\"tech-emphasis\">npm</span> version usate)."
 
 msgid "<span class=\"instruction-emphasis\">Note:</span> Source files (aside from open-source third party libraries) cannot be transpiled, obfuscated, minified or otherwise machine-generated."
 msgstr ""
@@ -3345,11 +2722,11 @@ msgstr "Jeton secrete JWT"
 
 #, python-format
 msgid ""
-"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a href=\"%(docs_url)s"
-"\">API documentation</a>."
+"To make API requests, send a <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> as the authorization header. You'll need to generate a JWT for every request as explained in the <a "
+"href=\"%(docs_url)s\">API documentation</a>."
 msgstr ""
-"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a href="
-"\"%(docs_url)s\">Documentation API</a>."
+"Pro facer requestas de API, invia un <a href=\"%(jwt_url)s\">JSON Web Token (JWT)</a> como titulo de autorisation. Tu debera generar un JWT pro cata requesta como explicate in le <a "
+"href=\"%(docs_url)s\">Documentation API</a>."
 
 msgid "You don't have any API credentials."
 msgstr "Tu non ha ulle credentiales API."
@@ -3386,6 +2763,10 @@ msgstr ""
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
 msgstr "Create:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "Ultime actualisation:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
@@ -3434,6 +2815,9 @@ msgstr "Pagina de revision del additivos in le lista de presentation"
 msgid "Unlisted Review Page"
 msgstr "Pagina de revision de additivo externe"
 
+msgid "Admin Manage"
+msgstr "Gestion de Administrator"
+
 msgid "View Statistics Dashboard"
 msgstr "Vider pannello de statistica"
 
@@ -3448,6 +2832,9 @@ msgstr "Requesta de informationes pendente:"
 
 msgid "This request for information has been resolved"
 msgstr "Iste requesta pro informationes ha essite resolvite"
+
+msgid "License"
+msgstr "Licentias"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr "Per favor elige un licentia appropriate pro le derectos que tu accorda sur tu codice fonte. Illo es pertinente solo al additivos listate."
@@ -3470,12 +2857,18 @@ msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] "Elige <b>non plus de {0}</b> {1} categoria pro iste additivo:"
 msgstr[1] "Elige <b>non plus de {0}</b> {1} categorias pro iste additivo:"
 
+msgid "End-User License Agreement"
+msgstr "End-User License Agreement"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
 "Al usatores sera requirite de acceptar le sequente accordo de licentia con le usator final (EULA) ante que installar tu additivo. Le presentia de un EULA affice notabilemente le numero de "
 "discargamentos que un additivo recipe. Per favor nota que un EULA non es como un licentia de codice, como per exemplo le GPL o le MPL. Illo es pertinente solo al additivos del lista de presentation."
+
+msgid "Privacy Policy"
+msgstr "Politica de confidentialitate"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3547,6 +2940,9 @@ msgstr "Reportar un abuso de marca de fabrica"
 
 msgid "Legal Notices"
 msgstr "Notas legal"
+
+msgid "Contribute"
+msgstr "Contribuer"
 
 msgid "Review Add-ons"
 msgstr "Revider le additivos"
@@ -3650,8 +3046,8 @@ msgstr "Personalisar Firefox"
 
 #, python-format
 msgid ""
-"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and %(css_link_open)sCSS"
-"%(link_close)s, you already have all the necessary skills to make a great add-on."
+"Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
+"%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
 "Le additivos consenti que milliones de usatores de Firefox meliora lor experientia de exploration. Si tu sape %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, e "
 "%(css_link_open)sCSS%(link_close)s, tu ja ha tote le necessari habilitates pro facer un grande additivo."
@@ -3684,7 +3080,7 @@ msgid "Web-Ext"
 msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
-msgstr "Un application a linea de commando pro compilar, facer fluer, e testar le extensiones."
+msgstr "Un instrumento de linea de commando pro compilar, executar, e testar extensiones."
 
 msgid "Automated code tests for your add-on."
 msgstr "Tests de codices automatisate pro tu additivo."
@@ -3761,6 +3157,9 @@ msgstr "0 files"
 
 msgid "Re-enable Version"
 msgstr "Re-activar le version"
+
+msgid "Review History"
+msgstr "Chronologia del revision"
 
 msgid "Close Review History"
 msgstr "Clauder le chronologia del revision"
@@ -5302,6 +4701,9 @@ msgstr "Impossibile evidentiar le syntaxe de iste typo de file"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "Le egresso pote ser corrupte, per favor que tu sia attente e %(link_start)sreporta un problema%(link_end)s immediatemente!"
 
+msgid "close"
+msgstr "clauder"
+
 msgid "Go"
 msgstr "Ir"
 
@@ -5355,102 +4757,6 @@ msgstr "Nulle file in le archivo cargate."
 
 msgid "Fetching file."
 msgstr "Recuperante file."
-
-msgid "Shopping Made Easy"
-msgstr "Compras rendite facile"
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr "Sparnia sur tu articulos favorite per le conforto de tu navigator."
-
-msgid "Build the perfect website"
-msgstr "Crea le sito web perfecte"
-
-msgid "First time with Add-ons?"
-msgstr "Es il tu prime vice con le additivos?"
-
-msgid "Not to worry, here are three to get started."
-msgstr "Nulle anxietate, ecce tres pro comenciar."
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr "Traduce le contento del web ab e in plus de 40 linguas."
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr "Connecte te facilemente tu retes social, e comparti o commenta re le pagina que tu visita."
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "Un rapide vista pro comparar le precios quando tu compra online o recerca volos."
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Themas pro le die de Sancte Patricio"
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Decora tu navigator pro celebrar le die de Sancte Patricio."
-
-msgid "A+ add-ons for School"
-msgstr "Additivos de 10 e laude pro le schola"
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "Additivos pro inseniantes, parentes, e studentes que duce retro a schola."
-
-msgid "Would you like to know which websites you can trust?"
-msgstr "Vole tu saper que sitos web tu pote fider?"
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks es le additivo numero 1 del marcapaginas."
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr "Traductor de texto e paginas web, dictionario e altero ancora!"
-
-msgid "Love is in the Air"
-msgstr "Le amor es in le aere"
-
-msgid "Add some romance to your Firefox."
-msgstr "Adde romanticismo a tu Firefox."
-
-msgid "Get up and move!"
-msgstr "Leva te e move te!"
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Installa iste additivos de sanitate pro mantener te active e salubre."
-
-msgid "New &amp; Now"
-msgstr "Nove &amp; Nunc"
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr "Procura te le ultime, imperdibile additivos del momento."
-
-msgid "Worry-free browsing"
-msgstr "Naviga sin anxietate"
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Protege tu confidentialitate online con le additivos in iste collection."
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "Grande additivos pro labor, amusamento, confidentialitate, productivitate&hellip; justo circa tote le cosas!"
-
-msgid "Games!"
-msgstr "Jocos!"
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr "Adde altere amusamento a tu Firefox. Joca dozenas de jocos justo per tu navigator — puzzles, arcade classic, jocos de action, e altero ancora!"
-
-msgid "Must-Have Media"
-msgstr "Medios imperdibile"
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Prende instantaneos de schermo melior, meliora tu experientia de video online, al fin de apprender como facer un GIF, e altere grande applicationes multimedial."
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Le election del mense de Mozilla!"
-
-msgid "Become a Test Pilot"
-msgstr "Deveni un pilota de test"
-
-msgid "Unlock early access to experimental browser features."
-msgstr "Disblocar le accesso precoce al functionalitates experimental del navigator."
-
-msgid "Get Started"
-msgstr "Comenciar"
 
 msgid "Reported Status"
 msgstr "Stato reportate"
@@ -5545,12 +4851,11 @@ msgid ""
 "If you have add-on development experience, <a href=\"%(url)s\"> become an Add-on Reviewer</a>! Our reviewers are add-on fans with a technical background who review add-ons for code quality and "
 "stability."
 msgstr ""
-"Si tu ha experientia de disveloppamento de additivos, <a href=\"%(url)s\"> deveni un revisor de additivo</a>! Nostre revisores es admiratores del additivos con un fundo technic, qui revide "
-"additivos pro qualitate e stabilitate del codice."
+"Si tu ha experientia de disveloppamento de additivos, <a href=\"%(url)s\"> deveni un revisor de additivo</a>! Nostre revisores es admiratores del additivos con un fundo technic, qui revide additivos"
+" pro qualitate e stabilitate del codice."
 
 #, python-format
-msgid ""
-"Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
+msgid "Help improve this website. It's open source, and you can file bugs and submit patches. <a href=\"%(url)s\"> GitHub</a> contains all of our current bugs, legacy bugs can still be found in Bugzilla."
 msgstr ""
 "Adjuta a meliorar iste sito web. Il es open-source, e tu pote indicar defectos e inviar pecias. <a href=\"%(url)s\">GitHub</a> contine tote nostre actual defectos, defectos legate pote ancora ser "
 "trovate in Bugzilla."
@@ -5585,6 +4890,9 @@ msgstr "Qui labora sur iste sito web?"
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr "Durante le annos, plure personas ha contribuite a iste sito web, sia voluntarios del communitate que un equipa dedicate de AMO."
 
+msgid "Review Guidelines"
+msgstr "Lineas guida del revisiones"
+
 msgid "Sections"
 msgstr "Sectiones"
 
@@ -5595,8 +4903,8 @@ msgid "Frequently Asked Questions about Reviews"
 msgstr "Questiones frequente circa le revisiones"
 
 msgid ""
-"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not "
-"comply with these guidelines."
+"Add-on reviews are a way for you to share your opinions about the add-ons you’ve installed and used. Our review moderation team reserves the right to refuse or remove any review that does not comply"
+" with these guidelines."
 msgstr ""
 "Le revisiones del additivos es un maniera pro tu pro compartir tu opiniones circa le additivos que tu ha installate e usate. Nostre equipa de moderation del revisiones se reserva le derecto de "
 "refusar o remover ulle revision que non se conforma con iste lineas guida."
@@ -5676,8 +4984,8 @@ msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
 "evaluate whether or not to delete the review or restore it back to the site."
 msgstr ""
-"Per favor reporta o signala ulle revisiones problematic per cliccar le button \"Reportar iste revision\" e illo sera submittite al sito pro le moderation. Nostre equipa de moderation usara le "
-"lineas guida del revisiones pro evalutar si deler o non le revision o restaurar illo retro al sito."
+"Per favor reporta o signala ulle revisiones problematic per cliccar le button \"Reportar iste revision\" e illo sera submittite al sito pro le moderation. Nostre equipa de moderation usara le lineas"
+" guida del revisiones pro evalutar si deler o non le revision o restaurar illo retro al sito."
 
 msgid "I’m an add-on author, can I respond to reviews?"
 msgstr "Io es un autor de additivos, pote io responder al revisiones?"
@@ -5765,17 +5073,20 @@ msgstr "Adder un revision pro {0}"
 msgid ""
 "<h2>Keep these tips in mind:</h2> <ul> <li> Write like you're telling a friend about your experience with the add-on. Give specifics and helpful details, such as what features you liked and/or "
 "disliked, how easy to use it is, and any disadvantages it has. Avoid generic language such as calling it \"Great\" or \"Bad\" unless you can give reasons why you believe this is so. </li> <li> "
-"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a href=\"%(support)s"
-"\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on community</a> for "
-"help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review Guidelines</a> "
-"for more detail about user add-on reviews.</p>"
+"Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue. See this add-on's <a "
+"href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-support\">add-on "
+"community</a> for help. </li> <li>Please keep reviews clean, avoid the use of improper language and do not post any personal information. </li> </ul> <p>Please read the <a href=\"%(guide)s\">Review "
+"Guidelines</a> for more detail about user add-on reviews.</p>"
 msgstr ""
-"<h2>Retene iste suggestiones in mente:</h2> <ul> <li> Scribe como tu conta a un amico circa tu experientia con le additivo. Da detalios specific e utile, tal como que functionalitates te place o "
-"non te place, quanto illo es facile a usar, e ulle disavantages que illo ha. Evita generic linguage como appellar illo \"Grande\" o \"Mal\" a minus que tu pote dar rationes perque tu fide que isto "
-"es assi. </li> <li> Per favor non postar reportos de defecto ci. Nos non rende tu adresse de email disponibile pro le disveloppatores de additivos, assi illes non pote continger te pro resolver tu "
+"<h2>Retene iste suggestiones in mente:</h2> <ul> <li> Scribe como tu conta a un amico circa tu experientia con le additivo. Da detalios specific e utile, tal como que functionalitates te place o non"
+" te place, quanto illo es facile a usar, e ulle disavantages que illo ha. Evita generic linguage como appellar illo \"Grande\" o \"Mal\" a minus que tu pote dar rationes perque tu fide que isto es "
+"assi. </li> <li> Per favor non postar reportos de defecto ci. Nos non rende tu adresse de email disponibile pro le disveloppatores de additivos, assi illes non pote continger te pro resolver tu "
 "problema. Vide le <a href=\"%(support)s\">section de supporto</a> de iste additivo pro trovar si es disponibile assistentia. Tu pote alsi provar a demandar al <a href=\"https://discourse.mozilla-"
 "community.org/c/add-ons/add-on-support\">communitate del additivos</a> pro auxilio. </li> <li>Per favor mantene le revisiones munde, evita le uso de linguage improprie e non postar ulle "
 "informationes personal. </li> </ul> <p>Per favor lege le <a href=\"%(guide)s\">Lineas guida de revision</a> pro altere detalios circa le revisiones de additivo de usator.</p>"
+
+msgid "Submit review"
+msgstr "Inviar revision"
 
 msgid "Reply to review by {0}"
 msgstr "Responder al revision per {0}"
@@ -5797,6 +5108,13 @@ msgstr "Per favor elige un ration:"
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "per %(user)s <b>(Disveloppator)</b> le %(date)s"
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr "per %(user)s sur %(date)s"
+
+msgid "permalink"
+msgstr "ligamine permanente"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -5868,6 +5186,9 @@ msgstr "Scribe un nove revision"
 
 msgid "Be the first to write a review."
 msgstr "Que tu es le primo a scriber un revision."
+
+msgid "This add-on has not yet been reviewed."
+msgstr "Iste additivo non ha essite ancora revidite."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5966,6 +5287,9 @@ msgstr "Il es necesse revision de contento per administrator"
 msgid "Needs Admin Static Theme Review"
 msgstr "Il es necesse revision de thema static per administrator"
 
+msgid "Requires Restart"
+msgstr "Il necesse reinitiar"
+
 msgid "More Information Requested"
 msgstr "Altere informationes demandate"
 
@@ -5977,6 +5301,9 @@ msgstr "Fontes disponibile"
 
 msgid "WebExtension"
 msgstr "WebExtension"
+
+msgid "Risk breakdown not available."
+msgstr ""
 
 msgid "Is locked by a reviewer."
 msgstr "Es blocate per un revisor."
@@ -6074,14 +5401,9 @@ msgstr "Approbar le contento"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Isto registra tu approbation del contento del ultime version public, sin notificar le disveloppator."
 
-msgid "Static Themes and Legacy Add-ons"
-msgstr "Themas static e additivos obsolete"
-
-msgid "Static Themes"
-msgstr "Themas static"
-
-msgid "Legacy Add-ons"
-msgstr "Additivos obsolete"
+#, fuzzy
+msgid "Pre-Approval Add-ons"
+msgstr "Additivos approbate automaticamente"
 
 msgid "New ({0})"
 msgstr "Nove ({0})"
@@ -6094,9 +5416,6 @@ msgstr "Registro del revisiones"
 
 msgid "Add-on Review Guide"
 msgstr "Guida al revision del additivos"
-
-msgid "Theme Review Guide"
-msgstr "Guida al revision del themas"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Additivos approbate automaticamente"
@@ -6117,6 +5436,9 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Revision de contentos de ({0})"
 msgstr[1] "Revision de contento de ({0})"
+
+msgid "Theme Review Guide"
+msgstr "Guida al revision del themas"
 
 msgid "User Ratings Moderation"
 msgstr "Moderation del valutationes del usatores"
@@ -6169,13 +5491,16 @@ msgstr "{addon} :: Reportos de abuso"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Reportos de abuso pro {addon} e su disveloppatores ({num})"
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "Informationes de additivo pro {0}"
+
 msgid "Add-on ID"
 msgstr "ID del additivo"
 
 msgid "Internal AMO ID"
 msgstr "ID interne de AMO"
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "Compatibile con"
 
@@ -6199,6 +5524,9 @@ msgstr "Il necesse un pagamento"
 
 msgid "EULA"
 msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr "Vide End-User License Agreement"
 
 msgid "Last Approval Date"
 msgstr "Data del ultime approbation"
@@ -6395,6 +5723,9 @@ msgstr "Le disveloppator ha fornite le codification fonte."
 
 msgid "Weight:"
 msgstr "Peso:"
+
+msgid "Download"
+msgstr "Discargar"
 
 msgid "Not Auto Approved Because"
 msgstr "Non approbate automaticamente perque"
@@ -6633,6 +5964,9 @@ msgstr "Panorama"
 msgid "by Source"
 msgstr "per fonte"
 
+msgid "Daily Users"
+msgstr "Usatores per die"
+
 msgid "by Add-on Version"
 msgstr "per version del additivo"
 
@@ -6793,18 +6127,18 @@ msgstr "Circa le traciamento del fontes externe..."
 
 #, python-format
 msgid ""
-"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be "
-"tracked as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> <dd>https://addons.mozilla.org/addon/"
-"%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Only src "
-"parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as \"external-blog\", \"external-"
-"sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
+"<h2>Tracking external sources</h2> <p> If you link to your add-on's details page or directly to its file from an external site, such as your blog or website, you can append a parameter to be tracked"
+" as an additional download source on this page. For example, the following links would appear as sourced by your blog: <dl> <dt>Add-on Details Page</dt> "
+"<dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Direct File Link</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-"
+"blog</b></dd> </dl> <p> Only src parameters that begin with \"external-\" will be tracked, up to 61 additional characters. Any text after \"external-\" can be used to describe the source, such as "
+"\"external-blog\", \"external-sidebar\", \"external-campaign225\", etc. The following URL-safe characters are allowed: <code>a-z A-Z - . _ ~ %% +</code>"
 msgstr ""
 "<h2>Traciamento del fontes externe</h2> <p> Si tu liga a tu pagina de detalios del additivos o directemente a su file ex un sito externe, tal como tu blog o tu sito web, tu pote appender un "
 "parametro pro esser traciate como un altere fonte de discargamento sur iste pagina. Per exemplo, le sequente ligamines apparerea como surgente per tu blog: <dl> <dt>Pagina de detalios del "
-"additivos</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> <dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-"
-"latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" sera traciate, non plus de 61 characteres additional. Ulle texto post \"external-\" pote ser "
-"usate pro describer le fonte, tal como \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le sequente URL-safe characteres es consentite: <code>a-z A-Z - .  _ ~ %% +</"
-"code>"
+"additivos</dt> <dd>https://addons.mozilla.org/addon/%(slug)s?src=<b>external-blog</b></dd> <dt>Ligamine directe al file</dt> "
+"<dd>https://addons.mozilla.org/downloads/latest/%(id)s/addon-%(id)s-latest.xpi?src=<b>external-blog</b></dd> </dl> <p> Solo le parametros src que initia con \"external-\" sera traciate, non plus de "
+"61 characteres additional. Ulle texto post \"external-\" pote ser usate pro describer le fonte, tal como \"external-blog\", \"external-sidebar\", \"external-campaign225\", et cetera. Le sequente "
+"URL-safe characteres es consentite: <code>a-z A-Z - .  _ ~ %% +</code>"
 
 msgid "Add-on Status by Date"
 msgstr "Stato del additivos per data"
@@ -6841,9 +6175,6 @@ msgstr "Retro al additivos"
 msgid "Footer logo"
 msgstr "Logo de pede de pagina"
 
-msgid "Choose a category"
-msgstr "Eliger un categoria"
-
 msgid "The new website supports mobile and desktop clients"
 msgstr "Le nove sito web supporta clientes de mobile e de scriptorio"
 
@@ -6857,8 +6188,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
-"Excepte ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es licentiate sub le <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/"
-"\"> Creative Commons Attribution Share-Alike License v3.0 </a> o ulle version plus recente."
+"Excepte ubi alteremente <a href=\"https://www.mozilla.org/about/legal/\">indicate</a>, le contento de iste sito es licentiate sub le <br /> <a href=\"https://creativecommons.org/licenses/by-"
+"sa/3.0/\"> Creative Commons Attribution Share-Alike License v3.0 </a> o ulle version plus recente."
 
 msgid "get to know <b>add-ons</b>"
 msgstr "discoperi le <b>additivos</b>"
@@ -6959,6 +6290,9 @@ msgstr "Blocar le usatores eligite"
 msgid "Profile Photo"
 msgstr "Photo del profilo"
 
+msgid "Collections"
+msgstr "Collectiones"
+
 msgid "Addons"
 msgstr "Additivos"
 
@@ -7035,50 +6369,19 @@ msgstr "Nos non pote annullar tu inrolamento"
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
-"Infelicemente, nos non poteva annullar tu inrolamento. Le ligamine que tu cliccava non es valide. Totevia, tu pote ancora remover tu inrolamento sur tu <a href=\"%(edit_url)s\">pagina pro rediger "
-"le profilo</a>."
+"Infelicemente, nos non poteva annullar tu inrolamento. Le ligamine que tu cliccava non es valide. Totevia, tu pote ancora remover tu inrolamento sur tu <a href=\"%(edit_url)s\">pagina pro rediger le"
+" profilo</a>."
+
+#, python-format
+msgid "by %(users)s"
+msgstr "per %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"
 msgstr "alteres"
 
-#, python-format
-msgid "%s Version History"
-msgstr "Chronologia del versiones de %s"
-
-msgid "Version History with Changelogs"
-msgstr "Chronologia del versiones con lista del cambiamentos"
-
 msgid "{app} {min} and later"
 msgstr "{app} {min} e plus recente"
-
-msgid "Permanent link to this version"
-msgstr "Ligamine permanente a iste version"
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr "Publicate le {0}"
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Codification fonte disponibile sub <a href=\"%(url)s\">%(name)s</a>"
-
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr "Chronologia del versiones de {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> version"
-msgstr[1] "<b>{0}</b> versiones"
-
-msgid "Be careful with old versions!"
-msgstr "Attention al versiones vetule!"
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "Iste versiones es monstrate pro propositos de referentia e test. Tu debe sempre usar le <a href=\"%(url)s\">ultime version</a> de un additivo."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Le versiones delite non pote plus esser modificate."

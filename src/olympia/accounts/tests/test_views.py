@@ -749,6 +749,10 @@ class TestFxAConfigMixin(TestCase):
         assert config == {'BAZ': 789}
 
 
+def empty_view(*args, **kwargs):
+    return http.HttpResponse()
+
+
 class TestAuthenticateView(BaseAuthenticationView):
     view_name = 'accounts.authenticate'
 
@@ -817,10 +821,6 @@ class TestAuthenticateView(BaseAuthenticationView):
         self.test_success_no_account_registers()
 
     def test_register_redirects_edit(self):
-
-        def empty_view(*args, **kwargs):
-            return http.HttpResponse()
-
         user_qs = UserProfile.objects.filter(email='me@yeahoo.com')
         assert not user_qs.exists()
         identity = {u'email': u'me@yeahoo.com', u'uid': u'e0b6f'}
@@ -870,9 +870,10 @@ class TestAuthenticateView(BaseAuthenticationView):
             username='foobar', email='real@yeahoo.com', fxa_id='10')
         identity = {'email': 'real@yeahoo.com', 'uid': '9001'}
         self.fxa_identify.return_value = identity
-        response = self.client.get(
-            self.url, {'code': 'code', 'state': self.fxa_state})
-        self.assertRedirects(response, reverse('home'))
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            response = self.client.get(
+                self.url, {'code': 'code', 'state': self.fxa_state})
+            self.assertRedirects(response, reverse('home'))
         token = response.cookies['frontend_auth_token'].value
         verify = WebTokenAuthentication().authenticate_token(token)
         assert verify[0] == user
@@ -989,7 +990,8 @@ class TestAuthenticateView(BaseAuthenticationView):
                     force_text(base64.urlsafe_b64encode(next_path.encode())),
                 ]),
             })
-        self.assertRedirects(response, reverse('home'))
+        with mock.patch('olympia.amo.views._frontend_view', empty_view):
+            self.assertRedirects(response, reverse('home'))
 
 
 class TestAccountViewSet(TestCase):
@@ -1231,6 +1233,48 @@ class TestAccountViewSetUpdate(TestCase):
         response = self.patch(
             data={'display_name': 'a' * 50})
         assert response.status_code == 200
+
+    def test_reviewer_name_validation(self):
+        # For reviewer_name, validation rules are the same as display_name,
+        # except that it's only for reviewers and blank names are allowed.
+        # (validation is only applied if there is a non-blank value).
+        self.grant_permission(self.user, 'Addons:PostReview')
+        self.client.login_api(self.user)
+        response = self.patch(
+            data={'reviewer_name': 'a'})
+        assert response.status_code == 400
+        assert json.loads(force_text(response.content)) == {
+            'reviewer_name': ['Ensure this field has at least 2 characters.']}
+
+        response = self.patch(
+            data={'reviewer_name': 'a' * 51})
+        assert response.status_code == 400
+        assert json.loads(force_text(response.content)) == {
+            'reviewer_name': [
+                'Ensure this field has no more than 50 characters.']}
+
+        response = self.patch(
+            data={'reviewer_name': u'\x7F\u20DF'})
+        assert response.status_code == 400
+        assert json.loads(force_text(response.content)) == {
+            'reviewer_name': [
+                'Must contain at least one printable character.']}
+
+        response = self.patch(
+            data={'reviewer_name': u'a\x7F'})
+        assert response.status_code == 200
+
+        response = self.patch(
+            data={'reviewer_name': 'a' * 50})
+        assert response.status_code == 200
+        self.user.reload()
+        assert self.user.reviewer_name == 'a' * 50
+
+        response = self.patch(
+            data={'reviewer_name': ''})
+        assert response.status_code == 200
+        self.user.reload()
+        assert self.user.reviewer_name == ''
 
     def test_picture_upload(self):
         # Make sure the picture doesn't exist already or we get a false-postive

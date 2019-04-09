@@ -1,17 +1,17 @@
 -r system.txt
 
 # Jinja2 is required by Sphinx
-Jinja2==2.10 \
-    --hash=sha256:74c935a1b8bb9a3947c50a54766a969d4846290e1e788ea44c1392163723c3bd \
-    --hash=sha256:f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4
+Jinja2==2.10.1 \
+    --hash=sha256:065c4f02ebe7f7cf559e49ee5a95fb800a9e4528727aec6f24402a5374c65013 \
+    --hash=sha256:14dd6caf1527abb21f08f86c784eac40853ba93edb79552aa1e4b8aef1b61c7b
 # Pygments is required by Sphinx
 Pygments==2.3.1 \
     --hash=sha256:e8218dd399a61674745138520d0d4cf2621d7e032439341bc3f647bff125818d \
     --hash=sha256:5ffada19f6203563680669ee7f53b64dabbeb100eb51b61996085e99c03b284a
 # Sphinx is required by sphinxcontrib-httpdomain
-Sphinx==2.0.0 \
-    --hash=sha256:5a54f9132766c8ffdd4021de4d0ef8afeb93235569d64b617612e60070332583 \
-    --hash=sha256:91b29c8e98d18ed474bb92777e7af31931fae96e625b8f1bc595c67fb641c46d
+Sphinx==2.0.1 \
+    --hash=sha256:423280646fb37944dd3c85c58fb92a20d745793a9f6c511f59da82fa97cd404b \
+    --hash=sha256:de930f42600a4fef993587633984cc5027dedba2464bcf00ddace26b40f8d9ce
 # alabaster is required by Sphinx
 alabaster==0.7.12 \
     --hash=sha256:446438bdcca0e05bd45ea2de1668c1d9b032e1a9154c2c259092d77031ddd359 \

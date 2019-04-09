@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
 "PO-Revision-Date: 2017-07-04 16:26+0000\n"
 "Last-Translator: kscanne <kscanne@gmail.com>\n"
 "Language-Team: Irish <gaeilge-gnulinux@lists.sourceforge.net>\n"
@@ -24,6 +24,10 @@ msgstr "Ní cheadaítear nascanna."
 
 msgid "This display name cannot be used."
 msgstr ""
+
+#, fuzzy
+msgid "This reviewer name cannot be used."
+msgstr "Ní féidir an t-ainm seo a úsáid."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -82,26 +86,6 @@ msgstr "Stádas"
 msgid "- Add-on not on AMO -"
 msgstr ""
 
-msgid "Download Now"
-msgstr "Íoslódáil Anois"
-
-msgid "Download"
-msgstr "Íoslódáil"
-
-msgid "Featured"
-msgstr "Mór-Le-Rá"
-
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "Gan Léirmheas"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr "Turgnamhach"
-
-msgid "Add to {0}"
-msgstr "Cuir le {0}"
-
 msgid "Listed"
 msgstr "Liostaithe"
 
@@ -111,161 +95,6 @@ msgstr ""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr ""
 
-msgid "Abuse reported."
-msgstr "Rinneadh tuairisc ar dhrochúsáid."
-
-msgid "No compatible versions"
-msgstr "Níl aon leaganacha comhoiriúnacha"
-
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "le haghaidh {0}"
-
-msgid "View privacy policy"
-msgstr "Féach ar an bpolasaí príobháideachta"
-
-msgid "View End-User License Agreement"
-msgstr ""
-
-#, fuzzy
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Níl aon léirmheas déanta ar an mbreiseán seo."
-
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "Deir na forbróirí gur breiseán turgnamhach é seo."
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "Comhaontú Ceadúnais Úsáideoir Deiridh le haghaidh {0}"
-
-msgid "End-User License Agreement"
-msgstr "Comhaontú Ceadúnais"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "Éilíonn %(addon_name)s go nglacann tú leis an gceadúnas seo a leanas sular féidir leat dul ar aghaidh leis an tsuiteáil:"
-
-msgid "Back to {0}…"
-msgstr "Ar ais go {0}…"
-
-# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
-# Sunbird
-msgid "Add-ons for {0}"
-msgstr "Breiseáin le haghaidh {0}"
-
-msgid "Featured Extensions"
-msgstr "Eisínteachtaí Mór-Le-Rá"
-
-msgid "Popular Extensions"
-msgstr "Eisínteachtaí: Éileamh Is Mó"
-
-msgid "Most Popular"
-msgstr "Éileamh Is Mó"
-
-msgid "All »"
-msgstr "Uile »"
-
-msgid "See all »"
-msgstr "Uile »"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "Eisínteachtaí ag Teacht Chun Cinn"
-
-msgid "Featured Themes"
-msgstr "Téamaí Mór-Le-Rá"
-
-msgid "Sort by:"
-msgstr "Sórtáil de réir:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "Nuashonraithe {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "Curtha leis ar {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s íoslódáil sa tseachtain"
-msgstr[1] "%(num)s íoslódáil sa tseachtain"
-msgstr[2] "%(num)s íoslódáil sa tseachtain"
-msgstr[3] "%(num)s n-íoslódáil sa tseachtain"
-msgstr[4] "%(num)s íoslódáil sa tseachtain"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s úsáideoir"
-msgstr[1] "%(num)s úsáideoir"
-msgstr[2] "%(num)s úsáideoir"
-msgstr[3] "%(num)s n-úsáideoir"
-msgstr[4] "%(num)s úsáideoir"
-
-msgid "Requires Restart"
-msgstr "Atosú de dhíth"
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr ""
-
-msgid "Compatible with Firefox 57+"
-msgstr ""
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} íoslódáil sa tseachtain"
-msgstr[1] "{0} íoslódáil sa tseachtain"
-msgstr[2] "{0} íoslódáil sa tseachtain"
-msgstr[3] "{0} n-íoslódáil sa tseachtain"
-msgstr[4] "{0} íoslódáil sa tseachtain"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0} úsáideoir"
-msgstr[1] "{0} úsáideoir"
-msgstr[2] "{0} úsáideoir"
-msgstr[3] "{0} n-úsáideoir"
-msgstr[4] "{0} úsáideoir"
-
-msgid "by"
-msgstr "le"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr "Tuilleadh Téamaí {0}"
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr "Gach Téama {0}"
-
-msgid "More by this Artist"
-msgstr "Tuilleadh ón Ealaíontóir seo"
-
-msgid "See all Themes by this Artist"
-msgstr "Taispeáin gach Téama leis an Ealaíontóir seo"
-
-msgid "Categories"
-msgstr "Catagóirí"
-
-msgid "Updated"
-msgstr "Nuashonraithe"
-
-msgid "Artist"
-msgstr "Ealaíontóir"
-
-msgid "Rating"
-msgstr "Rátáil"
-
-msgid "Daily Users"
-msgstr "Úsáideoirí Laethúla"
-
-msgid "License"
-msgstr "Ceadúnas"
-
 msgid "Awaiting Review"
 msgstr "Ag feitheamh le Réamhscrúdú"
 
@@ -274,6 +103,9 @@ msgstr "Diúltaithe"
 
 msgid "Approved"
 msgstr "Ceadaithe"
+
+msgid "Added {0}"
+msgstr "Curtha leis ar {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -304,6 +136,9 @@ msgstr "Gan rátáil fós"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> úsáideoir"
 
+msgid "by"
+msgstr "le"
+
 #. {0} is the number of users.
 #, fuzzy
 msgid "{0} Daily User"
@@ -314,272 +149,8 @@ msgstr[2] "{0} Úsáideoir Laethúil"
 msgstr[3] "{0} Úsáideoir Laethúil"
 msgstr[4] "{0} Úsáideoir Laethúil"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "Polasaí Príobháideachta le haghaidh {0}"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "Polasaí Príobháideachta"
-
-msgid "Report Abuse"
-msgstr "Déan Tuairisc ar Dhrochúsáid"
-
-#, fuzzy, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"Má cheapann tú go dtagann an breiseán seo salach ar <a href=\"%(url)s\">ár bpolasaithe</a> nó má tá imní ort maidir le slándáil nó príobháideacht, bain úsáid as an bhfoirm thíos agus déan cur síos "
-"ar an bhfadhb. Ná húsáid an fhoirm seo ar aon chúis eile."
-
-msgid "Send Report"
-msgstr "Seol Tuairisc"
-
-# This is a separator between the graphical [contribute] button and the
-# graphical [download now] button
-msgid "or"
-msgstr "nó"
-
-msgid "Cancel"
-msgstr "Cealaigh"
-
-msgid "What do you think?"
-msgstr "Cad é do bharúil?"
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "<a href=\"%(login)s\">Logáil isteach</a> chun léirmheas a dhéanamh"
-
-msgid "Review:"
-msgstr "Léirmheas:"
-
-msgid "Rating:"
-msgstr "Rátáil:"
-
-msgid "Submit review"
-msgstr "Seol an léirmheas"
-
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr ""
-"Ná cuir tuairiscí faoi fhabhtanna i do léirmheas, le do thoil. Ní chuirimid do sheoladh ríomhphoist ar fáil d'fhorbróirí an bhreiseáin, agus mar sin ní bheidh siad in ann dul i dteagmháil leat chun "
-"an fhadhb a réiteach."
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-
-msgid "Review Guidelines"
-msgstr "Treoirlínte do Léirmheasanna"
-
-msgid "Reviews"
-msgstr "Léirmheasanna"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "le %(user)s ar %(date)s"
-
-msgid "Show the developer's reply to this review"
-msgstr "Taispeáin an freagra a thug an forbróir ar an léirmheas seo"
-
-#, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Taispeáin gach léirmheas ar an mbreiseán seo"
-msgstr[1] "Taispeáin an %(cnt)s léirmheas ar an mbreiseán seo"
-msgstr[2] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
-msgstr[3] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
-msgstr[4] "Taispeáin na %(cnt)s léirmheas ar an mbreiseán seo"
-
-# #-#-#-#-#  chromemessengermessenger.properties.po (firefox)  #-#-#-#-#
-# for the Tag picker in search and mail views.
-msgid "Tags"
-msgstr "Clibeanna"
-
-msgid "Icon for {0}"
-msgstr "Deilbhín {0}"
-
-#, python-format
-msgid "by %(users)s"
-msgstr "le %(users)s"
-
-msgid "Download Anyway"
-msgstr "Íoslódáil mar sin féin"
-
-# {0} is a number
-#, fuzzy
-msgid "[Warning]"
-msgstr "{0} rabhadh"
-
-#, fuzzy
-msgid "Permissions"
-msgstr "Leaganacha"
-
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "Deir na forbróirí gur breiseán turgnamhach é seo"
-
-msgid "Average"
-msgstr "Meán"
-
-msgid "Write a review"
-msgstr "Scríobh léirmheas"
-
-msgid "Related Categories"
-msgstr "Catagóirí Gaolmhara"
-
-#, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Breiseáin eile le %(author)s"
-msgstr[1] "Breiseáin eile leis na húdair seo"
-msgstr[2] "Breiseáin eile leis na húdair seo"
-msgstr[3] "Breiseáin eile leis na húdair seo"
-msgstr[4] "Breiseáin eile leis na húdair seo"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoir"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
-msgstr[2] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
-msgstr[3] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
-msgstr[4] "<span itemprop=\"ratingCount\">%(num)s</span> léirmheas ó úsáideoirí"
-
-msgid "View statistics"
-msgstr "Amharc ar staitisticí"
-
-msgid "Manage"
-msgstr "Bainistigh"
-
-#, fuzzy
-msgid "Add-on Review"
-msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
-
-#, fuzzy
-msgid "Admin Manage"
-msgstr "Bratach Riarthóra"
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr "Deilbhín {0}"
-
-msgid "Contribute"
-msgstr "Tabhair deontas"
-
-msgid "Enjoy this add-on?"
-msgstr "An dtaitníonn an breiseán seo leat?"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Tacaigh le forbairt leanúnach an bhreiseáin seo trí dheontas beag a thabhairt don fhorbróir."
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr "Pictiúr #{0} den bhreiseán"
-
-msgid "Add-on home page"
-msgstr "Leathanach baile an bhreiseáin"
-
-msgid "Support site"
-msgstr "Suíomh tacaíochta"
-
-msgid "Support E-mail"
-msgstr "Ríomhphost tacaíochta"
-
-msgid "Info"
-msgstr "Eolas"
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr "Nuashonrú is déanaí:"
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Ceadúnas: <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Custom License"
-msgstr "Ceadúnas Saincheaptha"
-
-msgid "About this Add-on"
-msgstr "Maidir leis an mbreiseán seo"
-
-msgid "Developer’s Comments"
-msgstr "Nótaí ón Fhorbróir"
-
-msgid "Version Information"
-msgstr "Eolas faoin Leagan"
-
-msgid "See complete version history"
-msgstr "Stair iomlán na leaganacha"
-
-# This refers to closing a small pop-up window
-msgid "close"
-msgstr "dún"
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr ""
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in "
-"some rare cases risk may be involved."
-msgstr ""
-
-#. This is a header of a list of things the add-on can do.
-#, fuzzy
-msgid "This add-on can:"
-msgstr "Is breiseán turgnamhach é seo"
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr ""
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr ""
-
-msgid "This add-on has been removed by its author."
-msgstr "Bhain an t-údar an breiseán seo ón suíomh."
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "Bhí an breiseán seo díchumasaithe ag riarthóir."
-
-msgid "Source Code License for {addon}"
-msgstr "Ceadúnas an chóid fhoinsigh le haghaidh {addon}"
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr "Ceadúnas an Chóid Fhoinsigh"
-
-#, fuzzy
-msgid "support section"
-msgstr "Suíomh tacaíochta"
-
-#, fuzzy
-msgid "support email"
-msgstr "Ríomhphost tacaíochta:"
-
-msgid "permalink"
-msgstr "buan-nasc"
-
-#, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Féach ar gach léirmheas"
-msgstr[1] "Féach ar an %(cnt)s léirmheas"
-msgstr[2] "Féach ar na %(cnt)s léirmheas"
-msgstr[3] "Féach ar na %(cnt)s léirmheas"
-msgstr[4] "Féach ar na %(cnt)s léirmheas"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Níl aon léirmheas déanta ar an mbreiseán seo."
-
-msgid "Be the first!"
-msgstr "Déan an chéad cheann!"
-
-msgid "No results found."
-msgstr "Níor aimsíodh aon rud."
-
-msgid "{0} users"
-msgstr "{0} úsáideoir"
+msgid "Sort by:"
+msgstr "Sórtáil de réir:"
 
 msgid "More"
 msgstr "Tuilleadh"
@@ -589,37 +160,6 @@ msgstr "Mo Chuid Breiseán"
 
 msgid "My Themes"
 msgstr "Mo Chuid Téamaí"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Eolas faoi Bhreiseán {0}"
-
-msgid "Edit Theme"
-msgstr "Cuir an Téama in Eagar"
-
-msgid "Approve / Reject"
-msgstr "Ceadaigh / Diúltaigh"
-
-msgid "Review History"
-msgstr "Stair na Léirmheasanna"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Ár leithscéal, ach tá an téama seo ar feitheamh fós. Bain triail eile as ar ball."
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "Tá an téama seo ar feitheamh. Is tusa amháin atá in ann é a fheiceáil."
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> íoslódáil sa tseachtain"
-msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
-msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
-msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
-msgstr[4] "<strong>{0}</strong> íosluchtú sa tseachtain"
-
-msgid "Not Reviewed"
-msgstr "Gan Léirmheas"
 
 msgid "Tools"
 msgstr "Uirlisí"
@@ -794,6 +334,9 @@ msgid ""
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
 
+msgid "Most Popular"
+msgstr "Éileamh Is Mó"
+
 msgid "Top Rated"
 msgstr "Rátálacha is airde"
 
@@ -801,8 +344,14 @@ msgstr "Rátálacha is airde"
 msgid "Newest"
 msgstr "Dáta"
 
+msgid "Featured"
+msgstr "Mór-Le-Rá"
+
 msgid "Explore"
 msgstr "Taiscéal"
+
+msgid "Categories"
+msgstr "Catagóirí"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -824,14 +373,16 @@ msgstr ""
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "<b>%(begin)s</b>&ndash;<b>%(end)s</b> as <b>%(count)s</b> á dtaispeáint"
 
-msgid "Collections"
-msgstr "Bailiúcháin"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Foclóirí agus Pacáistí Teanga"
+# {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
+# Sunbird
+msgid "Add-ons for {0}"
+msgstr "Breiseáin le haghaidh {0}"
 
 msgid "Add-ons"
 msgstr "Breiseáin"
+
+msgid "Custom License"
+msgstr "Ceadúnas Saincheaptha"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -940,267 +491,6 @@ msgstr "Ní féidir an t-ainm seo a úsáid."
 #, fuzzy
 msgid "This add-on already belongs to the collection"
 msgstr "Tá an URL seo in úsáid ag bailiúchán eile cheana"
-
-msgid "Extensions"
-msgstr "Eisínteachtaí"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr "Breiseáin %s"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Téamaí"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr "Téamaí: %s"
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr "Breiseáin Mhór-Le-Rá :: %s"
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Seo duit roinnt de na breiseáin is ansa linn sa chaoi go mbeidh tú in ann %s a chur in oiriúint duit féin."
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr "Uirlisí cuardaigh a bhaineann le %s"
-
-msgid "Search tools and search-related extensions"
-msgstr "Uirlisí cuardaigh agus eisínteachtaí a bhaineann le cuardach"
-
-msgid "Search tools"
-msgstr "Uirlisí cuardaigh"
-
-msgid "Search Tools"
-msgstr "Uirlisí Cuardaigh"
-
-msgid "Most Users"
-msgstr "Líon is mó úsáideoirí"
-
-msgid "Name"
-msgstr "Ainm"
-
-msgid "Weekly Downloads"
-msgstr "Íoslódálacha sa tSeachtain"
-
-msgid "Recently Updated"
-msgstr "Nuashonraithe Le Déanaí"
-
-msgid "Up & Coming"
-msgstr "Teacht Chun Cinn"
-
-msgid "Recently Added"
-msgstr "Curtha Leis Le Déanaí"
-
-msgid "Created"
-msgstr "Cruthaithe"
-
-msgid "Downloads"
-msgstr "Íoslódálacha"
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr "{0}: Breiseáin Mhór-Le-Rá"
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr "Níl aon bhreiseáin mhór-le-rá i {0}."
-
-msgid "Subscribe"
-msgstr "Liostáil"
-
-msgid "Featured Add-ons"
-msgstr "Breiseáin Mhór-Le-Rá"
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Seo duit roinnt de na breiseáin is ansa linn lenar féidir leat %(app)s a chur in oiriúint duit féin."
-
-msgid "Install Dictionary"
-msgstr "Suiteáil an Foclóir"
-
-msgid "Install Language Pack"
-msgstr "Suiteáil Pacáiste Teanga"
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language "
-"of the entire application."
-msgstr ""
-
-msgid "Available in your locale"
-msgstr "Ar fáil i do theanga"
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr "Pacáistí teanga agus foclóirí ar fáil i do theanga"
-
-msgid "Language"
-msgstr "Teanga"
-
-msgid "Dictionary"
-msgstr "Foclóir"
-
-msgid "Language Pack"
-msgstr "Pacáiste Teanga"
-
-msgid "All locales"
-msgstr "Gach teanga"
-
-msgid "List of language packs and dictionaries."
-msgstr "Liosta na bpacáistí teanga agus na bhfoclóirí."
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr "{0} :: Uirlisí Cuardaigh"
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> bhreiseán"
-msgstr[1] "<b>{0}</b> bhreiseán"
-msgstr[2] "<b>{0}</b> bhreiseán"
-msgstr[3] "<b>{0}</b> mbreiseán"
-msgstr[4] "<b>{0}</b> breiseán"
-
-msgid "Search Extensions"
-msgstr "Eisínteachtaí Cuardaigh"
-
-msgid "Add search-related functionality to Firefox"
-msgstr "Cuir feidhmíocht a bhaineann le cuardach le Firefox"
-
-msgid "Search Providers"
-msgstr "Soláthraithe Cuardaigh"
-
-msgid "Find new providers for your search bar"
-msgstr "Aimsigh soláthraithe nua le haghaidh do bharra cuardaigh"
-
-msgid "Additional Resources"
-msgstr "Acmhainní Eile"
-
-#. {0} is an app name, like Firefox.
-#, fuzzy
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Tuilleadh eolais faoin <a href=\"http://support.mozilla.com/kb/Search+bar\">bharra cuardaigh</a> in {0}"
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr ""
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr ""
-
-msgid "Most Popular Extensions"
-msgstr "Eisínteachtaí: Éileamh Is Mó"
-
-msgid "Top-Rated Extensions"
-msgstr "Eisínteachtaí: Rátálacha Is Airde"
-
-msgid "Newest Extensions"
-msgstr "Eisínteachtaí Is Nuaí"
-
-msgid "Extensions by Name"
-msgstr "Eisínteachtaí de réir Ainm"
-
-msgid "Extensions by Weekly Downloads"
-msgstr ""
-
-msgid "Recently Updated Extensions"
-msgstr "Eisínteachtaí Nuashonraithe Le Déanaí"
-
-msgid "Up & Coming Extensions"
-msgstr "Eisínteachtaí ag Teacht Chun Cinn"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr ""
-
-msgid "Most Popular Complete Themes"
-msgstr ""
-
-msgid "Top-Rated Complete Themes"
-msgstr ""
-
-msgid "Newest Complete Themes"
-msgstr ""
-
-msgid "Complete Themes by Name"
-msgstr ""
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr ""
-
-msgid "Recently Updated Complete Themes"
-msgstr ""
-
-msgid "Up & Coming Complete Themes"
-msgstr ""
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Féach ar an %(cnt)s eisínteacht i %(name)s &raquo;"
-msgstr[1] "Féach ar an %(cnt)s eisínteacht i %(name)s &raquo;"
-msgstr[2] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
-msgstr[3] "Féach ar na %(cnt)s n-eisínteacht i %(name)s &raquo;"
-msgstr[4] "Féach ar na %(cnt)s eisínteacht i %(name)s &raquo;"
-
-msgid "{0} Themes"
-msgstr "Téamaí: {0}"
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr ""
-
-msgid "View Profile"
-msgstr "Féach ar Phróifíl"
-
-msgid "Create Your Own Theme"
-msgstr "Cruthaigh Do Théama Féin"
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr ""
-
-msgid "Learn more"
-msgstr "Tuilleadh eolais"
-
-msgid "View All Recently Added"
-msgstr "Féach ar na breiseáin a bhí curtha leis le déanaí"
-
-msgid "View All Most Popular"
-msgstr "Na breiseáin leis an éileamh is mó orthu"
-
-msgid "View All Top Rated"
-msgstr "Féach ar na breiseáin a bhfuil na rátálacha is airde acu"
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-
-msgid "Want more personalization?"
-msgstr ""
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr ""
-
-msgid "Up & Coming Themes"
-msgstr "Téamaí Ag Teacht Chun Cinn"
-
-msgid "View All Up & Coming"
-msgstr "Féach ar gach ceann atá ag teacht chun cinn"
-
-msgid "No themes found"
-msgstr ""
 
 msgid "{addon} was created."
 msgstr "Cruthaíodh {addon}."
@@ -1609,6 +899,9 @@ msgstr "Eisínteacht"
 msgid "Complete Theme"
 msgstr "Téama Iomlán"
 
+msgid "Dictionary"
+msgstr "Foclóir"
+
 msgid "Search Engine"
 msgstr "Inneall Cuardaigh"
 
@@ -1628,11 +921,17 @@ msgstr "Téama"
 msgid "Theme (Static)"
 msgstr "Mionsonraí an Téama"
 
+msgid "Extensions"
+msgstr "Eisínteachtaí"
+
 msgid "Complete Themes"
 msgstr "Téamaí Iomlána"
 
 msgid "Dictionaries"
 msgstr "Foclóirí"
+
+msgid "Search Tools"
+msgstr "Uirlisí Cuardaigh"
 
 # Plural in this context means many of the add-on type
 msgid "Language Packs (Application)"
@@ -1643,6 +942,9 @@ msgstr "Pacáistí Teanga (Breiseán)"
 
 msgid "Plugins"
 msgstr "Forlíontáin"
+
+msgid "Themes"
+msgstr "Téamaí"
 
 #, fuzzy
 msgid "Themes (Static)"
@@ -2356,6 +1658,21 @@ msgstr ""
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr ""
 
+msgid "Updated"
+msgstr "Nuashonraithe"
+
+msgid "Name"
+msgstr "Ainm"
+
+msgid "Created"
+msgstr "Cruthaithe"
+
+msgid "Downloads"
+msgstr "Íoslódálacha"
+
+msgid "Rating"
+msgstr "Rátáil"
+
 msgid "All My Add-ons"
 msgstr "Mo Bhreiseáin Go Léir"
 
@@ -2613,6 +1930,9 @@ msgstr "Gníomhaíocht Is Déanaí le haghaidh {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> ag %(user)s"
 
+msgid "No results found."
+msgstr "Níor aimsíodh aon rud."
+
 msgid "Refine Activity"
 msgstr "Scag Gníomhaíocht"
 
@@ -2664,8 +1984,25 @@ msgstr "Cuir Feidhmchlár Eile Leis&hellip;"
 msgid "Save Changes"
 msgstr "Sábháil na hAthruithe"
 
+# This is a separator between the graphical [contribute] button and the
+# graphical [download now] button
+msgid "or"
+msgstr "nó"
+
+msgid "Cancel"
+msgstr "Cealaigh"
+
 msgid "Close"
 msgstr "Dún"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> bhreiseán"
+msgstr[1] "<b>{0}</b> bhreiseán"
+msgstr[2] "<b>{0}</b> bhreiseán"
+msgstr[3] "<b>{0}</b> mbreiseán"
+msgstr[4] "<b>{0}</b> breiseán"
 
 msgid "Recent Activity"
 msgstr "Gníomhaíocht Is Déanaí"
@@ -2723,6 +2060,11 @@ msgstr "Mionsonraí an Bhreiseáin"
 #, fuzzy
 msgid "Additional Details for {0}"
 msgstr "Mionsonraí Bhreiseán {0}"
+
+# #-#-#-#-#  chromemessengermessenger.properties.po (firefox)  #-#-#-#-#
+# for the Tag picker in search and mail views.
+msgid "Tags"
+msgstr "Clibeanna"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr ""
@@ -3138,6 +2480,15 @@ msgstr "Díchumasaithe"
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr ""
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "<strong>{0}</strong> íoslódáil sa tseachtain"
+msgstr[1] "<strong>{0}</strong> íosluchtú sa tseachtain"
+msgstr[2] "<strong>{0}</strong> íosluchtú sa tseachtain"
+msgstr[3] "<strong>{0}</strong> n-íosluchtú sa tseachtain"
+msgstr[4] "<strong>{0}</strong> íosluchtú sa tseachtain"
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3525,6 +2876,10 @@ msgid "Created:"
 msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "Nuashonrú is déanaí:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr ""
 
@@ -3575,6 +2930,10 @@ msgstr "Gan Léirmheas"
 msgid "Unlisted Review Page"
 msgstr "Léirmheasanna ó Úsáideoirí"
 
+#, fuzzy
+msgid "Admin Manage"
+msgstr "Bratach Riarthóra"
+
 msgid "View Statistics Dashboard"
 msgstr "Féach ar Chlár na Staitisticí"
 
@@ -3589,6 +2948,9 @@ msgstr ""
 
 msgid "This request for information has been resolved"
 msgstr ""
+
+msgid "License"
+msgstr "Ceadúnas"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3614,10 +2976,16 @@ msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
 
+msgid "End-User License Agreement"
+msgstr "Comhaontú Ceadúnais"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
+
+msgid "Privacy Policy"
+msgstr "Polasaí Príobháideachta"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3692,6 +3060,9 @@ msgstr "Déan Tuairisc ar Dhrochúsáid"
 
 msgid "Legal Notices"
 msgstr "Fógraí Dlí"
+
+msgid "Contribute"
+msgstr "Tabhair deontas"
 
 #, fuzzy
 msgid "Review Add-ons"
@@ -3916,6 +3287,9 @@ msgstr "0 comhad"
 
 msgid "Re-enable Version"
 msgstr ""
+
+msgid "Review History"
+msgstr "Stair na Léirmheasanna"
 
 #, fuzzy
 msgid "Close Review History"
@@ -5462,6 +4836,10 @@ msgstr ""
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr ""
 
+# This refers to closing a small pop-up window
+msgid "close"
+msgstr "dún"
+
 msgid "Go"
 msgstr "Ar Aghaidh"
 
@@ -5515,104 +4893,6 @@ msgstr ""
 
 msgid "Fetching file."
 msgstr "Comhad á fháil."
-
-msgid "Shopping Made Easy"
-msgstr ""
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr ""
-
-msgid "Build the perfect website"
-msgstr "Tóg an suíomh foirfe"
-
-msgid "First time with Add-ons?"
-msgstr "Do Chéad Uair Anseo?"
-
-msgid "Not to worry, here are three to get started."
-msgstr "Ná buair do cheann, bain triail as na trí bhreiseán seo."
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr ""
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr ""
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr ""
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr ""
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Maisigh do bhrabhsálaí in ómós do Naomh Pádraig."
-
-msgid "A+ add-ons for School"
-msgstr "Breiseáin A+ le haghaidh scoile"
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr ""
-
-msgid "Would you like to know which websites you can trust?"
-msgstr ""
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr ""
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr ""
-
-msgid "Love is in the Air"
-msgstr ""
-
-msgid "Add some romance to your Firefox."
-msgstr ""
-
-msgid "Get up and move!"
-msgstr ""
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr ""
-
-msgid "New &amp; Now"
-msgstr ""
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr ""
-
-msgid "Worry-free browsing"
-msgstr ""
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr ""
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr ""
-
-msgid "Games!"
-msgstr ""
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr ""
-
-msgid "Must-Have Media"
-msgstr ""
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr ""
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr ""
-
-msgid "Become a Test Pilot"
-msgstr ""
-
-msgid "Unlock early access to experimental browser features."
-msgstr ""
-
-# LOCALIZATION NOTE (getting_started):
-# link title for http://en-US.www.mozilla.com/en-US/firefox/central/
-msgid "Get Started"
-msgstr "Tús Maith"
 
 #, fuzzy
 msgid "Reported Status"
@@ -5745,6 +5025,9 @@ msgstr ""
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
+
+msgid "Review Guidelines"
+msgstr "Treoirlínte do Léirmheasanna"
 
 msgid "Sections"
 msgstr "Rannáin"
@@ -5924,6 +5207,9 @@ msgid ""
 "for more detail about user add-on reviews.</p>"
 msgstr ""
 
+msgid "Submit review"
+msgstr "Seol an léirmheas"
+
 msgid "Reply to review by {0}"
 msgstr "Tabhair freagra ar léirmheas le {0}"
 
@@ -5944,6 +5230,13 @@ msgstr "Roghnaigh fáth:"
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "le %(user)s <b>(Forbróir)</b> ar %(date)s"
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr "le %(user)s ar %(date)s"
+
+msgid "permalink"
+msgstr "buan-nasc"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -6024,6 +5317,9 @@ msgstr "Déan Léirmheas Nua"
 
 msgid "Be the first to write a review."
 msgstr ""
+
+msgid "This add-on has not yet been reviewed."
+msgstr "Níl aon léirmheas déanta ar an mbreiseán seo."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -6131,6 +5427,9 @@ msgstr "Gan Léirmheas"
 msgid "Needs Admin Static Theme Review"
 msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
 
+msgid "Requires Restart"
+msgstr "Atosú de dhíth"
+
 msgid "More Information Requested"
 msgstr ""
 
@@ -6142,6 +5441,9 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
+msgstr ""
+
+msgid "Risk breakdown not available."
 msgstr ""
 
 msgid "Is locked by a reviewer."
@@ -6257,16 +5559,8 @@ msgid "This records your approbation of the content of the latest public version
 msgstr ""
 
 #, fuzzy
-msgid "Static Themes and Legacy Add-ons"
-msgstr "Mo Chuid Breiseán"
-
-#, fuzzy
-msgid "Static Themes"
-msgstr "Téamaí Mór-Le-Rá"
-
-#, fuzzy
-msgid "Legacy Add-ons"
-msgstr "Mo Chuid Breiseán"
+msgid "Pre-Approval Add-ons"
+msgstr "Breiseáin Android"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird, Firefox,
 # Sunbird
@@ -6285,10 +5579,6 @@ msgstr "Nóta léirmheasa"
 #, fuzzy
 msgid "Add-on Review Guide"
 msgstr "Níl aon léirmheasanna ar bhreiseáin fós."
-
-#, fuzzy
-msgid "Theme Review Guide"
-msgstr "Treoirlínte do Léirmheasanna"
 
 #, fuzzy
 msgid "Auto-Approved Add-ons"
@@ -6318,6 +5608,10 @@ msgstr[1] ""
 msgstr[2] ""
 msgstr[3] ""
 msgstr[4] ""
+
+#, fuzzy
+msgid "Theme Review Guide"
+msgstr "Treoirlínte do Léirmheasanna"
 
 msgid "User Ratings Moderation"
 msgstr ""
@@ -6374,6 +5668,10 @@ msgstr ""
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr ""
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "Eolas faoi Bhreiseán {0}"
+
 #, fuzzy
 msgid "Add-on ID"
 msgstr "Breiseán"
@@ -6381,7 +5679,6 @@ msgstr "Breiseán"
 msgid "Internal AMO ID"
 msgstr ""
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "Feidhmíonn sé le"
 
@@ -6406,6 +5703,9 @@ msgstr "Atosú de dhíth"
 
 msgid "EULA"
 msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr ""
 
 #, fuzzy
 msgid "Last Approval Date"
@@ -6612,6 +5912,9 @@ msgstr ""
 
 msgid "Weight:"
 msgstr ""
+
+msgid "Download"
+msgstr "Íoslódáil"
 
 #, fuzzy
 msgid "Not Auto Approved Because"
@@ -6877,6 +6180,9 @@ msgstr "Foramharc"
 msgid "by Source"
 msgstr "de réir Foinse"
 
+msgid "Daily Users"
+msgstr "Úsáideoirí Laethúla"
+
 msgid "by Add-on Version"
 msgstr "de réir Leagan an Bhreiseáin"
 
@@ -7072,9 +6378,6 @@ msgstr "Ar ais go dtí na Breiseáin"
 msgid "Footer logo"
 msgstr ""
 
-msgid "Choose a category"
-msgstr "Roghnaigh catagóir"
-
 msgid "The new website supports mobile and desktop clients"
 msgstr ""
 
@@ -7196,6 +6499,9 @@ msgstr ""
 msgid "Profile Photo"
 msgstr "Grianghraf na Próifíle"
 
+msgid "Collections"
+msgstr "Bailiúcháin"
+
 msgid "Addons"
 msgstr ""
 
@@ -7277,51 +6583,16 @@ msgstr "Ní rabhamar in ann thú a dhíliostáil"
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
 msgstr ""
 
+#, python-format
+msgid "by %(users)s"
+msgstr "le %(users)s"
+
 msgctxt "user_list_others"
 msgid "others"
 msgstr "eile"
 
-#, python-format
-msgid "%s Version History"
-msgstr "Stair na Leaganacha %s"
-
-msgid "Version History with Changelogs"
-msgstr "Stair na Leaganacha le Logchomhaid Athruithe"
-
 msgid "{app} {min} and later"
 msgstr "{app} {min} agus níos déanaí"
-
-msgid "Permanent link to this version"
-msgstr "Nasc buan leis an leagan seo"
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr "Foilsithe {0}"
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Bunchód ar fáil de réir: <a href=\"%(url)s\">%(name)s</a>"
-
-# {0} is the add-on name
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr "Stair na Leaganacha {0}"
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> leagan"
-msgstr[1] "<b>{0}</b> leagan"
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-
-msgid "Be careful with old versions!"
-msgstr "Bí cúramach le seanleaganacha!"
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr ""
 
 msgid "Deleted versions can`t be changed."
 msgstr "Ní féidir leaganacha scriosta a athrú."

@@ -38,13 +38,13 @@ class TestLogin(UserViewBase):
         assert self.client.login(email='jbalogh@mozilla.com')
 
     def test_login_link(self):
-        r = self.client.get(reverse('home'))
+        r = self.client.get(reverse('apps.appversions'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.login').length == 1
 
     def test_logout_link(self):
         self.test_client_login()
-        r = self.client.get(reverse('home'))
+        r = self.client.get(reverse('apps.appversions'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.logout').length == 1
 
@@ -131,7 +131,7 @@ class TestSessionLength(UserViewBase):
         https://github.com/mozilla/addons-server/issues/1789
         """
         self.client.login(email='jbalogh@mozilla.com')
-        r = self.client.get('/', follow=True)
+        r = self.client.get('/developers/', follow=True)
         cookie = r.cookies[settings.SESSION_COOKIE_NAME]
 
         # The user's session should be valid for at least four weeks (near a

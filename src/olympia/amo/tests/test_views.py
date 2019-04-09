@@ -33,7 +33,7 @@ from olympia.users.models import UserProfile
 @pytest.mark.django_db
 @pytest.mark.parametrize('locale', list(settings.LANGUAGES))
 def test_locale_switcher(client, locale):
-    response = client.get('/{}/firefox/'.format(locale))
+    response = client.get('/{}/developers/'.format(locale))
     assert response.status_code == 200
 
 
@@ -99,7 +99,7 @@ class TestCommon(TestCase):
 
     def setUp(self):
         super(TestCommon, self).setUp()
-        self.url = reverse('home')
+        self.url = reverse('apps.appversions')
 
     def login(self, user=None, get=False):
         email = '%s@mozilla.com' % user
@@ -250,32 +250,19 @@ class TestOtherStuff(TestCase):
 
     @mock.patch.object(settings, 'READ_ONLY', False)
     def test_balloons_no_readonly(self):
-        response = self.client.get('/en-US/firefox/')
+        response = self.client.get('/en-US/firefox/pages/appversions/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 0
 
     @mock.patch.object(settings, 'READ_ONLY', True)
     def test_balloons_readonly(self):
-        response = self.client.get('/en-US/firefox/')
-        doc = pq(response.content)
-        assert doc('#site-notice').length == 1
-
-    @mock.patch.object(settings, 'READ_ONLY', False)
-    def test_android_balloons_no_readonly(self):
-        response = self.client.get('/en-US/android/')
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert doc('#site-notice').length == 0
-
-    @mock.patch.object(settings, 'READ_ONLY', True)
-    def test_android_balloons_readonly(self):
-        response = self.client.get('/en-US/android/')
+        response = self.client.get('/en-US/firefox/pages/appversions/')
         doc = pq(response.content)
         assert doc('#site-notice').length == 1
 
     def test_heading(self):
         def title_eq(url, alt, text):
-            response = self.client.get(url, follow=True)
+            response = self.client.get(url + 'pages/appversions/', follow=True)
             doc = pq(response.content)
             assert alt == doc('.site-title img').attr('alt')
             assert text == doc('.site-title').text()
@@ -286,21 +273,23 @@ class TestOtherStuff(TestCase):
     @patch('olympia.accounts.utils.default_fxa_login_url',
            lambda request: 'https://login.com')
     def test_login_link(self):
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(reverse('apps.appversions'), follow=True)
         doc = pq(r.content)
         assert 'https://login.com' == (
             doc('.account.anonymous a')[1].attrib['href'])
 
     def test_tools_loggedout(self):
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(reverse('apps.appversions'), follow=True)
         assert pq(r.content)('#aux-nav .tools').length == 0
 
     def test_language_selector(self):
-        doc = pq(test.Client().get('/en-US/firefox/').content)
+        doc = pq(test.Client().get(
+            '/en-US/firefox/pages/appversions/').content)
         assert doc('form.languages option[selected]').attr('value') == 'en-us'
 
     def test_language_selector_variables(self):
-        r = self.client.get('/en-US/firefox/?foo=fooval&bar=barval')
+        r = self.client.get(
+            '/en-US/firefox/pages/appversions/?foo=fooval&bar=barval')
         doc = pq(r.content)('form.languages')
 
         assert doc('input[type=hidden][name=foo]').attr('value') == 'fooval'
@@ -312,7 +301,7 @@ class TestOtherStuff(TestCase):
         """Make sure we're setting REMOTE_ADDR from X_FORWARDED_FOR."""
         client = test.Client()
         # Send X-Forwarded-For as it shows up in a wsgi request.
-        client.get('/en-US/firefox/', follow=True,
+        client.get('/en-US/developers/', follow=True,
                    HTTP_X_FORWARDED_FOR='1.1.1.1',
                    REMOTE_ADDR='127.0.0.1')
         assert set_remote_addr_mock.call_count == 2
@@ -358,7 +347,7 @@ class TestCORS(TestCase):
         return self.client.get(url, HTTP_ORIGIN='testserver', **headers)
 
     def test_no_cors(self):
-        response = self.get(reverse('home'))
+        response = self.get(reverse('devhub.index'))
         assert response.status_code == 200
         assert not response.has_header('Access-Control-Allow-Origin')
         assert not response.has_header('Access-Control-Allow-Credentials')

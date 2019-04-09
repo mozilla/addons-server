@@ -1808,19 +1808,22 @@ class TestLogout(UserViewBase):
     def test_success(self):
         user = UserProfile.objects.get(email='jbalogh@mozilla.com')
         self.client.login(email=user.email)
-        response = self.client.get('/', follow=True)
+        response = self.client.get(reverse('devhub.index'), follow=True)
         assert (
-            pq(response.content.decode('utf-8'))('.account .user').text() ==
-            user.display_name)
+            pq(response.content)('li.avatar a').attr('href') == (
+                user.get_url_path()))
         assert (
-            pq(response.content)('.account .user').attr('title') == user.email)
+            pq(response.content)('li.avatar a img').attr('src') == (
+                user.picture_url))
 
-        response = self.client.get('/developers/logout', follow=True)
-        assert not pq(response.content)('.account .user')
+        response = self.client.get('/en-US/developers/logout', follow=False)
+        self.assert3xx(response, '/en-US/firefox/', status_code=302)
+        response = self.client.get(reverse('devhub.index'), follow=True)
+        assert not pq(response.content)('li.avatar')
 
     def test_redirect(self):
         self.client.login(email='jbalogh@mozilla.com')
-        self.client.get('/', follow=True)
+        self.client.get(reverse('devhub.index'), follow=True)
         url = '/en-US/about'
         response = self.client.get(urlparams(reverse('devhub.logout'), to=url),
                                    follow=True)

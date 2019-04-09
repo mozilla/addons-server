@@ -24,12 +24,12 @@ class TestMiddleware(TestCase):
     def test_no_vary_cookie(self):
         # Requesting / forces a Vary on Accept-Language on User-Agent, since
         # we redirect to /<lang>/<app>/.
-        response = test.Client().get('/')
+        response = test.Client().get('/pages/appversions/')
         assert response['Vary'] == 'Accept-Language, User-Agent'
 
         # No Vary after that (we should Vary on Cookie but avoid it for perf
         # reasons).
-        response = test.Client().get('/', follow=True)
+        response = test.Client().get('/pages/appversions/', follow=True)
         assert 'Vary' not in response
 
     @patch('django.contrib.auth.middleware.'
@@ -106,13 +106,13 @@ class AdminMessageTest(TestCase):
     def test_message(self):
         c = Config.objects.create(key='site_notice', value='ET Sighted.')
 
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(reverse('apps.appversions'), follow=True)
         doc = pq(r.content)
         assert doc('#site-notice').text() == 'ET Sighted.'
 
         c.delete()
 
-        r = self.client.get(reverse('home'), follow=True)
+        r = self.client.get(reverse('apps.appversions'), follow=True)
         doc = pq(r.content)
         assert len(doc('#site-notice')) == 0
 
@@ -122,7 +122,7 @@ class TestNoDjangoDebugToolbar(TestCase):
 
     def test_no_django_debug_toolbar(self):
         with self.settings(DEBUG=False):
-            res = self.client.get(reverse('home'), follow=True)
+            res = self.client.get(reverse('devhub.index'), follow=True)
             assert b'djDebug' not in res.content
             assert b'debug_toolbar' not in res.content
 
@@ -138,7 +138,7 @@ def test_hide_password_middleware():
 
 def test_request_id_middleware(client):
     """Test that we add a request id to every response"""
-    response = client.get(reverse('home'))
+    response = client.get(reverse('devhub.index'))
     assert response.status_code == 200
     assert isinstance(response['X-AMO-Request-ID'], six.string_types)
 

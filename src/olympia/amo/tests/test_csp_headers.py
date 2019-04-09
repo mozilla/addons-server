@@ -16,7 +16,7 @@ class TestCSPHeaders(TestCase):
 
     def test_for_specific_csp_settings(self):
         """Test that required settings are provided as headers."""
-        response = self.client.get('/en-US/firefox/')
+        response = self.client.get('/en-US/developers/')
         assert response.status_code == 200
         # Make sure a default-src is set.
         assert "default-src 'self'" in response['content-security-policy']

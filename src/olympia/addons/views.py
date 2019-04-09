@@ -23,7 +23,6 @@ from olympia import amo
 from olympia.access import acl
 from olympia.amo.models import manual_order
 from olympia.amo.urlresolvers import get_outgoing_url
-from olympia.amo.utils import render
 from olympia.api.pagination import ESPageNumberPagination
 from olympia.api.permissions import (
     AllowAddonAuthor, AllowReadOnlyIfPublic, AllowRelatedObjectPermissions,
@@ -141,11 +140,6 @@ class BaseFilter(object):
         return order_by_translation(self.base_queryset.all(), 'name')
 
 
-@non_atomic_requests
-def home(request):
-    return render(request, 'addons/home.html')
-
-
 DEFAULT_FIND_REPLACEMENT_PATH = '/collections/mozilla/featured-add-ons/'
 FIND_REPLACEMENT_SRC = 'find-replacement'
 
@@ -203,16 +197,7 @@ class AddonViewSet(RetrieveModelMixin, GenericViewSet):
         return self.serializer_class
 
     def get_lookup_field(self, identifier):
-        lookup_field = 'pk'
-        if identifier and not identifier.isdigit():
-            # If the identifier contains anything other than a digit, it's
-            # either a slug or a guid. guids need to contain either {} or @,
-            # which are invalid in a slug.
-            if amo.ADDON_GUID_PATTERN.match(identifier):
-                lookup_field = 'guid'
-            else:
-                lookup_field = 'slug'
-        return lookup_field
+        return Addon.get_lookup_field(identifier)
 
     def get_object(self):
         identifier = self.kwargs.get('pk')

@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-04-02 14:07+0000\n"
-"PO-Revision-Date: 2019-04-02 22:07+0000\n"
+"POT-Creation-Date: 2019-04-08 08:39+0000\n"
+"PO-Revision-Date: 2019-04-08 14:57+0000\n"
 "Last-Translator: Andreas Pettersson <az@kth.se>\n"
 "Language-Team: The Swedish l10n-team <community-sweden@lists.mozilla.org>\n"
 "Language: sv_SE\n"
@@ -20,6 +20,9 @@ msgstr "Inga länkar är tillåtna."
 
 msgid "This display name cannot be used."
 msgstr "Detta visningsnamn kan inte användas."
+
+msgid "This reviewer name cannot be used."
+msgstr "Det här granskarens namn kan inte användas."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Webbplatsfältet kan bara användas för att länka till externa webbplatser."
@@ -77,26 +80,6 @@ msgstr "Status"
 msgid "- Add-on not on AMO -"
 msgstr "- Tillägg finns inte på AMO -"
 
-msgid "Download Now"
-msgstr "Hämta nu"
-
-msgid "Download"
-msgstr "Hämta"
-
-msgid "Featured"
-msgstr "Utvalda"
-
-msgctxt "install_button"
-msgid "Not Reviewed"
-msgstr "Ej granskad"
-
-msgctxt "install_button"
-msgid "Experimental"
-msgstr "Experimentell"
-
-msgid "Add to {0}"
-msgstr "Lägg till i {0}"
-
 msgid "Listed"
 msgstr "Listad"
 
@@ -106,146 +89,6 @@ msgstr "Sökväg för tillägg och samling måste sluta med \"/\""
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Tilläggsnamn kan inte innehålla varumärkena Mozilla eller Firefox."
 
-msgid "Abuse reported."
-msgstr "Missbruk rapporterad."
-
-msgid "No compatible versions"
-msgstr "Inga kompatibla versioner"
-
-#. {0} is a platform name like Windows or Mac OS X.
-msgid "for {0}"
-msgstr "för {0}"
-
-msgid "View privacy policy"
-msgstr "Visa sekretesspolicy"
-
-msgid "View End-User License Agreement"
-msgstr "Visa slutanvändarlicensavtal"
-
-msgid "This add-on has not been reviewed by Mozilla."
-msgstr "Detta tillägg har recenserats av Mozilla."
-
-msgid "This add-on has been marked as experimental by its developers."
-msgstr "Detta tillägg har markerats som experimentell av dess utvecklare."
-
-#. {0} is the name of the add-on.
-msgid "End-User License Agreement for {0}"
-msgstr "Slutanvändarlicensavtal för {0}"
-
-msgid "End-User License Agreement"
-msgstr "Slutanvändarlicensavtal"
-
-#, python-format
-msgid "%(addon_name)s requires that you accept the following End-User License Agreement before installation can proceed:"
-msgstr "%(addon_name)s kräver att du accepterar följande slutanvändaravtal innan installationen kan fortsätta:"
-
-msgid "Back to {0}…"
-msgstr "Tillbaks till {0}…"
-
-msgid "Add-ons for {0}"
-msgstr "Tillägg för {0}"
-
-msgid "Featured Extensions"
-msgstr "Utvalda utökningar"
-
-msgid "Popular Extensions"
-msgstr "Populära utökningar"
-
-msgid "Most Popular"
-msgstr "Mest populära"
-
-msgid "All »"
-msgstr "Alla »"
-
-msgid "See all »"
-msgstr "Visa alla »"
-
-msgid "Up &amp; Coming Extensions"
-msgstr "Bubblare utökningar"
-
-msgid "Featured Themes"
-msgstr "Utvalda teman"
-
-msgid "Sort by:"
-msgstr "Sortera efter:"
-
-#. {0} is a date.
-#. {0} is a date
-msgid "Updated {0}"
-msgstr "Uppdaterad {0}"
-
-#. {0} is a date.
-msgid "Added {0}"
-msgstr "Lades till {0}"
-
-#, python-format
-msgid "%(num)s weekly download"
-msgid_plural "%(num)s weekly downloads"
-msgstr[0] "%(num)s nedladdning per vecka"
-msgstr[1] "%(num)s nedladdningar per vecka"
-
-#, python-format
-msgid "%(num)s user"
-msgid_plural "%(num)s users"
-msgstr[0] "%(num)s användare"
-msgstr[1] "%(num)s användare"
-
-msgid "Requires Restart"
-msgstr "Kräver omstart"
-
-msgid "This add-on is built with new technology that is compatible with Firefox 57 and beyond."
-msgstr "Detta tillägg är byggt med ny teknik som är kompatibel med Firefox 57 och bortom."
-
-msgid "Compatible with Firefox 57+"
-msgstr "Kompatibel med Firefox 57+"
-
-#. {0} is the number of downloads.
-msgid "{0} weekly download"
-msgid_plural "{0} weekly downloads"
-msgstr[0] "{0} nedladdning per vecka"
-msgstr[1] "{0} nedladdningar per vecka"
-
-#. {0} is the number of users.
-msgid "{0} user"
-msgid_plural "{0} users"
-msgstr[0] "{0} användare"
-msgstr[1] "{0} användare"
-
-msgid "by"
-msgstr "av"
-
-#. {0} is a category name, such as Nature
-msgid "More {0} Themes"
-msgstr "Fler {0} teman"
-
-#. {0} is a category name, such as Nature
-msgid "See all {0} Themes"
-msgstr "Visa alla {0} teman"
-
-msgid "More by this Artist"
-msgstr "Mer av denna konstnär"
-
-msgid "See all Themes by this Artist"
-msgstr "Se alla teman av denna konstnär"
-
-msgid "Categories"
-msgstr "Kategorier"
-
-msgid "Updated"
-msgstr "Uppdaterad"
-
-msgid "Artist"
-msgstr "Konstnär"
-
-msgid "Rating"
-msgstr "Betyg"
-
-msgid "Daily Users"
-msgstr "Dagliga användare"
-
-msgid "License"
-msgstr "Licens"
-
 msgid "Awaiting Review"
 msgstr "Väntar på granskning"
 
@@ -254,6 +97,9 @@ msgstr "Ej godkänd"
 
 msgid "Approved"
 msgstr "Godkänd"
+
+msgid "Added {0}"
+msgstr "Lades till {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -281,255 +127,17 @@ msgstr "Inte betygsatt än"
 msgid "<b>{0}</b> users"
 msgstr "<b>{0}</b> användare"
 
+msgid "by"
+msgstr "av"
+
 #. {0} is the number of users.
 msgid "{0} Daily User"
 msgid_plural "{0} Daily Users"
 msgstr[0] "{0} daglig användare"
 msgstr[1] "{0} dagliga användare"
 
-#. {0} is the name of the add-on.
-msgid "Privacy Policy for {0}"
-msgstr "Integritetsriktlinjer för {0}"
-
-#. The Privacy Policy for this add-on.
-msgid "Privacy Policy"
-msgstr "Sekretesspolicy"
-
-msgid "Report Abuse"
-msgstr "Rapportera missbruk"
-
-#, python-format
-msgid ""
-"If you suspect this add-on violates %(amo_policy_link_open)sour policies%(link_close)s or has security or privacy issues, please use the form below to describe your concerns. Please do not use this "
-"form for any other reason."
-msgstr ""
-"Om du misstänker att detta tillägg bryter mot %(amo_policy_link_open)svår policy%(link_close)s eller har säkerhets- eller integritetsfrågor, vänligen använd formuläret nedan för att beskriva dina "
-"frågor. Använd inte detta formulär av någon annan anledning."
-
-msgid "Send Report"
-msgstr "Skicka rapport"
-
-msgid "or"
-msgstr "eller"
-
-msgid "Cancel"
-msgstr "Avbryt"
-
-msgid "What do you think?"
-msgstr "Vad tycker du?"
-
-#, python-format
-msgid "Please <a href=\"%(login)s\">log in</a> to submit a review"
-msgstr "<a href=\"%(login)s\">Logga in</a> för att skicka in en recension"
-
-msgid "Review:"
-msgstr "Recension:"
-
-msgid "Rating:"
-msgstr "Betyg:"
-
-msgid "Submit review"
-msgstr "Skicka in recension"
-
-msgid "Please do not post bug reports here. We do not make your email address available to add-on developers, so they can't contact you to resolve your issue."
-msgstr "Posta inga felrapporter här. Vi gör inte din e-postadress tillgänglig för tilläggsutvecklare, så de kan inte kontakta dig för att lösa problemet."
-
-#, python-format
-msgid ""
-"See this add-on's <a href=\"%(support)s\">support section</a> to find out if assistance is available. You can also try asking the <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-on-"
-"support\">add-on community</a> for help."
-msgstr ""
-"Se tilläggets <a href=\"%(support)s\">hjälpsektionen</a> för att ta reda på om hjälp finns tillgänglig. Du kan också prova att fråga <a href=\"https://discourse.mozilla-community.org/c/add-ons/add-"
-"on-support\">gemenskapen för tillägget</a> efter hjälp."
-
-msgid "Review Guidelines"
-msgstr "Recensionsriktlinjer"
-
-msgid "Reviews"
-msgstr "Recensioner"
-
-#, python-format
-msgid "by %(user)s on %(date)s"
-msgstr "av %(user)s den %(date)s"
-
-msgid "Show the developer's reply to this review"
-msgstr "Visa utvecklarens svar på denna recension"
-
-#, python-format
-msgid "See all reviews of this add-on"
-msgid_plural "See all %(cnt)s reviews of this add-on"
-msgstr[0] "Visa alla recensioner av detta tillägg"
-msgstr[1] "Visa alla %(cnt)s recensioner av detta tillägg"
-
-msgid "Tags"
-msgstr "Taggar"
-
-msgid "Icon for {0}"
-msgstr "Ikon för {0}"
-
-#, python-format
-msgid "by %(users)s"
-msgstr "av %(users)s"
-
-msgid "Download Anyway"
-msgstr "Hämta ändå"
-
-msgid "[Warning]"
-msgstr "[Varning]"
-
-msgid "Permissions"
-msgstr "Rättigheter"
-
-msgid "This add-on has been marked as experimental by its developers"
-msgstr "Detta tillägg har markerats som experimentell av dess utvecklare"
-
-msgid "Average"
-msgstr "Genomsnitt"
-
-msgid "Write a review"
-msgstr "Skriv en recension"
-
-msgid "Related Categories"
-msgstr "Relaterade kategorier"
-
-#, python-format
-msgid "Other add-ons by %(author)s"
-msgid_plural "Other add-ons by these authors"
-msgstr[0] "Andra tillägg av %(author)s"
-msgstr[1] "Andra tillägg av dessa författare"
-
-#, python-format
-msgid "<span itemprop=\"ratingCount\">%(num)s</span> user review"
-msgid_plural "<span itemprop=\"ratingCount\">%(num)s</span> user reviews"
-msgstr[0] "<span itemprop=\"ratingCount\">%(num)s</span> användarrecension"
-msgstr[1] "<span itemprop=\"ratingCount\">%(num)s</span> användarrecensioner"
-
-msgid "View statistics"
-msgstr "Visa statistik"
-
-msgid "Manage"
-msgstr "Hantera"
-
-msgid "Add-on Review"
-msgstr "Granskning av tillägg"
-
-msgid "Admin Manage"
-msgstr "Administrationssida"
-
-#. {0} is an add-on name.
-msgid "Icon of {0}"
-msgstr "Ikon för {0}"
-
-msgid "Contribute"
-msgstr "Bidra"
-
-msgid "Enjoy this add-on?"
-msgstr "Tycker du om detta tillägg?"
-
-msgid "The developer of this add-on asks that you help support its continued development by making a small contribution."
-msgstr "Utvecklaren av detta tillägg vill gärna att du stöder dess framtida utveckling genom att ge ett litet bidrag."
-
-#. {0} is an index.
-msgid "Add-on screenshot #{0}"
-msgstr "Skärmdump #{0} för tillägg"
-
-msgid "Add-on home page"
-msgstr "Hemsida för tillägg"
-
-msgid "Support site"
-msgstr "Support webbplats"
-
-msgid "Support E-mail"
-msgstr "Support e-post"
-
-msgid "Info"
-msgstr "Information"
-
-#. {0} is a date. dennis-ignore: E201,E202,W202
-msgid "Last Updated:"
-msgstr "Senast uppdaterad:"
-
-#, python-format
-msgid "Released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Släppt under <a href=\"%(url)s\">%(name)s</a>"
-
-msgid "Custom License"
-msgstr "Anpassad licens"
-
-msgid "About this Add-on"
-msgstr "Om detta tillägg"
-
-msgid "Developer’s Comments"
-msgstr "Utvecklarens kommentarer"
-
-msgid "Version Information"
-msgstr "Versionsinformation"
-
-msgid "See complete version history"
-msgstr "Visa fullständig versionshistorik"
-
-msgid "close"
-msgstr "stäng"
-
-msgid "Some add-ons ask for permission to perform certain functions (example: a tab management add-on will ask permission to access your browser’s tab system)."
-msgstr "Vissa tillägg kan be om behörighet att utföra vissa funktioner (exempel: ett flikhanterande tillägg kan be om behörighet för att komma åt din webbläsares fliksystem)."
-
-msgid ""
-"Since you’re in control of your Firefox, the choice to grant or deny these requests is yours. Accepting permissions does not inherently compromise your browser’s performance or security, but in some"
-" rare cases risk may be involved."
-msgstr ""
-"Eftersom du har kontroll över Firefox, är valet att bevilja eller neka dessa önskemål ditt. Att acceptera behörigheter äventyrar inte webbläsarens prestanda eller säkerhet, men i vissa sällsynta "
-"fall kan det vara en risk."
-
-#. This is a header of a list of things the add-on can do.
-msgid "This add-on can:"
-msgstr "Detta tillägg kan:"
-
-msgid "Some add-ons ask for permission to perform certain functions. Since you’re in control of your Firefox, the choice to grant or deny these requests is yours."
-msgstr "Vissa tillägg kräver tillstånd att utföra vissa funktioner. Eftersom du har kontroll över Firefox är valet att bevilja eller neka dessa förfrågningar ditt."
-
-msgid "Please note this add-on uses legacy technology, which gives it access to all browser functions and data without requesting your permission."
-msgstr "Observera att den här tillägget använder äldre teknik, vilket ger den tillgång till alla webbläsarfunktioner och data utan att begära ditt tillstånd."
-
-msgid "This add-on has been removed by its author."
-msgstr "Detta tillägg har tagits bort av utvecklaren."
-
-msgid "This add-on has been disabled by an administrator."
-msgstr "Detta tillägg har inaktiverats av en administratör."
-
-msgid "Source Code License for {addon}"
-msgstr "Källkodslicens för {addon}"
-
-#. The License for this add-on.
-msgid "Source Code License"
-msgstr "Källkodslicens"
-
-msgid "support section"
-msgstr "hjälpavdelning"
-
-msgid "support email"
-msgstr "e-post till support"
-
-msgid "permalink"
-msgstr "permalänk"
-
-#, python-format
-msgid "See all user reviews"
-msgid_plural "See all %(cnt)s user reviews"
-msgstr[0] "Visa alla användarrecensioner"
-msgstr[1] "Visa alla %(cnt)s användarrecensioner"
-
-msgid "This add-on has not yet been reviewed."
-msgstr "Detta tillägg har ännu inte recenserats."
-
-msgid "Be the first!"
-msgstr "Bli den första!"
-
-msgid "No results found."
-msgstr "Inga resultat hittades."
-
-msgid "{0} users"
-msgstr "{0} användare"
+msgid "Sort by:"
+msgstr "Sortera efter:"
 
 msgid "More"
 msgstr "Mer"
@@ -539,34 +147,6 @@ msgstr "Mina tillägg"
 
 msgid "My Themes"
 msgstr "Mina teman"
-
-#. This is a caption for a table. {0} is an add-on name.
-msgid "Add-on Information for {0}"
-msgstr "Tilläggsinformation för {0}"
-
-msgid "Edit Theme"
-msgstr "Redigera tema"
-
-msgid "Approve / Reject"
-msgstr "Godkänn / Avvisa"
-
-msgid "Review History"
-msgstr "Granskningshistorik"
-
-msgid "Sorry, this theme is pending. Please come back later."
-msgstr "Tyvärr, är detta tema är väntande. Kom tillbaka senare."
-
-msgid "This theme is pending. It is invisible to everyone but you."
-msgstr "Detta tema är väntande. Det är osynligt för alla utom du."
-
-#. {0} is the number of downloads.
-msgid "<strong>{0}</strong> weekly download"
-msgid_plural "<strong>{0}</strong> weekly downloads"
-msgstr[0] "<strong>{0}</strong> nedladdning per vecka"
-msgstr[1] "<strong>{0}</strong> nedladdningar per vecka"
-
-msgid "Not Reviewed"
-msgstr "Ej granskad"
 
 msgid "Tools"
 msgstr "Verktyg"
@@ -745,14 +325,23 @@ msgstr ""
 "<p> Ange <strong>alla ord</strong> nedan <strong>med ett mellanslag vid behov</strong>. </p> <p> Om det är svårt att läsa kan du <a href=\"#\" id=\"recaptcha_different\">försöka med andra ord </a> "
 "eller <a href=\"#\" id=\"recaptcha_audio\">prova en annan typ av utmaning</a> istället. </p>"
 
+msgid "Most Popular"
+msgstr "Mest populära"
+
 msgid "Top Rated"
 msgstr "Högst rankade"
 
 msgid "Newest"
 msgstr "Nyast"
 
+msgid "Featured"
+msgstr "Utvalda"
+
 msgid "Explore"
 msgstr "Utforska"
+
+msgid "Categories"
+msgstr "Kategorier"
 
 #. This is a page range (e.g., Page 1 of 50).
 #, python-format
@@ -774,14 +363,14 @@ msgstr "Hoppa till sista sidan"
 msgid "Showing <b>%(begin)s</b>&ndash;<b>%(end)s</b> of <b>%(count)s</b>"
 msgstr "Visar <b>%(begin)s</b>&ndash;<b>%(end)s</b> av <b>%(count)s</b>"
 
-msgid "Collections"
-msgstr "Samlingar"
-
-msgid "Dictionaries & Language Packs"
-msgstr "Ordlistor & språkpaket"
+msgid "Add-ons for {0}"
+msgstr "Tillägg för {0}"
 
 msgid "Add-ons"
 msgstr "Tillägg"
+
+msgid "Custom License"
+msgstr "Anpassad licens"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -886,262 +475,6 @@ msgstr "Denna anpassade URL kan inte användas."
 
 msgid "This add-on already belongs to the collection"
 msgstr "Denna tillägg hör redan till samlingen"
-
-msgid "Extensions"
-msgstr "Utökningar"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Add-ons"
-msgstr "%s Tillägg"
-
-#. {0} is a category name. Ex: "Sports"
-msgid "Themes"
-msgstr "Teman"
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "%s Themes"
-msgstr "%s Teman"
-
-#, python-format
-msgid "Featured Add-ons :: %s"
-msgstr "Utvalda tillägg :: %s"
-
-#. L10n: %s is an app name.
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %s."
-msgstr "Här är några av våra favorittillägg för att hjälpa dig att komma igång med anpassning %s."
-
-#. L10n: %s is a category name.
-#, python-format
-msgid "Search tools relating to %s"
-msgstr "Sökverktyg som rör %s"
-
-msgid "Search tools and search-related extensions"
-msgstr "Sökverktyg och sökrelaterade utökningar"
-
-msgid "Search tools"
-msgstr "Sökverktyg"
-
-msgid "Search Tools"
-msgstr "Sökverktyg"
-
-msgid "Most Users"
-msgstr "Flest användare"
-
-msgid "Name"
-msgstr "Namn"
-
-msgid "Weekly Downloads"
-msgstr "Nedladdningar per vecka"
-
-msgid "Recently Updated"
-msgstr "Nyligen uppdaterad"
-
-msgid "Up & Coming"
-msgstr "Bubblare"
-
-msgid "Recently Added"
-msgstr "Nyligen tillagd"
-
-msgid "Created"
-msgstr "Skapad"
-
-msgid "Downloads"
-msgstr "Nerladdningar"
-
-#. {0} is the category name. Ex: Sports
-msgid "{0}: Featured Add-ons"
-msgstr "{0}: Utvalda tillägg"
-
-#. {0} is a category name. Ex: Sports
-msgid "No featured add-ons in {0}."
-msgstr "Inga utvalda tillägg i {0}."
-
-msgid "Subscribe"
-msgstr "Prenumerera"
-
-msgid "Featured Add-ons"
-msgstr "Utvalda tillägg"
-
-#, python-format
-msgid "Here's a few of our favorite add-ons to help you get started customizing %(app)s."
-msgstr "Här är några av våra favorittillägg för att hjälpa dig att komma igång med anpassning %(app)s."
-
-msgid "Install Dictionary"
-msgstr "Installera ordlista"
-
-msgid "Install Language Pack"
-msgstr "Installera språkpaket"
-
-#, python-format
-msgid ""
-"Installing a dictionary add-on will add a new language option to your %(app_name)s spell-checker, which checks your spelling when you fill out Web forms. Language pack add-ons change the language of"
-" the entire application."
-msgstr ""
-"Om du installerar en ordboks-tillägg lägger du till ett nytt språkalternativ i din %(app_name)s stavningskontroll, som kontrollerar stavningen när du fyller i webbformulär. Språkpaketstillägg ändrar"
-" språket i hela applikationen."
-
-msgid "Available in your locale"
-msgstr "Tillgänglig på ditt språk"
-
-msgid "List of language packs and dictionaries available in your locale."
-msgstr "Lista över språkpaket och ordlistor tillgängliga på ditt språk."
-
-msgid "Language"
-msgstr "Språk"
-
-msgid "Dictionary"
-msgstr "Ordlista"
-
-msgid "Language Pack"
-msgstr "Språkpaket"
-
-msgid "All locales"
-msgstr "Alla språk"
-
-msgid "List of language packs and dictionaries."
-msgstr "Lista på språkpaket och ordlistor."
-
-#. {0} is a category name, like "Music".
-msgid "{0} :: Search Tools"
-msgstr "{0} :: Sökverktyg"
-
-#. {0} is an integer.
-msgid "<b>{0}</b> add-on"
-msgid_plural "<b>{0}</b> add-ons"
-msgstr[0] "<b>{0}</b> tillägg"
-msgstr[1] "<b>{0}</b> tillägg"
-
-msgid "Search Extensions"
-msgstr "Sök utökningar"
-
-msgid "Add search-related functionality to Firefox"
-msgstr "Lägg till sökrelaterad funktionalitet i Firefox"
-
-msgid "Search Providers"
-msgstr "Sök leverantörer"
-
-msgid "Find new providers for your search bar"
-msgstr "Hitta nya leverantörer för ditt sökfält"
-
-msgid "Additional Resources"
-msgstr "Fler resurser"
-
-#. {0} is an app name, like Firefox.
-msgid "Learn more about the <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">search bar</a> in {0}"
-msgstr "Läs mer om <a href=\"https://support.mozilla.org/kb/use-search-bar-firefox\">sökfält</a> i {0}"
-
-msgid "Browse through even more search providers at <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-msgstr "Bläddra igenom ännu fler sökleverantörer på <a href=\"http://mycroftproject.com/\">mycroftproject.com</a>"
-
-#, python-format
-msgid "%(amo_mdn_link_open)sMake your own%(amo_mdn_link_close)s search tool"
-msgstr "%(amo_mdn_link_open)sGör dina egna%(amo_mdn_link_close)s sökverktyg"
-
-msgid "Most Popular Extensions"
-msgstr "Populäraste utökningarna"
-
-msgid "Top-Rated Extensions"
-msgstr "Högst rankade utökningar"
-
-msgid "Newest Extensions"
-msgstr "Nyaste utökningar"
-
-msgid "Extensions by Name"
-msgstr "Utökningar efter namn"
-
-msgid "Extensions by Weekly Downloads"
-msgstr "Utökningar efter nedladdningar per vecka"
-
-msgid "Recently Updated Extensions"
-msgstr "Nyligen uppdaterade utökningar"
-
-msgid "Up & Coming Extensions"
-msgstr "Bubblare utökningar"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-msgid "Featured Complete Themes"
-msgstr "Utvalda kompletta teman"
-
-msgid "Most Popular Complete Themes"
-msgstr "Populäraste kompletta teman"
-
-msgid "Top-Rated Complete Themes"
-msgstr "Högst rankade kompletta teman"
-
-msgid "Newest Complete Themes"
-msgstr "Nyaste kompletta teman"
-
-msgid "Complete Themes by Name"
-msgstr "Kompletta teman efter namn"
-
-msgid "Complete Themes by Weekly Downloads"
-msgstr "Kompletta teman efter nedladdningar per vecka"
-
-msgid "Recently Updated Complete Themes"
-msgstr "Nyligen uppdaterade kompletta teman"
-
-msgid "Up & Coming Complete Themes"
-msgstr "Bubblare kompletta teman"
-
-#, python-format
-msgid "See the %(cnt)s extension in %(name)s &raquo;"
-msgid_plural "See all %(cnt)s extensions in %(name)s &raquo;"
-msgstr[0] "Visa %(cnt)s utökning i %(name)s &raquo;"
-msgstr[1] "Visa alla %(cnt)s utökningar i %(name)s &raquo;"
-
-msgid "{0} Themes"
-msgstr "{0} Teman"
-
-#. {0} is a user's name.
-msgid "{0}'s Themes"
-msgstr "{0}'s Teman"
-
-msgid "View Profile"
-msgstr "Visa profil"
-
-msgid "Create Your Own Theme"
-msgstr "Skapa ditt egna tema"
-
-msgid "Your browser, your style! Dress it up with a design of your own!"
-msgstr "Din webbläsare, din stil! Styla den med en egen design!"
-
-msgid "Learn more"
-msgstr "Läs mer"
-
-msgid "View All Recently Added"
-msgstr "Visa alla nyligen tillagda"
-
-msgid "View All Most Popular"
-msgstr "Visa alla populära"
-
-msgid "View All Top Rated"
-msgstr "Visa alla högst rankade"
-
-#, python-format
-msgid "Over 300,000 designs to personalize your browser! Move your mouse over a Background Theme to try it on. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Över 300.000 designer för att anpassa din webbläsare! Flytta musen över ett bakgrundstema för att prova den. <a href=\"%(url)s\" class=\"more-info\">Börja utforska</a>"
-
-msgid "Want more personalization?"
-msgstr "Vill du ha fler anpassningar?"
-
-#. "Complete" is used as an adjective. "Complete Theme" means a full-featured
-#. theme.
-#, python-format
-msgid "Complete Themes transform the look of your browser with styles for the window frame, address bar, buttons, tabs, and menus. <a href=\"%(url)s\" class=\"more-info\">Start exploring</a>"
-msgstr "Kompletta teman förändrar utseendet på din webbläsare med stilar för fönsterramen, adressfältet, knappar, flikar och menyer. <a href=\"%(url)s\" class=\"more-info\">Börja utforska</a>"
-
-msgid "Up & Coming Themes"
-msgstr "Bubblare teman"
-
-msgid "View All Up & Coming"
-msgstr "Visa alla bubblare"
-
-msgid "No themes found"
-msgstr "Inga teman hittades."
 
 msgid "{addon} was created."
 msgstr "{addon} skapades."
@@ -1507,6 +840,9 @@ msgstr "Utökning"
 msgid "Complete Theme"
 msgstr "Komplett tema"
 
+msgid "Dictionary"
+msgstr "Ordlista"
+
 msgid "Search Engine"
 msgstr "Sökmotor"
 
@@ -1525,11 +861,17 @@ msgstr "Tema"
 msgid "Theme (Static)"
 msgstr "Tema (Statisk)"
 
+msgid "Extensions"
+msgstr "Utökningar"
+
 msgid "Complete Themes"
 msgstr "Kompletta teman"
 
 msgid "Dictionaries"
 msgstr "Ordlistor"
+
+msgid "Search Tools"
+msgstr "Sökverktyg"
 
 msgid "Language Packs (Application)"
 msgstr "Språkpaket (applikation)"
@@ -1539,6 +881,9 @@ msgstr "Språkpaket (tillägg)"
 
 msgid "Plugins"
 msgstr "Insticksmoduler"
+
+msgid "Themes"
+msgstr "Teman"
 
 msgid "Themes (Static)"
 msgstr "Teman (Statisk)"
@@ -2218,6 +1563,21 @@ msgstr "Mozilla säkerhetsmeddelande: Din AMO API-behörighet har återkallats"
 msgid "Validation generated too many errors/warnings so %s messages were truncated. After addressing the visible messages, you'll be able to see the others."
 msgstr "Validering genererade för många fel/varningar så %s meddelanden trunkerades. Efter att ha tagit itu med de meddelande som visas, kommer du att kunna se de andra."
 
+msgid "Updated"
+msgstr "Uppdaterad"
+
+msgid "Name"
+msgstr "Namn"
+
+msgid "Created"
+msgstr "Skapad"
+
+msgid "Downloads"
+msgstr "Nerladdningar"
+
+msgid "Rating"
+msgstr "Betyg"
+
 msgid "All My Add-ons"
 msgstr "Alla mina tillägg"
 
@@ -2469,6 +1829,9 @@ msgstr "Senaste aktivitet för {0}"
 msgid "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> by %(user)s"
 msgstr "<time datetime=\"%(iso)s\" title=\"%(pretty)s\">%(ago)s</time> av %(user)s"
 
+msgid "No results found."
+msgstr "Inga resultat hittades."
+
 msgid "Refine Activity"
 msgstr "Begränsa aktivitet"
 
@@ -2519,8 +1882,20 @@ msgstr "Lägg till en annan applikation&hellip;"
 msgid "Save Changes"
 msgstr "Spara ändringar"
 
+msgid "or"
+msgstr "eller"
+
+msgid "Cancel"
+msgstr "Avbryt"
+
 msgid "Close"
 msgstr "Stäng"
+
+#. {0} is an integer.
+msgid "<b>{0}</b> add-on"
+msgid_plural "<b>{0}</b> add-ons"
+msgstr[0] "<b>{0}</b> tillägg"
+msgstr[1] "<b>{0}</b> tillägg"
 
 msgid "Recent Activity"
 msgstr "Senaste aktivitet"
@@ -2574,6 +1949,9 @@ msgstr "Ytterligare detaljer"
 
 msgid "Additional Details for {0}"
 msgstr "Ytterligare detaljer för {0}"
+
+msgid "Tags"
+msgstr "Taggar"
 
 msgid "Tags help users find your add-on and should be short descriptors such as tabs, toolbar, or twitter. You may have a maximum of {0} tags."
 msgstr "Taggar hjälper användarna att hitta ditt tillägg och bör vara korta beskrivningar som flikar, verktygsfält eller twitter. Du kan ha högst {0} taggar."
@@ -3009,6 +2387,12 @@ msgstr "Inaktiverad"
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
 msgstr "<b>Köplats:</b> %(pos)s av %(total)s"
 
+#. {0} is the number of downloads.
+msgid "<strong>{0}</strong> weekly download"
+msgid_plural "<strong>{0}</strong> weekly downloads"
+msgstr[0] "<strong>{0}</strong> nedladdning per vecka"
+msgstr[1] "<strong>{0}</strong> nedladdningar per vecka"
+
 #. {0} is the number of active users.
 msgid "<strong>{0}</strong> active user"
 msgid_plural "<strong>{0}</strong> active users"
@@ -3382,6 +2766,10 @@ msgid "Created:"
 msgstr "Skapad:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
+msgid "Last Updated:"
+msgstr "Senast uppdaterad:"
+
+#. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site"
 msgstr "Listad på denna sida efter att ha passerat kodgranskning. Automatiska uppdateringar hanteras av den här webbplatsen"
 
@@ -3428,6 +2816,9 @@ msgstr "Granskningssida för listade"
 msgid "Unlisted Review Page"
 msgstr "Granskningssida för olistade"
 
+msgid "Admin Manage"
+msgstr "Administrationssida"
+
 msgid "View Statistics Dashboard"
 msgstr "Visa statistiköversikt"
 
@@ -3442,6 +2833,9 @@ msgstr "Väntande informationsbegäran:"
 
 msgid "This request for information has been resolved"
 msgstr "Denna begäran om information har lösts"
+
+msgid "License"
+msgstr "Licens"
 
 msgid "Please choose a license appropriate for the rights you grant on your source code. It is only relevant for listed add-ons."
 msgstr ""
@@ -3466,12 +2860,18 @@ msgid_plural "Select <b>up to {0}</b> {1} categories for this add-on:"
 msgstr[0] "Välj <b>upp till {0}</b> {1} kategori för detta tillägg:"
 msgstr[1] "Välj <b>upp till {0}</b> {1} kategorier för detta tillägg:"
 
+msgid "End-User License Agreement"
+msgstr "Slutanvändarlicensavtal"
+
 msgid ""
 "Users will be required to accept the following End-User License Agreement (EULA) prior to installing your add-on. The presence of a EULA significantly affects the number of downloads an add-on "
 "receives. Please note that a EULA is not the same as a code license, such as the GPL or MPL.It is only relevant for listed add-ons."
 msgstr ""
 "Användare kommer att behöva acceptera följande licensavtal (EULA) innan installation av ditt tillägg. Förekomsten av en EULA påverkar märkbart antalet nedladdningar ett tillägg har. Observera att en"
 " EULA inte är samma som en kodlicens, till exempel GPL eller MPL. Det är endast relevant för listade tillägg."
+
+msgid "Privacy Policy"
+msgstr "Sekretesspolicy"
 
 msgid "If your add-on transmits any data from the user's computer, a privacy policy is required that explains what data is sent and how it is used. It is only relevant for listed add-ons."
 msgstr ""
@@ -3543,6 +2943,9 @@ msgstr "Rapportera varumärkesintrång"
 
 msgid "Legal Notices"
 msgstr "Juridisk information"
+
+msgid "Contribute"
+msgstr "Bidra"
 
 msgid "Review Add-ons"
 msgstr "Granska tillägg"
@@ -3759,6 +3162,9 @@ msgstr "0 filer"
 
 msgid "Re-enable Version"
 msgstr "Återaktiverad version"
+
+msgid "Review History"
+msgstr "Granskningshistorik"
 
 msgid "Close Review History"
 msgstr "Stäng granskningshistorik"
@@ -5291,6 +4697,9 @@ msgstr "Filinnehåll stöder inte syntaxfärgläggning"
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
 msgstr "Utmatningen kan vara trasig, var försiktig och %(link_start)srapportera problem%(link_end)s omedelbart!"
 
+msgid "close"
+msgstr "stäng"
+
 msgid "Go"
 msgstr "Gå till"
 
@@ -5344,102 +4753,6 @@ msgstr "Inga filer i den uppladdade filen."
 
 msgid "Fetching file."
 msgstr "Hämtar fil."
-
-msgid "Shopping Made Easy"
-msgstr "Shopping utan problem"
-
-msgid "Save on your favorite items from the comfort of your browser."
-msgstr "Spara på dina favoritobjekt från bekvämligheten av din webbläsare."
-
-msgid "Build the perfect website"
-msgstr "Bygg den perfekta webbplatsen"
-
-msgid "First time with Add-ons?"
-msgstr "Är det din första gång med tillägg?"
-
-msgid "Not to worry, here are three to get started."
-msgstr "Oroa dig inte, här har du tre för att komma igång."
-
-msgid "Translate content on the web from and into over 40 languages."
-msgstr "Översätt innehåll på webben från och till över 40 språk."
-
-msgid "Easily connect to your social networks, and share or comment on the page you're visiting."
-msgstr "Anslut enkelt till dina sociala nätverk, och dela eller kommentera den sida du besöker."
-
-msgid "A quick view to compare prices when you shop online or search for flights."
-msgstr "En snabbtitt för att jämföra priser när du handlar på nätet eller söker efter flyg."
-
-msgid "St. Patrick&rsquo;s Day Themes"
-msgstr "Teman St. Patrick&rsquo;s Day"
-
-msgid "Decorate your browser to celebrate St. Patrick&rsquo;s Day."
-msgstr "Dekorera din webbläsare för att fira Saint Patrick&rsquo;s Day."
-
-msgid "A+ add-ons for School"
-msgstr "A+ tillägg för skolan"
-
-msgid "Add-ons for teachers, parents, and students heading back to school."
-msgstr "Tillägg för lärare, föräldrar och elever på väg tillbaka till skolan."
-
-msgid "Would you like to know which websites you can trust?"
-msgstr "Vill du veta vilka webbplatser du kan lita på?"
-
-msgid "Xmarks is the #1 bookmarking add-on."
-msgstr "Xmarks är tillägget för bokmärkning."
-
-msgid "Web page and text translator, dictionary, and more!"
-msgstr "Webbsida och textöversättare, ordbok och mycket mer!"
-
-msgid "Love is in the Air"
-msgstr "Kärlek är i luften"
-
-msgid "Add some romance to your Firefox."
-msgstr "Lägg till lite romantik till din Firefox."
-
-msgid "Get up and move!"
-msgstr "Stig upp och rör på dig!"
-
-msgid "Install these fitness add-ons to keep you active and healthy."
-msgstr "Installera dessa fitnesstillägg för att hålla dig aktiv och hälsosam."
-
-msgid "New &amp; Now"
-msgstr "Nytt &amp; Nu"
-
-msgid "Get the latest, must-have add-ons of the moment."
-msgstr "Hämta det senaste måste-ha tilläggen för tillfället."
-
-msgid "Worry-free browsing"
-msgstr "Bekymmersfri surfning"
-
-msgid "Protect your privacy online with the add-ons in this collection."
-msgstr "Skydda din integritet på nätet med tillägg i denna samling."
-
-msgid "Great add-ons for work, fun, privacy, productivity&hellip; just about anything!"
-msgstr "Bra tillägg för arbete, nöje, integritet, produktivitet&hellip; precis vad som helst!"
-
-msgid "Games!"
-msgstr "Spel!"
-
-msgid "Add more fun to your Firefox. Play dozens of games right from your browser—puzzles, classic arcade, action games, and more!"
-msgstr "Lägg till mer underhållning till Firefox. Spela massor av spel direkt i din webbläsare — pussel, arkadspel, actionspel och mycket mer!"
-
-msgid "Must-Have Media"
-msgstr "Måste-ha media"
-
-msgid "Take better screenshots, improve your online video experience, finally learn how to make a GIF, and other great media tools."
-msgstr "Ta bättre skärmdumpar, förbättra din videoupplevelse online, lär dig att göra en GIF och använda andra stora medieverktyg."
-
-msgid "Mozilla&rsquo;s Pick of the Month!"
-msgstr "Mozilla&rsquo;s val för månaden!"
-
-msgid "Become a Test Pilot"
-msgstr "Bli en testpilot"
-
-msgid "Unlock early access to experimental browser features."
-msgstr "Få tidig tillgång till experimentella webbläsarfunktioner."
-
-msgid "Get Started"
-msgstr "Kom igång"
 
 msgid "Reported Status"
 msgstr "Rapporterad status"
@@ -5569,6 +4882,9 @@ msgstr "Som arbetar på denna webbplats?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr "Genom åren har många bidragit till denna webbplats, inklusive både volontärer från gemenskapen och särskilda AMO-medlemmar."
+
+msgid "Review Guidelines"
+msgstr "Recensionsriktlinjer"
 
 msgid "Sections"
 msgstr "Avdelningar"
@@ -5762,6 +5078,9 @@ msgstr ""
 "support\">gemenskapen för tillägget</a> efter hjälp. </li> <li>Försök hålla recensioner rena från ovårdat språk och undvika att lägga upp personlig information. </li> </ul> <p>Läs <a "
 "href=\"%(guide)s\">riktlinjer för recensioner</a> för mer detaljer om användarrecensioner av tillägg.</p>"
 
+msgid "Submit review"
+msgstr "Skicka in recension"
+
 msgid "Reply to review by {0}"
 msgstr "Besvara recension av {0}"
 
@@ -5782,6 +5101,13 @@ msgstr "Välj en anledning:"
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
 msgstr "av %(user)s <b>(Utvecklare)</b> den %(date)s"
+
+#, python-format
+msgid "by %(user)s on %(date)s"
+msgstr "av %(user)s den %(date)s"
+
+msgid "permalink"
+msgstr "permalänk"
 
 #. {0} is a version number (like 1.01)
 msgid "This review is for a previous version of the add-on ({0})."
@@ -5853,6 +5179,9 @@ msgstr "Skriv en ny recension"
 
 msgid "Be the first to write a review."
 msgstr "Bli först med att skriva en recension."
+
+msgid "This add-on has not yet been reviewed."
+msgstr "Detta tillägg har ännu inte recenserats."
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
@@ -5951,6 +5280,9 @@ msgstr "Behöver administrativ innehållsgranskning"
 msgid "Needs Admin Static Theme Review"
 msgstr "Behöver administrativ statisk temagranskning"
 
+msgid "Requires Restart"
+msgstr "Kräver omstart"
+
 msgid "More Information Requested"
 msgstr "Mer information begärd"
 
@@ -5962,6 +5294,9 @@ msgstr "Källor tillgänglig"
 
 msgid "WebExtension"
 msgstr "WebExtension"
+
+msgid "Risk breakdown not available."
+msgstr "Risknedbrytning inte tillgänglig."
 
 msgid "Is locked by a reviewer."
 msgstr "Är låst av en granskare."
@@ -6059,14 +5394,8 @@ msgstr "Godkänn innehåll"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Detta registrerar ditt godkännande av innehållet i den senaste offentliga versionen utan att meddela utvecklaren."
 
-msgid "Static Themes and Legacy Add-ons"
-msgstr "Statiska teman och äldre tillägg"
-
-msgid "Static Themes"
-msgstr "Statiska teman"
-
-msgid "Legacy Add-ons"
-msgstr "Äldre tillägg"
+msgid "Pre-Approval Add-ons"
+msgstr "Tillägg för godkännande"
 
 msgid "New ({0})"
 msgstr "Nya ({0})"
@@ -6079,9 +5408,6 @@ msgstr "Granskningslogg"
 
 msgid "Add-on Review Guide"
 msgstr "Granskningsriktlinjer för tillägg"
-
-msgid "Theme Review Guide"
-msgstr "Granskningsriktlinjer för teman"
 
 msgid "Auto-Approved Add-ons"
 msgstr "Automatiskt godkända tillägg"
@@ -6102,6 +5428,9 @@ msgid "Content Review ({0})"
 msgid_plural "Content Review ({0})"
 msgstr[0] "Innehållsgranskning ({0})"
 msgstr[1] "Innehållsgranskningar ({0})"
+
+msgid "Theme Review Guide"
+msgstr "Granskningsriktlinjer för teman"
 
 msgid "User Ratings Moderation"
 msgstr "Moderering användarbetyg"
@@ -6154,13 +5483,16 @@ msgstr "{addon} :: missbruksrapporter"
 msgid "Abuse Reports for {addon} and its developers ({num})"
 msgstr "Missbruksrapporter för {addon} och dess utvecklare ({num})"
 
+#. This is a caption for a table. {0} is an add-on name.
+msgid "Add-on Information for {0}"
+msgstr "Tilläggsinformation för {0}"
+
 msgid "Add-on ID"
 msgstr "Tilläggs-ID"
 
 msgid "Internal AMO ID"
 msgstr "Internt AMO-ID"
 
-#. This refers to this version's compatible applications, such as Firefox 8.0
 msgid "Works with"
 msgstr "Fungerar med"
 
@@ -6184,6 +5516,9 @@ msgstr "Kräver betalning"
 
 msgid "EULA"
 msgstr "EULA"
+
+msgid "View End-User License Agreement"
+msgstr "Visa slutanvändarlicensavtal"
 
 msgid "Last Approval Date"
 msgstr "Senaste datum för godkännande"
@@ -6380,6 +5715,9 @@ msgstr "Utvecklaren har lämnat källkod."
 
 msgid "Weight:"
 msgstr "Vikt:"
+
+msgid "Download"
+msgstr "Hämta"
 
 msgid "Not Auto Approved Because"
 msgstr "Inte automatiskt godkänd eftersom"
@@ -6618,6 +5956,9 @@ msgstr "Översikt"
 msgid "by Source"
 msgstr "efter källkod"
 
+msgid "Daily Users"
+msgstr "Dagliga användare"
+
 msgid "by Add-on Version"
 msgstr "efter tilläggsversion"
 
@@ -6823,9 +6164,6 @@ msgstr "Tillbaka till tillägg"
 msgid "Footer logo"
 msgstr "Logotyp sidfot"
 
-msgid "Choose a category"
-msgstr "Välj en kategori"
-
 msgid "The new website supports mobile and desktop clients"
 msgstr "Den nya webbplatsen stöder mobila och stationära datorer"
 
@@ -6941,6 +6279,9 @@ msgstr "Bannlys valda användare"
 msgid "Profile Photo"
 msgstr "Profilfoto"
 
+msgid "Collections"
+msgstr "Samlingar"
+
 msgid "Addons"
 msgstr "Tillägg"
 
@@ -7020,47 +6361,16 @@ msgstr ""
 "Tyvärr kunde vi inte att avsluta prenumerationen åt dig. Länken du klickade på är ogiltig. Däremot kan du fortfarande avsluta prenumerationen genom att <a href=\"%(edit_url)s\">redigera din "
 "profilsida</a>."
 
+#, python-format
+msgid "by %(users)s"
+msgstr "av %(users)s"
+
 msgctxt "user_list_others"
 msgid "others"
 msgstr "andra"
 
-#, python-format
-msgid "%s Version History"
-msgstr "%s versionshistorik"
-
-msgid "Version History with Changelogs"
-msgstr "Versionshistorik med ändringsloggar"
-
 msgid "{app} {min} and later"
 msgstr "{app} {min} och senare"
-
-msgid "Permanent link to this version"
-msgstr "Permanent länk till denna version"
-
-#. {0} is a timestamp, such as September 28, 2011.
-msgid "Released {0}"
-msgstr "Släppt den {0}"
-
-#, python-format
-msgid "Source code released under <a href=\"%(url)s\">%(name)s</a>"
-msgstr "Källkoden släpptes under <a href=\"%(url)s\">%(name)s</a>"
-
-#. {0} is an add-on name.
-msgid "{0} Version History"
-msgstr "{0} versionshistorik"
-
-#. {0} is a number.
-msgid "<b>{0}</b> version"
-msgid_plural "<b>{0}</b> versions"
-msgstr[0] "<b>{0}</b> version"
-msgstr[1] "<b>{0}</b> versioner"
-
-msgid "Be careful with old versions!"
-msgstr "Var försiktig med gamla versioner!"
-
-#, python-format
-msgid "These versions are displayed for reference and testing purposes. You should always use the <a href=\"%(url)s\">latest version</a> of an add-on."
-msgstr "Dessa versioner visas för referens och teständamål. Du bör alltid använda <a href=\"%(url)s\">den senaste versionen</a> av ett tillägg."
 
 msgid "Deleted versions can`t be changed."
 msgstr "Borttagna versioner kan inte ändras."

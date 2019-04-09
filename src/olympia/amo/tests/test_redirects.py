@@ -17,45 +17,46 @@ class TestRedirects(TestCase):
         for juicy details.
         """
 
-        response = self.client.get('/', follow=True, HTTP_ACCEPT_LANGUAGE='de')
-        self.assert3xx(response, '/de/firefox/', status_code=302)
+        response = self.client.get('/developers', follow=True,
+                                   HTTP_ACCEPT_LANGUAGE='de')
+        self.assert3xx(response, '/de/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='en-us, de')
-        self.assert3xx(response, '/en-US/firefox/', status_code=302)
+        self.assert3xx(response, '/en-US/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='fr, en')
-        self.assert3xx(response, '/fr/firefox/', status_code=302)
+        self.assert3xx(response, '/fr/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt-XX, xx, yy')
-        self.assert3xx(response, '/pt-PT/firefox/', status_code=302)
+        self.assert3xx(response, '/pt-PT/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt')
-        self.assert3xx(response, '/pt-PT/firefox/', status_code=302)
+        self.assert3xx(response, '/pt-PT/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt, de')
-        self.assert3xx(response, '/pt-PT/firefox/', status_code=302)
+        self.assert3xx(response, '/pt-PT/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='pt-XX, xx, de')
-        self.assert3xx(response, '/pt-PT/firefox/', status_code=302)
+        self.assert3xx(response, '/pt-PT/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='xx, yy, zz')
-        self.assert3xx(response, '/en-US/firefox/', status_code=302)
+        self.assert3xx(response, '/en-US/developers/', status_code=302)
 
         response = self.client.get(
-            '/', follow=True,
+            '/developers', follow=True,
             HTTP_ACCEPT_LANGUAGE='some,thing-very;very,,,broken!\'jj')
-        self.assert3xx(response, '/en-US/firefox/', status_code=302)
+        self.assert3xx(response, '/en-US/developers/', status_code=302)
 
-        response = self.client.get('/', follow=True,
+        response = self.client.get('/developers', follow=True,
                                    HTTP_ACCEPT_LANGUAGE='en-us;q=0.5, de')
-        self.assert3xx(response, '/de/firefox/', status_code=302)
+        self.assert3xx(response, '/de/developers/', status_code=302)
 
     def test_addons_reviews_rss(self):
         r = self.client.get('/addons/reviews/4/format:rss', follow=True)

@@ -7,10 +7,8 @@ from datetime import datetime
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.db import transaction
-from django.forms import ValidationError
 from django.utils import translation
 
-import six
 import waffle
 
 from django_statsd.clients import statsd
@@ -25,8 +23,7 @@ from olympia.addons.models import (
     Addon, AddonCategory, AppSupport, Category, CompatOverride,
     IncompatibleVersions, MigratedLWT, Persona, Preview, attach_tags,
     attach_translations)
-from olympia.addons.utils import (
-    build_static_theme_xpi_from_lwt, build_webext_dictionary_from_legacy)
+from olympia.addons.utils import build_static_theme_xpi_from_lwt
 from olympia.bandwagon.models import CollectionAddon
 from olympia.amo.celery import pause_all_tasks, resume_all_tasks, task
 from olympia.amo.decorators import set_modified_on, use_primary_db
@@ -35,19 +32,16 @@ from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
     ImageCheck, LocalFileStorage, StopWatch, cache_ns_key,
     extract_colors_from_image, pngcrush_image)
-from olympia.applications.models import AppVersion
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
-from olympia.files.models import File, FileUpload
-from olympia.files.utils import (
-    RDFExtractor, SafeZip, get_file, get_filepath, parse_addon)
+from olympia.files.models import FileUpload
+from olympia.files.utils import get_filepath, parse_addon
 from olympia.lib.crypto.signing import sign_file
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
 from olympia.stats.utils import migrate_theme_update_count
 from olympia.tags.models import AddonTag, Tag
-from olympia.translations.models import Translation
 from olympia.users.models import UserProfile
 from olympia.versions.models import (
     generate_static_theme_preview, License, Version, VersionPreview)
@@ -469,97 +463,6 @@ def add_dynamic_theme_tag(ids, **kw):
             index_addons.delay([addon.id])
 
 
-def extract_strict_compatibility_value_for_addon(addon):
-    strict_compatibility = None  # We don't know yet.
-    try:
-        # We take a shortcut here and only look at the first file we
-        # find...
-        # Note that we can't use parse_addon() wrapper because it no longer
-        # exposes the real value of `strictCompatibility`...
-        path = addon.current_version.all_files[0].file_path
-        zip_file = SafeZip(get_file(path))
-        parser = RDFExtractor(zip_file)
-        strict_compatibility = parser.find('strictCompatibility') == 'true'
-    except Exception as exc:
-        # A number of things can go wrong: missing file, path somehow not
-        # existing, etc. In any case, that means the add-on is in a weird
-        # state and should be ignored (this is a one off task).
-        log.exception(u'bump_appver_for_legacy_addons: ignoring addon %d, '
-                      u'received %s when extracting.',
-                      addon.pk, six.text_type(exc))
-    return strict_compatibility
-
-
-def bump_appver_for_addon_if_necessary(
-        addon, application_id, new_max_appver, strict_compatibility=None):
-    # Find the applicationversion for Firefox for the current version of this
-    # addon.
-    application_versions = addon.current_version.compatible_apps.get(
-        amo.APPS_ALL[application_id])
-
-    # Make sure it's not compatible already...
-    if application_versions and (
-            application_versions.max.version_int < new_max_appver.version_int):
-        if strict_compatibility is None:
-            # We don't know yet if the add-on had strictCompatibility enabled
-            # (either because it's the first time we called the function for
-            # this addon, or because it was not neccessary to bump the last
-            # time we called, or because we had an error before). Let's parse
-            # it to find out.
-            strict_compatibility = (
-                extract_strict_compatibility_value_for_addon(addon))
-        if strict_compatibility is False:
-            # It had not enabled strict compatibility. That means we should
-            # bump it!
-            application_versions.max = new_max_appver
-            application_versions.save()
-    return strict_compatibility
-
-
-# Rate limit is per-worker. Kept low to not overload the database with updates.
-# We have 5 workers in the default queue, we have roughly 25.000 add-ons to go
-# through, since process_addons() chunks contain 100 add-ons the task should be
-# fired 250 times. With 5 workers at 5 tasks / minute limit we should do 25
-# tasks in a minute, taking ~ 10 minutes for the whole thing to finish.
-@task(rate_limit='5/m')
-@use_primary_db
-def bump_appver_for_legacy_addons(ids, **kw):
-    """
-    Task to bump the max appversion to 56.* for legacy add-ons that have not
-    enabled strictCompatibility in their manifest.
-    """
-    addons = Addon.objects.filter(id__in=ids)
-    # The AppVersions we want to point to now.
-    new_max_appversions = {
-        amo.FIREFOX.id: AppVersion.objects.get(
-            application=amo.FIREFOX.id, version='56.*'),
-        amo.ANDROID.id: AppVersion.objects.get(
-            application=amo.ANDROID.id, version='56.*')
-    }
-
-    addons_to_reindex = []
-    for addon in addons:
-        strict_compatibility = bump_appver_for_addon_if_necessary(
-            addon, amo.FIREFOX.id, new_max_appversions[amo.FIREFOX.id])
-        # If strict_compatibility is True, we know we should skip bumping this
-        # add-on entirely. Otherwise (False or None), we need to continue with
-        # Firefox for Android, which might have different compat info than
-        # Firefox. We pass the value we already have for strict_compatibility,
-        # if it's not None bump_appver_for_addon_if_necessary() will avoid
-        # re-extracting a second time.
-        if strict_compatibility is not True:
-            android_strict_compatibility = bump_appver_for_addon_if_necessary(
-                addon, amo.ANDROID.id, new_max_appversions[amo.ANDROID.id],
-                strict_compatibility=strict_compatibility)
-
-            if (android_strict_compatibility is False or
-                    strict_compatibility is False):
-                # We did something to that add-on compat, it needs reindexing.
-                addons_to_reindex.append(addon.pk)
-    if addons_to_reindex:
-        index_addons.delay(addons_to_reindex)
-
-
 def _get_lwt_default_author():
     user, created = UserProfile.objects.get_or_create(
         email=settings.MIGRATED_LWT_DEFAULT_OWNER_EMAIL)
@@ -722,66 +625,6 @@ def migrate_lwts_to_static_themes(ids, **kw):
             resume_all_tasks()
 
 
-@task
-@use_primary_db
-def migrate_legacy_dictionaries_to_webextension(ids, **kw):
-    """Migrate a chunk of legacy dictionaries to webextension format.
-    Used by process_addons command."""
-    log.info(
-        'Migrating legacy dictionaries to webextension %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
-    addons = list(Addon.objects.filter(id__in=ids))
-    migrated = []
-    for addon in addons:
-        try:
-            migrate_legacy_dictionary_to_webextension(addon)
-            migrated.append(addon)
-        except ValidationError as exc:
-            # Ignore broken dictionaries, just log and continue. The function
-            # is decorated by @atomic so it will rollback the transaction.
-            log.warning(
-                'Migrating dictionary %d raised %s', addon.pk, exc.message)
-            continue
-    if migrated:
-        index_addons.delay(migrated)
-
-
-@transaction.atomic()
-def migrate_legacy_dictionary_to_webextension(addon):
-    """Migrate a single legacy dictionary to webextension format, creating a
-    new package from the current_version, faking an upload to create a new
-    Version instance."""
-    user = UserProfile.objects.get(pk=settings.TASK_USER_ID)
-    now = datetime.now()
-
-    # Wrap zip in FileUpload for Version.from_upload() to consume.
-    upload = FileUpload.objects.create(
-        user=user, valid=True)
-
-    filename = uuid.uuid4().hex + '.xpi'
-    destination = os.path.join(user_media_path('addons'), 'temp', filename)
-    target_language = build_webext_dictionary_from_legacy(addon, destination)
-    if not addon.target_locale:
-        addon.update(target_locale=target_language)
-
-    upload.update(path=destination, name=filename)
-
-    parsed_data = parse_addon(upload, addon=addon, user=user)
-    # Create version.
-    # WebExtension dictionaries are only compatible with Firefox Desktop
-    # Firefox for Android uses the OS spellchecking.
-    version = Version.from_upload(
-        upload, addon, selected_apps=[amo.FIREFOX.id],
-        channel=amo.RELEASE_CHANNEL_LISTED, parsed_data=parsed_data)
-    activity.log_create(amo.LOG.ADD_VERSION, version, addon, user=user)
-
-    # Sign the file, and set it to public. That should automatically set
-    # current_version to the version we created.
-    file_ = version.all_files[0]
-    sign_file(file_)
-    file_.update(datestatuschanged=now, reviewed=now, status=amo.STATUS_PUBLIC)
-
-
 # Rate limiting to 1 per minute to not overload our networking filesystem
 # and block our celery workers. Extraction to our git backend doesn't have
 # to be fast. Each instance processes 100 add-ons so we'll process
@@ -851,50 +694,6 @@ def migrate_webextensions_to_git_storage(ids, **kw):
                         version=repr(version),
                         addon=repr(addon)))
                 continue
-
-
-@task
-@use_primary_db
-def disable_legacy_files(ids, **kw):
-    """Delete legacy files from the specified add-on ids."""
-    log.info(
-        'Disabling legacy files from addons %d-%d [%d].',
-        ids[0], ids[-1], len(ids))
-    qs = Addon.unfiltered.filter(id__in=ids)
-    for addon in qs:
-        with transaction.atomic():
-            # We're dealing with an addon that has the type we care about, and
-            # that we've identified as containing legacy File instances.
-            files = File.objects.filter(
-                is_webextension=False, is_mozilla_signed_extension=False,
-                version__addon=addon).exclude(status=amo.STATUS_DISABLED)
-            for file_ in files:
-                log.info('Disabling file %d from addon %s', file_.pk, addon.pk)
-                file_.update(status=amo.STATUS_DISABLED)
-
-
-@task
-@use_primary_db
-def remove_amo_links_in_url_fields(ids, **kw):
-    """With the specified ids, remove the AMO links in the following URL fields
-    of each add-on: homepage, support_url, contribution."""
-    log.info('Deleting AMO links in URL fields %d-%d [%d].', ids[0], ids[-1],
-             len(ids))
-    addons = Addon.objects.filter(id__in=ids)
-    for addon in addons:
-        with transaction.atomic():
-            translation_ids = []
-            if addon.homepage_id:
-                translation_ids.append(addon.homepage_id)
-            if addon.support_url_id:
-                translation_ids.append(addon.support_url_id)
-            if translation_ids:
-                Translation.objects.filter(
-                    id__in=translation_ids,
-                    localized_string__icontains=settings.DOMAIN
-                ).update(localized_string=u'', localized_string_clean=u'')
-            if settings.DOMAIN.lower() in addon.contributions.lower():
-                addon.update(contributions=u'')
 
 
 @task

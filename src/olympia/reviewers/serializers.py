@@ -173,13 +173,15 @@ class FileEntriesSerializer(FileSerializer):
         if requested_file is None:
             files = self.get_entries(obj)
 
-            for manifest in ('manifest.json', 'install.rdf', 'package.json'):
+            default_files = ('manifest.json', 'install.rdf', 'package.json')
+
+            for manifest in default_files:
                 if manifest in files:
                     requested_file = manifest
                     break
             else:
                 # This could be a search engine
-                requested_file = files.keys()[0]
+                requested_file = list(files.keys())[0]
 
         return requested_file
 
@@ -231,14 +233,14 @@ class AddonBrowseVersionSerializer(VersionSerializer):
                   'has_been_validated', 'addon')
 
     def get_validation_url_json(self, obj):
-        return reverse('devhub.json_file_validation', args=[
+        return absolutify(reverse('devhub.json_file_validation', args=[
             obj.addon.slug, obj.current_file.id
-        ])
+        ]))
 
     def get_validation_url(self, obj):
-        return reverse('devhub.file_validation', args=[
+        return absolutify(reverse('devhub.file_validation', args=[
             obj.addon.slug, obj.current_file.id
-        ])
+        ]))
 
     def get_has_been_validated(self, obj):
         return obj.current_file.has_been_validated

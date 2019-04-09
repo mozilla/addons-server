@@ -1,5 +1,6 @@
 from pypom import Region
 from selenium.webdriver.common.by import By
+from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as expected
 from olympia.files.tests.test_file_viewer import get_file
 
@@ -73,18 +74,35 @@ class DevHub(Base):
         file_path = get_file(xpi)
         self.selenium.find_element(*self._submit_addon_btn_locator).click()
         # Accept agreement
-        devhub_agreement = DevHubAgreement(
-            self.selenium, self.base_url
-        ).wait_for_page_to_load()
-        devhub_agreement.accept_agreement()
+        try:
+            devhub_agreement = DevHubAgreement(
+                self.selenium, self.base_url
+            ).wait_for_page_to_load()
+        except TimeoutException:
+            # Do nothing, the agreement has already been excepted
+            pass
+        else:
+            devhub_agreement.accept_agreement()
         self.selenium.find_element(*self._continue_sub_btn_locator).click()
         # Upload
-        upload = self.selenium.find_element(*self._upload_addon_locator)
-        upload.send_keys(file_path)
-        self.wait.until(
-            expected.element_to_be_clickable(self._submit_upload_btn_locator)
-        )
-        self.selenium.find_element(*self._submit_upload_btn_locator).click()
+        upload_finished = False
+        while upload_finished is not True:
+            try:
+                upload = self.selenium.find_element(
+                    *self._upload_addon_locator)
+                upload.send_keys(file_path)
+                self.wait.until(
+                    expected.element_to_be_clickable(
+                        self._submit_upload_btn_locator)
+                )
+                self.selenium.find_element(
+                    *self._submit_upload_btn_locator).click()
+            except TimeoutException:
+                upload_finished = False
+            except Exception:
+                raise Exception
+            else:
+                upload_finished = True
         # Submit no source code
         devhub_source = DevHubSource(
             self.selenium, self.base_url
