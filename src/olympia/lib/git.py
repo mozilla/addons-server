@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from collections import namedtuple
-from functools import lru_cache
 import uuid
 import os
 import shutil
@@ -405,7 +404,6 @@ class AddonGitRepository(object):
                     tree_entry=tree_entry,
                     path=tree_entry.name)
 
-    @lru_cache(maxsize=None)
     def get_raw_diff(self, commit, parent=None):
         """Return the raw diff object.
 
@@ -413,19 +411,29 @@ class AddonGitRepository(object):
         once to render the actual diff and again to fetch specific
         status information (added, removed etc) in a later step.
         """
-        if parent is None:
-            return self.get_root_tree(commit).diff_to_tree(
-                # We always show the whole file by default
-                context_lines=sys.maxsize,
-                interhunk_lines=0,
-                swap=True)
+        diff_cache = getattr(self, '_diff_cache', {})
 
-        return self.git_repository.diff(
-            self.get_root_tree(parent),
-            self.get_root_tree(commit),
-            # We always show the whole file by default
-            context_lines=sys.maxsize,
-            interhunk_lines=0)
+        try:
+            return diff_cache[(commit, parent)]
+        except KeyError:
+            if parent is None:
+                retval = self.get_root_tree(commit).diff_to_tree(
+                    # We always show the whole file by default
+                    context_lines=sys.maxsize,
+                    interhunk_lines=0,
+                    swap=True)
+            else:
+                retval = self.git_repository.diff(
+                    self.get_root_tree(parent),
+                    self.get_root_tree(commit),
+                    # We always show the whole file by default
+                    context_lines=sys.maxsize,
+                    interhunk_lines=0)
+
+            diff_cache[(commit, parent)] = retval
+            self._diff_cache = diff_cache
+
+        return retval
 
     def get_diff(self, commit, parent=None, pathspec=None):
         """Get a diff from `parent` to `commit`.
