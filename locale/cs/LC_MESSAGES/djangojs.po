@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-01-22 13:07+0000\n"
-"Last-Translator: Michal Stanke <mstanke@mozilla.cz>\n"
+"PO-Revision-Date: 2019-04-08 10:24+0000\n"
+"Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
@@ -25,7 +25,7 @@ msgid "There was a problem contacting the server."
 msgstr "Vyskytl se problém při kontaktování serveru."
 
 msgid "Select a file..."
-msgstr "Volba souboru..."
+msgstr "Vybrat soubor..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
 msgstr "Název vašeho doplňku by měl končit .zip, .xpi, .crx, .jar nebo .xml"
