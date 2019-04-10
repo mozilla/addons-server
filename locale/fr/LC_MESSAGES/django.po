@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-09 12:58+0000\n"
-"Last-Translator: YD <ygda+fx@free.fr>\n"
+"PO-Revision-Date: 2019-04-09 15:11+0000\n"
+"Last-Translator: Théo Chevalier <theo.chevalier11@gmail.com>\n"
 "Language-Team: français <>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -1825,7 +1825,7 @@ msgstr "plus de modules…"
 
 # Plural in this context means many of the add-on type
 msgid "Extension Workshop"
-msgstr ""
+msgstr "Atelier sur les extensions"
 
 msgid "Documentation"
 msgstr "Documentation"
@@ -5357,7 +5357,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Répartition des risques non disponible."
 
 msgid "Is locked by a reviewer."
 msgstr "Verrouillée par un évaluateur."
