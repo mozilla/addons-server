@@ -484,6 +484,29 @@ class TestFileViewer(FilesBase, TestCase):
         url = res['Location']
         assert urlparse(url).query.startswith('token=')
 
+    def test_serve_basic(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_redirect(binary))
+        assert res.status_code == 302
+        url = res['Location']
+        token = urlparse(url).query.split('=')[1]
+
+        res = self.client.get(self.files_serve(binary) + '?token=' + token)
+        assert res.status_code == 200
+        assert res['Content-Type'] == 'application/octet-stream'
+        assert 'X-Sendfile' in res
+
+    def test_serve_obj_not_exist(self):
+        self.file_viewer.extract()
+        res = self.client.get(self.files_redirect('doesnotexist.js'))
+        assert res.status_code == 302
+        url = res['Location']
+        token = urlparse(url).query.split('=')[1]
+
+        res = self.client.get(
+            self.files_serve('doesnotexist.js') + '?token=' + token)
+        assert res.status_code == 404
+
     def test_memcache_goes_bye_bye(self):
         self.file_viewer.extract()
         res = self.client.get(self.files_redirect(binary))
