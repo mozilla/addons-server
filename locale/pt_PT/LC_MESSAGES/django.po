@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-11 02:09+0000\n"
+"PO-Revision-Date: 2019-04-11 15:32+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -25,7 +25,7 @@ msgid "This reviewer name cannot be used."
 msgstr "Este nome de analisador não pode ser utilizado."
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr "O campo de página inicial apenas pode ser utilizado para ligações para sites externos."
+msgstr "O campo da página inicial só pode ser utilizado para ligações a websites externos."
 
 msgid "Images must be either PNG or JPG."
 msgstr "As imagens devem de ser PNG ou JPG."
@@ -53,14 +53,14 @@ msgid "Need help?"
 msgstr "Precisa de ajuda?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr "Os programadores de extras ou temas não podem apagar as suas contas. Você tem de apagar todos os extras e temas ligados a esta conta, ou transferi-los para outros utilizadores."
+msgstr "Os programadores de extras ou temas não podem eliminar as suas contas. Tem de eliminar todos os extras e temas associados com esta conta, ou transferi-los para outros utilizadores."
 
 #, python-format
 msgid "Notification [%s] does not exist"
 msgstr "A notificação [%s] não existe"
 
 msgid "Review"
-msgstr "Análise"
+msgstr "Revisão"
 
 msgid "Version {0}"
 msgstr "Versão {0}"
@@ -73,7 +73,7 @@ msgstr "Apenas as versões mais recentes de extras podem ter notas adicionadas."
 
 # 85%
 msgid "Ratings"
-msgstr "Avaliações"
+msgstr "Classificações"
 
 msgid "Status"
 msgstr "Estado"
@@ -92,7 +92,7 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "Nomes de extras não podem conter as marcas registadas Mozilla ou Firefox."
 
 msgid "Awaiting Review"
-msgstr "A aguardar análise"
+msgstr "A aguardar revisão"
 
 msgid "Rejected"
 msgstr "Rejeitado"
@@ -110,7 +110,7 @@ msgstr[0] "<strong>{0}</strong> utilizador"
 msgstr[1] "<strong>{0}</strong> utilizadores"
 
 msgid "Hover to Preview"
-msgstr "Passe para Visualizar"
+msgstr "Passe para pré-visualizar"
 
 msgid "Add"
 msgstr "Adicionar"

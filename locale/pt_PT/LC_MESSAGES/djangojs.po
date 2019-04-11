@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-02-23 04:58+0000\n"
-"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
+"PO-Revision-Date: 2019-04-11 15:29+0000\n"
+"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: \n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid "Error with {0}"
 msgstr "Erro com {0}"
 
 msgid "Please make sure to report any linting related issues on GitHub"
-msgstr "Por favor certifique-se de reportar quaisquer problemas relacionados com linting no GitHub"
+msgstr "Por favor, certifique-se que reporta quaisquer problemas relacionados com linting no GitHub"
 
 msgid "Your add-on failed validation with {0} error."
 msgid_plural "Your add-on failed validation with {0} errors."
@@ -101,7 +101,7 @@ msgid "WebExtension upgrade"
 msgstr "Atualização WebExtension"
 
 msgid "We allow and encourage an upgrade but you cannot reverse this process. Once your users have the WebExtension installed, they will not be able to install a legacy add-on."
-msgstr "Nós permitimos e encorajamos uma atualização mas não poderá reverter este processo. Assim que os seus utilizadores tenham a WebExtension instalada, estes não poderão instalar um extra legado."
+msgstr "Nós permitimos e encorajamos uma atualização mas não pode reverter este processo. Assim que os seus utilizadores tenham instalado WebExtension, estes não poderão instalar um extra legado."
 
 msgid "Porting a legacy Firefox add-on on MDN"
 msgstr "Portabilidade de um extra legado do Firefox na MDN"
@@ -191,7 +191,7 @@ msgid "Search themes for <b>{0}</b>"
 msgstr "Procurar temas para <b>{0}</b>"
 
 msgid "Search apps for <b>{0}</b>"
-msgstr "Pesquisar apps para o <b>{0}</b>"
+msgstr "Pesquisar aplicações para o <b>{0}</b>"
 
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "Pesquise extras para o <b>{0}</b>"
