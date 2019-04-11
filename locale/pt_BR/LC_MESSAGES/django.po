@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-09 12:34+0000\n"
+"PO-Revision-Date: 2019-04-11 21:08+0000\n"
 "Last-Translator: Marcelo Ghelman <marcelo.ghelman@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt_BR\n"
@@ -1481,7 +1481,7 @@ msgstr "A categoria diversos não pode ser combinada com outras categorias."
 
 #, python-format
 msgid "URL domain must be one of [%s], or a subdomain."
-msgstr "O URL do domínio deve ser um dos [%s], ou um subdomínio."
+msgstr "O domínio da URL deve ser um de [%s], ou um subdomínio."
 
 #, python-format
 msgid "Before changing your default locale you must have a name, summary, and description in that locale. You are missing %s."
@@ -1648,10 +1648,10 @@ msgid "Add-on deleted."
 msgstr "Extensão excluída."
 
 msgid "URL name was incorrect. Theme was not deleted."
-msgstr "O nome do URL estava incorreto. O tema não foi excluído."
+msgstr "O nome da URL estava incorreto. O tema não foi excluído."
 
 msgid "URL name was incorrect. Add-on was not deleted."
-msgstr "O nome do URL estava incorreto. A extensão não foi excluída."
+msgstr "O nome da URL estava incorreto. A extensão não foi excluída."
 
 msgid "An author has been added to your add-on"
 msgstr "Foi adicionado um autor a sua extensão"
@@ -6041,7 +6041,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr "Por favor, especifique o GUID da sua extensão no manifesto se for maior do que 64 caracteres."
 
 msgid "Invalid GUID in URL"
-msgstr "GUID inválido no URL"
+msgstr "GUID inválido na URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr "Você não pode adicionar uma versão listada para esta extensão via API devido à falta de metadados. Por favor envie através do site"
