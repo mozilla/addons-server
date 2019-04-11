@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-11 15:32+0000\n"
+"PO-Revision-Date: 2019-04-11 15:39+0000\n"
 "Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -356,7 +356,7 @@ msgid "Previous"
 msgstr "Anterior"
 
 msgid "Jump to last page"
-msgstr "Saltar para a última página"
+msgstr "Ir para a última página"
 
 #. First and second arguments are the result range (e.g., 1-20);
 #. third argument is the number of total results (e.g., 1,000).
@@ -1033,7 +1033,7 @@ msgstr ""
 "navegação, e muito mais."
 
 msgid "Social Networking"
-msgstr "Rede social"
+msgstr "Redes sociais"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
 msgstr "Transfira extensões do Firefox para melhorar a sua experiência em sites populares de redes sociais, tais como o YouTube, GitHub, Reddit, e muito mais."
@@ -1060,7 +1060,7 @@ msgid "Large"
 msgstr "Grande"
 
 msgid "Miscellaneous"
-msgstr "Miscelânea"
+msgstr "Diversos"
 
 msgid "Modern"
 msgstr "Moderno"
@@ -1072,7 +1072,7 @@ msgid "OS Integration"
 msgstr "Integração de SO"
 
 msgid "Retro"
-msgstr "Retro"
+msgstr "Antiquado"
 
 msgid "Sports"
 msgstr "Desportos"
@@ -1129,7 +1129,7 @@ msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Transfira temas do Firefox que são interessantes, criativos e únicos."
 
 msgid "Scenery"
-msgstr "Cenário"
+msgstr "Paisagem"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr "Transfira temas do Firefox que apresentam o ambiente e o mundo natural. Esta categoria inclui por-do-sol, praias, ilustrações, horizontes de cidade e muito mais."
@@ -1168,7 +1168,7 @@ msgid "Kids"
 msgstr "Crianças"
 
 msgid "Multiple Search"
-msgstr "Múltipla pesquisa"
+msgstr "Pesquisa múltipla"
 
 msgid "News & Blogs"
 msgstr "Notícias e blogues"
@@ -1177,7 +1177,7 @@ msgid "Photos & Images"
 msgstr "Fotos e imagens"
 
 msgid "Shopping & E-Commerce"
-msgstr "Compras e e-comércio"
+msgstr "Compras e comércio eletrónico"
 
 msgid "Social & People"
 msgstr "Social e pessoas"
@@ -1507,13 +1507,13 @@ msgid "This add-on has a Privacy Policy"
 msgstr "O extra tem uma Política de privacidade"
 
 msgid "Please specify your add-on's Privacy Policy:"
-msgstr "Por favor especifique a Política de privacidade do seu extra:"
+msgstr "Por favor, especifique a Política de Privacidade do seu extra:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr "Tipo de ficheiro não suportado, por favor envie um arquivo {extensions}."
+msgstr "Tipo de ficheiro não suportado, por favor, envie um ficheiro de arquivo {extensions}."
 
 msgid "Invalid or broken archive."
-msgstr "Arquivo inválido ou quebrado."
+msgstr "Arquivo inválido ou corrompido."
 
 msgid "View current"
 msgstr "Ver atual"
@@ -1540,7 +1540,7 @@ msgid "Version {version} already exists."
 msgstr "A versão {version} já existe."
 
 msgid "Continue with existing upload instead?"
-msgstr "Ao invés, continuar com o carregamento existente?"
+msgstr "Em vez disso, continuar com o envio existente?"
 
 msgid "Yes"
 msgstr "Sim"
@@ -1561,8 +1561,8 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Neste site. <span class=\"helptext\">A sua submissão será listada neste site e no Gestor de extras do Firefox para milhões de utilizadores, após passar a revisão de código. As atualizações "
-"automáticas são geridas por este site. Este extra será também considerado para promoções e concursos da Mozilla. A distribuição própria dos ficheiros revistos também é possível.</span>"
+"Neste site. <span class=\"helptext\">A sua submissão será listada neste site e no Gestor de Extras do Firefox para milhões de utilizadores, depois de passar a revisão de código. As atualizações "
+"automáticas são geridas por este site. Este extra será também considerado para promoções e concursos da Mozilla. Também é possível a distribuição própria dos ficheiros revistos.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
@@ -1607,7 +1607,7 @@ msgid "All My Add-ons"
 msgstr "Todos os meus extras"
 
 msgid "All Activity"
-msgstr "Toda a actividade"
+msgstr "Toda a atividade"
 
 msgid "Add-on Updates"
 msgstr "Atualizações do extra"
@@ -1619,10 +1619,10 @@ msgid "User Collections"
 msgstr "Coleções do utilizador"
 
 msgid "User Reviews"
-msgstr "Análises de utilizador"
+msgstr "Análises dos utilizadores"
 
 msgid "Add-on cannot be deleted. Disable this add-on instead."
-msgstr "O extra não pode ser eliminado. Em alternativa desativar este extra."
+msgstr "O extra não pode ser eliminado. Em vez disso, desative este extra."
 
 msgid "Theme deleted."
 msgstr "Tema eliminado."
@@ -1678,7 +1678,7 @@ msgid "Icon must be square (same width and height)."
 msgstr "O ícone deve ser quadrado (mesma largura e altura)."
 
 msgid "There was an error uploading your preview."
-msgstr "Houve um erro ao carregar a sua pré-visualização."
+msgstr "Ocorreu um erro ao enviar a sua pré-visualização."
 
 #, python-format
 msgid "Version %s disabled."
@@ -2043,7 +2043,7 @@ msgid "Add-on URL"
 msgstr "URL do extra"
 
 msgid "Choose a short, unique URL slug for your add-on."
-msgstr "Escolha um pequeno e único URL para o seu extra."
+msgstr "Escolha um URL curto e único para o seu extra."
 
 msgid "View Listing"
 msgstr "Ver listagem"
@@ -2097,7 +2097,7 @@ msgstr ""
 "modificar as suas categorias."
 
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 msgid ""
 "If you wish to display an e-mail address for support inquiries, enter it here. If you have different addresses for each language multiple translations of this field can be added. It is only relevant"
@@ -2219,7 +2219,7 @@ msgid "Will be the standard in future add-on detail pages."
 msgstr "Irá ser o padrão nas futuras páginas de detalhes de extras."
 
 msgid "Upload a Custom Icon..."
-msgstr "Carragar um ícone personalizado..."
+msgstr "Enviar um ícone personalizado..."
 
 msgid "PNG and JPG supported."
 msgstr "PNG e JPG suportados."
@@ -2231,16 +2231,16 @@ msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Os ícones irão ser redimensionados para 128x128 pixeis se maiores."
 
 msgid "Screenshots"
-msgstr "Imagens"
+msgstr "Capturas de ecrã"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Por favor, forneça pelo menos uma captura de tela do seu extra:"
+msgstr "Por favor, forneça pelo menos uma captura de ecrã do seu extra:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Favor fornecer uma legenda para esta imagem:"
+msgstr "Por favor, forneça uma legenda para esta captura de ecrã:"
 
 msgid "Add a Screenshot..."
-msgstr "Adicionar um Screenshot ..."
+msgstr "Adicionar uma captura de ecrã..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
 msgstr "PNG e JPG suportados, PNG recomendado. O tamanho máximo e recomendado para capturas de ecrã é de 2400x1800 pixeis."
