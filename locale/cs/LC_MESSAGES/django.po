@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-08 12:35+0000\n"
+"PO-Revision-Date: 2019-04-11 18:15+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1556,14 +1556,13 @@ msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Na této stránce. <span class=\"helptext\">Váš příspěvek bude zveřejněn na této stránce a ve správci doplňků ve Firefoxu, kde si jej (jakmile projde kontrolou kódu) budou moci stáhnout miliony "
-"uživatelů. Automatické aktualizace budou spravovány touto stránkou. Doplněk také může být brán v potaz v soutěžích a propagacích od Mozilly. Po kontrole bude také možné distribuovat doplněk "
-"vlastními kanály.</span>"
+"Na tomto webu. <span class=\"helptext\">Nahraný soubor bude zveřejněn na tomto webu a ve správci doplňků Firefoxu, kde si jej (jakmile projde kontrolou kódu) budou moci stáhnout miliony uživatelů. O"
+" automatické aktualizace se postará tento web. Doplněk může být také součástí reklamních kampaní a soutěží Mozilly. Po zkontrolování bude rovněž možné doplněk distribuovat vlastními kanály.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Na vlastní pěst. <span class=\"helptext\">Nahrané soubory budou automaticky podepsány pro samostatnou distribuci. Aktualizace mohou být řešeny pomocí updateURL nebo externími aktualizacemi "
-"aplikace.</span>"
+"Ne na tomto webu. <span class=\"helptext\">Nahraný soubor bude okamžitě podepsán pro distribuci vlastními kanály. O aktualizace byste se měli starat vy prostřednictvím updateURL nebo aktualizací "
+"externích aplikací.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Dokud je váš doplněk veden jako doporučený, nemůžete měnit jeho umístění v kategoriích."
@@ -1832,7 +1831,7 @@ msgid "After upload, a series of automated validation tests will be run on your 
 msgstr "Po nahrání bude na vašem souboru spuštěna sada automatizovaných testů."
 
 msgid "Do you want your add-on to be distributed on this site?"
-msgstr "Chcete hostovat svůj doplněk na tomto serveru?"
+msgstr "Chcete distribuovat svůj doplněk z tohoto serveru?"
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
@@ -3300,7 +3299,7 @@ msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}s {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
-msgstr "Dopřejte si nádhernou stránku nového panelu s nastavitelným pozadím a informacemi o počasí."
+msgstr "Dopřejte si nádhernou stránku nového panelu s nastavitelným pozadím, informacemi o počasí a dalšími vychytávkami."
 
 #. editorial content for the discovery pane.
 msgid "Translate easily {start_sub_heading}with {addon_name}{end_sub_heading}"
