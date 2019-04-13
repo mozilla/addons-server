@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-05 18:33+0000\n"
+"PO-Revision-Date: 2019-04-13 12:13+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -26,7 +26,7 @@ msgid "Select a file..."
 msgstr "เลือกไฟล์…"
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .zip .xpi .crx .jar หรือ .xml"
+msgstr "ส่วนเสริมของคุณควรลงท้ายด้วย .zip, .xpi, .crx, .jar หรือ .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
@@ -328,7 +328,7 @@ msgid "Others By Author"
 msgstr "อื่น ๆ โดยผู้สร้าง"
 
 msgid "Dependencies"
-msgstr ""
+msgstr "การอ้างอิง"
 
 msgid "Upsell"
 msgstr "เพิ่มยอดขาย"
