@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-09 00:15+0000\n"
-"Last-Translator: Melo46 <melo@carmu.com>\n"
+"PO-Revision-Date: 2019-04-13 06:19+0000\n"
+"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -727,10 +727,10 @@ msgid "Approval notes changed"
 msgstr "Notas de approbation cambiate"
 
 msgid "Source code uploaded for {addon} {version}."
-msgstr "Codification fonte cargate pro {addon} {version}."
+msgstr "Codice fonte cargate pro {addon} {version}."
 
 msgid "Source code uploaded"
-msgstr "Codification fonte cargate"
+msgstr "Codice fonte cargate"
 
 msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "Auto-approbation confirmate pro {addon} {version}."
@@ -2136,10 +2136,10 @@ msgid "Whether the source of your add-on can be displayed in our online viewer. 
 msgstr "Si le fonte de tu additivo pote esser displicate in nostre visor online. Illo es pertinente solo pro le additivos listate."
 
 msgid "This add-on's source code is publicly viewable."
-msgstr "Le codification fonte de iste additivo es visibile publicamente."
+msgstr "Le codice fonte de iste additivo es visibile publicamente."
 
 msgid "No, this add-on's source code is not publicly viewable."
-msgstr "No, le codification fonte de iste additivo non es publicamente visibile."
+msgstr "No, le codice fonte de iste additivo non es publicamente visibile."
 
 msgid "Public Stats?"
 msgstr "Statistica public?"
@@ -2474,7 +2474,7 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
-"Si tu inviava codification fonte sin instructiones, tu debe fornir los ci. Insere gradualmente le instructiones de compilation pro crear un copia exacte del codification del additivo, secundo le "
+"Si tu inviava codice fonte sin instructiones, tu debe fornir los ci. Insere gradualmente le instructiones de compilation pro crear un copia exacte del codice del additivo, secundo le "
 "%(policy_requirements_open)srequisitos del politica%(policy_requirements_close)s."
 
 msgid "These notes will only be visible to you and our reviewers."
@@ -2553,13 +2553,13 @@ msgid "Go to My Submissions"
 msgstr "Ir a mi submissiones"
 
 msgid "Source Code Upload"
-msgstr "Cargamento de codification fonte"
+msgstr "Cargamento de codice fonte"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr "Ha tu besonio de inviar codification fonte?"
+msgstr "Ha tu besonio de inviar codice fonte?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
-msgstr "Tu pote haber besonio de submitter codification fonte. Si tu non lo face, tu additivo pote ser removite ex iste sito!"
+msgstr "Tu pote haber besonio de submitter codice fonte. Si tu non lo face, tu additivo pote ser removite ex iste sito!"
 
 #, python-format
 msgid "Please review the <a %(a_attrs)s>source code submission policy</a>."
@@ -2581,14 +2581,14 @@ msgid "Any other tool that takes code or files, applies processing, and generate
 msgstr "Ulle altere application que prende codice o files, processa, e genera codice o file(s) a includer in le additivo"
 
 msgid "You do not need to submit Source Code, and you’re ready for the next step."
-msgstr "Tu non necessita de inviar codification fonte, e tu es preste pro le grado successive."
+msgstr "Tu non necessita de inviar codice fonte, e tu es preste pro le grado successive."
 
 msgid "Your Submission Requires Source Code."
-msgstr "Tu submission require codification fonte."
+msgstr "Tu submission require codice fonte."
 
 #, python-format
 msgid "The source code must meet <a %(a_attrs)s>policy requirements</a>, which includes:"
-msgstr "Le codification fonte debe concordar le <a %(a_attrs)s>requisitos del politica</a>, que include:"
+msgstr "Le codice fonte debe concordar le <a %(a_attrs)s>requisitos del politica</a>, que include:"
 
 msgid "Step-by-step build instructions to create an exact copy of the add-on code."
 msgstr "Instructiones detaliate de compilation pro crear un copia exacte del codice del additivo."
@@ -2615,13 +2615,13 @@ msgid "How to Submit:"
 msgstr "Como submitter:"
 
 msgid "Include instructions in a README file in the source code,"
-msgstr "Includer le instructiones in un file README in le codification fonte,"
+msgstr "Includer le instructiones in un file README in le codice fonte,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr "o in le notas de revisor sur le pagina successive (si applicabile)."
 
 msgid "Upload source code:"
-msgstr "Cargar codification fonte:"
+msgstr "Cargar codice fonte:"
 
 msgid "Add-on Distribution Agreement"
 msgstr "Accordo de distribution del additivo"
@@ -2876,13 +2876,13 @@ msgstr ""
 "additivos listate."
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr "Si tu additivo contine codification binari o offuscate in ultra al note bibliothecas, carga su fontes pro le revision."
+msgstr "Si tu additivo contine codice binari o offuscate in ultra al note bibliothecas, carga su fontes pro le revision."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr "Per favor include instructiones sur como reproducer le file final del additivo, o in un file README o le Notas pro le revisor de iste version."
 
 msgid "Read more about the source code review policy."
-msgstr "Leger plus circa le regulamento de revision del codification fonte."
+msgstr "Leger plus circa le regulamento de revision del codice fonte."
 
 msgid "Latest News"
 msgstr "Ultime novas"
@@ -2966,7 +2966,7 @@ msgid "More Ways to Participate"
 msgstr "Plure manieras pro participar"
 
 msgid "You don't need coding skills to help keep Firefox the most customizable browser available!"
-msgstr "Tu non necessita habilitates de codification pro adjutar a mantener Firefox le navigator le plus personalisabile disponibile!"
+msgstr "Non es necessari saper programmar pro adjutar a mantener Firefox le navigator le plus personalisabile!"
 
 msgid "See how"
 msgstr "Vide como"
@@ -2978,7 +2978,7 @@ msgid "Sign In to Edit and Update Your Add-on"
 msgstr "Authentica te pro rediger e actualisar tu additivos"
 
 msgid "Write one code base for many browsers"
-msgstr "Scribe un codification pro multe navigatores"
+msgstr "Scribe un base de codice pro multe navigatores"
 
 msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
@@ -3130,10 +3130,10 @@ msgid "Optionally, enter any information that may be useful to the Reviewer of t
 msgstr "Optionalmente, insere tote le informationes que pote ser utile al revisor de iste additivo, tal como informationes del conto de test."
 
 msgid "Source code"
-msgstr "Codification fonte"
+msgstr "Codice fonte"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr "Si tu additivo contine codification binari o offuscate, rende ci disponibile le codification fonte pro le revisores."
+msgstr "Si tu additivo contine codice binari o offuscate, rende ci disponibile le codice fonte pro le revisores."
 
 msgid "File {file_id} ({platform})"
 msgstr "File {file_id} ({platform})"
@@ -4959,7 +4959,7 @@ msgid "Use profanity, sexual language or language that can be construed as hatef
 msgstr "Usar profanitate, linguage sexual o linguage que pote ser interpretate como odiose."
 
 msgid "Include HTML, links, source code or code snippets. Reviews are meant to be text only."
-msgstr "Includer HTML, ligamines, codification fonte o fragmentos de codification. Les revisiones es intendite pro esser texto solmente."
+msgstr "Includer HTML, ligamines, codice fonte o fragmentos de codice. Les revisiones es intendite pro esser texto solmente."
 
 msgid "Make false statements, disparage add-on authors or personally insult them."
 msgstr "Facer declarationes false, denigrar autores del additivos o insultar personalmente illes."
@@ -5719,7 +5719,7 @@ msgid "Download files"
 msgstr "Discargar files"
 
 msgid "The developer has provided source code."
-msgstr "Le disveloppator ha fornite le codification fonte."
+msgstr "Le disveloppator ha fornite le codice fonte."
 
 msgid "Weight:"
 msgstr "Peso:"
