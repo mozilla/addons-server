@@ -5,8 +5,8 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-13 06:19+0000\n"
-"Last-Translator: Martijn Dekker <martijn@inlv.org>\n"
+"PO-Revision-Date: 2019-04-14 02:44+0000\n"
+"Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
 "MIME-Version: 1.0\n"
@@ -1563,9 +1563,8 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Le categorias non pote ser cambiate durante que tu additivos es consiliate."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Archivo non valide o rupte."
+msgstr "File de additivo non valide o corrupte."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Tu clave API de disveloppator esseva trovate in le file inviate. Pro proteger tu conto, le clave essera revocate."
@@ -1690,16 +1689,14 @@ msgstr "Iste cargamento ha mancate de validation, e pote mancar de resultatos co
 msgid "Header area background"
 msgstr "Fundo del area del titulo"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Le color del fundo del area de titulo,displicate in le parte del titulo non coperite o visibile per le imagine del titulo. Campo de manifesto: accentcolor."
+msgstr "Le color del fundo del area de titulo, displicate in le parte del titulo non coperite o visibile per le imagine del titulo. Campo de manifesto:  frame."
 
 msgid "Header area text and icons"
 msgstr "Texto e icones del area de titulo"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Le color del texto e le icones in le area del titulo, a exception del scheda active. Campo de manifesto:  textcolor."
+msgstr "Le color del texto e le icones in le area del titulo, a exception del scheda active. Campo de manifesto:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Fundo del area del barra del instrumentos"
@@ -1710,9 +1707,8 @@ msgstr "Le color de fundo pro le barra de navigation, le barra del marcapaginas,
 msgid "Toolbar area text and icons"
 msgstr "Barra del instrumentos area texto e icones"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Le color del texto e del icones in le barra del instrumentos e le scheda active. Campo de manifesto:  toolbar_text."
+msgstr "Le color del texto e del icones in le barra del instrumentos e le scheda active. Campo de manifesto:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Fundo del area del campo del barra del instrumentos"
@@ -1783,9 +1779,8 @@ msgstr "Centro de disveloppamento de <small>Additivo</small>"
 msgid "more add-ons..."
 msgstr "altere additivos..."
 
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Extensiones"
+msgstr "Laboratorio de extensiones"
 
 msgid "Documentation"
 msgstr "Documentation"
@@ -4540,18 +4535,16 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Con un clic de mus tu pote observar videos in le splendor de plen schermo."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salva memoria con {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Salva memoria {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Cessa de perder preciose spatio de memoria per le schedas inactive."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cerca imagines {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Cerca paginas web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
