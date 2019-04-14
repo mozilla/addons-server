@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2018-12-26 05:08+0000\n"
-"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
+"PO-Revision-Date: 2019-04-14 10:19+0000\n"
+"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -1665,7 +1665,7 @@ msgid "Changes successfully saved."
 msgstr "การเปลี่ยนแปลงถูกบันทึกเรียบร้อย"
 
 msgid "Validate Add-on"
-msgstr ""
+msgstr "ตรวจสอบส่วนเสริม"
 
 msgid "Icons must be either PNG or JPG."
 msgstr "ไอคอนต้องเป็น PNG หรือ JPG"
@@ -1692,7 +1692,7 @@ msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "รูปภาพจะต้องกว้าง {0} พิกเซลและสูง {1} พิกเซลเท่านั้น"
 
 msgid "Icon must be square (same width and height)."
-msgstr ""
+msgstr "ไอคอนต้องเป็นสี่เหลี่ยมจัตุรัส (ความกว้างและความสูงเดียวกัน)"
 
 msgid "There was an error uploading your preview."
 msgstr ""
@@ -1713,25 +1713,25 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Header area background"
-msgstr ""
+msgstr "พื้นหลังของพื้นที่ส่วนหัว"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
 
 msgid "Header area text and icons"
-msgstr ""
+msgstr "ข้อความและไอคอนพื้นที่ส่วนหัว"
 
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "พื้นหลังของพื้นที่แถบเครื่องมือ"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
 
 msgid "Toolbar area text and icons"
-msgstr ""
+msgstr "ข้อความและไอคอนพื้นที่แถบเครื่องมือ"
 
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
 msgstr ""
@@ -2150,7 +2150,7 @@ msgid "No, this add-on's source code is not publicly viewable."
 msgstr ""
 
 msgid "Public Stats?"
-msgstr ""
+msgstr "สถิติสาธารณะ?"
 
 msgid "Whether the download and usage stats of your add-on can be displayed in our online viewer. It is only relevant for listed add-ons."
 msgstr ""
@@ -2218,7 +2218,7 @@ msgid "Upload a Custom Icon..."
 msgstr "อัปโหลดไอคอนที่กำหนดเอง..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "รองรับ PNG และ JPG"
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
