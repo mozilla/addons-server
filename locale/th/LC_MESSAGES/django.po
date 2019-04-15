@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-15 18:28+0000\n"
+"PO-Revision-Date: 2019-04-15 18:47+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1800,7 +1800,7 @@ msgstr ""
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr ""
+msgstr "ศูนย์กลางนักพัฒนา <small>ส่วนเสริม</small>"
 
 msgid "more add-ons..."
 msgstr "ส่วนเสริมเพิ่มเติม..."
@@ -2127,10 +2127,10 @@ msgstr "รายละเอียดทางเทคนิค"
 
 #. {0} is an addon name
 msgid "Technical Details for {0}"
-msgstr ""
+msgstr "รายละเอียดทางเทคนิคสำหรับ {0}"
 
 msgid "Developer Comments"
-msgstr ""
+msgstr "ความคิดเห็นของนักพัฒนา"
 
 msgid ""
 "Any information end users may want to know that isn't necessarily applicable to the add-on summary or description. Common uses include listing known major bugs, information on how to report bugs, "
@@ -2276,19 +2276,19 @@ msgid "More information on Creative Commons licenses"
 msgstr ""
 
 msgid "General Tests"
-msgstr ""
+msgstr "การทดสอบทั่วไป"
 
 msgid "Security Tests"
-msgstr ""
+msgstr "การทดสอบความปลอดภัย"
 
 msgid "Extension Tests"
-msgstr ""
+msgstr "การทดสอบส่วนขยาย"
 
 msgid "Localization Tests"
-msgstr ""
+msgstr "การทดสอบการแปล"
 
 msgid "Compatibility Tests"
-msgstr ""
+msgstr "การทดสอบความเข้ากันได้"
 
 msgid "Hide messages not required for automated signing"
 msgstr ""
@@ -2781,7 +2781,7 @@ msgstr ""
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Created:"
-msgstr ""
+msgstr "สร้างเมื่อ:"
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "Last Updated:"
@@ -2848,7 +2848,7 @@ msgid "Developer News"
 msgstr "ข่าวนักพัฒนา"
 
 msgid "View the blog &#9658;"
-msgstr ""
+msgstr "ดูบล็อก &#9658;"
 
 msgid "Pending information request:"
 msgstr ""
@@ -2951,7 +2951,7 @@ msgid "Get Your Add-on Featured"
 msgstr "ส่วนเสริมเพิ่มเติม"
 
 msgid "\"Get The Add-on\" button"
-msgstr ""
+msgstr "ปุ่ม \"รับส่วนเสริม\""
 
 msgid "Legal"
 msgstr "ข้อกฎหมาย"
@@ -2998,7 +2998,7 @@ msgid "Manage Your Add-on"
 msgstr "จัดการส่วนเสริมของคุณ"
 
 msgid "Sign In to Edit and Update Your Add-on"
-msgstr ""
+msgstr "ลงชื่อเข้าเพื่อแก้ไขและอัปเดตส่วนเสริมของคุณ"
 
 msgid "Write one code base for many browsers"
 msgstr ""
@@ -3269,13 +3269,13 @@ msgid "<strong>Important:</strong> Once a version has been deleted, you may not 
 msgstr ""
 
 msgid "Are you sure you wish to delete this version?"
-msgstr ""
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการลบรุ่นนี้?"
 
 msgid "Delete Version"
-msgstr ""
+msgstr "ลบรุ่น"
 
 msgid "Disable Version"
-msgstr ""
+msgstr "ปิดใช้งานรุ่น"
 
 msgid "Hide Add-on"
 msgstr "ซ่อนส่วนเสริม"
@@ -3287,7 +3287,7 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "คุณแน่ใจหรือไม่ว่าต้องการซ่อนส่วนเสริมของคุณ?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
@@ -3296,7 +3296,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr ""
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr ""
+msgstr "เอกสารประกอบส่วนเสริม :: ศูนย์กลางนักพัฒนา"
 
 #. L10n: first parameter is the number of errors
 msgid "{0} error"
