@@ -1,10 +1,5 @@
-# Determine the python version (2 or 3) so we can load the correct
-# requirements and python binary. It can be passed through the env variable
-# PYTHON_VERSION_MAJOR so that both version can coexist in the container and
-# be chosen when running docker-compose.
-export PYTHON_VERSION_MAJOR ?= $(shell python -c 'import sys; print(sys.version_info.major)')
-export PIP_COMMAND=pip${PYTHON_VERSION_MAJOR}
-export PYTHON_COMMAND=python${PYTHON_VERSION_MAJOR}
+export PIP_COMMAND=pip3
+export PYTHON_COMMAND=python3
 
 NUM_ADDONS=10
 NUM_THEMES=$(NUM_ADDONS)
@@ -120,7 +115,7 @@ install_python_test_dependencies:
 	# Can't use --progress-bar=off for system packages as long as our docker image
 	# doesn't have pip 10 by default.
 	$(PIP_COMMAND) install --no-deps --exists-action=w -r requirements/system.txt
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod_py${PYTHON_VERSION_MAJOR}${DJANGO_VERSION}.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/prod.txt
 	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/tests.txt
 
 .PHONY: install_python_dev_dependencies
@@ -206,7 +201,7 @@ perf-tests: setup-ui-tests
 
 .PHONY: setup-codestyle
 setup-codestyle:
-	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle_py${PYTHON_VERSION_MAJOR}.txt
+	$(PIP_COMMAND) install --progress-bar=off --no-deps --exists-action=w -r requirements/codestyle.txt
 
 .PHONY: lint-codestyle
 lint-codestyle:

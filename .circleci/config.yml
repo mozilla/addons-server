@@ -23,7 +23,7 @@ commands:
           name: Build docker image and push to repo
           command: |
             docker version
-            docker build -t app:build --build-arg DJANGO_VERSION -f << parameters.dockerfile >> .
+            docker build -t app:build -f << parameters.dockerfile >> .
             docker tag app:build "${DOCKERHUB_REPO}":<< parameters.image_tag >>
             docker login -u "${DOCKERHUB_USER}" -p "${DOCKERHUB_PASS}"
             docker push "${DOCKERHUB_REPO}":<< parameters.image_tag >>
@@ -31,8 +31,6 @@ jobs:
   build:
     machine: true
     working_directory: ~/addons-server
-    environment:
-        DJANGO_VERSION: "django22"
     steps:
       - checkout
       - build_and_push_container_image:
@@ -80,7 +78,7 @@ jobs:
       - restore_cache:
           keys:
             - uitest-cache-{{ checksum "requirements/docs.txt" }}
-            - uitest-cache-{{ checksum "requirements/prod_py3.txt" }}
+            - uitest-cache-{{ checksum "requirements/prod.txt" }}
             - uitest-cache-{{ checksum "requirements/tests.txt" }}
             - uitest-cache-{{ checksum "requirements/dev.txt" }}
             - uitest-cache-{{ checksum "requirements/dev_without_hash.txt" }}
@@ -142,7 +140,7 @@ jobs:
           paths:
             - .tox
       - save_cache:
-          key: uitest-cache-{{ checksum "requirements/prod_py3.txt" }}
+          key: uitest-cache-{{ checksum "requirements/prod.txt" }}
           paths:
             - .tox
       - save_cache:
