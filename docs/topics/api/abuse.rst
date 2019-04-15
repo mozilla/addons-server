@@ -30,11 +30,11 @@ and should be truncated by the client where necessary.
 
     :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
-    :<json string|null report_entry_point: The report entry point. Accepted values: ``uninstall`` and ``menu``.
-    :<json string|null addon_install_method: The add-on install method. Accepted values: ``amwebapi``, ``link``, ``installtrigger``, ``install-from-file``, ``management-webext-api``, ``drag-and-drop`` and ``sideload``.
+    :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <abuse-report_entry_point-parameter>`.
+    :<json string|null addon_install_method: The add-on install method. The accepted values are documented in the :ref:`table below <abuse-addon_install_method-parameter>`.
     :<json string|null addon_install_origin: The add-on install origin.
     :<json string|null addon_name: The add-on name in the locale used by the client.
-    :<json string|null addon_signature: The add-on signature state. Accepted values: TBD.
+    :<json string|null addon_signature: The add-on signature state. The accepted values are documented in the :ref:`table below <abuse-addon_signature-parameter>`.
     :<json string|null addon_summary: The add-on summary in the locale used by the client.
     :<json string|null addon_version: The add-on version string.
     :<json string|null app: The :ref:`application <addon-detail-application>` used by the client. Can be either ``firefox`` or ``android``.
@@ -44,7 +44,7 @@ and should be truncated by the client where necessary.
     :<json string|null install_date: The add-on install date.
     :<json string|null operating_system: The client's operating system.
     :<json string|null operating_system_version: The client's operating system version.
-    :<json string|null reason: The reason for the report. Can be ``malware``, ``spam_or_advertising``, ``search_takeover``, ``new_tab_takeover``, ``breaks_website``, ``offensive``, ``does_not_match_description`` or ``does_not_work``.
+    :<json string|null reason: The reason for the report. The accepted values are documented in the :ref:`table below <abuse-reason-parameter>`.
     :>json object|null reporter: The user who submitted the report, if authenticated.
     :>json int reporter.id: The id of the user who submitted the report.
     :>json string reporter.name: The name of the user who submitted the report.
@@ -70,6 +70,66 @@ and should be truncated by the client where necessary.
     :>json string|null operating_system: The client's operating system.
     :>json string|null operating_system_version: The client's operating system version.
     :>json string|null reason: The reason for the report.
+
+ .. _abuse-report_entry_point-parameter:
+
+ Accepted values for the ``report_entry_point`` parameter:
+
+ ===========================  =================================================
+                       Value  Description
+ ===========================  =================================================
+                   uninstall  Report button shown at uninstall time
+                        menu  Report menu in Add-ons Manager
+        toolbar_context_menu  Report context menu on add-on toolbar
+ ===========================  =================================================
+
+ .. _abuse-addon_install_method-parameter:
+
+ Accepted values for the ``addon_install_method`` parameter:
+
+ ===========================  =================================================
+                       Value  Description
+ ===========================  =================================================
+                    amwebapi  Add-on Manager Web API
+                        link  Direct Link
+              installtrigger  InstallTrigger API
+           install_from_file  Local File
+       management_webext_api  WebExt Management API
+               drag_and_drop  Drag & Drop
+                    sideload  Sideload
+ ===========================  =================================================
+
+ .. _abuse-addon_signature-parameter:
+
+
+ Accepted values for the ``addon_signature`` parameter:
+
+ ===========================  =================================================
+                       Value  Description
+ ===========================  =================================================
+         curated_and_partner  Curated and partner
+                     curated  Curated
+                     partner  Partner
+                 non_curated  Non-curated
+                    unsigned  Unsigned
+ ===========================  =================================================
+
+ .. _abuse-reason-parameter:
+
+ Accepted values for the ``reason`` parameter:
+
+ ===========================  =================================================
+                       Value  Description
+ ===========================  =================================================
+                     malware  Malware
+         spam_or_advertising  Spam or advertising
+            browser_takeover  Search / Homepage / New tab page takeover
+              breaks_website  Breaks websites
+                   offensive  Offensive
+  does_not_match_description  Doesn't match description
+               does_not_work  Doesn't work
+ ===========================  =================================================
+
 
 
 ------------------------------

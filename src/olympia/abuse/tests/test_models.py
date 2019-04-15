@@ -13,15 +13,30 @@ class TestAbuse(TestCase):
     fixtures = ['base/addon_3615', 'base/user_999']
 
     def test_choices(self):
-        assert AbuseReport.ADDON_SIGNATURES.choices == ((None, 'None'),)
-        assert AbuseReport.ADDON_SIGNATURES.api_choices == ((None, None),)
+        assert AbuseReport.ADDON_SIGNATURES.choices == (
+            (None, 'None'),
+            (1, 'Curated and partner'),
+            (2, 'Curated'),
+            (3, 'Partner'),
+            (4, 'Non-curated'),
+            (5, 'Unsigned'),
+        )
+        assert AbuseReport.ADDON_SIGNATURES.api_choices == (
+            (None, None),
+            (1, 'curated_and_partner'),
+            (2, 'curated'),
+            (3, 'partner'),
+            (4, 'non_curated'),
+            (5, 'unsigned'),
+        )
 
         assert AbuseReport.REASONS.choices == (
             (None, 'None'),
             (1, 'Malware'),
             (2, 'Spam / Advertising'),
-            (3, 'Search takeover'),
-            (4, 'New tab takeover'),
+            (3, 'Search / Homepage / New tab page takeover'),
+            # '4' No longer exists, but is reserved.
+            # (4, 'New tab takeover'),
             (5, 'Breaks websites'),
             (6, 'Offensive'),
             (7, "Doesn't match description"),
@@ -31,8 +46,9 @@ class TestAbuse(TestCase):
             (None, None),
             (1, 'malware'),
             (2, 'spam_or_advertising'),
-            (3, 'search_takeover'),
-            (4, 'new_tab_takeover'),
+            (3, 'browser_takeover'),
+            # '4' No longer exists, but is reserved.
+            # (4, 'new_tab_takeover'),
             (5, 'breaks_websites'),
             (6, 'offensive'),
             (7, 'does_not_match_description'),
@@ -54,21 +70,23 @@ class TestAbuse(TestCase):
             (1, 'amwebapi'),
             (2, 'link'),
             (3, 'installtrigger'),
-            (4, 'install-from-file'),
-            (5, 'management-webext-api'),
-            (6, 'drag-and-drop'),
-            (7, 'sideload')
+            (4, 'install_from_file'),
+            (5, 'management_webext_api'),
+            (6, 'drag_and_drop'),
+            (7, 'sideload'),
         )
 
         assert AbuseReport.REPORT_ENTRY_POINTS.choices == (
             (None, 'None'),
             (1, 'Uninstall'),
-            (2, 'Menu')
+            (2, 'Menu'),
+            (3, 'Toolbar context menu'),
         )
         assert AbuseReport.REPORT_ENTRY_POINTS.api_choices == (
             (None, None),
             (1, 'uninstall'),
-            (2, 'menu')
+            (2, 'menu'),
+            (3, 'toolbar_context_menu'),
         )
 
     def test_user(self):
