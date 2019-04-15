@@ -2,10 +2,6 @@ FROM python:3.6-slim-stretch
 
 ENV PYTHONDONTWRITEBYTECODE=1
 
-ENV PYTHON_VERSION_MAJOR 3
-
-ENV DJANGO_VERSION=django22
-
 # Allow scripts to detect we're running in our own container
 RUN touch /addons-server-docker-container
 
