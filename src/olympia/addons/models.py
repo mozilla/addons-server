@@ -40,6 +40,7 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import (
     AMOJSONEncoder, attach_trans_dict, cache_ns_key, chunked, find_language,
     send_mail, slugify, sorted_groupby, timer, to_language)
+from olympia.constants.applications import THUNDERBIRD
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.constants.reviewers import REPUTATION_CHOICES
 from olympia.files.models import File
@@ -52,6 +53,8 @@ from olympia.translations.models import Translation
 from olympia.users.models import UserForeignKey, UserProfile
 from olympia.versions.compare import version_int
 from olympia.versions.models import inherit_nomination, Version, VersionPreview
+
+from product_details import product_details
 
 from . import signals
 
@@ -854,21 +857,29 @@ class Addon(OnChangeMixin, ModelBase):
                  self.id, key))
 
     def latest_compatible_version(self, request, app):
+        if app is not THUNDERBIRD:
+            return self.current_version, True
+
+        app_version = product_details.thunderbird_versions['LATEST_THUNDERBIRD_VERSION']
+        app_version_int = version_int(app_version)
+        latest = True
+
         if request is not None:
             user_agent = request.META.get('HTTP_USER_AGENT')
             version_match = re.search(r'Thunderbird/(\d+\.\d+(a\d+)?)', user_agent)
             if version_match is not None:
-                version = version_int(version_match.group(1))
-                latest = True
-                for v in self.versions.all():
-                    if not v.is_public():
-                        continue
-                    compat = v.compatible_apps.get(app)
-                    if compat is None or compat.min.version > version_match.group(1):
-                        latest = False
-                        continue
-                    if v.is_compatible_by_default or compat.max.version_int >= version:
-                        return v, latest
+                app_version_int = version_int(version_match.group(1))
+
+        for v in self.versions.all():
+            if not v.is_public():
+                continue
+            compat = v.compatible_apps.get(app)
+            if compat is None or compat.min.version_int > app_version_int:
+                latest = False
+                continue
+            if v.is_compatible_by_default or compat.max.version_int >= app_version_int:
+                return v, latest
+
         return self.current_version, True
 
     @property
