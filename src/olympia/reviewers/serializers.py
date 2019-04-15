@@ -279,6 +279,55 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
 
         return diff
 
+    def get_entries(self, obj):
+        """Overwrite `FileEntriesSerializer.get_entries to inject
+
+        added/removed/changed information.
+        """
+        commit = obj.version.git_hash
+        parent = self.context['parent_version'].git_hash
+
+        # Initial commits have both set to the same version
+        parent = parent if parent != commit else None
+
+        diff = self.repo.get_diff(
+            commit=commit,
+            parent=parent,
+            pathspec=None)
+
+        entries = super().get_entries(obj)
+
+        # All files have a "unmodified" status by default
+        for path, value in entries.items():
+            entries[path].setdefault('status', '')
+
+        # Now let's overwrite that with data from the actual patch
+        for patch in diff:
+            path = patch['path']
+
+            if path not in entries:
+                # File got deleted, let's mimic the original data-structure
+                # for better modeling on the client.
+                # Most of the actual data is not present though so we set
+                # it to `None`.
+                filename = os.path.basename(path)
+                mime, _ = mimetypes.guess_type(filename)
+                entries[path] = {
+                    'depth': path.count(os.sep),
+                    'filename': filename,
+                    'sha256': None,
+                    'mime_category': None,
+                    'mimetype': mime,
+                    'path': path,
+                    'size': None,
+                    'modified': None,
+                }
+
+            # Now we can set the git-status.
+            entries[path]['status'] = patch['mode']
+
+        return entries
+
 
 class AddonCompareVersionSerializer(AddonBrowseVersionSerializer):
     file = FileEntriesDiffSerializer(source='current_file')

@@ -26,7 +26,7 @@ def _run_process(cmd, repo):
         universal_newlines=True)
 
 
-def apply_changes(repo, version, contents, path):
+def apply_changes(repo, version, contents, path, delete=False):
     # Apply the requested change to the git repository
     branch_name = BRANCHES[version.channel]
     git_repo = repo.git_repository
@@ -40,8 +40,11 @@ def apply_changes(repo, version, contents, path):
 
     # Add / update the index
     path = os.path.join(EXTRACTED_PREFIX, path)
-    entry = pygit2.IndexEntry(path, blob_id, pygit2.GIT_FILEMODE_BLOB)
-    index.add(entry)
+    if delete:
+        index.remove(path)
+    else:
+        entry = pygit2.IndexEntry(path, blob_id, pygit2.GIT_FILEMODE_BLOB)
+        index.add(entry)
 
     tree = index.write_tree()
 
@@ -835,3 +838,58 @@ def test_get_diff_newline_both_no_newline():
 
     assert changes[0]['new_ending_new_line'] is False
     assert changes[0]['old_ending_new_line'] is False
+
+
+@pytest.mark.django_db
+def test_get_diff_delete_file():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    # Let's a file
+    apply_changes(repo, version, '', 'manifest.json', delete=True)
+
+    changes = repo.get_diff(
+        commit=version.git_hash,
+        parent=original_version.git_hash)
+
+    assert changes[0]['mode'] == 'D'
+    assert all(
+        x['type'] == 'delete' for x in changes[0]['hunks'][0]['changes'])
+
+
+@pytest.mark.django_db
+def test_get_raw_diff_cache():
+    addon = addon_factory(file_kw={'filename': 'webextension_no_id.xpi'})
+
+    original_version = addon.current_version
+
+    AddonGitRepository.extract_and_commit_from_version(original_version)
+
+    version = version_factory(
+        addon=addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+    repo = AddonGitRepository.extract_and_commit_from_version(version)
+
+    # Let's a file
+    apply_changes(repo, version, '', 'manifest.json', delete=True)
+
+    with mock.patch('olympia.lib.git.pygit2.Repository.diff') as mocked_diff:
+        repo.get_diff(
+            commit=version.git_hash,
+            parent=original_version.git_hash)
+
+        repo.get_diff(
+            commit=version.git_hash,
+            parent=original_version.git_hash)
+
+        mocked_diff.assert_called_once()
+
+    assert (version.git_hash, original_version.git_hash) in repo._diff_cache

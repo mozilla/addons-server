@@ -15,12 +15,15 @@ from django.utils.encoding import force_bytes
 
 from olympia import amo
 from olympia.reviewers.serializers import (
-    AddonBrowseVersionSerializer, FileEntriesSerializer)
+    AddonBrowseVersionSerializer, FileEntriesSerializer,
+    FileEntriesDiffSerializer)
 from olympia.amo.urlresolvers import reverse
-from olympia.amo.tests import TestCase, addon_factory
+from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.versions.tasks import extract_version_to_git
 from olympia.versions.models import License
+from olympia.lib.git import AddonGitRepository
+from olympia.lib.tests.test_git import apply_changes
 
 
 class TestFileEntriesSerializer(TestCase):
@@ -171,6 +174,111 @@ class TestFileEntriesSerializer(TestCase):
 
         key = 'reviewers:fileentriesserializer:entries:{}'.format(commit.hex)
         assert cache.get(key) == data['entries']
+
+
+class TestFileEntriesDiffSerializer(TestCase):
+    def setUp(self):
+        super(TestFileEntriesDiffSerializer, self).setUp()
+
+        self.addon = addon_factory(
+            name=u'My Addôn', slug='my-addon',
+            file_kw={'filename': 'webextension_no_id.xpi'})
+
+        extract_version_to_git(self.addon.current_version.pk)
+        self.addon.current_version.refresh_from_db()
+
+    def get_serializer(self, obj, **extra_context):
+        api_version = api_settings.DEFAULT_VERSION
+        request = APIRequestFactory().get('/api/%s/' % api_version)
+        request.versioning_scheme = api_settings.DEFAULT_VERSIONING_CLASS()
+        request.version = api_version
+        extra_context.setdefault('request', request)
+
+        return FileEntriesDiffSerializer(
+            instance=obj, context=extra_context)
+
+    def serialize(self, obj, **extra_context):
+        return self.get_serializer(obj, **extra_context).data
+
+    def test_basic(self):
+        parent_version = self.addon.current_version
+
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        apply_changes(repo, new_version, 'Updated test file\n', 'test.txt')
+        apply_changes(repo, new_version, '', 'README.md', delete=True)
+
+        file = self.addon.current_version.current_file
+
+        data = self.serialize(file, parent_version=parent_version)
+
+        assert data['id'] == file.pk
+        assert data['status'] == 'public'
+        assert data['hash'] == ''
+        assert data['is_webextension'] is True
+        assert data['created'] == (
+            file.created.replace(microsecond=0).isoformat() + 'Z')
+        assert data['url'] == (
+            'http://testserver/firefox/downloads/file/{}'
+            '/webextension_no_id.xpi?src=').format(file.pk)
+
+        assert data['selected_file'] == 'manifest.json'
+        assert data['download_url'] == absolutify(reverse(
+            'reviewers.download_git_file',
+            kwargs={
+                'version_id': self.addon.current_version.pk,
+                'filename': 'manifest.json'
+            }
+        ))
+
+        assert set(data['entries'].keys()) == {
+            'manifest.json', 'README.md', 'test.txt'}
+
+        # Unmodified file
+        manifest_data = data['entries']['manifest.json']
+        assert manifest_data['depth'] == 0
+        assert manifest_data['filename'] == u'manifest.json'
+        assert manifest_data['sha256'] == (
+            'bf9b0744c0011cad5caa55236951eda523f17676e91353a64a32353eac798631')
+        assert manifest_data['mimetype'] == 'application/json'
+        assert manifest_data['mime_category'] == 'text'
+        assert manifest_data['path'] == u'manifest.json'
+        assert manifest_data['size'] == 621
+        assert manifest_data['status'] == ''
+        assert isinstance(manifest_data['modified'], datetime)
+
+        # Added a new file
+        test_txt_data = data['entries']['test.txt']
+        assert test_txt_data['depth'] == 0
+        assert test_txt_data['filename'] == u'test.txt'
+        assert test_txt_data['sha256'] == (
+            'f8b40fc302692ea4f552cb3d60bc89dd8b4616e398de5585e471cee73e2c0618')
+        assert test_txt_data['mimetype'] == 'text/plain'
+        assert test_txt_data['mime_category'] == 'text'
+        assert test_txt_data['path'] == u'test.txt'
+        assert test_txt_data['size'] == 18
+        assert test_txt_data['status'] == 'A'
+
+        # Deleted file
+        readme_data = data['entries']['README.md']
+        assert readme_data['status'] == 'D'
+        assert readme_data['depth'] == 0
+        assert readme_data['filename'] == 'README.md'
+        assert readme_data['sha256'] is None
+        # Not testing mimetype as text/markdown is missing in travis mimetypes
+        # database. But it doesn't matter much here since we're primarily
+        # after the git status.
+        assert readme_data['mime_category'] is None
+        assert readme_data['path'] == u'README.md'
+        assert readme_data['size'] is None
+        assert readme_data['modified'] is None
 
 
 @pytest.mark.parametrize(

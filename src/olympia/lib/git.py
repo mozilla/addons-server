@@ -404,6 +404,37 @@ class AddonGitRepository(object):
                     tree_entry=tree_entry,
                     path=tree_entry.name)
 
+    def get_raw_diff(self, commit, parent=None):
+        """Return the raw diff object.
+
+        This is cached as we'll be calling it multiple times, e.g
+        once to render the actual diff and again to fetch specific
+        status information (added, removed etc) in a later step.
+        """
+        diff_cache = getattr(self, '_diff_cache', {})
+
+        try:
+            return diff_cache[(commit, parent)]
+        except KeyError:
+            if parent is None:
+                retval = self.get_root_tree(commit).diff_to_tree(
+                    # We always show the whole file by default
+                    context_lines=sys.maxsize,
+                    interhunk_lines=0,
+                    swap=True)
+            else:
+                retval = self.git_repository.diff(
+                    self.get_root_tree(parent),
+                    self.get_root_tree(commit),
+                    # We always show the whole file by default
+                    context_lines=sys.maxsize,
+                    interhunk_lines=0)
+
+            diff_cache[(commit, parent)] = retval
+            self._diff_cache = diff_cache
+
+        return retval
+
     def get_diff(self, commit, parent=None, pathspec=None):
         """Get a diff from `parent` to `commit`.
 
@@ -416,34 +447,7 @@ class AddonGitRepository(object):
         :param pathspec: If a list of files is given we only retrieve a list
                          for them.
         """
-        if parent is None:
-            return self.get_diff_for_initial_commit(commit, pathspec=pathspec)
-
-        changes = []
-        diff = self.git_repository.diff(
-            self.get_root_tree(parent),
-            self.get_root_tree(commit),
-            # We always show the whole file by default
-            context_lines=sys.maxsize,
-            interhunk_lines=0)
-
-        for patch in diff:
-            # Support for this hasn't been implemented upstream yet, we'll
-            # work on this upstream if needed but for now just selecting
-            # files based on `pathspec` works for us.
-            if pathspec and patch.delta.old_file.path not in pathspec:
-                continue
-
-            changes.append(self._render_patch(patch, commit, parent))
-        return changes
-
-    def get_diff_for_initial_commit(self, commit, pathspec=None):
-        # Initial commits are special since they're comparing against
-        # an empty tree.
-        diff = self.get_root_tree(commit).diff_to_tree(
-            context_lines=sys.maxsize,
-            interhunk_lines=1,
-            swap=True)
+        diff = self.get_raw_diff(commit, parent=parent)
 
         changes = []
 
@@ -454,8 +458,10 @@ class AddonGitRepository(object):
             if pathspec and patch.delta.old_file.path not in pathspec:
                 continue
 
-            changes.append(self._render_patch(patch, commit, commit))
-
+            if parent is None:
+                changes.append(self._render_patch(patch, commit, commit))
+            else:
+                changes.append(self._render_patch(patch, commit, parent))
         return changes
 
     def _render_patch(self, patch, commit, parent):
