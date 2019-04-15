@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-15 07:12+0000\n"
+"PO-Revision-Date: 2019-04-15 18:28+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1533,7 +1533,7 @@ msgid "Invalid or broken archive."
 msgstr "โทเค็น JWT ไม่ถูกต้อง"
 
 msgid "View current"
-msgstr ""
+msgstr "ดูปัจจุบัน"
 
 msgid "Invalid version range."
 msgstr "ช่วงเวอร์ชันไม่ถูกต้อง"
@@ -1968,7 +1968,7 @@ msgid "Preview still being generated - come back later or refresh the page."
 msgstr ""
 
 msgid "Manage Authors & License"
-msgstr ""
+msgstr "จัดการผู้สร้างและสัญญาอนุญาต"
 
 msgid "Authors"
 msgstr "ผู้สร้าง"
@@ -2067,7 +2067,7 @@ msgid "Description"
 msgstr "คำอธิบาย"
 
 msgid "Experimental?"
-msgstr ""
+msgstr "รุ่นทดลอง?"
 
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
@@ -2270,7 +2270,7 @@ msgid "Your Add-on will be released under the following license:"
 msgstr ""
 
 msgid "Select a different license."
-msgstr ""
+msgstr "เลือกสัญญาอนุญาตอื่น"
 
 msgid "More information on Creative Commons licenses"
 msgstr ""
@@ -2357,7 +2357,7 @@ msgid "Manage Status & Versions"
 msgstr "จัดการสถานะและรุ่น"
 
 msgid "View Recent Changes"
-msgstr ""
+msgstr "ดูการเปลี่ยนแปลงล่าสุด"
 
 msgid "Edit details on this theme's product page"
 msgstr ""
@@ -2478,7 +2478,7 @@ msgid "Is there anything our reviewers should bear in mind when reviewing this a
 msgstr ""
 
 msgid "Remember"
-msgstr ""
+msgstr "จดจำ"
 
 #, python-format
 msgid ""
@@ -2982,7 +2982,7 @@ msgid "Help make add-ons better by contributing your coding skills."
 msgstr ""
 
 msgid "Get started"
-msgstr ""
+msgstr "เริ่มต้นใช้งาน"
 
 #, fuzzy
 msgid "More Ways to Participate"
