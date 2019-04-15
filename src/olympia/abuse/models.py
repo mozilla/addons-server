@@ -21,14 +21,20 @@ from olympia.users.models import UserProfile
 @python_2_unicode_compatible
 class AbuseReport(ModelBase):
     # Note: those choices don't need to be translated for now, the
-    # human-readable values are only exposed in the admin. The values will be
-    # updated once they are finalized in the PRD.
-    ADDON_SIGNATURES = APIChoicesWithNone()
+    # human-readable values are only exposed in the admin.
+    ADDON_SIGNATURES = APIChoicesWithNone(
+        ('CURATED_AND_PARTNER', 1, 'Curated and partner'),
+        ('CURATED', 2, 'Curated'),
+        ('PARTNER', 3, 'Partner'),
+        ('NON_CURATED', 4, 'Non-curated'),
+        ('UNSIGNED', 5, 'Unsigned'),
+    )
     REASONS = APIChoicesWithNone(
         ('MALWARE', 1, 'Malware'),
         ('SPAM_OR_ADVERTISING', 2, 'Spam / Advertising'),
-        ('SEARCH_TAKEOVER', 3, 'Search takeover'),
-        ('NEW_TAB_TAKEOVER', 4, 'New tab takeover'),
+        ('BROWSER_TAKEOVER', 3, 'Search / Homepage / New tab page takeover'),
+        # `4` was previously 'New tab takeover' but has been merged into the
+        # previous one. We avoid re-using the value.
         ('BREAKS_WEBSITES', 5, 'Breaks websites'),
         ('OFFENSIVE', 6, 'Offensive'),
         ('DOES_NOT_MATCH_DESCRIPTION', 7, 'Doesn\'t match description'),
@@ -38,14 +44,15 @@ class AbuseReport(ModelBase):
         ('AMWEBAPI', 1, 'Add-on Manager Web API'),
         ('LINK', 2, 'Direct link'),
         ('INSTALLTRIGGER', 3, 'Install Trigger'),
-        ('INSTALL-FROM-FILE', 4, 'From File'),
-        ('MANAGEMENT-WEBEXT-API', 5, 'Webext management API'),
-        ('DRAG-AND-DROP', 6, 'Drag & Drop'),
+        ('INSTALL_FROM_FILE', 4, 'From File'),
+        ('MANAGEMENT_WEBEXT_API', 5, 'Webext management API'),
+        ('DRAG_AND_DROP', 6, 'Drag & Drop'),
         ('SIDELOAD', 7, 'Sideload'),
     )
     REPORT_ENTRY_POINTS = APIChoicesWithNone(
         ('UNINSTALL', 1, 'Uninstall'),
         ('MENU', 2, 'Menu'),
+        ('TOOLBAR_CONTEXT_MENU', 3, 'Toolbar context menu'),
     )
 
     # NULL if the reporter is anonymous.
