@@ -7,6 +7,7 @@ from django.utils.translation import ugettext
 
 import six
 
+from bleach.linkifier import TLDS
 from rest_framework import serializers
 from rest_framework.relations import PrimaryKeyRelatedField
 
@@ -14,10 +15,19 @@ from olympia.accounts.serializers import BaseUserSerializer
 from olympia.addons.serializers import (
     SimpleAddonSerializer, SimpleVersionSerializer)
 from olympia.api.utils import is_gate_active
-from olympia.ratings.forms import RatingForm
-from olympia.ratings.models import Rating
+from olympia.ratings.models import Rating, RatingFlag
 from olympia.ratings.utils import maybe_check_with_akismet
 from olympia.versions.models import Version
+
+
+# This matches the following three types of patterns:
+# http://... or https://..., generic domain names, and IPv4 octets. It does not
+# match IPv6 addresses or long strings such as "example dot com".
+link_pattern = re.compile(
+    r'((://)|'  # Protocols (e.g.: http://)
+    r'((\d{1,3}\.){3}(\d{1,3}))|'
+    r'([0-9a-z\-%%]+\.(%s)))' % '|'.join(TLDS),
+    (re.I | re.U | re.M))
 
 
 class RatingAddonSerializer(SimpleAddonSerializer):
@@ -87,7 +97,7 @@ class BaseRatingSerializer(serializers.ModelSerializer):
                 data['body'] = re.sub('<br>', '\n', body)
             # Unquote the body when searching for links, in case someone tries
             # 'example%2ecom'.
-            if RatingForm.link_pattern.search(unquote(body)) is not None:
+            if link_pattern.search(unquote(body)) is not None:
                 data['flag'] = True
                 data['editorreview'] = True
 
@@ -229,4 +239,48 @@ class RatingSerializer(BaseRatingSerializer):
 
         request = self.context.get('request')
         maybe_check_with_akismet(request, instance, pre_save_body)
+        return instance
+
+
+class RatingFlagSerializer(serializers.ModelSerializer):
+    flag = serializers.CharField()
+    note = serializers.CharField(allow_null=True, required=False)
+    rating = RatingSerializer(read_only=True)
+    user = BaseUserSerializer(read_only=True)
+
+    class Meta:
+        model = RatingFlag
+        fields = ('flag', 'note', 'rating', 'user')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.request = kwargs.get('context', {}).get('request')
+
+    def validate_flag(self, flag):
+        flags = dict(RatingFlag.FLAGS)
+        if flag not in flags:
+            raise serializers.ValidationError(ugettext(
+                'Invalid flag [%s] - must be one of [%s]' %
+                (flag, ','. join(flags))))
+        return flag
+
+    def validate(self, data):
+        data['rating'] = self.context['view'].rating_object
+        data['user'] = self.request.user
+        if not data['rating'].body:
+            raise serializers.ValidationError(ugettext(
+                "This rating can't be flagged because it has no review text."))
+
+        if 'note' in data and data['note'].strip():
+            data['flag'] = RatingFlag.OTHER
+        elif data.get('flag') == RatingFlag.OTHER:
+            raise serializers.ValidationError(
+                {'note': ugettext(
+                    'A short explanation must be provided when selecting '
+                    '"Other" as a flag reason.')})
+        return data
+
+    def save(self, **kwargs):
+        instance = super().save(**kwargs)
+        instance.rating.update(editorreview=True)
         return instance

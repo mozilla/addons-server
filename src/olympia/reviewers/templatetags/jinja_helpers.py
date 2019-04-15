@@ -14,6 +14,7 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.addons.templatetags.jinja_helpers import new_context
 from olympia.amo.templatetags.jinja_helpers import page_title
+from olympia.ratings.permissions import user_can_delete_rating
 from olympia.reviewers.models import ReviewerScore
 from olympia.versions.models import Version
 
@@ -235,3 +236,9 @@ def code_manager_url(path):
         )
     # Always return URLs in en-US because the Code Manager is not localized.
     return '{}/en-US{}'.format(settings.CODE_MANAGER_URL, path)
+
+
+@library.global_function
+@jinja2.contextfunction
+def check_review_delete(context, rating):
+    return user_can_delete_rating(context['request'], rating)

@@ -92,12 +92,6 @@ urlpatterns = [
     url(r'^bookmarks/?$',
         lambda r: redirect('browse.extensions', 'bookmarks', permanent=True)),
 
-    url(r'^reviews/display/(\d+)',
-        lambda r, id: redirect('addons.ratings.list', id, permanent=True)),
-
-    url(r'^reviews/add/(\d+)',
-        lambda r, id: redirect('addons.ratings.add', id, permanent=True)),
-
     url(r'^pages/about$',
         lambda r: redirect('pages.about', permanent=True)),
 
@@ -110,9 +104,6 @@ urlpatterns = [
     # Legacy redirect. Requires a view to get extra data not provided in URL.
     url(r'^versions/updateInfo/(?P<version_id>\d+)',
         version_views.update_info_redirect),
-
-    url(r'^addons/reviews/(\d+)/format:rss$',
-        lambda r, id: redirect('addons.ratings.list.rss', id, permanent=True)),
 
     url(r'^search-engines.*$',
         lambda r: redirect(urlparams(reverse('search.search'), atype=4),

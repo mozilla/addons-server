@@ -1588,10 +1588,10 @@ class TestModeratedQueue(QueueTest):
         super(TestModeratedQueue, self).setUp()
 
         self.url = reverse('reviewers.queue_moderated')
-        url_flag = reverse('addons.ratings.flag', args=['a1865', 218468])
 
-        response = self.client.post(url_flag, {'flag': RatingFlag.SPAM})
-        assert response.status_code == 200
+        RatingFlag.objects.create(
+            rating_id=218468, user=self.user, flag=RatingFlag.SPAM)
+        Rating.objects.get(pk=218468).update(editorreview=True)
 
         assert RatingFlag.objects.filter(flag=RatingFlag.SPAM).count() == 1
         assert Rating.objects.filter(editorreview=True).count() == 1
