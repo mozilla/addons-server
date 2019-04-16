@@ -54,6 +54,11 @@ def path(*folders):
 
 DEBUG = False
 
+DEBUG_TOOLBAR_CONFIG = {
+    # Deactivate django debug toolbar by default.
+    'SHOW_TOOLBAR_CALLBACK': lambda request: DEBUG,
+}
+
 # Ensure that exceptions aren't re-raised.
 DEBUG_PROPAGATE_EXCEPTIONS = False
 SILENCED_SYSTEM_CHECKS = (
@@ -281,6 +286,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
 
     # Third-party apps using django templates
     r'^rangefilter\/',
+
+    # Django debug toolbar
+    r'debug_toolbar',
 )
 
 TEMPLATES = [
