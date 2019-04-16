@@ -183,7 +183,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
 
     @property
     def is_superuser(self):
-        return self.groups.filter(rules='*:*').exists()
+        return any(group.rules == '*:*' for group in self.groups_list)
 
     @property
     def is_staff(self):

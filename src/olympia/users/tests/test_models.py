@@ -337,11 +337,18 @@ class TestUserProfile(TestCase):
         assert not user.is_staff
         assert not user.is_superuser
 
-        # Give the user '*:*'.
+        # Give the user '*:*'
+        # (groups_list cached_property is automatically cleared because we're
+        #  creating a GroupUser instance).
         group = Group.objects.filter(rules='*:*').get()
         GroupUser.objects.create(group=group, user=user)
         assert user.is_staff
         assert user.is_superuser
+
+        # No extra queries are made to check a second time, thanks to
+        # groups_list being a cached_property.
+        with self.assertNumQueries(0):
+            assert user.is_superuser
 
     def test_staff_only(self):
         group = Group.objects.create(
