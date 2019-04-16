@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-16 08:41+0000\n"
+"PO-Revision-Date: 2019-04-16 11:11+0000\n"
 "Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
@@ -4569,9 +4569,8 @@ msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Tangkap cuplikan web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Potong bagian yang tak penting {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
@@ -4675,9 +4674,8 @@ msgstr "Anda tidak dapat memasukkan pengaya dengan akhiran guid %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Anda tidak dapat mengajukan Ekstensi Resmi Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
-msgstr "Tipe file tidak didukung, silakan mengunggah file arsip {extensions}."
+msgstr "Tipe berkas tidak didukung, sila unggah berkas lain yang didukung {extensions}."
 
 msgid "Unexpected error."
 msgstr "Kesalahan tak terduga."
@@ -5405,9 +5403,8 @@ msgstr "Setujui Konten"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Ini merekam persetujuan konten atas versi publik terakhir, tanpa memberi tahu pengembangnya. "
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Pengaya Disetujui Otomatis"
+msgstr "Pra-Persetujuan Pengaya"
 
 msgid "New ({0})"
 msgstr "Baru ({0})"
