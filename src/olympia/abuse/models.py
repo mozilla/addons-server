@@ -30,16 +30,21 @@ class AbuseReport(ModelBase):
         ('UNSIGNED', 5, 'Unsigned'),
     )
     REASONS = APIChoicesWithNone(
-        ('MALWARE', 1, 'Malware'),
-        ('SPAM_OR_ADVERTISING', 2, 'Spam / Advertising'),
-        ('BROWSER_TAKEOVER', 3, 'Search / Homepage / New tab page takeover'),
+        ('HARMFUL', 1, 'Damages computer and/or data'),
+        ('SPAM_OR_ADVERTISING', 2, 'Creates spam or advertising'),
+        ('BROWSER_TAKEOVER', 3, 'Changes search / homepage / new tab page '
+                                'without informing user'),
         # `4` was previously 'New tab takeover' but has been merged into the
         # previous one. We avoid re-using the value.
-        ('BREAKS_WEBSITES', 5, 'Breaks websites'),
-        ('OFFENSIVE', 6, 'Offensive'),
-        ('DOES_NOT_MATCH_DESCRIPTION', 7, 'Doesn\'t match description'),
-        ('DOES_NOT_WORK', 8, 'Doesn\'t work'),
+        ('BROKEN', 5, "Doesn’t work, breaks websites, or slows Firefox down"),
+        ('OFFENSIVE', 6, 'Hateful, violent, or illegal content'),
+        ('DOES_NOT_MATCH_DESCRIPTION', 7, "Pretends to be something it’s not"),
+        # `8` was previously "Doesn't work" but has been merged into the
+        # previous one. We avoid re-using the value.
+        ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
+        ('OTHER', 10, 'Other'),
     )
+
     ADDON_INSTALL_METHODS = APIChoicesWithNone(
         ('AMWEBAPI', 1, 'Add-on Manager Web API'),
         ('LINK', 2, 'Direct link'),

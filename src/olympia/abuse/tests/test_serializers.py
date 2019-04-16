@@ -102,7 +102,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'install_date': '2019-02-25 12:19',
             'operating_system': u'Ôperating System!',
             'operating_system_version': '2019',
-            'reason': 'breaks_websites',
+            'reason': 'broken',
             'report_entry_point': 'uninstall',
         }
         result = AddonAbuseReportSerializer(
@@ -125,7 +125,7 @@ class TestAddonAbuseReportSerializer(TestCase):
             'message': u'I am the messagê',
             'operating_system': u'Ôperating System!',
             'operating_system_version': '2019',
-            'reason': AbuseReport.REASONS.BREAKS_WEBSITES,
+            'reason': AbuseReport.REASONS.BROKEN,
             'report_entry_point': AbuseReport.REPORT_ENTRY_POINTS.UNINSTALL,
         }
         assert result == expected
