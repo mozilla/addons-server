@@ -118,17 +118,18 @@ and should be truncated by the client where necessary.
 
  Accepted values for the ``reason`` parameter:
 
- ===========================  =================================================
+ ===========================  ================================================================
                        Value  Description
- ===========================  =================================================
-                     malware  Malware
-         spam_or_advertising  Spam or advertising
-            browser_takeover  Search / Homepage / New tab page takeover
-              breaks_website  Breaks websites
-                   offensive  Offensive
+ ===========================  ================================================================
+                     harmful  Damages computer and/or data
+         spam_or_advertising  Creates spam or advertising
+            browser_takeover  Changes search / homepage / new tab page without informing user
+                      broken  Doesn’t work, breaks websites, or slows Firefox down
+                   offensive  Hateful, violent, or illegal content
   does_not_match_description  Doesn't match description
-               does_not_work  Doesn't work
- ===========================  =================================================
+                    unwanted  Wasn't wanted / impossible to get rid of
+                       other  Something else
+ ===========================  ================================================================
 
 
 

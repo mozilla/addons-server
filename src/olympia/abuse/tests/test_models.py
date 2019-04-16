@@ -32,27 +32,26 @@ class TestAbuse(TestCase):
 
         assert AbuseReport.REASONS.choices == (
             (None, 'None'),
-            (1, 'Malware'),
-            (2, 'Spam / Advertising'),
-            (3, 'Search / Homepage / New tab page takeover'),
-            # '4' No longer exists, but is reserved.
-            # (4, 'New tab takeover'),
-            (5, 'Breaks websites'),
-            (6, 'Offensive'),
-            (7, "Doesn't match description"),
-            (8, "Doesn't work"),
+            (1, 'Damages computer and/or data'),
+            (2, 'Creates spam or advertising'),
+            (3, 'Changes search / homepage / new tab page without informing '
+                'user'),
+            (5, "Doesn’t work, breaks websites, or slows Firefox down"),
+            (6, 'Hateful, violent, or illegal content'),
+            (7, "Pretends to be something it’s not"),
+            (9, "Wasn't wanted / impossible to get rid of"),
+            (10, 'Other'),
         )
         assert AbuseReport.REASONS.api_choices == (
             (None, None),
-            (1, 'malware'),
+            (1, 'harmful'),
             (2, 'spam_or_advertising'),
             (3, 'browser_takeover'),
-            # '4' No longer exists, but is reserved.
-            # (4, 'new_tab_takeover'),
-            (5, 'breaks_websites'),
+            (5, 'broken'),
             (6, 'offensive'),
             (7, 'does_not_match_description'),
-            (8, 'does_not_work'),
+            (9, 'unwanted'),
+            (10, 'other'),
         )
 
         assert AbuseReport.ADDON_INSTALL_METHODS.choices == (
