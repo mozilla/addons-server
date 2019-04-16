@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-09 04:30+0000\n"
-"Last-Translator: brigitta <brigitta.marini@yahoo.com>\n"
+"PO-Revision-Date: 2019-04-16 08:41+0000\n"
+"Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -1563,9 +1563,8 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Kategori tidak dapat diubah selagi pengaya Anda diunggulkan."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Arsip rusak atau tidak valid."
+msgstr "Berkas pengaya rusak atau tidak valid."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Kunci API pengembang Anda ditemukan dalam berkas terkirim. Untuk melindungi akun Anda, kunci itu akan dicabut."
@@ -1690,16 +1689,14 @@ msgstr "Unggahan ini telah gagal divalidasi, dan boleh jadi tidak memiliki hasil
 msgid "Header area background"
 msgstr "Latar area header"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Warna latar bidang header, ditampilkan dalam bagian header yang tidak tertutup atau terlihat dalam gambar header. Bidang tampil:  accentcolor."
+msgstr "Warna latar bidang header, ditampilkan dalam bagian header yang tidak tertutup atau terlihat dalam gambar header. Bidang manifes:  frame."
 
 msgid "Header area text and icons"
 msgstr "Teks dan ikon area header"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Warna teks dan ikon dalam area header, kecuali tab aktif. Bidang tampil:  textcolor."
+msgstr "Warna teks dan ikon dalam area header, kecuali tab aktif. Bidang manifes:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Latar area bilah alat"
@@ -1710,9 +1707,8 @@ msgstr "Warna latar bilah navigasi, bilah markah dan tab yang dipilih.  Bidang t
 msgid "Toolbar area text and icons"
 msgstr "Teks dan ikon area bilah alat"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Warna teks dan ikon dalam bilah alat dan tab aktif. Bidang tampil:  toolbar_text."
+msgstr "Warna teks dan ikon dalam bilah alat dan tab aktif. Bidang manifes:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Latar area bidang bilah alat"
@@ -4557,7 +4553,6 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr "Hemat memori {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
@@ -4566,9 +4561,8 @@ msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Cari gambar {start_sub_heading}dengan {addon_name}{end_sub_heading}"
+msgstr "Simpan laman web {start_sub_heading}dengan {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
