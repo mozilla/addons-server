@@ -26,8 +26,6 @@ and should be truncated by the client where necessary.
 
 .. http:post:: /api/v4/abuse/report/addon/
 
-    .. _addonabusereport-create-request:
-
     :<json string addon: The id, slug, or guid of the add-on to report for abuse (required).
     :<json string message: The body/content of the abuse report (required).
     :<json string|null report_entry_point: The report entry point. The accepted values are documented in the :ref:`table below <abuse-report_entry_point-parameter>`.
@@ -71,7 +69,7 @@ and should be truncated by the client where necessary.
     :>json string|null operating_system_version: The client's operating system version.
     :>json string|null reason: The reason for the report.
 
- .. _abuse-report_entry_point-parameter:
+.. _abuse-report_entry_point-parameter:
 
  Accepted values for the ``report_entry_point`` parameter:
 
@@ -83,7 +81,7 @@ and should be truncated by the client where necessary.
         toolbar_context_menu  Report context menu on add-on toolbar
  ===========================  =================================================
 
- .. _abuse-addon_install_method-parameter:
+.. _abuse-addon_install_method-parameter:
 
  Accepted values for the ``addon_install_method`` parameter:
 
@@ -99,7 +97,7 @@ and should be truncated by the client where necessary.
                     sideload  Sideload
  ===========================  =================================================
 
- .. _abuse-addon_signature-parameter:
+.. _abuse-addon_signature-parameter:
 
 
  Accepted values for the ``addon_signature`` parameter:
@@ -114,7 +112,7 @@ and should be truncated by the client where necessary.
                     unsigned  Unsigned
  ===========================  =================================================
 
- .. _abuse-reason-parameter:
+.. _abuse-reason-parameter:
 
  Accepted values for the ``reason`` parameter:
 
