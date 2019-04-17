@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-17 16:20+0000\n"
+"PO-Revision-Date: 2019-04-17 16:36+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1399,8 +1399,8 @@ msgstr[1] "\"{0}\" ఇవి నిల్వ చేయబడిన ట్యా�
 
 msgid "You have {0} too many tags."
 msgid_plural "You have {0} too many tags."
-msgstr[0] "మీ వద్ద {0} చాలా ట్యాగులు ఉన్నాయి."
-msgstr[1] "మీ వద్ద {0} చాలా ట్యాగులు ఉన్నాయి."
+msgstr[0] "మీ వద్ద {0} ట్యాగు ఎక్కువ ఉంది."
+msgstr[1] "మీ వద్ద {0} ట్యాగులు ఎక్కువ ఉన్నాయి."
 
 #, python-format
 msgid "All tags must be %s characters or less after invalid characters are removed."
@@ -5610,7 +5610,7 @@ msgid "Weight:"
 msgstr "బరువు:"
 
 msgid "Download"
-msgstr " దింపుకోళ్ళు"
+msgstr "దింపుకోలు"
 
 msgid "Not Auto Approved Because"
 msgstr ""
