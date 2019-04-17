@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-17 16:36+0000\n"
+"PO-Revision-Date: 2019-04-17 17:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -57,7 +57,7 @@ msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "[%s] గమనింపు లేనే లేదు"
 
 msgid "Review"
 msgstr "సమీక్ష"
@@ -1744,7 +1744,7 @@ msgid "more add-ons..."
 msgstr "మరిన్ని పొడగింతలు..."
 
 msgid "Extension Workshop"
-msgstr ""
+msgstr "పొడగింతల కార్యశాల"
 
 msgid "Documentation"
 msgstr "పత్రావళి"
@@ -2139,7 +2139,7 @@ msgstr ""
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
 msgstr ""
@@ -5482,7 +5482,7 @@ msgid "Add-on Title"
 msgstr "పొడిగింత పేరు"
 
 msgid "Review Text"
-msgstr ""
+msgstr "సమీక్షా పాఠ్యం"
 
 msgid "Review was flagged prior to deletion."
 msgstr ""
@@ -5713,7 +5713,7 @@ msgid "Dismiss this announcement"
 msgstr "ఈ ప్రకటనను తీసివేయండి"
 
 msgid "Files in this version:"
-msgstr ""
+msgstr "ఈ వెర్షను లోని ఫైళ్ళు:"
 
 msgid "Contents"
 msgstr "విషయాలు"
@@ -6143,7 +6143,7 @@ msgstr ""
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "వాడుకరి \"%(user)s\" నిషేధించబడ్డారు."
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -6151,7 +6151,7 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "ఈ వాడుకరులు \"%(users)s\" నిషేధించబడ్డారు."
 
 msgid "Ban selected users"
 msgstr "ఎంచుకున్న వాడుకరులను నిషేధించు"
