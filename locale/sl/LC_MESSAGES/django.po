@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: support.mozilla.com\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-12 09:18+0000\n"
-"Last-Translator: Rok Žerdin <zerdo90@gmail.com>\n"
+"PO-Revision-Date: 2019-04-17 18:34+0000\n"
+"Last-Translator: Matjaž Horvat <matjaz.horvat@gmail.com>\n"
 "Language-Team: Slovenian\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -971,7 +971,7 @@ msgid "Social & Communication"
 msgstr "Druženje in stiki"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
-msgstr ""
+msgstr "Prenesite razširitve za Firefox za izboljšanje družabnih omrežij in neposrednega sporočanja. Ta kategorija vključuje izboljšave obvestil zavihkov, prenašalnike videoposnetkov in drugo."
 
 msgid "Tabs"
 msgstr "Zavihki"
@@ -1090,7 +1090,7 @@ msgid "Film and TV"
 msgstr "Film in TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Prenesite teme za Firefox, ki predstavljajo filme in televizijo. Ta kategorija vključuje anime (npr. Uchiha Madara), filme (npr. Matrico), serije (npr. Igro prestolov) in drugo."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
@@ -1099,7 +1099,7 @@ msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "Prenesite teme za Firefox z japonskim pridihom. V to kategorijo spadajo teme, ki prikazujejo simpatično maskoto Foxkeh v različnih pozicijah na različnih mestih."
 
 msgid "Holiday"
 msgstr "Dopust in počitnice"
@@ -5437,9 +5437,8 @@ msgstr "Odobri vsebino"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "To zabeleži vašo odobritev vsebine zadnje javne različice, brez obveščanja razvijalca."
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Samodejno odobreni dodatki"
+msgstr "Vnaprej odobreni dodatki"
 
 msgid "New ({0})"
 msgstr "Novo ({0})"
