@@ -12,7 +12,9 @@ from olympia.addons.tasks import (
     find_inconsistencies_between_es_and_db,
     migrate_lwts_to_static_themes,
     migrate_webextensions_to_git_storage,
-    recreate_theme_previews)
+    recreate_theme_previews,
+    repack_themes_for_69,
+)
 from olympia.amo.utils import chunked
 from olympia.devhub.tasks import get_preview_sizes, recreate_previews
 from olympia.lib.crypto.tasks import sign_addons
@@ -70,6 +72,13 @@ tasks = {
                 amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
         ],
         'kwargs': {'only_missing': True},
+    },
+    'repack_themes_for_69': {
+        'method': repack_themes_for_69,
+        'qs': [
+            Q(type=amo.ADDON_STATICTHEME, status__in=[
+                amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
+        ],
     },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,
