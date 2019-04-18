@@ -2,7 +2,6 @@ from django.conf.urls import include, url
 
 from olympia.amo.views import frontend_view
 
-from . import views
 
 USER_ID = r"""(?P<user_id>[^/<>"']+)"""
 
@@ -18,7 +17,7 @@ detail_patterns = [
 users_patterns = [
     url(r'^edit$', frontend_view, name='users.edit'),
     url(r'^unsubscribe/(?P<token>[-\w]+={0,3})/(?P<hash>[\w]+)/'
-        r'(?P<perm_setting>[\w]+)?$', views.unsubscribe,
+        r'(?P<perm_setting>[\w]+)?$', frontend_view,
         name="users.unsubscribe"),
 ]
 

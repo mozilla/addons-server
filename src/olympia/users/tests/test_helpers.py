@@ -1,46 +1,11 @@
 # -*- coding: utf-8 -*-
-import re
-
-import mock
 import pytest
-import six
 
-from pyquery import PyQuery as pq
-from six.moves.urllib_parse import parse_qs, urlparse
-
-from olympia import amo
-from olympia.addons.models import Addon, AddonUser
-from olympia.amo.tests import TestCase
 from olympia.users.models import UserProfile
-from olympia.users.templatetags.jinja_helpers import (
-    addon_users_list, emaillink, manage_fxa_link, user_link, users_list)
+from olympia.users.templatetags.jinja_helpers import user_link, users_list
 
 
 pytestmark = pytest.mark.django_db
-
-
-def test_emaillink():
-    email = 'me@example.com'
-    obfuscated = six.text_type(emaillink(email))
-
-    # remove junk
-    m = re.match(r'<a href="#"><span class="emaillink">(.*?)'
-                 r'<span class="i">null</span>(.*)</span></a>'
-                 r'<span class="emaillink js-hidden">(.*?)'
-                 r'<span class="i">null</span>(.*)</span>', obfuscated)
-    obfuscated = (''.join((m.group(1), m.group(2)))
-                  .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
-    assert email == obfuscated
-
-    title = 'E-mail your question'
-    obfuscated = six.text_type(emaillink(email, title))
-    m = re.match(r'<a href="#">(.*)</a>'
-                 r'<span class="emaillink js-hidden">(.*?)'
-                 r'<span class="i">null</span>(.*)</span>', obfuscated)
-    assert title == m.group(1)
-    obfuscated = (''.join((m.group(2), m.group(3)))
-                  .replace('&#x0040;', '@').replace('&#x002E;', '.'))[::-1]
-    assert email == obfuscated
 
 
 def test_user_link():
@@ -107,38 +72,3 @@ def test_user_link_unicode():
     assert user_link(u) == (
         u'<a href="%s" title="%s">%s</a>' % (u.get_url_path(), u.name,
                                              u.display_name))
-
-
-class TestAddonUsersList(TestCase):
-    fixtures = ['addons/persona', 'base/users']
-
-    def setUp(self):
-        super(TestAddonUsersList, self).setUp()
-        self.addon = Addon.objects.get(id=15663)
-        self.persona = self.addon.persona
-        self.create_addon_user(self.addon)
-
-    def create_addon_user(self, addon):
-        return AddonUser.objects.create(addon=addon, user_id=999)
-
-    def test_by(self):
-        """Test that the by... bit works."""
-        # Need to re-fetch the add-on since the user was attached after the
-        # initial fetch in setUp().
-        self.addon = Addon.objects.get(pk=self.addon.pk)
-        content = addon_users_list({'amo': amo}, self.addon)
-        assert pq(content).text() == 'by %s' % self.addon.authors.all()[0].name
-
-
-def test_manage_fxa_link():
-    user = mock.MagicMock(email='me@someplace.ca', fxa_id='abcd1234')
-    link = urlparse(manage_fxa_link({'user': user}))
-    url = '{scheme}://{netloc}{path}'.format(
-        scheme=link.scheme, netloc=link.netloc, path=link.path)
-    assert url == 'https://stable.dev.lcip.org/settings'
-    query = parse_qs(link.query)
-    assert query == {
-        'uid': ['abcd1234'],
-        'email': ['me@someplace.ca'],
-        'entrypoint': ['addons'],
-    }

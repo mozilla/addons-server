@@ -1,18 +1,14 @@
 import base64
 import hashlib
 import hmac
-import uuid
-
-from functools import partial
 
 from django.conf import settings
-from django.db.models import Q
 from django.utils.encoding import force_bytes, force_text
 
 import olympia.core.logger
 
 from olympia import amo
-from olympia.users.models import DeniedName, UserProfile
+from olympia.users.models import UserProfile
 
 
 log = olympia.core.logger.getLogger('z.users')
@@ -56,34 +52,6 @@ def get_task_user():
     cron jobs or long running tasks.
     """
     return UserProfile.objects.get(pk=settings.TASK_USER_ID)
-
-
-def find_users(email):
-    """
-    Given an email find all the possible users, by looking in
-    users and in their history.
-    """
-    return UserProfile.objects.filter(Q(email=email) |
-                                      Q(history__email=email)).distinct()
-
-
-def autocreate_username(candidate, tries=1):
-    """Returns a unique valid username."""
-    max_tries = settings.MAX_GEN_USERNAME_TRIES
-    from olympia.amo.utils import slugify, SLUG_OK
-    make_u = partial(slugify, ok=SLUG_OK, lower=True, spaces=False,
-                     delimiter='-')
-    adjusted_u = make_u(candidate)
-    if tries > 1:
-        adjusted_u = '%s%s' % (adjusted_u, tries)
-    if (DeniedName.blocked(adjusted_u) or adjusted_u == '' or
-            tries > max_tries or len(adjusted_u) > 255):
-        log.info('username blocked, empty, max tries reached, or too long;'
-                 ' username=%s; max=%s' % (adjusted_u, max_tries))
-        return autocreate_username(uuid.uuid4().hex[0:15])
-    if UserProfile.objects.filter(username=adjusted_u).count():
-        return autocreate_username(candidate, tries=tries + 1)
-    return adjusted_u
 
 
 def system_addon_submission_allowed(user, parsed_addon_data):

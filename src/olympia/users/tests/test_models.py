@@ -25,7 +25,6 @@ from olympia.bandwagon.models import Collection
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
-from olympia.users.utils import find_users
 from olympia.zadmin.models import set_config
 
 
@@ -638,6 +637,15 @@ class TestOnChangeName(TestCase):
 
         user.update(last_login=self.days_ago(0))
         assert self.index_addons_mock.delay.call_count == 0
+
+
+def find_users(email):
+    """
+    Given an email find all the possible users, by looking in
+    users and in their history.
+    """
+    return UserProfile.objects.filter(
+        models.Q(email=email) | models.Q(history__email=email)).distinct()
 
 
 class TestUserHistory(TestCase):

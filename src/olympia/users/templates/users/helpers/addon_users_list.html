@@ -1,9 +1,0 @@
-{% if addon.type == amo.ADDON_PERSONA %}
-  {% set users = users_list(addon.persona.listed_authors, size=2) or
-                            addon.persona.display_username %}
-{% else %}
-  {% set users = users_list(addon.listed_authors, size=2) %}
-{% endif %}
-{% trans %}
-  by {{ users }}
-{% endtrans %}
