@@ -30,13 +30,6 @@ def impala_addon_listing_header(context, url_base, sort_opts=None,
     return new_context(**locals())
 
 
-@library.filter
-@jinja2.contextfilter
-@library.render_with('addons/impala/sidebar_listing.html')
-def sidebar_listing(context, addon):
-    return new_context(**locals())
-
-
 def new_context(context, **kw):
     c = dict(context.items())
     c.update(kw)

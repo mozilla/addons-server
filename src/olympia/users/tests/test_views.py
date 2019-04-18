@@ -1,7 +1,6 @@
 from datetime import datetime, timedelta
 
 from django.conf import settings
-from django.utils.encoding import force_text
 
 from dateutil.parser import parse
 from pyquery import PyQuery as pq
@@ -9,9 +8,7 @@ from pyquery import PyQuery as pq
 from olympia import amo
 from olympia.amo.tests import TestCase
 from olympia.amo.urlresolvers import reverse
-from olympia.users import notifications as email
-from olympia.users.models import UserNotification, UserProfile
-from olympia.users.utils import UnsubscribeCode
+from olympia.users.models import UserProfile
 
 
 class UserViewBase(TestCase):
@@ -47,80 +44,6 @@ class TestLogin(UserViewBase):
         r = self.client.get(reverse('apps.appversions'))
         assert r.status_code == 200
         assert pq(r.content)('#aux-nav li.logout').length == 1
-
-
-class TestUnsubscribe(UserViewBase):
-    fixtures = ['base/users']
-
-    def setUp(self):
-        super(TestUnsubscribe, self).setUp()
-        self.user = UserProfile.objects.get(email='reviewer@mozilla.com')
-
-    def test_correct_url_update_notification(self):
-        # Make sure the user is subscribed
-        perm_setting = email.NOTIFICATIONS_COMBINED[0]
-        un = UserNotification.objects.create(
-            notification_id=perm_setting.id, user=self.user, enabled=True)
-
-        # Create a URL
-        token, hash = UnsubscribeCode.create(self.user.email)
-        url = reverse(
-            'users.unsubscribe', args=[
-                force_text(token), hash, perm_setting.short])
-
-        # Load the URL
-        r = self.client.get(url)
-        doc = pq(r.content)
-
-        # Check that it was successful
-        assert doc('#unsubscribe-success').length
-        assert doc('#standalone').length
-        assert doc('#standalone ul li').length == 1
-
-        # Make sure the user is unsubscribed
-        un = UserNotification.objects.filter(
-            notification_id=perm_setting.id, user=self.user)
-        assert un.count() == 1
-        assert not un.all()[0].enabled
-
-    def test_correct_url_new_notification(self):
-        # Make sure the user is subscribed
-        assert not UserNotification.objects.count()
-
-        # Create a URL
-        perm_setting = email.NOTIFICATIONS_COMBINED[0]
-        token, hash = UnsubscribeCode.create(self.user.email)
-        url = reverse(
-            'users.unsubscribe', args=[
-                force_text(token), hash, perm_setting.short])
-
-        # Load the URL
-        r = self.client.get(url)
-        doc = pq(r.content)
-
-        # Check that it was successful
-        assert doc('#unsubscribe-success').length
-        assert doc('#standalone').length
-        assert doc('#standalone ul li').length == 1
-
-        # Make sure the user is unsubscribed
-        un = UserNotification.objects.filter(
-            notification_id=perm_setting.id, user=self.user)
-        assert un.count() == 1
-        assert not un.all()[0].enabled
-
-    def test_wrong_url(self):
-        perm_setting = email.NOTIFICATIONS_COMBINED[0]
-        token, hash = UnsubscribeCode.create(self.user.email)
-        hash = hash[::-1]  # Reverse the hash, so it's wrong
-
-        url = reverse(
-            'users.unsubscribe', args=[
-                force_text(token), hash, perm_setting.short])
-        r = self.client.get(url)
-        doc = pq(r.content)
-
-        assert doc('#unsubscribe-fail').length == 1
 
 
 class TestSessionLength(UserViewBase):
