@@ -64,9 +64,6 @@ class AbuseReport(ModelBase):
     reporter = models.ForeignKey(
         UserProfile, null=True, blank=True, related_name='abuse_reported',
         on_delete=models.SET_NULL)
-    # ip_address should be removed in a future release once we've migrated
-    # existing reports in the database to 'country'.
-    ip_address = models.CharField(max_length=255, default=None, null=True)
     country_code = models.CharField(max_length=2, default=None, null=True)
     # An abuse report can be for an addon or a user.
     # If user is non-null then both addon and guid should be null.
@@ -171,17 +168,3 @@ class AbuseReport(ModelBase):
     def __str__(self):
         name = self.target.name if self.target else self.guid
         return u'[%s] Abuse Report for %s' % (self.type, name)
-
-
-def send_abuse_report(request, obj, message):
-    # Only used by legacy frontend
-    country_code = AbuseReport.lookup_country_code_from_ip(
-        request.META.get('REMOTE_ADDR'))
-    report = AbuseReport(ip_address=country_code, message=message)
-    if request.user.is_authenticated:
-        report.reporter = request.user
-    if isinstance(obj, Addon):
-        report.addon = obj
-    elif isinstance(obj, UserProfile):
-        report.user = obj
-    report.save()

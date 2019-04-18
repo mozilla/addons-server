@@ -28,7 +28,6 @@ class AddonAbuseViewSetTestBase(object):
 
     def check_report(self, report, text):
         assert six.text_type(report) == text
-        assert report.ip_address is None
         assert report.country_code == 'ZZ'
         assert mail.outbox[0].subject == text
         self.check_reporter(report)
