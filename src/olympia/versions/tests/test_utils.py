@@ -216,7 +216,8 @@ class TestNew69ThemeProperties(AppVersionsMixin, TestCase):
     def test_new_theme_version_with_69_properties(self):
         core.set_user(user_factory())
 
-        addon = addon_factory(version_kw={'version': '1.0'})
+        addon = addon_factory(
+            type=amo.ADDON_STATICTHEME, version_kw={'version': '1.0'})
         old_version = addon.current_version
         old_file_path = old_version.all_files[0].current_file_path
         amo.storage_utils.copy_stored_file(self.file_obj_dep, old_file_path)

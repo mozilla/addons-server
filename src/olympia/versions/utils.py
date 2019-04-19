@@ -217,7 +217,7 @@ def new_theme_version_with_69_properties(old_version):
     timer.log_interval('1.build_xpi')
 
     # Create addon + version
-    parsed_data = parse_addon(upload, user=author)
+    parsed_data = parse_addon(upload, addon=old_version.addon, user=author)
     timer.log_interval('2.parse_addon')
 
     version = Version.from_upload(
