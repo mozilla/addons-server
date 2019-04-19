@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-17 17:03+0000\n"
+"PO-Revision-Date: 2019-04-19 07:44+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1627,9 +1627,8 @@ msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్
 msgid "Image dimensions must be in the ratio 4:3."
 msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
 
-#, fuzzy
 msgid "Icon must be at least {0} pixels wide and tall."
-msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, {1} పిక్సెళ్ళ పొడవు ఉండాలి."
+msgstr "ప్రతీకం ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, ఎత్తు ఉండాలి."
 
 msgid "Icon must be square (same width and height)."
 msgstr ""
@@ -2266,13 +2265,11 @@ msgstr "ఈ పొడగింతని తొలగించండి."
 msgid "Delete"
 msgstr "తొలగించు"
 
-#, fuzzy
 msgid "Edit details on this add-on's product page"
-msgstr "ఈ అలంకారాని యొక్క జాబితా గురించి వివరాలను సవరించండి."
+msgstr ""
 
-#, fuzzy
 msgid "Upload a new version of this add-on"
-msgstr "ఈ పొడిగింత యొక్క అన్ని సమీక్షలను చూడండి"
+msgstr ""
 
 msgid "New Version"
 msgstr "కొత్త వెర్షన్"
@@ -2289,20 +2286,17 @@ msgstr "స్థితి మరియు వెర్షన్లు నిర
 msgid "View Recent Changes"
 msgstr "ఇటీవలి నవీకరణలను దర్శించు"
 
-#, fuzzy
 msgid "Edit details on this theme's product page"
-msgstr "ఈ అలంకారాని యొక్క జాబితా గురించి వివరాలను సవరించండి."
+msgstr ""
 
-#, fuzzy
 msgid "View the popularity of this theme over time"
-msgstr "కాలక్రమేణా ఈ అలంకారానికి యొక్క జనాదరణను వీక్షించండి."
+msgstr "ఈ అలంకారపు జనాదరణను కాలక్రమంలో చూడండి"
 
 msgid "View Statistics"
 msgstr "గణాంకాలు వీక్షించు"
 
-#, fuzzy
 msgid "Change the owner of this theme"
-msgstr "ఈ అంలంకారపు యజమానిని మార్చండి."
+msgstr "ఈ అలంకారపు యజమానిని మార్చండి"
 
 msgid "Transfer Ownership"
 msgstr "యాజమాన్యాన్ని బదిలీ చేయండి"
@@ -2739,7 +2733,7 @@ msgid "Listed Review Page"
 msgstr "సమీక్ష పుట జాబితా చేయబడింది"
 
 msgid "Unlisted Review Page"
-msgstr ""
+msgstr "చూపించని సమీక్షా పేజీ"
 
 msgid "Admin Manage"
 msgstr "నిర్వాహక నిర్వహించండం"
@@ -2940,7 +2934,7 @@ msgid "Submit Your First Add-on"
 msgstr ""
 
 msgid "Submit Your First Theme"
-msgstr ""
+msgstr "మీ మొదటి అలంకారాన్ని సమర్పించండి"
 
 msgid "Add-on Developer Hub"
 msgstr ""
@@ -4597,7 +4591,7 @@ msgid "File Viewer :: Reviewer tools"
 msgstr "ఫైల్ వ్యూయర్ :: సమీక్షకుల పనిముట్లు"
 
 msgid "Validation failed:"
-msgstr ""
+msgstr "తనిఖీ విఫలమైంది:"
 
 msgid "File content not supported for syntax highlighting"
 msgstr ""
@@ -4616,7 +4610,7 @@ msgid "Add-on file being processed, please wait."
 msgstr ""
 
 msgid "Fetching validation results..."
-msgstr ""
+msgstr "తనిఖీ ఫలితాలను పొందుతోంది..."
 
 msgid "Files:"
 msgstr "ఫైళ్లు:"
@@ -4658,7 +4652,7 @@ msgid "Wrap or unwrap text"
 msgstr ""
 
 msgid "No files in the uploaded file."
-msgstr ""
+msgstr "ఎక్కించిన ఫైలులో ఫైళ్ళు ఏమీ లేవు."
 
 msgid "Fetching file."
 msgstr ""
@@ -5379,9 +5373,8 @@ msgstr ""
 msgid "Add-on Information for {0}"
 msgstr "పొడిగింత సమాచారం కోసం {0}"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "పొడగింత"
+msgstr "పొడగింత ID"
 
 msgid "Internal AMO ID"
 msgstr ""
