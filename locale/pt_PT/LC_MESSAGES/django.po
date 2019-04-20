@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-11 15:39+0000\n"
-"Last-Translator: Cláudio Esperança <cesperanc@gmail.com>\n"
+"PO-Revision-Date: 2019-04-20 12:50+0000\n"
+"Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
 "MIME-Version: 1.0\n"
@@ -2307,10 +2307,10 @@ msgid "Top"
 msgstr "Topo"
 
 msgid "Delete Theme"
-msgstr "Eliminar tema"
+msgstr "Apagar tema"
 
 msgid "Delete Add-on"
-msgstr "Eliminar extra"
+msgstr "Apagar extra"
 
 msgid "Deleting your theme will permanently remove it from the site."
 msgstr "Eliminar o seu tema irá removê-lo permanentemente do site."
@@ -2420,7 +2420,7 @@ msgid "Name and Summary:"
 msgstr "Nome e sumário:"
 
 msgid "required"
-msgstr "necessário"
+msgstr "requerido"
 
 #, python-format
 msgid ""
@@ -2669,7 +2669,7 @@ msgid "Sign Add-on"
 msgstr "Assinar extra"
 
 msgid "Theme generate"
-msgstr "Tema gerar"
+msgstr "Gerar tema"
 
 msgid "Theme generator"
 msgstr "Gerador de temas"
@@ -2688,7 +2688,7 @@ msgid "Recommended height: 200 pixels"
 msgstr "Altura recomendada: 200 pixeis"
 
 msgid "6.9MB max"
-msgstr "6.9MB máx"
+msgstr "6.9MB máx."
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
 msgstr "PNG, JPG, APNG, SVG ou GIF (sem animações)"
@@ -2816,7 +2816,7 @@ msgstr "Esta é a versão não listada carregada mais recentemente"
 
 # 90%
 msgid "Upload New Version"
-msgstr "Carregar Versão Nova"
+msgstr "Carregar nova versão"
 
 msgid "View All"
 msgstr "Ver todas"
@@ -2944,7 +2944,7 @@ msgid "Get Your Add-on Featured"
 msgstr "Ter o seu extra em destaque"
 
 msgid "\"Get The Add-on\" button"
-msgstr "Botão \"Get The Add-on\""
+msgstr "Botão \"Obter Extra\""
 
 msgid "Legal"
 msgstr "Informação legal"
@@ -4907,10 +4907,10 @@ msgstr "Diretrizes de análises"
 
 # 75%
 msgid "Sections"
-msgstr "Seções"
+msgstr "Secções"
 
 msgid "Some tips for writing a great review"
-msgstr "Algumas dicas para escrever uma excelente análise"
+msgstr "Algumas dicas para escrever uma análise excelente"
 
 msgid "Frequently Asked Questions about Reviews"
 msgstr "Questões frequentemente colocadas acerca das análises"
@@ -4944,7 +4944,7 @@ msgid "Was it useful?"
 msgstr "Foi útil?"
 
 msgid "Was it easy to use?"
-msgstr "Foi fácil de usar?"
+msgstr "Foi fácil de utilizar?"
 
 msgid "Will you continue to use this add-on?"
 msgstr "Continuará a utilizar este extra?"
@@ -6133,7 +6133,7 @@ msgid "See more platforms&hellip;"
 msgstr "Ver mais plataformas&hellip;"
 
 msgid "Download sources by Date"
-msgstr "Fonte das transferências por data"
+msgstr "Fontes de transferência por data"
 
 msgid "About tracking external sources..."
 msgstr "Acerca da monitorização de fontes externas..."
