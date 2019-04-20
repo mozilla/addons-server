@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-08 22:43+0000\n"
+"PO-Revision-Date: 2019-04-20 13:52+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -921,57 +921,67 @@ msgstr "Εμφάνιση"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων που τροποποιούν την εμφάνιση των ιστοσελίδων και του προγράμματος περιήγησης του Firefox. Αυτή η κατηγορία περιλαμβάνει επεκτάσεις για σκοτεινά θέματα, διαχείριση καρτελών και "
+"πολλά άλλα."
 
 msgid "Bookmarks"
 msgstr "Σελιδοδείκτες"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων που βελτιώνουν τους σελιδοδείκτες με προστασία κωδικού πρόσβασης, αναζήτηση διπλότυπων, εύρεση κατεστραμμένων σελιδοδεικτών και πολλά άλλα."
 
 msgid "Download Management"
 msgstr "Διαχείριση λήψεων"
 
 msgid "Download Firefox extensions that can help download web, music and video content. You can also find extensions to manage downloads, share files, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox που μπορούν να σάς βοηθήσουν να κάνετε λήψη περιεχομένου ιστού, μουσικής και βίντεο. Μπορείτε επίσης να βρείτε επεκτάσεις για διαχείριση λήψεων, κοινή χρήση αρχείων"
+" και πολλά άλλα."
 
 msgid "Feeds, News & Blogging"
 msgstr "Ροές, ειδήσεις & ιστολόγια"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox που απομακρύνουν τα άχρηστα στοιχεία για να ενημερώνεστε στα κοινωνικά δίκτυα, τα ιστολόγια και τις ροές RSS. Βρείτε επίσης επεκτάσεις που ξεκουράζουν τα μάτια σας "
+"και πολλά άλλα."
 
 msgid "Games & Entertainment"
 msgstr "Παιχνίδια & ψυχαγωγία"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox για ενίσχυση της ψυχαγωγικής σας εμπειρίας. Αυτή η κατηγορία περιέχει επεκτάσεις που μπορούν να βελτιώσουν το gaming, την αναπαραγωγή βίντεο και πολλά άλλα."
 
 msgid "Language Support"
 msgstr "Υποστήριξη γλωσσών"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν υποστήριξη γλωσσών, όπως γραμματικό έλεγχο, αναζήτηση λέξεων σε λεξικό, μετάφραση κειμένου, μηχανισμό ανάγνωσης κειμένου και πολλά άλλα."
 
 msgid "Photos, Music & Videos"
 msgstr "Εικόνες & πολυμέσα"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox που βελτιώνουν τις φωτογραφίες, τη μουσική και τα βίντεο. Οι επεκτάσεις σε αυτή την κατηγορία τροποποιούν τον ήχο και τα βίντεο, αντιστρέφουν την αναζήτηση εικόνων "
+"και πολλά άλλα."
 
 msgid "Privacy & Security"
 msgstr "Απόρρητο & ασφάλεια"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox για να περιηγείστε με ασφάλεια και απόρρητο. Αυτή η κατηγορία περιέχει επεκτάσεις για φραγή ενοχλητικών διαφημίσεων, αποκλεισμό καταγραφής, διαχείριση "
+"ανακατευθύνσεων και πολλά άλλα."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox για αναζήτηση και εύρεση. Αυτή η κατηγορία περιέχει επεκτάσεις για επισήμανση και αναζήτηση κειμένου, εύρεση διευθύνσεων IP/τομέων και πολλά άλλα."
 
 msgid "Shopping"
 msgstr "Αγορές"
 
 msgid "Download Firefox extensions that can enhance your online shopping experience with coupon finders, deal finders, review analyzers, more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox που μπορούν να βελτιώσουν την εμπειρία των διαδικτυακών σας αγορών με εύρεση κουπονιών και προσφορών, ανάλυση κριτικών και πολλά άλλα."
 
 msgid "Social & Communication"
 msgstr "Κοινωνικά δίκτυα & επικοινωνία"
