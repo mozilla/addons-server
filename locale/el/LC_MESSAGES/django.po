@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-20 13:52+0000\n"
+"PO-Revision-Date: 2019-04-20 14:10+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -988,73 +988,85 @@ msgstr "Κοινωνικά δίκτυα & επικοινωνία"
 
 msgid "Download Firefox extensions to enhance social media and instant messaging. This category includes improved tab notifications, video downloaders, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox για βελτίωση των κοινωνικών δικτύων και της άμεσης ανταλλαγής μηνυμάτων. Αυτή η κατηγορία περιέχει βελτιωμένες ειδοποιήσεις καρτελών, επεκτάσεις λήψης βίντεο και "
+"πολλά άλλα."
 
 msgid "Tabs"
 msgstr "Καρτέλες"
 
 msgid "Download Firefox extension to customize tabs and the new tab page. Discover extensions that can control tabs, change the way you interact with them, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox για προσαρμογή των καρτελών και της σελίδας νέας καρτέλας. Ανακαλύψτε επεκτάσεις που μπορούν να ελέγξουν τις καρτέλες, να αλλάξουν τον τρόπο που αλληλεπιδράτε με "
+"αυτές και πολλά άλλα."
 
 msgid "Web Development"
-msgstr "Ανάπτυξη εφαρμογών ιστού"
+msgstr "Προγραμματισμός ιστού"
 
 msgid "Download Firefox extensions that feature web development tools. This category includes extensions for GitHub, user agent switching, cookie management, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox που προσφέρουν εργαλεία προγραμματισμού ιστού. Αυτή η κατηγορία περιέχει επεκτάσεις για το GitHub, την εναλλαγή συσκευής χρήστη, τη διαχείριση cookies και πολλά "
+"άλλα."
 
 #. Review points sources other than add-ons and themes.
 msgid "Other"
-msgstr "Άλλο"
+msgstr "Άλλα"
 
 msgid "Download Firefox extensions that can be unpredictable and creative, yet useful for those odd tasks."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox που μπορεί να είναι απρόβλεπτες και δημιουργικές, αλλά και χρήσιμες για περίεργες εργασίες."
 
 msgid "Device Features & Location"
 msgstr "Λειτουργίες συσκευής & τοποθεσία"
 
 msgid "Download extensions to enhance Firefox for Android. Perform quick searches, free up system resources, take notes, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων για βελτίωση του Firefox για Android. Εκτελέστε γρήγορες αναζητήσεις, απελευθερώστε πόρους συστήματος, δημιουργήστε σημειώσεις και πολλά άλλα."
 
 msgid "Experimental"
 msgstr "Πειραματικά"
 
 msgid "Download Firefox extensions that are regularly updated and ready for public testing. Your feedback informs developers on changes to make in upcoming versions."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox που ενημερώνονται συχνά και είναι έτοιμες για δημόσια δοκιμή. Τα σχόλιά σας ενημερώνουν τους προγραμματιστές έτσι, ώστε να κάνουν αλλαγές στις επόμενες εκδόσεις."
 
 msgid "Performance"
 msgstr "Επιδόσεις"
 
 msgid "Download extensions that give Firefox a performance boost. Find extensions that help you be more productive and efficient by blocking annoying ads and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων που ενισχύουν τις επιδόσεις του Firefox. Βρείτε επεκτάσεις που σάς βοηθούν να είστε πιο παραγωγικοί και αποτελεσματικοί, αποκλείοντας ενοχλητικές διαφημίσεις και πολλά άλλα."
 
 msgid "Photos & Media"
 msgstr "Εικόνες & πολυμέσα"
 
 msgid "Download Firefox extensions to enhance photos and media. This category includes extensions to reverse search images, capture full page screenshots, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox που βελτιώνουν τις φωτογραφίες και τα πολυμέσα. Αυτή η κατηγορία περιέχει επεκτάσεις για αντίστροφη αναζήτηση εικόνων, λήψη στιγμιότυπων για ολόκληρες σελίδες και "
+"πολλά άλλα."
 
 msgid "Security & Privacy"
 msgstr "Ασφάλεια & απόρρητο"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
 msgstr ""
+"Κάντε λήψη επεκτάσεων του Firefox για ασφαλή και ιδιωτική περιήγηση. Ανακαλύψτε επεκτάσεις που μπορούν να σταματήσουν ύπουλους ιχνηλάτες διαφημίσεων, να απαλείψουν εύκολα το ιστορικό περιήγησης και "
+"πολλά άλλα."
 
 msgid "Social Networking"
 msgstr "Κοινωνική δικτύωση"
 
 msgid "Download Firefox extensions to enhance your experience on popular social networking websites such as YouTube, GitHub, Reddit, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox για βελτίωση της εμπειρίας σας σε δημοφιλείς ιστοσελίδες κοινωνικής δικτύωσης, όπως το YouTube, το GitHub, το Reddit και πολλά άλλα."
 
 msgid "Sports & Games"
 msgstr "Αθλητισμός & παιχνίδια"
 
 msgid "Download Firefox extensions to give your entertainment experience a boost with live stream enhancers, sports updates, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων του Firefox που ενισχύουν την ψυχαγωγική σάς εμπειρία με βελτιώσεις ζωντανών ροών, αθλητικές ενημερώσεις και πολλά άλλα."
 
 msgid "User Interface"
 msgstr "Περιβάλλον χρήστη"
 
 msgid "Download user interface Firefox extensions to alter web pages for easier reading, searching, browsing, and more."
-msgstr ""
+msgstr "Κάντε λήψη επεκτάσεων περιβάλλοντος χρήσης του Firefox για αλλαγή ιστοσελίδων για ευκολότερη ανάγνωση, αναζήτηση, περιήγηση και πολλά άλλα."
 
 msgid "Animals"
 msgstr "Ζώα"
