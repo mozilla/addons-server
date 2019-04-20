@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-20 14:10+0000\n"
+"PO-Revision-Date: 2019-04-20 14:32+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -1099,49 +1099,60 @@ msgid "Abstract"
 msgstr "Αφηρημένα"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "Κάντε λήψη καλλιτεχνικών και εννοιολογικών θεμάτων για το Firefox. Αυτή η κατηγορία περιέχει πολύχρωμες παλέτες και σχήματα, φανταστικά τοπία, παιχνιδιάρικες γάτες, ψυχεδελικά λουλούδια."
 
 msgid "Causes"
-msgstr "Εκδηλώσεις"
+msgstr "Πολιτισμός"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που σχετίζονται με συγκεκριμένα ενδιαφέροντα και θέματα. Αυτή η κατηγορία περιέχει θέματα αθλητισμού, αργιών, φιλανθρωπικών σκοπών, εθνικοτήτων και πολλά άλλα."
 
 msgid "Fashion"
 msgstr "Μόδα"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Κάντε λήψη θεμάτων για το Firefox, που εκφράζουν όλα τα είδη του στυλ — μοτίβα, φλοράλ, υφές, μοντέλα και πολλά άλλα."
 
 msgid "Film and TV"
 msgstr "Κινηματογράφος & τηλεόραση"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που σχετίζονται με ταινίες και τηλεόραση. Αυτή η κατηγορία περιέχει anime, όπως το Uchiha Madara, ταινίες, όπως The Matrix, τηλεοπτικές εκπομπές (Game of Thrones) "
+"και πολλά άλλα."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox με το θέμα του προγράμματος περιήγησης Firefox. Αυτή η κατηγορία περιέχει χρωματιστές, ποικίλες απεικονίσεις του λογότυπου του Firefox, καθώς και πιο γενικά θέματα "
+"με αλεπούδες."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox με την ιαπωνική μασκότ του προγράμματος περιήγησης. Αυτή η κατηγορία περιέχει θέματα που απεικονίζουν τη χαριτωμένη φιγούρα του Foxkeh σε διάφορες πόζες και τοπία."
 
 msgid "Holiday"
 msgstr "Γιορτές"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που αφορούν τις γιορτές. Αυτή η κατηγορία περιέχει θέματα για τα Χριστούγεννα, τις Απόκριες, την Ημέρα των Ευχαριστιών, την Ημέρα του Αγ. Πατρικίου, το Πάσχα, την "
+"4η Ιουλίου και πολλά άλλα."
 
 msgid "Music"
 msgstr "Μουσική"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που αφορούν μουσικά ενδιαφέροντα και καλλιτέχνες. Αυτή η κατηγορία περιέχει θέματα για δημοφιλή συγκροτήματα, όπως οι Nirvana και οι BTS, μουσικά όργανα, μουσικά "
+"βίντεο και πολλά άλλα."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που αφορούν ζώα και φυσικά τοπία. Αυτή η κατηγορία περιέχει θέματα για λουλούδια, ηλιοβασιλέματα, αλεπούδες, εποχές, πλανήτες, γατάκια, πουλιά και πολλά άλλα."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Κάντε λήψη ενδιαφερόντων, δημιουργικών και μοναδικών θεμάτων του Firefox."
@@ -1151,12 +1162,15 @@ msgstr "Τοπία"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που απεικονίζουν το περιβάλλον και το φυσικό κόσμο. Αυτή η κατηγορία περιέχει θέματα με ηλιοβασιλέματα, παραλίες, εικονογραφήσεις, ορίζοντες πόλεων και πολλά άλλα."
 
 msgid "Seasonal"
 msgstr "Εποχικά"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
 msgstr ""
+"Κάντε λήψη θεμάτων για το Firefox, που σχετίζονται με όλες τις εποχές — φθινόπωρο, χειμώνας, άνοιξη και καλοκαίρι. Φθινοπωρινά φύλλα, χιονισμένες κορυφές βουνών, ηλιόλουστες καλοκαιρινές μέρες και "
+"ανοιξιάτικα λουλούδια."
 
 msgid "Solid"
 msgstr "Συμπαγή"
@@ -1171,7 +1185,7 @@ msgid "Websites"
 msgstr "Ιστοσελίδες"
 
 msgid "Download Firefox themes that capture the essence of the web—captivating, unusual, and distinctive."
-msgstr ""
+msgstr "Κάντε λήψη θεμάτων για το Firefox, που αποτυπώνουν την ουσία του διαδικτύου — μαγευτικό, ασυνήθιστο και ιδιαίτερο."
 
 msgid "General"
 msgstr "Γενικά"
