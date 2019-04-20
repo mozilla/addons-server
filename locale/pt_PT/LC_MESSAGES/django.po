@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-20 12:50+0000\n"
+"PO-Revision-Date: 2019-04-20 12:55+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -2928,7 +2928,7 @@ msgid "Support"
 msgstr "Suporte"
 
 msgid "Report Bug"
-msgstr "Reportar um bug"
+msgstr "Reportar bug"
 
 msgid "Site Status"
 msgstr "Estado do site"
@@ -3359,7 +3359,7 @@ msgstr "Pare a monitorização do Facebook {start_sub_heading}com {addon_name}{e
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr "Isole a sua identidade do Facebook num “contentor” separado que faz mais difícil com que o Facebook monitorize os seus movimentos pela web."
+msgstr "Isole a sua identidade do Facebook num “recipiente” separado que torna mais difícil com que o Facebook monitorize na web."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3726,7 +3726,7 @@ msgstr "Capture a web {start_sub_heading}com {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr "Tire capturas de ecrã a páginas completas, faça edições e partilhe."
+msgstr "Tire capturas de ecrã a páginas web, faça edições e partilhe."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
@@ -4938,7 +4938,7 @@ msgid "Did the add-on work as you expected it to?"
 msgstr "O extra funcionou como esperava?"
 
 msgid "What features did you like or dislike?"
-msgstr "Que funcionalidades gostou ou desgostou?"
+msgstr "Que funcionalidades gostou ou não gostou?"
 
 msgid "Was it useful?"
 msgstr "Foi útil?"
@@ -4947,7 +4947,7 @@ msgid "Was it easy to use?"
 msgstr "Foi fácil de utilizar?"
 
 msgid "Will you continue to use this add-on?"
-msgstr "Continuará a utilizar este extra?"
+msgstr "Vai continuar a utilizar este extra?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr "Leia novamente a sua análise antes de a enviar para minimizar erros ortográficos."
@@ -5564,7 +5564,7 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Nada a mostrar aqui! O programador não incluiu quaisquer detalhes."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr "Regressar ao painel de controlo das ferramentas do revisor"
+msgstr "Voltar ao painel de controlo das ferramentas do revisor"
 
 msgid "Reviewer Leaderboard"
 msgstr "Tabela de classificações dos revisores"
@@ -5689,7 +5689,7 @@ msgid "All reviews have been moderated. Good work!"
 msgstr "Todas as revisões foram moderadas. Bom trabalho!"
 
 msgid "There are currently no add-ons of this type to review."
-msgstr "De momento não existem extras deste tipo para rever"
+msgstr "Não existem atualmente extras deste tipo para rever."
 
 msgid "Helpful Links:"
 msgstr "Ligações de ajuda:"
@@ -6065,8 +6065,8 @@ msgstr "Personalizar..."
 
 msgid "Statistics processing is currently disabled, so recent data is unavailable. The statistics are still being collected and this page will be updated soon with the missing data."
 msgstr ""
-"O processamento de estatísticas está, neste momento, desativado, pelo que não existem dados recentes disponíveis. As estatísticas continuam a ser recolhidas e esta página será atualizada em breve "
-"com os dados em falta."
+"O processamento de estatísticas está atualmente desativado, por isso não estão disponíveis dados recentes. As estatísticas ainda continuam a ser recolhidas e esta página irá ser atualizada "
+"brevemente com os dados em falta."
 
 msgid "Loading the latest data&hellip;"
 msgstr "A carregar os últimos dados&hellip;"
