@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-14 02:58+0000\n"
+"PO-Revision-Date: 2019-04-22 10:06+0000\n"
 "Last-Translator: Melo46 <melo@carmu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ia\n"
@@ -407,9 +407,8 @@ msgstr "Type errate pro un o plus claves in payload"
 msgid "Invalid JWT Token."
 msgstr "Jeton JWT non valide."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Archivo non valide o rupte."
+msgstr "Token o hash non valide."
 
 msgid "Email address not found."
 msgstr "Adresse de email non trovate."
@@ -4548,16 +4547,15 @@ msgstr "Cerca paginas web {start_sub_heading}con {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
-msgstr ""
+msgstr "Salva paginas complete, o solo portiones, como un singule file HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Captura le web {start_sub_heading}con {addon_name}{end_sub_heading}"
+msgstr "Evita le elementos superflue {start_sub_heading}co {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
-msgstr ""
+msgstr "Un extension intelligente pro examinar velocemente le conditiones ante que dar tu consenso."
 
 #, python-format
 msgid "File viewer is locked, extraction for %s could be in progress. Please try again in approximately 5 minutes."
@@ -4596,7 +4594,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Le version compatibile minus recente, “strict_min_version”, es le 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "“strict_min_version” {appver} incognite pro {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5295,7 +5293,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Analyse risco non disponibile."
 
 msgid "Is locked by a reviewer."
 msgstr "Es blocate per un revisor."
