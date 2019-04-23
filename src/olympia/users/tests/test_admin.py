@@ -188,11 +188,11 @@ class TestUserAdmin(TestCase):
         user_admin = UserAdmin(UserProfile, admin.site)
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
-        user_admin.get_actions(request) == []
+        assert list(user_admin.get_actions(request).keys()) == []
 
         request.user = user_factory()
         self.grant_permission(request.user, 'Users:Edit')
-        user_admin.get_actions(request) == ['ban_action']
+        assert list(user_admin.get_actions(request).keys()) == ['ban_action']
 
     def test_ban_action(self):
         another_user = user_factory()
