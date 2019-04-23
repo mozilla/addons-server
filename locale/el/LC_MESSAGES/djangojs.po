@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-07 14:50+0000\n"
+"PO-Revision-Date: 2019-04-23 19:36+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -437,19 +437,19 @@ msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
-msgstr "Λήψεις και Καθημερινοί Χρήστες, τελευταίες {0} ημέρες"
+msgstr "Λήψεις και καθημερινοί χρήστες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Downloads and Daily Users from {0} to {1}"
-msgstr "Λήψεις και Καθημερινοί Χρήστες από {0} ως {1}"
+msgstr "Λήψεις και καθημερινοί χρήστες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Installs and Daily Users, last {0} days"
-msgstr "Λήψεις και Καθημερινοί Χρήστες, τελευταίες {0} ημέρες"
+msgstr "Λήψεις και καθημερινοί χρήστες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Installs and Daily Users from {0} to {1}"
-msgstr "Εγκαταστάσεις και Καθημερινοί Χρήστες από {0} ως {1}"
+msgstr "Εγκαταστάσεις και καθημερινοί χρήστες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Downloads, last {0} days"
@@ -461,11 +461,11 @@ msgstr "Λήψεις από {0} ως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Daily Users, last {0} days"
-msgstr "Καθημερινοί Χρήστες, τελευταίες {0} ημέρες"
+msgstr "Καθημερινοί χρήστες, τελευταίες {0} ημέρες"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Daily Users from {0} to {1}"
-msgstr "Καθημερινοί Χρήστες από {0} ως {1}"
+msgstr "Καθημερινοί χρήστες από {0} ως {1}"
 
 #. L10n: {0} is an integer.
 msgid "Applications, last {0} days"
