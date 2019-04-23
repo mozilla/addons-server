@@ -279,6 +279,9 @@ JINJA_EXCLUDE_TEMPLATE_PATHS = (
 
     # Django specific templates
     r'^registration\/',
+
+    # Third-party apps using django templates
+    r'^rangefilter\/',
 )
 
 TEMPLATES = [
@@ -483,6 +486,7 @@ INSTALLED_APPS = (
     'waffle',
     'django_jinja',
     'puente',
+    'rangefilter',
 
     # Django contrib apps
     'django.contrib.admin',

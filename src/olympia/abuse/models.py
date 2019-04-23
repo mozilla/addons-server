@@ -3,19 +3,34 @@ from django.conf import settings
 from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
 from django.core.validators import validate_ipv46_address
 from django.db import models
-from django.utils import translation
 from django.utils.encoding import python_2_unicode_compatible
 
 import six
 
+from extended_choices import Choices
 from geoip2.errors import GeoIP2Error
 
 from olympia import amo
 from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.amo.models import ManagerBase, ModelBase
 from olympia.amo.utils import send_mail
 from olympia.api.utils import APIChoicesWithNone
 from olympia.users.models import UserProfile
+
+
+class AbuseReportManager(ManagerBase):
+    def __init__(self, include_deleted=False):
+        # DO NOT change the default value of include_deleted unless you've read
+        # through the comment just above the Addon managers
+        # declaration/instantiation and understand the consequences.
+        ManagerBase.__init__(self)
+        self.include_deleted = include_deleted
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        if not self.include_deleted:
+            qs = qs.exclude(state=self.model.STATES.DELETED)
+        return qs
 
 
 @python_2_unicode_compatible
@@ -59,6 +74,12 @@ class AbuseReport(ModelBase):
         ('MENU', 2, 'Menu'),
         ('TOOLBAR_CONTEXT_MENU', 3, 'Toolbar context menu'),
     )
+    STATES = Choices(
+        ('UNTRIAGED', 1, 'Untriaged'),
+        ('VALID', 2, 'Valid'),
+        ('SUSPICIOUS', 3, 'Suspicious'),
+        ('DELETED', 4, 'Deleted'),
+    )
 
     # NULL if the reporter is anonymous.
     reporter = models.ForeignKey(
@@ -78,6 +99,9 @@ class AbuseReport(ModelBase):
         UserProfile, null=True, related_name='abuse_reports',
         on_delete=models.SET_NULL)
     message = models.TextField()
+
+    state = models.PositiveSmallIntegerField(
+        default=STATES.UNTRIAGED, choices=STATES.choices)
 
     # Extra optional fields for more information, giving some context that is
     # meant to be extracted automatically by the client (i.e. Firefox) and
@@ -116,6 +140,9 @@ class AbuseReport(ModelBase):
         default=None, choices=REPORT_ENTRY_POINTS.choices, blank=True,
         null=True)
 
+    unfiltered = AbuseReportManager(include_deleted=True)
+    objects = AbuseReportManager()
+
     class Meta:
         db_table = 'abuse_reports'
 
@@ -139,6 +166,12 @@ class AbuseReport(ModelBase):
         if creation:
             self.send()
 
+    def delete(self, *args, **kwargs):
+        # AbuseReports are soft-deleted. Note that we keep relations, because
+        # the only possible relations are to users and add-ons, which are also
+        # soft-deleted.
+        return self.update(state=self.STATES.DELETED)
+
     @classmethod
     def lookup_country_code_from_ip(cls, ip):
         try:
@@ -160,10 +193,7 @@ class AbuseReport(ModelBase):
 
     @property
     def type(self):
-        with translation.override(settings.LANGUAGE_CODE):
-            type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type])
-                     if self.addon else 'User' if self.user else 'Addon')
-        return type_
+        return 'User' if self.user else 'Addon'
 
     def __str__(self):
         name = self.target.name if self.target else self.guid

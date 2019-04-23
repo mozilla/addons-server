@@ -44,7 +44,7 @@ class AddonAbuseViewSetTestBase(object):
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
         self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+                          u'[Addon] Abuse Report for %s' % addon.name)
 
     def test_report_addon_by_slug(self):
         addon = addon_factory()
@@ -58,7 +58,7 @@ class AddonAbuseViewSetTestBase(object):
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
         self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+                          u'[Addon] Abuse Report for %s' % addon.name)
 
     def test_report_addon_by_guid(self):
         addon = addon_factory(guid='@badman')
@@ -72,7 +72,7 @@ class AddonAbuseViewSetTestBase(object):
         report = AbuseReport.objects.get(addon_id=addon.id)
         assert report.guid == addon.guid
         self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+                          u'[Addon] Abuse Report for %s' % addon.name)
 
     def test_report_addon_guid_not_on_amo(self):
         guid = '@mysteryman'
@@ -105,7 +105,7 @@ class AddonAbuseViewSetTestBase(object):
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
         self.check_report(report,
-                          u'[Extension] Abuse Report for %s' % addon.name)
+                          u'[Addon] Abuse Report for %s' % addon.name)
 
     def test_no_addon_fails(self):
         response = self.client.post(
