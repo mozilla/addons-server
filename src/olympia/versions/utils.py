@@ -37,7 +37,8 @@ log = logger.getLogger('z.versions.utils')
 def get_next_version_number(addon):
     if not addon:
         return '1.0'
-    last_version = Version.unfiltered.filter(addon=addon).last()
+    last_version = (
+        Version.unfiltered.filter(addon=addon).order_by('version_int').last())
     version_int_parts = compare.dict_from_int(last_version.version_int)
 
     version_counter = 1
