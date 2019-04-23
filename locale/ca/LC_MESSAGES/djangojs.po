@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2018-10-02 15:44+0000\n"
+"PO-Revision-Date: 2019-04-23 15:24+0000\n"
 "Last-Translator: Jordi Serratosa <jordis@softcatala.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ca\n"
@@ -349,10 +349,10 @@ msgid "Meet the Developer"
 msgstr ""
 
 msgid "User Profile"
-msgstr ""
+msgstr "Perfil d’usuari"
 
 msgid "Version History"
-msgstr ""
+msgstr "Historial de versions"
 
 msgid "Sharing"
 msgstr "Compartint"
@@ -427,7 +427,7 @@ msgid "Fennec"
 msgstr "Fennec"
 
 msgid "Android"
-msgstr ""
+msgstr "Android"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -712,18 +712,16 @@ msgid "Loading..."
 msgstr "S'està carregant..."
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> caràcter restant."
-msgstr[1] "<b>{0}</b> caràcters restants."
+msgstr[0] "<b>{0}</b> caràcter"
+msgstr[1] "<b>{0}</b> caràcters"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> caràcter restant."
-msgstr[1] "<b>{0}</b> caràcters restants."
+msgstr[0] "<b>{0}</b> caràcter restant"
+msgstr[1] "<b>{0}</b> caràcters restants"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Aquesta funció s'ha desactivat temporalment per a tasques de manteniment del lloc web. Torneu més tard."
@@ -786,16 +784,16 @@ msgid "Approved"
 msgstr ""
 
 msgid "No results found"
-msgstr ""
+msgstr "No s'ha trobat cap resultat"
 
 msgid "Theme"
-msgstr ""
+msgstr "Tema"
 
 msgid "Reviewer"
 msgstr ""
 
 msgid "Status"
-msgstr ""
+msgstr "Estat"
 
 msgid "All tests passed successfully."
 msgstr "S'han superat tots els tests amb èxit."
@@ -813,11 +811,10 @@ msgid "Warning"
 msgstr "Avís"
 
 msgid "{0} line {1} column {2}"
-msgstr ""
+msgstr "{0} línia {1} columna {2}"
 
-#, fuzzy
 msgid "{0} line {1}"
-msgstr "{0} de {1}"
+msgstr "{0} línia {1}"
 
 msgid "Add-on failed validation."
 msgstr "El complement no ha passat la validació."
