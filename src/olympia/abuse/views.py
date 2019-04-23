@@ -40,11 +40,16 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
         self.addon_object = self.get_addon_viewset().get_object()
         return self.addon_object
 
-    def get_guid(self):
-        # See if the addon input is guid-like, if so set guid.
+    def get_guid_and_addon(self):
+        data = {
+            'guid': None,
+            'addon': None,
+        }
+        # See if the addon input is guid-like first. It doesn't have to exist
+        # in our database.
         if self.get_addon_viewset().get_lookup_field(
                 self.kwargs['addon_pk']) == 'guid':
-            guid = self.kwargs['addon_pk']
+            data['guid'] = self.kwargs['addon_pk']
             try:
                 # But see if it's also in our database.
                 self.get_addon_object()
@@ -52,8 +57,15 @@ class AddonAbuseViewSet(CreateModelMixin, GenericViewSet):
                 # If it isn't, that's okay, we have a guid.  Setting
                 # addon_object=None here means get_addon_object won't raise 404
                 self.addon_object = None
-            return guid
-        return None
+        # At this point get_addon_object() will either return None because we
+        # set self.addon_object earlier, or find an add-on with its pk/slug,
+        # or raise a 404.
+        data['addon'] = self.get_addon_object()
+        if data['addon']:
+            # If we did find an add-on in database, regardless of how, make
+            # sure we always store the guid as well.
+            data['guid'] = data['addon'].guid
+        return data
 
 
 class UserAbuseViewSet(CreateModelMixin, GenericViewSet):

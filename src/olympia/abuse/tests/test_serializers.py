@@ -80,7 +80,10 @@ class TestAddonAbuseReportSerializer(TestCase):
         request = RequestFactory().get('/')
         request.user = AnonymousUser()
         view = Mock()
-        view.get_guid.return_value = '@someguid'
+        view.get_guid_and_addon.return_value = {
+            'guid': '@someguid',
+            'addon': None,
+        }
         view.get_addon_object.return_value = None
         extra_context = {
             'request': request,

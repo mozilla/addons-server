@@ -42,6 +42,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
+        assert report.guid == addon.guid
         self.check_report(report,
                           u'[Extension] Abuse Report for %s' % addon.name)
 
@@ -55,6 +56,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
+        assert report.guid == addon.guid
         self.check_report(report,
                           u'[Extension] Abuse Report for %s' % addon.name)
 
@@ -68,6 +70,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(addon_id=addon.id).exists()
         report = AbuseReport.objects.get(addon_id=addon.id)
+        assert report.guid == addon.guid
         self.check_report(report,
                           u'[Extension] Abuse Report for %s' % addon.name)
 
@@ -81,6 +84,7 @@ class AddonAbuseViewSetTestBase(object):
 
         assert AbuseReport.objects.filter(guid=guid).exists()
         report = AbuseReport.objects.get(guid=guid)
+        assert not report.addon
         self.check_report(report,
                           u'[Addon] Abuse Report for %s' % guid)
 

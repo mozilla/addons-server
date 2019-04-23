@@ -76,15 +76,9 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     def to_internal_value(self, data):
         self.validate_target(data, 'addon')
         view = self.context.get('view')
-        output = {
-            # get_guid() needs to be called first because get_addon_object()
-            # would otherwise 404 on add-ons that don't match an existing
-            # add-on in our database.
-            'guid': view.get_guid(),
-            'addon': view.get_addon_object(),
-        }
-        # Pop 'addon' before passing it to super(), we already have the
-        # output value.
+        output = view.get_guid_and_addon()
+        # Pop 'addon' from data before passing that data to super(), we already
+        # have it in the output value.
         data.pop('addon')
         output.update(
             super(AddonAbuseReportSerializer, self).to_internal_value(data)
