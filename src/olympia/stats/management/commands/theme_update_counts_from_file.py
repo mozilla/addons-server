@@ -98,7 +98,7 @@ class Command(BaseCommand):
         # that we care about. When looping, if we find an id that is not in
         # that set, we'll reject it.
         addons = set(Addon.objects.filter(type=amo.ADDON_PERSONA,
-                                          status=amo.STATUS_PUBLIC,
+                                          status=amo.STATUS_APPROVED,
                                           persona__isnull=False)
                                   .values_list('id', flat=True))
         # Preload a dict of persona to static theme ids that are migrated.

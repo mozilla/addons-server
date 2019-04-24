@@ -242,7 +242,7 @@ class TestAddonManager(TestCase):
         self.addon.update(disabled_by_user=True)
         # Now continue as normal.
         Addon.objects.filter(id=5299).update(disabled_by_user=True)
-        q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC)
+        q = Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED)
         assert len(q.all()) == 4
 
         # Pick one of the listed addons.
@@ -261,7 +261,7 @@ class TestAddonManager(TestCase):
         addon.status = amo.STATUS_NOMINATED
         addon.save()
         assert q.count() == 3
-        assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_PUBLIC,
+        assert Addon.objects.listed(amo.FIREFOX, amo.STATUS_APPROVED,
                                     amo.STATUS_NOMINATED).count() == 4
 
         # Can't find it without a file.
@@ -270,7 +270,7 @@ class TestAddonManager(TestCase):
 
     def test_public(self):
         for a in Addon.objects.public():
-            assert a.status == amo.STATUS_PUBLIC
+            assert a.status == amo.STATUS_APPROVED
 
     def test_valid(self):
         addon = Addon.objects.get(pk=5299)
@@ -758,7 +758,7 @@ class TestAddonModels(TestCase):
     def test_is_public(self):
         # Public add-on.
         addon = Addon.objects.get(pk=3615)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert addon.is_public()
 
         # Should be public by status, but since it's disabled add-on it's not.
@@ -1214,10 +1214,10 @@ class TestAddonModels(TestCase):
 
     def test_no_change_disabled_user(self):
         addon, version = self.setup_files(amo.STATUS_AWAITING_REVIEW)
-        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(status=amo.STATUS_APPROVED)
         addon.update(disabled_by_user=True)
         version.save()
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert addon.is_disabled
 
     def test_no_change_disabled(self):
@@ -1238,7 +1238,7 @@ class TestAddonModels(TestCase):
 
     def test_removing_public(self):
         addon, version = self.setup_files(amo.STATUS_AWAITING_REVIEW)
-        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(status=amo.STATUS_APPROVED)
         version.save()
         assert addon.status == amo.STATUS_NOMINATED
 
@@ -1273,7 +1273,7 @@ class TestAddonModels(TestCase):
         self.check_can_request_review(amo.STATUS_NOMINATED, False)
 
     def test_can_request_review_public(self):
-        self.check_can_request_review(amo.STATUS_PUBLIC, False)
+        self.check_can_request_review(amo.STATUS_APPROVED, False)
 
     def test_can_request_review_disabled(self):
         self.check_can_request_review(amo.STATUS_DISABLED, False)
@@ -1344,7 +1344,7 @@ class TestAddonModels(TestCase):
     @patch('olympia.files.models.File.hide_disabled_file')
     def test_admin_disabled_file_hidden(self, hide_mock):
         a = Addon.objects.get(id=3615)
-        a.status = amo.STATUS_PUBLIC
+        a.status = amo.STATUS_APPROVED
         a.save()
         assert not hide_mock.called
 
@@ -1653,7 +1653,7 @@ class TestAddonNomination(TestCase):
     def test_reviewed_addon_does_not_inherit_nomination(self):
         a = Addon.objects.get(id=3615)
         ver = 10
-        for st in (amo.STATUS_PUBLIC, amo.STATUS_NULL):
+        for st in (amo.STATUS_APPROVED, amo.STATUS_NULL):
             a.update(status=st)
             v = Version.objects.create(addon=a, version=str(ver))
             assert v.nomination is None
@@ -1700,7 +1700,7 @@ class TestAddonNomination(TestCase):
         addon, nomination = self.setup_nomination()
         # Switching it to a public status.
         version = Version.objects.create(addon=addon, version="0.1")
-        File.objects.create(status=amo.STATUS_PUBLIC, version=version)
+        File.objects.create(status=amo.STATUS_APPROVED, version=version)
         assert addon.versions.latest().nomination == nomination
         # Adding a new unreviewed version.
         version = Version.objects.create(addon=addon, version="0.2")
@@ -1719,7 +1719,7 @@ class TestAddonNomination(TestCase):
 
     def test_new_version_of_approved_addon_should_reset_nomination(self):
         addon, nomination = self.setup_nomination(
-            addon_status=amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+            addon_status=amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         # Now create a new version with an attached file, and update status.
         self.check_nomination_reset_with_new_version(addon, nomination)
 
@@ -1768,7 +1768,7 @@ class TestAddonDelete(TestCase):
 
     def test_review_delete(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                     status=amo.STATUS_PUBLIC)
+                                     status=amo.STATUS_APPROVED)
 
         rating = Rating.objects.create(addon=addon, rating=1, body='foo',
                                        user=UserProfile.objects.create())
@@ -1816,10 +1816,10 @@ class TestUpdateStatus(TestCase):
             amo.STATUS_NULL)
 
     def test_unlisted_versions_ignored(self):
-        addon = addon_factory(status=amo.STATUS_PUBLIC)
+        addon = addon_factory(status=amo.STATUS_APPROVED)
         addon.update_status()
         assert Addon.objects.get(pk=addon.pk).status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
         # update_status will have been called via versions.models.update_status
@@ -1837,7 +1837,7 @@ class TestGetVersion(TestCase):
 
     def test_public_new_public_version(self):
         new_version = version_factory(
-            addon=self.addon, file_kw={'status': amo.STATUS_PUBLIC})
+            addon=self.addon, file_kw={'status': amo.STATUS_APPROVED})
         assert self.addon.find_latest_public_listed_version() == new_version
 
     def test_public_new_unreviewed_version(self):
@@ -1854,7 +1854,7 @@ class TestGetVersion(TestCase):
         new_version = version_factory(
             addon=self.addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         assert new_version != self.version
         # Since the new version is unlisted, find_latest_public_listed_version
         # should still find the current one.
@@ -2230,7 +2230,7 @@ class TestAddonFromUpload(UploadTest):
         parsed_data = parse_addon(self.upload, user=Mock())
         deleted = Addon.from_upload(self.upload, [self.selected_app],
                                     parsed_data=parsed_data)
-        deleted.update(status=amo.STATUS_PUBLIC)
+        deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
         assert deleted.guid == 'guid@xpi'
 
@@ -2248,7 +2248,7 @@ class TestAddonFromUpload(UploadTest):
                                     parsed_data=parsed_data)
         # Claim the add-on.
         AddonUser(addon=deleted, user=UserProfile.objects.get(pk=999)).save()
-        deleted.update(status=amo.STATUS_PUBLIC)
+        deleted.update(status=amo.STATUS_APPROVED)
         deleted.delete()
         assert deleted.guid == 'guid@xpi'
 
@@ -2278,8 +2278,8 @@ class TestAddonFromUpload(UploadTest):
         AddonUser(addon=deleted2, user=UserProfile.objects.get(pk=999)).save()
 
         # Soft delete them like they were before, by nullifying their GUIDs.
-        deleted1.update(status=amo.STATUS_PUBLIC, guid=None)
-        deleted2.update(status=amo.STATUS_PUBLIC, guid=None)
+        deleted1.update(status=amo.STATUS_APPROVED, guid=None)
+        deleted2.update(status=amo.STATUS_APPROVED, guid=None)
 
         # Now upload a new add-on which isn't an extension, and has no GUID.
         # This fails if we try to reclaim the GUID from deleted add-ons: the
@@ -2554,7 +2554,7 @@ class TestAddonWatchDisabled(TestCase):
     def setUp(self):
         super(TestAddonWatchDisabled, self).setUp()
         self.addon = Addon(type=amo.ADDON_THEME, disabled_by_user=False,
-                           status=amo.STATUS_PUBLIC)
+                           status=amo.STATUS_APPROVED)
         self.addon.save()
 
     @patch('olympia.addons.models.File.objects.filter')
@@ -2587,7 +2587,7 @@ class TestAddonWatchDisabled(TestCase):
         file_mock.return_value = [mock]
         self.addon.update(status=amo.STATUS_DISABLED)
         mock.reset_mock()
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         assert mock.unhide_disabled_file.called
         assert not mock.hide_disabled_file.called
 
@@ -2606,7 +2606,7 @@ class TestTrackAddonStatusChange(TestCase):
     def test_increment_updated_status(self):
         addon = self.create_addon()
         with patch('olympia.addons.models.track_addon_status_change') as mock_:
-            addon.update(status=amo.STATUS_PUBLIC)
+            addon.update(status=amo.STATUS_APPROVED)
 
         addon.reload()
         mock_.call_args[0][0].status == addon.status
@@ -2620,11 +2620,11 @@ class TestTrackAddonStatusChange(TestCase):
         )
 
     def test_increment_all_addon_statuses(self):
-        addon = self.create_addon(status=amo.STATUS_PUBLIC)
+        addon = self.create_addon(status=amo.STATUS_APPROVED)
         with patch('olympia.addons.models.statsd.incr') as mock_incr:
             track_addon_status_change(addon)
         mock_incr.assert_any_call(
-            'addon_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
+            'addon_status_change.all.status_{}'.format(amo.STATUS_APPROVED)
         )
 
 
@@ -2695,7 +2695,7 @@ class TestSearchSignals(amo.tests.ESTestCase):
         latest_version = addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         latest_version.update(channel=amo.RELEASE_CHANNEL_LISTED)
-        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(status=amo.STATUS_APPROVED)
         self.refresh()
 
         assert Addon.search_public().count() == 1
@@ -2715,7 +2715,7 @@ class TestLanguagePack(TestCase, amo.tests.AMOPaths):
     def setUp(self):
         super(TestLanguagePack, self).setUp()
         self.addon = amo.tests.addon_factory(type=amo.ADDON_LPAPP,
-                                             status=amo.STATUS_PUBLIC)
+                                             status=amo.STATUS_APPROVED)
         self.platform_all = amo.PLATFORM_ALL.id
         self.platform_mob = amo.PLATFORM_ANDROID.id
         self.version = self.addon.current_version
@@ -2723,14 +2723,14 @@ class TestLanguagePack(TestCase, amo.tests.AMOPaths):
     def test_extract(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_PUBLIC)
+                            status=amo.STATUS_APPROVED)
         assert self.addon.reload().get_localepicker()
         assert 'title=Select a language' in self.addon.get_localepicker()
 
     def test_extract_no_file(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
                             filename=self.xpi_path('langpack'),
-                            status=amo.STATUS_PUBLIC)
+                            status=amo.STATUS_APPROVED)
         assert self.addon.reload().get_localepicker() == ''
 
     def test_extract_no_files(self):
@@ -2739,7 +2739,7 @@ class TestLanguagePack(TestCase, amo.tests.AMOPaths):
     def test_extract_not_language_pack(self):
         File.objects.create(platform=self.platform_mob, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_PUBLIC)
+                            status=amo.STATUS_APPROVED)
         assert self.addon.reload().get_localepicker()
         self.addon.update(type=amo.ADDON_EXTENSION)
         assert self.addon.get_localepicker() == ''
@@ -2747,7 +2747,7 @@ class TestLanguagePack(TestCase, amo.tests.AMOPaths):
     def test_extract_not_platform_mobile(self):
         File.objects.create(platform=self.platform_all, version=self.version,
                             filename=self.xpi_path('langpack-localepicker'),
-                            status=amo.STATUS_PUBLIC)
+                            status=amo.STATUS_APPROVED)
         assert self.addon.reload().get_localepicker() == ''
 
 

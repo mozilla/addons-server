@@ -78,7 +78,7 @@ class VersionManager(ManagerBase):
             apps__min__version_int__lte=appversions['min'],
             apps__max__version_int__gte=appversions['max'],
             channel=amo.RELEASE_CHANNEL_LISTED,
-            files__status=amo.STATUS_PUBLIC,
+            files__status=amo.STATUS_APPROVED,
         ).order_by('-created')
 
 
@@ -440,7 +440,7 @@ class Version(OnChangeMixin, ModelBase):
         # addon, and all its attached files must have public status.
         try:
             return (not self.deleted and self.addon.is_public() and
-                    all(f.status == amo.STATUS_PUBLIC for f in self.all_files))
+                    all(f.status == amo.STATUS_APPROVED for f in self.all_files))
         except ObjectDoesNotExist:
             return False
 
@@ -587,7 +587,7 @@ class Version(OnChangeMixin, ModelBase):
         passes the most basic criteria to be considered a candidate by the
         auto_approve command."""
         return (
-            self.addon.status in (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED) and
+            self.addon.status in (amo.STATUS_APPROVED, amo.STATUS_NOMINATED) and
             self.addon.type in (
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT) and
             self.is_webextension and

@@ -190,9 +190,9 @@ class TestAddStaticThemeFromLwt(TestCase):
             (lwt_cat.name, amo.FIREFOX.id), (lwt_cat.name, amo.ANDROID.id)]
         assert static_theme.current_version.license.builtin == license_
         # status is good
-        assert static_theme.status == amo.STATUS_PUBLIC
+        assert static_theme.status == amo.STATUS_APPROVED
         current_file = static_theme.current_version.files.get()
-        assert current_file.status == amo.STATUS_PUBLIC
+        assert current_file.status == amo.STATUS_APPROVED
         # Ratings were migrated
         assert list(Rating.unfiltered.filter(addon=static_theme)) == ratings
         log_entries = ActivityLog.objects.filter(

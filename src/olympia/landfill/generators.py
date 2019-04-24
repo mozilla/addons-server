@@ -10,7 +10,7 @@ from olympia.addons.models import Addon, Persona, update_search_index
 from olympia.amo.utils import slugify
 from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
-    ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME, STATUS_PUBLIC)
+    ADDON_EXTENSION, ADDON_PERSONA, ADDON_STATICTHEME, STATUS_APPROVED)
 from olympia.devhub.forms import icons
 
 from .categories import generate_categories
@@ -44,7 +44,7 @@ def _yield_name_and_cat(num, app=None, type=None):
 def create_addon(name, icon_type, application, **extra_kwargs):
     """Create an addon with the given `name` and his version."""
     kwargs = {
-        'status': STATUS_PUBLIC,
+        'status': STATUS_APPROVED,
         'name': name,
         'slug': slugify(name),
         'bayesian_rating': random.uniform(1, 5),
@@ -60,7 +60,7 @@ def create_addon(name, icon_type, application, **extra_kwargs):
     addon = Addon.objects.create(**kwargs)
     generate_version(addon=addon, app=application)
     addon.update_version()
-    addon.status = STATUS_PUBLIC
+    addon.status = STATUS_APPROVED
     addon.guid = '@%s' % addon.slug
     addon.save()
     return addon
@@ -99,7 +99,7 @@ def create_theme(name, **extra_kwargs):
 
     """
     kwargs = {
-        'status': STATUS_PUBLIC,
+        'status': STATUS_APPROVED,
         'name': name,
         'slug': slugify(name),
         'bayesian_rating': random.uniform(1, 5),
@@ -114,7 +114,7 @@ def create_theme(name, **extra_kwargs):
     theme = Addon.objects.create(type=ADDON_EXTENSION, **kwargs)
     generate_version(addon=theme)
     theme.update_version()
-    theme.status = STATUS_PUBLIC
+    theme.status = STATUS_APPROVED
     theme.type = ADDON_PERSONA
     Persona.objects.create(addon=theme, popularity=theme.weekly_downloads,
                            persona_id=0)

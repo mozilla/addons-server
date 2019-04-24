@@ -95,6 +95,6 @@ class AllowedTest(TestCase):
 
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)
 
-        self.addon.update(view_source=True, status=amo.STATUS_PUBLIC)
+        self.addon.update(view_source=True, status=amo.STATUS_APPROVED)
 
         self.assertRaises(PermissionDenied, allowed, self.request, self.file)

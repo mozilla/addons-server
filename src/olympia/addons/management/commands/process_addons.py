@@ -42,7 +42,7 @@ tasks = {
     'migrate_lwt': {
         'method': migrate_lwts_to_static_themes,
         'qs': [
-            Q(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
+            Q(type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
         ]
     },
     'delete_lwt': {
@@ -61,7 +61,7 @@ tasks = {
         'method': recreate_theme_previews,
         'qs': [
             Q(type=amo.ADDON_STATICTHEME, status__in=[
-                amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
+                amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW])
         ],
         'kwargs': {'only_missing': False},
     },
@@ -69,7 +69,7 @@ tasks = {
         'method': recreate_theme_previews,
         'qs': [
             Q(type=amo.ADDON_STATICTHEME, status__in=[
-                amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
+                amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW])
         ],
         'kwargs': {'only_missing': True},
     },
@@ -77,13 +77,13 @@ tasks = {
         'method': repack_themes_for_69,
         'qs': [
             Q(type=amo.ADDON_STATICTHEME, status__in=[
-                amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW])
+                amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW])
         ],
     },
     'add_dynamic_theme_tag_for_theme_api': {
         'method': add_dynamic_theme_tag,
         'qs': [
-            Q(status=amo.STATUS_PUBLIC,
+            Q(status=amo.STATUS_APPROVED,
               _current_version__files__is_webextension=True)
         ]
     },

@@ -102,7 +102,7 @@ class TestDevFilesStatus(TestCase):
         assert msg == six.text_type(expected)
 
     def test_unreviewed_public(self):
-        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.status = amo.STATUS_APPROVED
         self.file.status = amo.STATUS_AWAITING_REVIEW
         self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
 
@@ -112,9 +112,9 @@ class TestDevFilesStatus(TestCase):
         self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
 
     def test_reviewed_public(self):
-        self.addon.status = amo.STATUS_PUBLIC
-        self.file.status = amo.STATUS_PUBLIC
-        self.expect(File.STATUS_CHOICES[amo.STATUS_PUBLIC])
+        self.addon.status = amo.STATUS_APPROVED
+        self.file.status = amo.STATUS_APPROVED
+        self.expect(File.STATUS_CHOICES[amo.STATUS_APPROVED])
 
     def test_reviewed_null(self):
         self.addon.status = amo.STATUS_NULL
@@ -122,7 +122,7 @@ class TestDevFilesStatus(TestCase):
         self.expect(File.STATUS_CHOICES[amo.STATUS_AWAITING_REVIEW])
 
     def test_disabled(self):
-        self.addon.status = amo.STATUS_PUBLIC
+        self.addon.status = amo.STATUS_APPROVED
         self.file.status = amo.STATUS_DISABLED
         self.expect(File.STATUS_CHOICES[amo.STATUS_DISABLED])
 

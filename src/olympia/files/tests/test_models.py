@@ -135,7 +135,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_disable_signal(self, hide_mock):
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_PUBLIC
+        f.status = amo.STATUS_APPROVED
         f.save()
         assert not hide_mock.called
 
@@ -146,7 +146,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
     @mock.patch('olympia.files.models.File.unhide_disabled_file')
     def test_unhide_on_enable(self, unhide_mock):
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_PUBLIC
+        f.status = amo.STATUS_APPROVED
         f.save()
         assert not unhide_mock.called
 
@@ -156,13 +156,13 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert not unhide_mock.called
 
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_PUBLIC
+        f.status = amo.STATUS_APPROVED
         f.save()
         assert unhide_mock.called
 
     def test_unhide_disabled_files(self):
         f = File.objects.get(pk=67442)
-        f.status = amo.STATUS_PUBLIC
+        f.status = amo.STATUS_APPROVED
         f.filename = u'test_unhide_disabled_filés.xpi'
         with storage.open(f.guarded_file_path, 'wb') as fp:
             fp.write(b'some data\n')
@@ -247,7 +247,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
         file_.status = amo.STATUS_DISABLED
         assert file_.generate_hash().startswith('sha256:6524f7791a35ef4dd4c6f')
-        file_.status = amo.STATUS_PUBLIC
+        file_.status = amo.STATUS_APPROVED
         assert file_.generate_hash().startswith('sha256:5aa03f96c77536579166f')
 
     def test_addon(self):
@@ -295,7 +295,7 @@ class TestFile(TestCase, amo.tests.AMOPaths):
         # Add-on mozilla-disabled, file approved
         f.addon.update(status=amo.STATUS_DISABLED)
         assert f.current_file_path.endswith(guarded_fp)
-        f.addon.update(status=amo.STATUS_PUBLIC)
+        f.addon.update(status=amo.STATUS_APPROVED)
 
         # Add-on enabled, file disabled
         f.update(status=amo.STATUS_DISABLED)
@@ -335,7 +335,7 @@ class TestTrackFileStatusChange(TestCase):
     def test_track_stats_on_updated_file(self):
         f = self.create_file()
         with patch('olympia.files.models.track_file_status_change') as mock_:
-            f.update(status=amo.STATUS_PUBLIC)
+            f.update(status=amo.STATUS_APPROVED)
 
         f.reload()
         assert mock_.call_args[0][0].status == f.status
@@ -349,11 +349,11 @@ class TestTrackFileStatusChange(TestCase):
         )
 
     def test_increment_file_status(self):
-        f = self.create_file(status=amo.STATUS_PUBLIC)
+        f = self.create_file(status=amo.STATUS_APPROVED)
         with patch('olympia.files.models.statsd.incr') as mock_incr:
             track_file_status_change(f)
         mock_incr.assert_any_call(
-            'file_status_change.all.status_{}'.format(amo.STATUS_PUBLIC)
+            'file_status_change.all.status_{}'.format(amo.STATUS_APPROVED)
         )
 
 
@@ -1158,8 +1158,8 @@ class TestFileFromUpload(UploadTest):
 
     def test_public_to_unreviewed(self):
         upload = self.upload('extension')
-        self.addon.update(status=amo.STATUS_PUBLIC)
-        assert self.addon.status == amo.STATUS_PUBLIC
+        self.addon.update(status=amo.STATUS_APPROVED)
+        assert self.addon.status == amo.STATUS_APPROVED
         file_ = File.from_upload(
             upload, self.version, self.platform, parsed_data={})
         assert file_.status == amo.STATUS_AWAITING_REVIEW
@@ -1370,7 +1370,7 @@ class LanguagePackBase(UploadTest):
         self.addon = Addon.objects.create(type=amo.ADDON_LPAPP)
         self.platform = amo.PLATFORM_ALL.id
         self.version = Version.objects.create(addon=self.addon)
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         self.addon._current_version = self.version
 
 

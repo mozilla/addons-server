@@ -203,7 +203,7 @@ class TestUserProfile(TestCase):
         # The add-on should not have been touched, it has another dev.
         assert user.addons.exists()
         addon.reload()
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
 
         assert not user._ratings_all.exists()  # Even replies.
         assert not user.collections.exists()
@@ -556,7 +556,7 @@ class TestUserProfile(TestCase):
         self.make_addon_unlisted(addon)  # Easy way to toggle status
         assert not user.reload().is_public
         self.make_addon_listed(addon)
-        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(status=amo.STATUS_APPROVED)
         assert user.reload().is_public
 
         addon.delete()

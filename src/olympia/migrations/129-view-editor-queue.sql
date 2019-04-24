@@ -37,6 +37,6 @@ CREATE OR REPLACE VIEW view_editor_queue AS
     -- JOIN versions as app_versions_max ON app_versions_min.id = vs.max
     -- STATUS_SANDBOX in remora, STATUS_UNREVIEWED in zamboni
     WHERE files.status=1
-    -- STATUS_PUBLIC
+    -- STATUS_APPROVED
     AND addons.status=4
     GROUP BY 1, 2;

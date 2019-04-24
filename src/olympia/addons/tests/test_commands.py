@@ -36,7 +36,7 @@ def id_function(fixture_value):
 
 @pytest.fixture(
     params=[(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, 'full'),
-            (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, 'full')],
+            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, 'full')],
     # ids are used to build better names for the tests using this fixture.
     ids=id_function)
 def use_case(request, db):

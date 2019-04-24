@@ -381,7 +381,7 @@ class TestAddonIndexer(TestCase):
         """Make sure we do correctly extract things for en-GB default locale"""
         with self.activate('en-GB'):
             kwargs = {
-                'status': amo.STATUS_PUBLIC,
+                'status': amo.STATUS_APPROVED,
                 'type': amo.ADDON_EXTENSION,
                 'default_locale': 'en-GB',
                 'name': 'Banana Bonkers',

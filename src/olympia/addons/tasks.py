@@ -73,7 +73,7 @@ def update_last_updated(addon_id):
 
     if addon.is_persona():
         q = 'personas'
-    elif addon.status == amo.STATUS_PUBLIC:
+    elif addon.status == amo.STATUS_APPROVED:
         q = 'public'
     else:
         q = 'exp'
@@ -576,9 +576,9 @@ def add_static_theme_from_lwt(lwt):
         file_.update(
             datestatuschanged=lwt.last_updated,
             reviewed=datetime.now(),
-            status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED)
     timer.log_interval('10.sign_files')
-    addon_updates['status'] = amo.STATUS_PUBLIC
+    addon_updates['status'] = amo.STATUS_APPROVED
 
     # set the modified and creation dates to match the original.
     addon_updates['created'] = lwt.created

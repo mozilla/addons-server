@@ -27,6 +27,6 @@ CREATE OR REPLACE VIEW view_ed_pending_q AS
     WHERE
         -- STATUS_UNREVIEWED
         files.status = 1
-        -- STATUS_PUBLIC
+        -- STATUS_APPROVED
         AND addons.status = 4
     GROUP BY id;

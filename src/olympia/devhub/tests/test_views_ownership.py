@@ -205,7 +205,7 @@ class TestEditLicense(TestOwnership):
 
     def test_license_logs(self):
         data = self.formset(builtin=License.OTHER, text='text')
-        self.version.addon.update(status=amo.STATUS_PUBLIC)
+        self.version.addon.update(status=amo.STATUS_APPROVED)
         self.client.post(self.url, data)
         assert ActivityLog.objects.all().count() == 1
 

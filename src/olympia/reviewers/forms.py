@@ -344,7 +344,7 @@ class ReviewForm(forms.Form):
             self.fields['versions'].queryset = (
                 self.helper.addon.versions.distinct().filter(
                     channel=amo.RELEASE_CHANNEL_LISTED,
-                    files__status__in=(amo.STATUS_PUBLIC,
+                    files__status__in=(amo.STATUS_APPROVED,
                                        amo.STATUS_AWAITING_REVIEW)).
                 order_by('created'))
 

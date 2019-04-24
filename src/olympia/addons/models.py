@@ -164,7 +164,7 @@ class AddonQuerySet(BaseQuerySet):
 
     def public(self):
         """Get public add-ons only"""
-        return self.filter(self.valid_q([amo.STATUS_PUBLIC]))
+        return self.filter(self.valid_q([amo.STATUS_APPROVED]))
 
     def valid(self):
         """Get valid, enabled add-ons only"""
@@ -194,7 +194,7 @@ class AddonQuerySet(BaseQuerySet):
         matching ``status`` and are not disabled.
         """
         if len(status) == 0:
-            status = [amo.STATUS_PUBLIC]
+            status = [amo.STATUS_APPROVED]
         return self.filter(self.valid_q(status), appsupport__app=app.id)
 
     def valid_q(self, status=None, prefix=''):
@@ -207,7 +207,7 @@ class AddonQuerySet(BaseQuerySet):
         CollectionAddon.
         """
         if not status:
-            status = [amo.STATUS_PUBLIC]
+            status = [amo.STATUS_APPROVED]
 
         def q(*args, **kw):
             if prefix:
@@ -423,10 +423,10 @@ class Addon(OnChangeMixin, ModelBase):
         self.update_version()
 
     def force_enable(self):
-        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_PUBLIC)
+        activity.log_create(amo.LOG.CHANGE_STATUS, self, amo.STATUS_APPROVED)
         log.info('Addon "%s" status changed to: %s',
-                 self.slug, amo.STATUS_PUBLIC)
-        self.update(status=amo.STATUS_PUBLIC)
+                 self.slug, amo.STATUS_APPROVED)
+        self.update(status=amo.STATUS_APPROVED)
         # Call update_status() to fix the status if the add-on is not actually
         # in a state that allows it to be public.
         self.update_status()
@@ -729,8 +729,8 @@ class Addon(OnChangeMixin, ModelBase):
 
     @property
     def valid_file_statuses(self):
-        if self.status == amo.STATUS_PUBLIC:
-            return [amo.STATUS_PUBLIC]
+        if self.status == amo.STATUS_APPROVED:
+            return [amo.STATUS_APPROVED]
         return amo.VALID_FILE_STATUSES
 
     def find_latest_public_listed_version(self):
@@ -984,8 +984,8 @@ class Addon(OnChangeMixin, ModelBase):
                 files__status__in=amo.VALID_FILE_STATUSES).exists():
             status = amo.STATUS_NULL
             reason = 'no listed version with valid file'
-        elif (self.status == amo.STATUS_PUBLIC and
-              not versions.filter(files__status=amo.STATUS_PUBLIC).exists()):
+        elif (self.status == amo.STATUS_APPROVED and
+              not versions.filter(files__status=amo.STATUS_APPROVED).exists()):
             if versions.filter(
                     files__status=amo.STATUS_AWAITING_REVIEW).exists():
                 status = amo.STATUS_NOMINATED
@@ -993,7 +993,7 @@ class Addon(OnChangeMixin, ModelBase):
             else:
                 status = amo.STATUS_NULL
                 reason = 'no reviewed files'
-        elif self.status == amo.STATUS_PUBLIC:
+        elif self.status == amo.STATUS_APPROVED:
             latest_version = self.find_latest_version(
                 channel=amo.RELEASE_CHANNEL_LISTED)
             if (latest_version and latest_version.has_files and
@@ -1157,7 +1157,7 @@ class Addon(OnChangeMixin, ModelBase):
     def can_request_review(self):
         """Return whether an add-on can request a review or not."""
         if (self.is_disabled or
-                self.status in (amo.STATUS_PUBLIC,
+                self.status in (amo.STATUS_APPROVED,
                                 amo.STATUS_NOMINATED,
                                 amo.STATUS_DELETED)):
             return False
@@ -1188,7 +1188,7 @@ class Addon(OnChangeMixin, ModelBase):
         return self.status in amo.UNREVIEWED_ADDON_STATUSES
 
     def is_public(self):
-        return self.status == amo.STATUS_PUBLIC and not self.disabled_by_user
+        return self.status == amo.STATUS_APPROVED and not self.disabled_by_user
 
     def has_complete_metadata(self, has_listed_versions=None):
         """See get_required_metadata for has_listed_versions details."""
@@ -1330,8 +1330,8 @@ class Addon(OnChangeMixin, ModelBase):
         status_change = Max('versions__files__datestatuschanged')
         public = (
             Addon.objects.filter(
-                status=amo.STATUS_PUBLIC,
-                versions__files__status=amo.STATUS_PUBLIC)
+                status=amo.STATUS_APPROVED,
+                versions__files__status=amo.STATUS_APPROVED)
             .exclude(type=amo.ADDON_PERSONA)
             .values('id').annotate(last_updated=status_change))
 
@@ -1388,7 +1388,7 @@ class Addon(OnChangeMixin, ModelBase):
     def get_localepicker(self):
         """For language packs, gets the contents of localepicker."""
         if (self.type == amo.ADDON_LPAPP and
-                self.status == amo.STATUS_PUBLIC and
+                self.status == amo.STATUS_APPROVED and
                 self.current_version):
             files = (self.current_version.files
                          .filter(platform=amo.PLATFORM_ANDROID.id))

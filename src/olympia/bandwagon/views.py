@@ -148,7 +148,7 @@ class CollectionAddonViewSet(ModelViewSet):
 
         if not include_all:
             qs = qs.filter(
-                addon__status=amo.STATUS_PUBLIC, addon__disabled_by_user=False)
+                addon__status=amo.STATUS_APPROVED, addon__disabled_by_user=False)
         elif not include_all_with_deleted:
             qs = qs.exclude(addon__status=amo.STATUS_DELETED)
         return qs

@@ -1130,7 +1130,7 @@ def auto_sign_file(file_):
 
 def auto_sign_version(version, **kwargs):
     # Sign all the unapproved files submitted, one for each platform.
-    for file_ in version.files.exclude(status=amo.STATUS_PUBLIC):
+    for file_ in version.files.exclude(status=amo.STATUS_APPROVED):
         auto_sign_file(file_, **kwargs)
 
 

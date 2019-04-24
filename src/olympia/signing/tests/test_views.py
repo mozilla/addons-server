@@ -176,7 +176,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert 'processed' in response.data
 
     def test_version_added(self):
-        assert Addon.objects.get(guid=self.guid).status == amo.STATUS_PUBLIC
+        assert Addon.objects.get(guid=self.guid).status == amo.STATUS_APPROVED
         qs = Version.objects.filter(addon__guid=self.guid, version='3.0')
         assert not qs.exists()
         existing = Version.objects.filter(addon__guid=self.guid)
@@ -191,7 +191,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
         assert version.addon.guid == self.guid
         assert version.version == '3.0'
         assert version.statuses[0][1] == amo.STATUS_AWAITING_REVIEW
-        assert version.addon.status == amo.STATUS_PUBLIC
+        assert version.addon.status == amo.STATUS_APPROVED
         assert version.channel == amo.RELEASE_CHANNEL_LISTED
         self.auto_sign_version.assert_called_with(version)
         assert not version.all_files[0].is_mozilla_signed_extension
@@ -393,7 +393,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_no_channel_selects_last_channel(self):
         addon = Addon.objects.get(guid=self.guid)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
         assert addon.versions.all()[0].channel == amo.RELEASE_CHANNEL_LISTED
 
@@ -414,7 +414,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_unlisted_channel_for_listed_addon(self):
         addon = Addon.objects.get(guid=self.guid)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
         assert addon.versions.all()[0].channel == amo.RELEASE_CHANNEL_LISTED
 
@@ -426,7 +426,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_listed_channel_for_complete_listed_addon(self):
         addon = Addon.objects.get(guid=self.guid)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
         assert addon.has_complete_metadata()
 
@@ -438,7 +438,7 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
 
     def test_listed_channel_fails_for_incomplete_addon(self):
         addon = Addon.objects.get(guid=self.guid)
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert addon.versions.count() == 1
         addon.current_version.update(license=None)  # Make addon incomplete.
         addon.versions.latest().update(channel=amo.RELEASE_CHANNEL_UNLISTED)

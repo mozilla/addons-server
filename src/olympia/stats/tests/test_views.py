@@ -41,7 +41,7 @@ class StatsTest(TestCase):
         version_factory(addon=Addon.objects.get(pk=5))
         persona_version = version_factory(addon=persona_addon)
         persona_addon.update(_current_version=persona_version)
-        Addon.objects.filter(id__in=(4, 5, 6)).update(status=amo.STATUS_PUBLIC)
+        Addon.objects.filter(id__in=(4, 5, 6)).update(status=amo.STATUS_APPROVED)
         # Most tests don't care about permissions.
         self.login_as_admin()
 

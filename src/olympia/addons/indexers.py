@@ -366,7 +366,7 @@ class AddonIndexer(BaseSearchIndexer):
         # Boost by the number of users on a logarithmic scale.
         data['boost'] = float(data['average_daily_users'] ** .2)
         # Quadruple the boost if the add-on is public.
-        if (obj.status == amo.STATUS_PUBLIC and not obj.is_experimental and
+        if (obj.status == amo.STATUS_APPROVED and not obj.is_experimental and
                 'boost' in data):
             data['boost'] = float(max(data['boost'], 1) * 4)
         # We can use all_categories because the indexing code goes through the

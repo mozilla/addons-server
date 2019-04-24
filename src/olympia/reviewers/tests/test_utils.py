@@ -34,7 +34,7 @@ from olympia.users.models import UserProfile
 pytestmark = pytest.mark.django_db
 
 
-REVIEW_FILES_STATUSES = (amo.STATUS_PUBLIC, amo.STATUS_DISABLED)
+REVIEW_FILES_STATUSES = (amo.STATUS_APPROVED, amo.STATUS_DISABLED)
 
 
 class TestViewPendingQueueTable(TestCase):
@@ -245,7 +245,7 @@ class TestReviewHelper(TestCase):
     def test_type_pending(self):
         assert self.setup_type(amo.STATUS_PENDING) == 'extension_pending'
         assert self.setup_type(amo.STATUS_NULL) == 'extension_pending'
-        assert self.setup_type(amo.STATUS_PUBLIC) == 'extension_pending'
+        assert self.setup_type(amo.STATUS_APPROVED) == 'extension_pending'
         assert self.setup_type(amo.STATUS_DISABLED) == 'extension_pending'
 
     def test_no_version(self):
@@ -256,7 +256,7 @@ class TestReviewHelper(TestCase):
     def test_review_files(self):
         version_factory(addon=self.addon,
                         created=self.version.created - timedelta(days=1),
-                        file_kw={'status': amo.STATUS_PUBLIC})
+                        file_kw={'status': amo.STATUS_APPROVED})
         for status in REVIEW_FILES_STATUSES:
             self.setup_data(status=status)
             assert self.helper.handler.__class__ == ReviewFiles
@@ -302,23 +302,23 @@ class TestReviewHelper(TestCase):
     def test_actions_full_update(self):
         expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert list(self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
+            addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
     def test_actions_full_nonpending(self):
         expected = ['reply', 'super', 'comment']
-        f_statuses = [amo.STATUS_PUBLIC, amo.STATUS_DISABLED]
+        f_statuses = [amo.STATUS_APPROVED, amo.STATUS_DISABLED]
         for file_status in f_statuses:
             assert list(self.get_review_actions(
-                addon_status=amo.STATUS_PUBLIC,
+                addon_status=amo.STATUS_APPROVED,
                 file_status=file_status).keys()) == expected
 
     def test_actions_public_post_reviewer(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
         expected = ['reject_multiple_versions', 'reply', 'super', 'comment']
         assert list(self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC).keys()) == expected
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
 
         # Now make current version auto-approved...
         AutoApprovalSummary.objects.create(
@@ -326,8 +326,8 @@ class TestReviewHelper(TestCase):
         expected = ['confirm_auto_approved', 'reject_multiple_versions',
                     'reply', 'super', 'comment']
         assert list(self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC).keys()) == expected
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
 
     def test_actions_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
@@ -336,8 +336,8 @@ class TestReviewHelper(TestCase):
         expected = ['confirm_auto_approved', 'reject_multiple_versions',
                     'reply', 'super', 'comment']
         assert list(self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC,
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED,
             content_review_only=True).keys()) == expected
 
     def test_actions_public_static_theme(self):
@@ -348,7 +348,7 @@ class TestReviewHelper(TestCase):
         self.addon.update(type=amo.ADDON_STATICTHEME)
         expected = ['public', 'reject', 'reply', 'super', 'comment']
         assert list(self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
+            addon_status=amo.STATUS_APPROVED,
             file_status=amo.STATUS_AWAITING_REVIEW).keys()) == expected
 
     def test_actions_no_version(self):
@@ -357,17 +357,17 @@ class TestReviewHelper(TestCase):
         expected = ['comment']
         self.version = None
         assert list(self.get_review_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC).keys()) == expected
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED).keys()) == expected
 
     def test_set_files(self):
         self.file.update(datestatuschanged=yesterday)
         self.helper.set_data({'addon_files': self.version.files.all()})
-        self.helper.handler.set_files(amo.STATUS_PUBLIC,
+        self.helper.handler.set_files(amo.STATUS_APPROVED,
                                       self.helper.handler.data['addon_files'])
 
         self.file = self.version.files.all()[0]
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.file.datestatuschanged.date() > yesterday.date()
 
     def test_logs(self):
@@ -456,7 +456,7 @@ class TestReviewHelper(TestCase):
 
     def test_send_reviewer_reply(self):
         assert not self.addon.pending_info_request
-        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
         self.helper.handler.reviewer_reply()
 
         assert not self.addon.pending_info_request
@@ -467,7 +467,7 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REVIEWER_REPLY_VERSION.id) == 1
 
     def test_request_more_information(self):
-        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
         self.helper.handler.data['info_request'] = True
         self.helper.handler.reviewer_reply()
 
@@ -483,7 +483,7 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_custom_deadline(self):
-        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
         self.helper.handler.data['info_request'] = True
         self.helper.handler.data['info_request_deadline'] = 42
         self.helper.handler.reviewer_reply()
@@ -500,7 +500,7 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REQUEST_INFORMATION.id) == 1
 
     def test_request_more_information_reset_notified_flag(self):
-        self.setup_data(amo.STATUS_PUBLIC, ['addon_files'])
+        self.setup_data(amo.STATUS_APPROVED, ['addon_files'])
 
         flags = AddonReviewerFlags.objects.create(
             addon=self.addon,
@@ -550,7 +550,7 @@ class TestReviewHelper(TestCase):
         self.helper.handler.process_public()
 
         assert self.addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
     def test_nomination_to_public_and_current_version(self):
         self.setup_data(amo.STATUS_NOMINATED, ['addon_files'])
@@ -576,10 +576,10 @@ class TestReviewHelper(TestCase):
         # Re-fetch the add-on
         addon = Addon.objects.get(pk=3615)
 
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
 
         assert addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == '%s Approved' % self.preamble
@@ -603,9 +603,9 @@ class TestReviewHelper(TestCase):
 
         self.helper.handler.process_public()
 
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -631,9 +631,9 @@ class TestReviewHelper(TestCase):
 
         self.helper.handler.process_public()
 
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -661,9 +661,9 @@ class TestReviewHelper(TestCase):
 
         self.helper.handler.process_public()
 
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -697,25 +697,25 @@ class TestReviewHelper(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
         self.file = self.version.files.all()[0]
-        self.setup_data(amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED)
         self.create_paths()
         AddonApprovalsCounter.objects.create(
             addon=self.addon, counter=1, last_human_review=self.days_ago(42))
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         self.helper.handler.process_public()
 
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.reload().status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.reload().status == amo.STATUS_APPROVED
         assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -747,24 +747,24 @@ class TestReviewHelper(TestCase):
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
         self.preamble = 'Mozilla Add-ons: Delicious Bookmarks 3.0.42'
         self.file = self.version.files.all()[0]
-        self.setup_data(amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED)
         self.create_paths()
         AddonApprovalsCounter.objects.create(addon=self.addon, counter=1)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.status == amo.STATUS_AWAITING_REVIEW
         assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         self.helper.handler.process_sandbox()
 
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.file.reload().status == amo.STATUS_DISABLED
         assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         assert len(mail.outbox) == 1
         assert mail.outbox[0].subject == (
@@ -784,17 +784,17 @@ class TestReviewHelper(TestCase):
 
     def test_public_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=151)
         assert summary.confirmed is None
         self.create_paths()
 
         # Safeguards.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         self.helper.handler.confirm_auto_approved()
 
@@ -815,7 +815,7 @@ class TestReviewHelper(TestCase):
 
     def test_public_with_unreviewed_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.current_version = self.version
         summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=152)
@@ -849,7 +849,7 @@ class TestReviewHelper(TestCase):
 
     def test_public_with_disabled_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:PostReview')
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         self.current_version = self.version
         summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=153)
@@ -883,7 +883,7 @@ class TestReviewHelper(TestCase):
 
     def test_unlisted_version_addon_confirm_auto_approval(self):
         self.grant_permission(self.request.user, 'Addons:ReviewUnlisted')
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
         self.version = version_factory(
@@ -919,7 +919,7 @@ class TestReviewHelper(TestCase):
 
         assert self.addon.status == amo.STATUS_NULL
         assert self.addon.versions.all()[0].files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         # AddonApprovalsCounter was not touched since the version we made
         # public is unlisted.
@@ -997,7 +997,7 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_auto_approved_admin_code_review(self):
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
         self.helper.handler.process_super_review()
@@ -1006,7 +1006,7 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_auto_approved_admin_content_review(self):
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
                         content_review_only=True)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -1017,7 +1017,7 @@ class TestReviewHelper(TestCase):
             amo.LOG.REQUEST_ADMIN_REVIEW_CONTENT.id) == 1
 
     def test_auto_approved_admin_theme_review(self):
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
                         type=amo.ADDON_STATICTHEME)
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED)
@@ -1035,13 +1035,13 @@ class TestReviewHelper(TestCase):
         assert self.check_log_count(amo.LOG.REQUEST_ADMIN_REVIEW_CODE.id) == 1
 
     def test_operating_system_present(self):
-        self.setup_data(amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED)
         self.helper.handler.process_sandbox()
 
         assert 'Tested on osx with Firefox' in mail.outbox[0].body
 
     def test_operating_system_not_present(self):
-        self.setup_data(amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED)
         data = self.get_data().copy()
         data['operating_systems'] = ''
         self.helper.set_data(data)
@@ -1050,7 +1050,7 @@ class TestReviewHelper(TestCase):
         assert 'Tested with Firefox' in mail.outbox[0].body
 
     def test_application_not_present(self):
-        self.setup_data(amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED)
         data = self.get_data().copy()
         data['applications'] = ''
         self.helper.set_data(data)
@@ -1059,7 +1059,7 @@ class TestReviewHelper(TestCase):
         assert 'Tested on osx' in mail.outbox[0].body
 
     def test_both_not_present(self):
-        self.setup_data(amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED)
         data = self.get_data().copy()
         data['applications'] = ''
         data['operating_systems'] = ''
@@ -1115,12 +1115,12 @@ class TestReviewHelper(TestCase):
             version=self.version, verdict=amo.AUTO_APPROVED, weight=101)
         # An extra file should not change anything.
         file_factory(version=self.version, platform=amo.PLATFORM_LINUX.id)
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.is_public()
 
         data = self.get_data().copy()
@@ -1162,12 +1162,12 @@ class TestReviewHelper(TestCase):
         self.version = version_factory(addon=self.addon, version='42.0')
         AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED, weight=91)
-        self.setup_data(amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC)
+        self.setup_data(amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.is_public()
 
         data = self.get_data().copy()
@@ -1179,7 +1179,7 @@ class TestReviewHelper(TestCase):
         self.addon.reload()
         self.file.reload()
         # latest_version is still public so the add-on is still public.
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert self.addon.current_version == self.version
         assert list(self.addon.versions.all().order_by('-pk')) == [
             self.version, extra_version, old_version]
@@ -1206,13 +1206,13 @@ class TestReviewHelper(TestCase):
         old_version = self.version
         self.version = version_factory(addon=self.addon, version='3.0')
         self.setup_data(
-            amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
             content_review_only=True)
 
         # Safeguards.
         assert isinstance(self.helper.handler, ReviewFiles)
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.is_public()
 
         data = self.get_data().copy()
@@ -1243,17 +1243,17 @@ class TestReviewHelper(TestCase):
     def test_confirm_auto_approval_content_review(self):
         self.grant_permission(self.request.user, 'Addons:ContentReview')
         self.setup_data(
-            amo.STATUS_PUBLIC, file_status=amo.STATUS_PUBLIC,
+            amo.STATUS_APPROVED, file_status=amo.STATUS_APPROVED,
             content_review_only=True)
         summary = AutoApprovalSummary.objects.create(
             version=self.version, verdict=amo.AUTO_APPROVED)
         self.create_paths()
 
         # Safeguards.
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.addon.current_version.files.all()[0].status == (
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
 
         self.helper.handler.confirm_auto_approved()
 

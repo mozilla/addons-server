@@ -47,7 +47,7 @@
       </li>
     {% endif %}
   {% endif %}
-  {% if not addon.disabled_by_user and show_listed and addon.status == amo.STATUS_PUBLIC %}
+  {% if not addon.disabled_by_user and show_listed and addon.status == amo.STATUS_APPROVED %}
     <li>
       <a href="{{ url('stats.overview', addon.slug) }}" class="tooltip"
          title="{{ _('Daily statistics on downloads and users') }}">
