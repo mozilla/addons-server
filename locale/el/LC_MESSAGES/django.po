@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-24 22:31+0000\n"
+"PO-Revision-Date: 2019-04-24 22:43+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3680,7 +3680,7 @@ msgstr "Διαχωρισμός διαδικτυακών ζωών {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Privately distinguish your various online identities—work, personal, etc.—through color-coded tabs that split your digital cookie trail."
-msgstr ""
+msgstr "Διαχωρίστε ιδιωτικά τις διάφορες διαδικτυακές σας ταυτότητες—εργασία, προσωπικά κλπ.—με χρωματιστές καρτέλες που χωρίζουν τα ψηφιακά σας ίχνη."
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3704,7 +3704,7 @@ msgstr "Βελτίωση εμπειρίας YouTube {start_sub_heading}με το
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr ""
+msgstr "Αναπαραγωγή βίντεο από προεπιλογή στην υψηλότερη ποιότητα, απενεργοποίηση σχολιασμών και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3720,7 +3720,7 @@ msgstr "Αλλαγή διακομιστή μεσολάβησης {start_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "Περιήγηση στο διαδίκτυο με αυτοκαθορισμένες ρυθμίσεις διακομιστή μεσολάβησης."
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3736,7 +3736,7 @@ msgstr "Ασφαλής περιήγηση {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Προσθέστε κρυπτογραφημένη ασφάλεια σε κάθε ιστοσελίδα που υποστηρίζει HTTPS."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3744,7 +3744,7 @@ msgstr "Αγορά & εξοικονόμηση {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Αυτόματη εφαρμογή των καλύτερων κουπονιών στο καλάθι σας κατά την ολοκλήρωση των αγορών σας."
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3772,7 +3772,7 @@ msgstr "Ενημερωθείτε για τους ιχνηλάτες {start_sub_h
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr ""
+msgstr "Μάθετε ποιοι σάς καταγράφουν και πού μπορεί να μοιραστούν τις πληροφορίες σας."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3780,11 +3780,11 @@ msgstr "Ανώνυμη πλοήγηση {start_sub_heading}με το {addon_name
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Περιηγηθείτε στο διαδίκτυο με συγκεκαλυμμένη ταυτότητα—σαν να περιηγείστε από κάποια άλλη χώρα."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Πρόσβαση σε αγαπημένες ιστοσελίδες, καρτέλες που κλείσατε πρόσφατα και πολλά άλλα—όλα από μια πανέμορφη διάταξη πλακιδίων."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3800,7 +3800,7 @@ msgstr "Προβολή καρτελών σε λίστα {start_sub_heading}με 
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "Μετατρέψτε όλες τις ανοιχτές καρτέλες σας σε μια λίστα για εύκολη διαχείριση και επιτάχυνση του Firefox."
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4648,10 +4648,10 @@ msgid "GUID is required for Firefox 47 and below."
 msgstr "Το GUID απαιτείται για το Firefox 47 και παλαιότερα."
 
 msgid "Lowest supported \"strict_min_version\" is 42.0."
-msgstr ""
+msgstr "Η ελάχιστη, υποστηριζόμενη \"strict_min_version\" είναι 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "Άγνωστο \"strict_min_version\" {appver} για {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -4707,7 +4707,7 @@ msgstr "Δεν μπορείτε να υποβάλετε αυτό τον τύπο
 
 #, python-format
 msgid "You cannot submit an add-on with a guid ending %s"
-msgstr ""
+msgstr "Δεν μπορείτε να υποβάλετε πρόσθετο, με το guid να τελειώνει σε %s"
 
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Δεν μπορείτε να υποβάλετε υπογεγραμμένη επέκταση Mozilla"
@@ -4746,7 +4746,7 @@ msgstr "Το περιεχόμενο του αρχείου δεν υποστηρ�
 
 #, python-format
 msgid "The output can be broken, please be careful and %(link_start)sreport an issue%(link_end)s immediately!"
-msgstr ""
+msgstr "Η έξοδος μπορεί να χαλάσει, παρακαλούμε δείξτε προσοχή και%(link_start)sαναφέρετε το ζήτημα%(link_end)s αμέσως!"
 
 msgid "close"
 msgstr "κλείσιμο"
@@ -5092,7 +5092,7 @@ msgid "You can't leave more than one review for the same version of an add-on."
 msgstr "Δεν μπορείτε να αφήσετε περισσότερες από μία κριτικές για την ίδια έκδοση του προσθέτου."
 
 msgid "This rating can't be flagged because it has no review text."
-msgstr ""
+msgstr "Αυτή η αξιολόγηση δεν μπορεί να επισημανθεί, επειδή δεν έχει κείμενο αξιολόγησης."
 
 msgid "Thanks; this review has been flagged for reviewer approval."
 msgstr "Ευχαριστούμε· αυτή η αξιολόγηση έχει επισημανθεί για έγκριση αξιολογητή."
@@ -5289,7 +5289,7 @@ msgid "Applications:"
 msgstr "Εφαρμογές:"
 
 msgid "Require developer to respond in less than…"
-msgstr ""
+msgstr "Απαίτηση για απάντηση από τον προγραμματιστή σε λιγότερο από…"
 
 msgid "days"
 msgstr "ημέρες"
@@ -5418,13 +5418,13 @@ msgid "Comment"
 msgstr "Σχόλιο"
 
 msgid "Make a comment on this version. The developer won't be able to see this."
-msgstr ""
+msgstr "Σχολιάστε αυτή την έκδοση. Ο προγραμματιστής δεν θα μπορεί να το δει."
 
 msgid "Approve Content"
 msgstr "Έγκριση περιεχομένου"
 
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
-msgstr ""
+msgstr "Αυτό καταγράφει την έγκριση σας για το περιεχόμενο της πιο πρόσφατης δημόσιας έκδοσης, χωρίς να ειδοποιείται ο προγραμματιστής."
 
 msgid "Pre-Approval Add-ons"
 msgstr "Προ-εγκεκριμένα πρόσθετα"
@@ -5471,7 +5471,7 @@ msgid "Theme Review Guide"
 msgstr "Οδηγός αξιολόγησης θεμάτων"
 
 msgid "User Ratings Moderation"
-msgstr ""
+msgstr "Συντονισμός κριτικών χρηστών"
 
 msgid "Ratings Awaiting Moderation ({0})"
 msgstr ""
@@ -5710,7 +5710,7 @@ msgid "There are currently no add-ons of this type to review."
 msgstr "Προς το παρόν δεν υπάρχουν πρόσθετα αυτού του τύπου για αξιολόγηση."
 
 msgid "Helpful Links:"
-msgstr "Χρήσιμοι δεσμοί:"
+msgstr "Χρήσιμοι σύνδεσμοι:"
 
 msgid "Add-on Policy"
 msgstr "Πολιτική πρόσθετου"
