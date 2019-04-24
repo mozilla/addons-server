@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-23 20:04+0000\n"
+"PO-Revision-Date: 2019-04-24 22:12+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3038,19 +3038,19 @@ msgstr "Καλώς ορίσατε ξανά"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
-msgstr ""
+msgstr "Θέλετε να προωθηθεί η επέκτασή σας στο %(amo_link_open)saddons.mozilla.org%(amo_link_close)s; Οι πολιτικές των προτεινόμενων επεκτάσεων περιέχουν ό,τι πρέπει να γνωρίζετε."
 
 msgid "Learn More"
 msgstr "Μάθετε περισσότερα"
 
 msgid "You can help users gain confidence and trust in your extension by following our best practices for onboarding users."
-msgstr ""
+msgstr "Μπορείτε να βοηθήσετε τους χρήστες να εμπιστευτούν την επέκτασή σας, ακολουθώντας τις βέλτιστες πρακτικές μας για την προσέλκυση χρηστών."
 
 msgid "See Best Practices"
 msgstr "Δείτε τις καλύτερες πρακτικές"
 
 msgid "Listed on this site after passing code review. Automatic updates are handled by this site."
-msgstr ""
+msgstr "Καταχωρήθηκε σε αυτή την ιστοσελίδα αφού πέρασε την αξιολόγηση κώδικα. Οι αυτόματες ενημερώσεις διαχειρίζονται από αυτή την ιστοσελίδα."
 
 #. {0} is a date. dennis-ignore: E201,E202,W202
 msgid "View All Submissions"
@@ -3176,7 +3176,7 @@ msgid "Source code"
 msgstr "Πηγαίος κώδικας"
 
 msgid "If your add-on contain binary or obfuscated code, make the source available here for reviewers."
-msgstr ""
+msgstr "Αν το πρόσθετο περιέχει δυαδικό ή δύσκολο στην κατανόηση (obfuscated) κώδικα, κάντε την πηγή διαθέσιμη εδώ για τους αξιολογητές."
 
 msgid "File {file_id} ({platform})"
 msgstr "Αρχείο {file_id} ({platform})"
@@ -3280,6 +3280,8 @@ msgstr "Διαγραφή της έκδοσης {version}"
 msgid ""
 "You are about to delete the current version of your add-on. This may cause your add-on status to change, or your listing to lose public visibility, if this is the only public version of your add-on."
 msgstr ""
+"Πρόκειται να διαγράψετε την τρέχουσα έκδοση του προσθέτου σας. Αυτό ενδέχεται να προκαλέσει την αλλαγή της κατάστασης του προσθέτου σας, ή την απόκρυψη της καταχώρησής του, αν αυτή είναι η μόνη "
+"δημόσια έκδοση του προσθέτου σας."
 
 msgid "Deleting this version will permanently delete:"
 msgstr "Η διαγραφή αυτής της έκδοσης θα διαγράψει οριστικά:"
@@ -3300,7 +3302,7 @@ msgid "Hide Add-on"
 msgstr "Απόκρυψη προσθέτου"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr ""
+msgstr "Η απόκρυψη του πρόσθετου σας θα εμποδίσει την εμφάνισή του σε οποιοδήποτε σημείο της συλλογής μας και θα διακόψει τις αυτόματες ενημερώσεις για τους χρήστες."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "Τα αρχεία που αναμένουν αξιολόγηση θα απενεργοποιηθούν και θα χρειαστεί να μεταφορτώσετε νέες εκδόσεις."
@@ -5497,7 +5499,7 @@ msgid "Review successfully processed."
 msgstr "Η αξιολόγηση επεξεργάστηκε με επιτυχία."
 
 msgid "Review lock limit reached"
-msgstr ""
+msgstr "Έχετε φτάσει το όριο κλειδωμάτων αξιολογήσεων"
 
 msgid "{addon} :: EULA"
 msgstr "{addon} :: EULA"
@@ -5573,13 +5575,13 @@ msgid "Nothing to see here!  The developer did not include any details."
 msgstr "Τίποτα προς προβολή!  Ο δημιουργός δεν συμπεριέλαβε καμία λεπτομέρεια."
 
 msgid "Return to the Reviewer Tools dashboard"
-msgstr ""
+msgstr "Επιστροφή στον πίνακα εργαλείων κριτή"
 
 msgid "Reviewer Leaderboard"
 msgstr "Πίνακας κριτών"
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "Δεν έχουν απονεμηθεί ακόμη πόντοι αξιολόγησης."
 
 msgid "Rank"
 msgstr "Βαθμός"
@@ -5620,7 +5622,7 @@ msgid "Review Text"
 msgstr "Κείμενο κριτικής"
 
 msgid "Review was flagged prior to deletion."
-msgstr ""
+msgstr "Η αξιολόγηση αναφέρθηκε πριν τη διαγραφή."
 
 msgid "Undelete"
 msgstr "Αναίρεση διαγραφής"
@@ -5629,7 +5631,7 @@ msgid "Save"
 msgstr "Αποθήκευση"
 
 msgid "Add-on Reviewer Performance"
-msgstr ""
+msgstr "Επιδόσεις κριτή προσθέτων"
 
 msgid "View statistics for user"
 msgstr "Προβολή στατιστικών χρήστη"
@@ -5717,7 +5719,7 @@ msgid "Review {0}"
 msgstr "Αξιολόγηση {0}"
 
 msgid "Add-on user change history"
-msgstr ""
+msgstr "Ιστορικό αλλαγής χρήστη προσθέτου"
 
 msgid "Add-on History"
 msgstr "Ιστορικό προσθέτου"
@@ -5931,10 +5933,10 @@ msgid "Invalid combination of \"%s\" and \"%s\" parameters."
 msgstr "Άκυρος συνδυασμός των παραμέτρων \"%s\" και \"%s\"."
 
 msgid "Return To AMO is currently disabled"
-msgstr ""
+msgstr "Η επιστροφή στο AMO είναι ανενεργή αυτή τη στιγμή"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε μορφή base64url;)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
 msgstr ""
@@ -6199,6 +6201,8 @@ msgid ""
 "Except where otherwise <a href=\"https://www.mozilla.org/about/legal/\">noted</a>, content on this site is licensed under the <br /> <a href=\"https://creativecommons.org/licenses/by-sa/3.0/\"> "
 "Creative Commons Attribution Share-Alike License v3.0 </a> or any later version."
 msgstr ""
+"Εκτός απ' όπου <a href=\"https://www.mozilla.org/about/legal/\">αναγράφεται</a> διαφορετικά, το περιεχόμενο σε αυτή την ιστοσελίδα υπάγεται στην άδεια <br /> <a "
+"href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Creative Commons Attribution Share-Alike License v3.0</a> ή μεταγενέστερες εκδόσεις."
 
 # χωρίς τόνο στο «πρόσθετα» λόγω του text-transform:uppercase
 msgid "get to know <b>add-ons</b>"
@@ -6338,7 +6342,7 @@ msgid "someone writes a review of my add-on"
 msgstr "κάποιος γράφει μια κριτική για το πρόσθετό μου"
 
 msgid "stay up-to-date with news and events relevant to add-on developers (including the about:addons newsletter)"
-msgstr ""
+msgstr "ενημέρωση για ειδήσεις και γεγονότα σχετικά με τους προγραμματιστές του προσθέτου (μαζί με το about:addons newsletter)"
 
 msgid "my add-on's compatibility cannot be upgraded"
 msgstr "η συμβατότητα του προσθέτου μου δεν μπορεί να αναβαθμιστεί"
