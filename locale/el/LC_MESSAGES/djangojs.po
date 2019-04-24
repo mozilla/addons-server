@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-23 19:36+0000\n"
+"PO-Revision-Date: 2019-04-24 23:08+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el <fiotakis@otenet.gr>, <alexandros@mioglou.me>\n"
 "Language: el\n"
@@ -21,13 +21,13 @@ msgstr[0] "{0} αστέρι"
 msgstr[1] "{0} αστέρια"
 
 msgid "There was a problem contacting the server."
-msgstr "Παρουσιάστηκε πρόβλημα επικοινωνίας με το διακομιστή."
+msgstr "Προέκυψε πρόβλημα επικοινωνίας με το διακομιστή."
 
 msgid "Select a file..."
 msgstr "Επιλογή αρχείου..."
 
 msgid "Your add-on should end with .zip, .xpi, .crx, .jar or .xml"
-msgstr "Το πρόσθετο σας θα πρέπει να έχει κατάληξη .zip, .xpi, .crx, .jar ή .xml"
+msgstr "Το πρόσθετό σας πρέπει να έχει κατάληξη .zip, .xpi, .crx, .jar ή .xml"
 
 #. L10n: {0} is the percent of the file that has been uploaded.
 #, python-format
