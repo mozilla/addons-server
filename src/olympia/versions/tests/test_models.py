@@ -4,8 +4,10 @@ import os.path
 
 from datetime import datetime, timedelta
 
+from django.db import transaction
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.test.testcases import TransactionTestCase
 
 import mock
 import pytest
@@ -855,6 +857,33 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         # Only once instead of twice
         extract_mock.assert_called_once_with(
             version_id=version.pk, author_id=upload.user.pk)
+
+
+class TestExtensionVersionFromUploadTransactional(
+        TestVersionFromUpload, TransactionTestCase):
+    filename = 'extension.xpi'
+
+    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
+    @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_commits_to_git_async_only_if_version_created(
+            self, utc_millisecs_mock, extract_mock):
+        utc_millisecs_mock.side_effect = ValueError
+        addon = addon_factory()
+        upload = self.get_upload('webextension_no_id.xpi')
+        upload.user = user_factory(username='fancyuser')
+        parsed_data = parse_addon(upload, addon, user=upload.user)
+
+        # Simulating an atomic transaction similar to what
+        # create_version_for_upload does
+        with pytest.raises(ValueError):
+            with transaction.atomic():
+                version = Version.from_upload(
+                    upload, addon, [self.selected_app],
+                    amo.RELEASE_CHANNEL_LISTED,
+                    parsed_data=parsed_data)
+
+        extract_mock.assert_not_called()
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):
