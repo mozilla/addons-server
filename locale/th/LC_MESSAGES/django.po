@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-15 18:47+0000\n"
+"PO-Revision-Date: 2019-04-24 16:30+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -62,7 +62,7 @@ msgstr ""
 
 #, python-format
 msgid "Notification [%s] does not exist"
-msgstr ""
+msgstr "ไม่มีการแจ้งเตือน [%s] อยู่"
 
 msgid "Review"
 msgstr "บทวิจารณ์"
@@ -2372,7 +2372,7 @@ msgid "Change the owner of this theme"
 msgstr ""
 
 msgid "Transfer Ownership"
-msgstr ""
+msgstr "ถ่ายโอนความเป็นเจ้าของ"
 
 #, fuzzy
 msgid "Delete this theme"
@@ -2499,7 +2499,7 @@ msgid "Describe Version"
 msgstr "อธิบายรุ่น"
 
 msgid "Release Notes:"
-msgstr ""
+msgstr "บันทึกประจำรุ่น:"
 
 msgid "Let your users know what's new and what's changed in this version."
 msgstr ""
@@ -2697,7 +2697,7 @@ msgid "6.9MB max"
 msgstr "สูงสุด 6.9MB"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG หรือ GIF (ไม่เคลื่อนไหว)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -2842,7 +2842,7 @@ msgid "Admin Manage"
 msgstr "หน้าผู้ดูแล"
 
 msgid "View Statistics Dashboard"
-msgstr ""
+msgstr "ดูแดชบอร์ดสถิติ"
 
 msgid "Developer News"
 msgstr "ข่าวนักพัฒนา"
@@ -3241,7 +3241,7 @@ msgid "Delete/Disable"
 msgstr "ลบ/ปิดใช้งาน"
 
 msgid "Next version of this add-on"
-msgstr ""
+msgstr "รุ่นถัดไปของส่วนเสริมนี้"
 
 msgid "Other versions"
 msgstr "รุ่นอื่น ๆ"
@@ -4363,7 +4363,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "จัดการที่คั่นหน้า {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Modify your bookmarks through an easily accessible panel."
@@ -4603,13 +4603,13 @@ msgid "This file is not viewable online. Please download the file to view the co
 msgstr ""
 
 msgid "This file is a directory."
-msgstr ""
+msgstr "ไฟล์นี้เป็นไดเรกทอรี"
 
 msgid "Cannot diff a version against itself"
 msgstr ""
 
 msgid "Could not parse the manifest file."
-msgstr ""
+msgstr "ไม่สามารถแยกวิเคราะห์ไฟล์กำกับ"
 
 msgid "GUID is required for Firefox 47 and below."
 msgstr ""
@@ -4683,7 +4683,7 @@ msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr ""
 
 msgid "Unexpected error."
-msgstr ""
+msgstr "ข้อผิดพลาดที่ไม่คาดคิด"
 
 #, python-format
 msgid "The type (%s) does not match the type of your add-on on AMO (%s)"
@@ -4728,13 +4728,13 @@ msgid "Fetching validation results..."
 msgstr ""
 
 msgid "Files:"
-msgstr ""
+msgstr "ไฟล์:"
 
 msgid "Deleted files:"
 msgstr ""
 
 msgid "Hide known files"
-msgstr ""
+msgstr "ซ่อนไฟล์ที่รู้จัก"
 
 msgid "Tab stops:"
 msgstr ""
@@ -4758,7 +4758,7 @@ msgid "Next note"
 msgstr ""
 
 msgid "Expand all"
-msgstr ""
+msgstr "ขยายทั้งหมด"
 
 msgid "Hide or unhide tree"
 msgstr ""
@@ -4817,10 +4817,10 @@ msgid "%s Spam reports submitted as Ham"
 msgstr ""
 
 msgid "About Mozilla Add-ons"
-msgstr ""
+msgstr "เกี่ยวกับส่วนเสริม Mozilla"
 
 msgid "What is this website?"
-msgstr ""
+msgstr "เว็บไซต์นี้คืออะไร?"
 
 msgid ""
 "addons.mozilla.org, commonly known as \"AMO\", is Mozilla's official site for add-ons to Mozilla software, such as Firefox, Thunderbird, and SeaMonkey. Add-ons let you add new features and change "
@@ -4887,7 +4887,7 @@ msgid "Review add-ons on the site. Add-on authors are more likely to improve the
 msgstr ""
 
 msgid "I have a question"
-msgstr ""
+msgstr "ฉันมีคำถาม"
 
 #, python-format
 msgid "A good place to start is <a href=\"%(sumo_url)s\">Support</a> Mozilla. If you don't find an answer there, you can <a href=\"%(forum_url)s\"> ask on our forums</a>."
@@ -5131,22 +5131,22 @@ msgid "Flagged for review"
 msgstr ""
 
 msgid "Report this review"
-msgstr ""
+msgstr "รายงานบทวิจารณ์นี้"
 
 msgid "Reply to review"
-msgstr ""
+msgstr "ตอบกลับบทวิจารณ์"
 
 msgid "Edit reply"
 msgstr "แก้ไขการตอบกลับ"
 
 msgid "Edit review"
-msgstr ""
+msgstr "แก้ไขบทวิจารณ์"
 
 msgid "Delete reply"
 msgstr "ลบการตอบกลับ"
 
 msgid "Delete review"
-msgstr ""
+msgstr "ลบบทวิจารณ์"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
@@ -5299,7 +5299,7 @@ msgid "Sources provided"
 msgstr ""
 
 msgid "WebExtension"
-msgstr ""
+msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
 msgstr ""
@@ -5591,10 +5591,10 @@ msgid "Filter"
 msgstr ""
 
 msgid "Date"
-msgstr ""
+msgstr "วันที่"
 
 msgid "Event"
-msgstr ""
+msgstr "เหตุการณ์"
 
 msgid "More details."
 msgstr "รายละเอียดเพิ่มเติม"
@@ -5611,10 +5611,10 @@ msgstr "วิจารณ์ส่วนเสริมนี้"
 
 #, python-format
 msgid "<dd>%(review_author)s</dd>"
-msgstr ""
+msgstr "<dd>%(review_author)s</dd>"
 
 msgid "Add-on Title"
-msgstr ""
+msgstr "ชื่อเรื่องส่วนเสริม"
 
 msgid "Review Text"
 msgstr ""
@@ -5623,7 +5623,7 @@ msgid "Review was flagged prior to deletion."
 msgstr ""
 
 msgid "Undelete"
-msgstr ""
+msgstr "เลิกลบ"
 
 msgid "Save"
 msgstr "บันทึก"
@@ -5687,7 +5687,7 @@ msgstr ""
 
 #, python-format
 msgid "by %(user)s on %(date)s %(stars)s (%(locale)s)"
-msgstr ""
+msgstr "โดย %(user)s เมื่อ %(date)s %(stars)s (%(locale)s)"
 
 #, python-format
 msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on %(date)s</span>"
@@ -5866,7 +5866,7 @@ msgstr "สิทธิอนุญาต:"
 
 #, python-format
 msgid "<div>By %(user)s on %(date)s</div>"
-msgstr ""
+msgstr "<div>โดย %(user)s เมื่อ %(date)s</div>"
 
 msgid "Older"
 msgstr "เก่ากว่า"
@@ -5974,7 +5974,7 @@ msgid "Please specify your Add-on GUID in the manifest if it's longer than 64 ch
 msgstr ""
 
 msgid "Invalid GUID in URL"
-msgstr ""
+msgstr "GUID ใน URL ไม่ถูกต้อง"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
 msgstr ""
@@ -6016,10 +6016,10 @@ msgid "To"
 msgstr "ถึง"
 
 msgid "Update"
-msgstr ""
+msgstr "อัปเดต"
 
 msgid "Export"
-msgstr ""
+msgstr "ส่งออก"
 
 #. {0} is an add-on name, {1} is an app name (like Firefox)
 msgid "{0} :: Statistics Dashboard :: Add-ons for {1}"
@@ -6113,7 +6113,7 @@ msgid "Platform usage by Date"
 msgstr ""
 
 msgid "<b>{0}</b> Downloads"
-msgstr ""
+msgstr "<b>{0}</b> การดาวน์โหลด"
 
 msgid "Loading..."
 msgstr "กำลังโหลด..."
@@ -6302,7 +6302,7 @@ msgid "Collections"
 msgstr "ชุดสะสม"
 
 msgid "Addons"
-msgstr ""
+msgstr "ส่วนเสริม"
 
 #, fuzzy
 msgid "Activity Logs"
@@ -6355,7 +6355,7 @@ msgid "Delete picture"
 msgstr "ลบรูปภาพ"
 
 msgid "Unsubscribe"
-msgstr ""
+msgstr "เลิกบอกรับ"
 
 msgid "You are successfully unsubscribed!"
 msgstr ""
