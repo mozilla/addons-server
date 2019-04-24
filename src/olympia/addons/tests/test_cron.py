@@ -22,7 +22,8 @@ class TestLastUpdated(TestCase):
     fixtures = ['base/addon_3615', 'addons/listed', 'addons/persona']
 
     def test_personas(self):
-        Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
+        Addon.objects.update(
+            type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
 
         cron.addon_last_updated()
         for addon in Addon.objects.all():
@@ -131,8 +132,10 @@ class TestHideDisabledFiles(TestCase):
 
     @mock.patch('olympia.files.models.File.move_file')
     def test_move_disabled_file(self, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_APPROVED)
-        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_APPROVED)
+        File.objects.filter(id=self.f1.id).update(
+            status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(
             status=amo.STATUS_AWAITING_REVIEW)
         cron.hide_disabled_files()

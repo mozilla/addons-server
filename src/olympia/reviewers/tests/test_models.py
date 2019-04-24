@@ -110,9 +110,9 @@ class TestExtensionPendingQueue(TestQueue):
         return addon
 
     def new_search_ext(self, name, version, **kw):
-        return create_search_ext(name, version,
-                                 amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
-                                 channel=self.channel, **kw)
+        return create_search_ext(
+            name, version, amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+            channel=self.channel, **kw)
 
     def test_waiting_time(self):
         self.new_addon()

@@ -3767,7 +3767,8 @@ class TestReview(ReviewBase):
         addon = self.get_addon()
         assert self.version == addon.current_version
         assert addon.status == amo.STATUS_APPROVED
-        assert addon.current_version.files.all()[0].status == amo.STATUS_APPROVED
+        assert addon.current_version.files.all()[0].status == (
+            amo.STATUS_APPROVED)
 
         assert mock_sign_file.called
 
