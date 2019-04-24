@@ -1,20 +1,62 @@
-<ul class="abuse_reports">
+<table class="abuse_reports">
+  <thead>
+    <tr>
+      <th> Target </th>
+      <th> Application </th>
+      <th> Install date </th>
+      <th> Install origin </th>
+      <th> Category </th>
+      <th> Date </th>
+      <th> Reporter </th>
+    </tr>
+  </thead>
   {% for report in reports %}
-  <li>
-    {% if report.reporter %}
-      {% set user_link = report.reporter|user_link %}
-    {% else %}
-      {% set user_link = "<i>anonymous</i>"|safe %}
+    <thead>
+      <tr>
+        <td>
+          {% if report.addon %}
+            {% set object_name = report.addon.name %}
+          {% else %}
+            {% set object_name = report.user|user_link %}
+          {% endif %}
+          {{ object_name }} {{ report.addon_version }}
+        </td>
+        <td>
+          {{ report.get_application_display() }}
+          {{ report.application_version }}
+          {{ report.application_locale }}
+          {{ report.operating_system }}
+          {{ report.operating_system_version }}
+        </td>
+        <td>
+          {% if report.install_date %}
+            {% set report_install_date = report.install_date.replace(microsecond=0).isoformat() %}
+          {% else %}
+            {% set report_install_date = '' %}
+          {% endif %}
+          {% if report_install_date %}
+            <time datetime="{{ report_install_date }}" title="{{ report_install_date }}">{{ report.install_date|timesince }}</time>
+          {% endif %}
+        </td>
+        <td>{{ report.addon_install_origin }} {{ report.get_addon_install_method_display() }}</td>
+        <td>{{ report.get_reason_display() }}</td>
+        <td>{{ report.created|datetime }}</td>
+        <td>
+          {% if report.reporter %}
+            {% set user_link = report.reporter|user_link %}
+          {% else %}
+            {% set user_link = "<i>anonymous</i>"|safe %}
+          {% endif %}
+          {{ user_link }} [{{ report.country_code }}]
+        </td>
+      </tr>
+    </thead>
+    {% if report.message %}
+    <tbody class="message">
+      <tr>
+        <td colspan="7">{{ report.message }}</td>
+      </tr>
+    </tbody>
     {% endif %}
-    {% if report.addon %}
-      {% set object_name = report.addon.name %}
-    {% else %}
-      {% set object_name = report.user|user_link %}
-    {% endif %}
-    {% trans user=user_link, date=report.created|date, country_code=report.country_code, object=object_name %}
-        {{ user }} [{{ country_code }}] reported {{ object }} on {{ date }}
-    {% endtrans %}
-    <blockquote>{{ report.message }}</blockquote>
-  </li>
   {% endfor %}
-</ul>
+</table>
