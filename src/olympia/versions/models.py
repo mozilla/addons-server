@@ -131,6 +131,10 @@ class Version(OnChangeMixin, ModelBase):
     git_hash = models.CharField(max_length=40, blank=True)
     source_git_hash = models.CharField(max_length=40, blank=True)
 
+    recommendation_status = models.PositiveSmallIntegerField(
+        choices=amo.RECOMMENDATION_VERSION_STATUS_CHOICES.items(),
+        default=amo.STATUS_NULL)
+
     # The order of those managers is very important: please read the lengthy
     # comment above the Addon managers declaration/instantiation.
     unfiltered = VersionManager(include_deleted=True)

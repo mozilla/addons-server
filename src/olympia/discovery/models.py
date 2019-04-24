@@ -53,6 +53,12 @@ class DiscoveryItem(ModelBase):
         help_text='Position in the discovery pane when telemetry-aware '
                   'recommendations are on but we want to override them.'
                   '(See position field above).')
+    status = models.PositiveSmallIntegerField(
+        choices=amo.RECOMMENDATION_STATUS_CHOICES.items(), db_index=True,
+        default=amo.STATUS_NULL,
+        help_text='Recommendation Status.  Set to "Awaiting Review" to have '
+                  'next submission be evaluated for recommendation; when '
+                  'approved the status will change to "Approved".')
 
     def __str__(self):
         return six.text_type(self.addon)
