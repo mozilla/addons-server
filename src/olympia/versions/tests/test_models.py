@@ -878,7 +878,7 @@ class TestExtensionVersionFromUploadTransactional(
         # create_version_for_upload does
         with pytest.raises(ValueError):
             with transaction.atomic():
-                version = Version.from_upload(
+                Version.from_upload(
                     upload, addon, [self.selected_app],
                     amo.RELEASE_CHANNEL_LISTED,
                     parsed_data=parsed_data)
