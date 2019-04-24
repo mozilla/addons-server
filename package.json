@@ -19,7 +19,7 @@
     "jszip": "3.2.1",
     "less": "3.9.0",
     "source-map": "0.7.3",
-    "timeago": "1.6.6",
+    "timeago": "1.6.7",
     "uglify-js": "3.5.5",
     "underscore": "1.9.1"
   },
