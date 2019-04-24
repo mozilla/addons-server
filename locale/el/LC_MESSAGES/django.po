@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-24 22:12+0000\n"
+"PO-Revision-Date: 2019-04-24 22:31+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3029,6 +3029,8 @@ msgid ""
 "With the WebExtensions API, it’s easy to create extensions that will run on Firefox, Chrome, Opera, and Edge with only a few small changes. Learn more about the differences in extension development "
 "between the four major browsers and how you can make your extension cross-browser compatible."
 msgstr ""
+"Με το WebExtensions API, μπορείτε να δημιουργήσετε εύκολα επεκτάσεις που λειτουργούν στο Firefox, στο Chrome, στο Opera και στο Edge, με μικρές μόνο αλλαγές. Μάθετε περισσότερα σχετικά με τις "
+"διαφορές στην ανάπτυξη επεκτάσεων μεταξύ των τεσσάρων, κύριων προγραμμάτων περιήγησης, καθώς και πώς μπορείτε να κάνετε τη δική σας επέκταση συμβατή με πολλαπλά προγράμματα περιήγησης."
 
 msgid "View Best Practices for Cross-Browser Development"
 msgstr "Δείτε τις καλύτερες πρακτικές για ανάπτυξη σε πολλαπλά προγράμματα περιήγησης"
@@ -3095,6 +3097,8 @@ msgid ""
 "Add-ons let millions of Firefox users enhance their browsing experience. If you know %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s, and "
 "%(css_link_open)sCSS%(link_close)s, you already have all the necessary skills to make a great add-on."
 msgstr ""
+"Τα πρόσθετα επιτρέπουν σε εκατομμύρια χρήστες του Firefox να βελτιώνουν την εμπειρία περιήγησής τους. Αν γνωρίζετε %(html_link_open)sHTML%(link_close)s, %(js_link_open)sJavaScript%(link_close)s και "
+"%(css_link_open)sCSS%(link_close)s, έχετε ήδη όλες τις απαραίτητες ικανότητες για να φτιάξετε ένα εξαιρετικό πρόσθετο."
 
 msgid "Learn How to Make an Add-on"
 msgstr "Μάθετε πώς να δημιουργήσετε ένα πρόσθετο"
@@ -3105,6 +3109,8 @@ msgstr "Μετατροπή επέκτασης Chrome"
 msgid ""
 "Firefox supports WebExtension APIs, which in most cases are compatible with the extension APIs supported by Chrome, Opera and Edge, so your extensions will run in Firefox with just a few changes."
 msgstr ""
+"Το Firefox υποστηρίζει τα WebExtension APIs, που στις περισσότερες περιπτώσεις είναι συμβατά με τα APIs επεκτάσεων που υποστηρίζουν τα Chrome, Opera και Edge. Συνεπώς, οι επεκτάσεις σας θα "
+"λειτουργούν στο Firefox με μικρές μόνο αλλαγές."
 
 msgid "Learn How"
 msgstr "Μάθετε πώς"
@@ -3113,7 +3119,7 @@ msgid "Publish Your Add-on"
 msgstr "Δημοσιεύστε το πρόσθετό σας"
 
 msgid "Have an add-on ready? Submit your extension or theme to be listed on addons.mozilla.org or sign and distribute your extension on your own."
-msgstr ""
+msgstr "Έχετε ήδη ένα πρόσθετο; Υποβάλετε την επέκταση ή το θέμα σας για καταχώρηση στο addons.mozilla.org ή συνδεθείτε και διανείμετε μόνοι σας την επέκτασή σας."
 
 msgid "Sign In"
 msgstr "Είσοδος"
@@ -3311,7 +3317,7 @@ msgid "Are you sure you wish to hide your add-on?"
 msgstr "Θέλετε σίγουρα να αποκρύψετε το πρόσθετό σας;"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
-msgstr ""
+msgstr "Η ακύρωση του αιτήματος αξιολόγησής σας θα επισημάνει ως ελλιπές το πρόσθετο σας και όλες οι εκδόσεις που αναμένουν αξιολόγηση θα απενεργοποιηθούν."
 
 msgid "Are you sure you wish to cancel your review request?"
 msgstr "Θέλετε σίγουρα να ακυρωθεί η αίτηση σας για αξιολόγηση;"
@@ -3633,6 +3639,8 @@ msgstr "Αποθήκευση κειμένου {start_sub_heading}με το {addo
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
 msgstr ""
+"Σταματήστε να γράφετε συνέχεια το ίδιο πράγμα! Αν χρησιμοποιείτε συχνά τις ίδιες φράσεις στη δουλειά σας ή σε άλλες επικοινωνίες, αποθηκεύστε τις στο Clippings και επικολλήστε τις εύκολα όταν "
+"απαιτείται."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3640,7 +3648,7 @@ msgstr "Φραγή διαφημίσεων email {start_sub_heading}με το {ad
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Αποκτήστε περισσότερο χώρο στην οθόνη αφαιρώντας διαφημίσεις από τα διαδικτυακά σας εισερχόμενα."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5895,7 +5903,7 @@ msgid "%(user)s on %(date)s [%(ip_address)s]"
 msgstr "%(user)s στις %(date)s [%(ip_address)s]"
 
 msgid "Rejected or Unreviewed"
-msgstr ""
+msgstr "Απορρίφθηκε ή δεν αξιολογήθηκε"
 
 #, python-format
 msgid "[status:%s]"
@@ -5939,14 +5947,14 @@ msgid "Invalid Return To AMO guid (not in base64url format?)"
 msgstr "Άκυρο guid επιστροφής στο AMO (δεν είναι σε μορφή base64url;)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Άκυρο guid επιστροφής στο AMO (μη επιμελημένο πρόσθετο)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
 msgstr "Άκυρος συνδυασμός των παραμέτρων \"%s\", \"%s\" και \"%s\"."
 
 msgid "Maximum query length exceeded."
-msgstr ""
+msgstr "Έχετε υπερβεί το μέγιστο μήκος ερωτήματος."
 
 msgid "Could not find add-on with guid \"{}\"."
 msgstr "Αδυναμία εύρεσης προσθέτου με guid \"{}\"."
@@ -5955,7 +5963,7 @@ msgid "You do not own this addon."
 msgstr "Δεν κατέχετε αυτό το πρόσθετο."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Απουσία κλειδιού \"upload\" σε δεδομένα αρχείου πολλαπλών τμημάτων."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
