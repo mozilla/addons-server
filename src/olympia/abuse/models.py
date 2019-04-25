@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.gis.geoip2 import GeoIP2, GeoIP2Exception
 from django.core.validators import validate_ipv46_address
 from django.db import models
+from django.utils import translation
 from django.utils.encoding import python_2_unicode_compatible
 
 import six
@@ -193,7 +194,10 @@ class AbuseReport(ModelBase):
 
     @property
     def type(self):
-        return 'User' if self.user else 'Addon'
+        with translation.override(settings.LANGUAGE_CODE):
+            type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type])
+                     if self.addon else 'User' if self.user else 'Addon')
+        return type_
 
     def __str__(self):
         name = self.target.name if self.target else self.guid
