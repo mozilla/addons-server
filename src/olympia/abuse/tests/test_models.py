@@ -6,7 +6,7 @@ import mock
 import six
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception
-from olympia.amo.tests import TestCase
+from olympia.amo.tests import addon_factory, TestCase
 
 
 class TestAbuse(TestCase):
@@ -150,3 +150,35 @@ class TestAbuse(TestCase):
 
         GeoIP2_mock.return_value.country_code.side_effect = GeoIP2Error
         assert AbuseReport.lookup_country_code_from_ip('127.0.0.1') == ''
+
+
+class TestAbuseManager(TestCase):
+    def test_deleted(self):
+        report = AbuseReport.objects.create()
+        deleted_report = AbuseReport.objects.create()
+        assert AbuseReport.objects.count() == 2
+        assert AbuseReport.unfiltered.count() == 2
+
+        deleted_report.delete()
+
+        assert deleted_report.state == AbuseReport.STATES.DELETED
+        assert deleted_report.pk
+        assert report in AbuseReport.objects.all()
+        assert deleted_report not in AbuseReport.objects.all()
+        assert AbuseReport.objects.count() == 1
+
+        assert report in AbuseReport.unfiltered.all()
+        assert deleted_report in AbuseReport.unfiltered.all()
+        assert AbuseReport.unfiltered.count() == 2
+
+    def test_deleted_related(self):
+        addon = addon_factory()
+        report = AbuseReport.objects.create(addon=addon)
+        deleted_report = AbuseReport.objects.create(addon=addon)
+        assert addon.abuse_reports.count() == 2
+
+        deleted_report.delete()
+
+        assert report in addon.abuse_reports.all()
+        assert deleted_report not in addon.abuse_reports.all()
+        assert addon.abuse_reports.count() == 1

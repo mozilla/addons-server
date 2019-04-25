@@ -74,6 +74,9 @@ ADMIN_ADVANCED = AclPermission('Admin', 'Advanced')
 # Can add/edit/delete DiscoveryItems.
 DISCOVERY_EDIT = AclPermission('Discovery', 'Edit')
 
+# Can list/access abuse reports
+ABUSEREPORTS_EDIT = AclPermission('AbuseReports', 'Edit')
+
 # All permissions, for easy introspection
 PERMISSIONS_LIST = [
     x for x in vars().values() if isinstance(x, AclPermission)]
@@ -84,6 +87,7 @@ PERMISSIONS_LIST = [
 DJANGO_PERMISSIONS_MAPPING = defaultdict(lambda: SUPERPOWERS)
 
 DJANGO_PERMISSIONS_MAPPING.update({
+    'abuse.change_abusereport': ABUSEREPORTS_EDIT,
     'abuse.delete_abusereport': ADMIN_ADVANCED,
     # Note that ActivityLog's ModelAdmin actually forbids deletion entirely.
     # This is just here to allow deletion of users, because django checks

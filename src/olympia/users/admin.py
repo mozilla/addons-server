@@ -90,7 +90,7 @@ class UserAdmin(admin.ModelAdmin):
         actions = super(UserAdmin, self).get_actions(request)
         if not acl.action_allowed(request, amo.permissions.USERS_EDIT):
             # You need Users:Edit to be able to ban users.
-            actions.pop('user_ban', None)
+            actions.pop('ban_action')
         return actions
 
     def change_view(self, request, object_id, form_url='', extra_context=None):
