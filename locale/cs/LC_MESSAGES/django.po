@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-25 21:06+0000\n"
+"PO-Revision-Date: 2019-04-25 23:26+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1481,7 +1481,7 @@ msgid "Slug incorrect."
 msgstr "Nesprávný název URL."
 
 msgid "Details"
-msgstr "Detaily"
+msgstr "Podrobnosti"
 
 msgid "What is your license's name?"
 msgstr "Jaký je název této licence?"
@@ -1587,7 +1587,7 @@ msgid "Updated"
 msgstr "Aktualizováno"
 
 msgid "Name"
-msgstr "Jméno"
+msgstr "Název"
 
 msgid "Created"
 msgstr "Vytvořeno"
@@ -2415,7 +2415,7 @@ msgid "Name and Summary:"
 msgstr "Název a souhrn:"
 
 msgid "required"
-msgstr "vyžadováno"
+msgstr "povinné"
 
 #, python-format
 msgid ""
@@ -2430,7 +2430,7 @@ msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr "Pro URL zadávejte pouze znaky, čísla, podtržítka a pomlčky."
 
 msgid "Name:"
-msgstr "Jméno:"
+msgstr "Název:"
 
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr "Zadejte název doplňku zobrazený na této stránce. Může se lišit od názvu uvedeného v manifestu doplňku, který se po instalaci zobrazuje ve Firefoxu jako takovém."
@@ -5029,7 +5029,7 @@ msgid "Other (please specify)"
 msgstr "Jiné (prosím upřesněte)"
 
 msgid "This field is required."
-msgstr "Toto pole je vyžadováno."
+msgstr "Toto pole je povinné."
 
 msgid "You can't change the add-on of a review once it has been created."
 msgstr "Nemůžete změnit recenzi doplňku, jakmile byla vytvořena."
