@@ -60,8 +60,8 @@ class TestReviewForm(TestCase):
         # If the add-on has no pending files we only show info, comment and
         # super review.
         assert len(self.set_statuses_and_get_actions(
-            addon_status=amo.STATUS_PUBLIC,
-            file_status=amo.STATUS_PUBLIC)) == 3
+            addon_status=amo.STATUS_APPROVED,
+            file_status=amo.STATUS_APPROVED)) == 3
         assert len(self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_DISABLED,
             file_status=amo.STATUS_DISABLED)) == 3

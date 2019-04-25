@@ -214,7 +214,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         """
         self.change_status(self.version_1_2_2, amo.STATUS_PENDING)
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_1
@@ -226,7 +226,7 @@ class TestLookup(VersionCheckMixin, TestCase):
         Version.objects.get(pk=self.version_1_2_2).update(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, self.platform)
         assert version == self.version_1_2_1
@@ -273,8 +273,8 @@ class TestLookup(VersionCheckMixin, TestCase):
         version, file = self.get_update_instance(
             '1.2beta', self.version_int, self.app, self.platform)
         dest = Version.objects.get(pk=self.version_1_2_2)
-        assert dest.addon.status == amo.STATUS_PUBLIC
-        assert dest.files.all()[0].status == amo.STATUS_PUBLIC
+        assert dest.addon.status == amo.STATUS_APPROVED
+        assert dest.files.all()[0].status == amo.STATUS_APPROVED
         assert version == dest.pk
 
     def test_not_public(self):
@@ -319,7 +319,7 @@ class TestLookup(VersionCheckMixin, TestCase):
 
         file_two = File(version=version, filename='foo', hash='bar',
                         platform=amo.PLATFORM_WIN.id,
-                        status=amo.STATUS_PUBLIC)
+                        status=amo.STATUS_APPROVED)
         file_two.save()
         version, file = self.get_update_instance(
             '1.2', self.version_int, self.app, amo.PLATFORM_LINUX)

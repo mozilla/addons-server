@@ -34,7 +34,7 @@ log = olympia.core.logger.getLogger('z.mailer')
 
 
 PENDING_STATUSES = (amo.STATUS_DISABLED, amo.STATUS_NULL,
-                    amo.STATUS_PENDING, amo.STATUS_PUBLIC)
+                    amo.STATUS_PENDING, amo.STATUS_APPROVED)
 
 
 class ItemStateTable(object):
@@ -350,12 +350,12 @@ class ReviewHelper(object):
             is_unlisted_reviewer)
         is_public_and_listed_and_user_can_post_review = (
             self.version and
-            self.addon.status == amo.STATUS_PUBLIC and
+            self.addon.status == amo.STATUS_APPROVED and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             is_post_reviewer)
         is_public_and_listed_and_user_can_content_review = (
             self.version and
-            self.addon.status == amo.STATUS_PUBLIC and
+            self.addon.status == amo.STATUS_APPROVED and
             self.version.channel == amo.RELEASE_CHANNEL_LISTED and
             is_content_reviewer and self.content_review_only)
 
@@ -645,9 +645,9 @@ class ReviewBase(object):
 
         # Save files first, because set_addon checks to make sure there
         # is at least one public file or it won't make the addon public.
-        self.set_files(amo.STATUS_PUBLIC, self.files)
+        self.set_files(amo.STATUS_APPROVED, self.files)
         if self.set_addon_status:
-            self.set_addon(status=amo.STATUS_PUBLIC)
+            self.set_addon(status=amo.STATUS_APPROVED)
 
         # Increment approvals counter if we have a request (it means it's a
         # human doing the review) otherwise reset it as it's an automatic
@@ -786,7 +786,7 @@ class ReviewBase(object):
         # of the add-on instead of one of the versions we rejected, it will be
         # used to generate a token allowing the developer to reply, and that
         # only works with the latest version.
-        if self.addon.status != amo.STATUS_PUBLIC:
+        if self.addon.status != amo.STATUS_APPROVED:
             template = u'reject_multiple_versions_disabled_addon'
             subject = (u'Mozilla Add-ons: %s%s has been disabled on '
                        u'addons.mozilla.org')
@@ -841,7 +841,7 @@ class ReviewUnlisted(ReviewBase):
         for file_ in self.files:
             sign_file(file_)
 
-        self.set_files(amo.STATUS_PUBLIC, self.files)
+        self.set_files(amo.STATUS_APPROVED, self.files)
 
         template = u'unlisted_to_reviewed_auto'
         subject = u'Mozilla Add-ons: %s %s signed and ready to download'

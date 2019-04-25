@@ -31,7 +31,7 @@ class TestNoESIndexing(TestCase):
 
     def test_not_indexed(self):
         addon = Addon.objects.create(type=amo.ADDON_EXTENSION,
-                                     status=amo.STATUS_PUBLIC)
+                                     status=amo.STATUS_APPROVED)
         assert issubclass(
             Addon.search().filter(id__in=addon.id).count().__class__,
             mock.Mock)

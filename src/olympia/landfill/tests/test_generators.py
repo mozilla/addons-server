@@ -69,7 +69,7 @@ class CreateGeneratorTests(TestCase):
     def test_create_addon(self):
         addon = create_addon('foo', 'icon/default', APPS['android'])
         assert Addon.objects.last().name == addon.name
-        assert amo.STATUS_PUBLIC == addon.status
+        assert amo.STATUS_APPROVED == addon.status
         assert Version.objects.last() == addon._current_version
         assert addon.guid
         assert addon.slug
@@ -77,7 +77,7 @@ class CreateGeneratorTests(TestCase):
     def test_create_theme(self):
         theme = create_theme('bar')
         assert Addon.objects.last().name == theme.name
-        assert amo.STATUS_PUBLIC == theme.status
+        assert amo.STATUS_APPROVED == theme.status
         assert amo.ADDON_PERSONA == theme.type
         assert Persona.objects.last() == theme.persona
         assert Version.objects.last() == theme._current_version

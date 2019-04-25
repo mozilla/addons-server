@@ -196,8 +196,8 @@ class TestAutoApproveCommand(AutoApproveTestsMixin, TestCase):
         assert AutoApprovalSummary.objects.count() == 1
         assert AutoApprovalSummary.objects.get(version=self.version)
         assert get_reviewing_cache(self.addon.pk) is None
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         assert self.file.reviewed
         assert ActivityLog.objects.count()
         activity_log = ActivityLog.objects.latest('pk')
@@ -375,13 +375,13 @@ class TestAutoApproveCommandTransactions(
 
         assert not AutoApprovalSummary.objects.filter(
             version=self.versions[0]).exists()
-        assert self.addons[0].status == amo.STATUS_PUBLIC  # It already was.
+        assert self.addons[0].status == amo.STATUS_APPROVED  # It already was.
         assert self.files[0].status == amo.STATUS_AWAITING_REVIEW
         assert not self.files[0].reviewed
 
         assert AutoApprovalSummary.objects.get(version=self.versions[1])
-        assert self.addons[1].status == amo.STATUS_PUBLIC
-        assert self.files[1].status == amo.STATUS_PUBLIC
+        assert self.addons[1].status == amo.STATUS_APPROVED
+        assert self.files[1].status == amo.STATUS_APPROVED
         assert self.files[1].reviewed
 
         assert len(mail.outbox) == 1

@@ -45,7 +45,7 @@ class Command(BaseCommand):
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
             addon__disabled_by_user=False,
-            addon__status__in=(amo.STATUS_PUBLIC, amo.STATUS_NOMINATED),
+            addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW,
             files__is_webextension=True)
             .order_by('nomination', 'created').distinct())

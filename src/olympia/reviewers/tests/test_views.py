@@ -563,7 +563,7 @@ class TestDashboard(TestCase):
 
         # Public addon with expired info request.
         addon2 = addon_factory(name=u'Public Addön 2',
-                               status=amo.STATUS_PUBLIC)
+                               status=amo.STATUS_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=addon2,
             pending_info_request=self.days_ago(42))
@@ -591,7 +591,7 @@ class TestDashboard(TestCase):
 
         # Invisible (user-disabled) addon with expired info request.
         addon6 = addon_factory(name=u'Incomplete Addön 5',
-                               status=amo.STATUS_PUBLIC,
+                               status=amo.STATUS_APPROVED,
                                disabled_by_user=True)
         AddonReviewerFlags.objects.create(
             addon=addon6,
@@ -1008,12 +1008,12 @@ class QueueTest(ReviewerTest):
         files = files or OrderedDict([
             ('Pending One', {
                 'version_str': '0.1',
-                'addon_status': amo.STATUS_PUBLIC,
+                'addon_status': amo.STATUS_APPROVED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Pending Two', {
                 'version_str': '0.1',
-                'addon_status': amo.STATUS_PUBLIC,
+                'addon_status': amo.STATUS_APPROVED,
                 'file_status': amo.STATUS_AWAITING_REVIEW,
             }),
             ('Nominated One', {
@@ -1028,8 +1028,8 @@ class QueueTest(ReviewerTest):
             }),
             ('Public', {
                 'version_str': '0.1',
-                'addon_status': amo.STATUS_PUBLIC,
-                'file_status': amo.STATUS_PUBLIC,
+                'addon_status': amo.STATUS_APPROVED,
+                'file_status': amo.STATUS_APPROVED,
             }),
         ])
         results = OrderedDict()
@@ -1986,7 +1986,7 @@ class TestExpiredInfoRequestsQueue(QueueTest):
 
         # Public addon with expired info request.
         addon2 = addon_factory(name=u'Public Addön 2',
-                               status=amo.STATUS_PUBLIC)
+                               status=amo.STATUS_APPROVED)
         AddonReviewerFlags.objects.create(
             addon=addon2,
             pending_info_request=self.days_ago(42))
@@ -2014,7 +2014,7 @@ class TestExpiredInfoRequestsQueue(QueueTest):
 
         # Invisible (user-disabled) addon with expired info request.
         addon6 = addon_factory(name=u'Incomplete Addön 5',
-                               status=amo.STATUS_PUBLIC,
+                               status=amo.STATUS_APPROVED,
                                disabled_by_user=True)
         AddonReviewerFlags.objects.create(
             addon=addon6,
@@ -2786,7 +2786,7 @@ class TestReview(ReviewBase):
 
     def test_item_history(self, channel=amo.RELEASE_CHANNEL_LISTED):
         self.addons['something'] = addon_factory(
-            status=amo.STATUS_PUBLIC, name=u'something',
+            status=amo.STATUS_APPROVED, name=u'something',
             version_kw={'version': u'0.2',
                         'channel': channel},
             file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -2835,7 +2835,7 @@ class TestReview(ReviewBase):
         version_factory(
             version=u'0.2', addon=self.addon,
             channel=amo.RELEASE_CHANNEL_UNLISTED,
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         self.test_item_history()
 
     def test_item_history_with_unlisted_review_page(self):
@@ -2845,7 +2845,7 @@ class TestReview(ReviewBase):
         version_factory(
             version=u'0.2', addon=self.addon,
             channel=amo.RELEASE_CHANNEL_LISTED,
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         self.url = reverse('reviewers.review', args=[
             'unlisted', self.addon.slug])
         self.grant_permission(self.reviewer, 'Addons:ReviewUnlisted')
@@ -3280,7 +3280,7 @@ class TestReview(ReviewBase):
 
     def test_no_public(self):
         has_public = self.version.files.filter(
-            status=amo.STATUS_PUBLIC).exists()
+            status=amo.STATUS_APPROVED).exists()
         assert has_public
 
         response = self.client.get(self.url)
@@ -3294,7 +3294,7 @@ class TestReview(ReviewBase):
         assert validation.find('a').length == 3
 
     def test_public_search(self):
-        self.version.files.update(status=amo.STATUS_PUBLIC)
+        self.version.files.update(status=amo.STATUS_APPROVED)
         self.addon.update(type=amo.ADDON_SEARCH)
         response = self.client.get(self.url)
         assert response.status_code == 200
@@ -3614,7 +3614,7 @@ class TestReview(ReviewBase):
 
     def test_compare_link(self):
         first_file = self.addon.current_version.files.all()[0]
-        first_file.update(status=amo.STATUS_PUBLIC)
+        first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(2))
 
         new_version = version_factory(addon=self.addon, version='0.2')
@@ -3634,7 +3634,7 @@ class TestReview(ReviewBase):
 
     def test_compare_link_auto_approved_ignored(self):
         first_file = self.addon.current_version.files.all()[0]
-        first_file.update(status=amo.STATUS_PUBLIC)
+        first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
 
         interim_version = version_factory(addon=self.addon, version='0.2')
@@ -3663,7 +3663,7 @@ class TestReview(ReviewBase):
 
     def test_compare_link_auto_approved_but_confirmed_not_ignored(self):
         first_file = self.addon.current_version.files.all()[0]
-        first_file.update(status=amo.STATUS_PUBLIC)
+        first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
 
         confirmed_version = version_factory(addon=self.addon, version='0.2')
@@ -3700,7 +3700,7 @@ class TestReview(ReviewBase):
 
     def test_compare_link_not_auto_approved_but_confirmed(self):
         first_file = self.addon.current_version.files.all()[0]
-        first_file.update(status=amo.STATUS_PUBLIC)
+        first_file.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(created=self.days_ago(3))
 
         confirmed_version = version_factory(addon=self.addon, version='0.2')
@@ -3766,8 +3766,9 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         addon = self.get_addon()
         assert self.version == addon.current_version
-        assert addon.status == amo.STATUS_PUBLIC
-        assert addon.current_version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
+        assert addon.current_version.files.all()[0].status == (
+            amo.STATUS_APPROVED)
 
         assert mock_sign_file.called
 
@@ -3941,10 +3942,10 @@ class TestReview(ReviewBase):
             # The add-on status must not change as non-admin reviewers are not
             # allowed to review admin-flagged add-ons.
             addon = self.get_addon()
-            assert addon.status == amo.STATUS_PUBLIC
+            assert addon.status == amo.STATUS_APPROVED
             assert self.version == addon.current_version
             assert addon.current_version.files.all()[0].status == (
-                amo.STATUS_PUBLIC)
+                amo.STATUS_APPROVED)
             assert response.context['form'].errors['action'] == (
                 [u'Select a valid choice. %s is not one of the available '
                  u'choices.' % action])
@@ -3995,7 +3996,7 @@ class TestReview(ReviewBase):
             'comments': 'it`s good'
         })
         assert response.status_code == 302
-        assert self.get_addon().status == amo.STATUS_PUBLIC
+        assert self.get_addon().status == amo.STATUS_APPROVED
         assert mock_sign_file.called
 
     def test_admin_can_contentreview_if_admin_content_review_flag_is_set(self):
@@ -4409,7 +4410,7 @@ class TestCodeManagerLinks(ReviewBase):
 
     def test_link_to_version_comparison(self):
         last_version = self.addon.current_version
-        last_version.files.update(status=amo.STATUS_PUBLIC)
+        last_version.files.update(status=amo.STATUS_APPROVED)
         last_version.update(created=self.days_ago(2))
 
         new_version = version_factory(addon=self.addon, version='0.2')
@@ -4445,7 +4446,7 @@ class TestReviewPending(ReviewBase):
         self.file = file_factory(version=self.version,
                                  status=amo.STATUS_AWAITING_REVIEW,
                                  is_webextension=True)
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
 
     def pending_dict(self):
         return self.get_dict(action='public')
@@ -4455,15 +4456,15 @@ class TestReviewPending(ReviewBase):
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
         assert list(statuses) == [
-            amo.STATUS_AWAITING_REVIEW, amo.STATUS_PUBLIC]
+            amo.STATUS_AWAITING_REVIEW, amo.STATUS_APPROVED]
 
         response = self.client.post(self.url, self.pending_dict())
-        assert self.get_addon().status == amo.STATUS_PUBLIC
+        assert self.get_addon().status == amo.STATUS_APPROVED
         self.assert3xx(response, reverse('reviewers.queue_extension_pending'))
 
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
+        assert list(statuses) == [amo.STATUS_APPROVED, amo.STATUS_APPROVED]
 
         assert mock_sign.called
 
@@ -4475,16 +4476,16 @@ class TestReviewPending(ReviewBase):
         self.addon.update(type=amo.ADDON_SEARCH)
         response = self.client.post(self.url, self.pending_dict())
         self.assert3xx(response, reverse('reviewers.queue_extension_pending'))
-        assert self.get_addon().status == amo.STATUS_PUBLIC
+        assert self.get_addon().status == amo.STATUS_APPROVED
         statuses = (self.version.files.values_list('status', flat=True)
                     .order_by('status'))
-        assert list(statuses) == [amo.STATUS_PUBLIC, amo.STATUS_PUBLIC]
+        assert list(statuses) == [amo.STATUS_APPROVED, amo.STATUS_APPROVED]
 
     def test_display_only_unreviewed_files(self):
         """Only the currently unreviewed files are displayed."""
         self.file.update(filename=b'somefilename.xpi')
         reviewed = File.objects.create(version=self.version,
-                                       status=amo.STATUS_PUBLIC,
+                                       status=amo.STATUS_APPROVED,
                                        filename=b'file_reviewed.xpi')
         disabled = File.objects.create(version=self.version,
                                        status=amo.STATUS_DISABLED,
@@ -4505,7 +4506,7 @@ class TestReviewPending(ReviewBase):
     def test_review_unreviewed_files(self, mock_sign):
         """Review all the unreviewed files when submitting a review."""
         reviewed = File.objects.create(version=self.version,
-                                       status=amo.STATUS_PUBLIC)
+                                       status=amo.STATUS_APPROVED)
         disabled = File.objects.create(version=self.version,
                                        status=amo.STATUS_DISABLED)
         unreviewed = File.objects.create(version=self.version,
@@ -4514,11 +4515,11 @@ class TestReviewPending(ReviewBase):
         response = self.client.post(self.url, self.pending_dict())
         self.assert3xx(response, reverse('reviewers.queue_extension_pending'))
 
-        assert self.addon.reload().status == amo.STATUS_PUBLIC
-        assert reviewed.reload().status == amo.STATUS_PUBLIC
+        assert self.addon.reload().status == amo.STATUS_APPROVED
+        assert reviewed.reload().status == amo.STATUS_APPROVED
         assert disabled.reload().status == amo.STATUS_DISABLED
-        assert unreviewed.reload().status == amo.STATUS_PUBLIC
-        assert self.file.reload().status == amo.STATUS_PUBLIC
+        assert unreviewed.reload().status == amo.STATUS_APPROVED
+        assert self.file.reload().status == amo.STATUS_APPROVED
 
         assert mock_sign.called
 
@@ -4607,13 +4608,13 @@ class TestStatusFile(ReviewBase):
 
     def test_status_full(self):
         self.get_file().update(status=amo.STATUS_AWAITING_REVIEW)
-        for status in [amo.STATUS_NOMINATED, amo.STATUS_PUBLIC]:
+        for status in [amo.STATUS_NOMINATED, amo.STATUS_APPROVED]:
             self.addon.update(status=status)
             self.check_status('Awaiting Review')
 
     def test_status_full_reviewed(self):
-        self.get_file().update(status=amo.STATUS_PUBLIC)
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.get_file().update(status=amo.STATUS_APPROVED)
+        self.addon.update(status=amo.STATUS_APPROVED)
         self.check_status('Approved')
 
 
@@ -5029,7 +5030,7 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.enable_url)
         assert response.status_code == 202
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.CHANGE_STATUS.id
@@ -5041,7 +5042,7 @@ class TestAddonReviewerViewSet(TestCase):
         response = self.client.post(self.enable_url)
         assert response.status_code == 202
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert ActivityLog.objects.count() == 1
         activity_log = ActivityLog.objects.latest('pk')
         assert activity_log.action == amo.LOG.CHANGE_STATUS.id

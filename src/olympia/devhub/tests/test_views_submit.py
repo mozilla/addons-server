@@ -1983,7 +1983,7 @@ class VersionSubmitUploadMixin(object):
         assert version.all_files[0].status == (
             amo.STATUS_AWAITING_REVIEW
             if self.channel == amo.RELEASE_CHANNEL_LISTED else
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
@@ -2046,7 +2046,7 @@ class VersionSubmitUploadMixin(object):
         assert version.all_files[0].status == (
             amo.STATUS_AWAITING_REVIEW
             if self.channel == amo.RELEASE_CHANNEL_LISTED else
-            amo.STATUS_PUBLIC)
+            amo.STATUS_APPROVED)
         self.assert3xx(response, self.get_next_url(version))
         log_items = ActivityLog.objects.for_addons(self.addon)
         assert log_items.filter(action=amo.LOG.ADD_VERSION.id)
@@ -2104,7 +2104,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             }))
         self.addon.update(
             guid='@experiment-inside-webextension-guid',
-            status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED)
         self.post()
         # Make sure the file created and signed is for this addon.
         assert mock_sign_file.call_count == 1
@@ -2127,7 +2127,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             }))
         self.addon.update(
             guid='@experiment-inside-webextension-guid',
-            status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED)
 
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
@@ -2146,7 +2146,7 @@ class TestVersionSubmitUploadListed(VersionSubmitUploadMixin, UploadTest):
             }))
         self.addon.update(
             guid='@theme–experiment-inside-webextension-guid',
-            status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED)
 
         response = self.post(expected_status=200)
         assert pq(response.content)('ul.errorlist').text() == (
@@ -2192,7 +2192,7 @@ class TestVersionSubmitUploadUnlisted(VersionSubmitUploadMixin, UploadTest):
         version = self.addon.find_latest_version(
             channel=amo.RELEASE_CHANNEL_UNLISTED)
         assert version.channel == amo.RELEASE_CHANNEL_UNLISTED
-        assert version.all_files[0].status == amo.STATUS_PUBLIC
+        assert version.all_files[0].status == amo.STATUS_APPROVED
         self.assert3xx(response, self.get_next_url(version))
         assert self.sign_file_mock.call_count == 1
 
@@ -2350,7 +2350,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
         # still public, just lacking metadata now.
         self.addon.versions.update(license_id=None)
         self.addon.reload()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert not self.addon.has_complete_metadata()
 
         # Now, submit details for that new version, adding license. Since
@@ -2374,7 +2374,7 @@ class TestVersionSubmitDetails(TestSubmitBase):
                               args=[self.addon.slug, self.version.pk]))
         self.addon.reload()
         assert self.addon.has_complete_metadata()
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
 
     def test_submit_static_theme_should_redirect(self):
         self.addon.update(type=amo.ADDON_STATICTHEME)

@@ -194,7 +194,7 @@ class TestDashboard(HubTest):
         assert 'New Version' not in links, ('Unexpected: %r' % links)
 
     def test_public_addon(self):
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         doc = pq(self.client.get(self.url).content)
         item = doc('.item[data-addonid="%s"]' % self.addon.id)
         assert item.find('h3 a').attr('href') == self.addon.get_dev_url()
@@ -579,9 +579,9 @@ class TestHome(TestCase):
         statuses = [
             (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW,
                 'Awaiting Review'),
-            (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
+            (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
                 'Approved'),
-            (amo.STATUS_DISABLED, amo.STATUS_PUBLIC,
+            (amo.STATUS_DISABLED, amo.STATUS_APPROVED,
                 'Disabled by Mozilla')]
 
         for addon_status, file_status, status_str in statuses:
@@ -629,7 +629,7 @@ class TestHome(TestCase):
             self.addon.get_dev_url('edit'))
 
     def test_my_addons_no_disabled_or_deleted(self):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         doc = self.get_pq()
 
         addon_item = doc('.DevHub-MyAddons-list .DevHub-MyAddons-item')
@@ -1433,13 +1433,13 @@ class TestQueuePosition(TestCase):
     def test_not_in_queue(self):
         response = self.client.get(self.addon.get_dev_url('versions'))
 
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         assert (
             pq(response.content)('.version-status-actions .dark').length == 0)
 
     def test_in_queue(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+                    (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)]
 
         for (addon_status, file_status) in statuses:
             latest_version = self.addon.find_latest_version(
@@ -1457,7 +1457,7 @@ class TestQueuePosition(TestCase):
 
     def test_static_themes_in_queue(self):
         statuses = [(amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW),
-                    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW)]
+                    (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW)]
 
         self.addon.update(type=amo.ADDON_STATICTHEME)
 
@@ -1543,7 +1543,7 @@ class TestRequestReview(TestCase):
         assert response.status_code == 400
 
     def test_public(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         self.check_400(self.public_url)
 
     @mock.patch('olympia.addons.models.Addon.has_complete_metadata')

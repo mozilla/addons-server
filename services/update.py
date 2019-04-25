@@ -86,7 +86,7 @@ class Update(object):
     def get_update(self):
         data = self.data
 
-        data['STATUS_PUBLIC'] = base.STATUS_PUBLIC
+        data['STATUS_APPROVED'] = base.STATUS_APPROVED
         data['RELEASE_CHANNEL_LISTED'] = base.RELEASE_CHANNEL_LISTED
 
         sql = ["""
@@ -128,7 +128,7 @@ class Update(object):
             WHERE
                 versions.deleted = 0 AND
                 versions.channel = %(RELEASE_CHANNEL_LISTED)s AND
-                files.status = %(STATUS_PUBLIC)s
+                files.status = %(STATUS_APPROVED)s
         """)
 
         sql.append('AND appmin.version_int <= %(version_int)s ')

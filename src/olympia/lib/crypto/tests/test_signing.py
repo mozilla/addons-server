@@ -509,7 +509,7 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_full(self, mock_sign_file):
         """Use the signing server if files are approved."""
-        self.file_.update(status=amo.STATUS_PUBLIC)
+        self.file_.update(status=amo.STATUS_APPROVED)
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/jetpack.xpi',
                 self.file_.file_path):
@@ -709,7 +709,7 @@ class TestTasks(TestCase):
     @mock.patch('olympia.lib.crypto.tasks.sign_file')
     def test_sign_mail(self, mock_sign_file):
         """Check that an email reason can be provided."""
-        self.file_.update(status=amo.STATUS_PUBLIC)
+        self.file_.update(status=amo.STATUS_APPROVED)
         AddonUser.objects.create(addon=self.addon, user_id=999)
         with amo.tests.copy_file(
                 'src/olympia/files/fixtures/files/jetpack.xpi',

@@ -3,7 +3,7 @@ ALTER TABLE users
 
 /* AUTHOR_ROLE_DEV = 4
 AUTHOR_ROLE_OWNER = 5
-STATUS_PUBLIC = 4 */
+STATUS_APPROVED = 4 */
 
 UPDATE users, addons_users, addons SET users.`public` = TRUE
     WHERE users.`id` = addons_users.`user_id` AND

@@ -1606,7 +1606,7 @@ class TestRatingViewSetPost(TestCase):
         old_version = self.addon.current_version
         old_version.files.update(status=amo.STATUS_DISABLED)
         assert self.addon.current_version == new_version
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
 
         self.user = user_factory()
         self.client.login_api(self.user)

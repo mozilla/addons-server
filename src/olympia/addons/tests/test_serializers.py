@@ -1381,7 +1381,7 @@ class TestReplacementAddonSerializer(TestCase):
         assert result['replacement'] == []
 
         # Double check that the test is good and it will work once public.
-        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
 
@@ -1434,7 +1434,7 @@ class TestReplacementAddonSerializer(TestCase):
         assert result['replacement'] == []
 
         # Double check that the test is good and it will work once public.
-        addon.update(status=amo.STATUS_PUBLIC)
+        addon.update(status=amo.STATUS_APPROVED)
         result = self.serialize(rep)
         assert result['replacement'] == [u'newstuff@mozilla']
 

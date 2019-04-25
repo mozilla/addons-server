@@ -626,7 +626,7 @@ def _get_created(created):
 
 
 def addon_factory(
-        status=amo.STATUS_PUBLIC, version_kw=None, file_kw=None, **kw):
+        status=amo.STATUS_APPROVED, version_kw=None, file_kw=None, **kw):
     version_kw = version_kw or {}
 
     # Disconnect signals until the last save.
@@ -650,11 +650,11 @@ def addon_factory(
         slug = name.replace(' ', '-').lower()[:30]
 
     kwargs = {
-        # Set artificially the status to STATUS_PUBLIC for now, the real
+        # Set artificially the status to STATUS_APPROVED for now, the real
         # status will be set a few lines below, after the update_version()
         # call. This prevents issues when calling addon_factory with
         # STATUS_DELETED.
-        'status': amo.STATUS_PUBLIC,
+        'status': amo.STATUS_APPROVED,
         'default_locale': default_locale,
         'name': name,
         'slug': slug,
@@ -765,7 +765,7 @@ def license_factory(**kw):
 def file_factory(**kw):
     version = kw['version']
     filename = kw.pop('filename', '%s-%s.xpi' % (version.addon_id, version.id))
-    status = kw.pop('status', amo.STATUS_PUBLIC)
+    status = kw.pop('status', amo.STATUS_APPROVED)
     platform = kw.pop('platform', amo.PLATFORM_ALL.id)
 
     file_ = File.objects.create(

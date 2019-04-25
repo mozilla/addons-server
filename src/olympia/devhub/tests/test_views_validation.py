@@ -310,7 +310,7 @@ class TestUploadURLs(TestCase):
 
         self.addon = Addon.objects.create(guid='thing@stuff',
                                           slug='thing-stuff',
-                                          status=amo.STATUS_PUBLIC)
+                                          status=amo.STATUS_APPROVED)
         AddonUser.objects.create(addon=self.addon, user=user)
 
         self.run_addons_linter = self.patch(
@@ -355,7 +355,7 @@ class TestUploadURLs(TestCase):
             assert resp.status_code == 302
         self.file_upload = FileUpload.objects.get()
 
-    def upload_addon(self, status=amo.STATUS_PUBLIC, listed=True):
+    def upload_addon(self, status=amo.STATUS_APPROVED, listed=True):
         """Update the test add-on with the given flags and send an upload
         request for it."""
         self.change_channel_for_addon(self.addon, listed=listed)
@@ -389,7 +389,7 @@ class TestUploadURLs(TestCase):
             self.upload_addon(listed=True, status=status)
             self.expect_validation(listed=True, automated_signing=False)
 
-        self.upload_addon(listed=False, status=amo.STATUS_PUBLIC)
+        self.upload_addon(listed=False, status=amo.STATUS_APPROVED)
         self.expect_validation(listed=False, automated_signing=True)
 
 

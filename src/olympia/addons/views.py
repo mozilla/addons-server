@@ -347,7 +347,7 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
             # if we are asked to see non-valid, deleted and/or unlisted
             # versions explicitly.
             queryset = Version.objects.filter(
-                files__status=amo.STATUS_PUBLIC,
+                files__status=amo.STATUS_APPROVED,
                 channel=amo.RELEASE_CHANNEL_LISTED).distinct()
 
         # Filter with the add-on.
@@ -651,7 +651,7 @@ class LanguageToolsView(ListAPIView):
                       versions__apps__min__version_int__lte=appversions['min'],
                       versions__apps__max__version_int__gte=appversions['max'],
                       versions__channel=amo.RELEASE_CHANNEL_LISTED,
-                      versions__files__status=amo.STATUS_PUBLIC)
+                      versions__files__status=amo.STATUS_APPROVED)
               .distinct()
         )
 

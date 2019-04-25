@@ -41,7 +41,7 @@
           </p>
         {% endif %}
 
-	{% if addon.status == amo.STATUS_PUBLIC or addon.status == amo.STATUS_PENDING %}
+	{% if addon.status == amo.STATUS_APPROVED or addon.status == amo.STATUS_PENDING %}
 	    <p><a href="{{ addon.get_url_path() }}">{{ _('View Product Page') }}</a></p>
 	{% endif %}
 

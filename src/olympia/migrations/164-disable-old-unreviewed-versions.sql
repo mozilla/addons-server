@@ -17,6 +17,6 @@ UPDATE files
             -- Make sure we are only updating *old* versions
             AND newer_v.id IS NOT NULL
             -- Make sure the file is for a preliminary or pending addon.
-            -- (STATUS_PUBLIC, STATUS_LITE, STATUS_UNREVIEWED,
+            -- (STATUS_APPROVED, STATUS_LITE, STATUS_UNREVIEWED,
             -- STATUS_DISABLED)
             AND a.status in (4, 8, 1, 5));

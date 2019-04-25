@@ -52,10 +52,10 @@ class TestQueue(TestCase):
         addon = self.new_addon()
         v1 = addon.find_latest_version(self.channel)
         v1.update(created=self.days_ago(2))
-        v1.all_files[0].update(status=amo.STATUS_PUBLIC)
+        v1.all_files[0].update(status=amo.STATUS_APPROVED)
         version_factory(addon=addon, version='2.0', created=self.days_ago(1),
                         channel=self.channel,
-                        file_kw={'status': amo.STATUS_PUBLIC})
+                        file_kw={'status': amo.STATUS_APPROVED})
         version_factory(addon=addon, version='3.0', created=self.days_ago(0),
                         channel=self.channel,
                         file_kw={'status': amo.STATUS_AWAITING_REVIEW})
@@ -110,9 +110,9 @@ class TestExtensionPendingQueue(TestQueue):
         return addon
 
     def new_search_ext(self, name, version, **kw):
-        return create_search_ext(name, version,
-                                 amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW,
-                                 channel=self.channel, **kw)
+        return create_search_ext(
+            name, version, amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW,
+            channel=self.channel, **kw)
 
     def test_waiting_time(self):
         self.new_addon()
@@ -209,7 +209,7 @@ class TestUnlistedAllList(TestCase):
 
     def new_addon(self, name=u'Unlisted', version=u'1.0',
                   addon_status=amo.STATUS_NULL,
-                  file_status=amo.STATUS_PUBLIC):
+                  file_status=amo.STATUS_APPROVED):
         addon = addon_factory(
             name=name, status=addon_status,
             version_kw={'version': version, 'channel': self.channel},
@@ -217,12 +217,12 @@ class TestUnlistedAllList(TestCase):
         return addon
 
     def test_all_addons_are_in_q(self):
-        self.new_addon('Public', addon_status=amo.STATUS_PUBLIC,
-                       file_status=amo.STATUS_PUBLIC)
+        self.new_addon('Public', addon_status=amo.STATUS_APPROVED,
+                       file_status=amo.STATUS_APPROVED)
         self.new_addon('Nominated', addon_status=amo.STATUS_NOMINATED,
                        file_status=amo.STATUS_AWAITING_REVIEW)
-        self.new_addon('Deleted', addon_status=amo.STATUS_PUBLIC,
-                       file_status=amo.STATUS_PUBLIC).delete()
+        self.new_addon('Deleted', addon_status=amo.STATUS_APPROVED,
+                       file_status=amo.STATUS_APPROVED).delete()
         assert sorted(q.addon_name for q in self.Queue.objects.all()) == (
             ['Deleted', 'Nominated', 'Public'])
 
@@ -312,37 +312,37 @@ class TestUnlistedAllList(TestCase):
             status=amo.STATUS_NULL, name=u'UnlistedListed',
             version_kw={'version': u'0.1',
                         'channel': amo.RELEASE_CHANNEL_UNLISTED},
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         version_factory(addon=unlisted_listed, version=u'0.2',
                         channel=amo.RELEASE_CHANNEL_LISTED,
-                        file_kw={'status': amo.STATUS_PUBLIC})
+                        file_kw={'status': amo.STATUS_APPROVED})
 
         listed_unlisted = addon_factory(
             status=amo.STATUS_NULL, name=u'ListedUnlisted',
             version_kw={'version': u'0.1',
                         'channel': amo.RELEASE_CHANNEL_LISTED},
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         version_factory(addon=listed_unlisted, version=u'0.2',
                         channel=amo.RELEASE_CHANNEL_UNLISTED,
-                        file_kw={'status': amo.STATUS_PUBLIC})
+                        file_kw={'status': amo.STATUS_APPROVED})
 
         just_unlisted = addon_factory(
             status=amo.STATUS_NULL, name=u'JustUnlisted',
             version_kw={'version': u'0.1',
                         'channel': amo.RELEASE_CHANNEL_UNLISTED},
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         version_factory(addon=just_unlisted, version=u'0.2',
                         channel=amo.RELEASE_CHANNEL_UNLISTED,
-                        file_kw={'status': amo.STATUS_PUBLIC})
+                        file_kw={'status': amo.STATUS_APPROVED})
 
         just_listed = addon_factory(
             status=amo.STATUS_NULL, name=u'JustListed',
             version_kw={'version': u'0.1',
                         'channel': amo.RELEASE_CHANNEL_LISTED},
-            file_kw={'status': amo.STATUS_PUBLIC})
+            file_kw={'status': amo.STATUS_APPROVED})
         version_factory(addon=just_listed, version=u'0.2',
                         channel=amo.RELEASE_CHANNEL_LISTED,
-                        file_kw={'status': amo.STATUS_PUBLIC})
+                        file_kw={'status': amo.STATUS_APPROVED})
 
         assert self.Queue.objects.all().count() == 3
         assert [addon.addon_name for addon in self.Queue.objects.all()] == [
@@ -468,7 +468,7 @@ class TestReviewerScore(TestCase):
             amo.STATUS_NULL: None,
             amo.STATUS_PENDING: None,
             amo.STATUS_NOMINATED: 'FULL',
-            amo.STATUS_PUBLIC: 'UPDATE',
+            amo.STATUS_APPROVED: 'UPDATE',
             amo.STATUS_DISABLED: None,
             amo.STATUS_DELETED: None,
             amo.STATUS_REJECTED: None,
@@ -486,7 +486,7 @@ class TestReviewerScore(TestCase):
                 self.check_event(tk, sk, event)
 
     def test_events_post_review(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         base_args = (self.addon, self.addon.status)
         # No version.
         assert ReviewerScore.get_event(
@@ -561,7 +561,7 @@ class TestReviewerScore(TestCase):
         assert score.score == expected
 
     def test_award_points_no_bonus_for_content_review(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(nomination=self.days_ago(28))
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
@@ -574,7 +574,7 @@ class TestReviewerScore(TestCase):
         assert score.score == amo.REVIEWED_SCORES[amo.REVIEWED_CONTENT_REVIEW]
 
     def test_award_points_no_bonus_for_post_review(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         self.addon.current_version.update(nomination=self.days_ago(29))
         AutoApprovalSummary.objects.create(
             version=self.addon.current_version, verdict=amo.AUTO_APPROVED,
@@ -607,10 +607,10 @@ class TestReviewerScore(TestCase):
 
     def test_award_points_langpack_post_review(self):
         search_provider = amo.tests.addon_factory(
-            status=amo.STATUS_PUBLIC, type=amo.ADDON_LPAPP)
+            status=amo.STATUS_APPROVED, type=amo.ADDON_LPAPP)
         self.version = version_factory(
             addon=search_provider, version='1.1', file_kw={
-                'status': amo.STATUS_PUBLIC,
+                'status': amo.STATUS_APPROVED,
                 'is_webextension': True})
         AutoApprovalSummary.objects.create(
             version=search_provider.current_version,
@@ -647,10 +647,10 @@ class TestReviewerScore(TestCase):
 
     def test_award_points_dict_post_review(self):
         dictionary = amo.tests.addon_factory(
-            status=amo.STATUS_PUBLIC, type=amo.ADDON_DICT)
+            status=amo.STATUS_APPROVED, type=amo.ADDON_DICT)
         self.version = version_factory(
             addon=dictionary, version='1.1', file_kw={
-                'status': amo.STATUS_PUBLIC,
+                'status': amo.STATUS_APPROVED,
                 'is_webextension': True})
         AutoApprovalSummary.objects.create(
             version=dictionary.current_version,
@@ -696,7 +696,7 @@ class TestReviewerScore(TestCase):
     def test_get_total(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
-        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         assert ReviewerScore.get_total(self.user) == (
             amo.REVIEWED_SCORES[amo.REVIEWED_ADDON_FULL] +
@@ -708,7 +708,7 @@ class TestReviewerScore(TestCase):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
         time.sleep(1)  # Wait 1 sec so ordering by created is checked.
-        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2)
         scores = ReviewerScore.get_recent(self.user)
         assert len(scores) == 2
@@ -720,7 +720,7 @@ class TestReviewerScore(TestCase):
     def test_get_leaderboards(self):
         user2 = UserProfile.objects.get(email='persona_reviewer@mozilla.com')
         self._give_points()
-        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         assert leaders['user_rank'] == 1
@@ -745,7 +745,7 @@ class TestReviewerScore(TestCase):
     def test_only_active_reviewers_in_leaderboards(self):
         user2 = UserProfile.objects.create(username='former-reviewer')
         self._give_points()
-        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         assert leaders['user_rank'] == 1
@@ -758,7 +758,7 @@ class TestReviewerScore(TestCase):
     def test_no_admins_or_staff_in_leaderboards(self):
         user2 = UserProfile.objects.get(email='admin@mozilla.com')
         self._give_points()
-        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         leaders = ReviewerScore.get_leaderboards(self.user)
         assert leaders['user_rank'] == 1
@@ -812,7 +812,7 @@ class TestReviewerScore(TestCase):
             user2, 'Personas:Review', name='Reviewers: Themes')
         amo.REVIEWED_LEVELS[0]['points'] = 180
         self._give_points()
-        self._give_points(status=amo.STATUS_PUBLIC)
+        self._give_points(status=amo.STATUS_APPROVED)
         self._give_points(user=user2, status=amo.STATUS_NOMINATED)
         users = ReviewerScore.all_users_by_score()
         assert len(users) == 2
@@ -1072,7 +1072,7 @@ class TestAutoApprovalSummary(TestCase):
             addon=self.addon,
             file_kw={'reviewed': self.days_ago(15),
                      'status': amo.STATUS_DISABLED,
-                     'original_status': amo.STATUS_PUBLIC})
+                     'original_status': amo.STATUS_APPROVED})
 
         # Rejected version.
         version_factory(

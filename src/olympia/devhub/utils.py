@@ -187,7 +187,7 @@ def find_previous_version(addon, file, version_string, channel):
     if not addon or not version_string:
         return
 
-    statuses = [amo.STATUS_PUBLIC]
+    statuses = [amo.STATUS_APPROVED]
     # Find all previous files of this add-on with the correct status and in
     # the right channel.
     qs = File.objects.filter(

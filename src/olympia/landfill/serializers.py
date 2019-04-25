@@ -24,7 +24,7 @@ from olympia.constants.applications import APPS, FIREFOX
 from olympia.constants.base import (
     ADDON_EXTENSION,
     ADDON_PERSONA,
-    STATUS_PUBLIC
+    STATUS_APPROVED
 )
 from olympia.devhub.forms import icons
 from olympia.landfill.collection import generate_collection
@@ -105,7 +105,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             # If the user is already made, use that same user,
             # if not use created user
             addon = addon_factory(
-                status=STATUS_PUBLIC,
+                status=STATUS_APPROVED,
                 users=[UserProfile.objects.get(username=author)],
                 name=u'{}'.format(name),
                 slug=u'{}'.format(name),
@@ -113,7 +113,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
             addon.save()
         else:
             addon = addon_factory(
-                status=STATUS_PUBLIC,
+                status=STATUS_APPROVED,
                 users=[UserProfile.objects.get(username=author.username)],
                 name=u'{}'.format(name),
                 slug=u'{}'.format(name),
@@ -133,7 +133,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
         addon = addon_factory(
-            status=STATUS_PUBLIC,
+            status=STATUS_APPROVED,
             type=ADDON_EXTENSION,
             average_daily_users=5000,
             users=[self.user],
@@ -186,7 +186,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         default_icons = [x[0] for x in icons() if x[0].startswith('icon/')]
         addon = addon_factory(
-            status=STATUS_PUBLIC,
+            status=STATUS_APPROVED,
             type=ADDON_EXTENSION,
             average_daily_users=5656,
             users=[self.user],
@@ -267,7 +267,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
 
         """
         addon = addon_factory(
-            status=STATUS_PUBLIC,
+            status=STATUS_APPROVED,
             type=ADDON_PERSONA,
             average_daily_users=4242,
             users=[self.user],
@@ -320,7 +320,7 @@ class GenerateAddonsSerializer(serializers.Serializer):
         """
         generate_themes(6, 'uitest@mozilla.com')
         for _ in range(6):
-            addon = addon_factory(status=STATUS_PUBLIC, type=ADDON_PERSONA)
+            addon = addon_factory(status=STATUS_APPROVED, type=ADDON_PERSONA)
             generate_collection(addon, app=FIREFOX)
 
     def create_a_named_collection_and_addon(self, name, author):
@@ -381,4 +381,4 @@ class GenerateAddonsSerializer(serializers.Serializer):
                 upload.addon, upload, amo.RELEASE_CHANNEL_LISTED)
 
             # Change status to public
-            addon.update(status=amo.STATUS_PUBLIC)
+            addon.update(status=amo.STATUS_APPROVED)

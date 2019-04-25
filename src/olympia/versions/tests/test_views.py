@@ -199,8 +199,8 @@ class TestDownloads(TestDownloadsBase):
         assert r.status_code == 404
 
     def test_public(self):
-        assert self.addon.status == amo.STATUS_PUBLIC
-        assert self.file.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
+        assert self.file.status == amo.STATUS_APPROVED
         self.assert_served_by_cdn(self.client.get(self.file_url))
 
     def test_public_addon_unreviewed_file(self):

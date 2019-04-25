@@ -192,7 +192,7 @@ class PendingQueueMixin:
 
     def base_query(self):
         query = super().base_query()
-        query['where'].append('addons.status = %s' % amo.STATUS_PUBLIC)
+        query['where'].append('addons.status = %s' % amo.STATUS_APPROVED)
         return query
 
 
@@ -492,7 +492,7 @@ class ReviewerScore(ModelBase):
         else:
             if status == amo.STATUS_NOMINATED:
                 queue = 'FULL'
-            elif status == amo.STATUS_PUBLIC:
+            elif status == amo.STATUS_APPROVED:
                 queue = 'UPDATE'
             else:
                 queue = ''

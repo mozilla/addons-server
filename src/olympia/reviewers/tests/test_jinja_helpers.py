@@ -67,7 +67,7 @@ class TestCompareLink(TestCase):
 def test_version_status():
     addon = Addon()
     version = Version()
-    version.all_files = [File(status=amo.STATUS_PUBLIC),
+    version.all_files = [File(status=amo.STATUS_APPROVED),
                          File(status=amo.STATUS_AWAITING_REVIEW)]
     assert u'Approved,Awaiting Review' == (
         jinja_helpers.version_status(addon, version))
@@ -78,8 +78,9 @@ def test_version_status():
 
 def test_file_review_status_handles_invalid_status_id():
     # When status is a valid one, one of STATUS_CHOICES_FILE return label.
-    assert amo.STATUS_CHOICES_FILE[amo.STATUS_PUBLIC] == (
-        jinja_helpers.file_review_status(None, File(status=amo.STATUS_PUBLIC)))
+    assert amo.STATUS_CHOICES_FILE[amo.STATUS_APPROVED] == (
+        jinja_helpers.file_review_status(
+            None, File(status=amo.STATUS_APPROVED)))
 
     # 99 isn't a valid status, so return the status code for reference.
     status = jinja_helpers.file_review_status(None, File(status=99))

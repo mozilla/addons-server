@@ -9,7 +9,7 @@ STATUS_NULL = 0  # No review type chosen yet, add-on is incomplete.
 STATUS_AWAITING_REVIEW = 1  # File waiting for review.
 STATUS_PENDING = 2  # Personas (lightweight themes) waiting for review.
 STATUS_NOMINATED = 3  # Waiting for review.
-STATUS_PUBLIC = 4  # Approved.
+STATUS_APPROVED = 4  # Approved.
 STATUS_DISABLED = 5  # Rejected (single files) or disabled by Mozilla (addons).
 _STATUS_LISTED = 6  # Deprecated. See bug 616242
 _STATUS_BETA = 7  # Deprecated, see addons-server/issues/7163
@@ -22,7 +22,7 @@ STATUS_REVIEW_PENDING = 14  # personas, needing further action.
 STATUS_CHOICES_ADDON = {
     STATUS_NULL: _(u'Incomplete'),
     STATUS_NOMINATED: _(u'Awaiting Review'),
-    STATUS_PUBLIC: _(u'Approved'),
+    STATUS_APPROVED: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
     STATUS_DELETED: _(u'Deleted'),
 }
@@ -30,7 +30,7 @@ STATUS_CHOICES_ADDON = {
 STATUS_CHOICES_PERSONA = {
     STATUS_NULL: STATUS_CHOICES_ADDON[STATUS_NULL],
     STATUS_PENDING: _(u'Pending approval'),
-    STATUS_PUBLIC: STATUS_CHOICES_ADDON[STATUS_PUBLIC],
+    STATUS_APPROVED: STATUS_CHOICES_ADDON[STATUS_APPROVED],
     STATUS_DISABLED: STATUS_CHOICES_ADDON[STATUS_DISABLED],
     STATUS_DELETED: STATUS_CHOICES_ADDON[STATUS_DELETED],
     STATUS_REJECTED: _(u'Rejected'),
@@ -40,7 +40,7 @@ STATUS_CHOICES_PERSONA = {
 
 STATUS_CHOICES_FILE = {
     STATUS_AWAITING_REVIEW: _(u'Awaiting Review'),
-    STATUS_PUBLIC: _(u'Approved'),
+    STATUS_APPROVED: _(u'Approved'),
     STATUS_DISABLED: _(u'Disabled by Mozilla'),
 }
 
@@ -50,7 +50,7 @@ STATUS_CHOICES_API = {
     STATUS_AWAITING_REVIEW: 'unreviewed',
     STATUS_PENDING: 'pending',
     STATUS_NOMINATED: 'nominated',
-    STATUS_PUBLIC: 'public',
+    STATUS_APPROVED: 'public',
     STATUS_DISABLED: 'disabled',
     STATUS_DELETED: 'deleted',
     STATUS_REJECTED: 'rejected',
@@ -62,18 +62,18 @@ STATUS_CHOICES_API_LOOKUP = {
     'unreviewed': STATUS_AWAITING_REVIEW,
     'pending': STATUS_PENDING,
     'nominated': STATUS_NOMINATED,
-    'public': STATUS_PUBLIC,
+    'public': STATUS_APPROVED,
     'disabled': STATUS_DISABLED,
     'deleted': STATUS_DELETED,
     'rejected': STATUS_REJECTED,
     'review-pending': STATUS_REVIEW_PENDING,
 }
 
-REVIEWED_STATUSES = (STATUS_PUBLIC,)
+REVIEWED_STATUSES = (STATUS_APPROVED,)
 UNREVIEWED_ADDON_STATUSES = (STATUS_NOMINATED,)
 UNREVIEWED_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PENDING)
-VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_PUBLIC)
-VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_PUBLIC)
+VALID_ADDON_STATUSES = (STATUS_NOMINATED, STATUS_APPROVED)
+VALID_FILE_STATUSES = (STATUS_AWAITING_REVIEW, STATUS_APPROVED)
 
 # Version channels
 RELEASE_CHANNEL_UNLISTED = 1

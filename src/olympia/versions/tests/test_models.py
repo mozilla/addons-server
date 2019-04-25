@@ -234,7 +234,7 @@ class TestVersion(TestCase):
     def test_is_unreviewed(self):
         assert self._get_version(amo.STATUS_AWAITING_REVIEW).is_unreviewed
         assert self._get_version(amo.STATUS_PENDING).is_unreviewed
-        assert not self._get_version(amo.STATUS_PUBLIC).is_unreviewed
+        assert not self._get_version(amo.STATUS_APPROVED).is_unreviewed
 
     @mock.patch('olympia.versions.tasks.VersionPreview.delete_preview_files')
     def test_version_delete(self, delete_preview_files_mock):
@@ -273,16 +273,16 @@ class TestVersion(TestCase):
 
     def test_version_disable_and_reenable(self):
         version = Version.objects.get(pk=81551)
-        assert version.all_files[0].status == amo.STATUS_PUBLIC
+        assert version.all_files[0].status == amo.STATUS_APPROVED
 
         version.is_user_disabled = True
         version.all_files[0].reload()
         assert version.all_files[0].status == amo.STATUS_DISABLED
-        assert version.all_files[0].original_status == amo.STATUS_PUBLIC
+        assert version.all_files[0].original_status == amo.STATUS_APPROVED
 
         version.is_user_disabled = False
         version.all_files[0].reload()
-        assert version.all_files[0].status == amo.STATUS_PUBLIC
+        assert version.all_files[0].status == amo.STATUS_APPROVED
         assert version.all_files[0].original_status == amo.STATUS_NULL
 
     def test_version_disable_after_mozila_disabled(self):
@@ -305,9 +305,9 @@ class TestVersion(TestCase):
         addon = Addon.objects.get(id=3615)
         # The status doesn't change for public files.
         qs = File.objects.filter(version=addon.current_version)
-        assert qs.all()[0].status == amo.STATUS_PUBLIC
+        assert qs.all()[0].status == amo.STATUS_APPROVED
         Version.objects.create(addon=addon)
-        assert qs.all()[0].status == amo.STATUS_PUBLIC
+        assert qs.all()[0].status == amo.STATUS_APPROVED
         assert not hide_disabled_file_mock.called
 
         qs.update(status=amo.STATUS_AWAITING_REVIEW)
@@ -346,7 +346,7 @@ class TestVersion(TestCase):
         assert version.version_int is None
 
     def _reset_version(self, version):
-        version.all_files[0].status = amo.STATUS_PUBLIC
+        version.all_files[0].status = amo.STATUS_APPROVED
         version.deleted = False
 
     def test_version_is_public(self):
@@ -555,12 +555,12 @@ class TestVersion(TestCase):
 @pytest.mark.parametrize("addon_status,file_status,is_unreviewed", [
     (amo.STATUS_NOMINATED, amo.STATUS_AWAITING_REVIEW, True),
     (amo.STATUS_NOMINATED, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_NOMINATED, amo.STATUS_PUBLIC, False),
+    (amo.STATUS_NOMINATED, amo.STATUS_APPROVED, False),
     (amo.STATUS_NOMINATED, amo.STATUS_DISABLED, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW, True),
-    (amo.STATUS_PUBLIC, amo.STATUS_NOMINATED, True),
-    (amo.STATUS_PUBLIC, amo.STATUS_PUBLIC, False),
-    (amo.STATUS_PUBLIC, amo.STATUS_DISABLED, False)])
+    (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW, True),
+    (amo.STATUS_APPROVED, amo.STATUS_NOMINATED, True),
+    (amo.STATUS_APPROVED, amo.STATUS_APPROVED, False),
+    (amo.STATUS_APPROVED, amo.STATUS_DISABLED, False)])
 def test_unreviewed_files(db, addon_status, file_status, is_unreviewed):
     """Files that need to be reviewed are returned by version.unreviewed_files.
 
@@ -798,7 +798,7 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
                     actual_delta <= (rough_delta + fuzz))
 
     def test_nomination_inherited_for_updates(self):
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         self.addon.current_version.update(nomination=self.days_ago(2))
         pending_version = version_factory(
             addon=self.addon, nomination=self.days_ago(1), version='9.9',

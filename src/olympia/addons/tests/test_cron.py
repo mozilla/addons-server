@@ -22,7 +22,8 @@ class TestLastUpdated(TestCase):
     fixtures = ['base/addon_3615', 'addons/listed', 'addons/persona']
 
     def test_personas(self):
-        Addon.objects.update(type=amo.ADDON_PERSONA, status=amo.STATUS_PUBLIC)
+        Addon.objects.update(
+            type=amo.ADDON_PERSONA, status=amo.STATUS_APPROVED)
 
         cron.addon_last_updated()
         for addon in Addon.objects.all():
@@ -37,18 +38,18 @@ class TestLastUpdated(TestCase):
         """Make sure the catch-all last_updated is stable and accurate."""
         # Nullify all datestatuschanged so the public add-ons hit the
         # catch-all.
-        (File.objects.filter(status=amo.STATUS_PUBLIC)
+        (File.objects.filter(status=amo.STATUS_APPROVED)
          .update(datestatuschanged=None))
         Addon.objects.update(last_updated=None)
 
         cron.addon_last_updated()
-        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC,
+        for addon in Addon.objects.filter(status=amo.STATUS_APPROVED,
                                           type=amo.ADDON_EXTENSION):
             assert addon.last_updated == addon.created
 
         # Make sure it's stable.
         cron.addon_last_updated()
-        for addon in Addon.objects.filter(status=amo.STATUS_PUBLIC):
+        for addon in Addon.objects.filter(status=amo.STATUS_APPROVED):
             assert addon.last_updated == addon.created
 
     def test_appsupport(self):
@@ -84,8 +85,8 @@ class TestHideDisabledFiles(TestCase):
     @mock.patch('olympia.files.models.os')
     def test_leave_nondisabled_files(self, os_mock):
         # All these addon/file status pairs should stay.
-        stati = ((amo.STATUS_PUBLIC, amo.STATUS_PUBLIC),
-                 (amo.STATUS_PUBLIC, amo.STATUS_AWAITING_REVIEW))
+        stati = ((amo.STATUS_APPROVED, amo.STATUS_APPROVED),
+                 (amo.STATUS_APPROVED, amo.STATUS_AWAITING_REVIEW))
         for addon_status, file_status in stati:
             self.addon.update(status=addon_status)
             File.objects.update(status=file_status)
@@ -96,8 +97,8 @@ class TestHideDisabledFiles(TestCase):
     def test_move_user_disabled_addon(self, mv_mock):
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        File.objects.update(status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED, disabled_by_user=True)
+        File.objects.update(status=amo.STATUS_APPROVED)
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
@@ -115,7 +116,7 @@ class TestHideDisabledFiles(TestCase):
     def test_move_admin_disabled_addon(self, mv_mock):
         Addon.objects.filter(id=self.addon.id).update(
             status=amo.STATUS_DISABLED)
-        File.objects.update(status=amo.STATUS_PUBLIC)
+        File.objects.update(status=amo.STATUS_APPROVED)
         cron.hide_disabled_files()
         # Check that f2 was moved.
         f2 = self.f2
@@ -131,8 +132,10 @@ class TestHideDisabledFiles(TestCase):
 
     @mock.patch('olympia.files.models.File.move_file')
     def test_move_disabled_file(self, mv_mock):
-        Addon.objects.filter(id=self.addon.id).update(status=amo.STATUS_PUBLIC)
-        File.objects.filter(id=self.f1.id).update(status=amo.STATUS_DISABLED)
+        Addon.objects.filter(id=self.addon.id).update(
+            status=amo.STATUS_APPROVED)
+        File.objects.filter(id=self.f1.id).update(
+            status=amo.STATUS_DISABLED)
         File.objects.filter(id=self.f2.id).update(
             status=amo.STATUS_AWAITING_REVIEW)
         cron.hide_disabled_files()
@@ -152,8 +155,8 @@ class TestHideDisabledFiles(TestCase):
 
         # Use Addon.objects.update so the signal handler isn't called.
         Addon.objects.filter(id=self.addon.id).update(
-            status=amo.STATUS_PUBLIC, disabled_by_user=True)
-        File.objects.update(status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED, disabled_by_user=True)
+        File.objects.update(status=amo.STATUS_APPROVED)
 
         cron.hide_disabled_files()
 
@@ -187,13 +190,13 @@ class TestUnhideDisabledFiles(TestCase):
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         self.file_.update(status=amo.STATUS_DISABLED)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 
         self.addon.update(disabled_by_user=True)
-        self.file_.update(status=amo.STATUS_PUBLIC)
+        self.file_.update(status=amo.STATUS_APPROVED)
         cron.unhide_disabled_files()
         assert not os_mock.path.exists.called
 

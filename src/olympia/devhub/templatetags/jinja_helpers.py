@@ -80,7 +80,7 @@ def status_class(addon):
     classes = {
         amo.STATUS_NULL: 'incomplete',
         amo.STATUS_NOMINATED: 'nominated',
-        amo.STATUS_PUBLIC: 'approved',
+        amo.STATUS_APPROVED: 'approved',
         amo.STATUS_DISABLED: 'admin-disabled',
         amo.STATUS_DELETED: 'deleted',
         amo.STATUS_REJECTED: 'rejected',

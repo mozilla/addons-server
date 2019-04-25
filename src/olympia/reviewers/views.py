@@ -260,7 +260,7 @@ def dashboard(request):
         expired = (
             Addon.objects.filter(
                 addonreviewerflags__pending_info_request__lt=datetime.now(),
-                status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+                status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
                 disabled_by_user=False)
             .order_by('addonreviewerflags__pending_info_request'))
 
@@ -510,7 +510,7 @@ def queue_counts(admin_reviewer):
     expired = (
         Addon.objects.filter(
             addonreviewerflags__pending_info_request__lt=datetime.now(),
-            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
             disabled_by_user=False)
         .order_by('addonreviewerflags__pending_info_request'))
 
@@ -640,7 +640,7 @@ def queue_expired_info_requests(request):
     qs = (
         Addon.objects.filter(
             addonreviewerflags__pending_info_request__lt=datetime.now(),
-            status__in=(amo.STATUS_NOMINATED, amo.STATUS_PUBLIC),
+            status__in=(amo.STATUS_NOMINATED, amo.STATUS_APPROVED),
             disabled_by_user=False)
         .order_by('addonreviewerflags__pending_info_request'))
     return _queue(request, ExpiredInfoRequestsTable, 'expired_info_requests',
@@ -865,7 +865,7 @@ def review(request, addon, channel=None):
                 channel=channel,
                 files__isnull=False,
                 created__lt=version.created,
-                files__status=amo.STATUS_PUBLIC).latest())
+                files__status=amo.STATUS_APPROVED).latest())
     except Version.DoesNotExist:
         show_diff = None
 

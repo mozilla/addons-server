@@ -232,7 +232,7 @@ def new_theme_version_with_69_properties(old_version):
         sign_file(file_)
         file_.update(
             reviewed=datetime.now(),
-            status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_APPROVED)
     timer.log_interval('4.sign_files')
 
     return version

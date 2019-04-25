@@ -375,7 +375,7 @@ def cache_localepicker(sender, instance, **kw):
     except models.ObjectDoesNotExist:
         return
 
-    if addon.type == amo.ADDON_LPAPP and addon.status == amo.STATUS_PUBLIC:
+    if addon.type == amo.ADDON_LPAPP and addon.status == amo.STATUS_APPROVED:
         log.info('Updating localepicker for file: %s, addon: %s' %
                  (instance.pk, addon.pk))
         instance.get_localepicker()

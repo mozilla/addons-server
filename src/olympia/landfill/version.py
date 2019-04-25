@@ -30,6 +30,7 @@ def generate_version(addon, app=None):
         ApplicationsVersions.objects.get_or_create(application=app.id,
                                                    version=v, min=av_min,
                                                    max=av_max)
-    File.objects.create(filename='%s-%s' % (v.addon_id, v.id), version=v,
-                        platform=amo.PLATFORM_ALL.id, status=amo.STATUS_PUBLIC)
+    File.objects.create(
+        filename='%s-%s' % (v.addon_id, v.id), version=v,
+        platform=amo.PLATFORM_ALL.id, status=amo.STATUS_APPROVED)
     return v

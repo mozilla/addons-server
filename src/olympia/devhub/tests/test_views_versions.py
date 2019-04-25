@@ -68,7 +68,7 @@ class TestVersion(TestCase):
         assert doc('.addon-status .status-admin-disabled').text() == (
             'Disabled by Mozilla')
 
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         doc = self.get_doc()
         assert doc('.addon-status .status-disabled').text() == (
             'Invisible')
@@ -77,7 +77,7 @@ class TestVersion(TestCase):
         doc = self.get_doc()
         assert '<strong>Visible:</strong>' in doc.html()
 
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         doc = self.get_doc()
         assert '<strong>Invisible:</strong>' in doc.html()
 
@@ -175,7 +175,7 @@ class TestVersion(TestCase):
 
     def test_reenable_version(self):
         Version.objects.get(pk=81551).all_files[0].update(
-            status=amo.STATUS_DISABLED, original_status=amo.STATUS_PUBLIC)
+            status=amo.STATUS_DISABLED, original_status=amo.STATUS_APPROVED)
         self.reenable_url = reverse('devhub.versions.reenable', args=['a3615'])
         response = self.client.post(
             self.reenable_url, self.delete_data, follow=True)
@@ -205,12 +205,12 @@ class TestVersion(TestCase):
         return version_two, file_two
 
     def test_version_delete_status(self):
-        self._extra_version_and_file(amo.STATUS_PUBLIC)
+        self._extra_version_and_file(amo.STATUS_APPROVED)
 
         response = self.client.post(self.delete_url, self.delete_data)
         assert response.status_code == 302
         assert self.addon.versions.count() == 1
-        assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
+        assert Addon.objects.get(id=3615).status == amo.STATUS_APPROVED
 
     def test_version_delete_status_unreviewed(self):
         self._extra_version_and_file(amo.STATUS_AWAITING_REVIEW)
@@ -223,18 +223,18 @@ class TestVersion(TestCase):
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon(self, hide_mock):
         version = self.addon.current_version
-        self.addon.update(status=amo.STATUS_PUBLIC,
+        self.addon.update(status=amo.STATUS_APPROVED,
                           disabled_by_user=False)
         response = self.client.post(self.disable_url)
         assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         version.reload()
         assert addon.disabled_by_user
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert hide_mock.called
 
         # Check we didn't change the status of the files.
-        assert version.files.all()[0].status == amo.STATUS_PUBLIC
+        assert version.files.all()[0].status == amo.STATUS_APPROVED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_DISABLE.id
@@ -243,7 +243,7 @@ class TestVersion(TestCase):
 
     @mock.patch('olympia.files.models.File.hide_disabled_file')
     def test_user_can_disable_addon_pending_version(self, hide_mock):
-        self.addon.update(status=amo.STATUS_PUBLIC,
+        self.addon.update(status=amo.STATUS_APPROVED,
                           disabled_by_user=False)
         (new_version, _) = self._extra_version_and_file(
             amo.STATUS_AWAITING_REVIEW)
@@ -254,7 +254,7 @@ class TestVersion(TestCase):
         assert response.status_code == 302
         addon = Addon.objects.get(id=3615)
         assert addon.disabled_by_user
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
         assert hide_mock.called
 
         # Check we disabled the file pending review.
@@ -289,12 +289,12 @@ class TestVersion(TestCase):
         assert self.client.get(self.enable_url).status_code == 405
 
     def test_user_can_enable_addon(self):
-        self.addon.update(status=amo.STATUS_PUBLIC, disabled_by_user=True)
+        self.addon.update(status=amo.STATUS_APPROVED, disabled_by_user=True)
         response = self.client.post(self.enable_url)
         self.assert3xx(response, self.url, 302)
         addon = self.get_addon()
         assert not addon.disabled_by_user
-        assert addon.status == amo.STATUS_PUBLIC
+        assert addon.status == amo.STATUS_APPROVED
 
         entry = ActivityLog.objects.get()
         assert entry.action == amo.LOG.USER_ENABLE.id
@@ -389,10 +389,10 @@ class TestVersion(TestCase):
     def test_not_cancel(self):
         self.client.logout()
         cancel_url = reverse('devhub.addons.cancel', args=['a3615'])
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         response = self.client.post(cancel_url)
         assert response.status_code == 302
-        assert Addon.objects.get(id=3615).status == amo.STATUS_PUBLIC
+        assert Addon.objects.get(id=3615).status == amo.STATUS_APPROVED
 
     def test_cancel_button(self):
         for status in Addon.STATUS_CHOICES:

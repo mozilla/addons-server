@@ -42,12 +42,12 @@ class TestStatus(TestCase):
         self.addon = Addon.objects.get(id=3615)
         self.version = self.addon.current_version
         self.file = self.version.all_files[0]
-        assert self.addon.status == amo.STATUS_PUBLIC
+        assert self.addon.status == amo.STATUS_APPROVED
         self.url = reverse_ns(
             'addon-detail', api_version='v4dev', kwargs={'pk': self.addon.pk})
 
         self.persona = Addon.objects.get(id=15663)
-        assert self.persona.status == amo.STATUS_PUBLIC
+        assert self.persona.status == amo.STATUS_APPROVED
         self.persona_url = reverse_ns(
             'addon-detail', api_version='v4dev',
             kwargs={'pk': self.persona.pk})
@@ -65,7 +65,7 @@ class TestStatus(TestCase):
         assert self.client.get(self.url).status_code == 401
 
     def test_public(self):
-        self.addon.update(status=amo.STATUS_PUBLIC)
+        self.addon.update(status=amo.STATUS_APPROVED)
         assert self.client.get(self.url).status_code == 200
 
     def test_deleted(self):
@@ -87,7 +87,7 @@ class TestStatus(TestCase):
             self.persona.status = status
             self.persona.save()
             assert self.client.head(self.persona_url).status_code == (
-                200 if status in [amo.STATUS_PUBLIC]
+                200 if status in [amo.STATUS_APPROVED]
                 else 401)
 
     def test_persona_disabled(self):
@@ -1685,7 +1685,7 @@ class TestAddonSearchView(ESTestCase):
     def test_find_addon_default_non_en_us(self):
         with self.activate('en-GB'):
             addon = addon_factory(
-                status=amo.STATUS_PUBLIC,
+                status=amo.STATUS_APPROVED,
                 type=amo.ADDON_EXTENSION,
                 default_locale='en-GB',
                 name='Banana Bonkers',

@@ -284,7 +284,7 @@ class TestActivityLog(TestCase):
     def test_change_status(self):
         addon = Addon.objects.get()
         log = ActivityLog.create(
-            amo.LOG.CHANGE_STATUS, addon, amo.STATUS_PUBLIC)
+            amo.LOG.CHANGE_STATUS, addon, amo.STATUS_APPROVED)
         expected = ('<a href="/en-US/firefox/addon/a3615/">'
                     'Delicious Bookmarks</a> status changed to Approved.')
         assert six.text_type(log) == expected
