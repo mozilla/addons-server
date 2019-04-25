@@ -45,6 +45,7 @@ class AddonAbuseViewSetTestBase(object):
         assert report.guid == addon.guid
         self.check_report(report,
                           u'[Extension] Abuse Report for %s' % addon.name)
+        assert report.message == 'abuse!'
 
     def test_report_addon_by_slug(self):
         addon = addon_factory()
@@ -73,6 +74,7 @@ class AddonAbuseViewSetTestBase(object):
         assert report.guid == addon.guid
         self.check_report(report,
                           u'[Extension] Abuse Report for %s' % addon.name)
+        assert report.message == 'abuse!'
 
     def test_report_addon_guid_not_on_amo(self):
         guid = '@mysteryman'
@@ -87,6 +89,7 @@ class AddonAbuseViewSetTestBase(object):
         assert not report.addon
         self.check_report(report,
                           u'[Addon] Abuse Report for %s' % guid)
+        assert report.message == 'abuse!'
 
     def test_report_addon_invalid_identifier(self):
         response = self.client.post(
@@ -106,6 +109,7 @@ class AddonAbuseViewSetTestBase(object):
         report = AbuseReport.objects.get(addon_id=addon.id)
         self.check_report(report,
                           u'[Extension] Abuse Report for %s' % addon.name)
+        assert report.message == 'abuse!'
 
     def test_no_addon_fails(self):
         response = self.client.post(
@@ -133,6 +137,35 @@ class AddonAbuseViewSetTestBase(object):
         assert response.status_code == 400
         assert json.loads(response.content) == {
             'message': ['This field is required.']}
+
+    def test_message_not_required_if_reason_is_provided(self):
+        addon = addon_factory()
+        response = self.client.post(
+            self.url,
+            data={'addon': six.text_type(addon.id), 'reason': 'broken'},
+            REMOTE_ADDR='123.45.67.89')
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(addon_id=addon.id).exists()
+        report = AbuseReport.objects.get(addon_id=addon.id)
+        self.check_report(report,
+                          u'[Extension] Abuse Report for %s' % addon.name)
+        assert report.message == ''
+
+    def test_message_can_be_blank_if_reason_is_provided(self):
+        addon = addon_factory()
+        response = self.client.post(
+            self.url,
+            data={'addon': six.text_type(addon.id), 'reason': 'broken',
+                  'message': ''},
+            REMOTE_ADDR='123.45.67.89')
+        assert response.status_code == 201
+
+        assert AbuseReport.objects.filter(addon_id=addon.id).exists()
+        report = AbuseReport.objects.get(addon_id=addon.id)
+        self.check_report(report,
+                          u'[Extension] Abuse Report for %s' % addon.name)
+        assert report.message == ''
 
     def test_throttle(self):
         addon = addon_factory()

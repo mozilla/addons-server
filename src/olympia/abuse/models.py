@@ -99,7 +99,7 @@ class AbuseReport(ModelBase):
     user = models.ForeignKey(
         UserProfile, null=True, related_name='abuse_reports',
         on_delete=models.SET_NULL)
-    message = models.TextField()
+    message = models.TextField(blank=True)
 
     state = models.PositiveSmallIntegerField(
         default=STATES.UNTRIAGED, choices=STATES.choices)
