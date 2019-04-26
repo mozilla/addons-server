@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import os.path
+import json
 
 from datetime import datetime, timedelta
 
+from django.db import transaction
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
+from django.test.testcases import TransactionTestCase
 
 import mock
 import pytest
@@ -22,7 +25,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.files.models import File
+from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.lib.git import AddonGitRepository
@@ -809,16 +812,51 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED, parsed_data=self.dummy_parsed_data)
         assert upload_version.nomination == pending_version.nomination
 
+
+class TestExtensionVersionFromUploadTransactional(
+        TransactionTestCase, amo.tests.AMOPaths):
+    filename = 'webextension_no_id.xpi'
+
+    def setUp(self):
+        super(TestExtensionVersionFromUploadTransactional, self).setUp()
+        # We can't use `setUpTestData` here because it doesn't play well with
+        # the behavior of `TransactionTestCase`
+        amo.tests.create_default_webext_appversion()
+
+        self.upload = self.get_upload(self.filename)
+        self.addon = addon_factory()
+
+    def get_upload(self, filename=None, abspath=None, validation=None,
+                   addon=None, user=None, version=None, with_validation=True):
+        fpath = self.file_fixture_path(filename)
+        with open(abspath if abspath else fpath, 'rb') as fobj:
+            xpi = fobj.read()
+        upload = FileUpload.from_post(
+            [xpi], filename=abspath or filename, size=1234)
+        upload.addon = addon
+        upload.user = user
+        upload.version = version
+        if with_validation:
+            # Simulate what fetch_manifest() does after uploading an app.
+            upload.validation = validation or json.dumps({
+                'errors': 0, 'warnings': 1, 'notices': 2, 'metadata': {},
+                'messages': []
+            })
+        upload.save()
+        return upload
+
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
     def test_doesnt_commit_to_git_by_default(self):
         addon = addon_factory()
         upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=user)
-        version = Version.from_upload(
-            upload, addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+
+        with transaction.atomic():
+            version = Version.from_upload(
+                upload, addon, [amo.FIREFOX.id],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data)
         assert version.pk
 
         repo = AddonGitRepository(addon.pk)
@@ -830,10 +868,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=user)
-        version = Version.from_upload(
-            upload, addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+
+        with transaction.atomic():
+            version = Version.from_upload(
+                upload, addon, [amo.FIREFOX.id],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data)
         assert version.pk
 
         repo = AddonGitRepository(addon.pk)
@@ -846,15 +886,43 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload = self.get_upload('webextension_no_id.xpi')
         upload.user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=upload.user)
-        version = Version.from_upload(
-            upload, addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+
+        @transaction.atomic
+        def create_new_version():
+            return Version.from_upload(
+                upload, addon, [amo.FIREFOX.id],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data)
+
+        version = create_new_version()
+
         assert version.pk
 
         # Only once instead of twice
         extract_mock.assert_called_once_with(
             version_id=version.pk, author_id=upload.user.pk)
+
+    @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
+    @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
+    @override_switch('enable-uploads-commit-to-git-storage', active=True)
+    def test_commits_to_git_async_only_if_version_created(
+            self, utc_millisecs_mock, extract_mock):
+        utc_millisecs_mock.side_effect = ValueError
+        addon = addon_factory()
+        upload = self.get_upload('webextension_no_id.xpi')
+        upload.user = user_factory(username='fancyuser')
+        parsed_data = parse_addon(upload, addon, user=upload.user)
+
+        # Simulating an atomic transaction similar to what
+        # create_version_for_upload does
+        with pytest.raises(ValueError):
+            with transaction.atomic():
+                Version.from_upload(
+                    upload, addon, [amo.FIREFOX.id],
+                    amo.RELEASE_CHANNEL_LISTED,
+                    parsed_data=parsed_data)
+
+        extract_mock.assert_not_called()
 
 
 class TestSearchVersionFromUpload(TestVersionFromUpload):

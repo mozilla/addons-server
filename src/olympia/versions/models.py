@@ -8,7 +8,7 @@ import django.dispatch
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.files.storage import default_storage as storage
-from django.db import models
+from django.db import models, transaction
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext
@@ -249,7 +249,8 @@ class Version(OnChangeMixin, ModelBase):
         version_uploaded.send(sender=version)
 
         # Extract this version into git repository
-        extract_version_to_git_repository(version, upload)
+        transaction.on_commit(
+            lambda: extract_version_to_git_repository(version, upload))
 
         # Generate a preview and icon for listed static themes
         if (addon.type == amo.ADDON_STATICTHEME and
