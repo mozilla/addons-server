@@ -20,6 +20,13 @@ class TestAbuse(TestCase):
             (3, 'Partner'),
             (4, 'Non-curated'),
             (5, 'Unsigned'),
+            (6, 'Broken'),
+            (7, 'Unknown'),
+            (8, 'Missing'),
+            (9, 'Preliminary'),
+            (10, 'Signed'),
+            (11, 'System'),
+            (12, 'Privileged'),
         )
         assert AbuseReport.ADDON_SIGNATURES.api_choices == (
             (None, None),
@@ -28,6 +35,13 @@ class TestAbuse(TestCase):
             (3, 'partner'),
             (4, 'non_curated'),
             (5, 'unsigned'),
+            (6, 'broken'),
+            (7, 'unknown'),
+            (8, 'missing'),
+            (9, 'preliminary'),
+            (10, 'signed'),
+            (11, 'system'),
+            (12, 'privileged'),
         )
 
         assert AbuseReport.REASONS.choices == (
@@ -40,18 +54,18 @@ class TestAbuse(TestCase):
             (6, 'Hateful, violent, or illegal content'),
             (7, "Pretends to be something it’s not"),
             (9, "Wasn't wanted / impossible to get rid of"),
-            (10, 'Other'),
+            (127, 'Other'),
         )
         assert AbuseReport.REASONS.api_choices == (
             (None, None),
-            (1, 'harmful'),
-            (2, 'spam_or_advertising'),
-            (3, 'browser_takeover'),
+            (1, 'damage'),
+            (2, 'spam'),
+            (3, 'settings'),
             (5, 'broken'),
-            (6, 'offensive'),
-            (7, 'does_not_match_description'),
+            (6, 'policy'),
+            (7, 'deceptive'),
             (9, 'unwanted'),
-            (10, 'other'),
+            (127, 'other'),
         )
 
         assert AbuseReport.ADDON_INSTALL_METHODS.choices == (
@@ -63,7 +77,15 @@ class TestAbuse(TestCase):
             (5, 'Webext management API'),
             (6, 'Drag & Drop'),
             (7, 'Sideload'),
+            (8, 'File URI'),
+            (9, 'Enterprise Policy'),
+            (10, 'Included in build'),
+            (11, 'System Add-on'),
+            (12, 'Temporary Add-on'),
+            (13, 'Sync'),
+            (127, 'Other')
         )
+
         assert AbuseReport.ADDON_INSTALL_METHODS.api_choices == (
             (None, None),
             (1, 'amwebapi'),
@@ -73,6 +95,13 @@ class TestAbuse(TestCase):
             (5, 'management_webext_api'),
             (6, 'drag_and_drop'),
             (7, 'sideload'),
+            (8, 'file_uri'),
+            (9, 'enterprise_policy'),
+            (10, 'distribution'),
+            (11, 'system_addon'),
+            (12, 'temporary_addon'),
+            (13, 'sync'),
+            (127, 'other')
         )
 
         assert AbuseReport.REPORT_ENTRY_POINTS.choices == (
