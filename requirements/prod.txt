@@ -333,9 +333,6 @@ requests==2.21.0 \
 s3transfer==0.2.0 \
     --hash=sha256:7b9ad3213bff7d357f888e0fab5101b56fa1a0548ee77d121c3a3dbfbef4cb2e \
     --hash=sha256:f23d5cb7d862b104401d9021fc82e5fa0e0cf57b7660a1331425aab0c691d021
-signing-clients==1.5.0 \
-    --hash=sha256:3411cab13d8a82ea294ed4523649d037ef8a97f5042f2e97b0a8898d617fd2f6 \
-    --hash=sha256:dd6a5810b97ec4a1aa8b35bed413750e89b5df0714bce2782bdf734231ca348b
 # statsd is required by django-statsd-mozilla
 statsd==3.3.0 \
     --hash=sha256:c610fb80347fca0ef62666d241bce64184bd7cc1efe582f9690e045c25535eaa \

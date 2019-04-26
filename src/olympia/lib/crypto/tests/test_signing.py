@@ -230,13 +230,22 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == 'xxxxx'
-        assert manifest == (
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
             'Manifest-Version: 1.0\n\n'
             'Name: install.rdf\n'
-            'Digest-Algorithms: MD5 SHA1 SHA256\n'
-            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
         )
 
     def test_call_signing_on_file_in_guarded_file_path(self):
@@ -263,13 +272,22 @@ class TestSigning(TestCase):
 
         subject_info = signature_info.signer_certificate['subject']
         assert subject_info['common_name'] == hashed
-        assert manifest == (
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
             'Manifest-Version: 1.0\n\n'
             'Name: install.rdf\n'
-            'Digest-Algorithms: MD5 SHA1 SHA256\n'
-            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
             'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
         )
 
     def test_get_id_short_guid(self):
@@ -302,13 +320,23 @@ class TestSigning(TestCase):
         assert (
             subject_info['common_name'] ==
             u'NavratnePeniaze@NávratnéPeniaze')
-        assert manifest == (
+        assert manifest.count('Name: ') == 3
+        # Need to use .startswith() since the signature from `cose.sig`
+        # changes on every test-run, so we're just not going to check it
+        # explicitly...
+        assert manifest.startswith(
             'Manifest-Version: 1.0\n\n'
             'Name: install.rdf\n'
-            'Digest-Algorithms: MD5 SHA1 SHA256\n'
-            'MD5-Digest: AtjchjiOU/jDRLwMx214hQ==\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
             'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
-            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n')
+            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
+            'Name: META-INF/cose.manifest\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
+            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
+            'Name: META-INF/cose.sig\n'
+            'Digest-Algorithms: SHA1 SHA256\n'
+        )
 
     @override_switch('enable-uploads-commit-to-git-storage', active=True)
     def test_runs_git_extraction_after_signing(self):
@@ -332,94 +360,6 @@ class TestSigning(TestCase):
 
         # 2 actual commits, including the repo initialization
         assert output.count('Mozilla Add-ons Robot') == 3
-
-
-@override_settings(ENABLE_ADDON_SIGNING=True)
-@override_sample('activate-autograph-file-signing', active=True)
-class TestSigningNewFileEndpoint(TestSigning):
-
-    def test_call_signing(self):
-        assert signing.sign_file(self.file_)
-
-        signature_info, manifest = self._get_signature_details()
-
-        subject_info = signature_info.signer_certificate['subject']
-        assert subject_info['common_name'] == 'xxxxx'
-        assert manifest.count('Name: ') == 3
-        # Need to use .startswith() since the signature from `cose.sig`
-        # changes on every test-run, so we're just not going to check it
-        # explicitly...
-        assert manifest.startswith(
-            'Manifest-Version: 1.0\n\n'
-            'Name: install.rdf\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
-            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
-            'Name: META-INF/cose.manifest\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
-            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
-            'Name: META-INF/cose.sig\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-        )
-
-    def test_sign_addon_with_unicode_guid(self):
-        self.addon.update(guid=u'NavratnePeniaze@NávratnéPeniaze')
-
-        signing.sign_file(self.file_)
-
-        signature_info, manifest = self._get_signature_details()
-
-        subject_info = signature_info.signer_certificate['subject']
-
-        assert (
-            subject_info['common_name'] ==
-            u'NavratnePeniaze@NávratnéPeniaze')
-        assert manifest.count('Name: ') == 3
-        # Need to use .startswith() since the signature from `cose.sig`
-        # changes on every test-run, so we're just not going to check it
-        # explicitly...
-        assert manifest.startswith(
-            'Manifest-Version: 1.0\n\n'
-            'Name: install.rdf\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
-            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
-            'Name: META-INF/cose.manifest\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
-            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
-            'Name: META-INF/cose.sig\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-        )
-
-    def test_call_signing_too_long_guid_bug_1203365(self):
-        long_guid = 'x' * 65
-        hashed = hashlib.sha256(force_bytes(long_guid)).hexdigest()
-        self.addon.update(guid=long_guid)
-        signing.sign_file(self.file_)
-
-        signature_info, manifest = self._get_signature_details()
-
-        subject_info = signature_info.signer_certificate['subject']
-        assert subject_info['common_name'] == hashed
-        assert manifest.count('Name: ') == 3
-        # Need to use .startswith() since the signature from `cose.sig`
-        # changes on every test-run, so we're just not going to check it
-        # explicitly...
-        assert manifest.startswith(
-            'Manifest-Version: 1.0\n\n'
-            'Name: install.rdf\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: W9kwfZrvMkbgjOx6nDdibCNuCjk=\n'
-            'SHA256-Digest: 3Wjjho1pKD/9VaK+FszzvZFN/2crBmaWbdisLovwo6g=\n\n'
-            'Name: META-INF/cose.manifest\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-            'SHA1-Digest: yguu1oY209BnHZkqftJFZb8UANQ=\n'
-            'SHA256-Digest: BJOnqdLGdmNsM6ZE2FRFOrEUFQd2AYRlg9U/+ETXUgM=\n\n'
-            'Name: META-INF/cose.sig\n'
-            'Digest-Algorithms: SHA1 SHA256\n'
-        )
 
 
 class TestTasks(TestCase):
