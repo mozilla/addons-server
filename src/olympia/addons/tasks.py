@@ -766,14 +766,14 @@ def repack_themes_for_69(addon_ids, **kw):
     olympia.core.set_user(UserProfile.objects.get(pk=settings.TASK_USER_ID))
     for addon in addons:
         version = addon.current_version
+        log.info('[CHECK] theme [%r] for deprecated properties' % addon)
         if not version:
+            log.info('[INVALID] theme [%r] has no current_version' % addon)
             continue
         pause_all_tasks()
         try:
             timer = StopWatch('addons.tasks.repack_themes_for_69')
             timer.start()
-            log.info(
-                '[CHECK] theme [%r] for deprecated properties' % addon)
             old_xpi = get_filepath(version.all_files[0])
             old_data = parse_addon(old_xpi, minimal=True)
             new_data = new_69_theme_properties_from_old(old_data)
