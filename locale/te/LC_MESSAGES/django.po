@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-19 07:44+0000\n"
+"PO-Revision-Date: 2019-04-26 17:44+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -640,7 +640,7 @@ msgid "Created: {0}."
 msgstr "రూపొందించబడింది: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "మార్చిన ఫీల్డు: {2} కొత్త విలువ: {0}."
 
 msgid "Deleted: {1}."
 msgstr "తొలగించినవి: {1}."
@@ -649,7 +649,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "వాడుకరి {user}‌ని మార్చారు, కారణం: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "వాడుకరి {user} అజ్ఞాతం చేయబడ్డారు."
 
 msgid "User {user} restricted."
 msgstr "వాడుకరి {user} పరిమితం చేయబడ్డాడు."
@@ -1471,7 +1471,7 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "చెల్లని లేదా పాడైన ఆర్కైవ్."
 
 msgid "View current"
 msgstr "ప్రస్తుతంది చూడండి"
@@ -4665,9 +4665,8 @@ msgid "Reported Spam"
 msgstr "నివేదిక రకం"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "బగ్ ఫిర్యాదు"
+msgstr ""
 
 msgid "Not Reported"
 msgstr "నివేదించబడలేదు"
@@ -4681,13 +4680,11 @@ msgid "View Rating on site"
 msgstr "కొత్త సైటును చూడండి"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
+msgstr ""
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -5279,9 +5276,8 @@ msgstr "విషయం ఆమోదం"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Firefox పొడిగింతలు"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "కొత్తవి ({0})"
