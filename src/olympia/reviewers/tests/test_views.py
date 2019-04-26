@@ -12,7 +12,6 @@ from django.core import mail
 from django.core.cache import cache
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
-from django.template import defaultfilters
 from django.test.utils import override_settings
 
 import mock
@@ -32,6 +31,7 @@ from olympia.activity.models import ActivityLog
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
+from olympia.amo.templatetags.jinja_helpers import format_date, format_datetime
 from olympia.amo.tests import (
     APITestClient, TestCase, addon_factory, check_links, file_factory, formset,
     initial, reverse_ns, user_factory, version_factory)
@@ -4164,9 +4164,25 @@ class TestReview(ReviewBase):
 
     def test_abuse_reports(self):
         report = AbuseReport.objects.create(
-            addon=self.addon, message=u'Et mël mazim ludus.',
-            country_code='FR')
-        created_at = defaultfilters.date(report.created)
+            addon=self.addon,
+            message=u'Et mël mazim ludus.',
+            country_code='FR',
+            client_id='4815162342',
+            addon_name='Unused here',
+            addon_summary='Not used either',
+            addon_version='42.0',
+            addon_signature=AbuseReport.ADDON_SIGNATURES.UNSIGNED,
+            application=amo.ANDROID.id,
+            application_locale='fr_FR',
+            operating_system='Løst OS',
+            operating_system_version='20040922',
+            install_date=self.days_ago(1),
+            reason=AbuseReport.REASONS.OFFENSIVE,
+            addon_install_origin='https://example.com/',
+            addon_install_method=AbuseReport.ADDON_INSTALL_METHODS.LINK,
+            report_entry_point=AbuseReport.REPORT_ENTRY_POINTS.MENU,
+        )
+        created_at = format_datetime(report.created)
         response = self.client.get(self.url)
         assert response.status_code == 200
         doc = pq(response.content)
@@ -4184,16 +4200,31 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.abuse_reports')
-        assert (
-            doc('.abuse_reports').text() ==
-            u'anonymous [FR] reported Public on %s\nEt mël mazim ludus.'
-            % created_at)
+        expected = [
+            'Target',
+            'Application',
+            'Install date',
+            'Install origin',
+            'Category',
+            'Date',
+            'Reporter',
+            'Public 42.0',
+            'Firefox for Android fr_FR Løst OS 20040922',
+            '1\xa0day ago',
+            'https://example.com/ Direct link',
+            'Hateful, violent, or illegal content',
+            created_at,
+            'anonymous [FR]',
+            'Et mël mazim ludus.',
+        ]
+
+        assert doc('.abuse_reports').text().split('\n') == expected
 
     def test_abuse_reports_developers(self):
         report = AbuseReport.objects.create(
             user=self.addon.listed_authors[0], message=u'Foo, Bâr!',
             country_code='DE')
-        created_at = defaultfilters.date(report.created)
+        created_at = format_datetime(report.created)
         AutoApprovalSummary.objects.create(
             verdict=amo.AUTO_APPROVED, version=self.version)
         self.grant_permission(self.reviewer, 'Addons:PostReview')
@@ -4201,17 +4232,31 @@ class TestReview(ReviewBase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('.abuse_reports')
-        assert (
-            doc('.abuse_reports').text() ==
-            u'anonymous [DE] reported regularuser التطب on %s\nFoo, Bâr!'
-            % created_at)
+        expected = [
+            'Target',
+            'Application',
+            'Install date',
+            'Install origin',
+            'Category',
+            'Date',
+            'Reporter',
+            'regularuser التطب',
+            'Firefox',
+            'None',
+            'None',
+            created_at,
+            'anonymous [DE]',
+            'Foo, Bâr!',
+        ]
+
+        assert doc('.abuse_reports').text().split('\n') == expected
 
     def test_user_ratings(self):
         user = user_factory()
         rating = Rating.objects.create(
             body=u'Lôrem ipsum dolor', rating=3, ip_address='10.5.6.7',
             addon=self.addon, user=user)
-        created_at = defaultfilters.date(rating.created)
+        created_at = format_date(rating.created)
         Rating.objects.create(  # Review with no body, ignored.
             rating=1, addon=self.addon, user=user_factory())
         Rating.objects.create(  # Reply to a review, ignored.

@@ -670,7 +670,6 @@ MINIFY_BUNDLES = {
         'zamboni/reviewers': (
             'css/zamboni/reviewers.less',
             'css/zamboni/unlisted.less',
-            'css/zamboni/reviewers.less',
         ),
         'zamboni/themes_review': (
             'css/zamboni/developers.css',
