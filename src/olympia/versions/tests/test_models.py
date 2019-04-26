@@ -819,10 +819,8 @@ class TestExtensionVersionFromUploadTransactional(
 
     def setUp(self):
         super(TestExtensionVersionFromUploadTransactional, self).setUp()
-        # We're not inheriting from `TestVersionFromUpload` as it defines
-        # `setUpTestData` which doesn't play well with the behavior of
-        # `TransactionTestCase`
-        # That's also why AppVersion related instances are created here
+        # We can't use `setUpTestData` here because it doesn't play well with
+        # the behavior of `TransactionTestCase`
         amo.tests.create_default_webext_appversion()
 
         self.upload = self.get_upload(self.filename)
@@ -830,10 +828,6 @@ class TestExtensionVersionFromUploadTransactional(
 
     def get_upload(self, filename=None, abspath=None, validation=None,
                    addon=None, user=None, version=None, with_validation=True):
-        """We're implementing our own `get_upload` method because we can't
-        inherit from `UploadTest` as it inherits our `TestCase` class which
-        for some reason cancels out some of the transactional behavior we want
-        """
         fpath = self.file_fixture_path(filename)
         with open(abspath if abspath else fpath, 'rb') as fobj:
             xpi = fobj.read()
