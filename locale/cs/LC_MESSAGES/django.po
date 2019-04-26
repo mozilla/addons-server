@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-26 20:48+0000\n"
+"PO-Revision-Date: 2019-04-26 21:09+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1070,7 +1070,7 @@ msgid "Download Firefox artistic and conceptual themes. This category includes c
 msgstr "Stáhněte si umělecké a abstraktní vzhledy Firefoxu. Tato kategorie zahrnuje barevné palety a tvary, fantasy krajiny, hravé kočky, psychadelické květiny."
 
 msgid "Causes"
-msgstr "Aktivity"
+msgstr "Události"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
 msgstr "Stáhněte si vzhledy Firefoxu pro specifické zájmy a témata. Tato kategorie zahrnuje sportovní motivy, svátky, dobročinné akce, národnosti a mnoho dalšího."
