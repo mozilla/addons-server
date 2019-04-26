@@ -105,7 +105,6 @@ def submit_file(addon_pk, upload_pk, channel):
 
 @transaction.atomic
 def create_version_for_upload(addon, upload, channel):
-    """Note this function is only used for API uploads."""
     fileupload_exists = addon.fileupload_set.filter(
         created__gt=upload.created, version=upload.version).exists()
     version_exists = Version.unfiltered.filter(

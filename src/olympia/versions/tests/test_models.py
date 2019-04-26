@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import hashlib
 import os.path
+import json
 
 from datetime import datetime, timedelta
 
@@ -24,7 +25,7 @@ from olympia.amo.tests import (
 from olympia.amo.tests.test_models import BasePreviewMixin
 from olympia.amo.utils import utc_millesecs_from_epoch
 from olympia.applications.models import AppVersion
-from olympia.files.models import File
+from olympia.files.models import File, FileUpload
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import parse_addon
 from olympia.lib.git import AddonGitRepository
@@ -811,16 +812,57 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
             amo.RELEASE_CHANNEL_LISTED, parsed_data=self.dummy_parsed_data)
         assert upload_version.nomination == pending_version.nomination
 
+
+class TestExtensionVersionFromUploadTransactional(
+        TransactionTestCase, amo.tests.AMOPaths):
+    filename = 'webextension_no_id.xpi'
+
+    def setUp(self):
+        super(TestExtensionVersionFromUploadTransactional, self).setUp()
+        # We're not inheriting from `TestVersionFromUpload` as it defines
+        # `setUpTestData` which doesn't play well with the behavior of
+        # `TransactionTestCase`
+        # That's also why AppVersion related instances are created here
+        amo.tests.create_default_webext_appversion()
+
+        self.upload = self.get_upload(self.filename)
+        self.addon = addon_factory()
+
+    def get_upload(self, filename=None, abspath=None, validation=None,
+                   addon=None, user=None, version=None, with_validation=True):
+        """We're implementing our own `get_upload` method because we can't
+        inherit from `UploadTest` as it inherits our `TestCase` class which
+        for some reason cancels out some of the transactional behavior we want
+        """
+        fpath = self.file_fixture_path(filename)
+        with open(abspath if abspath else fpath, 'rb') as fobj:
+            xpi = fobj.read()
+        upload = FileUpload.from_post(
+            [xpi], filename=abspath or filename, size=1234)
+        upload.addon = addon
+        upload.user = user
+        upload.version = version
+        if with_validation:
+            # Simulate what fetch_manifest() does after uploading an app.
+            upload.validation = validation or json.dumps({
+                'errors': 0, 'warnings': 1, 'notices': 2, 'metadata': {},
+                'messages': []
+            })
+        upload.save()
+        return upload
+
     @override_switch('enable-uploads-commit-to-git-storage', active=False)
     def test_doesnt_commit_to_git_by_default(self):
         addon = addon_factory()
         upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=user)
-        version = Version.from_upload(
-            upload, addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+
+        with transaction.atomic():
+            version = Version.from_upload(
+                upload, addon, [amo.FIREFOX.id],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data)
         assert version.pk
 
         repo = AddonGitRepository(addon.pk)
@@ -832,10 +874,12 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload = self.get_upload('webextension_no_id.xpi')
         user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=user)
-        version = Version.from_upload(
-            upload, addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+
+        with transaction.atomic():
+            version = Version.from_upload(
+                upload, addon, [amo.FIREFOX.id],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data)
         assert version.pk
 
         repo = AddonGitRepository(addon.pk)
@@ -848,20 +892,21 @@ class TestExtensionVersionFromUpload(TestVersionFromUpload):
         upload = self.get_upload('webextension_no_id.xpi')
         upload.user = user_factory(username='fancyuser')
         parsed_data = parse_addon(upload, addon, user=upload.user)
-        version = Version.from_upload(
-            upload, addon, [self.selected_app],
-            amo.RELEASE_CHANNEL_LISTED,
-            parsed_data=parsed_data)
+
+        @transaction.atomic
+        def create_new_version():
+            return Version.from_upload(
+                upload, addon, [amo.FIREFOX.id],
+                amo.RELEASE_CHANNEL_LISTED,
+                parsed_data=parsed_data)
+
+        version = create_new_version()
+
         assert version.pk
 
         # Only once instead of twice
         extract_mock.assert_called_once_with(
             version_id=version.pk, author_id=upload.user.pk)
-
-
-class TestExtensionVersionFromUploadTransactional(
-        TestVersionFromUpload, TransactionTestCase):
-    filename = 'extension.xpi'
 
     @mock.patch('olympia.versions.tasks.extract_version_to_git.delay')
     @mock.patch('olympia.versions.models.utc_millesecs_from_epoch')
@@ -879,7 +924,7 @@ class TestExtensionVersionFromUploadTransactional(
         with pytest.raises(ValueError):
             with transaction.atomic():
                 Version.from_upload(
-                    upload, addon, [self.selected_app],
+                    upload, addon, [amo.FIREFOX.id],
                     amo.RELEASE_CHANNEL_LISTED,
                     parsed_data=parsed_data)
 
