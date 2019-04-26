@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-26 23:26+0000\n"
+"PO-Revision-Date: 2019-04-26 23:47+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1088,7 +1088,7 @@ msgid "Download Firefox themes with movies and television. This category include
 msgstr "Stáhněte si vzhledy Firefoxu s filmy a televizí. Tato kategorie zahrnuje anime jako Učiha Madara, filmy jako Matrix, pořady (Hra u trůny) a mnoho dalšího."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu s motivem prohlížeče Firefox. Tato kategorie zahrnuje rozličná barevná vyobrazení loga Firefoxu, včetně obecnějších motivů s liškou."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -1100,7 +1100,7 @@ msgid "Holiday"
 msgstr "Svátek"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu se svátky. Tato kategorie zahrnuje Vánoce, Halloween, Den díkůvzdání, Den sv. Patrika, Velikonoce, Den nezávislosti a další svátky."
 
 msgid "Music"
 msgstr "Hudba"
