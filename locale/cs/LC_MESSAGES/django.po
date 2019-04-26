@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-26 11:11+0000\n"
+"PO-Revision-Date: 2019-04-26 11:16+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -26,9 +26,8 @@ msgstr "Odkazy nejsou povoleny."
 msgid "This display name cannot be used."
 msgstr "Toto jméno nemůže být použito."
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "Tento název nemůže být použit."
+msgstr "Toto jméno nemůže být použito."
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr "Domovskou stránku lze použít jen pro odkaz na externí webové stránky."
@@ -418,9 +417,8 @@ msgstr "Špatný typ pro jeden nebo více klíčů v datovém obsahu"
 msgid "Invalid JWT Token."
 msgstr "Neplatný token JWT."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Archiv je neplatný nebo rozbitý."
+msgstr "Neplatný token nebo hash."
 
 msgid "Email address not found."
 msgstr "E-mailová adresa nebyla nalezena."
