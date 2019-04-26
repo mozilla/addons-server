@@ -196,7 +196,7 @@ class AddonAbuseViewSetTestBase(object):
             'lang': u'Lô-käl',
             'operating_system': u'Sømething OS',
             'install_date': '2004-08-15T16:23:42',
-            'reason': 'spam_or_advertising',
+            'reason': 'spam',
             'addon_install_origin': 'http://example.com/',
             'addon_install_method': None,
             'report_entry_point': None,
