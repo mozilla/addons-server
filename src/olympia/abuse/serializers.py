@@ -35,6 +35,10 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
     reason = ReverseChoiceField(
         choices=list(AbuseReport.REASONS.api_choices), required=False,
         allow_null=True)
+    # 'message' has custom validation rules below depending on whether 'reason'
+    # was provided or not. We need to not set it as required and allow blank at
+    # the field level to make that work.
+    message = serializers.CharField(required=False, allow_blank=True)
     app = ReverseChoiceField(
         choices=list((v.id, k) for k, v in amo.APPS.items()), required=False,
         source='application')
@@ -73,6 +77,23 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
             'report_entry_point'
         )
 
+    def validate(self, data):
+        if not data.get('reason'):
+            # If reason is not provided, message is required and can not be
+            # null or blank.
+            message = data.get('message')
+            if not message:
+                if 'message' not in data:
+                    msg = serializers.Field.default_error_messages['required']
+                elif message is None:
+                    msg = serializers.Field.default_error_messages['null']
+                else:
+                    msg = serializers.CharField.default_error_messages['blank']
+                raise serializers.ValidationError({
+                    'message': [msg]
+                })
+        return data
+
     def to_internal_value(self, data):
         self.validate_target(data, 'addon')
         view = self.context.get('view')
@@ -98,6 +119,9 @@ class AddonAbuseReportSerializer(BaseAbuseReportSerializer):
 
 class UserAbuseReportSerializer(BaseAbuseReportSerializer):
     user = BaseUserSerializer(required=False)  # We validate it ourselves.
+    # Unlike add-on reports, for user reports we don't have a 'reason' field so
+    # the message is always required and can't be blank.
+    message = serializers.CharField(required=True, allow_blank=False)
 
     class Meta:
         model = AbuseReport
