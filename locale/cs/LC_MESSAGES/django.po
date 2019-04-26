@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-25 23:26+0000\n"
+"PO-Revision-Date: 2019-04-26 11:11+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1754,8 +1754,8 @@ msgid ""
 "Before starting, please read and accept our Firefox Add-on Distribution Agreement as well as our Review Policies and Rules. The Firefox Add-on Distribution Agreement also links to our Privacy Notice"
 " which explains how we handle your information."
 msgstr ""
-"Než začnete, přečtěte si prosím podmínky distribuce doplňků pro Firefox, poznámky ke kontrole a její pravidla. Podmínky distribuce doplňků také odkazují na naše zásady ochrany osobních údajů, které "
-"vysvětlují, jak nakládáme s vašimi informacemi."
+"Než začnete, přečtěte si prosím naše pravidla pro distribuci doplňků pro Firefox a zásady a pravidla pro kontrolu doplňků. Pravidla pro distribuci doplňků pro Firefox také odkazují na naše zásady "
+"ochrany osobních údajů, které vysvětlují, jak nakládáme s vašimi údaji."
 
 msgid "Firefox Add-on Distribution Agreement"
 msgstr "Dohoda o distribuci doplňků pro Firefox"
@@ -3704,7 +3704,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
-msgstr ""
+msgstr "Vytvářejte snímky obrazovky, upravujte je a sdílejte."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
