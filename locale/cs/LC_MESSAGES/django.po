@@ -5395,9 +5395,8 @@ msgstr "Schválit obsah"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Automaticky schválené doplňky"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "Nové ({0})"
