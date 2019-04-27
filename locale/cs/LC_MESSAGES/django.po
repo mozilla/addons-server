@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-27 11:31+0000\n"
+"PO-Revision-Date: 2019-04-27 11:34+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2005,7 +2005,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr "Pokud byste rádi dostávali příspěvky od uživatelů, nastavte zde stránku, kde vám je mohou posílat."
 
 msgid "Default Locale"
-msgstr "Výchozí lokalizace"
+msgstr "Výchozí jazyk"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Nebude-li k dispozici překlad, informace o vašem doplňku budou zobrazeny v tomto jazyce. Relevantní pouze pro zveřejněné doplňky."
