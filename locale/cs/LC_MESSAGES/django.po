@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-28 12:28+0000\n"
+"PO-Revision-Date: 2019-04-28 12:49+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -2054,7 +2054,7 @@ msgid "View Product Page"
 msgstr "Zobrazit stránku doplňku"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Tento souhrn by měl jasně vysvětlit, k čemu váš doplněk slouží. Bude zobrazen v seznamech a vyhledávání a poslouží kontrolorům při testování vašeho doplňku."
+msgstr "Tento souhrn by měl jasně vysvětlovat, k čemu váš doplněk slouží. Bude se zobrazovat v seznamech doplňků a výsledcích vyhledávání, a poslouží kontrolorům při testování vašeho doplňku."
 
 msgid "Description"
 msgstr "Popis"
@@ -2194,28 +2194,28 @@ msgstr ""
 " doplňky."
 
 msgid "Select an icon for your add-on:"
-msgstr "Vyberte ikonku vašeho doplňku:"
+msgstr "Vyberte svému doplňku ikonku:"
 
 #. The size of the icon
 msgid "32x32px"
 msgstr "32 x 32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr "Použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené doplňky."
+msgstr "Bude použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené doplňky."
 
 #. The size of the icon
 msgid "64x64px"
 msgstr "64 x 64px"
 
 msgid "Used in add-on detail pages."
-msgstr "Použita na stránkách doplňku."
+msgstr "Bude použita na stránkách doplňku."
 
 #. The size of the icon
 msgid "128x128px"
 msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Bude standardem na budoucích stránkách doplňku."
 
 msgid "Upload a Custom Icon..."
 msgstr "Nahrání vlastní ikonky..."
@@ -2224,25 +2224,25 @@ msgid "PNG and JPG supported."
 msgstr "Podporovanými typy jsou PNG a JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr "Ikony musí být čtvercové a mít minimální velikost 128x128 pixelů."
+msgstr "Ikony musí být čtvercové a musí mít minimální velikost 128x128 pixelů."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Velké ikony budou automaticky zmenšeny na 128x128 pixelů."
 
 msgid "Screenshots"
-msgstr "Obrázky"
+msgstr "Ukázky"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Přidejte prosím k vašemu doplňku alespoň jeden obrázek:"
+msgstr "Poskytněte prosím alespoň jeden snímek obrazovky vašeho doplňku:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Zadejte prosím nadpis tohoto obrázku:"
+msgstr "Uveďte prosím pro tento snímek obrazovky popisek:"
 
 msgid "Add a Screenshot..."
-msgstr "Přidání obrázku..."
+msgstr "Přidat snímek obrazovky..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr "PNG a JPG jsou podporovány, PNG doporučen. Maximální a doporučená velikost pro screenshoty je 2400x1800 pixelů."
+msgstr "Formáty PNG a JPG jsou podporovány, formát PNG je doporučen. Maximální a doporučená velikost snímků obrazovky je 2400x1800 pixelů."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimální velikost je 1000x750 a je vyžadován poměr stran 4:3."
