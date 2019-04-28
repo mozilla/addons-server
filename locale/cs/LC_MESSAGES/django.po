@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-28 09:58+0000\n"
+"PO-Revision-Date: 2019-04-28 10:30+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1109,7 +1109,7 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr "Stáhněte si vzhledy Firefoxu pro hudební zájmové skupiny a umělce. Tato kategorie zahrnuje populární kapely jako jsou Nirvana a BTS, nástroje, hudební videoklipy a mnoho dalšího."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu se zvířaty a přírodními krajinami. Tato kategorie zahrnuje květiny, západy slunce, lišky, roční období, planety, koťata, ptáky aj."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Stáhněte si zajímavé, tvořivé a unikátní vzhledy Firefoxu."
@@ -1124,7 +1124,7 @@ msgid "Seasonal"
 msgstr "Sezónní"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu pro všechna čtyři roční období – jaro, léto, podzim a zimu. Jarní kvítí, slunné letní dny, podzimní listí a zasněžené vrcholky hor."
 
 msgid "Solid"
 msgstr "Jednoduché"
