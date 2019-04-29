@@ -734,6 +734,21 @@ def clear_compatversion_cache_on_delete(sender, instance, **kw):
         instance.addon.invalidate_d2c_versions()
 
 
+@Version.on_change
+def watch_recommendation_changes(old_attr=None, new_attr=None, instance=None,
+                                 sender=None, **kwargs):
+    from olympia.addons.models import update_search_index
+
+    if ('recommendation_approved' in old_attr or
+            'recommendation_approved' in new_attr):
+        old_value = old_attr.get('recommendation_approved')
+        new_value = new_attr.get('recommendation_approved')
+        if old_value != new_value:
+            # Update ES because Addon.is_recommended depends on it.
+            update_search_index(
+                sender=sender, instance=instance.addon, **kwargs)
+
+
 version_uploaded = django.dispatch.Signal()
 models.signals.pre_save.connect(
     save_signal, sender=Version, dispatch_uid='version_translations')

@@ -146,6 +146,7 @@ class AddonIndexer(BaseSearchIndexer):
                     'is_disabled': {'type': 'boolean'},
                     'is_experimental': {'type': 'boolean'},
                     'is_featured': {'type': 'boolean'},
+                    'is_recommended': {'type': 'boolean'},
                     'last_updated': {'type': 'date'},
                     'listed_authors': {
                         'type': 'object',
@@ -317,7 +318,8 @@ class AddonIndexer(BaseSearchIndexer):
         attrs = ('id', 'average_daily_users', 'bayesian_rating',
                  'contributions', 'created',
                  'default_locale', 'guid', 'hotness', 'icon_hash', 'icon_type',
-                 'is_disabled', 'is_experimental', 'last_updated',
+                 'is_disabled', 'is_experimental', 'is_recommended',
+                 'last_updated',
                  'modified', 'public_stats', 'requires_payment', 'slug',
                  'status', 'type', 'view_source', 'weekly_downloads')
         data = {attr: getattr(obj, attr) for attr in attrs}

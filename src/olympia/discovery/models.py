@@ -8,13 +8,13 @@ from django.utils.translation import ugettext
 import six
 
 from olympia import amo
-from olympia.addons.models import Addon
-from olympia.amo.models import ModelBase
+from olympia.addons.models import Addon, update_search_index
+from olympia.amo.models import ModelBase, OnChangeMixin
 from olympia.amo.templatetags.jinja_helpers import absolutify
 
 
 @python_2_unicode_compatible
-class DiscoveryItem(ModelBase):
+class DiscoveryItem(OnChangeMixin, ModelBase):
     addon = models.OneToOneField(
         Addon, on_delete=models.CASCADE,
         help_text='Add-on id this item will point to (If you do not know the '
@@ -126,3 +126,15 @@ class DiscoveryItem(ModelBase):
                 value = u''
         return format_html(
             u'<blockquote>{}</blockquote>', value) if value else value
+
+
+@DiscoveryItem.on_change
+def watch_recommendable_changes(old_attr=None, new_attr=None, instance=None,
+                                sender=None, **kwargs):
+    if 'recommendable' in old_attr or 'recommendable' in new_attr:
+        old_value = old_attr.get('recommendable')
+        new_value = new_attr.get('recommendable')
+        if old_value != new_value:
+            # Update ES because is_recommended depends on it.
+            update_search_index(
+                sender=sender, instance=instance.addon, **kwargs)

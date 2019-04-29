@@ -1268,7 +1268,7 @@ class Addon(OnChangeMixin, ModelBase):
             out[app].add(locale or None)
         return out
 
-    @property
+    @cached_property
     def is_recommended(self):
         from olympia.discovery.models import DiscoveryItem
 

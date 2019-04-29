@@ -1552,15 +1552,18 @@ class TestAddonModels(TestCase):
 
         addon.current_version.update(recommendation_approved=True)
         disco = DiscoveryItem(addon=addon, recommendable=True)
+        del addon.is_recommended
         # It's recommendable; and the latest version is approved too.
         assert addon.is_recommended
 
         disco.update(recommendable=False)
+        del addon.is_recommended
         # we revoked the status, so now the addon shouldn't be recommended
         assert not addon.is_recommended
 
         addon.current_version.update(recommendation_approved=False)
         disco.update(recommendable=True)
+        del addon.is_recommended
         # similarly if the current_version wasn't reviewed for recommended
         assert not addon.is_recommended
 
