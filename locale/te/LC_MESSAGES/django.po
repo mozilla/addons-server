@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-26 17:44+0000\n"
+"PO-Revision-Date: 2019-04-29 08:03+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2144,7 +2144,7 @@ msgid "Will be the standard in future add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "అభిమత ప్రతీకాన్ని ఎక్కించండి..."
 
 msgid "PNG and JPG supported."
 msgstr ""
@@ -3007,9 +3007,8 @@ msgstr ""
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "తేలికైన అలంకారాల సమీక్షల చిట్టా"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4660,9 +4659,8 @@ msgstr ""
 msgid "Reported Status"
 msgstr "నివేదిత స్థితి"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "నివేదిక రకం"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Reported Ham"
