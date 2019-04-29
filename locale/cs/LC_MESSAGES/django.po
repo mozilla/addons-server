@@ -1724,7 +1724,7 @@ msgid "Toolbar field area text"
 msgstr "Text polí v nástrojových lištách"
 
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
-msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu: toolbar_field_text."
+msgstr "Barva textu v polích v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field_text."
 
 msgid "Review requested."
 msgstr "Vyžádána kontrola."
