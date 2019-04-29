@@ -1550,25 +1550,18 @@ class TestAddonModels(TestCase):
         # default case - no discovery item so not recommended
         assert not addon.is_recommended
 
-        addon.current_version.update(recommendation_status=amo.STATUS_APPROVED)
-        disco = DiscoveryItem(addon=addon, status=amo.STATUS_APPROVED)
-        # It's on the recommended list; it's been approved; and the latest
-        # version is approved too.
+        addon.current_version.update(recommendation_approved=True)
+        disco = DiscoveryItem(addon=addon, recommendable=True)
+        # It's recommendable; and the latest version is approved too.
         assert addon.is_recommended
 
-        disco.update(status=amo.STATUS_NULL)
+        disco.update(recommendable=False)
         # we revoked the status, so now the addon shouldn't be recommended
         assert not addon.is_recommended
 
-        disco.update(status=amo.STATUS_AWAITING_REVIEW)
-        # similarly if the review is still outstanding
-        assert not addon.is_recommended
-
-        # And finally, the case when the addon is on the recommendation list,
-        # but the current_version isn't recommended - e.g. the developer
-        # deletes the approved version after we add it to the list.
-        disco.update(status=amo.STATUS_APPROVED)
-        addon.current_version.update(recommendation_status=amo.STATUS_NULL)
+        addon.current_version.update(recommendation_approved=False)
+        disco.update(recommendable=True)
+        # similarly if the current_version wasn't reviewed for recommended
         assert not addon.is_recommended
 
 

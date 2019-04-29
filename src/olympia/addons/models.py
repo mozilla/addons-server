@@ -1277,8 +1277,8 @@ class Addon(OnChangeMixin, ModelBase):
         except DiscoveryItem.DoesNotExist:
             return False
         return (
-            item.status == amo.STATUS_APPROVED and
-            self.current_version.recommendation_status == amo.STATUS_APPROVED)
+            item.recommendable and
+            self.current_version.recommendation_approved)
 
     def has_full_profile(self):
         pass
