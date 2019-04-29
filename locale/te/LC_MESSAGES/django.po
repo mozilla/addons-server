@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-29 19:26+0000\n"
+"PO-Revision-Date: 2019-04-29 19:43+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1456,10 +1456,10 @@ msgid "License text is required when choosing Other."
 msgstr "ఇతర ఎంపిక చేసుకున్నప్పుడు లైసెన్సు పాఠ్యం తప్పనిసరి."
 
 msgid "This add-on has an End-User License Agreement"
-msgstr ""
+msgstr "ఈ పొడగింతకు అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందం ఉంది"
 
 msgid "Please specify your add-on's End-User License Agreement:"
-msgstr ""
+msgstr "దయచేసి మీ పొడగింతకి అంతిమ-వాడుకరి లైసెన్స్ ఒప్పందాన్ని పేర్కొనండి:"
 
 msgid "This add-on has a Privacy Policy"
 msgstr "ఈ పొడిగింత గోప్యతా విధానాన్ని కలిగి ఉంది"
@@ -1468,7 +1468,7 @@ msgid "Please specify your add-on's Privacy Policy:"
 msgstr "దయచేసి మీ పొడిగింత యొక్క గోప్యతా విధానాన్ని పేర్కొనండి:"
 
 msgid "Unsupported file type, please upload an archive file {extensions}."
-msgstr ""
+msgstr "తోడ్పాటులేని ఫైలు రకం, దయచేసి ఆర్కయివ్ ఫైలు {extensions}ను ఎక్కించండి."
 
 msgid "Invalid or broken archive."
 msgstr "చెల్లని లేదా పాడైన ఆర్కైవ్."
@@ -1498,7 +1498,7 @@ msgid "Version {version} already exists."
 msgstr "వెర్షను {version} ఇప్పటికే ఉంది."
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "బదులుగా ప్రస్తుత ఎక్కింపునే కొనసాగించాలా?"
 
 msgid "Yes"
 msgstr "అవును"
@@ -3168,7 +3168,7 @@ msgid "The files awaiting review will be disabled and you will need to upload ne
 msgstr ""
 
 msgid "Are you sure you wish to hide your add-on?"
-msgstr ""
+msgstr "మీరు నిజంగానే మీ పొడగింతను దాచివేయాలని అనుకుంటున్నారా?"
 
 msgid "Canceling your review request will mark your add-on incomplete, and any versions awaiting review will be disabled."
 msgstr ""
@@ -3269,7 +3269,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
-msgstr ""
+msgstr "మీరు కొత్త ట్యాబు తెరిచినప్పుడల్లా ఏ పేజీని చూడాలో ఎంచుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
