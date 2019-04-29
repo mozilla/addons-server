@@ -95,6 +95,13 @@ and should be truncated by the client where necessary.
        management_webext_api  WebExt Management API
                drag_and_drop  Drag & Drop
                     sideload  Sideload
+                    file_uri  File URI
+           enterprise_policy  Enterprise Policy
+                distribution  Included in build
+                system_addon  System Add-on
+             temporary_addon  Temporary Add-on
+                        sync  Sync
+                       other  Other
  ===========================  =================================================
 
 .. _abuse-addon_signature-parameter:
@@ -110,6 +117,13 @@ and should be truncated by the client where necessary.
                      partner  Partner
                  non_curated  Non-curated
                     unsigned  Unsigned
+                      broken  Broken
+                     unknown  Unknown
+                     missing  Missing
+                 preliminary  Preliminary
+                      signed  Signed
+                      system  System
+                  privileged  Privileged
  ===========================  =================================================
 
 .. _abuse-reason-parameter:
@@ -119,12 +133,12 @@ and should be truncated by the client where necessary.
  ===========================  ================================================================
                        Value  Description
  ===========================  ================================================================
-                     harmful  Damages computer and/or data
-         spam_or_advertising  Creates spam or advertising
-            browser_takeover  Changes search / homepage / new tab page without informing user
+                      damage  Damages computer and/or data
+                        spam  Creates spam or advertising
+                    settings  Changes search / homepage / new tab page without informing user
                       broken  Doesn’t work, breaks websites, or slows Firefox down
-                   offensive  Hateful, violent, or illegal content
-  does_not_match_description  Doesn't match description
+                      policy  Hateful, violent, or illegal content
+                   deceptive  Doesn't match description
                     unwanted  Wasn't wanted / impossible to get rid of
                        other  Something else
  ===========================  ================================================================

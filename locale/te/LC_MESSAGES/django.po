@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-19 07:44+0000\n"
+"PO-Revision-Date: 2019-04-29 08:41+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -640,7 +640,7 @@ msgid "Created: {0}."
 msgstr "రూపొందించబడింది: {0}."
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "మార్చిన ఫీల్డు: {2} కొత్త విలువ: {0}."
 
 msgid "Deleted: {1}."
 msgstr "తొలగించినవి: {1}."
@@ -649,7 +649,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "వాడుకరి {user}‌ని మార్చారు, కారణం: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "వాడుకరి {user} అజ్ఞాతం చేయబడ్డారు."
 
 msgid "User {user} restricted."
 msgstr "వాడుకరి {user} పరిమితం చేయబడ్డాడు."
@@ -1471,7 +1471,7 @@ msgid "Unsupported file type, please upload an archive file {extensions}."
 msgstr ""
 
 msgid "Invalid or broken archive."
-msgstr ""
+msgstr "చెల్లని లేదా పాడైన ఆర్కైవ్."
 
 msgid "View current"
 msgstr "ప్రస్తుతంది చూడండి"
@@ -2144,7 +2144,7 @@ msgid "Will be the standard in future add-on detail pages."
 msgstr ""
 
 msgid "Upload a Custom Icon..."
-msgstr ""
+msgstr "అభిమత ప్రతీకాన్ని ఎక్కించండి..."
 
 msgid "PNG and JPG supported."
 msgstr ""
@@ -2596,13 +2596,13 @@ msgid "Select a header image for your theme"
 msgstr ""
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "సిఫార్సు చేసిన ఎత్తు: 200 పిక్సెళ్ళు"
 
 msgid "6.9MB max"
 msgstr "6.9MB గరిష్టం"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG లేదా GIF (యానిమేట్ చేయబడనిది)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -3007,9 +3007,8 @@ msgstr ""
 msgid "Temporarily install your extension in Firefox for live testing and debugging."
 msgstr ""
 
-#, fuzzy
 msgid "Lightweight Theme editing has been disabled."
-msgstr "తేలికైన అలంకారాల సమీక్షల చిట్టా"
+msgstr ""
 
 msgid "Manage Version {0}"
 msgstr ""
@@ -4660,14 +4659,12 @@ msgstr ""
 msgid "Reported Status"
 msgstr "నివేదిత స్థితి"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "నివేదిక రకం"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Reported Ham"
-msgstr "బగ్ ఫిర్యాదు"
+msgstr ""
 
 msgid "Not Reported"
 msgstr "నివేదించబడలేదు"
@@ -4681,13 +4678,11 @@ msgid "View Rating on site"
 msgstr "కొత్త సైటును చూడండి"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
-#, fuzzy
 msgid "Submit Ham to Akismet"
-msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
+msgstr ""
 
-#, fuzzy
 msgid "Submit Spam to Akismet"
-msgstr "క్రొత్త ఫైల్ను సమర్పించండి"
+msgstr ""
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, python-format
@@ -5279,9 +5274,8 @@ msgstr "విషయం ఆమోదం"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr ""
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Firefox పొడిగింతలు"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "కొత్తవి ({0})"
@@ -5961,7 +5955,7 @@ msgid ""
 msgstr ""
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "తేదీవారీ వాడుకరుల భాషలు"
 
 msgid "Platform usage by Date"
 msgstr ""
@@ -6054,7 +6048,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "<b>పొడగింతల</b> గురించి తెలుసుకోండి"
 
 msgid "Download Firefox"
 msgstr "Firefoxను దింపుకోండి"
@@ -6072,7 +6066,7 @@ msgid "Desktop Browser"
 msgstr "డెస్కుటాపు విహారిణి"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "బీటా, నైట్లీ, డెపలపర్ ఎడిషన్"
 
 msgid "Other languages"
 msgstr "ఇతర భాషలు"

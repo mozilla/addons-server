@@ -44,21 +44,29 @@ class AbuseReport(ModelBase):
         ('PARTNER', 3, 'Partner'),
         ('NON_CURATED', 4, 'Non-curated'),
         ('UNSIGNED', 5, 'Unsigned'),
+        ('BROKEN', 6, 'Broken'),
+        ('UNKNOWN', 7, 'Unknown'),
+        ('MISSING', 8, 'Missing'),
+        ('PRELIMINARY', 9, 'Preliminary'),
+        ('SIGNED', 10, 'Signed'),
+        ('SYSTEM', 11, 'System'),
+        ('PRIVILEGED', 12, 'Privileged'),
     )
     REASONS = APIChoicesWithNone(
-        ('HARMFUL', 1, 'Damages computer and/or data'),
-        ('SPAM_OR_ADVERTISING', 2, 'Creates spam or advertising'),
-        ('BROWSER_TAKEOVER', 3, 'Changes search / homepage / new tab page '
-                                'without informing user'),
+        ('DAMAGE', 1, 'Damages computer and/or data'),
+        ('SPAM', 2, 'Creates spam or advertising'),
+        ('SETTINGS', 3, 'Changes search / homepage / new tab page '
+                        'without informing user'),
         # `4` was previously 'New tab takeover' but has been merged into the
         # previous one. We avoid re-using the value.
         ('BROKEN', 5, "Doesn’t work, breaks websites, or slows Firefox down"),
-        ('OFFENSIVE', 6, 'Hateful, violent, or illegal content'),
-        ('DOES_NOT_MATCH_DESCRIPTION', 7, "Pretends to be something it’s not"),
+        ('POLICY', 6, 'Hateful, violent, or illegal content'),
+        ('DECEPTIVE', 7, "Pretends to be something it’s not"),
         # `8` was previously "Doesn't work" but has been merged into the
         # previous one. We avoid re-using the value.
         ('UNWANTED', 9, "Wasn't wanted / impossible to get rid of"),
-        ('OTHER', 10, 'Other'),
+        # `10` was previously "Other". We avoid re-using the value.
+        ('OTHER', 127, 'Other'),
     )
 
     ADDON_INSTALL_METHODS = APIChoicesWithNone(
@@ -69,6 +77,13 @@ class AbuseReport(ModelBase):
         ('MANAGEMENT_WEBEXT_API', 5, 'Webext management API'),
         ('DRAG_AND_DROP', 6, 'Drag & Drop'),
         ('SIDELOAD', 7, 'Sideload'),
+        ('FILE_URI', 8, 'File URI'),
+        ('ENTERPRISE_POLICY', 9, 'Enterprise Policy'),
+        ('DISTRIBUTION', 10, 'Included in build'),
+        ('SYSTEM_ADDON', 11, 'System Add-on'),
+        ('TEMPORARY_ADDON', 12, 'Temporary Add-on'),
+        ('SYNC', 13, 'Sync'),
+        ('OTHER', 127, 'Other'),
     )
     REPORT_ENTRY_POINTS = APIChoicesWithNone(
         ('UNINSTALL', 1, 'Uninstall'),

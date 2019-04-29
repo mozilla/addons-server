@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-26 11:16+0000\n"
+"PO-Revision-Date: 2019-04-28 14:00+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -952,7 +952,7 @@ msgid "Privacy & Security"
 msgstr "Soukromí a bezpečnost"
 
 msgid "Download Firefox extensions to browse privately and securely. This category includes extensions to block annoying ads, prevent tracking, manage redirects, and more."
-msgstr "Stáhněte si rozšíření pro soukromé a bezpečnější prohlížení. Tato kategorie obsahuje rozšíření blokující nepříjemné reklamy a sledovací prvky nebo spravují přesměrování a další."
+msgstr "Stáhněte si rozšíření pro soukromější a bezpečnější prohlížení. Tato kategorie obsahuje rozšíření blokující nepříjemné reklamy a sledovací prvky, spravující přesměrování apod."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
 msgstr "Stáhněte si rozšíření pro vyhledávání. Tato kategorie zahrnuje rozšíření, která zvýrazňují a vyhledávají text, IP adresy, domény a další."
@@ -1016,7 +1016,7 @@ msgid "Security & Privacy"
 msgstr "Bezpečnost a soukromí"
 
 msgid "Download Firefox extensions to surf safely and privately. Discover extensions that can stop sneaky ad trackers in their tracks, easily clear browsing history, and more."
-msgstr "Stáhněte si rozšíření pro Firefox a bezpečné a soukromé prohlížení webu. Objevte rozšíření, která mohou zastavit záludné sledovací reklamy, snadno vymazat historii prohlížení a další."
+msgstr "Stáhněte si rozšíření pro Firefox a surfujte bezpečně a soukromě. Objevte rozšíření, která umí zastavit záludné sledovací reklamy, snadno vymazat historii prohlížení a další věci."
 
 msgid "Social Networking"
 msgstr "Sociální sítě"
@@ -1070,25 +1070,25 @@ msgid "Download Firefox artistic and conceptual themes. This category includes c
 msgstr "Stáhněte si umělecké a abstraktní vzhledy Firefoxu. Tato kategorie zahrnuje barevné palety a tvary, fantasy krajiny, hravé kočky, psychadelické květiny."
 
 msgid "Causes"
-msgstr "Causes"
+msgstr "Události"
 
 msgid "Download Firefox themes for niche interests and topics. This category includes sports themes, holidays, philanthropic causes, nationalities, and much more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu pro specifické zájmy a témata. Tato kategorie zahrnuje sportovní motivy, svátky, dobročinné akce, národnosti a mnoho dalšího."
 
 msgid "Fashion"
 msgstr "Móda"
 
 msgid "Download Firefox themes that celebrate style of all forms—patterns, florals, textures, models, and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu, které oslavují eleganci všech forem – vzory, květinky, textury, modelky a mnoho dalšího."
 
 msgid "Film and TV"
 msgstr "Film a TV"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu s filmy a televizí. Tato kategorie zahrnuje anime jako je Učiha Madara, filmy jako Matrix, pořady (Hra u trůny) a mnoho dalšího."
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu s motivem prohlížeče Firefox. Tato kategorie zahrnuje rozličná barevná vyobrazení loga Firefoxu, včetně obecnějších motivů s liškou."
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
@@ -1100,16 +1100,16 @@ msgid "Holiday"
 msgstr "Svátek"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu se svátky. Tato kategorie zahrnuje Vánoce, Halloween, Den díkůvzdání, Den sv. Patrika, Velikonoce, Den nezávislosti a další svátky."
 
 msgid "Music"
 msgstr "Hudba"
 
 msgid "Download Firefox themes for musical interests and artists. This category includes popular bands like Nirvana and BTS, instruments, music videos, and much more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu pro hudební zájmové skupiny a umělce. Tato kategorie zahrnuje populární kapely jako jsou Nirvana a BTS, nástroje, hudební videoklipy a mnoho dalšího."
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu se zvířaty a přírodními krajinami. Tato kategorie zahrnuje květiny, západy slunce, lišky, roční období, planety, koťata, ptáky aj."
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
 msgstr "Stáhněte si zajímavé, tvořivé a unikátní vzhledy Firefoxu."
@@ -1124,16 +1124,18 @@ msgid "Seasonal"
 msgstr "Sezónní"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu pro všechna čtyři roční období – jaro, léto, podzim a zimu. Jarní kvítí, slunné letní dny, podzimní listí a zasněžené vrcholky hor."
 
 msgid "Solid"
 msgstr "Jednoduché"
 
 msgid "Download Firefox themes with solid and gradient colors to personalize your browser. This category includes bold reds, pastels, soft greys, and much more."
 msgstr ""
+"Stáhněte si vzhledy Firefoxu s jednolitými barvami a barevnými přechody, a upravte si tak prohlížeč podle svého gusta. Tato kategorie zahrnuje syté červeně, tlumené šedi, pastelové a mnohé další "
+"barvy."
 
 msgid "Download Firefox themes that feature a variety of sports. This category includes country flags, sports teams, soccer, hockey, and more."
-msgstr ""
+msgstr "Stáhněte si vzhledy Firefoxu, jejichž motivem jsou různé sporty. Tato kategorie zahrnuje státní vlajky, sportovní týmy, fotbal, hokej, apod."
 
 msgid "Websites"
 msgstr "Stránky"
@@ -1548,18 +1550,18 @@ msgid "Source file uploaded but you indicated no source was needed."
 msgstr "Zdrojový soubor byl nahrán, ale nevložili jste do něj žádný zdrojový kód."
 
 msgid "Ensure name and summary combined are at most {limit_value} characters (they have {show_value})."
-msgstr ""
+msgstr "Zajistěte, aby název a souhrn měli dohromady maximálně {limit_value} znaků (mají jich {show_value})."
 
 msgid ""
 "On this site. <span class=\"helptext\">Your submission will be listed on this site and the Firefox Add-ons Manager for millions of users, after it passes code review. Automatic updates are handled "
 "by this site. This add-on will also be considered for Mozilla promotions and contests. Self-distribution of the reviewed files is also possible.</span>"
 msgstr ""
-"Na tomto webu. <span class=\"helptext\">Nahraný soubor bude zveřejněn na tomto webu a ve správci doplňků Firefoxu, kde si jej (jakmile projde kontrolou kódu) budou moci stáhnout miliony uživatelů. O"
-" automatické aktualizace se postará tento web. Doplněk může být také součástí reklamních kampaní a soutěží Mozilly. Po zkontrolování bude rovněž možné doplněk distribuovat vlastními kanály.</span>"
+"Na tomto webu. <span class=\"helptext\">Nahraný doplněk bude zveřejněn na tomto webu a ve správci doplňků Firefoxu, kde si jej (jakmile projde kontrolou kódu) budou moci stáhnout miliony uživatelů. "
+"O automatické aktualizace se postará tento web. Doplněk může být také součástí reklamních kampaní a soutěží Mozilly. Po zkontrolování bude rovněž možné doplněk distribuovat vlastními kanály.</span>"
 
 msgid "On your own. <span class=\"helptext\">Your submission will be immediately signed for self-distribution. Updates should be handled by you via an updateURL or external application updates.</span>"
 msgstr ""
-"Ne na tomto webu. <span class=\"helptext\">Nahraný soubor bude okamžitě podepsán pro distribuci vlastními kanály. O aktualizace byste se měli starat vy prostřednictvím updateURL nebo aktualizací "
+"Ne na tomto webu. <span class=\"helptext\">Nahraný doplněk bude okamžitě podepsán pro distribuci vlastními kanály. O aktualizace byste se měli starat vy prostřednictvím updateURL nebo aktualizace "
 "externích aplikací.</span>"
 
 msgid "Categories cannot be changed while your add-on is featured."
@@ -1941,7 +1943,7 @@ msgstr[1] "<b>{0}</b> motivy vzhledu"
 msgstr[2] "<b>{0}</b> motivů vzhledu"
 
 msgid "Edit Product Page"
-msgstr "Upravit stránku produktu"
+msgstr "Upravit stránku doplňku"
 
 msgid "None"
 msgstr "Žádné"
@@ -2005,7 +2007,7 @@ msgid "If you would like to request monetary contributions from your users, set 
 msgstr "Pokud byste rádi dostávali příspěvky od uživatelů, nastavte zde stránku, kde vám je mohou posílat."
 
 msgid "Default Locale"
-msgstr "Výchozí lokalizace"
+msgstr "Výchozí jazyk"
 
 msgid "Information about your add-on is displayed in this locale unless you override it with a locale-specific translation. It is only relevant for listed add-ons."
 msgstr "Nebude-li k dispozici překlad, informace o vašem doplňku budou zobrazeny v tomto jazyce. Relevantní pouze pro zveřejněné doplňky."
@@ -2033,6 +2035,8 @@ msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
 "characters and a minimum length of 2 characters for each."
 msgstr ""
+"Souhrn by měl stručně a jasně vysvětlovat, co váš doplněk dělá. Název i souhrn se budou objevovat na stránce doplňku a ve výsledcích vyhledávání. Mají společnou maximální délku 70 znaků a každý má "
+"minimální délku 2 znaky."
 
 msgid "Summary"
 msgstr "Souhrn"
@@ -2047,10 +2051,10 @@ msgid "View Listing"
 msgstr "Stránka doplňku"
 
 msgid "View Product Page"
-msgstr "Zobrazit stránku produktu"
+msgstr "Zobrazit stránku doplňku"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
-msgstr "Tento souhrn by měl jasně vysvětlit, k čemu váš doplněk slouží. Bude zobrazen v seznamech a vyhledávání a poslouží kontrolorům při testování vašeho doplňku."
+msgstr "Tento souhrn by měl jasně vysvětlovat, k čemu váš doplněk slouží. Bude se zobrazovat v seznamech doplňků a výsledcích vyhledávání, a poslouží kontrolorům při testování vašeho doplňku."
 
 msgid "Description"
 msgstr "Popis"
@@ -2190,28 +2194,28 @@ msgstr ""
 " doplňky."
 
 msgid "Select an icon for your add-on:"
-msgstr "Vyberte ikonku vašeho doplňku:"
+msgstr "Vyberte svému doplňku ikonku:"
 
 #. The size of the icon
 msgid "32x32px"
 msgstr "32 x 32px"
 
 msgid "Used in listings of add-ons, like search results and featured add-ons."
-msgstr "Použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené doplňky."
+msgstr "Bude použita v seznamech doplňků jako jsou výsledky vyhledávání či doporučené doplňky."
 
 #. The size of the icon
 msgid "64x64px"
 msgstr "64 x 64px"
 
 msgid "Used in add-on detail pages."
-msgstr "Použita na stránkách doplňku."
+msgstr "Bude použita na stránkách doplňku."
 
 #. The size of the icon
 msgid "128x128px"
 msgstr "128x128px"
 
 msgid "Will be the standard in future add-on detail pages."
-msgstr ""
+msgstr "Bude standardem na budoucích stránkách doplňku."
 
 msgid "Upload a Custom Icon..."
 msgstr "Nahrání vlastní ikonky..."
@@ -2220,31 +2224,31 @@ msgid "PNG and JPG supported."
 msgstr "Podporovanými typy jsou PNG a JPG."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
-msgstr "Ikony musí být čtvercové a mít minimální velikost 128x128 pixelů."
+msgstr "Ikony musí být čtvercové a musí mít minimální velikost 128x128 pixelů."
 
 msgid "Icons will be resized to 128x128 pixels if larger."
 msgstr "Velké ikony budou automaticky zmenšeny na 128x128 pixelů."
 
 msgid "Screenshots"
-msgstr "Obrázky"
+msgstr "Ukázky"
 
 msgid "Please provide at least one screen shot of your add-on:"
-msgstr "Přidejte prosím k vašemu doplňku alespoň jeden obrázek:"
+msgstr "Poskytněte prosím alespoň jeden snímek obrazovky vašeho doplňku:"
 
 msgid "Please provide a caption for this screenshot:"
-msgstr "Zadejte prosím nadpis tohoto obrázku:"
+msgstr "Uveďte prosím pro tento snímek obrazovky popisek:"
 
 msgid "Add a Screenshot..."
-msgstr "Přidání obrázku..."
+msgstr "Přidat snímek obrazovky..."
 
 msgid "PNG and JPG supported, PNG recommended. The maximum and recommended size for screenshots is 2400x1800 pixels."
-msgstr "PNG a JPG jsou podporovány, PNG doporučen. Maximální a doporučená velikost pro screenshoty je 2400x1800 pixelů."
+msgstr "Formáty PNG a JPG jsou podporovány, formát PNG je doporučen. Maximální a doporučená velikost snímků obrazovky je 2400x1800 pixelů."
 
 msgid "Minimum size is 1000x750, and a ratio of 4:3 is required."
 msgstr "Minimální velikost je 1000x750 a je vyžadován poměr stran 4:3."
 
 msgid "Having screenshots in your product page greatly increases its chances of being installed and being featured in the homepage."
-msgstr ""
+msgstr "Když budete mít na stránce vašeho doplňku snímky obrazovky, výrazně se tím zvýší jeho šance na to, že bude instalován a že bude doporučován na domovské stránce."
 
 msgid "Continue"
 msgstr "Pokračovat"
@@ -2326,7 +2330,7 @@ msgid "Actions"
 msgstr "Akce"
 
 msgid "Resume the submission process for this add-on"
-msgstr "Pokračovat v procesu kontroly tohoto doplňku"
+msgstr "Pokračovat v procesu přidávání tohoto doplňku"
 
 msgid "Resume"
 msgstr "Pokračovat"
@@ -2420,6 +2424,8 @@ msgid ""
 "Warning: you have name/summary values in other locales that will be automatically cropped to fit under the limit of %(max_length)s characters.  To edit these go to Edit Product Page after the "
 "submission process is complete."
 msgstr ""
+"Varování: v jiných jazycích společná délka vašeho názvu/souhrnu přesahuje limit %(max_length)s znaků a budou tudíž automaticky zkráceny. Chcete-li je poupravit, klepněte po dokončení procesu "
+"přidávání doplňku na Upravit stránku doplňku."
 
 msgid "Add-on URL:"
 msgstr "URL doplňku:"
@@ -2478,6 +2484,8 @@ msgid ""
 "If you submitted source code, but did not include instructions, you must provide them here. Enter step-by-step build instructions to create an exact copy of the add-on code, per "
 "%(policy_requirements_open)spolicy requirements%(policy_requirements_close)s."
 msgstr ""
+"Pokud jste odeslali zdrojový kód, ale neobsahoval instrukce, musíte je poskytnout zde. Zadejte na základě %(policy_requirements_open)snašich podmínek%(policy_requirements_close)s podrobný postup, "
+"jak vytvořit přesnou kopii kódu doplňku."
 
 msgid "These notes will only be visible to you and our reviewers."
 msgstr "Tyto poznámky budou viditelné pouze vám a našim redaktorům."
@@ -3189,7 +3197,7 @@ msgid "Listing visibility"
 msgstr "Viditelnost doplňku"
 
 msgid "{label_open}Visible:{label_close} Visible to everyone on {site_url} and included in search results and product pages."
-msgstr "{label_open}Viditelný:{label_close} Viditelný pro každého na {site_url} a zobrazovaný ve výsledcích vyhledávání a v seznamech na stránkách."
+msgstr "{label_open}Viditelný:{label_close} Viditelný pro každého na webu {site_url} a zobrazovaný ve výsledcích vyhledávání a v seznamech doplňků."
 
 msgid ""
 "{label_open}Invisible:{label_close} Won't be included in search results, and its product page will indicate you disabled it. New version submissions for product won't be accepted in this state."
@@ -3250,7 +3258,7 @@ msgid "Hide Add-on"
 msgstr "Skrýt doplněk"
 
 msgid "Hiding your add-on will prevent it from appearing anywhere in our gallery and will stop users from receiving automatic updates."
-msgstr "Skrytím svého doplňku zabráníte, aby se zobrazoval kdekoliv v naší galerie, a uživatelům přestanou být instalovány automatická aktualizace."
+msgstr "Skrytím svého doplňku způsobíte, že se přestane zobrazovat kdekoliv v naší galerii a uživatelům přestanou být automaticky instalovány jeho aktualizace."
 
 msgid "The files awaiting review will be disabled and you will need to upload new versions."
 msgstr "Soubory čekající na kontrolu budou zakázány a budete muset nahrát novou verzi."
@@ -5395,9 +5403,8 @@ msgstr "Schválit obsah"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Tímto označíte obsah verze jako vámi schválený bez toho, aby byl vývojář kontaktován."
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Automaticky schválené doplňky"
+msgstr ""
 
 msgid "New ({0})"
 msgstr "Nové ({0})"

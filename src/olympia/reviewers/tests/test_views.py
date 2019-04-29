@@ -4177,7 +4177,7 @@ class TestReview(ReviewBase):
             operating_system='Løst OS',
             operating_system_version='20040922',
             install_date=self.days_ago(1),
-            reason=AbuseReport.REASONS.OFFENSIVE,
+            reason=AbuseReport.REASONS.POLICY,
             addon_install_origin='https://example.com/',
             addon_install_method=AbuseReport.ADDON_INSTALL_METHODS.LINK,
             report_entry_point=AbuseReport.REPORT_ENTRY_POINTS.MENU,
