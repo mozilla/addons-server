@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-29 08:03+0000\n"
+"PO-Revision-Date: 2019-04-29 08:41+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2596,13 +2596,13 @@ msgid "Select a header image for your theme"
 msgstr ""
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "సిఫార్సు చేసిన ఎత్తు: 200 పిక్సెళ్ళు"
 
 msgid "6.9MB max"
 msgstr "6.9MB గరిష్టం"
 
 msgid "PNG, JPG, APNG, SVG or GIF (not animated)"
-msgstr ""
+msgstr "PNG, JPG, APNG, SVG లేదా GIF (యానిమేట్ చేయబడనిది)"
 
 msgid "Aligned to top-right"
 msgstr ""
@@ -5955,7 +5955,7 @@ msgid ""
 msgstr ""
 
 msgid "User languages by Date"
-msgstr ""
+msgstr "తేదీవారీ వాడుకరుల భాషలు"
 
 msgid "Platform usage by Date"
 msgstr ""
@@ -6048,7 +6048,7 @@ msgid ""
 msgstr ""
 
 msgid "get to know <b>add-ons</b>"
-msgstr ""
+msgstr "<b>పొడగింతల</b> గురించి తెలుసుకోండి"
 
 msgid "Download Firefox"
 msgstr "Firefoxను దింపుకోండి"
@@ -6066,7 +6066,7 @@ msgid "Desktop Browser"
 msgstr "డెస్కుటాపు విహారిణి"
 
 msgid "Beta, Nightly, Developer Edition"
-msgstr ""
+msgstr "బీటా, నైట్లీ, డెపలపర్ ఎడిషన్"
 
 msgid "Other languages"
 msgstr "ఇతర భాషలు"
