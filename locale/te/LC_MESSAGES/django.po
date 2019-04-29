@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-29 08:41+0000\n"
+"PO-Revision-Date: 2019-04-29 19:26+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -2429,7 +2429,7 @@ msgid "How to Distribute this Version"
 msgstr "ఈ వెర్షనువు ఎలా పంపిణీ చేయాలి"
 
 msgid "More information on Add-on Distribution and Signing"
-msgstr ""
+msgstr "పొడిగింత పంపిణీ, సంతకించడం గురించి మరింత సమాచారం"
 
 msgid "Submission Complete"
 msgstr "సమర్పణ పూర్తయింది"
@@ -2447,7 +2447,7 @@ msgid "Version Submitted"
 msgstr "వెర్షను సమర్పించబడింది"
 
 msgid "You’re done! This version will be available on our site shortly."
-msgstr ""
+msgstr "మీరు పూర్తి చేసారు! ఈ వెర్షను త్వరలో మా సైట్లో అందుబాటులోకి వస్తుంది."
 
 msgid "You’re done! This version has been submitted for review. You will be notified when the review has been completed, or if our reviewers have any questions about your submission."
 msgstr ""
@@ -2483,7 +2483,7 @@ msgid "Source Code Upload"
 msgstr "మూల కోడ్ ఎక్కింపు"
 
 msgid "Do You Need to Submit Source Code?"
-msgstr ""
+msgstr "మీరు మూల కోడును సమర్పించాల్సిన అవసరం ఉందా?"
 
 msgid "You may need to submit source code. If you don’t, your add-on may be removed from the site!"
 msgstr ""
@@ -4755,7 +4755,7 @@ msgid "If you're interested in add-ons but not quite as technical, there are sti
 msgstr ""
 
 msgid "Tell your friends! Let people know which add-ons you use."
-msgstr ""
+msgstr "మీ స్నేహితులకు చెప్పండి! మీరు ఏయే పొడగింతలు వాడుతున్నారో ప్రజలకు తెలియనివ్వండి."
 
 #, python-format
 msgid "Participate in our <a href=\"%(url)s\">forums</a>."
@@ -5431,7 +5431,7 @@ msgid "Reviewer Leaderboard"
 msgstr ""
 
 msgid "No review points awarded yet."
-msgstr ""
+msgstr "సమీక్ష పాయింట్లేమీ ఇంకా బహూకరించలేదు."
 
 msgid "Rank"
 msgstr "ర్యాంక్"
@@ -5546,7 +5546,7 @@ msgid "<strong>%(reason)s</strong> <span class=\"light\">Flagged by %(user)s on 
 msgstr ""
 
 msgid "All reviews have been moderated. Good work!"
-msgstr ""
+msgstr "అన్ని సమీక్షలు మోడరేట్ చేయబడ్డాయి. మంచి పని!"
 
 msgid "There are currently no add-ons of this type to review."
 msgstr ""
