@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons-trunk // addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-08 09:23+0000\n"
+"PO-Revision-Date: 2019-04-29 08:31+0000\n"
 "Last-Translator: Pin-guang Chen <petercpg@mail.moztw.org>\n"
 "Language-Team: Traditional Chinese (Taiwan) <LL@li.org>\n"
 "Language: zh_TW\n"
@@ -897,7 +897,7 @@ msgid "Appearance"
 msgstr "外觀"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "下載能修改網站和 Firefox 瀏覽器外觀的擴充套件。此分類包含黑暗佈景主題、分頁管理等。"
 
 msgid "Bookmarks"
 msgstr "書籤"
@@ -1054,7 +1054,7 @@ msgid "Abstract"
 msgstr "抽象"
 
 msgid "Download Firefox artistic and conceptual themes. This category includes colorful palettes and shapes, fantasy landscapes, playful cats, psychedelic flowers."
-msgstr ""
+msgstr "下載含有藝術與概念性設計的 Firefox 佈景主題。此分類包含色彩豐富的色塊、圖形、夢幻大地、愛玩的貓咪、迷幻花朵等。"
 
 msgid "Causes"
 msgstr "目標"
@@ -1072,22 +1072,22 @@ msgid "Film and TV"
 msgstr "電影電視"
 
 msgid "Download Firefox themes with movies and television. This category includes anime like Uchiha Madara, movies like The Matrix, shows (Game of Thrones), and more."
-msgstr ""
+msgstr "下載含有電影與電視節目的 Firefox 佈景主題。此分類包含火影忍者等動畫，以及駭客任務、權力遊戲等電影與電視劇。"
 
 msgid "Download Firefox themes with the Firefox browser theme. This category includes colorful, diverse depictions of the Firefox logo, including more general fox themes."
-msgstr ""
+msgstr "下載與 Firefox 相關的 Firefox 佈景主題。此分類包含不同設計、豐富風格的 Firefox 圖示，還有一般的狐狸相關主題。"
 
 msgid "Foxkeh"
 msgstr "Foxkeh"
 
 msgid "Download Firefox themes with the Japanese Firefox. This category includes themes that depict the cute Foxkeh mascot in various poses on diverse landscapes."
-msgstr ""
+msgstr "下載與日本的 Firefox 相關 Firefox 佈景主題。此分類包含可愛吉祥物「フォクすけ Foxkeh」的各種姿勢的相關主題。"
 
 msgid "Holiday"
 msgstr "假期"
 
 msgid "Download Firefox themes with holidays. This category includes Christmas, Halloween, Thanksgiving, St. Patrick’s Day, Easter, Fourth of July, and more."
-msgstr ""
+msgstr "下載含有各種假期的 Firefox 佈景主題。此分類包含聖誕節、萬聖節、感恩節、聖派翠克日、復活節、美國獨立紀念日等。"
 
 msgid "Music"
 msgstr "音樂"
@@ -1096,22 +1096,22 @@ msgid "Download Firefox themes for musical interests and artists. This category 
 msgstr ""
 
 msgid "Download Firefox themes with animals and natural landscapes. This category includes flowers, sunsets, foxes, seasons, planets, kittens, birds, and more."
-msgstr ""
+msgstr "下載含有動物和自然景觀的 Firefox 佈景主題。此分類包含花朵、日落、狐狸、季節、行星、小貓、鳥類等。"
 
 msgid "Download Firefox themes that are interesting, creative, and unique."
-msgstr ""
+msgstr "下載有趣、有創意且獨特的 Firefox 佈景主題。"
 
 msgid "Scenery"
 msgstr "風景"
 
 msgid "Download Firefox themes that feature the environment and the natural world. This category includes sunsets, beaches, illustrations, city skylines, and more."
-msgstr ""
+msgstr "下載含有環境和自然世界的 Firefox 佈景主題。此分類包含日落、海灘、插圖、城市天際線等。"
 
 msgid "Seasonal"
 msgstr "季節"
 
 msgid "Download Firefox themes for all four seasons—fall, winter, spring, and summer. Autumn leaves, snowy mountain peaks, sunny summer days, and spring flowers."
-msgstr ""
+msgstr "下載含有四季風情的 Firefox 佈景主題。此分類包含春季繁花盛開、夏季陽光普照、秋季橙黃橘綠、冬季冰封大地等主題。"
 
 msgid "Solid"
 msgstr "固體"
