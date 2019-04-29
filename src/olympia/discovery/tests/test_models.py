@@ -138,6 +138,42 @@ class TestDiscoveryItem(TestCase):
             u'&lt;script&gt;alert(669)&lt;/script&gt;</a></span>').format(
                 item.build_querystring())
 
+    def test_heading_text(self):
+        addon = addon_factory(slug='somé-slug', name='Sôme Name')
+        user = user_factory(display_name='Fløp')
+        addon.addonuser_set.create(user=user)
+        item = DiscoveryItem.objects.create(addon=addon)
+        assert item.heading_text == 'Sôme Name'
+
+    def test_heading_text_custom_addon_name(self):
+        addon = addon_factory(slug='somé-slug', name='Sôme Name')
+        user = user_factory(display_name='Fløp')
+        addon.addonuser_set.create(user=user)
+        item = DiscoveryItem.objects.create(
+            addon=addon, custom_addon_name='Custôm Name')
+        assert item.heading_text == 'Custôm Name'
+
+    def test_heading_text_custom(self):
+        addon = addon_factory(slug='somé-slug', name=u'Sôme Name')
+        user = user_factory(display_name='Fløp')
+        addon.addonuser_set.create(user=user)
+        item = DiscoveryItem.objects.create(
+            addon=addon,
+            custom_heading=('Fancy Héading {start_sub_heading}with '
+                            '{addon_name}{end_sub_heading}.'))
+        assert item.heading_text == 'Fancy Héading with Sôme Name.'
+
+    def test_heading_text_custom_with_custom_addon_name(self):
+        addon = addon_factory(slug='somé-slug', name='Sôme Name')
+        user = user_factory(display_name='Fløp')
+        addon.addonuser_set.create(user=user)
+        item = DiscoveryItem.objects.create(
+            addon=addon,
+            custom_addon_name='Custôm Name',
+            custom_heading=('Fancy Héading {start_sub_heading}with '
+                            '{addon_name}{end_sub_heading}.'))
+        assert item.heading_text == 'Fancy Héading with Custôm Name.'
+
     def test_description_custom(self):
         addon = addon_factory(summary='Foo', description='Bar')
         item = DiscoveryItem.objects.create(
@@ -184,6 +220,25 @@ class TestDiscoveryItem(TestCase):
         item = DiscoveryItem.objects.create(addon=addon_factory(
             type=amo.ADDON_DICT))
         assert item.description == u''
+
+    def test_description_text_custom(self):
+        addon = addon_factory(summary='Foo', description='Bar')
+        item = DiscoveryItem.objects.create(
+            addon=addon, custom_description='Custôm Desc.')
+        assert item.description_text == 'Custôm Desc.'
+
+    def test_description_text_non_custom_extension(self):
+        addon = addon_factory(summary='')
+        item = DiscoveryItem.objects.create(addon=addon)
+        assert item.description_text == ''
+
+        addon.summary = 'Mÿ Summary'
+        assert item.description_text == 'Mÿ Summary'
+
+    def test_description_text_non_custom_fallback(self):
+        item = DiscoveryItem.objects.create(addon=addon_factory(
+            type=amo.ADDON_DICT))
+        assert item.description_text == ''
 
     @override_settings(DOMAIN='addons.mozilla.org')
     def test_build_querystring(self):
