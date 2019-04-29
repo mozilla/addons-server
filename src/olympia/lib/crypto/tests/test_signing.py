@@ -17,7 +17,7 @@ import pytest
 import responses
 import pytz
 
-from waffle.testutils import override_sample, override_switch
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import AddonUser
