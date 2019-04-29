@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-28 14:00+0000\n"
+"PO-Revision-Date: 2019-04-29 15:34+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1693,35 +1693,32 @@ msgstr "Při nahrávání selhala kontrola a výsledky kontroly tak mohou být n
 msgid "Header area background"
 msgstr "Pozadí záhlaví"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Barva pozadí v oblasti záhlaví, která se použije pro nezakrytou plochu záhlaví nebo pro plochu viditelnou skrze obrázek v záhlaví. Pole manifestu: accentcolor."
+msgstr "Barva pozadí v oblasti záhlaví, která se použije pro nezakrytou plochu záhlaví nebo pro plochu viditelnou skrze obrázek v záhlaví. Pole manifestu:  frame."
 
 msgid "Header area text and icons"
 msgstr "Text a ikony v záhlaví"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Barva textu a ikon v záhlaví, s výjimkou aktivního panelu. Pole manifestu: textcolor."
+msgstr "Barva textu a ikon v oblasti záhlaví, s výjimkou aktivního panelu. Pole manifestu:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Pozadí nástrojových lišt"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
-msgstr "Barva pozadí navigační lišty, lišty záložek, navigační lišty a vybraného panelu. Pole manifestu: toolbar."
+msgstr "Barva pozadí navigační lišty, lišty záložek a vybraného panelu.  Pole manifestu:  toolbar."
 
 msgid "Toolbar area text and icons"
 msgstr "Text a ikony v nástrojové liště"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Barva textu a ikon v lištách a aktivním panelu. Pole manifestu: toolbar_text."
+msgstr "Barva textu a ikon v lištách a aktivním panelu. Pole manifestu:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Pozadí polí v nástrojových lištách"
 
 msgid "The background color for fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field."
-msgstr "Barva pozadí polí v nástrojových lištách, jako je např. adresní řádek. Pole manifestu: toolbar_field."
+msgstr "Barva pozadí polí v nástrojových lištách, jako je např. adresní řádek. Pole manifestu:  toolbar_field."
 
 msgid "Toolbar field area text"
 msgstr "Text polí v nástrojových lištách"
@@ -2690,7 +2687,7 @@ msgid "Aligned to top-right"
 msgstr "Zarovnána doprava nahoru"
 
 msgid "Select a different header image"
-msgstr "Vybrat jiný obrázek hlavičky"
+msgstr "Vybrat jiný obrázek záhlaví"
 
 msgid "Select colors for your theme"
 msgstr "Vyberte barvy pro váš motiv vzhledu"
