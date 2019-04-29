@@ -29,12 +29,13 @@ class Command(BaseCommand):
 
     def build_output_for_item(self, item):
         output = []
-        heading = item.get('custom_heading')
-        description = item.get('custom_description')
-        if heading:
-            output.append(self.build_output_for_single_value(heading))
-        if description:
-            output.append(self.build_output_for_single_value(description))
+        custom_heading = item.get('custom_heading')
+        custom_description = item.get('custom_description')
+        if custom_heading:
+            output.append(self.build_output_for_single_value(custom_heading))
+        if custom_description:
+            output.append(
+                self.build_output_for_single_value(custom_description))
         return u''.join(output)
 
     def build_output_for_single_value(self, value):

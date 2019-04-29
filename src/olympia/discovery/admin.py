@@ -90,6 +90,9 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             db_field, request, **kwargs)
 
     def build_preview(self, obj, locale):
+        # FIXME: when disco in Firefox itself lands, change this preview to
+        # match the one Firefox uses.
+        # https://github.com/mozilla/addons-server/issues/11272
         return format_html(
             u'<div class="discovery-preview" data-locale="{}">'
             u'<h2 class="heading">{}</h2>'
