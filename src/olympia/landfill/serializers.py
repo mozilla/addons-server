@@ -4,6 +4,7 @@ import collections
 import mimetypes
 import os
 import random
+import uuid
 
 from django.conf import settings
 from django.utils.translation import activate
@@ -42,8 +43,10 @@ class GenerateAddonsSerializer(serializers.Serializer):
     count = serializers.IntegerField(default=10)
 
     def __init__(self):
-        self.fxa_email = os.environ['UITEST_FXA_EMAIL']
-        self.fxa_password = os.environ['UITEST_FXA_PASSWORD']
+        self.fxa_email = os.environ.get(
+            'UITEST_FXA_EMAIL', 'uitest-%s@restmail.net' % uuid.uuid4())
+        self.fxa_password = os.environ.get(
+            'UITEST_FXA_PASSWORD', 'uitester')
         self.fxa_id = self._create_fxa_user()
         self.user = self._create_addon_user()
 
