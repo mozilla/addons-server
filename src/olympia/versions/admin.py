@@ -28,7 +28,7 @@ class VersionAdmin(admin.ModelAdmin):
                 'approval_notes', 'license', 'source')
         }),
         ('Flags', {
-            'fields': ('deleted',)
+            'fields': ('deleted', 'recommendation_approved')
         }),
     )
 

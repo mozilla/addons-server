@@ -55,9 +55,8 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
                   '(See position field above).')
     recommendable = models.BooleanField(
         db_index=True, null=False, default=False,
-        help_text='Should this add-on add-on\'s versions be recommended. '
-                  'When enabled new versions will be reviewed for recommended '
-                  'status.')
+        help_text="Should this add-on's versions be recommended. When enabled "
+                  'new versions will be reviewed for recommended status.')
 
     def __str__(self):
         return six.text_type(self.addon)

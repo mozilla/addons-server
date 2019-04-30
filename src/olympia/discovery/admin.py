@@ -76,7 +76,7 @@ class DiscoveryItemAdmin(admin.ModelAdmin):
             'all': ('css/admin/discovery.css',)
         }
     list_display = ('__str__', 'custom_addon_name', 'custom_heading',
-                    'position', 'position_china')
+                    'position', 'position_china', 'recommendable')
     list_filter = (PositionFilter, PositionChinaFilter)
     raw_id_fields = ('addon',)
     readonly_fields = ('previews',)

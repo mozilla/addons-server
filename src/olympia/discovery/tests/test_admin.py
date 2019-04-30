@@ -115,6 +115,7 @@ class TestDiscoveryAdmin(TestCase):
                 'custom_addon_name': u'Xäxâxàxaxaxa !',
                 'custom_heading': u'This heading is totally custom.',
                 'custom_description': u'This description is as well!',
+                'recommendable': True,
             }, follow=True)
         assert response.status_code == 200
         item.reload()
@@ -123,6 +124,7 @@ class TestDiscoveryAdmin(TestCase):
         assert item.custom_addon_name == u'Xäxâxàxaxaxa !'
         assert item.custom_heading == u'This heading is totally custom.'
         assert item.custom_description == u'This description is as well!'
+        assert item.recommendable is True
 
     def test_can_change_addon_with_discovery_edit_permission(self):
         addon = addon_factory(name=u'BarFöo')
