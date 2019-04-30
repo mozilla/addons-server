@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 09:30+0000\n"
+"PO-Revision-Date: 2019-04-30 09:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3101,7 +3101,7 @@ msgid "Temporarily install your extension in Firefox for live testing and debugg
 msgstr "Provizorně si nainstalujte rozšíření do Firefoxu pro ostré testování a ladění."
 
 msgid "Lightweight Theme editing has been disabled."
-msgstr ""
+msgstr "Možnost úpravy odlehčených motivů vzhledu byla zakázána."
 
 msgid "Manage Version {0}"
 msgstr "Správa verze {0}"
@@ -3295,7 +3295,7 @@ msgstr[2] "{0} varování"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} zastaví sledovací prvky"
+msgstr "Zastavte záludné sledovací prvky {start_sub_heading}pomocí doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
@@ -3303,7 +3303,7 @@ msgstr "Zablokujte neviditelné sledovací prvky a reklamy, která vás špehuj�
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}pomocí doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -3335,11 +3335,11 @@ msgstr "Nastavení zobrazovaných reklam a sledování na internetu nikdy nebylo
 
 #. editorial content for the discovery pane.
 msgid "Re-imagine tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní zpřehlednit si své panely"
 
 #. editorial content for the discovery pane.
 msgid "Do you have a ton of open tabs? Organize them in a tidy sidebar."
-msgstr "Máte spousty otevřených panelů? Mějte o nich přehled v úhledné postranní liště."
+msgstr "Máte spousty otevřených panelů? Řádně si je uspořádejte v postranní liště."
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3431,7 +3431,7 @@ msgstr "Vyberte jakýkoliv text, klikněte pravým tlačítkem a vyhledejte vhod
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Dopřejte si malebné záložky {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
