@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 21:24+0000\n"
+"PO-Revision-Date: 2019-04-30 21:45+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3552,7 +3552,7 @@ msgstr "Zvětšete obrázky {start_sub_heading}pomocí {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Simply hover over an image to magnify it."
-msgstr ""
+msgstr "Jednoduše najeďte myší nad obrázek a zvětší se."
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3560,7 +3560,7 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} nechá cookies zmizet"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
-msgstr "Automaticky smazat cookies po zavření panelu."
+msgstr "Automaticky vymažte cookies po zavření panelu."
 
 #. editorial content for the discovery pane.
 msgid "Adjust page size view {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3568,7 +3568,7 @@ msgstr "Nastavte si velikost zobrazení stránek {start_sub_heading}s {addon_nam
 
 #. editorial content for the discovery pane.
 msgid "A simple way to adjust the size of any page's text—or even enlarge the page itself."
-msgstr ""
+msgstr "Jednoduchý způsob, jak upravit velikost textu libovolné stránky – nebo dokonce zvětšit samotnou stránku."
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3580,7 +3580,7 @@ msgstr "Nenechte se sledovat a místo toho se dozvíte něco o těch, kdo vás s
 
 #. editorial content for the discovery pane.
 msgid "Leave a clean digital trail {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}S {addon_name}{end_sub_heading} za sebou nezanecháte na internetu ani stopu"
+msgstr "{start_sub_heading}S {addon_name}{end_sub_heading} za sebou na internetu nezanecháte ani stopu"
 
 #. editorial content for the discovery pane.
 msgid "Make Firefox forget website data like cookies and local storage, but only for domains you choose."
@@ -3588,7 +3588,7 @@ msgstr "Nechte Firefox zapomenout data jako cookies nebo obsah místního úlož
 
 #. editorial content for the discovery pane.
 msgid "Save text for later {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} pro vás uloží vybraný text k přečtení později"
+msgstr "Uložte si text na později {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
