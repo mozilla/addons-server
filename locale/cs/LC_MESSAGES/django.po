@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 18:50+0000\n"
+"PO-Revision-Date: 2019-04-30 19:01+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3475,7 +3475,7 @@ msgstr "Nenechte na svém počítači těžit kryptoměny {start_sub_heading}dí
 
 #. editorial content for the discovery pane.
 msgid "Stop malicious websites from using your computer power to mine for cryptocurrency."
-msgstr ""
+msgstr "Zabraňte zlomyslným webovým stránkám, aby váš počítač využívaly k těžbě kryptoměny."
 
 #. editorial content for the discovery pane.
 msgid "Automatic grammar checks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3487,7 +3487,7 @@ msgstr "Nechte si při psaní pomoci s gramatikou. Na sociálních sítích, př
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám ukáže, kolik je kde hodin"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
