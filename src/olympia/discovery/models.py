@@ -128,7 +128,7 @@ class DiscoveryItem(OnChangeMixin, ModelBase):
                 u'<blockquote>{}</blockquote>', value) if value else value
         else:
             return value
-    
+
     @property
     def heading(self):
         """
