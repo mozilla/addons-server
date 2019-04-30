@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 15:48+0000\n"
+"PO-Revision-Date: 2019-04-30 16:21+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3343,7 +3343,7 @@ msgstr "Máte spousty otevřených panelů? Řádně si je uspořádejte v postr
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nenechte se sledovat Facebookem {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Nenechte se sledovat Facebookem {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
@@ -3375,7 +3375,7 @@ msgstr "Nastavte si stránku otevíranou v nové panelu."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zpětné vyhledávání obrázků {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Zpětné vyhledávání obrázků {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -3383,7 +3383,7 @@ msgstr "Narazili jste na webu na zajímavý obrázek? S tímto doplňkem o něm 
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Stahujte videa {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
@@ -3407,7 +3407,7 @@ msgstr "Zjednodušte si synchronizaci přihlašovacích údajů napříč zaří
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zablokujte reklamy {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Zablokujte reklamy {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -3423,7 +3423,7 @@ msgstr "Užijte si širokou paletu nových funkcí na YouTube, režim kina, blok
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyhledávejte obrázky {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Vyhledávejte obrázky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -3431,7 +3431,7 @@ msgstr "Vyberte jakýkoliv text, klikněte pravým tlačítkem a vyhledejte vhod
 
 #. editorial content for the discovery pane.
 msgid "Enjoy visual bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Dopřejte si malebné záložky {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Dopřejte si malebné záložky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
@@ -3439,7 +3439,7 @@ msgstr "Přistupujte ke svým oblíbeným webům z rozložení dlaždic."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Mějte přístup ke znalostem {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
+msgstr "Mějte přístup ke znalostem {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
