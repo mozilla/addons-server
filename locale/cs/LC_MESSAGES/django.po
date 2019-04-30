@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 10:15+0000\n"
+"PO-Revision-Date: 2019-04-30 15:31+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3443,7 +3443,7 @@ msgstr "Mějte přístup ke znalostem {start_sub_heading}díky doplňku {addon_n
 
 #. editorial content for the discovery pane.
 msgid "Automatically add Britannica facts to your search results."
-msgstr "Automaticky přidávejte do výsledků vyhledávání fakta z Britanniky."
+msgstr "Automaticky přidávejte do výsledků vyhledávání fakta z encyklopedie Britannica."
 
 #. editorial content for the discovery pane.
 msgid "Remove YouTube Ads {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4994,7 +4994,7 @@ msgid "Yes, add-on authors can provide a single response to a review. You can se
 msgstr "Ano, autor doplňku může odeslat k recenzi odpověď. Pro delší diskuzi můžete založit téma na <a href=\"%(forum_url)s\">fóru</a>."
 
 msgid "I’m an add-on author, can I delete unfavorable reviews or ratings?"
-msgstr "Jsem autor doplňku, mohu smazat nepravdivé recenze či hodnocení?"
+msgstr "Jsem autor doplňku, mohu odstranit záporné recenze či hodnocení?"
 
 msgid ""
 "In general, no. But if the review did not meet the review guidelines outlined above, you can click \"Report this review\" and have it moderated. If a review included a complaint that is no longer "
