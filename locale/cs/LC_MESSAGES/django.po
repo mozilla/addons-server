@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 09:51+0000\n"
+"PO-Revision-Date: 2019-04-30 10:10+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3295,7 +3295,7 @@ msgstr[2] "{0} varování"
 
 #. editorial content for the discovery pane.
 msgid "Stop sneaky trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zastavte záludné sledovací prvky {start_sub_heading}pomocí doplňku {addon_name}{end_sub_heading}"
+msgstr "Zastavte záludné sledovací prvky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers and spying ads that follow you around the web."
@@ -3303,7 +3303,7 @@ msgstr "Zablokujte neviditelné sledovací prvky a reklamy, která vás špehuj�
 
 #. editorial content for the discovery pane.
 msgid "Customize new tab pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}pomocí doplňku {addon_name}{end_sub_heading}"
+msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a beautiful new page with customizable backgrounds, local weather info, and more."
@@ -3319,7 +3319,7 @@ msgstr "Vyberte text a nechte si ho přeložit klepnutím pravého tlačítka my
 
 #. editorial content for the discovery pane.
 msgid "Search Images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyhledávejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vyhledávejte obrázky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Perform reverse image searches from an array of engines."
@@ -3343,11 +3343,11 @@ msgstr "Máte spousty otevřených panelů? Řádně si je uspořádejte v postr
 
 #. editorial content for the discovery pane.
 msgid "Stop Facebook tracking {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nenechte se sledovat Facebookem {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Nenechte se sledovat Facebookem {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Isolate your Facebook identity into a separate “container” that makes it harder for Facebook to track your movements around the web."
-msgstr "Uzamkněte svou Facebookovou identity do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
+msgstr "Uzamkněte svou Facebookovou identitu do samostatného „kontejneru“, aby bylo pro Facebook těžší vás sledovat napříč internetem."
 
 #. editorial content for the discovery pane.
 msgid "Simplify search {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3359,7 +3359,7 @@ msgstr "Vyberte text na jakékoliv stránce a nechte ho vyhledat jako výraz v j
 
 #. editorial content for the discovery pane.
 msgid "Instant weather updates {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vás přinese aktuální informace o počasí"
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám přinese aktuální informace o počasí"
 
 #. editorial content for the discovery pane.
 msgid "Get instant global weather information right in Firefox."
@@ -3367,7 +3367,7 @@ msgstr "Informace o počasí kdekoliv na světě přímo ve Firefoxu."
 
 #. editorial content for the discovery pane.
 msgid "Tab Customization {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přizpůsobte si panely {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Přizpůsobte si panely {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Choose the page you see every time you open a new tab."
@@ -3375,7 +3375,7 @@ msgstr "Nastavte si stránku otevíranou v nové panelu."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zpětné vyhledávání obrázků {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Zpětné vyhledávání obrázků {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -3383,7 +3383,7 @@ msgstr "Narazili jste na webu na zajímavý obrázek? S tímto doplňkem o něm 
 
 #. editorial content for the discovery pane.
 msgid "Download videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Stahujte videa {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Works with YouTube, Facebook, Vimeo, Twitch, Dailymotion, Periscope, and hundreds of other video sites."
@@ -3391,7 +3391,7 @@ msgstr "Podporuje videa na YouTube, Facebooku, Vimeu, Twitchi, Dailymotion, Peri
 
 #. editorial content for the discovery pane.
 msgid "Enhance your emoji game {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Rozšiřte svou paletu smajlíků {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Dozens of amazing emojis for every occasion—always just a click away."
@@ -3399,7 +3399,7 @@ msgstr "Tisíce úžasných emoji pro každou příležitost vždy po ruce."
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Správa hesel {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Spravujte svá hesla {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simplify and sync all your various website logins across devices with one password to rule them all."
@@ -3407,7 +3407,7 @@ msgstr "Zjednodušte si synchronizaci přihlašovacích údajů napříč zaří
 
 #. editorial content for the discovery pane.
 msgid "Block ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zablokujte reklamy {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Zablokujte reklamy {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A lightweight and effective ad blocker. uBlock Origin enforces thousands of content filters without chewing up a bunch of memory."
@@ -3415,7 +3415,7 @@ msgstr "Jednoduché a účinné blokování reklam. uBlock Origin dokáže efekt
 
 #. editorial content for the discovery pane.
 msgid "Improve videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vylepšete videa {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a suite of new YouTube features, like cinema mode, ad blocking, auto-play control, and more."
@@ -3423,7 +3423,7 @@ msgstr "Užijte si širokou paletu nových funkcí na YouTube, režim kina, blok
 
 #. editorial content for the discovery pane.
 msgid "Easily find images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyhledávejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vyhledávejte obrázky {start_sub_heading}díky doplňku {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight any text and right-click to quickly perform an image search."
@@ -3435,7 +3435,7 @@ msgstr "Dopřejte si malebné záložky {start_sub_heading}díky doplňku {addon
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites from a tile layout."
-msgstr ""
+msgstr "Přistupujte ke svým oblíbeným webům z rozložení dlaždic."
 
 #. editorial content for the discovery pane.
 msgid "Access knowledge {start_sub_heading}with {addon_name}{end_sub_heading}"
