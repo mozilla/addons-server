@@ -176,4 +176,3 @@ def watch_recommendable_changes(old_attr=None, new_attr=None, instance=None,
             # Update ES because is_recommended depends on it.
             update_search_index(
                 sender=sender, instance=instance.addon, **kwargs)
-
