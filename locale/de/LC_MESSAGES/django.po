@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-08 11:44+0000\n"
+"PO-Revision-Date: 2019-04-30 19:51+0000\n"
 "Last-Translator: Michael Köhler <michael.koehler1@gmx.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: de\n"
@@ -952,7 +952,7 @@ msgid "Language Support"
 msgstr "Sprachwerkzeuge"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr "Laden Sie Firefox-Erweiterungen herunter, die Sprachunterstützung bieten, z.&thinsp;B. Grammatikprüfung, Wörter nachschlagen, Text übersetzen, Sprachausgabe bieten und vieles mehr."
+msgstr "Laden Sie Firefox-Erweiterungen herunter, die Sprachunterstützung leisten, z.&thinsp;B. Grammatikprüfung, Wörter nachschlagen, Text übersetzen, Sprachausgabe bieten und vieles mehr."
 
 msgid "Photos, Music & Videos"
 msgstr "Fotos, Musik und Videos"
@@ -1386,7 +1386,7 @@ msgid "Sexual or pornographic content"
 msgstr "Sexueller oder pornografischer Inhalt"
 
 msgid "Inappropriate or offensive content"
-msgstr "Unpassender oder anstößiger Inhalt"
+msgstr "Unangemessener oder anstößiger Inhalt"
 
 msgid "Violence, war, or weaponry images"
 msgstr "Bilder von Gewalt, Krieg oder Waffen"
@@ -3993,7 +3993,7 @@ msgstr "Nutzen Sie Selbstzensur {start_sub_heading}mit {addon_name}{end_sub_head
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr "Sperren Sie den Zugang zu unpassenden oder unerwünschten Inhalten mit einem Filter."
+msgstr "Sperren Sie den Zugang zu unangemessenen oder unerwünschten Inhalten mit einem Filter."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -5055,7 +5055,7 @@ msgid "Spam or otherwise non-review content"
 msgstr "Spam oder anderweitiger Inhalt, der keine Bewertung ist"
 
 msgid "Inappropriate language/dialog"
-msgstr "Unpassende Wortwahl"
+msgstr "Unangemessene Wortwahl"
 
 msgid "Misplaced bug report or support request"
 msgstr "Unpassender Fehlerbericht oder Unterstützungs-Anfrage"
@@ -5106,8 +5106,8 @@ msgstr ""
 "welche Funktionen Ihnen (nicht) gefallen haben, wie leicht man es verwenden kann und welche Nachteile es hat. Vermeiden Sie allgemeine Formulierungen wie „gut“ oder „schlecht“, wenn Sie dafür keine "
 "Gründe angeben können. </li> <li> Schreiben Sie hier bitte keine Fehlerberichte. Der Add-on-Entwickler kann Ihre E-Mail-Adresse nicht sehen, müsste Sie zur Lösung des Problems aber möglicherweise "
 "kontaktieren. Im <a href=\"%(support)s\">Abschnitt „Hilfe“</a> erfahren Sie, wo Sie Unterstützung zu diesem Add-on erhalten. Sie können auch in der <a href=\"https://discourse.mozilla-"
-"community.org/c/add-ons/add-on-support\">Add-on-Gemeinschaft</a> um Hilfe bitten.</li> <li> Halten Sie die Bewertungen bitte sauber, gebrauchen Sie keine unpassenden Ausdrücke und veröffentlichen "
-"Sie keine persönlichen Daten. </li> </ul> <p>Weitere Details zu Benutzerbewertungen von Add-ons finden Sie im <a href=\"%(guide)s\">Bewertungsleitfaden</a>.</p>"
+"community.org/c/add-ons/add-on-support\">Add-on-Gemeinschaft</a> um Hilfe bitten.</li> <li> Halten Sie die Bewertungen bitte sauber, gebrauchen Sie keine unangemessenen Ausdrücke und veröffentlichen"
+" Sie keine persönlichen Daten. </li> </ul> <p>Weitere Details zu Benutzerbewertungen von Add-ons finden Sie im <a href=\"%(guide)s\">Bewertungsleitfaden</a>.</p>"
 
 msgid "Submit review"
 msgstr "Bewertung abschicken"
@@ -5158,7 +5158,7 @@ msgid "Flagged for review"
 msgstr "Markiert für eine Überprüfung"
 
 msgid "Report this review"
-msgstr "Diese Bewertung als unpassend markieren"
+msgstr "Diese Bewertung als unangemessen markieren"
 
 msgid "Reply to review"
 msgstr "Antwort zur Bewertung"
