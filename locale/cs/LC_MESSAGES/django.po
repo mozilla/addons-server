@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 21:45+0000\n"
+"PO-Revision-Date: 2019-04-30 22:09+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3592,31 +3592,31 @@ msgstr "Uložte si text na později {start_sub_heading}pomocí {addon_name}{end_
 
 #. editorial content for the discovery pane.
 msgid "Stop writing the same thing over and over again! If you frequently re-use the same phrases in your work or other communications, save them in Clippings and easily paste them when needed."
-msgstr ""
+msgstr "Přestaňte psát totéž znovu a znovu! Pokud často používáte stejné fráze ve své práci nebo v jiné komunikaci, uložte je do Clippingsu a v případě potřeby je snadno vkládejte."
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zablokujte reklamy v e-mailech {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Zablokujte reklamy v e-mailech {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
-msgstr ""
+msgstr "Získejte více místa na obrazovce tím, že odstraníte reklamy ze své webové e-mailové schránky."
 
 #. editorial content for the discovery pane.
 msgid "Find your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Najděte své panely {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Manage your open tabs in a tidy sidebar."
-msgstr ""
+msgstr "Spravujte otevřené panely v uspořádané postranní liště."
 
 #. editorial content for the discovery pane.
 msgid "Avoid sneaky trackers and restrictions {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyhněte se nepříjemnému sledování a omezením {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vyhněte se nepříjemnému sledování a omezením {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Disguise your navigation by cloaking the identity of your browser and operating system."
-msgstr ""
+msgstr "Zamaskujte svou cestu internetem skrytím identity vašeho prohlížeče a operačního systému."
 
 #. editorial content for the discovery pane.
 msgid "Refresh tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
