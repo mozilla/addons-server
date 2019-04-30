@@ -201,9 +201,9 @@ django-waffle==0.16.0 \
     --hash=sha256:806164c8e98fe6c20590bd642fa247d8554ab57faed45e2745253f0f3b8f3ff9 \
     --hash=sha256:b48b80b01ea28a560a0d6df9322631f239f4088933137a39571d1c874cc89ce9
 # djangorestframework is required by drf-nested-routers
-djangorestframework==3.9.2 \
-    --hash=sha256:8a435df9007c8b7d8e69a21ef06650e3c0cbe0d4b09e55dd1bd74c89a75a9fcd \
-    --hash=sha256:f7a266260d656e1cf4ca54d7a7349609dc8af4fe2590edd0ecd7d7643ea94a17
+djangorestframework==3.9.3 \
+    --hash=sha256:1d22971a5fc98becdbbad9710ca2a9148dd339f6cbea4c3ddbed2cb84bab94e1 \
+    --hash=sha256:2884763160b997073ff1e937bd820a69d23978902a3ccd0ba53a217e196239f0
 djangorestframework-jwt==1.11.0 \
     --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
     --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
