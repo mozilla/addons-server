@@ -887,6 +887,33 @@ class TestVersionViewSetList(AddonAndVersionViewSetDetailMixin, TestCase):
             self.url, data={'filter': 'all_with_unlisted'})
         assert response.status_code == 403
 
+    def test_all_without_unlisted_when_no_listed_versions(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        # delete the listed versions so only the unlisted version remains.
+        self.version.delete()
+        self.old_version.delete()
+
+        # confirm that we have access to view unlisted versions.
+        response = self.client.get(
+            self.url, data={'filter': 'all_with_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_text(response.content))
+        assert result['results']
+        assert len(result['results']) == 1
+        result_version = result['results'][0]
+        assert result_version['id'] == self.unlisted_version.pk
+        assert result_version['version'] == self.unlisted_version.version
+
+        # And that without_unlisted doesn't fail when there are no unlisted
+        response = self.client.get(
+            self.url, data={'filter': 'all_without_unlisted'})
+        assert response.status_code == 200
+        result = json.loads(force_text(response.content))
+        assert result['results'] == []
+
 
 class TestAddonViewSetEulaPolicy(TestCase):
     client_class = APITestClient
