@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 20:36+0000\n"
+"PO-Revision-Date: 2019-04-30 21:06+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3511,15 +3511,15 @@ msgstr "Mějte volný přístup k více než 10 milionům výzkumných prací."
 
 #. editorial content for the discovery pane.
 msgid "Customize mouse gestures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Používejte gesta myší {start_sub_heading}díky {addon_name}{end_sub_heading}"
+msgstr "Používejte gesta myši {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Discover a new way to navigate with 50+ helpful mouse gestures."
-msgstr ""
+msgstr "Objevte nový způsob, jak provádět navigaci pomocí více než 50 užitečných gest myši."
 
 #. editorial content for the discovery pane.
 msgid "Optimize videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Optimalizujte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Optimalizujte videa {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Darken the page around video players for a focused viewing experience."
@@ -3527,12 +3527,12 @@ msgstr "Ztmaví obsah stránky okolo videa, aby vás nic nerušilo při jeho sle
 
 #. editorial content for the discovery pane.
 msgid "Search in good conscience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vyhledávejte s dobrým svědomím {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 #, python-format
 msgid "Ecosia uses 80% of its search profits to fund tree-planting programs around the world. Put Ecosia right into Firefox search"
-msgstr ""
+msgstr "Ecosia využívá 80% svých zisků z vyhledávání k financování programů na výsadbu stromů po celém světě. Dejte si Ecosii přímo do vyhledávače Firefoxu."
 
 #. editorial content for the discovery pane.
 msgid "Find missing web content  {start_sub_heading}with {addon_name}{end_sub_heading}"
