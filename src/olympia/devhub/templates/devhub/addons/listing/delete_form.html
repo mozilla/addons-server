@@ -1,5 +1,5 @@
 {% from 'includes/forms.html' import optional %}
-{% set title = _('Delete Theme') if addon.is_persona() else _('Delete Add-on') %}
+{% set title = _('Delete Add-on') %}
 <form method="post" action="{{ addon.get_dev_url('delete') }}">
   {% csrf_token %}
   <h3>
@@ -7,18 +7,14 @@
   </h3>
   {% if addon.is_soft_deleteable() %}
     <p class="warning">
-      {% if addon.is_persona() %}
-        {{ _('Deleting your theme will permanently remove it from the site.') }}
-      {% else %}
-        <b>
+      <b>
           {% trans %}
           Deleting your add-on will permanently delete all versions and files you
           have submitted for this add-on, listed or not. The add-on ID will
           continue to be linked to your account, so others won't be able to submit
           versions using the same ID.
           {% endtrans %}
-        </b>
-      {% endif %}
+      </b>
     </p>
   {% endif %}
   <p>
@@ -31,11 +27,7 @@
   <input type="hidden" name="addon_id" class="addon_id" value="{{ addon.id }}">
   <p>
     <label for="id_reason">
-      {% if addon.is_persona() %}
-        {{ _('Please tell us why you are deleting your theme:') }}
-      {% else %}
-        {{ _('Please tell us why you are deleting your add-on:') }}
-      {% endif %}
+      {{ _('Please tell us why you are deleting your add-on:') }}
       {{ optional() -}}
     </label>
     <textarea name="reason" id="id_reason"></textarea>

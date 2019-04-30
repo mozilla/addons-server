@@ -1073,13 +1073,6 @@ class TestEditMedia(BaseTestEdit):
         result = json.loads(force_text(self.client.get(self.url).content))
         assert not result['previews']
 
-    def test_image_status_persona(self):
-        self.setup_image_status()
-        storage.delete(self.icon_dest)
-        self.get_addon().update(type=amo.ADDON_PERSONA)
-        result = json.loads(force_text(self.client.get(self.url).content))
-        assert result['icons']
-
     def test_image_status_default(self):
         self.setup_image_status()
         storage.delete(self.icon_dest)
@@ -1544,7 +1537,7 @@ class TestEditAdditionalDetailsUnlisted(BaseTestEditAdditionalDetails):
 class TestEditTechnical(BaseTestEdit):
     __test__ = True
     fixtures = BaseTestEdit.fixtures + [
-        'addons/persona', 'base/addon_40', 'base/addon_1833_yoono',
+        'base/addon_40', 'base/addon_1833_yoono',
         'base/addon_4664_twitterbar.json',
         'base/addon_5299_gcal', 'base/addon_6113']
 

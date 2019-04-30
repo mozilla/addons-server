@@ -11,7 +11,7 @@ from olympia.addons.models import Addon
 from olympia.amo.decorators import login_required
 
 
-def dev_required(owner_for_post=False, allow_reviewers=False, theme=False,
+def dev_required(owner_for_post=False, allow_reviewers=False,
                  submitting=False):
     """Requires user to be add-on owner or admin.
 
@@ -22,12 +22,6 @@ def dev_required(owner_for_post=False, allow_reviewers=False, theme=False,
         @login_required
         @functools.wraps(f)
         def wrapper(request, addon, *args, **kw):
-            if theme:
-                kw['theme'] = addon.is_persona()
-            elif addon.is_persona():
-                # Don't allow theme views if theme not passed in.
-                raise http.Http404
-
             def fun():
                 return f(request, addon_id=addon.id, addon=addon, *args, **kw)
 

@@ -657,9 +657,8 @@ class Addon(OnChangeMixin, ModelBase):
     def get_dev_url(self, action='edit', args=None, prefix_only=False):
         args = args or []
         prefix = 'devhub'
-        type_ = 'themes' if self.type == amo.ADDON_PERSONA else 'addons'
         if not prefix_only:
-            prefix += '.%s' % type_
+            prefix += '.addons'
         view_name = '{prefix}.{action}'.format(prefix=prefix,
                                                action=action)
         return reverse(view_name, args=[self.slug] + args)
