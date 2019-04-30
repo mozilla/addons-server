@@ -39,9 +39,11 @@ Firefox (about:addons).
     :>json int count: The number of results for this query.
     :>json array results: The array containing the results for this query.
     :>json string results[].heading: The heading for this item. May contain some HTML tags.
+    :>json string|null results[].heading_text: The heading for this item. Text-only, content might slightly differ from ``heading`` because of that.
     :>json string|null results[].description: The description for this item, if any. May contain some HTML tags.
+    :>json string|null results[].description_text: The description for this item, if any. Text-only, content might slightly differ from ``description`` because of that.
     :>json boolean results[].is_recommendation: If this item was from the recommendation service, rather than static curated content.
-    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item. Only a subset of fields are present: ``id``, ``current_version`` (with only the ``id``, ``compatibility``, ``is_strict_compatibility_enabled`` and ``files`` fields present), ``guid``, ``icon_url``, ``name``, ``previews``, ``slug``, ``theme_data``, ``type`` and ``url``.
+    :>json object results[].addon: The :ref:`add-on <addon-detail-object>` for this item. Only a subset of fields are present: ``id``, ``authors``, ``average_daily_users``, ``current_version`` (with only the ``id``, ``compatibility``, ``is_strict_compatibility_enabled`` and ``files`` fields present), ``guid``, ``icon_url``, ``name``, ``ratings``, ``previews``, ``slug``, ``theme_data``, ``type`` and ``url``.
 
 
 -----------------

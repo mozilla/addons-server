@@ -122,15 +122,15 @@ billiard==3.5.0.5 \
 bleach==3.1.0 \
     --hash=sha256:213336e49e102af26d9cde77dd2d0397afabc5a6bf2fed985dc35b5d1e285a16 \
     --hash=sha256:3fdf7f77adcf649c9911387df51254b813185e32b2c6619f690b593a617e19fa
-boto3==1.9.136 \
-    --hash=sha256:2292bb7cb9de3e5a2bda9a78a4ac890961b80fc453add0ac87eca6f726b0cd6d \
-    --hash=sha256:dc94237a8e9c104c86d77ec9b3ecebd864680b5a4fbd22b28722376111dbec47
+boto3==1.9.137 \
+    --hash=sha256:882cc4869b47b51dae4b4a900769e72171ff00e0b6bca644b2d7a7ad7378f324 \
+    --hash=sha256:cd503a7e7a04f1c14d2801f9727159dfa88c393b4004e98940fa4aa205d920c8
 celery==4.1.1 \
     --hash=sha256:6fc4678d1692af97e137b2a9f1c04efd8e7e2fb7134c5c5ad60738cdd927762f \
     --hash=sha256:d1f2a3359bdbdfb344edce98b8e891f5fe64f8a11c5a45538ec20ac237c971f5 # pyup: <4.2
-botocore==1.12.136 \
-    --hash=sha256:b12e0efe214e35d0217e13e8e57677ae70b63c8bd01c960dcda92d05dd55ac6b \
-    --hash=sha256:c24b9c32fdf2643a6cdeca55a43dc57e5b7b92a437d6e092807c9dc3f98c0c78
+botocore==1.12.137 \
+    --hash=sha256:0d95794f6b1239c75e2c5f966221bcd4b68020fddb5676f757531eedbb612ed8 \
+    --hash=sha256:3213cf48cf2ceee10fc3b93221f2cd1c38521cca7584f547d5c086213cc60f35
 # chardet is required by requests
 chardet==3.0.4 \
     --hash=sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691 \
@@ -171,9 +171,9 @@ django-admin-rangefilter==0.3.15 \
 django-babel==0.6.2 \
     --hash=sha256:b62084a6f0cbf2e7af719bd129abfe54608a52645c0677aff5a728f586873af7 \
     --hash=sha256:1e621b198e1f98ae4f93e43463cf78cbedbace475eb6e0853ba1e2567f3b8119
-django-cors-headers==2.5.2 \
-    --hash=sha256:1ccedec2973087be9d73f96d58c4f6660c823efc0385581e13efb77f060d0e02 \
-    --hash=sha256:fb44f6b9f10de847919305c3f0d38fcfbadfe0dd5cf1c866f37df66ad0dda1bb
+django-cors-headers==2.5.3 \
+    --hash=sha256:c7987faa9aaef7f6a802b0f354a719e80a9158c284f530265ac792f1ee725e52 \
+    --hash=sha256:ceacbd60dd5a65c95e65e74b5559bd4161aa3fe5713c44e1f3417a12bd41e7ba
 django-csp==3.5 \
     --hash=sha256:8b9997df89a7a936d7c397e051367f974aa1d1a97d0b32acb4300087b3bed071 \
     --hash=sha256:04600237701e6d6ff78ed7d41209ff923988148bf292c128f6b474b9befe444f
@@ -201,9 +201,9 @@ django-waffle==0.16.0 \
     --hash=sha256:806164c8e98fe6c20590bd642fa247d8554ab57faed45e2745253f0f3b8f3ff9 \
     --hash=sha256:b48b80b01ea28a560a0d6df9322631f239f4088933137a39571d1c874cc89ce9
 # djangorestframework is required by drf-nested-routers
-djangorestframework==3.9.2 \
-    --hash=sha256:8a435df9007c8b7d8e69a21ef06650e3c0cbe0d4b09e55dd1bd74c89a75a9fcd \
-    --hash=sha256:f7a266260d656e1cf4ca54d7a7349609dc8af4fe2590edd0ecd7d7643ea94a17
+djangorestframework==3.9.3 \
+    --hash=sha256:1d22971a5fc98becdbbad9710ca2a9148dd339f6cbea4c3ddbed2cb84bab94e1 \
+    --hash=sha256:2884763160b997073ff1e937bd820a69d23978902a3ccd0ba53a217e196239f0
 djangorestframework-jwt==1.11.0 \
     --hash=sha256:ab15dfbbe535eede8e2e53adaf52ef0cf018ee27dbfad10cbc4cbec2ab63d38c \
     --hash=sha256:5efe33032f3a4518a300dc51a51c92145ad95fb6f4b272e5aa24701db67936a7
@@ -295,9 +295,9 @@ nobot==0.5 \
     --hash=sha256:fa0582d81f562cd5b61e241005feb3f51548fe3fc165aed292952ff78676e28a \
     --hash=sha256:0a1c43a74f1c55f06cf2eb98cb472762dbdd7df5eb693d438c9fb42cfcfe79e5
 # pbr is required by mock
-pbr==5.1.3 \
-    --hash=sha256:8257baf496c8522437e8a6cfe0f15e00aedc6c0e0e7c9d55eeeeab31e0853843 \
-    --hash=sha256:8c361cc353d988e4f5b998555c88098b9d5964c2e11acf7b0d21925a66bb5824
+pbr==5.2.0 \
+    --hash=sha256:6901995b9b686cb90cceba67a0f6d4d14ae003cd59bc12beb61549bdfbe3bc89 \
+    --hash=sha256:d950c64aeea5456bbd147468382a5bb77fe692c13c9f00f0219814ce5b642755
 # polib is required by dennis
 polib==1.1.0 \
     --hash=sha256:93b730477c16380c9a96726c54016822ff81acfa553977fdd131f2b90ba858d7 \
@@ -333,9 +333,6 @@ requests==2.21.0 \
 s3transfer==0.2.0 \
     --hash=sha256:7b9ad3213bff7d357f888e0fab5101b56fa1a0548ee77d121c3a3dbfbef4cb2e \
     --hash=sha256:f23d5cb7d862b104401d9021fc82e5fa0e0cf57b7660a1331425aab0c691d021
-signing-clients==1.5.0 \
-    --hash=sha256:3411cab13d8a82ea294ed4523649d037ef8a97f5042f2e97b0a8898d617fd2f6 \
-    --hash=sha256:dd6a5810b97ec4a1aa8b35bed413750e89b5df0714bce2782bdf734231ca348b
 # statsd is required by django-statsd-mozilla
 statsd==3.3.0 \
     --hash=sha256:c610fb80347fca0ef62666d241bce64184bd7cc1efe582f9690e045c25535eaa \
