@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-30 06:26+0000\n"
+"PO-Revision-Date: 2019-04-30 07:56+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -1784,9 +1784,8 @@ msgid "more add-ons..."
 msgstr "více doplňků..."
 
 # Plural in this context means many of the add-on type
-#, fuzzy
 msgid "Extension Workshop"
-msgstr "Rozšíření"
+msgstr ""
 
 msgid "Documentation"
 msgstr "Dokumentace"
@@ -2625,7 +2624,7 @@ msgid "Include instructions in a README file in the source code,"
 msgstr "Instrukce zapište ve zdrojovém kódu do souboru README,"
 
 msgid "or in reviewer notes on the next page (if applicable)."
-msgstr ""
+msgstr "nebo v poznámkách recenzenta na další straně (je-li k dispozici)."
 
 msgid "Upload source code:"
 msgstr "Nahrání zdrojového kódu:"
