@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-01 06:56+0000\n"
+"PO-Revision-Date: 2019-01-11 11:50+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -178,7 +178,7 @@ msgid "Submit a New Theme"
 msgstr "Trimite o temă nouă"
 
 msgid "Developer Hub"
-msgstr "Hubul dezvoltatorilor"
+msgstr "Centrul dezvoltatorilor"
 
 msgid "Manage API Keys"
 msgstr "Gestionează cheile API"
@@ -1795,7 +1795,7 @@ msgstr "Revenire la pagina de start DevHub"
 
 #. Text in small tag is smaller and on its own line.
 msgid "<small>Add-on</small> Developer Hub"
-msgstr "Hubul dezvoltatorilor de <small>suplimente</small>"
+msgstr "Centrul dezvoltatorilor de <small>suplimente</small>"
 
 msgid "more add-ons..."
 msgstr "mai multe suplimente..."
@@ -3055,7 +3055,7 @@ msgstr "Propune prima ta temă"
 
 # The title for a user if they are a developer
 msgid "Add-on Developer Hub"
-msgstr "Hubul dezvoltatorilor de suplimente"
+msgstr "Centrul dezvoltatorilor de suplimente"
 
 msgid "Docs"
 msgstr "Documente"
@@ -3306,7 +3306,7 @@ msgid "Are you sure you wish to cancel your review request?"
 msgstr "Sigur vrei să anulezi cererea ta de revizuire?"
 
 msgid "Add-on Documentation :: Developer Hub"
-msgstr "Documentație privind suplimentele :: Hubul dezvoltatorilor"
+msgstr "Documentație suplimente :: Centrul dezvoltatorilor"
 
 #. L10n: first parameter is the number of errors
 # {0} is a number
