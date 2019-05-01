@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-01 03:00+0000\n"
+"PO-Revision-Date: 2019-05-01 04:50+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -414,9 +414,8 @@ msgstr "Tip greșit al uneia sau al mai multor chei din sarcina utilă"
 msgid "Invalid JWT Token."
 msgstr "Indicativ JWT nevalid."
 
-#, fuzzy
 msgid "Invalid token or hash."
-msgstr "Arhivă invalidă sau coruptă."
+msgstr "Jeton sau hash nevalid."
 
 msgid "Email address not found."
 msgstr "Nu s-a găsit adresa de e-mail."
@@ -1585,9 +1584,8 @@ msgstr ""
 msgid "Categories cannot be changed while your add-on is featured."
 msgstr "Categoriile nu pot fi modificate cât timp suplimentul este promovat."
 
-#, fuzzy
 msgid "Invalid or corrupt add-on file."
-msgstr "Arhivă invalidă sau coruptă."
+msgstr "Fișier de supliment invalid sau corupt."
 
 msgid "Your developer API key was found in the submitted file. To protect your account, the key will be revoked."
 msgstr "Am găsit cheia ta API pentru dezvoltatori în fișierul trimis. Pentru a-ți proteja contul, cheia va fi revocată."
@@ -1712,16 +1710,14 @@ msgstr "Această încărcare nu a trecut validarea și se poate să nu aibă rez
 msgid "Header area background"
 msgstr "Fundalul zonei de antet"
 
-#, fuzzy
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
-msgstr "Culoarea zonei de fundal a antetului, afișată în partea de antet neacoperită sau vizibilă prin imaginea antetului. Câmp manifest:  accentcolor."
+msgstr "Culoarea de fundal a antetului, afișată în partea de antet neacoperită sau vizibilă prin imaginea antetului. Câmp manifest:  cadru."
 
 msgid "Header area text and icons"
 msgstr "Text și pictograme în zona antetului"
 
-#, fuzzy
 msgid "The color of the text and icons in the header area, except the active tab. Manifest field:  tab_background_text."
-msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmp manifest:  textcolor."
+msgstr "Culoarea textului și a pictogramelor din zona antetului, cu excepția filei active. Câmp manifest:  tab_background_text."
 
 msgid "Toolbar area background"
 msgstr "Fundalul zonei cu bara de unelte"
@@ -1732,9 +1728,8 @@ msgstr "Culoarea de fundal pentru bara de navigare, bara de marcaje și fila sel
 msgid "Toolbar area text and icons"
 msgstr "Text și pictograme în zona barei de unelte"
 
-#, fuzzy
 msgid "The color of the text and icons in the toolbar and the active tab. Manifest field:  bookmark_text."
-msgstr "Culoarea textului și a pictogramelor din bara de unelte și fila activă. Câmp manifest:  toolbar_text."
+msgstr "Culoarea textului și a pictogramelor din bara de unelte și fila activă. Câmp manifest:  bookmark_text."
 
 msgid "Toolbar field area background"
 msgstr "Fundalul câmpului barei de unelte"
@@ -4579,27 +4574,24 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr "Cu un clic de mouse poți vedea videoclipuri pe ecran complet."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Salvează memorie cu {start_sub_heading}cu{addon_name}{end_sub_heading}"
+msgstr "Salvează memorie {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr "Nu mai irosi spațiul valoros de memorie cu file inactive."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Caută imagini {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Salvează pagini web {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr "Salvează pagini complete—sau numai părți din ele—într-un singur fișier HTML."
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Fă capturi pe web {start_sub_heading}cu {addon_name}{end_sub_heading}"
+msgstr "Redu chestiile inutile {start_sub_heading}cu {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
@@ -4703,7 +4695,6 @@ msgstr "Nu poți trimite un supliment cu un GUID care se termină în %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nu poți trimite o extensie semnată de Mozilla"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Tip de fișier fără suport. Te rugăm să încarci un fișier {extensions} cu suport."
 
@@ -5448,9 +5439,8 @@ msgstr "Aprobă conținutul"
 msgid "This records your approbation of the content of the latest public version, without notifying the developer."
 msgstr "Aceasta este înregistrarea aprobării pe care ai dat-o pentru conținutul ultimei versiuni publice, fără notificarea dezvoltatorului."
 
-#, fuzzy
 msgid "Pre-Approval Add-ons"
-msgstr "Suplimente aprobate automat"
+msgstr "Suplimente în pre-aprobare"
 
 # {0} is the application the user is browsing.  Examples:  Thunderbird,
 # Firefox,
