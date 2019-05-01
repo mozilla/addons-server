@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-29 19:43+0000\n"
+"PO-Revision-Date: 2019-05-01 18:31+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -406,7 +406,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "భాష కోడ్ {lang_code} చెల్లనిది."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "మీరు తప్పనిసరిగా {lang-code:value} వంటి ఆబ్జెక్టుని ఇవ్వాలి."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -1220,9 +1220,8 @@ msgstr ""
 msgid "Preliminary Add-on Review"
 msgstr "ప్రాథమిక పొడగింత సమీక్ష"
 
-#, fuzzy
 msgid "Updated Legacy Add-on Review"
-msgstr "నవీకరించబడిన పొడిగింత సమీక్ష"
+msgstr ""
 
 msgid "New Dictionary Review"
 msgstr "కొత్త నిఘంటువు సమీక్ష"
@@ -1619,13 +1618,11 @@ msgstr "బొమ్మలు %dKB కంటే పెద్దగా ఉండ�
 msgid "Image must be exactly {0} pixels wide and {1} pixels tall."
 msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, {1} పిక్సెళ్ళ పొడవు ఉండాలి."
 
-#, fuzzy
 msgid "Image must be at least {0} pixels wide and {1} pixels tall."
 msgstr "బొమ్మ ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, {1} పిక్సెళ్ళ పొడవు ఉండాలి."
 
-#, fuzzy
 msgid "Image dimensions must be in the ratio 4:3."
-msgstr "చిత్రాలు తప్పనిసరిగా PNG లేదా JPG లో ఉండాలి."
+msgstr ""
 
 msgid "Icon must be at least {0} pixels wide and tall."
 msgstr "ప్రతీకం ఖచ్చితంగా {0} పిక్సెళ్ళ వెడల్పు, ఎత్తు ఉండాలి."
@@ -2564,9 +2561,8 @@ msgstr "వెర్షనును ఎక్కించండి"
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
 
-#, fuzzy
 msgid "Which applications is this version compatible with?"
-msgstr "ఈ ఫైల్కు అనుకూలంగా ఉండే వేదిక?"
+msgstr "ఈ వెర్షనుకు అనుగుణ్యమైన అనువర్తనం ఏది?"
 
 msgid "Administrative overrides"
 msgstr ""
@@ -4669,9 +4665,8 @@ msgstr ""
 msgid "Not Reported"
 msgstr "నివేదించబడలేదు"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "వెర్షను సమర్పించబడింది"
+msgstr ""
 
 #, fuzzy
 msgid "View Rating on site"
