@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-01 04:50+0000\n"
+"PO-Revision-Date: 2019-05-01 06:56+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -4634,7 +4634,7 @@ msgid "Lowest supported \"strict_min_version\" is 42.0."
 msgstr "Cea mai veche versiune suportată „strict_min_version” este 42.0."
 
 msgid "Unknown \"strict_min_version\" {appver} for {app}"
-msgstr ""
+msgstr "„strict_min_version\" {appver} necunoscută pentru {app}"
 
 #, python-format
 msgid "Could not parse uploaded file, missing or empty <%s> element"
@@ -5336,7 +5336,7 @@ msgid "WebExtension"
 msgstr "WebExtension"
 
 msgid "Risk breakdown not available."
-msgstr ""
+msgstr "Analiza riscurilor nu este disponibilă."
 
 msgid "Is locked by a reviewer."
 msgstr "Este blocat de un revizor."
@@ -5963,14 +5963,14 @@ msgid "Return To AMO is currently disabled"
 msgstr "Întoarcerea pe AMO este dezactivată acum"
 
 msgid "Invalid Return To AMO guid (not in base64url format?)"
-msgstr ""
+msgstr "Retur invalid către GUID AMO (nu este în format base64url?)"
 
 msgid "Invalid Return To AMO guid (not a curated add-on)"
-msgstr ""
+msgstr "Retur invalid către GUID AMO (nu este un supliment gestionat)"
 
 #, python-format
 msgid "Invalid combination of \"%s\", \"%s\" and \"%s\" parameters."
-msgstr ""
+msgstr "Combinație invalidă de parametri „%s\", „%s\" și „%s\"."
 
 msgid "Maximum query length exceeded."
 msgstr "S-a depășit lungimea maximă de interogare."
@@ -6400,11 +6400,11 @@ msgid "Unsubscribe"
 msgstr "Dezabonează-te"
 
 msgid "You are successfully unsubscribed!"
-msgstr ""
+msgstr "Te-ai dezabonat cu succes!"
 
 #, python-format
 msgid "The email address <strong>%(email)s</strong> will no longer get messages when:"
-msgstr ""
+msgstr "Adresa de e-mail <strong>%(email)s</strong> nu va mai primi mesaje când:"
 
 msgid "More Actions:"
 msgstr "Mai multe acțiuni:"
@@ -6420,7 +6420,7 @@ msgstr "Nu am reușit să te dezabonăm"
 
 #, python-format
 msgid "Unfortunately, we weren't able to unsubscribe you. The link you clicked is invalid. However, you can still unsubscribe on your <a href=\"%(edit_url)s\">edit profile page</a>."
-msgstr ""
+msgstr "Din păcate, nu am reușit să te dezabonăm. Linkul pe care ai dat clic este invalid. Însă te poți dezabona de pe <a href=\"%(edit_url)s\">pagina ta de editare a profilului</a>."
 
 #, python-format
 msgid "by %(users)s"
@@ -6428,10 +6428,10 @@ msgstr "de %(users)s"
 
 msgctxt "user_list_others"
 msgid "others"
-msgstr ""
+msgstr "altele"
 
 msgid "{app} {min} and later"
 msgstr "{app} {min} și versiunile ulterioare"
 
 msgid "Deleted versions can`t be changed."
-msgstr ""
+msgstr "Versiunile șterse nu pot fi modificate."
