@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-01 14:10+0000\n"
+"PO-Revision-Date: 2019-05-01 14:16+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: th\n"
@@ -117,15 +117,17 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
+"ไบนารีที่คอมไพล์แล้ว รวมถึงสคริปต์ย่อหรือร่าง (ยกเว้นไลบรารีที่รู้จัก) ต้องส่งซอร์สแยกต่างหากเพื่อใช้สำหรับตรวจทาน ตรวจสอบให้แน่ใจว่า "
+"คุณใช้ช่องอัปโหลดซอร์สโค้ดเพื่อหลีกเลี่ยงไม่ให้ข้อมูลที่คุณส่งถูกปฏิเสธ"
 
 msgid "The validation process found these issues that can lead to rejections:"
-msgstr ""
+msgstr "กระบวนการการตรวจสอบความถูกต้องพบปัญหาที่อาจก่อให้เกิดการปฏิเสธ:"
 
 msgid "The filetype you uploaded isn't recognized."
 msgstr "ไม่รู้จักรูปแบบไฟล์ที่คุณอัปโหลด"
 
 msgid "Your file exceeds the maximum size of {0}."
-msgstr ""
+msgstr "ไฟล์ของคุณเกินขนาดสูงสุด {0}"
 
 msgid "You cancelled the upload."
 msgstr "คุณได้ยกเลิกการอัปโหลด"
@@ -188,7 +190,6 @@ msgstr "ค้นหาแอปสำหรับ <b>{0}</b>"
 msgid "Search add-ons for <b>{0}</b>"
 msgstr "ค้นหาส่วนเสริมสำหรับ <b>{0}</b>"
 
-#, fuzzy
 msgid "Use original"
 msgstr "ใช้ต้นฉบับ"
 
@@ -286,10 +287,10 @@ msgid "Add-ons Manager"
 msgstr "ตัวจัดการส่วนเสริม"
 
 msgid "Add-ons Manager Promo"
-msgstr ""
+msgstr "การโปรโมทตัวจัดการส่วนเสริม"
 
 msgid "Add-ons Manager Featured"
-msgstr ""
+msgstr "รายการแนะนำตัวจัดการส่วนเสริม"
 
 msgid "Add-ons Manager Learn More"
 msgstr "เรียนรู้เพิ่มเติมเกี่ยวกับตัวจัดการส่วนเสริม"
@@ -301,16 +302,16 @@ msgid "Search Results"
 msgstr "ผลการค้นหา"
 
 msgid "Homepage Promo"
-msgstr ""
+msgstr "การโปรโมทหน้าแรก"
 
 msgid "Homepage Featured"
-msgstr ""
+msgstr "รายการแนะนำหน้าแรก"
 
 msgid "Homepage Up and Coming"
-msgstr ""
+msgstr "ข้อมูลที่กำลังมาแรงในหน้าแรก"
 
 msgid "Homepage Most Popular"
-msgstr ""
+msgstr "รายการยอดนิยมในหน้าแรก"
 
 msgid "Detail Page"
 msgstr "หน้ารายละเอียด"
@@ -627,11 +628,11 @@ msgstr "เลือกแอปพลิเคชันก่อน"
 
 msgid "Set {0} add-on to a max version of {1} and email the author."
 msgid_plural "Set {0} add-ons to a max version of {1} and email the authors."
-msgstr[0] ""
+msgstr[0] "ตั้งรุ่นสูงสุดของ {0} ส่วนเสริมให้เป็น {1} และส่งอีเมลถึงผู้สร้าง"
 
 msgid "Email author of {2} add-on which failed validation."
 msgid_plural "Email authors of {2} add-ons which failed validation."
-msgstr[0] ""
+msgstr[0] "ส่งอีเมลถึงผู้สร้าง {2} ส่วนเสริมที่ไม่ผ่านการตรวจสอบความถูกต้อง"
 
 #. L10n: {0} is an app name like Firefox.
 msgid "Accept and Install"
@@ -664,7 +665,7 @@ msgid "Works with {app}"
 msgstr "ทำงานได้กับ {app}"
 
 msgid "Only with Firefox — Get Firefox Now!"
-msgstr ""
+msgstr "ใช้ได้กับ Firefox เท่านั้น — ดาวน์โหลด Firefox เลย!"
 
 msgid "Sorry, you need a Mozilla-based browser (such as Firefox) to install a search plugin."
 msgstr "ขออภัย คุณจำเป็นต้องใช้เบราว์เซอร์ที่มีรากฐานมาจาก Mozilla (เช่น Firefox) เพื่อติดตั้งปลั๊กอินการค้นหา"
@@ -684,7 +685,7 @@ msgstr[0] "{files} ไฟล์"
 
 msgid "{reviews} user review"
 msgid_plural "{reviews} user reviews"
-msgstr[0] ""
+msgstr[0] "{reviews} คำวิจารณ์จากผู้ใช้"
 
 msgid "Image changes being processed"
 msgstr "ภาพที่เปลี่ยนกำลังดำเนินการอยู่"
@@ -701,7 +702,6 @@ msgid_plural "<b>{0}</b> characters"
 msgstr[0] "<b>{0}</b> ตัวอักษร"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
 msgstr[0] "เหลือ <b>{0}</b> ตัวอักษร"
@@ -737,13 +737,13 @@ msgid "No version notes found"
 msgstr "ไม่พบบันทึกประจำรุ่น"
 
 msgid "Review Text"
-msgstr ""
+msgstr "ข้อความการตรวจทาน"
 
 msgid "Review notes found"
-msgstr ""
+msgstr "พบบันทึกการตรวจทาน"
 
 msgid "Average Reviews"
-msgstr ""
+msgstr "คำวิจารณ์เฉลี่ย"
 
 msgid "Number of Reviews"
 msgstr "จำนวนบทวิจารณ์"
