@@ -3,7 +3,7 @@ import json
 
 from django.http import HttpResponse
 
-import mock
+from unittest import mock
 import pytest
 import requests
 import settings

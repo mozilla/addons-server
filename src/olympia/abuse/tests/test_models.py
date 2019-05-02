@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.core import mail
 
-import mock
+from unittest import mock
 import six
 
 from olympia.abuse.models import AbuseReport, GeoIP2Error, GeoIP2Exception

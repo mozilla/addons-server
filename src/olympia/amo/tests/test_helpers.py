@@ -14,7 +14,7 @@ from django.utils.encoding import force_bytes
 
 import pytest
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 from pyquery import PyQuery
 
 import olympia

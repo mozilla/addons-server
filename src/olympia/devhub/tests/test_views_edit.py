@@ -6,7 +6,7 @@ from django.core.cache import cache
 from django.core.files.storage import default_storage as storage
 from django.utils.encoding import force_text
 
-import mock
+from unittest import mock
 import six
 
 from pyquery import PyQuery as pq

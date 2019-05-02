@@ -14,7 +14,7 @@ from django.utils import translation
 import pytest
 import six
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 
 from olympia import amo, core
 from olympia.activity.models import ActivityLog, AddonLog

@@ -11,7 +11,7 @@ from django.core import management
 from django.test.testcases import TransactionTestCase
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.addons.models import Addon, MigratedLWT, Persona

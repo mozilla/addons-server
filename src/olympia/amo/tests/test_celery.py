@@ -5,7 +5,7 @@ from datetime import timedelta
 from django.core.signals import request_finished, request_started
 from django.test.testcases import TransactionTestCase
 
-import mock
+from unittest import mock
 
 from post_request_task.task import _discard_tasks, _stop_queuing_tasks
 

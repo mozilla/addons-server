@@ -5,7 +5,7 @@ import tempfile
 from django.conf import settings
 from django.core.validators import ValidationError
 
-import mock
+from unittest import mock
 import pytest
 
 from olympia.amo.tests import TestCase

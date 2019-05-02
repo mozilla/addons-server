@@ -4,7 +4,7 @@ from django.test.utils import override_settings
 
 import six
 
-from mock import Mock
+from unittest.mock import Mock
 from rest_framework import serializers
 from rest_framework.request import Request
 from rest_framework.test import APIRequestFactory

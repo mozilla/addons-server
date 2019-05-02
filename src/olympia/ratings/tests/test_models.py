@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.core import mail
 
-import mock
+from unittest import mock
 import six
 
 from olympia import amo

@@ -7,11 +7,11 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.utils import translation
 
-import mock
+from unittest import mock
 import pytest
 import six
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 from pyquery import PyQuery as pq
 
 from olympia import amo

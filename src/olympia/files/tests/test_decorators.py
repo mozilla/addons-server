@@ -4,7 +4,7 @@ from django.test import RequestFactory
 
 import pytest
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 
 from olympia import amo
 from olympia.access import acl

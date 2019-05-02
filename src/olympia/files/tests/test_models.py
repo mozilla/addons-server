@@ -14,10 +14,10 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
-import mock
+from unittest import mock
 import pytest
 
-from mock import patch
+from unittest.mock import patch
 
 from olympia import amo
 from olympia.addons.models import Addon

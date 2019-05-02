@@ -4,7 +4,7 @@ from datetime import datetime
 
 import pytest
 
-from mock import MagicMock
+from unittest.mock import MagicMock
 
 from rest_framework.test import APIRequestFactory
 from rest_framework.settings import api_settings

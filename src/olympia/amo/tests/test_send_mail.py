@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.mail import EmailMessage
 from django.utils import translation
 
-import mock
+from unittest import mock
 import six
 
 from celery.exceptions import Retry

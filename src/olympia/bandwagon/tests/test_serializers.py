@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import mock
+from unittest import mock
 from rest_framework import serializers
 from waffle.testutils import override_switch
 

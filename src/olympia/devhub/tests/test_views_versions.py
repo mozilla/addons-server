@@ -7,7 +7,7 @@ import zipfile
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 
-import mock
+from unittest import mock
 import six
 
 from pyquery import PyQuery as pq

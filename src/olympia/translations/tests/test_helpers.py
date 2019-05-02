@@ -3,7 +3,7 @@ from django.utils import translation
 
 import pytest
 
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 
 from olympia.addons.models import Addon
 from olympia.amo.tests import TestCase

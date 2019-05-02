@@ -5,7 +5,7 @@ from django.conf import settings
 from django.forms import ValidationError
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import pytest
 from waffle.testutils import override_switch
 

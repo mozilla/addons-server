@@ -5,7 +5,7 @@ import os
 
 from django.conf import settings
 
-import mock
+from unittest import mock
 
 from pyquery import PyQuery as pq
 

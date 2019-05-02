@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-import mock
+from unittest import mock
 
 from datetime import datetime, timedelta
 from email import utils

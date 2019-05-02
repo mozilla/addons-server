@@ -6,7 +6,7 @@ from django.core.exceptions import PermissionDenied
 from django.test import RequestFactory
 from django.utils.encoding import force_text
 
-import mock
+from unittest import mock
 import pytest
 
 from olympia import amo

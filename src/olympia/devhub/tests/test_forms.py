@@ -7,7 +7,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
-import mock
+from unittest import mock
 import pytest
 import six
 

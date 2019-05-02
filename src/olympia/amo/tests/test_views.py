@@ -11,11 +11,11 @@ from django.conf import settings
 from django.test.utils import override_settings
 from django.utils.encoding import force_text
 
-import mock
+from unittest import mock
 import pytest
 
 from lxml import etree
-from mock import patch
+from unittest.mock import patch
 from pyquery import PyQuery as pq
 from six.moves.urllib_parse import urlparse
 from waffle.testutils import override_switch

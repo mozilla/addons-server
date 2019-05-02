@@ -1,4 +1,4 @@
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.addons.models import Addon

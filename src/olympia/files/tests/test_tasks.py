@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import mock
+from unittest import mock
 import zipfile
 
 from olympia.amo.tests import TestCase

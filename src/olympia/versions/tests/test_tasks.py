@@ -7,7 +7,7 @@ from django.core.files.storage import default_storage as storage
 from django.core.files import temp
 from django.utils.encoding import force_text
 
-import mock
+from unittest import mock
 import pytest
 
 from olympia import amo

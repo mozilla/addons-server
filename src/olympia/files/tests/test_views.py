@@ -11,7 +11,7 @@ from django.utils.http import http_date, quote_etag
 
 import six
 
-from mock import patch
+from unittest.mock import patch
 from pyquery import PyQuery as pq
 from six.moves.urllib_parse import urlparse
 

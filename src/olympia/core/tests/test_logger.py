@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import logging
 
-import mock
+from unittest import mock
 
 import olympia.core.logger
 

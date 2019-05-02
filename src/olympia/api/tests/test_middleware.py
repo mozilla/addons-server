@@ -2,7 +2,7 @@ from gzip import GzipFile
 
 from django.conf import settings
 
-import mock
+from unittest import mock
 from six import BytesIO
 
 from olympia.amo.tests import TestCase, addon_factory, reverse_ns

@@ -3,7 +3,7 @@ from django.test import override_settings
 
 import six
 
-from mock import Mock
+from unittest.mock import Mock
 from rest_framework.test import APIRequestFactory
 
 from olympia.amo.templatetags.jinja_helpers import absolutify
