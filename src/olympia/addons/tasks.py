@@ -38,7 +38,7 @@ from olympia.constants.licenses import (
     LICENSE_COPYRIGHT_AR, PERSONA_LICENSES_IDS)
 from olympia.files.models import FileUpload
 from olympia.files.utils import get_filepath, parse_addon
-from olympia.lib.crypto.signing import sign_file
+from olympia.lib.crypto.signing import sign_file, SigningError
 from olympia.lib.es.utils import index_objects
 from olympia.ratings.models import Rating
 from olympia.stats.utils import migrate_theme_update_count
@@ -785,7 +785,7 @@ def repack_themes_for_69(addon_ids, **kw):
             else:
                 log.info('[SKIP] No need for theme repack [%s]' % addon.id)
             timer.log_interval('')
-        except (IOError, ValidationError) as exc:
+        except (IOError, ValidationError, SigningError) as exc:
             log.debug('[FAIL] Theme repack for [%r]:', addon, exc_info=exc)
         finally:
             resume_all_tasks()
