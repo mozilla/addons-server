@@ -1,6 +1,7 @@
 import functools
 
 from django import forms
+from django.conf import settings
 from django.utils.translation import ugettext
 
 from rest_framework import status
@@ -15,6 +16,10 @@ from olympia.access import acl
 from olympia.addons.models import Addon
 from olympia.amo.decorators import use_primary_db
 from olympia.api.authentication import JWTKeyAuthentication
+from olympia.api.throttling import (
+    GranularIPRateThrottle, GranularUserRateThrottle,
+    ThrottleOnlyUnsafeMethodsMixin
+)
 from olympia.devhub.views import handle_upload as devhub_handle_upload
 from olympia.files.models import FileUpload
 from olympia.files.utils import parse_addon
@@ -68,9 +73,46 @@ def with_addon(allow_missing=False):
     return wrapper
 
 
+class BurstUserAddonUploadThrottle(
+        ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle):
+    scope = 'burst_ip_addon_upload'
+    rate = '3/minute'
+
+
+class SustainedUserAddonUploadThrottle(
+        ThrottleOnlyUnsafeMethodsMixin, GranularUserRateThrottle):
+    scope = 'sustained_user_addon_upload'
+    rate = '20/hour'
+
+
+class BurstIPAddonUploadThrottle(
+        ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle):
+    scope = 'burst_ip_addon_upload'
+    rate = '6/minute'
+
+
+class SustainedIPAddonUploadThrottle(
+        ThrottleOnlyUnsafeMethodsMixin, GranularIPRateThrottle):
+    scope = 'sustained_user_addon_upload'
+    rate = '50/hour'
+
+
 class VersionView(APIView):
     authentication_classes = [JWTKeyAuthentication]
     permission_classes = [IsAuthenticated]
+    throttle_classes = (
+        BurstUserAddonUploadThrottle, SustainedUserAddonUploadThrottle,
+        BurstIPAddonUploadThrottle, SustainedIPAddonUploadThrottle,
+    )
+
+    def check_throttles(self, request):
+        # Let users in ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS bypass throttles.
+        # Used by releng automated signing scripts so that they can sign a
+        # bunch of langpacks at once.
+        if (request.user.is_authenticated and request.user.email
+                in settings.ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS):
+            return
+        super().check_throttles(request)
 
     def post(self, request, *args, **kwargs):
         version_string = request.data.get('version', None)

@@ -3,6 +3,8 @@ import os
 import random
 import shutil
 import six
+import socket
+import struct
 import time
 import uuid
 from contextlib import contextmanager
@@ -11,7 +13,6 @@ from functools import partial
 from importlib import import_module
 from six.moves.urllib_parse import parse_qs, urlparse
 from tempfile import NamedTemporaryFile
-
 
 from django import forms, test
 from django.conf import settings
@@ -1112,3 +1113,10 @@ def reverse_ns(viewname, api_version=None, args=None, kwargs=None, **extra):
     return drf_reverse(
         viewname, args=args or [], kwargs=kwargs or {}, request=request,
         **extra)
+
+
+def get_random_ip():
+    """
+    Return a fake random IP for tests (may return invalid IP like 0.0.0.0)
+    """
+    return socket.inet_ntoa(struct.pack('>I', random.randint(1, 0xffffffff)))

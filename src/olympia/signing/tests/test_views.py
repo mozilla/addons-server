@@ -7,11 +7,15 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.forms import ValidationError
 from django.test.utils import override_settings
+from django.urls import resolve
 from django.utils import translation
 
 import mock
 import responses
+from freezegun import freeze_time
 from rest_framework.response import Response
+from rest_framework.test import APIRequestFactory
+from six.moves.urllib_parse import urlparse
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -20,7 +24,7 @@ from olympia.addons.models import Addon, AddonUser
 from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.amo.tests import (
     addon_factory, create_default_webext_appversion, developer_factory,
-    reverse_ns, TestCase)
+    get_random_ip, reverse_ns, TestCase)
 from olympia.api.tests.utils import APIKeyAuthTestMixin
 from olympia.files.models import File, FileUpload
 from olympia.lib.akismet.models import AkismetReport
@@ -96,6 +100,28 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
         GroupUser.objects.create(group=admin_group, user=user)
+
+    def _add_fake_throttling_action(self, url, user, remote_addr):
+        """Trigger the throttling classes on the signing view just like an
+        action happened. Tries to be somewhat generic (allowing classes to
+        change), but does depend on the view not dynamically altering
+        throttling classes and the throttling classes themselves not deviating
+        from DRF's base implementation."""
+        # Create the fake request, make sure to use an unsafe method otherwise
+        # we'd be allowed without any checks whatsoever.
+        fake_request = APIRequestFactory().post('/')
+        fake_request.user = user
+        fake_request.META['REMOTE_ADDR'] = remote_addr
+        path = urlparse(url).path
+        view_class = resolve(path).func.view_class
+        for throttle_class in view_class.throttle_classes:
+            throttle = throttle_class()
+            # allow_request() fetches the history, triggers a success/failure
+            # and if it's a success it will add the request to the history and
+            # set that in the cache. If it failed, we force a success anyway
+            # to make sure our number of actions target is reached artifically.
+            if not throttle.allow_request(fake_request, view_class()):
+                throttle.throttle_success()
 
 
 class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
@@ -532,6 +558,203 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
             u'validation', u'messages', u'akismet_is_spam_name'
         ]
 
+    def _test_throttling_verb_ip_burst(self, verb, url, expected_status=201):
+        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+            for x in range(0, 6):
+                # Make the user different every time so that we test the ip
+                # throttling.
+                self._add_fake_throttling_action(
+                    url, UserProfile(pk=42 + x), '123.456.78.9')
+
+            # At this point we should be throttled since we're using the same
+            # IP. (we're still inside the frozen time context).
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+            assert response.status_code == 429
+
+            # 'Burst' throttling is 1 minute, so 61 seconds later we should be
+            # allowed again.
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+            assert response.status_code == expected_status
+
+    def _test_throttling_verb_ip_sustained(
+            self, verb, url, expected_status=201):
+        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+            for x in range(0, 50):
+                # Make the user different every time so that we test the ip
+                # throttling.
+                self._add_fake_throttling_action(
+                    url, UserProfile(pk=42 + x), '123.456.78.9')
+
+            # At this point we should be throttled since we're using the same
+            # IP. (we're still inside the frozen time context).
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+            assert response.status_code == 429
+
+            # One minute later, past the 'burst' throttling period, we're still
+            # blocked by the 'sustained' limit.
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+            assert response.status_code == 429
+
+            # 'Sustained' throttling is 1 hour, so 3601 seconds later we should
+            # be allowed again.
+            frozen_time.tick(delta=timedelta(seconds=3601))
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '123.456.78.9'})
+            assert response.status_code == expected_status
+
+    def _test_throttling_verb_user_burst(self, verb, url, expected_status=201):
+        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+            for x in range(0, 6):
+                # Make the user different every time so that we test the ip
+                # throttling.
+                self._add_fake_throttling_action(
+                    url, self.user, get_random_ip())
+
+            # At this point we should be throttled since we're using the same
+            # user. (we're still inside the frozen time context).
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()})
+            assert response.status_code == 429
+
+            # 'Burst' throttling is 1 minute, so 61 seconds later we should be
+            # allowed again.
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()})
+            assert response.status_code == expected_status
+
+    def _test_throttling_verb_user_sustained(
+            self, verb, url, expected_status=201):
+        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+            for x in range(0, 50):
+                # Make the user different every time so that we test the ip
+                # throttling.
+                self._add_fake_throttling_action(
+                    url, self.user, get_random_ip())
+
+            # At this point we should be throttled since we're using the same
+            # user. (we're still inside the frozen time context).
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()})
+            assert response.status_code == 429
+
+            # One minute later, past the 'burst' throttling period, we're still
+            # blocked by the 'sustained' limit.
+            frozen_time.tick(delta=timedelta(seconds=61))
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()})
+            assert response.status_code == 429
+
+            # 'Sustained' throttling is 1 hour, so 3601 seconds later we should
+            # be allowed again.
+            frozen_time.tick(delta=timedelta(seconds=3601))
+            response = self.request(
+                verb,
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': get_random_ip()})
+            assert response.status_code == expected_status
+
+    def test_throttling_post_ip_burst(self):
+        url = reverse_ns('signing.version')
+        self._test_throttling_verb_ip_burst('POST', url)
+
+    def test_throttling_post_ip_sustained(self):
+        url = reverse_ns('signing.version')
+        self._test_throttling_verb_ip_sustained('POST', url)
+
+    def test_throttling_post_user_burst(self):
+        url = reverse_ns('signing.version')
+        self._test_throttling_verb_user_burst('POST', url)
+
+    def test_throttling_post_user_sustained(self):
+        url = reverse_ns('signing.version')
+        self._test_throttling_verb_user_sustained('POST', url)
+
+    def test_throttling_put_ip_burst(self):
+        url = self.url(self.guid, '1.0')
+        self._test_throttling_verb_ip_burst(
+            'PUT', url, expected_status=202)
+
+    def test_throttling_put_ip_sustained(self):
+        url = self.url(self.guid, '1.0')
+        self._test_throttling_verb_ip_sustained(
+            'PUT', url, expected_status=202)
+
+    def test_throttling_put_user_burst(self):
+        url = self.url(self.guid, '1.0')
+        self._test_throttling_verb_user_burst(
+            'PUT', url, expected_status=202)
+
+    def test_throttling_put_user_sustained(self):
+        url = self.url(self.guid, '1.0')
+        self._test_throttling_verb_user_sustained(
+            'PUT', url, expected_status=202)
+
+    def test_throttling_ignored_for_special_users(self):
+        self.user.update(
+            email=settings.ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS[0])
+        url = self.url(self.guid, '1.0')
+        with freeze_time('2019-04-08 15:16:23.42'):
+            for x in range(0, 60):
+                # With that many actions all throttling classes should prevent
+                # the user from submitting an addon...
+                self._add_fake_throttling_action(
+                    url, self.user, '1.2.3.4')
+
+            # ... But it works, because it's a special user allowed to bypass
+            # throttling.
+            response = self.request(
+                'PUT',
+                url=url,
+                addon='@create-webextension',
+                version='1.0',
+                extra_kwargs={'REMOTE_ADDR': '1.2.3.4'})
+            assert response.status_code == 202
+
 
 class TestUploadVersionWebextension(BaseUploadVersionTestMixin, TestCase):
     def test_addon_does_not_exist_webextension(self):
@@ -861,6 +1084,21 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
         response = self.get(self.url(self.guid, '3.0'))
         assert response.status_code == 200
         assert 'processed' in response.data
+
+    def test_not_throttling_get(self):
+        self.create_version('3.0')
+        url = self.url(self.guid, '3.0')
+
+        with freeze_time('2019-04-08 15:16:23.42'):
+            for x in range(0, 60):
+                # With that many actions all throttling classes should prevent
+                # the user from submitting an addon...
+                self._add_fake_throttling_action(
+                    self.url(self.guid, '3.0'), self.user, '1.2.3.4')
+
+            # ... But it works, because it's just a GET, not a POST/PUT upload.
+            response = self.get(url, client_kwargs={'REMOTE_ADDR': '1.2.3.4'})
+            assert response.status_code == 200
 
 
 class TestSignedFile(SigningAPITestMixin, TestCase):

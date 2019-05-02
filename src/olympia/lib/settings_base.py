@@ -1813,6 +1813,8 @@ MIGRATED_LWT_DEFAULT_OWNER_EMAIL = 'addons-team+landfill-account@mozilla.com'
 
 MIGRATED_LWT_UPDATES_ENABLED = True
 
+ADDON_UPLOAD_RATE_LIMITS_BYPASS_EMAILS = ('addons+release@mozilla.org',)
+
 BASKET_URL = env('BASKET_URL', default='https://basket.allizom.org')
 BASKET_API_KEY = env('BASKET_API_KEY', default=None)
 # Default is 10, the API usually answers in 0.5 - 1.5 seconds.
