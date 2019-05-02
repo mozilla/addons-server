@@ -1,11 +1,16 @@
-import mock
-
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
+import mock
+from freezegun import freeze_time
+from rest_framework.test import APIRequestFactory, force_authenticate
+
 from olympia.amo.tests import TestCase
-from olympia.api.throttling import GranularUserRateThrottle
+from olympia.api.throttling import (
+    GranularIPRateThrottle, GranularUserRateThrottle
+)
+from olympia.users.models import UserProfile
 
 
 class TestGranularUserRateThrottle(TestCase):
@@ -48,3 +53,29 @@ class TestGranularUserRateThrottle(TestCase):
         assert settings.API_THROTTLING is True
         assert self.throttle.allow_request(request, view) is False
         assert allow_request_mock.call_count == 2
+
+    def test_freeze_time_works_with_throttling(self):
+        old_time = self.throttle.timer()
+        with freeze_time('2019-04-08 15:16:23.42'):
+            self.throttle.timer() == 1554736583.42
+        new_time = self.throttle.timer()
+        assert new_time != 1554736583.42
+        assert old_time != 1554736583.42
+        assert old_time != new_time
+
+
+class TestGranularIPRateThrottle(TestGranularUserRateThrottle):
+    def setUp(self):
+        self.throttle = GranularIPRateThrottle()
+
+    def test_get_cache_key_returns_even_for_authenticated_users(self):
+        # Like DRF's AnonRateThrottleTests.test_authenticated_user_not_affected
+        # except that we should get a cache key regardless of whether the user
+        # is authenticated or not.
+        request = APIRequestFactory().get('/')
+        user = UserProfile.objects.create(username='test')
+        force_authenticate(request, user)
+        request.user = user
+        request.META['REMOTE_ADDR'] = '123.45.67.89'
+        expected_key = 'throttle_anon_123.45.67.89'
+        assert self.throttle.get_cache_key(request, view={}) == expected_key
