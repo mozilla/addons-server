@@ -152,7 +152,6 @@ class AdditionalBackground(object):
 DEPRECATED_COLOR_TO_CSS = {
     'toolbar_text': 'bookmark_text',
     'accentcolor': 'frame',
-    'frame_inactive': 'frame',
     'textcolor': 'tab_background_text',
 }
 
