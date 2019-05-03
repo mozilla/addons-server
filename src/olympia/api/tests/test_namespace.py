@@ -100,6 +100,13 @@ class TestRealAPIRouting(TestCase):
         assert response.status_code == 200
         assert response
 
+    def test_v5(self):
+        url = reverse_ns('addon-detail', api_version='v5', args=('foo',))
+        assert '/api/v5/' in url
+        response = self.client.get(url, HTTP_ORIGIN='testserver')
+        assert response.status_code == 200
+        assert response
+
     def test_default(self):
         url = reverse_ns('addon-detail', args=('foo',))
         assert '/api/%s/' % api_settings.DEFAULT_VERSION in url
@@ -107,7 +114,7 @@ class TestRealAPIRouting(TestCase):
         assert response.status_code == 200
         assert response
 
-    def test_v5(self):
-        # There isn't a v5 API, so this should fail
+    def test_v6(self):
+        # There isn't a v6 API, so this should fail
         with self.assertRaises(NoReverseMatch):
-            reverse_ns('addon-search', 'v5')
+            reverse_ns('addon-search', 'v6')

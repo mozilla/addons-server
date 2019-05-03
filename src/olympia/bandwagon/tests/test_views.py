@@ -126,7 +126,7 @@ class TestCollectionViewSetDetail(TestCase):
 
     def _get_url(self, user, collection):
         return reverse_ns(
-            'collection-detail', api_version='v4dev', kwargs={
+            'collection-detail', api_version='v5', kwargs={
                 'user_pk': user.pk, 'slug': collection.slug})
 
     def test_basic(self):
@@ -274,7 +274,7 @@ class TestCollectionViewSetDetail(TestCase):
             'en-US': get_outgoing_url(six.text_type(addon.support_url))}
 
         overridden_api_gates = {
-            'v4dev': ('l10n_flat_input_output',)}
+            'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(
                 self.url + '?with_addons&lang=en-US&wrap_outgoing_links')
@@ -352,7 +352,7 @@ class CollectionViewSetDataMixin(object):
             'name': ['Name cannot be empty.']}
 
     @override_settings(DRF_API_GATES={
-        'v4dev': ('l10n_flat_input_output',)})
+        'v5': ('l10n_flat_input_output',)})
     def test_update_name_invalid_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
@@ -387,7 +387,7 @@ class CollectionViewSetDataMixin(object):
             'description': ['No links are allowed.']}
 
     @override_settings(DRF_API_GATES={
-        'v4dev': ('l10n_flat_input_output',)})
+        'v5': ('l10n_flat_input_output',)})
     def test_biography_no_links_flat_input(self):
         self.client.login_api(self.user)
         data = dict(self.data)
@@ -485,7 +485,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
 
     def get_url(self, user):
         return reverse_ns(
-            'collection-list', api_version='v4dev',
+            'collection-list', api_version='v5',
             kwargs={'user_pk': user.pk})
 
     def test_basic_create(self):
@@ -520,7 +520,7 @@ class TestCollectionViewSetCreate(CollectionViewSetDataMixin, TestCase):
             'name': ['You must provide an object of {lang-code:value}.']}
 
     @override_settings(DRF_API_GATES={
-        'v4dev': ('l10n_flat_input_output',)})
+        'v5': ('l10n_flat_input_output',)})
     def test_create_minimal_flat_input(self):
         self.client.login_api(self.user)
         data = {
@@ -592,7 +592,7 @@ class TestCollectionViewSetPatch(CollectionViewSetDataMixin, TestCase):
 
     def get_url(self, user):
         return reverse_ns(
-            'collection-detail', api_version='v4dev', kwargs={
+            'collection-detail', api_version='v5', kwargs={
                 'user_pk': user.pk, 'slug': self.collection.slug})
 
     def test_basic_patch(self):
@@ -992,7 +992,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
         self.user = user_factory()
         self.collection = collection_factory(author=self.user)
         self.url = reverse_ns(
-            'collection-addon-list', api_version='v4dev', kwargs={
+            'collection-addon-list', api_version='v5', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug})
         self.addon = addon_factory()
@@ -1035,7 +1035,7 @@ class TestCollectionAddonViewSetCreate(CollectionAddonViewSetMixin, TestCase):
             'notes': ['You must provide an object of {lang-code:value}.']}
 
     @override_settings(DRF_API_GATES={
-        'v4dev': ('l10n_flat_input_output',)})
+        'v5': ('l10n_flat_input_output',)})
     def test_add_with_comments_flat_input(self):
         self.client.login_api(self.user)
         response = self.send(self.url,
@@ -1098,7 +1098,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
         self.addon = addon_factory()
         self.collection.add_addon(self.addon)
         self.url = reverse_ns(
-            'collection-addon-detail', api_version='v4dev', kwargs={
+            'collection-addon-detail', api_version='v5', kwargs={
                 'user_pk': self.user.pk,
                 'collection_slug': self.collection.slug,
                 'addon': self.addon.id})
@@ -1132,7 +1132,7 @@ class TestCollectionAddonViewSetPatch(CollectionAddonViewSetMixin, TestCase):
             'notes': ['You must provide an object of {lang-code:value}.']}
         # But with the correct api gate, we can use the old behavior
         overridden_api_gates = {
-            'v4dev': ('l10n_flat_input_output',)}
+            'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.send(self.url, data)
             self.check_response(response)

@@ -178,14 +178,12 @@ If only a string is supplied, it will only be used to translate the field in
 the current language.
 
 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Alternate API (v4dev) behavior
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^
+v5 API behavior
+^^^^^^^^^^^^^^^
 
-On the addons-dev.allizom.org (dev) and addons.allizom.org servers (stage) servers
-an additional API version, `v4dev` is available. `v4dev` is not available on
-production AMO (addons.mozilla.org). In `4dev` the response if the ``lang``
-parameter is passed is an object only containing that translation is returned.
+In the experimental :ref:`v5 API <api-experimental-v5>` the response if the ``lang`` parameter is passed
+is an object only containing that translation is returned.
 
 .. code-block:: json
 
@@ -261,6 +259,17 @@ The downside of using the `v3` API is, of course, no new cool features!
 The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 
 
+.. _api-experimental-v5:
+
+----------------------------------------
+Extra-Experimental/Future-default v5 API
+----------------------------------------
+
+The experimental `v5` API will eventually become the new default API when the
+current default, `v4`, is frozen and the stable `v3`  deprecated.  Any reference
+to v5 specific behavior/properties/endpoints will be explicit in these docs.
+
+
 ----------------
 v4 API changelog
 ----------------
@@ -293,7 +302,7 @@ v4 API changelog
 * 2018-11-22: added ``score`` parameter to the ratings API list endpoint.
 * 2019-01-10: added ``release_notes`` and ``license`` (except ``license.text``) to search API results ``current_version`` objects.
 * 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
-* 2019-01-16: removed /api/{v3,v4,v4dev}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
+* 2019-01-16: removed /api/{v3,v4,v5}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
 * 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
 * 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
-
+* 2019-05-09: renamed the experimental `v4dev` api to `v5` (and updated references everywhere)

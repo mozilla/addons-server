@@ -87,7 +87,7 @@ class DiscoveryTestMixin(object):
 class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
     def setUp(self):
         super(TestDiscoveryViewList, self).setUp()
-        self.url = reverse_ns('discovery-list', api_version='v4dev')
+        self.url = reverse_ns('discovery-list', api_version='v5')
         self.addons = []
 
         # This one should not appear anywhere, position isn't set.
@@ -145,7 +145,7 @@ class TestDiscoveryViewList(DiscoveryTestMixin, TestCase):
                 self._check_disco_addon(result, discopane_items[i])
 
     @override_settings(DRF_API_GATES={
-        'v4dev': ('l10n_flat_input_output',)})
+        'v5': ('l10n_flat_input_output',)})
     def test_list_flat_output(self):
         response = self.client.get(self.url, {'lang': 'en-US'})
         assert response.data
@@ -285,7 +285,7 @@ class TestDiscoveryRecommendations(DiscoveryTestMixin, TestCase):
         # If no recommendations then results should be as before - tests from
         # the parent class check this.
         self.get_disco_recommendations_mock.return_value = []
-        self.url = reverse_ns('discovery-list', api_version='v4dev')
+        self.url = reverse_ns('discovery-list', api_version='v5')
 
     def test_recommendations(self):
         author = user_factory()

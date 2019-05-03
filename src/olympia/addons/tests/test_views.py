@@ -44,12 +44,12 @@ class TestStatus(TestCase):
         self.file = self.version.all_files[0]
         assert self.addon.status == amo.STATUS_APPROVED
         self.url = reverse_ns(
-            'addon-detail', api_version='v4dev', kwargs={'pk': self.addon.pk})
+            'addon-detail', api_version='v5', kwargs={'pk': self.addon.pk})
 
         self.persona = Addon.objects.get(id=15663)
         assert self.persona.status == amo.STATUS_APPROVED
         self.persona_url = reverse_ns(
-            'addon-detail', api_version='v4dev',
+            'addon-detail', api_version='v5',
             kwargs={'pk': self.persona.pk})
 
     def test_incomplete(self):
@@ -405,7 +405,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
 
     def _set_tested_url(self, param):
         self.url = reverse_ns(
-            'addon-detail', api_version='v4dev', kwargs={'pk': param})
+            'addon-detail', api_version='v5', kwargs={'pk': param})
 
     def test_detail_url_with_reviewers_in_the_url(self):
         self.addon.update(slug='something-reviewers')
@@ -480,7 +480,7 @@ class TestAddonViewSetDetail(AddonAndVersionViewSetDetailMixin, TestCase):
         assert result['name'] == {'en-US': u'My Addôn, mine'}
 
         overridden_api_gates = {
-            'v4dev': ('l10n_flat_input_output',)}
+            'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             response = self.client.get(self.url, {'lang': 'en-US'})
             assert response.status_code == 200
@@ -1826,7 +1826,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
-        self.url = reverse_ns('addon-autocomplete', api_version='v4dev')
+        self.url = reverse_ns('addon-autocomplete', api_version='v5')
 
     def tearDown(self):
         super(TestAddonAutoCompleteSearchView, self).tearDown()
@@ -1895,7 +1895,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
         # And repeat with v3-style flat output when lang is specified:
         overridden_api_gates = {
-            'v4dev': ('l10n_flat_input_output',)}
+            'v5': ('l10n_flat_input_output',)}
         with override_settings(DRF_API_GATES=overridden_api_gates):
             data = self.perform_search(self.url, {'q': 'foobar', 'lang': 'fr'})
             assert data['results'][0]['name'] == 'foobar'
