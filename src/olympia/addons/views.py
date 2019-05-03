@@ -282,7 +282,7 @@ class AddonVersionViewSet(AddonChildMixin, RetrieveModelMixin,
                 # To see all listed versions (not just public ones) you need to
                 # be add-on author or reviewer.
                 self.permission_classes = [AnyOf(
-                    AllowReviewer, AllowAddonAuthor)]
+                    AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor)]
             # When listing, we can't use AllowRelatedObjectPermissions() with
             # check_permissions(), because AllowAddonAuthor needs an author to
             # do the actual permission check. To work around that, we call
