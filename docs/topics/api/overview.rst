@@ -293,5 +293,7 @@ v4 API changelog
 * 2018-11-22: added ``score`` parameter to the ratings API list endpoint.
 * 2019-01-10: added ``release_notes`` and ``license`` (except ``license.text``) to search API results ``current_version`` objects.
 * 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
-* 2019-01-16: Removed /api/{v3,v4,v4dev}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
-* 2019-04-11: Removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
+* 2019-01-16: removed /api/{v3,v4,v4dev}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
+* 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
+* 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
+
