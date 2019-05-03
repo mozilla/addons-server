@@ -210,8 +210,12 @@ class AbuseReport(ModelBase):
     @property
     def type(self):
         with translation.override(settings.LANGUAGE_CODE):
-            type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type])
-                     if self.addon else 'User' if self.user else 'Addon')
+            if self.addon and self.addon.type in amo.ADDON_TYPE:
+                type_ = (translation.ugettext(amo.ADDON_TYPE[self.addon.type]))
+            elif self.user:
+                type_ = 'User'
+            else:
+                type_ = 'Addon'
         return type_
 
     def __str__(self):

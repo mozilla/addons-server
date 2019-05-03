@@ -141,6 +141,11 @@ class TestAbuse(TestCase):
             u'[Extension] Abuse Report for Delicious Bookmarks')
         assert 'addon/a3615' in mail.outbox[0].body
 
+    def test_type_unknown_addon_type(self):
+        report = AbuseReport(addon_id=3615)
+        report.addon.type = -42  # Obviously that type isn't valid.
+        assert report.type == 'Addon'  # Doesn't fail.
+
     def test_addon_fr(self):
         with self.activate(locale='fr'):
             report = AbuseReport(addon_id=3615)
