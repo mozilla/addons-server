@@ -32,6 +32,7 @@ from olympia.applications.models import AppVersion
 from olympia.bandwagon.models import Collection, FeaturedCollection
 from olympia.constants.categories import CATEGORIES, CATEGORIES_BY_ID
 from olympia.devhub.models import RssKey
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import File
 from olympia.files.tests.test_models import UploadTest
 from olympia.files.utils import Extractor, parse_addon
@@ -1543,6 +1544,28 @@ class TestAddonModels(TestCase):
         assert addons[0].current_previews == [pa, pb]
         assert addons[1].current_previews == []
         assert addons[2].current_previews == [pc]
+
+    def test_is_recommended(self):
+        addon = addon_factory()
+        # default case - no discovery item so not recommended
+        assert not addon.is_recommended
+
+        addon.current_version.update(recommendation_approved=True)
+        disco = DiscoveryItem(addon=addon, recommendable=True)
+        del addon.is_recommended
+        # It's recommendable; and the latest version is approved too.
+        assert addon.is_recommended
+
+        disco.update(recommendable=False)
+        del addon.is_recommended
+        # we revoked the status, so now the addon shouldn't be recommended
+        assert not addon.is_recommended
+
+        addon.current_version.update(recommendation_approved=False)
+        disco.update(recommendable=True)
+        del addon.is_recommended
+        # similarly if the current_version wasn't reviewed for recommended
+        assert not addon.is_recommended
 
 
 class TestShouldRedirectToSubmitFlow(TestCase):
