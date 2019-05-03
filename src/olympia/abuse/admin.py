@@ -170,6 +170,7 @@ class AbuseReportAdmin(admin.ModelAdmin):
     search_fields = (
         'addon__name__localized_string', 'addon__slug', 'addon_name', 'guid',
         'message')
+    view_on_site = False  # Abuse reports have no public page to link to.
 
     def get_actions(self, request):
         actions = super().get_actions(request)
