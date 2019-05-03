@@ -28,7 +28,7 @@ from django.conf import urls as django_urls
 from django.utils import translation
 from django.utils.encoding import force_str, force_text
 
-import mock
+from unittest import mock
 import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse

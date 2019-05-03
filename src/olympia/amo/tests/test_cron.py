@@ -2,7 +2,7 @@ import datetime
 
 from datetime import timedelta
 
-import mock
+from unittest import mock
 
 from olympia.amo.celery import task
 from olympia.amo.cron import gc

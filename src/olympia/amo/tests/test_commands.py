@@ -7,7 +7,7 @@ from django.core.management import call_command
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import pytest
 import six
 

@@ -3,7 +3,7 @@ import os
 from django.conf import settings
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import six
 
 from olympia.amo.utils import from_string

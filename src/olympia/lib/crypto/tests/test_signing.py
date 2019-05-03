@@ -12,7 +12,7 @@ from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 from django.utils.encoding import force_bytes, force_text
 
-import mock
+from unittest import mock
 import pytest
 import responses
 import pytz

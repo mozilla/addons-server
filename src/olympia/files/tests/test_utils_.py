@@ -13,7 +13,7 @@ from django.conf import settings
 
 import flufl.lock
 import lxml
-import mock
+from unittest import mock
 import pytest
 import six
 

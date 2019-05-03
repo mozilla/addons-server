@@ -1,6 +1,6 @@
 import os
 import pytest
-from mock import Mock
+from unittest.mock import Mock
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage

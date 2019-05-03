@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
-import mock
+from unittest import mock
 import time
 
 from base64 import urlsafe_b64decode, urlsafe_b64encode

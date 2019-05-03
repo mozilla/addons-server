@@ -3,7 +3,7 @@ from contextlib import contextmanager
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
-import mock
+from unittest import mock
 import pytest
 
 from olympia import amo

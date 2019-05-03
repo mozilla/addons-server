@@ -4,7 +4,7 @@ from datetime import datetime
 
 from django.core import mail
 
-import mock
+from unittest import mock
 import six
 
 from olympia import amo

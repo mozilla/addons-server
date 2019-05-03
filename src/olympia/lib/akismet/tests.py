@@ -8,7 +8,7 @@ from django.contrib import admin
 from django.test import RequestFactory
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import pytest
 import responses
 import six

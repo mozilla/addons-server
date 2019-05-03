@@ -5,7 +5,7 @@ from django.conf import settings
 from django.db import connection
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import six
 from six import StringIO
 from six.moves.urllib_parse import urlencode

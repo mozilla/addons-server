@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.test import RequestFactory
 
-import mock
+from unittest import mock
 import pytest
 from waffle.testutils import override_switch
 

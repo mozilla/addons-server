@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.core.management import call_command
 
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.addons.models import Addon

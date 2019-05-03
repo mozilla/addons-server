@@ -3,7 +3,7 @@ import json
 
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import six
 
 from olympia import amo

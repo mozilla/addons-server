@@ -4,7 +4,7 @@ from django.core.paginator import (
 import pytest
 import six
 
-from mock import MagicMock, Mock
+from unittest.mock import MagicMock, Mock
 
 from olympia.addons.models import Addon
 from olympia.amo.pagination import ESPaginator

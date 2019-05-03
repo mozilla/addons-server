@@ -10,7 +10,7 @@ from django.test.utils import override_settings
 from django.urls import resolve
 from django.utils import translation
 
-import mock
+from unittest import mock
 import responses
 from freezegun import freeze_time
 from rest_framework.response import Response

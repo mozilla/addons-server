@@ -14,7 +14,7 @@ import pytest
 import six
 
 from freezegun import freeze_time
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 
 from olympia import amo
 from olympia.amo.tests import TestCase

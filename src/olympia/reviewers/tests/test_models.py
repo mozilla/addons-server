@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.core import mail
 
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.abuse.models import AbuseReport

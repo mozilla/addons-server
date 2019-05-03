@@ -2,7 +2,7 @@ import datetime
 
 from django.core.management import call_command
 
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.amo.tests import TestCase

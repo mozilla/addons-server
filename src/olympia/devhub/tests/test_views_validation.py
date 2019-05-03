@@ -5,7 +5,7 @@ import shutil
 from django.core.files.storage import default_storage as storage
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import waffle
 
 from pyquery import PyQuery as pq

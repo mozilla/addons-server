@@ -5,7 +5,7 @@ from django.test.client import RequestFactory
 import pytest
 import six
 
-from mock import patch
+from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.middleware import (

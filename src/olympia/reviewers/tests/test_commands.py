@@ -6,7 +6,7 @@ from django.core import mail
 from django.core.management import call_command
 from django.test.testcases import TransactionTestCase
 
-import mock
+from unittest import mock
 import six
 
 from olympia import amo

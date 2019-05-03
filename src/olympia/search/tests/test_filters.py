@@ -7,7 +7,7 @@ from django.utils import translation
 import six
 
 from elasticsearch_dsl import Search
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 from rest_framework import serializers
 
 from olympia import amo

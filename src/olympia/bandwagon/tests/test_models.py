@@ -1,7 +1,7 @@
 import random
 import uuid
 
-import mock
+from unittest import mock
 import six
 
 from olympia import amo, core

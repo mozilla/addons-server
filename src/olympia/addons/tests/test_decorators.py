@@ -1,6 +1,6 @@
 from django import http
 
-import mock
+from unittest import mock
 
 from six.moves.urllib_parse import quote
 

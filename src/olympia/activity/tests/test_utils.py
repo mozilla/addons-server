@@ -9,7 +9,7 @@ from email.utils import formataddr
 from django.conf import settings
 from django.core import mail
 
-import mock
+from unittest import mock
 import pytest
 
 from waffle.testutils import override_switch

@@ -1,8 +1,9 @@
+from unittest import mock
+
 from django.conf import settings
 from django.test.client import RequestFactory
 from django.test.utils import override_settings
 
-import mock
 from freezegun import freeze_time
 from rest_framework.test import APIRequestFactory, force_authenticate
 

@@ -3,7 +3,7 @@ from uuid import UUID
 
 import six
 
-from mock import Mock
+from unittest.mock import Mock
 from pyquery import PyQuery as pq
 
 from olympia import amo, core

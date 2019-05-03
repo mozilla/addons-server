@@ -6,7 +6,7 @@ from django.contrib.messages.storage import (
 from django.test import RequestFactory
 from django.utils.dateformat import DateFormat
 
-import mock
+from unittest import mock
 import six
 
 from pyquery import PyQuery as pq

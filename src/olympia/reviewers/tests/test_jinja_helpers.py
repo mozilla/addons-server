@@ -2,7 +2,7 @@
 import pytest
 
 from django.test.utils import override_settings
-from mock import Mock
+from unittest.mock import Mock
 
 from olympia import amo
 from olympia.addons.models import Addon

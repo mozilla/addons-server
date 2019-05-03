@@ -6,7 +6,7 @@ import time
 from django.core.management.base import CommandError
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.addons import cron

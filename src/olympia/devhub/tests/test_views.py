@@ -12,7 +12,7 @@ from django.test.utils import override_settings
 from django.utils.encoding import force_text
 from django.utils.translation import trim_whitespace
 
-import mock
+from unittest import mock
 import pytest
 import responses
 

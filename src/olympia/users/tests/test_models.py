@@ -10,7 +10,7 @@ from django.contrib.auth import get_user
 from django.core.files.storage import default_storage as storage
 from django.test.client import RequestFactory
 
-import mock
+from unittest import mock
 import pytest
 
 from six import text_type

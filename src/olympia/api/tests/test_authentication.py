@@ -11,7 +11,7 @@ from django.urls import reverse
 from django.utils.encoding import force_bytes
 
 import jwt
-import mock
+from unittest import mock
 import six
 
 from freezegun import freeze_time

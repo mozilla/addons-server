@@ -3,7 +3,7 @@ import uuid
 
 from django.core.management import call_command
 
-from mock import ANY, patch
+from unittest.mock import ANY, patch
 from six import StringIO
 
 from olympia.amo.tests import TestCase

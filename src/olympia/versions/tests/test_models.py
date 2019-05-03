@@ -10,7 +10,7 @@ from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.test.testcases import TransactionTestCase
 
-import mock
+from unittest import mock
 import pytest
 import six
 

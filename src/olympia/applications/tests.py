@@ -1,7 +1,7 @@
 from django.core.management import call_command
 from django.db import IntegrityError
 
-import mock
+from unittest import mock
 
 from olympia import amo
 from olympia.amo.templatetags.jinja_helpers import url

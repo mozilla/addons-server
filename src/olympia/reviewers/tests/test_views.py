@@ -14,12 +14,12 @@ from django.core.files import temp
 from django.core.files.base import File as DjangoFile
 from django.test.utils import override_settings
 
-import mock
+from unittest import mock
 import six
 
 from freezegun import freeze_time
 from lxml.html import HTMLParser, fromstring
-from mock import Mock, patch
+from unittest.mock import Mock, patch
 from pyquery import PyQuery as pq
 from six.moves.urllib_parse import parse_qs
 

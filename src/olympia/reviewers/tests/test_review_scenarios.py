@@ -3,7 +3,7 @@
 For different add-on and file statuses, test reviewing them, and make sure then
 end up in the correct state.
 """
-import mock
+from unittest import mock
 import pytest
 
 from olympia import amo

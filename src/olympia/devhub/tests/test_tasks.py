@@ -12,7 +12,7 @@ from django.conf import settings
 from django.core import mail
 from django.core.files.storage import default_storage as storage
 
-import mock
+from unittest import mock
 import pytest
 
 from PIL import Image

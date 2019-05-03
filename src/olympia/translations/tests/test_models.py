@@ -14,7 +14,7 @@ from django.utils.functional import lazy
 import jinja2
 import pytest
 
-from mock import patch
+from unittest.mock import patch
 from pyquery import PyQuery as pq
 
 from olympia.amo.models import use_primary_db

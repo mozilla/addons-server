@@ -8,7 +8,7 @@ from django.test.utils import override_settings
 
 import six
 
-from mock import patch
+from unittest.mock import patch
 from rest_framework.fields import empty
 from waffle.testutils import override_switch
 

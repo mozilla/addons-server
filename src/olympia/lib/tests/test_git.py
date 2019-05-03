@@ -4,7 +4,7 @@ import zipfile
 
 import pytest
 import pygit2
-import mock
+from unittest import mock
 
 from django.core.files import temp
 from django.core.files.base import File as DjangoFile
