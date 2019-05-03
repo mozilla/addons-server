@@ -22,7 +22,7 @@ class TestAbuse(TestCase):
 
     @classmethod
     def setUpTestData(cls):
-        cls.addon1 = addon_factory(guid='@guid1')
+        cls.addon1 = addon_factory(guid='@guid1', name='Neo')
         cls.addon2 = addon_factory(guid='@guid2')
         cls.addon3 = addon_factory(guid='@guid3')
         cls.user = user_factory()
@@ -48,7 +48,7 @@ class TestAbuse(TestCase):
             guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo')
         # This is one against a user.
         AbuseReport.objects.create(
-            user=user_factory(), message='Eheheheh')
+            user=user_factory(), message='Ehehehehe')
 
     def setUp(self):
         self.client.login(email=self.user.email)
@@ -78,32 +78,134 @@ class TestAbuse(TestCase):
         expected_length = AbuseReport.objects.count()
         assert doc('#result_list tbody tr').length == expected_length
 
-    def test_search(self):
-        response = self.client.get(
-            self.list_url, {'q': 'Mysterious'}, follow=True)
-        assert response.status_code == 200
-        doc = pq(response.content)
-        assert '@unknown_guid' in doc('#result_list').text()
-
     def test_list_filter_by_type(self):
         response = self.client.get(
             self.list_url, {'type': 'addon'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 5
-        assert 'Eheheheh' not in doc('#result_list').text()
+        assert 'Ehehehehe' not in doc('#result_list').text()
 
         response = self.client.get(
             self.list_url, {'type': 'user'}, follow=True)
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
-        'Eheheheh' in doc('#result_list').text()
+        'Ehehehehe' in doc('#result_list').text()
 
         # Type filter should be selected. The rest shouldn't.
         lis = doc('#changelist-filter li.selected')
         assert len(lis) == 5
         assert lis.text().split() == ['Users', 'All', 'All', 'All', 'All']
+
+    def test_search_deactivated_if_not_filtering_by_type(self):
+        response = self.client.get(
+            self.list_url, {'q': 'Mysterious'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert not doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 6  # No searching
+
+    def test_search_user(self):
+        response = self.client.get(
+            self.list_url, {'q': 'Ehe', 'type': 'user'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Eheheheh' in doc('#result_list').text()
+
+        user = AbuseReport.objects.get(message='Ehehehehe').user
+        response = self.client.get(
+            self.list_url, {'q': user.username[:4], 'type': 'user'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Ehehehehe' in doc('#result_list').text()
+
+        user = AbuseReport.objects.get(message='Ehehehehe').user
+        response = self.client.get(
+            self.list_url, {'q': user.email[:3], 'type': 'user'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Ehehehehe' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': str(user.pk), 'type': 'user'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Ehehehehe' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'user'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 0
+        assert 'Ehehehehe' not in doc('#result_list').text()
+
+    def test_search_addon(self):
+        response = self.client.get(
+            self.list_url, {'q': 'sterious', 'type': 'addon'}, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 1
+        assert 'Mysterious' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': str(self.addon1.pk), 'type': 'addon'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 2
+        assert 'Neo' in doc('#result_list').text()
+
+        response = self.client.get(
+            self.list_url, {'q': 'NotGoingToFindAnything', 'type': 'addon'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 0
+        assert 'Néo' not in doc('#result_list').text()
+        assert 'Mysterious' not in doc('#result_list').text()
+
+    def test_search_multiple_addons(self):
+        response = self.client.get(
+            self.list_url,
+            {'q': '%s,%s' % (self.addon1.pk, self.addon2.pk), 'type': 'addon'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 3
+        assert 'Neo' in doc('#result_list').text()
+
+    def test_search_multiple_users(self):
+        user1 = AbuseReport.objects.get(message='Ehehehehe').user
+        user2 = user_factory()
+        AbuseReport.objects.create(
+            user=user2, message='One more')
+
+        response = self.client.get(
+            self.list_url,
+            {'q': '%s,%s' % (user1.pk, user2.pk), 'type': 'user'},
+            follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#changelist-search')
+        assert doc('#result_list tbody tr').length == 2
 
     def test_filter_by_state(self):
         response = self.client.get(
