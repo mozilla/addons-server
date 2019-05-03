@@ -377,6 +377,40 @@ def test_extract_and_commit_source_from_version_no_dotgit_clash(settings):
 
 
 @pytest.mark.django_db
+def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
+    addon = addon_factory(
+        file_kw={'filename': 'webextension_no_id.xpi'},
+        version_kw={'version': '0.1'})
+
+    # Generate source file
+    source = temp.NamedTemporaryFile(suffix='.zip', dir=settings.TMP_PATH)
+    with zipfile.ZipFile(source, 'w') as zip_file:
+        zip_file.writestr('manifest.json', '{}')
+        zip_file.writestr('.gitattributes', '')
+        zip_file.writestr('.gitignore', '')
+        zip_file.writestr('.gitmodules', '')
+    source.seek(0)
+    addon.current_version.source = DjangoFile(source)
+    addon.current_version.save()
+
+    with mock.patch('olympia.lib.git.uuid.uuid4') as uuid4_mock:
+        uuid4_mock.return_value = mock.Mock(
+            hex='b236f5994773477bbcd2d1b75ab1458f')
+        repo = AddonGitRepository.extract_and_commit_source_from_version(
+            addon.current_version)
+
+    # Verify via subprocess to make sure the repositories are properly
+    # read by the regular git client
+    output = _run_process('git ls-tree -r --name-only listed', repo)
+    assert set(output.split()) == {
+        'extracted/manifest.json',
+        'extracted/.gitattributes.b236f599',
+        'extracted/.gitignore.b236f599',
+        'extracted/.gitmodules.b236f599',
+    }
+
+
+@pytest.mark.django_db
 @pytest.mark.parametrize('filename, expected', [
     ('webextension_no_id.xpi', {'README.md', 'manifest.json'}),
     ('webextension_no_id.zip', {'README.md', 'manifest.json'}),

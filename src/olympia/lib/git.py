@@ -326,12 +326,19 @@ class AddonGitRepository(object):
             # Make sure the index is up to date
             worktree.repo.index.read()
 
+            # For security reasons git doesn't allow adding .git subdirectories
+            # anywhere in the repository. So we're going to rename them and add
+            # a random postfix.
+            # In order to disable the effect of the special git config files,
+            # we also have to postfix them.
+            files_to_rename = (
+                '.git',
+                '.gitattributes',
+                '.gitignore',
+                '.gitmodules',
+            )
             for filename in files:
-                if os.path.basename(filename) == '.git':
-                    # For security reasons git doesn't allow adding
-                    # .git subdirectories anywhere in the repository.
-                    # So we're going to rename them and add a random
-                    # postfix
+                if os.path.basename(filename) in files_to_rename:
                     renamed = '{}.{}'.format(filename, uuid.uuid4().hex[:8])
                     shutil.move(
                         os.path.join(worktree.path, filename),
