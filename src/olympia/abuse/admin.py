@@ -214,7 +214,7 @@ class AbuseReportAdmin(admin.ModelAdmin):
     def target_name(self, obj):
         name = obj.target.name if obj.target else obj.addon_name
         return '%s %s' % (name, obj.addon_version or '')
-    target_name.short_description = ugettext('Target')
+    target_name.short_description = ugettext('User / Add-on')
 
     def distribution(self, obj):
         return obj.get_addon_signature_display() if obj.addon_signature else ''
