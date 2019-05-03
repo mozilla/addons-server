@@ -6,7 +6,7 @@ from django.utils.encoding import python_2_unicode_compatible
 import olympia.core.logger
 
 from olympia import activity, amo
-from olympia.amo.fields import ManyToManyField, PositiveAutoField
+from olympia.amo.fields import PositiveAutoField
 from olympia.amo.models import ModelBase
 
 
@@ -19,7 +19,7 @@ class Group(ModelBase):
     id = PositiveAutoField(primary_key=True)
     name = models.CharField(max_length=255, default='')
     rules = models.TextField()
-    users = ManyToManyField(
+    users = models.ManyToManyField(
         'users.UserProfile', through='GroupUser', related_name='groups')
     notes = models.TextField(blank=True)
 
