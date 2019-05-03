@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-03 14:03+0000\n"
+"PO-Revision-Date: 2019-05-03 23:49+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3648,15 +3648,15 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} přidá podporu pro for
 
 #. editorial content for the discovery pane.
 msgid "Enjoy ePub files right in Firefox—increase font size, page dimensions, and more."
-msgstr ""
+msgstr "Dopřejte si soubory ePub přímo ve Firefoxu – zvětšete velikost písma, rozměry stránky apod."
 
 #. editorial content for the discovery pane.
 msgid "Elevate your YouTube experience {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete přehrávání videí na YouTube {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vylepšete přehrávání videí na YouTube {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos by default in the highest quality, turn off annotations, and more."
-msgstr "Přehrává videa v nejvyšší kvalitě, vypne poznámky a další rušivé prvky."
+msgstr "Přehrávejte videa standardně v nejvyšší kvalitě, vypněte poznámky apod."
 
 #. editorial content for the discovery pane.
 msgid "Track the trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
