@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 11:47+0000\n"
+"PO-Revision-Date: 2019-03-18 08:54+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4543,27 +4543,24 @@ msgid "With a mouse click you can watch videos in full screen glory."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} pro vás uloží vybraný text k přečtení později"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vyhledávejte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Cut through the nonsense {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Poslouchejte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A clever extension that helps you quickly understand what you’re agreeing to."
@@ -4667,7 +4664,6 @@ msgstr "Nemůžete odeslat doplněk s GUID končícím %s"
 msgid "You cannot submit a Mozilla Signed Extension"
 msgstr "Nemůžete nahrát rozšíření podepsané Mozillou"
 
-#, fuzzy
 msgid "Unsupported file type, please upload a supported file {extensions}."
 msgstr "Nepodporovaný typ souboru. Nahrajte prosím podporovaný soubor typu {extensions}."
 
