@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 21:46+0000\n"
+"PO-Revision-Date: 2019-05-04 22:11+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3375,7 +3375,7 @@ msgstr "Nastavte si stránku otevíranou v nové panelu."
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Zpětné vyhledávání obrázků {start_sub_heading}díky {addon_name}{end_sub_heading}"
+msgstr "Reverzní vyhledávání obrázků {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "See an interesting picture on the web and want to learn more about it? Try this image search tool."
@@ -3503,7 +3503,7 @@ msgstr "Vyberte text, nebo celou stránku, a nechte si ho okamžitě přeložit.
 
 #. editorial content for the discovery pane.
 msgid "Tap academic wisdom {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Napíchněte se na akademickou moudrost {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
+msgstr "Napíchněte se na akademické znalosti {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy free access to 10+ million research papers."
