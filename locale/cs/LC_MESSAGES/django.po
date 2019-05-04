@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 10:51+0000\n"
+"PO-Revision-Date: 2019-05-04 11:07+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3680,19 +3680,19 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám dá lepší kontro
 
 #. editorial content for the discovery pane.
 msgid "Enhance your viewing experience by adjusting video speed and more."
-msgstr "Nastavte si rychlost přehrávání videa."
+msgstr "Nastavte si rychlost přehrávání videa a další věci."
 
 #. editorial content for the discovery pane.
 msgid "Browse securely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Brouzdejte bezpečně {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Add encrypted security to any site that supports HTTPS."
-msgstr ""
+msgstr "Přidejte šifrované zabezpečení každému webu, který podporuje protokol HTTPS."
 
 #. editorial content for the discovery pane.
 msgid "Shop & save {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Nakupujte a ušetřete {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
