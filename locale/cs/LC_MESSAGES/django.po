@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 17:10+0000\n"
+"PO-Revision-Date: 2019-05-04 17:30+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3784,7 +3784,7 @@ msgstr "Dynamická navigace {start_sub_heading}díky {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Provádějte zavření panelů, přechod na předchozí stránku, aktualizaci stránky a další činnosti pomocí gest myši."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3792,11 +3792,11 @@ msgstr "{start_sub_heading}{addon_name}{end_sub_heading} přidá obrázky k výs
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr "Užijte si náhledy ke každému výsledku ve vyhledávači."
+msgstr "Dopřejte si ke každému výsledku ve vyhledávači náhled."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zmírněte oční napětí {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
@@ -3804,35 +3804,35 @@ msgstr "Ulevte svým očím na webu ztmavením jeho zobrazení."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zaražte vyskakovací okna {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr "Automaticky blokovat všechna vyskakovací okna, a poté vybrat, která z nich chcete otevřít."
+msgstr "Zablokujte automaticky všechna vyskakovací okna a poté se rozhodněte, které z nich chcete otevřít."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přizpůsobte si své oblíbené webové stránky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Přizpůsobte si své oblíbené webové stránky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Změňte vzhled libovolné webové stránky! Zaměňte barvy, pozadí stránek a další prvky."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Přizpůsobte si stránku nového panelu {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr "Upravte si počet dlaždice na stránce nového panelu, nebo její pozadí."
+msgstr "Upravte si stránku nového panelu, aby zobrazovala vámi požadovaný počet dlaždic, obrázek na pozadí a další věci."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Spravujte svá hesla {start_sub_heading}s {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Ukládejte hesla bezpečně a mějte k nim přístup na více zařízeních."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
