@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 20:12+0000\n"
+"PO-Revision-Date: 2019-05-04 21:46+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3868,11 +3868,11 @@ msgstr "Přistupujte k nedávno zavřeným panelům klepnutím pravým tlačítk
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám pomůže podnítit produktivitu"
 
 #. editorial content for the discovery pane.
 msgid "Modify your new tab page to display a beautiful background, set your daily focus, and more."
-msgstr "Nastavte si pozadí nového panelu, nechte si zobrazit své denní cíle nebo další informace."
+msgstr "Pozměňte si stránku nového panelu, aby zobrazovala nádherné pozadí, nechte si zobrazovat své denní cíle a mnoho dalšího."
 
 #. editorial content for the discovery pane.
 msgid "Increase productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
