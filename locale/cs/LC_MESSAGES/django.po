@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 11:07+0000\n"
+"PO-Revision-Date: 2019-05-04 11:28+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3696,19 +3696,19 @@ msgstr "Nakupujte a ušetřete {start_sub_heading}s {addon_name}{end_sub_heading
 
 #. editorial content for the discovery pane.
 msgid "Get the best coupons automatically applied to your shopping cart at checkout."
-msgstr ""
+msgstr "Získejte nejlepší kupóny, které budou na pokladně automaticky uplatněné na váš nákupní košík."
 
 #. editorial content for the discovery pane.
 msgid "Improve Reddit {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete Reddit {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vylepšete Reddit {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the way you surf Reddit by using tags and more."
-msgstr ""
+msgstr "Změňte způsob, jakým surfujete po Redditu pomocí štítků a mnoho dalšího."
 
 #. editorial content for the discovery pane.
 msgid "Capture the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vyfotografujte si daný web {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Screenshot webpages, make edits, and share."
@@ -3716,19 +3716,19 @@ msgstr "Vytvářejte snímky obrazovky, upravujte je a sdílejte."
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "Vynikající nástroj pro stahování dostupný pouze pro Windows."
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Poznejte, kdo vás sleduje, {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Poznejte, kdo vás sleduje, {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find out who's tracking you and where they may be sharing your information."
-msgstr "Zjistěte, kdo vás na internetu sleduje a s kým sdílí vaše informace."
+msgstr "Zjistěte, kdo vás na internetu sleduje a s kým možná sdílí vaše údaje."
 
 #. editorial content for the discovery pane.
 msgid "Surf anonymously {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surfujte anonymně {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
