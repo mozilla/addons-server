@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-04 11:28+0000\n"
+"PO-Revision-Date: 2019-05-04 11:47+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3732,19 +3732,19 @@ msgstr "Surfujte anonymně {start_sub_heading}pomocí {addon_name}{end_sub_headi
 
 #. editorial content for the discovery pane.
 msgid "Browse the web with disguised identity—even appear as if you're browsing from another country."
-msgstr ""
+msgstr "Procházejte web se změněnou identitou – dokonce se jevte, že brouzdáte z jiné země."
 
 #. editorial content for the discovery pane.
 msgid "Access your favorite sites, recently closed tabs, and more—all from a gorgeous tile layout."
-msgstr ""
+msgstr "Přistupujte ke svým oblíbeným stránkám, nedávno zavřeným panelům a dalším věcem – to vše z nádherného rozložení dlaždic."
 
 #. editorial content for the discovery pane.
 msgid "Set your homepage {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní nastavit si domovskou stránku."
 
 #. editorial content for the discovery pane.
 msgid "Designate a custom home page for your new tabs."
-msgstr "Nastavte si vlastní stránku v novém panelu."
+msgstr "Určete si pro nové panely vlastní domovskou stránku."
 
 #. editorial content for the discovery pane.
 msgid "List your tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
