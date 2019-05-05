@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-05 05:49+0000\n"
+"PO-Revision-Date: 2019-05-05 06:08+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4012,11 +4012,11 @@ msgstr "Přejděte přímo na stránku, na kterou chcete přistoupit, aniž byst
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "WhatsApp ve Firefoxu {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
-msgstr ""
+msgstr "Přistupujte k aplikaci WhatsApp z nástrojové lišty Firefoxu a podle symbolu na tlačítku poznejte, jestli máte nepřečtená vlákna."
 
 #. editorial content for the discovery pane.
 msgid "Translate to/from German {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4028,11 +4028,11 @@ msgstr "Expertní německé překlady z a do angličtiny, francouzštiny, špan�
 
 #. editorial content for the discovery pane.
 msgid "Create a website block list {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vytvořte si seznam pro blokování stránek {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vytvořte si seznam pro blokování stránek {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Omezte Firefoxu přístup k webům, které mu určíte."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
