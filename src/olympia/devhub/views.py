@@ -1183,7 +1183,6 @@ def submit_addon(request):
         request=request,
         template='devhub/addons/submit/start.html',
         next_step='devhub.submit.distribution',
-        render_captcha=waffle.switch_is_active('addon-submission-captcha')
     )
 
 
@@ -1193,7 +1192,8 @@ def submit_version_agreement(request, addon_id, addon):
         request=request,
         template='devhub/addons/submit/start.html',
         next_step=reverse('devhub.submit.version', args=(addon.slug,)),
-        submit_page='version')
+        submit_page='version',
+    )
 
 
 @transaction.atomic
@@ -1661,15 +1661,18 @@ def docs(request, doc_name=None):
 
 @login_required
 def api_key_agreement(request):
-    next_step = reverse('devhub.api_key')
-    return render_agreement(request, 'devhub/api/agreement.html', next_step)
+    return render_agreement(
+        request=request,
+        template='devhub/api/agreement.html',
+        next_step='devhub.api_key',
+    )
 
 
 def render_agreement(
-        request, template, next_step, render_captcha=False, **extra_context):
+        request, template, next_step, **extra_context):
     form = forms.AgreementForm(
-        request.POST if request.method == 'POST' else None,
-        render_captcha=render_captcha)
+        request.POST if request.method == 'POST' else None
+    )
     if request.method == 'POST' and form.is_valid():
         # Developer has validated the form: let's update its profile and
         # redirect to next step.

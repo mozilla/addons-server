@@ -17,6 +17,7 @@ import pytest
 import responses
 
 from pyquery import PyQuery as pq
+from six.moves.urllib_parse import urlencode
 from waffle.testutils import override_switch
 
 from olympia import amo, core
@@ -770,11 +771,73 @@ class TestAPIAgreement(TestCase):
         response = self.client.get(reverse('devhub.api_key_agreement'))
         self.assert3xx(response, reverse('devhub.api_key'))
 
-    def test_agreement_unread(self):
+    def test_agreement_unread_captcha_inactive(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.api_key_agreement'))
         assert response.status_code == 200
         assert 'agreement_form' in response.context
+        form = response.context['agreement_form']
+        assert 'recaptcha' not in form.fields
+        doc = pq(response.content)
+        assert doc('.g-recaptcha') == []
+
+    @override_switch('developer-agreement-captcha', active=True)
+    def test_agreement_unread_captcha_active(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.get(reverse('devhub.api_key_agreement'))
+        assert response.status_code == 200
+        assert 'agreement_form' in response.context
+        form = response.context['agreement_form']
+        assert 'recaptcha' in form.fields
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
+
+    def test_agreement_submit_success(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(reverse('devhub.api_key_agreement'), data={
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.api_key')
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
+
+    @override_switch('developer-agreement-captcha', active=True)
+    def test_agreement_submit_captcha_active_error(self):
+        self.user.update(read_dev_agreement=None)
+        response = self.client.post(reverse('devhub.api_key_agreement'))
+
+        # Captcha is properly rendered
+        doc = pq(response.content)
+        assert doc('.g-recaptcha')
+
+        assert 'recaptcha' in response.context['agreement_form'].errors
+
+    @override_switch('developer-agreement-captcha', active=True)
+    def test_agreement_submit_captcha_active_success(self):
+        self.user.update(read_dev_agreement=None)
+        verify_data = urlencode({
+            'secret': '',
+            'remoteip': '127.0.0.1',
+            'response': 'test',
+        })
+
+        responses.add(
+            responses.GET,
+            'https://www.google.com/recaptcha/api/siteverify?' + verify_data,
+            json={'error-codes': [], 'success': True})
+
+        response = self.client.post(reverse('devhub.api_key_agreement'), data={
+            'g-recaptcha-response': 'test',
+            'distribution_agreement': 'on',
+            'review_policy': 'on',
+        })
+
+        assert response.status_code == 302
+        assert response['Location'] == reverse('devhub.api_key')
+        self.user.reload()
+        self.assertCloseToNow(self.user.read_dev_agreement)
 
     def test_agreement_read_but_too_long_ago(self):
         set_config('last_dev_agreement_change_date', '2018-01-01 12:00')
