@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-03 18:42+0000\n"
+"PO-Revision-Date: 2019-05-05 08:11+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -750,13 +750,11 @@ msgstr "ความคิดเห็นบน {addon} {version}"
 msgid "Auto-Approval confirmed"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} {version} re-enabled."
-msgstr "{addon} {version} ถูกปฏิเสธ"
+msgstr "เปิดใช้งาน {addon} {version} ใหม่แล้ว"
 
-#, fuzzy
 msgid "{addon} {version} disabled."
-msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+msgstr "ปิดใช้งาน {addon} {version} แล้ว"
 
 #, fuzzy
 msgid "{addon} {version} content approved."
@@ -1430,7 +1428,7 @@ msgid "Recent Changes for My Add-ons"
 msgstr "การเปลี่ยนแปลงล่าสุดของส่วนเสริมของฉัน"
 
 msgid "Legacy extensions are no longer supported in Firefox."
-msgstr ""
+msgstr "ไม่รองรับส่วนขยายแบบเก่าใน Firefox อีกต่อไป"
 
 msgid "Add-ons for Thunderbird and SeaMonkey are now listed and maintained on addons.thunderbird.net. You can use the same account to update your add-ons on the new site."
 msgstr ""
@@ -2273,7 +2271,7 @@ msgid "Select a different license."
 msgstr "เลือกสัญญาอนุญาตอื่น"
 
 msgid "More information on Creative Commons licenses"
-msgstr ""
+msgstr "ข้อมูลเพิ่มเติมเกี่ยวกับสัญญาอนุญาต Creative Commons"
 
 msgid "General Tests"
 msgstr "การทดสอบทั่วไป"
@@ -2369,7 +2367,7 @@ msgid "View Statistics"
 msgstr "ดูสถิติ"
 
 msgid "Change the owner of this theme"
-msgstr ""
+msgstr "เปลี่ยนเจ้าของชุดตกแต่งนี้"
 
 msgid "Transfer Ownership"
 msgstr "ถ่ายโอนความเป็นเจ้าของ"
@@ -2493,7 +2491,7 @@ msgid "Submit Version"
 msgstr "ส่งรุ่น"
 
 msgid "Cancel and Disable Version"
-msgstr ""
+msgstr "ยกเลิกแล้วปิดใช้งานรุ่น"
 
 msgid "Describe Version"
 msgstr "อธิบายรุ่น"
