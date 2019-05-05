@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-05 08:46+0000\n"
+"PO-Revision-Date: 2019-05-05 09:51+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4152,15 +4152,15 @@ msgstr "Vymažte mezipaměť prohlížeče klepnutím nebo stiskem klávesy."
 
 #. editorial content for the discovery pane.
 msgid "Highlight text {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zvýrazňujte text {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a highly customizable text highlighter with different colors and save options."
-msgstr "Vychutnejte si vysoce přizpůsobitelný zvýrazňovač textu s různými barvami a možností uložení."
+msgstr "Užívejte vysoce přizpůsobitelný zvýrazňovač textu s různými barvami a možnostmi uložení."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy music from around the world {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Vychutnejte si hudbu z celého světa {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
@@ -4168,7 +4168,7 @@ msgstr "Vyberte si z více než 30 000 rozhlasových stanic z celého světa."
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Poslouchejte videa {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Poslouchejte videa {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -4176,19 +4176,19 @@ msgstr "Ušetřete přenesená data přehráváním pouze zvukové stopy z YouTu
 
 #. editorial content for the discovery pane.
 msgid "Transform text into images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Převeďte text na obrázky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Turn words into beautiful headlines and image overlay text."
-msgstr ""
+msgstr "Proměňte slova v krásné titulky a obrázkový překryvný text."
 
 #. editorial content for the discovery pane.
 msgid "Surf safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Surfujte bezpečně {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Navigate to the secure version of a website if it's available."
-msgstr ""
+msgstr "Přejděte na zabezpečenou verzi webu, pokud je k dispozici."
 
 #. editorial content for the discovery pane.
 msgid "Delete your navigation history {start_sub_heading}with {addon_name}{end_sub_heading}"
