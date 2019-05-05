@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-05 05:10+0000\n"
+"PO-Revision-Date: 2019-05-05 05:28+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3948,7 +3948,7 @@ msgstr "Používejte gesta myši, abyste své úkoly plnili rychleji."
 
 #. editorial content for the discovery pane.
 msgid "Disguise the page {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zakryjte stránku {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Hide portions of the website you're viewing."
@@ -3956,7 +3956,7 @@ msgstr "Skryjte části prohlížené webové stránky."
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Stahujte obrázky {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Stahujte obrázky {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
@@ -3964,15 +3964,15 @@ msgstr "Vyberte jakýkoliv obrázek z webové stránky a stáhněte jej."
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Provádějte autocenzuru {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Omezte přístup k nevhodnému nebo nežádoucímu obsahu pomocí filtru."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Vylepšete nové panely {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Vylepšete nové panely {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
