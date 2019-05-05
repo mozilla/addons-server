@@ -183,7 +183,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
         doc = pq(response.content)
         assert doc('.g-recaptcha') == []
 
-    @override_switch('addon-submission-captcha', active=True)
+    @override_switch('developer-agreement-captcha', active=True)
     def test_read_dev_agreement_captcha_active_error(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
@@ -199,7 +199,7 @@ class TestAddonSubmitAgreementWithPostReviewEnabled(TestSubmitBase):
 
         assert 'recaptcha' in response.context['agreement_form'].errors
 
-    @override_switch('addon-submission-captcha', active=True)
+    @override_switch('developer-agreement-captcha', active=True)
     def test_read_dev_agreement_captcha_active_success(self):
         self.user.update(read_dev_agreement=None)
         response = self.client.get(reverse('devhub.submit.agreement'))
