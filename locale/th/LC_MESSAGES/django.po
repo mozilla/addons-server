@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-05 08:11+0000\n"
+"PO-Revision-Date: 2019-05-05 08:14+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -24,9 +24,8 @@ msgstr "ไม่มีลิงก์ที่ได้รับอนุญา
 msgid "This display name cannot be used."
 msgstr "ชื่อที่แสดงนี้ไม่สามารถใช้ได้"
 
-#, fuzzy
 msgid "This reviewer name cannot be used."
-msgstr "ชื่อนี้ไม่สามารถใช้ได้"
+msgstr "ไม่สามารถใช้ชื่อผู้ตรวจทานนี้"
 
 msgid "The homepage field can only be used to link to external websites."
 msgstr ""
@@ -184,9 +183,8 @@ msgstr "ศูนย์กลางนักพัฒนา"
 msgid "Manage API Keys"
 msgstr ""
 
-#, fuzzy
 msgid "Reviewer Tools"
-msgstr "นักพัฒนา"
+msgstr "เครื่องมือผู้ตรวจทาน"
 
 msgid "Admin Tools"
 msgstr "เครื่องมือผู้ดูแล"
@@ -218,9 +216,8 @@ msgstr "ต้องมีเจ้าของอย่างน้อยหน
 msgid "Not allowed"
 msgstr "ไม่อนุญาต"
 
-#, fuzzy
 msgid "Oops! Not allowed."
-msgstr "ไม่อนุญาต"
+msgstr "อุปส์! ไม่อนุญาต"
 
 #, fuzzy
 msgid "You tried to do something that you weren't allowed to."
@@ -572,9 +569,8 @@ msgstr ""
 msgid "Comment on {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
 
-#, fuzzy
 msgid "Commented"
-msgstr "ความคิดเห็น"
+msgstr "แสดงความคิดเห็นแล้ว"
 
 msgid "{tag} added to {addon}."
 msgstr "{tag} ถูกเพิ่มไปยัง {addon}"
@@ -588,9 +584,8 @@ msgstr "{addon} ถูกเพิ่มไปยัง {collection}"
 msgid "{addon} removed from {collection}."
 msgstr "{addon} ถูกเอาออกจาก {collection}"
 
-#, fuzzy
 msgid "{rating} for {addon} written."
-msgstr "เขียน {review} สำหรับ {addon} แล้ว"
+msgstr "เขียน {rating} สำหรับ {addon} แล้ว"
 
 #. L10n: {0} is a category name.
 msgid "{addon} featured in {0}."
@@ -624,20 +619,17 @@ msgstr "เปลี่ยนนโยบายของ {addon} แล้ว"
 msgid "{addon} icon changed."
 msgstr "เปลี่ยนไอคอนของ {addon} แล้ว"
 
-#, fuzzy
 msgid "{rating} for {addon} approved."
-msgstr "{review} สำหรับ {addon} ได้รับการอนุมัติแล้ว"
+msgstr "อนุมัติ {rating} สำหรับ {addon} แล้ว"
 
-#, fuzzy
 msgid "{user} approved {rating} for {addon}."
-msgstr "{user} อนุมัติ {review} สำหรับ {addon}"
+msgstr "{user} ได้อนุมัติ {rating} สำหรับ {addon}"
 
 msgid "Review {rating} for {addon} deleted."
 msgstr "ลบบทวิจารณ์ {rating} สำหรับ {addon} แล้ว"
 
-#, fuzzy
 msgid "{user} deleted {rating} for {addon}."
-msgstr "{user} อนุมัติ {review} สำหรับ {addon}"
+msgstr "{user} ได้ลบ {rating} สำหรับ {addon}"
 
 msgid "Application max version for {version} updated."
 msgstr ""
@@ -756,21 +748,17 @@ msgstr "เปิดใช้งาน {addon} {version} ใหม่แล้�
 msgid "{addon} {version} disabled."
 msgstr "ปิดใช้งาน {addon} {version} แล้ว"
 
-#, fuzzy
 msgid "{addon} {version} content approved."
-msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+msgstr "อนุมัติเนื้อหา {addon} {version} แล้ว"
 
-#, fuzzy
 msgid "Content approved"
-msgstr "{addon} {version} ได้รับการอนุมัติแล้ว"
+msgstr "อนุมัติเนื้อหาแล้ว"
 
-#, fuzzy
 msgid "{addon} {version} content rejected."
-msgstr "{addon} {version} ถูกปฏิเสธ"
+msgstr "ปฏิเสธเนื้อหา {addon} {version} แล้ว"
 
-#, fuzzy
 msgid "Content rejected"
-msgstr "{addon} {version} ถูกปฏิเสธ"
+msgstr "ปฏิเสธเนื้อหาแล้ว"
 
 #, fuzzy
 msgid "{addon} information request altered or removed by admin."
