@@ -1174,11 +1174,9 @@ class AgreementForm(forms.Form):
     recaptcha = ReCaptchaField(label='')
 
     def __init__(self, *args, **kwargs):
-        render_captcha = kwargs.pop('render_captcha', False)
-
         super(AgreementForm, self).__init__(*args, **kwargs)
 
-        if not render_captcha:
+        if not waffle.switch_is_active('developer-agreement-captcha'):
             del self.fields['recaptcha']
 
 
