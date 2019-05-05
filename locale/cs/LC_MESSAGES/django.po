@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-05 01:27+0000\n"
+"PO-Revision-Date: 2019-05-05 01:47+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -3912,15 +3912,15 @@ msgstr "Nakupujte chytřeji {start_sub_heading}díky {addon_name}{end_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Track historical pricing, find competing products, know the seller's ratings, and more."
-msgstr ""
+msgstr "Sledujte vývoj cen, najděte konkurenční produkty, poznejte hodnocení prodejce a další věci."
 
 #. editorial content for the discovery pane.
 msgid "Make it your YouTube {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Nastavte si YouTube podle svého {start_sub_heading}s {addon_name}{end_sub_heading}"
+msgstr "Udělejte si YouTube podle svého {start_sub_heading}pomocí {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Play videos in a pop-out window, only see ads within subscribed channels, take video screenshots, and so much more."
-msgstr "Umí přehrávat video ve vlastním okně, zobrazit reklamy jen ve vybraných kanálech nebo pořizovat z videí snímky."
+msgstr "Umí přehrávat video ve vlastním okně, zobrazit reklamy jen ve vybraných kanálech, pořizovat z videí snímky a další věci."
 
 #. editorial content for the discovery pane.
 msgid "Explore website traffic {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3928,7 +3928,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get in-depth engagement and traffic information for any website."
-msgstr ""
+msgstr "Získejte podrobné informace o spojení a přenosu dat pro libovolnou webovou stránku."
 
 #. editorial content for the discovery pane.
 msgid "Style Wikipedia {start_sub_heading}with {addon_name}{end_sub_heading}"
