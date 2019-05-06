@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-05 15:30+0000\n"
+"PO-Revision-Date: 2019-05-06 09:54+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2315,7 +2315,7 @@ msgid "Resume the submission process for this add-on"
 msgstr ""
 
 msgid "Resume"
-msgstr ""
+msgstr "ทำต่อ"
 
 msgid "Delete this add-on."
 msgstr "ลบส่วนเสริมนี้"
@@ -2689,7 +2689,7 @@ msgid "Aligned to top-right"
 msgstr ""
 
 msgid "Select a different header image"
-msgstr ""
+msgstr "เลือกภาพส่วนหัวอื่น"
 
 #, fuzzy
 msgid "Select colors for your theme"
@@ -2927,7 +2927,7 @@ msgid "Site Status"
 msgstr "สถานะไซต์"
 
 msgid "Web-Ext: build & test extensions"
-msgstr ""
+msgstr "Web-Ext: สร้างและทดสอบส่วนขยาย"
 
 msgid "Promote"
 msgstr ""
@@ -3086,7 +3086,7 @@ msgid "Sign In"
 msgstr "ลงชื่อเข้า"
 
 msgid "Web-Ext"
-msgstr ""
+msgstr "Web-Ext"
 
 msgid "A command line tool to build, run, and test extensions."
 msgstr ""
@@ -4637,7 +4637,7 @@ msgid "Invalid archive."
 msgstr ""
 
 msgid "Could not find an add-on ID."
-msgstr ""
+msgstr "ไม่พบ ID ส่วนเสริม"
 
 #, python-format
 msgid "The add-on ID in your manifest.json or install.rdf (%s) does not match the ID of your add-on on AMO (%s)"
@@ -4717,7 +4717,7 @@ msgid "Files:"
 msgstr "ไฟล์:"
 
 msgid "Deleted files:"
-msgstr ""
+msgstr "ไฟล์ที่ลบ:"
 
 msgid "Hide known files"
 msgstr "ซ่อนไฟล์ที่รู้จัก"
@@ -5087,11 +5087,11 @@ msgid "or <a href=\"%(url)s\">Cancel</a>"
 msgstr "หรือ <a href=\"%(url)s\">ยกเลิก</a>"
 
 msgid "Please select a reason:"
-msgstr ""
+msgstr "โปรดเลือกเหตุผล:"
 
 #, python-format
 msgid "by %(user)s <b>(Developer)</b> on %(date)s"
-msgstr ""
+msgstr "โดย %(user)s <b>(นักพัฒนา)</b> เมื่อ %(date)s"
 
 #, python-format
 msgid "by %(user)s on %(date)s"
@@ -5136,7 +5136,7 @@ msgstr "ลบบทวิจารณ์"
 
 #. {0} is an add-on name.
 msgid "{0} :: Reviews"
-msgstr ""
+msgstr "{0} :: บทวิจารณ์"
 
 msgid "Reviews for {0}"
 msgstr ""
@@ -5156,14 +5156,14 @@ msgid_plural "Reviews for %(addon)s by %(user)s"
 msgstr[0] ""
 
 msgid "No reviews found."
-msgstr ""
+msgstr "ไม่พบบทวิจารณ์"
 
 #, python-format
 msgid "<strong>Average</strong> (%(total)s)"
 msgstr ""
 
 msgid "Write a New Review"
-msgstr ""
+msgstr "เขียนบทวิจารณ์ใหม่"
 
 msgid "Be the first to write a review."
 msgstr ""
@@ -5173,7 +5173,7 @@ msgstr "ส่วนเสริมนี้ยังไม่ได้รับ
 
 msgid "{num} review"
 msgid_plural "{num} reviews"
-msgstr[0] ""
+msgstr[0] "{num} บทวิจารณ์"
 
 msgid "Rated {0} out of 5 stars"
 msgstr ""
@@ -5183,10 +5183,10 @@ msgid "Rated %(rating)s out of 5 stars"
 msgstr ""
 
 msgid "Approved reviews"
-msgstr ""
+msgstr "บทวิจารณ์ที่อนุมัติ"
 
 msgid "Deleted reviews"
-msgstr ""
+msgstr "บทวิจารณ์ที่ลบ"
 
 msgid "View entries between"
 msgstr ""
@@ -6268,7 +6268,7 @@ msgstr "ลบภาษา"
 
 #, python-format
 msgid "The user \"%(user)s\" has been banned."
-msgstr ""
+msgstr "ห้ามผู้ใช้ \"%(user)s\" แล้ว"
 
 #, python-format
 msgid "The picture belonging to user \"%(user)s\" has been deleted."
@@ -6276,10 +6276,10 @@ msgstr ""
 
 #, python-format
 msgid "The users \"%(users)s\" have been banned."
-msgstr ""
+msgstr "ห้ามผู้ใช้ \"%(users)s\" แล้ว"
 
 msgid "Ban selected users"
-msgstr ""
+msgstr "ห้ามผู้ใช้ที่เลือก"
 
 msgid "Profile Photo"
 msgstr "รูปโปรไฟล์"
@@ -6335,7 +6335,7 @@ msgid "User Notifications"
 msgstr ""
 
 msgid "Ban"
-msgstr ""
+msgstr "ห้าม"
 
 msgid "Delete picture"
 msgstr "ลบรูปภาพ"
