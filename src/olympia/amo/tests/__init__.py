@@ -33,7 +33,7 @@ import pytest
 from dateutil.parser import parse as dateutil_parser
 from rest_framework.reverse import reverse as drf_reverse
 from rest_framework.settings import api_settings
-from rest_framework.test import APIClient
+from rest_framework.test import APIClient, APIRequestFactory
 from waffle.models import Flag, Sample, Switch
 
 from olympia import amo
@@ -585,6 +585,32 @@ class TestCase(PatchMixin, InitializeSessionMixin, test.TestCase):
                    amo.RELEASE_CHANNEL_UNLISTED)
         for version in addon.versions.all():
             version.update(channel=channel)
+
+    def _add_fake_throttling_action(
+            self, view_class, verb='post', url=None, user=None,
+            remote_addr=None):
+        """Trigger the throttling classes on the API view passed in argument
+        just like an action happened.
+
+        Tries to be somewhat generic, but does depend on the view not
+        dynamically altering throttling classes and the throttling classes
+        themselves not deviating from DRF's base implementation."""
+        # Create the fake request, make sure to use an 'unsafe' method by
+        # default otherwise we'd be allowed without any checks whatsoever in
+        # some of our views.
+        path = urlparse(url).path
+        factory = APIRequestFactory()
+        fake_request = getattr(factory, verb)(path)
+        fake_request.user = user
+        fake_request.META['REMOTE_ADDR'] = remote_addr
+        for throttle_class in view_class.throttle_classes:
+            throttle = throttle_class()
+            # allow_request() fetches the history, triggers a success/failure
+            # and if it's a success it will add the request to the history and
+            # set that in the cache. If it failed, we force a success anyway
+            # to make sure our number of actions target is reached artifically.
+            if not throttle.allow_request(fake_request, view_class()):
+                throttle.throttle_success()
 
 
 class AMOPaths(object):

@@ -7,15 +7,12 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.forms import ValidationError
 from django.test.utils import override_settings
-from django.urls import resolve
 from django.utils import translation
 
 from unittest import mock
 import responses
 from freezegun import freeze_time
 from rest_framework.response import Response
-from rest_framework.test import APIRequestFactory
-from six.moves.urllib_parse import urlparse
 from waffle.testutils import override_switch
 
 from olympia import amo
@@ -52,7 +49,7 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
             version_kw={'version': '2.1.072'},
             users=[self.user])
 
-        self.view = VersionView.as_view()
+        self.view_class = VersionView
 
         auto_sign_version_patcher = mock.patch(
             'olympia.devhub.views.auto_sign_version')
@@ -100,28 +97,6 @@ class BaseUploadVersionTestMixin(SigningAPITestMixin):
     def make_admin(self, user):
         admin_group = Group.objects.create(name='Admin', rules='*:*')
         GroupUser.objects.create(group=admin_group, user=user)
-
-    def _add_fake_throttling_action(self, url, user, remote_addr):
-        """Trigger the throttling classes on the signing view just like an
-        action happened. Tries to be somewhat generic (allowing classes to
-        change), but does depend on the view not dynamically altering
-        throttling classes and the throttling classes themselves not deviating
-        from DRF's base implementation."""
-        # Create the fake request, make sure to use an unsafe method otherwise
-        # we'd be allowed without any checks whatsoever.
-        fake_request = APIRequestFactory().post('/')
-        fake_request.user = user
-        fake_request.META['REMOTE_ADDR'] = remote_addr
-        path = urlparse(url).path
-        view_class = resolve(path).func.view_class
-        for throttle_class in view_class.throttle_classes:
-            throttle = throttle_class()
-            # allow_request() fetches the history, triggers a success/failure
-            # and if it's a success it will add the request to the history and
-            # set that in the cache. If it failed, we force a success anyway
-            # to make sure our number of actions target is reached artifically.
-            if not throttle.allow_request(fake_request, view_class()):
-                throttle.throttle_success()
 
 
 class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
@@ -564,7 +539,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 # Make the user different every time so that we test the ip
                 # throttling.
                 self._add_fake_throttling_action(
-                    url, UserProfile(pk=42 + x), '123.456.78.9')
+                    view_class=self.view_class,
+                    url=url,
+                    user=UserProfile(pk=42 + x),
+                    remote_addr='123.456.78.9',
+                )
 
             # At this point we should be throttled since we're using the same
             # IP. (we're still inside the frozen time context).
@@ -594,7 +573,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 # Make the user different every time so that we test the ip
                 # throttling.
                 self._add_fake_throttling_action(
-                    url, UserProfile(pk=42 + x), '123.456.78.9')
+                    view_class=self.view_class,
+                    url=url,
+                    user=UserProfile(pk=42 + x),
+                    remote_addr='123.456.78.9',
+                )
 
             # At this point we should be throttled since we're using the same
             # IP. (we're still inside the frozen time context).
@@ -634,7 +617,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 # Make the user different every time so that we test the ip
                 # throttling.
                 self._add_fake_throttling_action(
-                    url, self.user, get_random_ip())
+                    view_class=self.view_class,
+                    url=url,
+                    user=self.user,
+                    remote_addr=get_random_ip(),
+                )
 
             # At this point we should be throttled since we're using the same
             # user. (we're still inside the frozen time context).
@@ -664,7 +651,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 # Make the user different every time so that we test the ip
                 # throttling.
                 self._add_fake_throttling_action(
-                    url, self.user, get_random_ip())
+                    view_class=self.view_class,
+                    url=url,
+                    user=self.user,
+                    remote_addr=get_random_ip(),
+                )
 
             # At this point we should be throttled since we're using the same
             # user. (we're still inside the frozen time context).
@@ -743,7 +734,11 @@ class TestUploadVersion(BaseUploadVersionTestMixin, TestCase):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
                 self._add_fake_throttling_action(
-                    url, self.user, '1.2.3.4')
+                    view_class=self.view_class,
+                    url=url,
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
 
             # ... But it works, because it's a special user allowed to bypass
             # throttling.
@@ -1094,7 +1089,11 @@ class TestCheckVersion(BaseUploadVersionTestMixin, TestCase):
                 # With that many actions all throttling classes should prevent
                 # the user from submitting an addon...
                 self._add_fake_throttling_action(
-                    self.url(self.guid, '3.0'), self.user, '1.2.3.4')
+                    view_class=self.view_class,
+                    url=self.url(self.guid, '3.0'),
+                    user=self.user,
+                    remote_addr='1.2.3.4',
+                )
 
             # ... But it works, because it's just a GET, not a POST/PUT upload.
             response = self.get(url, client_kwargs={'REMOTE_ADDR': '1.2.3.4'})
