@@ -32,8 +32,10 @@ class TestNewUploadForm(TestCase):
 
     def test_firefox_default_selected(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid}, request=mock.Mock())
+        data = {'upload': upload.uuid}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
 
     def test_compat_apps_widget_custom_label_class_rendered(self):
@@ -42,8 +44,10 @@ class TestNewUploadForm(TestCase):
         images.
         """
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid}, request=mock.Mock())
+        data = {'upload': upload.uuid}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
         result = form.fields['compatible_apps'].widget.render(
             name='compatible_apps', value=amo.FIREFOX.id)
         assert 'class="app firefox"' in result
@@ -54,9 +58,11 @@ class TestNewUploadForm(TestCase):
 
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
-            request=mock.Mock())
+        upload = FileUpload.objects.create(valid=False)
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
 
@@ -64,19 +70,16 @@ class TestNewUploadForm(TestCase):
         with mock.patch('olympia.access.acl.action_allowed_user') as acl:
             # For the 'Addons:Edit' permission check.
             acl.return_value = True
-            form = forms.NewUploadForm(
-                {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id],
-                    'admin_override_validation': True},
-                request=mock.Mock())
+            data['admin_override_validation'] = True
+            form = forms.NewUploadForm(data, request=request)
             assert ('There was an error with your upload. Please try' not in
                     form.errors.get('__all__')), form.errors
 
         upload.validation = '{"errors": 0}'
         upload.save()
         addon = Addon.objects.create()
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
-            addon=addon, request=mock.Mock())
+        data.pop('admin_override_validation')
+        form = forms.NewUploadForm(data, request=request, addon=addon)
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
 
@@ -125,9 +128,10 @@ class TestNewUploadForm(TestCase):
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
         upload = FileUpload.objects.create(valid=True, name='foo.xpi')
         addon = Addon.objects.create()
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
-            addon=addon, request=mock.Mock())
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, addon=addon, request=request)
         form.clean()
         assert mock_check_xpi_info.called
 
