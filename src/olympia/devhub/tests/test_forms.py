@@ -2,25 +2,29 @@
 import os
 import shutil
 import tempfile
+from datetime import timedelta
 
 from django.conf import settings
 from django.core.files.storage import default_storage as storage
 from django.utils import translation
 
-from unittest import mock
 import pytest
 import six
+from freezegun import freeze_time
+from unittest import mock
 
 from waffle.testutils import override_switch
 
 from olympia import amo, core
 from olympia.addons.models import Addon, Category
-from olympia.amo.tests import addon_factory, TestCase, req_factory_factory
+from olympia.amo.tests import (
+    addon_factory, get_random_ip, req_factory_factory, TestCase, user_factory)
 from olympia.amo.tests.test_helpers import get_image_path
 from olympia.amo.utils import rm_local_tmp_dir
 from olympia.applications.models import AppVersion
 from olympia.devhub import forms
 from olympia.files.models import FileUpload
+from olympia.signing.views import VersionView
 from olympia.tags.models import AddonTag, Tag
 
 
@@ -28,8 +32,10 @@ class TestNewUploadForm(TestCase):
 
     def test_firefox_default_selected(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid}, request=mock.Mock())
+        data = {'upload': upload.uuid}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
         assert form.fields['compatible_apps'].initial == [amo.FIREFOX.id]
 
     def test_compat_apps_widget_custom_label_class_rendered(self):
@@ -38,8 +44,10 @@ class TestNewUploadForm(TestCase):
         images.
         """
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid}, request=mock.Mock())
+        data = {'upload': upload.uuid}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
         result = form.fields['compatible_apps'].widget.render(
             name='compatible_apps', value=amo.FIREFOX.id)
         assert 'class="app firefox"' in result
@@ -50,9 +58,11 @@ class TestNewUploadForm(TestCase):
 
     def test_only_valid_uploads(self):
         upload = FileUpload.objects.create(valid=False)
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
-            request=mock.Mock())
+        upload = FileUpload.objects.create(valid=False)
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, request=request)
         assert ('There was an error with your upload. Please try again.' in
                 form.errors.get('__all__')), form.errors
 
@@ -60,21 +70,45 @@ class TestNewUploadForm(TestCase):
         with mock.patch('olympia.access.acl.action_allowed_user') as acl:
             # For the 'Addons:Edit' permission check.
             acl.return_value = True
-            form = forms.NewUploadForm(
-                {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id],
-                    'admin_override_validation': True},
-                request=mock.Mock())
+            data['admin_override_validation'] = True
+            form = forms.NewUploadForm(data, request=request)
             assert ('There was an error with your upload. Please try' not in
                     form.errors.get('__all__')), form.errors
 
         upload.validation = '{"errors": 0}'
         upload.save()
         addon = Addon.objects.create()
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
-            addon=addon, request=mock.Mock())
+        data.pop('admin_override_validation')
+        form = forms.NewUploadForm(data, request=request, addon=addon)
         assert ('There was an error with your upload. Please try again.' not in
                 form.errors.get('__all__')), form.errors
+
+    @mock.patch('olympia.devhub.forms.parse_addon')
+    def test_throttling(self, parse_addon_mock):
+        upload = FileUpload.objects.create(valid=True, name='foo.xpi')
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        request.META['REMOTE_ADDR'] = '5.6.7.8'
+        with freeze_time('2019-04-08 15:16:23.42') as frozen_time:
+            for x in range(0, 6):
+                self._add_fake_throttling_action(
+                    view_class=VersionView,
+                    url='/',
+                    user=request.user,
+                    remote_addr=get_random_ip(),
+                )
+
+            form = forms.NewUploadForm(data, request=request)
+            assert not form.is_valid()
+            assert form.errors.get('__all__') == [
+                'You have submitted too many uploads recently. '
+                'Please try again after some time.'
+            ]
+
+            frozen_time.tick(delta=timedelta(seconds=61))
+            form = forms.NewUploadForm(data, request=request)
+            assert form.is_valid()
 
     # Those three patches are so files.utils.parse_addon doesn't fail on a
     # non-existent file even before having a chance to call check_xpi_info.
@@ -94,9 +128,10 @@ class TestNewUploadForm(TestCase):
         mock_check_xpi_info.return_value = {'name': 'foo', 'type': 2}
         upload = FileUpload.objects.create(valid=True, name='foo.xpi')
         addon = Addon.objects.create()
-        form = forms.NewUploadForm(
-            {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]},
-            addon=addon, request=mock.Mock())
+        data = {'upload': upload.uuid, 'compatible_apps': [amo.FIREFOX.id]}
+        request = req_factory_factory('/', post=True, data=data)
+        request.user = user_factory()
+        form = forms.NewUploadForm(data, addon=addon, request=request)
         form.clean()
         assert mock_check_xpi_info.called
 

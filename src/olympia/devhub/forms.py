@@ -18,6 +18,7 @@ from django.utils.translation import ugettext, ugettext_lazy as _, ungettext
 import six
 import waffle
 
+from rest_framework.exceptions import Throttled
 from six.moves.urllib_parse import urlsplit
 
 from olympia import amo
@@ -928,7 +929,25 @@ class NewUploadForm(forms.Form):
                 ugettext(u'There was an error with your upload. '
                          u'Please try again.'))
 
+    def check_throttles(self, request):
+        """
+         Check if request should be throttled by calling the signing API
+         throttling method.
+
+         Raises ValidationError if the request is throttled.
+         """
+        from olympia.signing.views import VersionView  # circular import
+        view = VersionView()
+        try:
+            view.check_throttles(request)
+        except Throttled:
+            raise forms.ValidationError(
+                _('You have submitted too many uploads recently. '
+                  'Please try again after some time.'))
+
     def clean(self):
+        self.check_throttles(self.request)
+
         if not self.errors:
             self._clean_upload()
             parsed_data = parse_addon(
