@@ -6,6 +6,7 @@ import pytest
 
 from unittest.mock import MagicMock
 
+from rest_framework.exceptions import NotFound
 from rest_framework.test import APIRequestFactory
 from rest_framework.settings import api_settings
 
@@ -140,6 +141,11 @@ class TestFileEntriesSerializer(TestCase):
                 'filename': 'icons/LICENSE'
             }
         ))
+
+    def test_requested_file_with_non_existent_file(self):
+        file = self.addon.current_version.current_file
+        with self.assertRaises(NotFound):
+            self.serialize(file, file='UNKNOWN_FILE')
 
     def test_supports_search_plugin(self):
         self.addon = addon_factory(file_kw={'filename': 'search_20190331.xml'})
