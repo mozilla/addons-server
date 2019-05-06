@@ -172,6 +172,11 @@ class AbuseReportAdmin(admin.ModelAdmin):
         'message')
     view_on_site = False  # Abuse reports have no public page to link to.
 
+    def has_add_permission(self, request):
+        # Adding new abuse reports through the admin is useless, so we prevent
+        # it.
+        return False
+
     def get_actions(self, request):
         actions = super().get_actions(request)
         if not acl.action_allowed(request, amo.permissions.ABUSEREPORTS_EDIT):
