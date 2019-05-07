@@ -1,10 +1,10 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: AMO-JS 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-04 17:27+0000\n"
+"PO-Revision-Date: 2019-05-07 06:21+0000\n"
 "Last-Translator: Fjoerfoks <fryskefirefox@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fy_NL\n"
@@ -205,52 +205,44 @@ msgstr "Oarspronklike brûke"
 msgid "Week of {0}"
 msgstr "Wike fan {0}"
 
-#, fuzzy
 msgid "{0} download"
 msgid_plural "{0} downloads"
-msgstr[0] " downloads"
-msgstr[1] " downloads"
+msgstr[0] "{0} download"
+msgstr[1] "{0} downloads"
 
-#, fuzzy
 msgid "{0} user"
 msgid_plural "{0} users"
-msgstr[0] "{0} brûkers"
+msgstr[0] "{0} brûker"
 msgstr[1] "{0} brûkers"
 
-#, fuzzy
 msgid "{0} add-on"
 msgid_plural "{0} add-ons"
-msgstr[0] "{0} add-ons"
+msgstr[0] "{0} add-on"
 msgstr[1] "{0} add-ons"
 
-#, fuzzy
 msgid "{0} collection"
 msgid_plural "{0} collections"
-msgstr[0] "{0} kolleksjes"
+msgstr[0] "{0} kolleksje"
 msgstr[1] "{0} kolleksjes"
 
-#, fuzzy
 msgid "{0} review"
 msgid_plural "{0} reviews"
-msgstr[0] "{0} beoardielingen"
+msgstr[0] "{0} beoardieling"
 msgstr[1] "{0} beoardielingen"
 
-#, fuzzy
 msgid "{0} sale"
 msgid_plural "{0} sales"
-msgstr[0] "{0} ferkeapje"
-msgstr[1] "{0} ferkeapje"
+msgstr[0] "{0} ferkeap"
+msgstr[1] "{0} ferkeapen"
 
-#, fuzzy
 msgid "{0} refund"
 msgid_plural "{0} refunds"
-msgstr[0] "{0} restitúsjes"
+msgstr[0] "{0} restitúsje"
 msgstr[1] "{0} restitúsjes"
 
-#, fuzzy
 msgid "{0} install"
 msgid_plural "{0} installs"
-msgstr[0] "{0} ynstallaasjes"
+msgstr[0] "{0} ynstallaasje"
 msgstr[1] "{0} ynstallaasjes"
 
 msgid "Downloads"
@@ -726,18 +718,16 @@ msgid "Loading..."
 msgstr "Lade…"
 
 #. L10n: {0} is the number of characters entered.
-#, fuzzy
 msgid "<b>{0}</b> character"
 msgid_plural "<b>{0}</b> characters"
-msgstr[0] "<b>{0}</b> teken restearjend."
-msgstr[1] "<b>{0}</b> tekens restearjend."
+msgstr[0] "<b>{0}</b> teken"
+msgstr[1] "<b>{0}</b> tekens"
 
 #. L10n: {0} is the number of characters left.
-#, fuzzy
 msgid "<b>{0}</b> character left"
 msgid_plural "<b>{0}</b> characters left"
-msgstr[0] "<b>{0}</b> teken restearjend."
-msgstr[1] "<b>{0}</b> tekens restearjend."
+msgstr[0] "<b>{0}</b> teken restearjend"
+msgstr[1] "<b>{0}</b> tekens restearjend"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please check back a little later."
 msgstr "Dizze funksje is tydlik útskeakele fanwegen ûnderhâld oan de website. Probearje it letter nochris."
