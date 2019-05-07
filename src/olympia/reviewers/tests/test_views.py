@@ -5567,7 +5567,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
     def test_show_listed_and_unlisted_with_permissions(self):
         user = UserProfile.objects.create(username='admin')
 
-        # User doesn't have ReviewUnlisted permission
+        # User doesn't have Review permission
         self.grant_permission(user, 'Addons:ReviewUnlisted')
 
         self.client.login_api(user)
@@ -5595,6 +5595,125 @@ class TestReviewAddonVersionViewSetList(TestCase):
                 'channel': u'listed'
             },
         ]
+
+    def test_draft_comment(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        data = {
+            'comments': 'Some really fancy comment',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, data)
+        assert response.status_code == 200
+
+        draft_comment = DraftComment.objects.get()
+        assert draft_comment.version == self.version
+        assert draft_comment.comments == 'Some really fancy comment'
+
+    def test_draft_comment_delete(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        DraftComment.objects.create(version=self.version, comments='test')
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.delete(url)
+        assert response.status_code == 202
+
+        assert DraftComment.objects.first() is None
+
+    def test_draft_comment_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 403
+
+    def test_draft_comment_deleted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_deleted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_deleted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_unlisted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_unlisted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
 
 
 class TestReviewAddonVersionCompareViewSet(

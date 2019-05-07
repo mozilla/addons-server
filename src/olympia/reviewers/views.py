@@ -29,7 +29,8 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog, AddonLog, CommentLog
+from olympia.activity.models import (
+    ActivityLog, AddonLog, CommentLog, DraftComment)
 from olympia.addons.decorators import (
     addon_view, addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
@@ -57,7 +58,7 @@ from olympia.reviewers.models import (
 from olympia.reviewers.serializers import (
     AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
     DiffableVersionSerializer, AddonCompareVersionSerializer,
-    FileEntriesSerializer)
+    FileEntriesSerializer, DraftCommentSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewUnlistedAllListTable, view_table_factory)
@@ -796,9 +797,12 @@ def review(request, addon, channel=None):
     }
 
     try:
-        form_initial['comments_draft'] = version.draftcomment.comments
-    except Version.draftcomment.RelatedObjectDoesNotExist:
-        pass
+        comments_draft = version.draftcomment
+    except (Version.draftcomment.RelatedObjectDoesNotExist, AttributeError):
+        comments_draft = None
+
+    form_initial['comments_draft'] = (
+        comments_draft.comments if comments_draft else '')
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
@@ -838,10 +842,8 @@ def review(request, addon, channel=None):
         redirect_url = reverse('reviewers.unlisted_queue_all')
 
     if request.method == 'POST' and form.is_valid():
-        try:
-            version.draftcomment.delete()
-        except Version.draftcomment.RelatedObjectDoesNotExist:
-            pass
+        if comments_draft:
+            comments_draft.delete()
 
         form.helper.process()
         amo.messages.success(
@@ -1396,6 +1398,23 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
                 'request': self.request
             }
         )
+        return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=['put', 'delete'],
+        permission_classes=ReviewAddonVersionMixin.permission_classes)
+    def draft_comment(self, request, **kwargs):
+        version = self.get_object()
+
+        if request.method == 'DELETE':
+            DraftComment.objects.filter(version=version).delete()
+            return Response(status=status.HTTP_202_ACCEPTED)
+
+        instance, _ = DraftComment.objects.get_or_create(version=version)
+        serializer = DraftCommentSerializer(instance, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
         return Response(serializer.data)
 
 
