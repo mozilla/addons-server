@@ -18,6 +18,7 @@ from django.views.decorators.cache import never_cache
 import six
 
 from rest_framework import status
+from rest_framework.exceptions import NotFound
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
@@ -1202,7 +1203,7 @@ def download_git_stored_file(request, version_id, filename):
         if blob_or_tree.type == 'tree':
             return http.HttpResponseBadRequest('Can\'t serve directories')
         selected_file = serializer.get_entries(file)[filename]
-    except KeyError:
+    except (KeyError, NotFound):
         raise http.Http404()
 
     actual_blob = serializer.git_repo[blob_or_tree.oid]

@@ -169,10 +169,9 @@ class FileEntriesSerializer(FileSerializer):
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
+        files = self.get_entries(obj)
 
         if requested_file is None:
-            files = self.get_entries(obj)
-
             default_files = ('manifest.json', 'install.rdf', 'package.json')
 
             for manifest in default_files:
@@ -182,6 +181,9 @@ class FileEntriesSerializer(FileSerializer):
             else:
                 # This could be a search engine
                 requested_file = list(files.keys())[0]
+
+        if requested_file not in files:
+            raise NotFound('File not found')
 
         return requested_file
 
