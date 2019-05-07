@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2017-07-20 05:56+0000\n"
-"Last-Translator: Sahithi <sahithi.thinker@gmail.com>\n"
+"PO-Revision-Date: 2019-05-07 10:03+0000\n"
+"Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
 "MIME-Version: 1.0\n"
@@ -2589,7 +2589,7 @@ msgid "Theme name"
 msgstr "అలంకారం పేరు"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "మీ అలంకారం కోసం హెడర్ చిత్రాన్ని ఎంచుకోండి"
 
 msgid "Recommended height: 200 pixels"
 msgstr "సిఫార్సు చేసిన ఎత్తు: 200 పిక్సెళ్ళు"
@@ -4668,9 +4668,8 @@ msgstr "నివేదించబడలేదు"
 msgid "Content Submitted"
 msgstr ""
 
-#, fuzzy
 msgid "View Rating on site"
-msgstr "కొత్త సైటును చూడండి"
+msgstr "సైటులో రేటింగును చూడండి"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 msgid "Submit Ham to Akismet"
