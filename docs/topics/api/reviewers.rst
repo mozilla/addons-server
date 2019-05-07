@@ -270,22 +270,3 @@ This endpoint allows you to compare two Add-on versions with each other.
                 "hash": "00161dcf22afb7bab23cf205f0c903eb5aad5431"
             }
         ]
-
-
---------
-Download
---------
-
-This endpoint allows you to download files from an Add-on.
-
-    .. note::
-        Requires authentication and the current user to have ``ReviewerTools:View``
-        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
-        unlisted add-ons. Additionally the current user can also be the owner
-        of the add-on.
-
-.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/download/(str:filename)/
-
-    This will return a streaming response serving the file.
-
-    ``Content-Type``, ``Content-Disposition`` and ``Content-Length`` are correctly set.
