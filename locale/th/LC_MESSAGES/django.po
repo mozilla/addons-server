@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-06 09:54+0000\n"
+"PO-Revision-Date: 2019-05-07 17:06+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -695,7 +695,7 @@ msgid "{addon} unlisted."
 msgstr ""
 
 msgid "{file} was signed."
-msgstr ""
+msgstr "เซ็น {file} แล้ว"
 
 #. L10n: {0} is the add-on GUID.
 msgid "Addon id {0} with GUID {1} has been deleted"
