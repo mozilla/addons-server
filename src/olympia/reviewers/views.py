@@ -790,8 +790,15 @@ def review(request, addon, channel=None):
             request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.dashboard'))
 
-    # Get the current info request state to set as the default.
-    form_initial = {'info_request': addon.pending_info_request}
+    form_initial = {
+        # Get the current info request state to set as the default.
+        'info_request': addon.pending_info_request,
+    }
+
+    try:
+        form_initial['comments_draft'] = version.draftcomment.comments
+    except Version.draftcomment.RelatedObjectDoesNotExist:
+        pass
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
@@ -831,6 +838,11 @@ def review(request, addon, channel=None):
         redirect_url = reverse('reviewers.unlisted_queue_all')
 
     if request.method == 'POST' and form.is_valid():
+        try:
+            version.draftcomment.delete()
+        except Version.draftcomment.RelatedObjectDoesNotExist:
+            pass
+
         form.helper.process()
         amo.messages.success(
             request, ugettext('Review successfully processed.'))

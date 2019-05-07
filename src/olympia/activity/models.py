@@ -162,6 +162,20 @@ class GroupLog(ModelBase):
         ordering = ('-created',)
 
 
+class DraftComment(ModelBase):
+    """A model that allows us to draft comments for reviews before we have
+    an ActivityLog instance ready.
+
+    This is being used by the commenting API by the code-manager.
+    """
+    id = PositiveAutoField(primary_key=True)
+    comments = models.TextField()
+    version = models.OneToOneField(Version, on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = 'log_activity_comment_draft'
+
+
 class ActivityLogManager(ManagerBase):
     def for_addons(self, addons):
         if isinstance(addons, Addon):

@@ -27,7 +27,7 @@ from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
@@ -3390,6 +3390,7 @@ class TestReview(ReviewBase):
             'applications': 'something',
             'comments': 'something',
         }
+
         self.client.post(url, data)
 
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
@@ -4427,6 +4428,36 @@ class TestReview(ReviewBase):
             reverse('reviewers.theme_background_images',
                     args=[self.addon.current_version.id])
         )
+
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_draft_comments_prefilled_for_reply(self, mock_sign_file):
+        DraftComment.objects.create(
+            comments='Fancy pancy review',
+            version=self.addon.current_version)
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#id_comments').text() == 'Fancy pancy review'
+
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_draft_comments_cleared_after_submission(self, mock_sign_file):
+        DraftComment.objects.create(
+            comments='Fancy pancy review',
+            version=self.addon.current_version)
+
+        response = self.client.post(self.url, {
+            'action': 'reply',
+            'comments': 'foobar'
+        })
+
+        assert response.status_code == 302
+        assert len(mail.outbox) == 1
+
+        # Draft comments don't take precedence over manual comments
+        assert 'foobar' in mail.outbox[0].body
+        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
+
+        assert DraftComment.objects.count() == 0
 
 
 @override_flag('code-manager', active=True)
