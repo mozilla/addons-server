@@ -1415,6 +1415,7 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
             DraftComment.objects.filter(version=version).delete()
             return Response(status=status.HTTP_202_ACCEPTED)
 
+        instance, _ = DraftComment.objects.get_or_create(version=version)
         serializer = DraftCommentSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
