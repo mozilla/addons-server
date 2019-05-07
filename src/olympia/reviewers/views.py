@@ -1402,16 +1402,19 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
 
     @action(
         detail=True,
-        methods=['put', 'delete'],
+        methods=['get', 'put', 'delete'],
         permission_classes=ReviewAddonVersionMixin.permission_classes)
     def draft_comment(self, request, **kwargs):
         version = self.get_object()
 
-        if request.method == 'DELETE':
+        if request.method == 'GET':
+            instance = get_object_or_404(DraftComment, version=version)
+            serializer = DraftCommentSerializer(instance, data=request.data)
+            return Response(serializer.data)
+        elif request.method == 'DELETE':
             DraftComment.objects.filter(version=version).delete()
             return Response(status=status.HTTP_202_ACCEPTED)
 
-        instance, _ = DraftComment.objects.get_or_create(version=version)
         serializer = DraftCommentSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()

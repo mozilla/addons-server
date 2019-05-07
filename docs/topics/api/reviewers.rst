@@ -272,6 +272,36 @@ This endpoint allows you to compare two Add-on versions with each other.
         ]
 
 
+-----------------
+Drafting Comments
+-----------------
+
+This endpoints allows you to draft comments that can be submitted through the regular reviewer pages.
+
+Please note, that once a review is submitted the drafted comments are being cleared as well.
+
+    .. note::
+        Requires authentication and the current user to have ``ReviewerTools:View``
+        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
+        unlisted add-ons. Additionally the current user can also be the owner
+        of the add-on.
+
+.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+
+    Retrieve an exising draft.
+
+    :>json string comments: The comment that is being drafted as part of a review.
+
+.. http:patch:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+
+    Create or update a draft.
+
+    :<json string comments: The comment that is being drafted as part of a review.
+
+.. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
+
+    Delete a drafted comment.
+
 --------
 Download
 --------
