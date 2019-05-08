@@ -4433,7 +4433,8 @@ class TestReview(ReviewBase):
     def test_draft_comments_prefilled_for_reply(self, mock_sign_file):
         DraftComment.objects.create(
             comments='Fancy pancy review',
-            version=self.addon.current_version)
+            version=self.addon.current_version,
+            user=self.reviewer)
 
         response = self.client.get(self.url)
         doc = pq(response.content)
@@ -4443,7 +4444,8 @@ class TestReview(ReviewBase):
     def test_draft_comments_cleared_after_submission(self, mock_sign_file):
         DraftComment.objects.create(
             comments='Fancy pancy review',
-            version=self.addon.current_version)
+            version=self.addon.current_version,
+            user=self.reviewer)
 
         response = self.client.post(self.url, {
             'action': 'reply',
@@ -5630,7 +5632,9 @@ class TestReviewAddonVersionViewSetList(TestCase):
         self.grant_permission(user, 'Addons:Review')
         self.client.login_api(user)
 
-        DraftComment.objects.create(version=self.version, comments='test')
+        DraftComment.objects.create(
+            version=self.version, comments='test',
+            user=user)
 
         url = reverse_ns('reviewers-versions-draft-comment', kwargs={
             'addon_pk': self.addon.pk,
@@ -5638,9 +5642,33 @@ class TestReviewAddonVersionViewSetList(TestCase):
         })
 
         response = self.client.delete(url)
-        assert response.status_code == 202
+        assert response.status_code == 204
 
         assert DraftComment.objects.first() is None
+
+    def test_draft_comment_delete_not_comment_owner(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+
+        DraftComment.objects.create(
+            version=self.version, comments='test',
+            user=user)
+
+        # Let's login as someone else who is also a reviewer
+        other_reviewer = UserProfile.objects.create(username='reviewer2')
+
+        # Let's give the user admin permissions which doesn't help
+        self.grant_permission(other_reviewer, '*:*')
+
+        self.client.login_api(other_reviewer)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.delete(url)
+        assert response.status_code == 404
 
     def test_draft_comment_disabled_version_user_but_not_author(self):
         user = UserProfile.objects.create(username='simpleuser')

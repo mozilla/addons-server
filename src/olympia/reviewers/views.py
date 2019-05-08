@@ -23,6 +23,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
+from rest_framework.permissions import BasePermission
 
 import olympia.core.logger
 
@@ -42,7 +43,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer, GroupPermission,
-    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
+    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf,
+    ByHttpMethod)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
@@ -798,8 +800,8 @@ def review(request, addon, channel=None):
     }
 
     try:
-        comments_draft = version.draftcomment_set.filter(user=request.user)
-    except (Version.draftcomment.RelatedObjectDoesNotExist, AttributeError):
+        comments_draft = version.draftcomment_set.get(user=request.user)
+    except DraftComment.DoesNotExist:
         comments_draft = None
 
     form_initial['comments_draft'] = (
@@ -1401,22 +1403,35 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
         )
         return Response(serializer.data)
 
+    draft_comment_permissions = AnyOf(
+        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
+    )
+
     @action(
         detail=True,
         methods=['get', 'put', 'delete'],
-        permission_classes=ReviewAddonVersionMixin.permission_classes)
+        permission_classes=[ByHttpMethod({
+            'get': draft_comment_permissions,
+            'put': draft_comment_permissions,
+            'delete': draft_comment_permissions})
+        ])
     def draft_comment(self, request, **kwargs):
         version = self.get_object()
 
         if request.method == 'GET':
-            instance = get_object_or_404(DraftComment, version=version)
+            instance = get_object_or_404(
+                DraftComment, version=version, user=request.user)
             serializer = DraftCommentSerializer(instance, data=request.data)
             return Response(serializer.data)
         elif request.method == 'DELETE':
-            DraftComment.objects.filter(version=version).delete()
-            return Response(status=status.HTTP_202_ACCEPTED)
+            instance = get_object_or_404(
+                DraftComment, version=version, user=request.user)
 
-        instance, _ = DraftComment.objects.get_or_create(version=version)
+            instance.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        instance, _ = DraftComment.objects.get_or_create(
+            version=version, user=request.user)
         serializer = DraftCommentSerializer(instance, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
