@@ -20,10 +20,10 @@ class TestRankingScenarios(ESTestCase):
                 name = item['name'].get(item['default_locale'], '??????')
             return name
 
-        # Use v4dev version to ensure we get objects for translations all the
+        # Use v5 version to ensure we get objects for translations all the
         # time. We don't necessarily specify the language in all tests, but we
         # want objects all the time for simplicity.
-        url = reverse_ns('addon-search', api_version='v4dev')
+        url = reverse_ns('addon-search', api_version='v5')
         params = {
             'lang': 'en-US'
         }

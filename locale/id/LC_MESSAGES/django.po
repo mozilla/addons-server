@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-02 08:38+0000\n"
-"Last-Translator: Lidya Christina <id.lidya@gmail.com>\n"
+"PO-Revision-Date: 2019-05-07 10:49+0000\n"
+"Last-Translator: alamanda <dian.ina@gmail.com>\n"
 "Language-Team: Bahasa Indonesia <id@li.org>\n"
 "Language: id\n"
 "MIME-Version: 1.0\n"
@@ -932,24 +932,25 @@ msgstr "Blog, Feed, dan Berita"
 
 msgid "Download Firefox extensions that remove clutter so you can stay up-to-date on social media, catch up on blogs, RSS feeds, reduce eye strain, and more."
 msgstr ""
+"Unduh ekstensi Firefox yang menghilangkan kesemrawutan sehingga Anda bisa tetap mendapatkan informasi terbaru di media sosial, mengikuti blog, umpan RSS, mengurangi ketegangan mata, dan banyak lagi."
 
 msgid "Games & Entertainment"
 msgstr "Hiburan dan Permainan"
 
 msgid "Download Firefox extensions to boost your entertainment experience. This category includes extensions that can enhance gaming, control video playback, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox untuk meningkatkan pengalaman hiburan Anda. Kategori ini mencakup ekstensi yang dapat meningkatkan permainan, mengontrol pemutaran video, dan lainnya."
 
 msgid "Language Support"
 msgstr "Dukungan Bahasa"
 
 msgid "Download Firefox extensions that offer language support like grammar check, look-up words, translate text, provide text-to-speech, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox yang menawarkan dukungan bahasa seperti memeriksa tata bahasa, mencari kata, menerjemahkan teks, menyediakan teks-ke-ucapan, dan banyak lagi."
 
 msgid "Photos, Music & Videos"
 msgstr "Foto, Musik, dan Video"
 
 msgid "Download Firefox extensions that enhance photo, music and video experiences. Extensions in this category modify audio and video, reverse image search, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox yang meningkatkan pengalaman foto, musik, dan video. Ekstensi dalam kategori ini memodifikasi audio dan video, membalikkan pencarian gambar, dan banyak lagi."
 
 msgid "Privacy & Security"
 msgstr "Keamanan dan Privasi"
@@ -959,7 +960,7 @@ msgstr ""
 "Unduh ekstensi Firefox untuk menjelajah secara pribadi dan aman. Kategori ini mencakup ekstensi untuk memblokir iklan yang mengganggu, mencegah pelacakan, mengelola pengalihan, dan banyak lagi."
 
 msgid "Download Firefox extensions for search and look-up. This category includes extensions that highlight and search text, lookup IP addresses/domains, and more."
-msgstr ""
+msgstr "Unduh ekstensi Firefox untuk pencarian. Kategori ini mencakup ekstensi yang menyoroti dan mencari teks, mencari alamat IP/domain, dan banyak lagi."
 
 msgid "Shopping"
 msgstr "Belanja"

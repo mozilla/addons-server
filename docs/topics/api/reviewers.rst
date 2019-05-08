@@ -301,21 +301,3 @@ Please note, that once a review is submitted the drafted comments are being clea
 .. http:delete:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/draft_comments/
 
     Delete a drafted comment.
-
---------
-Download
---------
-
-This endpoint allows you to download files from an Add-on.
-
-    .. note::
-        Requires authentication and the current user to have ``ReviewerTools:View``
-        permission for listed add-ons as well as ``Addons:ReviewUnlisted`` for
-        unlisted add-ons. Additionally the current user can also be the owner
-        of the add-on.
-
-.. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/download/(str:filename)/
-
-    This will return a streaming response serving the file.
-
-    ``Content-Type``, ``Content-Disposition`` and ``Content-Length`` are correctly set.

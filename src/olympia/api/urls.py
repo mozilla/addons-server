@@ -28,5 +28,5 @@ v4_api_urls = [
 urlpatterns = [
     url(r'^v3/', include((v3_api_urls, 'v3'))),
     url(r'^v4/', include((v4_api_urls, 'v4'))),
-    url(r'^v4dev/', include((v4_api_urls, 'v4dev'))),
+    url(r'^v5/', include((v4_api_urls, 'v5'))),
 ]

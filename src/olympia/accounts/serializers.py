@@ -149,7 +149,7 @@ class UserProfileSerializer(PublicUserProfileSerializer):
         if value.size > settings.MAX_PHOTO_UPLOAD_SIZE:
             raise serializers.ValidationError(
                 ugettext(u'Please use images smaller than %dMB.' %
-                         (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024 - 1)))
+                         (settings.MAX_PHOTO_UPLOAD_SIZE / 1024 / 1024)))
         return value
 
     def update(self, instance, validated_data):

@@ -5407,6 +5407,14 @@ class TestReviewAddonVersionViewSetDetail(
             }
         ))
 
+    def test_non_existent_requested_file_returns_404(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        response = self.client.get(self.url + '?file=UNKNOWN_FILE')
+        assert response.status_code == 404
+
     def test_supports_search_plugins(self):
         self.addon = addon_factory(
             name=u'My Addôn', slug='my-addon',
