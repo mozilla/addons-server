@@ -203,7 +203,12 @@ class FileEntriesSerializer(FileSerializer):
         commit = self._get_commit(obj)
         tree = self.repo.get_root_tree(commit)
         selected_file = self.get_selected_file(obj)
-        blob_or_tree = tree[selected_file]
+
+        try:
+            blob_or_tree = tree[selected_file]
+        except KeyError:
+            # This can happen when the file has been deleted.
+            return None
 
         if blob_or_tree.type == 'tree':
             return None
