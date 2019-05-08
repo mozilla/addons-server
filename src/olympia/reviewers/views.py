@@ -23,7 +23,6 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
-from rest_framework.permissions import BasePermission
 
 import olympia.core.logger
 
@@ -801,7 +800,7 @@ def review(request, addon, channel=None):
 
     try:
         comments_draft = version.draftcomment_set.get(user=request.user)
-    except DraftComment.DoesNotExist:
+    except (DraftComment.DoesNotExist, AttributeError):
         comments_draft = None
 
     form_initial['comments_draft'] = (
