@@ -301,7 +301,7 @@ class TestFileEntriesDiffSerializer(TestCase):
         file = self.addon.current_version.current_file
         data = self.serialize(file, parent_version=parent_version)
 
-        assert data['download_url'] == None
+        assert data['download_url'] is None
 
 
 @pytest.mark.parametrize(

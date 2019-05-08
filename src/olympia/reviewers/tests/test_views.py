@@ -5747,7 +5747,7 @@ class TestReviewAddonVersionCompareViewSet(
         response = self.client.get(self.url + '?file=' + deleted_file)
         assert response.status_code == 200
         result = json.loads(response.content)
-        assert result['file']['download_url'] == None
+        assert result['file']['download_url'] is None
 
 
 class TestDownloadGitFileView(TestCase):
