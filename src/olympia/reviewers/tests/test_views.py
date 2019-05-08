@@ -27,7 +27,7 @@ from olympia import amo, core, ratings
 from olympia.abuse.models import AbuseReport
 from olympia.access.models import Group, GroupUser
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog
+from olympia.activity.models import ActivityLog, DraftComment
 from olympia.addons.models import (
     Addon, AddonApprovalsCounter, AddonReviewerFlags, AddonUser)
 from olympia.amo.storage_utils import copy_stored_file
@@ -3390,6 +3390,7 @@ class TestReview(ReviewBase):
             'applications': 'something',
             'comments': 'something',
         }
+
         self.client.post(url, data)
 
         if version.channel == amo.RELEASE_CHANNEL_LISTED:
@@ -4427,6 +4428,38 @@ class TestReview(ReviewBase):
             reverse('reviewers.theme_background_images',
                     args=[self.addon.current_version.id])
         )
+
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_draft_comments_prefilled_for_reply(self, mock_sign_file):
+        DraftComment.objects.create(
+            comments='Fancy pancy review',
+            version=self.addon.current_version,
+            user=self.reviewer)
+
+        response = self.client.get(self.url)
+        doc = pq(response.content)
+        assert doc('#id_comments').text() == 'Fancy pancy review'
+
+    @patch('olympia.reviewers.utils.sign_file')
+    def test_draft_comments_cleared_after_submission(self, mock_sign_file):
+        DraftComment.objects.create(
+            comments='Fancy pancy review',
+            version=self.addon.current_version,
+            user=self.reviewer)
+
+        response = self.client.post(self.url, {
+            'action': 'reply',
+            'comments': 'foobar'
+        })
+
+        assert response.status_code == 302
+        assert len(mail.outbox) == 1
+
+        # Draft comments don't take precedence over manual comments
+        assert 'foobar' in mail.outbox[0].body
+        self.assertTemplateUsed(response, 'activity/emails/from_reviewer.txt')
+
+        assert DraftComment.objects.count() == 0
 
 
 @override_flag('code-manager', active=True)
@@ -5544,7 +5577,7 @@ class TestReviewAddonVersionViewSetList(TestCase):
     def test_show_listed_and_unlisted_with_permissions(self):
         user = UserProfile.objects.create(username='admin')
 
-        # User doesn't have ReviewUnlisted permission
+        # User doesn't have Review permission
         self.grant_permission(user, 'Addons:ReviewUnlisted')
 
         self.client.login_api(user)
@@ -5572,6 +5605,160 @@ class TestReviewAddonVersionViewSetList(TestCase):
                 'channel': u'listed'
             },
         ]
+
+    def test_draft_comment_patch_not_allowed(self):
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.patch(url, {})
+        assert response.status_code == 405
+
+    def test_draft_comment(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        data = {
+            'comments': 'Some really fancy comment',
+        }
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, data)
+        assert response.status_code == 200
+
+        draft_comment = DraftComment.objects.get()
+        assert draft_comment.version == self.version
+        assert draft_comment.comments == 'Some really fancy comment'
+
+    def test_draft_comment_delete(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        DraftComment.objects.create(
+            version=self.version, comments='test',
+            user=user)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.delete(url)
+        assert response.status_code == 204
+
+        assert DraftComment.objects.first() is None
+
+    def test_draft_comment_delete_not_comment_owner(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+
+        DraftComment.objects.create(
+            version=self.version, comments='test',
+            user=user)
+
+        # Let's login as someone else who is also a reviewer
+        other_reviewer = UserProfile.objects.create(username='reviewer2')
+
+        # Let's give the user admin permissions which doesn't help
+        self.grant_permission(other_reviewer, '*:*')
+
+        self.client.login_api(other_reviewer)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.delete(url)
+        assert response.status_code == 404
+
+    def test_draft_comment_disabled_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.files.update(status=amo.STATUS_DISABLED)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 403
+
+    def test_draft_comment_deleted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_deleted_version_author(self):
+        user = UserProfile.objects.create(username='author')
+        AddonUser.objects.create(user=user, addon=self.addon)
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_deleted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.delete()
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_unlisted_version_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
+
+    def test_draft_comment_unlisted_version_user_but_not_author(self):
+        user = UserProfile.objects.create(username='simpleuser')
+        self.client.login_api(user)
+        self.version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
+
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.put(url, {'comments': 'test'})
+        assert response.status_code == 404
 
 
 class TestReviewAddonVersionCompareViewSet(

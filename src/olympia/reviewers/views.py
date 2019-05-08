@@ -30,7 +30,8 @@ from olympia import amo
 from olympia.abuse.models import AbuseReport
 from olympia.access import acl
 from olympia.accounts.views import API_TOKEN_COOKIE
-from olympia.activity.models import ActivityLog, AddonLog, CommentLog
+from olympia.activity.models import (
+    ActivityLog, AddonLog, CommentLog, DraftComment)
 from olympia.addons.decorators import (
     addon_view, addon_view_factory, owner_or_unlisted_reviewer)
 from olympia.addons.models import (
@@ -41,7 +42,8 @@ from olympia.amo.urlresolvers import reverse
 from olympia.amo.utils import paginate, render
 from olympia.api.permissions import (
     AllowAnyKindOfReviewer, GroupPermission,
-    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf)
+    AllowAddonAuthor, AllowReviewer, AllowReviewerUnlisted, AnyOf,
+    ByHttpMethod)
 from olympia.constants.reviewers import REVIEWS_PER_PAGE, REVIEWS_PER_PAGE_MAX
 from olympia.devhub import tasks as devhub_tasks
 from olympia.ratings.models import Rating, RatingFlag
@@ -58,7 +60,7 @@ from olympia.reviewers.models import (
 from olympia.reviewers.serializers import (
     AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
     DiffableVersionSerializer, AddonCompareVersionSerializer,
-    FileEntriesSerializer)
+    FileEntriesSerializer, DraftCommentSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewUnlistedAllListTable, view_table_factory)
@@ -791,8 +793,18 @@ def review(request, addon, channel=None):
             request, ugettext('Self-reviews are not allowed.'))
         return redirect(reverse('reviewers.dashboard'))
 
-    # Get the current info request state to set as the default.
-    form_initial = {'info_request': addon.pending_info_request}
+    form_initial = {
+        # Get the current info request state to set as the default.
+        'info_request': addon.pending_info_request,
+    }
+
+    try:
+        comments_draft = version.draftcomment_set.get(user=request.user)
+    except (DraftComment.DoesNotExist, AttributeError):
+        comments_draft = None
+
+    form_initial['comments_draft'] = (
+        comments_draft.comments if comments_draft else '')
 
     form_helper = ReviewHelper(
         request=request, addon=addon, version=version,
@@ -833,6 +845,10 @@ def review(request, addon, channel=None):
 
     if request.method == 'POST' and form.is_valid():
         form.helper.process()
+
+        if comments_draft:
+            comments_draft.delete()
+
         amo.messages.success(
             request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
@@ -1386,6 +1402,41 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
             }
         )
         return Response(serializer.data)
+
+    draft_comment_permissions = AnyOf(
+        AllowReviewer, AllowReviewerUnlisted, AllowAddonAuthor,
+    )
+
+    @action(
+        detail=True,
+        methods=['get', 'put', 'delete'],
+        permission_classes=[ByHttpMethod({
+            'get': draft_comment_permissions,
+            'put': draft_comment_permissions,
+            'delete': draft_comment_permissions})
+        ])
+    def draft_comment(self, request, **kwargs):
+        version = self.get_object()
+
+        if request.method == 'GET':
+            instance = get_object_or_404(
+                DraftComment, version=version, user=request.user)
+            serializer = DraftCommentSerializer(instance, data=request.data)
+            return Response(serializer.data)
+        elif request.method == 'DELETE':
+            instance = get_object_or_404(
+                DraftComment, version=version, user=request.user)
+
+            instance.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+        elif request.method == 'PUT':
+            instance, _ = DraftComment.objects.get_or_create(
+                version=version, user=request.user)
+            serializer = DraftCommentSerializer(instance, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        return Response(status=http.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
