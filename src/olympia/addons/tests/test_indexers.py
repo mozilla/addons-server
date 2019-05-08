@@ -12,6 +12,7 @@ from olympia.bandwagon.models import FeaturedCollection
 from olympia.constants.applications import FIREFOX
 from olympia.constants.platforms import PLATFORM_ALL, PLATFORM_MAC
 from olympia.constants.search import SEARCH_ANALYZER_MAP
+from olympia.discovery.models import DiscoveryItem
 from olympia.files.models import WebextPermission
 from olympia.versions.models import License, VersionPreview
 
@@ -191,6 +192,18 @@ class TestAddonIndexer(TestCase):
         assert extracted['has_privacy_policy'] is True
         assert extracted['is_featured'] is False
         assert extracted['colors'] is None
+
+    def test_recommended_boost(self):
+        assert not self.addon.is_recommended
+        extracted = self._extract()
+        assert extracted['boost'] == self.addon.average_daily_users ** .2 * 4
+
+        self.addon.current_version.update(recommendation_approved=True)
+        DiscoveryItem.objects.create(addon=self.addon, recommendable=True)
+        del self.addon.is_recommended
+        assert self.addon.is_recommended
+        extracted = self._extract()
+        assert extracted['boost'] == self.addon.average_daily_users ** .2 * 20
 
     def test_extract_is_featured(self):
         collection = collection_factory()
