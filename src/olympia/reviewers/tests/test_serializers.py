@@ -286,6 +286,23 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert readme_data['size'] is None
         assert readme_data['modified'] is None
 
+    def test_serialize_deleted_file(self):
+        parent_version = self.addon.current_version
+        new_version = version_factory(
+            addon=self.addon, file_kw={
+                'filename': 'webextension_no_id.xpi',
+                'is_webextension': True,
+            }
+        )
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+        apply_changes(repo, new_version, '', 'manifest.json', delete=True)
+
+        file = self.addon.current_version.current_file
+        data = self.serialize(file, parent_version=parent_version)
+
+        assert data['download_url'] == None
+
 
 @pytest.mark.parametrize(
     'entry, filename, expected_category, expected_mimetype',

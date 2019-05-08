@@ -159,7 +159,7 @@ This endpoint allows you to compare two Add-on versions with each other.
 .. http:get:: /api/v4/reviewers/addon/(int:addon_id)/versions/(int:version_id)/compare_to/(int:version_id)/
 
     Inherits most properties from :ref:`browse detail <reviewers-versions-browse-detail>`, except that most of the `file.entries[]` properties
-    can be `null` in case of a deleted file.
+    and `file.download_url` can be `null` in case of a deleted file.
 
     Properties specific to this endpoint:
 

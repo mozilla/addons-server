@@ -5726,6 +5726,29 @@ class TestReviewAddonVersionCompareViewSet(
             }
         ]
 
+    def test_get_deleted_file(self):
+        new_version = version_factory(
+            addon=self.addon, file_kw={'filename': 'webextension_no_id.xpi'})
+
+        repo = AddonGitRepository.extract_and_commit_from_version(new_version)
+
+        deleted_file = 'README.md'
+        apply_changes(repo, new_version, '', deleted_file, delete=True)
+
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+
+        self.url = reverse_ns('reviewers-versions-compare-detail', kwargs={
+            'addon_pk': self.addon.pk,
+            'version_pk': self.version.pk,
+            'pk': new_version.pk})
+
+        response = self.client.get(self.url + '?file=' + deleted_file)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result['file']['download_url'] == None
+
 
 class TestDownloadGitFileView(TestCase):
     def setUp(self):
