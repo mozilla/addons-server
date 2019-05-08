@@ -170,7 +170,8 @@ class DraftComment(ModelBase):
     """
     id = PositiveAutoField(primary_key=True)
     comments = models.TextField()
-    version = models.OneToOneField(Version, on_delete=models.CASCADE)
+    version = models.ForeignKey(Version, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     class Meta:
         db_table = 'log_activity_comment_draft'

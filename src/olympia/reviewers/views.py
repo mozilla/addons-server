@@ -798,7 +798,7 @@ def review(request, addon, channel=None):
     }
 
     try:
-        comments_draft = version.draftcomment
+        comments_draft = version.draftcomment_set.filter(user=request.user)
     except (Version.draftcomment.RelatedObjectDoesNotExist, AttributeError):
         comments_draft = None
 
