@@ -5606,6 +5606,15 @@ class TestReviewAddonVersionViewSetList(TestCase):
             },
         ]
 
+    def test_draft_comment_patch_not_allowed(self):
+        url = reverse_ns('reviewers-versions-draft-comment', kwargs={
+            'addon_pk': self.addon.pk,
+            'pk': self.version.pk
+        })
+
+        response = self.client.patch(url, {})
+        assert response.status_code == 405
+
     def test_draft_comment(self):
         user = UserProfile.objects.create(username='reviewer')
         self.grant_permission(user, 'Addons:Review')

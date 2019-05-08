@@ -845,10 +845,11 @@ def review(request, addon, channel=None):
         redirect_url = reverse('reviewers.unlisted_queue_all')
 
     if request.method == 'POST' and form.is_valid():
+        form.helper.process()
+
         if comments_draft:
             comments_draft.delete()
 
-        form.helper.process()
         amo.messages.success(
             request, ugettext('Review successfully processed.'))
         clear_reviewing_cache(addon.id)
@@ -1429,13 +1430,14 @@ class ReviewAddonVersionViewSet(ReviewAddonVersionMixin, ListModelMixin,
 
             instance.delete()
             return Response(status=status.HTTP_204_NO_CONTENT)
-
-        instance, _ = DraftComment.objects.get_or_create(
-            version=version, user=request.user)
-        serializer = DraftCommentSerializer(instance, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+        elif request.method == 'PUT':
+            instance, _ = DraftComment.objects.get_or_create(
+                version=version, user=request.user)
+            serializer = DraftCommentSerializer(instance, data=request.data)
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            return Response(serializer.data)
+        return Response(status=http.HTTP_405_METHOD_NOT_ALLOWED)
 
 
 class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
