@@ -6,12 +6,12 @@ Overview
 
 .. note::
 
-    These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    These APIs are not frozen and can change at any time without warning.
+    See :ref:`the API versions available<api-versions-list>` for details
     if you need stability.
 
 This describes the details of the requests and responses you can expect from
-the `addons.mozilla.org <https://addons.mozilla.org/en-US/firefox/>`_ API.
+the `addons.mozilla.org <https://addons.mozilla.org/firefox/>`_ API.
 
 --------
 Requests
@@ -163,8 +163,7 @@ language) will be returned.
 Default API behavior
 ^^^^^^^^^^^^^^^^^^^^
 
-In API version 4 the response if the ``lang`` parameter is passed a single string
-is returned.
+In API version 3 or 4 the response, if the ``lang`` parameter is passed, is a single string.
 
 .. code-block:: json
 
@@ -182,8 +181,8 @@ the current language.
 v5 API behavior
 ^^^^^^^^^^^^^^^
 
-In the experimental :ref:`v5 API <api-experimental-v5>` the response if the ``lang`` parameter is passed
-is an object only containing that translation is returned.
+In the experimental :ref:`v5 API <api-experimental-v5>` the response, if the ``lang`` parameter is passed,
+is an object containing only that translation.
 
 .. code-block:: json
 
@@ -242,32 +241,49 @@ specified.
 
 .. _`Cross-Origin Resource Sharing`: https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS
 
-.. _api-stable-v3:
 
--------------
-Stable v3 API
--------------
+.. _api-versions-list:
 
-All documentation here refers to the in-development `v4` APIs, which are
-experimental. Any consumer of the APIs that require stablity may consider using
-the `v3` API instead, which is frozen.  No new API endpoints will be added to
-`v3` and we aim to make no breaking changes.  (That's the aim - we can't
-guarantee 100% stability).  The `v3` API will be maintained for as long as Firefox
-ESR60 is supported by Mozilla, i.e. at least June 30th 2019.
-The downside of using the `v3` API is, of course, no new cool features!
+------------
+API Versions
+------------
+
+~~~~~~~~~~~~~~
+Default v4 API
+~~~~~~~~~~~~~~
+
+All documentation here, unless otherwise specified, refers to the default `v4` APIs,
+which are considered stable.
+The request and responses are *NOT* frozen though, and can change at any time,
+depending on the requirements of addons-frontend (the primary consumer).
+
+
+~~~~~~~~~~~~~
+Frozen v3 API
+~~~~~~~~~~~~~
+
+Any consumer of the APIs that requires more stablity may consider using
+the `v3` API instead, which is frozen.  No new API endpoints (so no new features)
+will be added to `v3` and we aim to make no breaking changes.
+Despite the aim, we can't guarantee 100% stability.
+The `v3` API will be maintained for as long as Firefox ESR60 is supported by Mozilla,
+i.e. at least October 23rd 2019.
 
 The documentation for `v3` can be accessed at: :ref:`v3-api-index`
 
 
-.. _api-experimental-v5:
+ .. _api-experimental-v5:
 
-----------------------------------------
-Extra-Experimental/Future-default v5 API
-----------------------------------------
+~~~~~~~~~~~~~~~~~~~
+Experimental v5 API
+~~~~~~~~~~~~~~~~~~~
 
-The experimental `v5` API will eventually become the new default API when the
-current default, `v4`, is frozen and the stable `v3`  deprecated.  Any reference
-to v5 specific behavior/properties/endpoints will be explicit in these docs.
+The experimental `v5` API contains some additional changes/features which are
+either unstable, in-progress, or currently unsupported by addons-frontend.
+It will eventually become the new default API when the current default, `v4`,
+is frozen and the stable `v3` deprecated.
+Any reference to v5 specific behavior/properties/endpoints will be explicit in
+these docs.
 
 
 ----------------
@@ -305,4 +321,13 @@ v4 API changelog
 * 2019-01-16: removed /api/{v3,v4,v5}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
 * 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
 * 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
-* 2019-05-09: renamed the experimental `v4dev` api to `v5` (and updated references everywhere)
+
+----------------
+v5 API changelog
+----------------
+These are `v5` specific changes - `v4` changes apply also.
+
+* 2018-09-27: created the `v4dev` API.  The `v4dev` api is not available on AMO production server.
+  See :ref:`translations<api-overview-translations>` for details on the change to responses containing localisations.
+  https://github.com/mozilla/addons-server/issues/9467
+* 2019-05-09: renamed the experimental `v4dev` api to `v5` and made the `v5` API generally available (on AMO production also)

@@ -4,8 +4,8 @@ Abuse Reports
 
 .. note::
 
-    These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
+    These APIs are not frozen and can change at any time without warning.
+    See :ref:`the API versions available<api-versions-list>` for alternatives
     if you need stability.
 
 The following API endpoint covers abuse reporting

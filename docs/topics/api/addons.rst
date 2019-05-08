@@ -4,9 +4,10 @@ Add-ons
 
 .. note::
 
-    These APIs are experimental and are currently being worked on. Endpoints
-    may change without warning. Consider the :ref:`v3 API<api-stable-v3>`
-    if you need stability. The only authentication method available at
+    These APIs are not frozen and can change at any time without warning.
+    See :ref:`the API versions available<api-versions-list>` for alternatives
+    if you need stability.
+    The only authentication method available at
     the moment is :ref:`the internal one<api-auth-internal>`.
 
 --------
