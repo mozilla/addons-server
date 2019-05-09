@@ -42,6 +42,16 @@ MIMETYPE_COMPAT_MAPPING = {
     'image/svg': 'image/svg+xml',
     # See: https://github.com/mozilla/addons-server/issues/11383
     'image/x-ms-bmp': 'image/bmp',
+    # See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#textjavascript  # noqa
+    'application/javascript': 'text/javascript',
+}
+
+
+# Some official mimetypes belong to the `text` category, even though their
+# names don't include `text/`.
+MIMETYPE_CATEGORY_MAPPING = {
+    'application/json': 'text',
+    'application/xml': 'text',
 }
 
 
@@ -155,22 +165,32 @@ class FileEntriesSerializer(FileSerializer):
         # We're only reading the needed amount of content from the file to
         # not exhaust/read the whole blob into memory again.
         bytes_ = io.BytesIO(memoryview(blob)).read(1048576)
-        mime = magic.from_buffer(bytes_, mime=True)
+        mimetype = magic.from_buffer(bytes_, mime=True)
 
         # Apply compatibility mappings
-        mime = MIMETYPE_COMPAT_MAPPING.get(mime, mime)
+        mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
 
-        mime_type = mime.split('/')[0]
-        known_types = ('image', 'text')
+        # Try to find a more accurate "textual" mimetype.
+        if mimetype == 'text/plain':
+            # Allow text mimetypes to be more specific for readable files.
+            # `python-magic`/`libmagic` usually just returns plain/text but we
+            # should use actual types like text/css or text/javascript.
+            mimetype, _ = mimetypes.guess_type(entry.name)
+            # Re-apply compatibility mappings since `guess_type()` might return
+            # a completely different mimetype.
+            mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
 
-        if mime_type == 'text':
-            # Allow text mimetypes to be more specific for readable
-            # files. `python-magic`/`libmagic` usually just returns
-            # plain/text but we should use actual types like text/css or
-            # text/javascript.
-            mime, _ = mimetypes.guess_type(entry.name)
 
-        return mime, 'binary' if mime_type not in known_types else mime_type
+        known_type_cagegories = ('image', 'text')
+        default_type_category = 'binary'
+
+        # If mimetype has an explicit category, use it.
+        type_category = MIMETYPE_CATEGORY_MAPPING.get(
+            mimetype, mimetype.split('/')[0]
+        ) if mimetype else default_type_category
+
+        return (mimetype, default_type_category if type_category not in
+                known_type_cagegories else type_category)
 
     def get_selected_file(self, obj):
         requested_file = self.context.get('file', None)
