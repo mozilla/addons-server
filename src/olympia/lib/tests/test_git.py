@@ -389,6 +389,9 @@ def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
         zip_file.writestr('.gitattributes', '')
         zip_file.writestr('.gitignore', '')
         zip_file.writestr('.gitmodules', '')
+        zip_file.writestr('some/directory/.gitattributes', '')
+        zip_file.writestr('some/directory/.gitignore', '')
+        zip_file.writestr('some/directory/.gitmodules', '')
     source.seek(0)
     addon.current_version.source = DjangoFile(source)
     addon.current_version.save()
@@ -407,6 +410,9 @@ def test_extract_and_commit_source_from_version_rename_dotgit_files(settings):
         'extracted/.gitattributes.b236f599',
         'extracted/.gitignore.b236f599',
         'extracted/.gitmodules.b236f599',
+        'extracted/some/directory/.gitattributes.b236f599',
+        'extracted/some/directory/.gitignore.b236f599',
+        'extracted/some/directory/.gitmodules.b236f599',
     }
 
 
