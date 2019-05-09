@@ -180,10 +180,8 @@ class FileEntriesSerializer(FileSerializer):
             # a completely different mimetype.
             mimetype = MIMETYPE_COMPAT_MAPPING.get(mimetype, mimetype)
 
-
         known_type_cagegories = ('image', 'text')
         default_type_category = 'binary'
-
         # If mimetype has an explicit category, use it.
         type_category = MIMETYPE_CATEGORY_MAPPING.get(
             mimetype, mimetype.split('/')[0]
