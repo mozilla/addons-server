@@ -324,6 +324,12 @@ class TestFileEntriesDiffSerializer(TestCase):
         (MagicMock(type='blob'), 'foo.json', 'text', 'application/json'),
         (MagicMock(type='tree'), 'foo', 'directory',
                                  'application/octet-stream'),
+        (MagicMock(type='blob'), 'image-svg-without-xml.svg', 'image',
+                                 'image/svg+xml'),
+        (MagicMock(type='blob'), 'bmp-v3.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'bmp-v4.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'bmp-v5.bmp', 'image', 'image/bmp'),
+        (MagicMock(type='blob'), 'bmp-os2-v1.bmp', 'image', 'image/bmp'),
     ]
 )
 def test_file_entries_serializer_category_type(

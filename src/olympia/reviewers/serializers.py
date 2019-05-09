@@ -38,6 +38,10 @@ MIMETYPE_COMPAT_MAPPING = {
     # application/x-empty for empty plain text files
     # So, let's normalize this.
     'application/x-empty': 'text/plain',
+    # See: https://github.com/mozilla/addons-server/issues/11382
+    'image/svg': 'image/svg+xml',
+    # See: https://github.com/mozilla/addons-server/issues/11383
+    'image/x-ms-bmp': 'image/bmp',
 }
 
 
