@@ -451,6 +451,51 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         self.delete_or_disable_related_content(delete=False)
         return self.delete(keep_fxa_id_and_email=True)
 
+    @classmethod
+    def ban_and_disable_related_content_bulk(cls, users, disable_files=False):
+        """Like ban_and_disable_related_content, but in bulk. """
+        from olympia.addons.models import Addon, AddonUser
+        from olympia.addons.tasks import index_addons
+        from olympia.bandwagon.models import Collection
+        from olympia.files.models import File
+        from olympia.ratings.models import Rating
+
+        # collect affected addons
+        addon_ids = set(
+            Addon.unfiltered.exclude(status=amo.STATUS_DELETED)
+            .filter(addonuser__user__in=users).values_list('id', flat=True))
+
+        # First addons who have other authors we aren't banning
+        addon_joint_ids = set(
+            AddonUser.objects.filter(addon_id__in=addon_ids)
+            .exclude(user__in=users).values_list('addon_id', flat=True))
+        AddonUser.objects.filter(
+            user__in=users, addon_id__in=addon_joint_ids).delete()
+
+        # Then deal with users who are the sole author
+        addons_sole = Addon.unfiltered.filter(
+            id__in=addon_ids - addon_joint_ids)
+        # set the status to disabled - using the manager update() method
+        addons_sole.update(status=amo.STATUS_DISABLED)
+        # collect files that need to be moved now the addons are disabled
+        if disable_files:
+            files_to_move = File.objects.filter(version__addon__in=addons_sole)
+            for file_ in files_to_move:
+                file_.hide_disabled_file()
+        # Finally run Addon.force_disable to add the logging; update versions
+        # Status was already DISABLED so shouldn't fire watch_disabled again.
+        for addon in addons_sole:
+            addon.force_disable()
+        index_addons.delay(addon_ids - addon_joint_ids)
+
+        # delete the other content associated with the user
+        Collection.objects.filter(author__in=users).delete()
+        Rating.objects.filter(user__in=users).delete(
+            user_responsible=core.get_user())
+        # And then delete the users.
+        for user in users:
+            user.delete(keep_fxa_id_and_email=True)
+
     def delete(self, hard=False, keep_fxa_id_and_email=False):
         # Cache the values in case we do a hard delete and loose
         # reference to the user-id.
