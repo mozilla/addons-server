@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-15 02:09+0000\n"
+"PO-Revision-Date: 2019-05-09 10:41+0000\n"
 "Last-Translator: Victor Bychek <a@bychek.ru>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -380,7 +380,7 @@ msgid "Add-ons"
 msgstr "Дополнения"
 
 msgid "Custom License"
-msgstr "Своя лицензия"
+msgstr "Лицензия разработчика"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
