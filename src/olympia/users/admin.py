@@ -4,6 +4,7 @@ from django.conf.urls import url
 from django.contrib import admin, messages
 from django.contrib.admin.options import operator
 from django.contrib.admin.utils import unquote
+from django.core.exceptions import FieldDoesNotExist
 from django.db import models
 from django.db.utils import IntegrityError
 from django.http import (
@@ -34,10 +35,11 @@ class GroupUserInline(admin.TabularInline):
 
 class UserAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'email', 'is_public', 'deleted')
-    search_fields = ('id', '^email', '^username')
+    search_fields = ('=id', '^email', '^username')
     # A custom field used in search json in zadmin, not django.admin.
     search_fields_response = 'email'
     inlines = (GroupUserInline,)
+    show_full_result_count = False  # Turn off to avoid the query.
 
     readonly_fields = ('id', 'picture_img', 'deleted', 'is_public',
                        'last_login', 'last_login_ip', 'known_ip_adresses',
@@ -227,22 +229,51 @@ class UserAdmin(admin.ModelAdmin):
                 return "%s__iexact" % field_name[1:]
             elif field_name.startswith('@'):
                 return "%s__icontains" % field_name[1:]
-            else:
-                return "%s__icontains" % field_name
+            # Use field_name if it includes a lookup.
+            opts = queryset.model._meta
+            lookup_fields = field_name.split(models.constants.LOOKUP_SEP)
+            # Go through the fields, following all relations.
+            prev_field = None
+            for path_part in lookup_fields:
+                if path_part == 'pk':
+                    path_part = opts.pk.name
+                try:
+                    field = opts.get_field(path_part)
+                except FieldDoesNotExist:
+                    # Use valid query lookups.
+                    if prev_field and prev_field.get_lookup(path_part):
+                        return field_name
+                else:
+                    prev_field = field
+                    if hasattr(field, 'get_path_info'):
+                        # Update opts to follow the relation.
+                        opts = field.get_path_info()[-1].to_opts
+            # Otherwise, use the field with icontains.
+            return "%s__icontains" % field_name
 
         use_distinct = False
         search_fields = self.get_search_fields(request)
         filters = []
         joining_operator = operator.and_
-        if search_fields and search_term:
-            orm_lookups = [construct_search(str(search_field))
-                           for search_field in search_fields]
-            if ' ' not in search_term and ',' in search_term:
-                separator = ','
-                joining_operator = operator.or_
-            else:
-                separator = None
-            for bit in search_term.split(separator):
+        if not (search_fields and search_term):
+            # return early if we have nothing special to do
+            return queryset, use_distinct
+
+        if ' ' not in search_term and ',' in search_term:
+            separator = ','
+            joining_operator = operator.or_
+        else:
+            separator = None
+        search_terms = search_term.split(separator)
+        all_numeric = all(term.isnumeric() for term in search_terms)
+        if all_numeric and len(search_terms) > 1:
+            # if we have multiple numbers assume we're doing a bulk id search
+            queryset = queryset.filter(id__in=search_terms)
+        else:
+            orm_lookups = [
+                construct_search(str(search_field))
+                for search_field in search_fields]
+            for bit in search_terms:
                 or_queries = [models.Q(**{orm_lookup: bit})
                               for orm_lookup in orm_lookups]
 
@@ -250,16 +281,13 @@ class UserAdmin(admin.ModelAdmin):
                     functools.reduce(operator.or_, or_queries))
                 filters.append(q_for_this_term)
 
-            if not use_distinct:
-                for search_spec in orm_lookups:
-                    if admin.utils.lookup_needs_distinct(
-                            self.opts, search_spec):
-                        use_distinct = True
-                        break
+            use_distinct |= any(
+                admin.utils.lookup_needs_distinct(self.opts, search_spec)
+                for search_spec in orm_lookups)
 
-        if filters:
-            queryset = queryset.filter(
-                functools.reduce(joining_operator, filters))
+            if filters:
+                queryset = queryset.filter(
+                    functools.reduce(joining_operator, filters))
         return queryset, use_distinct
 
 
