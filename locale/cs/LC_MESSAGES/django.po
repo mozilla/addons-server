@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-13 12:52+0000\n"
+"PO-Revision-Date: 2019-05-13 13:10+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4266,7 +4266,7 @@ msgstr "Označte text na jakékoliv stránce, klepněte pravým tlačítkem a na
 
 #. editorial content for the discovery pane.
 msgid "Gain an Amazon edge {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní získat výčet produktů Amazonu"
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám umožní najít produkt na Amazonu"
 
 #. editorial content for the discovery pane.
 msgid "When looking at product pages on other online shops, if it's also available on Amazon you can simply click a button to check its Amazon listing."
@@ -4274,11 +4274,11 @@ msgstr "Když se díváte na stránku nějakého produktu v jiném internetovém
 
 #. editorial content for the discovery pane.
 msgid "Ultimate tab control {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "{start_sub_heading}{addon_name}{end_sub_heading} vám dá maximální vládu nad panelem"
 
 #. editorial content for the discovery pane.
 msgid "So many tab control options—close duplicate tabs, merge windows, copy the tab title, and more."
-msgstr ""
+msgstr "Tolik možností práce s panelem – zavřete duplicitní panely, slučte okna, zkopírujte název panelu a mnoho dalšího."
 
 #. editorial content for the discovery pane.
 msgid "Enjoy a strange education {start_sub_heading}with {addon_name}{end_sub_heading}"
