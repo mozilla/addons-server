@@ -22,6 +22,7 @@ from olympia.addons.serializers import (
 from olympia.addons.models import AddonReviewerFlags
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
+from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository
 from olympia.lib import unicodehelper
@@ -375,3 +376,12 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = DraftComment
         fields = ('comments',)
+
+
+class CannedResponseSerializer(serializers.ModelSerializer):
+    # Title is actually more fitting than the internal "name"
+    title = serializers.CharField(source='name')
+
+    class Meta:
+        model = CannedResponse
+        fields = ('id', 'title', 'response', 'category')

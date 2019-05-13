@@ -40,7 +40,8 @@ from olympia.amo.templatetags.jinja_helpers import absolutify
 from olympia.files.models import File, FileValidation, WebextPermission
 from olympia.ratings.models import Rating, RatingFlag
 from olympia.reviewers.models import (
-    AutoApprovalSummary, ReviewerScore, ReviewerSubscription, Whiteboard)
+    AutoApprovalSummary, ReviewerScore, ReviewerSubscription, Whiteboard,
+    CannedResponse)
 from olympia.users.models import UserProfile
 from olympia.versions.models import ApplicationsVersions, AppVersion
 from olympia.versions.tasks import extract_version_to_git
@@ -6100,6 +6101,66 @@ class TestDownloadGitFileView(TestCase):
 
         response = self.client.get(url)
         assert response.status_code == 404
+
+
+class TestCannedResponseViewSet(TestCase):
+    client_class = APITestClient
+
+    def setUp(self):
+        super(TestCannedResponseViewSet, self).setUp()
+
+        self.canned_response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'doesn\'t regard our terms of services',
+            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        self.url = reverse_ns('reviewers-canned-response-list')
+
+    def _test_url(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 200
+        result = json.loads(response.content)
+        assert result == [{
+            'id': self.canned_response.id,
+            'title': self.canned_response.name,
+            'response': self.canned_response.response,
+            'category': self.canned_response.category,
+        }]
+
+    def test_anonymous(self):
+        response = self.client.get(self.url)
+        assert response.status_code == 401
+
+    def test_permissions_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:Review')
+        self.client.login_api(user)
+        self._test_url()
+
+    def test_permissions_authenticated_but_not_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.client.login_api(user)
+        response = self.client.get(self.url)
+        assert response.status_code == 403
+
+    def test_admin(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, '*:*')
+        self.client.login_api(user)
+        self._test_url()
+
+    def test_unlisted_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:ReviewUnlisted')
+        self.client.login_api(user)
+        self._test_url()
+
+    def test_post_reviewer(self):
+        user = UserProfile.objects.create(username='reviewer')
+        self.grant_permission(user, 'Addons:PostReview')
+        self.client.login_api(user)
+        self._test_url()
 
 
 class TestThemeBackgroundImages(ReviewBase):
