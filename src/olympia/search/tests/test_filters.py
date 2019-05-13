@@ -121,7 +121,7 @@ class TestQueryFilter(FilterTestsBase):
             },
             'weight': 4.0
         }
-        assert functions[2] ==  {
+        assert functions[2] == {
             'filter': {
                 'term': {'is_recommended': True}},
             'weight': 5.0}
