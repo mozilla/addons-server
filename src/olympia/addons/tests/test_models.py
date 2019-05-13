@@ -1567,6 +1567,13 @@ class TestAddonModels(TestCase):
         # similarly if the current_version wasn't reviewed for recommended
         assert not addon.is_recommended
 
+        addon.current_version.all_files[0].update(status=amo.STATUS_DISABLED)
+        addon.update_version()
+        assert not addon.current_version
+        del addon.is_recommended
+        # check it doesn't error if there's no current_version
+        assert not addon.is_recommended
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']
