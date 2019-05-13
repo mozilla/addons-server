@@ -1,8 +1,10 @@
 from django.contrib import admin
+from django.db.models import Prefetch
 from django.utils.html import format_html
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse
 
+from olympia.addons.models import Addon
 from olympia.translations.utils import truncate_text
 from olympia.zadmin.admin import related_single_content_link
 
@@ -52,11 +54,20 @@ class RatingAdmin(admin.ModelAdmin):
               'user_link', 'deleted')
     list_display = ('id', 'addon', 'created', 'user', 'ip_address', 'rating',
                     'is_reply', 'flag', 'deleted', 'truncated_body',)
-    list_filter = ('deleted', RatingTypeFilter)
+    list_filter = ('deleted', RatingTypeFilter, 'rating')
     actions = ('delete_selected',)
+    list_select_related = ('user',)  # For addon/reply_to see get_queryset()
 
-    def queryset(self, request):
-        return Rating.unfiltered.all()
+    def get_queryset(self, request):
+        base_qs = Rating.unfiltered.all()
+        return base_qs.prefetch_related(
+            Prefetch(
+                'addon', queryset=Addon.unfiltered.all().only_translations()),
+            Prefetch('reply_to', queryset=base_qs),
+        )
+
+    def has_add_permission(self, request):
+        return False
 
     def truncated_body(self, obj):
         return truncate_text(obj.body, 140)[0] if obj.body else ''

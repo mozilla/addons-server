@@ -73,6 +73,15 @@ class WithoutRepliesRatingManager(ManagerBase):
 
 @python_2_unicode_compatible
 class Rating(ModelBase):
+    RATING_CHOICES = (
+        (None, _('None')),
+        (0, '☆☆☆☆☆'),
+        (1, '☆☆☆☆★'),
+        (2, '☆☆☆★★'),
+        (3, '☆☆★★★'),
+        (4, '☆★★★★'),
+        (5, '★★★★★'),
+    )
     id = PositiveAutoField(primary_key=True)
     addon = models.ForeignKey(
         'addons.Addon', related_name='_ratings', on_delete=models.CASCADE)
@@ -86,7 +95,8 @@ class Rating(ModelBase):
         'self', null=True, related_name='reply', db_column='reply_to',
         on_delete=models.CASCADE)
 
-    rating = models.PositiveSmallIntegerField(null=True)
+    rating = models.PositiveSmallIntegerField(
+        null=True, choices=RATING_CHOICES)
     body = models.TextField(db_column='text_body', null=True)
     ip_address = models.CharField(max_length=255, default='0.0.0.0')
 

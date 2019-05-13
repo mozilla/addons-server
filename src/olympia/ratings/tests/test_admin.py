@@ -51,12 +51,15 @@ class TestRatingAdmin(TestCase):
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 4
 
-        # Test truncated text while we're at it.
+        # Test truncated text while we're at it...
+        content = response.content.decode('utf-8')
         assert (
             u'Lôrem ipsum dolor sit amet, per at melius fuisset invidunt, ea '
             u'facete aperiam his. Et cum iusto detracto, nam atqui nostrum no,'
             u' eum altera...'
-            in response.content.decode('utf-8'))
+            in content)
+        # ... And add-on name display.
+        assert str(self.addon.name) in content
 
         response = self.client.get(
             self.list_url, {'type': 'rating'}, follow=True)
@@ -69,6 +72,41 @@ class TestRatingAdmin(TestCase):
         assert response.status_code == 200
         doc = pq(response.content)
         assert doc('#result_list tbody tr').length == 1
+
+    def test_queries(self):
+        addon = Addon.objects.get(pk=3615)
+        user = UserProfile.objects.get(pk=999)
+
+        # Create a few more ratings.
+        Rating.objects.create(
+            addon=addon, user=user_factory(), rating=4,
+            body=u'Lôrem ipsum dolor sit amet, per at melius fuisset '
+                 u'invidunt, ea facete aperiam his. Et cum iusto detracto, '
+                 u'nam atqui nostrum no, eum altera indoctum ad. Has ut duis '
+                 u'tractatos laboramus, cum sale primis ei. Ius inimicus '
+                 u'intellegebat ea, mollis expetendis usu ei. Cetero aeterno '
+                 u'nostrud eu për.')
+        Rating.objects.create(
+            addon=addon, body=None, rating=5, user=user_factory())
+        # Create a reply.
+        Rating.objects.create(
+            addon=addon, user=user, body=u'Réply', reply_to=self.rating)
+
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Ratings:Moderate')
+
+        self.client.login(email=user.email)
+        with self.assertNumQueries(10):
+            # - 2 Savepoint/release
+            # - 2 user and its groups
+            # - 2 COUNT(*) (duplicated because of django)
+            # - 1 ratings themselves
+            # - 1 related add-ons
+            # - 1 related add-ons translations
+            response = self.client.get(self.list_url, follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert doc('#result_list tbody tr').length == 4
 
     def test_can_not_access_detail_without_ratings_moderate_permission(self):
         user = user_factory()
