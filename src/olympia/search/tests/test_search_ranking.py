@@ -8,9 +8,10 @@ from olympia import amo
 from olympia.amo.tests import (
     APITestClient, ESTestCase, reverse_ns, create_switch)
 from olympia.constants.search import SEARCH_LANGUAGE_TO_ANALYZER
+from olympia.discovery.models import DiscoveryItem
 
 
-class TestRankingScenarios(ESTestCase):
+class RankingScenariosMixin:
     client_class = APITestClient
 
     def _check_scenario(self, query, expected, **kwargs):
@@ -88,7 +89,7 @@ class TestRankingScenarios(ESTestCase):
         # since we need that setting on index-creation time.
         create_switch('es-use-classic-similarity')
 
-        super(TestRankingScenarios, cls).setUpTestData()
+        super().setUpTestData()
 
         # Shouldn't be necessary, but just in case.
         cls.empty_index('default')
@@ -416,7 +417,7 @@ class TestRankingScenarios(ESTestCase):
                 'an unofficial client for the excellent Pocket service. '
                 'Hope you\'ll enjoy it!'),
             weekly_downloads=1123)
-        amo.tests.addon_factory(
+        cls.tabbycat = amo.tests.addon_factory(
             average_daily_users=4089,
             description=None,
             name='Tabby Cat',
@@ -520,6 +521,9 @@ class TestRankingScenarios(ESTestCase):
             average_daily_users=50, weekly_downloads=1, summary=None)
 
         cls.refresh()
+
+
+class TestRankingScenarios(RankingScenariosMixin, ESTestCase):
 
     def test_scenario_tabby_cat(self):
         self._check_scenario('Tabby cat', (
@@ -791,3 +795,76 @@ class TestRankingScenarios(ESTestCase):
         self._check_scenario(u'foobar unique francais', (
             [u'Foobar unique english', 4.957241],
         ), lang='en-US')
+
+
+class TestRankingScenariosWithRecommended(RankingScenariosMixin, ESTestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+        super().setUpTestData()
+        # Make tabbycat recommended - it should jump to the top of the results
+        DiscoveryItem.objects.create(addon=cls.tabbycat, recommendable=True)
+        cls.tabbycat.current_version.update(recommendation_approved=True)
+        cls.refresh()
+
+    def test_scenario_tabby_cat(self):
+        self._check_scenario('Tabby cat', (
+            ['Tabby Cat', 261.0998],
+        ))
+
+    def test_scenario_tabbycat(self):
+        self._check_scenario('tabbycat', (
+            ['Tabby Cat', 4.215731],
+            ['OneTab', 0.830401660],
+            ['FoxyTab', 0.71196246],
+            ['Authenticator', 0.6420107],
+            ['Tab Mix Plus', 0.483457770],
+            ['Open Bookmarks in New Tab', 0.37894645],
+            ['Tab Center Redux', 0.36477524],
+            ['Open image in a new tab', 0.29129007],
+            ['Open Image in New Tab', 0.22891109],
+        ))
+
+    def test_scenario_tabbbycat(self):
+        self._check_scenario('tabbbycat', (
+            ['Tabby Cat', 3.8696632],
+            ['OneTab', 0.8297480],
+            ['FoxyTab', 0.711402],
+            ['Authenticator', 0.6415053],
+            ['Tab Mix Plus', 0.4830772],
+            ['Open Bookmarks in New Tab', 0.37864816],
+            ['Tab Center Redux', 0.36448812],
+            ['Open image in a new tab', 0.29106078],
+            ['Open Image in New Tab', 0.22873089],
+        ))
+
+    def test_scenario_tabbicat(self):
+        self._check_scenario('tabbicat', (
+            ['Tabby Cat', 3.0745962],
+            ['OneTab', 0.83031404],
+            ['FoxyTab', 0.71188736],
+            ['Authenticator', 0.641943],
+            ['Tab Mix Plus', 0.48340675],
+            ['Open Bookmarks in New Tab', 0.3789065],
+            ['Tab Center Redux', 0.36473677],
+            ['Open image in a new tab', 0.29125935],
+            ['Open Image in New Tab', 0.22888695],
+        ))
+
+    def test_scenario_tab(self):
+        self._check_scenario('tab', (
+            ['Tabby Cat', 8.694547],
+            ['OneTab', 3.86240240],
+            ['Tab Mix Plus', 3.78842690],
+            ['FoxyTab', 2.9699721],
+            ['Tab Center Redux', 2.9458997],
+            ['Open Bookmarks in New Tab', 2.8534899],
+            ['Open image in a new tab', 2.4321914],
+            ['Open Image in New Tab', 1.9961225],
+        ))
+
+    def test_scenario_websocket(self):
+        # But not when it doesn't match the search string at all
+        self._check_scenario('websocket', (
+            ['Simple WebSocket Client', 4.834485],
+        ))

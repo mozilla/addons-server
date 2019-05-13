@@ -102,7 +102,7 @@ class TestQueryFilter(FilterTestsBase):
         assert expected in should
 
         functions = qs['query']['function_score']['functions']
-        assert len(functions) == 2
+        assert len(functions) == 3
         assert functions[0] == {
             'field_value_factor': {
                 'field': 'average_daily_users', 'modifier': 'log2p'
@@ -121,6 +121,10 @@ class TestQueryFilter(FilterTestsBase):
             },
             'weight': 4.0
         }
+        assert functions[2] ==  {
+            'filter': {
+                'term': {'is_recommended': True}},
+            'weight': 5.0}
         return qs
 
     def test_no_rescore_if_not_sorting_by_relevance(self):
