@@ -214,7 +214,7 @@ class AbuseReportAdmin(admin.ModelAdmin):
         # the other transforms).
         return qs.prefetch_related(
             Prefetch(
-                'addon', queryset=Addon.unfiltered.all().only_translations()),
+                'addon', queryset=Addon.objects.all().only_translations()),
         )
 
     def target_name(self, obj):
