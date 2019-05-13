@@ -285,7 +285,7 @@ This endpoint allows you to retrieve a list of canned responses.
 
     Retrieve canned responses
 
-    :>json integer id: The canned response id.
+    :>json int id: The canned response id.
     :>json string title: The title of the canned response.
     :>json string response: The text that will be filled in as the response.
     :>json string category: The category of the canned response. For example, "Other", "Privacy reasons" etc.

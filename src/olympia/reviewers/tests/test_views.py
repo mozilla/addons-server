@@ -6121,11 +6121,12 @@ class TestCannedResponseViewSet(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         result = json.loads(response.content)
+        category = self.canned_response.category
         assert result == [{
             'id': self.canned_response.id,
             'title': self.canned_response.name,
             'response': self.canned_response.response,
-            'category': self.canned_response.category,
+            'category': amo.CANNED_RESPONSE_CATEGORY_CHOICES[category],
         }]
 
     def test_anonymous(self):
