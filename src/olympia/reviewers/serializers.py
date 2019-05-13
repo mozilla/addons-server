@@ -307,7 +307,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             parent=parent,
             pathspec=[self.get_selected_file(obj)])
 
-        return diff
+        return next(iter(diff), None)
 
     def get_entries(self, obj):
         """Overwrite `FileEntriesSerializer.get_entries to inject
