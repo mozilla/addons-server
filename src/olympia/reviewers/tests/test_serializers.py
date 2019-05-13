@@ -480,8 +480,9 @@ class TestCannedResponseSerializer(TestCase):
 
         data = CannedResponseSerializer(instance=response).data
 
-        assert data['id'] == response.id
-        assert data['title'] == 'Terms of services'
-        assert data['response'] == 'test'
-        assert data['category'] == 'Other'
-        assert data['type'] == amo.CANNED_RESPONSE_TYPE_ADDON
+        assert data == {
+            'id': response.id,
+            'title': 'Terms of services',
+            'response': 'test',
+            'category': 'Other',
+        }
