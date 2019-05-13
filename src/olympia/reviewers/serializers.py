@@ -307,7 +307,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             parent=parent,
             pathspec=[self.get_selected_file(obj)])
 
-        return diff
+        # Because we're always specifying `pathspec` with the currently
+        # selected file we can inline the diff because there will always be
+        # one.
+        # See: https://github.com/mozilla/addons-server/issues/11392
+        return next(iter(diff), None)
 
     def get_entries(self, obj):
         """Overwrite `FileEntriesSerializer.get_entries to inject

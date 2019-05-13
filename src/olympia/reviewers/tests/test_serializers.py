@@ -286,6 +286,10 @@ class TestFileEntriesDiffSerializer(TestCase):
         assert readme_data['size'] is None
         assert readme_data['modified'] is None
 
+        # There is no difference for the selected file because we did not
+        # change it.
+        assert data['diff'] is None
+
     def test_serialize_deleted_file(self):
         parent_version = self.addon.current_version
         new_version = version_factory(
@@ -302,6 +306,9 @@ class TestFileEntriesDiffSerializer(TestCase):
         data = self.serialize(file, parent_version=parent_version)
 
         assert data['download_url'] is None
+        # We deleted the selected file, so there should be a diff.
+        assert data['diff'] is not None
+        assert data['diff']['mode'] == 'D'
 
 
 @pytest.mark.parametrize(

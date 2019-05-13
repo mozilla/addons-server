@@ -174,7 +174,7 @@ This endpoint allows you to compare two Add-on versions with each other.
     :>json string|null files.entries[].mime_category: The mime type category of this file. Can be ``image``, ``directory``, ``text`` or ``binary``.
     :>json int|null file.entries[].size: The size in bytes.
     :>json string|null file.entries[].modified: The exact time of the commit, should be equivalent with ``created``.
-    :>json object diff: See the following output with inline comments for a complete description.
+    :>json object|null diff: See the following output with inline comments for a complete description.
 
     Git patch we're talking about:
 
@@ -235,42 +235,40 @@ This endpoint allows you to compare two Add-on versions with each other.
 
     .. code:: javascript
 
-        "diff": [
-            {
-                "path": "README.md",
-                "old_path": "README.md",
-                "size": 15,  // Size in bytes
-                "lines_added": 1,  // How many lines got added
-                "lines_deleted": 1,  // How many lines got deleted
-                "is_binary": false,  // Is this a binary file (as determined by git)
-                "mode": "M",  // Status of this file, see https://git-scm.com/docs/git-status#_short_format
-                "hunks": [
-                    {
-                        "header": "@@ -1 +1 @@\\n",
-                        "old_start": 1,
-                        "new_start": 1,
-                        "old_lines": 1,
-                        "new_lines": 1,
-                        "changes": [
-                            {
-                                "content": "# beastify\\n",
-                                "type": "delete",
-                                "old_line_number": 1,
-                                "new_line_number": -1
-                            },
-                            {
-                                "content": "Updated readme\\n",
-                                "type": "insert",
-                                "old_line_number": -1,
-                                "new_line_number": 1
-                            }
-                        ]
-                    }
-                ],
-                "parent": "075c5755198be472522477a1b396951b3b68ac18",
-                "hash": "00161dcf22afb7bab23cf205f0c903eb5aad5431"
-            }
-        ]
+        "diff": {
+            "path": "README.md",
+            "old_path": "README.md",
+            "size": 15,  // Size in bytes
+            "lines_added": 1,  // How many lines got added
+            "lines_deleted": 1,  // How many lines got deleted
+            "is_binary": false,  // Is this a binary file (as determined by git)
+            "mode": "M",  // Status of this file, see https://git-scm.com/docs/git-status#_short_format
+            "hunks": [
+                {
+                    "header": "@@ -1 +1 @@\\n",
+                    "old_start": 1,
+                    "new_start": 1,
+                    "old_lines": 1,
+                    "new_lines": 1,
+                    "changes": [
+                        {
+                            "content": "# beastify\\n",
+                            "type": "delete",
+                            "old_line_number": 1,
+                            "new_line_number": -1
+                        },
+                        {
+                            "content": "Updated readme\\n",
+                            "type": "insert",
+                            "old_line_number": -1,
+                            "new_line_number": 1
+                        }
+                    ]
+                }
+            ],
+            "parent": "075c5755198be472522477a1b396951b3b68ac18",
+            "hash": "00161dcf22afb7bab23cf205f0c903eb5aad5431"
+        }
 
 
 -----------------

@@ -5790,9 +5790,9 @@ class TestReviewAddonVersionCompareViewSet(
 
         assert result['id'] == self.version.pk
         assert result['file']['id'] == self.version.current_file.pk
-        assert result['file']['diff'][0]['path'] == 'manifest.json'
+        assert result['file']['diff']['path'] == 'manifest.json'
 
-        change = result['file']['diff'][0]['hunks'][0]['changes'][3]
+        change = result['file']['diff']['hunks'][0]['changes'][3]
 
         assert '"name": "Beastify"' in change['content']
         assert change['type'] == 'insert'
@@ -5815,9 +5815,9 @@ class TestReviewAddonVersionCompareViewSet(
         response = self.client.get(self.url + '?file=README.md')
         assert response.status_code == 200
         result = json.loads(response.content)
-        assert result['file']['diff'][0]['path'] == 'README.md'
+        assert result['file']['diff']['path'] == 'README.md'
 
-        change = result['file']['diff'][0]['hunks'][0]['changes'][0]
+        change = result['file']['diff']['hunks'][0]['changes'][0]
 
         assert change['content'] == '# beastify'
         assert change['type'] == 'insert'
@@ -5851,9 +5851,9 @@ class TestReviewAddonVersionCompareViewSet(
         response = self.client.get(self.url)
         assert response.status_code == 200
         result = json.loads(response.content)
-        changes = result['file']['diff'][0]['hunks'][0]['changes']
+        changes = result['file']['diff']['hunks'][0]['changes']
 
-        assert result['file']['diff'][0]['path'] == 'search.xml'
+        assert result['file']['diff']['path'] == 'search.xml'
         assert changes[-1] == {
             'content': '<xml></xml>',
             'new_line_number': 1,
@@ -5897,8 +5897,8 @@ class TestReviewAddonVersionCompareViewSet(
 
         result = json.loads(response.content)
 
-        assert result['file']['diff'][0]['path'] == 'README.md'
-        assert result['file']['diff'][0]['hunks'][0]['changes'] == [
+        assert result['file']['diff']['path'] == 'README.md'
+        assert result['file']['diff']['hunks'][0]['changes'] == [
             {
                 'content': '# beastify',
                 'new_line_number': -1,
