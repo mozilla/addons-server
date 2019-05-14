@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-14 17:30+0000\n"
+"PO-Revision-Date: 2019-05-14 17:40+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -3456,7 +3456,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Read anywhere {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "อ่านได้ทุกที่ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Send news articles, stories, blog posts, and more to your Kindle."
@@ -3488,7 +3488,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check global times {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ตรวจสอบเวลาทั่วโลก {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
@@ -3557,7 +3557,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make cookies disappear {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ทำให้คุกกี้หายไป {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically erase cookies after you close a tab."
@@ -3573,7 +3573,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block invisible trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ปิดกั้นตัวติดตามที่มองไม่เห็น {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers in their tracks and learn more about them."
@@ -3597,7 +3597,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Block email ads {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ปิดกั้นโฆษณาทางอีเมล {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Get more screen space by removing ads from your web-based inbox."
@@ -4049,7 +4049,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Check your favorite RSS feeds all in a single page."
-msgstr ""
+msgstr "ตรวจสอบฟีด RSS โปรดของคุณทั้งหมดในหน้าเดียว"
 
 #. editorial content for the discovery pane.
 msgid "Reduce eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4113,7 +4113,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download YouTube videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ดาวน์โหลดวิดีโอ YouTube {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Download video and/or audio."
@@ -4145,7 +4145,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Delete data {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ลบข้อมูล {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Clear your browser cache with a click or keystroke."
@@ -4169,7 +4169,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ฟังวิดีโอ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save bandwidth by just streaming the audio from YouTube clips."
@@ -4209,7 +4209,7 @@ msgstr "หยุดการปรากฏของโฆษณาในผล
 
 #. editorial content for the discovery pane.
 msgid "Manage passwords safely {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "จัดการรหัสผ่านอย่างปลอดภัย {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in to known websites automatically."
@@ -4225,7 +4225,7 @@ msgstr "บันทึกข้อมูลที่ป้อนเข้าม
 
 #. editorial content for the discovery pane.
 msgid "Browse privately {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ท่องเว็บอย่างเป็นส่วนตัว {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Jump into private browsing mode with a click."
@@ -4257,7 +4257,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Find videos {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ค้นหาวิดีโอ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Highlight text from any website and right-click to search YouTube for related media."
@@ -4313,7 +4313,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search Firefox {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ค้นหา Firefox {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Easily access your open tabs, bookmarks, and history."
@@ -4405,7 +4405,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage cookies {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "จัดการคุกกี้ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Take full control of the cookies you've accumulated while browsing."
@@ -4413,7 +4413,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Forget history {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ลืมประวัติ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
@@ -4505,7 +4505,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Privacy protection {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "การปกป้องความเป็นส่วนตัว {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Defend yourself against the sneakiest trackers."
@@ -4545,7 +4545,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save memory {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ประหยัดหน่วยความจำ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
@@ -4553,7 +4553,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "บันทึกหน้าเว็บ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Save complete pages—or just portions—as a single HTML file."
@@ -4573,7 +4573,7 @@ msgstr ""
 
 #, python-format
 msgid "There was an error accessing file %s."
-msgstr ""
+msgstr "มีข้อผิดพลาดในการเข้าถึงไฟล์ %s"
 
 msgid "That file no longer exists."
 msgstr "ไม่มีไฟล์นั้นอีกต่อไป"
@@ -4583,7 +4583,7 @@ msgid "File size is over the limit of {0}."
 msgstr ""
 
 msgid "Problems decoding {0}."
-msgstr ""
+msgstr "เกิดปัญหาในการถอดรหัส {0}"
 
 msgid "This file is not viewable online. Please download the file to view the contents."
 msgstr ""
@@ -4611,13 +4611,13 @@ msgid "Could not parse uploaded file, missing or empty <%s> element"
 msgstr ""
 
 msgid "OpenSearch: XML Security error."
-msgstr ""
+msgstr "OpenSearch: ข้อผิดพลาดความปลอดภัย XML"
 
 msgid "OpenSearch: XML Parse Error."
-msgstr ""
+msgstr "OpenSearch: ข้อผิดพลาดการแยกวิเคราะห์ XML"
 
 msgid "Could not parse uploaded file."
-msgstr ""
+msgstr "ไม่สามารถแยกวิเคราะห์ไฟล์ที่อัปโหลด"
 
 msgid "Unsupported archive type."
 msgstr ""
