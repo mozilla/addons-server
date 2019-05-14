@@ -3,7 +3,9 @@ from django.contrib import admin
 from django.contrib.auth.models import AnonymousUser
 from django.contrib.messages.storage import (
     default_storage as default_messages_storage)
+from django.db import connection
 from django.test import RequestFactory
+from django.test.utils import CaptureQueriesContext
 from django.utils.dateformat import DateFormat
 
 from unittest import mock
@@ -44,8 +46,29 @@ class TestUserAdmin(TestCase):
         self.client.login(email=user.email)
         response = self.client.get(
             self.list_url,
-            {'q': '%s,%s' % (self.user.pk, another_user.pk)},
+            {'q': '%s,%s,foobaa' % (self.user.pk, another_user.pk)},
             follow=True)
+        assert response.status_code == 200
+        doc = pq(response.content)
+        assert str(self.user.pk) in doc('#result_list').text()
+        assert str(another_user.pk) in doc('#result_list').text()
+
+    def test_search_for_multiple_user_ids(self):
+        """Test the optimization when just searching for matching ids."""
+        user = user_factory()
+        another_user = user_factory()
+        self.grant_permission(user, 'Admin:Tools')
+        self.grant_permission(user, 'Users:Edit')
+        self.client.login(email=user.email)
+        with CaptureQueriesContext(connection) as queries:
+            response = self.client.get(
+                self.list_url,
+                {'q': '%s,%s' % (self.user.pk, another_user.pk)},
+                follow=True)
+            queries_str = '; '.join(q['sql'] for q in queries.captured_queries)
+            in_sql = f'`users`.`id` IN ({self.user.pk}, {another_user.pk})'
+            assert in_sql in queries_str
+            assert len(queries.captured_queries) == 6
         assert response.status_code == 200
         doc = pq(response.content)
         assert str(self.user.pk) in doc('#result_list').text()
