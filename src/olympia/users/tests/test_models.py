@@ -169,6 +169,13 @@ class TestUserProfile(TestCase):
         assert addon_multi.status != amo.STATUS_DISABLED
         assert list(addon_multi.authors.all()) == [innocent_user]
 
+        # the File objects have been disabled
+        assert not File.objects.filter(version__addon=addon_sole).exclude(
+            status=amo.STATUS_DISABLED).exists()
+        # But not for the Add-on that wasn't disabled
+        assert File.objects.filter(version__addon=addon_multi).exclude(
+            status=amo.STATUS_DISABLED).exists()
+
         assert not user_sole._ratings_all.exists()  # Even replies.
         assert not user_sole.collections.exists()
         assert not user_multi._ratings_all.exists()  # Even replies.

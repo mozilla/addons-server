@@ -452,7 +452,7 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
         return self.delete(keep_fxa_id_and_email=True)
 
     @classmethod
-    def ban_and_disable_related_content_bulk(cls, users, disable_files=False):
+    def ban_and_disable_related_content_bulk(cls, users, move_files=False):
         """Like ban_and_disable_related_content, but in bulk. """
         from olympia.addons.models import Addon, AddonUser
         from olympia.addons.tasks import index_addons
@@ -477,11 +477,14 @@ class UserProfile(OnChangeMixin, ModelBase, AbstractBaseUser):
             id__in=addon_ids - addon_joint_ids)
         # set the status to disabled - using the manager update() method
         addons_sole.update(status=amo.STATUS_DISABLED)
-        # collect files that need to be moved now the addons are disabled
-        if disable_files:
-            files_to_move = File.objects.filter(version__addon__in=addons_sole)
-            for file_ in files_to_move:
+        # collect Files that need to be disabled now the addons are disabled
+        files_to_disable = File.objects.filter(version__addon__in=addons_sole)
+        files_to_disable.update(status=amo.STATUS_DISABLED)
+        if move_files:
+            # if necessary move the files out of the CDN (expensive operation)
+            for file_ in files_to_disable:
                 file_.hide_disabled_file()
+
         # Finally run Addon.force_disable to add the logging; update versions
         # Status was already DISABLED so shouldn't fire watch_disabled again.
         for addon in addons_sole:
