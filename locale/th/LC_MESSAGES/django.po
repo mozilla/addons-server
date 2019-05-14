@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-14 17:40+0000\n"
+"PO-Revision-Date: 2019-05-14 18:11+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1801,9 +1801,8 @@ msgstr "เอกสารประกอบ"
 msgid "Extension Development"
 msgstr "การพัฒนาส่วนขยาย"
 
-#, fuzzy
 msgid "Developer Policies"
-msgstr "การตอบกลับของนักพัฒนา"
+msgstr "นโยบายนักพัฒนา"
 
 msgid "Add-on Validator"
 msgstr ""
@@ -1967,9 +1966,8 @@ msgid ""
 "<li><b>Developer:</b> Can manage all aspects of the add-on's listing, except for adding and removing other authors</li> </ul>"
 msgstr ""
 
-#, fuzzy
 msgid "Additional Details"
-msgstr "รายละเอียดส่วนเสริม"
+msgstr "รายละเอียดเพิ่มเติม"
 
 #, fuzzy
 msgid "Additional Details for {0}"
@@ -2017,13 +2015,11 @@ msgid "Describe Add-on"
 msgstr "อธิบายส่วนเสริม"
 
 #. {0} is the addon name
-#, fuzzy
 msgid "Describe {0}"
-msgstr "อธิบายส่วนเสริม"
+msgstr "อธิบาย {0}"
 
-#, fuzzy
 msgid "Name and Summary"
-msgstr "สรุป"
+msgstr "ชื่อและสรุป"
 
 msgid ""
 "The summary should explain what your add-on does, clearly and concisely. Both the name and summary will appear on your product page and search results. They have a combined maximum length of 70 "
@@ -2042,9 +2038,8 @@ msgstr ""
 msgid "View Listing"
 msgstr "ดูรายการ"
 
-#, fuzzy
 msgid "View Product Page"
-msgstr "ดูโปรไฟล์"
+msgstr "ดูหน้าผลิตภัณฑ์"
 
 msgid "This summary should clearly explain what your add-on does. It will be shown in listings and searches, and it will be used by reviewers to test your add-on."
 msgstr ""
@@ -2360,7 +2355,6 @@ msgstr "เปลี่ยนเจ้าของชุดตกแต่งน
 msgid "Transfer Ownership"
 msgstr "ถ่ายโอนความเป็นเจ้าของ"
 
-#, fuzzy
 msgid "Delete this theme"
 msgstr "ลบชุดตกแต่งนี้"
 
@@ -2394,9 +2388,8 @@ msgstr[0] ""
 msgid "Submit a New Version"
 msgstr "ส่งรุ่นใหม่"
 
-#, fuzzy
 msgid "Name and Summary:"
-msgstr "สรุป"
+msgstr "ชื่อและสรุป:"
 
 msgid "required"
 msgstr "ต้องการ"
@@ -2420,13 +2413,11 @@ msgstr "ชื่อ:"
 msgid "Name on listing on this site. May be different to the name inside the add-on, which is shown inside Firefox"
 msgstr ""
 
-#, fuzzy
 msgid "Summary:"
-msgstr "สรุป"
+msgstr "สรุป:"
 
-#, fuzzy
 msgid "Description:"
-msgstr "คำอธิบาย"
+msgstr "คำอธิบาย:"
 
 #, fuzzy
 msgid "This add-on is experimental"
@@ -2619,9 +2610,8 @@ msgstr ""
 msgid "or in reviewer notes on the next page (if applicable)."
 msgstr ""
 
-#, fuzzy
 msgid "Upload source code:"
-msgstr "โค้ดต้นฉบับ"
+msgstr "อัปโหลดโค้ดต้นฉบับ:"
 
 msgid "Add-on Distribution Agreement"
 msgstr ""
@@ -2655,9 +2645,8 @@ msgstr "สร้างรุ่นชุดตกแต่ง"
 msgid "Create a Theme"
 msgstr "สร้างชุดตกแต่ง"
 
-#, fuzzy
 msgid "Sign Add-on"
-msgstr "ส่วนเสริม"
+msgstr "เซ็นส่วนเสริม"
 
 #, fuzzy
 msgid "Theme generate"
@@ -2997,9 +2986,8 @@ msgstr ""
 msgid "View Best Practices for Cross-Browser Development"
 msgstr ""
 
-#, fuzzy
 msgid "Welcome Back"
-msgstr "ยินดีต้อนรับ {0}"
+msgstr "ยินดีต้อนรับกลับ"
 
 #, python-format
 msgid "Want your extension to be featured on %(amo_link_open)saddons.mozilla.org%(amo_link_close)s? Our featured extensions policies will tell you what you need to know."
@@ -3024,13 +3012,11 @@ msgstr "ดูการส่งทั้งหมด"
 msgid "This is where you view and manage your add-ons and themes. To publish your first add-on, click \"Submit Your First Add-on\" or \"Submit Your First Theme\"."
 msgstr ""
 
-#, fuzzy
 msgid "Submit Your First Add-on"
-msgstr "ส่งส่วนเสริมใหม่"
+msgstr "ส่งส่วนเสริมแรกของคุณ"
 
-#, fuzzy
 msgid "Submit Your First Theme"
-msgstr "ส่งชุดตกแต่งใหม่"
+msgstr "ส่งชุดตกแต่งแรกของคุณ"
 
 #, fuzzy
 msgid "Add-on Developer Hub"
@@ -4758,13 +4744,11 @@ msgstr ""
 msgid "Fetching file."
 msgstr ""
 
-#, fuzzy
 msgid "Reported Status"
-msgstr "สถานะไซต์"
+msgstr "สถานะที่รายงาน"
 
-#, fuzzy
 msgid "Reported Spam"
-msgstr "ประเภทของรายงาน"
+msgstr "สแปมที่รายงาน"
 
 #. L10n: 'Ham' is the opposite of 'Spam' - i.e. not spam.
 #, fuzzy
@@ -4775,9 +4759,8 @@ msgstr "รายงานข้อบกพร่อง"
 msgid "Not Reported"
 msgstr "ยังไม่มีการจัดอันดับ"
 
-#, fuzzy
 msgid "Content Submitted"
-msgstr "รุ่น"
+msgstr "ส่งเนื้อหาแล้ว"
 
 #, fuzzy
 msgid "View Rating on site"
@@ -4993,13 +4976,11 @@ msgid ""
 "valid due to a new release of your add-on, we may consider deleting the review."
 msgstr ""
 
-#, fuzzy
 msgid "User"
-msgstr "ชื่อผู้ใช้"
+msgstr "ผู้ใช้"
 
-#, fuzzy
 msgid "IP Address"
-msgstr "ที่อยู่อีเมล"
+msgstr "ที่อยู่ IP"
 
 #, python-format
 msgid "Reviews for %s"
@@ -5479,9 +5460,8 @@ msgstr ""
 msgid "{addon} :: EULA"
 msgstr ""
 
-#, fuzzy
 msgid "{addon} :: Privacy Policy"
-msgstr "นโยบายความเป็นส่วนตัว"
+msgstr "{addon} :: นโยบายความเป็นส่วนตัว"
 
 msgid "{addon} :: Abuse Reports"
 msgstr ""
@@ -5493,9 +5473,8 @@ msgstr ""
 msgid "Add-on Information for {0}"
 msgstr "ข้อมูลส่วนเสริมสำหรับ {0}"
 
-#, fuzzy
 msgid "Add-on ID"
-msgstr "ส่วนเสริม"
+msgstr "ID ส่วนเสริม"
 
 msgid "Internal AMO ID"
 msgstr ""
@@ -5909,9 +5888,9 @@ msgid "Expired Info Request ({0})"
 msgid_plural "Expired Info Requests ({0})"
 msgstr[0] "ข้อมูลพื้นฐาน"
 
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid \"%s\" parameter."
-msgstr "ช่วงเวอร์ชันไม่ถูกต้อง"
+msgstr "พารามิเตอร์ \"%s\" ไม่ถูกต้อง"
 
 #, python-format
 msgid "Invalid combination of \"%s\" and \"%s\" parameters."
