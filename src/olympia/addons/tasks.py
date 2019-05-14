@@ -3,6 +3,7 @@ import os
 import uuid
 
 from datetime import datetime
+from json import JSONDecodeError
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
@@ -785,7 +786,7 @@ def repack_themes_for_69(addon_ids, **kw):
             else:
                 log.info('[SKIP] No need for theme repack [%s]' % addon.id)
             timer.log_interval('')
-        except (IOError, ValidationError, SigningError) as exc:
-            log.debug('[FAIL] Theme repack for [%r]:', addon, exc_info=exc)
+        except (IOError, ValidationError, JSONDecodeError, SigningError) as ex:
+            log.debug('[FAIL] Theme repack for [%r]:', addon, exc_info=ex)
         finally:
             resume_all_tasks()
