@@ -156,10 +156,10 @@ class UserAdmin(admin.ModelAdmin):
 
     def ban_action(self, request, qs):
         users = []
+        UserProfile.ban_and_disable_related_content_bulk(qs)
         for obj in qs:
             ActivityLog.create(amo.LOG.ADMIN_USER_BANNED, obj)
             users.append(force_text(obj))
-        UserProfile.ban_and_disable_related_content_bulk(qs)
         kw = {'users': u', '.join(users)}
         self.message_user(
             request, ugettext('The users "%(users)s" have been banned.' % kw))

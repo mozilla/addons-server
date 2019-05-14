@@ -65,10 +65,10 @@ class TestUserAdmin(TestCase):
                 self.list_url,
                 {'q': '%s,%s' % (self.user.pk, another_user.pk)},
                 follow=True)
-            queries = '; '.join(q['sql'] for q in queries.captured_queries)
+            queries_str = '; '.join(q['sql'] for q in queries.captured_queries)
             in_sql = f'`users`.`id` IN ({self.user.pk}, {another_user.pk})'
-            print(queries)
-            assert in_sql in queries
+            assert in_sql in queries_str
+            assert len(queries.captured_queries) == 6
         assert response.status_code == 200
         doc = pq(response.content)
         assert str(self.user.pk) in doc('#result_list').text()
