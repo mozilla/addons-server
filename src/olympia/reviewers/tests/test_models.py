@@ -24,7 +24,8 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, ReviewerScore,
     ReviewerSubscription, ViewExtensionFullReviewQueue,
     ViewExtensionPendingQueue, ViewThemeFullReviewQueue, ViewThemePendingQueue,
-    ViewUnlistedAllList, send_notifications, set_reviewing_cache)
+    ViewUnlistedAllList, send_notifications, set_reviewing_cache,
+    CannedResponse)
 from olympia.users.models import UserProfile
 from olympia.versions.models import Version, version_uploaded
 
@@ -1723,3 +1724,26 @@ class TestAutoApprovalSummary(TestCase):
 
         result = list(AutoApprovalSummary.verdict_info_prettifier({}))
         assert result == []
+
+
+class TestCannedResponse(TestCase):
+
+    def test_basic(self):
+        response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'test',
+            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        assert response.name == u'Terms of services'
+        assert response.response == u'test'
+        assert response.category == amo.CANNED_RESPONSE_CATEGORY_OTHER
+        assert response.type == amo.CANNED_RESPONSE_TYPE_ADDON
+
+    def test_category_default(self):
+        response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'test',
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        assert response.category == amo.CANNED_RESPONSE_CATEGORY_OTHER

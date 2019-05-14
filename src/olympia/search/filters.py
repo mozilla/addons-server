@@ -736,6 +736,12 @@ class SearchQueryFilter(BaseFilterBackend):
                     Q('term', is_disabled=False)
                 )
             }),
+            query.SF({
+                'weight': 5.0,
+                'filter': (
+                    Q('term', is_recommended=True)
+                )
+            }),
         ]
 
         # Assemble everything together

@@ -86,10 +86,10 @@ class TestReviewForm(TestCase):
     def test_canned_responses(self):
         self.cr_addon = CannedResponse.objects.create(
             name=u'addon reason', response=u'addon reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_ADDON)
+            sort_group=u'public', type=amo.CANNED_RESPONSE_TYPE_ADDON)
         self.cr_theme = CannedResponse.objects.create(
             name=u'theme reason', response=u'theme reason body',
-            sort_group=u'public', type=amo.CANNED_RESPONSE_THEME)
+            sort_group=u'public', type=amo.CANNED_RESPONSE_TYPE_THEME)
         self.set_statuses_and_get_actions(
             addon_status=amo.STATUS_NOMINATED,
             file_status=amo.STATUS_AWAITING_REVIEW)

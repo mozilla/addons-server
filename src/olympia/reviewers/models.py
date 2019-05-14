@@ -80,7 +80,13 @@ class CannedResponse(ModelBase):
     response = models.TextField()
     sort_group = models.CharField(max_length=255)
     type = models.PositiveIntegerField(
-        choices=amo.CANNED_RESPONSE_CHOICES.items(), db_index=True, default=0)
+        choices=amo.CANNED_RESPONSE_TYPE_CHOICES.items(), db_index=True,
+        default=0)
+
+    # Category is used only by code-manager
+    category = models.PositiveIntegerField(
+        choices=amo.CANNED_RESPONSE_CATEGORY_CHOICES.items(),
+        default=amo.CANNED_RESPONSE_CATEGORY_OTHER)
 
     class Meta:
         db_table = 'cannedresponses'
