@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-14 18:11+0000\n"
+"PO-Revision-Date: 2019-05-14 18:12+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -2400,9 +2400,8 @@ msgid ""
 "submission process is complete."
 msgstr ""
 
-#, fuzzy
 msgid "Add-on URL:"
-msgstr "URL ของส่วนเสริม"
+msgstr "URL ส่วนเสริม:"
 
 msgid "Please use only letters, numbers, underscores, and dashes in your URL."
 msgstr ""
@@ -2426,9 +2425,8 @@ msgstr "ส่วนเสริมนี้ถูกเอาออกโดย
 msgid "Check this option if your add-on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility.  You can change this setting later."
 msgstr ""
 
-#, fuzzy
 msgid "Select a category for this add-on:"
-msgstr "เลือกไอคอนสำหรับส่วนเสริมของคุณ"
+msgstr "เลือกหมวดหมู่สำหรับส่วนเสริมนี้:"
 
 #, fuzzy
 msgid "Support email:"
@@ -2626,9 +2624,8 @@ msgstr "รุ่นล่าสุด:"
 msgid "Change"
 msgstr "เปลี่ยน"
 
-#, fuzzy
 msgid "Upload Version"
-msgstr "อัปโหลดรุ่นใหม่"
+msgstr "อัปโหลดรุ่น"
 
 msgid "Use the fields below to upload your add-on package. After upload, a series of automated validation tests will be run on your file."
 msgstr ""
