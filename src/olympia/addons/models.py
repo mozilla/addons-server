@@ -1277,14 +1277,8 @@ class Addon(OnChangeMixin, ModelBase):
         except DiscoveryItem.DoesNotExist:
             return False
         return (
-            item.recommendable and
+            item.recommendable and self.current_version and
             self.current_version.recommendation_approved)
-
-    def has_full_profile(self):
-        pass
-
-    def has_profile(self):
-        pass
 
     @cached_property
     def tags_partitioned_by_developer(self):
