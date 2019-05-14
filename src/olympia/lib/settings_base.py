@@ -1279,6 +1279,12 @@ LOGGING = {
             'level': logging.DEBUG,
             'propagate': False,
         },
+        'mohawk.util': {
+            'handlers': ['mozlog'],
+            # Ignore INFO or DEBUG from mohawk.util, it logs too much.
+            'level': logging.WARNING,
+            'propagate': False,
+        },
         'newrelic': {
             'handlers': ['mozlog'],
             'level': logging.WARNING,
