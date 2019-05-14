@@ -871,7 +871,7 @@ class Addon(OnChangeMixin, ModelBase):
                 app_version_int = version_int(version_match.group(1))
 
         for v in self.versions.all():
-            if not v.is_public():
+            if not v.is_public() or not v.all_files:
                 continue
             compat = v.compatible_apps.get(app)
             if compat is None or compat.min.version_int > app_version_int:
