@@ -17,7 +17,8 @@ from django.utils.encoding import force_bytes
 from olympia import amo
 from olympia.reviewers.serializers import (
     AddonBrowseVersionSerializer, FileEntriesSerializer,
-    FileEntriesDiffSerializer)
+    FileEntriesDiffSerializer, CannedResponseSerializer)
+from olympia.reviewers.models import CannedResponse
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.tests import TestCase, addon_factory, version_factory
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -465,4 +466,23 @@ class TestAddonBrowseVersionSerializer(TestCase):
             'slug': self.addon.slug,
             'name': {'en-US': self.addon.name},
             'icon_url': absolutify(self.addon.get_icon_url(64))
+        }
+
+
+class TestCannedResponseSerializer(TestCase):
+
+    def test_basic(self):
+        response = CannedResponse.objects.create(
+            name=u'Terms of services',
+            response=u'test',
+            category=amo.CANNED_RESPONSE_CATEGORY_OTHER,
+            type=amo.CANNED_RESPONSE_TYPE_ADDON)
+
+        data = CannedResponseSerializer(instance=response).data
+
+        assert data == {
+            'id': response.id,
+            'title': 'Terms of services',
+            'response': 'test',
+            'category': 'Other',
         }

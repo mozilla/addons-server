@@ -14,6 +14,7 @@ from django.utils.functional import cached_property
 from django.utils.encoding import force_text
 from django.utils.timezone import FixedOffset
 
+from olympia import amo
 from olympia.activity.models import DraftComment
 from olympia.amo.urlresolvers import reverse
 from olympia.amo.templatetags.jinja_helpers import absolutify
@@ -22,6 +23,7 @@ from olympia.addons.serializers import (
 from olympia.addons.models import AddonReviewerFlags
 from olympia.files.utils import get_sha256
 from olympia.files.models import File
+from olympia.reviewers.models import CannedResponse
 from olympia.versions.models import Version
 from olympia.lib.git import AddonGitRepository
 from olympia.lib import unicodehelper
@@ -375,3 +377,16 @@ class DraftCommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = DraftComment
         fields = ('comments',)
+
+
+class CannedResponseSerializer(serializers.ModelSerializer):
+    # Title is actually more fitting than the internal "name"
+    title = serializers.CharField(source='name')
+    category = serializers.SerializerMethodField()
+
+    class Meta:
+        model = CannedResponse
+        fields = ('id', 'title', 'response', 'category')
+
+    def get_category(self, obj):
+        return amo.CANNED_RESPONSE_CATEGORY_CHOICES[obj.category]

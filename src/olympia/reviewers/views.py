@@ -10,6 +10,7 @@ from django.core.cache import cache
 from django.core.exceptions import PermissionDenied
 from django.core.paginator import Paginator
 from django.db.models import Q
+from django.db.transaction import non_atomic_requests
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import ugettext
 from django.utils.http import urlquote
@@ -22,6 +23,7 @@ from rest_framework.exceptions import NotFound
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
+from rest_framework.generics import ListAPIView
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
 
 import olympia.core.logger
@@ -55,12 +57,12 @@ from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph, ReviewerScore,
     ReviewerSubscription, ViewExtensionFullReviewQueue,
     ViewExtensionPendingQueue, ViewThemeFullReviewQueue, ViewThemePendingQueue,
-    Whiteboard, clear_reviewing_cache, get_flags, get_reviewing_cache,
-    get_reviewing_cache_key, set_reviewing_cache)
+    Whiteboard, CannedResponse, clear_reviewing_cache, get_flags,
+    get_reviewing_cache, get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
     AddonReviewerFlagsSerializer, AddonBrowseVersionSerializer,
     DiffableVersionSerializer, AddonCompareVersionSerializer,
-    FileEntriesSerializer, DraftCommentSerializer)
+    FileEntriesSerializer, DraftCommentSerializer, CannedResponseSerializer)
 from olympia.reviewers.utils import (
     AutoApprovedTable, ContentReviewTable, ExpiredInfoRequestsTable,
     ReviewHelper, ViewUnlistedAllListTable, view_table_factory)
@@ -1452,3 +1454,19 @@ class ReviewAddonVersionCompareViewSet(ReviewAddonVersionMixin,
             })
 
         return Response(serializer.data)
+
+
+class CannedResponseViewSet(ListAPIView):
+    permission_classes = [AllowAnyKindOfReviewer]
+
+    queryset = CannedResponse.objects.all()
+    serializer_class = CannedResponseSerializer
+    # The amount of data will be small so that paginating will be
+    # overkill and result in unnecessary additional requests
+    pagination_class = None
+
+    @classmethod
+    def as_view(cls, **initkwargs):
+        """The API is read-only so we can turn off atomic requests."""
+        return non_atomic_requests(
+            super(CannedResponseViewSet, cls).as_view(**initkwargs))

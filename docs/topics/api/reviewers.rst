@@ -271,11 +271,31 @@ This endpoint allows you to compare two Add-on versions with each other.
         }
 
 
+----------------
+Canned Responses
+----------------
+
+This endpoint allows you to retrieve a list of canned responses.
+
+    .. note::
+        Requires authentication and the current user to have any
+        reviewer-related permission.
+
+.. http:get:: /api/v4/reviewers/canned-responses/
+
+    Retrieve canned responses
+
+    :>json int id: The canned response id.
+    :>json string title: The title of the canned response.
+    :>json string response: The text that will be filled in as the response.
+    :>json string category: The category of the canned response. For example, "Other", "Privacy reasons" etc.
+
+
 -----------------
 Drafting Comments
 -----------------
 
-This endpoints allows you to draft comments that can be submitted through the regular reviewer pages.
+These endpoints allow you to draft comments that can be submitted through the regular reviewer pages.
 
 Please note, that once a review is submitted the drafted comments are being cleared as well.
 

@@ -5,7 +5,7 @@ from rest_framework_nested.routers import NestedSimpleRouter
 
 from .views import (
     AddonReviewerViewSet, ReviewAddonVersionViewSet,
-    ReviewAddonVersionCompareViewSet)
+    ReviewAddonVersionCompareViewSet, CannedResponseViewSet)
 
 
 addons = SimpleRouter()
@@ -24,4 +24,6 @@ urlpatterns = [
     url(r'', include(addons.urls)),
     url(r'', include(versions.urls)),
     url(r'', include(compare.urls)),
+    url(r'^canned-responses/$', CannedResponseViewSet.as_view(),
+        name='reviewers-canned-response-list'),
 ]
