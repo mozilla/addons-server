@@ -354,9 +354,9 @@ class ReviewForm(forms.Form):
             ['', [('', ugettext('Choose a canned response...'))]]]
 
         canned_type = (
-            amo.CANNED_RESPONSE_THEME
+            amo.CANNED_RESPONSE_TYPE_THEME
             if self.helper.addon.type == amo.ADDON_STATICTHEME
-            else amo.CANNED_RESPONSE_ADDON)
+            else amo.CANNED_RESPONSE_TYPE_ADDON)
         responses = CannedResponse.objects.filter(type=canned_type)
 
         # Loop through the actions (public, etc).

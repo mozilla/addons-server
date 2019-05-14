@@ -6,14 +6,21 @@ REVIEWER_VIEWING_INTERVAL = 8  # How often we ping for "who's watching?"
 REVIEWER_REVIEW_LOCK_LIMIT = 3  # How many pages can a reviewer "watch"
 
 # Types of Canned Responses for reviewer tools.
-CANNED_RESPONSE_ADDON = 1
-CANNED_RESPONSE_THEME = 2
-CANNED_RESPONSE_PERSONA = 3
+CANNED_RESPONSE_TYPE_ADDON = 1
+CANNED_RESPONSE_TYPE_THEME = 2
+CANNED_RESPONSE_TYPE_PERSONA = 3
 
-CANNED_RESPONSE_CHOICES = {
-    CANNED_RESPONSE_ADDON: _('Add-on'),
-    CANNED_RESPONSE_THEME: _('Static Theme'),
-    CANNED_RESPONSE_PERSONA: _('Persona'),
+CANNED_RESPONSE_TYPE_CHOICES = {
+    CANNED_RESPONSE_TYPE_ADDON: _('Add-on'),
+    CANNED_RESPONSE_TYPE_THEME: _('Static Theme'),
+    CANNED_RESPONSE_TYPE_PERSONA: _('Persona'),
+}
+
+# Categories to group canned responses and make them easier to look through
+CANNED_RESPONSE_CATEGORY_OTHER = 1
+
+CANNED_RESPONSE_CATEGORY_CHOICES = {
+    CANNED_RESPONSE_CATEGORY_OTHER: _('Other'),
 }
 
 # Risk tiers for post-review weight.
