@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-14 18:12+0000\n"
+"PO-Revision-Date: 2019-05-15 15:37+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1943,7 +1943,7 @@ msgid "None"
 msgstr "ไม่มี"
 
 msgid "Preview"
-msgstr ""
+msgstr "แสดงตัวอย่าง"
 
 #, fuzzy
 msgid "Preview of listed version"
@@ -2483,7 +2483,7 @@ msgid "These notes will appear on the detail page."
 msgstr ""
 
 msgid "How to Distribute this Version"
-msgstr ""
+msgstr "วิธีแจกจ่ายรุ่นนี้"
 
 msgid "More information on Add-on Distribution and Signing"
 msgstr ""
@@ -2710,10 +2710,10 @@ msgid "Keep your API keys secret and <strong>never share them with anyone</stron
 msgstr ""
 
 msgid "JWT issuer"
-msgstr ""
+msgstr "ผู้ออก JWT"
 
 msgid "JWT secret"
-msgstr ""
+msgstr "ข้อมูลลับ JWT"
 
 #, python-format
 msgid ""
@@ -3114,7 +3114,7 @@ msgid ""
 msgstr ""
 
 msgid "Approval Status"
-msgstr ""
+msgstr "สถานะการอนุมัติ"
 
 msgid "Notes for Reviewers"
 msgstr ""
@@ -3133,11 +3133,11 @@ msgstr "ไฟล์ {file_id} ({platform})"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s on %(status_date)s"
-msgstr ""
+msgstr "สร้างเมื่อ %(created)s และเปลี่ยนเป็น %(status)s เมื่อ %(status_date)s"
 
 #, python-format
 msgid "Created on %(created)s and changed to %(status)s"
-msgstr ""
+msgstr "สร้างเมื่อ %(created)s และเปลี่ยนเป็น %(status)s"
 
 msgid "Status & Versions"
 msgstr "สถานะและรุ่น"
@@ -3168,10 +3168,10 @@ msgid "Request Review"
 msgstr "บทวิจารณ์ชุดตกแต่ง"
 
 msgid "Cancel Review Request"
-msgstr ""
+msgstr "ยกเลิกคำขอตรวจทาน"
 
 msgid "Loading Review History..."
-msgstr ""
+msgstr "กำลังโหลดประวัติการตรวจทาน..."
 
 msgid "We had a problem retrieving review notes"
 msgstr ""
