@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-15 16:14+0000\n"
+"PO-Revision-Date: 2019-05-15 17:07+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -725,7 +725,7 @@ msgid "Approval notes changed for {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
 
 msgid "Approval notes changed"
-msgstr ""
+msgstr "เปลี่ยนหมายเหตุการอนุมัติแล้ว"
 
 #, fuzzy
 msgid "Source code uploaded for {addon} {version}."
@@ -740,7 +740,7 @@ msgid "Auto-Approval confirmed for {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
 
 msgid "Auto-Approval confirmed"
-msgstr ""
+msgstr "ยืนยันการอนุมัติอัตโนมัติแล้ว"
 
 msgid "{addon} {version} re-enabled."
 msgstr "เปิดใช้งาน {addon} {version} ใหม่แล้ว"
@@ -1534,16 +1534,16 @@ msgid "Override failed validation"
 msgstr ""
 
 msgid "Need to select at least one application."
-msgstr ""
+msgstr "ต้องเลือกอย่างน้อยหนึ่งแอปพลิเคชัน"
 
 msgid "Version {version} was uploaded before and deleted."
-msgstr ""
+msgstr "มีการอัปโหลดรุ่น {version} ก่อนหน้าและลบแล้ว"
 
 msgid "Version {version} already exists."
 msgstr "มีรุ่น {version} อยู่แล้ว"
 
 msgid "Continue with existing upload instead?"
-msgstr ""
+msgstr "ดำเนินการต่อด้วยการอัปโหลดที่มีอยู่แทน?"
 
 msgid "Yes"
 msgstr "ใช่"
@@ -1805,19 +1805,19 @@ msgid "Developer Policies"
 msgstr "นโยบายนักพัฒนา"
 
 msgid "Add-on Validator"
-msgstr ""
+msgstr "ตัวตรวจสอบส่วนเสริม"
 
 msgid "Development Add-ons"
-msgstr ""
+msgstr "ส่วนเสริมการพัฒนา"
 
 msgid "Community & Support"
 msgstr "ชุมชนและการสนับสนุน"
 
 msgid "Add-ons Blog"
-msgstr ""
+msgstr "บล็อกส่วนเสริม"
 
 msgid "Add-ons Forum"
-msgstr ""
+msgstr "กระดานสนทนาส่วนเสริม"
 
 msgid "More Resources"
 msgstr "ทรัพยากรเพิ่มเติม"
@@ -2319,7 +2319,7 @@ msgid "Delete"
 msgstr "ลบ"
 
 msgid "Edit details on this add-on's product page"
-msgstr ""
+msgstr "แก้ไขรายละเอียดในหน้าผลิตภัณฑ์ของส่วนเสริมนี้"
 
 #, fuzzy
 msgid "Upload a new version of this add-on"
@@ -2329,7 +2329,7 @@ msgid "New Version"
 msgstr "รุ่นใหม่"
 
 msgid "Daily statistics on downloads and users"
-msgstr ""
+msgstr "สถิติรายวันของการดาวน์โหลดและผู้ใช้"
 
 msgid "Statistics"
 msgstr "สถิติ"
@@ -2341,10 +2341,10 @@ msgid "View Recent Changes"
 msgstr "ดูการเปลี่ยนแปลงล่าสุด"
 
 msgid "Edit details on this theme's product page"
-msgstr ""
+msgstr "แก้ไขรายละเอียดในหน้าผลิตภัณฑ์ของชุดตกแต่งนี้"
 
 msgid "View the popularity of this theme over time"
-msgstr ""
+msgstr "ดูความนิยมของชุดตกแต่งนี้เมื่อเวลาผ่านไป"
 
 msgid "View Statistics"
 msgstr "ดูสถิติ"
@@ -2369,7 +2369,7 @@ msgid "Status:"
 msgstr "สถานะ:"
 
 msgid "Disabled"
-msgstr ""
+msgstr "ปิดใช้งานอยู่"
 
 #, python-format
 msgid "<b>Queue position:</b> %(pos)s of %(total)s"
@@ -2612,7 +2612,7 @@ msgid "Upload source code:"
 msgstr "อัปโหลดโค้ดต้นฉบับ:"
 
 msgid "Add-on Distribution Agreement"
-msgstr ""
+msgstr "ข้อตกลงการแจกจ่ายส่วนเสริม"
 
 msgid "Upload Add-on"
 msgstr "อัปโหลดส่วนเสริม"
@@ -2660,10 +2660,10 @@ msgid "Theme name"
 msgstr "ชื่อชุดตกแต่ง"
 
 msgid "Select a header image for your theme"
-msgstr ""
+msgstr "เลือกภาพส่วนหัวสำหรับชุดตกแต่งของคุณ"
 
 msgid "Recommended height: 200 pixels"
-msgstr ""
+msgstr "ความสูงที่แนะนำ: 200 พิกเซล"
 
 msgid "6.9MB max"
 msgstr "สูงสุด 6.9MB"
@@ -3788,7 +3788,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "หยุดป๊อปอัป {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
@@ -3796,7 +3796,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ปรับแต่งเว็บไซต์โปรดของคุณ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
@@ -3804,7 +3804,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ปรับแต่งแท็บใหม่ของคุณ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
@@ -3812,7 +3812,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "จัดการรหัสผ่านของคุณ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
@@ -3836,7 +3836,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "เปิดหลายลิงก์ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
@@ -3876,7 +3876,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "แก้ไขรายการโปรดของคุณ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Find and resolve broken bookmarks, duplicates, and more."
@@ -3924,7 +3924,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Work faster {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ทำงานเร็วขึ้น {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to get to things done—quicker."
@@ -3940,7 +3940,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Download pictures {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ดาวน์โหลดรูปภาพ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
@@ -3980,7 +3980,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Get instant translations {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "รับการแปลแบบทันที {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access immediate translation by highlighting text and clicking the button that pops up."
@@ -3988,7 +3988,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "No more redirects {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ไม่มีการเปลี่ยนเส้นทางอีก {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Go straight to the website you want to access without being redirected in between."
@@ -3996,7 +3996,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "WhatsApp on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "WhatsApp บนเว็บ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Access WhatsApp from within Firefox's toolbar panel to get badge notification of unread threads."
@@ -4044,7 +4044,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Search images {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ค้นหาภาพ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Reverse image search by leveraging the power of multiple search providers."
@@ -4072,7 +4072,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Extract links {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "แยกลิงก์ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Instantly display all links from a webpage in new tabs."
@@ -4080,7 +4080,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Skip redirects & trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "ข้ามการเปลี่ยนเส้นทางและตัวติดตาม {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Strip away redirect pages and URL tracking parameters."
@@ -4088,7 +4088,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Stop search trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "หยุดตัวติดตามการค้นหา {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Prevent search engines from knowing what search results you click on."
@@ -4120,7 +4120,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Phone-like scrolling {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "เลื่อนเหมือนโทรศัพท์ {start_sub_heading}ด้วย {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Features \"grab-n-drag\" mouse scrolling for desktop webpages."
