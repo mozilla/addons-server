@@ -1816,6 +1816,7 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
         query = (u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 '
                  u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣')
+        assert switch_is_active('api-recommendations-priority')
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0
