@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-07 10:03+0000\n"
+"PO-Revision-Date: 2019-05-15 17:46+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -1649,7 +1649,7 @@ msgid "This upload has failed validation, and may lack complete validation resul
 msgstr ""
 
 msgid "Header area background"
-msgstr ""
+msgstr "శీర్షిక ప్రాంతపు వెనుతలం"
 
 msgid "The color of the header area background, displayed in the part of the header not covered or visible through the header image. Manifest field:  frame."
 msgstr ""
@@ -1661,7 +1661,7 @@ msgid "The color of the text and icons in the header area, except the active tab
 msgstr ""
 
 msgid "Toolbar area background"
-msgstr ""
+msgstr "పనిముట్లపట్టీ ప్రాంతపు వెనుతలం"
 
 msgid "The background color for the navigation bar, the bookmarks bar, and the selected tab.  Manifest field:  toolbar."
 msgstr ""
@@ -2131,7 +2131,7 @@ msgid "64x64px"
 msgstr "64x64px"
 
 msgid "Used in add-on detail pages."
-msgstr ""
+msgstr "పొడగింతల వివరాల పేజీలో వాడబడుతుంది."
 
 #. The size of the icon
 msgid "128x128px"
