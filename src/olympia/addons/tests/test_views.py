@@ -963,6 +963,8 @@ class TestAddonSearchView(ESTestCase):
         self.url = reverse_ns('addon-search')
         self.create_switch('return-to-amo', active=True)
         switch_is_active('return-to-amo')
+        self.create_switch('api-recommendations-priority', active=True)
+        switch_is_active('api-recommendations-priority')
 
     def tearDown(self):
         super(TestAddonSearchView, self).tearDown()
@@ -1826,6 +1828,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
+        self.create_switch('api-recommendations-priority', active=True)
+        switch_is_active('api-recommendations-priority')
         self.url = reverse_ns('addon-autocomplete', api_version='v5')
 
     def tearDown(self):
