@@ -1270,15 +1270,22 @@ class Addon(OnChangeMixin, ModelBase):
 
     @cached_property
     def is_recommended(self):
+        from olympia.bandwagon.models import CollectionAddon
         from olympia.discovery.models import DiscoveryItem
 
         try:
             item = self.discoveryitem
         except DiscoveryItem.DoesNotExist:
-            return False
-        return (
-            item.recommendable and self.current_version and
-            self.current_version.recommendation_approved)
+            recommended = False
+        else:
+            recommended = (
+                item.recommendable and self.current_version and
+                self.current_version.recommendation_approved)
+        if not recommended and self.type == amo.ADDON_STATICTHEME:
+            recommended = CollectionAddon.objects.filter(
+                collection_id=settings.COLLECTION_FEATURED_THEMES_ID,
+                addon=self).exists()
+        return recommended
 
     @cached_property
     def tags_partitioned_by_developer(self):
