@@ -362,6 +362,13 @@ class AddonFeaturedQueryParam(AddonQueryParam):
             filter=clauses))]
 
 
+class AddonRecommendedQueryParam(AddonQueryParam):
+    query_param = 'recommended'
+    reverse_dict = {'true': True}
+    valid_values = [True]
+    es_field = 'is_recommended'
+
+
 class AddonColorQueryParam(AddonQueryParam):
     query_param = 'color'
 
@@ -790,6 +797,7 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonFeaturedQueryParam,
         AddonGuidQueryParam,
         AddonPlatformQueryParam,
+        AddonRecommendedQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,
         AddonColorQueryParam,

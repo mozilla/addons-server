@@ -807,6 +807,16 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert len(inner) == 1
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
+    def test_search_by_recommended(self):
+        qs = self._filter(data={'recommended': 'true'})
+        assert 'must' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'term': {'is_recommended': True}} in filter_
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'recommended': 'false'})
+        assert context.exception.detail == ['Invalid "recommended" parameter.']
+
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})
         filter_ = qs['query']['bool']['filter']
