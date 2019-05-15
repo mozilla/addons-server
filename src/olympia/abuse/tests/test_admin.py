@@ -23,8 +23,8 @@ class TestAbuse(TestCase):
     @classmethod
     def setUpTestData(cls):
         cls.addon1 = addon_factory(guid='@guid1', name='Neo')
-        cls.addon2 = addon_factory(guid='@guid2')
-        cls.addon3 = addon_factory(guid='@guid3')
+        cls.addon2 = addon_factory(guid='@guid2', name='Two')
+        cls.addon3 = addon_factory(guid='@guid3', name='Three')
         cls.user = user_factory()
         grant_permission(cls.user, 'Admin:Tools', 'Admin Group')
         grant_permission(cls.user, 'AbuseReports:Edit', 'Abuse Report Triage')
@@ -48,7 +48,7 @@ class TestAbuse(TestCase):
             guid='@unknown_guid', addon_name='Mysterious Addon', message='Doo')
         # This is one against a user.
         AbuseReport.objects.create(
-            user=user_factory(), message='Ehehehehe')
+            user=user_factory(username='malicious_user'), message='Ehehehehe')
 
     def setUp(self):
         self.client.login(email=self.user.email)
@@ -194,7 +194,7 @@ class TestAbuse(TestCase):
 
     def test_search_multiple_users(self):
         user1 = AbuseReport.objects.get(message='Ehehehehe').user
-        user2 = user_factory()
+        user2 = user_factory(username='second_user')
         AbuseReport.objects.create(
             user=user2, message='One more')
 

@@ -191,7 +191,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         if type_ == 'addon':
             search_fields = (
                 'addon__name__localized_string', 'addon__slug', 'addon_name',
-                'guid', 'message', 'addon__id',
+                '=guid', 'message', 'addon__id',
             )
         elif type_ == 'user':
             search_fields = (
