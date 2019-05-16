@@ -1926,7 +1926,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         qset = view.get_queryset()
 
         includes = set((
-            'default_locale', 'icon_type', 'id', 'modified',
+            'default_locale', 'icon_type', 'id', 'is_recommended', 'modified',
             'name_translations', 'persona', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes

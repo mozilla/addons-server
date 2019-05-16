@@ -323,6 +323,7 @@ v4 API changelog
 * 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
 * 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
 * 2019-05-16: added /reviewers/canned-responses/ endpoint. https://github.com/mozilla/addons-server/issues/11276
+* 2019-05-23: added ``is_recommended`` to addons autocomplete API also. https://github.com/mozilla/addons-server/issues/11439
 
 ----------------
 v5 API changelog
