@@ -1259,11 +1259,12 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert (
             set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'type', 'url'}
+            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
         )
         assert result['id'] == self.addon.pk
         assert result['name'] == {'en-US': six.text_type(self.addon.name)}
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
+        assert result['is_recommended'] == self.addon.is_recommended is False
         assert result['type'] == 'extension'
         assert result['url'] == absolutify(self.addon.get_url_path())
 
@@ -1310,7 +1311,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert (
             set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'type', 'url'}
+            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
         )
         assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
@@ -1334,7 +1335,7 @@ class TestESAddonAutoCompleteSerializer(ESTestCase):
         result = self.serialize()
         assert (
             set(result.keys()) ==
-            {'id', 'name', 'icon_url', 'type', 'url'}
+            {'id', 'name', 'icon_url', 'is_recommended', 'type', 'url'}
         )
         assert result['type'] == 'persona'
         assert result['icon_url'] == absolutify(self.addon.get_icon_url(64))
