@@ -75,7 +75,8 @@ This endpoint allows you to search through public add-ons.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
             random  Random ordering. Only available when no search query is
-                    passed and when filtering to only return featured add-ons.
+                    passed and when filtering to only return featured or
+                    recommended add-ons.
             rating  Bayesian rating, descending.
          relevance  Search query relevance, descending.
            updated  Last updated date, descending.

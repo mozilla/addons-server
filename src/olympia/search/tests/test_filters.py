@@ -434,8 +434,8 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_random_restrictions(self):
         expected = ('The "sort" parameter "random" can only be specified when '
-                    'the "featured" parameter is also present, and the "q" '
-                    'parameter absent.')
+                    'the "featured" or "recommended" parameter is also '
+                    'present, and the "q" parameter absent.')
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'q': 'something', 'sort': 'random'})
@@ -446,11 +446,27 @@ class TestSortingFilter(FilterTestsBase):
                 data={'q': 'something', 'featured': 'true', 'sort': 'random'})
         assert context.exception.detail == [expected]
 
-    def test_sort_random(self):
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(
+                data={'q': 'something', 'recommended': 'true',
+                      'sort': 'random'})
+        assert context.exception.detail == [expected]
+
+    def test_sort_random_featured(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         # Note: this test does not call AddonFeaturedQueryParam so it won't
         # apply the featured filtering. That's tested below in
         # TestCombinedFilter.test_filter_featured_sort_random
+        assert qs['sort'] == ['_score']
+        assert qs['query']['function_score']['functions'] == [
+            {'random_score': {}}
+        ]
+
+    def test_sort_random(self):
+        qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
+        # Note: this test does not call AddonRecommendedQueryParam so it won't
+        # apply the recommended filtering. That's tested below in
+        # TestCombinedFilter.test_filter_recommended_sort_random
         assert qs['sort'] == ['_score']
         assert qs['query']['function_score']['functions'] == [
             {'random_score': {}}
@@ -961,6 +977,23 @@ class TestCombinedFilter(FilterTestsBase):
 
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+        bool_ = qs['query']['bool']
+
+        assert 'must_not' not in bool_
+
+        filter_ = bool_['filter']
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
+        assert {'exists': {'field': 'current_version'}} in filter_
+        assert {'term': {'is_disabled': False}} in filter_
+
+        assert qs['sort'] == ['_score']
+
+        assert bool_['must'][0]['function_score']['functions'] == [
+            {'random_score': {}}
+        ]
+
+    def test_filter_recommended_sort_random(self):
+        qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
 
         assert 'must_not' not in bool_
