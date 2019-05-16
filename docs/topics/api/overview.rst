@@ -319,8 +319,10 @@ v4 API changelog
 * 2019-01-10: added ``release_notes`` and ``license`` (except ``license.text``) to search API results ``current_version`` objects.
 * 2019-01-11: added new /reviewers/browse/ endpoint. https://github.com/mozilla/addons-server/issues/10322
 * 2019-01-16: removed /api/{v3,v4,v5}/github api entirely. They have been marked as experimental. https://github.com/mozilla/addons-server/issues/10411
+* 2019-03-14: added new /reviewers/compare/ endpoint. https://github.com/mozilla/addons-server/issues/10323
 * 2019-04-11: removed ``id``, ``username`` and ``url`` from the ``user`` object in the activity review notes APIs. https://github.com/mozilla/addons-server/issues/11002
 * 2019-05-09: added ``is_recommended`` to addons API. https://github.com/mozilla/addons-server/issues/11278
+* 2019-05-16: added /reviewers/canned-responses/ endpoint. https://github.com/mozilla/addons-server/issues/11276
 
 ----------------
 v5 API changelog
