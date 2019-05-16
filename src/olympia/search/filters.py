@@ -738,22 +738,19 @@ class SearchQueryFilter(BaseFilterBackend):
             }),
         ]
         if switch_is_active('api-recommendations-priority'):
-            recommendation_functions = [
+            functions.append(
                 query.SF({
                     'weight': 5.0,
                     'filter': (
                         Q('term', is_recommended=True)
                     )
-                }),
-            ]
-        else:
-            recommendation_functions = []
+                }))
 
         # Assemble everything together
         qs = qs.query(
             'function_score',
             query=query.Bool(should=primary_should + secondary_should),
-            functions=functions + recommendation_functions)
+            functions=functions)
 
         if sort is None or sort == 'relevance':
             # If we are searching by relevancy, rescore the top 10
