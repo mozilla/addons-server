@@ -4,6 +4,8 @@ import json
 from django.conf import settings
 from django.utils.encoding import force_text
 
+from waffle.testutils import override_switch
+
 from olympia import amo
 from olympia.amo.tests import (
     APITestClient, ESTestCase, reverse_ns, create_switch)
@@ -797,6 +799,7 @@ class TestRankingScenarios(RankingScenariosMixin, ESTestCase):
         ), lang='en-US')
 
 
+@override_switch('api-recommendations-priority', active=True)
 class TestRankingScenariosWithRecommended(RankingScenariosMixin, ESTestCase):
 
     @classmethod

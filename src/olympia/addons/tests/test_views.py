@@ -963,6 +963,8 @@ class TestAddonSearchView(ESTestCase):
         self.url = reverse_ns('addon-search')
         self.create_switch('return-to-amo', active=True)
         switch_is_active('return-to-amo')
+        self.create_switch('api-recommendations-priority', active=True)
+        switch_is_active('api-recommendations-priority')
 
     def tearDown(self):
         super(TestAddonSearchView, self).tearDown()
@@ -1814,6 +1816,7 @@ class TestAddonSearchView(ESTestCase):
         self.refresh()
         query = (u'남포역립카페추천 ˇjjtat닷컴ˇ ≡제이제이♠♣ 남포역스파 '
                  u'남포역op남포역유흥≡남포역안마남포역오피 ♠♣')
+        assert switch_is_active('api-recommendations-priority')
         data = self.perform_search(self.url, {'q': query})
         # No results, but no 500 either.
         assert data['count'] == 0
@@ -1826,6 +1829,8 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
 
     def setUp(self):
         super(TestAddonAutoCompleteSearchView, self).setUp()
+        self.create_switch('api-recommendations-priority', active=True)
+        switch_is_active('api-recommendations-priority')
         self.url = reverse_ns('addon-autocomplete', api_version='v5')
 
     def tearDown(self):

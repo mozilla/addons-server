@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 import copy
 
+from unittest.mock import Mock, patch
+
 from django.test.client import RequestFactory
 from django.utils import translation
 
 import six
 
 from elasticsearch_dsl import Search
-from unittest.mock import Mock, patch
 from rest_framework import serializers
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.amo.tests import TestCase
@@ -127,11 +129,13 @@ class TestQueryFilter(FilterTestsBase):
             'weight': 5.0}
         return qs
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_no_rescore_if_not_sorting_by_relevance(self):
         qs = self._test_q(
             self._filter(data={'q': 'tea pot', 'sort': 'rating'}))
         assert 'rescore' not in qs
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_q(self):
         qs = self._test_q(self._filter(data={'q': 'tea pot'}))
 
@@ -174,10 +178,12 @@ class TestQueryFilter(FilterTestsBase):
             }
         }
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_q_too_long(self):
         with self.assertRaises(serializers.ValidationError):
             self._filter(data={'q': 'a' * 101})
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_fuzzy_single_word(self):
         qs = self._filter(data={'q': 'blah'})
         should = qs['query']['function_score']['query']['bool']['should']
@@ -209,6 +215,7 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert expected in should
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_fuzzy_multi_word(self):
         qs = self._filter(data={'q': 'search terms'})
         should = qs['query']['function_score']['query']['bool']['should']
@@ -240,6 +247,7 @@ class TestQueryFilter(FilterTestsBase):
         }
         assert expected in should
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_no_fuzzy_if_query_too_long(self):
         def do_test():
             qs = self._filter(data={'q': 'this search query is too long.'})
@@ -283,6 +291,7 @@ class TestQueryFilter(FilterTestsBase):
             should = do_test()
             assert expected in should
 
+    @override_switch('api-recommendations-priority', active=True)
     def test_q_exact(self):
         qs = self._filter(data={'q': 'Adblock Plus'})
         should = qs['query']['function_score']['query']['bool']['should']
@@ -317,6 +326,31 @@ class TestQueryFilter(FilterTestsBase):
         }
 
         assert expected in should
+
+    @override_switch('api-recommendations-priority', active=False)
+    def test_recommendations_waffle_off(self):
+        qs = self._filter(data={'q': 'tea pot'})
+
+        functions = qs['query']['function_score']['functions']
+        assert len(functions) == 2
+        assert functions[0] == {
+            'field_value_factor': {
+                'field': 'average_daily_users', 'modifier': 'log2p'
+            }
+        }
+        assert functions[1] == {
+            'filter': {
+                'bool': {
+                    'must': [
+                        {'term': {'is_experimental': False}},
+                        {'terms': {'status': (4,)}},
+                        {'exists': {'field': 'current_version'}},
+                        {'term': {'is_disabled': False}}
+                    ]
+                }
+            },
+            'weight': 4.0
+        }
 
 
 class TestReviewedContentFilter(FilterTestsBase):

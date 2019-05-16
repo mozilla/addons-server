@@ -736,13 +736,15 @@ class SearchQueryFilter(BaseFilterBackend):
                     Q('term', is_disabled=False)
                 )
             }),
-            query.SF({
-                'weight': 5.0,
-                'filter': (
-                    Q('term', is_recommended=True)
-                )
-            }),
         ]
+        if switch_is_active('api-recommendations-priority'):
+            functions.append(
+                query.SF({
+                    'weight': 5.0,
+                    'filter': (
+                        Q('term', is_recommended=True)
+                    )
+                }))
 
         # Assemble everything together
         qs = qs.query(
