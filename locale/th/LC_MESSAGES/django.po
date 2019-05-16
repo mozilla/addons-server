@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-15 17:07+0000\n"
+"PO-Revision-Date: 2019-05-16 18:20+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1406,7 +1406,7 @@ msgid "Header image alignment problem"
 msgstr "ปัญหาการจัดวางภาพส่วนหัว"
 
 msgid "Core"
-msgstr ""
+msgstr "แกน"
 
 #, python-format
 msgid "Recent Changes for %s"
@@ -2295,7 +2295,7 @@ msgid ""
 msgstr ""
 
 msgid "Enter the following text to confirm your decision: {slug}"
-msgstr ""
+msgstr "ป้อนข้อความดังต่อไปนี้เพื่อยืนยันการตัดสินใจของคุณ: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
 msgstr ""
