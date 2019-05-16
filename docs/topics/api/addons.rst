@@ -79,13 +79,20 @@ This endpoint allows you to search through public add-ons.
                     passed and when filtering to only return featured or
                     recommended add-ons.
             rating  Bayesian rating, descending.
+       recommended  Recommended add-ons above non-recommend add-ons. Only
+                    available combined with another sort - ignored on its own.
          relevance  Search query relevance, descending.
            updated  Last updated date, descending.
              users  Average number of daily users, descending.
     ==============  ==========================================================
 
-    The default is to sort by relevance if a search query (``q``) is present,
-    otherwise sort by number of weekly downloads, descending.
+    The new default behavior is to sort by relevance if a search query (``q``)
+    is present; otherwise place recommended add-ons first, then non recommended
+    add-ons, then sorted by number of weekly downloads, descending. (``sort=recommended,downloads``).
+    This is the default on AMO dev server.
+
+    The default on AMO production currently is to sort by relevance if a search
+    query (``q``) is present; otherwise sort by number of weekly downloads, descending.
 
     You can combine multiple parameters by separating them with a comma.
     For instance, to sort search results by downloads and then by creation

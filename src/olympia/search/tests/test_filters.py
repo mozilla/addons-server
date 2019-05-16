@@ -377,16 +377,29 @@ class TestSortingFilter(FilterTestsBase):
         # queryset object.
         return {key[1:]: {'order': 'desc'}} if key.startswith('-') else key
 
+    @override_switch('api-recommendations-priority', active=False)
+    def test_sort_default_recommendations_waffle_off(self):
+        qs = self._filter(data={'q': 'something'})
+        assert qs['sort'] == [self._reformat_order('_score')]
+
+        qs = self._filter()
+        assert qs['sort'] == [
+            self._reformat_order('-weekly_downloads')]
+
+    @override_switch('api-recommendations-priority', active=True)
     def test_sort_default(self):
         qs = self._filter(data={'q': 'something'})
         assert qs['sort'] == [self._reformat_order('_score')]
 
         qs = self._filter()
-        assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
+        assert qs['sort'] == [
+            self._reformat_order('-is_recommended'),
+            self._reformat_order('-weekly_downloads')]
 
     def test_sort_query(self):
         SORTING_PARAMS = copy.copy(SortingFilter.SORTING_PARAMS)
         SORTING_PARAMS.pop('random')  # Tested separately below.
+        SORTING_PARAMS.pop('recommended')  # Tested separately below.
 
         for param in SORTING_PARAMS:
             qs = self._filter(data={'sort': param})
@@ -471,6 +484,17 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['query']['function_score']['functions'] == [
             {'random_score': {}}
         ]
+
+    @override_switch('api-recommendations-priority', active=True)
+    def test_sort_recommended_only(self):
+        # If you try to sort by just recommended it gets ignored
+        qs = self._filter(data={'q': 'something', 'sort': 'recommended'})
+        assert qs['sort'] == [self._reformat_order('_score')]
+
+        qs = self._filter(data={'sort': 'recommended'})
+        assert qs['sort'] == [
+            self._reformat_order('-is_recommended'),
+            self._reformat_order('-weekly_downloads')]
 
 
 class TestSearchParameterFilter(FilterTestsBase):
