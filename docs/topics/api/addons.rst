@@ -56,7 +56,7 @@ This endpoint allows you to search through public add-ons.
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
-    :query boolean recommended: Filter to only add-ons recommended by Mozill.  Only ``recommended=true`` is supported.
+    :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
