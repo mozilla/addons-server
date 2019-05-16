@@ -1291,6 +1291,19 @@ class TestAddonSearchView(ESTestCase):
         self.assertSetEqual(
             ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk})
 
+    def test_filter_by_recommended(self):
+        addon = addon_factory(slug='my-addon', name=u'Recomménded Addôn')
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        addon.current_version.update(recommendation_approved=True)
+        assert addon.is_recommended
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'recommended': 'true'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
+
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
         addon = addon_factory(slug='my-addon', name=u'My Addôn',
