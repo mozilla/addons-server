@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-15 17:46+0000\n"
+"PO-Revision-Date: 2019-05-16 13:51+0000\n"
 "Last-Translator: వీవెన్ <veeven@gmail.com>\n"
 "Language-Team: none\n"
 "Language: te\n"
@@ -4417,9 +4417,8 @@ msgid "Simplify tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
 msgstr ""
 
 #. editorial content for the discovery pane.
-#, fuzzy
 msgid "Organize your many open tabs in a vertical sidebar."
-msgstr "తెరచివున్న ట్యాబులను చక్కటి పక్కపట్టీలో నిర్వహించుకోండి."
+msgstr "మీకు చాలా ట్యాబుల తెరిచివుంటే వాటిని నిలువు పక్కపట్టీలో నిర్వహించుకోండి."
 
 #. editorial content for the discovery pane.
 msgid "Advanced cookie management {start_sub_heading}with {addon_name}{end_sub_heading}"
