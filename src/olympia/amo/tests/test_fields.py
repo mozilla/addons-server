@@ -3,7 +3,7 @@ from django.db import connection, DataError
 from django.test.utils import override_settings
 
 from olympia.access.models import Group
-from olympia.amo.fields import HttpHttpsOnlyURLField
+from olympia.amo.fields import HttpHttpsOnlyURLField, CIDRField
 from olympia.amo.tests import TestCase
 
 
@@ -91,3 +91,23 @@ class TestPositiveAutoField(TestCase):
         self.ClassUsingPositiveAutoField.objects.create(id=mysql_max_int_size)
         with self.assertRaises(DataError):
             self.ClassUsingPositiveAutoField.objects.create(id=-1)
+
+
+class TestCIDRField(TestCase):
+    def setUp(self):
+        super().setUp()
+        self.field = CIDRField().formfield()
+
+    def test_validates_ip6_cidr(self):
+        with self.assertRaises(exceptions.ValidationError):
+            # Host bit set
+            self.field.clean('::1/28')
+
+        self.field.clean('fe80::/28')
+
+    def test_validates_ip4_cidr(self):
+        with self.assertRaises(exceptions.ValidationError):
+            # Host bit set
+            self.field.clean('127.0.0.1/28')
+
+        self.field.clean('127.0.0.0/28')

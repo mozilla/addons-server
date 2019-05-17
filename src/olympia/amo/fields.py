@@ -1,4 +1,5 @@
 import re
+import ipaddress
 
 from django.conf import settings
 from django.core import exceptions
@@ -70,3 +71,63 @@ class ReCaptchaField(HumanCaptchaField):
         'captcha_error': _('Error verifying input, please try again.'),
     }
     widget_class = ReCaptchaWidget
+
+
+def validate_cidr(value):
+    try:
+        ipaddress.ip_network(value)
+    except ValueError:
+        raise exceptions.ValidationError(
+            _('Enter a valid IP4 or IP6 network.'), code='invalid')
+
+
+class CIDRField(models.Field):
+    empty_strings_allowed = False
+    description = _('CIDR')
+    default_error_messages = {
+        'invalid': _('Enter a valid IP4 or IP6 network.')
+    }
+
+    def __init__(self, verbose_name=None, name=None, *args, **kwargs):
+        self.validators = [validate_cidr]
+        kwargs['max_length'] = 45
+        super().__init__(verbose_name, name, *args, **kwargs)
+
+    def deconstruct(self):
+        name, path, args, kwargs = super().deconstruct()
+        del kwargs['max_length']
+        return name, path, args, kwargs
+
+    def db_type(self, connection):
+        return 'char(45)'
+
+    def to_python(self, value):
+        if value is None:
+            return None
+        if not isinstance(value, str):
+            value = str(value)
+        value = value.strip()
+
+        try:
+            return ipaddress.ip_network(value)
+        except Exception as exc:
+            raise exceptions.ValidationError(exc)
+
+    def get_prep_lookup(self, lookup_type, value):
+        if lookup_type == 'exact':
+            return self.get_prep_value(value)
+        elif lookup_type == 'in':
+            return [self.get_prep_value(v) for v in value]
+        else:
+            raise TypeError(f'Lookup type {lookup_type} not supported.')
+
+    def get_prep_value(self, value):
+        return str(value)
+
+    def formfield(self, **kwargs):
+        defaults = {
+            'form_class': fields.CharField,
+            'validators': self.validators
+        }
+        defaults.update(kwargs)
+        return super(CIDRField, self).formfield(**defaults)

@@ -25,7 +25,8 @@ from olympia.bandwagon.models import Collection
 from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
-    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile)
+    DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile,
+    UserRestriction)
 from olympia.zadmin.models import set_config
 
 
@@ -619,6 +620,39 @@ class TestDeniedName(TestCase):
         assert DeniedName.blocked('IE6fantastic')
         assert not DeniedName.blocked('IE6')
         assert not DeniedName.blocked('testo')
+
+
+class TestUserRestriction(TestCase):
+
+    def test_ip4_address(self):
+        UserRestriction(ip_address='127.0.0.1').full_clean()
+
+    def test_invalid_ip4_address(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            UserRestriction(ip_address='127.288.0.5').full_clean()
+        assert exc_info.value.messages[0] == (
+            'Enter a valid IPv4 or IPv6 address.')
+
+    def test_ip6_address(self):
+        UserRestriction(ip_address='::1').full_clean()
+
+    def test_ip4_cidr(self):
+        UserRestriction(network='127.0.0.0/28').full_clean()
+
+    def test_invalid_ip4_cidr(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            UserRestriction(network='127.0.0.1/1218').full_clean()
+        assert exc_info.value.messages[0] == (
+            "'127.0.0.1/1218' does not appear to be an IPv4 or IPv6 network")
+
+    def test_ip6_cidr(self):
+        UserRestriction(network='2001:db00::0/28').full_clean()
+
+    def test_invalid_ip6_cidr(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            UserRestriction(network='::1/1218').full_clean()
+        assert exc_info.value.messages[0] == (
+            "'::1/1218' does not appear to be an IPv4 or IPv6 network")
 
 
 class TestUserEmailField(TestCase):

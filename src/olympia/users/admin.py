@@ -25,7 +25,7 @@ from olympia.ratings.models import Rating
 from olympia.zadmin.admin import related_content_link
 
 from . import forms
-from .models import DeniedName, GroupUser, UserProfile
+from .models import DeniedName, GroupUser, UserProfile, UserRestriction
 
 
 class GroupUserInline(admin.TabularInline):
@@ -33,6 +33,7 @@ class GroupUserInline(admin.TabularInline):
     raw_id_fields = ('user',)
 
 
+@admin.register(UserProfile)
 class UserAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'email', 'is_public', 'deleted')
     search_fields = ('=id', '^email', '^username')
@@ -324,6 +325,7 @@ class DeniedModelAdmin(admin.ModelAdmin):
         return render(request, self.template_path, {'form': form})
 
 
+@admin.register(DeniedName)
 class DeniedNameAdmin(DeniedModelAdmin):
     list_display = search_fields = ('name',)
     deny_list_model = DeniedName
@@ -333,5 +335,7 @@ class DeniedNameAdmin(DeniedModelAdmin):
     template_path = 'users/admin/denied_name/add.html'
 
 
-admin.site.register(UserProfile, UserAdmin)
-admin.site.register(DeniedName, DeniedNameAdmin)
+@admin.register(UserRestriction)
+class UserRestrictionAdmin(admin.ModelAdmin):
+    list_display = ('email', 'ip_address', 'network')
+    search_fields = ('^email', '^ip_address', '=network')

@@ -17,14 +17,14 @@ from django.utils import timezone
 from django.utils.crypto import salted_hmac
 from django.utils.encoding import force_text, python_2_unicode_compatible
 from django.utils.functional import cached_property
-from django.utils.translation import ugettext
+from django.utils.translation import ugettext, ugettext_lazy as _
 
 import olympia.core.logger
 
 from olympia import amo, core
 from olympia.access.models import Group, GroupUser
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.fields import PositiveAutoField
+from olympia.amo.fields import PositiveAutoField, CIDRField
 from olympia.amo.models import ManagerBase, ModelBase, OnChangeMixin
 from olympia.amo.urlresolvers import reverse
 from olympia.lib.cache import cache_get_or_set
@@ -635,6 +635,25 @@ class DeniedName(ModelBase):
 
         blocked_list = cache_get_or_set('denied-name:blocked', fetch_names)
         return any(n in name for n in blocked_list)
+
+
+@python_2_unicode_compatible
+class UserRestriction(ModelBase):
+    """Define restrictions for user-based data that can be used to either
+    avoid a user to register, submit add-ons or similar.
+    """
+    id = PositiveAutoField(primary_key=True)
+    ip_address = models.GenericIPAddressField(
+        blank=True, null=True,
+        help_text=_('Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1'))
+    network = CIDRField(
+        blank=True, null=True,
+        help_text=_(
+            'Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'))
+    email = models.EmailField(max_length=75, blank=True, null=True)
+
+    class Meta:
+        db_table = 'users_user_restriction'
 
 
 class UserHistory(ModelBase):
