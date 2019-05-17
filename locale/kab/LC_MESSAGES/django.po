@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-17 23:09+0000\n"
+"PO-Revision-Date: 2019-05-17 23:14+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -233,6 +233,8 @@ msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
 msgstr ""
+"Tettwaliḍ izen-a acku asmel-a yesra i inagan n tuqqna CSRF deg usεeddi n tferkit. Inagan-a n tuqqna d ayen ilaqen ɣef lǧal n tɣellist, iwakken ad tḍemneḍ iminig-ik(m) ur t-id-ikeččem ara ḥedd "
+"nniḍen."
 
 msgid "Page Not Found"
 msgstr "Ulac asebter"
@@ -2196,7 +2198,7 @@ msgstr "Yettwaseqdec deg isebtar n telqayt n uzegrir."
 
 #. The size of the icon
 msgid "128x128px"
-msgstr ""
+msgstr "128x128 ipiksilen."
 
 #, fuzzy
 msgid "Will be the standard in future add-on detail pages."
@@ -2206,7 +2208,7 @@ msgid "Upload a Custom Icon..."
 msgstr "Sali tignit tudmawant..."
 
 msgid "PNG and JPG supported."
-msgstr ""
+msgstr "PNG d JPG ttwasefraken."
 
 msgid "Icons must be square and a minimum size of 128x128 pixels."
 msgstr ""
