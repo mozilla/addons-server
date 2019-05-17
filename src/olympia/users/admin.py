@@ -25,7 +25,9 @@ from olympia.ratings.models import Rating
 from olympia.zadmin.admin import related_content_link
 
 from . import forms
-from .models import DeniedName, GroupUser, UserProfile, UserRestriction
+from .models import (
+    DeniedName, GroupUser, UserProfile, IPAddressUserRestriction,
+    IPNetworkUserRestriction, EmailUserRestriction)
 
 
 class GroupUserInline(admin.TabularInline):
@@ -335,7 +337,19 @@ class DeniedNameAdmin(DeniedModelAdmin):
     template_path = 'users/admin/denied_name/add.html'
 
 
-@admin.register(UserRestriction)
-class UserRestrictionAdmin(admin.ModelAdmin):
-    list_display = ('email', 'ip_address', 'network')
-    search_fields = ('^email', '^ip_address', '=network')
+@admin.register(IPAddressUserRestriction)
+class IPAddressUserRestrictionAdmin(admin.ModelAdmin):
+    list_display = ('ip_address',)
+    search_fields = ('^ip_address',)
+
+
+@admin.register(IPNetworkUserRestriction)
+class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
+    list_display = ('network',)
+    search_fields = ('=network',)
+
+
+@admin.register(EmailUserRestriction)
+class EmailUserRestrictionAdmin(admin.ModelAdmin):
+    list_display = ('email',)
+    search_fields = ('^email',)

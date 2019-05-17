@@ -26,7 +26,7 @@ from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile,
-    UserRestriction)
+    EmailUserRestriction, IPAddressUserRestriction, IPNetworkUserRestriction)
 from olympia.zadmin.models import set_config
 
 
@@ -622,37 +622,94 @@ class TestDeniedName(TestCase):
         assert not DeniedName.blocked('testo')
 
 
-class TestUserRestriction(TestCase):
+class TestIPAddressUserRestriction(TestCase):
 
-    def test_ip4_address(self):
-        UserRestriction(ip_address='127.0.0.1').full_clean()
+    def test_allowed_ip4_address(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        IPAddressUserRestriction.objects.create(ip_address='10.8.0.1')
+        assert IPAddressUserRestriction.allow_request(request)
 
-    def test_invalid_ip4_address(self):
+    def test_blocked_ip4_address(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        IPAddressUserRestriction.objects.create(ip_address='192.168.0.1')
+        assert not IPAddressUserRestriction.allow_request(request)
+
+    def test_ip4_address_validated(self):
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserRestriction(ip_address='127.288.0.5').full_clean()
+            IPAddressUserRestriction(ip_address='127.288.0.5').full_clean()
         assert exc_info.value.messages[0] == (
             'Enter a valid IPv4 or IPv6 address.')
 
-    def test_ip6_address(self):
-        UserRestriction(ip_address='::1').full_clean()
+    def test_allowed_ip6_address(self):
+        request = RequestFactory(
+            REMOTE_ADDR='fe80::8ced:96ff:fee1:c405').get('/')
+        IPAddressUserRestriction.objects.create(
+            ip_address='fe80::9ced:96ff:fee1:c408')
+        assert IPAddressUserRestriction.allow_request(request)
 
-    def test_ip4_cidr(self):
-        UserRestriction(network='127.0.0.0/28').full_clean()
+    def test_blocked_ip6_address(self):
+        request = RequestFactory(
+            REMOTE_ADDR='fe80::8ced:96ff:fee1:c405').get('/')
+        IPAddressUserRestriction.objects.create(
+            ip_address='fe80::8ced:96ff:fee1:c405')
+        assert not IPAddressUserRestriction.allow_request(request)
 
-    def test_invalid_ip4_cidr(self):
+    def test_ip6_address_validated(self):
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserRestriction(network='127.0.0.1/1218').full_clean()
+            IPAddressUserRestriction(
+                ip_address='fe80::8cex:96af:fee1:c405').full_clean()
+        assert exc_info.value.messages[0] == (
+            'Enter a valid IPv4 or IPv6 address.')
+
+
+class TestIPNetworkUserRestriction(TestCase):
+
+    def test_allowed_ip4_address(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.1.0/28')
+        assert IPNetworkUserRestriction.allow_request(request)
+
+        request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='10.8.0.0/32')
+        assert IPNetworkUserRestriction.allow_request(request)
+
+    def test_blocked_ip4_address(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+        request = RequestFactory(REMOTE_ADDR='10.8.0.1').get('/')
+        IPNetworkUserRestriction.objects.create(network='10.8.0.0/28')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+    def test_ip4_address_validated(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            IPNetworkUserRestriction(network='127.0.0.1/1218').full_clean()
         assert exc_info.value.messages[0] == (
             "'127.0.0.1/1218' does not appear to be an IPv4 or IPv6 network")
 
-    def test_ip6_cidr(self):
-        UserRestriction(network='2001:db00::0/28').full_clean()
-
-    def test_invalid_ip6_cidr(self):
+    def test_ip6_address_validated(self):
         with pytest.raises(forms.ValidationError) as exc_info:
-            UserRestriction(network='::1/1218').full_clean()
+            IPNetworkUserRestriction(network='::1/1218').full_clean()
         assert exc_info.value.messages[0] == (
             "'::1/1218' does not appear to be an IPv4 or IPv6 network")
+
+
+class TestEmailUserRestriction(TestCase):
+    def test_email_allowed(self):
+        EmailUserRestriction.objects.create(email='foo@bar.com')
+        assert EmailUserRestriction.allow_email('bar@foo.com')
+
+    def test_blocked_email(self):
+        EmailUserRestriction.objects.create(email='foo@bar.com')
+        assert not EmailUserRestriction.allow_email('foo@bar.com')
+
+    def test_email_validated(self):
+        with pytest.raises(forms.ValidationError) as exc_info:
+            EmailUserRestriction(email='bar').full_clean()
+
+        assert exc_info.value.messages[0] == (
+            'Enter a valid email address.')
 
 
 class TestUserEmailField(TestCase):

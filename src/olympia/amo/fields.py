@@ -101,6 +101,9 @@ class CIDRField(models.Field):
     def db_type(self, connection):
         return 'char(45)'
 
+    def from_db_value(self, value, expression, connection, *args):
+        return self.to_python(value)
+
     def to_python(self, value):
         if value is None:
             return None

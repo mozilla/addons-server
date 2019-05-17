@@ -3,6 +3,7 @@ import os
 import random
 import re
 import time
+import ipaddress
 
 from datetime import datetime
 
@@ -637,8 +638,7 @@ class DeniedName(ModelBase):
         return any(n in name for n in blocked_list)
 
 
-@python_2_unicode_compatible
-class UserRestriction(ModelBase):
+class IPAddressUserRestriction(ModelBase):
     """Define restrictions for user-based data that can be used to either
     avoid a user to register, submit add-ons or similar.
     """
@@ -646,14 +646,71 @@ class UserRestriction(ModelBase):
     ip_address = models.GenericIPAddressField(
         blank=True, null=True,
         help_text=_('Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1'))
+
+    class Meta:
+        db_table = 'users_user_ip_restriction'
+
+    @classmethod
+    def allow_request(self, request):
+        remote_addr = request.META.get('REMOTE_ADDR')
+        return not (
+            IPAddressUserRestriction.objects
+            .filter(ip_address=remote_addr)
+            .exists())
+
+    @classmethod
+    def get_error_message(self, request):
+        return _(
+            'Multiple add-ons violating our policies have been'
+            ' submitted from your location. The IP address has been'
+            ' blocked.')
+
+
+class IPNetworkUserRestriction(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     network = CIDRField(
         blank=True, null=True,
         help_text=_(
             'Enter a valid IPv6 or IPv6 CIDR network range, eg. 127.0.0.1/28'))
+
+    class Meta:
+        db_table = 'users_user_network_restriction'
+
+    @classmethod
+    def allow_request(self, request):
+        try:
+            remote_addr = ipaddress.ip_address(request.META.get('REMOTE_ADDR'))
+        except ValueError:
+            # If we don't have a valid ip address, let's deny
+            # TODO: Verify this is what we want…
+            return False
+
+        restrictions = IPNetworkUserRestriction.objects.all()
+
+        for restriction in restrictions:
+            if remote_addr in list(restriction.network.hosts()):
+                return False
+        return True
+
+    @classmethod
+    def get_error_message(self, request):
+        return IPAddressUserRestriction.get_error_message()
+
+
+class EmailUserRestriction(ModelBase):
+    id = PositiveAutoField(primary_key=True)
     email = models.EmailField(max_length=75, blank=True, null=True)
 
     class Meta:
-        db_table = 'users_user_restriction'
+        db_table = 'users_user_email_restriction'
+
+    @classmethod
+    def allow_email(self, email):
+        return not EmailUserRestriction.objects.filter(email=email).exists()
+
+    def get_error_message(self, request):
+        return _('The email address you used for your developer account'
+                 ' is not allowed for add-on submission.')
 
 
 class UserHistory(ModelBase):
