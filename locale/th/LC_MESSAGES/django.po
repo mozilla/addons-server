@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-16 18:20+0000\n"
+"PO-Revision-Date: 2019-05-17 07:06+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -367,7 +367,7 @@ msgid "Add-ons"
 msgstr "ส่วนเสริม"
 
 msgid "Custom License"
-msgstr "ใบอนุญาตที่กำหนดเอง"
+msgstr "สัญญาอนุญาตที่กำหนดเอง"
 
 #. L10n: relative time in the past, like '4 days ago'
 msgid "{0} ago"
@@ -5370,11 +5370,9 @@ msgstr ""
 msgid "Pre-Approval Add-ons"
 msgstr "ส่วนเสริมสำหรับระบบ Android"
 
-#, fuzzy
 msgid "New ({0})"
-msgstr "ส่วนเสริมสำหรับ {0}"
+msgstr "ใหม่ ({0})"
 
-#, fuzzy
 msgid "Updates ({0})"
 msgstr "การอัปเดต ({0})"
 
@@ -6266,16 +6264,14 @@ msgstr "ชุดสะสม"
 msgid "Addons"
 msgstr "ส่วนเสริม"
 
-#, fuzzy
 msgid "Activity Logs"
-msgstr "กิจกรรม"
+msgstr "รายการบันทึกกิจกรรม"
 
 msgid "No user with that email."
 msgstr ""
 
-#, fuzzy
 msgid "Firefox user {id}"
-msgstr "Firefox สำหรับ Android"
+msgstr "ผู้ใช้ Firefox {id}"
 
 msgid "My Mobile Add-ons"
 msgstr ""
