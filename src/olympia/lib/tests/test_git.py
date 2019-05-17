@@ -86,6 +86,8 @@ def test_temporary_worktree(settings):
 
 
 def test_enforce_pygit_global_search_path(settings):
+    # Not using pygit2.option() here to make sure the call in
+    # AddonGitRepository changes the correct things
     pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = '/root'
 
     assert (

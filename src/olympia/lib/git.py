@@ -115,7 +115,13 @@ class AddonGitRepository(object):
         # https://github.com/libgit2/pygit2/issues/339
         # https://github.com/libgit2/libgit2/issues/2122
         git_home = settings.ROOT
-        pygit2.settings.search_path[pygit2.GIT_CONFIG_LEVEL_GLOBAL] = git_home
+        pygit2.option(
+            pygit2.GIT_OPT_SET_SEARCH_PATH,
+            pygit2.GIT_CONFIG_LEVEL_GLOBAL,
+            git_home)
+
+        # Enable calling fsync() for various operations touching .git
+        pygit2.option(pygit2.GIT_OPT_ENABLE_FSYNC_GITDIR, True)
 
         addon_id = (
             addon_or_id.pk
