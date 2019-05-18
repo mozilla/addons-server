@@ -5,7 +5,7 @@ msgstr ""
 "Project-Id-Version: PROJECT 1.0\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-18 11:31+0000\n"
+"PO-Revision-Date: 2019-05-18 11:40+0000\n"
 "Last-Translator: Muḥend Belqasem <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -225,9 +225,11 @@ msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"Tettwaliḍ izen-a acku asmel-a HTTPS yesra iminig-ik ad yazen aqeṛṛu \"Refere\" imi ula d yiwen n uqeṛṛu n wanaw-a ur yettwazen. Aqeṛṛu-a ilaq ad yili ɣef sebba n tɣellist, akken ad yeḍmen i yiminig-"
+"ik ur tettakren ara wiyad."
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "Ma tgiḍ tawila n yiminig-ik akken ad yessens iqeṛṛa 'Refer', yessefk ad talseḍ armad-nsen, xaṛsum i usmel-a, neɣ tuqqniwin HTTPS, neɣ i tuttriwin n wanaw  'same-origin' "
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
@@ -401,7 +403,7 @@ msgid "Error decoding signature."
 msgstr "Tuccḍa deg uzmek n uzmul."
 
 msgid "Wrong type for one or more keys in payload"
-msgstr ""
+msgstr "Yir anaw i yiwet neɣ ugar n tsura deg usali"
 
 msgid "Invalid JWT Token."
 msgstr "Ajiṭun JWT mačči d ameɣtu."
@@ -421,7 +423,7 @@ msgid "The language code {lang_code} is invalid."
 msgstr "Tangalt n tutlayt {lang_code} mačči d tameɣtut."
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "Yessefk ad tmuddeḍ xaṛsum taɣawsa {lang-code:value}."
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -892,19 +894,19 @@ msgid "Alerts & Updates"
 msgstr "Alɣu & Ileqman"
 
 msgid "Download Firefox extensions that help you stay up-to-date, track tasks, improve efficiency. Find extensions that reload tabs, manage productivity, and more."
-msgstr ""
+msgstr "Sider isiɣzaf Firefox ara k-iɛiwnen ad teqqimeḍ deg umaynut, aḍfaṛ n umahil, asnerni n temlilt-ik. Aff-d isiɣzaf i d-yettalsen asali n yiccaren, neɣ wid yessefraken tiffursa, d wayen-nniḍen."
 
 msgid "Appearance"
 msgstr "Arwes"
 
 msgid "Download extensions that modify the appearance of websites and the browser Firefox. This category includes extensions for dark themes, tab management, and more."
-msgstr ""
+msgstr "Sider isiɣzaf ara yebeddlen udem n yismal akked yiminig Firefox. Taggayt-a tegber isiɣzaf n yisental iberkanen, asefrek n yiccaren, akked wayen-nniḍen."
 
 msgid "Bookmarks"
 msgstr "Ticraḍ n isebtar"
 
 msgid "Download extensions that enhance bookmarks by password-protecting them, searching for duplicates, finding broken bookmarks, and more."
-msgstr ""
+msgstr "Sider isiɣzaf i yesnernayen ticraḍ n yisebtar s ummesten-nsen s wawal uffir, s unadi n wid yellan yakan, tifin n tecraḍ yeṛzen, d wayen-nniḍen."
 
 msgid "Download Management"
 msgstr "Asefrek n usider"
