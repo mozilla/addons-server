@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-17 15:21+0000\n"
+"PO-Revision-Date: 2019-05-18 00:54+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4298,11 +4298,11 @@ msgstr "Nastavte si vlastní pozadí, barvu nebo obrázek, pro stránku nového 
 
 #. editorial content for the discovery pane.
 msgid "Cat lovers rejoice {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr "Milovníci koček se radují {start_sub_heading}díky {addon_name}{end_sub_heading}"
+msgstr "Radost pro milovníky koček: {start_sub_heading}{addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Meet an adorable kitty with every new tab. Give it a scratch behind the ear and see what happens."
-msgstr "Setkejte se v každém novém panelu s roztomilou micinkou. Podrbejte jí za ouškem a uvidíte, co se stane."
+msgstr "Setkejte se v každém novém panelu s roztomilou micinkou. Podrbejte jí za ouškem a sledujte, co se stane."
 
 #. editorial content for the discovery pane.
 msgid "Decrease productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
