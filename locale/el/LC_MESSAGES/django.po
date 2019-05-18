@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-18 14:11+0000\n"
+"PO-Revision-Date: 2019-05-18 14:23+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -2920,7 +2920,7 @@ msgid "If your add-on transmits any data from the user's computer, a privacy pol
 msgstr ""
 
 msgid "If your add-on contains binary or obfuscated code other than known libraries, upload its sources for review."
-msgstr ""
+msgstr "Αν το πρόσθετό σας περιέχει δυαδικό ή δύσκολο στην κατανόηση (obfuscated) κώδικα από άλλες γνωστές βιβλιοθήκες, ανεβάστε τις πηγές του προς αξιολόγηση."
 
 msgid "Please include instructions on how to reproduce the final add-on file, either in a README file or the Notes to Reviewer for this version."
 msgstr ""
@@ -3888,7 +3888,7 @@ msgstr "Μάθετε που πηγαίνετε στο διαδίκτυο {start_
 
 #. editorial content for the discovery pane.
 msgid "Get the country location for websites you visit. Be an informed internet traveler."
-msgstr ""
+msgstr "Μάθετε σε ποιες χώρες εντοπίζονται οι ιστοσελίδες που επισκέπτεστε. Γίνετε ένας πληροφορημένος ταξιδιώτης του διαδικτύου."
 
 #. editorial content for the discovery pane.
 msgid "Enhance your reading experience {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3896,7 +3896,7 @@ msgstr "Βελτίωση εμπειρίας ανάγνωσης {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Make the text you're reading more appealing by removing the clutter around it."
-msgstr ""
+msgstr "Κάντε το κείμενο που διαβάζετε πιο ελκυστικό, αφαιρώντας περιττά στοιχεία."
 
 #. editorial content for the discovery pane.
 msgid "Open multiple links {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3904,7 +3904,7 @@ msgstr "Άνοιγμα πολλαπλών συνδέσμων {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "Κάντε δεξί κλικ και σύρετε τους συνδέσμους που θέλετε να ανοίξετε σε νέες καρτέλες."
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3912,7 +3912,7 @@ msgstr "Ανάκτηση καρτελών {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "Αποκτήστε πρόσβαση σε καρτέλες που έκλεισαν πρόσφατα, κάνοντας δεξί κλικ στο εικονίδιο της γραμμής εργαλείων σας."
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4016,7 +4016,7 @@ msgstr "Αυτο-λογοκρισία {start_sub_heading}με το {addon_name}{
 
 #. editorial content for the discovery pane.
 msgid "Restrict access to inappropriate or undesired content with a filter."
-msgstr ""
+msgstr "Αποκλείστε την πρόσβαση σε ακατάλληλο ή ανεπιθύμητο περιεχόμενο με ένα φίλτρο."
 
 #. editorial content for the discovery pane.
 msgid "Improve new tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4024,7 +4024,7 @@ msgstr "Βελτίωση νέων καρτελών {start_sub_heading}με το 
 
 #. editorial content for the discovery pane.
 msgid "Open a new tab to the right of your current tab, not at the end of the row."
-msgstr ""
+msgstr "Ανοίξτε μια νέα καρτέλα στα δεξιά της τρέχουσας καρτέλας, όχι στο τέλος της σειράς."
 
 #. editorial content for the discovery pane.
 msgid "Conquer spam {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4080,7 +4080,7 @@ msgstr "Δημιουργία λίστας φραγής ιστοσελίδων {s
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "Περιορίστε την πρόσβαση του Firefox στις ιστοσελίδες που ορίζετε."
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4464,7 +4464,7 @@ msgstr "Διαγραφή ιστορικού {start_sub_heading}με το {addon_
 
 #. editorial content for the discovery pane.
 msgid "Automatically delete browser history for websites you select."
-msgstr ""
+msgstr "Διαγράψτε αυτόματα το ιστορικό περιήγησης για τις επιλεγμένες σας ιστοσελίδες."
 
 #. editorial content for the discovery pane.
 msgid "Safeguard Bookmarks {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4504,7 +4504,7 @@ msgstr "Απλοποίηση εργασιών {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Just drag text, images, or links to perform actions like copy, open, search, and more."
-msgstr ""
+msgstr "Απλά σύρετε κείμενο, εικόνες ή συνδέσμους για να εκτελέσετε ενέργειες, όπως αντιγραφή, άνοιγμα, αναζήτηση και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Harness the ability to download video and/or audio in multiple formats."
@@ -5989,7 +5989,7 @@ msgid "You cannot add a listed version to this addon via the API due to missing 
 msgstr ""
 
 msgid "No uploaded file for that addon and version."
-msgstr ""
+msgstr "Κανένα ανεβασμένο αρχείο για αυτό το πρόσθετο και αυτή την έκδοση."
 
 msgid "Overview"
 msgstr "Επισκόπηση"
