@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-24 22:43+0000\n"
+"PO-Revision-Date: 2019-05-18 14:11+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: el-GR <LL@li.org>\n"
 "Language: el\n"
@@ -3808,7 +3808,7 @@ msgstr "Πανίσχυρη διαχείριση λήψεων {start_sub_heading}
 
 #. editorial content for the discovery pane.
 msgid "Check the state of your downloads through a status bar, download history page, and more."
-msgstr ""
+msgstr "Ελέγξτε την κατάσταση των λήψεών σας μέσω της γραμμής κατάστασης, της σελίδας ιστορικού λήψεων και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Capture web content {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3816,7 +3816,7 @@ msgstr "Στιγμιότυπα περιεχομένου στο διαδίκτυ�
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "Αποθηκεύστε πληροφορίες από το διαδίκτυο στο OneNote για επεξεργασία, σχολιασμό και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3824,7 +3824,7 @@ msgstr "Προστασία από καταγραφή αναζήτησης {start
 
 #. editorial content for the discovery pane.
 msgid "Stop trackers when you click Google and Yandex search returns."
-msgstr ""
+msgstr "Εμποδίστε ιχνηλάτες όταν κάνετε κλικ σε αποτελέσματα αναζήτησης Google και Yandex."
 
 #. editorial content for the discovery pane.
 msgid "Dynamic navigation {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3832,7 +3832,7 @@ msgstr "Δυναμική πλοήγηση {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Use mouse gestures to close tabs, go back one page, reload, and more."
-msgstr ""
+msgstr "Χρησιμοποιήστε κινήσεις ποντικιού για κλείσιμο καρτελών, επιστροφή, ανανέωση και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Add images to search returns {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3840,7 +3840,7 @@ msgstr "Προσθήκη εικόνων σε αποτελέσματα αναζή
 
 #. editorial content for the discovery pane.
 msgid "Enjoy thumbnail images alongside your search returns."
-msgstr ""
+msgstr "Απολαύστε μικρογραφίες δίπλα στα αποτελέσματα αναζήτησής σας."
 
 #. editorial content for the discovery pane.
 msgid "Ease eye strain {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3848,7 +3848,7 @@ msgstr "Ανακούφιση ματιών {start_sub_heading}με το {addon_na
 
 #. editorial content for the discovery pane.
 msgid "Make the web easier on the eyes by darkening its display."
-msgstr ""
+msgstr "Καταστήστε τον ιστό πιο άνετο για τα μάτια σας, κάνοντας πιο σκοτεινή την προβολή."
 
 #. editorial content for the discovery pane.
 msgid "Stop pop-ups {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3856,7 +3856,7 @@ msgstr "Διακοπή αναδυόμενων {start_sub_heading}με το {addo
 
 #. editorial content for the discovery pane.
 msgid "Block all pop-ups by default, then decide which ones you'd like to open."
-msgstr ""
+msgstr "Αποκλείστε όλα τα αναδυόμενα από προεπιλογή και αποφασίστε έπειτα ποια θέλετε να ανοίξετε."
 
 #. editorial content for the discovery pane.
 msgid "Customize your favorite websites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3864,7 +3864,7 @@ msgstr "Προσαρμογή αγαπημένων ιστοσελίδων {start_
 
 #. editorial content for the discovery pane.
 msgid "Change the look of any website! Shift colors, page backgrounds, and more."
-msgstr ""
+msgstr "Αλλάξτε την εμφάνιση οποιασδήποτε ιστοσελίδας! Αλλάξτε χρώματα, φόντα σελίδων και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Customize your new tab {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3872,7 +3872,7 @@ msgstr "Προσαρμογή νέας καρτέλας {start_sub_heading}με �
 
 #. editorial content for the discovery pane.
 msgid "Edit the new tab page to display your preferred number of tiles, background image, and more."
-msgstr ""
+msgstr "Επεξεργαστείτε τη σελίδα νέας καρτέλας για εμφάνιση του προτιμώμενου αριθμού καρτελών, εικόνας φόντου και πολλά άλλα."
 
 #. editorial content for the discovery pane.
 msgid "Manage your passwords {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3880,7 +3880,7 @@ msgstr "Διαχείριση κωδικών πρόσβασης {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "Αποθηκεύστε με ασφάλεια κωδικούς πρόσβασης και προσπελάστε τους από πολλαπλές συσκευές."
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
