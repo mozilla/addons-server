@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 16:31+0000\n"
+"PO-Revision-Date: 2019-05-19 16:52+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -456,9 +456,8 @@ msgstr ""
 msgid "The text entered has been flagged as spam."
 msgstr "ข้อความที่ป้อนถูกตั้งสถานะเป็นสแปม"
 
-#, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
-msgstr "url นี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
+msgstr ""
 
 msgid "Name cannot be empty."
 msgstr "ชื่อไม่สามารถเว้นว่างได้"
@@ -472,9 +471,8 @@ msgstr ""
 msgid "This custom URL cannot be used."
 msgstr "ไม่สามารถใช้ URL ที่กำหนดเองนี้"
 
-#, fuzzy
 msgid "This add-on already belongs to the collection"
-msgstr "url นี้ถูกใช้งานกับชุดสะสมอื่นอยู่แล้ว"
+msgstr "ส่วนเสริมนี้เป็นของชุดสะสมอยู่แล้ว"
 
 msgid "{addon} was created."
 msgstr "สร้าง {addon} แล้ว"
@@ -543,7 +541,7 @@ msgid "Retained"
 msgstr "เก็บไว้แล้ว"
 
 msgid "{addon} {version} escalated."
-msgstr ""
+msgstr "เลื่อนระดับ {addon} {version} แล้ว"
 
 msgid "Super review requested"
 msgstr ""
@@ -1733,9 +1731,8 @@ msgstr ""
 msgid "The color of text in fields in the toolbar, such as the URL bar. Manifest field:  toolbar_field_text."
 msgstr ""
 
-#, fuzzy
 msgid "Review requested."
-msgstr "บทวิจารณ์:"
+msgstr ""
 
 msgid "You must provide further details to proceed."
 msgstr ""
@@ -1763,9 +1760,8 @@ msgstr ""
 msgid "Firefox Add-on Distribution Agreement"
 msgstr ""
 
-#, fuzzy
 msgid "Review Policies and Rules"
-msgstr "บทวิจารณ์:"
+msgstr ""
 
 msgid "I have read and accept this Agreement and the Rules and Policies"
 msgstr ""
@@ -1928,7 +1924,7 @@ msgid "%(ago)s by %(user)s"
 msgstr "%(ago)s โดย %(user)s"
 
 msgid "Older activity for My Add-ons"
-msgstr ""
+msgstr "กิจกรรมเก่ากว่าของส่วนเสริมของฉัน"
 
 #. {0} is an integer.
 msgid "<b>{0}</b> theme"
@@ -2052,16 +2048,14 @@ msgstr "รุ่นทดลอง?"
 msgid "If your add-on on is experimental or otherwise not ready for general use.  The add-on will be listed but will have reduced visibility. "
 msgstr ""
 
-#, fuzzy
 msgid "This add-on is experimental."
-msgstr "ส่วนเสริมนี้ถูกเอาออกโดยผู้สร้างส่วนเสริม"
+msgstr "ส่วนเสริมนี้เป็นรุ่นทดลอง"
 
 msgid "This add-on is ready for general use."
 msgstr "ส่วนเสริมนี้พร้อมแล้วสำหรับการใช้งานโดยทั่วไป"
 
-#, fuzzy
 msgid "Requires Payment?"
-msgstr "ช่องที่ต้องการ"
+msgstr "ต้องชำระเงิน?"
 
 msgid "Check this box if this add-on's core features require some form of payment upfront or after a trial period in order to work."
 msgstr ""
@@ -5247,9 +5241,8 @@ msgstr "ยังไม่ถูกตรวจสอบ"
 msgid "Needs Admin Static Theme Review"
 msgstr "บทวิจารณ์ส่วนเสริมที่ปรับปรุงแล้ว                "
 
-#, fuzzy
 msgid "Requires Restart"
-msgstr "ช่องที่ต้องการ"
+msgstr "ต้องเริ่มการทำงานใหม่"
 
 msgid "More Information Requested"
 msgstr ""
@@ -5500,7 +5493,7 @@ msgid "EULA"
 msgstr "ข้อตกลงอนุญาตใช้งานซอฟต์แวร์"
 
 msgid "View End-User License Agreement"
-msgstr ""
+msgstr "ดูข้อตกลงสัญญาอนุญาตผู้ใช้"
 
 msgid "Last Approval Date"
 msgstr ""
