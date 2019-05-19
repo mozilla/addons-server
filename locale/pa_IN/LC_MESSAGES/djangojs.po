@@ -1,11 +1,11 @@
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-03-27 16:07+0000\n"
-"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
+"PO-Revision-Date: 2019-05-19 16:35+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -122,8 +122,8 @@ msgid ""
 "Compiled binaries, as well as minified or obfuscated scripts (excluding known libraries) need to have their sources submitted separately for review. Make sure that you use the source code upload "
 "field to avoid having your submission rejected."
 msgstr ""
-"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ "
-"ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
+"ਕੰਪਾਇਲਡ ਬਾਇਨਰੀਆਂ, ਨਾਲ ਦੀ ਨਾਲ ਛੋਟੀਆਂ ਜਾਂ ਬੇਕਾਰ ਸਕਰਿਪਟਾਂ (ਜਾਣੂ ਲਾਇਬਰ੍ਰੇਰੀਆਂ ਨੂੰ ਛੱਡ ਕੇ) ਨੂੰ ਸਮੀਖਿਆ ਲਈ ਆਪਣੇ ਸੋਰਸ ਕੋਡਾਂ ਨੂੰ ਵੱਖ ਤੋਂ ਦਾਖਲ ਕਰਨ ਦੀ ਜ਼ਰੂਰਤ ਹੈ। ਇਹ ਯਕੀਨੀ ਬਣਾਓ ਕੀ ਤੁਸੀਂ ਆਪਣੇ ਦਾਖਲ ਕਾਰਜ ਨੂੰ ਰੱਦ "
+"ਹੋਣ ਤੋਂ ਬਚਾਉਣ ਲਈ ਸੋਰਸ ਕੋਡ ਅੱਪਲੋਡ ਖੇਤਰ ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ।"
 
 msgid "The validation process found these issues that can lead to rejections:"
 msgstr "ਵੈਧਤਾ ਕਾਰਜ ਨੂੰ ਇਹ ਮਸਲੇ ਲੱਭੇ ਹਨ ਜੋ ਰੱਦ ਹੋਣ ਦਾ ਕਾਰਨ ਬਣ ਸਕਦੇ ਹਨ:"
@@ -248,13 +248,13 @@ msgid "Daily Users"
 msgstr "ਰੋਜ਼ਾਨਾ ਵਰਤੋਂਕਾਰ"
 
 msgid "Amount, in USD"
-msgstr "USD ਵਿੱਚ ਰਾਸ਼ੀ"
+msgstr "ਰਕਮ, USD ਵਿੱਚ"
 
 msgid "Number of Contributions"
-msgstr "ਯੋਗਦਾਨ ਦੀ ਗਿਣਤੀ"
+msgstr "ਯੋਗਦਾਨਾਂ ਦੀ ਗਿਣਤੀ"
 
 msgid "More Info..."
-msgstr "ਜਿਆਦਾ ਜਾਣਕਾਰੀ...."
+msgstr "ਹੋਰ ਜਾਣਕਾਰੀ..."
 
 #. L10n: {0} is an ISO-formatted date.
 msgid "Details for {0}"
@@ -273,13 +273,13 @@ msgid "Add-ons Downloaded"
 msgstr "ਡਾਉਨਲੋਡ ਕੀਤੇ ਗਏ ਐਡ-ਆਨ"
 
 msgid "Add-ons Updated"
-msgstr "ਨਵਿਆਏ ਗਏ ਐਡ-ਆਨ"
+msgstr "ਅੱਪਡੇਟ ਕੀਤੇ ਐਡ-ਆਨ"
 
 msgid "Reviews Written"
 msgstr "ਲਿਖੀਆਂ ਗਈਆਂ ਸਮੀਖਿਆਵਾਂ"
 
 msgid "User Signups"
-msgstr "ਵਾਰਤੋਂਕਾਰਾਂ ਦੇ ਸਾਈਨਅੱਪ"
+msgstr "ਵਰਤੋਂਕਾਰਾਂ ਦੇ ਸਾਈਨਅੱਪ"
 
 msgid "Subscribers"
 msgstr "ਗਾਹਕ"
@@ -297,16 +297,16 @@ msgid "Unknown"
 msgstr "ਅਣਪਛਾਤੇ"
 
 msgid "Add-ons Manager"
-msgstr "ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
+msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ"
 
 msgid "Add-ons Manager Promo"
-msgstr "ਐਡ-ਔਨ ਪ੍ਰਬੰਧਕ ਝਲਕ"
+msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਝਲਕ"
 
 msgid "Add-ons Manager Featured"
-msgstr "ਪੇਸ਼ ਕੀਤਾ ਐਡ-ਆਨ ਪ੍ਰਬੰਧਕ"
+msgstr "ਖਾਸ ਐਡ-ਆਨ ਮੈਨੇਜਰ"
 
 msgid "Add-ons Manager Learn More"
-msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਵਧੇਰੇ ਸਿੱਖੋ"
+msgstr "ਐਡ-ਆਨ ਮੈਨੇਜਰ ਬਾਰੇ ਵਧੇਰੇ ਸਿੱਖੋ"
 
 msgid "Search Suggestions"
 msgstr "ਖੋਜ ਸੁਝਾਅ"
