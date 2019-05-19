@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 07:27+0000\n"
-"Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
+"PO-Revision-Date: 2019-05-19 09:04+0000\n"
+"Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgid "This reviewer name cannot be used."
 msgstr "ไม่สามารถใช้ชื่อผู้ตรวจทานนี้"
 
 msgid "The homepage field can only be used to link to external websites."
-msgstr ""
+msgstr "เขตข้อมูลหน้าแรกสามารถใช้เพื่อเชื่อมโยงไปยังเว็บไซต์ภายนอกเท่านั้น"
 
 msgid "Images must be either PNG or JPG."
 msgstr "ภาพจะต้องเป็น PNG หรือ JPG"
@@ -43,9 +43,8 @@ msgstr "โปรดใช้ภาพที่มีขนาดเล็กก
 msgid "You are already logged in."
 msgstr "คุณได้เข้าสู่ระบบอยู่แล้ว"
 
-#, fuzzy
 msgid "Your login attempt could not be parsed. Please try again."
-msgstr "ไม่พบบัญชี Firefox ของคุณ โปรดลองอีกครั้ง"
+msgstr "ไม่สามารถแยกวิเคราะห์ความพยายามในการเข้าสู่ระบบของคุณได้ โปรดลองอีกครั้ง"
 
 msgid "Your Firefox Account could not be found. Please try again."
 msgstr "ไม่พบบัญชี Firefox ของคุณ โปรดลองอีกครั้ง"
@@ -57,7 +56,7 @@ msgid "Need help?"
 msgstr "ต้องการความช่วยเหลือ?"
 
 msgid "Developers of add-ons or themes cannot delete their account. You must delete all add-ons and themes linked to this account, or transfer them to other users."
-msgstr ""
+msgstr "ผู้พัฒนาส่วนเสริมหรือชุดตกแต่งไม่สามารถลบบัญชีของพวกเขาได้ คุณต้องลบส่วนเสริมและชุดตกแต่งทั้งหมดที่เชื่อมโยงกับบัญชีนี้ หรือโอนย้ายไปยังผู้ใช้อื่น"
 
 #, python-format
 msgid "Notification [%s] does not exist"
@@ -73,7 +72,7 @@ msgid "Review note"
 msgstr "หมายเหตุบทวิจารณ์"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr ""
+msgstr "สามารถเพิ่มหมายเหตุได้เฉพาะบนส่วนเสริมรุ่นล่าสุด"
 
 msgid "Ratings"
 msgstr "การจัดอันดับ"
@@ -91,7 +90,7 @@ msgid "Addon and collection paths need to end with \"/\""
 msgstr "เส้นทางส่วนเสริมและชุดสะสมต้องลงท้ายด้วย \"/\""
 
 msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
-msgstr ""
+msgstr "ชื่อส่วนเสริมต้องไม่มีเครื่องหมายการค้าของ Mozilla หรือ Firefox"
 
 msgid "Awaiting Review"
 msgstr "รอการตรวจทาน"
@@ -194,16 +193,16 @@ msgstr "จำนวนเต็มบวก"
 
 #, python-format
 msgid "This field can only be used to link to external websites. URLs on %(domain)s are not allowed."
-msgstr ""
+msgstr "เขตข้อมูลนี้สามารถใช้เพื่อเชื่อมโยงไปยังเว็บไซต์ภายนอกเท่านั้น และไม่อนุญาต URL ที่อยู่บน %(domain)s"
 
 msgid "Incorrect, please try again."
 msgstr "ไม่ถูกต้อง โปรดลองอีกครั้ง"
 
 msgid "Error verifying input, please try again."
-msgstr ""
+msgstr "การตรวจสอบอินพุตผิดพลาด โปรดลองอีกครั้ง"
 
 msgid "Some features are temporarily disabled while we perform website maintenance. We'll be back to full capacity shortly."
-msgstr ""
+msgstr "บางคุณสมบัติถูกปิดใช้งานชั่วคราวในขณะที่เรากำลังทำการบำรุงรักษาเว็บไซต์ เราจะกลับมาเปิดให้ใช้เต็มรูปแบบอีกครั้งในไม่ช้า"
 
 #, fuzzy
 msgid "Must contain at least one printable character."
@@ -219,22 +218,23 @@ msgstr "ไม่อนุญาต"
 msgid "Oops! Not allowed."
 msgstr "อุปส์! ไม่อนุญาต"
 
-#, fuzzy
 msgid "You tried to do something that you weren't allowed to."
-msgstr "<h1>อุ๊ปส์! ไม่อนุญาต</h1> <p>คุณพยายามที่จะทำบางสิ่งซึ่งคุณไม่ได้รับอนุญาตให้ทำ</p>"
+msgstr "คุณพยายามที่จะทำบางสิ่งซึ่งคุณไม่ได้รับอนุญาตให้ทำ"
 
 msgid ""
 "You are seeing this message because this HTTPS site requires a 'Referer header' to be sent by your Web browser, but none was sent. This header is required for security reasons, to ensure that your "
 "browser is not being hijacked by third parties."
 msgstr ""
+"คุณเห็นข้อความนี้เนื่องจากไซต์ HTTPS นี้ต้องการให้ 'ส่วนหัว Referer' ถูกส่งโดยเว็บเบราว์เซอร์ของคุณ แต่ไม่มีการส่ง จำเป็นต้องมีส่วนหัวนี้เนื่องจากเหตุผลเกี่ยวกับความปลอดภัย "
+"เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณจะไม่ถูกเจาะโดยบุคคลที่สาม"
 
 msgid "If you have configured your browser to disable 'Referer' headers, please re-enable them, at least for this site, or for HTTPS connections, or for 'same-origin' requests."
-msgstr ""
+msgstr "ถ้าคุณได้กำหนดค่าเบราว์เซอร์ของคุณให้ปิดใช้งานส่วนหัว 'Referer' แล้ว ให้เปิดใช้งานใหม่อีกครั้ง อย่างน้อยให้กับไซต์นี้ หรือให้กับการเชื่อมต่อ HTTPS หรือให้กับคำขอแบบ 'same-origin'"
 
 msgid ""
 "You are seeing this message because this site requires a CSRF cookie when submitting forms. This cookie is required for security reasons, to ensure that your browser is not being hijacked by third "
 "parties."
-msgstr ""
+msgstr "คุณเห็นข้อความนี้เนื่องจากไซต์นี้ต้องการคุกกี้ CSRF เมื่อส่งแบบฟอร์ม คุกกี้นี้จำเป็นต้องมีเนื่องจากเหตุผลเกี่ยวกับความปลอดภัย เพื่อให้แน่ใจว่าเบราว์เซอร์ของคุณไม่ถูกเจาะโดยบุคคลที่สาม"
 
 msgid "Page Not Found"
 msgstr "ไม่พบหน้า"
@@ -243,7 +243,7 @@ msgid "Firefox Add-ons"
 msgstr "ส่วนเสริม Firefox"
 
 msgid "Sorry, but we can't find anything at the address you entered. If you followed a link to an add-on, it's possible that add-on has been removed by its author."
-msgstr ""
+msgstr "เสียใจด้วย แต่เราไม่สามารถค้นหาสิ่งใดจากที่อยู่ที่คุณป้อนได้ หากคุณเข้าดูส่วนเสริมจากลิงก์ที่คุณตามมา อาจเป็นไปได้ว่าส่วนเสริมถูกลบโดยผู้สร้างแล้ว"
 
 msgid "Suggested Pages"
 msgstr "หน้าที่แนะนำ"
@@ -259,7 +259,7 @@ msgstr "หน้าแรกส่วนเสริม"
 
 #, python-format
 msgid "If you followed a link from somewhere, please %(open_bug_link)sfile an issue %(close_bug_link)s. Tell us where you came from and what you were looking for, and we'll do our best to fix it."
-msgstr ""
+msgstr "ถ้าคุณตามลิงก์มาจากที่ใดที่หนึ่ง โปรด%(open_bug_link)sรายงานปัญหานี้%(close_bug_link)s บอกเราว่าคุณมาจากที่ไหนและคุณกำลังมองหาอะไร แล้วเราจะซ่อมแซมอย่างดีที่สุด"
 
 msgid "Not Found"
 msgstr "ไม่พบ"
@@ -283,7 +283,7 @@ msgstr "อุ๊ปส์"
 
 #, python-format
 msgid "<h1>Oops!  We had an error.</h1> <p>We'll get to fixing that soon.</p> <p> You can try refreshing the page, or head back to the <a href=\"%(home)s\">Add-ons homepage</a>. </p>"
-msgstr ""
+msgstr "<h1>อุ๊ปส์!  เรามีข้อผิดพลาด</h1> <p>เราจะทำการซ่อมแซมในเร็ว ๆ นี้</p><p>คุณอาจลองรีเฟรชหน้า หรือย้อนกลับไปยัง<a href=\"%(home)s\">หน้าแรกของส่วนเสริม</a>ได้</p>"
 
 msgid "Some rights reserved"
 msgstr "สงวนลิขสิทธิ์บางส่วน"
@@ -306,7 +306,7 @@ msgid "Maintenance in progress"
 msgstr "อยู่ระหว่างการบำรุงรักษา"
 
 msgid "This feature is temporarily disabled while we perform website maintenance. Please use your browser's Back button and try again a little later."
-msgstr ""
+msgstr "คุณสมบัตินี้ถูกปิดการใช้งานชั่วคราวขณะที่เรากำลังดูแลรักษาเว็บไซต์ โปรดใช้ปุ่ม ย้อนกลับ ของเบราว์เซอร์และลองอีกครั้งในภายหลัง"
 
 msgid "Some features on this page are temporarily disabled while we perform website maintenance. Please try again a little later."
 msgstr "คุณสมบัติบางอย่างในหน้านี้จะใช้ไม่ได้ชั่วคราวระหว่างที่เรากำลังปรับปรุงเว็บไซต์ กรุณาลองใหม่ในภายหลัง"
@@ -321,6 +321,8 @@ msgid ""
 "<p> Please enter <strong>all the words</strong> below, <strong>separated by a space if necessary</strong>. </p> <p> If this is hard to read, you can <a href=\"#\" id=\"recaptcha_different\">try "
 "different words</a> or <a href=\"#\" id=\"recaptcha_audio\">try a different type of challenge</a> instead. </p>"
 msgstr ""
+"<p> โปรดป้อน<strong>คำทั้งหมด</strong>ที่อยู่ด้านล่างนี้ <strong>โดยคั่นด้วยวรรคหากจำเป็น</strong> </p> <p> หากคำเหล่านี้อ่านได้ยาก คุณสามารถ<a href=\"#\" "
+"id=\"recaptcha_different\">ลองคำอื่น</a>หรือ<a href=\"#\" id=\"recaptcha_audio\">ลองการท้าทายแบบอื่น</a>แทนได้</p>"
 
 msgid "Most Popular"
 msgstr "ได้รับความนิยมสูงสุด"
@@ -386,10 +388,10 @@ msgid "Another Body"
 msgstr "เนื้อหาอื่น"
 
 msgid "Invalid Authorization header. No credentials provided."
-msgstr ""
+msgstr "ส่วนหัวการอนุญาตไม่ถูกต้อง ไม่ได้ระบุข้อมูลประจำตัว"
 
 msgid "Invalid Authorization header. Credentials string should not contain spaces."
-msgstr ""
+msgstr "ส่วนหัวการอนุญาตไม่ถูกต้อง สตริงข้อมูลประจำตัวจะต้องไม่มีช่องว่าง"
 
 msgid "Signature has expired."
 msgstr "ลายเซ็นหมดอายุแล้ว"
