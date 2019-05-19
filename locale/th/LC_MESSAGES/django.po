@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 07:12+0000\n"
+"PO-Revision-Date: 2019-05-19 07:27+0000\n"
 "Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -1380,7 +1380,7 @@ msgid "Sexual or pornographic content"
 msgstr "เนื้อหาด้านเพศหรือลามกอนาจาร"
 
 msgid "Inappropriate or offensive content"
-msgstr ""
+msgstr "เนื้อหาไม่เหมาะสมหรือก้าวร้าว"
 
 msgid "Violence, war, or weaponry images"
 msgstr "เนื้อหาความรุนแรง, สงคราม หรืออาวุธ"
@@ -1426,11 +1426,11 @@ msgid "[{field}] The text in the \"{field}\" field has been flagged as spam."
 msgstr ""
 
 msgid "This slug is already in use. Please choose another."
-msgstr ""
+msgstr "สลักนี้ถูกใช้แล้ว โปรดเลือกอันอื่น"
 
 #, python-format
 msgid "The slug cannot be \"%(slug)s\". Please choose another."
-msgstr ""
+msgstr "สลักไม่สามารถเป็น \"%(slug)s\" ได้ โปรดเลือกอันอื่น"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
@@ -1979,7 +1979,7 @@ msgstr ""
 
 msgid "Comma-separated, minimum of {0} character."
 msgid_plural "Comma-separated, minimum of {0} characters."
-msgstr[0] ""
+msgstr[0] "คั่นด้วยจุลภาค ขั้นต่ำ {0} ตัวอักษร"
 
 msgid "Example: dark, cinema, noir. Limit 20."
 msgstr ""
@@ -2138,7 +2138,7 @@ msgid "This add-on's stats are publicly viewable."
 msgstr ""
 
 msgid "No, this add-on's stats are not publicly viewable."
-msgstr ""
+msgstr "ไม่ สถิติของส่วนเสริมนี้ไม่สามารถเห็นได้แบบสาธารณะ"
 
 msgid "Universally unique identifier"
 msgstr ""
@@ -3870,7 +3870,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Automatically reload tabs based on time intervals."
-msgstr ""
+msgstr "โหลดแท็บใหม่อัตโนมัติตามช่วงเวลา"
 
 #. editorial content for the discovery pane.
 msgid "Fix your favorites {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3942,7 +3942,7 @@ msgstr "ดาวน์โหลดรูปภาพ {start_sub_heading}ด้�
 
 #. editorial content for the discovery pane.
 msgid "Grab images from any website and download them."
-msgstr ""
+msgstr "เก็บรูปภาพจากเว็บไซต์ใดก็ตามและดาวน์โหลดมัน"
 
 #. editorial content for the discovery pane.
 msgid "Self-censor {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4054,7 +4054,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "A better way to save bookmarks if you use multiple bookmark folders."
-msgstr ""
+msgstr "หนทางที่ดีกว่าในการบันทึกที่คั่นหน้าถ้าคุณใช้โฟลเดอร์ที่คั่นหน้าจำนวนมาก"
 
 #. editorial content for the discovery pane.
 msgid "Zero formatting {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4146,7 +4146,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access 30,000+ radio stations from all over the globe."
-msgstr ""
+msgstr "เข้าถึงสถานีวิทยุกว่า 30,000 แห่งทั่วโลก"
 
 #. editorial content for the discovery pane.
 msgid "Listen to videos {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4342,7 +4342,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "เก็บรหัสผ่านอย่างปลอดภัยและลงชื่อเข้าใช้เว็บไซต์ที่รู้จักโดยอัตโนมัติ"
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4530,7 +4530,7 @@ msgstr "ประหยัดหน่วยความจำ {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Stop wasting valuable memory space with inactive tabs."
-msgstr ""
+msgstr "หยุดเปลืองพื้นที่หน่วยความจำอันมีค่าด้วยแท็บที่ไม่ใช้งาน"
 
 #. editorial content for the discovery pane.
 msgid "Save web pages {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4561,7 +4561,7 @@ msgstr "ไม่มีไฟล์นั้นอีกต่อไป"
 
 #. L10n: {0} is the file size limit of the file viewer.
 msgid "File size is over the limit of {0}."
-msgstr ""
+msgstr "ขนาดของไฟล์เกินข้อจำกัดที่ {0}"
 
 msgid "Problems decoding {0}."
 msgstr "เกิดปัญหาในการถอดรหัส {0}"
@@ -4818,7 +4818,7 @@ msgid "Our <a href=\"%(url)s\">forums</a> are a good place to interact with the 
 msgstr ""
 
 msgid "This sounds great! How can I get involved?"
-msgstr ""
+msgstr "ฟังดูดีนะ! ฉันจะมีส่วนร่วมได้อย่างไร?"
 
 msgid "There are plenty of ways to get involved. If you're on the technical side:"
 msgstr ""
@@ -4862,7 +4862,7 @@ msgid "If you really need to contact someone from the Mozilla team, please see o
 msgstr ""
 
 msgid "Who works on this website?"
-msgstr ""
+msgstr "ใครทำงานบนเว็บไซต์นี้?"
 
 msgid "Over the years, many people have contributed to this website, including both volunteers from the community and a dedicated AMO team."
 msgstr ""
@@ -4885,7 +4885,7 @@ msgid ""
 msgstr ""
 
 msgid "Do:"
-msgstr ""
+msgstr "ทำ:"
 
 msgid "Write like you are telling a friend about your experience with the add-on."
 msgstr ""
@@ -4897,25 +4897,25 @@ msgid "Give specific and helpful details. For example:"
 msgstr ""
 
 msgid "Did the add-on work as you expected it to?"
-msgstr ""
+msgstr "ส่วนเสริมนี้ทำงานอย่างที่คุณคาดหวังหรือไม่?"
 
 msgid "What features did you like or dislike?"
-msgstr ""
+msgstr "คุณลักษณะไหนที่คุณชอบหรือไม่ชอบ?"
 
 msgid "Was it useful?"
-msgstr ""
+msgstr "มันมีประโยชน์ไหม?"
 
 msgid "Was it easy to use?"
-msgstr ""
+msgstr "มันใช้งานง่ายไหม?"
 
 msgid "Will you continue to use this add-on?"
-msgstr ""
+msgstr "คุณจะใช้ส่วนเสริมนี้ต่อหรือไม่?"
 
 msgid "Take a moment to read your review before submitting it to minimize typos."
 msgstr ""
 
 msgid "Don’t:"
-msgstr ""
+msgstr "ไม่:"
 
 msgid "Submit one-word reviews such as \"Great!\", \"wonderful,\" or \"bad.\""
 msgstr ""
@@ -4949,7 +4949,7 @@ msgid ""
 msgstr ""
 
 msgid "How can I report a problematic review?"
-msgstr ""
+msgstr "ฉันจะรายงานการตรวจสอบที่เป็นปัญหาได้อย่างไร?"
 
 msgid ""
 "Please report or flag any questionable reviews by clicking the \"Report this review\" and it will be submitted to the site for moderation. Our moderation team will use the Review Guidelines to "
@@ -4979,15 +4979,15 @@ msgstr "ที่อยู่ IP"
 
 #, python-format
 msgid "Reviews for %s"
-msgstr ""
+msgstr "การตรวจทานสำหรับ %s"
 
 msgid "Review History for this Addon"
-msgstr ""
+msgstr "ประวัติการตรวจทานสำหรับส่วนเสริมนี้"
 
 #. L10n: This describes the number of stars given out of 5
 #, python-format
 msgid "Rated %d out of 5 stars"
-msgstr ""
+msgstr "ได้รับ %d จาก 5 ดาว"
 
 msgid "A short explanation must be provided when selecting \"Other\" as a flag reason."
 msgstr ""
@@ -5224,7 +5224,7 @@ msgid "Require developer to respond in less than…"
 msgstr ""
 
 msgid "days"
-msgstr ""
+msgstr "วัน"
 
 msgid "Choose a canned response..."
 msgstr ""
@@ -5661,7 +5661,7 @@ msgid "Helpful Links:"
 msgstr ""
 
 msgid "Add-on Policy"
-msgstr ""
+msgstr "นโยบายส่วนเสริม"
 
 #, fuzzy
 msgid "Reviewer's Guide"
@@ -5760,7 +5760,7 @@ msgid "Enable Auto-Approval"
 msgstr ""
 
 msgid "Clear information request"
-msgstr ""
+msgstr "ล้างคำข้อข้อมูล"
 
 msgid "Clear Admin Code Review Flag"
 msgstr ""
@@ -5789,7 +5789,7 @@ msgid "Resolution"
 msgstr "ความละเอียด"
 
 msgid "Reviewer"
-msgstr ""
+msgstr "ผู้ตรวจสอบ"
 
 msgid "Add-on has been deleted."
 msgstr "ส่วนเสริมถูกลบแล้ว"
