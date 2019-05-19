@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 09:04+0000\n"
+"PO-Revision-Date: 2018-12-26 05:20+0000\n"
 "Last-Translator: aefgh39622 <aefgh39622@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -413,13 +413,13 @@ msgid "Email address not found."
 msgstr "ไม่พบที่อยู่อีเมล"
 
 msgid "The field must have a length of at least {num} characters."
-msgstr ""
+msgstr "เขตข้อมูลจะต้องมีตัวอักษรอย่างน้อย {num} ตัว"
 
 msgid "The language code {lang_code} is invalid."
 msgstr "รหัสภาษา {lang_code} ไม่ถูกต้อง"
 
 msgid "You must provide an object of {lang-code:value}."
-msgstr ""
+msgstr "คุณต้องระบุวัตถุของ {lang-code:value}"
 
 #, python-format
 msgid "Invalid pk or slug \"%s\" - object does not exist."
@@ -532,7 +532,7 @@ msgid "{addon} {version} given preliminary review."
 msgstr ""
 
 msgid "Preliminarily approved"
-msgstr ""
+msgstr "อนุมัติเบื้องต้นแล้ว"
 
 msgid "{addon} {version} rejected."
 msgstr "{addon} {version} ถูกปฏิเสธ"
@@ -657,7 +657,7 @@ msgid "Created: {0}."
 msgstr "สร้างเมื่อ: {0}"
 
 msgid "Edited field: {2} set to: {0}."
-msgstr ""
+msgstr "แก้ไขเขตข้อมูลแล้ว: {2} ถูกตั้งเป็น: {0}"
 
 msgid "Deleted: {1}."
 msgstr "ลบเมื่อ: {1}"
@@ -666,7 +666,7 @@ msgid "User {user} edited, reason: {1}"
 msgstr "ผู้ใช้ {user} แก้ไข เหตุผล: {1}"
 
 msgid "User {user} anonymized."
-msgstr ""
+msgstr "ผู้ใช้ {user} ถูกปิดชื่อแล้ว"
 
 msgid "User {user} restricted."
 msgstr "ผู้ใช้ {user} ถูกจำกัดแล้ว"
