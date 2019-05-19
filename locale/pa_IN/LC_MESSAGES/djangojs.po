@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 16:35+0000\n"
+"PO-Revision-Date: 2019-05-19 17:07+0000\n"
 "Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
@@ -381,7 +381,7 @@ msgid "Browse Listing Featured Sort"
 msgstr "ਗੁਣ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
 msgid "Browse Listing Users Sort"
-msgstr "ਯੂਜਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+msgstr "ਵਰਤੋਂਕਾਰ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
 msgid "Browse Listing Rating Sort"
 msgstr "ਰੇਟਿੰਗ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
@@ -390,7 +390,7 @@ msgid "Browse Listing Created Sort"
 msgstr "ਰਚਨਾਤਮਿਕ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
 msgid "Browse Listing Name Sort"
-msgstr "ਨਾਮ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
+msgstr "ਨਾਂ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
 
 msgid "Browse Listing Popular Sort"
 msgstr "ਪ੍ਰਸਿੱਧ ਕਿਸਮ ਸੂਚੀ ਬਣਾਓ"
@@ -411,10 +411,10 @@ msgid "Usage"
 msgstr "ਵਰਤੋਂ"
 
 msgid "Firefox"
-msgstr "ਫਾਇਰਫੌਕਸ"
+msgstr "ਫਾਇਰਫਾਕਸ"
 
 msgid "Mozilla"
-msgstr "ਮੌਜ਼ਿਲਾ"
+msgstr "ਮੋਜ਼ੀਲਾ"
 
 msgid "Thunderbird"
 msgstr "ਥੰਡਰਬਰਡ"
@@ -423,13 +423,13 @@ msgid "Sunbird"
 msgstr "ਸਨਬਰਡ"
 
 msgid "SeaMonkey"
-msgstr "ਸੀਅਮੌਂਕੀ"
+msgstr "SeaMonkey"
 
 msgid "Fennec"
 msgstr "ਫੇਨੇਕ"
 
 msgid "Android"
-msgstr "ਐਂਡਰੌਇਡ"
+msgstr "ਐਂਡਰਾਇਡ"
 
 #. L10n: {0} is an integer.
 msgid "Downloads and Daily Users, last {0} days"
@@ -489,7 +489,7 @@ msgstr "{0} ਤੋਂ {1} ਤੱਕ ਬੋਲੀਆਂ"
 
 #. L10n: {0} is an integer.
 msgid "Add-on Versions, last {0} days"
-msgstr "ਐਡ-ਆਨ ਵੰਨਗੀਆਂ, ਆਖਰੀ {0} ਦਿਨ"
+msgstr "ਐਡ-ਆਨ ਵਰਜ਼ਣਾਂ, ਆਖਰੀ {0} ਦਿਨ"
 
 #. L10n: both {0} and {1} are dates in YYYY-MM-DD format.
 msgid "Add-on Versions from {0} to {1}"

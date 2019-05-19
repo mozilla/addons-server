@@ -4,8 +4,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-04-11 17:07+0000\n"
-"Last-Translator: Sanjna <randhawasanjna75@gmail.com>\n"
+"PO-Revision-Date: 2019-05-19 17:12+0000\n"
+"Last-Translator: Aman Alam <amanpreet.alam@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pa_IN\n"
 "MIME-Version: 1.0\n"
@@ -60,22 +60,22 @@ msgid "Notification [%s] does not exist"
 msgstr "ਸੂਚਨਾ [%s] ਮੌਜੂਦ ਨਹੀਂ ਹੈ"
 
 msgid "Review"
-msgstr "ਸਮੀਖਿਆ"
+msgstr "ਪੜਤਾਲ"
 
 msgid "Version {0}"
-msgstr "ਵਰਜਨ {0}"
+msgstr "ਵਰਜ਼ਨ {0}"
 
 msgid "Review note"
-msgstr "ਸਮੀਖਿਆ ਲਿਖਤ"
+msgstr "ਪੜਤਾਲ ਲਿਖਤ"
 
 msgid "Only latest versions of addons can have notes added."
-msgstr "ਐਡਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ ਨੋਟਿਸ ਜੋੜ ਸਕਦੇ ਹਨ।"
+msgstr "ਐਡ-ਆਨ ਦੇ ਸਿਰਫ ਨਵੀਨਤਮ ਵਰਜਨ ਹੀ ਨੋਟਿਸ ਜੋੜ ਸਕਦੇ ਹਨ।"
 
 msgid "Ratings"
-msgstr "ਰੇਟਿੰਗਾਂ"
+msgstr "ਦਰਜਾ"
 
 msgid "Status"
-msgstr "ਦਰਜਾ"
+msgstr "ਹਾਲਤ"
 
 msgid "- Add-on not on AMO -"
 msgstr "AMO - ਉੱਤੇ -ਐਡ-ਆਨ ਨਹੀਂ"
@@ -90,16 +90,16 @@ msgid "Add-on names cannot contain the Mozilla or Firefox trademarks."
 msgstr "ਐਡ-ਆਨ ਦੇ ਨਾਂ ਵਿੱਚ ਮੋਜ਼ੀਲਾ ਜਾਂ ਫਾਇਰਫਾਕਸ ਟ੍ਰੇਡਮਾਰਕ ਸ਼ਾਮਲ ਨਹੀਂ ਹੋ ਸਕਦੇ ਹਨ।"
 
 msgid "Awaiting Review"
-msgstr "ਸਮੀਖਿਆ ਦੀ ਉਡੀਕ"
+msgstr "ਪੜਤਾਲ ਦੀ ਉਡੀਕ"
 
 msgid "Rejected"
-msgstr "ਠੁਕਰਾਇਆ"
+msgstr "ਰੱਦ ਕੀਤਾ"
 
 msgid "Approved"
 msgstr "ਮਨਜ਼ੂਰ ਹੋਇਆ"
 
 msgid "Added {0}"
-msgstr "ਸ਼ਾਮਲ ਹੋਇਆ {0}"
+msgstr "ਜੋੜਿਆ {0}"
 
 #. {0} is the number of users.
 msgid "<strong>{0}</strong> user"
@@ -182,10 +182,10 @@ msgid "Manage API Keys"
 msgstr "API ਕੁੰਜੀਆਂ ਦਾ ਪ੍ਰਬੰਧ ਕਰੋ"
 
 msgid "Reviewer Tools"
-msgstr "ਸਮੀਖਿਅਕ ਦੇ ਸੰਦ"
+msgstr "ਪੜਤਾਲ ਸੰਦ"
 
 msgid "Admin Tools"
-msgstr "ਐਡਮਿਨ ਸੰਦ"
+msgstr "ਪਰਸ਼ਾਸ਼ਕ ਸੰਦ"
 
 msgid "Positive integer"
 msgstr "ਸਕਾਰਾਤਮਕ ਪੂਰਨ ਅੰਕ"
@@ -210,7 +210,7 @@ msgid "Ensure this field contains at least one letter or number character."
 msgstr "ਇਹ ਯਕੀਨੀ ਬਣਾਉ ਕਿ ਇਸ ਖੇਤਰ ਵਿੱਚ ਘੱਟੋ ਘੱਟ ਇਕ ਅੱਖਰ ਜਾਂ ਅੰਕ ਚਰਣ ਸ਼ਾਮਿਲ ਹੈ।"
 
 msgid "Not allowed"
-msgstr "ਪਰਵਾਨਗੀ ਨਹੀਂ"
+msgstr "ਇਜ਼ਾਜਤ ਨਹੀ ਹੈ"
 
 msgid "Oops! Not allowed."
 msgstr "ਓਹ! ਇਜਾਜ਼ਤ ਨਹੀਂ ਹੈ।"
@@ -290,17 +290,17 @@ msgstr ""
 "</p>"
 
 msgid "Some rights reserved"
-msgstr "ਕੁੱਝ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
+msgstr "ਕੁਝ ਹੱਕ ਰਾਖਵੇਂ ਹਨ"
 
 msgid "No results found"
 msgstr "ਕੋਈ ਨਤੀਜਾ ਨਹੀਂ ਮਿਲਿਆ"
 
 #. abbreviation of 'previous'
 msgid "Prev"
-msgstr "ਪਿਛਲਾ"
+msgstr "ਪਿੱਛੇ"
 
 msgid "Next"
-msgstr "ਅਗਲਾ"
+msgstr "ਅੱਗੇ"
 
 #, python-format
 msgid "Results <strong>%(begin)s</strong>&ndash;<strong>%(end)s</strong> of <strong>%(count)s</strong>"
@@ -329,13 +329,13 @@ msgstr ""
 " id=\"recaptcha_different\">ਹੋਰ ਸ਼ਬਦਾਂ ਨੂੰ ਅਜ਼ਮਾ</a> ਸਕਦੇ ਹੋ ਜਾਂ ਇਸ ਦੀ ਬਜਾਏ <a href=\"#\" id=\"recaptcha_audio\">ਇੱਕ ਵੱਖਰੇ ਤਰ੍ਹਾਂ ਦੀ ਚੁਣੌਤੀ</a> ਦੀ ਕੋਸ਼ਿਸ ਕਰੋ। </p>"
 
 msgid "Most Popular"
-msgstr "ਸੱਭ ਤੋਂ ਮਸ਼ਹੂਰ"
+msgstr "ਸਭ ਤੋਂ ਮਸ਼ਹੂਰ"
 
 msgid "Top Rated"
 msgstr "ਚੋਟੀ ਦਾ ਦਰਜਾ ਪ੍ਰਾਪਤ"
 
 msgid "Newest"
-msgstr "ਬਿਲਕੁੱਲ ਨਵਾਂ"
+msgstr "ਬਿਲਕੁਲ ਨਵਾਂ"
 
 msgid "Featured"
 msgstr "ਪੇਸ਼ ਕੀਤਾ"
@@ -467,7 +467,7 @@ msgid "This custom URL is already in use by another one of your collections."
 msgstr "ਇਹ ਕਸਟਮ URL ਤੁਹਾਡੇ ਸੰਗ੍ਰਹਿ ਵਿੱਚੋਂ ਕਿਸੇ ਹੋਰ ਦੁਆਰਾ ਪਹਿਲਾਂ ਤੋਂ ਵਰਤਿਆ ਗਿਆ ਹੈ।"
 
 msgid "Name cannot be empty."
-msgstr "ਨਾਮ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
+msgstr "ਨਾਂ ਖਾਲੀ ਨਹੀਂ ਹੋ ਸਕਦਾ।"
 
 msgid "This name cannot be used."
 msgstr "ਇਹ ਨਾਂ ਵਰਤਿਆ ਨਹੀਂ ਜਾ ਸਕਦਾ।"
