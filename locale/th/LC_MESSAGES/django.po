@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 03:12+0000\n"
+"PO-Revision-Date: 2019-05-19 06:49+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -488,11 +488,11 @@ msgid "Categories edited for {addon}."
 msgstr "แก้ไขหมวดหมู่ของ {addon} แล้ว"
 
 msgid "{0.name} ({1}) added to {addon}."
-msgstr "{0.name} ({1}) ถูกเพิ่มไปยัง {addon}"
+msgstr "เพิ่ม {0.name} ({1}) ไปยัง {addon} แล้ว"
 
 #. L10n: {0} is the user being removed, {1} is their role.
 msgid "{0.name} ({1}) removed from {addon}."
-msgstr "{0.name} ({1}) ถูกเอาออกจาก {addon}"
+msgstr "เอา {0.name} ({1}) ออกจาก {addon} แล้ว"
 
 msgid "Contributions for {addon}."
 msgstr "การบริจาคสำหรับ {addon}"
@@ -504,19 +504,18 @@ msgid "{addon} enabled."
 msgstr "เปิดการใช้งาน {addon} แล้ว"
 
 #. L10n: {status} is the status
-#, fuzzy
 msgid "{addon} status changed to {status}."
-msgstr "สถานะของ {addon} ถูกเปลี่ยนเป็น {0}"
+msgstr "เปลี่ยนสถานะของ {addon} เป็น {status}"
 
 msgid "{version} added to {addon}."
-msgstr "{version} ถูกเพิ่มไปยัง {addon}"
+msgstr "เพิ่ม {version} ไปยัง {addon} แล้ว"
 
 msgid "{version} edited for {addon}."
-msgstr "{version} ถูกแก้ไขสำหรับ {addon}"
+msgstr "แก้ไข {version} สำหรับ {addon} แล้ว"
 
 #. L10n: {0} is the version number
 msgid "Version {0} deleted from {addon}."
-msgstr "รุ่น {0} ถูกลบออกจาก {addon}"
+msgstr "ลบรุ่น {0} ออกจาก {addon} แล้ว"
 
 msgid "File {0.name} added to {version} of {addon}."
 msgstr "ไฟล์ {0.name} ถูกเพิ่มไปยังรุ่น {version} ของ {addon}"
