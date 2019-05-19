@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 06:49+0000\n"
-"Last-Translator: Top <teerapatxtop@yahoo.com>\n"
+"PO-Revision-Date: 2019-05-19 07:12+0000\n"
+"Last-Translator: nuttapong2539 <nuttapong2539@gmail.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
 "MIME-Version: 1.0\n"
@@ -452,7 +452,7 @@ msgid ""
 msgstr ""
 
 msgid "The text entered has been flagged as spam."
-msgstr ""
+msgstr "ข้อความที่ป้อนถูกตั้งสถานะเป็นสแปม"
 
 #, fuzzy
 msgid "This custom URL is already in use by another one of your collections."
@@ -715,9 +715,8 @@ msgstr "การตอบกลับของนักพัฒนา"
 msgid "Reply by reviewer on {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
 
-#, fuzzy
 msgid "Reviewer Reply"
-msgstr "นักพัฒนา"
+msgstr "การตอบกลับของผู้วิจารณ์"
 
 #, fuzzy
 msgid "Approval notes changed for {addon} {version}."
@@ -1484,7 +1483,7 @@ msgid "An author can only be listed once."
 msgstr ""
 
 msgid "Slug incorrect."
-msgstr ""
+msgstr "สลักไม่ถูกต้อง"
 
 msgid "Details"
 msgstr "รายละเอียด"
@@ -2297,10 +2296,10 @@ msgid "Enter the following text to confirm your decision: {slug}"
 msgstr "ป้อนข้อความดังต่อไปนี้เพื่อยืนยันการตัดสินใจของคุณ: {slug}"
 
 msgid "Please tell us why you are deleting your theme:"
-msgstr ""
+msgstr "โปรดบอกเราทำไมคุณจึงลบธีมนี้:"
 
 msgid "Please tell us why you are deleting your add-on:"
-msgstr ""
+msgstr "โปรดบอกเราทำไมคุณจึงลบส่วนเสริมนี้:"
 
 msgid "Actions"
 msgstr "การกระทำ"
@@ -3474,7 +3473,7 @@ msgstr "ตรวจสอบเวลาทั่วโลก {start_sub_headin
 
 #. editorial content for the discovery pane.
 msgid "Display current worldwide times in Firefox's status bar."
-msgstr ""
+msgstr "แสดงเวลาทั่วโลก ณ ปัจจุบันในแถบสถานะของ Firefox"
 
 #. editorial content for the discovery pane.
 msgid "Easy translations {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3655,7 +3654,7 @@ msgstr "เปลี่ยนเซิร์ฟเวอร์พร็อกซ
 
 #. editorial content for the discovery pane.
 msgid "Surf the web through self-defined proxy settings."
-msgstr ""
+msgstr "ท่องเว็บผ่านการตั้งค่าพร็อกซีที่ระบุเอง"
 
 #. editorial content for the discovery pane.
 msgid "Control video playback {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3699,7 +3698,7 @@ msgstr "ถ่ายภาพหน้าจอหน้าเว็บ, ทำ�
 
 #. editorial content for the discovery pane.
 msgid "A superior Windows-only downloader tool."
-msgstr ""
+msgstr "เครื่องมือดาวน์โหลดเฉพาะ Windows ที่เหนือกว่า"
 
 #. editorial content for the discovery pane.
 msgid "Know your trackers {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3735,7 +3734,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Convert all your open tabs into a list to easily manage them and speed up Firefox."
-msgstr ""
+msgstr "แปลงแท็บที่เปิดอยู่ทั้งหมดของคุณเป็นรายการเพื่อให้ง่ายต่อการจัดการและทำให้ Firefox เร็วขึ้น"
 
 #. editorial content for the discovery pane.
 msgid "Robust download management {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3751,7 +3750,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Save information from the internet to OneNote so you can edit, annotate, and more."
-msgstr ""
+msgstr "บันทึกข้อมูลจากอินเทอร์เน็ตไปยัง OneNote ดังนั้นคุณสามารถแก้ไข, อธิบาย และอื่น ๆ ได้"
 
 #. editorial content for the discovery pane.
 msgid "Search tracking protection {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3815,7 +3814,7 @@ msgstr "จัดการรหัสผ่านของคุณ {start_sub_
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and access them across multiple devices."
-msgstr ""
+msgstr "เก็บรหัสผ่านอย่างปลอดภัยและเข้าถึงผ่านอุปกรณ์หลายเครื่อง"
 
 #. editorial content for the discovery pane.
 msgid "Know where you go on the web {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3839,7 +3838,7 @@ msgstr "เปิดหลายลิงก์ {start_sub_heading}ด้วย 
 
 #. editorial content for the discovery pane.
 msgid "Right-click and drag over links you want open in new tabs."
-msgstr ""
+msgstr "คลิกขวาและลากลิงก์ที่คุณต้องการเปิดในแท็บใหม่"
 
 #. editorial content for the discovery pane.
 msgid "Retrieve tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3847,7 +3846,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Access recently closed tabs by right-clicking the icon in your toolbar."
-msgstr ""
+msgstr "เข้าถึงแท็บที่เพิ่งปิดโดยการคลิกขวาไอคอนนี้บนแถบเครื่องมือของคุณ"
 
 #. editorial content for the discovery pane.
 msgid "Inspire productivity {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -3863,7 +3862,7 @@ msgstr "เพิ่มผลผลิต {start_sub_heading}ด้วย {addon
 
 #. editorial content for the discovery pane.
 msgid "Block time-wasting sites so you can focus on the task at hand."
-msgstr ""
+msgstr "ปิดกั้นเว็บไซต์ที่เปลืองเวลา ดังนั้นคุณสามารถมุ่งไปที่งานที่อยู่ในมือ"
 
 #. editorial content for the discovery pane.
 msgid "Refresh Tabs {start_sub_heading}with {addon_name}{end_sub_heading}"
@@ -4015,7 +4014,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Restrict Firefox from accessing websites you define."
-msgstr ""
+msgstr "จำกัด Firefox ในการเข้าถึงเว็บไซต์ที่คุณระบุ"
 
 #. editorial content for the discovery pane.
 msgid "Work smarter {start_sub_heading}with {addon_name}{end_sub_heading}"
