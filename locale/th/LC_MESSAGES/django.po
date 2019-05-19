@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: addons\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-19 16:52+0000\n"
+"PO-Revision-Date: 2019-05-19 17:00+0000\n"
 "Last-Translator: Top <teerapatxtop@yahoo.com>\n"
 "Language-Team: Thai\n"
 "Language: th\n"
@@ -463,7 +463,7 @@ msgid "Name cannot be empty."
 msgstr "ชื่อไม่สามารถเว้นว่างได้"
 
 msgid "This name cannot be used."
-msgstr "ชื่อนี้ไม่สามารถใช้ได้"
+msgstr "ไม่สามารถใช้ชื่อนี้"
 
 msgid "The custom URL must consist of letters, numbers, underscores or hyphens."
 msgstr ""
@@ -645,7 +645,7 @@ msgid "{addon} {version} approved but waiting to be made public."
 msgstr ""
 
 msgid "Approved but waiting"
-msgstr "อนุมัติแล้ว แต่อยู่ระหว่างรอ"
+msgstr "อนุมัติแล้วแต่กำลังรอ"
 
 msgid "Account updated."
 msgstr "อัปเดตบัญชีแล้ว"
@@ -654,7 +654,7 @@ msgid "Created: {0}."
 msgstr "สร้างเมื่อ: {0}"
 
 msgid "Edited field: {2} set to: {0}."
-msgstr "แก้ไขเขตข้อมูลแล้ว: {2} ถูกตั้งเป็น: {0}"
+msgstr "เขตข้อมูลที่แก้ไข: ตั้ง {2} เป็น: {0}"
 
 msgid "Deleted: {1}."
 msgstr "ลบเมื่อ: {1}"
@@ -663,10 +663,10 @@ msgid "User {user} edited, reason: {1}"
 msgstr "ผู้ใช้ {user} แก้ไข เหตุผล: {1}"
 
 msgid "User {user} anonymized."
-msgstr "ผู้ใช้ {user} ถูกปิดชื่อแล้ว"
+msgstr "ไม่ระบุชื่อ {user} แล้ว"
 
 msgid "User {user} restricted."
-msgstr "ผู้ใช้ {user} ถูกจำกัดแล้ว"
+msgstr "จำกัดผู้ใช้ {user} แล้ว"
 
 msgid "Admin {0} viewed activity log for {user}."
 msgstr ""
@@ -681,7 +681,7 @@ msgid "User {user} banned."
 msgstr "ห้ามผู้ใช้ {user} แล้ว"
 
 msgid "User {user} picture deleted."
-msgstr "รูปภาพของผู้ใช้ {user} ถูกลบแล้ว"
+msgstr "ลบรูปภาพของผู้ใช้ {user} แล้ว"
 
 msgid "User {0.name} added to {group}."
 msgstr "ผู้ใช้ {0.name} ถูกเพิ่มเข้าสู่ {group}"
@@ -703,9 +703,8 @@ msgstr ""
 msgid "{addon} migrated from preliminary."
 msgstr "{addon} ถูกเอาออกจาก {collection}"
 
-#, fuzzy
 msgid "Reply by developer on {addon} {version}."
-msgstr "ความคิดเห็นบน {addon} {version}"
+msgstr ""
 
 msgid "Developer Reply"
 msgstr "การตอบกลับของนักพัฒนา"
@@ -728,9 +727,8 @@ msgstr "เปลี่ยนหมายเหตุการอนุมัต
 msgid "Source code uploaded for {addon} {version}."
 msgstr "ความคิดเห็นบน {addon} {version}"
 
-#, fuzzy
 msgid "Source code uploaded"
-msgstr "ใบอนุญาตซอร์สโค้ด"
+msgstr "อัปโหลดโค้ดต้นฉบับแล้ว"
 
 #, fuzzy
 msgid "Auto-Approval confirmed for {addon} {version}."
@@ -1286,9 +1284,8 @@ msgstr "บทวิจารณ์ชุดตกแต่ง"
 msgid "Theme (Static) Review"
 msgstr "ชุดตกแต่ง (คงที่)"
 
-#, fuzzy
 msgid "New Search Provider Review"
-msgstr "ค้นหาผู้ให้บริการ"
+msgstr "บทวิจารณ์ผู้ให้บริการค้นหาใหม่"
 
 msgid "Preliminary Search Provider Review"
 msgstr ""
@@ -1834,13 +1831,13 @@ msgstr ""
 
 #. first parameter is a filename like lorem-ipsum-1.0.2.xpi
 msgid "Validation Results for {0}"
-msgstr ""
+msgstr "ผลการตรวจสอบสำหรับ {0}"
 
 msgid "Validation Results"
 msgstr "ผลการตรวจสอบ"
 
 msgid "Validated at:"
-msgstr ""
+msgstr "ตรวจสอบเมื่อ:"
 
 msgid "Recent Activity for My Add-ons"
 msgstr "กิจกรรมล่าสุดของส่วนเสริมของฉัน"
