@@ -710,7 +710,7 @@ class ESAddonSerializer(BaseESSerializer, AddonSerializer):
 
 class ESAddonAutoCompleteSerializer(ESAddonSerializer):
     class Meta(ESAddonSerializer.Meta):
-        fields = ('id', 'icon_url', 'name', 'type', 'url')
+        fields = ('id', 'icon_url', 'is_recommended', 'name', 'type', 'url')
         model = Addon
 
     def get_url(self, obj):

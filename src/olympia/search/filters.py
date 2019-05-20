@@ -362,6 +362,13 @@ class AddonFeaturedQueryParam(AddonQueryParam):
             filter=clauses))]
 
 
+class AddonRecommendedQueryParam(AddonQueryParam):
+    query_param = 'recommended'
+    reverse_dict = {'true': True}
+    valid_values = [True]
+    es_field = 'is_recommended'
+
+
 class AddonColorQueryParam(AddonQueryParam):
     query_param = 'color'
 
@@ -792,6 +799,7 @@ class SearchParameterFilter(BaseFilterBackend):
         AddonFeaturedQueryParam,
         AddonGuidQueryParam,
         AddonPlatformQueryParam,
+        AddonRecommendedQueryParam,
         AddonTagQueryParam,
         AddonTypeQueryParam,
         AddonColorQueryParam,
@@ -842,6 +850,7 @@ class SortingFilter(BaseFilterBackend):
         'name': 'name.raw',
         'random': '_score',
         'rating': '-bayesian_rating',
+        'recommended': '-is_recommended',
         'relevance': '_score',
         'updated': '-last_updated',
         'users': '-average_daily_users',
@@ -854,11 +863,6 @@ class SortingFilter(BaseFilterBackend):
 
         if sort_param is not None:
             split_sort_params = sort_param.split(',')
-            try:
-                order_by = [self.SORTING_PARAMS[name] for name in
-                            split_sort_params]
-            except KeyError:
-                raise serializers.ValidationError('Invalid "sort" parameter.')
 
             # Random sort is a bit special.
             # First, it can't be combined with other sorts.
@@ -867,13 +871,15 @@ class SortingFilter(BaseFilterBackend):
                     'The "random" "sort" parameter can not be combined.')
 
             # Second, for perf reasons it's only available when the 'featured'
-            # param is present (to limit the number of documents we'll have to
-            # apply the random score to) and a search query is absent
-            # (to prevent clashing with the score functions coming from a
-            # search query).
+            # or 'recommended' param is present (to limit the number of
+            # documents we'll have to apply the random score to) and a search
+            # query is absent (to prevent clashing with the score functions
+            # coming from a search query).
             if sort_param == 'random':
+
                 is_random_sort_available = (
-                    AddonFeaturedQueryParam.query_param in request.GET and
+                    (AddonFeaturedQueryParam.query_param in request.GET or
+                     AddonRecommendedQueryParam.query_param in request.GET) and
                     not search_query_param
                 )
                 if is_random_sort_available:
@@ -882,13 +888,27 @@ class SortingFilter(BaseFilterBackend):
                 else:
                     raise serializers.ValidationError(
                         'The "sort" parameter "random" can only be specified '
-                        'when the "featured" parameter is also present, and '
-                        'the "q" parameter absent.')
+                        'when the "featured" or "recommended" parameter is '
+                        'also present, and the "q" parameter absent.')
 
-        # The default sort depends on the presence of a query: we sort by
-        # relevance if we have a query, otherwise by downloads.
-        if not order_by:
-            sort_param = 'relevance' if search_query_param else 'downloads'
-            order_by = [self.SORTING_PARAMS[sort_param]]
+            # Having just recommended sort doesn't make any sense, so ignore it
+            if sort_param == 'recommended':
+                sort_param = None
+
+        if sort_param is None:
+            # The default sort depends on the presence of a query: we sort by
+            # relevance if we have a query, otherwise by recommended,downloads.
+            recommended_waffle_on = switch_is_active(
+                'api-recommendations-priority')
+            split_sort_params = (
+                ['relevance'] if search_query_param else
+                ['recommended', 'downloads'] if recommended_waffle_on else
+                ['downloads'])
+
+        try:
+            order_by = [self.SORTING_PARAMS[name] for name in
+                        split_sort_params]
+        except KeyError:
+            raise serializers.ValidationError('Invalid "sort" parameter.')
 
         return qs.sort(*order_by)

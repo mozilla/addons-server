@@ -56,6 +56,7 @@ This endpoint allows you to search through public add-ons.
     :query int page: 1-based page number. Defaults to 1.
     :query int page_size: Maximum number of results to return for the requested page. Defaults to 25.
     :query string platform: Filter by :ref:`add-on platform <addon-detail-platform>` availability.
+    :query boolean recommended: Filter to only add-ons recommended by Mozilla.  Only ``recommended=true`` is supported.
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s), in which case add-ons containing *all* specified tags are returned.
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
@@ -75,15 +76,23 @@ This endpoint allows you to search through public add-ons.
          downloads  Number of weekly downloads, descending.
            hotness  Hotness (average number of users progression), descending.
             random  Random ordering. Only available when no search query is
-                    passed and when filtering to only return featured add-ons.
+                    passed and when filtering to only return featured or
+                    recommended add-ons.
             rating  Bayesian rating, descending.
+       recommended  Recommended add-ons above non-recommend add-ons. Only
+                    available combined with another sort - ignored on its own.
          relevance  Search query relevance, descending.
            updated  Last updated date, descending.
              users  Average number of daily users, descending.
     ==============  ==========================================================
 
-    The default is to sort by relevance if a search query (``q``) is present,
-    otherwise sort by number of weekly downloads, descending.
+    The new default behavior is to sort by relevance if a search query (``q``)
+    is present; otherwise place recommended add-ons first, then non recommended
+    add-ons, then sorted by number of weekly downloads, descending. (``sort=recommended,downloads``).
+    This is the default on AMO dev server.
+
+    The default on AMO production currently is to sort by relevance if a search
+    query (``q``) is present; otherwise sort by number of weekly downloads, descending.
 
     You can combine multiple parameters by separating them with a comma.
     For instance, to sort search results by downloads and then by creation
@@ -118,7 +127,7 @@ for autocomplete though, there are a couple key differences:
     :query string tag: Filter by exact tag name. Multiple tag names can be specified, separated by comma(s).
     :query string type: Filter by :ref:`add-on type <addon-detail-type>`.
     :query string sort: The sort parameter. The available parameters are documented in the :ref:`table below <addon-search-sort>`.
-    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``name``, ``type`` and ``url`` fields are supported though.
+    :>json array results: An array of :ref:`add-ons <addon-detail-object>`. Only the ``id``, ``icon_url``, ``is_recommended``, ``name``, ``type`` and ``url`` fields are supported though.
 
 
 ------

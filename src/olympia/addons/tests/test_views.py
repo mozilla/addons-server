@@ -13,6 +13,7 @@ from elasticsearch import Elasticsearch
 from unittest.mock import patch
 from rest_framework.test import APIRequestFactory
 from waffle import switch_is_active
+from waffle.testutils import override_switch
 
 from olympia import amo
 from olympia.addons.models import (
@@ -1012,6 +1013,7 @@ class TestAddonSearchView(ESTestCase):
 
     def perform_search(self, url, data=None, expected_status=200,
                        expected_queries=0, **headers):
+        switch_is_active('api-recommendations-priority')  # just to cache it
         with self.assertNumQueries(expected_queries):
             response = self.client.get(url, data, **headers)
         assert response.status_code == expected_status, response.content
@@ -1290,6 +1292,19 @@ class TestAddonSearchView(ESTestCase):
                data['results'][2]['id'], data['results'][3]['id']}
         self.assertSetEqual(
             ids, {fx_addon.pk, fx_fr_addon.pk, fn_addon.pk, fn_fr_addon.pk})
+
+    def test_filter_by_recommended(self):
+        addon = addon_factory(slug='my-addon', name=u'Recomménded Addôn')
+        addon_factory(slug='other-addon', name=u'Other Addôn')
+        DiscoveryItem.objects.create(addon=addon, recommendable=True)
+        addon.current_version.update(recommendation_approved=True)
+        assert addon.is_recommended
+        self.reindex(Addon)
+
+        data = self.perform_search(self.url, {'recommended': 'true'})
+        assert data['count'] == 1
+        assert len(data['results']) == 1
+        assert data['results'][0]['id'] == addon.pk
 
     def test_filter_by_platform(self):
         # First add-on is available for all platforms.
@@ -1821,6 +1836,43 @@ class TestAddonSearchView(ESTestCase):
         # No results, but no 500 either.
         assert data['count'] == 0
 
+    def test_with_recommended_addons(self):
+        addon1 = addon_factory(weekly_downloads=666)
+        addon2 = addon_factory(weekly_downloads=555)
+        addon3 = addon_factory(weekly_downloads=444)
+        addon4 = addon_factory(weekly_downloads=333)
+        addon5 = addon_factory(weekly_downloads=222)
+        self.refresh()
+
+        # Default case first - no recommended addons
+        data = self.perform_search(self.url)  # No query.
+
+        ids = [result['id'] for result in data['results']]
+        assert ids == [addon1.id, addon2.id, addon3.id, addon4.id, addon5.id]
+
+        # Now made some of the add-ons recommended
+        DiscoveryItem.objects.create(addon=addon2, recommendable=True)
+        addon2.current_version.update(recommendation_approved=True)
+        # del addon2.is_recommended
+        DiscoveryItem.objects.create(addon=addon4, recommendable=True)
+        addon4.current_version.update(recommendation_approved=True)
+        # del addon4.is_recommended
+        self.refresh()
+
+        data = self.perform_search(self.url)  # No query.
+
+        ids = [result['id'] for result in data['results']]
+        # addon2 and addon4 will be first because they're recommended
+        assert ids == [addon2.id, addon4.id, addon1.id, addon3.id, addon5.id]
+
+        # But if the waffle is off the recommended add-ons don't have priority.
+        with override_switch('api-recommendations-priority', active=False):
+            assert not switch_is_active('api-recommendations-priority')
+            data = self.perform_search(self.url)  # No query.
+            ids = [result['id'] for result in data['results']]
+            assert ids == [
+                addon1.id, addon2.id, addon3.id, addon4.id, addon5.id]
+
 
 class TestAddonAutoCompleteSearchView(ESTestCase):
     client_class = APITestClient
@@ -1926,7 +1978,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         qset = view.get_queryset()
 
         includes = set((
-            'default_locale', 'icon_type', 'id', 'modified',
+            'default_locale', 'icon_type', 'id', 'is_recommended', 'modified',
             'name_translations', 'persona', 'slug', 'type'))
 
         assert set(qset.to_dict()['_source']['includes']) == includes
@@ -1953,6 +2005,7 @@ class TestAddonAutoCompleteSearchView(ESTestCase):
         self.refresh()
 
         # page_size should be ignored, we should get 10 results.
+        switch_is_active('api-recommendations-priority')  # just to cache it
         data = self.perform_search(self.url, {'page_size': 1})
         assert 'count' not in data
         assert 'next' not in data

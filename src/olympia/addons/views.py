@@ -391,7 +391,8 @@ class AddonAutoCompleteSearchView(AddonSearchView):
         # only needs to return very few things.
         included_fields = (
             'icon_type',  # Needed for icon_url.
-            'id',  # Needed for... id.
+            'id',  # Needed for... id
+            'is_recommended',
             'modified',  # Needed for icon_url.
             'name_translations',  # Needed for... name.
             'default_locale',  # Needed for translations to work.

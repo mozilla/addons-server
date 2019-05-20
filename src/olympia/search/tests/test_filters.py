@@ -377,16 +377,29 @@ class TestSortingFilter(FilterTestsBase):
         # queryset object.
         return {key[1:]: {'order': 'desc'}} if key.startswith('-') else key
 
+    @override_switch('api-recommendations-priority', active=False)
+    def test_sort_default_recommendations_waffle_off(self):
+        qs = self._filter(data={'q': 'something'})
+        assert qs['sort'] == [self._reformat_order('_score')]
+
+        qs = self._filter()
+        assert qs['sort'] == [
+            self._reformat_order('-weekly_downloads')]
+
+    @override_switch('api-recommendations-priority', active=True)
     def test_sort_default(self):
         qs = self._filter(data={'q': 'something'})
         assert qs['sort'] == [self._reformat_order('_score')]
 
         qs = self._filter()
-        assert qs['sort'] == [self._reformat_order('-weekly_downloads')]
+        assert qs['sort'] == [
+            self._reformat_order('-is_recommended'),
+            self._reformat_order('-weekly_downloads')]
 
     def test_sort_query(self):
         SORTING_PARAMS = copy.copy(SortingFilter.SORTING_PARAMS)
         SORTING_PARAMS.pop('random')  # Tested separately below.
+        SORTING_PARAMS.pop('recommended')  # Tested separately below.
 
         for param in SORTING_PARAMS:
             qs = self._filter(data={'sort': param})
@@ -434,8 +447,8 @@ class TestSortingFilter(FilterTestsBase):
 
     def test_sort_random_restrictions(self):
         expected = ('The "sort" parameter "random" can only be specified when '
-                    'the "featured" parameter is also present, and the "q" '
-                    'parameter absent.')
+                    'the "featured" or "recommended" parameter is also '
+                    'present, and the "q" parameter absent.')
 
         with self.assertRaises(serializers.ValidationError) as context:
             self._filter(data={'q': 'something', 'sort': 'random'})
@@ -446,7 +459,13 @@ class TestSortingFilter(FilterTestsBase):
                 data={'q': 'something', 'featured': 'true', 'sort': 'random'})
         assert context.exception.detail == [expected]
 
-    def test_sort_random(self):
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(
+                data={'q': 'something', 'recommended': 'true',
+                      'sort': 'random'})
+        assert context.exception.detail == [expected]
+
+    def test_sort_random_featured(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
         # Note: this test does not call AddonFeaturedQueryParam so it won't
         # apply the featured filtering. That's tested below in
@@ -455,6 +474,27 @@ class TestSortingFilter(FilterTestsBase):
         assert qs['query']['function_score']['functions'] == [
             {'random_score': {}}
         ]
+
+    def test_sort_random(self):
+        qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
+        # Note: this test does not call AddonRecommendedQueryParam so it won't
+        # apply the recommended filtering. That's tested below in
+        # TestCombinedFilter.test_filter_recommended_sort_random
+        assert qs['sort'] == ['_score']
+        assert qs['query']['function_score']['functions'] == [
+            {'random_score': {}}
+        ]
+
+    @override_switch('api-recommendations-priority', active=True)
+    def test_sort_recommended_only(self):
+        # If you try to sort by just recommended it gets ignored
+        qs = self._filter(data={'q': 'something', 'sort': 'recommended'})
+        assert qs['sort'] == [self._reformat_order('_score')]
+
+        qs = self._filter(data={'sort': 'recommended'})
+        assert qs['sort'] == [
+            self._reformat_order('-is_recommended'),
+            self._reformat_order('-weekly_downloads')]
 
 
 class TestSearchParameterFilter(FilterTestsBase):
@@ -841,6 +881,16 @@ class TestSearchParameterFilter(FilterTestsBase):
         assert len(inner) == 1
         assert {'terms': {'featured_for.locales': ['fr', 'ALL']}} in inner
 
+    def test_search_by_recommended(self):
+        qs = self._filter(data={'recommended': 'true'})
+        assert 'must' not in qs['query']['bool']
+        filter_ = qs['query']['bool']['filter']
+        assert {'term': {'is_recommended': True}} in filter_
+
+        with self.assertRaises(serializers.ValidationError) as context:
+            self._filter(data={'recommended': 'false'})
+        assert context.exception.detail == ['Invalid "recommended" parameter.']
+
     def test_search_by_color(self):
         qs = self._filter(data={'color': 'ff0000'})
         filter_ = qs['query']['bool']['filter']
@@ -961,6 +1011,23 @@ class TestCombinedFilter(FilterTestsBase):
 
     def test_filter_featured_sort_random(self):
         qs = self._filter(data={'featured': 'true', 'sort': 'random'})
+        bool_ = qs['query']['bool']
+
+        assert 'must_not' not in bool_
+
+        filter_ = bool_['filter']
+        assert {'terms': {'status': amo.REVIEWED_STATUSES}} in filter_
+        assert {'exists': {'field': 'current_version'}} in filter_
+        assert {'term': {'is_disabled': False}} in filter_
+
+        assert qs['sort'] == ['_score']
+
+        assert bool_['must'][0]['function_score']['functions'] == [
+            {'random_score': {}}
+        ]
+
+    def test_filter_recommended_sort_random(self):
+        qs = self._filter(data={'recommended': 'true', 'sort': 'random'})
         bool_ = qs['query']['bool']
 
         assert 'must_not' not in bool_

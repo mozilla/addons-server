@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: addons.mozilla.org\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-01-11 11:50+0000\n"
+"PO-Revision-Date: 2019-05-19 14:04+0000\n"
 "Last-Translator: robbp <robbpaun@gmail.com>\n"
 "Language-Team: Romanian <LL@li.org>\n"
 "Language: ro\n"
@@ -412,10 +412,10 @@ msgid "Wrong type for one or more keys in payload"
 msgstr "Tip greșit al uneia sau al mai multor chei din sarcina utilă"
 
 msgid "Invalid JWT Token."
-msgstr "Indicativ JWT nevalid."
+msgstr "Jeton JWT invalid."
 
 msgid "Invalid token or hash."
-msgstr "Jeton sau hash nevalid."
+msgstr "Jeton sau hash invalid."
 
 msgid "Email address not found."
 msgstr "Nu s-a găsit adresa de e-mail."
@@ -1436,9 +1436,9 @@ msgstr "Slugul nu poate fi „%(slug)s”. Te rugăm să alegi altul."
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "Invalid tag: {0}"
 msgid_plural "Invalid tags: {0}"
-msgstr[0] "Etichetă nevalidă: {0}"
-msgstr[1] "Etichete nevalide: {0}"
-msgstr[2] "Etichete nevalide: {0}"
+msgstr[0] "Etichetă invalidă: {0}"
+msgstr[1] "Etichete invalide: {0}"
+msgstr[2] "Etichete invalide: {0}"
 
 #. L10n: {0} is a single tag or a comma-separated list of tags.
 msgid "\"{0}\" is a reserved tag and cannot be used."
@@ -4753,7 +4753,7 @@ msgid "Hide known files"
 msgstr "Ascunde fișierele cunoscute"
 
 msgid "Tab stops:"
-msgstr ""
+msgstr "Opriri tabulație:"
 
 msgid "Up file"
 msgstr "Du fișierul mai sus"
@@ -4780,7 +4780,7 @@ msgid "Hide or unhide tree"
 msgstr "Ascunde sau afișează arborele"
 
 msgid "Wrap or unwrap text"
-msgstr ""
+msgstr "Încadrare sau eliminare încadrare text"
 
 msgid "No files in the uploaded file."
 msgstr "Niciun fișier în fișierul încărcat."
@@ -5982,7 +5982,7 @@ msgid "You do not own this addon."
 msgstr "Nu deții acest supliment."
 
 msgid "Missing \"upload\" key in multipart file data."
-msgstr ""
+msgstr "Cheie de „încărcare” lipsă în datele fișierului multiparte."
 
 #, python-format
 msgid "You cannot add versions to an addon that has status: %s."
@@ -6005,7 +6005,7 @@ msgid "Invalid GUID in URL"
 msgstr "GUID invalid în URL"
 
 msgid "You cannot add a listed version to this addon via the API due to missing metadata. Please submit via the website"
-msgstr ""
+msgstr "Nu poți adăuga o versiune listată la acest supliment prin API din cauză că lipsesc metadate. Te rugăm să transmiți prin intermediul site-ului."
 
 msgid "No uploaded file for that addon and version."
 msgstr "Nu există niciun fișier încărcat pentru acel supliment și acea versiune."
@@ -6410,7 +6410,7 @@ msgid "More Actions:"
 msgstr "Mai multe acțiuni:"
 
 msgid "edit your notification settings"
-msgstr ""
+msgstr "editează setările de notificare"
 
 msgid "edit your profile"
 msgstr "editează-ți profilul"

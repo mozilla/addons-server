@@ -12,6 +12,7 @@ from rangefilter.filter import (
 from olympia import amo
 from olympia.access import acl
 from olympia.addons.models import Addon
+from olympia.amo.admin import CommaSearchInAdminMixin
 from olympia.translations.utils import truncate_text
 
 from .models import AbuseReport
@@ -146,7 +147,7 @@ class DateRangeFilter(FakeChoicesMixin, DateRangeFilterBase):
         yield all_choice
 
 
-class AbuseReportAdmin(admin.ModelAdmin):
+class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
     actions = ('delete_selected', 'mark_as_valid', 'mark_as_suspicious')
     date_hierarchy = 'modified'
     list_display = ('target_name', 'guid', 'type', 'state', 'distribution',
@@ -167,9 +168,6 @@ class AbuseReportAdmin(admin.ModelAdmin):
     # not be changed, only the state for triage.
     readonly_fields = list(
         f.name for f in AbuseReport._meta.fields if f.name != 'state')
-    search_fields = (
-        'addon__name__localized_string', 'addon__slug', 'addon_name', 'guid',
-        'message')
     view_on_site = False  # Abuse reports have no public page to link to.
 
     def has_add_permission(self, request):
@@ -184,6 +182,38 @@ class AbuseReportAdmin(admin.ModelAdmin):
             actions.pop('mark_as_valid')
             actions.pop('mark_as_suspicious')
         return actions
+
+    def get_search_fields(self, request):
+        """
+        Return search fields according to the type filter.
+        """
+        type_ = request.GET.get('type')
+        if type_ == 'addon':
+            search_fields = (
+                'addon__name__localized_string', 'addon__slug', 'addon_name',
+                '=guid', 'message', '=addon__id',
+            )
+        elif type_ == 'user':
+            search_fields = (
+                'message', '=user__id', '^user__username', '^user__email',
+            )
+        else:
+            search_fields = ()
+        return search_fields
+
+    def get_search_id_field(self, request):
+        """
+        Return the field to use when all search terms are numeric, according to
+        the type filter.
+        """
+        type_ = request.GET.get('type')
+        if type_ == 'addon':
+            search_field = 'addon_id'
+        elif type_ == 'user':
+            search_field = 'user_id'
+        else:
+            search_field = super().get_search_id_field(request)
+        return search_field
 
     def get_search_results(self, request, qs, search_term):
         """

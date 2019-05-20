@@ -4,7 +4,7 @@ msgstr ""
 "Project-Id-Version: AMO (olympia)\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-07 22:37+0000\n"
+"PO-Revision-Date: 2019-05-17 10:46+0000\n"
 "Last-Translator: Rodrigo <rodrigo.mcunha@hotmail.com>\n"
 "Language-Team: pt-PT <portuguese european>\n"
 "Language: pt_PT\n"
@@ -615,7 +615,7 @@ msgstr "{0} {1} adicionado."
 
 #. L10n: {0} is a user, {1} is their role
 msgid "{0.name} role changed to {1} for {addon}."
-msgstr "{0.name} papel alterado para {1} para {addon}."
+msgstr "{0.name} cargo alterado para {1} para {addon}."
 
 msgid "{addon} is now licensed under {0}."
 msgstr "{addon} está agora licenciado sob {0}."
@@ -1640,7 +1640,7 @@ msgid "An author has been added to your add-on"
 msgstr "Foi adicionado um autor ao seu extra"
 
 msgid "An author has a role changed on your add-on"
-msgstr "Um autor teve o seu papel alterado no seu extra"
+msgstr "Um autor teve o seu cargo alterado no seu extra"
 
 msgid "An author has been removed from your add-on"
 msgstr "Foi removido um autor do seu extra"
@@ -1963,7 +1963,7 @@ msgid "Authors"
 msgstr "Autores"
 
 msgid "About author roles"
-msgstr "Acerca dos papeis do autor"
+msgstr "Acerca dos cargos do autor"
 
 msgid ""
 "<p>Add-ons can have any number of authors with 2 possible roles:</p> <ul> <li><b>Owner:</b> Can manage all aspects of the add-on's listing, including adding and removing other authors</li> "
