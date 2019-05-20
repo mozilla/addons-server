@@ -1574,6 +1574,36 @@ class TestAddonModels(TestCase):
         # check it doesn't error if there's no current_version
         assert not addon.is_recommended
 
+    def test_theme_is_recommended(self):
+        # themes can be also recommended by being in featured themes collection
+        addon = addon_factory(type=amo.ADDON_STATICTHEME)
+        # check the default addon functionality first:
+        # default case - no discovery item so not recommended
+        assert not addon.is_recommended
+
+        addon.current_version.update(recommendation_approved=True)
+        disco = DiscoveryItem(addon=addon, recommendable=True)
+        del addon.is_recommended
+        # It's recommendable; and the latest version is approved too.
+        assert addon.is_recommended
+
+        disco.update(recommendable=False)
+        del addon.is_recommended
+        # we revoked the status, so now the addon shouldn't be recommended
+        assert not addon.is_recommended
+
+        featured_collection, _ = Collection.objects.get_or_create(
+            id=settings.COLLECTION_FEATURED_THEMES_ID)
+        featured_collection.add_addon(addon)
+        del addon.is_recommended
+        # it's in the collection, so is now recommended
+        assert addon.is_recommended
+
+        featured_collection.remove_addon(addon)
+        del addon.is_recommended
+        # but not when it's removed.
+        assert not addon.is_recommended
+
 
 class TestShouldRedirectToSubmitFlow(TestCase):
     fixtures = ['base/addon_3615']
