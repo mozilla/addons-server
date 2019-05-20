@@ -1,8 +1,5 @@
 {% extends "impala/base_shared.html" %}
 
 {% block content %}
-  <section class="secondary">
-    {{ side_nav(addon_type or amo.ADDON_EXTENSION, category=category) }}
-  </section>
   {% block primary %}{% endblock %}
 {% endblock %}
