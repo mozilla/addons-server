@@ -236,14 +236,16 @@ class TestLoginUserAndRegisterUser(TestCase):
         assert self.user.auth_id
 
     def test_register_user(self):
-        views.register_user(self.__class__, self.request,
-                            {'email': 'new@yeahoo.com', 'uid': '424242'})
+        with mock.patch('django_statsd.clients.statsd.incr') as incr_mock:
+            views.register_user(self.__class__, self.request,
+                                {'email': 'new@yeahoo.com', 'uid': '424242'})
         assert UserProfile.objects.count() == 2
         user = UserProfile.objects.get(email='new@yeahoo.com')
         assert user.fxa_id == '424242'
         self.login_mock.assert_called_with(self.request, user)
         self.assertCloseToNow(user.last_login)
         assert user.last_login_ip == '8.8.8.8'
+        incr_mock.assert_called_with('accounts.account_created_from_fxa')
 
         # The other user wasn't affected.
         self.user.reload()

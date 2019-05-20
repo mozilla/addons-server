@@ -22,6 +22,7 @@ from corsheaders.middleware import (
     ACCESS_CONTROL_ALLOW_ORIGIN, ACCESS_CONTROL_ALLOW_CREDENTIALS,
     ACCESS_CONTROL_ALLOW_HEADERS, ACCESS_CONTROL_ALLOW_METHODS,
     ACCESS_CONTROL_MAX_AGE)
+from django_statsd.clients import statsd
 from rest_framework import serializers
 from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import action
@@ -135,6 +136,7 @@ def register_user(sender, request, identity):
     user = UserProfile.objects.create_user(
         email=identity['email'], username=None, fxa_id=identity['uid'])
     log.info('Created user {} from FxA'.format(user))
+    statsd.incr('accounts.account_created_from_fxa')
     login_user(sender, request, user, identity)
     return user
 
