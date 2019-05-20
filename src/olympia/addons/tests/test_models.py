@@ -1424,17 +1424,6 @@ class TestAddonModels(TestCase):
         assert addon.has_complete_metadata()  # Still complete
         assert not addon.has_complete_metadata(has_listed_versions=True)
 
-    def test_can_review(self):
-        user = AnonymousUser()
-        addon = Addon.objects.get(id=3615)
-        assert addon.can_review(user)
-
-        user = addon.addonuser_set.all()[0].user
-        assert not addon.can_review(user)
-
-        user = UserProfile.objects.get(pk=2519)
-        assert addon.can_review(user)
-
     def test_has_author(self):
         addon = Addon.objects.get(id=3615)
         user = addon.addonuser_set.all()[0].user

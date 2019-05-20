@@ -1321,10 +1321,6 @@ class Addon(OnChangeMixin, ModelBase):
             return False
         return AddonUser.objects.filter(addon=self, user=user).exists()
 
-    @property
-    def takes_contributions(self):
-        pass
-
     @classmethod
     def _last_updated_queries(cls):
         """
@@ -1400,10 +1396,6 @@ class Addon(OnChangeMixin, ModelBase):
             except IndexError:
                 pass
         return ''
-
-    def can_review(self, user):
-        """Check whether the user should be prompted to add a review or not."""
-        return not user.is_authenticated or not self.has_author(user)
 
     def check_ownership(self, request, require_owner, require_author,
                         ignore_disabled, admin):
