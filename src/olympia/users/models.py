@@ -688,7 +688,7 @@ class IPNetworkUserRestriction(ModelBase):
         restrictions = IPNetworkUserRestriction.objects.all()
 
         for restriction in restrictions:
-            if remote_addr in list(restriction.network.hosts()):
+            if remote_addr in restriction.network:
                 return False
         return True
 

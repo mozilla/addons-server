@@ -673,6 +673,21 @@ class TestIPNetworkUserRestriction(TestCase):
         IPNetworkUserRestriction.objects.create(network='10.8.0.0/32')
         assert IPNetworkUserRestriction.allow_request(request)
 
+    def test_blocked_ip4_32_subnet(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.8').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.8/32')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
+    def test_allowed_ip4_28_subnet(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
+        assert IPNetworkUserRestriction.allow_request(request)
+
+    def test_blocked_ip4_24_subnet(self):
+        request = RequestFactory(REMOTE_ADDR='192.168.0.254').get('/')
+        IPNetworkUserRestriction.objects.create(network='192.168.0.0/24')
+        assert not IPNetworkUserRestriction.allow_request(request)
+
     def test_blocked_ip4_address(self):
         request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
         IPNetworkUserRestriction.objects.create(network='192.168.0.0/28')
