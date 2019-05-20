@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-20 15:30+0000\n"
+"PO-Revision-Date: 2019-05-20 15:42+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4430,19 +4430,19 @@ msgstr "Zabezpečte své osobní záložky heslem."
 
 #. editorial content for the discovery pane.
 msgid "Prevent IP address leaks {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Předejděte únikům IP adresy {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Do you use a VPN? Your IP address may leak. Put a stop to that by disabling WebRTC."
-msgstr "Používáte síť VPN? Může dojít k vyzrazení vaší IP adresy. Zabraňte tomu tím, že zakážete WebRTC."
+msgstr "Používáte síť VPN? Může dojít k prozrazení vaší IP adresy. Zabraňte tomu tím, že zakážete WebRTC."
 
 #. editorial content for the discovery pane.
 msgid "Close annoying overlays {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Zavřete otravné překryvné prvky {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Simply click a button to close annoying pop-up overlays."
-msgstr ""
+msgstr "Jednoduše klikněte na tlačítko a zavřete tak otravné vyskakovací překryvné prvky."
 
 #. editorial content for the discovery pane.
 msgid "Investigate any image {start_sub_heading}with {addon_name}{end_sub_heading}"
