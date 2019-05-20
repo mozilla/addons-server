@@ -406,15 +406,25 @@ class TestAbuse(TestCase):
         request.user = user_factory()
         assert list(abuse_report_admin.get_actions(request).keys()) == []
 
+        # self.user has AbuseReports:Edit
         request.user = self.user
         assert list(
             abuse_report_admin.get_actions(request).keys()) == [
             'mark_as_valid', 'mark_as_suspicious'
         ]
 
+        # Advanced admins can also delete.
+        request.user = user_factory()
+        self.grant_permission(request.user, 'AbuseReports:Edit')
+        self.grant_permission(request.user, 'Admin:Advanced')
+        assert list(
+            abuse_report_admin.get_actions(request).keys()) == [
+            'delete_selected', 'mark_as_valid', 'mark_as_suspicious'
+        ]
+
     def test_action_mark_multiple_as_valid(self):
         abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
-        request = RequestFactory().get('/')
+        request = RequestFactory().post('/')
         request.user = self.user
         request._messages = default_messages_storage(request)
         reports = AbuseReport.objects.filter(
@@ -425,7 +435,10 @@ class TestAbuse(TestCase):
         other_report = AbuseReport.objects.get(guid='@guid1', message='')
         assert other_report.state == AbuseReport.STATES.UNTRIAGED
 
-        abuse_report_admin.mark_as_valid(request, reports)
+        action_callback = abuse_report_admin.get_actions(
+            request)['mark_as_valid'][0]
+        rval = action_callback(abuse_report_admin, request, reports)
+        assert rval is None  # successful actions return None
         for report in reports.all():
             assert report.state == AbuseReport.STATES.VALID
 
@@ -434,7 +447,7 @@ class TestAbuse(TestCase):
 
     def test_action_mark_multiple_as_suspicious(self):
         abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
-        request = RequestFactory().get('/')
+        request = RequestFactory().post('/')
         request.user = self.user
         request._messages = default_messages_storage(request)
         reports = AbuseReport.objects.filter(
@@ -445,9 +458,33 @@ class TestAbuse(TestCase):
         other_report = AbuseReport.objects.get(guid='@guid1', message='')
         assert other_report.state == AbuseReport.STATES.UNTRIAGED
 
-        abuse_report_admin.mark_as_suspicious(request, reports)
+        action_callback = abuse_report_admin.get_actions(
+            request)['mark_as_suspicious'][0]
+        rval = action_callback(abuse_report_admin, request, reports)
+        assert rval is None  # successful actions return None
         for report in reports.all():
             assert report.state == AbuseReport.STATES.SUSPICIOUS
 
         # Other reports should be unaffected
         assert other_report.reload().state == AbuseReport.STATES.UNTRIAGED
+
+    def test_delete_multiple_action_soft_deletes(self):
+        abuse_report_admin = AbuseReportAdmin(AbuseReport, admin.site)
+        request = RequestFactory().post('/', {'post': 'yes'})
+        request.user = user_factory()
+        self.grant_permission(request.user, 'AbuseReports:Edit')
+        self.grant_permission(request.user, 'Admin:Advanced')
+        request._messages = default_messages_storage(request)
+        reports = AbuseReport.objects.filter(
+            guid__in=('@guid3', '@unknown_guid'))
+        assert reports.count() == 2
+        assert AbuseReport.objects.count() == 6
+        assert AbuseReport.unfiltered.count() == 6
+
+        action_callback = abuse_report_admin.get_actions(
+            request)['delete_selected'][0]
+        rval = action_callback(abuse_report_admin, request, reports)
+        assert rval is None  # successful actions return None
+        assert reports.count() == 0  # All should have been soft-deleted.
+        assert AbuseReport.objects.count() == 4  # Should have 1 unaffected.
+        assert AbuseReport.unfiltered.count() == 6  # We're only soft-deleting.
