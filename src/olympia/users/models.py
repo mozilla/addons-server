@@ -638,34 +638,6 @@ class DeniedName(ModelBase):
         return any(n in name for n in blocked_list)
 
 
-class IPAddressUserRestriction(ModelBase):
-    """Define restrictions for user-based data that can be used to either
-    avoid a user to register, submit add-ons or similar.
-    """
-    id = PositiveAutoField(primary_key=True)
-    ip_address = models.GenericIPAddressField(
-        blank=True, null=True,
-        help_text=_('Enter a valid IPv4 or IPv6 address, e.g 127.0.0.1'))
-
-    class Meta:
-        db_table = 'users_user_ip_restriction'
-
-    @classmethod
-    def allow_request(self, request):
-        remote_addr = request.META.get('REMOTE_ADDR')
-        return not (
-            IPAddressUserRestriction.objects
-            .filter(ip_address=remote_addr)
-            .exists())
-
-    @classmethod
-    def get_error_message(self, request):
-        return _(
-            'Multiple add-ons violating our policies have been'
-            ' submitted from your location. The IP address has been'
-            ' blocked.')
-
-
 class IPNetworkUserRestriction(ModelBase):
     id = PositiveAutoField(primary_key=True)
     network = CIDRField(
@@ -694,7 +666,10 @@ class IPNetworkUserRestriction(ModelBase):
 
     @classmethod
     def get_error_message(self, request):
-        return IPAddressUserRestriction.get_error_message()
+        return _(
+            'Multiple add-ons violating our policies have been'
+            ' submitted from your location. The IP address has been'
+            ' blocked.')
 
 
 class EmailUserRestriction(ModelBase):

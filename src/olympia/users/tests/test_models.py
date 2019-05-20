@@ -26,7 +26,7 @@ from olympia.files.models import File
 from olympia.ratings.models import Rating
 from olympia.users.models import (
     DeniedName, generate_auth_id, UserEmailField, UserForeignKey, UserProfile,
-    EmailUserRestriction, IPAddressUserRestriction, IPNetworkUserRestriction)
+    EmailUserRestriction, IPNetworkUserRestriction)
 from olympia.zadmin.models import set_config
 
 
@@ -620,46 +620,6 @@ class TestDeniedName(TestCase):
         assert DeniedName.blocked('IE6fantastic')
         assert not DeniedName.blocked('IE6')
         assert not DeniedName.blocked('testo')
-
-
-class TestIPAddressUserRestriction(TestCase):
-
-    def test_allowed_ip4_address(self):
-        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
-        IPAddressUserRestriction.objects.create(ip_address='10.8.0.1')
-        assert IPAddressUserRestriction.allow_request(request)
-
-    def test_blocked_ip4_address(self):
-        request = RequestFactory(REMOTE_ADDR='192.168.0.1').get('/')
-        IPAddressUserRestriction.objects.create(ip_address='192.168.0.1')
-        assert not IPAddressUserRestriction.allow_request(request)
-
-    def test_ip4_address_validated(self):
-        with pytest.raises(forms.ValidationError) as exc_info:
-            IPAddressUserRestriction(ip_address='127.288.0.5').full_clean()
-        assert exc_info.value.messages[0] == (
-            'Enter a valid IPv4 or IPv6 address.')
-
-    def test_allowed_ip6_address(self):
-        request = RequestFactory(
-            REMOTE_ADDR='fe80::8ced:96ff:fee1:c405').get('/')
-        IPAddressUserRestriction.objects.create(
-            ip_address='fe80::9ced:96ff:fee1:c408')
-        assert IPAddressUserRestriction.allow_request(request)
-
-    def test_blocked_ip6_address(self):
-        request = RequestFactory(
-            REMOTE_ADDR='fe80::8ced:96ff:fee1:c405').get('/')
-        IPAddressUserRestriction.objects.create(
-            ip_address='fe80::8ced:96ff:fee1:c405')
-        assert not IPAddressUserRestriction.allow_request(request)
-
-    def test_ip6_address_validated(self):
-        with pytest.raises(forms.ValidationError) as exc_info:
-            IPAddressUserRestriction(
-                ip_address='fe80::8cex:96af:fee1:c405').full_clean()
-        assert exc_info.value.messages[0] == (
-            'Enter a valid IPv4 or IPv6 address.')
 
 
 class TestIPNetworkUserRestriction(TestCase):

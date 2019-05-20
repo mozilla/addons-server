@@ -24,8 +24,8 @@ from olympia.zadmin.admin import related_content_link
 
 from . import forms
 from .models import (
-    DeniedName, GroupUser, UserProfile, IPAddressUserRestriction,
-    IPNetworkUserRestriction, EmailUserRestriction)
+    DeniedName, GroupUser, UserProfile, IPNetworkUserRestriction,
+    EmailUserRestriction)
 
 
 class GroupUserInline(admin.TabularInline):
@@ -255,16 +255,11 @@ class DeniedNameAdmin(DeniedModelAdmin):
     template_path = 'users/admin/denied_name/add.html'
 
 
-@admin.register(IPAddressUserRestriction)
-class IPAddressUserRestrictionAdmin(admin.ModelAdmin):
-    list_display = ('ip_address',)
-    search_fields = ('^ip_address',)
-
-
 @admin.register(IPNetworkUserRestriction)
 class IPNetworkUserRestrictionAdmin(admin.ModelAdmin):
     list_display = ('network',)
     search_fields = ('=network',)
+    form = forms.IPNetworkUserRestrictionForm
 
 
 @admin.register(EmailUserRestriction)
