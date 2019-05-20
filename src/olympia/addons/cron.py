@@ -6,7 +6,6 @@ from datetime import datetime, timedelta
 from django.conf import settings
 from django.db import connections
 from django.db.models import Avg, F, Q, Sum
-from django.utils.encoding import force_text
 
 import multidb
 import waffle
@@ -22,7 +21,7 @@ from olympia.addons.tasks import (
     update_addon_download_totals as _update_addon_download_totals,
     update_appsupport)
 from olympia.amo.decorators import use_primary_db
-from olympia.amo.utils import chunked, walkfiles
+from olympia.amo.utils import chunked
 from olympia.files.models import File
 from olympia.lib.es.utils import raise_if_reindex_in_progress
 from olympia.stats.models import UpdateCount
@@ -125,41 +124,44 @@ def update_addon_appsupport():
 
 
 def hide_disabled_files():
-    # If an add-on or a file is disabled, it should be moved to
-    # GUARDED_ADDONS_PATH so it's not publicly visible.
+    """
+    Move files (on filesystem) belonging to disabled files (in database) to the
+    correct place if necessary, so they they are not publicly accessible
+    any more.
+
+    See also unhide_disabled_files().
+    """
     q = (Q(version__addon__status=amo.STATUS_DISABLED) |
          Q(version__addon__disabled_by_user=True))
     ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
            .values_list('id', flat=True))
     for chunk in chunked(ids, 300):
-        qs = File.objects.filter(id__in=chunk)
-        qs = qs.select_related('version')
+        qs = File.objects.select_related('version').filter(id__in=chunk)
         for f in qs:
+            # This tries to move the file to the disabled location. If it
+            # didn't exist at the source, it will catch the exception, log it
+            # and continue.
             f.hide_disabled_file()
 
 
 def unhide_disabled_files():
-    # Files are getting stuck in /guarded-addons for some reason. This job
-    # makes sure guarded add-ons are supposed to be disabled.
-    log = olympia.core.logger.getLogger('z.files.disabled')
+    """
+    Move files (on filesystem) belonging to public files (in database) to the
+    correct place if necessary, so they they publicly accessible.
+
+    See also hide_disabled_files().
+    """
     q = (Q(version__addon__status=amo.STATUS_DISABLED) |
          Q(version__addon__disabled_by_user=True))
-    files = set(File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
-                .values_list('version__addon', 'filename'))
-    for filepath in walkfiles(settings.GUARDED_ADDONS_PATH):
-        filepath = force_text(filepath)
-        addon, filename = filepath.split('/')[-2:]
-        if tuple([int(addon), filename]) not in files:
-            log.warning(u'File that should not be guarded: %s.', filepath)
-            try:
-                file_ = (File.objects.select_related('version__addon')
-                         .get(version__addon=addon, filename=filename))
-                file_.unhide_disabled_file()
-            except File.DoesNotExist:
-                log.warning(u'File object does not exist for: %s.' % filepath)
-            except Exception:
-                log.error(u'Could not unhide file: %s.' % filepath,
-                          exc_info=True)
+    ids = (File.objects.exclude(q | Q(status=amo.STATUS_DISABLED))
+           .values_list('id', flat=True))
+    for chunk in chunked(ids, 300):
+        qs = File.objects.select_related('version').filter(id__in=chunk)
+        for f in qs:
+            # This tries to move the file to the public location. If it
+            # didn't exist at the source, it will catch the exception, log it
+            # and continue.
+            f.unhide_disabled_file()
 
 
 def deliver_hotness():
