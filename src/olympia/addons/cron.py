@@ -131,17 +131,17 @@ def hide_disabled_files():
 
     See also unhide_disabled_files().
     """
-    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
-         Q(version__addon__disabled_by_user=True))
-    ids = (File.objects.filter(q | Q(status=amo.STATUS_DISABLED))
-           .values_list('id', flat=True))
+    ids = (File.objects.filter(
+        Q(version__addon__status=amo.STATUS_DISABLED) |
+        Q(version__addon__disabled_by_user=True) |
+        Q(status=amo.STATUS_DISABLED)).values_list('id', flat=True))
     for chunk in chunked(ids, 300):
         qs = File.objects.select_related('version').filter(id__in=chunk)
-        for f in qs:
+        for file_ in qs:
             # This tries to move the file to the disabled location. If it
             # didn't exist at the source, it will catch the exception, log it
             # and continue.
-            f.hide_disabled_file()
+            file_.hide_disabled_file()
 
 
 def unhide_disabled_files():
@@ -151,17 +151,17 @@ def unhide_disabled_files():
 
     See also hide_disabled_files().
     """
-    q = (Q(version__addon__status=amo.STATUS_DISABLED) |
-         Q(version__addon__disabled_by_user=True))
-    ids = (File.objects.exclude(q | Q(status=amo.STATUS_DISABLED))
-           .values_list('id', flat=True))
+    ids = (File.objects.exclude(
+        Q(version__addon__status=amo.STATUS_DISABLED) |
+        Q(version__addon__disabled_by_user=True) |
+        Q(status=amo.STATUS_DISABLED)).values_list('id', flat=True))
     for chunk in chunked(ids, 300):
         qs = File.objects.select_related('version').filter(id__in=chunk)
-        for f in qs:
+        for file_ in qs:
             # This tries to move the file to the public location. If it
             # didn't exist at the source, it will catch the exception, log it
             # and continue.
-            f.unhide_disabled_file()
+            file_.unhide_disabled_file()
 
 
 def deliver_hotness():
