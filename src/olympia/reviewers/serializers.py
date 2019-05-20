@@ -344,8 +344,8 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             path_depth = path.count(os.sep)
             path_deleted = False
             if path not in entries:
-                # The file got deleted so let's mimic the original data-structure
-                # for better modeling on the client.
+                # The file got deleted so let's mimic the original data-
+                # structure for better modeling on the client.
                 # Most of the actual data is not present, though, so we set
                 # it to `None`.
                 path_deleted = True
@@ -366,7 +366,11 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             entries[path]['status'] = patch['mode']
 
             parent_path = os.path.dirname(path)
-            if path_deleted and parent_path != '' and parent_path not in entries:
+            if (
+                path_deleted is True and
+                parent_path is not '' and
+                parent_path not in entries
+            ):
                 # The parent directory of this deleted file does not
                 # exist. This could happen if no other files were
                 # modified within the directory.
