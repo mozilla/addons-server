@@ -212,7 +212,7 @@ class AbuseReportAdmin(CommaSearchInAdminMixin, admin.ModelAdmin):
         elif type_ == 'user':
             search_field = 'user_id'
         else:
-            search_field = 'pk'
+            search_field = super().get_search_id_field(request)
         return search_field
 
     def get_search_results(self, request, qs, search_term):
