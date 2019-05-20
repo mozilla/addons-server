@@ -128,6 +128,8 @@ class ViewQueue(RawSQLModel):
     waiting_time_hours = models.IntegerField()
     waiting_time_min = models.IntegerField()
 
+    recommendable_addons = False
+
     def base_query(self):
         return {
             'select': OrderedDict([
@@ -165,6 +167,8 @@ class ViewQueue(RawSQLModel):
                     addons.id = addons_addonreviewerflags.addon_id)
                 LEFT JOIN versions ON (addons.id = versions.addon_id)
                 LEFT JOIN files ON (files.version_id = versions.id)
+                LEFT JOIN discovery_discoveryitem AS discoitem ON (
+                    addons.id = discoitem.addon_id)
 
                 JOIN translations AS tr ON (
                     tr.id = addons.name
@@ -175,6 +179,9 @@ class ViewQueue(RawSQLModel):
                 'NOT addons.inactive',  # disabled_by_user
                 'versions.channel = %s' % amo.RELEASE_CHANNEL_LISTED,
                 'files.status = %s' % amo.STATUS_AWAITING_REVIEW,
+                ('NOT ' if not self.recommendable_addons else '') +
+                '(discoitem.recommendable = True AND '
+                'discoitem.recommendable IS NOT NULL)',
             ],
             'group_by': 'id'}
 
@@ -187,6 +194,10 @@ class ViewQueue(RawSQLModel):
         return get_flags_for_row(self)
 
 
+def _int_join(list_of_ints):
+    return ','.join(str(int_) for int_ in list_of_ints)
+
+
 class FullReviewQueueMixin:
     def base_query(self):
         query = super().base_query()
@@ -195,24 +206,29 @@ class FullReviewQueueMixin:
 
 
 class PendingQueueMixin:
-
     def base_query(self):
         query = super().base_query()
         query['where'].append('addons.status = %s' % amo.STATUS_APPROVED)
         return query
 
 
-class ExtensionQueueMixin:
-
+class CombinedReviewQueueMixin:
     def base_query(self):
         query = super().base_query()
-        types = (str(id_) for id_ in amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME])
-        query['where'].append('addons.addontype_id IN (%s)' % ','.join(types))
+        query['where'].append(
+            f'addons.status IN ({_int_join(amo.VALID_ADDON_STATUSES)})')
+        return query
+
+
+class ExtensionQueueMixin:
+    def base_query(self):
+        query = super().base_query()
+        types = _int_join(amo.GROUP_TYPE_ADDON + [amo.ADDON_THEME])
+        query['where'].append(f'addons.addontype_id IN ({types})')
         return query
 
 
 class ThemeQueueMixin:
-
     def base_query(self):
         query = super().base_query()
         query['where'].append(
@@ -228,6 +244,10 @@ class ViewExtensionFullReviewQueue(ExtensionQueueMixin, FullReviewQueueMixin,
 class ViewExtensionPendingQueue(ExtensionQueueMixin, PendingQueueMixin,
                                 ViewQueue):
     pass
+
+
+class ViewRecommendedQueue(CombinedReviewQueueMixin, ViewQueue):
+    recommendable_addons = True
 
 
 class ViewThemeFullReviewQueue(ThemeQueueMixin, FullReviewQueueMixin,

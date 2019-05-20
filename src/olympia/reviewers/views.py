@@ -56,7 +56,8 @@ from olympia.reviewers.forms import (
 from olympia.reviewers.models import (
     AutoApprovalSummary, PerformanceGraph, ReviewerScore,
     ReviewerSubscription, ViewExtensionFullReviewQueue,
-    ViewExtensionPendingQueue, ViewThemeFullReviewQueue, ViewThemePendingQueue,
+    ViewExtensionPendingQueue, ViewRecommendedQueue,
+    ViewThemeFullReviewQueue, ViewThemePendingQueue,
     Whiteboard, CannedResponse, clear_reviewing_cache, get_flags,
     get_reviewing_cache, get_reviewing_cache_key, set_reviewing_cache)
 from olympia.reviewers.serializers import (
@@ -160,11 +161,18 @@ def dashboard(request):
             pending_queue = filter_admin_review_for_legacy_queue(
                 pending_queue)
 
-        sections[ugettext('Pre-Approval Add-ons')] = [(
-            ugettext('New ({0})').format(full_review_queue.count()),
+        sections[ugettext('Pre-Reviewed Add-ons')] = []
+        if admin_reviewer:
+            recommended_queue = ViewRecommendedQueue.objects
+            sections[ugettext('Pre-Reviewed Add-ons')].append((
+                ugettext(f'Recommended ({recommended_queue.count()})'),
+                reverse('reviewers.queue_recommended')
+            ))
+        sections[ugettext('Pre-Reviewed Add-ons')].extend(((
+            ugettext('Other New ({0})').format(full_review_queue.count()),
             reverse('reviewers.queue_extension_nominated')
         ), (
-            ugettext('Updates ({0})').format(pending_queue.count()),
+            ugettext('Other Updates ({0})').format(pending_queue.count()),
             reverse('reviewers.queue_extension_pending')
         ), (
             ugettext('Performance'),
@@ -176,7 +184,7 @@ def dashboard(request):
             ugettext('Add-on Review Guide'),
             'https://wiki.mozilla.org/Add-ons/Reviewers/Guide'
         ),
-        ]
+        ))
     if view_all or acl.action_allowed(
             request, amo.permissions.ADDONS_POST_REVIEW):
         sections[ugettext('Auto-Approved Add-ons')] = [(
@@ -473,16 +481,6 @@ def _queue(request, TableObj, tab, qs=None, unlisted=False,
     if hasattr(qs, 'sql_model'):
         if not is_searching and not admin_reviewer:
             qs = filter_admin_review_for_legacy_queue(qs)
-        if not unlisted:
-            # Most WebExtensions are picked up by auto_approve cronjob, they
-            # don't need to appear in the queues, unless auto approvals have
-            # been disabled for them.  Webextension static themes aren't auto
-            # approved.
-            qs = qs.filter(
-                Q(addon_type_id=amo.ADDON_STATICTHEME) |
-                Q(**{'files.is_webextension': False}) |
-                Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
-            )
 
     order_by = request.GET.get('sort', TableObj.default_order_by())
     if hasattr(TableObj, 'translate_sort_cols'):
@@ -528,6 +526,8 @@ def queue_counts(admin_reviewer):
             ViewThemePendingQueue),
         'theme_nominated': construct_query_from_sql_model(
             ViewThemeFullReviewQueue),
+        'recommended': construct_query_from_sql_model(
+            ViewRecommendedQueue),
         'moderated': Rating.objects.all().to_moderate().count,
         'auto_approved': (
             AutoApprovalSummary.get_auto_approved_queue(
@@ -542,16 +542,35 @@ def queue_counts(admin_reviewer):
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension_nominated(request):
-    return _queue(
-        request, view_table_factory(ViewExtensionFullReviewQueue),
-        'extension_nominated')
+    TableObj = view_table_factory(ViewExtensionFullReviewQueue)
+    # Most WebExtensions are picked up by auto_approve cronjob, they don't need
+    # to appear in the queues, unless auto approvals have been disabled for
+    # them.
+    qs = TableObj.Meta.model.objects.all().filter(
+        Q(**{'files.is_webextension': False}) |
+        Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
+    )
+    return _queue(request, TableObj, 'extension_nominated', qs=qs)
 
 
 @permission_or_tools_view_required(amo.permissions.ADDONS_REVIEW)
 def queue_extension_pending(request):
+    TableObj = view_table_factory(ViewExtensionPendingQueue)
+    # Most WebExtensions are picked up by auto_approve cronjob, they don't need
+    # to appear in the queues, unless auto approvals have been disabled for
+    # them.
+    qs = TableObj.Meta.model.objects.all().filter(
+        Q(**{'files.is_webextension': False}) |
+        Q(**{'addons_addonreviewerflags.auto_approval_disabled': True})
+    )
+    return _queue(request, TableObj, 'extension_pending', qs=qs)
+
+
+@permission_or_tools_view_required(amo.permissions.REVIEWS_ADMIN)
+def queue_recommended(request):
     return _queue(
-        request, view_table_factory(ViewExtensionPendingQueue),
-        'extension_pending')
+        request, view_table_factory(ViewRecommendedQueue),
+        'recommended')
 
 
 @permission_or_tools_view_required(amo.permissions.STATIC_THEMES_REVIEW)
@@ -595,11 +614,6 @@ def queue_moderated(request):
                           tab='moderated', page=page, flags=flags,
                           search_form=None,
                           point_types=amo.REVIEWED_AMO))
-
-
-@unlisted_addons_reviewer_required
-def unlisted_queue(request):
-    return redirect(reverse('reviewers.unlisted_queue_all'))
 
 
 @any_reviewer_required

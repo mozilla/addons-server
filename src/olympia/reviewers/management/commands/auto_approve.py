@@ -41,14 +41,16 @@ class Command(BaseCommand):
     def fetch_candidates(self):
         """Return a queryset with the Version instances that should be
         considered for auto approval."""
-        return (Version.objects.filter(
+        qs = Version.objects.filter(
             addon__type__in=(
                 amo.ADDON_EXTENSION, amo.ADDON_LPAPP, amo.ADDON_DICT),
             addon__disabled_by_user=False,
             addon__status__in=(amo.STATUS_APPROVED, amo.STATUS_NOMINATED),
             files__status=amo.STATUS_AWAITING_REVIEW,
             files__is_webextension=True)
-            .order_by('nomination', 'created').distinct())
+        qs = qs.exclude(
+            addon__discoveryitem__recommendable=True)
+        return qs.order_by('nomination', 'created').distinct()
 
     def handle(self, *args, **options):
         """Command entry point."""
