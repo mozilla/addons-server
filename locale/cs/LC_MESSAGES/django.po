@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: REMORA 0.1\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2019-04-08 08:39+0000\n"
-"PO-Revision-Date: 2019-05-20 13:11+0000\n"
+"PO-Revision-Date: 2019-05-20 13:30+0000\n"
 "Last-Translator: Jirka Soukeník <soucet@centrum.cz>\n"
 "Language-Team: Mozilla.cz <info@mozilla.cz>\n"
 "Language: cs\n"
@@ -4358,11 +4358,11 @@ msgstr "Upravujte záložky prostřednictvím snadno přístupného rámečku."
 
 #. editorial content for the discovery pane.
 msgid "Keep passwords safe {start_sub_heading}with {addon_name}{end_sub_heading}"
-msgstr ""
+msgstr "Mějte svá hesla v bezpečí {start_sub_heading}díky {addon_name}{end_sub_heading}"
 
 #. editorial content for the discovery pane.
 msgid "Store passwords securely and sign in automatically to known websites."
-msgstr ""
+msgstr "Bezpečně si ukládejte hesla a na známých webech se přihlašujte automaticky."
 
 #. editorial content for the discovery pane.
 msgid "A simple ad blocker focused on displaying just the content you want."
@@ -4374,7 +4374,7 @@ msgstr ""
 
 #. editorial content for the discovery pane.
 msgid "Make informed decisions by tracking the price of a product listed on Amazon."
-msgstr ""
+msgstr "Rozhodujte se fundovaně díky sledování ceny produktu na Amazonu."
 
 #. editorial content for the discovery pane.
 msgid "Shop with confidence {start_sub_heading}with {addon_name}{end_sub_heading}"
