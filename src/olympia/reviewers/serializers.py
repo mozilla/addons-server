@@ -368,7 +368,7 @@ class FileEntriesDiffSerializer(FileEntriesSerializer):
             parent_path = os.path.dirname(path)
             if (
                 path_deleted is True and
-                parent_path is not '' and
+                parent_path != '' and
                 parent_path not in entries
             ):
                 # The parent directory of this deleted file does not

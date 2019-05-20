@@ -352,12 +352,12 @@ class TestFileEntriesDiffSerializer(TestCase):
         parent = entries_by_file[parent_dir]
         assert parent['depth'] == 0
         assert parent['filename'] == parent_dir
-        assert parent['sha256'] == None
+        assert parent['sha256'] is None
         assert parent['mime_category'] == 'directory'
         assert parent['mimetype'] == 'application/octet-stream'
         assert parent['path'] == parent_dir
-        assert parent['size'] == None
-        assert parent['modified'] == None
+        assert parent['size'] is None
+        assert parent['modified'] is None
 
     def test_recreate_nested_parent_dir_of_deleted_file(self):
         addon, repo, parent_version, new_version = \
