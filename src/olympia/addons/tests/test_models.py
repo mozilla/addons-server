@@ -7,7 +7,6 @@ from datetime import datetime, timedelta
 
 from django import forms
 from django.conf import settings
-from django.contrib.auth.models import AnonymousUser
 from django.core import mail
 from django.utils import translation
 
@@ -1368,7 +1367,9 @@ class TestAddonModels(TestCase):
         addon = Addon.objects.get(id=3615)
         cats = addon.categories.filter(application=amo.FIREFOX.id)
         names = [c.name for c in cats]
-        assert addon.get_category(amo.FIREFOX.id).name in names
+
+        appname = getattr(amo.APP_IDS.get(amo.FIREFOX.id), 'short', '')
+        assert addon.app_categories.get(appname)[0].name in names
 
     def test_binary_property(self):
         addon = Addon.objects.get(id=3615)
@@ -2675,88 +2676,6 @@ class TestTrackAddonStatusChange(TestCase):
         mock_incr.assert_any_call(
             'addon_status_change.all.status_{}'.format(amo.STATUS_APPROVED)
         )
-
-
-class TestSearchSignals(amo.tests.ESTestCase):
-
-    def setUp(self):
-        super(TestSearchSignals, self).setUp()
-        self.addCleanup(self.cleanup)
-
-    def cleanup(self):
-        self.empty_index('default')
-
-    def test_no_addons(self):
-        assert Addon.search_public().count() == 0
-
-    def test_create(self):
-        addon = addon_factory(name='woo')
-        self.refresh()
-        assert Addon.search_public().count() == 1
-        assert Addon.search_public().query(name='woo')[0].id == addon.id
-
-    def test_update(self):
-        addon = addon_factory(name='woo')
-        self.refresh()
-        assert Addon.search_public().count() == 1
-
-        addon.name = 'yeah'
-        addon.save()
-        self.refresh()
-
-        assert Addon.search_public().count() == 1
-        assert Addon.search_public().query(name='woo').count() == 0
-        assert Addon.search_public().query(name='yeah')[0].id == addon.id
-
-    def test_user_disable(self):
-        """Test that add-ons are removed from search results after being
-        disabled by their developers."""
-        addon = addon_factory(name='woo')
-        self.refresh()
-        assert Addon.search_public().count() == 1
-
-        addon.update(disabled_by_user=True)
-        self.refresh()
-
-        assert Addon.search_public().count() == 0
-
-    def test_switch_to_unlisted(self):
-        """Test that add-ons are removed from search results after being
-        switched to unlisted."""
-        addon = addon_factory(name='woo')
-        self.refresh()
-        assert Addon.search_public().count() == 1
-
-        addon.current_version.update(channel=amo.RELEASE_CHANNEL_UNLISTED)
-        self.refresh()
-
-        assert Addon.search_public().count() == 0
-
-    def test_switch_to_listed(self):
-        """Test that add-ons created as unlisted do not appear in search
-        results until switched to listed."""
-        addon = addon_factory(
-            name='woo', version_kw={'channel': amo.RELEASE_CHANNEL_UNLISTED},
-            status=amo.STATUS_NULL)
-        self.refresh()
-        assert Addon.search_public().count() == 0
-
-        latest_version = addon.find_latest_version(
-            channel=amo.RELEASE_CHANNEL_UNLISTED)
-        latest_version.update(channel=amo.RELEASE_CHANNEL_LISTED)
-        addon.update(status=amo.STATUS_APPROVED)
-        self.refresh()
-
-        assert Addon.search_public().count() == 1
-
-    def test_delete(self):
-        addon = addon_factory(name='woo')
-        self.refresh()
-        assert Addon.search_public().count() == 1
-
-        addon.delete('woo')
-        self.refresh()
-        assert Addon.search_public().count() == 0
 
 
 class TestLanguagePack(TestCase, amo.tests.AMOPaths):

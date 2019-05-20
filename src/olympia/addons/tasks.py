@@ -32,7 +32,7 @@ from olympia.amo.decorators import set_modified_on, use_primary_db
 from olympia.amo.storage_utils import rm_stored_dir
 from olympia.amo.templatetags.jinja_helpers import user_media_path
 from olympia.amo.utils import (
-    ImageCheck, LocalFileStorage, StopWatch, cache_ns_key,
+    ImageCheck, LocalFileStorage, StopWatch,
     extract_colors_from_image, pngcrush_image)
 from olympia.constants.categories import CATEGORIES
 from olympia.constants.licenses import (
